@@ -117,7 +117,7 @@
 		var/obj/item/storage/bag/trash/T = I
 		to_chat(user, span_notice("You empty the bag into [src]."))
 		for(var/obj/item/O in T.contents)
-			T.remove_from_storage(O, src, user)
+			T.storage_datum.remove_from_storage(O, src, user)
 		T.update_icon()
 		update()
 
@@ -225,11 +225,11 @@
 
 	if(!isAI(user))  //AI can't pull flush handle
 		if(flush)
-			dat += "Disposal handle: <A href='?src=[text_ref(src)];handle=0'>Disengage</A> <B>Engaged</B>"
+			dat += "Disposal handle: <A href='byond://?src=[text_ref(src)];handle=0'>Disengage</A> <B>Engaged</B>"
 		else
-			dat += "Disposal handle: <B>Disengaged</B> <A href='?src=[text_ref(src)];handle=1'>Engage</A>"
+			dat += "Disposal handle: <B>Disengaged</B> <A href='byond://?src=[text_ref(src)];handle=1'>Engage</A>"
 
-		dat += "<BR><HR><A href='?src=[text_ref(src)];eject=1'>Eject contents</A><HR>"
+		dat += "<BR><HR><A href='byond://?src=[text_ref(src)];eject=1'>Eject contents</A><HR>"
 
 	if(mode <= 0)
 		dat += "Pump: <B>Off</B> On</A><BR>"
@@ -1359,20 +1359,12 @@
 
 //Check if mob has client, if so restore client view on eject
 /mob/pipe_eject(direction)
-	if(client)
-		client.perspective = MOB_PERSPECTIVE
-		client.eye = src
+	if(!client)
+		return
+	client.perspective = MOB_PERSPECTIVE
+	client.eye = src
 
 /obj/effect/decal/cleanable/blood/gibs/pipe_eject(direction)
-	var/list/dirs
-	if(direction)
-		dirs = list( direction, turn(direction, -45), turn(direction, 45))
-	else
-		dirs = GLOB.alldirs.Copy()
-
-	streak(dirs)
-
-/obj/effect/decal/cleanable/blood/gibs/robot/pipe_eject(direction)
 	var/list/dirs
 	if(direction)
 		dirs = list( direction, turn(direction, -45), turn(direction, 45))

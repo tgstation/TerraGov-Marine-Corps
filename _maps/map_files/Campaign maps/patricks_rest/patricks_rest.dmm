@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/obj/effect/landmark/patrol_point/som/som_21,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/patricks_rest/ground/colonynw)
 "ac" = (
 /obj/effect/decal/cleanable/blood/writing{
 	desc = "It looks like a writing in blood. It says, 'The gates of Hel are open when this armory is opened.'";
@@ -212,10 +208,6 @@
 "aY" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/patricks_rest/ground/colonysw)
-"aZ" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/ground/grass/weedable/patch/grassyellow,
-/area/patricks_rest/ground/colonynw)
 "bb" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/light,
@@ -314,10 +306,6 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/patricks_rest/surface/building/storage_depot_research)
-"bv" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/patricks_rest/ground/river/riverside_south)
 "bw" = (
 /obj/structure/prop/mainship/sensor_computer1,
 /turf/open/floor/prison/darkyellow/full,
@@ -330,10 +318,6 @@
 /obj/structure/girder/reinforced,
 /turf/open/floor/mainship/sterile,
 /area/patricks_rest/surface/building/medbay)
-"bB" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/patricks_rest/ground/colonynw)
 "bC" = (
 /obj/structure/flora/desert/grass/heavy,
 /obj/effect/landmark/campaign_structure/barricade/sandbags/som{
@@ -880,6 +864,13 @@
 	},
 /turf/closed/wall/mainship,
 /area/patricks_rest/surface/building/hydro)
+"ea" = (
+/obj/structure/desertdam/decals/road/line{
+	dir = 4
+	},
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating/ground/concrete,
+/area/patricks_rest/ground/colonyne)
 "eb" = (
 /obj/structure/desertdam/decals/road/line{
 	dir = 4
@@ -967,7 +958,7 @@
 /area/patricks_rest/ground/colonys)
 "es" = (
 /obj/structure/table/reinforced/prison,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/grayscale/black,
 /area/patricks_rest/surface/building/residential_cent)
 "et" = (
@@ -1097,10 +1088,6 @@
 	dir = 1
 	},
 /area/patricks_rest/surface/building/storage_depot_south)
-"eU" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/patricks_rest/ground/colonyne)
 "eV" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/surface/building/residential_engi)
@@ -1161,7 +1148,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/patricks_rest/surface/building/hydro)
 "fm" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/toy/deck,
 /obj/item/toy/deck/kotahi,
 /turf/open/floor/prison/whitegreenfull2,
@@ -1174,10 +1161,6 @@
 "fo" = (
 /turf/open/liquid/water/river,
 /area/patricks_rest/ground/colonycent)
-"fq" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/patricks_rest/surface/building/science)
 "fr" = (
 /obj/structure/table/reinforced/prison,
 /turf/open/floor/grayscale/black,
@@ -1366,12 +1349,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/patricks_rest/surface/building/science)
-"gg" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/plating/ground/concrete/lines{
-	dir = 1
-	},
-/area/patricks_rest/ground/colonyne)
 "gi" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -1527,6 +1504,12 @@
 /obj/item/bedsheet/medical,
 /turf/open/floor/mainship/sterile/dark,
 /area/patricks_rest/surface/building/medbay)
+"gR" = (
+/obj/structure/prop/vehicle/van{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/patricks_rest/ground/colonycent)
 "gS" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
@@ -1547,10 +1530,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/patricks_rest/ground/colonyn)
-"gX" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/patricks_rest/ground/colonyne)
 "gY" = (
 /obj/structure/platform/metalplatform{
 	dir = 10
@@ -1941,6 +1920,12 @@
 	},
 /turf/open/floor/prison/darkyellow/full,
 /area/patricks_rest/surface/building/engineering)
+"iL" = (
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/patricks_rest/surface/building/ore_storage)
 "iM" = (
 /obj/structure/desertdam/decals/road,
 /obj/machinery/light{
@@ -2049,13 +2034,6 @@
 	dir = 9
 	},
 /area/patricks_rest/surface/landing_pad)
-"jg" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/patricks_rest/surface/building/engineering)
 "jh" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
@@ -2106,12 +2084,6 @@
 /obj/structure/largecrate,
 /turf/open/floor/mainship/sterile,
 /area/patricks_rest/surface/building/medbay)
-"ju" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/concrete/lines{
-	dir = 1
-	},
-/area/patricks_rest/ground/colonyw)
 "jv" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
@@ -2207,10 +2179,6 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/building/engineering)
-"jQ" = (
-/obj/effect/landmark/patrol_point/som/som_11,
-/turf/open/floor/plating/ground/concrete/lines,
-/area/patricks_rest/ground/colonyw)
 "jR" = (
 /obj/structure/prop/turbine,
 /obj/structure/platform/metalplatform,
@@ -2224,10 +2192,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/patricks_rest/surface/building/science)
-"jT" = (
-/obj/structure/prop/vehicle/van,
-/turf/open/floor/plating/ground/concrete,
-/area/patricks_rest/ground/colonycent)
 "jU" = (
 /obj/structure/platform/rockcliff{
 	dir = 9
@@ -2290,10 +2254,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/patricks_rest/ground/underground/cave)
-"ki" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/patricks_rest/ground/colonyw)
 "kk" = (
 /obj/machinery/computer3,
 /obj/structure/table/mainship,
@@ -2844,7 +2804,7 @@
 /area/patricks_rest/surface/building/ore_storage)
 "mF" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/grayscale/black,
 /area/patricks_rest/surface/building/residential_cent)
 "mG" = (
@@ -3018,10 +2978,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/ground/colonynw)
-"np" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/patricks_rest/ground/colonyse)
 "nq" = (
 /obj/structure/largecrate/random/barrel/green,
 /obj/machinery/light{
@@ -3172,10 +3128,6 @@
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/building/residential_cent)
-"nX" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/patricks_rest/ground/colonyse)
 "nY" = (
 /obj/machinery/light{
 	dir = 1
@@ -3324,10 +3276,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile,
 /area/patricks_rest/surface/building/medbay)
-"oE" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/patricks_rest/ground/colonyse)
 "oF" = (
 /obj/machinery/vending/coffee,
 /obj/machinery/light{
@@ -3366,10 +3314,6 @@
 	dir = 1
 	},
 /area/patricks_rest/surface/building/command)
-"oP" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/patricks_rest/ground/colonyse)
 "oQ" = (
 /obj/structure/prop/mainship/mission_planning_system,
 /turf/open/floor/prison/darkyellow/full,
@@ -3824,6 +3768,14 @@
 	dir = 4
 	},
 /area/patricks_rest/surface/building/science)
+"qQ" = (
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/patricks_rest/ground/colonynw)
 "qR" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/patricks_rest/ground/colonysw)
@@ -3930,7 +3882,7 @@
 /area/patricks_rest/ground/colonys)
 "ru" = (
 /obj/structure/table/reinforced/prison,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/prison/sterilewhite,
 /area/patricks_rest/surface/building/residential_cent)
 "rv" = (
@@ -4007,7 +3959,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/patricks_rest/surface/building/hydro)
 "rP" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/spacecash/c500,
 /turf/open/floor/prison/whitegreenfull2,
 /area/patricks_rest/surface/building/residential_w)
@@ -4306,6 +4258,13 @@
 "to" = (
 /turf/closed/wall/mainship,
 /area/patricks_rest/surface/building/ore_storage)
+"tp" = (
+/obj/structure/desertdam/decals/road/line,
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/patricks_rest/ground/colonycent)
 "tq" = (
 /obj/machinery/light,
 /turf/open/floor/prison/red/full,
@@ -4364,7 +4323,7 @@
 /area/patricks_rest/surface/building/offices)
 "tD" = (
 /obj/structure/table/reinforced,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/reagent_containers/food/snacks/soup/meatballsoup,
 /turf/open/floor/grayscale/black,
 /area/patricks_rest/surface/building/residential_cent)
@@ -4420,12 +4379,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/mainship/sterile/purple,
 /area/patricks_rest/surface/building/science)
-"tS" = (
-/obj/structure/prop/vehicle/truck/truckcargo,
-/turf/open/floor/plating/ground/concrete/lines{
-	dir = 4
-	},
-/area/patricks_rest/ground/colonynw)
 "tT" = (
 /obj/machinery/light{
 	dir = 1
@@ -4585,7 +4538,7 @@
 /obj/structure/window{
 	dir = 4
 	},
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/grayscale/black,
 /area/patricks_rest/surface/building/residential_cent)
 "uE" = (
@@ -4834,8 +4787,8 @@
 /area/patricks_rest/surface/building/residential_cent)
 "vL" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/grayscale/black,
 /area/patricks_rest/surface/building/residential_cent)
 "vM" = (
@@ -6246,6 +6199,10 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
 /area/patricks_rest/surface/building/barracks)
+"Dj" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
+/turf/open/floor/plating/ground/concrete,
+/area/patricks_rest/surface/landing_pad_2)
 "Dk" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/patricks_rest/surface/building/barracks)
@@ -6369,6 +6326,11 @@
 "DJ" = (
 /turf/open/floor/plating/ground/concrete/lines,
 /area/patricks_rest/ground/colonysw)
+"DK" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/plating/ground/concrete,
+/area/patricks_rest/ground/colonyw)
 "DM" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship/mono,
@@ -6491,10 +6453,6 @@
 	},
 /turf/open/floor/mainship/sterile/purple,
 /area/patricks_rest/surface/building/science)
-"Eq" = (
-/obj/effect/landmark/campaign_structure/sensor_tower,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/patricks_rest/ground/colonys)
 "Er" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -7763,10 +7721,6 @@
 	},
 /turf/open/floor/prison/darkpurple/full,
 /area/patricks_rest/surface/building/residential_e)
-"Kv" = (
-/obj/structure/prop/vehicle/truck,
-/turf/open/floor/plating/ground/concrete,
-/area/patricks_rest/surface/building/ore_storage)
 "Kw" = (
 /obj/item/book/manual/engineering_guide,
 /obj/structure/table/mainship,
@@ -7988,11 +7942,6 @@
 	dir = 1
 	},
 /area/patricks_rest/surface/building/command)
-"Lz" = (
-/obj/structure/desertdam/decals/road/line,
-/obj/structure/prop/vehicle/truck/truckcargo,
-/turf/open/floor/plating/ground/concrete,
-/area/patricks_rest/ground/colonycent)
 "LB" = (
 /obj/structure/table/mainship,
 /obj/machinery/light{
@@ -8738,7 +8687,7 @@
 /turf/open/floor/prison/darkpurple/full,
 /area/patricks_rest/surface/building/residential_e)
 "OT" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /turf/open/floor/prison/whitegreenfull2,
 /area/patricks_rest/surface/building/residential_w)
 "OU" = (
@@ -8897,6 +8846,10 @@
 "PF" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/patricks_rest/ground/colonyne)
+"PG" = (
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/ground/grass/weedable/patch/grassyellow,
+/area/patricks_rest/ground/river/riverside_south)
 "PI" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/prison/darkyellow/full,
@@ -9343,7 +9296,7 @@
 /area/patricks_rest/surface/building/barracks)
 "RK" = (
 /obj/structure/table/reinforced/prison,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /turf/open/floor/prison/sterilewhite,
 /area/patricks_rest/surface/building/residential_cent)
 "RL" = (
@@ -10336,6 +10289,12 @@
 	dir = 1
 	},
 /area/patricks_rest/surface/building/science)
+"WC" = (
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/patricks_rest/ground/colonycent)
 "WE" = (
 /obj/effect/decal/cleanable/blood/writing{
 	desc = "It looks like a writing in blood. It says, 'The gates of Hel are open when this armory is opened.'";
@@ -10429,10 +10388,6 @@
 	dir = 4
 	},
 /area/patricks_rest/surface/building/security_post_cargo)
-"WW" = (
-/obj/structure/prop/vehicle/truck/truckcargo,
-/turf/open/floor/plating/ground/concrete,
-/area/patricks_rest/ground/colonycent)
 "WX" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -10827,7 +10782,7 @@
 /obj/structure/window{
 	dir = 8
 	},
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/grayscale/black,
 /area/patricks_rest/surface/building/residential_cent)
 "YZ" = (
@@ -11428,7 +11383,7 @@ IJ
 IJ
 Ot
 ID
-jQ
+qo
 IJ
 IJ
 IJ
@@ -11690,7 +11645,7 @@ Ah
 vw
 IJ
 IJ
-ju
+Ot
 ID
 qo
 IJ
@@ -11820,7 +11775,7 @@ gt
 gt
 eb
 vw
-jg
+wR
 up
 Ot
 ID
@@ -11888,7 +11843,7 @@ ao
 ao
 ao
 KP
-aZ
+KP
 AD
 IN
 ao
@@ -11955,9 +11910,9 @@ dg
 dg
 ui
 Jd
-Ld
+DK
 qo
-ki
+up
 IJ
 IJ
 IJ
@@ -12284,7 +12239,7 @@ ao
 ao
 ao
 ao
-bv
+hh
 hh
 gC
 gC
@@ -12417,7 +12372,7 @@ ao
 ao
 ao
 hh
-jm
+PG
 jm
 gC
 ao
@@ -12812,7 +12767,7 @@ ao
 ao
 ao
 ao
-bB
+AD
 AD
 AD
 AD
@@ -13470,7 +13425,7 @@ aY
 cu
 Ev
 Ev
-aa
+AD
 om
 LX
 KP
@@ -19698,7 +19653,7 @@ wX
 wX
 wX
 wX
-tS
+qQ
 wX
 wX
 wX
@@ -23730,7 +23685,7 @@ Lr
 VG
 VG
 UR
-Eq
+wz
 tz
 Km
 Km
@@ -25003,7 +24958,7 @@ UK
 db
 HK
 Qz
-jT
+gR
 wJ
 wO
 wk
@@ -25399,7 +25354,7 @@ Pg
 Pg
 HK
 Qz
-jT
+gR
 wJ
 Qz
 wk
@@ -25926,9 +25881,9 @@ fk
 Pg
 Pg
 HK
-WW
+WC
 Qz
-Lz
+tp
 Qz
 wk
 Pg
@@ -28868,7 +28823,7 @@ ze
 Np
 uJ
 af
-Kv
+iL
 uJ
 uJ
 Au
@@ -32496,7 +32451,7 @@ aG
 aG
 PN
 nd
-eU
+qX
 qX
 ip
 Ny
@@ -32862,7 +32817,7 @@ uP
 uP
 uP
 uP
-uP
+Dj
 uP
 uP
 uP
@@ -32894,8 +32849,8 @@ Gc
 gs
 MI
 qX
-gg
-RO
+gb
+ea
 gT
 RO
 RO
@@ -33131,7 +33086,7 @@ uP
 uP
 Uy
 Uy
-oP
+we
 Yw
 "}
 (168,1,1) = {"
@@ -33288,11 +33243,11 @@ nd
 nd
 nd
 nd
-fq
+MI
 qX
 qX
 qX
-gX
+qX
 qX
 qX
 qX
@@ -33385,14 +33340,14 @@ we
 we
 we
 we
-np
-we
-we
-nX
 we
 we
 we
-oE
+we
+we
+we
+we
+we
 we
 Sb
 pj

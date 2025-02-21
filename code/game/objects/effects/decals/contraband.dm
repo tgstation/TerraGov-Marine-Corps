@@ -36,6 +36,9 @@
 
 /obj/structure/sign/poster/Initialize(mapload)
 	. = ..()
+	icon = 'icons/obj/contraband.dmi'
+	if(autoplace)
+		return
 	switch(dir)
 		if(NORTH)
 			pixel_y = 30

@@ -34,7 +34,7 @@
 	density = TRUE
 	layer = WINDOW_LAYER
 	anchored = TRUE
-	flags_atom = ON_BORDER
+	atom_flags = ON_BORDER
 
 
 
@@ -44,7 +44,7 @@
 /obj/item/toy/beach_ball/holoball
 	name = "basketball"
 	icon_state = "basketball"
-	item_state = "basketball"
+	worn_icon_state = "basketball"
 	desc = "Here's your chance, do your dance at the Space Jam."
 	w_class = WEIGHT_CLASS_BULKY //Stops people from hiding it in their bags/pockets
 

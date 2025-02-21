@@ -1,5 +1,6 @@
+import { Button, Modal, Section, Stack, Tabs } from 'tgui-core/components';
+
 import { useBackend, useLocalState } from '../../backend';
-import { Button, Modal, Section, Stack, Tabs } from '../../components';
 import { Window } from '../../layouts';
 import { CampaignAssets } from './CampaignAssets';
 import { CampaignMissions } from './CampaignMissions';
@@ -91,8 +92,8 @@ export const CampaignMenu = (props) => {
     <Window
       theme={data.ui_theme}
       title={data.faction + ' Mission Control'}
-      width={700}
-      height={600}
+      width={800}
+      height={650}
     >
       <Window.Content>
         {selectedAsset ? (

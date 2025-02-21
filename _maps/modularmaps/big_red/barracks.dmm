@@ -663,7 +663,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "Cu" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "CU" = (
@@ -939,7 +939,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "Mj" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -1169,7 +1169,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "Ue" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
@@ -1197,7 +1197,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "UL" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/machinery/light,

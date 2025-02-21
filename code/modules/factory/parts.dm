@@ -340,6 +340,15 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	. = ..()
 	recipe = GLOB.IFF_ammo
 
+/obj/item/factory_part/smartgunner_targetrifle_ammobin
+	name = "\improper IFF bins box"
+	desc = "A box with unfinished smart-rounds inside and empty boxes inside."
+	result = /obj/item/ammo_magazine/packet/smart_targetrifle
+
+/obj/item/factory_part/smartgunner_targetrifle_ammobin/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
 /obj/item/factory_part/auto_sniper_magazine
 	name = "\improper IFF high caliber bullet box"
 	desc = "A box with unfinished high caliber smart-rounds inside."
@@ -355,6 +364,24 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	result = /obj/item/ammo_magazine/rifle/tx8
 
 /obj/item/factory_part/scout_rifle_magazine/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
+/obj/item/factory_part/scout_rifle_incen_magazine
+	name = "\improper IFF high velocity bullet box"
+	desc = "A box with unfinished high velocity incendiary smart-rounds inside."
+	result = /obj/item/ammo_magazine/rifle/tx8/incendiary
+
+/obj/item/factory_part/scout_rifle_incen_magazine/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
+/obj/item/factory_part/scout_rifle_impact_magazine
+	name = "\improper IFF high velocity bullet box"
+	desc = "A box with unfinished high velocity smart-rounds inside."
+	result = /obj/item/ammo_magazine/rifle/tx8/impact
+
+/obj/item/factory_part/scout_rifle_impact_magazine/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.IFF_ammo
 
@@ -464,48 +491,6 @@ GLOBAL_LIST_INIT(minigun_powerpack, list(
 	. = ..()
 	recipe = GLOB.minigun_powerpack
 
-GLOBAL_LIST_INIT(howitzer_shell, list(
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "cutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "barrelplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
-	))
-/obj/item/factory_part/howitzer_shell_he
-	name = "howitzer shell"
-	desc = "An unfinished high explosive howitzer shell."
-	result = /obj/item/mortal_shell/howitzer/he
-
-/obj/item/factory_part/howitzer_shell_he/Initialize(mapload)
-	. = ..()
-	recipe = GLOB.howitzer_shell
-
-/obj/item/factory_part/howitzer_shell_incen
-	name = "howitzer shell"
-	desc = "An unfinished incendiary howitzer shell."
-	result = /obj/item/mortal_shell/howitzer/incendiary
-
-/obj/item/factory_part/howitzer_shell_incen/Initialize(mapload)
-	. = ..()
-	recipe = GLOB.howitzer_shell
-
-/obj/item/factory_part/howitzer_shell_wp
-	name = "howitzer shell"
-	desc = "An unfinished white phosphorus Howitzer shell."
-	result = /obj/item/mortal_shell/howitzer/white_phos
-
-/obj/item/factory_part/howitzer_shell_wp/Initialize(mapload)
-	. = ..()
-	recipe = GLOB.howitzer_shell
-
-/obj/item/factory_part/howitzer_shell_tfoot
-	name = "howitzer shell"
-	desc = "An unfinished high explosive howitzer shell."
-	result = /obj/item/mortal_shell/howitzer/plasmaloss
-
-/obj/item/factory_part/howitzer_shell_tfoot/Initialize(mapload)
-	. = ..()
-	recipe = GLOB.howitzer_shell
-
 GLOBAL_LIST_INIT(swat_mask, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "cutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "steelingot"),
@@ -520,38 +505,6 @@ GLOBAL_LIST_INIT(swat_mask, list(
 /obj/item/factory_part/swat_mask/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.swat_mask
-
-GLOBAL_LIST_INIT(meds, list(
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_FLATTER, STEP_ICON_STATE = "uncutplate"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "req_bag3"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "req_bag1"),
-	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "req_bag2"),
-	))
-
-/obj/item/factory_part/med_advpack
-	name = "advanced first-aid kit"
-	desc = "An unfinished advanced first-aid ."
-	result = list(
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
-		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
-		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
-		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
-		/obj/item/stack/medical/heal_pack/advanced/burn_pack,
-		/obj/item/stack/medical/splint,
-		/obj/item/stack/medical/splint,
-		/obj/item/stack/medical/splint,
-		/obj/item/stack/medical/splint,
-		/obj/item/stack/medical/splint,
-	)
-
-/obj/item/factory_part/med_advpack/Initialize(mapload)
-	. = ..()
-	recipe = GLOB.meds
 
 GLOBAL_LIST_INIT(module, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "cutplate"),
@@ -613,6 +566,8 @@ GLOBAL_LIST_INIT(module, list(
 	. = ..()
 	recipe = GLOB.module
 
+// Mortar
+
 GLOBAL_LIST_INIT(mortar_shell, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
@@ -666,7 +621,55 @@ GLOBAL_LIST_INIT(mortar_shell, list(
 	. = ..()
 	recipe = GLOB.mortar_shell
 
+//
+// Howitzer
+//
 
+GLOBAL_LIST_INIT(howitzer_shell, list(
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_DRILLER, STEP_ICON_STATE = "cutplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_COMPRESSOR, STEP_ICON_STATE = "barrelplate"),
+	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_GALVANIZER, STEP_ICON_STATE = "rockettube"),
+	))
+/obj/item/factory_part/howitzer_shell_he
+	name = "howitzer shell"
+	desc = "An unfinished high explosive howitzer shell."
+	result = /obj/item/mortal_shell/howitzer/he
+
+/obj/item/factory_part/howitzer_shell_he/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.howitzer_shell
+
+/obj/item/factory_part/howitzer_shell_incen
+	name = "howitzer shell"
+	desc = "An unfinished incendiary howitzer shell."
+	result = /obj/item/mortal_shell/howitzer/incendiary
+
+/obj/item/factory_part/howitzer_shell_incen/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.howitzer_shell
+
+/obj/item/factory_part/howitzer_shell_wp
+	name = "howitzer shell"
+	desc = "An unfinished white phosphorus Howitzer shell."
+	result = /obj/item/mortal_shell/howitzer/white_phos
+
+/obj/item/factory_part/howitzer_shell_wp/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.howitzer_shell
+
+/obj/item/factory_part/howitzer_shell_tfoot
+	name = "howitzer shell"
+	desc = "An unfinished high explosive howitzer shell."
+	result = /obj/item/mortal_shell/howitzer/plasmaloss
+
+/obj/item/factory_part/howitzer_shell_tfoot/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.howitzer_shell
+
+//
+// MLRS
+//
 
 GLOBAL_LIST_INIT(mlrs_rocket, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
@@ -684,6 +687,23 @@ GLOBAL_LIST_INIT(mlrs_rocket, list(
 /obj/item/factory_part/mlrs_rocket/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.mlrs_rocket
+
+/obj/item/factory_part/mlrs_rocket/gas
+	name = "\improper MLRS mustard gas rocket"
+	desc = "An unfinished mustard gas rocket."
+	result = /obj/item/storage/box/mlrs_rockets/gas
+
+/obj/item/factory_part/mlrs_rocket/cloak
+	name = "\improper MLRS cloak rocket"
+	desc = "An unfinished cloak gas rocket."
+	result = /obj/item/storage/box/mlrs_rockets/cloak
+
+/obj/item/factory_part/mlrs_rocket/incendiary
+	name = "\improper MLRS Incendiary rocket"
+	desc = "An unfinished incendiary rocket."
+	result = /obj/item/storage/box/mlrs_rockets/incendiary
+
+// Thermobaric
 
 GLOBAL_LIST_INIT(thermobaric_wp_recipe, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
@@ -749,7 +769,7 @@ GLOBAL_LIST_INIT(agls_recipe, list(
 	desc = "An incomplete AGLS HE magazine assembly."
 	result = /obj/item/ammo_magazine/standard_agls
 
-/obj/item/factory_part/obj/item/factory_part/agls_he/Initialize(mapload)
+/obj/item/factory_part/agls_he/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.agls_recipe
 
@@ -763,8 +783,8 @@ GLOBAL_LIST_INIT(agls_recipe, list(
 	recipe = GLOB.agls_recipe
 
 /obj/item/factory_part/agls_incendiary
-	name = "\improper AGLS HE magazine assembly"
-	desc = "An incomplete AGLS HE magazine assembly."
+	name = "\improper AGLS Inc. magazine assembly"
+	desc = "An incomplete AGLS Inc. magazine assembly."
 	result = /obj/item/ammo_magazine/standard_agls/incendiary
 
 /obj/item/factory_part/agls_incendiary/Initialize(mapload)
@@ -772,8 +792,8 @@ GLOBAL_LIST_INIT(agls_recipe, list(
 	recipe = GLOB.agls_recipe
 
 /obj/item/factory_part/agls_flare
-	name = "\improper AGLS HE magazine assembly"
-	desc = "An incomplete AGLS HE magazine assembly."
+	name = "\improper AGLS Flare magazine assembly"
+	desc = "An incomplete AGLS Flare magazine assembly."
 	result = /obj/item/ammo_magazine/standard_agls/flare
 
 /obj/item/factory_part/agls_flare/Initialize(mapload)
@@ -781,20 +801,11 @@ GLOBAL_LIST_INIT(agls_recipe, list(
 	recipe = GLOB.agls_recipe
 
 /obj/item/factory_part/agls_cloak
-	name = "\improper AGLS HE magazine assembly"
-	desc = "An incomplete AGLS HE magazine assembly."
+	name = "\improper AGLS Cloak magazine assembly"
+	desc = "An incomplete AGLS Cloak magazine assembly."
 	result = /obj/item/ammo_magazine/standard_agls/cloak
 
 /obj/item/factory_part/agls_cloak/Initialize(mapload)
-	. = ..()
-	recipe = GLOB.agls_recipe
-
-/obj/item/factory_part/agls_tanglefoot
-	name = "\improper AGLS HE magazine assembly"
-	desc = "An incomplete AGLS HE magazine assembly."
-	result = /obj/item/ammo_magazine/standard_agls/tanglefoot
-
-/obj/item/factory_part/agls_tanglefoot/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.agls_recipe
 
@@ -901,3 +912,12 @@ GLOBAL_LIST_INIT(ac_recipe, list(
 /obj/item/factory_part/ac_flak/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.ac_recipe
+
+/obj/item/factory_part/cigarette
+	name = "\improper Cigarette pack"
+	desc = "An incomplete pack of cigarettes."
+	result = /obj/item/clothing/mask/cigarette
+
+/obj/item/factory_part/cigarette/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.equipment_recipe

@@ -8,7 +8,6 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 /obj/item/minimap_tablet
 	name = "minimap tablet"
 	desc = "A drawing tablet with included touch pen. While high command may treat you like a child, being able to plan effectively might be a worthy trade."
-	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "req_tablet_off"
 	/// List of references to the tools we will be using to shape what the map looks like
 	var/list/atom/movable/screen/drawing_tools = list(
@@ -310,7 +309,7 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 		var/curr_dist
 		var/turf/nearest
 		for(var/turf/label AS in labelled_turfs)
-			var/dist = get_dist_euclide(label, target)
+			var/dist = get_dist_euclidean(label, target)
 			if(dist > LABEL_REMOVE_RANGE)
 				continue
 			if(!curr_dist || curr_dist > dist)
@@ -340,7 +339,7 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	textbox.maptext = label_text
 
 	labelled_turfs += target
-	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, "label")
+	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, "label", ABOVE_FLOAT_LAYER)
 	blip.overlays += textbox
 	SSminimaps.add_marker(target, minimap_flag, blip)
 	log_minimap_drawing("[key_name(source)] has added the label [label_text] at [c_x], [c_y]")

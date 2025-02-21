@@ -1,150 +1,7 @@
-/datum/species/zombie
-	name = "Zombie"
-	name_plural = "Zombies"
-	icobase = 'icons/mob/human_races/r_husk.dmi'
-	total_health = 125
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	see_in_dark = 8
-	blood_color = "#110a0a"
-	hair_color = "#000000"
-	slowdown = 0.5
-	default_language_holder = /datum/language_holder/zombie
-	has_organ = list(
-		"heart" = /datum/internal_organ/heart,
-		"lungs" = /datum/internal_organ/lungs,
-		"liver" = /datum/internal_organ/liver,
-		"kidneys" = /datum/internal_organ/kidneys,
-		"brain" = /datum/internal_organ/brain/zombie,
-		"appendix" = /datum/internal_organ/appendix,
-		"eyes" = /datum/internal_organ/eyes
-	)
-	///Sounds made randomly by the zombie
-	var/list/sounds = list('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/wail.ogg')
-	///Time before resurrecting if dead
-	var/revive_time = 1 MINUTES
-	///How much burn and burn damage can you heal every Life tick (half a sec)
-	var/heal_rate = 10
-	var/faction = FACTION_ZOMBIE
-	var/claw_type = /obj/item/weapon/zombie_claw
-
-/datum/species/zombie/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-	. = ..()
-	H.set_undefibbable()
-	H.faction = faction
-	H.language_holder = new default_language_holder()
-	H.setOxyLoss(0)
-	H.setToxLoss(0)
-	H.setCloneLoss(0)
-	H.dropItemToGround(H.r_hand, TRUE)
-	H.dropItemToGround(H.l_hand, TRUE)
-	if(istype(H.wear_id, /obj/item/card/id))
-		var/obj/item/card/id/id = H.wear_id
-		id.access = list() // A bit gamey, but let's say ids have a security against zombies
-		id.iff_signal = NONE
-	H.equip_to_slot_or_del(new claw_type, SLOT_R_HAND)
-	H.equip_to_slot_or_del(new claw_type, SLOT_L_HAND)
-	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]
-	health_hud.add_hud_to(H)
-	H.job = new /datum/job/zombie //Prevent from skewing the respawn timer if you take a zombie, it's a ghost role after all
-	for(var/datum/action/action AS in H.actions)
-		action.remove_action(H)
-	var/datum/action/rally_zombie/rally_zombie = new
-	rally_zombie.give_action(H)
-	var/datum/action/set_agressivity/set_zombie_behaviour = new
-	set_zombie_behaviour.give_action(H)
-
-/datum/species/zombie/post_species_loss(mob/living/carbon/human/H)
-	. = ..()
-	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]
-	health_hud.remove_hud_from(H)
-	qdel(H.r_hand)
-	qdel(H.l_hand)
-	for(var/datum/action/action AS in H.actions)
-		action.remove_action(H)
-
-/datum/species/zombie/handle_unique_behavior(mob/living/carbon/human/H)
-	if(prob(10))
-		playsound(get_turf(H), pick(sounds), 50)
-	for(var/datum/limb/limb AS in H.limbs) //Regrow some limbs
-		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(10))
-			limb.remove_limb_flags(LIMB_DESTROYED)
-			if(istype(limb, /datum/limb/hand/l_hand))
-				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_L_HAND)
-			else if (istype(limb, /datum/limb/hand/r_hand))
-				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_R_HAND)
-			H.update_body()
-		else if(limb.limb_status & LIMB_BROKEN && prob(20))
-			limb.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
-
-	if(H.health != total_health)
-		H.heal_limbs(heal_rate)
-
-	for(var/organ_slot in has_organ)
-		var/datum/internal_organ/internal_organ = H.internal_organs_by_name[organ_slot]
-		internal_organ?.heal_organ_damage(1)
-	H.updatehealth()
-
-/datum/species/zombie/handle_death(mob/living/carbon/human/H)
-	SSmobs.stop_processing(H)
-	if(!H.on_fire && H.has_working_organs())
-		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, revive_to_crit), TRUE, FALSE), revive_time)
-
-/datum/species/zombie/create_organs(mob/living/carbon/human/organless_human)
-	. = ..()
-	for(var/datum/limb/limb AS in organless_human.limbs)
-		if(!istype(limb, /datum/limb/head))
-			continue
-		limb.vital = FALSE
-		return
-
-/datum/species/zombie/fast
-	name = "Fast zombie"
-	slowdown = 0
-
-/datum/species/zombie/fast/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-	. = ..()
-	H.transform = matrix().Scale(0.8, 0.8)
-
-/datum/species/zombie/fast/post_species_loss(mob/living/carbon/human/H)
-	. = ..()
-	H.transform = matrix().Scale(1/(0.8), 1/(0.8))
-
-/datum/species/zombie/tank
-	name = "Tank zombie"
-	slowdown = 1
-	heal_rate = 20
-	total_health = 250
-
-/datum/species/zombie/tank/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-	. = ..()
-	H.transform = matrix().Scale(1.2, 1.2)
-
-/datum/species/zombie/tank/post_species_loss(mob/living/carbon/human/H)
-	. = ..()
-	H.transform = matrix().Scale(1/(1.2), 1/(1.2))
-
-/datum/species/zombie/strong
-	name = "Strong zombie" //These are zombies created from marines, they are stronger, but of course rarer
-	slowdown = -0.5
-	heal_rate = 20
-	total_health = 200
-
-/datum/species/zombie/strong/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-	. = ..()
-	H.color = COLOR_MAROON
-
-/datum/species/zombie/psi_zombie
-	name = "Psi zombie" //reanimated by psionic ability
-	slowdown = -0.5
-	heal_rate = 20
-	total_health = 200
-	faction = FACTION_SECTOIDS
-	claw_type = /obj/item/weapon/zombie_claw/no_zombium
-
 /datum/action/rally_zombie
 	name = "Rally Zombies"
 	action_icon_state = "rally_minions"
+	action_icon = 'icons/Xeno/actions/leader.dmi'
 
 /datum/action/rally_zombie/action_activate()
 	owner.emote("roar")
@@ -175,8 +32,8 @@
 	force = 20
 	sharp = IS_SHARP_ITEM_BIG
 	edge = TRUE
-	attack_verb = list("clawed", "slashed", "torn", "ripped", "diced", "cut", "bit")
-	flags_item = CAN_BUMP_ATTACK|DELONDROP
+	attack_verb = list("claws", "slashes", "tears", "rips", "dices", "cuts", "bites")
+	item_flags = CAN_BUMP_ATTACK|DELONDROP
 	attack_speed = 8 //Same as unarmed delay
 	pry_capable = IS_PRY_CAPABLE_FORCE
 	///How much zombium are transferred per hit. Set to zero to remove transmission
@@ -219,3 +76,80 @@
 
 /obj/item/weapon/zombie_claw/no_zombium
 	zombium_per_hit = 0
+
+// ***************************************
+// *********** Emit Gas
+// ***************************************
+/datum/action/ability/emit_gas
+	name = "Emit Gas"
+	action_icon_state = "emit_neurogas"
+	action_icon = 'icons/Xeno/actions/defiler.dmi'
+	desc = "Use to emit a cloud of blinding smoke."
+	cooldown_duration = 40 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_NEUROGAS,
+	)
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	/// smoke type created when the grenade is primed
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
+	///radius this smoke grenade will encompass
+	var/smokeradius = 4
+	///The duration of the smoke in 2 second ticks
+	var/smoke_duration = 9
+
+/datum/action/ability/emit_gas/on_cooldown_finish()
+	playsound(owner.loc, 'sound/effects/alien/new_larva.ogg', 50, 0)
+	to_chat(owner, span_xenodanger("We feel our smoke filling us once more. We can emit gas again."))
+	toggle_particles(TRUE)
+	return ..()
+
+/datum/action/ability/emit_gas/action_activate()
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	var/turf/owner_turf = get_turf(owner)
+	playsound(owner_turf, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
+	smoke.set_up(smokeradius, owner_turf, smoke_duration)
+	smoke.start()
+	toggle_particles(FALSE)
+
+	add_cooldown()
+	succeed_activate()
+
+	owner.record_war_crime()
+
+/datum/action/ability/emit_gas/ai_should_start_consider()
+	return TRUE
+
+/datum/action/ability/emit_gas/ai_should_use(atom/target)
+	var/mob/living/L = owner
+	if(!iscarbon(target))
+		return FALSE
+	if(get_dist(target, owner) > 2 && L.health > 50)
+		return FALSE
+	if(!can_use_action(override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	if(!line_of_sight(owner, target))
+		return FALSE
+	return TRUE
+
+/// Toggles particles on or off
+/datum/action/ability/emit_gas/proc/toggle_particles(activate)
+	if(!activate)
+		QDEL_NULL(particle_holder)
+		return
+
+	particle_holder = new(owner, /particles/smoker_zombie)
+	particle_holder.pixel_y = 6
+
+/datum/action/ability/emit_gas/give_action(mob/living/L)
+	. = ..()
+	toggle_particles(TRUE)
+
+/datum/action/ability/emit_gas/remove_action(mob/living/L)
+	. = ..()
+	QDEL_NULL(particle_holder)
+
+/datum/action/ability/emit_gas/Destroy()
+	. = ..()
+	QDEL_NULL(particle_holder)

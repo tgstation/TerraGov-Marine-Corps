@@ -71,6 +71,10 @@
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_COLONY
 
+/area/campaign/jungle_outpost/outpost/bar
+	name = "\improper Bar"
+	icon_state = "bar"
+
 /area/campaign/jungle_outpost/outpost/medbay
 	name = "\improper Medbay"
 	icon_state = "medbay"

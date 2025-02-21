@@ -1,7 +1,7 @@
 /atom/movable
 	layer = OBJ_LAYER
 	glide_size = 8
-	appearance_flags = TILE_BOUND|PIXEL_SCALE
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE
@@ -20,7 +20,9 @@
 	var/turf/throw_source = null
 	var/throw_speed = 2
 	var/throw_range = 7
+	///AM that is pulling us
 	var/mob/pulledby = null
+	///AM we are pulling
 	var/atom/movable/pulling
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
 	var/glide_modifier_flags = NONE
@@ -104,7 +106,6 @@
 		AddElement(/datum/element/light_blocking)
 	if(light_system == MOVABLE_LIGHT)
 		AddComponent(/datum/component/overlay_lighting)
-
 
 /atom/movable/Destroy()
 	QDEL_NULL(proximity_monitor)
@@ -230,7 +231,7 @@
 	var/can_pass_diagonally = NONE
 	if (direction & (direction - 1)) //Check if the first part of the diagonal move is possible
 		moving_diagonally = TRUE
-		if(!(flags_atom & DIRLOCK))
+		if(!(atom_flags & DIRLOCK))
 			setDir(direction) //We first set the direction to prevent going through dir sensible object
 		if((direction & NORTH) && loc.Exit(src, NORTH) && get_step(loc, NORTH).Enter(src))
 			can_pass_diagonally = NORTH
@@ -246,13 +247,13 @@
 		moving_diagonally = FALSE
 		if(!get_step(loc, can_pass_diagonally)?.Exit(src, direction & ~can_pass_diagonally))
 			return Move(get_step(loc, can_pass_diagonally), can_pass_diagonally)
-		if(!(flags_atom & DIRLOCK)) //We want to set the direction to be the one of the "second" diagonal move, aka not can_pass_diagonally
+		if(!(atom_flags & DIRLOCK)) //We want to set the direction to be the one of the "second" diagonal move, aka not can_pass_diagonally
 			setDir(direction &~ can_pass_diagonally)
 
 	else
 		if(!loc.Exit(src, direction))
 			return
-		if(!(flags_atom & DIRLOCK))
+		if(!(atom_flags & DIRLOCK))
 			setDir(direction)
 
 	var/enter_return_value = newloc.Enter(src)
@@ -262,6 +263,10 @@
 		return
 
 	var/atom/oldloc = loc
+	//Early override for some cases like diagonal movement
+	if(glide_size_override)
+		set_glide_size(glide_size_override)
+
 	loc = newloc
 	oldloc.Exited(src, direction)
 
@@ -280,9 +285,6 @@
 	if(oldarea != newarea)
 		newarea.Entered(src, oldarea)
 
-	if(glide_size_override)
-		set_glide_size(glide_size_override)
-
 	Moved(oldloc, direction)
 
 	if(pulling && pulling == pullee && pulling != moving_from_pull) //we were pulling a thing and didn't lose it during our move.
@@ -293,14 +295,19 @@
 			//puller and pullee more than one tile away or in diagonal position
 			if(get_dist(src, pulling) > 1 || (pull_dir - 1) & pull_dir)
 				pulling.moving_from_pull = src
-				pulling.Move(oldloc, get_dir(pulling, oldloc), glide_size_override) //the pullee tries to reach our previous position
+				pulling.Move(oldloc, get_dir(pulling, oldloc), glide_size) //the pullee tries to reach our previous position
 				pulling.moving_from_pull = null
 			check_pulling()
+
+	//glide_size strangely enough can change mid movement animation and update correctly while the animation is playing
+	//This means that if you don't override it late like this, it will just be set back by the movement update that's called when you move turfs.
+	if(glide_size_override)
+		set_glide_size(glide_size_override)
 
 	last_move = direction
 	last_move_time = world.time
 
-	if(LAZYLEN(buckled_mobs) && !handle_buckled_mob_movement(loc, direction)) //movement failed due to buckled mob(s)
+	if(LAZYLEN(buckled_mobs) && !handle_buckled_mob_movement(loc, direction, glide_size_override)) //movement failed due to buckled mob(s)
 		return FALSE
 	return TRUE
 
@@ -367,12 +374,12 @@
 
 
 /atom/movable/proc/Moved(atom/old_loc, movement_dir, forced = FALSE, list/old_locs)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, movement_dir, forced, locs)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, movement_dir, forced, old_locs)
 	if(client_mobs_in_contents)
 		update_parallax_contents()
 
 	if(pulledby)
-		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, old_loc, movement_dir, forced, locs)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, old_loc, movement_dir, forced, old_locs)
 	//Cycle through the light sources on this atom and tell them to update.
 	for(var/datum/dynamic_light_source/light AS in hybrid_light_sources)
 		light.source_atom.update_light()
@@ -416,6 +423,9 @@
 /atom/movable/proc/doMove(atom/destination)
 	. = FALSE
 	var/atom/oldloc = loc
+	var/list/old_locs
+	if(length(locs) > 1)
+		old_locs = locs
 	if(destination)
 		if(pulledby)
 			pulledby.stop_pulling()
@@ -433,10 +443,8 @@
 					old_area.Exited(src, movement_dir)
 			var/turf/oldturf = get_turf(oldloc)
 			var/turf/destturf = get_turf(destination)
-			var/old_z = (oldturf ? oldturf.z : null)
-			var/dest_z = (destturf ? destturf.z : null)
-			if(old_z != dest_z)
-				onTransitZ(old_z, dest_z)
+			if(oldturf?.z != destturf?.z)
+				on_changed_z_level(oldturf, destturf)
 			destination.Entered(src, oldloc)
 			if(destarea && old_area != destarea)
 				destarea.Entered(src, oldloc)
@@ -453,7 +461,7 @@
 			if(old_area)
 				old_area.Exited(src, NONE)
 
-	Moved(oldloc, NONE, TRUE)
+	Moved(oldloc, NONE, TRUE, old_locs)
 
 /atom/movable/Exited(atom/movable/gone, direction)
 	. = ..()
@@ -475,6 +483,8 @@
 /atom/movable/proc/throw_impact(atom/hit_atom, speed, bounce = TRUE)
 	var/hit_successful
 	var/old_throw_source = throw_source
+	if(QDELETED(hit_atom))
+		return FALSE
 	hit_successful = hit_atom.hitby(src, speed)
 	if(hit_successful)
 		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, speed)
@@ -485,6 +495,8 @@
 ///Bounces the AM off hit_atom
 /atom/movable/proc/throw_bounce(atom/hit_atom, turf/old_throw_source)
 	if(QDELETED(src))
+		return
+	if(QDELETED(hit_atom))
 		return
 	if(!isturf(loc))
 		return
@@ -539,10 +551,10 @@
 	if(flying)
 		set_flying(TRUE, FLY_LAYER)
 
-	var/originally_dir_locked = flags_atom & DIRLOCK
+	var/originally_dir_locked = atom_flags & DIRLOCK
 	if(!originally_dir_locked)
 		setDir(get_dir(src, target))
-		flags_atom |= DIRLOCK
+		atom_flags |= DIRLOCK
 
 	throw_source = get_turf(src)	//store the origin turf
 
@@ -565,13 +577,13 @@
 
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
-		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && get_dist_euclide(origin, src) < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && get_dist_euclidean(origin, src) < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
+				if(!Move(step, glide_size_override = DELAY_TO_GLIDE_SIZE(1 / speed)))
 					throwing = FALSE
 				error += dist_x
 				dist_since_sleep++
@@ -582,7 +594,7 @@
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
+				if(!Move(step, glide_size_override = DELAY_TO_GLIDE_SIZE(1 / speed)))
 					throwing = FALSE
 				error -= dist_y
 				dist_since_sleep++
@@ -591,13 +603,13 @@
 					sleep(0.1 SECONDS)
 	else
 		var/error = dist_y/2 - dist_x
-		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && get_dist_euclide(origin, src) < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && get_dist_euclidean(origin, src) < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dx)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
+				if(!Move(step, glide_size_override = DELAY_TO_GLIDE_SIZE(1 / speed)))
 					throwing = FALSE
 				error += dist_y
 				dist_since_sleep++
@@ -608,7 +620,7 @@
 				var/atom/step = get_step(src, dy)
 				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 					break
-				if(!Move(step))
+				if(!Move(step, glide_size_override = DELAY_TO_GLIDE_SIZE(1 / speed)))
 					throwing = FALSE
 				error -= dist_x
 				dist_since_sleep++
@@ -618,27 +630,27 @@
 
 	//done throwing, either because it hit something or it finished moving
 	if(!originally_dir_locked)
-		flags_atom &= ~DIRLOCK
+		atom_flags &= ~DIRLOCK
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	stop_throw(flying, original_layer)
 
 ///Clean up all throw vars
 /atom/movable/proc/stop_throw(flying = FALSE, original_layer)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
-	if(loc)
-		SEND_SIGNAL(loc, COMSIG_TURF_THROW_ENDED_HERE, src)
 	set_throwing(FALSE)
 	if(flying)
 		set_flying(FALSE, original_layer)
 	thrower = null
 	thrown_speed = 0
 	throw_source = null
+	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
+	if(loc)
+		SEND_SIGNAL(loc, COMSIG_TURF_THROW_ENDED_HERE, src)
 
-/atom/movable/proc/handle_buckled_mob_movement(NewLoc, direct)
+/atom/movable/proc/handle_buckled_mob_movement(newloc, direct, glide_size_override)
 	for(var/m in buckled_mobs)
 		var/mob/living/buckled_mob = m
-		if(buckled_mob.Move(NewLoc, direct))
+		if(buckled_mob.Move(newloc, direct, glide_size_override))
 			continue
 		forceMove(buckled_mob.loc)
 		last_move = buckled_mob.last_move
@@ -959,16 +971,25 @@
 	H.selected_default_language = .
 	. = chosen_langtype
 
+/**
+ * Called when a movable changes z-levels.
+ *
+ * Arguments:
+ * * old_turf - The previous turf they were on before.
+ * * new_turf - The turf they have now entered.
+ * * notify_contents - Whether or not to notify the movable's contents that their z-level has changed. NOTE, IF YOU SET THIS, YOU NEED TO MANUALLY SET PLANE OF THE CONTENTS LATER
+ */
+/atom/movable/proc/on_changed_z_level(turf/old_turf, turf/new_turf, notify_contents = TRUE)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_turf?.z, new_turf?.z)
 
-/atom/movable/proc/onTransitZ(old_z,new_z)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
-	for(var/item in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
-		var/atom/movable/AM = item
-		AM.onTransitZ(old_z,new_z)
-
+	if(!notify_contents)
+		return
+	for (var/atom/movable/content as anything in src)
+		content.on_changed_z_level(old_turf, new_turf)
 
 /atom/movable/proc/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, force = MOVE_FORCE_STRONG)
-	if((force < (move_resist * MOVE_FORCE_THROW_RATIO)) || (move_resist == INFINITY))
+	if(anchored || (force < (move_resist * MOVE_FORCE_THROW_RATIO)) || (move_resist == INFINITY))
 		return
 	return throw_at(target, range, speed, thrower, spin)
 
@@ -1040,7 +1061,7 @@
 	var/turf/destination_turf = get_step(pulling.loc, move_dir)
 	if(!Adjacent(destination_turf) || (destination_turf == loc && pulling.density))
 		return FALSE
-	pulling.Move(destination_turf, move_dir)
+	pulling.Move(destination_turf, move_dir, glide_size)
 	return TRUE
 
 
@@ -1080,44 +1101,17 @@
 /atom/movable/proc/is_buckled()
 	return buckled
 
-
 /atom/movable/proc/set_glide_size(target = 8)
-	if(glide_size == target)
-		return FALSE
 	SEND_SIGNAL(src, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, target)
 	glide_size = target
-	if(pulling && pulling.glide_size != target)
-		pulling.set_glide_size(target)
-	return TRUE
 
-/obj/set_glide_size(target = 8)
-	. = ..()
-	if(!.)
-		return
-	for(var/m in buckled_mobs)
-		var/mob/living/buckled_mob = m
-		if(buckled_mob.glide_size == target)
-			continue
+	for(var/mob/buckled_mob AS in buckled_mobs)
 		buckled_mob.set_glide_size(target)
-
-/obj/structure/bed/set_glide_size(target = 8)
-	. = ..()
-	if(!.)
-		return
-	if(buckled_bodybag && buckled_bodybag.glide_size != target)
-		buckled_bodybag.set_glide_size(target)
-	glide_size = target
-
 
 /atom/movable/proc/reset_glide_size()
 	if(glide_modifier_flags)
 		return
 	set_glide_size(initial(glide_size))
-
-/obj/vehicle/reset_glide_size()
-	if(glide_modifier_flags)
-		return
-	set_glide_size(DELAY_TO_GLIDE_SIZE_STATIC(move_delay))
 
 /mob/reset_glide_size()
 	if(glide_modifier_flags)
@@ -1206,11 +1200,15 @@
 
 ///Toggles AM between throwing states
 /atom/movable/proc/set_throwing(new_throwing)
+	if(throwing == new_throwing)
+		return
 	throwing = new_throwing
 	if(throwing)
 		pass_flags |= PASS_THROW
+		add_nosubmerge_trait(THROW_TRAIT)
 	else
 		pass_flags &= ~PASS_THROW
+		REMOVE_TRAIT(src, TRAIT_NOSUBMERGE, THROW_TRAIT)
 
 ///Toggles AM between flying states
 /atom/movable/proc/set_flying(flying, new_layer)
@@ -1331,5 +1329,70 @@
 	return
 
 //Throws AM away from something
-/atom/movable/proc/knockback(source, distance, speed, dir)
-	throw_at(get_ranged_target_turf(src, dir ? dir : get_dir(source, src), distance), distance, speed, source)
+/atom/movable/proc/knockback(source, distance, speed, dir, knockback_force = MOVE_FORCE_EXTREMELY_STRONG)
+	safe_throw_at(get_ranged_target_turf(src, dir ? dir : get_dir(source, src), distance), distance, speed, source, FALSE, knockback_force)
+
+///List of all filter removal timers. Glob to avoid an AM level var
+GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
+
+///Sets the submerged level of an AM based on its turf
+/atom/movable/proc/set_submerge_level(turf/new_loc, turf/old_loc, submerge_icon, submerge_icon_state, duration = 0)
+	if(!submerge_icon) //catch all in case so people don't need to make child types just to specify a return
+		return
+	var/old_height = istype(old_loc) ? old_loc.get_submerge_height() : 0
+	var/new_height = istype(new_loc) ? new_loc.get_submerge_height() : 0
+	var/height_diff = new_height - old_height
+
+	var/old_depth = istype(old_loc) ? old_loc.get_submerge_depth() : 0
+	var/new_depth = istype(new_loc) ? new_loc.get_submerge_depth() : 0
+	var/depth_diff = new_depth - old_depth
+
+	if(!height_diff && !depth_diff)
+		return
+
+	var/icon/AM_icon = icon(icon)
+	var/height_to_use = (64 - AM_icon.Height()) * 0.5 //gives us the right height based on AM's icon height relative to the 64 high alpha mask
+
+	if(!new_height && !new_depth)
+		GLOB.submerge_filter_timer_list[ref(src)] = addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, remove_filter), AM_SUBMERGE_MASK), duration, TIMER_STOPPABLE)
+		REMOVE_TRAIT(src, TRAIT_SUBMERGED, SUBMERGED_TRAIT)
+	else if(!HAS_TRAIT(src, TRAIT_SUBMERGED)) //we use a trait to avoid some edge cases if things are moving fast or unusually
+		if(GLOB.submerge_filter_timer_list[ref(src)])
+			deltimer(GLOB.submerge_filter_timer_list[ref(src)])
+		//The mask is spawned below the AM, then the animate() raises it up, giving the illusion of dropping into water, combining with the animate to actual drop the pixel_y into the water
+		add_filter(AM_SUBMERGE_MASK, 1, alpha_mask_filter(0, height_to_use - AM_SUBMERGE_MASK_HEIGHT, icon(submerge_icon, submerge_icon_state), null, MASK_INVERSE))
+		ADD_TRAIT(src, TRAIT_SUBMERGED, SUBMERGED_TRAIT)
+
+	transition_filter(AM_SUBMERGE_MASK, list(y = height_to_use - (AM_SUBMERGE_MASK_HEIGHT - new_height)), duration)
+	animate(src, pixel_y = depth_diff, time = duration, flags = ANIMATION_PARALLEL|ANIMATION_RELATIVE)
+
+///overrides the turf's normal footstep sound
+/atom/movable/proc/footstep_override(atom/movable/source, list/footstep_overrides)
+	SIGNAL_HANDLER
+	return //override as required with the specific footstep sound
+
+///returns that src is covering its turf. Used to prevent turf interactions such as water
+/atom/movable/proc/turf_cover_check(atom/movable/source)
+	SIGNAL_HANDLER
+	return TRUE
+
+///Wrapper for setting the submerge trait. This trait should ALWAYS be set via this proc so we can listen for the trait removal in all cases
+/atom/movable/proc/add_nosubmerge_trait(trait_source = TRAIT_GENERIC)
+	if(HAS_TRAIT(src, TRAIT_SUBMERGED))
+		set_submerge_level(old_loc = loc, duration = 0.1)
+	ADD_TRAIT(src, TRAIT_NOSUBMERGE, trait_source)
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_NOSUBMERGE), PROC_REF(_do_submerge), override = TRUE) //we can get this trait from multiple sources, but sig is only sent when we lose the trait entirely
+
+///Adds submerge effects to the AM. Should never be called directly
+/atom/movable/proc/_do_submerge(atom/movable/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_NOSUBMERGE))
+	set_submerge_level(loc, duration = 0.1)
+
+/**
+* A wrapper for setDir that should only be able to fail by living mobs.
+*
+* Called from [/atom/movable/proc/keyLoop], this exists to be overwritten by living mobs with a check to see if we're actually alive enough to change directions
+*/
+/atom/movable/proc/keybind_face_direction(direction)
+	setDir(direction)

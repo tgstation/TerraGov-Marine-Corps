@@ -393,12 +393,12 @@
 			smoke.start()
 
 /obj/machinery/power/smes/emp_act(severity)
+	. = ..()
 	outputting = FALSE
 	inputting = FALSE
 	output_level = 0
 	charge = max(charge - 1e6/severity, 0)
 	addtimer(CALLBACK(src, PROC_REF(reset_power_level)), 10 SECONDS)
-	..()
 
 /obj/machinery/power/smes/proc/reset_power_level()
 	output_level = initial(output_level)
@@ -420,7 +420,7 @@
 	..()
 
 /proc/rate_control(S, V, C, Min=1, Max=5, Limit=null)
-	var/href = "<A href='?src=[text_ref(S)];rate control=1;[V]"
+	var/href = "<A href='byond://?src=[text_ref(S)];rate control=1;[V]"
 	var/rate = "[href]=-[Max]'>-</A>[href]=-[Min]'>-</A> [(C?C : 0)] [href]=[Min]'>+</A>[href]=[Max]'>+</A>"
 	if(Limit) return "[href]=-[Limit]'>-</A>"+rate+"[href]=[Limit]'>+</A>"
 	return rate

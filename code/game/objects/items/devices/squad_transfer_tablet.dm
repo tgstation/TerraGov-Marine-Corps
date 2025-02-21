@@ -1,9 +1,8 @@
 /obj/item/squad_transfer_tablet
 	name = "squad transfer tablet"
 	desc = "A tablet for quickly transfering the squaddies from under one incompetent squad leader to another."
-	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "req_tablet_off"
-	flags_equip_slot = ITEM_SLOT_POCKET
+	equip_slot_flags = ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_SMALL
 	interaction_flags = INTERACT_MACHINE_TGUI
 	/// REF()s for all currently active transfering marines

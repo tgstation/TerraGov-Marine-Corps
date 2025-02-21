@@ -42,7 +42,7 @@
 				break_tile()
 	return ..()
 
-/turf/open/floor/fire_act(exposed_temperature, exposed_volume)
+/turf/open/floor/fire_act(burn_level)
 	if(hull_floor)
 		return
 	if(!burnt && prob(5))
@@ -134,7 +134,7 @@
 	P.attackby(T, user, params)
 
 /turf/open/floor/crowbar_act(mob/living/user, obj/item/I)
-	if(floor_tile && pry_tile(I, user))
+	if(floor_tile && !hull_floor && pry_tile(I, user))
 		return TRUE
 
 ///Removes the floor tile from the turf via a tool

@@ -19,8 +19,12 @@
 	return TRUE
 
 /datum/keybinding/living/attempt_jump
-	hotkey_keys = list("Space")
+	hotkey_keys = list("C")
 	name = "Jump"
 	full_name = "Jump"
 	description = "Jumps, if your mob is capable of doing so."
-	keybind_signal = COMSIG_KB_LIVING_JUMP
+	keybind_signal = COMSIG_KB_LIVING_JUMP_DOWN
+
+/datum/keybinding/living/attempt_jump/up(client/user)
+	SEND_SIGNAL(user.mob, COMSIG_KB_LIVING_JUMP_UP)
+	return TRUE

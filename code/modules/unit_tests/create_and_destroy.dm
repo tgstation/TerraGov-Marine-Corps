@@ -22,6 +22,8 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 		/mob/living/carbon/xenomorph,
 		///Base type doesn't have any variations in it's variation list
 		/turf/closed/wall/variable,
+		//This is meant to fail extremely loud every single time it occurs in any environment in any context, and it falsely alarms when this unit test iterates it. Let's not spawn it in.
+		/obj/merge_conflict_marker,
 		///Base type with no disk type
 		/obj/machinery/computer/nuke_disk_generator,
 	)
@@ -51,6 +53,8 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 	ignore += typesof(/obj/hitbox)
 	//Screen objects don't play nicely when spawned manually.
 	ignore += typesof(/atom/movable/screen)
+	///created by owning tank with necessary arg
+	ignore += typesof(/atom/movable/vis_obj/turret_overlay)
 
 	var/list/cached_contents = spawn_at.contents.Copy()
 	var/original_turf_type = spawn_at.type

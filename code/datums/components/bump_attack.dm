@@ -48,7 +48,7 @@
 		return
 
 	var/obj/item/held_item = bumper.get_inactive_held_item()
-	if(held_item?.flags_item & CAN_BUMP_ATTACK)
+	if(held_item?.item_flags & CAN_BUMP_ATTACK)
 		return
 	active = FALSE
 	UnregisterSignal(bumper, COMSIG_MOVABLE_BUMP)
@@ -58,7 +58,7 @@
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK))
 		return NONE
 	var/mob/living/bumper = parent
-	if(!(target.flags_atom & BUMP_ATTACKABLE) || bumper.throwing || bumper.incapacitated())
+	if(!(target.atom_flags & BUMP_ATTACKABLE) || bumper.throwing || bumper.incapacitated())
 		return NONE
 
 ///Handles carbon bump action checks before actually doing the attack checks.
@@ -89,6 +89,10 @@
 	var/mob/living/living_target = target
 	if(bumper.faction == living_target.faction)
 		return //FF
+	if(ishuman(target) && (bumper.wear_id))
+		var/mob/living/carbon/human/human_target = target
+		if(bumper.wear_id?.iff_signal == human_target.wear_id?.iff_signal)
+			return //FF
 	if(isxeno(target))
 		var/mob/living/carbon/xenomorph/xeno = target
 		if(bumper.wear_id && CHECK_BITFIELD(xeno.xeno_iff_check(), bumper.wear_id.iff_signal))
@@ -123,7 +127,7 @@
 	var/obj/item/held_item = bumper.get_active_held_item()
 	if(!held_item)
 		bumper.UnarmedAttack(target, TRUE)
-	else if(held_item.flags_item & CAN_BUMP_ATTACK)
+	else if(held_item.item_flags & CAN_BUMP_ATTACK)
 		held_item.melee_attack_chain(bumper, target)
 	else //disables pushing if you have bump attacks on, so you don't accidentally misplace your enemy when switching to an item that can't bump attack
 		return COMPONENT_BUMP_RESOLVED

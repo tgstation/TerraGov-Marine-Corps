@@ -3,6 +3,7 @@
 	display_name = "Spitter"
 	upgrade_name = ""
 	caste_desc = "Gotta dodge!"
+	base_strain_type = /mob/living/carbon/xenomorph/spitter
 	caste_type_path = /mob/living/carbon/xenomorph/spitter
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -16,18 +17,16 @@
 
 	// *** Plasma *** //
 	plasma_max = 925
-	plasma_gain = 30
+	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 310
+	max_health = 360
 
 	// *** Evolution *** //
 	evolution_threshold = 225
 	upgrade_threshold = TIER_TWO_THRESHOLD
 
-	deevolves_to = list(
-		/mob/living/carbon/xenomorph/sentinel,
-	)
+	deevolves_to = /datum/xeno_caste/sentinel
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
@@ -45,8 +44,8 @@
 	spit_types = list(/datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
 
 	acid_spray_duration = 10 SECONDS
-	acid_spray_damage_on_hit = 35
-	acid_spray_damage = 16
+	acid_spray_damage_on_hit = 45
+	acid_spray_damage = 20
 	acid_spray_structure_damage = 45
 
 	// *** Abilities *** //
@@ -72,3 +71,53 @@
 
 	spit_delay = 0.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/auto, /datum/ammo/xeno/acid/medium)
+
+/datum/xeno_caste/spitter/globadier
+	caste_type_path = /mob/living/carbon/xenomorph/spitter/globadier
+	upgrade_name = ""
+	caste_name = "Globadier"
+	display_name = "Globadier"
+	upgrade = XENO_UPGRADE_BASETYPE
+	caste_desc = "A mutated variant of a spitter. It carries round globs of acid on its back"
+
+	// *** Melee Attacks *** //
+	melee_damage = 18
+
+	// *** Speed *** //
+	speed = -0.8
+
+	// *** Health *** //
+	max_health = 320
+
+	// *** Ablities *** //
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/activable/xeno/toss_grenade,
+		/datum/action/ability/activable/xeno/scatter_spit,
+		/datum/action/ability/xeno_action/acid_mine,
+		/datum/action/ability/xeno_action/acid_mine/gas_mine,
+	)
+
+/datum/xeno_caste/spitter/globadier/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/spitter/globadier/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "A master of area control, covered in strange globulets."
+	primordial_message = "Let no cover guard our enemies."
+	upgrade = XENO_UPGRADE_PRIMO
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/activable/xeno/toss_grenade,
+		/datum/action/ability/activable/xeno/scatter_spit,
+		/datum/action/ability/xeno_action/acid_mine,
+		/datum/action/ability/xeno_action/acid_mine/gas_mine,
+		/datum/action/ability/activable/xeno/acid_rocket,
+	)

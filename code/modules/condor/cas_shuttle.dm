@@ -65,7 +65,7 @@
 		SSshuttle.moveShuttle(id, SHUTTLE_CAS_DOCK, TRUE)
 		currently_returning = TRUE
 		end_cas_mission(chair.occupant)
-	if (fuel_left <= 0)
+	if(fuel_left <= 0)
 		fuel_left = 0
 		turn_off_engines()
 	#endif
@@ -76,9 +76,7 @@
 	for(var/i in engines)
 		var/obj/structure/caspart/internalengine/engine = i
 		engine.cut_overlays()
-		var/image/engine_overlay = image('icons/Marine/cas_plane_engines.dmi', engine.loc, "engine_on", 4.2)
-		engine_overlay.pixel_x = engine.x_offset
-		engine_overlay.layer += 0.1
+		var/image/engine_overlay = image('icons/turf/cas.dmi', engine.loc, "engine_on", ABOVE_MOB_PROP_LAYER, pixel_x = engine.x_offset)
 		engine.add_overlay(engine_overlay)
 
 /obj/docking_port/mobile/marine_dropship/casplane/on_prearrival()
@@ -89,18 +87,14 @@
 	for(var/i in engines)
 		var/obj/structure/caspart/internalengine/engine = i
 		engine.cut_overlays()
-		var/image/engine_overlay = image('icons/Marine/cas_plane_engines.dmi', engine.loc, "engine_idle", 4.2)
-		engine_overlay.pixel_x = engine.x_offset
-		engine_overlay.layer += 0.1
+		var/image/engine_overlay = image('icons/turf/cas.dmi', engine.loc, "engine_idle", ABOVE_MOB_PROP_LAYER, pixel_x = engine.x_offset)
 		engine.add_overlay(engine_overlay)
 
 ///Updates state and overlay to make te engines on
 /obj/docking_port/mobile/marine_dropship/casplane/proc/turn_on_engines()
 	for(var/i in engines)
 		var/obj/structure/caspart/internalengine/engine = i
-		var/image/engine_overlay = image('icons/Marine/cas_plane_engines.dmi', engine.loc, "engine_idle", 4.2)
-		engine_overlay.pixel_x = engine.x_offset
-		engine_overlay.layer += 0.1
+		var/image/engine_overlay = image('icons/turf/cas.dmi', engine.loc, "engine_idle", ABOVE_MOB_PROP_LAYER, pixel_x = engine.x_offset)
 		engine.add_overlay(engine_overlay)
 	state = PLANE_STATE_PREPARED
 	START_PROCESSING(SSslowprocess, src)
@@ -170,7 +164,9 @@
 		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
 		user.client.screen += map
 		var/list/polled_coords = map.get_coords_from_click(user)
-		user.client.screen -= map
+		user?.client?.screen -= map
+		if(!polled_coords)
+			return
 		starting_point = locate(polled_coords[1], polled_coords[2], 2)
 
 	if(GLOB.minidropship_start_loc && !starting_point) //and if this somehow fails (it shouldn't) we just go to the default point
@@ -265,7 +261,7 @@
 	if(A.ceiling >= CEILING_UNDERGROUND)
 		to_chat(source, span_warning("That target is too deep underground!"))
 		return
-	if(A.flags_area & OB_CAS_IMMUNE)
+	if(A.area_flags & OB_CAS_IMMUNE)
 		to_chat(source, span_warning("Our payload won't reach this target!"))
 		return
 	if(active_weapon.ammo_equipped?.ammo_count <= 0)

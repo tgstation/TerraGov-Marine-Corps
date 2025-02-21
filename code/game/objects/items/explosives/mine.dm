@@ -11,14 +11,14 @@ Stepping directly on the mine will also blow it up
 /obj/item/explosive/mine
 	name = "\improper M20 Claymore anti-personnel mine"
 	desc = "The M20 Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps."
-	icon = 'icons/obj/items/grenade.dmi'
+	icon = 'icons/obj/items/mines.dmi'
 	icon_state = "m20"
 	force = 5
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 5
 	throw_range = 6
 	throw_speed = 3
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	///Trigger flags for this mine
 	var/target_mode = MINE_LIVING_ONLY
 	/// IFF signal - used to determine friendly units
@@ -58,7 +58,7 @@ Stepping directly on the mine will also blow it up
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
 /// Flamer fire will cause mines to trigger their explosion
-/obj/item/explosive/mine/flamer_fire_act(burnlevel)
+/obj/item/explosive/mine/fire_act(burn_level)
 	. = ..()
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
@@ -140,11 +140,16 @@ Stepping directly on the mine will also blow it up
 	var/mob/living/living_victim
 	if((target_mode & MINE_LIVING_ONLY) && isliving(victim))
 		living_victim = victim
-	else if((target_mode & MINE_VEHICLE_ONLY) && isvehicle(victim))
-		var/obj/vehicle/vehicle_victim = victim
-		if(!length(vehicle_victim.occupants))
-			return FALSE
-		living_victim = vehicle_victim.occupants[1]
+	else if(target_mode & MINE_VEHICLE_ONLY)
+		if(ishitbox(victim))
+			var/obj/hitbox/hitbox = victim
+			victim = hitbox.root
+		if(isvehicle(victim))
+			var/obj/vehicle/vehicle_victim = victim
+			var/list/driver_list = vehicle_victim.return_drivers()
+			if(!length(driver_list))
+				return FALSE
+			living_victim = driver_list[1]
 
 	if(!living_victim)
 		return FALSE
@@ -251,6 +256,9 @@ Stepping directly on the mine will also blow it up
 	QDEL_NULL(tripwire)
 	qdel(src)
 
+/obj/item/explosive/mine/anti_tank/emp_act()
+	return
+
 /obj/item/explosive/mine/anti_tank/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -273,5 +281,5 @@ Stepping directly on the mine will also blow it up
 		return
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
-/obj/item/explosive/mine/anti_tank/flamer_fire_act(burnlevel)
+/obj/item/explosive/mine/anti_tank/fire_act(burn_level)
 	return //its highly exploitable if fire detonates these

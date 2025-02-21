@@ -152,7 +152,7 @@
 		var/newstate = initial(L.icon_state)
 		var/T = PARALLAX_LOOP_TIME / L.speed
 
-		if (newstate in icon_states(L.icon))
+		if (icon_exists(L.icon, newstate))
 			L.icon_state = newstate
 			L.update_o(C.view)
 
@@ -291,7 +291,7 @@
 
 /atom/movable/screen/parallax_layer/random/space_gas/Initialize(mapload, datum/hud/hud_owner, view)
 	. = ..()
-	src.add_atom_colour(SSparallax.random_parallax_color, ADMIN_COLOUR_PRIORITY)
+	src.add_atom_colour(SSparallax.random_parallax_color, ADMIN_COLOR_PRIORITY)
 
 /atom/movable/screen/parallax_layer/random/asteroids
 	icon_state = "asteroids"

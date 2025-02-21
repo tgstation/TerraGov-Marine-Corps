@@ -1,0 +1,918 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ak" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"al" = (
+/obj/structure/stairs/edge,
+/turf/open/liquid/water,
+/area/campaign/jungle_outpost/ground/jungle)
+"bt" = (
+/obj/structure/cable,
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"bQ" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"cg" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"cn" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"cy" = (
+/obj/structure/bed/stool,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"cQ" = (
+/obj/structure/flora/jungle/large_bush,
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"da" = (
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"dN" = (
+/obj/structure/flora/jungle/grass,
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"dS" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/obj/structure/platform,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"ec" = (
+/turf/closed/gm/dense,
+/area/campaign/jungle_outpost/ground/jungle)
+"ey" = (
+/obj/structure/flora/jungle/grass,
+/obj/structure/platform_decoration{
+	dir = 9
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"eH" = (
+/obj/structure/closet/crate/hydroponics,
+/obj/item/tool/plantspray/pests,
+/obj/item/tool/plantspray/pests/old/lindane,
+/obj/item/tool/scythe,
+/obj/item/tool/shovel/spade,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"eK" = (
+/obj/item/reagent_containers/glass/bucket,
+/obj/machinery/vending/hydroseeds,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"fi" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"gP" = (
+/obj/machinery/botany/editor,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"gY" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"hk" = (
+/turf/open/ground/grass/beach/corner2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"ht" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"hO" = (
+/obj/machinery/door/airlock/colony/medical/hydroponics{
+	dir = 1
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"hQ" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/obj/structure/platform{
+	dir = 10
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"hS" = (
+/obj/structure/cable,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"ie" = (
+/obj/structure/flora/jungle/grass/thin,
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"iK" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"kv" = (
+/turf/open/ground/grass/beach{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"kJ" = (
+/turf/open/ground/grass/beach/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"kU" = (
+/obj/structure/table,
+/obj/item/tool/pen,
+/obj/effect/spawner/random/misc/folder,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"lI" = (
+/obj/machinery/light,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"nh" = (
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"nB" = (
+/obj/structure/stairs/edge{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"oM" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"pi" = (
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"qp" = (
+/obj/machinery/vending/hydronutrients,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"qR" = (
+/obj/structure/platform_decoration{
+	dir = 5
+	},
+/turf/open/liquid/water,
+/area/campaign/jungle_outpost/ground/jungle)
+"sq" = (
+/obj/structure/flora/tree/jungle,
+/obj/structure/platform_decoration{
+	dir = 9
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"ss" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"sO" = (
+/obj/structure/platform,
+/turf/closed/wall,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"sP" = (
+/obj/machinery/hydroponics,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"sX" = (
+/obj/machinery/hydroponics,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"tc" = (
+/obj/structure/closet/crate/hydroponics,
+/obj/item/tool/plantspray/pests,
+/obj/item/tool/plantspray/pests/old/carbaryl,
+/obj/item/tool/shovel,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"tk" = (
+/obj/effect/landmark/campaign_structure/phoron_crate,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"tG" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"vt" = (
+/obj/structure/closet/secure_closet/hydroponics,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"vF" = (
+/obj/structure/sink{
+	dir = 4
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"vJ" = (
+/turf/open/ground/grass/beach{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"wa" = (
+/turf/open/ground/grass/beach/corner2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"wv" = (
+/obj/machinery/door/airlock/colony/medical/hydroponics,
+/obj/structure/cable,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"wF" = (
+/obj/machinery/hydroponics,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"wP" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"xI" = (
+/obj/structure/flora/jungle/large_bush,
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"xQ" = (
+/obj/machinery/vending/hydroseeds,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"yg" = (
+/turf/open/ground/grass/beach/corner2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"yK" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/campaign/jungle_outpost/ground/jungle)
+"Al" = (
+/turf/open/liquid/water,
+/area/campaign/jungle_outpost/ground/jungle)
+"Am" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"AQ" = (
+/obj/structure/table,
+/obj/item/storage/box/botanydisk,
+/obj/item/tool/analyzer/plant_analyzer,
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"Bc" = (
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"Bx" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"BE" = (
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"BW" = (
+/obj/structure/flora/tree/jungle/small,
+/obj/structure/platform_decoration{
+	dir = 9
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"CF" = (
+/obj/item/clothing/gloves/botanic_leather,
+/obj/structure/table,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"Db" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"EL" = (
+/obj/structure/platform{
+	dir = 5
+	},
+/turf/closed/wall,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"Fs" = (
+/turf/closed/wall,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"FJ" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"GL" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle)
+"GO" = (
+/obj/structure/platform{
+	dir = 9
+	},
+/turf/closed/wall,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"GU" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/obj/structure/platform{
+	dir = 6
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"HH" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"Ig" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/obj/effect/landmark/mob_spawner/farwa,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"In" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"IW" = (
+/obj/machinery/door/airlock/colony/medical/hydroponics,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"JS" = (
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"KH" = (
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"KR" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"Mb" = (
+/obj/machinery/hydroponics,
+/obj/machinery/light,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"Ni" = (
+/obj/structure/flora/jungle/bush,
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/obj/structure/platform_decoration{
+	dir = 9
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"NT" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/obj/structure/platform{
+	dir = 9
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"Ol" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"OO" = (
+/obj/machinery/hydroponics,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"Pd" = (
+/obj/item/reagent_containers/glass/bucket,
+/obj/structure/table,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"Pq" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"Pw" = (
+/obj/structure/platform{
+	dir = 6
+	},
+/turf/closed/wall,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"Qb" = (
+/obj/structure/platform{
+	dir = 10
+	},
+/turf/closed/wall,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"QS" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"RD" = (
+/obj/structure/sink,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"RG" = (
+/obj/machinery/botany/extractor,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"Tl" = (
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"Ua" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/obj/structure/platform{
+	dir = 5
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"UE" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"Vn" = (
+/obj/structure/sink{
+	dir = 1
+	},
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"VD" = (
+/obj/structure/platform_decoration{
+	dir = 5
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"Wp" = (
+/obj/structure/table,
+/obj/item/tool/hatchet{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/tool/analyzer/plant_analyzer,
+/obj/effect/spawner/random/weaponry/melee,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"Wq" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle)
+"WE" = (
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/river/west)
+"XJ" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"Zn" = (
+/obj/structure/closet/secure_closet/hydroponics,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"ZD" = (
+/obj/structure/table,
+/obj/item/clothing/gloves/botanic_leather,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/clothing/suit/storage/apron,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+
+(1,1,1) = {"
+da
+wP
+ss
+pi
+FJ
+Bc
+NT
+oM
+oM
+oM
+hQ
+Ni
+da
+da
+da
+WE
+WE
+WE
+"}
+(2,1,1) = {"
+ht
+pi
+pi
+ie
+GO
+oM
+Pq
+sX
+KH
+sX
+Pq
+oM
+Qb
+sq
+da
+da
+WE
+WE
+"}
+(3,1,1) = {"
+FJ
+pi
+NT
+oM
+Pq
+sX
+Fs
+sX
+KH
+sX
+sX
+sX
+Pq
+oM
+hQ
+da
+da
+da
+"}
+(4,1,1) = {"
+pi
+cQ
+KR
+sX
+sX
+KH
+hO
+KH
+KH
+sX
+sX
+KH
+sX
+sX
+dS
+BW
+FJ
+da
+"}
+(5,1,1) = {"
+pi
+GO
+Pq
+KH
+KH
+KH
+Pq
+sX
+KH
+KH
+KH
+KH
+KH
+KH
+Pq
+Qb
+ss
+da
+"}
+(6,1,1) = {"
+dN
+KR
+sX
+sX
+sX
+KH
+Fs
+OO
+KH
+vF
+Bx
+KH
+wF
+sX
+sX
+dS
+ey
+FJ
+"}
+(7,1,1) = {"
+NT
+Pq
+sX
+sX
+sX
+lI
+Fs
+Fs
+IW
+Fs
+Fs
+IW
+Fs
+Pq
+Fs
+Fs
+Qb
+pi
+"}
+(8,1,1) = {"
+KR
+AQ
+KH
+KH
+KH
+Vn
+Fs
+eK
+KH
+Pd
+ZD
+KH
+sX
+sX
+sP
+BE
+sO
+yK
+"}
+(9,1,1) = {"
+KR
+kU
+cy
+KH
+KH
+CF
+Pq
+qp
+KH
+KH
+tk
+KH
+KH
+KH
+KH
+KH
+HH
+GL
+"}
+(10,1,1) = {"
+KR
+gP
+cy
+KH
+KH
+KH
+HH
+KH
+hS
+hS
+hS
+hS
+hS
+hS
+hS
+hS
+hS
+Wq
+"}
+(11,1,1) = {"
+KR
+RG
+KH
+KH
+KH
+KH
+KH
+KH
+hS
+KH
+KH
+KH
+KH
+KH
+KH
+Zn
+sO
+fi
+"}
+(12,1,1) = {"
+Ua
+Pq
+sX
+sX
+sX
+KH
+Pq
+RD
+hS
+sX
+sX
+KH
+sX
+sX
+Mb
+Fs
+Pw
+pi
+"}
+(13,1,1) = {"
+xI
+KR
+sX
+sX
+sX
+KH
+Fs
+qp
+hS
+sX
+sX
+KH
+sX
+sX
+sX
+dS
+VD
+pi
+"}
+(14,1,1) = {"
+FJ
+EL
+Pq
+KH
+KH
+lI
+Fs
+xQ
+hS
+KH
+KH
+KH
+KH
+KH
+Pq
+Pw
+pi
+pi
+"}
+(15,1,1) = {"
+Ol
+Db
+KR
+sX
+sX
+KH
+Fs
+Wp
+hS
+KH
+KH
+KH
+sX
+sX
+dS
+VD
+pi
+pi
+"}
+(16,1,1) = {"
+gY
+UE
+Ua
+Am
+Pq
+tc
+Fs
+ak
+hS
+KH
+vt
+eH
+Pq
+Am
+GU
+pi
+pi
+In
+"}
+(17,1,1) = {"
+gY
+UE
+UE
+Db
+EL
+Am
+Fs
+tG
+hS
+KH
+Fs
+Am
+Pw
+qR
+wa
+kv
+kJ
+ec
+"}
+(18,1,1) = {"
+QS
+iK
+Ig
+cg
+iK
+nh
+EL
+wv
+Fs
+IW
+Pw
+qR
+Al
+Al
+Al
+Al
+Tl
+ec
+"}
+(19,1,1) = {"
+XJ
+cn
+cn
+cn
+cn
+bQ
+nB
+bt
+JS
+JS
+al
+hk
+vJ
+vJ
+yg
+Al
+wa
+kJ
+"}

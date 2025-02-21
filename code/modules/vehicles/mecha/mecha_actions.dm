@@ -83,7 +83,6 @@
 
 	chassis.ui_interact(owner)
 
-
 /datum/action/vehicle/sealed/mecha/strafe
 	name = "Toggle Strafing. Disabled when Alt is held."
 	action_icon_state = "strafe"
@@ -107,15 +106,13 @@
 
 /obj/vehicle/sealed/mecha/proc/toggle_strafe()
 	if(!(mecha_flags & CANSTRAFE))
-		to_chat(occupants, "this mecha doesn't support strafing!")
+		for(var/occupant in occupants)
+			balloon_alert(occupant, "No strafing mode")
 		return
 
 	strafe = !strafe
-
-	to_chat(occupants, "strafing mode [strafe?"on":"off"].")
-	log_message("Toggled strafing mode [strafe?"on":"off"].", LOG_MECHA)
-
 	for(var/occupant in occupants)
+		balloon_alert(occupant, "Strafing mode [strafe?"on":"off"].")
 		var/datum/action/action = LAZYACCESSASSOC(occupant_actions, occupant, /datum/action/vehicle/sealed/mecha/strafe)
 		action?.update_button_icon()
 
@@ -148,3 +145,19 @@
 		chassis.remove_control_flags(owner, VEHICLE_CONTROL_MELEE|VEHICLE_CONTROL_EQUIPMENT)
 		chassis.add_control_flags(owner, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS)
 	chassis.update_appearance()
+
+/datum/action/vehicle/sealed/mecha/reload
+	name = "Reload equipped weapons"
+	action_icon_state = "reload"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_RELOAD,
+	)
+
+/datum/action/vehicle/sealed/mecha/reload/action_activate(trigger_flags)
+	if(!owner || !chassis || !(owner in chassis.occupants))
+		return
+
+	for(var/i in chassis.equip_by_category)
+		if(!istype(chassis.equip_by_category[i], /obj/item/mecha_parts/mecha_equipment))
+			continue
+		INVOKE_ASYNC(chassis.equip_by_category[i], TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, attempt_rearm), owner)

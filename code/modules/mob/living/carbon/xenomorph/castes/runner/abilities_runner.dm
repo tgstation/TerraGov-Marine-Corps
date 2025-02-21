@@ -8,6 +8,7 @@
 /datum/action/ability/activable/xeno/pounce/runner
 	desc = "Leap at your target, tackling and disarming them. Alternate use toggles Savage off or on."
 	action_icon_state = "pounce_savage_on"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
 	ability_cost = 10
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RUNNER_POUNCE,
@@ -39,7 +40,6 @@
 	if(!COOLDOWN_CHECK(src, savage_cooldown))
 		owner.balloon_alert(owner, "Savage on cooldown ([COOLDOWN_TIMELEFT(src, savage_cooldown) * 0.1]s)")
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/savage_damage = max(RUNNER_SAVAGE_DAMAGE_MINIMUM, xeno_owner.plasma_stored * 0.15)
 	var/savage_cost = savage_damage * 2
 	if(xeno_owner.plasma_stored < savage_cost)
@@ -56,7 +56,7 @@
 	if(COOLDOWN_CHECK(src, savage_cooldown))
 		button.cut_overlay(visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN])
 		owner.balloon_alert(owner, "Savage ready")
-		owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+		owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 		STOP_PROCESSING(SSprocessing, src)
 		return
 	button.cut_overlay(visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN])
@@ -77,8 +77,9 @@
 /datum/action/ability/xeno_action/evasion
 	name = "Evasion"
 	action_icon_state = "evasion_on"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving. \
-			Alternate use toggles Auto Evasion off or on. Click again while active to deactivate early."
+			Alternate use toggles Auto Evasion off or on. Click again while active to deactivate early. You cannot evade pointblank shots or attack while evading."
 	ability_cost = 75
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
@@ -97,11 +98,10 @@
 /datum/action/ability/xeno_action/evasion/on_cooldown_finish()
 	. = ..()
 	owner.balloon_alert(owner, "Evasion ready")
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 
 /datum/action/ability/xeno_action/evasion/can_use_action(silent = FALSE, override_flags)
 	. = ..()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.on_fire)
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "Can't while on fire!")
@@ -133,7 +133,7 @@
 	evade_active = TRUE
 	evasion_duration = RUNNER_EVASION_DURATION
 	owner.balloon_alert(owner, "Begin evasion: [evasion_duration]s.")
-	to_chat(owner, span_highdanger("We take evasive action, making us impossible to hit."))
+	to_chat(owner, span_userdanger("We take evasive action, making us impossible to hit."))
 	START_PROCESSING(SSprocessing, src)
 	RegisterSignals(owner, list(COMSIG_LIVING_STATUS_STUN,
 		COMSIG_LIVING_STATUS_KNOCKDOWN,
@@ -147,15 +147,38 @@
 	RegisterSignal(owner, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(evasion_throw_dodge))
 	GLOB.round_statistics.runner_evasions++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions")
-	TIMER_COOLDOWN_START(src, COOLDOWN_EVASION_ACTIVATION, 1 SECONDS)
+	TIMER_COOLDOWN_START(src, COOLDOWN_EVASION_ACTIVATION, 0.3 SECONDS)
+
+/datum/action/ability/xeno_action/evasion/ai_should_start_consider()
+	return TRUE
+
+/datum/action/ability/xeno_action/evasion/ai_should_use(atom/target)
+	if(iscarbon(target))
+		return FALSE
+	var/hp_left_percent = xeno_owner.health / xeno_owner.maxHealth // minimum_health or retreating ai datum instead maybe?
+	return (hp_left_percent < 0.5)
 
 /datum/action/ability/xeno_action/evasion/process()
-	var/mob/living/carbon/xenomorph/runner/runner_owner = owner
-	runner_owner.hud_set_evasion(evasion_duration)
+	hud_set_evasion(evasion_duration)
 	if(evasion_duration <= 0)
 		evasion_deactivate()
 		return
 	evasion_duration--
+
+///Sets the evasion duration hud
+/datum/action/ability/xeno_action/evasion/proc/hud_set_evasion(duration)
+	var/image/holder = xeno_owner.hud_list[XENO_EVASION_HUD]
+	if(!holder)
+		return
+	holder.overlays.Cut()
+	holder.icon_state = ""
+	if(xeno_owner.stat == DEAD || !duration)
+		return
+	holder.icon = 'icons/mob/hud/xeno.dmi'
+	holder.icon_state = "evasion_duration[duration]"
+	holder.pixel_x = 24
+	holder.pixel_y = 24
+	xeno_owner.hud_list[XENO_EVASION_HUD] = holder
 
 /**
  * Called when the owner is hit by a flamethrower projectile.
@@ -163,7 +186,7 @@
 */
 /datum/action/ability/xeno_action/evasion/proc/evasion_flamer_hit(datum/source, obj/projectile/proj)
 	SIGNAL_HANDLER
-	if(!(proj.ammo.flags_ammo_behavior & AMMO_FLAME))
+	if(!(proj.ammo.ammo_behavior_flags & AMMO_FLAME))
 		return
 	evasion_stacks = max(0, evasion_stacks - proj.damage) // We lose evasion stacks equal to the burn damage.
 	if(evasion_stacks)
@@ -203,13 +226,11 @@
 	evasion_duration = 0
 	owner.balloon_alert(owner, "Evasion ended")
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 50)
-	var/mob/living/carbon/xenomorph/runner/runner_owner = owner
-	runner_owner.hud_set_evasion(evasion_duration)
+	hud_set_evasion(evasion_duration)
 
 /// Determines whether or not a thrown projectile is dodged while the Evasion ability is active
 /datum/action/ability/xeno_action/evasion/proc/evasion_throw_dodge(datum/source, atom/movable/proj)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(!evade_active) //If evasion is not active we don't dodge
 		return NONE
 	if((xeno_owner.last_move_time < (world.time - RUNNER_EVASION_RUN_DELAY))) //Gotta keep moving to benefit from evasion!
@@ -225,12 +246,11 @@
 	SIGNAL_HANDLER
 	if(!evade_active) //If evasion is not active we don't dodge
 		return FALSE
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if((xeno_owner.last_move_time < (world.time - RUNNER_EVASION_RUN_DELAY))) //Gotta keep moving to benefit from evasion!
 		return FALSE
 	if(xeno_owner.issamexenohive(proj.firer)) //We automatically dodge allied projectiles at no cost, and no benefit to our evasion stacks
 		return COMPONENT_PROJECTILE_DODGE
-	if(proj.ammo.flags_ammo_behavior & AMMO_FLAME) //We can't dodge literal fire
+	if(proj.ammo.ammo_behavior_flags & AMMO_FLAME) //We can't dodge literal fire
 		return FALSE
 	if(proj.original_target == xeno_owner && proj.distance_travelled < 2) //Pointblank shot.
 		return FALSE
@@ -241,21 +261,20 @@
 
 /// Handles dodge effects and visuals for the Evasion ability.
 /datum/action/ability/xeno_action/evasion/proc/evasion_dodge_fx(atom/movable/proj)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.visible_message(span_warning("[xeno_owner] effortlessly dodges the [proj.name]!"), \
 	span_xenodanger("We effortlessly dodge the [proj.name]![(RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - evasion_stacks) > 0 && evasion_stacks > 0 ? " We must dodge [RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - evasion_stacks] more projectile damage before [src]'s cooldown refreshes." : ""]"))
 	xeno_owner.add_filter("runner_evasion", 2, gauss_blur_filter(5))
-	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/atom, remove_filter), "runner_evasion"), 0.5 SECONDS)
+	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/datum, remove_filter), "runner_evasion"), 0.5 SECONDS)
 	xeno_owner.do_jitter_animation(4000)
 	if(evasion_stacks >= RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD && cooldown_remaining()) //We have more evasion stacks than needed to refresh our cooldown, while being on cooldown.
 		clear_cooldown()
 		if(auto_evasion && xeno_owner.plasma_stored >= ability_cost)
 			action_activate()
 	var/turf/current_turf = get_turf(xeno_owner) //location of after image SFX
-	playsound(current_turf, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
-	var/obj/effect/temp_visual/xenomorph/afterimage/after_image
+	playsound(current_turf, pick('sound/effects/throw.ogg','sound/effects/alien/tail_swipe1.ogg', 'sound/effects/alien/tail_swipe2.ogg'), 25, 1) //sound effects
+	var/obj/effect/temp_visual/after_image/after_image
 	for(var/i=0 to 2) //number of after images
-		after_image = new /obj/effect/temp_visual/xenomorph/afterimage(current_turf, owner) //Create the after image.
+		after_image = new /obj/effect/temp_visual/after_image(current_turf, owner) //Create the after image.
 		after_image.pixel_x = pick(randfloat(xeno_owner.pixel_x * 3, xeno_owner.pixel_x * 1.5), rand(0, xeno_owner.pixel_x * -1)) //Variation on the X position
 
 
@@ -265,6 +284,7 @@
 /datum/action/ability/activable/xeno/snatch
 	name = "Snatch"
 	action_icon_state = "snatch"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Take an item equipped by your target in your mouth, and carry it away."
 	ability_cost = 75
 	cooldown_duration = 60 SECONDS
@@ -311,8 +331,7 @@
 		return FALSE
 
 /datum/action/ability/activable/xeno/snatch/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!do_after(owner, 0.5 SECONDS, IGNORE_HELD_ITEM, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
+	if(!do_after(owner, 0.5 SECONDS, IGNORE_HELD_ITEM, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = xeno_owner.health))))
 		return FALSE
 	var/mob/living/carbon/human/victim = A
 	stolen_item = victim.get_active_held_item()
@@ -325,7 +344,7 @@
 	if(!stolen_item)
 		victim.balloon_alert(owner, "Snatch failed, no item")
 		return fail_activate()
-	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30)
+	playsound(owner, 'sound/voice/alien/pounce2.ogg', 30)
 	victim.dropItemToGround(stolen_item, TRUE)
 	stolen_item.forceMove(owner)
 	stolen_appearance = mutable_appearance(stolen_item.icon, stolen_item.icon_state)
@@ -336,6 +355,11 @@
 	owner_turned(null, null, owner.dir)
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.runner_items_stolen++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_items_stolen")
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.items_snatched++
 
 ///Signal handler to update the item overlay when the owner is changing dir
 /datum/action/ability/activable/xeno/snatch/proc/owner_turned(datum/source, old_dir, new_dir)
@@ -373,6 +397,6 @@
 	stolen_item.forceMove(get_turf(owner))
 	stolen_item = null
 	owner.overlays -= stolen_appearance
-	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30, frequency = -1)
+	playsound(owner, 'sound/voice/alien/pounce2.ogg', 30, frequency = -1)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 

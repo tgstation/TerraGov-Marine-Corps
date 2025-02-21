@@ -29,7 +29,7 @@
 	if(iscarbon(affected_mob))
 		var/mob/living/carbon/C = affected_mob
 		C.med_hud_set_status()
-
+	RegisterSignal(affected_mob, COMSIG_HUMAN_SET_UNDEFIBBABLE, PROC_REF(on_host_dnr))
 
 /obj/item/alien_embryo/Destroy()
 	if(affected_mob)
@@ -66,6 +66,10 @@
 
 	process_growth()
 
+///Kills larva when host goes DNR
+/obj/item/alien_embryo/proc/on_host_dnr(datum/source)
+	SIGNAL_HANDLER
+	qdel(src)
 
 /obj/item/alien_embryo/proc/process_growth()
 
@@ -128,7 +132,8 @@
 	if(!affected_mob)
 		return
 
-	if(is_centcom_level(affected_mob.z) && !admin)
+	var/area/mob_area = get_area(affected_mob)
+	if(is_centcom_level(affected_mob.z) && !istype(mob_area, /area/deathmatch) && !admin)
 		return
 
 	var/mob/picked
@@ -151,16 +156,16 @@
 	if(picked)
 		picked.mind.transfer_to(new_xeno, TRUE)
 		to_chat(new_xeno, span_xenoannounce("We are a xenomorph larva inside a host! Move to burst out of it!"))
-		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
+		new_xeno << sound('sound/effects/alien/new_larva.ogg')
 
 	stage = 6
 
 
-/mob/living/carbon/xenomorph/larva/proc/initiate_burst(mob/living/carbon/victim)
+/mob/living/carbon/xenomorph/larva/proc/initiate_burst(mob/living/carbon/human/victim)
 	if(victim.chestburst || loc != victim)
 		return
 
-	victim.chestburst = 1
+	victim.chestburst = CARBON_IS_CHEST_BURSTING
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	to_chat(src, span_danger("We start bursting out of [victim]'s chest!"))
 
@@ -174,12 +179,12 @@
 	addtimer(CALLBACK(src, PROC_REF(burst), victim), 3 SECONDS)
 
 
-/mob/living/carbon/xenomorph/larva/proc/burst(mob/living/carbon/victim)
+/mob/living/carbon/xenomorph/larva/proc/burst(mob/living/carbon/human/victim)
 	if(QDELETED(victim))
 		return
 
 	if(loc != victim)
-		victim.chestburst = 0
+		victim.chestburst = CARBON_NO_CHEST_BURST
 		return
 
 	victim.update_burst()
@@ -189,7 +194,7 @@
 		forceMove(veh.exit_location(src))
 	else
 		forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
-	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
+	playsound(src, pick('sound/voice/alien/chestburst.ogg','sound/voice/alien/chestburst2.ogg'), 25)
 	GLOB.round_statistics.total_larva_burst++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_larva_burst")
 	var/obj/item/alien_embryo/AE = locate() in victim
@@ -197,25 +202,22 @@
 	if(AE)
 		qdel(AE)
 
-	if(ishuman(victim))
-		var/mob/living/carbon/human/H = victim
-		H.apply_damage(200, BRUTE, H.get_limb("chest"), updating_health = TRUE) //lethal armor ignoring brute damage
-		var/datum/internal_organ/O
-		for(var/i in list("heart", "lungs", "liver", "kidneys", "appendix")) //Bruise all torso internal organs
-			O = H.internal_organs_by_name[i]
+	victim.apply_damage(200, BRUTE, victim.get_limb("chest"), updating_health = TRUE) //lethal armor ignoring brute damage
+	var/datum/internal_organ/O
+	for(var/i in list(ORGAN_SLOT_HEART, ORGAN_SLOT_LUNGS, ORGAN_SLOT_LIVER, ORGAN_SLOT_KIDNEYS, ORGAN_SLOT_APPENDIX)) //Bruise all torso internal organs
+		O = victim.get_organ_slot(i)
 
-			if(!H.mind && !H.client) //If we have no client or mind, permadeath time; remove the organs. Mainly for the NPC colonist bodies
-				H.internal_organs_by_name -= i
-				H.internal_organs -= O
-			else
-				O.take_damage(O.min_bruised_damage, TRUE)
+		if(!victim.mind && !victim.client) //If we have no client or mind, permadeath time; remove the organs. Mainly for the NPC colonist bodies
+			victim.remove_organ_slot(i)
+		else
+			O.take_damage(O.min_bruised_damage, TRUE)
 
-		var/datum/limb/chest = H.get_limb("chest")
-		new /datum/wound/internal_bleeding(15, chest) //Apply internal bleeding to chest
-		chest.fracture()
+	var/datum/limb/chest = victim.get_limb("chest")
+	new /datum/wound/internal_bleeding(15, chest) //Apply internal bleeding to chest
+	chest.fracture()
 
 
-	victim.chestburst = 2
+	victim.chestburst = CARBON_CHEST_BURSTED
 	victim.update_burst()
 	log_combat(src, null, "chestbursted as a larva.")
 	log_game("[key_name(src)] chestbursted as a larva at [AREACOORD(src)].")

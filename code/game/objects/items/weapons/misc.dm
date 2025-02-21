@@ -2,13 +2,13 @@
 	name = "chain of command"
 	desc = "A tool used by great men to placate the frothing masses."
 	icon_state = "chain"
-	item_state = "chain"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	worn_icon_state = "chain"
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 10
 	throwforce = 7
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
+	attack_verb = list("flogs", "whips", "lashes", "disciplines")
 
 /obj/item/weapon/chainofcommand/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is strangling [p_them()]self with the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
@@ -17,14 +17,13 @@
 /obj/item/weapon/cane
 	name = "cane"
 	desc = "A cane used by a true gentlemen. Or a clown."
-	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "cane"
-	item_state = "cane"
-	flags_atom = CONDUCT
+	worn_icon_state = "cane"
+	atom_flags = CONDUCT
 	force = 5
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
+	attack_verb = list("bludgeons", "whacks", "disciplines", "thrashes")
 
 /obj/item/weapon/broken_bottle
 	name = "Broken Bottle"
@@ -35,8 +34,8 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
-	item_state = "broken_beer"
-	attack_verb = list("stabbed", "slashed", "attacked")
+	worn_icon_state = "broken_beer"
+	attack_verb = list("stabs", "slashes", "attacks")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 0
 	var/icon/broken_outline = icon('icons/obj/items/drinks.dmi', "broken")
@@ -49,10 +48,10 @@
 	name = "powerfist"
 	desc = "A metal gauntlet with a energy-powered fist to throw back enemies. Altclick to clamp it around your hand, use it to change power settings and click with an empty off-hand or right click to pop out the cell."
 	icon_state = "powerfist"
-	item_state = "powerfist"
-	flags_equip_slot = ITEM_SLOT_BELT
+	worn_icon_state = "powerfist"
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 10
-	attack_verb = list("smashed", "rammed", "power-fisted")
+	attack_verb = list("smashes", "rams", "power-fists")
 	var/obj/item/cell/cell
 	///the higher the power level the harder it hits
 	var/setting = 1
@@ -128,7 +127,7 @@
 /obj/item/weapon/powerfist/attackby(obj/item/I, mob/user, params)
 	if(!istype(I, /obj/item/cell))
 		return ..()
-	if(!istype(I, /obj/item/cell/lasgun))
+	if(!islascell(I))
 		to_chat(user, span_warning("The powerfist only accepts lasgun cells!"))
 		return
 	if(I.w_class >= WEIGHT_CLASS_BULKY)
@@ -173,7 +172,7 @@
 	icon_state = "brick"
 	force = 30
 	throwforce = 40
-	attack_verb = list("smacked", "whacked", "bonked", "bricked", "thwacked", "socked", "donked")
+	attack_verb = list("smacks", "whacks", "bonks", "bricks", "thwacks", "socks", "donks")
 	hitsound = 'sound/weapons/heavyhit.ogg'
 
 /obj/item/stack/throwing_knife/stone
@@ -185,8 +184,9 @@
 	max_amount = 12
 	amount = 12
 	throw_delay = 0.3 SECONDS
-	attack_verb = list("smacked", "whacked", "bonked", "pelted", "thwacked", "cracked")
+	attack_verb = list("smacks", "whacks", "bonks", "pelts", "thwacks", "cracks")
 	hitsound = 'sound/weapons/heavyhit.ogg'
 	singular_name = "stone"
-	flags_atom = DIRLOCK
+	atom_flags = DIRLOCK
 	sharp = IS_NOT_SHARP_ITEM
+	update_on_throwing = FALSE

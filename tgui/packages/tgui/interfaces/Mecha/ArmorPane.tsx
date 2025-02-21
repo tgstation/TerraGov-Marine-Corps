@@ -1,7 +1,7 @@
-import { classes } from 'common/react';
+import { Box, Button, Stack } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
 import { useBackend } from '../../backend';
-import { Box, Button, Stack } from '../../components';
 import { OperatorData } from './data';
 
 export const ArmorPane = (props) => {

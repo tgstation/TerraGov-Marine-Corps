@@ -8,7 +8,7 @@ Code shamelessly copied from apc_frame
 	desc = "Used for building Fire Alarms"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "fire_bitem"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 
 /obj/item/frame/fire_alarm/attackby(obj/item/I, mob/user, params)
 	. = ..()

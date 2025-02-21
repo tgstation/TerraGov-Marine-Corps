@@ -1,0 +1,799 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ar" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/sugarcaneseed,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"aw" = (
+/turf/open/ground/grass/beach{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"aB" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"bb" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"cd" = (
+/obj/structure/table/wood,
+/obj/item/clothing/gloves/botanic_leather,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"cx" = (
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"cI" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"dm" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"dt" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"dK" = (
+/obj/structure/rock/variable/jungle/big,
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle)
+"eX" = (
+/obj/machinery/hydroponics/soil,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"fl" = (
+/obj/structure/window/framed/wood,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"gg" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"gU" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"hp" = (
+/obj/structure/rock/variable/jungle,
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/river/west)
+"hH" = (
+/turf/open/floor/plating/ground/dirt2,
+/area/campaign/jungle_outpost/ground/jungle)
+"iy" = (
+/obj/structure/table/wood,
+/obj/item/tool/shovel,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"iJ" = (
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/river/west)
+"iT" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"jC" = (
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"ko" = (
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"kz" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/tool/scythe,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"kK" = (
+/obj/structure/platform_decoration{
+	dir = 5
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"lh" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"ll" = (
+/obj/structure/stairs/seamless/edge_vert,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"ln" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"lp" = (
+/turf/closed/wall/wood,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"mj" = (
+/obj/machinery/hydroponics/soil,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"mB" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"mD" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/seeds/sugarcaneseed,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"oY" = (
+/obj/structure/catwalk,
+/turf/open/ground/grass/beach/corner2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"pf" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"rd" = (
+/obj/structure/rock/variable/jungle,
+/turf/open/ground/grass/beach/corner2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"rn" = (
+/obj/structure/table/wood,
+/obj/item/tool/scythe,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"rI" = (
+/turf/open/liquid/water,
+/area/campaign/jungle_outpost/ground/jungle)
+"sb" = (
+/obj/structure/rock/variable/jungle/big,
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"uf" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"uo" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"ut" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"uB" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"uR" = (
+/obj/structure/rock/variable/jungle,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"vd" = (
+/turf/open/ground/grass/beach/corner2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"wi" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"wZ" = (
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"zM" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"Az" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"BN" = (
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"BO" = (
+/turf/open/ground/grass/beach{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"CQ" = (
+/obj/structure/catwalk,
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"DM" = (
+/turf/open/ground/grass/beach/corner2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"DU" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle)
+"Fe" = (
+/obj/structure/table/wood,
+/obj/item/clothing/gloves/botanic_leather,
+/obj/item/clothing/suit/storage/apron,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"FE" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"FG" = (
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle)
+"FL" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/seeds/bananaseed,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"Gl" = (
+/obj/structure/table/wood,
+/obj/item/tool/analyzer/plant_analyzer,
+/obj/item/tool/hatchet{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/effect/spawner/random/weaponry/melee,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"Gt" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"Gz" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"GW" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"Hl" = (
+/obj/structure/rock/variable/jungle/big,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"HY" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle)
+"If" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"JP" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"JT" = (
+/obj/machinery/hydroponics/soil,
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle)
+"Kq" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirt2,
+/area/campaign/jungle_outpost/ground/jungle)
+"KE" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/campaign/jungle_outpost/ground/jungle)
+"Lu" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/floor/plating/ground/dirt2,
+/area/campaign/jungle_outpost/ground/jungle)
+"LL" = (
+/turf/open/ground/grass/beach/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"Ma" = (
+/obj/structure/catwalk,
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"Mn" = (
+/turf/closed/wall,
+/area/campaign/jungle_outpost/ground/jungle)
+"MB" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"OK" = (
+/obj/structure/catwalk,
+/obj/structure/platform,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"PU" = (
+/obj/structure/catwalk,
+/obj/structure/platform,
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"Rl" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"Rq" = (
+/obj/structure/catwalk,
+/obj/effect/landmark/campaign_structure/phoron_crate,
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"RG" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"Sx" = (
+/turf/closed/gm/dense,
+/area/campaign/jungle_outpost/ground/jungle)
+"SD" = (
+/obj/structure/catwalk,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"To" = (
+/obj/structure/catwalk,
+/turf/open/liquid/water,
+/area/campaign/jungle_outpost/ground/jungle)
+"WC" = (
+/obj/structure/rock/variable/jungle,
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"WH" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"Yb" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"YA" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle)
+"YX" = (
+/obj/structure/closet/secure_closet/hydroponics,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"Zs" = (
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+"ZH" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/liquid/water/river/autosmooth,
+/area/campaign/jungle_outpost/ground/jungle)
+
+(1,1,1) = {"
+Zs
+Zs
+Az
+ko
+JP
+ko
+Az
+ko
+ko
+uo
+uo
+uo
+Zs
+sb
+Rl
+iJ
+iJ
+iJ
+"}
+(2,1,1) = {"
+ko
+lp
+lp
+lp
+lp
+lp
+lp
+lp
+ko
+ko
+Zs
+aB
+Zs
+zM
+cx
+cx
+iJ
+hp
+"}
+(3,1,1) = {"
+Az
+lp
+rn
+YX
+gU
+Gl
+wZ
+dm
+Zs
+GW
+Zs
+WC
+cx
+cx
+cx
+cx
+Zs
+Zs
+"}
+(4,1,1) = {"
+ko
+lp
+cd
+wZ
+wZ
+wZ
+wZ
+lp
+aB
+Zs
+cx
+cx
+cx
+cx
+cx
+Zs
+uB
+Zs
+"}
+(5,1,1) = {"
+ko
+lp
+mD
+wZ
+wZ
+Fe
+iy
+lp
+cx
+cx
+cx
+cx
+cx
+Sx
+Sx
+Sx
+GW
+Zs
+"}
+(6,1,1) = {"
+ln
+lp
+lp
+dm
+lp
+fl
+fl
+lp
+cx
+cx
+cx
+cx
+Sx
+Sx
+Sx
+Sx
+ln
+Az
+"}
+(7,1,1) = {"
+ko
+ko
+FG
+hH
+wi
+ko
+Zs
+cx
+cx
+cx
+GW
+Zs
+Sx
+Sx
+Sx
+uf
+ko
+ko
+"}
+(8,1,1) = {"
+ar
+ko
+FG
+Kq
+wi
+uB
+aB
+cx
+cx
+sb
+Zs
+KE
+dt
+dt
+dt
+dt
+dt
+Hl
+"}
+(9,1,1) = {"
+JT
+ko
+FG
+hH
+ll
+FE
+ZH
+ZH
+ZH
+ZH
+FE
+DU
+hH
+Lu
+hH
+Kq
+hH
+hH
+"}
+(10,1,1) = {"
+ko
+ko
+dK
+hH
+gg
+iT
+MB
+CQ
+Rq
+CQ
+Ma
+HY
+Kq
+hH
+hH
+hH
+hH
+Lu
+"}
+(11,1,1) = {"
+ko
+Az
+RG
+Gt
+pf
+WH
+BN
+mB
+CQ
+OK
+kK
+RG
+Gt
+Gt
+Gt
+Gt
+Gt
+Gt
+"}
+(12,1,1) = {"
+eX
+ko
+eX
+ko
+FL
+Zs
+Mn
+CQ
+CQ
+SD
+Mn
+ko
+JP
+Sx
+Sx
+Sx
+ko
+uR
+"}
+(13,1,1) = {"
+eX
+ko
+kz
+ko
+eX
+Zs
+sb
+mB
+CQ
+PU
+WH
+Zs
+Sx
+Sx
+Sx
+Sx
+JP
+ko
+"}
+(14,1,1) = {"
+FL
+ko
+eX
+ko
+JT
+Zs
+cx
+mB
+CQ
+PU
+cx
+Zs
+Sx
+Sx
+Sx
+Sx
+uo
+ko
+"}
+(15,1,1) = {"
+mj
+ko
+eX
+ko
+eX
+Zs
+uB
+mB
+CQ
+PU
+cx
+Sx
+Sx
+Sx
+Sx
+Sx
+uo
+ko
+"}
+(16,1,1) = {"
+wi
+uo
+uo
+JP
+ko
+ko
+bb
+mB
+CQ
+PU
+cx
+Sx
+Sx
+Sx
+Sx
+Sx
+ko
+ln
+"}
+(17,1,1) = {"
+wi
+uo
+uo
+uo
+ko
+uo
+bb
+cI
+CQ
+PU
+cx
+WC
+Sx
+Sx
+Sx
+aw
+LL
+Sx
+"}
+(18,1,1) = {"
+Yb
+dt
+YA
+dt
+dt
+dt
+If
+cI
+CQ
+PU
+cx
+rI
+rI
+rI
+rI
+rI
+jC
+Sx
+"}
+(19,1,1) = {"
+lh
+Gt
+Gt
+Gt
+ut
+Gz
+Mn
+SD
+oY
+To
+Mn
+DM
+BO
+BO
+rd
+rI
+vd
+LL
+"}

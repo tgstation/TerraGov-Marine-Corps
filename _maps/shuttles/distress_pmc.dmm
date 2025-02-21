@@ -185,7 +185,7 @@
 /area/shuttle/ert/pmc)
 "O" = (
 /obj/effect/mapping_helpers/barricade/closed,
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /turf/open/shuttle/dropship/floor,
@@ -210,7 +210,7 @@
 /area/shuttle/ert/pmc)
 "T" = (
 /obj/effect/mapping_helpers/barricade/closed,
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 8
 	},
 /turf/open/shuttle/dropship/floor,
@@ -242,7 +242,7 @@
 /area/shuttle/ert/pmc)
 "Z" = (
 /obj/effect/mapping_helpers/barricade/closed,
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 

@@ -4,11 +4,11 @@
 	greyscale_config = /datum/greyscale_config/badge/shield
 	icon_state = "in_hand"
 	slot = ATTACHMENT_SLOT_BADGE
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB|ATTACH_NO_HANDS|ATTACH_SAME_ICON
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB|ATTACH_NO_HANDS|ATTACH_SAME_ICON
 	colorable_allowed = COLOR_WHEEL_ALLOWED
 	greyscale_colors = COLOR_RED
 	secondary_color = TRUE
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 	///List of selectable styles for where the badge is worn.
 	var/list/style_list = list(
@@ -89,10 +89,10 @@
 	icon_state = "beret_badge"
 	greyscale_config = /datum/greyscale_config/style_hat/badge
 	slot = ATTACHMENT_SLOT_CAPE_HIGHLIGHT
-	flags_attach_features = ATTACH_APPLY_ON_MOB|ATTACH_DIFFERENT_MOB_ICON_STATE
+	attach_features_flags = ATTACH_APPLY_ON_MOB|ATTACH_DIFFERENT_MOB_ICON_STATE
 	secondary_color = TRUE
 	greyscale_colors = COLOR_RED
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 	colorable_allowed = COLOR_WHEEL_ALLOWED
 
 /obj/item/armor_module/armor/stylehat_badge/classic
@@ -108,10 +108,10 @@
 	icon_state = "skull"
 	greyscale_config = /datum/greyscale_config/visors/glyphs
 	slot = ATTACHMENT_SLOT_CAPE_HIGHLIGHT
-	flags_attach_features = ATTACH_APPLY_ON_MOB|ATTACH_SAME_ICON
+	attach_features_flags = ATTACH_APPLY_ON_MOB|ATTACH_SAME_ICON
 	secondary_color = TRUE
 	greyscale_colors = COLOR_WHITE
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 	colorable_allowed = COLOR_WHEEL_ALLOWED
 
 /obj/item/armor_module/armor/visor_glyph/old

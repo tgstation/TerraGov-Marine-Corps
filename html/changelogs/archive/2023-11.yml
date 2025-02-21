@@ -258,7 +258,7 @@
   - qol: Flamethrower backtank can be refilled from welding kits
   - imageadd: Ports deathsquad sprites from TG
   psykzz:
-  - admin: add flags_area to bitfields for VV.
+  - admin: add area_flags to bitfields for VV.
 2023-11-17:
   Lumipharon:
   - imageadd: drop pods are now emissive

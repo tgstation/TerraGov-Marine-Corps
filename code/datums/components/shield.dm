@@ -90,7 +90,7 @@
 		return
 	var/mob/living/carbon/human/human_user = user
 	if(parent_item.slowdown) //todo: make this less smelly, I have no idea why this is on the shield component, and could likely cause unintended double slowdown
-		human_user.add_movespeed_modifier(parent_item.type, TRUE, 0, ((parent_item.flags_item & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE), TRUE, parent_item.slowdown)
+		human_user.add_movespeed_modifier(parent_item.type, TRUE, 0, ((parent_item.item_flags & IMPEDE_JETPACK) ? SLOWDOWN_IMPEDE_JETPACK : NONE), TRUE, parent_item.slowdown)
 
 ///Handles unequipping the shield
 /datum/component/shield/proc/shield_dropped(datum/source, mob/user)
@@ -290,9 +290,8 @@
 	. = ..()
 	if(!shield_integrity)
 		return
-	var/obj/item/clothing/suit/reactive_suit = parent
 	var/mob/living/carbon/human/affected_human = affected
-	affected_human.overlays_standing[OVERHEALTH_SHIELD_LAYER] = list(mutable_appearance('icons/effects/effects.dmi', reactive_suit.shield_state, affected.layer + 0.01))
+	affected_human.overlays_standing[OVERHEALTH_SHIELD_LAYER] = list(mutable_appearance('icons/effects/effects.dmi', "shield-blue", affected.layer + 0.01))
 	affected_human.apply_overlay(OVERHEALTH_SHIELD_LAYER)
 
 /datum/component/shield/overhealth/deactivate_with_user()

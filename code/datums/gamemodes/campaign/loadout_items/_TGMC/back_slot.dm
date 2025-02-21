@@ -4,6 +4,7 @@
 /datum/loadout_item/back/empty
 	name = "no backpack"
 	desc = ""
+	ui_icon = "empty"
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
@@ -59,9 +60,9 @@
 
 /datum/loadout_item/back/flamer_tank/x_fuel
 	name = "X-fuel tank"
-	desc = "A specialized fuel tank of ultra thick napthal type X, known for its extreme heat and slow burn rate, as well as it's distinct blue flames. For use with the FL-84 flamethrower and FL-240 incinerator unit."
+	desc = "A specialized fuel tank of ultra thick napthal type X, known for its extreme heat and slow burn rate, as well as its distinct blue flames. For use with the FL-84 flamethrower and FL-240 incinerator unit."
 	item_typepath = /obj/item/ammo_magazine/flamer_tank/backtank/X
-	purchase_cost = 40
+	purchase_cost = 50
 	unlock_cost = 200
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
@@ -76,6 +77,7 @@
 	item_whitelist = list(
 		/obj/item/weapon/gun/smg/m25/magharness = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/rifle/alf_machinecarbine/assault = ITEM_SLOT_SUITSTORE,
+		/obj/item/storage/holster/blade/machete/full_alt = ITEM_SLOT_SUITSTORE,
 	)
 
 //special unlockable
@@ -85,15 +87,28 @@
 	The SH-35 is the most commonly used shotgun of the TGMC. With good mobility and handling, it has unparalleled close range power when using buckshot. Able to kill or maim all but the most heavily armored targets with a single well aimmed blast. \
 	When using flechette rounds, it can provide surprisingly powerful long range damage with good penetration, although its low rate of fire means its sustained damage is relatively poor. \
 	Uses 12 gauge shells."
-	ui_icon = "shotgun"
+	ui_icon = "t35"
 	purchase_cost = 25
 	item_typepath = /obj/item/weapon/gun/shotgun/pump/t35/standard
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
 	loadout_item_flags = NONE
 
-/datum/loadout_item/back/marine_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/back/marine_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, SLOT_R_HAND)
+
+/datum/loadout_item/back/tgmc_heam_rocket_bag
+	name = "HEAM rocket bag"
+	desc = "Unlocked for free with the Heavy weapon specialisation perk. This backpack holds 4 67mm high explosive anti mech shells, in addition to a recoiless rifle. \
+	The recoiless rifle is a powerful support weapon that deals significant damage against heavily armored mechs or vehicles, \
+	but will generally devastate any human target unfortunate enough to be hit in a pinch. Has a draw delay and has poor accuracy against human targets."
+	ui_icon = "t160"
+	unlock_cost = 300
+	purchase_cost = 100
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
+	quantity = 2
+	item_typepath = /obj/item/storage/holster/backholster/rpg/heam
+	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/back/machete
 	name = "Machete"
@@ -102,6 +117,15 @@
 	item_typepath = /obj/item/storage/holster/blade/machete/full
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER)
 	loadout_item_flags = NONE
+
+/datum/loadout_item/back/minigun_powerpack
+	name = "MG-100 powerpack"
+	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the MG-100 Minigun System. You don't get any spare, so make it count."
+	req_desc = "Requires an MG-100."
+	item_typepath = /obj/item/ammo_magazine/minigun_powerpack
+	jobs_supported = list(SQUAD_MARINE)
+	loadout_item_flags = NONE
+	item_whitelist = list(/obj/item/weapon/gun/minigun/magharness = ITEM_SLOT_SUITSTORE)
 
 //corpsman
 /datum/loadout_item/back/corpsman_satchel
@@ -120,40 +144,36 @@
 //engineer
 /datum/loadout_item/back/engineerpack
 	name = "Sentry welderpack"
-	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling. Loaded with 2 point defense sentries, excellent for defending areas or establishing killboxes."
+	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling. Loaded with a point defense sentry, excellent for defending areas or establishing killboxes."
 	item_typepath = /obj/item/storage/backpack/marine/engineerpack
 	jobs_supported = list(SQUAD_ENGINEER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/back/engineerpack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/back/engineerpack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/sentry/mini/combat_patrol, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/sentry/mini/combat_patrol, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/minisentry, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/minisentry, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/back/tgmc_rocket_bag
 	name = "Rocket bag"
 	desc = "This backpack holds 4 67mm shells, in addition to a recoiless rifle. \
 	A powerful ranged weapon with a wide area of effect, the recoiless rifle is a powerful support weapon that can severely wound whole groups of opponents in a single shot. Has a draw delay."
+	ui_icon = "t160"
 	purchase_cost = 100
-	quantity = 2
+	quantity = 3
 	item_typepath = /obj/item/storage/holster/backholster/rpg/low_impact
 	jobs_supported = list(SQUAD_ENGINEER)
 
 /datum/loadout_item/back/tech_backpack
 	name = "Demolition backpack"
-	desc = "The standard-issue backpack worn by TGMC technicians. Filled with a tremendous amount of detpacks, C4, claymores and grenades. Has a draw delay."
+	desc = "The standard-issue backpack worn by TGMC technicians. Filled with a detpacks, C4 and grenades. Has a draw delay."
 	item_typepath = /obj/item/storage/backpack/marine/tech
 	jobs_supported = list(SQUAD_ENGINEER)
 
-/datum/loadout_item/back/tech_backpack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/back/tech_backpack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/minelayer, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)

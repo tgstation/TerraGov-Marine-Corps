@@ -2,14 +2,14 @@
  * Shows a list of currently running polls a player can vote/has voted on
  *
  */
-/mob/new_player/proc/handle_playeR_DBRANKSing()
+/mob/new_player/proc/handle_playeR_POLLSing()
 	var/list/output = list("<div align='center'><B>Player polls</B><hr><table>")
 	var/rs = REF(src)
 	for(var/p in GLOB.polls)
 		var/datum/poll_question/poll = p
 		if((poll.admin_only && !client.holder) || poll.future_poll)
 			continue
-		output += "<tr bgcolor='#e2e2e2'><td><a href='?src=[rs];viewpoll=[REF(poll)]'><b>[poll.question]</b></a></td></tr>"
+		output += "<tr bgcolor='#e2e2e2'><td><a href='byond://?src=[rs];viewpoll=[REF(poll)]'><b>[poll.question]</b></a></td></tr>"
 	output += "</table>"
 	src << browse(jointext(output, ""),"window=playerpolllist;size=500x300")
 

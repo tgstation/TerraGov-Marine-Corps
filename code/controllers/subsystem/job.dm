@@ -209,7 +209,7 @@ SUBSYSTEM_DEF(job)
 		if(PopcapReached())
 			RejectPlayer(player)
 		//Choose a faction in advance if needed
-		if(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS) //Alternates between the two factions
+		if(SSticker.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS) //Alternates between the two factions
 			faction_rejected = faction_rejected == FACTION_TERRAGOV ? FACTION_SOM : FACTION_TERRAGOV
 		// Loop through all jobs
 		for(var/datum/job/job AS in occupations_to_assign)

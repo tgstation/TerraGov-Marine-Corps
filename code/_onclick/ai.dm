@@ -193,7 +193,7 @@
 /* Firealarm */
 /obj/machinery/firealarm/AICtrlClick(mob/living/silicon/ai/user) // toggle the fire alarm
 	var/area/A = get_area(src)
-	if(A.flags_alarm_state & ALARM_WARNING_FIRE)
+	if(A.alarm_state_flags & ALARM_WARNING_FIRE)
 		reset()
 	else
 		alarm()
@@ -206,6 +206,10 @@
 /obj/alien/weeds/AICtrlShiftClick(mob/living/silicon/ai/user)
 	var/turf/firedturf = get_turf(src)
 	firedturf.AICtrlShiftClick(user)
+
+/obj/alien/weeds/AICtrlClick(mob/living/silicon/ai/user)
+	var/turf/firedturf = get_turf(src)
+	firedturf.AICtrlClick(user)
 
 /* Xenos */
 /mob/living/carbon/xenomorph/AIMiddleClick(mob/living/silicon/ai/user)
@@ -306,7 +310,7 @@
 	if(HAS_TRAIT(user, TRAIT_IS_FIRING_RAILGUN))
 		to_chat(user, span_warning("The rail guns are already targeting a location, wait for them to finish."))
 		return
-	if(!is_ground_level(user.eyeobj.z) || isdropshiparea(A)) //can't fire the railgun off the ground level, or at the DS
+	if(!is_ground_level(user.eyeobj.z) || isdropshiparea(A) || A.area_flags & MARINE_BASE) //can't fire the railgun off the ground level, at the DS, or in FOB
 		to_chat(user, span_warning("Incompatible target location."))
 		return
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED)

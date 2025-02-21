@@ -15,12 +15,12 @@
 	. = ..()
 	var/turf/current_turf = get_turf(src)
 	if(anchored && current_turf && density)
-		current_turf.flags_atom |= AI_BLOCKED
+		current_turf.atom_flags |= AI_BLOCKED
 
 /obj/machinery/door/poddoor/Destroy()
 	var/turf/current_turf = get_turf(src)
 	if(anchored && current_turf && density)
-		current_turf.flags_atom &= ~AI_BLOCKED
+		current_turf.atom_flags &= ~AI_BLOCKED
 	return ..()
 
 /obj/machinery/door/poddoor/bumpopen(mob/user)
@@ -30,13 +30,13 @@
 	. = ..()
 	var/turf/current_turf = get_turf(src)
 	if(anchored && current_turf && density)
-		current_turf.flags_atom &= ~AI_BLOCKED
+		current_turf.atom_flags &= ~AI_BLOCKED
 
 /obj/machinery/door/poddoor/close()
 	. = ..()
 	var/turf/current_turf = get_turf(src)
 	if(anchored && current_turf && density)
-		current_turf.flags_atom |= AI_BLOCKED
+		current_turf.atom_flags |= AI_BLOCKED
 
 /obj/machinery/door/poddoor/Bumped(atom/AM)
 	if(!density)
@@ -225,6 +225,11 @@
 	id = "mech_shutters"
 	resistance_flags = PLASMACUTTER_IMMUNE
 
+/obj/machinery/door/poddoor/mainship/vehicle
+	name = "\improper Vehicle Bay Shutters"
+	id = "vehicle_shutters"
+	resistance_flags = PLASMACUTTER_IMMUNE
+
 /obj/machinery/door/poddoor/mainship/umbilical
 	name = "Umbilical Airlock"
 	resistance_flags = RESIST_ALL
@@ -266,14 +271,14 @@
 	. = ..()
 	if(mapload)
 		var/area/ourarea = get_area(src)
-		ENABLE_BITFIELD(ourarea.flags_area, DISALLOW_WEEDING)
-		ENABLE_BITFIELD(ourarea.flags_area, NEAR_FOB)
+		ENABLE_BITFIELD(ourarea.area_flags, DISALLOW_WEEDING)
+		ENABLE_BITFIELD(ourarea.area_flags, NEAR_FOB)
 
 
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/open()
 	. = ..()
 	var/area/ourarea = get_area(src)
-	DISABLE_BITFIELD(ourarea.flags_area, DISALLOW_WEEDING)
+	DISABLE_BITFIELD(ourarea.area_flags, DISALLOW_WEEDING)
 
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone
 	id = "landing_zone"

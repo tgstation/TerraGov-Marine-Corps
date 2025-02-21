@@ -12,12 +12,6 @@
 		Deactivate()
 	return TRUE
 
-
-/datum/action/innate/give_action()
-	. = ..()
-	update_button_icon()
-
-
 /datum/action/innate/proc/Activate()
 	return
 

@@ -58,11 +58,11 @@
 		/datum/reagent/radium = 2
 		)
 	var/global/list/nutrient_reagents = list(
-		/datum/reagent/consumable/drink/milk = 0.1,
+		/datum/reagent/consumable/milk = 0.1,
 		/datum/reagent/consumable/ethanol/beer = 0.25,
 		/datum/reagent/phosphorus = 0.1,
 		/datum/reagent/consumable/sugar = 0.1,
-		/datum/reagent/consumable/drink/cold/sodawater = 0.1,
+		/datum/reagent/consumable/sodawater = 0.1,
 		/datum/reagent/ammonia = 1,
 		/datum/reagent/diethylamine = 2,
 		/datum/reagent/consumable/nutriment = 1,
@@ -89,13 +89,13 @@
 	var/global/list/water_reagents = list(
 		/datum/reagent/water = 1,
 		/datum/reagent/medicine/adminordrazine = 1,
-		/datum/reagent/consumable/drink/milk = 0.9,
+		/datum/reagent/consumable/milk = 0.9,
 		/datum/reagent/consumable/ethanol/beer = 0.7,
 		/datum/reagent/fluorine = -0.5,
 		/datum/reagent/chlorine = -0.5,
 		/datum/reagent/phosphorus = -0.5,
 		/datum/reagent/water = 1,
-		/datum/reagent/consumable/drink/cold/sodawater = 1,
+		/datum/reagent/consumable/sodawater = 1,
 		)
 
 	// Beneficial reagents also have values for modifying yield_mod and mut_mod (in that order).
@@ -104,7 +104,7 @@
 		/datum/reagent/fluorine = list( -2,    0,   0   ),
 		/datum/reagent/chlorine = list( -1,    0,   0   ),
 		/datum/reagent/phosphorus = list( -0.75, 0,   0   ),
-		/datum/reagent/consumable/drink/cold/sodawater = list(  0.1,  0,   0   ),
+		/datum/reagent/consumable/sodawater = list(  0.1,  0,   0   ),
 		/datum/reagent/toxin/acid = list( -1,    0,   0   ),
 		/datum/reagent/toxin/acid/polyacid = list( -2,    0,   0   ),
 		/datum/reagent/toxin/plantbgone = list( -2,    0,   0.2 ),
@@ -130,6 +130,8 @@
 
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -595,9 +597,9 @@
 
 		attack_hand(user)
 		for(var/obj/item/reagent_containers/food/snacks/grown/G in user.loc)
-			if(!S.can_be_inserted(G))
+			if(!S.storage_datum.can_be_inserted(G, user))
 				return
-			S.handle_item_insertion(G, TRUE, user)
+			S.storage_datum.handle_item_insertion(G, TRUE, user)
 
 	else if(istype(I, /obj/item/tool/plantspray))
 		var/obj/item/tool/plantspray/spray = I
@@ -645,7 +647,7 @@
 
 /obj/machinery/hydroponics/verb/close_lid()
 	set name = "Toggle Tray Lid"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in view(1)
 
 	if(!usr || usr.stat || usr.restrained())

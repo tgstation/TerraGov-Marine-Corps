@@ -1,0 +1,1238 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ar" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"bi" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"bq" = (
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
+/obj/structure/platform,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"ci" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"cl" = (
+/obj/structure/catwalk,
+/turf/open/ground/grass/beach{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"cx" = (
+/obj/machinery/door/airlock/multi_tile/mainship/engineering/glass,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"cO" = (
+/obj/structure/rack,
+/obj/item/radio/survivor,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"dt" = (
+/obj/structure/stairs/railstairs_vert{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"dD" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"dS" = (
+/obj/structure/platform{
+	dir = 6
+	},
+/turf/closed/wall/r_wall,
+/area/campaign/jungle_outpost/outpost/engineering)
+"ee" = (
+/obj/structure/rock/variable/jungle/big,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"eC" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"eD" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"fJ" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"ga" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"gy" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 5
+	},
+/turf/open/ground/grass/beach{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"hB" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/closed/wall/r_wall,
+/area/campaign/jungle_outpost/outpost/engineering)
+"hZ" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"ir" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/engibelt,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"iP" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"jm" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 5
+	},
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"js" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 9
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"jE" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"ke" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 6
+	},
+/obj/machinery/floodlight/colony,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"kn" = (
+/obj/structure/stairs/railstairs_vert{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"ko" = (
+/obj/effect/spawner/random/misc/structure/flavorvending/engivend,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"kS" = (
+/obj/structure/platform_decoration{
+	dir = 9
+	},
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"lu" = (
+/obj/structure/closet/secure_closet/engineering_personal,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"lw" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/beach{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"ly" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/engineering)
+"lN" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"my" = (
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"nk" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/misc/folder/nooffset,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"nl" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"nn" = (
+/obj/structure/stairs/seamless/edge,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"oS" = (
+/obj/structure/catwalk,
+/turf/open/ground/grass/beach,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"pn" = (
+/obj/structure/cable,
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/engineering)
+"qv" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"rr" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"rP" = (
+/obj/structure/catwalk,
+/obj/structure/reagent_dispensers/fueltank/barrel,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"sd" = (
+/turf/open/ground/grass/beach{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"sf" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"sj" = (
+/obj/machinery/door/airlock/multi_tile/mainship/engineering,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"sr" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"sz" = (
+/obj/effect/spawner/random/misc/structure/closet/tool,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"tx" = (
+/obj/machinery/door/airlock/multi_tile/mainship/engineering{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"tG" = (
+/obj/effect/spawner/random/engineering/structure/powergenerator/superweighted,
+/obj/machinery/light,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"tY" = (
+/obj/structure/catwalk,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"up" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"ur" = (
+/obj/machinery/door/airlock/multi_tile/mainship/engineering/glass{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"vO" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"vP" = (
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"wA" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"wT" = (
+/obj/structure/platform,
+/turf/closed/wall/r_wall,
+/area/campaign/jungle_outpost/outpost/engineering)
+"xl" = (
+/obj/structure/catwalk,
+/obj/structure/largecrate/random/barrel,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"xm" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"xC" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"xV" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"yB" = (
+/obj/effect/landmark/campaign_structure/phoron_crate,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"yL" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"zy" = (
+/obj/structure/catwalk,
+/obj/structure/cable,
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"zA" = (
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"Ab" = (
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Ad" = (
+/obj/machinery/power/smes/buildable/empty{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"AL" = (
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"AY" = (
+/obj/structure/flora/jungle/grass,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Bd" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Bf" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"Bu" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Cs" = (
+/obj/structure/table/reinforced,
+/obj/item/t_scanner,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"CG" = (
+/obj/structure/platform{
+	dir = 10
+	},
+/turf/closed/wall/r_wall,
+/area/campaign/jungle_outpost/outpost/engineering)
+"DA" = (
+/obj/machinery/door/airlock/multi_tile/mainship/engineering,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"DV" = (
+/turf/closed/gm/dense,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Ep" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Fb" = (
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/engineering)
+"Fd" = (
+/obj/structure/closet/radiation,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"Fi" = (
+/obj/structure/stairs/seamless/edge{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Ga" = (
+/turf/closed/wall/r_wall,
+/area/campaign/jungle_outpost/outpost/engineering)
+"Gg" = (
+/obj/structure/flora/jungle/large_bush,
+/turf/open/ground/grass/beach,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"GA" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"GX" = (
+/obj/structure/table/reinforced,
+/obj/item/book/manual/atmospipes,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"Hx" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"Ia" = (
+/obj/effect/spawner/random/misc/structure/closet/electrical,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"Ie" = (
+/obj/effect/spawner/random/misc/structure/fire_closet,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"Ir" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"Iu" = (
+/obj/effect/spawner/random/misc/structure/flavorvending/engitool,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"IA" = (
+/obj/machinery/power/monitor{
+	name = "Main Power Grid Monitoring"
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"IB" = (
+/obj/structure/rock/variable/jungle/big,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"IT" = (
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"IY" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/closed/wall/r_wall,
+/area/campaign/jungle_outpost/outpost/engineering)
+"Jd" = (
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/closed/gm/dense,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Jv" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Jw" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"JC" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"JT" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"Kn" = (
+/turf/open/floor/plating/ground/dirt2,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"KA" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/misc/earmuffs,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"KG" = (
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/obj/structure/flora/jungle/large_bush,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"LB" = (
+/obj/structure/platform_decoration{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"LX" = (
+/obj/structure/catwalk,
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Ma" = (
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Mr" = (
+/obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"MS" = (
+/obj/structure/catwalk,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Nm" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/ground/grass/beach,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"NJ" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/misc/trash,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"NL" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"NQ" = (
+/obj/structure/table/reinforced,
+/obj/item/clipboard,
+/obj/item/paper,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"Oj" = (
+/obj/structure/catwalk,
+/obj/structure/cable,
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"OU" = (
+/turf/open/ground/grass/beach/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Pm" = (
+/obj/structure/cable,
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/powercell,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"Po" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/closed/wall/r_wall,
+/area/campaign/jungle_outpost/outpost/engineering)
+"PD" = (
+/obj/structure/catwalk,
+/obj/structure/platform,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Ri" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"RE" = (
+/obj/structure/platform{
+	dir = 9
+	},
+/turf/closed/wall/r_wall,
+/area/campaign/jungle_outpost/outpost/engineering)
+"RH" = (
+/obj/machinery/door/airlock/multi_tile/mainship/engineering/glass{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"RQ" = (
+/obj/effect/spawner/random/misc/structure/closet/welding,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"SM" = (
+/obj/structure/stairs/seamless/edge_vert,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Tc" = (
+/turf/open/liquid/water/river,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Um" = (
+/obj/structure/rock/variable/jungle/big,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Un" = (
+/obj/structure/catwalk,
+/obj/structure/cable,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"UH" = (
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"UK" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"UY" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Vt" = (
+/obj/structure/stairs/seamless/edge{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"VL" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Wn" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirt2,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Xm" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"Xq" = (
+/obj/structure/flora/grass/tallgrass/autosmooth,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Ye" = (
+/obj/structure/catwalk,
+/turf/open/ground/grass/beach/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Yf" = (
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"Ym" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"YK" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/tile/dark,
+/area/campaign/jungle_outpost/outpost/engineering)
+"YP" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2,
+/area/campaign/jungle_outpost/ground/jungle/east)
+"Zb" = (
+/obj/structure/platform{
+	dir = 5
+	},
+/turf/closed/wall/r_wall,
+/area/campaign/jungle_outpost/outpost/engineering)
+"ZF" = (
+/obj/structure/stairs/seamless/edge{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/east)
+
+(1,1,1) = {"
+DV
+DV
+Xq
+Xq
+AY
+UH
+Ep
+YP
+Kn
+Kn
+kn
+ly
+Fb
+pn
+ly
+dt
+Kn
+ci
+hZ
+rr
+DV
+"}
+(2,1,1) = {"
+DV
+RE
+my
+my
+my
+CG
+vP
+VL
+yL
+Ma
+RE
+Ga
+zA
+RH
+Ga
+CG
+LB
+yL
+fJ
+sf
+UH
+"}
+(3,1,1) = {"
+IB
+IY
+xC
+zA
+Ia
+wT
+Fi
+nn
+KG
+RE
+Ga
+Fd
+zA
+qv
+Ie
+Ga
+CG
+kS
+vP
+sf
+UH
+"}
+(4,1,1) = {"
+SM
+cx
+qv
+zA
+RQ
+Ga
+MS
+MS
+Po
+Ga
+YK
+zA
+zA
+qv
+zA
+lu
+Ga
+CG
+Fi
+nn
+Bu
+"}
+(5,1,1) = {"
+GA
+zA
+qv
+zA
+zA
+DA
+cl
+cl
+Ga
+Yf
+zA
+qv
+Hx
+nk
+zA
+zA
+tG
+Ga
+MS
+PD
+DV
+"}
+(6,1,1) = {"
+Bu
+IY
+ar
+vO
+vO
+qv
+Oj
+Oj
+sj
+qv
+qv
+Hx
+Ga
+Ga
+NQ
+zA
+zA
+cx
+MS
+PD
+DV
+"}
+(7,1,1) = {"
+UH
+IY
+Ad
+Ad
+Ad
+Ga
+tY
+tY
+zA
+zA
+zA
+KA
+Ga
+Ga
+Bf
+zA
+zA
+zA
+MS
+PD
+DV
+"}
+(8,1,1) = {"
+UH
+IY
+Ga
+Ga
+Ga
+Ga
+tY
+tY
+Ga
+cO
+zA
+qv
+NJ
+Hx
+zA
+zA
+tG
+Ga
+MS
+PD
+lN
+"}
+(9,1,1) = {"
+AL
+ga
+MS
+oS
+tY
+tY
+tY
+tY
+Ga
+Ga
+yB
+zA
+zA
+qv
+zA
+sz
+Ga
+Ga
+MS
+PD
+vP
+"}
+(10,1,1) = {"
+js
+MS
+MS
+oS
+tY
+tY
+tY
+tY
+rP
+Ga
+Ga
+Iu
+zA
+qv
+ko
+Ga
+Ga
+MS
+MS
+PD
+vP
+"}
+(11,1,1) = {"
+ga
+MS
+Ga
+Ga
+Ga
+Ga
+tY
+tY
+xl
+xl
+Ga
+Ga
+zA
+tx
+Ga
+Ga
+MS
+MS
+Bd
+ke
+vP
+"}
+(12,1,1) = {"
+ga
+Ga
+JT
+Ym
+Ym
+sr
+Ga
+tY
+tY
+tY
+tY
+tY
+tY
+Oj
+tY
+LX
+MS
+MS
+up
+dD
+Jw
+"}
+(13,1,1) = {"
+MS
+cx
+zA
+Cs
+Bf
+iP
+Ga
+tY
+tY
+tY
+tY
+tY
+tY
+Oj
+Oj
+zy
+Un
+MS
+Ri
+xm
+Wn
+"}
+(14,1,1) = {"
+MS
+zA
+zA
+NL
+GX
+iP
+Ga
+tY
+tY
+Ga
+Ga
+Ga
+Ga
+Ga
+Ga
+Ga
+qv
+ur
+CG
+vP
+VL
+"}
+(15,1,1) = {"
+ga
+Ga
+IA
+zA
+zA
+sr
+Ga
+tY
+tY
+Ga
+wA
+Ir
+wA
+wA
+Ir
+wA
+qv
+zA
+wT
+vP
+nl
+"}
+(16,1,1) = {"
+ga
+MS
+Ga
+zA
+ur
+Ga
+tY
+tY
+tY
+DA
+zA
+zA
+zA
+zA
+zA
+zA
+qv
+Xm
+bq
+UY
+sf
+"}
+(17,1,1) = {"
+gy
+Ye
+MS
+MS
+MS
+oS
+tY
+tY
+tY
+zA
+zA
+zA
+zA
+zA
+zA
+zA
+qv
+bi
+bq
+vP
+eD
+"}
+(18,1,1) = {"
+IT
+jm
+Bd
+MS
+MS
+Nm
+JC
+JC
+JC
+Ga
+wA
+UK
+wA
+wA
+UK
+wA
+Pm
+ir
+wT
+vP
+Um
+"}
+(19,1,1) = {"
+Tc
+xV
+UH
+Vt
+ZF
+Gg
+ee
+Tc
+Jd
+Zb
+hB
+hB
+hB
+hB
+hB
+hB
+Mr
+hB
+dS
+vP
+sf
+"}
+(20,1,1) = {"
+Tc
+Ab
+UH
+vP
+sf
+OU
+sd
+lw
+DV
+DV
+DV
+DV
+DV
+DV
+DV
+Bu
+Ep
+jE
+hZ
+YP
+sf
+"}
+(21,1,1) = {"
+eC
+Ab
+lN
+Jw
+sf
+UH
+Xq
+Xq
+DV
+DV
+DV
+DV
+DV
+DV
+DV
+AY
+vP
+VL
+yL
+yL
+Jv
+"}

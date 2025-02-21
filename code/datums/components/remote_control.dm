@@ -88,9 +88,9 @@
 
 /// called by control click, allow to interact with the target
 /datum/component/remote_control/proc/remote_interact(mob/user, atom/target, params)
-	if(!istype(target, /obj/structure/barricade/plasteel))
+	if(!istype(target, /obj/structure/barricade/folding))
 		return
-	var/obj/structure/barricade/plasteel/cade = target
+	var/obj/structure/barricade/folding/cade = target
 	if(!controlled.Adjacent(cade))
 		return
 	cade.toggle_open()
@@ -152,7 +152,7 @@
 	SEND_SIGNAL(controlled, COMSIG_REMOTECONTROL_CHANGED, FALSE, user)
 	is_controlling = FALSE
 	user.set_remote_control(null)
-	REMOVE_TRAIT(controlled, TRAIT_HEARING_SENSITIVE, TRAIT_GENERIC)
+	controlled.lose_hearing_sensitivity()
 	UnregisterSignal(user, list(COMSIG_MOB_CLICKON, COMSIG_MOB_LOGOUT, COMSIG_RELAYED_SPEECH))
 	UnregisterSignal(parent, COMSIG_ITEM_DROPPED)
 	user = null

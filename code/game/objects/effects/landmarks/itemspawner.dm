@@ -87,7 +87,7 @@
 /obj/effect/landmark/itemspawner/waiter
 	items_to_spawn = list(\
 	/obj/item/clothing/under/waiter,\
-	/obj/item/clothing/suit/apron)
+	/obj/item/clothing/suit/storage/apron)
 
 
 /obj/effect/landmark/itemspawner/pirate

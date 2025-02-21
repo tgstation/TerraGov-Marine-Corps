@@ -11,7 +11,6 @@
 	ghostize()
 	clear_fullscreens()
 	if(mind)
-		stack_trace("Found a reference to an undeleted mind in mob/Destroy(). Mind name: [mind.name]. Mind mob: [mind.current]")
 		mind = null
 	if(hud_used)
 		QDEL_NULL(hud_used)
@@ -207,51 +206,71 @@
 		equip_to_slot_if_possible(W, slot, FALSE) // equiphere
 
 
-///Attempts to put an item in either hand
+///Attempts to put an item in either hand, prioritizing the active hand
 /mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = FALSE, warning = FALSE, redraw_mob = TRUE)
-	if(equip_to_slot_if_possible(W, SLOT_L_HAND, TRUE, del_on_fail, warning, redraw_mob))
+	if(equip_to_slot_if_possible(W, (hand ? SLOT_L_HAND : SLOT_R_HAND), TRUE, del_on_fail, warning, redraw_mob))
 		return TRUE
-	else if(equip_to_slot_if_possible(W, SLOT_R_HAND, TRUE, del_on_fail, warning, redraw_mob))
+	else if(equip_to_slot_if_possible(W, (hand ? SLOT_R_HAND : SLOT_L_HAND), TRUE, del_on_fail, warning, redraw_mob))
 		return TRUE
 	return FALSE
 
 /**
- * This is a SAFE proc. Use this instead of equip_to_splot()!
- * set del_on_fail to have it delete W if it fails to equip
+ * This is a SAFE proc. Use this instead of equip_to_slot()!
+ * set del_on_fail to have it delete item_to_equip if it fails to equip
  * unset redraw_mob to prevent the mob from being redrawn at the end.
  */
-/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, override_nodrop = FALSE)
-	if(!istype(W) || QDELETED(W)) //This qdeleted is to prevent stupid behavior with things that qdel during init, like say stacks
+/mob/proc/equip_to_slot_if_possible(obj/item/item_to_equip, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, override_nodrop = FALSE)
+	if(!istype(item_to_equip) || QDELETED(item_to_equip)) //This qdeleted is to prevent stupid behavior with things that qdel during init, like say stacks
 		return FALSE
-	if(!W.mob_can_equip(src, slot, warning, override_nodrop))
+	if(!item_to_equip.mob_can_equip(src, slot, warning, override_nodrop))
 		if(del_on_fail)
-			qdel(W)
+			qdel(item_to_equip)
 			return FALSE
 		if(warning)
 			to_chat(src, span_warning("You are unable to equip that."))
 		return FALSE
-	if(W.equip_delay_self && !ignore_delay)
-		if(!do_after(src, W.equip_delay_self, NONE, W, BUSY_ICON_FRIENDLY))
-			to_chat(src, "You stop putting on \the [W]")
+	if(item_to_equip.equip_delay_self && !ignore_delay)
+		if(!do_after(src, item_to_equip.equip_delay_self, NONE, item_to_equip, BUSY_ICON_FRIENDLY))
+			to_chat(src, "You stop putting on \the [item_to_equip]")
 			return FALSE
-		equip_to_slot(W, slot) //This proc should not ever fail.
-		//This will unwield items -without- triggering lights.
-		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
-			W.unwield(src)
-		return TRUE
-	else
-		equip_to_slot(W, slot) //This proc should not ever fail.
-		//This will unwield items -without- triggering lights.
-		if(CHECK_BITFIELD(W.flags_item, TWOHANDED))
-			W.unwield(src)
-		return TRUE
+		//calling the proc again with ignore_delay saves a boatload of copypaste
+		return equip_to_slot_if_possible(item_to_equip, slot, TRUE, del_on_fail, warning, redraw_mob, override_nodrop)
+	equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
+	//This will unwield items -without- triggering lights.
+	if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
+		item_to_equip.unwield(src)
+	return TRUE
 
 /**
 *This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
 *In most cases you will want to use equip_to_slot_if_possible()
 */
-/mob/proc/equip_to_slot(obj/item/W as obj, slot, bitslot = FALSE)
-	return
+/mob/proc/equip_to_slot(obj/item/item_to_equip, slot, bitslot = FALSE)
+	if(!slot)
+		return
+	if(!istype(item_to_equip))
+		return
+	if(bitslot)
+		var/oldslot = slot
+		slot = slotbit2slotdefine(oldslot)
+
+	if(item_to_equip == l_hand)
+		l_hand = null
+		item_to_equip.unequipped(src, SLOT_L_HAND)
+		update_inv_l_hand()
+
+	else if(item_to_equip == r_hand)
+		r_hand = null
+		item_to_equip.unequipped(src, SLOT_R_HAND)
+		update_inv_r_hand()
+
+	for(var/datum/action/A AS in item_to_equip.actions)
+		A.remove_action(src)
+
+	item_to_equip.screen_loc = null
+	item_to_equip.layer = ABOVE_HUD_LAYER
+	item_to_equip.plane = ABOVE_HUD_PLANE
+	item_to_equip.forceMove(src)
 
 ///This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
 /mob/proc/equip_to_slot_or_del(obj/item/W, slot, override_nodrop = FALSE)
@@ -299,11 +318,20 @@
 	if(slot == SLOT_IN_R_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
 		return FALSE
 
+	//Sends quick equip signal, if our signal is not handled/blocked we continue to the normal behaviour
+	var/return_value = SEND_SIGNAL(I, COMSIG_ITEM_QUICK_EQUIP, src)
+	switch(return_value)
+		if(COMSIG_QUICK_EQUIP_HANDLED)
+			return TRUE
+		if(COMSIG_QUICK_EQUIP_BLOCKED)
+			return FALSE
+
 	//calls on the item to return a suitable item to be equipped
+	//Realistically only would get called on an item that has no storage/storage didnt fail signal
 	var/obj/item/found = I.do_quick_equip(src)
 	if(!found)
 		return FALSE
-	if(CHECK_BITFIELD(found.flags_inventory, NOQUICKEQUIP))
+	if(CHECK_BITFIELD(found.inventory_flags, NOQUICKEQUIP))
 		return FALSE
 	temporarilyRemoveItemFromInventory(found)
 	put_in_hands(found)
@@ -312,7 +340,7 @@
 /mob/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	.["Player Panel"] = "?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
+	.["Player Panel"] = "byond://?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
 
 /mob/vv_edit_var(var_name, var_value)
 	switch(var_name)
@@ -357,6 +385,13 @@
 		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
 		winset(src, "infowindow.changelog", "font-style=;")
+
+/client/verb/hotkeys_help()
+	set name = "Hotkeys"
+	set category = "Preferences"
+
+	prefs.tab_index = KEYBIND_SETTINGS
+	prefs.ShowChoices(mob)
 
 /mob/Topic(href, href_list)
 	. = ..()
@@ -552,7 +587,7 @@
 /mob/proc/get_idcard(hand_first)
 	return
 
-/mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+/mob/proc/slip(slip_source_name, stun_level, paralyze_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
 /mob/forceMove(atom/destination)
@@ -581,7 +616,7 @@
 			conga_line += S.buckled
 	while(!end_of_conga)
 		var/atom/movable/A = S.pulling
-		if(A in conga_line || A.anchored) //No loops, nor moving anchored things.
+		if((A in conga_line) || A.anchored) //No loops, nor moving anchored things.
 			end_of_conga = TRUE
 			break
 		conga_line += A
@@ -831,13 +866,13 @@
 	clear_important_client_contents()
 	canon_client = null
 
-/mob/onTransitZ(old_z, new_z)
+/mob/on_changed_z_level(turf/old_turf, turf/new_turf, notify_contents = TRUE)
 	. = ..()
 	if(!client || !hud_used)
 		return
-	if(old_z == new_z)
+	if(old_turf?.z == new_turf?.z)
 		return
-	if(is_ground_level(new_z))
+	if(is_ground_level(new_turf.z))
 		hud_used.remove_parallax(src)
 		return
 	hud_used.create_parallax(src)

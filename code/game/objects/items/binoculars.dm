@@ -1,13 +1,13 @@
 /obj/item/binoculars
 	name = "binoculars"
 	desc = "A pair of binoculars."
-	icon = 'icons/Marine/marine-navigation.dmi'
+	icon = 'icons/obj/items/binoculars.dmi'
 	icon_state = "binoculars"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/binoculars_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/binoculars_right.dmi',
 	)
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	force = 5
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 5
@@ -16,10 +16,12 @@
 	zoom_tile_offset = 11
 	zoom_viewsize = 12
 
-
 /obj/item/binoculars/attack_self(mob/user)
 	if(user.interactee && istype(user.interactee, /obj/machinery/deployable))
 		to_chat(user, span_warning("You can't use this right now!"))
+		return
+	if(!zoom && !(user.client.eye == user) && !(user.client.eye == user.loc))
+		to_chat(user, span_warning("You're looking through something else right now."))
 		return
 	zoom(user)
 
@@ -31,7 +33,6 @@
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
 	desc = "A pair of binoculars, with a laser targeting function. Unique action to toggle mode. Alt+Click to change selected linked artillery. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
-	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "range_finders"
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
@@ -80,7 +81,6 @@
 		QDEL_NULL(laser)
 	return ..()
 
-
 /obj/item/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)
 	if(!pa.Find("ctrl") && pa.Find("shift"))
@@ -125,10 +125,15 @@
 
 /obj/item/binoculars/tactical/update_overlays()
 	. = ..()
-	if(mode)
-		. += "binoculars_range"
-	else
-		. += "binoculars_laser"
+	switch(mode)
+		if(MODE_CAS)
+			. += "binoculars_cas"
+		if(MODE_RANGE_FINDER)
+			. += "binoculars_range"
+		if(MODE_RAILGUN)
+			. += "binoculars_railgun"
+		if(MODE_ORBITAL)
+			. += "binoculars_orbital"
 
 /// Proc that when called checks if the selected mortar isnt out of list bounds and if it is, resets to 1
 /obj/item/binoculars/tactical/proc/check_mortar_index()
@@ -152,7 +157,7 @@
 	to_chat(user, span_notice("NOW SENDING COORDINATES TO [linked_mortars[selected_mortar].name] AT: LONGITUDE [mortar.x]. LATITUDE [mortar.y]."))
 
 /obj/item/binoculars/tactical/verb/toggle_mode(mob/user)
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Toggle Laser Mode"
 	if(!user && isliving(loc))
 		user = loc
@@ -225,12 +230,13 @@
 		to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
 		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating(SKILL_LEADERSHIP))), NONE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 			return
-	if(targ_area.flags_area & OB_CAS_IMMUNE)
+	if(targ_area.area_flags & OB_CAS_IMMUNE)
 		to_chat(user, span_warning("Our payload won't reach this target!"))
 		return
 	switch(mode)
 		if(MODE_CAS)
 			to_chat(user, span_notice("TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE."))
+			log_game("[key_name(user)] has begun lasing a CAS mission at [AREACOORD(TU)].")
 			var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU, 0, laz_name, S)
 			laser = CS
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
@@ -245,12 +251,13 @@
 			check_mortar_index() // incase varedit screws something up
 			targetturf = TU
 			to_chat(user, span_notice("COORDINATES TARGETED BY ARTILLERY [selected_mortar]: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
+			log_game("[key_name(user)] has lased a mortar mission at [AREACOORD(TU)].")
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
 			var/obj/machinery/deployable/mortar/mortar = linked_mortars[selected_mortar]
 			mortar.recieve_target(TU,user)
 			return
 		if(MODE_RAILGUN)
-			if(SSticker?.mode?.flags_round_type & MODE_DISALLOW_RAILGUN)
+			if(SSticker?.mode?.round_type_flags & MODE_DISALLOW_RAILGUN)
 				to_chat(user, span_notice("ERROR. NO LINKED RAILGUN DETECTED. UNABLE TO FIRE."))
 				return
 			to_chat(user, span_notice("ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE."))
@@ -266,6 +273,7 @@
 					QDEL_NULL(laser)
 					return
 				to_chat(user, span_notice("TARGET ACQUIRED. RAILGUN IS FIRING. DON'T MOVE."))
+				log_game("[key_name(user)] has lased a railgun mission at [AREACOORD(TU)].")
 				while(laser)
 					GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(TU,user)
 					if(!do_after(user, 3 SECONDS, NONE, laser, BUSY_ICON_GENERIC))
@@ -273,10 +281,11 @@
 						break
 		if(MODE_ORBITAL)
 			to_chat(user, span_notice("ACQUIRING TARGET. ORBITAL CANNON TRIANGULATING. DON'T MOVE."))
+			log_game("[key_name(user)] has begun to laze an Orbital Bombardment mission at [AREACOORD(TU)].")
 			if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
 			else
-				var/obj/effect/overlay/temp/laser_target/OB/OBL = new (TU, 0, laz_name, S)
+				var/obj/effect/overlay/temp/laser_target/ob/OBL = new (TU, 0, laz_name, S)
 				laser = OBL
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
 				if(!do_after(user, 15 SECONDS, NONE, user, BUSY_ICON_GENERIC))

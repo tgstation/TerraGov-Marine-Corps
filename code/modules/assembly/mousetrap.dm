@@ -2,11 +2,11 @@
 	name = "mousetrap"
 	desc = "A handy little spring-loaded trap for catching pesty rodents."
 	icon_state = "mousetrap"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/janitor_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/janitor_right.dmi',
 	)
-	item_state = "mousetrap"
+	worn_icon_state = "mousetrap"
 	attachable = TRUE
 	var/armed = FALSE
 

@@ -10,12 +10,12 @@
 	w_class = WEIGHT_CLASS_TINY
 	force = 5
 	throwforce = 8
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
 	)
-	item_state = "shard-glass"
-	attack_verb = list("stabbed", "slashed", "sliced", "cut")
+	worn_icon_state = "shard-glass"
+	attack_verb = list("stabs", "slashes", "slices", "cuts")
 	var/source_sheet_type = /obj/item/stack/sheet/glass/glass
 	var/shardsize
 
@@ -105,7 +105,7 @@
 	if(H.species.species_flags & ROBOTIC_LIMBS || H.species.species_flags & IS_INSULATED)
 		return
 
-	if(!H.shoes && !(H.wear_suit?.flags_armor_protection & FEET))
+	if(!H.shoes && !(H.wear_suit?.armor_protection_flags & FEET))
 		INVOKE_ASYNC(src, PROC_REF(pierce_foot), H)
 
 /obj/item/shard/proc/pierce_foot(mob/living/carbon/human/target)

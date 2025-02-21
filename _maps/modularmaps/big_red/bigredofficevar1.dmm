@@ -477,7 +477,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "vR" = (
-/obj/mecha_wreckage/ripley/firefighter,
+/obj/structure/mecha_wreckage/ripley/firefighter,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/bigredv2/outside/office_complex)
 "vU" = (
@@ -521,6 +521,20 @@
 "xx" = (
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
+/area/bigredv2/outside/office_complex)
+"xE" = (
+/obj/structure/table,
+/obj/item/paper,
+/obj/item/paper,
+/obj/item/paper{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/tool/pen/blue{
+	pixel_x = 0;
+	pixel_y = 5
+	},
+/turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "xJ" = (
 /obj/item/mass_spectrometer,
@@ -652,6 +666,10 @@
 /obj/item/tool/lighter/random,
 /obj/effect/ai_node,
 /turf/open/floor/tile/whiteyellow/full,
+/area/bigredv2/outside/office_complex)
+"Dq" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "Dt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -1551,9 +1569,9 @@ hl
 Bd
 If
 ov
-Fg
-cx
+Dq
 ic
+As
 ov
 Hm
 Hm
@@ -1576,7 +1594,7 @@ ov
 ov
 ov
 ov
-As
+xE
 JL
 As
 kW

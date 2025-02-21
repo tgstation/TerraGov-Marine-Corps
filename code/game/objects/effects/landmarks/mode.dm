@@ -9,7 +9,7 @@
 /obj/effect/landmark/lv624/fog_blocker/Initialize(mapload)
 	. = ..()
 	store_location()
-	flags_atom |= INITIALIZED
+	atom_flags |= INITIALIZED
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/lv624/fog_blocker/proc/store_location()

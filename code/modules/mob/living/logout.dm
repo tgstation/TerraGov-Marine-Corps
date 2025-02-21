@@ -1,4 +1,5 @@
 /mob/living/Logout()
+	update_z(null)
 	..()
 	if (mind)
 		if(!key)	//key and mind have become seperated.

@@ -2,6 +2,7 @@
 	caste_name = "King"
 	display_name = "King"
 	upgrade_name = ""
+	base_strain_type = /mob/living/carbon/xenomorph/king
 	caste_type_path = /mob/living/carbon/xenomorph/king
 	caste_desc = "A primordial creature, evolved to smash the hardiest of defences and hunt the hardiest of prey."
 
@@ -10,17 +11,20 @@
 	wound_type = "king" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 33
 
 	// *** Speed *** //
 	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 1200
-	plasma_gain = 70
+	plasma_gain = 90
 
 	// *** Health *** //
-	max_health = 650
+	max_health = 700
+
+	// *** Sunder *** //
+	sunder_multiplier = 0.8
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -37,7 +41,7 @@
 	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 100, BIO = 60, FIRE = 100, ACID = 60)
 
 	// *** Pheromones *** //
-	aura_strength = 6
+	aura_strength = 4.5
 
 	minimap_icon = "xenoking"
 

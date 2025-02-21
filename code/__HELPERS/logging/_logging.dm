@@ -189,11 +189,11 @@
 	if(key)
 		if(C?.holder && C.holder.fakekey && !include_name)
 			if(include_link)
-				. += "<a href='?priv_msg=[C.find_stealth_key()]'>"
+				. += "<a href='byond://?priv_msg=[C.find_stealth_key()]'>"
 			. += "Administrator"
 		else
 			if(include_link)
-				. += "<a href='?priv_msg=[ckey]'>"
+				. += "<a href='byond://?priv_msg=[ckey]'>"
 			. += key
 		if(!C)
 			. += "\[DC\]"

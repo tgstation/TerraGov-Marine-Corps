@@ -17,6 +17,8 @@
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -92,8 +94,7 @@
 	icon_opened = "open_explosives"
 	icon_closed = "closed_explosives"
 
-/obj/structure/closet/crate/explosives/whiskeyoutpost/Initialize(mapload)
-	. = ..()
+/obj/structure/closet/crate/explosives/whiskeyoutpost/PopulateContents()
 	new /obj/item/explosive/grenade/stick(src)
 	new /obj/item/explosive/grenade/stick(src)
 	new /obj/item/explosive/grenade/stick(src)
@@ -112,8 +113,7 @@
 	new /obj/item/explosive/grenade/phosphorus/upp(src)
 	new /obj/item/explosive/grenade/phosphorus/upp(src)
 
-/obj/structure/closet/crate/explosives/whiskeyoutposttwo/Initialize(mapload)
-	. = ..()
+/obj/structure/closet/crate/explosives/whiskeyoutposttwo/PopulateContents()
 	new /obj/structure/closet/crate/explosives(src)
 	new /obj/item/storage/box/visual/grenade/razorburn(src)
 	new /obj/item/storage/box/visual/grenade/razorburn(src)
@@ -139,8 +139,7 @@
 	icon_opened = "open_hydro"
 	icon_closed = "closed_hydro"
 
-/obj/structure/closet/crate/hydroponics/prespawned/Initialize(mapload)
-	. = ..()
+/obj/structure/closet/crate/hydroponics/prespawned/PopulateContents()
 	new /obj/item/reagent_containers/spray/plantbgone(src)
 	new /obj/item/reagent_containers/spray/plantbgone(src)
 	new /obj/item/tool/minihoe(src)
@@ -171,8 +170,7 @@
 	name = "RCD crate"
 	desc = "A crate for the storage of the RCD."
 
-/obj/structure/closet/crate/rcd/Initialize(mapload)
-	. = ..()
+/obj/structure/closet/crate/rcd/PopulateContents()
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
 	new /obj/item/ammo_rcd(src)
@@ -186,8 +184,7 @@
 	desc = "A crate of emergency rations."
 	name = "Emergency Rations"
 
-/obj/structure/closet/crate/freezer/rations/Initialize(mapload)
-	. = ..()
+/obj/structure/closet/crate/freezer/rations/PopulateContents()
 	new /obj/item/storage/box/donkpockets(src)
 	new /obj/item/storage/box/donkpockets(src)
 
@@ -198,8 +195,7 @@
 	icon_opened = "open_radioactive"
 	icon_closed = "closed_radioactive"
 
-/obj/structure/closet/crate/radiation/Initialize(mapload)
-	. = ..()
+/obj/structure/closet/crate/radiation/PopulateContents()
 	new /obj/item/clothing/suit/radiation(src)
 	new /obj/item/clothing/head/radiation(src)
 	new /obj/item/clothing/suit/radiation(src)
@@ -226,10 +222,22 @@
 /obj/structure/closet/crate/trashcart
 	name = "Trash Cart"
 	desc = "A heavy, metal trashcart with wheels."
-	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "closed_trashcart"
 	icon_opened = "open_trashcart"
 	icon_closed = "closed_trashcart"
+
+/obj/structure/closet/crate/trashcart/Initialize(mapload, ...)
+	. = ..()
+	if(opened)
+		density = FALSE
+
+/obj/structure/closet/crate/trashcart/food
+	desc = "A heavy, metal foodcart with wheels."
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi';
+	icon_state = "foodcart2"
+	icon_closed = "foodcart2"
+	icon_opened = "foodcart2_open"
+	name = "food cart"
 
 /obj/structure/closet/crate/wayland
 	name = "Wayland crate"
@@ -245,11 +253,24 @@
 	icon_opened = "open_weapons"
 	icon_closed = "closed_weapons"
 
+/obj/structure/closet/crate/mounted
+	name = "mounted weapon crate"
+	desc = "A robust crate containing stationary weapons."
+	icon_state = "closed_mounted_weapon"
+	icon_opened = "open_mounted_weapon"
+	icon_closed = "closed_mounted_weapon"
 
+/obj/structure/closet/crate/smart
+	name = "smart weapon crate"
+	desc = "A robust crate containing high-tech smartgun weapons and ammunitions."
+	icon_state = "closed_smart"
+	overlay_welded = "welded_smart"
+	icon_opened = "open_smart"
+	icon_closed = "closed_smart"
 
 /obj/structure/closet/crate/miningcar
-	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
-	name = "Mining car (not for rails)"
+	desc = "A mining car. Used on rails, or dragged by hand."
+	name = "\improper mining car"
 	icon_state = "closed_mcart"
 	density = TRUE
 	icon_opened = "open_mcart"
@@ -263,7 +284,6 @@
 /obj/structure/closet/crate/mass_produced_crate
 	name = "Mass Produced Crate"
 	desc = "A rectangular steel crate. Cannot be welded for metal."
-	icon = 'icons/obj/structures/crates.dmi'
 	icon_state = "closed_basic"
 	icon_opened = "open_basic"
 	icon_closed = "closed_basic"

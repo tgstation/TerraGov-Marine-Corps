@@ -4,7 +4,9 @@
 	var/upgrade_name = "Young"
 	var/caste_desc = null
 	var/job_type = /datum/job/xenomorph
-
+	///The parent strain of this caste
+	var/base_strain_type
+	///The base caste typepath
 	var/caste_type_path = null
 
 	///primordial message that is shown when a caste becomes primordial
@@ -22,6 +24,10 @@
 	// *** Melee Attacks *** //
 	///The amount of damage a xenomorph caste will do with a 'slash' attack.
 	var/melee_damage = 10
+	/// The damage typing of the melee damage.
+	var/melee_damage_type = BRUTE
+	/// The armor typing of the melee damage.
+	var/melee_damage_armor = MELEE
 	///The amount of armour pen their melee attacks have
 	var/melee_ap = 0
 	///number of ticks between attacks for a caste.
@@ -191,14 +197,6 @@
 	///Damage breakpoint to knock out of stealth
 	var/stealth_break_threshold = 0
 
-	// *** Warlock Abilities ***
-	///The integrity of psychic shields made by the xeno
-	var/shield_strength = 350
-	///The strength of psychic crush's effects
-	var/crush_strength = 35
-	///The strength of psychic blast's  AOE effects
-	var/blast_strength = 25
-
 	// *** Sentinel Abilities ***
 	/// The additional amount of stacks that the Sentinel will apply on eligible abilities.
 	var/additional_stacks = 0
@@ -219,7 +217,7 @@
 
 	///How quickly the caste enters vents
 	var/vent_enter_speed = XENO_DEFAULT_VENT_ENTER_TIME
-	///How quickly the caste enters vents
+	///How quickly the caste exits vents
 	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
@@ -235,16 +233,42 @@
 	for(var/trait in caste_traits)
 		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
-	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
-		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
-	var/datum/component/bump_attack = xenomorph.GetComponent(/datum/component/bump_attack)
-	bump_attack?.RemoveComponent()
-	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
-		xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
+	xenomorph.remove_component(/datum/component/bump_attack)
 	for(var/trait in caste_traits)
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
+
+///returns the basetype caste to get what the base caste is (e.g base rav not primo or strain rav)
+/datum/xeno_caste/proc/get_base_caste_type()
+	var/datum/xeno_caste/current_type = type
+	while(initial(current_type.upgrade) != XENO_UPGRADE_BASETYPE)
+		current_type = initial(current_type.parent_type)
+	return current_type
+
+/// basetype = list(strain1, strain2)
+GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
+/proc/init_glob_strain_list()
+	var/list/strain_list = list()
+	for(var/datum/xeno_caste/root_caste AS in GLOB.xeno_caste_datums)
+		if(root_caste.parent_type != /datum/xeno_caste)
+			continue
+		strain_list[root_caste] = list()
+		for(var/datum/xeno_caste/typepath AS in subtypesof(root_caste))
+			if(typepath::upgrade != XENO_UPGRADE_BASETYPE)
+				continue
+			if(typepath::caste_flags & CASTE_EXCLUDE_STRAINS)
+				continue
+			strain_list[root_caste] += typepath
+	return strain_list
+
+///returns a list of strains(xeno castedatum paths) that this caste can currently evolve to
+/datum/xeno_caste/proc/get_strain_options()
+	var/datum/xeno_caste/root_type = type
+	while(initial(root_type.parent_type) != /datum/xeno_caste)
+		root_type = root_type::parent_type
+	var/list/options = GLOB.strain_list[root_type]
+	return options?.Copy()
 
 /mob/living/carbon/xenomorph
 	name = "Drone"
@@ -267,7 +291,7 @@
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
-	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER|LONG_GLIDE
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, XENO_RANK_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD, XENO_BLESSING_HUD, XENO_EVASION_HUD)
@@ -287,10 +311,14 @@
 
 	///State tracking of hive status toggles
 	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
-
+	///Handles displaying the various wound states of the xeno.
 	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
+	///Handles displaying the various fire states of the xeno
 	var/atom/movable/vis_obj/xeno_wounds/fire_overlay/fire_overlay
+	///Handles displaying any equipped backpack item, such as a saddle
+	var/atom/movable/vis_obj/xeno_wounds/backpack_overlay/backpack_overlay
 	var/datum/xeno_caste/xeno_caste
+	/// /datum/xeno_caste that we will be on init
 	var/caste_base_type
 	var/language = "Xenomorph"
 	///Plasma currently stored
@@ -384,6 +412,10 @@
 	/// The amount of Wrath currently stored.
 	var/wrath_stored = 0
 
+	// *** Boiler vars *** //
+	///When true the boiler gains speed and resets the duration on attack
+	var/steam_rush = FALSE
+
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices
@@ -395,6 +427,15 @@
 
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
+
+	//list of active tunnels
+	var/list/tunnels = list()
+	///Number of huggers the xeno is currently carrying
+	var/huggers = 0
+	///Boiler acid ammo
+	var/corrosive_ammo = 0
+	///Boiler Neuro ammo
+	var/neuro_ammo = 0
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
 

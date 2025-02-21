@@ -6,7 +6,7 @@
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "ai_node" //Pure white 'X' with word "AI" beneath
 	anchored = TRUE //No pulling those nodes yo
-	flags_atom = SHUTTLE_IMMUNE
+	atom_flags = SHUTTLE_IMMUNE
 	#ifdef TESTING
 	invisibility = 0
 	#else

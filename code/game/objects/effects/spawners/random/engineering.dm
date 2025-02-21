@@ -20,8 +20,7 @@
 
 /obj/effect/spawner/random/engineering/technology_scanner
 	name = "Random Scanner"
-	icon = 'icons/obj/items/items.dmi'
-	icon_state = "atmos"
+	icon_state = "random_scanner"
 	loot = list(
 		/obj/item/t_scanner = 4,
 		/obj/item/radio = 2,

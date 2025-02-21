@@ -60,7 +60,6 @@
 		recharging_mech_ref = null
 		recharge_console.update_icon()
 
-
 /obj/machinery/mech_bay_recharge_port/attackby(obj/item/I, mob/user, params)
 	if(default_change_direction_wrench(user, I))
 		recharging_turf = get_step(loc, dir)

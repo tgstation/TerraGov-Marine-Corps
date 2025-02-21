@@ -82,6 +82,8 @@
 				flag = R_DBRANKS
 			if("LOG")
 				flag = R_LOG
+			if("POLLS")
+				flag = R_POLLS
 			if("EVERYTHING")
 				flag = R_EVERYTHING
 			if("@")

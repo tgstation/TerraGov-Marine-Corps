@@ -89,7 +89,7 @@
 	maxHealth = 200
 
 
-/mob/living/simple_animal/cat/Life()
+/mob/living/simple_animal/cat/Life(seconds_per_tick, times_fired)
 	if(!stat && !buckled && !client)
 		if(prob(1))
 			emote("me", 1, pick("stretches out for a belly rub.", "wags its tail.", "lies down."))
@@ -112,6 +112,8 @@
 
 /mob/living/simple_animal/cat/MouseDrop(atom/over_object)
 	. = ..()
+	if(!.)
+		return
 
 	if(!ishuman(over_object))
 		return
@@ -137,11 +139,11 @@
 	desc = "Kitty!!"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "cat2"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/animals_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/animals_right.dmi',
 	)
-	flags_armor_features = ARMOR_NO_DECAP
+	armor_features_flags = ARMOR_NO_DECAP
 	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 10, BIO = 5, FIRE = 50, ACID = 50)
 	var/mob/living/simple_animal/cat/cat
 

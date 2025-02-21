@@ -1,5 +1,6 @@
+import { Box, Button, Section } from 'tgui-core/components';
+
 import { useBackend } from '../backend';
-import { Box, Button, Section } from '../components';
 import { Window } from '../layouts';
 
 export const EscapePod = (props) => {
@@ -14,7 +15,7 @@ export const EscapePod = (props) => {
             <Button.Confirm
               m="50"
               content="Launch evacuation pod"
-              disabled={data.can_launch}
+              disabled={!data.can_launch}
               color="red"
               onClick={() => act('launch')}
             />

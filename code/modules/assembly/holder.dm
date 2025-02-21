@@ -2,8 +2,8 @@
 	name = "Assembly"
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "holder"
-	item_state = "assembly"
-	flags_atom = CONDUCT
+	worn_icon_state = "assembly"
+	atom_flags = CONDUCT
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2

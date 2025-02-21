@@ -1,4 +1,4 @@
-/mob/living/proc/Life()
+/mob/living/proc/Life(seconds_per_tick, times_fired)
 	if(stat == DEAD || notransform || HAS_TRAIT(src, TRAIT_STASIS)) //If we're dead or notransform don't bother processing life
 		return
 
@@ -9,6 +9,21 @@
 	handle_organs()
 
 	updatehealth()
+
+	if(client)
+		var/turf/T = get_turf(src)
+		if(!T)
+			return
+		if(registered_z != T.z)
+#ifdef TESTING
+			message_admins("[ADMIN_LOOKUPFLW(src)] has somehow ended up in Z-level [T.z] despite being registered in Z-level [registered_z]. If you could ask them how that happened and notify coderbus, it would be appreciated.")
+#endif
+			log_game("Z-TRACKING: [src] has somehow ended up in Z-level [T.z] despite being registered in Z-level [registered_z].")
+			update_z(T.z)
+		return
+	if(registered_z)
+		log_game("Z-TRACKING: [src] of type [src.type] has a Z-registration despite not having a client.")
+		update_z(null)
 
 
 //this updates all special effects: knockdown, druggy, etc.., DELETE ME!!
@@ -32,7 +47,7 @@
 
 ///Update what auras we'll receive this life tick if it's either new or stronger than current. aura_type as AURA_ define, strength as number.
 /mob/living/proc/receive_aura(aura_type, strength)
-	if(received_auras[aura_type] > strength)
+	if(received_auras[aura_type] && received_auras[aura_type] > strength)
 		return
 	received_auras[aura_type] = strength
 
@@ -169,17 +184,17 @@
 	return (health <= get_crit_threshold() && stat == UNCONSCIOUS)
 
 
-/mob/living/Move(atom/newloc, direct)
+/mob/living/Move(atom/newloc, direction, glide_size_override)
 	if(buckled)
 		if(buckled.loc != newloc) //not updating position
 			if(!buckled.anchored)
-				return buckled.Move(newloc, direct)
+				return buckled.Move(newloc, direction, glide_size)
 			else
 				return FALSE
 	else if(lying_angle)
-		if(direct & EAST)
+		if(direction & EAST)
 			set_lying_angle(90)
-		else if(direct & WEST)
+		else if(direction & WEST)
 			set_lying_angle(270)
 
 	. = ..()
@@ -191,7 +206,7 @@
 			var/mob/living/living_puller = pulledby
 			living_puller.set_pull_offsets(src)
 
-	if(s_active && !(s_active in contents) && !CanReach(s_active))
+	if(s_active && !(s_active.parent in contents) && !CanReach(s_active.parent))
 		s_active.close(src)
 
 
@@ -208,6 +223,18 @@
 		if(client)
 			reset_perspective()
 
+///Updates the mob's registered_z
+/mob/living/proc/update_z(new_z) // 1+ to register, null to unregister
+	if(registered_z == new_z)
+		return
+	if(registered_z)
+		SSmobs.clients_by_zlevel[registered_z] -= src
+	if(isnull(client))
+		registered_z = null
+		return
+	if(new_z)
+		SSmobs.clients_by_zlevel[new_z] += src
+	registered_z = new_z
 
 /mob/living/proc/do_camera_update(oldLoc)
 	return
@@ -457,11 +484,19 @@
 
 /mob/living/proc/offer_mob()
 	GLOB.offered_mob_list += src
-	notify_ghosts(span_boldnotice("A mob is being offered! Name: [name][job ? " Job: [job.title]" : ""] "), enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT)
+	notify_ghosts(span_boldnotice("A mob is being offered! Name: [name][job ? " Job: [job.title]" : ""] "), enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT, flashwindow = TRUE)
 
 //used in datum/reagents/reaction() proc
 /mob/living/proc/get_permeability_protection()
 	return LIVING_PERM_COEFF
+
+/// Returns the overall SOFT acid protection of a mob.
+/mob/living/proc/get_soft_acid_protection()
+	return soft_armor?.getRating(ACID)/100
+
+/// Returns the overall HARD acid protection of a mob.
+/mob/living/proc/get_hard_acid_protection()
+	return hard_armor?.getRating(ACID)
 
 /mob/proc/flash_act(intensity = 1, bypass_checks, type = /atom/movable/screen/fullscreen/flash, duration)
 	return
@@ -725,7 +760,7 @@ below 100 is not dizzy
 //for more info on why this is not atom/pull, see examinate() in mob.dm
 /mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
 	set name = "Pull"
-	set category = "Object"
+	set category = "IC.Object"
 
 	if(istype(AM) && Adjacent(AM))
 		start_pulling(AM)
@@ -735,9 +770,10 @@ below 100 is not dizzy
 /mob/living/can_interact_with(datum/D)
 	return D == src || D.Adjacent(src)
 
-/mob/living/onTransitZ(old_z, new_z)
-	. = ..()
+/mob/living/on_changed_z_level(turf/old_turf, turf/new_turf, notify_contents = TRUE)
 	set_jump_component()
+	. = ..()
+	update_z(new_turf?.z)
 
 /**
  * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.
@@ -804,12 +840,12 @@ below 100 is not dizzy
 ///Swap the active hand
 /mob/living/proc/swap_hand()
 	var/obj/item/wielded_item = get_active_held_item()
-	if(wielded_item && (wielded_item.flags_item & WIELDED)) //this segment checks if the item in your hand is twohanded.
+	if(wielded_item && (wielded_item.item_flags & WIELDED)) //this segment checks if the item in your hand is twohanded.
 		var/obj/item/weapon/twohanded/offhand/offhand = get_inactive_held_item()
-		if(offhand && (offhand.flags_item & WIELDED))
+		if(offhand && (offhand.item_flags & WIELDED))
 			wielded_item.unwield(src) //Get rid of it.
 	hand = !hand
-	SEND_SIGNAL(src, COMSIG_CARBON_SWAPPED_HANDS)
+	SEND_SIGNAL(src, COMSIG_LIVING_SWAPPED_HANDS)
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		hud_used.l_hand_hud_object.update_icon()
 		hud_used.r_hand_hud_object.update_icon()
@@ -858,8 +894,8 @@ below 100 is not dizzy
 	. = ..()
 	if(!.)
 		return
-	log_admin("[key_name(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for [AFK_TIMER] minutes.")
-	message_admins("[ADMIN_TPMONTY(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for [AFK_TIMER] minutes.")
+	log_admin("[key_name(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for [AFK_TIMER / 600] minutes.")
+	message_admins("[ADMIN_TPMONTY(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for [AFK_TIMER / 600] minutes.")
 
 ///Transfer the candidate mind into src
 /mob/living/proc/transfer_mob(mob/candidate)
@@ -875,7 +911,17 @@ below 100 is not dizzy
 		get_up()
 
 ///Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings
-/mob/living/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
+/mob/living/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, jump_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
+	var/list/arg_list = list(duration, cooldown, cost, height, sound, flags, jump_pass_flags)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_SET_JUMP_COMPONENT, arg_list))
+		duration = arg_list[1]
+		cooldown = arg_list[2]
+		cost = arg_list[3]
+		height = arg_list[4]
+		sound = arg_list[5]
+		flags = arg_list[6]
+		jump_pass_flags = arg_list[7]
+
 	var/gravity = get_gravity()
 	if(gravity < 1) //low grav
 		duration *= 2.5 - gravity
@@ -883,14 +929,14 @@ below 100 is not dizzy
 		cost *= gravity * 0.5
 		height *= 2 - gravity
 		if(gravity <= 0.75)
-			flags_pass |= PASS_DEFENSIVE_STRUCTURE
+			jump_pass_flags |= PASS_DEFENSIVE_STRUCTURE
 	else if(gravity > 1) //high grav
 		duration *= gravity * 0.5
 		cooldown *= gravity
 		cost *= gravity
 		height *= gravity * 0.5
 
-	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = flags_pass)
+	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = jump_pass_flags)
 
 /mob/living/vv_edit_var(var_name, var_value)
 	switch(var_name)
@@ -940,12 +986,12 @@ below 100 is not dizzy
 	. += {"
 		<br><font size='1'>[VV_HREF_TARGETREF(refid, VV_HK_GIVE_DIRECT_CONTROL, "[ckey || "no ckey"]")] / [VV_HREF_TARGETREF_1V(refid, VV_HK_BASIC_EDIT, "[real_name || "no real name"]", NAMEOF(src, real_name))]</font>
 		<br><font size='1'>
-			BRUTE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brute' id='brute'>[getBruteLoss()]</a>
-			FIRE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=fire' id='fire'>[getFireLoss()]</a>
-			TOXIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=toxin' id='toxin'>[getToxLoss()]</a>
-			OXY:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[getOxyLoss()]</a>
-			CLONE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[getCloneLoss()]</a>
-			STAMINA:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[getStaminaLoss()]</a>
+			BRUTE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brute' id='brute'>[getBruteLoss()]</a>
+			FIRE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=fire' id='fire'>[getFireLoss()]</a>
+			TOXIN:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=toxin' id='toxin'>[getToxLoss()]</a>
+			OXY:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[getOxyLoss()]</a>
+			CLONE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[getCloneLoss()]</a>
+			STAMINA:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[getStaminaLoss()]</a>
 		</font>
 	"}
 

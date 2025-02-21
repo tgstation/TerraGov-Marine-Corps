@@ -1,6 +1,3 @@
-import { classes } from 'common/react';
-
-import { useBackend, useLocalState } from '../../backend';
 import {
   Box,
   Button,
@@ -8,7 +5,10 @@ import {
   LabeledList,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
+
+import { useBackend, useLocalState } from '../../backend';
 import { CampaignData, FactionReward } from './index';
 
 export const CampaignAssets = (props) => {
@@ -42,7 +42,7 @@ export const CampaignAssets = (props) => {
                 onClick={() => setSelectedReward(reward)}
                 color={
                   selectedReward.name === reward.name
-                    ? 'orange'
+                    ? 'green'
                     : reward.currently_active
                       ? 'yellow'
                       : reward.is_debuff
@@ -60,9 +60,9 @@ export const CampaignAssets = (props) => {
                     className={classes([
                       'campaign_assets18x18',
                       selectedReward.name === reward.name
-                        ? reward.icon + '_red'
+                        ? reward.icon + '_green'
                         : reward.currently_active
-                          ? reward.icon + '_orange'
+                          ? reward.icon + '_yellow'
                           : reward.is_debuff
                             ? reward.icon + '_red'
                             : reward.uses_remaining > 0

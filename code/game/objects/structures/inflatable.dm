@@ -51,7 +51,7 @@
 	var/popped_variant
 
 
-/obj/structure/inflatable/deconstruct(disassembled = TRUE)
+/obj/structure/inflatable/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!deflated)
 		deflate(!disassembled)
 	return ..()
@@ -101,7 +101,7 @@
 
 /obj/structure/inflatable/verb/hand_deflate()
 	set name = "Deflate"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(!ishuman(usr))
@@ -208,11 +208,11 @@
 	name = "inflatable barrier box"
 	desc = "Contains inflatable walls and doors."
 	icon_state = "inf_box"
-	item_state = "syringe_kit"
-	max_storage_space = 21
+	worn_icon_state = "syringe_kit"
 
 /obj/item/storage/briefcase/inflatable/Initialize(mapload, ...)
 	. = ..()
+	storage_datum.max_storage_space = 21
 	for(var/i in 1 to 3)
 		new /obj/item/inflatable/door(src)
 	for(var/i in 1 to 4)

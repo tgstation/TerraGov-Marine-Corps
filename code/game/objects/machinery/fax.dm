@@ -29,7 +29,7 @@
 	return ..()
 
 
-/obj/machinery/faxmachine/deconstruct(disassembled = TRUE)
+/obj/machinery/faxmachine/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(idscan)
 		idscan.forceMove(get_turf(src))
 		idscan = null

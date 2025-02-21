@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/bull
-	caste_base_type = /mob/living/carbon/xenomorph/bull
+	caste_base_type = /datum/xeno_caste/bull
 	name = "Bull"
 	desc = "A bright red alien with a matching temper."
 	icon = 'icons/Xeno/castes/bull.dmi'
@@ -13,8 +13,6 @@
 
 	pixel_x = -16
 	pixel_y = -3
-	old_x = -16
-	old_y = -3
 
 
 /mob/living/carbon/xenomorph/bull/handle_special_state()

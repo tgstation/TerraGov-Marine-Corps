@@ -8,7 +8,7 @@
 	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/supplydrop
 	///Time between two supply drops
-	var/launch_cooldown = 30 SECONDS
+	var/launch_cooldown = 15 SECONDS
 	///The beacon we will send the supplies
 	var/datum/supply_beacon/supply_beacon = null
 	///The linked supply pad of this console
@@ -25,6 +25,7 @@
 
 /obj/machinery/computer/supplydrop_console/Initialize(mapload)
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_SUPPLY_BEACON_CREATED, PROC_REF(ping_beacon))
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/computer/supplydrop_console/LateInitialize()
@@ -33,6 +34,11 @@
 		if(_supply_pad.faction == faction)
 			supply_pad = _supply_pad
 			return
+
+/// Used to notify of a new beacon target
+/obj/machinery/computer/supplydrop_console/proc/ping_beacon()
+	SIGNAL_HANDLER
+	playsound(src,'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 
 /obj/machinery/computer/supplydrop_console/Destroy()
 	supply_beacon = null
@@ -75,7 +81,7 @@
 					beacon_list -= beacon_name
 					continue
 			var/datum/supply_beacon/supply_beacon_choice = beacon_list[tgui_input_list(ui.user, "Select the beacon to send supplies", "Beacon choice", beacon_list)]
-			if(!istype(supply_beacon_choice) && is_ground_level(supply_beacon.drop_location.z))
+			if(!istype(supply_beacon_choice) && is_ground_level(supply_beacon?.drop_location?.z))
 				return
 			supply_beacon = supply_beacon_choice
 			RegisterSignal(supply_beacon, COMSIG_QDELETING, PROC_REF(clean_supply_beacon), override = TRUE)
@@ -181,10 +187,27 @@
 		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! No deployable object detected on the drop pad.")]")
 		return
 
-	supply_beacon.drop_location.visible_message(span_boldnotice("A supply drop appears suddendly!"))
-	playsound(supply_beacon.drop_location,'sound/effects/phasein.ogg', 50, TRUE)
-	playsound(supply_pad.loc,'sound/effects/phasein.ogg', 50, TRUE)
-	for(var/obj/C in supplies)
-		var/turf/TC = locate(supply_beacon.drop_location.x + x_offset, supply_beacon.drop_location.y + y_offset, supply_beacon.drop_location.z)
-		C.forceMove(TC)
-	supply_pad.visible_message("[icon2html(supply_pad, viewers(src))] [span_boldnotice("Supply drop teleported! Another launch will be available in [launch_cooldown/10] seconds.")]")
+	playsound(supply_pad.loc,'sound/effects/bamf.ogg', 50, TRUE)
+	var/turf/droploc = locate(supply_beacon.drop_location.x + x_offset, supply_beacon.drop_location.y + y_offset, supply_beacon.drop_location.z)
+	playsound(droploc, 'sound/items/fultext_deploy.ogg', 30, TRUE)
+	var/image/chute_cables = image('icons/effects/32x64.dmi', src, "chute_cables_static")
+	chute_cables.pixel_y -= 12
+	var/image/chute_canvas = image('icons/effects/64x64.dmi', src, "chute_animated")
+	chute_canvas.pixel_x -= 16
+	chute_canvas.pixel_y += 16
+	var/list/anim_overlays = list(chute_cables, chute_canvas)
+	for(var/obj/supply in supplies)
+		supply.forceMove(droploc)
+		supply.pixel_z = 400
+		supply.add_overlay(anim_overlays)
+		animate(supply, time = 4 SECONDS, pixel_z = 0, easing=SINE_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
+	supply_pad.visible_message("[icon2html(supply_pad, viewers(src))] [span_boldnotice("Supply drop launched! Another launch will be available in [launch_cooldown/10] seconds.")]")
+	addtimer(CALLBACK(droploc, TYPE_PROC_REF(/turf, ceiling_debris)), 2.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(clean_supplydrop), supplies, anim_overlays), 4 SECONDS)
+
+/// handles cleanup of post-animation stuff (ie just after it lands)
+/obj/machinery/computer/supplydrop_console/proc/clean_supplydrop(list/supplies, anim_overlays)
+	for(var/obj/supply in supplies)
+		supply.cut_overlay(anim_overlays)
+
+

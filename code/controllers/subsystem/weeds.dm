@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(weeds)
 		return FALSE
 
 	for(var/turf/T AS in node.node_turfs)
-		if(pending[T] && (get_dist_euclide_square(node, T) >= get_dist_euclide_square(get_step(pending[T], 0), T)))
+		if(pending[T] && (get_dist_euclidean_square(node, T) >= get_dist_euclidean_square(get_step(pending[T], 0), T)))
 			continue
 		pending[T] = node
 		spawn_attempts_by_node[T] = 5 //5 attempts maximum
@@ -92,7 +92,7 @@ SUBSYSTEM_DEF(weeds)
 			if(istype(O, /obj/alien/weeds/node))
 				return
 			var/obj/alien/weeds/weed = O
-			if(weed.parent_node && weed.parent_node != node && get_dist_euclide_square(node, weed) >= get_dist_euclide_square(weed.parent_node, weed))
+			if(weed.parent_node && weed.parent_node != node && get_dist_euclidean_square(node, weed) >= get_dist_euclidean_square(weed.parent_node, weed))
 				return
 			if((weed.type == weed_to_spawn) && (weed.color_variant == node.color_variant))
 				weed.set_parent_node(node)

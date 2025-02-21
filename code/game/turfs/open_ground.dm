@@ -17,7 +17,7 @@
 	. = ..()
 	baseturfs = type
 
-/turf/open/ground/fire_act(exposed_temperature, exposed_volume)
+/turf/open/ground/fire_act(burn_level)
 	return
 
 /turf/open/ground/attackby() //This should fix everything else. No cables, etc

@@ -13,8 +13,8 @@
 	density = TRUE
 	anchored = TRUE
 	coverage = 20
-	flags_atom = CRITICAL_ATOM
-	resistance_flags = RESIST_ALL
+	atom_flags = CRITICAL_ATOM
+	resistance_flags = RESIST_ALL|PORTAL_IMMUNE
 	layer = BELOW_MOB_LAYER
 	interaction_flags = INTERACT_MACHINE_TGUI
 	var/deployable = TRUE
@@ -50,27 +50,31 @@
 
 /obj/machinery/nuclearbomb/Destroy()
 	if(timer_enabled)
-		disable()
+		disable("[src] deletion" )
 	GLOB.nuke_list -= src
 	QDEL_NULL(countdown)
 	return ..()
 
 ///Enables nuke timer
-/obj/machinery/nuclearbomb/proc/enable()
+/obj/machinery/nuclearbomb/proc/enable(reason)
 	GLOB.active_nuke_list += src
 	countdown.start()
-	notify_ghosts("[usr] enabled the [src], it has [round(time MILLISECONDS)] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
+	notify_ghosts("The [src] has been enabled, it has [round(time MILLISECONDS)] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
 	timer_enabled = TRUE
 	timer = addtimer(CALLBACK(src, PROC_REF(explode)), time, TIMER_STOPPABLE)
 	update_minimap_icon()
 	// The timer is needed for when the signal is sent
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
+	log_game("[reason] has enabled the nuke at [AREACOORD(src)]")
 
 ///Disables nuke timer
-/obj/machinery/nuclearbomb/proc/disable()
+/obj/machinery/nuclearbomb/proc/disable(reason)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_STOP, src)
 	countdown.stop()
 	GLOB.active_nuke_list -= src
+	if(timer_enabled)
+		log_game("[reason] has disabled the nuke at [AREACOORD(src)]")
+		message_admins("[reason] has disabled the nuke at [ADMIN_VERBOSEJMP(src)]") //Incase disputes show up about marines griefing and the like.
 	timer_enabled = FALSE
 	if(timer)
 		deltimer(timer)
@@ -79,7 +83,7 @@
 
 ///Handles the boom
 /obj/machinery/nuclearbomb/proc/explode()
-	disable()
+	disable("[src] explosion")
 
 	if(safety)
 		return
@@ -99,7 +103,7 @@
 	machine_stat |= BROKEN
 	anchored = FALSE
 	if(timer_enabled)
-		disable()
+		disable("Alamo hijack")
 
 /obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -136,7 +140,7 @@
 	xeno_attacker.visible_message("[xeno_attacker] disabled the nuke",
 	"You disabled the nuke.")
 
-	disable()
+	disable(key_name(xeno_attacker))
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_DIFFUSED, src, xeno_attacker)
 
 /obj/machinery/nuclearbomb/can_interact(mob/user)
@@ -198,7 +202,8 @@
 	data["red"] = r_auth
 	data["green"] = g_auth
 	data["blue"] = b_auth
-
+	data["current_site"] = get_area_name(get_area(src))
+	data["nuke_ineligible_site"] = GLOB.nuke_ineligible_site
 	var/safe_text = (safety) ? "Safe" : "Engaged"
 	var/status = "Unknown"
 
@@ -257,12 +262,15 @@
 	if(!anchored)
 		balloon_alert(user, "anchors not set")
 		return
-
+	var/area/area = get_area(src)
+	if(get_area_name(area) in GLOB.nuke_ineligible_site)
+		balloon_alert(user, "ineligible detonation site")
+		return
 	if(!timer_enabled)
-		enable()
+		enable(key_name(user))
 		balloon_alert(user, "timer started")
 	else
-		disable()
+		disable(key_name(user))
 		balloon_alert(user, "timer stopped")
 
 	if(!lighthack)
@@ -278,7 +286,7 @@
 	safety = !safety
 	if(safety)
 		balloon_alert(user, "safety enabled")
-		disable()
+		disable(key_name(user))
 	else
 		balloon_alert(user, "safety disabled")
 
@@ -296,10 +304,12 @@
 	if(anchored)
 		balloon_alert(user, "anchored")
 		visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
+		log_game("[user] has anchored the nuke at [AREACOORD(src)]")
 	else
 		balloon_alert(user, "unanchored")
 		visible_message(span_warning("The anchoring bolts slide back into the depths of [src]."))
-		disable()
+		disable(key_name(user))
+		log_game("[user] has unanchored the nuke at [AREACOORD(src)]")
 
 ///Handles disk insertion and removal
 /obj/machinery/nuclearbomb/proc/toggle_disk(mob/user, disk_colour)
@@ -352,7 +362,7 @@
 ///Change minimap icon if its on or off
 /obj/machinery/nuclearbomb/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "nuke[timer_enabled ? "_on" : "_off"]"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "nuke[timer_enabled ? "_on" : "_off"]", VERY_HIGH_FLOAT_LAYER))
 
 #undef NUKE_STAGE_NONE
 #undef NUKE_STAGE_COVER_REMOVED

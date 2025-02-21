@@ -1,12 +1,12 @@
 /obj/item/clothing/head
 	name = "head"
 	icon = 'icons/obj/clothing/headwear/hats.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/hats_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/hats_right.dmi',
 	)
-	flags_armor_protection = HEAD
-	flags_equip_slot = ITEM_SLOT_HEAD
+	armor_protection_flags = HEAD
+	equip_slot_flags = ITEM_SLOT_HEAD
 	w_class = WEIGHT_CLASS_SMALL
 	blood_sprite_state = "helmetblood"
 	attachments_by_slot = list(ATTACHMENT_SLOT_BADGE)
@@ -22,28 +22,19 @@
 	. = ..()
 	if(!greyscale_config)
 		return
-	item_icons = list(slot_head_str = icon)
-
-/obj/item/clothing/head/MouseDrop(over_object, src_location, over_location)
-	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-		return ..()
-	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
-		return ..()
-	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-	if(armor_storage.storage.handle_mousedrop(usr, over_object))
-		return ..()
+	worn_icon_list = list(slot_head_str = icon)
 
 /obj/item/clothing/head/beanie
 	name = "\improper TGMC beanie"
 	desc = "A standard military beanie, often worn by non-combat military personnel and support crews, though the occasional one finds its way to the front line. Popular due to being comfortable and snug."
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "beanie_cargo"
-	flags_inv_hide = HIDETOPHAIR
+	inv_hide_flags = HIDETOPHAIR
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 
 
@@ -51,69 +42,78 @@
 	name = "\improper Dark gray beret"
 	desc = "A hat typically worn by the field-officers of the TGMC. Occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "beret"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
-	flags_item_map_variant = NONE
-	flags_armor_features = ARMOR_NO_DECAP
+	item_map_variant_flags = NONE
+	armor_features_flags = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/tgmcberet/tan
 	name = "\improper Tan beret"
 	icon_state = "berettan"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/head/tgmcberet/red
 	name = "\improper Red badged beret"
 	icon_state = "beretred"
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/head/tgmcberet/red2
 	name = "\improper Red beret"
 	icon_state = "beretred2"
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
+
+/obj/item/clothing/head/tgmcberet/red2/erp
+	name = "\improper ERP Red Beret"
+	desc = "An ERP-approved improved design of the red beret, how this small piece of cloth has such good padding is a closely guarded ERP-secret."
+	soft_armor = MARINE_ARMOR_MEDIUM
+
+/obj/item/clothing/head/tgmcberet/red2/erp/masterprankster
+	desc = "An ERP-approved improved design of the red beret, how this small piece of cloth has such good padding is a closely guarded ERP-secret. This one is held by Master Pranksters only!"
+	icon_state = "beretred"
 
 /obj/item/clothing/head/tgmcberet/bloodred
 	name = "\improper Blood red beret"
 	icon_state = "bloodred_beret"
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/head/tgmcberet/blueberet
 	name = "\improper Blue beret"
 	icon_state = "blue_beret"
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/head/tgmcberet/darkgreen
 	name = "\improper Dark green beret"
 	icon_state = "darkgreen_beret"
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/head/tgmcberet/green
 	name = "\improper Green beret"
 	icon_state = "beretgreen"
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/head/tgmcberet/snow
 	name = "\improper White beret"
 	icon_state = "beretsnow"
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/head/tgmcberet/wo
 	name = "\improper Command Master at Arms beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. It shines with the glow of corrupt authority and a smudge of doughnut."
 	icon_state = "beretwo"
 	soft_armor = list(MELEE = 15, BULLET = 50, LASER = 50, ENERGY = 15, BOMB = 50, BIO = 5, FIRE = 50, ACID = 5)
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/head/tgmcberet/fc
 	name = "\improper Field Commander beret"
 	desc = "A beret with the field commander insignia emblazoned on it. It commands loyalty and bravery in all who gaze upon it."
 	icon_state = "beretfc"
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 5, FIRE = 50, ACID = 50)
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 
 /obj/item/clothing/head/tgmccap
@@ -121,7 +121,7 @@
 	desc = "A casual cap occasionally worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "cap"
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
@@ -129,12 +129,12 @@
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 	var/flipped_cap = FALSE
 	var/base_cap_icon
-	flags_item_map_variant = (ITEM_ICE_VARIANT)
+	item_map_variant_flags = (ITEM_ICE_VARIANT)
 
 
 /obj/item/clothing/head/tgmccap/verb/fliphat()
 	set name = "Flip hat"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 	if(!isliving(usr))
 		return
@@ -166,14 +166,14 @@
 	name = "\improper TGMC requisition cap"
 	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
 	icon_state = "cargocap"
-	flags_item_map_variant = null
+	item_map_variant_flags = null
 
 
 /obj/item/clothing/head/boonie
 	name = "Boonie Hat"
 	desc = "The pinnacle of tacticool technology."
 	icon_state = "booniehat"
-	item_state = "booniehat"
+	worn_icon_state = "booniehat"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
 
 /obj/item/clothing/head/ornamented_cap
@@ -181,18 +181,18 @@
 	desc = "An ornamented cap with a visor. This one seems to be torn at the back."
 	icon_state = "ornamented_cap"
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi'
 	)
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
-	flags_armor_features = ARMOR_NO_DECAP
+	armor_features_flags = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/slouch
 	name = "\improper TGMC slouch hat"
 	desc = "A nice slouch hat worn by some TGMC troopers while on planets with hot weather, or just for style. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
 	icon_state = "slouch_hat"
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
 	)
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
@@ -201,14 +201,14 @@
 	name = "\improper Cyan headband"
 	desc = "A rag typically worn by the less-orthodox weapons operators in the TGMC. While it offers no protection, it is certainly comfortable to wear compared to the standard helmet. Comes in two stylish colors."
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "headband"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
-	flags_armor_features = ARMOR_NO_DECAP
+	armor_features_flags = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/headband/red
 	name = "\improper Red headband"
@@ -230,7 +230,7 @@
 	desc = "A headset typically found in use by radio-operators and officers. This one appears to be malfunctioning."
 	icon_state = "headset"
 	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
@@ -241,6 +241,12 @@
 	desc = "A somewhat fancy hat, typically worn by those who wish to command medical respect."
 	icon_state = "cmohat"
 
+/obj/item/clothing/head/securitycap
+	name = "Security Cap"
+	desc = "A hat often worn by security officers, it is comfortable and lightly armored."
+	icon_state = "security_cap"
+	icon = 'icons/obj/clothing/hats.dmi'
+	soft_armor = list(MELEE = 15, BULLET = 25, LASER = 20, ENERGY = 20, BOMB = 5, BIO = 5, FIRE = 15, ACID = 5)
 
 /*============================BERETS=================================*/
 //Berets have armor, so they have their own category. PMC caps are helmets, so they're in helmets.dm.
@@ -250,7 +256,7 @@
 	desc = "A beret with the TGMC insignia emblazoned on it. It radiates respect and authority."
 	icon_state = "hosberet"
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 10, BIO = 5, FIRE = 5, ACID = 5)
-	flags_inventory = BLOCKSHARPOBJ
+	inventory_flags = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/beret/marine/captain
 	name = "captain's beret"
@@ -283,23 +289,23 @@
 	name = "ushanka"
 	desc = "Perfect for winter in Siberia, da?"
 	icon_state = "ushankadown"
-	item_state = "ushankadown"
+	worn_icon_state = "ushankadown"
 	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 20, ENERGY = 10, BOMB = 10, BIO = 0, FIRE = 10, ACID = 10)
-	flags_cold_protection = HEAD
+	cold_protection_flags = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = HIDEEARS|HIDETOPHAIR
+	inventory_flags = BLOCKSHARPOBJ
+	inv_hide_flags = HIDEEARS|HIDETOPHAIR
 	anti_hug = 1
 
 /obj/item/clothing/head/ushanka/attack_self(mob/user as mob)
 	. = ..()
 	if(icon_state == "ushankadown")
 		icon_state = "ushankaup"
-		item_state = "ushankaup"
+		worn_icon_state = "ushankaup"
 		to_chat(user, "You raise the ear flaps on the ushanka.")
 	else
 		icon_state = "ushankadown"
-		item_state = "ushankadown"
+		worn_icon_state = "ushankadown"
 		to_chat(user, "You lower the ear flaps on the ushanka.")
 
 
@@ -309,12 +315,12 @@
 	icon_state = "bearpelt"
 	siemens_coefficient = 2
 	anti_hug = 4
-	flags_armor_protection = HEAD|CHEST|ARMS
+	armor_protection_flags = HEAD|CHEST|ARMS
 	soft_armor = list(MELEE = 90, BULLET = 70, LASER = 45, ENERGY = 55, BOMB = 45, BIO = 10, FIRE = 55, ACID = 55)
-	flags_cold_protection = HEAD|CHEST|ARMS
+	cold_protection_flags = HEAD|CHEST|ARMS
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = HIDEEARS|HIDETOPHAIR
+	inventory_flags = BLOCKSHARPOBJ
+	inv_hide_flags = HIDEEARS|HIDETOPHAIR
 
 
 /obj/item/clothing/head/uppcap
@@ -322,20 +328,20 @@
 	desc = "Standard USL head gear for covert operations and low-ranking pirates alike."
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "upp_cap"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	siemens_coefficient = 2
 	//anti_hug = 2
-	flags_armor_protection = HEAD
+	armor_protection_flags = HEAD
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 55, ACID = 55)
-	flags_cold_protection = HEAD
+	cold_protection_flags = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = HIDEEARS
-	flags_armor_features = ARMOR_NO_DECAP
+	inventory_flags = BLOCKSHARPOBJ
+	inv_hide_flags = HIDEEARS
+	armor_features_flags = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/uppcap/beret
 	name = "\improper armored USL beret"
@@ -345,20 +351,20 @@
 	name = "\improper armored Freelancer helmet"
 	desc = "A sturdy freelancer's helmet."
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "freelancer_helmet"
 	siemens_coefficient = 2
-	flags_armor_protection = HEAD
+	armor_protection_flags = HEAD
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 55, ACID = 55)
-	flags_cold_protection = HEAD
+	cold_protection_flags = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = HIDEEARS
-	flags_armor_features = ARMOR_NO_DECAP
+	inventory_flags = BLOCKSHARPOBJ
+	inv_hide_flags = HIDEEARS
+	armor_features_flags = ARMOR_NO_DECAP
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_STORAGE,
 		ATTACHMENT_SLOT_HEAD_MODULE,
@@ -386,37 +392,37 @@
 	name = "\improper armored militia cowl"
 	desc = "A large hood in service with some militias, meant for obscurity on the frontier. Offers some head protection due to the study fibers utilized in production."
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	icon_state = "rebel_hood"
 	siemens_coefficient = 2
-	flags_armor_protection = HEAD|CHEST
+	armor_protection_flags = HEAD|CHEST
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
-	flags_cold_protection = HEAD
+	cold_protection_flags = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = HIDEEARS|HIDETOPHAIR
-	flags_armor_features = ARMOR_NO_DECAP
+	inventory_flags = BLOCKSHARPOBJ
+	inv_hide_flags = HIDEEARS|HIDETOPHAIR
+	armor_features_flags = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/admiral
 	name = "\improper armored admiral cap"
 	desc = "A sturdy admiral's cap. More protective than it seems. Please don't ditch this for a helmet like a punk."
 	icon_state = "admiral_helmet"
 	siemens_coefficient = 2
-	flags_armor_protection = HEAD
+	armor_protection_flags = HEAD
 	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 45, ENERGY = 55, BOMB = 55, BIO = 10, FIRE = 55, ACID = 55)
-	flags_cold_protection = HEAD
+	cold_protection_flags = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = HIDEEARS
+	inventory_flags = BLOCKSHARPOBJ
+	inv_hide_flags = HIDEEARS
 
 /obj/item/clothing/head/commissar
 	name = "\improper commissar cap"
 	desc = "A cap worn by commissars of the Imperial Army. This one seems to radiate authority."
-	item_icons = list(
+	worn_icon_list = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
@@ -424,12 +430,12 @@
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "commissar_cap"
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
-	flags_armor_features = ARMOR_NO_DECAP
+	armor_features_flags = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/strawhat
 	name = "\improper straw hat"
 	desc = "A hat lined with durathread on the outside, has the usual iconic look of a straw hat. A common hat across the bubble."
-	item_icons = list(
+	worn_icon_list = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
@@ -437,3 +443,29 @@
 	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
 	icon_state = "straw_hat"
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
+
+/obj/item/clothing/head/vsd
+	name = "\improper armored baseball cap"
+	desc = "Baseball caps worn by V.S.D. GIs for the 'Call of Duty' feel."
+	worn_icon_list = list(
+		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)
+	icon = 'icons/obj/clothing/headwear/ert_headwear.dmi'
+	icon_state = "vsd_cap"
+	worn_icon_state = "vsd_cap"
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 55, BOMB = 50, BIO = 50, FIRE = 55, ACID = 55)
+	armor_features_flags = ARMOR_NO_DECAP
+
+/obj/item/clothing/head/vsd/beret
+	name = "\improper armored red patched beret"
+	desc = "A red beret for V.S.D. Squad Leaders for the commando look."
+	icon_state = "beretred"
+	worn_icon_state = "vsd_cap"
+	icon = 'icons/obj/clothing/headwear/marine_hats.dmi'
+	worn_icon_list = list(
+		slot_head_str = 'icons/mob/clothing/headwear/marine_hats.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
+	)

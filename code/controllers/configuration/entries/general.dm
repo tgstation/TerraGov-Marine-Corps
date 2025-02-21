@@ -7,6 +7,8 @@ Basics, the most important.
 
 /datum/config_entry/string/server // If you set this location, it sends you there instead of trying to reconnect.
 
+/datum/config_entry/string/public_address
+
 /datum/config_entry/string/title //The title of the main window
 
 /datum/config_entry/string/hostedby // Sets the hosted by name on unix platforms.
@@ -34,7 +36,7 @@ Basics, the most important.
 
 /// Host of the webmap
 /datum/config_entry/string/webmap_host
-	config_entry_value = "https://affectedarc07.co.uk/tgmc.php?m="
+	config_entry_value = "https://webmap.affectedarc07.co.uk/maps/tgmc/"
 
 /datum/config_entry/string/python_path
 

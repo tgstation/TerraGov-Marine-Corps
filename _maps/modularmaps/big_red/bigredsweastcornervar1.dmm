@@ -57,10 +57,6 @@
 "G" = (
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
-"H" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south/garbledradio)
 "J" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
@@ -1056,7 +1052,7 @@ X
 v
 v
 v
-H
+v
 v
 B
 J

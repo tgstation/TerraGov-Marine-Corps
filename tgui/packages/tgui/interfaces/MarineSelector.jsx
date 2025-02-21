@@ -1,6 +1,4 @@
 import { useState } from 'react';
-
-import { useBackend, useLocalState } from '../backend';
 import {
   Box,
   Button,
@@ -8,13 +6,15 @@ import {
   Modal,
   ProgressBar,
   Section,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 export const MarineSelector = (props) => {
   const { act, data } = useBackend();
   const [showEmpty, setShowEmpty] = useState(false);
-  const [showDesc, setShowDesc] = useLocalState('showDesc', null);
+  const [showDesc, setShowDesc] = useState(null);
 
   const categories = Object.keys(data.displayed_records)
     .map((key) => ({
@@ -29,7 +29,7 @@ export const MarineSelector = (props) => {
     );
 
   return (
-    <Window width={600} height={700}>
+    <Window width={650} height={700}>
       {!!showDesc && (
         <Modal width="400px">
           <Box>{showDesc}</Box>
@@ -57,7 +57,12 @@ export const MarineSelector = (props) => {
           surplus vendors nearby.
         </Section>
         {categories.map((category) => (
-          <ItemCategory category={category} key={category.id} />
+          <ItemCategory
+            category={category}
+            key={category.id}
+            showDesc={showDesc}
+            setShowDesc={setShowDesc}
+          />
         ))}
       </Window.Content>
     </Window>
@@ -75,12 +80,13 @@ const ItemCategory = (props) => {
       remaining_points,
       total_points,
     },
+    showDesc,
+    setShowDesc,
   } = props;
 
   const cant_buy =
     (choice === 'choice' && !remaining) ||
     (choice === 'points' && !remaining_points);
-
   return (
     <Section
       title={name}
@@ -119,6 +125,8 @@ const ItemCategory = (props) => {
               key={display_record.id}
               cant_buy={cant_buy}
               remaining_points={remaining_points}
+              showDesc={showDesc}
+              setShowDesc={setShowDesc}
             />
           );
         })}
@@ -129,7 +137,6 @@ const ItemCategory = (props) => {
 
 const ItemLine = (props) => {
   const { act, data } = useBackend();
-  const [showDesc, setShowDesc] = useLocalState('showDesc', null);
 
   const {
     display_record: {
@@ -142,48 +149,112 @@ const ItemLine = (props) => {
     },
     cant_buy,
     remaining_points,
+    showDesc,
+    setShowDesc,
   } = props;
-
+  const colorToElement = {
+    white: (
+      <Box inline mr="6px" ml="6px">
+        Essential!
+      </Box>
+    ),
+    orange: (
+      <Box inline mr="6px" ml="6px" color="orange">
+        Recommended
+      </Box>
+    ),
+    'engi-tool': (
+      <Box inline mr="6px" ml="6px" color="#FFE4C4">
+        Tools
+      </Box>
+    ),
+    'engi-construction': (
+      <Box inline mr="6px" ml="6px" color="#7FFFD4">
+        Materials
+      </Box>
+    ),
+    'engi-artillery': (
+      <Box inline mr="6px" ml="6px" color="#CD5C5C">
+        Artillery
+      </Box>
+    ),
+    'engi-mining': (
+      <Box inline mr="6px" ml="6px" color="#1E90FFe">
+        Mining
+      </Box>
+    ),
+    'engi-explosive': (
+      <Box inline mr="6px" ml="6px" color="#FF7F50">
+        Explosives
+      </Box>
+    ),
+    'engi-other': (
+      <Box inline mr="6px" ml="6px" color="#BA55D3">
+        Other
+      </Box>
+    ),
+    'corps-meds': (
+      <Box inline mr="6px" ml="6px" color="#7FFFD4">
+        Medicine
+      </Box>
+    ),
+    'corps-tools': (
+      <Box inline mr="6px" ml="6px" color="#1E90FFe">
+        Tools
+      </Box>
+    ),
+    'sg-minigun': (
+      <Box inline mr="6px" ml="6px" color="#1E90FFe">
+        Minigun
+      </Box>
+    ),
+    'sg-targetrifle': (
+      <Box inline mr="6px" ml="6px" color="#BA55D3">
+        Target Rifle
+      </Box>
+    ),
+    'sg-machinegun': (
+      <Box inline mr="6px" ml="6px" color="#00FF00">
+        Machinegun
+      </Box>
+    ),
+    'sg-smartpistol': (
+      <Box inline mr="6px" ml="6px" color="#FFE4C4">
+        Smartpistol
+      </Box>
+    ),
+    'synth-cosmetic': (
+      <Box inline mr="6px" ml="6px" color="blue">
+        Cosmetic
+      </Box>
+    ),
+    'synth-armor': (
+      <Box inline mr="6px" ml="6px" color="red">
+        Armor
+      </Box>
+    ),
+    'synth-rcarmor': (
+      <Box inline mr="6px" ml="6px" color="orange">
+        Recommended - Armor
+      </Box>
+    ),
+    'synth-arcarmstorage': (
+      <Box inline mr="6px" ml="6px" color="green">
+        Recommended - Armor and Storage
+      </Box>
+    ),
+    'synth-attachable': (
+      <Box inline mr="6px" ml="6px" color="green">
+        Recommended - Attachable to Flak Jacket
+      </Box>
+    ),
+  };
   return (
     <LabeledList.Item
       key={id}
       buttons={
         <>
-          {prod_color === 'white' && (
-            <Box inline mr="6px" ml="6px">
-              Essential!
-            </Box>
-          )}
-          {prod_color === 'orange' && (
-            <Box inline mr="6px" ml="6px" color="orange">
-              Recommended
-            </Box>
-          )}
-          {prod_color === 'synth-cosmetic' && (
-            <Box inline mr="6px" ml="6px" color="blue">
-              Cosmetic
-            </Box>
-          )}
-          {prod_color === 'synth-armor' && (
-            <Box inline mr="6px" ml="6px" color="red">
-              Provides Armor
-            </Box>
-          )}
-          {prod_color === 'synth-rcmarmor' && (
-            <Box inline mr="6px" ml="6px" color="orange">
-              Recommended - Provides Armor
-            </Box>
-          )}
-          {prod_color === 'synth-rcmarmstorage' && (
-            <Box inline mr="6px" ml="6px" color="green">
-              Recommended - Provides Armor and Storage
-            </Box>
-          )}
-          {prod_color === 'synth-attachable' && (
-            <Box inline mr="6px" ml="6px" color="green">
-              Recommended - Can be attached to flak jacket
-            </Box>
-          )}
+          {colorToElement[prod_color]}
           {prod_cost > 0 && (
             <Box inline width="75px" mr="6px" ml="6px">
               {prod_cost} points

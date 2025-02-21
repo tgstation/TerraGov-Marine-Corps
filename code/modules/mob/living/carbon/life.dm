@@ -1,4 +1,4 @@
-/mob/living/carbon/Life()
+/mob/living/carbon/Life(seconds_per_tick, times_fired)
 
 	set invisibility = 0
 	set background = 1
@@ -63,13 +63,30 @@
 		death()
 		return
 
-	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT) || getOxyLoss() > CARBON_KO_OXYLOSS || health < get_crit_threshold())
+	if(health < get_crit_threshold())
 		if(stat == UNCONSCIOUS)
 			return
 		set_stat(UNCONSCIOUS)
+		on_crit()
+
+	else if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT) || getOxyLoss() > CARBON_KO_OXYLOSS)
+		if(stat == UNCONSCIOUS)
+			return
+		set_stat(UNCONSCIOUS)
+
 	else if(stat == UNCONSCIOUS)
 		set_stat(CONSCIOUS)
 
+///called just after this mob goes unconscious due to taking too much dmg
+/mob/living/carbon/proc/on_crit()
+	if(!HAS_TRAIT(src, TRAIT_CRIT_IS_DEATH))
+		return
+	var/damage_dealt = health - get_death_threshold()
+	if(damage_dealt < 1)
+		death()
+		return
+	adjustOxyLoss(damage_dealt)
+	death()
 
 /mob/living/carbon/handle_status_effects()
 	. = ..()
@@ -154,9 +171,9 @@
 			adjustToxLoss(4)
 
 	switch(drunkenness) //painkilling effects
-		if(51 to 71)
+		if(6 to 41)
 			reagent_shock_modifier += PAIN_REDUCTION_LIGHT
-		if(71 to 81)
+		if(41 to 81)
 			reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
 		if(81 to INFINITY)
 			reagent_shock_modifier += PAIN_REDUCTION_HEAVY

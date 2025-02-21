@@ -2,7 +2,7 @@
 ///In order to prevent Marines from looting things they should not ever have
 /obj/item/implant/suicide_dust
 	name = "self-dusting implant"
-	flags_implant = NONE
+	implant_flags = NONE
 
 /obj/item/implant/suicide_dust/implant(mob/living/carbon/human/target, mob/living/user)
 	. = ..()

@@ -363,6 +363,7 @@
 	ceiling = CEILING_DEEP_UNDERGROUND
 	minimap_color = MINIMAP_AREA_CAVES
 	always_unpowered = TRUE
+	area_flags = CANNOT_NUKE
 
 //ATMOS
 /area/gelida/atmos

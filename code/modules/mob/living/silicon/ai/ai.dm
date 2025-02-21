@@ -9,7 +9,7 @@
 	icon_state = "ai"
 	bubble_icon = "robot"
 	anchored = TRUE
-	move_resist = MOVE_FORCE_OVERPOWERING
+	move_resist = MOVE_FORCE_NORMAL
 	density = TRUE
 	canmove = FALSE
 	status_flags = CANSTUN|CANKNOCKOUT
@@ -96,7 +96,6 @@
 		var/datum/job/terragov/silicon/ai/ai_job = SSjob.GetJobType(/datum/job/terragov/silicon/ai)
 		if(!ai_job)
 			stack_trace("Unemployment has reached to an AI, who has failed to find a job.")
-		apply_assigned_role_to_spawn(ai_job)
 
 	GLOB.ai_list += src
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
@@ -138,19 +137,6 @@
 	GLOB.ai_list -= src
 	QDEL_NULL(builtInCamera)
 	QDEL_NULL(track)
-	UnregisterSignal(src, COMSIG_ORDER_SELECTED)
-	UnregisterSignal(src, COMSIG_MOB_CLICK_ALT)
-
-	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_CAS_LASER_CREATED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_RAILGUN_LASER_CREATED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_TAKEOFF)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_MINI_DROPSHIP_DESTROYED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_DISK_GENERATED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_NUKE_START)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_CLONE_PRODUCED)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_HOLOPAD_AI_CALLED)
 	QDEL_NULL(mini)
 	return ..()
 
@@ -255,7 +241,6 @@
 		to_chat(src, span_notice("Camera lights activated."))
 	camera_light_on = !camera_light_on
 
-
 /mob/living/silicon/ai/proc/light_cameras()
 	var/list/obj/machinery/camera/add = list()
 	var/list/obj/machinery/camera/remove = list()
@@ -277,6 +262,14 @@
 		C.Togglelight(1)
 		lit_cameras |= C
 
+/mob/living/silicon/ai/proc/supply_interface()
+	var/datum/supply_ui/SU
+	if(!SU)
+		SU = new(src)
+		SU.shuttle_id = SHUTTLE_SUPPLY
+		SU.home_id = "supply_home"
+		SU.faction = src.faction
+	return SU.interact(src)
 
 /mob/living/silicon/ai/proc/camera_visibility(mob/camera/aiEye/moved_eye)
 	GLOB.cameranet.visibility(moved_eye, client, all_eyes, moved_eye.use_static)
@@ -291,7 +284,7 @@
 /mob/living/silicon/ai/proc/relay_speech(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
 	var/start = "Relayed Speech: "
 	var/namepart = "[speaker.GetVoice()][speaker.get_alt_name()]"
-	var/hrefpart = "<a href='?src=[REF(src)];track=[html_encode(namepart)]'>"
+	var/hrefpart = "<a href='byond://?src=[REF(src)];track=[html_encode(namepart)]'>"
 	var/jobpart
 	var/speech_part = lang_treat(speaker, message_language, raw_message, spans, message_mode)
 
@@ -395,6 +388,9 @@
 			. += "AI bioscan status: Instruments recalibrating, next scan in [(last_ai_bioscan  + COOLDOWN_AI_BIOSCAN - world.time)/10] seconds." //about 10 minutes
 		else
 			. += "AI bioscan status: Instruments are ready to scan the planet."
+	var/status_value = SSevacuation?.get_status_panel_eta()
+	if(status_value)
+		. += "Evacuation in: [status_value]"
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
 	. = ..()
@@ -529,12 +525,12 @@
 	if(!can_use_action())
 		return
 	owner.playsound_local(owner, "sound/effects/CIC_order.ogg", 10, 1)
-	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
+	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, CIC_ORDER_COOLDOWN)
 	log_game("[key_name(owner)] has broadcasted the hud message [text] at [AREACOORD(owner)]")
 	deadchat_broadcast(" has sent the command order \"[text]\"", owner, owner)
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == owner.faction)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
+			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("<u>ORDERS UPDATED:</u>", text, CENTER_ALIGN_TEXT), /atom/movable/screen/text/screen_text/command_order)
 
 
 ///takes an atom A and sends an alert, coordinate and for the atom to eligible marine forces if cooldown is over

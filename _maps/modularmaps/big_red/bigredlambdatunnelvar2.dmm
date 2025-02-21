@@ -11,7 +11,9 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast/garbledradio)
 "e" = (
-/obj/structure/curtain/medical,
+/obj/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
 	},
@@ -56,16 +58,20 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/lambda_lab)
 "O" = (
-/obj/structure/curtain/medical,
 /obj/machinery/air_alarm{
 	dir = 1
+	},
+/obj/structure/curtain/medical{
+	dir = 4
 	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
 "S" = (
-/obj/structure/curtain/medical,
+/obj/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
 	},

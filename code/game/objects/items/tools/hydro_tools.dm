@@ -1,13 +1,12 @@
-
 // *************************************
 // Hydroponics Tools
 // *************************************
 
 /obj/item/tool/plantspray
 	icon = 'icons/obj/items/spray.dmi'
-	item_state = "spray"
-	flags_item = NOBLUDGEON
-	flags_equip_slot = ITEM_SLOT_BELT
+	worn_icon_state = "spray"
+	item_flags = NOBLUDGEON
+	equip_slot_flags = ITEM_SLOT_BELT
 	throwforce = 4
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
@@ -17,7 +16,6 @@
 	var/weed_kill_str = 0
 
 /obj/item/tool/plantspray/weeds // -- Skie
-
 	name = "weed-spray"
 	desc = "It's a toxic mixture, in spray form, to kill small weeds."
 	icon_state = "weedspray"
@@ -79,59 +77,52 @@
 	toxicity = 8
 	weed_kill_str = 7
 
-
-
-
 /obj/item/tool/minihoe // -- Numbers
 	name = "mini hoe"
 	desc = "It's used for removing weeds or scratching your back."
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "hoe"
-	item_state = "hoe"
-	flags_atom = CONDUCT
-	flags_item = NOBLUDGEON
+	worn_icon_state = "hoe"
+	atom_flags = CONDUCT
+	item_flags = NOBLUDGEON
 	force = 5
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("slashed", "sliced", "cut", "clawed")
-
-
-
+	attack_verb = list("slashes", "slices", "cuts", "claws")
 
 //Hatchets and things to kill kudzu
 /obj/item/tool/hatchet
 	name = "hatchet"
 	desc = "A sharp hand hatchet, commonly used to cut things apart, be it timber or other objects. Often found in the hands of woodsmen, scouts, and looters."
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "hatchet"
-	flags_atom = CONDUCT
-	force = 25
+	atom_flags = CONDUCT
+	force = 35
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 20
+	throwforce = 25
 	throw_speed = 4
 	throw_range = 4
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
-	attack_verb = list("chopped", "torn", "cut")
+	attack_verb = list("chops", "tears", "cuts")
 
 /obj/item/tool/hatchet/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
 	return ..()
 
-
 /obj/item/tool/scythe
 	name = "scythe"
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "scythe"
-	force = 13
+	force = 35
 	throwforce = 5
 	throw_speed = 1
 	throw_range = 3
 	w_class = WEIGHT_CLASS_BULKY
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BACK
-	attack_verb = list("chopped", "sliced", "cut", "reaped")
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BACK
+	attack_verb = list("chops", "slices", "cuts", "reaps")
 
 /obj/item/tool/scythe/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity) return

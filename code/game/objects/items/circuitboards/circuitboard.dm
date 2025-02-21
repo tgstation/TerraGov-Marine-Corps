@@ -3,12 +3,12 @@
 	name = "Circuit board"
 	icon = 'icons/obj/items/circuitboards.dmi'
 	icon_state = "id_mod"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
 	)
-	item_state = "electronic"
-	flags_atom = CONDUCT
+	worn_icon_state = "electronic"
+	atom_flags = CONDUCT
 	var/build_path = null
 
 //Called when the circuitboard is used to contruct a new machine.
@@ -58,6 +58,10 @@
 	var/last_configurator = null
 	var/locked = 1
 
+/obj/item/circuitboard/tadpole
+	name = "navigation electronics"
+	desc = "A circuit board used for navigation computers"
+	icon_state = "tadpole"
 
 /obj/item/circuitboard/airlock/interact(mob/user)
 	. = ..()
@@ -69,14 +73,14 @@
 		t1 += "Operator: [last_configurator]<br>"
 
 	if (locked)
-		t1 += "<a href='?src=[text_ref(src)];login=1'>Swipe ID</a><hr>"
+		t1 += "<a href='byond://?src=[text_ref(src)];login=1'>Swipe ID</a><hr>"
 	else
-		t1 += "<a href='?src=[text_ref(src)];logout=1'>Block</a><hr>"
+		t1 += "<a href='byond://?src=[text_ref(src)];logout=1'>Block</a><hr>"
 
 		t1 += "Access requirement is set to "
-		t1 += one_access ? "<a style='color: green' href='?src=[text_ref(src)];one_access=1'>ONE</a><hr>" : "<a style='color: red' href='?src=[text_ref(src)];one_access=1'>ALL</a><hr>"
+		t1 += one_access ? "<a style='color: green' href='byond://?src=[text_ref(src)];one_access=1'>ONE</a><hr>" : "<a style='color: red' href='byond://?src=[text_ref(src)];one_access=1'>ALL</a><hr>"
 
-		t1 += conf_access == null ? "<font color=red>All</font><br>" : "<a href='?src=[text_ref(src)];access=all'>All</a><br>"
+		t1 += conf_access == null ? "<font color=red>All</font><br>" : "<a href='byond://?src=[text_ref(src)];access=all'>All</a><br>"
 
 		t1 += "<br>"
 
@@ -85,11 +89,11 @@
 			var/aname = get_access_desc(acc)
 
 			if (!conf_access || !length(conf_access) || !(acc in conf_access))
-				t1 += "<a href='?src=[text_ref(src)];access=[acc]'>[aname]</a><br>"
+				t1 += "<a href='byond://?src=[text_ref(src)];access=[acc]'>[aname]</a><br>"
 			else if(one_access)
-				t1 += "<a style='color: green' href='?src=[text_ref(src)];access=[acc]'>[aname]</a><br>"
+				t1 += "<a style='color: green' href='byond://?src=[text_ref(src)];access=[acc]'>[aname]</a><br>"
 			else
-				t1 += "<a style='color: red' href='?src=[text_ref(src)];access=[acc]'>[aname]</a><br>"
+				t1 += "<a style='color: red' href='byond://?src=[text_ref(src)];access=[acc]'>[aname]</a><br>"
 
 	var/datum/browser/popup = new(user, "airlock_electronics", "<div align='center'>Access Control</div>")
 	popup.set_content(t1)

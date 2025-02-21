@@ -16,7 +16,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	var/list/clothing_items = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes) // What all are we checking?
 	for(var/obj/item/clothing/C in clothing_items)
-		if(istype(C) && (C.flags_armor_protection & def_zone.body_part)) // Is that body part being targeted covered?
+		if(istype(C) && (C.armor_protection_flags & def_zone.body_part)) // Is that body part being targeted covered?
 			siemens_coefficient *= C.siemens_coefficient
 
 	return siemens_coefficient
@@ -24,7 +24,7 @@ Contains most of the procs that are called when a mob is attacked by something
 /mob/living/carbon/human/proc/add_limb_armor(obj/item/armor_item)
 	for(var/i in limbs)
 		var/datum/limb/limb_to_check = i
-		if(!(limb_to_check.body_part & armor_item.flags_armor_protection))
+		if(!(limb_to_check.body_part & armor_item.armor_protection_flags))
 			continue
 		limb_to_check.add_limb_soft_armor(armor_item.soft_armor)
 		limb_to_check.add_limb_hard_armor(armor_item.hard_armor)
@@ -37,7 +37,7 @@ Contains most of the procs that are called when a mob is attacked by something
 /mob/living/carbon/human/proc/remove_limb_armor(obj/item/armor_item)
 	for(var/i in limbs)
 		var/datum/limb/limb_to_check = i
-		if(!(limb_to_check.body_part & armor_item.flags_armor_protection))
+		if(!(limb_to_check.body_part & armor_item.armor_protection_flags))
 			continue
 		limb_to_check.remove_limb_soft_armor(armor_item.soft_armor)
 		limb_to_check.remove_limb_hard_armor(armor_item.hard_armor)
@@ -54,31 +54,24 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(!bp)	continue
 		if(bp && istype(bp ,/obj/item/clothing))
 			var/obj/item/clothing/C = bp
-			if(C.flags_armor_protection & HEAD)
+			if(C.armor_protection_flags & HEAD)
 				return 1
 	return 0
 
 
 /mob/living/carbon/human/emp_act(severity)
-	for(var/obj/O in src)
-		if(!O)	continue
-		O.emp_act(severity)
+	. = ..()
 	for(var/datum/limb/O in limbs)
-		if(O.limb_status & LIMB_DESTROYED)	continue
 		O.emp_act(severity)
-		for(var/datum/internal_organ/I in O.internal_organs)
-			if(I.robotic == 0)	continue
-			I.emp_act(severity)
-	..()
 
 /mob/living/carbon/human/has_smoke_protection()
-	if(istype(wear_mask) && wear_mask.flags_inventory & BLOCKGASEFFECT)
+	if(istype(wear_mask) && wear_mask.inventory_flags & BLOCKGASEFFECT)
 		return TRUE
-	if(istype(glasses) && glasses.flags_inventory & BLOCKGASEFFECT)
+	if(istype(glasses) && glasses.inventory_flags & BLOCKGASEFFECT)
 		return TRUE
 	if(head && istype(head, /obj/item/clothing))
 		var/obj/item/clothing/CH = head
-		if(CH.flags_inventory & BLOCKGASEFFECT)
+		if(CH.inventory_flags & BLOCKGASEFFECT)
 			return TRUE
 	return ..()
 
@@ -92,7 +85,7 @@ Contains most of the procs that are called when a mob is attacked by something
 /mob/living/carbon/human/inhale_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING) && species.has_organ["lungs"])
-		var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
+		var/datum/internal_organ/lungs/L = get_organ_slot(ORGAN_SLOT_LUNGS)
 		L?.take_damage(1, TRUE)
 
 
@@ -106,12 +99,12 @@ Contains most of the procs that are called when a mob is attacked by something
 	else
 		target_zone = def_zone ? check_zone(def_zone) : get_zone_with_miss_chance(user.zone_selected, src)
 
-	var/attack_verb = LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"
+	var/attack_verb = LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacks"
 
 	if(!target_zone)
 		user.do_attack_animation(src)
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
-		visible_message(span_danger("[user] tried to hit [src] with [I]!"), null, null, 5)
+		visible_message(span_danger("[user] tries to hit [src] with [user.p_their()] [I]!"), null, null, 5)
 		log_combat(user, src, "[attack_verb]", "(missed)")
 		if(!user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 			var/turf/T = get_turf(src)
@@ -138,7 +131,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/armor_verb
 	switch(percentage_penetration)
 		if(-INFINITY to 0)
-			visible_message(span_danger("[src] has been [attack_verb] in the [hit_area] with [I.name] by [user], but the attack is deflected by [p_their()] armor!"),\
+			visible_message(span_danger("[user] [attack_verb] [src] in the [hit_area] with [user.p_their()] [I.name], but the attack is deflected by [p_their()] armor!"),\
 			null, null, COMBAT_MESSAGE_RANGE, visible_message_flags = COMBAT_MESSAGE)
 			user.do_attack_animation(src, used_item = I)
 			log_combat(user, src, "attacked", I, "(FAILED: armor blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
@@ -150,7 +143,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(51 to 75)
 			armor_verb = " [p_their(TRUE)] armor has softened the hit!"
 
-	visible_message(span_danger("[src] has been [attack_verb] in the [hit_area] with [I.name] by [user]![armor_verb]"),\
+	visible_message(span_danger("[user] [attack_verb] [src] in the [hit_area] with [user.p_their()] [I.name]![armor_verb]"),\
 	null, null, 5, visible_message_flags = COMBAT_MESSAGE)
 
 	var/weapon_sharp = is_sharp(I)
@@ -183,8 +176,8 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
-				if(prob(applied_damage - 5) && stat == CONSCIOUS)
-					apply_effect(modify_by_armor(10 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
+				if(prob(applied_damage - 15) && stat == CONSCIOUS)
+					ParalyzeNoChain(modify_by_armor(10 SECONDS, MELEE, def_zone = target_zone) * 100 / maxHealth)
 					visible_message(span_danger("[src] has been knocked unconscious!"),
 									span_danger("You have been knocked unconscious!"), null, 5)
 					hit_report += "(KO)"
@@ -201,8 +194,8 @@ Contains most of the procs that are called when a mob is attacked by something
 						update_inv_glasses(0)
 
 			if("chest")//Easier to score a stun but lasts less time
-				if(prob((applied_damage + 5)) && !incapacitated())
-					apply_effect(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
+				if(prob((applied_damage - 5)) && stat == CONSCIOUS)
+					ParalyzeNoChain(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone) * 100 / maxHealth)
 					visible_message(span_danger("[src] has been knocked down!"),
 									span_danger("You have been knocked down!"), null, 5)
 					hit_report += "(KO)"
@@ -298,15 +291,10 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		hit_report += "(RAW DMG: [throw_damage])"
 
-		if(thrown_item.item_fire_stacks)
-			fire_stacks += thrown_item.item_fire_stacks
-			IgniteMob()
-			hit_report += "(set ablaze)"
-
 		//thrown weapon embedded object code.
 		if(affecting.limb_status & LIMB_DESTROYED)
 			hit_report += "(delimbed [affecting.display_name])"
-		else if(thrown_item.damtype == BRUTE && is_sharp(thrown_item) && prob(thrown_item.embedding.embed_chance))
+		else if(thrown_item.embedding && thrown_item.damtype == BRUTE && is_sharp(thrown_item) && prob(thrown_item.embedding.embed_chance))
 			thrown_item.embed_into(src, affecting)
 			hit_report += "(embedded in [affecting.display_name])"
 
@@ -325,6 +313,22 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	return TRUE
 
+/mob/living/carbon/human/IgniteMob()
+	. = ..()
+	if(!.)
+		return
+	if(!stat && !(species.species_flags & NO_PAIN))
+		emote("scream")
+
+/mob/living/carbon/human/fire_act(burn_level)
+	. = ..()
+	if(!.)
+		return
+	if(stat || (species.species_flags & NO_PAIN))
+		return
+	if(prob(75))
+		return
+	emote("scream")
 
 /mob/living/carbon/human/resist_fire(datum/source)
 	spin(30, 1.5)
@@ -390,7 +394,7 @@ Contains most of the procs that are called when a mob is attacked by something
 /mob/living/carbon/human/attackby(obj/item/I, mob/living/user, params)
 	if(stat != DEAD || I.sharp < IS_SHARP_ITEM_ACCURATE || user.a_intent != INTENT_HARM)
 		return ..()
-	if(!internal_organs_by_name["heart"])
+	if(!get_organ_slot(ORGAN_SLOT_HEART))
 		to_chat(user, span_notice("[src] no longer has a heart."))
 		return
 	if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
@@ -399,16 +403,16 @@ Contains most of the procs that are called when a mob is attacked by something
 	to_chat(user, span_notice("You start to remove [src]'s heart, preventing [p_them()] from rising again!"))
 	if(!do_after(user, 2 SECONDS, NONE, src))
 		return
-	if(!internal_organs_by_name["heart"])
+	if(!get_organ_slot(ORGAN_SLOT_HEART))
 		to_chat(user, span_notice("The heart is no longer here!"))
 		return
 	log_combat(user, src, "ripped [src]'s heart", I)
 	visible_message(span_notice("[user] ripped off [src]'s heart!"), span_notice("You ripped off [src]'s heart!"))
-	internal_organs_by_name -= "heart"
+	remove_organ_slot(ORGAN_SLOT_HEART)
 	var/obj/item/organ/heart/heart = new
 	heart.die()
 	user.put_in_hands(heart)
-	chestburst = 2
+	chestburst = CARBON_CHEST_BURSTED
 	update_burst()
 
 /mob/living/carbon/human/welder_act(mob/living/user, obj/item/I)

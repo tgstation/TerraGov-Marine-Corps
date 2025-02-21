@@ -3,13 +3,13 @@
 /obj/item/reagent_containers/glass/reagent_canister // See the Reagent Canister Pouch, this is just the container
 	name = "pressurized reagent container"
 	desc = "A pressurized container. The inner part of a pressurized reagent canister pouch. Too large to fit in anything but the pouch it comes with."
-	icon = 'icons/Marine/marine-pouches.dmi'
+	icon = 'icons/obj/clothing/pouches.dmi'
 	icon_state = "r_canister"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tanks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/tanks_right.dmi',
 	)
-	item_state = "anesthetic"
+	worn_icon_state = "anesthetic"
 	possible_transfer_amounts = null
 	volume = 1200 //The equivalent of 5 pill bottles worth of BKTT
 	w_class = WEIGHT_CLASS_BULKY
@@ -22,7 +22,7 @@
 /obj/item/reagent_containers/glass/reagent_canister/proc/get_examine_info(mob/user)
 	if(isxeno(user))
 		return
-	if(!(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)) //Failed skill check
+	if(!(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE) && !isobserver(usr)) //Failed skill check
 		return span_notice("You don't know what's in it.")
 	if(!reagents.total_volume)
 		return span_notice("[src] is empty!")
@@ -46,15 +46,10 @@
 /obj/item/storage/pouch/pressurized_reagent_pouch //The actual pouch itself and all its function
 	name = "pressurized reagent pouch"
 	w_class = WEIGHT_CLASS_BULKY
-	max_w_class = WEIGHT_CLASS_BULKY
-	allow_drawing_method = TRUE
 	icon_state = "reagent_pouch"
 	desc = "A very large reagent pouch. It is used to refill custom injectors, and can also store one.\
 	You can Alt-Click to remove the canister in order to refill it."
-	can_hold = list(/obj/item/reagent_containers/hypospray)
-	cant_hold = list(/obj/item/reagent_containers/glass/reagent_canister) //To prevent chat spam when you try to put the container in
-	flags_item = NOBLUDGEON
-	draw_mode = TRUE
+	item_flags = NOBLUDGEON
 	///The internal container of the pouch. Holds the reagent that you use to refill the connected injector
 	var/obj/item/reagent_containers/glass/reagent_canister/inner
 	///List of chemicals we fill up our pouch with on Initialize()
@@ -64,6 +59,12 @@
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/Initialize(mapload)
 	. = ..()
+	storage_datum.max_w_class = WEIGHT_CLASS_BULKY
+	storage_datum.allow_drawing_method = TRUE
+	//cant_hold_list to prevent chat spam when you try to put the container in
+	storage_datum.set_holdable(can_hold_list = list(/obj/item/reagent_containers/hypospray), cant_hold_list = list(/obj/item/reagent_containers/glass/reagent_canister))
+	storage_datum.draw_mode = TRUE
+
 	inner = new /obj/item/reagent_containers/glass/reagent_canister
 	new /obj/item/reagent_containers/hypospray/autoinjector/r_pouch(src)
 	for(var/datum/reagent/chem_type AS in chemicals_to_fill)
@@ -91,19 +92,19 @@
 /obj/item/storage/pouch/pressurized_reagent_pouch/update_overlays()
 	. = ..()
 	if(!inner)
-		. += image('icons/Marine/marine-pouches.dmi', src, "reagent_pouch_0")
+		. += image('icons/obj/clothing/pouches.dmi', src, "reagent_pouch_0")
 		return
-	. += image('icons/Marine/marine-pouches.dmi', src, "reagent_canister")
+	. += image('icons/obj/clothing/pouches.dmi', src, "reagent_canister")
 	var/percentage = round((inner.reagents.total_volume/inner.reagents.maximum_volume)*100)
 	switch(percentage)
 		if(0)
-			. += image('icons/Marine/marine-pouches.dmi', src, "reagent_pouch_0")
+			. += image('icons/obj/clothing/pouches.dmi', src, "reagent_pouch_0")
 		if(1 to 33)
-			. += image('icons/Marine/marine-pouches.dmi', src, "reagent_pouch_1")
+			. += image('icons/obj/clothing/pouches.dmi', src, "reagent_pouch_1")
 		if(34 to 66)
-			. += image('icons/Marine/marine-pouches.dmi', src, "reagent_pouch_2")
+			. += image('icons/obj/clothing/pouches.dmi', src, "reagent_pouch_2")
 		if(67 to 100)
-			. += image('icons/Marine/marine-pouches.dmi', src, "reagent_pouch_3")
+			. += image('icons/obj/clothing/pouches.dmi', src, "reagent_pouch_3")
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/AltClick(mob/user)
 	if(!remove_canister(user))
@@ -163,7 +164,7 @@
 /obj/item/storage/pouch/pressurized_reagent_pouch/proc/get_display_contents(mob/user)
 	if(isxeno(user))
 		return
-	if(!(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)) //Failed skill check
+	if(!(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE) && !isobserver(usr)) //Failed skill check
 		return span_notice("You don't know what's in it.")
 	if(!inner)
 		return span_notice("[src] has no container inside!")

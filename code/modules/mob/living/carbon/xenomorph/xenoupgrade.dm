@@ -1,7 +1,7 @@
 
 /mob/living/carbon/xenomorph/proc/upgrade_xeno(newlevel, silent = FALSE)
 	if(!(newlevel in (GLOB.xenoupgradetiers - XENO_UPGRADE_INVALID)))
-		return
+		return FALSE
 	hive.upgrade_xeno(src, upgrade, newlevel)
 	upgrade = newlevel
 	if(!silent)
@@ -25,7 +25,7 @@
 		if(found)
 			continue
 		var/datum/action/ability/xeno_action/action = new allowed_action_path()
-		if(!SSticker.mode || (SSticker.mode.flags_xeno_abilities & action.gamemode_flags))
+		if(!SSticker.mode || (SSticker.mode.xeno_abilities_flags & action.gamemode_flags))
 			action.give_action(src)
 
 	for(var/datum/action/ability/xeno_action/action_already_added AS in actions_already_added)
@@ -74,6 +74,7 @@
 	hud_set_queen_overwatch() //update the upgrade level insignia on our xeno hud.
 
 	update_spits() //Update spits to new/better ones
+	return TRUE
 
 //Tiered spawns.
 
@@ -152,6 +153,14 @@
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
+/mob/living/carbon/xenomorph/praetorian/dancer/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
+/mob/living/carbon/xenomorph/praetorian/oppressor/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
 //----PRAETORIAN END----//
 //================//
 //----RAVAGER START----//
@@ -160,6 +169,10 @@
 	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/ravager/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
+/mob/living/carbon/xenomorph/ravager/bloodthirster/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
@@ -190,6 +203,10 @@
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_ONE_THRESHOLD
 
+/mob/living/carbon/xenomorph/sentinel/retrograde/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_ONE_THRESHOLD
+
 //----SENTINEL END----//
 //================//
 //-----SPITTER START-----//
@@ -198,6 +215,13 @@
 	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/spitter/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_TWO_THRESHOLD
+
+/mob/living/carbon/xenomorph/spitter/globadier
+	upgrade = XENO_UPGRADE_NORMAL
+
+/mob/living/carbon/xenomorph/spitter/globadier/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_TWO_THRESHOLD
 
@@ -296,6 +320,13 @@
 	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/boiler/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
+/mob/living/carbon/xenomorph/boiler/sizzler
+	upgrade = XENO_UPGRADE_NORMAL
+
+/mob/living/carbon/xenomorph/boiler/sizzler/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 

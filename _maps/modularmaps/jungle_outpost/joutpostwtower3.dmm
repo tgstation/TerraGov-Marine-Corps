@@ -1,0 +1,469 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/platform{
+	dir = 10
+	},
+/turf/closed/wall,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"b" = (
+/obj/structure/catwalk,
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/spawner/random/food_or_drink/beer,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"c" = (
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/obj/structure/rock/variable/jungle,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"d" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/spawner/random/food_or_drink/beer,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"e" = (
+/obj/structure/table/wood/fancy,
+/obj/item/radio,
+/turf/open/floor/wood/alt_four,
+/area/campaign/jungle_outpost/outpost/outer/west)
+"f" = (
+/obj/effect/landmark/campaign_structure/phoron_crate,
+/turf/open/floor/carpet,
+/area/campaign/jungle_outpost/outpost/outer/west)
+"g" = (
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"h" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 10
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"i" = (
+/obj/structure/bed,
+/obj/effect/spawner/random/misc/bedsheet,
+/turf/open/floor/wood/alt_four,
+/area/campaign/jungle_outpost/outpost/outer/west)
+"j" = (
+/obj/structure/flora/tree/jungle,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"k" = (
+/obj/structure/table/wood/fancy,
+/obj/effect/spawner/random/misc/cigarettes,
+/turf/open/floor/wood/alt_four,
+/area/campaign/jungle_outpost/outpost/outer/west)
+"l" = (
+/obj/structure/rock/variable/jungle,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"m" = (
+/obj/structure/platform{
+	dir = 5
+	},
+/turf/closed/wall,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"n" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/turf/open/floor/wood/alt_four,
+/area/campaign/jungle_outpost/outpost/outer/west)
+"o" = (
+/obj/structure/platform_decoration{
+	dir = 9
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"p" = (
+/obj/structure/stairs/edge,
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"q" = (
+/obj/structure/rock/variable/jungle/big,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"r" = (
+/obj/structure/stairs/railstairs_vert{
+	dir = 1
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"s" = (
+/turf/closed/wall,
+/area/campaign/jungle_outpost/outpost/outer/west)
+"t" = (
+/obj/structure/cable,
+/turf/open/floor/carpet,
+/area/campaign/jungle_outpost/outpost/outer/west)
+"u" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 5
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"v" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"w" = (
+/obj/structure/stairs/seamless/edge_vert,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"x" = (
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"y" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/carpet,
+/area/campaign/jungle_outpost/outpost/outer/west)
+"z" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"A" = (
+/obj/structure/table/wood/fancy,
+/obj/item/toy/plush/farwa,
+/turf/open/floor/wood/alt_four,
+/area/campaign/jungle_outpost/outpost/outer/west)
+"B" = (
+/turf/open/floor/carpet,
+/area/campaign/jungle_outpost/outpost/outer/west)
+"C" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"D" = (
+/obj/structure/platform{
+	dir = 6
+	},
+/turf/closed/wall,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"E" = (
+/turf/open/floor/wood/alt_four,
+/area/campaign/jungle_outpost/outpost/outer/west)
+"F" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"G" = (
+/obj/structure/catwalk,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"H" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"I" = (
+/obj/structure/closet/cabinet,
+/obj/item/tool/lighter/random,
+/turf/open/floor/wood/alt_four,
+/area/campaign/jungle_outpost/outpost/outer/west)
+"J" = (
+/obj/structure/catwalk,
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"K" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"L" = (
+/obj/structure/cable,
+/turf/open/floor/wood/alt_four,
+/area/campaign/jungle_outpost/outpost/outer/west)
+"M" = (
+/obj/structure/catwalk,
+/obj/structure/bed/chair,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"N" = (
+/obj/structure/catwalk,
+/obj/structure/platform,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"O" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"P" = (
+/obj/structure/table/wood/fancy,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood/alt_four,
+/area/campaign/jungle_outpost/outpost/outer/west)
+"R" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"S" = (
+/obj/structure/table/wood/fancy,
+/obj/item/binoculars,
+/turf/open/floor/wood/alt_four,
+/area/campaign/jungle_outpost/outpost/outer/west)
+"T" = (
+/obj/structure/catwalk,
+/obj/structure/catwalk,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"U" = (
+/obj/structure/platform_decoration{
+	dir = 5
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"V" = (
+/obj/machinery/door/airlock/colony/medical/hydroponics{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/wood/alt_four,
+/area/campaign/jungle_outpost/outpost/outer/west)
+"W" = (
+/obj/structure/catwalk,
+/obj/structure/platform{
+	dir = 6
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"X" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"Y" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"Z" = (
+/obj/structure/table/wood/fancy,
+/obj/machinery/light,
+/obj/machinery/light,
+/turf/open/floor/wood/alt_four,
+/area/campaign/jungle_outpost/outpost/outer/west)
+
+(1,1,1) = {"
+g
+q
+g
+g
+g
+g
+g
+g
+r
+H
+h
+o
+g
+C
+"}
+(2,1,1) = {"
+g
+g
+g
+g
+g
+q
+g
+s
+d
+T
+G
+a
+g
+g
+"}
+(3,1,1) = {"
+g
+g
+g
+j
+g
+g
+g
+s
+n
+s
+G
+N
+o
+Y
+"}
+(4,1,1) = {"
+O
+g
+g
+g
+g
+g
+s
+s
+k
+s
+s
+G
+H
+p
+"}
+(5,1,1) = {"
+z
+g
+l
+g
+g
+s
+s
+f
+L
+L
+V
+G
+N
+X
+"}
+(6,1,1) = {"
+z
+g
+g
+g
+s
+s
+y
+t
+t
+Z
+s
+G
+N
+C
+"}
+(7,1,1) = {"
+z
+s
+s
+s
+s
+i
+E
+B
+E
+A
+s
+M
+N
+F
+"}
+(8,1,1) = {"
+w
+G
+G
+G
+s
+P
+E
+E
+I
+s
+s
+G
+N
+g
+"}
+(9,1,1) = {"
+v
+K
+G
+T
+s
+s
+e
+S
+s
+s
+G
+G
+D
+g
+"}
+(10,1,1) = {"
+R
+x
+u
+G
+G
+s
+s
+n
+s
+G
+G
+W
+U
+g
+"}
+(11,1,1) = {"
+g
+g
+c
+u
+G
+G
+b
+J
+G
+G
+W
+U
+g
+g
+"}
+(12,1,1) = {"
+g
+g
+g
+x
+m
+K
+K
+K
+K
+D
+U
+g
+q
+C
+"}

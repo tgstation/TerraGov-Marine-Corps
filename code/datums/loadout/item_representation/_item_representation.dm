@@ -12,9 +12,11 @@
 	var/variant
 	/// If it's allowed to bypass the vendor check
 	var/bypass_vendor_check = FALSE
+	/// The contents in the storage (If there is storage)
+	var/list/contents = list()
 
 /datum/item_representation/New(obj/item/item_to_copy)
-	if(!item_to_copy)
+	if(!item_to_copy && !isobj(item_to_copy))
 		return
 	item_type = item_to_copy.type
 	if(item_to_copy.current_variant && item_to_copy.colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
@@ -51,6 +53,8 @@
 	if(item.current_variant && item.colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
 		item.current_variant = GLOB.loadout_variant_keys[variant]
 		item.update_icon()
+	if(item.storage_datum)
+		instantiate_current_storage_datum(seller, item, user)
 	return item
 
 /**
@@ -78,14 +82,12 @@
  * This is only able to represent /obj/item/storage
  */
 /datum/item_representation/storage
-	/// The contents in the storage
-	var/list/contents = list()
 
 /datum/item_representation/storage/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
-	if(!isstorage(item_to_copy))
-		CRASH("/datum/item_representation/storage created from an item that is not a storage")
+	if(!isobj(item_to_copy))
+		CRASH("/datum/item_representation/storage called New([item_to_copy]), when [item_to_copy] is not an obj")
 	..()
 	//Internal storage are not in vendors. They should always be available for the loadout vendors, because they are instantiated like any other object
 	if(istype(item_to_copy, /obj/item/storage/internal))
@@ -99,18 +101,22 @@
 			item_representation_type = /datum/item_representation
 		contents += new item_representation_type(thing_in_content)
 
-/datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
-	. = ..()
-	if(!.)
+///Like instantiate_object(), but returns a /datum instead of a /item, master is REQUIRED and it must be at least an atom
+/datum/item_representation/proc/instantiate_current_storage_datum(datum/loadout_seller/seller, atom/master = null, mob/living/user)
+	if(!master)
+		CRASH("instantiate_current_storage_datum called with null master")
+	item_type = master
+	if(!isatom(item_type))
+		CRASH("[item_type] is not a /atom, it cannot have storage")
+
+	if(is_type_in_typecache(item_type, GLOB.loadout_instantiate_default_contents)) //Some storage cannot handle custom contents
 		return
-	//Some storage cannot handle custom contents
-	if(is_type_in_typecache(item_type, GLOB.bypass_storage_content_save))
-		return
-	var/obj/item/storage/storage = .
+
+	var/datum/storage/current_storage_datum = item_type.storage_datum
 	var/list/obj/item/starting_items = list()
-	for(var/obj/item/I AS in storage.contents)
-		starting_items[I.type] = starting_items[I.type] + get_item_stack_number(I)
-	storage.delete_contents()
+	for(var/obj/item/item_in_contents AS in current_storage_datum.parent.contents)
+		starting_items[item_in_contents.type] = starting_items[item_in_contents.type] + get_item_stack_number(item_in_contents)
+	current_storage_datum.delete_contents()
 	for(var/datum/item_representation/item_representation AS in contents)
 		if(!item_representation.bypass_vendor_check && starting_items[item_representation.item_type] > 0)
 			var/amount_to_remove = get_item_stack_representation_amount(item_representation)
@@ -123,8 +129,8 @@
 		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, null, user)
 		if(!item_to_insert)
 			continue
-		if(storage.can_be_inserted(item_to_insert))
-			storage.handle_item_insertion(item_to_insert)
+		if(current_storage_datum.can_be_inserted(item_to_insert, user))
+			current_storage_datum.handle_item_insertion(item_to_insert)
 			continue
 		item_to_insert.forceMove(get_turf(user))
 

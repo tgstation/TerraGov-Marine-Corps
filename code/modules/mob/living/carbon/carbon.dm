@@ -21,15 +21,6 @@
 	if(nutrition && stat != DEAD)
 		adjust_nutrition(-HUNGER_FACTOR * 0.1 * ((m_intent == MOVE_INTENT_RUN) ? 2 : 1))
 
-
-/mob/living/carbon/relaymove(mob/user, direction)
-	if(user.incapacitated(TRUE))
-		return
-	if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
-		var/mob/living/carbon/xenomorph/larva/L = user
-		L.initiate_burst(src)
-
-
 /mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null)
 	if(status_flags & GODMODE)
 		return
@@ -39,7 +30,7 @@
 
 	apply_damage(shock_damage, BURN, def_zone, updating_health = TRUE)
 
-	playsound(loc, "sparks", 25, TRUE)
+	playsound(loc, SFX_SPARKS, 25, TRUE)
 	if (shock_damage > 10)
 		src.visible_message(
 			span_warning(" [src] was shocked by the [source]!"), \
@@ -99,7 +90,7 @@
 		return
 
 	if(IsAdminSleeping())
-		to_chat(shaker, span_highdanger("This player has been admin slept, do not interfere with them."))
+		to_chat(shaker, span_userdanger("This player has been admin slept, do not interfere with them."))
 		return
 
 	if(lying_angle || IsSleeping())
@@ -192,7 +183,7 @@
 		inertia_dir = get_dir(target, src)
 		step(src, inertia_dir)
 
-	visible_message(span_warning("[src] has thrown [thrown_thing]."), null, null, 5)
+	visible_message(span_warning("[src] throws [thrown_thing]."), null, null, 5)
 
 	playsound(src, 'sound/effects/throw.ogg', 30, 1)
 
@@ -202,13 +193,15 @@
 
 ///Called by the carbon throw_item() proc. Returns null if the item negates the throw, or a reference to the thing to suffer the throw else.
 /obj/item/proc/on_thrown(mob/living/carbon/user, atom/target)
-	if((flags_item & ITEM_ABSTRACT) || HAS_TRAIT(src, TRAIT_NODROP))
+	if((item_flags & ITEM_ABSTRACT) || HAS_TRAIT(src, TRAIT_NODROP))
 		return
 	user.dropItemToGround(src, TRUE)
 	return src
 
-/mob/living/carbon/fire_act(exposed_temperature, exposed_volume)
+/mob/living/carbon/fire_act(burn_level)
 	. = ..()
+	if(!.)
+		return
 	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT_ONE+10)
 
 //generates realistic-ish pulse output based on preset levels
@@ -340,14 +333,14 @@
 
 	sight = initial(sight)
 	lighting_alpha = initial(lighting_alpha)
-	see_in_dark = species.darksight
+	see_in_dark = initial(see_in_dark)
 	see_invisible = initial(see_invisible)
 
 	if(species)
 		if(species.lighting_alpha)
-			lighting_alpha = initial(species.lighting_alpha)
+			lighting_alpha = species.lighting_alpha
 		if(species.see_in_dark)
-			see_in_dark = initial(species.see_in_dark)
+			see_in_dark = species.see_in_dark
 
 	if(client.eye != src)
 		var/atom/A = client.eye
@@ -378,7 +371,7 @@
 		see_invisible = see_override
 
 	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
-		see_in_dark = max(see_in_dark, 8)
+		see_in_dark = max(see_in_dark, 10)
 		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 
 	return ..()
@@ -401,3 +394,9 @@
 		return
 	if(. == UNCONSCIOUS)
 		UnregisterSignal(src, COMSIG_MOVABLE_PULL_MOVED)
+
+/// Handles when the player clicks on themself with the grab item
+/mob/living/carbon/proc/grabbed_self_attack(mob/living/user)
+	SHOULD_CALL_PARENT(TRUE)
+	SIGNAL_HANDLER
+	return NONE

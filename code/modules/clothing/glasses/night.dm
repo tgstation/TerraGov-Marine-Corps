@@ -12,7 +12,7 @@
 		"Hammerhead Combat Robot" = 'icons/mob/species/robot/glasses_alpharii.dmi',
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
 	icon_state = "night"
-	item_state = "glasses"
+	worn_icon_state = "glasses"
 	darkness_view = 7
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 
@@ -51,10 +51,10 @@
 	name = "alien lens"
 	desc = "A thick, black coating over an alien's eyes, allowing them to see in the dark."
 	icon_state = "alien_lens"
-	item_state = "alien_lens"
+	worn_icon_state = "alien_lens"
 	darkness_view = 7
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-	flags_item = DELONDROP
+	item_flags = DELONDROP
 
 /obj/item/clothing/glasses/night/sectoid/Initialize(mapload)
 	. = ..()
@@ -76,7 +76,7 @@
 	desc = "A pair of designer sunglasses. This pair has been fitted with a KTLD head mounted sight."
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56sunglasses"
-	item_state = "m56sunglasses"
+	worn_icon_state = "m56sunglasses"
 	deactive_state = "degoggles_mesonsunglasses"
 	darkness_view = 5
 	toggleable = TRUE
@@ -88,7 +88,7 @@
 	name = "\improper Optical imager ballistic goggles"
 	desc = "Standard issue TGMC goggles. This pair has been fitted with an internal optical imaging scanner."
 	icon_state = "optgoggles"
-	item_state = "optgoggles"
+	worn_icon_state = "optgoggles"
 	deactive_state = "degoggles_optgoggles"
 	darkness_view = 2
 	toggleable = TRUE
@@ -100,10 +100,23 @@
 		"Chilvaris Combat Robot" = 'icons/mob/species/robot/glasses_charlit.dmi',
 		"Hammerhead Combat Robot" = 'icons/mob/species/robot/glasses_alpharii.dmi',
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
-	flags_equip_slot = ITEM_SLOT_EYES
+	equip_slot_flags = ITEM_SLOT_EYES
 	goggles = TRUE
 
 /obj/item/clothing/glasses/night/optgoggles/prescription
 	name = "\improper Optical imager prescription ballistic goggles"
 	desc = "Standard issue TGMC prescription goggles. This pair has been fitted with an internal optical imaging scanner."
 	prescription = TRUE
+
+/obj/item/clothing/glasses/night/vsd
+	name = "\improper CM-12 night vision goggles"
+	desc = "V.S.D's standard issue night vision goggles! For the extra tacticool feel! Crash Core and your superior officers are not responsible for blindness and burning."
+	icon = 'icons/mob/clothing/eyes.dmi'
+	icon_state = "vsd_nvg"
+	worn_icon_state = "vsd_nvg"
+	deactive_state = "vsd_nvg_off"
+	darkness_view = 9
+	toggleable = TRUE
+	actions_types = list(/datum/action/item_action/toggle)
+	tint = COLOR_GREEN
+	worn_layer = COLLAR_LAYER

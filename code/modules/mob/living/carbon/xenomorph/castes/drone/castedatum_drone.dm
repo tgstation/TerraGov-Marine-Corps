@@ -3,6 +3,7 @@
 	display_name = "Drone"
 	upgrade_name = ""
 	caste_desc = "A builder of hives. Only drones may evolve into Shrikes."
+	base_strain_type = /mob/living/carbon/xenomorph/drone
 	caste_type_path = /mob/living/carbon/xenomorph/drone
 
 	tier = XENO_TIER_ONE
@@ -12,18 +13,18 @@
 	gib_flick = "gibbed-a-small"
 
 	// *** Melee Attacks *** //
-	melee_damage = 18
+	melee_damage = 19
 
 	// *** Speed *** //
-	speed = -1.2
+	speed = -1.1
 	weeds_speed_mod = -0.4
 
 	// *** Plasma *** //
 	plasma_max = 1000
-	plasma_gain = 40
+	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 380
 
 	// *** Evolution *** //
 	evolution_threshold = 100

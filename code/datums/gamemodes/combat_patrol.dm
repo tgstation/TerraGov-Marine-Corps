@@ -1,11 +1,11 @@
 /datum/game_mode/hvh/combat_patrol
 	name = "Combat Patrol"
 	config_tag = "Combat Patrol"
-	flags_round_type = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
+	round_type_flags = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
 	shutters_drop_time = 3 MINUTES
 	whitelist_ship_maps = list(MAP_COMBAT_PATROL_BASE)
 	blacklist_ship_maps = null
-	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS)
+	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_CORSAT)
 	bioscan_interval = 3 MINUTES
 	/// Timer used to calculate how long till round ends
 	var/game_timer
@@ -36,11 +36,17 @@
 /datum/game_mode/hvh/combat_patrol/intro_sequence()
 	var/op_name_tgmc = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	var/op_name_som = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
-	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+	for(var/mob/living/carbon/human/human in GLOB.alive_human_list)
+		var/title
+		var/text
 		if(human.faction == FACTION_TERRAGOV)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_tgmc]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/tdf)
+			title = "<u>[op_name_tgmc]</u>"
+			text = "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>"
+			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(title, text, LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/tdf)
 		else
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_som]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/shokk)
+			title = "<u>[op_name_som]</u>"
+			text = "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>"
+			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(title, text, LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/shokk)
 
 /datum/game_mode/hvh/combat_patrol/game_end_countdown()
 	if(!game_timer)
@@ -115,9 +121,23 @@
 
 /datum/game_mode/hvh/combat_patrol/declare_completion()
 	. = ..()
-	to_chat(world, span_round_header("|[round_finished]|"))
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
+
+/datum/game_mode/hvh/combat_patrol/end_round_fluff()
+	send_ooc_announcement(
+		sender_override = "Round Concluded",
+		title = round_finished,
+		text = "Thus ends the story of the brave men and women of the TerraGov Marine Corps and Sons of Mars, and their struggle on [SSmapping.configs[GROUND_MAP].map_name].",
+		play_sound = FALSE,
+		style = OOC_ALERT_GAME
+	)
+
+/datum/game_mode/hvh/combat_patrol/get_deploy_point_message(mob/living/user)
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			. = "Eliminate all hostile forces in the AO, good luck team."
+		if(FACTION_SOM)
+			. = "Eliminate the TerraGov imperialists in the AO, glory to Mars!"
 
 ///round timer
 /datum/game_mode/hvh/combat_patrol/proc/set_game_timer()
@@ -143,5 +163,5 @@
 		var/mob/dead/observer/M = i
 		GLOB.key_to_time_of_role_death[M.key] -= respawn_time
 		M.playsound_local(M, 'sound/ambience/votestart.ogg', 75, 1)
-		M.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>RESPAWN WAVE AVAILABLE</u></span><br>" + "YOU CAN NOW RESPAWN.", /atom/movable/screen/text/screen_text/command_order)
+		M.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("RESPAWN WAVE AVAILABLE", "YOU CAN NOW RESPAWN.", CENTER_ALIGN_TEXT), /atom/movable/screen/text/screen_text/command_order)
 		to_chat(M, "<br><font size='3'>[span_attack("Reinforcements are gathering to join the fight, you can now respawn to join a fresh patrol!")]</font><br>")

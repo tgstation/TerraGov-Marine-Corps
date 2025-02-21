@@ -8,7 +8,7 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("called", "rang")
+	attack_verb = list("calls", "rings")
 	hitsound = 'sound/weapons/ring.ogg'
 
 /obj/item/clock
@@ -31,7 +31,7 @@
 	desc = "A peel from a banana."
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "banana_peel"
-	item_state = "banana_peel"
+	worn_icon_state = "banana_peel"
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 4
 	throw_range = 20
@@ -44,21 +44,21 @@
 	name = "gift"
 	desc = "A wrapped item."
 	icon = 'icons/obj/items/items.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
 	)
 	icon_state = "gift3"
 	var/size = 3
 	var/obj/item/gift = null
-	item_state = "gift"
+	worn_icon_state = "gift"
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/staff
 	name = "wizards staff"
 	desc = "Apparently a staff used by the wizard."
 	icon = 'icons/obj/wizard.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/toys_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/toys_right.dmi',
 	)
@@ -68,7 +68,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("bludgeoned", "whacked", "disciplined")
+	attack_verb = list("bludgeons", "whacks", "disciplines")
 
 /obj/item/staff/broom
 	name = "broom"
@@ -82,7 +82,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "skub"
 	w_class = WEIGHT_CLASS_BULKY
-	attack_verb = list("skubbed")
+	attack_verb = list("skubs")
 
 /obj/item/ectoplasm
 	name = "ectoplasm"
@@ -129,5 +129,19 @@
 	desc = "A small hematite-beaded silver rosary"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "rosary"
-	item_state = "rosary"
+	worn_icon_state = "rosary"
 	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/paper_map
+	name = "\improper paper map"
+	desc = "An ancient tool used by primitives to help them navigate."
+	icon = 'icons/obj/items/paper.dmi'
+	icon_state = "map"
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/album
+	name = "\improper photo album"
+	desc = "An album book full of someone's important memories."
+	icon = 'icons/obj/items/paper.dmi'
+	icon_state = "album"
+	w_class = WEIGHT_CLASS_SMALL

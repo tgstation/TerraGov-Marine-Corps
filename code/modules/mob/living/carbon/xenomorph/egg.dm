@@ -1,7 +1,7 @@
 /obj/alien/egg
 	name = "theoretical egg"
 	density = FALSE
-	flags_atom = CRITICAL_ATOM
+	atom_flags = CRITICAL_ATOM
 	max_integrity = 80
 	integrity_failure = 20
 	///What maturity stage are we in
@@ -69,10 +69,7 @@
 		return FALSE
 	return TRUE
 
-/obj/alien/egg/flamer_fire_act(burnlevel)
-	burst(TRUE)
-
-/obj/alien/egg/fire_act()
+/obj/alien/egg/fire_act(burn_level)
 	burst(TRUE)
 
 /obj/alien/egg/ex_act(severity)
@@ -83,7 +80,7 @@
 	name = "hugger egg"
 	icon_state = "egg_hugger"
 	density = FALSE
-	flags_atom = CRITICAL_ATOM
+	atom_flags = CRITICAL_ATOM
 	max_integrity = 80
 	maturity_time = 15 SECONDS
 	stage_ready_to_burst = 2
@@ -108,10 +105,10 @@
 		return
 	if(via_damage)
 		hugger_type = null
-		playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
+		playsound(loc, 'sound/effects/alien/egg_burst.ogg', 30)
 		flick("egg exploding", src)
 		return
-	playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
+	playsound(src.loc, 'sound/effects/alien/egg_move.ogg', 25)
 	flick("egg opening", src)
 	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(src), hivenumber)
 	hugger_type = null
@@ -140,7 +137,7 @@
 		if(3, 4)
 			xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] clears the hatched egg."), \
 			span_xenonotice("We clear the hatched egg."))
-			playsound(loc, "alien_resin_break", 25)
+			playsound(loc, SFX_ALIEN_RESIN_BREAK, 25)
 			qdel(src)
 
 /obj/alien/egg/hugger/attackby(obj/item/I, mob/user, params)
@@ -192,11 +189,11 @@
 		return
 	var/spread = EGG_GAS_DEFAULT_SPREAD
 	if(via_damage) // More violent destruction, more gas.
-		playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
+		playsound(loc, 'sound/effects/alien/egg_burst.ogg', 30)
 		flick("egg exploding", src)
 		spread = EGG_GAS_KILL_SPREAD
 	else
-		playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
+		playsound(src.loc, 'sound/effects/alien/egg_move.ogg', 25)
 		flick("egg opening", src)
 	spread += gas_size_bonus
 
@@ -208,7 +205,7 @@
 	if(maturity_stage > stage_ready_to_burst)
 		xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] clears the hatched egg."), \
 		span_xenonotice("We clear the broken egg."))
-		playsound(loc, "alien_resin_break", 25)
+		playsound(loc, SFX_ALIEN_RESIN_BREAK, 25)
 		qdel(src)
 
 	if(!issamexenohive(xeno_attacker) || xeno_attacker.a_intent != INTENT_HELP)

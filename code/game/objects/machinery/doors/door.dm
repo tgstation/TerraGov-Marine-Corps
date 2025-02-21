@@ -44,14 +44,14 @@
 	. = ..()
 	if(density)
 		layer = closed_layer
-		update_flags_heat_protection(get_turf(src))
+		update_heat_protection_flags(get_turf(src))
 	else
 		layer = open_layer
 
 	if(width > 1)
 		handle_multidoor()
 	var/turf/current_turf = get_turf(src)
-	current_turf.flags_atom &= ~ AI_BLOCKED
+	current_turf.atom_flags &= ~ AI_BLOCKED
 
 	if(glass)
 		allow_pass_flags |= PASS_GLASS
@@ -144,18 +144,6 @@
 	else if(density)
 		flick("door_deny", src)
 
-
-/obj/machinery/door/emp_act(severity)
-	if(prob(20/severity) && (istype(src,/obj/machinery/door/airlock) || istype(src,/obj/machinery/door/window)) )
-		open()
-	if(prob(40/severity))
-		if(secondsElectrified == 0)
-			secondsElectrified = -1
-			spawn(300)
-				secondsElectrified = 0
-	..()
-
-
 /obj/machinery/door/ex_act(severity)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
@@ -201,7 +189,6 @@
 		return FALSE
 	operating = TRUE
 	do_animate("opening")
-	icon_state = "door0"
 	set_opacity(FALSE)
 	for(var/t in fillers)
 		var/obj/effect/opacifier/O = t
@@ -212,7 +199,7 @@
 /obj/machinery/door/proc/finish_open()
 	layer = open_layer
 	density = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON_STATE)
 
 	if(operating)
 		operating = FALSE
@@ -227,14 +214,13 @@
 	if(operating)
 		return FALSE
 	operating = TRUE
-
 	density = TRUE
 	layer = closed_layer
 	do_animate("closing")
 	addtimer(CALLBACK(src, PROC_REF(finish_close)), openspeed)
 
 /obj/machinery/door/proc/finish_close()
-	update_icon()
+	update_appearance(UPDATE_ICON_STATE)
 	if(visible && !glass)
 		set_opacity(TRUE)	//caaaaarn!
 		for(var/t in fillers)
@@ -248,7 +234,7 @@
 /obj/machinery/door/proc/hasPower()
 	return !CHECK_BITFIELD(machine_stat, NOPOWER)
 
-/obj/machinery/door/proc/update_flags_heat_protection(turf/source)
+/obj/machinery/door/proc/update_heat_protection_flags(turf/source)
 
 /obj/machinery/door/proc/autoclose()
 	if(!density && !operating && !locked && !welded && autoclose)

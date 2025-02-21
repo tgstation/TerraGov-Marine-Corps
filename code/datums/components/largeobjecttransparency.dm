@@ -59,7 +59,7 @@
 		RegisterSignal(regist_tu, COMSIG_TURF_CHANGE, PROC_REF(OnTurfChange))
 		for(var/thing in regist_tu)
 			var/atom/check_atom = thing
-			if(!(check_atom.flags_atom & CRITICAL_ATOM))
+			if(!(check_atom.atom_flags & CRITICAL_ATOM))
 				continue
 			amounthidden++
 	if(amounthidden)
@@ -84,7 +84,7 @@
 
 /datum/component/largetransparency/proc/objectEnter(datum/source, atom/enterer)
 	SIGNAL_HANDLER
-	if(!(enterer.flags_atom & CRITICAL_ATOM))
+	if(!(enterer.atom_flags & CRITICAL_ATOM))
 		return
 	if(!amounthidden)
 		reduceAlpha()
@@ -92,7 +92,7 @@
 
 /datum/component/largetransparency/proc/objectLeave(datum/source, atom/leaver, direction)
 	SIGNAL_HANDLER
-	if(!(leaver.flags_atom & CRITICAL_ATOM))
+	if(!(leaver.atom_flags & CRITICAL_ATOM))
 		return
 	amounthidden = max(0, amounthidden - 1)
 	if(!amounthidden)

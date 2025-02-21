@@ -1,12 +1,8 @@
-///The alpha mask used on mobs submerged in liquid turfs
-#define MOB_LIQUID_TURF_MASK "mob_liquid_turf_mask"
-///The height of the mask itself in the icon state. Changes to the icon requires a change to this define
-#define MOB_LIQUID_TURF_MASK_HEIGHT 32
-
 /turf/open/liquid //Basic liquid turf parent
 	name = "liquid"
 	icon = 'icons/turf/ground_map.dmi'
 	can_bloody = FALSE
+	allow_construction = FALSE
 	///Multiplier on any slowdown applied to a mob moving through this turf
 	var/slowdown_multiplier = 1
 	///How high up on the mob water overlays sit
@@ -14,67 +10,67 @@
 	///How far down the mob visually drops down when in water
 	var/mob_liquid_depth = -5
 
+
+/turf/open/liquid/Initialize(mapload)
+	AddElement(/datum/element/submerge) //added first so it loads all the contents correctly
+	RegisterSignals(src, list(COMSIG_TURF_JUMP_ENDED_HERE, COMSIG_TURF_THROW_ENDED_HERE), PROC_REF(atom_entered))
+	return ..()
+
+/turf/open/liquid/Destroy(force)
+	if(!(get_submerge_height() - mob_liquid_height) && !(get_submerge_depth() - mob_liquid_depth))
+		RemoveElement(/datum/element/submerge)
+	return ..()
+
 /turf/open/liquid/AfterChange()
 	. = ..()
 	baseturfs = type
 
-/turf/open/liquid/attackby()
-	return
+/turf/open/liquid/is_weedable()
+	return FALSE
 
 /turf/open/liquid/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
+	return atom_entered(src, arrived)
+
+/turf/open/liquid/get_submerge_height(turf_only = FALSE)
+	. = ..()
 	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
-		return FALSE
-	. = TRUE
-
-	if(!ismob(arrived))
 		return
-
 	if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
 		return
+	. += mob_liquid_height
 
-	var/mob/arrived_mob = arrived
-	var/icon/mob_icon = icon(arrived_mob.icon)
-	var/height_to_use = (64 - mob_icon.Height()) * 0.5 //gives us the right height based on carbon's icon height relative to the 64 high alpha mask
+/turf/open/liquid/get_submerge_depth()
+	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
+		return 0
+	if(length(canSmoothWith) && !CHECK_MULTIPLE_BITFIELDS(smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
+		return 0
+	return mob_liquid_depth
 
-	if(arrived_mob.get_filter(MOB_LIQUID_TURF_MASK))
-		var/turf/open/liquid/old_turf = old_loc
-		if(!istype(old_turf))
-			CRASH("orphaned liquid alpha mask")
-		if(mob_liquid_height != old_turf.mob_liquid_height)
-			animate(arrived_mob.get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - mob_icon.Height()) * 0.5) - (MOB_LIQUID_TURF_MASK_HEIGHT - mob_liquid_height), time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown)
-		if(mob_liquid_depth != old_turf.mob_liquid_depth)
-			animate(arrived_mob, pixel_y = arrived_mob.pixel_y + mob_liquid_depth - old_turf.mob_liquid_depth, time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown, flags = ANIMATION_PARALLEL)
-	else
-		//The mask is spawned below the mob, then the animate() raises it up, giving the illusion of dropping into water, combining with the animate to actual drop the pixel_y into the water
-		arrived_mob.add_filter(MOB_LIQUID_TURF_MASK, 1, alpha_mask_filter(0, height_to_use - MOB_LIQUID_TURF_MASK_HEIGHT, icon('icons/turf/alpha_64.dmi', "liquid_alpha"), null, MASK_INVERSE))
+///Effects applied to anything that lands in the liquid
+/turf/open/liquid/proc/atom_entered(datum/source, atom/movable/arrived)
+	SIGNAL_HANDLER
+	if(!check_submerge(arrived))
+		return FALSE
+	entry_effects(arrived)
+	return TRUE
 
-		animate(arrived_mob.get_filter(MOB_LIQUID_TURF_MASK), y = height_to_use - (MOB_LIQUID_TURF_MASK_HEIGHT - mob_liquid_height), time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown)
-		animate(arrived_mob, pixel_y = arrived_mob.pixel_y + mob_liquid_depth, time = arrived_mob.cached_multiplicative_slowdown + arrived_mob.next_move_slowdown, flags = ANIMATION_PARALLEL)
+///Returns TRUE if the AM is actually in the liquid instead of above it
+/turf/open/liquid/proc/check_submerge(atom/movable/submergee)
+	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
+		return FALSE
+	if(submergee.throwing)
+		return FALSE
+	if(HAS_TRAIT(submergee, TRAIT_NOSUBMERGE))
+		return FALSE
+	return TRUE
 
-	if(!arrived_mob.throwing)
-		arrived_mob.next_move_slowdown += (arrived_mob.get_liquid_slowdown() * slowdown_multiplier)
-
-/turf/open/liquid/Exited(atom/movable/leaver, direction)
-	. = ..()
-	if(!ismob(leaver))
+///Applies liquid effects to an AM
+/turf/open/liquid/proc/entry_effects(atom/movable/target)
+	if(!isliving(target))
 		return
-	var/mob/mob_leaver = leaver
-	if(!mob_leaver.get_filter(MOB_LIQUID_TURF_MASK))
-		return
-
-	var/turf/open/liquid/new_turf = mob_leaver.loc
-	if(istype(new_turf))
-		if(length(new_turf.canSmoothWith))
-			if(!SEND_SIGNAL(new_turf, COMSIG_TURF_CHECK_COVERED) && CHECK_MULTIPLE_BITFIELDS(new_turf.smoothing_junction, (SOUTH_JUNCTION|EAST_JUNCTION|WEST_JUNCTION)))
-				return
-		else if(!SEND_SIGNAL(new_turf, COMSIG_TURF_CHECK_COVERED))
-			return
-
-	var/icon/mob_icon = icon(mob_leaver.icon)
-	animate(mob_leaver.get_filter(MOB_LIQUID_TURF_MASK), y = ((64 - mob_icon.Height()) * 0.5) - MOB_LIQUID_TURF_MASK_HEIGHT, time = mob_leaver.cached_multiplicative_slowdown + mob_leaver.next_move_slowdown)
-	animate(mob_leaver, pixel_y = mob_leaver.pixel_y - mob_liquid_depth, time = mob_leaver.cached_multiplicative_slowdown + mob_leaver.next_move_slowdown, flags = ANIMATION_PARALLEL)
-	addtimer(CALLBACK(mob_leaver, TYPE_PROC_REF(/atom, remove_filter), MOB_LIQUID_TURF_MASK), mob_leaver.cached_multiplicative_slowdown + mob_leaver.next_move_slowdown)
+	var/mob/living_target = target
+	living_target.next_move_slowdown += (living_target.get_liquid_slowdown() * slowdown_multiplier)
 
 /turf/open/liquid/water
 	name = "river"
@@ -85,6 +81,14 @@
 	heavyxenofootstep = FOOTSTEP_WATER
 	minimap_color = MINIMAP_WATER
 
+/turf/open/liquid/water/Initialize(mapload)
+	. = ..()
+	if(mob_liquid_height > 15)
+		shoefootstep = FOOTSTEP_SWIM
+		barefootstep = FOOTSTEP_SWIM
+		mediumxenofootstep = FOOTSTEP_SWIM
+		heavyxenofootstep = FOOTSTEP_SWIM
+
 /turf/open/liquid/water/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	if(!.)
@@ -94,7 +98,7 @@
 		return
 
 	var/mob/living/carbon/carbon_mob = arrived
-	carbon_mob.clean_mob()
+	carbon_mob.wash()
 
 	if(carbon_mob.on_fire)
 		carbon_mob.ExtinguishMob()
@@ -132,6 +136,15 @@
 		SMOOTH_GROUP_MINERAL_STRUCTURES,
 	)
 
+/turf/open/liquid/water/river/autosmooth/desert
+	icon = 'icons/turf/floors/river_desert.dmi'
+
+/turf/open/liquid/water/river/autosmooth/desert/deep
+	icon_state = "river_deep-icon"
+	mob_liquid_height = 18
+	mob_liquid_depth = -8
+	slowdown_multiplier = 1.5
+
 /turf/open/liquid/water/river/autosmooth/deep
 	icon_state = "river_deep-icon"
 	mob_liquid_height = 18
@@ -143,12 +156,12 @@
 	name = "river"
 	icon = 'icons/turf/desertdam_map.dmi'
 
-/turf/open/liquid/water/river/desertdam/Initialize() //needed to avoid visual bugs with the river
-	return INITIALIZE_HINT_NORMAL //haha totally normal, TODO DEAL WITH THIS INSTEAD OF THIS BANDAID
-
 //shallow water
 /turf/open/liquid/water/river/desertdam/clean/shallow
 	icon_state = "shallow_water_clean"
+
+/turf/open/liquid/water/river/desertdam/clean/shallow/dirty
+	icon_state = "shallow_water_dirty"
 
 //shallow water transition to deep
 /turf/open/liquid/water/river/desertdam/clean/shallow_edge
@@ -193,9 +206,6 @@
 	icon_state = "shallow_water_cave_waterway_edge"
 
 // LAVA
-
-#define LAVA_TILE_BURN_DAMAGE 20
-
 /turf/open/liquid/lava
 	name = "lava"
 	icon = 'icons/turf/lava.dmi'
@@ -206,20 +216,6 @@
 	light_color = LIGHT_COLOR_LAVA
 	minimap_color = MINIMAP_LAVA
 	slowdown_multiplier = 1.5
-
-/turf/open/liquid/lava/is_weedable()
-	return FALSE
-
-/turf/open/liquid/lava/Initialize(mapload)
-	. = ..()
-	var/turf/current_turf = get_turf(src)
-	if(current_turf && density)
-		current_turf.flags_atom |= AI_BLOCKED
-
-/turf/open/liquid/lava/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	. = ..()
-	if(burn_stuff(arrived))
-		START_PROCESSING(SSobj, src)
 
 /turf/open/liquid/lava/Exited(atom/movable/leaver, direction)
 	. = ..()
@@ -232,59 +228,17 @@
 	if(!burn_stuff())
 		STOP_PROCESSING(SSobj, src)
 
-/turf/open/liquid/lava/proc/burn_stuff(AM)
-	. = FALSE
-
-	var/thing_to_check = src
-	if (AM)
-		thing_to_check = list(AM)
-	for(var/thing in thing_to_check)
-		if(ismecha(thing))
-			var/obj/vehicle/sealed/mecha/burned_mech = thing
-			burned_mech.take_damage(rand(40, 120), BURN, FIRE)
-			. = TRUE
-
-		else if(isobj(thing))
-			var/obj/O = thing
-			O.fire_act(10000, 1000)
-
-		else if (isliving(thing))
-			var/mob/living/L = thing
-
-			if(L.stat == DEAD)
-				continue
-
-			if(!L.on_fire || L.getFireLoss() <= 200)
-				var/damage_amount = max(L.modify_by_armor(LAVA_TILE_BURN_DAMAGE, FIRE), LAVA_TILE_BURN_DAMAGE * 0.3) //snowflakey interaction to stop complete lava immunity
-				L.take_overall_damage(damage_amount, BURN, updating_health = TRUE, max_limbs = 3)
-				if(!CHECK_BITFIELD(L.pass_flags, PASS_FIRE))//Pass fire allow to cross lava without igniting
-					L.adjust_fire_stacks(20)
-					L.IgniteMob()
-				. = TRUE
-
-/turf/open/liquid/lava/attackby(obj/item/C, mob/user, params)
+/turf/open/liquid/lava/entry_effects(atom/movable/target)
 	. = ..()
-	if(.)
-		return
-	if(istype(C, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = C
-		var/turf/open/lavaland/catwalk/H = locate(/turf/open/lavaland/catwalk, src)
-		if(H)
-			to_chat(user, span_warning("There is already a catwalk here!"))
-			return
-		if(!do_after(user, 5 SECONDS, IGNORE_HELD_ITEM))
-			to_chat(user, span_warning("It takes time to construct a catwalk!"))
-			return
-		if(R.use(4))
-			to_chat(user, span_notice("You construct a heatproof catwalk."))
-			playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
-			ChangeTurf(/turf/open/lavaland/catwalk/built)
-			var/turf/current_turf = get_turf(src)
-			if(current_turf && density)
-				current_turf.flags_atom &= ~AI_BLOCKED
-		else
-			to_chat(user, span_warning("You need four rods to build a heatproof catwalk."))
-		return
+	if(burn_stuff(target))
+		START_PROCESSING(SSobj, src)
+
+///Handles burning turf contents or an entering AM. Returns true to keep processing
+/turf/open/liquid/lava/proc/burn_stuff(AM)
+	var/thing_to_check = AM ? list(AM) : src
+	for(var/atom/thing AS in thing_to_check)
+		if(thing.lava_act())
+			. = TRUE
 
 /turf/open/liquid/lava/corner
 	icon_state = "corner"
@@ -320,3 +274,19 @@
 	smoothing_groups = list(SMOOTH_GROUP_FLOOR_LAVA)
 	canSmoothWith = list(SMOOTH_GROUP_FLOOR_LAVA, SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS, SMOOTH_GROUP_WINDOW_FULLTILE)
 	base_icon_state = "lava"
+
+//Mapping helpers
+/turf/open/liquid/lava/catwalk
+	icon_state = "lavacatwalk"
+
+/turf/open/liquid/lava/catwalk/Initialize(mapload)
+	. = ..()
+	icon_state = "full"
+	new /obj/structure/catwalk(src)
+
+/turf/open/liquid/lava/autosmoothing/catwalk
+	icon_state = "lavacatwalk"
+
+/turf/open/liquid/lava/autosmoothing/catwalk/Initialize(mapload)
+	. = ..()
+	new /obj/structure/catwalk(src)

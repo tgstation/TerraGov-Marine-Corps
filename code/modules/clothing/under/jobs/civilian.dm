@@ -17,20 +17,20 @@
 	name = "quartermaster's jumpsuit"
 	desc = "It's a jumpsuit worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
 	icon_state = "qm"
-	item_state = "lb_suit"
+	worn_icon_state = "lb_suit"
 
 /obj/item/clothing/under/rank/cargotech
 	name = "cargo technician's jumpsuit"
 	desc = "Shooooorts! They're comfy and easy to wear!"
 	icon_state = "cargotech"
-	item_state = "lb_suit"
-	flags_armor_protection = CHEST|GROIN|ARMS
+	worn_icon_state = "lb_suit"
+	armor_protection_flags = CHEST|GROIN|ARMS
 
 /obj/item/clothing/under/rank/chaplain
 	desc = "It's a black jumpsuit, often worn by religious folk."
 	name = "chaplain's jumpsuit"
 	icon_state = "chaplain"
-	item_state = "bl_suit"
+	worn_icon_state = "bl_suit"
 	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/chef
@@ -49,11 +49,19 @@
 	icon_state = "clown"
 	adjustment_variants = list()
 
+/obj/item/clothing/under/rank/clown/erp
+	name = "reinforced clown suit"
+	desc = "<b><i>'HONK!'</i></b>"
+	has_sensor = 2
+	siemens_coefficient = 0.9
+	attachments_allowed = list(/obj/item/armor_module/storage/uniform/webbing/erp)
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/webbing/erp)
+
 /obj/item/clothing/under/rank/head_of_personnel
 	desc = "It's a jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
 	name = "head of personnel's jumpsuit"
 	icon_state = "hop"
-	item_state = "b_suit"
+	worn_icon_state = "b_suit"
 
 /obj/item/clothing/under/rank/head_of_personnel_whimsy
 	desc = "A blue jacket and red tie, with matching red cuffs! Snazzy. Wearing this makes you feel more important than your job title does."
@@ -65,7 +73,7 @@
 	desc = "It's a jumpsuit designed to protect against minor plant-related hazards."
 	name = "botanist's jumpsuit"
 	icon_state = "hydroponics"
-	item_state = "g_suit"
+	worn_icon_state = "g_suit"
 	permeability_coefficient = 0.50
 
 /obj/item/clothing/under/rank/internalaffairs

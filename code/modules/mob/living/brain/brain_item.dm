@@ -3,13 +3,13 @@
 	max_integrity = 400 //They need to live awhile longer than other organs.
 	desc = "A piece of juicy meat found in a person's head."
 	icon_state = "brain2"
-	flags_atom = NONE
+	atom_flags = NONE
 	force = 1
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 1
 	throw_speed = 3
 	throw_range = 5
-	attack_verb = list("attacked", "slapped", "whacked")
+	attack_verb = list("attacks", "slapped", "whacked")
 	organ_type = /datum/internal_organ/brain
 	organ_tag = "brain"
 

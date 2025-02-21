@@ -114,8 +114,8 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 
 	return ..()									// then go ahead and delete the cable
 
-/obj/structure/cable/deconstruct(disassembled = TRUE)
-	if(!(flags_atom & NODECONSTRUCT))
+/obj/structure/cable/deconstruct(disassembled = TRUE, mob/living/blame_mob)
+	if(!(atom_flags & NODECONSTRUCT))
 		new /obj/item/stack/cable_coil(drop_location(), 1)
 	return ..()
 
@@ -385,11 +385,11 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	gender = NEUTER //That's a cable coil sounds better than that's some cable coils
 	icon = 'icons/obj/power.dmi'
 	icon_state = "coil"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
 	)
-	item_state = "coil"
+	worn_icon_state = "coil"
 	max_amount = MAXCOIL
 	amount = MAXCOIL
 	merge_type = /obj/item/stack/cable_coil // This is here to let its children merge between themselves
@@ -397,9 +397,9 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 5
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
-	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
+	attack_verb = list("whips", "lashes", "disciplines", "flogs")
 	singular_name = "cable piece"
 	usesound = 'sound/items/deconstruct.ogg'
 	var/obj/structure/cable/target_type = /obj/structure/cable

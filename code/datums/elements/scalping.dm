@@ -26,6 +26,6 @@
 /obj/item/scalp
 	name = "scalp"
 	desc = "The mutilated scalp of a slain xeno, proof of a great victory!"
-	icon = 'icons/unused/Marine_research.dmi'
+	icon = 'icons/Xeno/xeno_materials.dmi'
 	icon_state = "chitin-chunk"
 	w_class = WEIGHT_CLASS_TINY

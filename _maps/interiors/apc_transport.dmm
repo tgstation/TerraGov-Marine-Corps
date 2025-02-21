@@ -1,0 +1,172 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/interior/apc/nineteen,
+/area/interior/apc)
+"b" = (
+/turf/closed/interior/apc/four,
+/area/interior/apc)
+"c" = (
+/obj/structure/ammo_rack/secondary{
+	pixel_y = -13
+	},
+/turf/closed/interior/apc/two,
+/area/interior/apc)
+"f" = (
+/turf/closed/interior/apc/twentyfour,
+/area/interior/apc)
+"g" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense,
+/turf/closed/interior/apc/six,
+/area/interior/apc)
+"j" = (
+/turf/closed/interior/apc/twentythree,
+/area/interior/apc)
+"l" = (
+/turf/closed/interior/apc/five,
+/area/interior/apc)
+"m" = (
+/obj/structure/periscope/apc,
+/obj/structure/bed/chair/loader_seat{
+	pixel_y = -5
+	},
+/turf/open/interior/apc/nine,
+/area/interior/apc)
+"n" = (
+/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/structure/bed/chair/dropship/doublewide/right,
+/turf/open/interior/apc/eight,
+/area/interior/apc)
+"p" = (
+/turf/closed/interior/apc/twelve,
+/area/interior/apc)
+"q" = (
+/turf/closed/interior/apc/three,
+/area/interior/apc)
+"r" = (
+/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/structure/bed/chair/dropship/doublewide/right,
+/turf/open/interior/apc/nine,
+/area/interior/apc)
+"s" = (
+/obj/structure/periscope/apc,
+/obj/structure/bed/chair/loader_seat{
+	pixel_y = -5
+	},
+/turf/open/interior/apc/twentynine,
+/area/interior/apc)
+"u" = (
+/obj/structure/gun_breech/secondary,
+/turf/open/interior/apc/twentytwo,
+/area/interior/apc)
+"x" = (
+/turf/closed/interior/apc/twentyseven,
+/area/interior/apc)
+"y" = (
+/turf/closed/interior/apc/two,
+/area/interior/apc)
+"z" = (
+/turf/closed/interior/tank/door,
+/area/interior/apc)
+"B" = (
+/turf/closed/interior/apc/one,
+/area/interior/apc)
+"C" = (
+/obj/structure/bed/chair/vehicle_crew/driver_gunner{
+	pixel_x = -3;
+	pixel_y = -5
+	},
+/turf/open/interior/apc/eleven,
+/area/interior/apc)
+"E" = (
+/turf/open/interior/apc/fourteen,
+/area/interior/apc)
+"F" = (
+/turf/closed/interior/apc/thirteen,
+/area/interior/apc)
+"G" = (
+/turf/closed/interior/apc/twentyeight,
+/area/interior/apc)
+"I" = (
+/turf/open/interior/apc/sixteen,
+/area/interior/apc)
+"J" = (
+/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/structure/bed/chair/dropship/doublewide/right,
+/turf/open/interior/apc/twentynine,
+/area/interior/apc)
+"L" = (
+/turf/closed/interior/apc/seventeen,
+/area/interior/apc)
+"M" = (
+/turf/open/interior/apc/ten,
+/area/interior/apc)
+"R" = (
+/turf/closed/interior/apc/twenty,
+/area/interior/apc)
+"T" = (
+/turf/open/interior/apc/fifteen,
+/area/interior/apc)
+
+(1,1,1) = {"
+B
+F
+z
+F
+a
+"}
+(2,1,1) = {"
+y
+n
+E
+J
+x
+"}
+(3,1,1) = {"
+y
+r
+T
+J
+x
+"}
+(4,1,1) = {"
+y
+r
+T
+J
+x
+"}
+(5,1,1) = {"
+q
+r
+T
+J
+x
+"}
+(6,1,1) = {"
+b
+m
+T
+s
+x
+"}
+(7,1,1) = {"
+c
+M
+I
+u
+x
+"}
+(8,1,1) = {"
+l
+C
+L
+j
+R
+"}
+(9,1,1) = {"
+g
+p
+f
+f
+G
+"}

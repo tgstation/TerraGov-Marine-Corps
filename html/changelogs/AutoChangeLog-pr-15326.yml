@@ -1,4 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - bugfix: "water is now scannable by medical scanners"

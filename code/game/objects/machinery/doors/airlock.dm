@@ -7,7 +7,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 360
-	flags_atom = HTML_USE_INITAL_ICON_1
+	atom_flags = HTML_USE_INITAL_ICON_1
 	obj_flags = CAN_BE_HIT
 
 	var/aiControlDisabled = 0 //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
@@ -40,14 +40,14 @@
 /obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
 	if(issilicon(user))
 		return ..(user)
-	if(iscarbon(user) && isElectrified())
+	if(iscarbon(user) && isElectrified() && isturf(user.loc))
 		if(!justzap)
 			if(shock(user, 100))
 				justzap = TRUE
 				spawn (openspeed)
 					justzap = FALSE
 				return
-		else /*if(justzap)*/
+		else
 			return
 	else if(ishuman(user) && user.hallucination > 50 && prob(10) && !operating)
 		var/mob/living/carbon/human/H = user
@@ -85,6 +85,13 @@
 			welded = TRUE
 		if(24 to 30)
 			machine_stat ^= PANEL_OPEN
+
+/obj/machinery/door/airlock/emp_act(severity)
+	. = ..()
+	if(prob(75 / severity))
+		set_electrified(MACHINE_DEFAULT_ELECTRIFY_TIME)
+	if(prob(30 / severity))
+		open()
 
 ///connect potential airlocks to each other for cycling
 /obj/machinery/door/airlock/proc/cyclelinkairlock()

@@ -9,7 +9,7 @@
 	anchored = TRUE
 	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
-	destroy_sound = "alien_resin_break"
+	destroy_sound = SFX_ALIEN_RESIN_BREAK
 	///defines for trap type to trigger on activation
 	var/trap_type
 	///The hugger inside our trap
@@ -92,12 +92,7 @@
 		else
 			. += "It's empty."
 
-/obj/structure/xeno/trap/flamer_fire_act(burnlevel)
-	hugger?.kill_hugger()
-	trigger_trap()
-	set_trap_type(null)
-
-/obj/structure/xeno/trap/fire_act()
+/obj/structure/xeno/trap/fire_act(burn_level)
 	hugger?.kill_hugger()
 	trigger_trap()
 	set_trap_type(null)
@@ -109,7 +104,7 @@
 		return
 	if(AM && (hivenumber == AM.get_xeno_hivenumber()))
 		return
-	playsound(src, "alien_resin_break", 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 	if(iscarbon(AM))
 		var/mob/living/carbon/crosser = AM
 		crosser.visible_message(span_warning("[crosser] trips on [src]!"), span_danger("You trip on [src]!"))
@@ -136,7 +131,7 @@
 		if(TRAP_ACID_STRONG)
 			for(var/turf/acided AS in RANGE_TURFS(1, src))
 				new /obj/effect/xenomorph/spray(acided, 12 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
-	xeno_message("A [trap_type] trap at [AREACOORD_NO_Z(src)] has been triggered!", "xenoannounce", 5, hivenumber,  FALSE, get_turf(src), 'sound/voice/alien_talk2.ogg', FALSE, null, /atom/movable/screen/arrow/attack_order_arrow, COLOR_ORANGE, TRUE)
+	xeno_message("A [trap_type] trap at [AREACOORD_NO_Z(src)] has been triggered!", "xenoannounce", 5, hivenumber,  FALSE, get_turf(src), 'sound/voice/alien/talk2.ogg', FALSE, null, /atom/movable/screen/arrow/attack_order_arrow, COLOR_ORANGE, TRUE)
 	set_trap_type(null)
 
 /// Move the hugger out of the trap

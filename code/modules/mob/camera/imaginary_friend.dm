@@ -199,7 +199,7 @@
 		to_chat(M, "[link] [dead_rendered]")
 
 
-/mob/camera/imaginary_friend/Move(newloc, Dir = 0)
+/mob/camera/imaginary_friend/Move(atom/newloc, direction, glide_size_override)
 	if(world.time < move_delay)
 		return FALSE
 

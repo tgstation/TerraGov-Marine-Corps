@@ -58,7 +58,7 @@
 	var/gender = NEUTER // Determines if the accessory will be skipped or included in random hair generations
 	var/locked = FALSE		//Is this part locked from roundstart selection? Used for parts that apply effects
 
-	var/list/species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetics", "Vat-Grown", "Vatborn") // Restrict some styles to specific species
+	var/list/species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetics", "Vat-Grown", "Vatborn", "Prototype Supersoldier") // Restrict some styles to specific species
 	var/do_colouration = TRUE	// Whether or not the accessory can be affected by colouration
 
 	var/datum/greyscale_config/greyscale_config
@@ -73,7 +73,7 @@
 */
 
 /datum/sprite_accessory/hair
-	species_allowed = list("Human","Synthetic","Early Synthetic", "Vat-Grown", "Vatborn")
+	species_allowed = list("Human","Synthetic","Early Synthetic", "Vat-Grown", "Vatborn", "Prototype Supersoldier")
 	icon = 'icons/mob/Human_face.dmi'
 
 /datum/sprite_accessory/hair/bald
@@ -479,6 +479,11 @@
 	icon_state = "hair_highandtight"
 	gender = MALE
 
+/datum/sprite_accessory/hair/highdrills
+	name = "Twin Drills"
+	icon_state = "hair_highdrills"
+	gender = FEMALE
+
 /datum/sprite_accessory/hair/highfade
 	name = "High Fade"
 	icon_state = "hair_highfade"
@@ -573,6 +578,11 @@
 	name = "Long Hair Alternate 2"
 	icon_state = "hair_longalt2"
 
+/datum/sprite_accessory/hair/longdtails
+	name = "Big Tails"
+	icon_state = "hair_longdtails"
+	gender = FEMALE
+
 /datum/sprite_accessory/hair/longstraight
 	name = "Long Straight Hair"
 	icon_state = "hair_longstraight"
@@ -603,11 +613,6 @@
 	name = "Marine Flat Top"
 	icon_state = "hair_mflattop"
 	gender = FEMALE
-
-/datum/sprite_accessory/hair/marine_mohawk
-	name = "Marine Mohawk"
-	icon_state = "hair_mmarinemohawk"
-	gender = MALE
 
 /datum/sprite_accessory/hair/marysue
 	name = "Mary Sue"
@@ -1316,8 +1321,8 @@
 	icon_state = "facial_brokenman_s"
 	greyscale_config = /datum/greyscale_config/broken_man
 
-	
-	
+
+
 //skin styles - WIP
 //going to have to re-integrate this with surgery
 //let the icon_state hold an icon preview for now
@@ -1327,12 +1332,12 @@
 /datum/sprite_accessory/skin/human
 	name = "Default human skin"
 	icon_state = "default"
-	species_allowed = list("Human")
+	species_allowed = list("Human", "Prototype Supersoldier")
 
 /datum/sprite_accessory/skin/human_tatt01
 	name = "Tatt01 human skin"
 	icon_state = "tatt1"
-	species_allowed = list("Human")
+	species_allowed = list("Human", "Prototype Supersoldier")
 
 /datum/sprite_accessory/moth_wings
 	species_allowed = list("Moth")

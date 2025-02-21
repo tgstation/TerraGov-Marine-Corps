@@ -1,14 +1,12 @@
 GLOBAL_LIST_EMPTY(ghost_images_default) //this is a list of the default (non-accessorized, non-dir) images of the ghosts themselves
 GLOBAL_LIST_EMPTY(ghost_images_simple) //this is a list of all ghost images as the simple white ghost
 
-
 GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
-
 
 /mob/dead/observer
 	name = "ghost"
 	desc = "It's a g-g-g-g-ghooooost!"
-	icon = 'icons/mob/mob.dmi'
+	icon = 'icons/mob/ghost.dmi'
 	icon_state = "ghost"
 	layer = GHOST_LAYER
 	stat = DEAD
@@ -27,7 +25,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/datum/orbit_menu/orbit_menu
 	var/mob/observetarget = null	//The target mob that the ghost is observing. Used as a reference in logout()
 
-
 	//We store copies of the ghost display preferences locally so they can be referred to even if no client is connected.
 	//If there's a bug with changing your ghost settings, it's probably related to this.
 	var/ghost_others = GHOST_OTHERS_DEFAULT_OPTION
@@ -38,6 +35,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/lastsetting = null	//Stores the last setting that ghost_others was set to, for a little more efficiency when we update ghost images. Null means no update is necessary
 
 	var/inquisitive_ghost = FALSE
+	/// Stores variable set in toggle_health_scan.
+	var/health_scan = FALSE
+	/// Creates health_analyzer to scan with on toggle_health_scan toggle.
+	var/obj/item/healthanalyzer/integrated/health_analyzer
 	///A weakref to the original corpse of the observer
 	var/datum/weakref/can_reenter_corpse
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
@@ -87,10 +88,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	update_icon()
 
-	if(!T)
+	if(!T && length(GLOB.latejoin))// e.g no shipmap spawn during unit tests or admit shittery
 		T = pick(GLOB.latejoin)
 
-	abstract_move(T)
+	if(T)
+		abstract_move(T)
 
 	if(!name)
 		name = random_unique_name(gender)
@@ -116,6 +118,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	QDEL_NULL(orbit_menu)
 	GLOB.observer_list -= src //"wait isnt this done in logout?" Yes it is but because this is clients thats unreliable so we do it again here
 	SSmobs.dead_players_by_zlevel[z] -= src
+
+	QDEL_NULL(health_analyzer)
 
 	return ..()
 
@@ -202,7 +206,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
 			if("Join as Larva")
-				SSticker.mode.attempt_to_join_as_larva(ghost.client)
+				var/mob/living/carbon/human/original_corpse = ghost.can_reenter_corpse.resolve()
+				if(SSticker.mode.attempt_to_join_as_larva(ghost.client) && ishuman(original_corpse))
+					original_corpse?.set_undefibbable()
 		return
 
 	else if(href_list["preference"])
@@ -300,10 +306,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		GLOB.key_to_time_of_xeno_death[ghost.key] = world.time //If you ghost as a xeno that is not a minion, sets respawn timer
 
 
-/mob/dead/observer/Move(atom/newloc, direct)
+/mob/dead/observer/Move(atom/newloc, direct, glide_size_override = 32)
 	if(updatedir)
 		setDir(direct)//only update dir if we actually need it, so overlays won't spin on base sprites that don't have directions of their own
-
+	if(glide_size_override)
+		set_glide_size(glide_size_override)
 	if(newloc)
 		abstract_move(newloc)
 		update_parallax_contents()
@@ -425,15 +432,16 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 
-/mob/dead/observer/verb/teleport(area/A in GLOB.sorted_areas)
+/mob/dead/observer/verb/teleport()
 	set category = "Ghost"
 	set name = "Teleport"
 	set desc = "Teleport to an area."
 
-	if(!A)
+	var/area/newloc = tgui_input_list(usr, "Choose an area to teleport to.", "Teleport", GLOB.sorted_areas)
+	if(!newloc)
 		return
 
-	abstract_move(pick(get_area_turfs(A)))
+	abstract_move(pick(get_area_turfs(newloc)))
 	update_parallax_contents()
 
 
@@ -848,11 +856,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	if(!isnull(can_reenter_corpse) && tgui_alert(usr, "Are you sure? You won't be able to get revived.", "Confirmation", list("Yes", "No")) == "Yes")
 		var/mob/living/carbon/human/human_current = can_reenter_corpse.resolve()
-		if(istype(human_current))
+		if(ishuman(human_current))
 			human_current.set_undefibbable(TRUE)
-
 		can_reenter_corpse = null
-		to_chat(usr, span_notice("You can no longer be revived."))
+		to_chat(usr, span_boldwarning("You can no longer be revived."))
 		return
 
 	to_chat(usr, span_warning("You already can't be revived."))
@@ -870,6 +877,21 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	else
 		to_chat(src, span_notice("You will no longer examine things you click on."))
 
+/// Toggle for whether you health-scan living beings on click as observer.
+/mob/dead/observer/verb/toggle_health_scan()
+	set category = "Ghost"
+	set name = "Toggle Health Scan"
+	set desc = "Toggles whether you health-scan living beings on click"
+
+	if(health_scan)
+		to_chat(src, span_notice("Health scan disabled."))
+		health_scan = FALSE
+		QDEL_NULL(health_analyzer)
+	else
+		to_chat(src, span_notice("Health scan enabled."))
+		health_scan = TRUE
+		health_analyzer = new()
+
 /mob/dead/observer/verb/join_valhalla()
 	set name = "Join Valhalla"
 	set category = "Ghost"
@@ -886,10 +908,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(usr, span_boldnotice("You must be dead to use this!"))
 		return
 
-	var/choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. Xenomorph or Marine?", "Join Valhalla", list("Xenomorph", "Marine"))
+	var/choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. This will make you unrevivable. Xenomorph or Marine?", "Join Valhalla", list("Xenomorph", "Marine"))
 
 	if(!choice)
 		return
+
+	var/mob/living/carbon/human/original_corpse = can_reenter_corpse?.resolve()
+	if(ishuman(original_corpse))
+		original_corpse?.set_undefibbable(TRUE)
 
 	if(choice == "Xenomorph")
 		var/mob/living/carbon/xenomorph/xeno_choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What xenomorph would you like to have?", "Join Valhalla", GLOB.all_xeno_types)

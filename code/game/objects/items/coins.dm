@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	name = "Coin"
 	icon_state = "coin"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_TINY
 	var/string_attached
 	var/sides = 2
@@ -85,5 +85,5 @@
 		comment = "tails"
 	else if(result == 2)
 		comment = "heads"
-	user.visible_message(span_notice("[user] has thrown \the [src]. It lands on [comment]! "), \
+	user.visible_message(span_notice("[user] throws \the [src]. It lands on [comment]! "), \
 						span_notice("You throw \the [src]. It lands on [comment]! "))

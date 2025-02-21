@@ -4,7 +4,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX 45
+#define SAVEFILE_VERSION_MAX 46
 
 /datum/preferences/proc/savefile_needs_update(savefile/S)
 	var/savefile_version
@@ -52,6 +52,11 @@
 		WRITE_FILE(S["mute_xeno_health_alert_messages"], TRUE)
 		mute_xeno_health_alert_messages = TRUE
 		to_chat(parent, span_userdanger("Preferences for Mute xeno health alert messages have been reverted to default settings; these are now muted. Go into Preferences and set Mute xeno health alert messages to No if you wish to get xeno critical health alerts."))
+	if(current_version < 46)
+		toggles_sound |= SOUND_WEATHER
+		WRITE_FILE(S["toggles_sound"], toggles_sound)
+		to_chat(parent, span_userdanger("Due to a fix, preferences for weather sound have been reverted to default settings; these are now ON. Go into Preferences and set sound toggles to OFF if you wish to not hear these sounds."))
+
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -147,6 +152,7 @@
 	READ_FILE(S["toggles_sound"], toggles_sound)
 	READ_FILE(S["toggles_gameplay"], toggles_gameplay)
 	READ_FILE(S["fullscreen_mode"], fullscreen_mode)
+	READ_FILE(S["show_status_bar"], show_status_bar)
 	READ_FILE(S["show_typing"], show_typing)
 	READ_FILE(S["ghost_hud"], ghost_hud)
 	READ_FILE(S["windowflashing"], windowflashing)
@@ -164,17 +170,23 @@
 	READ_FILE(S["tooltips"], tooltips)
 	READ_FILE(S["sound_tts"], sound_tts)
 	READ_FILE(S["volume_tts"], volume_tts)
+	READ_FILE(S["radio_tts_flags"], radio_tts_flags)
 	READ_FILE(S["fast_mc_refresh"], fast_mc_refresh)
 	READ_FILE(S["split_admin_tabs"], split_admin_tabs)
+	READ_FILE(S["hear_looc_anywhere_as_staff"], hear_looc_anywhere_as_staff)
 
 	READ_FILE(S["key_bindings"], key_bindings)
+	READ_FILE(S["slot_draw_order"], slot_draw_order_pref)
 	READ_FILE(S["custom_emotes"], custom_emotes)
 	READ_FILE(S["chem_macros"], chem_macros)
+	READ_FILE(S["status_toggle_flags"], status_toggle_flags)
 
 	READ_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
 	READ_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
 	READ_FILE(S["mute_xeno_health_alert_messages"], mute_xeno_health_alert_messages)
+	READ_FILE(S["show_xeno_rank"], show_xeno_rank)
 
+	READ_FILE(S["stim_sequences"], stim_sequences)
 	// Runechat options
 	READ_FILE(S["chat_on_map"], chat_on_map)
 	READ_FILE(S["max_chat_length"], max_chat_length)
@@ -205,6 +217,7 @@
 	toggles_sound = sanitize_integer(toggles_sound, NONE, MAX_BITFLAG, initial(toggles_sound))
 	toggles_gameplay = sanitize_integer(toggles_gameplay, NONE, MAX_BITFLAG, initial(toggles_gameplay))
 	fullscreen_mode = sanitize_integer(fullscreen_mode, FALSE, TRUE, initial(fullscreen_mode))
+	show_status_bar = sanitize_integer(show_status_bar, FALSE, TRUE, initial(show_status_bar))
 	show_typing = sanitize_integer(show_typing, FALSE, TRUE, initial(show_typing))
 	ghost_hud = sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
 	windowflashing = sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
@@ -221,16 +234,26 @@
 	tooltips = sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 	sound_tts = sanitize_inlist(sound_tts, GLOB.all_tts_options, initial(sound_tts))
 	volume_tts = sanitize_integer(volume_tts, 1, 100, initial(volume_tts))
+	radio_tts_flags = sanitize_bitfield(radio_tts_flags, GLOB.all_radio_tts_options, (RADIO_TTS_SL | RADIO_TTS_SQUAD | RADIO_TTS_COMMAND | RADIO_TTS_HIVEMIND))
 
 	key_bindings = sanitize_islist(key_bindings, list())
+	if (!length(key_bindings))
+		key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
+
 	custom_emotes = sanitize_is_full_emote_list(custom_emotes)
 	chem_macros = sanitize_islist(chem_macros, list())
 	quick_equip = sanitize_islist(quick_equip, QUICK_EQUIP_ORDER, MAX_QUICK_EQUIP_SLOTS, TRUE, VALID_EQUIP_SLOTS)
 	slot_draw_order_pref = sanitize_islist(slot_draw_order_pref, SLOT_DRAW_ORDER, length(SLOT_DRAW_ORDER), TRUE, SLOT_DRAW_ORDER)
+	status_toggle_flags = sanitize_integer(status_toggle_flags, NONE, MAX_BITFLAG, initial(status_toggle_flags))
 
 	mute_self_combat_messages = sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages = sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
 	mute_xeno_health_alert_messages = sanitize_integer(mute_xeno_health_alert_messages, FALSE, TRUE, initial(mute_xeno_health_alert_messages))
+	show_xeno_rank = sanitize_integer(show_xeno_rank, FALSE, TRUE, initial(show_xeno_rank))
+
+	stim_sequences = sanitize_islist(stim_sequences, list())
+	for(var/spell_sequence in stim_sequences)
+		stim_sequences[spell_sequence] = sanitize_islist(stim_sequences[spell_sequence], list(), null, TRUE, GLOB.stim_type_lookup)
 
 	chat_on_map = sanitize_integer(chat_on_map, FALSE, TRUE, initial(chat_on_map))
 	max_chat_length = sanitize_integer(max_chat_length, 1, CHAT_MESSAGE_MAX_LENGTH, initial(max_chat_length))
@@ -245,6 +268,7 @@
 
 	fast_mc_refresh = sanitize_integer(fast_mc_refresh, FALSE, TRUE, initial(fast_mc_refresh))
 	split_admin_tabs = sanitize_integer(split_admin_tabs, FALSE, TRUE, initial(split_admin_tabs))
+	hear_looc_anywhere_as_staff = sanitize_integer(hear_looc_anywhere_as_staff, FALSE, TRUE, initial(hear_looc_anywhere_as_staff))
 	return TRUE
 
 
@@ -276,6 +300,7 @@
 	toggles_sound = sanitize_integer(toggles_sound, NONE, MAX_BITFLAG, initial(toggles_sound))
 	toggles_gameplay = sanitize_integer(toggles_gameplay, NONE, MAX_BITFLAG, initial(toggles_gameplay))
 	fullscreen_mode = sanitize_integer(fullscreen_mode, FALSE, TRUE, initial(fullscreen_mode))
+	show_status_bar = sanitize_integer(show_status_bar, FALSE, TRUE, initial(show_status_bar))
 	show_typing = sanitize_integer(show_typing, FALSE, TRUE, initial(show_typing))
 	ghost_hud = sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
 	windowflashing = sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
@@ -293,10 +318,18 @@
 	tooltips = sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 	sound_tts = sanitize_inlist(sound_tts, GLOB.all_tts_options, initial(sound_tts))
 	volume_tts = sanitize_integer(volume_tts, 1, 100, initial(volume_tts))
+	radio_tts_flags = sanitize_bitfield(radio_tts_flags, GLOB.all_radio_tts_options, (RADIO_TTS_SL | RADIO_TTS_SQUAD | RADIO_TTS_COMMAND | RADIO_TTS_HIVEMIND))
 
 	mute_self_combat_messages = sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages = sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
 	mute_xeno_health_alert_messages = sanitize_integer(mute_xeno_health_alert_messages, FALSE, TRUE, initial(mute_xeno_health_alert_messages))
+	show_xeno_rank = sanitize_integer(show_xeno_rank, FALSE, TRUE, initial(show_xeno_rank))
+	slot_draw_order_pref = sanitize_islist(slot_draw_order_pref, SLOT_DRAW_ORDER, length(SLOT_DRAW_ORDER), TRUE, SLOT_DRAW_ORDER)
+	status_toggle_flags = sanitize_integer(status_toggle_flags, NONE, MAX_BITFLAG, initial(status_toggle_flags))
+
+	stim_sequences = sanitize_islist(stim_sequences, list())
+	for(var/spell_sequence in stim_sequences)
+		stim_sequences[spell_sequence] = sanitize_islist(stim_sequences[spell_sequence], list(), null, TRUE, GLOB.stim_type_lookup)
 
 	// Runechat
 	chat_on_map = sanitize_integer(chat_on_map, FALSE, TRUE, initial(chat_on_map))
@@ -313,6 +346,7 @@
 	// Admin
 	fast_mc_refresh = sanitize_integer(fast_mc_refresh, FALSE, TRUE, initial(fast_mc_refresh))
 	split_admin_tabs = sanitize_integer(split_admin_tabs, FALSE, TRUE, initial(split_admin_tabs))
+	hear_looc_anywhere_as_staff = sanitize_integer(hear_looc_anywhere_as_staff, FALSE, TRUE, initial(hear_looc_anywhere_as_staff))
 
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
@@ -326,6 +360,7 @@
 	WRITE_FILE(S["toggles_sound"], toggles_sound)
 	WRITE_FILE(S["toggles_gameplay"], toggles_gameplay)
 	WRITE_FILE(S["fullscreen_mode"], fullscreen_mode)
+	WRITE_FILE(S["show_status_bar"], show_status_bar)
 	WRITE_FILE(S["show_typing"], show_typing)
 	WRITE_FILE(S["ghost_hud"], ghost_hud)
 	WRITE_FILE(S["windowflashing"], windowflashing)
@@ -344,10 +379,16 @@
 	WRITE_FILE(S["tooltips"], tooltips)
 	WRITE_FILE(S["sound_tts"], sound_tts)
 	WRITE_FILE(S["volume_tts"], volume_tts)
+	WRITE_FILE(S["radio_tts_flags"], radio_tts_flags)
+	WRITE_FILE(S["slot_draw_order"], slot_draw_order_pref)
+	WRITE_FILE(S["status_toggle_flags"], status_toggle_flags)
 
 	WRITE_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
 	WRITE_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
 	WRITE_FILE(S["mute_xeno_health_alert_messages"], mute_xeno_health_alert_messages)
+	WRITE_FILE(S["show_xeno_rank"], show_xeno_rank)
+
+	WRITE_FILE(S["stim_sequences"], stim_sequences)
 
 	// Runechat options
 	WRITE_FILE(S["chat_on_map"], chat_on_map)
@@ -365,6 +406,7 @@
 	// Admin options
 	WRITE_FILE(S["fast_mc_refresh"], fast_mc_refresh)
 	WRITE_FILE(S["split_admin_tabs"], split_admin_tabs)
+	WRITE_FILE(S["hear_looc_anywhere_as_staff"], hear_looc_anywhere_as_staff)
 
 	return TRUE
 

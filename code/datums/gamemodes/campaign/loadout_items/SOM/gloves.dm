@@ -6,7 +6,7 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/gloves/som_veteran_gloves
-	name = "SOM veteran gloves"
+	name = "Veteran gloves"
 	desc = "Gloves with origins dating back to the old mining colonies. These ones seem tougher than normal."
 	item_typepath = /obj/item/clothing/gloves/marine/som/veteran
 	jobs_supported = list(SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)

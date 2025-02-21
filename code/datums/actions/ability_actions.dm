@@ -2,7 +2,7 @@
 /datum/action/ability
 	///If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
 	desc = "This ability can not be found in codex."
-	action_icon = 'icons/Xeno/actions.dmi'
+	action_icon = 'icons/Xeno/actions/general.dmi'
 	///The cost of using this ability. Typically a plasma cost for xenos
 	var/ability_cost = 0
 	///bypass use limitations checked by can_use_action()
@@ -56,53 +56,64 @@
 	var/mob/living/carbon/carbon_owner = owner
 	if(!carbon_owner)
 		return FALSE
-	var/flags_to_check = use_state_flags|override_flags
+	var/to_check_flags = use_state_flags|override_flags
 
-	if(!(flags_to_check & ABILITY_IGNORE_COOLDOWN) && !action_cooldown_check())
+	if(!(to_check_flags & ABILITY_IGNORE_COOLDOWN) && !action_cooldown_check())
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Wait [cooldown_remaining()] sec")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_INCAP) && carbon_owner.incapacitated())
+	if(!(to_check_flags & ABILITY_USE_INCAP) && carbon_owner.incapacitated())
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while incapacitated")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_LYING) && carbon_owner.lying_angle)
+	if(!(to_check_flags & ABILITY_USE_LYING) && carbon_owner.lying_angle)
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while lying down")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_BUCKLED) && carbon_owner.buckled)
+	if(!(to_check_flags & ABILITY_USE_BUCKLED) && carbon_owner.buckled)
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while buckled")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_STAGGERED) && carbon_owner.IsStaggered())
+	if(!(to_check_flags & ABILITY_USE_STAGGERED) && carbon_owner.IsStaggered())
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while staggered")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_NOTTURF) && !isturf(carbon_owner.loc))
+	if(!(to_check_flags & ABILITY_USE_NOTTURF) && !isturf(carbon_owner.loc))
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot do this here")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_BUSY) && carbon_owner.do_actions)
+	if(!(to_check_flags & ABILITY_USE_BUSY) && carbon_owner.do_actions)
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot, busy")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_BURROWED) && HAS_TRAIT(carbon_owner, TRAIT_BURROWED))
+	if(!(to_check_flags & ABILITY_USE_BURROWED) && HAS_TRAIT(carbon_owner, TRAIT_BURROWED))
 		if(!silent)
 			carbon_owner.balloon_alert(carbon_owner, "Cannot while burrowed")
 		return FALSE
 
-	if(!(flags_to_check & ABILITY_USE_CLOSEDTURF) && isclosedturf(get_turf(carbon_owner)))
-		if(!silent)
-			//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
-			to_chat(owner, span_warning("We can't do this while in a solid object!"))
-		return FALSE
+	if(!(to_check_flags & ABILITY_USE_SOLIDOBJECT))
+		var/turf/current_turf = get_turf(carbon_owner)
+		if(!current_turf) //we are in nullspace when first spawning in
+			return FALSE
+		if(isclosedturf(current_turf))
+			if(!silent)
+				//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
+				to_chat(owner, span_warning("We can't do this while in a solid object!"))
+			return FALSE
+		for(var/obj/turf_object in current_turf.contents)
+			if(!turf_object.density || !turf_object.opacity)
+				continue
+			if(!silent)
+				//Same as above.
+				to_chat(owner, span_warning("We can't do this while in a solid object!"))
+			return FALSE
 
 	return TRUE
 
@@ -224,13 +235,13 @@
 	if(QDELETED(owner))
 		return FALSE
 
-	var/flags_to_check = use_state_flags|override_flags
+	var/to_check_flags = use_state_flags|override_flags
 
 	var/mob/living/carbon/carbon_owner = owner
-	if(!CHECK_BITFIELD(flags_to_check, ABILITY_IGNORE_SELECTED_ABILITY) && carbon_owner.selected_ability != src)
+	if(!CHECK_BITFIELD(to_check_flags, ABILITY_IGNORE_SELECTED_ABILITY) && carbon_owner.selected_ability != src)
 		return FALSE
 	. = can_use_action(silent, override_flags)
-	if(!CHECK_BITFIELD(flags_to_check, ABILITY_TARGET_SELF) && A == owner)
+	if(!CHECK_BITFIELD(to_check_flags, ABILITY_TARGET_SELF) && A == owner)
 		return FALSE
 
 ///the thing to do when the selected action ability is selected and triggered by middle_click

@@ -22,12 +22,15 @@
 	mech_type = EXOSUIT_MODULE_GREYSCALE
 	pixel_x = -16
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 1, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1)
 	move_delay = 3
 	max_equip_by_category = MECH_GREYSCALE_MAX_EQUIP
 	internal_damage_threshold = 15
 	internal_damage_probability = 5
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
-	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED
+	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED | MECHA_SPIN_WHEN_NO_ANGLE
+	explosion_block = 2
+	pivot_step = TRUE
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
 	var/list/datum/mech_limb/limbs = list(
 		MECH_GREY_TORSO = null,
@@ -58,19 +61,34 @@
 		var/datum/mech_limb/limb = new new_limb_type
 		limb.attach(src, key)
 
+/obj/vehicle/sealed/mecha/combat/greyscale/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
+	playsound(get_turf(src), SFX_EXPLOSION_MED, 100, TRUE) //destroy sound is normally very quiet
+	new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
+	for(var/mob/living/nearby_mob AS in cheap_get_living_near(src, 5))
+		shake_camera(nearby_mob, 4, 1)
+	return ..()
+
 /obj/vehicle/sealed/mecha/combat/greyscale/Destroy()
-	var/obj/effect/temp_visual/explosion/explosion = new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
-	explosion.pixel_x = 16
 	for(var/key in limbs)
 		var/datum/mech_limb/limb = limbs[key]
 		limb?.detach(src)
 	return ..()
 
 
-/obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/M)
-	if((mecha_flags & MECHA_SKILL_LOCKED) && M.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_VETERAN)
-		balloon_alert(M, "You don't know how to pilot this")
+/obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
+	if((mecha_flags & MECHA_SKILL_LOCKED) && entering_mob.skills.getRating(SKILL_MECH) < SKILL_MECH_TRAINED)
+		balloon_alert(entering_mob, "You don't know how to pilot this")
 		return FALSE
+	return ..()
+
+/obj/vehicle/sealed/mecha/combat/greyscale/add_occupant(mob/M)
+	. = ..()
+	ADD_TRAIT(M, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
+	M.update_sight()
+
+/obj/vehicle/sealed/mecha/combat/greyscale/remove_occupant(mob/M)
+	REMOVE_TRAIT(M, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
+	M.update_sight()
 	return ..()
 
 /obj/vehicle/sealed/mecha/combat/greyscale/update_icon()
@@ -121,12 +139,16 @@
 		if(key == MECHA_R_ARM)
 			var/obj/item/mecha_parts/mecha_equipment/right_gun = equip_by_category[MECHA_R_ARM]
 			if(right_gun)
-				. += image('icons/mecha/mech_gun_overlays.dmi', right_gun.icon_state + "_right", pixel_x=-32)
+				var/mutable_appearance/r_gun = mutable_appearance('icons/mecha/mech_gun_overlays.dmi', right_gun.icon_state + "_right", appearance_flags = KEEP_APART)
+				r_gun.pixel_x = -32
+				. += r_gun
 			continue
 		if(key == MECHA_L_ARM)
 			var/obj/item/mecha_parts/mecha_equipment/left_gun = equip_by_category[MECHA_L_ARM]
 			if(left_gun)
-				. += image('icons/mecha/mech_gun_overlays.dmi', left_gun.icon_state + "_left", pixel_x=-32)
+				var/mutable_appearance/l_gun = mutable_appearance('icons/mecha/mech_gun_overlays.dmi', left_gun.icon_state + "_left", appearance_flags = KEEP_APART)
+				l_gun.pixel_x = -32
+				. += l_gun
 			continue
 
 		if(!istype(limbs[key], /datum/mech_limb))
@@ -138,6 +160,37 @@
 	. = ..()
 	update_icon() //when available pass UPDATE_OVERLAYS since this is just for layering order
 
+/obj/vehicle/sealed/mecha/combat/greyscale/throw_bounce(atom/hit_atom, turf/old_throw_source)
+	return //no bounce for us
+
+///Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, jump_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
+	var/list/arg_list = list(duration, cooldown, cost, height, sound, flags, jump_pass_flags)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_SET_JUMP_COMPONENT, arg_list))
+		duration = arg_list[1]
+		cooldown = arg_list[2]
+		cost = arg_list[3]
+		height = arg_list[4]
+		sound = arg_list[5]
+		flags = arg_list[6]
+		jump_pass_flags = arg_list[7]
+
+	var/gravity = get_gravity()
+	if(gravity < 1) //low grav
+		duration *= 2.5 - gravity
+		cooldown *= 2 - gravity
+		cost *= gravity * 0.5
+		height *= 2 - gravity
+		if(gravity <= 0.75)
+			jump_pass_flags |= PASS_DEFENSIVE_STRUCTURE
+	else if(gravity > 1) //high grav
+		duration *= gravity * 0.5
+		cooldown *= gravity
+		cost *= gravity
+		height *= gravity * 0.5
+
+	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = jump_pass_flags)
+
 /obj/vehicle/sealed/mecha/combat/greyscale/recon
 	name = "Recon Mecha"
 	limbs = list(
@@ -148,8 +201,10 @@
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/recon,
 	)
 
-/obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill
+/obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	pivot_step = FALSE
+	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/assault
 	name = "Assault Mecha"
@@ -161,8 +216,10 @@
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/assault,
 	)
 
-/obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill
+/obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	pivot_step = FALSE
+	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard
 	name = "Vanguard Mecha"
@@ -174,24 +231,7 @@
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/vanguard,
 	)
 
-/obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill
+/obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
-
-
-///Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings
-/obj/vehicle/sealed/mecha/combat/greyscale/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, flags_pass = PASS_LOW_STRUCTURE|PASS_FIRE)
-	var/gravity = get_gravity()
-	if(gravity < 1) //low grav
-		duration *= 2.5 - gravity
-		cooldown *= 2 - gravity
-		cost *= gravity * 0.5
-		height *= 2 - gravity
-		if(gravity <= 0.75)
-			flags_pass |= PASS_DEFENSIVE_STRUCTURE
-	else if(gravity > 1) //high grav
-		duration *= gravity * 0.5
-		cooldown *= gravity
-		cost *= gravity
-		height *= gravity * 0.5
-
-	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = flags_pass)
+	pivot_step = FALSE
+	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)

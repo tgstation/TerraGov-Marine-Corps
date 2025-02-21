@@ -17,8 +17,9 @@
 	anchored = FALSE
 	density = FALSE
 	dir = NORTH
+	obj_flags = CAN_BE_HIT | BLOCKS_CONSTRUCTION_DIR
 	allow_pass_flags = PASS_GLASS|PASS_AIR
-	flags_atom = ON_BORDER
+	atom_flags = ON_BORDER
 
 	var/obj/item/circuitboard/airlock/electronics = null
 
@@ -259,7 +260,7 @@
 //Rotates the windoor assembly clockwise
 /obj/structure/windoor_assembly/verb/revrotate()
 	set name = "Rotate Windoor Assembly"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if (src.anchored)
@@ -271,7 +272,7 @@
 //Flips the windoor assembly, determines whather the door opens to the left or the right
 /obj/structure/windoor_assembly/verb/flip()
 	set name = "Flip Windoor Assembly"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(src.facing == "l")

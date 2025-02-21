@@ -54,7 +54,7 @@ Drag dead xenomorphs onto the Automated Storage and Retrieval System (ASRS) pad 
 To throw a grenade, Activate (Default: Z) the grenade while in the active hand. Then simply click where you want to throw it. Do not take too long!
 Quickly store items to a container (bags, satchels, belts, pouches) by pressing the Quick Equip (Default: E) key while holding an item and having a container open.
 Press Quick Equip (Default: E) while you are not holding an item to the active hand to draw the weapon from whatever preferred slot (Default: Suit Storage, can be customized at the Preferences tab) you selected, otherwise you will pull out any item from a container.
-Stasis bags do not pause xenomorph infection entirely, they only slow progress by a lot.
+Stasis bags do pause xenomorph infection entirely.
 Stasis bags prevents brain death timer from ticking, meaning that if corpsmen have a lot of patients, they can prevent brain death via stasis bags.
 In the Crash gamemode, cooperate as a marine! Work as a squad to capture the disks and to detonate the nuclear bomb.
 In the Crash gamemode, remember that your objective is to secure all three disks, put the disks into the nuclear device and head home while the bomb is active. Xenos will keep on respawning until all of the marines are dead.

@@ -347,8 +347,9 @@
 /area/bigredv2/outside/filtration_plant)
 "ux" = (
 /obj/structure/window/framed/colony/reinforced/hull,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/plating,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "uU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor,
@@ -363,8 +364,9 @@
 /area/bigredv2/outside/filtration_plant)
 "wk" = (
 /obj/structure/cryofeed,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/engine,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "wY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -415,8 +417,9 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/engine,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "yj" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /obj/structure/sign/safety/vent,
@@ -441,6 +444,10 @@
 	dir = 4
 	},
 /area/bigredv2/outside/s)
+"zD" = (
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/closed/wall/r_wall/unmeltable,
+/area/bigredv2/caves/rock)
 "zX" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 1;
@@ -601,8 +608,9 @@
 /area/bigredv2/outside/s)
 "Ju" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/closed/wall/r_wall/unmeltable,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "JF" = (
 /obj/machinery/computer/area_atmos/area,
 /turf/open/floor,
@@ -1116,10 +1124,10 @@ em
 em
 lo
 em
-Ff
+zD
 ux
 ux
-Ff
+zD
 mH
 UP
 mH
@@ -1143,10 +1151,10 @@ em
 HM
 JU
 CJ
-Ff
+zD
 xY
 xY
-Ff
+zD
 nG
 qK
 nG
@@ -1173,7 +1181,7 @@ CJ
 Ju
 wk
 wk
-Ff
+zD
 eH
 oz
 eH
@@ -1197,10 +1205,10 @@ Ru
 UL
 Bq
 Wn
-Ff
+zD
 xY
 xY
-Ff
+zD
 Is
 zq
 Is
@@ -1224,10 +1232,10 @@ em
 HM
 Bq
 CJ
-Ff
+zD
 wk
 wk
-Ff
+zD
 pg
 ME
 pg
@@ -1251,10 +1259,10 @@ em
 HM
 Bq
 HM
-Ff
+zD
 ux
 ux
-Ff
+zD
 pg
 fI
 lK

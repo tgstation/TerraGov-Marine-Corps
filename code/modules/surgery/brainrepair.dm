@@ -7,7 +7,7 @@
 	var/dmg_max
 
 /datum/surgery_step/brain/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
-	var/datum/internal_organ/brain/sponge = target.internal_organs_by_name["brain"]
+	var/datum/internal_organ/brain/sponge = target.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(!sponge || sponge.damage <= dmg_min || affected.surgery_open_stage != 3 || target_zone != "head")
 		return SURGERY_CANNOT_USE
 	if(dmg_max && sponge.damage > dmg_max)
@@ -38,7 +38,7 @@
 	user.visible_message(span_notice("[user] takes out all the bone chips in [target]'s brain with \the [tool]."),	\
 	span_notice("You take out all the bone chips in [target]'s brain with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
-	var/datum/internal_organ/brain/sponge = target.internal_organs_by_name["brain"]
+	var/datum/internal_organ/brain/sponge = target.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(sponge)
 		sponge.damage = 0
 	return ..()
@@ -72,7 +72,7 @@
 	user.visible_message(span_notice("[user] mends hematoma in [target]'s brain with \the [tool]."),	\
 	span_notice("You mend hematoma in [target]'s brain with \the [tool]."))
 	target.balloon_alert_to_viewers("Success")
-	var/datum/internal_organ/brain/sponge = target.internal_organs_by_name["brain"]
+	var/datum/internal_organ/brain/sponge = target.get_organ_slot(ORGAN_SLOT_BRAIN)
 	if(sponge)
 		sponge.damage = BONECHIPS_MAX_DAMAGE
 	return ..()

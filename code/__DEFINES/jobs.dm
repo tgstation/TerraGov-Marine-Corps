@@ -123,6 +123,19 @@ MEDICAL_DOCTOR, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SMARTGUNNER, SQUAD_CORPS
 SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_CORPSMAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER, SOM_STAFF_OFFICER, SOM_COMMANDER))
 GLOBAL_LIST_INIT(jobs_xenos, list(ROLE_XENOMORPH, ROLE_XENO_QUEEN))
 GLOBAL_LIST_INIT(jobs_fallen_marine, typecacheof(list(/datum/job/fallen/marine), TRUE))
+///Squad type role, regardless of faction
+GLOBAL_LIST_INIT(jobs_squad_roles, list(SQUAD_LEADER, SQUAD_SMARTGUNNER, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_MARINE, SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_CORPSMAN, SOM_SQUAD_LEADER))
+
+///Is an SL type job
+GLOBAL_LIST_INIT(jobs_squad_leader, list(SQUAD_LEADER, SOM_SQUAD_LEADER))
+///Is a corpsman type job
+GLOBAL_LIST_INIT(jobs_squad_corpsman, list(SQUAD_CORPSMAN, SOM_SQUAD_CORPSMAN))
+///Is a engineer type job
+GLOBAL_LIST_INIT(jobs_squad_engineer, list(SQUAD_ENGINEER, SOM_SQUAD_ENGINEER))
+///Is a specialist type job
+GLOBAL_LIST_INIT(jobs_squad_specialist, list(SQUAD_SMARTGUNNER, SOM_SQUAD_VETERAN))
+///Is a squad standard type job
+GLOBAL_LIST_INIT(jobs_squad_standard, list(SQUAD_MARINE, SOM_SQUAD_MARINE))
 
 //Playtime tracking system, see jobs_exp.dm
 #define EXP_TYPE_LIVING "Living"
@@ -156,6 +169,8 @@ GLOBAL_LIST_INIT(jobs_fallen_marine, typecacheof(list(/datum/job/fallen/marine),
 #define LARVA_POINTS_SHIPSIDE 1
 #define LARVA_POINTS_SHIPSIDE_STRONG 1.5
 #define LARVA_POINTS_REGULAR 3.25
+///How many marines per xeno at optimal ratio
+#define XENO_MARINE_RATIO 2.46
 
 #define SURVIVOR_POINTS_REGULAR 1
 
@@ -164,7 +179,6 @@ GLOBAL_LIST_INIT(jobs_fallen_marine, typecacheof(list(/datum/job/fallen/marine),
 #define SMARTIE_POINTS_HIGH 3
 #define SYNTH_POINTS_REGULAR 1
 #define MECH_POINTS_REGULAR 1
-#define ARMORED_VEHICLE_POINTS_REGULAR 1
 
 #define VETERAN_POINTS_REGULAR 1
 
@@ -183,3 +197,11 @@ GLOBAL_LIST_INIT(jobs_fallen_marine, typecacheof(list(/datum/job/fallen/marine),
 #define ENGINEER_TOTAL_BUY_POINTS 75
 /// How many points the field commander can spend
 #define COMMANDER_TOTAL_BUY_POINTS 45
+
+GLOBAL_LIST_INIT(default_marine_points, list(
+		"SMARTGUNNER SUPPLIES" = DEFAULT_TOTAL_BUY_POINTS,
+		"ENGINEERING SUPPLIES" = ENGINEER_TOTAL_BUY_POINTS,
+		"LEADER SUPPLIES" = DEFAULT_TOTAL_BUY_POINTS,
+		"MEDICAL SUPPLIES" = MEDIC_TOTAL_BUY_POINTS,
+		"COMMANDER SUPPLIES" = COMMANDER_TOTAL_BUY_POINTS,
+	))

@@ -14,7 +14,25 @@
 	. = ..()
 	var/list/traits = list()
 
-	if(flags_gun_features & GUN_WIELDED_FIRING_ONLY)
+	var/skill_name
+	switch(gun_skill_category)
+		if(SKILL_RIFLES)
+			skill_name = "rifle skill"
+		if(SKILL_SMGS)
+			skill_name = "SMG skill"
+		if(SKILL_HEAVY_WEAPONS)
+			skill_name = "heavy weapon skill"
+		if(SKILL_SMARTGUN)
+			skill_name = "smartgun skill"
+		if(SKILL_SHOTGUNS)
+			skill_name = "shotgun skill"
+		if(SKILL_PISTOLS)
+			skill_name = "pistol skill"
+
+	if(skill_name)
+		traits += "This weapons is effected by the user's <U>[skill_name]</U> rating. <br>"
+
+	if(gun_features_flags & GUN_WIELDED_FIRING_ONLY)
 		traits += "This can only be fired with a two-handed grip."
 	else
 		traits += "It's best fired with a two-handed grip."
@@ -195,16 +213,16 @@
 /datum/codex_entry/sniper_rifle
 	associated_paths = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
 	lore_text = "A rather strange gun in the TGMC's arsenal. The M42A \"Express\" originally was born out of it's younger brother the M42. Made by the same \
-	company who eventually went on to design the M56 smartgun system. Which the M42As specialized scope eventually adopted a modified IFF system similar to it's cousin the smartgun. <br><br>\
+	company who eventually went on to design the HSG-102 smartgun system. Which the M42As specialized scope eventually adopted a modified IFF system similar to it's cousin the smartgun. <br><br>\
 	It was at first marketed to PMCs and civilians as an expensive accurate long range rifle but it failed due to the lack of need for such a thing for PMCs and the wide variety of options \
-	already available for civilians in a more affordable package. The company after the failure went onto design the M56 smartgun and succeeded there however. Which kept them afloat after the failure of the M42.<br><br>\
+	already available for civilians in a more affordable package. The company after the failure went onto design the HS-102 smartgun and succeeded there however. Which kept them afloat after the failure of the M42.<br><br>\
 	Later however an announcement by the Marine Corps who decided to replace the aging supply of the current adopted Sniper Rifle after complaints that the frames were starting to wear out due to long-term use and thus trials would be announced to replace them.<br><br>\
 	Eventually, the board of directors decided to give that reviving the M42 design was a worthwhile possibility. And thus the design was decided to be modernized and equipped with an IFF-capable scope, after that it was named as the M42A and submitted to go the trials.<br><br>\
 	Though high unit cost didn't allow it to be more widely adopted it was eventually decided that it would meet limited adoption for Marksmen and be designated the SR-26."
 
 /datum/codex_entry/battle_rifle
 	associated_paths = list(/obj/item/weapon/gun/rifle/tx8)
-	lore_text = "The M45A was born from a commission order from the TGMC to the company which made the M42A and M56 smartgun systems. <br><br>\
+	lore_text = "The M45A was born from a commission order from the TGMC to the company which made the M42A and HS-102 smartgun systems. <br><br>\
 	The reason for this commission order resulted from complaints from light infantry and scout units about the poor accuracy of the new SR-26 \
 	carbine at longer ranges and the large size of the SG-29 making close combat uncomfortable eventually reached the higher ups, who kept getting \
 	the same complaints over and over. So they eventually reached out to a trusted company to do it.<br><br>\

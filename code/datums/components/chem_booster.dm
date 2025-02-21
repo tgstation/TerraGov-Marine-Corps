@@ -54,7 +54,7 @@
 	///Whether the contents on the meds_beaker will be injected into the wearer when the system is turned on
 	var/automatic_meds_use = TRUE
 	///Image that gets added to the wearer's overlays and gets changed based on resource_storage_current
-	var/static/image/resource_overlay = image('icons/mob/hud.dmi', icon_state = "chemsuit_vis")
+	var/static/image/resource_overlay = image('icons/mob/hud/human.dmi', icon_state = "chemsuit_vis")
 	COOLDOWN_DECLARE(chemboost_activation_cooldown)
 	///Information about how reagents boost the system's effects.
 	var/reagent_info = ""
@@ -80,11 +80,17 @@
 		/datum/reagent/medicine/bicaridine = list(NAME = "Bicaridine", REQ = 5, BRUTE_AMP = 0.1, BURN_AMP = 0, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
 		/datum/reagent/medicine/kelotane = list(NAME = "Kelotane", REQ = 5, BRUTE_AMP = 0, BURN_AMP = 0.1, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
 		/datum/reagent/medicine/paracetamol = list(NAME = "Paracetamol", REQ = 5, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = 0, STAM_REG_AMP = 0.2, SPEED_BOOST = -0.1),
-		/datum/reagent/medicine/meralyne = list(NAME = "Meralyne", REQ = 5, BRUTE_AMP = 0.2, BURN_AMP = 0, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
-		/datum/reagent/medicine/dermaline = list(NAME = "Dermaline", REQ = 5, BRUTE_AMP = 0, BURN_AMP = 0.2, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
+		/datum/reagent/medicine/meralyne = list(NAME = "Meralyne", REQ = 5, BRUTE_AMP = 0.2, BURN_AMP = -0.1, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
+		/datum/reagent/medicine/dermaline = list(NAME = "Dermaline", REQ = 5, BRUTE_AMP = -0.1, BURN_AMP = 0.2, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
 		/datum/reagent/medicine/dylovene = list(NAME = "Dylovene", REQ = 5, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = 0.5, STAM_REG_AMP = 0, SPEED_BOOST = 0),
 		/datum/reagent/medicine/synaptizine = list(NAME = "Synaptizine", REQ = 1, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = 1, STAM_REG_AMP = 0.1, SPEED_BOOST = 0),
 		/datum/reagent/medicine/neuraline = list(NAME = "Neuraline", REQ = 2, BRUTE_AMP = 1, BURN_AMP = 1, TOX_HEAL = -3, STAM_REG_AMP = 0, SPEED_BOOST = -0.3),
+		/datum/reagent/toxin/xeno_neurotoxin = list(NAME = "Neurotoxin", REQ = 3, BRUTE_AMP = -0.1, BURN_AMP = -0.1, TOX_HEAL = -0.1, STAM_REG_AMP = -0.2, SPEED_BOOST = 0),
+		/datum/reagent/toxin/xeno_hemodile = list(NAME = "Hemodile", REQ = 3, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = 0, STAM_REG_AMP = -0.2, SPEED_BOOST = 0.2),
+		/datum/reagent/toxin/xeno_transvitox = list(NAME = "Transvitox", REQ = 3, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = -0.3, STAM_REG_AMP = 0, SPEED_BOOST = 0),
+		/datum/reagent/toxin/xeno_sanguinal = list(NAME = "Sanguinal", REQ = 3, BRUTE_AMP = -0.3, BURN_AMP = 0, TOX_HEAL = 0, STAM_REG_AMP = 0, SPEED_BOOST = 0),
+		/datum/reagent/toxin/xeno_ozelomelyn = list(NAME = "Ozelomelyn", REQ = 3, BRUTE_AMP = -0.2, BURN_AMP = -0.2, TOX_HEAL = -0.2, STAM_REG_AMP = 0, SPEED_BOOST = 0),
+		/datum/reagent/toxin/satrapine = list(NAME = "Satrapine", REQ = 3, BRUTE_AMP = 0, BURN_AMP = 0, TOX_HEAL = -0.3, STAM_REG_AMP = -0.3, SPEED_BOOST = 0),
 	)
 
 /datum/component/chem_booster/Initialize()
@@ -189,7 +195,7 @@
 	update_resource(-resource_drain_amount)
 
 	wearer.adjustToxLoss(-tox_heal*boost_amount)
-	wearer.heal_overall_damage(6*boost_amount*brute_heal_amp, 6*boost_amount*burn_heal_amp)
+	wearer.heal_overall_damage(4*boost_amount*brute_heal_amp, 4*boost_amount*burn_heal_amp)
 	vali_necro_timer = world.time - processing_start
 	if(vali_necro_timer > 20 SECONDS)
 		return
@@ -199,7 +205,7 @@
 		to_chat(wearer, span_bold("WARNING: You have [(200 - (vali_necro_timer))/10] seconds before necrotic tissue forms on your limbs."))
 	if(vali_necro_timer > 15 SECONDS)
 		wearer.overlay_fullscreen("degeneration", /atom/movable/screen/fullscreen/animated/infection, 1)
-		to_chat(wearer, span_highdanger("The process of necrosis begins to set in. Turn it off before it's too late!"))
+		to_chat(wearer, span_userdanger("The process of necrosis begins to set in. Turn it off before it's too late!"))
 
 /**
  *	Opens the radial menu with everything

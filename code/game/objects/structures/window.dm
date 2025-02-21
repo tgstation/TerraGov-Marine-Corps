@@ -7,12 +7,15 @@
 	density = TRUE
 	anchored = TRUE
 	layer = WINDOW_LAYER
-	flags_atom = ON_BORDER|DIRLOCK
+	obj_flags = CAN_BE_HIT | BLOCKS_CONSTRUCTION_DIR | IGNORE_DENSITY
+	atom_flags = ON_BORDER|DIRLOCK
 	allow_pass_flags = PASS_GLASS
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	coverage = 20
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
 	max_integrity = 15
+	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
+	var/real_explosion_block = 0
 	var/state = 2
 	var/reinf = FALSE
 	var/basestate = "window"
@@ -24,12 +27,12 @@
 	var/deconstructable = TRUE
 
 /obj/structure/window/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_GLASS, -10, 5)
+	AddElement(/datum/element/debris, DEBRIS_GLASS, -40, 5)
 
 //I hate this as much as you do
 /obj/structure/window/full
 	dir = 10
-	flags_atom = DIRLOCK
+	atom_flags = DIRLOCK
 
 /obj/structure/window/Initialize(mapload, start_dir, constructed)
 	..()
@@ -93,7 +96,7 @@
 //Once a full window, it will always be a full window, so there's no point
 //having the same type for both.
 /obj/structure/window/proc/is_full_window()
-	if(!(flags_atom & ON_BORDER) || ISDIAGONALDIR(dir))
+	if(!(atom_flags & ON_BORDER) || ISDIAGONALDIR(dir))
 		return TRUE
 	return FALSE
 
@@ -133,7 +136,7 @@
 	var/state = user.grab_state
 	user.drop_held_item()
 	step_towards(grabbed_mob, src)
-	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	var/damage = (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD)
 	switch(state)
 		if(GRAB_PASSIVE)
 			damage += base_damage
@@ -159,7 +162,7 @@
 	if(.)
 		return
 
-	if(I.flags_item & NOBLUDGEON)
+	if(I.item_flags & NOBLUDGEON)
 		return
 
 	else if(isscrewdriver(I) && deconstructable)
@@ -188,7 +191,7 @@
 		to_chat(user, (state ? span_notice("You have pried the window into the frame.") : span_notice("You have pried the window out of the frame.")))
 
 
-/obj/structure/window/deconstruct(disassembled = TRUE)
+/obj/structure/window/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled)
 		if(reinf)
 			new /obj/item/stack/sheet/glass/reinforced(loc, 2)
@@ -205,7 +208,7 @@
 
 /obj/structure/window/verb/rotate()
 	set name = "Rotate Window Counter-Clockwise"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(static_frame)
@@ -222,7 +225,7 @@
 
 /obj/structure/window/verb/revrotate()
 	set name = "Rotate Window Clockwise"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(static_frame)
@@ -263,10 +266,9 @@
 		else
 			icon_state = "[basestate][junction]"
 
-/obj/structure/window/fire_act(exposed_temperature, exposed_volume)
-	if(exposed_temperature > T0C + 800)
-		take_damage(round(exposed_volume / 100), BURN, FIRE)
-	return ..()
+/obj/structure/window/fire_act(burn_level)
+	if(burn_level > 25)
+		take_damage(burn_level, BURN, FIRE)
 
 /obj/structure/window/GetExplosionBlock(explosion_dir)
 	return (!explosion_dir || ISDIAGONALDIR(dir) || dir & explosion_dir || REVERSE_DIR(dir) & explosion_dir) ? real_explosion_block : 0
@@ -281,10 +283,9 @@
 	explosion_block = EXPLOSION_BLOCK_PROC
 	real_explosion_block = 2
 
-/obj/structure/window/phoronbasic/fire_act(exposed_temperature, exposed_volume)
-	if(exposed_temperature > T0C + 32000)
-		take_damage(round(exposed_volume / 1000), BURN, FIRE)
-	return ..()
+/obj/structure/window/phoronbasic/fire_act(burn_level)
+	if(burn_level > 30)
+		take_damage(burn_level * 0.5, BURN, FIRE)
 
 /obj/structure/window/phoronreinforced
 	name = "reinforced phoron window"
@@ -297,7 +298,7 @@
 	explosion_block = EXPLOSION_BLOCK_PROC
 	real_explosion_block = 4
 
-/obj/structure/window/phoronreinforced/fire_act(exposed_temperature, exposed_volume)
+/obj/structure/window/phoronreinforced/fire_act(burn_level)
 	return
 
 /obj/structure/window/reinforced
@@ -385,7 +386,7 @@
 	basestate = "window"
 	max_integrity = 40
 	reinf = TRUE
-	flags_atom = NONE
+	atom_flags = NONE
 
 /obj/structure/window/shuttle/update_icon_state()
 	return
@@ -396,7 +397,7 @@
 	name = "theoretical window"
 	layer = TABLE_LAYER
 	static_frame = TRUE
-	flags_atom = NONE //This is not a border object; it takes up the entire tile.
+	atom_flags = NONE //This is not a border object; it takes up the entire tile.
 	explosion_block = 2
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(
@@ -416,9 +417,8 @@
 /obj/structure/window/framed/update_nearby_icons()
 	QUEUE_SMOOTH_NEIGHBORS(src)
 
-/obj/structure/window/framed/update_icon()
-	QUEUE_SMOOTH(src)
-	return ..()
+/obj/structure/window/framed/update_icon_state()
+	QUEUE_SMOOTH(src) //we update icon state through the smoothing system exclusively
 
 /obj/structure/window/framed/deconstruct(disassembled = TRUE, leave_frame = TRUE)
 	if(window_frame && leave_frame)
@@ -563,6 +563,13 @@
 	reinf = 1
 	window_frame = /obj/structure/window_frame/colony/reinforced
 
+/obj/structure/window/framed/colony/cmwindow
+	name = "window"
+	icon = 'icons/obj/smooth_objects/cmwindow.dmi'
+	icon_state = "cmwindow-0"
+	base_icon_state = "cmwindow"
+	window_frame = /obj/structure/window_frame/colony
+
 /obj/structure/window/framed/colony/reinforced/tinted
 	name = "tinted reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it. This one is opaque. You have an uneasy feeling someone might be watching from the other side."
@@ -636,6 +643,13 @@
 	basestate = "prison_rwindow"
 	window_frame = /obj/structure/window_frame/prison/reinforced
 
+/obj/structure/window/framed/prison/colony
+	name = "window"
+	icon = 'icons/obj/smooth_objects/prison_rwindow.dmi'
+	icon_state = "window-reinforced"
+	base_icon_state = "prison_rwindow"
+	basestate = "prison_rwindow"
+
 /obj/structure/window/framed/prison/reinforced/hull
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one has an automatic shutter system to prevent any atmospheric breach."
@@ -696,3 +710,67 @@
 	name = "reinforced orbital insertion safety window"
 	desc = "A durable glass window with a specialized reinforced rod matrice inside a wall frame, 6 times as strong as a normal window to be spaceworthy and withstand impacts."
 	max_integrity = 600 // 25 hunter slashes
+
+/obj/structure/window/framed/kutjevo
+	name = "window"
+	icon = 'icons/obj/smooth_objects/kutjevo_window_blue.dmi'
+	icon_state = "chigusa_wall-0"
+	base_icon_state = "chigusa_wall"
+	window_frame = /obj/structure/window_frame/kutjevo
+
+/obj/structure/window/framed/kutjevo/orange
+	icon = 'icons/obj/smooth_objects/kutjevo_window_orange.dmi'
+
+/obj/structure/window/framed/kutjevo/reinforced
+	name = "window"
+	icon = 'icons/obj/smooth_objects/kutjevo_window_blue_reinforced.dmi'
+	icon_state = "window-reinforced"
+	base_icon_state = "chigusa_wall"
+	window_frame = /obj/structure/window_frame/kutjevo
+
+/obj/structure/window/framed/kutjevo/reinforced/orange
+	name = "window"
+	icon = 'icons/obj/smooth_objects/kutjevo_window_orange_reinforced.dmi'
+	icon_state = "window-reinforced"
+	base_icon_state = "chigusa_wall"
+	window_frame = /obj/structure/window_frame/kutjevo
+
+/obj/structure/window/framed/kutjevo/reinforced/hull
+	name = "hull window"
+	icon = 'icons/obj/smooth_objects/kutjevo_window_orange_reinforced.dmi'
+	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
+	icon_state = "window-invincible"
+	base_icon_state = "chigusa_wall"
+	resistance_flags = RESIST_ALL
+
+/obj/structure/window/framed/urban
+	name = "window"
+	icon = 'icons/obj/smooth_objects/urban_window.dmi'
+	icon_state = "chigusa_wall-0"
+	base_icon_state = "chigusa_wall"
+	max_integrity = 100 //Was 600
+	reinf = TRUE
+	dir = 5
+	window_frame = /obj/structure/window_frame/urban
+
+/obj/structure/window/framed/urban/reinforced
+
+/obj/structure/window/framed/urban/marshalls/cell
+
+/obj/structure/window/framed/urban/colony/office
+
+/obj/structure/window/framed/urban/spaceport/reinforced
+
+/obj/structure/window/framed/urban/colony/hospital
+
+/obj/structure/window/framed/urban/colony/engineering/hull
+
+/obj/structure/window/framed/urban/junk_window
+	name = "window"
+	icon = 'icons/obj/smooth_objects/junk_window.dmi'
+	icon_state = "chigusa_wall-0"
+	base_icon_state = "chigusa_wall"
+	max_integrity = 100 //Was 600
+	reinf = TRUE
+	dir = 5
+	window_frame = /obj/structure/window_frame/junk_frame

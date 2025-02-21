@@ -49,7 +49,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_maintenence
 	name = "East Lab Maintenence"
 	icon_state = "maintcentral"
-
+	requires_power = FALSE
 /area/desert_dam/interior/lab_northeast/east_lab_containment
 	name = "East Lab Containment"
 	icon_state = "purple"
@@ -242,23 +242,23 @@
 /area/desert_dam/interior/caves/northern_caves
 	name = "Northern Caves"
 	icon_state = "red"
-
+	minimap_color = MINIMAP_AREA_CAVES
 /area/desert_dam/interior/caves/east_caves
 	name = "Eastern Caves"
 	icon_state = "red"
+	minimap_color = MINIMAP_AREA_CAVES
+	requires_power = FALSE
 
 /area/desert_dam/interior/caves/central_caves
 	name = "Central Caves"
 	icon_state = "yellow"
-
+	requires_power = FALSE
 /area/desert_dam/interior/caves/central_caves/entrances/east_tunnel_entrance
 	name = "Eastern Central Tunnel Entrance"
 	icon_state = "red"
-
 /area/desert_dam/interior/caves/central_caves/entrances/south_tunnel_entrance
 	name = "Southern Central Tunnel Entrance"
 	icon_state = "red"
-
 /area/desert_dam/interior/caves/central_caves/entrances/west_tunnel_entrance
 	name = "Western Central Tunnel Entrance"
 	icon_state = "red"
@@ -266,6 +266,7 @@
 /area/desert_dam/interior/caves/temple
 	name = "Sand Temple"
 	icon_state = "green"
+	requires_power = FALSE
 
 //BUILDING
 //areas not under rock
@@ -550,50 +551,62 @@
 	name = "Water Treatment One"
 	icon_state = "yellow"
 	minimap_color = MINIMAP_AREA_ENGI
+	requires_power = FALSE
 
 /area/desert_dam/building/water_treatment_one/lobby
 	name = "Water Treatment One Lobby"
 	icon_state = "red"
+	requires_power = TRUE
 
 /area/desert_dam/building/water_treatment_one/breakroom
 	name = "Water Treatment One Breakroom"
 	icon_state = "green"
+	requires_power = TRUE
 
 /area/desert_dam/building/water_treatment_one/garage
 	name = "Water Treatment One Garage"
 	icon_state = "garage"
+	requires_power = TRUE
 
 /area/desert_dam/building/water_treatment_one/sedimentation
 	name = "Water Treatment One Sedimentation"
 	icon_state = "blue"
+	requires_power = TRUE
 
 /area/desert_dam/building/water_treatment_one/equipment
 	name = "Water Treatment One Equipment Room"
 	icon_state = "red"
+	requires_power = TRUE
 
 /area/desert_dam/building/water_treatment_one/hallway
 	name = "Water Treatment One Hallway"
 	icon_state = "purple"
+	requires_power = TRUE
 
 /area/desert_dam/building/water_treatment_one/control_room
 	name = "Water Treatment One Control Room"
 	icon_state = "yellow"
+	requires_power = TRUE
 
 /area/desert_dam/building/water_treatment_one/purification
 	name = "Water Treatment One Purification"
 	icon_state = "green"
+	requires_power = TRUE
 
 /area/desert_dam/building/water_treatment_one/floodgate_control
 	name = "Water Treatment One Floodgate Control"
 	icon_state = "green"
+	requires_power = TRUE
 
 /area/desert_dam/building/water_treatment_one/floodgate_control/central
 	name = "Central Floodgate Control"
 	icon_state = "green"
+	requires_power = TRUE
 
 /area/desert_dam/building/water_treatment_one/floodgate_control/central2
 	name = "Central Floodgate Control Storage"
 	icon_state = "green"
+	requires_power = TRUE
 
 //Water Treatment Plant 2
 /area/desert_dam/building/water_treatment_two
@@ -861,26 +874,31 @@
 /area/desert_dam/exterior/landing/landing_pad_one
 	name = "Airstrip Landing Pad"
 	icon_state = "landing_pad"
-
+	minimap_color = MINIMAP_AREA_LZ
+	requires_power = FALSE
 /area/desert_dam/exterior/landing/landing_pad_one_external
 	name = "Airstrip Landing Valley"
 	icon_state = "landing_pad_ext"
+	minimap_color = MINIMAP_AREA_COLONY
 
 
 //Landing Pad for the Normandy. THIS IS NOT THE SHUTTLE AREA
 /area/desert_dam/exterior/landing/landing_pad_two
 	name = "Eastern Aerodrome Landing Pad"
 	icon_state = "landing_pad"
-
+	minimap_color = MINIMAP_AREA_LZ
+	requires_power = FALSE
 /area/desert_dam/exterior/landing/landing_pad_two_external
 	name = "Eastern Landing Valley"
 	icon_state = "landing_pad_ext"
+	minimap_color = MINIMAP_AREA_COLONY
 
 //Landing Pad for the abandoned tradeship, not used for transit. THIS IS NOT THE SHUTTLE AREA
 /area/desert_dam/exterior/landing/landing_pad_three
 	name = "Aerodrome Landing Pad"
 	icon_state = "landing_pad"
-
+	minimap_color = MINIMAP_AREA_LZ
+	requires_power = FALSE
 /area/desert_dam/exterior/landing/landing_pad_three_external
 	name = "Aerodrome Landing Valley"
 	icon_state = "landing_pad_ext"
@@ -897,15 +915,14 @@
 /area/desert_dam/exterior/valley/valley_northwest
 	name = "Northwest Valley"
 	icon_state = "valley_north_west"
-
 /area/desert_dam/exterior/valley/valley_cargo
 	name = "Shipping Valley"
 	icon_state = "valley_south_west"
-
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/valley_telecoms
 	name = "Telecomms Valley"
 	icon_state = "valley_west"
-
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/tradeship
 	name = "NTT Jerry-Cabot"
 	icon_state = "dark160"
@@ -917,74 +934,69 @@
 /area/desert_dam/exterior/valley/valley_labs
 	name = "Lab Valley"
 	icon_state = "valley_north"
-
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/valley_mining
 	name = "Mining Valley"
 	icon_state = "valley_east"
-
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/valley_civilian
 	name = "Civilian Valley"
 	icon_state = "valley_south_excv"
-
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/valley_medical
 	name = "Medical Valley"
 	icon_state = "valley"
+	requires_power = FALSE
 
 /area/desert_dam/exterior/valley/valley_medical_south
 	name = "Southern Medical Valley"
 	icon_state = "valley"
-
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/valley_hydro
 	name = "Hydro Valley"
 	icon_state = "valley"
-
 /area/desert_dam/exterior/valley/valley_crashsite
 	name = "Crash Site Valley"
 	icon_state = "yellow"
-
+	minimap_color = MINIMAP_AREA_CAVES
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/north_valley_dam
 	name = "North Dam Valley"
 	icon_state = "valley"
-
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/south_valley_dam
 	name = "South Dam Valley"
 	icon_state = "valley"
-
 /area/desert_dam/exterior/valley/bar_valley_dam
 	name = "Bar Valley"
 	icon_state = "yellow"
-
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/valley_wilderness
 	name = "Wilderness Valley"
 	icon_state = "central"
-
+	requires_power = FALSE
 
 //End of the river areas, no Next
 /area/desert_dam/exterior/river/riverside_northwest
 	name = "Northwestern Riverbed"
 	icon_state = "bluenew"
-
 /area/desert_dam/exterior/river/riverside_central_north
 	name = "Northern Central Riverbed"
 	icon_state = "purple"
-
 /area/desert_dam/exterior/river/riverside_central_south
 	name = "Southern Central Riverbed"
 	icon_state = "purple"
-
 /area/desert_dam/exterior/river/riverside_south
 	name = "Southern Riverbed"
 	icon_state = "bluenew"
-
 /area/desert_dam/exterior/river/riverside_east
 	name = "Eastern Riverbed"
 	icon_state = "bluenew"
-
 /area/desert_dam/exterior/river/riverside_northeast
 	name = "Northeastern Riverbed"
 	icon_state = "bluenew"
-
 //The filtration plants - This area isn't for the WHOLE plant, but the areas that have water in them, so the water changes color as well.
+
 /area/desert_dam/exterior/river/filtration_a
 	name = "Filtration Plant A"
 
@@ -1004,28 +1016,24 @@
 	name = "LZ1 'Admin'"
 	icon_state = "tcomsatcham"
 	requires_power = 0
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 
 /area/desert_dam/landing/console2
 	name = "LZ2 'Supply'"
 	icon_state = "tcomsatcham"
 	requires_power = 0
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 
 //Transit Shuttle
 /area/shuttle/tri_trans1/alpha
 	icon_state = "shuttle"
-
 /area/shuttle/tri_trans1/away
 	icon_state = "away1"
 
-
 /area/shuttle/tri_trans2/alpha
 	icon_state = "shuttlered"
-
 /area/shuttle/tri_trans2/away
 	icon_state = "away2"
-
 /area/shuttle/tri_trans2/omega
 	icon_state = "shuttle2"
 

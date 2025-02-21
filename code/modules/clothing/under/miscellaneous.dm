@@ -2,13 +2,13 @@
 	name = "red pj's"
 	desc = "Sleepwear."
 	icon_state = "red_pyjamas"
-	item_state = "w_suit"
+	worn_icon_state = "w_suit"
 
 /obj/item/clothing/under/pj/blue
 	name = "blue pj's"
 	desc = "Sleepwear."
 	icon_state = "blue_pyjamas"
-	item_state = "w_suit"
+	worn_icon_state = "w_suit"
 
 /obj/item/clothing/under/captain_fly
 	name = "rogue captains uniform"
@@ -34,7 +34,7 @@
 	name = "prison jumpsuit"
 	desc = "It's standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "prisoner"
-	item_state = "prisoner"
+	worn_icon_state = "prisoner"
 	has_sensor = LOCKED_SENSORS
 	sensor_mode = SENSOR_COORDS
 
@@ -42,28 +42,28 @@
 	name = "sexy-clown suit"
 	desc = "It makes you look HONKable!"
 	icon_state = "sexyclown"
-	item_state = "sexyclown"
-	flags_armor_protection = CHEST|GROIN
+	worn_icon_state = "sexyclown"
+	armor_protection_flags = CHEST|GROIN
 
 /obj/item/clothing/under/rank/vice
 	name = "vice officer's jumpsuit"
 	desc = "It's the standard issue pretty-boy outfit, as seen on Holo-Vision."
 	icon_state = "vice"
-	item_state = "gy_suit"
+	worn_icon_state = "gy_suit"
 	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/centcom_officer
 	desc = "It's a jumpsuit worn by CentCom Officers."
 	name = "\improper CentCom officer's jumpsuit"
 	icon_state = "officer"
-	item_state = "g_suit"
+	worn_icon_state = "g_suit"
 	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/centcom_commander
 	desc = "It's a jumpsuit worn by CentCom's highest-tier Commanders."
 	name = "\improper CentCom officer's jumpsuit"
 	icon_state = "centcom"
-	item_state = "dg_suit"
+	worn_icon_state = "dg_suit"
 	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/centcom_commander/sa
@@ -77,30 +77,30 @@
 	name = "ERT tactical uniform"
 	desc = "A short-sleeved black uniform, paired with grey digital-camo cargo pants. It looks very tactical."
 	icon_state = "ert_uniform"
-	item_state = "bl_suit"
+	worn_icon_state = "bl_suit"
 
 /obj/item/clothing/under/space
 	name = "\improper NASA jumpsuit"
 	desc = "It has a NASA logo on it and is made of space-proofed materials."
 	icon_state = "black"
-	item_state = "bl_suit"
+	worn_icon_state = "bl_suit"
 	w_class = WEIGHT_CLASS_BULKY//bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
-	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	flags_cold_protection = CHEST|GROIN|LEGS|ARMS //Needs gloves and shoes with cold protection to be fully protected.
+	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	cold_protection_flags = CHEST|GROIN|LEGS|ARMS //Needs gloves and shoes with cold protection to be fully protected.
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/under/acj
 	name = "administrative cybernetic jumpsuit"
 	icon_state = "syndicate"
-	item_state = "bl_suit"
+	worn_icon_state = "bl_suit"
 	desc = "it's a cybernetically enhanced jumpsuit used for administrative duties."
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
-	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	soft_armor = list(MELEE = 100, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 100, BIO = 100, FIRE = 100, ACID = 100)
-	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	cold_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
 
@@ -128,7 +128,7 @@
 	name = "dark undersuit"
 	desc = "A thick, layered grey undersuit lined with power cables. Feels a little like wearing an electrical storm."
 	icon_state = "psysuit"
-	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 
 /obj/item/clothing/under/gentlesuit
 	name = "Gentlemans Suit"
@@ -139,7 +139,7 @@
 	name = "black suit"
 	desc = "A black suit and red tie. Very formal."
 	icon_state = "black_suit"
-	item_state = "bl_suit"
+	worn_icon_state = "bl_suit"
 
 /obj/item/clothing/under/suit_jacket/detective
 	icon_state = "detective"
@@ -151,7 +151,7 @@
 	name = "executive suit"
 	desc = "A formal black suit and red tie, intended for the station's finest."
 	icon_state = "really_black_suit"
-	item_state = "bl_suit"
+	worn_icon_state = "bl_suit"
 
 /obj/item/clothing/under/suit_jacket/female
 	name = "executive suit"
@@ -162,19 +162,19 @@
 	name = "red suit"
 	desc = "A red suit and blue tie. Somewhat formal."
 	icon_state = "red_suit"
-	item_state = "r_suit"
+	worn_icon_state = "r_suit"
 
 /obj/item/clothing/under/overalls
 	name = "laborer's overalls"
 	desc = "A set of durable overalls for getting the job done."
 	icon_state = "overalls"
-	item_state = "lb_suit"
+	worn_icon_state = "lb_suit"
 
 /obj/item/clothing/under/pirate
 	name = "pirate outfit"
 	desc = "Yarr."
 	icon_state = "pirate"
-	flags_armor_protection = CHEST|GROIN|LEGS
+	armor_protection_flags = CHEST|GROIN|LEGS
 
 /obj/item/clothing/under/soviet
 	name = "soviet uniform"
@@ -190,23 +190,23 @@
 	name = "kilt"
 	desc = "Includes shoes and plaid"
 	icon_state = "kilt"
-	flags_armor_protection = CHEST|GROIN|FEET
+	armor_protection_flags = CHEST|GROIN|FEET
 
 /obj/item/clothing/under/sexymime
 	name = "sexy mime outfit"
 	desc = "The only time when you DON'T enjoy looking at someone's rack."
 	icon_state = "sexymime"
-	flags_armor_protection = CHEST|GROIN
+	armor_protection_flags = CHEST|GROIN
 
 /obj/item/clothing/under/gladiator
 	name = "gladiator uniform"
 	desc = "Are you not entertained? Is that not why you are here?"
 	icon_state = "gladiator"
-	flags_armor_protection = GROIN
+	armor_protection_flags = GROIN
 
 //dress
 /obj/item/clothing/under/dress/
-	flags_armor_protection = CHEST|GROIN
+	armor_protection_flags = CHEST|GROIN
 
 /obj/item/clothing/under/dress/dress_fire
 	name = "flame dress"
@@ -243,19 +243,19 @@
 	name = "captain's dress uniform"
 	desc = "Feminine fashion for the style concious captain."
 	icon_state = "dress_cap"
-	flags_armor_protection = CHEST|GROIN|ARMS
+	armor_protection_flags = CHEST|GROIN|ARMS
 
 /obj/item/clothing/under/dress/dress_hop
 	name = "head of personnel dress uniform"
 	desc = "Feminine fashion for the style concious HoP."
 	icon_state = "dress_hop"
-	flags_armor_protection = CHEST|GROIN|ARMS
+	armor_protection_flags = CHEST|GROIN|ARMS
 
 /obj/item/clothing/under/dress/dress_hr
 	name = "human resources director uniform"
 	desc = "Superior class for the nosy H.R. Director."
 	icon_state = "huresource"
-	flags_armor_protection = CHEST|GROIN|ARMS
+	armor_protection_flags = CHEST|GROIN|ARMS
 
 /obj/item/clothing/under/dress/plaid_blue
 	name = "blue plaid skirt"
@@ -274,68 +274,68 @@
 
 //wedding stuff
 /obj/item/clothing/under/wedding/
-	flags_armor_protection = CHEST|GROIN|LEGS
+	armor_protection_flags = CHEST|GROIN|LEGS
 
 /obj/item/clothing/under/wedding/bride_orange
 	name = "orange wedding dress"
 	desc = "A big and puffy orange dress."
 	icon_state = "bride_orange"
-	flags_inv_hide = HIDESHOES
+	inv_hide_flags = HIDESHOES
 
 /obj/item/clothing/under/wedding/bride_purple
 	name = "purple wedding dress"
 	desc = "A big and puffy purple dress."
 	icon_state = "bride_purple"
-	flags_inv_hide = HIDESHOES
+	inv_hide_flags = HIDESHOES
 
 /obj/item/clothing/under/wedding/bride_blue
 	name = "blue wedding dress"
 	desc = "A big and puffy blue dress."
 	icon_state = "bride_blue"
-	flags_inv_hide = HIDESHOES
+	inv_hide_flags = HIDESHOES
 
 /obj/item/clothing/under/wedding/bride_red
 	name = "red wedding dress"
 	desc = "A big and puffy red dress."
 	icon_state = "bride_red"
-	flags_inv_hide = HIDESHOES
+	inv_hide_flags = HIDESHOES
 
 /obj/item/clothing/under/wedding/bride_white
 	name = "silky wedding dress"
 	desc = "A white wedding gown made from the finest silk."
 	icon_state = "bride_white"
-	flags_inv_hide = HIDESHOES
-	flags_armor_protection = CHEST|GROIN
+	inv_hide_flags = HIDESHOES
+	armor_protection_flags = CHEST|GROIN
 
 /obj/item/clothing/under/sundress
 	name = "sundress"
 	desc = "Makes you want to frolic in a field of daisies."
 	icon_state = "sundress"
-	flags_armor_protection = CHEST|GROIN
+	armor_protection_flags = CHEST|GROIN
 
 /obj/item/clothing/under/captainformal
 	name = "captain's formal uniform"
 	desc = "A captain's formal-wear, for special occasions."
 	icon_state = "captain_formal"
-	item_state = "by_suit"
+	worn_icon_state = "by_suit"
 
 /obj/item/clothing/under/hosformalmale
 	name = "head of security's formal uniform"
 	desc = "A male head of security's formal-wear, for special occasions."
 	icon_state = "hos_formal_male"
-	item_state = "r_suit"
+	worn_icon_state = "r_suit"
 
 /obj/item/clothing/under/hosformalfem
 	name = "head of security's formal uniform"
 	desc = "A female head of security's formal-wear, for special occasions."
 	icon_state = "hos_formal_fem"
-	item_state = "r_suit"
+	worn_icon_state = "r_suit"
 
 /obj/item/clothing/under/assistantformal
 	name = "assistant's formal uniform"
 	desc = "An assistant's formal-wear. Why an assistant needs formal-wear is still unknown."
 	icon_state = "assistant_formal"
-	item_state = "gy_suit"
+	worn_icon_state = "gy_suit"
 
 /obj/item/clothing/under/suit_jacket/charcoal
 	name = "charcoal suit"
@@ -371,11 +371,11 @@
 	name = "Special Operations Uniform"
 	desc = "Created by an unknown corporation for high risk missions, made with several layers of a unknown nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them."
 	icon_state = "pilot_spec"
-	item_state = "pilot_spec"
+	worn_icon_state = "pilot_spec"
 	resistance_flags = UNACIDABLE
-	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
+	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
 	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 70, BIO = 70, FIRE = 70, ACID = 70)
-	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
+	cold_protection_flags = CHEST|GROIN|LEGS|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
 	slowdown= -1
@@ -386,6 +386,6 @@
 	name = "Techpriest Robes"
 	desc = "Praise the omnissiah!"
 	icon_state = "tp_bodyrobes"
-	item_state = "tp_bodyrobes"
-	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
+	worn_icon_state = "tp_bodyrobes"
+	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
 

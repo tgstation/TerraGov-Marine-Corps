@@ -35,13 +35,15 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///When this timer is up, we force a change of node to ensure that the ai will never stay stuck trying to go to a specific node
 	var/anti_stuck_timer
 	///Minimum health percentage before the ai tries to run away
-	var/minimum_health = 0
+	var/minimum_health = 0.4
 	///If the mob attached to the ai is offered on xeno creation
 	var/is_offered_on_creation = FALSE
 	///Are we waiting for advanced pathfinding
 	var/registered_for_node_pathfinding = FALSE
 	///Are we already registered for normal pathfinding
 	var/registered_for_move = FALSE
+	///Should we lose the escorted atom if we change action
+	var/weak_escort = FALSE
 
 /datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
@@ -255,16 +257,18 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	goal_nodes = null
 	RegisterSignal(goal_node, COMSIG_QDELETING, PROC_REF(clean_goal_node))
 
-///Set the escorted atom
-/datum/ai_behavior/proc/set_escorted_atom(datum/source, atom/atom_to_escort)
+///Set the escorted atom.
+/datum/ai_behavior/proc/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
 	SIGNAL_HANDLER
 	clean_escorted_atom()
 	escorted_atom = atom_to_escort
-	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
+	weak_escort = new_escort_is_weak
+	if(!weak_escort)
+		UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
+		base_action = ESCORTING_ATOM
 	RegisterSignal(escorted_atom, COMSIG_ESCORTED_ATOM_CHANGING, PROC_REF(set_escorted_atom))
 	RegisterSignal(escorted_atom, COMSIG_QDELETING, PROC_REF(clean_escorted_atom))
 	RegisterSignal(escorted_atom, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, PROC_REF(set_agressivity))
-	base_action = ESCORTING_ATOM
 	change_action(ESCORTING_ATOM, escorted_atom)
 
 ///Change atom to walk to if the order comes from a corresponding commander
@@ -342,8 +346,8 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 /datum/ai_behavior/proc/ai_do_move()
 	if(!mob_parent?.canmove || mob_parent.do_actions)
 		return
-	/// This allows minions to be buckled to their atom_to_escort without disrupting the movement of atom_to_escort
-	if(get_dist(mob_parent, atom_to_walk_to) <= 0)
+	//This allows minions to be buckled to their atom_to_escort without disrupting the movement of atom_to_escort
+	if(current_action == ESCORTING_ATOM && (get_dist(mob_parent, atom_to_walk_to) <= 0)) //todo: Entirely remove this shitcode snowflake check for one specific interaction that doesn't specifically relate to ai_behavior
 		return
 	mob_parent.next_move_slowdown = 0
 	var/step_dir
@@ -353,30 +357,33 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		if(!get_dir(mob_parent, atom_to_walk_to)) //We're right on top, move out of it
 			step_dir = pick(CARDINAL_ALL_DIRS)
 			var/turf/next_turf = get_step(mob_parent, step_dir)
-			if(!(next_turf.flags_atom & AI_BLOCKED) && !mob_parent.Move(get_step(mob_parent, step_dir), step_dir))
+			if(!(next_turf.atom_flags & AI_BLOCKED) && !mob_parent.Move(get_step(mob_parent, step_dir), step_dir))
 				SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir)
 			else if(ISDIAGONALDIR(step_dir))
 				mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown //Not perfect but good enough
+				mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown))
 			return
 		if(prob(sidestep_prob))
 			step_dir = pick(LeftAndRightOfDir(get_dir(mob_parent, atom_to_walk_to)))
 			var/turf/next_turf = get_step(mob_parent, step_dir)
-			if(!(next_turf.flags_atom & AI_BLOCKED) && !mob_parent.Move(get_step(mob_parent, step_dir), step_dir))
+			if(!(next_turf.atom_flags & AI_BLOCKED) && !mob_parent.Move(get_step(mob_parent, step_dir), step_dir))
 				SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir)
 			else if(ISDIAGONALDIR(step_dir))
 				mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
+				mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown))
 		return
 	if(get_dist(mob_parent, atom_to_walk_to) < distance_to_maintain) //We're too close, back it up
 		step_dir = get_dir(atom_to_walk_to, mob_parent)
 	else
 		step_dir = get_dir(mob_parent, atom_to_walk_to)
 	var/turf/next_turf = get_step(mob_parent, step_dir)
-	if(next_turf?.flags_atom & AI_BLOCKED || (!mob_parent.Move(next_turf, step_dir) && !(SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir) & COMSIG_OBSTACLE_DEALT_WITH)))
+	if(next_turf?.atom_flags & AI_BLOCKED || (!mob_parent.Move(next_turf, step_dir) && !(SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir) & COMSIG_OBSTACLE_DEALT_WITH)))
 		step_dir = pick(LeftAndRightOfDir(step_dir))
 		next_turf = get_step(mob_parent, step_dir)
-		if(next_turf?.flags_atom & AI_BLOCKED)
+		if(next_turf?.atom_flags & AI_BLOCKED)
 			return
 		if(mob_parent.Move(get_step(mob_parent, step_dir), step_dir) && ISDIAGONALDIR(step_dir))
 			mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
 	else if(ISDIAGONALDIR(step_dir))
 		mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
+	mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown))

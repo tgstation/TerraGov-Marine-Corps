@@ -8,7 +8,7 @@
 	var/brightness_on = 4 //luminosity when on
 	var/on = FALSE
 	actions_types = list(/datum/action/item_action/toggle)
-	flags_heat_protection = HEAD
+	heat_protection_flags = HEAD
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/head/helmet/space/rig/attack_self(mob/user)
@@ -37,7 +37,7 @@
 	slowdown = 1
 	soft_armor = list(MELEE = 40, BULLET = 5, LASER = 20, ENERGY = 5, BOMB = 35, BIO = 100, FIRE = 5, ACID = 5)
 	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit)
-	flags_heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	heat_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
 //Engineering rig
@@ -78,7 +78,9 @@
 	name = "mining hardsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has reinforced plating."
 	soft_armor = list(MELEE = 50, BULLET = 5, LASER = 20, ENERGY = 5, BOMB = 55, BIO = 100, FIRE = 5, ACID = 5)
-
+	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/suit_cooling_unit,/obj/item/weapon/twohanded/sledgehammer)
+	equip_delay_self = 20
+	unequip_delay_self = 20
 
 //Syndicate rig
 /obj/item/clothing/head/helmet/space/rig/syndi

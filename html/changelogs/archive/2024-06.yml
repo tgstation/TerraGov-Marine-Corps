@@ -1,0 +1,423 @@
+2024-06-01:
+  Notamaniac:
+  - bugfix: You can no longer pick up cats from a distance
+  Wisemonster:
+  - balance: Roller beds now have brakes that can be toggled with right click.
+2024-06-02:
+  Helg2:
+  - imagedel: deleted unused cm locker sprites.
+  Neocloudy:
+  - bugfix: 'Health analyzer: Synthetics actually don''t show the user''s defibrillator
+      healing for revivable threshold. (this means that it shows -50 or -80 instead
+      of -58 or something)'
+  - spellcheck: Health analyzer reduced/increased max health tooltips say maximum
+      health in the tooltip to reduce confusion
+  Wisemonster:
+  - bugfix: Xeno Valhalla is now more secure with a layer of forcefields.
+  Xander3359:
+  - qol: Liquifying a pill with a hypo no longer opens the pill bottle
+  blackdav123:
+  - bugfix: Fixed a disposals pipe in Sulaco medbay.
+  - bugfix: Readded forcefields to Riptide
+2024-06-03:
+  Helg2:
+  - bugfix: xeno-leaders rallying now properly puts a red blip hud on them for other
+      xenos in hive.
+  Neocloudy:
+  - bugfix: health analyzer revivable threshold no longer always says 20%
+  SomrNetwork:
+  - rscadd: faction dead people
+  Wisemonster:
+  - code_imp: Replaces CQC skill name with UNARMED skill
+  blackdav123:
+  - bugfix: Pyrogen can now be given plasma.
+2024-06-04:
+  Lumipharon:
+  - balance: Railgun changed back to 1 shot instead of 3
+  - balance: Reduced railgun effectiveness when piercing things
+  - bugfix: Fixed being able to remove railgun rounds of their magazine
+  Notamaniac:
+  - bugfix: Alamo now unlocks itself when a T4 touches the console (as it used to)
+  Wisemonster:
+  - bugfix: Deployable shields can no longer be deployed on the alamo and the tad
+  Xander3359:
+  - bugfix: smg-25 holster can no longer hold every item
+2024-06-05:
+  Lumipharon:
+  - bugfix: Huggers will no longer bounce if thrown into a mob
+  - bugfix: fixed a phantom attachment bug when swapping attachments in some cases.
+  Xander3359:
+  - bugfix: Merging stacks inside a backpack will no longer break
+  - bugfix: Deleting something inside a storage will no longer break
+2024-06-06:
+  Lumipharon:
+  - rscdel: Removed a pref verb for gas mask equip sounds
+  novaepee:
+  - rscdel: Remove Big Red's two plat miners and 1 normal miner near LZ2
+  - balance: Prevent a 1/5 chance for marines to camp near LZ2 on two plat miners
+2024-06-07:
+  Lumipharon:
+  - bugfix: fixed walking between multitile vehicles causing issues
+  - bugfix: fixed knockback working on somethings it shouldn't
+  - bugfix: fixed a bug with motorbike sidecars
+  - code_imp: Added attachment component support to vehicles
+  - bugfix: Probably fixes some cases where a surgery table could put you to sleep
+      forever
+  Notamaniac:
+  - spellcheck: Pyrogen Fire Charge ability now accurately describes what it does
+      - Extinguish the target and deal extra damage depending on their fire stacks
+  RipGrayson:
+  - bugfix: Fixed being able to red alert from inside of Valhalla
+  Runian:
+  - bugfix: Mortar's chambered items now drop onto the floor (instead of deleting
+      itself) when undeployment attempt is made.
+  - bugfix: Deconstructing an upgraded metal barricade now returns the actual cost
+      of 5 sheets instead of 4.
+  jonash07:
+  - balance: changed bookcase integrity from 500 to 200
+  yyzsong:
+  - balance: ALL Orbital Bombardment types cost 6 solid fuel
+2024-06-08:
+  Lumipharon:
+  - balance: Explosions now effect tanks for every tile of tank impacted, but the
+      damage per tile has been reduced to compensate
+  Notamaniac:
+  - imageadd: Adds some shading to the Pyrogen's dead sprite
+  Wisemonster:
+  - balance: Increased surt's fire resistance per module piece from 35 to 45
+2024-06-09:
+  SandPoot:
+  - qol: The larva queue button shows your position when active.
+  Wisemonster:
+  - balance: Reduced the ability delay on pyrogens fireball and fire tornado to 0.6
+      seconds, down from 1 second.
+  - balance: Increased the fire charge range by 2 tiles (from 3 tiles to 5 tiles)
+  - balance: Changed pyros damage from acid to fire
+2024-06-10:
+  Helg2:
+  - bugfix: fixed a few sprites not working with the heavy mounted laser.
+  Kuro020:
+  - balance: TX11 Sunder reduced
+2024-06-11:
+  2whatever2:
+  - balance: Runner evasion can now be canceled at 0.3 seconds, instead of 1 second.
+      (1 --> 0.3)
+  Lumipharon:
+  - bugfix: Fixed ammohuds bugging out if you enter a vehicle when a gun has no ammo
+      in it
+  - bugfix: APC can load normal crates as intended
+  - bugfix: fixed hitscan projectiles not correctly setting their direction
+  - bugfix: fixed huggers bouncing off mobs (again)
+  Wisemonster:
+  - balance: Reduced the slowdown of the amr from 3 to 2.25
+  - bugfix: Behemoth's earth pillars should do damage to vehicles now if they are
+      tossed at them
+  - bugfix: Behemoth's AoE attacks will now damage all parts of the tank (previously
+      only damaged it's center)
+  - balance: Adjusted Behemoth's ability damage to compensate for attacks like meteor
+      doing damage per vehicle tile hit
+  Xander3359:
+  - bugfix: Recharger cells now update ammo count when it recharges
+  - bugfix: Recharger cells no longer break once they hit 0 ammo
+  - code_imp: delete cell.dm, merges the code into power_cells.dm
+2024-06-12:
+  blackdav123:
+  - balance: CAS now gets more points on low orbit instead of high.
+  - balance: Xenos can now see research digsites on the map.
+  chizzy376:
+  - qol: 'made Riptide breakable jungle walls zoned properly. Unga terms: You can
+      now talk in OB''d spots on Riptide.'
+  - bugfix: fixes a object fling trap in Slumbridge engineering
+2024-06-13:
+  Clay500z:
+  - balance: All of Bull's charges now deal exactly the same damage (2 slashes).
+  - balance: Gore now also deals 1 sec of slow in addition to the 1 sec of stagger.
+  - balance: Decreased Headbutt charges stun from 2 seconds to 1.5 seconds.
+  - balance: Slightly increased Bulls walking speed.
+  - sounddel: Removed the *gore emote from Bulls gore charge
+  - spellcheck: Updated Bulls ability descriptions
+  Kuro020:
+  - balance: Makes xenos tankier and a little slower plus some other assorted xeno
+      changes, read the hackmd linked on the pr
+2024-06-14:
+  Helg2:
+  - bugfix: T27 magazines have the correct sprite once again.
+  Wisemonster:
+  - balance: King's roar now deals damage to all parts of the tank instead of just
+      the center. Damage is 12 per tile at close range, 10 per tile at farther distances.
+  - balance: Crusher's charge now does more damage to tanks and apcs (from between
+      18-21 to between 50-100) depending on the charge distance.
+2024-06-15:
+  Lauwma:
+  - rscadd: Spiderlings can now attack uncouncious marines
+  Wisemonster:
+  - bugfix: Fixed pyrogen's fireball AoE checking for armor's fire resistance instead
+      of acid
+2024-06-16:
+  Lumipharon:
+  - rscadd: Tall grass and fire now partially obscured you similar to water
+  - rscadd: Items now sink in water, partially obscuring them
+  - rscadd: Vehicles canbe submerged like mobs
+  - bugfix: fixed throws messing up pixel_y offset over bodies of water
+  - refactor: refactored submersion code
+  - bugfix: Jumpers, or those riding on tanks no longer sink into water
+  - bugfix: fixed some projectile on hit effects triggering on the wrong turfs in
+      some cases
+  - bugfix: fixed an exploit with binos
+  - balance: Reduced xeno jump CD from 2 seconds to 1 second
+  Neocloudy:
+  - refactor: Defibrillators have had thorough code changes. NPCs and disconnected
+      players are now revivable
+  - refactor: DC'd players are marked with a HUD outline and will re-enter their body
+      if they ever come back
+  - refactor: NPCs are marked with a flatline HUD icon
+  - code_imp: Disconnected ghosts aren't removed from the observer list
+  - imageadd: Animated ECG wave icons for revivable humans
+  - imageadd: New health HUD icons for synthetics
+  - imageadd: Flatline icon for dead DNR humans
+  - rscdel: NPCs and disconnected players are no longer DNR'd when they die
+  - bugfix: Becoming a Larva should now set your DNR
+  - rscadd: '"Revival Imminent" alert when you''re brought into your body from defibrillation'
+  - rscadd: You're only brought back into your body if you can be defibrillated. This
+      means you can't be brought into your body if you have too much damage or whatever
+  - rscdel: Moving out of your body while being revived will bring you back in when
+      the defib delivers a shock
+  - soundadd: Higher quality defibrillator shock sound from CM-SS13
+  - spellcheck: 'Defibrillator success/failure messages: "Defibrillation" -> "Resuscitation"'
+  - spellcheck: Defibrilaltor descriptions have been touched up to be more accurate
+  - qol: You can see the exact number of uses left in a defibrillator by examining
+      it
+  Vondiech/Citruses (with help from Neocloudy and SandPoot):
+  - balance: The nuke can now NOT be activated in areas like the LZs, enclosed areas
+      (the type plasmacutters cut into) and certain other areas as listed on the "Ineligible
+      detonation sites" part of the nuclear bomb UI.
+  - code_imp: Added CANNOT_NUKE area_flag for mappers/coders to designate areas where
+      the nuke timer can't be activated, also moves some areas around so NEAR_FOB
+      now accurately always includes FOB.
+  Wisemonster:
+  - bugfix: Fixed pyrogen's melting ground fire using ACID armor instead of FIRE
+  breadhunt:
+  - qol: Using medical items in-hand will now apply them to yourself
+  - qol: Unique action now opens the injector menu
+2024-06-17:
+  Helg2:
+  - qol: Ravagers vampirism now updates icon on toggling, instead of updating on attack.
+  Lumipharon:
+  - balance: Largecrates are jumpable
+  - balance: Large rocks can pouched over etc, similar to unwired cades
+2024-06-18:
+  Lauwma:
+  - rscadd: Widow can now plant weed
+  - rscadd: Widow can now secrete resin walls
+  - rscadd: Spiderlings can be built on with resin structures
+  - balance: Widow gains mazing abilities, be careful when stepping in the Widow's
+      nest
+  Wisemonster:
+  - bugfix: Boiler globs getting a direct hit should no longer reduce their smoke
+      size
+2024-06-19:
+  Helg2:
+  - imageadd: lootboxes with rockets, sniper rifles and sentries now have corresponding
+      icons.
+  - imageadd: updated low cell charge icon state of corpsman satchels.
+  - code_imp: Reorganized Storage.dmi file, which responded for all the backpacks
+      and etc. Please report any missing icons.
+  Lumipharon:
+  - bugfix: Binos actually work when they should
+  - rscadd: Added the SOM hover tank to the code
+  - bugfix: fixed a couple minor issues with multitile vehicles
+  - bugfix: Static lighting works in vehicle interiors, or other generated areas
+  - admin: You can force autobalance during Campaign
+  - bugfix: fixed an issue with grass or flames not submerging correctly in some cases
+  - qol: Deployables, vehicles and campaign objectives now activate transparency mode
+      on things like trees
+  - bugfix: fixed some status effects applying when they shouldn't
+  - rscadd: Various footstep additions and changes
+  - bugfix: The weather sound pref is no longer the wrong way around.
+  Wisemonster:
+  - code_imp: Changed vehicle_damage_mult in crusher charge ability to obj_damage_mult
+  - balance: King's laser now deals damage to tanks/APCs based on the tiles hit, 15
+      damage per tile every 0.3 seconds, down from 150 every 0.3 seconds.
+  - balance: The mech can now be shot through using IFF (aim mode, smart guns, etc)
+  - rscadd: Added the APC/tank weapons to the valhalla req vendor
+  - qol: Replaced the spawned vehicles in marine Valhalla with vehicle spawner buttons
+  - balance: Warlock's crush now hits more parts of tanks/APCs, dealing 10 damage
+      per part hit.
+  - balance: Xeno acid smoke will deal damage per tile of apc/tanks hit, between 400-500
+      if completely enveloped the entire duration of a boiler cloud.
+2024-06-20:
+  Kuro020:
+  - balance: Buffs the tank chaingun
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed an edge case where a leader would not be chosen'
+  - bugfix: fixed red sand minimap colour
+  - bugfix: Mines and sentries will target hostile tanks
+2024-06-21:
+  Barnet2:
+  - rscadd: 'Xeno Ranks: Preference to toggle them on and off'
+  - bugfix: Clientless xenos no longer have ranks
+  - bugfix: Xeno rank HUD no longer persists after death
+  Notamaniac:
+  - bugfix: Mashing the confirm button on the dropship selector won't bug the Tad
+      out
+  Wisemonster:
+  - rscadd: Added the overdrive, zoom, smoke launcher, and medical vehicle modules
+      to the req vendor.
+  novaepee:
+  - rscdel: remove large metal stacks in Kutjevo
+2024-06-22:
+  Naaanii:
+  - imageadd: added new (the OG) module icons and sprites
+  - imagedel: removed current module icons and sprites
+  Runian:
+  - bugfix: Forced devolve works again.
+  TiviPlus, Kuro, Tyeagg:
+  - rscadd: Adds spray secondary flamer for tank
+  Wisemonster:
+  - balance: Divided the damage dealt from boiler gas to tanks/apcs by 5
+  Xander3359:
+  - bugfix: fix draw order not saving
+  - code_imp: moves signals.dm + signals_keybindings.dm
+2024-06-23:
+  Lumipharon:
+  - bugfix: Binos can be unzoomed again via attackself
+  - code_imp: Added a missing signal override
+  Runian:
+  - bugfix: New xenomorph ruler announcements now correctly announces your name.
+  - bugfix: Numbered xenomorph names correctly display when evolving.
+  SomrNetwork:
+  - bugfix: vsd LMG icon and naked spawning specs in campaign
+  TiviPlus:
+  - bugfix: Fixed tank not rendering in some cases
+  Wisemonster:
+  - bugfix: Can no longer attack with melee weapons while lying down.
+  Xander3359:
+  - bugfix: Fix trying to give a drink to someone other than yourself
+  - bugfix: Facepaint no longer opens pill bottles when trying to paint them
+  breadhunt:
+  - rscadd: Injectors/hyposprays now display instructions for using them in their
+      description
+2024-06-24:
+  TiviPlus:
+  - bugfix: fixed tank vendor ui not resetting on new purchase
+  - bugfix: Probably fixed secondary tank weapon overlays duplicating
+  - bugfix: Fixed hiding ability let you layer under tank
+  - bugfix: 'Fixed tank aiming at darkness trying to shoot across zlevels: aiming
+      at darkness now shoots at your actual target'
+  - bugfix: Fixed tank secondary flamer not being in valhalla
+  Xander3359:
+  - rscadd: Adds duffelbags
+2024-06-25:
+  Ldip999:
+  - rscadd: Gorger heals are now tracked
+  - bugfix: Fixes incorrect tip about larva growth being only slowed during stasis
+  Xander3359:
+  - spellcheck: fixed a typo "suddendly"
+  - qol: Syringes can now change injection size
+2024-06-26:
+  Ldip999:
+  - rscadd: Heavy SMG ammo boxes
+  Lumipharon:
+  - rscadd: Added the SOM hover bike
+  - bugfix: fixed a vehicle runtime
+  - bugfix: fixed some broken sprites
+  - code_imp: small perf improvement to light SS
+  Wisemonster:
+  - balance: Ravage will now hit any part of the tank and APC.
+  - balance: Gargoyles will no longer detect simple animals, such as mice or cows.
+  - balance: Gargoyles will now detect vehicles, such as bikes, mechs, and tanks/apcs.
+2024-06-27:
+  Barnet2:
+  - bugfix: Fixed improper names showing when you played as a xeno without your rank
+      turned on
+  JackTheJackhammer:
+  - rscadd: Adds a weight check to the codex's text generation for all items that
+      act as storage
+  Wisemonster:
+  - balance: Pyrogen's fireball and heat ray will now damage tanks and apcs based
+      on how many tiles are hit, 5 damage per tile with fireball, and 15 damage per
+      tile, per tick with heat ray.
+  - bugfix: Fixed pyrogen's fireball dealing damage to friendly xenos
+2024-06-28:
+  Barnet2:
+  - balance: 'Daedalus Prison: Way more r walls, more rocks for xenos to heal, glass
+      ceilings in many prison areas (tad can land) and more RSR excavation sites in
+      the prison.'
+2024-06-29:
+  Apple-107:
+  - rscadd: Added new tadpole- the Outrider- an asymmetric design for carrying large
+      vehicles.
+  Helg2:
+  - qol: sound preferences were moved from "Preferences" tab to "Game Preferences"
+  - code_imp: Ammo.dmi responding for all the ammo sprites in the game has been reorganizes,
+      please report any missing icons.
+  JackTheJackhammer:
+  - bugfix: Tanks can no longer fire the same shell twice
+  Joe13413:
+  - imageadd: added new rav rouny sprites
+  - imagedel: deleted old rav rouny sprites
+  Lumipharon:
+  - balance: 'Campaign: Axe loadouts no longer have access to Russian Red
+
+      balance Campaign: Added a sword and shield loadout for marine standards, unlocked
+      with Sword Mastery'
+  - balance: 'Campaign: Sword/pistol loadout options no longer prevent you from getting
+      two swords/pistols'
+  - imageadd: Readd visible module sprites for Xenonauten armour
+  Wisemonster:
+  - balance: Widow Primo now includes the sow ability
+  - balance: The impact AoE damage of pyrogen's fireball will now inflict 2 stacks
+      of melting fire on hit.
+2024-06-30:
+  Barnet2:
+  - balance: Disallows AI railgun to target FOB
+  Ldip999:
+  - bugfix: Command now can talk on custom squad radios
+  Lumipharon:
+  - bugfix: fixed tank desants being effected by razor, sticky and fire the vehicle
+      crosses
+  - bugfix: fixed some minor offset issues with lying on beds
+  - rscadd: Added some effects when a tank is destroyed
+  - bugfix: fixed an issue with turfs going dark in some cases
+  - code_imp: Fixed a lighting runtime when late loading z-levels
+  - balance: rebalanced C4 and Dev explosions now seriously damage tanks
+  - balance: Added AP and cannister shells to tank
+  - balance: Tank weapons are better at bypassing cover, especially at close range
+  - balance: Added a stronger HE round for HvH
+  - balance: Tank shells no longer target turf
+  - balance: Tank move delay reduced to 0.75 seconds from 0.9 seconds
+  - balance: Tank windup/failure to fire does not apply full CD any more
+  - balance: tank windup is not interrupted by movement
+  - code_imp: Cleaned up some directional burst projectile code
+  - admin: Added a campaign admin control panel
+  - bugfix: fixed a couple of bugs with bike mounted guns
+  - bugfix: After images are no longer mouse opaque
+  Naaanii:
+  - rscadd: Reqtorio can now produce 500 cigarettes.
+  Neocloudy:
+  - rscadd: Replaced neon announcement colors with less saturated ones
+  - rscadd: Helpful stuff, like using gauze or pills, has a green span in chat
+  - rscadd: Admin announcements play sound and look more obvious
+  - rscadd: Custom Information plays sound
+  - rscadd: New examine block style
+  - rscadd: Campaign missions and gamemodes use large red announcement blocks
+  RipGrayson:
+  - rscadd: Added a new map, LV759
+  - imageadd: Added a ton of urban icons done by zenith_zero
+  - imageadd: Added a number of new windows and frames, partially done by me.
+  XElectricX:
+  - rscadd: Good doors.
+  - rscdel: Bad doors.
+  - qol: Doors auto open when approached. They also auto close when exiting (only
+      on help intent). Can be instantly opened if on harm intent. Doors cannot be
+      closed if a person is on the tile, unless the door is not full-tile (but can
+      be forced to close if on harm intent).
+  - balance: Resin doors are faster and can trap marines. Non-resin doors can be used
+      to beat people to death.
+  - code_imp: Completely new door code that facilitates mapper and player creativity.
+  - refactor: More modular doors (non-airlocks) with an accompanying lock and key
+      system.
+  Xander3359:
+  - bugfix: fixed being unable to take pills out of a pill bottle in someones duffel
+  - code_imp: items in storage now check a flag IN_STORAGE instead of type checking
+  - qol: Hyposprays can inject their entire storage at once.

@@ -5,7 +5,7 @@
 	icon_state = "xeno_cocoon"
 	density = FALSE
 	layer = BELOW_OBJ_LAYER
-	hit_sound = 'sound/effects/alien_resin_break2.ogg'
+	hit_sound = 'sound/effects/alien/resin_break2.ogg'
 	max_integrity = 400
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT
@@ -47,7 +47,7 @@
 	//Gives marine cloneloss for a total of 30.
 	victim.adjustCloneLoss(0.5)
 
-/obj/structure/cocoon/take_damage(damage_amount, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/structure/cocoon/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
 	if(anchored && obj_integrity < max_integrity / 2)
 		unanchor_from_nest()
@@ -57,7 +57,7 @@
 	new /obj/structure/bed/nest(loc)
 	anchored = FALSE
 	update_icon()
-	playsound(loc, "alien_resin_move", 35)
+	playsound(loc, SFX_ALIEN_RESIN_MOVE, 35)
 
 ///Stop producing points and release the victim if needed
 /obj/structure/cocoon/proc/life_draining_over(datum/source, must_release_victim = FALSE)
@@ -87,7 +87,7 @@
 ///Open the cocoon and move the victim out
 /obj/structure/cocoon/proc/release_victim(gib = FALSE)
 	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
-	playsound(loc, "alien_resin_move", 35)
+	playsound(loc, SFX_ALIEN_RESIN_MOVE, 35)
 	victim.forceMove(loc)
 	victim.setDir(NORTH)
 	victim.med_hud_set_status()

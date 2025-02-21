@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/hunter
-	caste_base_type = /mob/living/carbon/xenomorph/hunter
+	caste_base_type = /datum/xeno_caste/hunter
 	name = "Hunter"
 	desc = "A beefy, fast alien with sharp claws."
 	icon = 'icons/Xeno/castes/hunter.dmi'
@@ -19,7 +19,7 @@
 	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 
 /mob/living/carbon/xenomorph/hunter/weapon_x
-	caste_base_type = /mob/living/carbon/xenomorph/hunter/weapon_x
+	caste_base_type = /datum/xeno_caste/hunter/weapon_x
 
 /mob/living/carbon/xenomorph/hunter/weapon_x/Initialize(mapload)
 	. = ..()

@@ -17,7 +17,7 @@
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list(5)
 	volume = 5
-	flags_item = NOBLUDGEON
+	item_flags = NOBLUDGEON
 
 /obj/item/reagent_containers/glass/rag/attack_self(mob/user as mob)
 	return
@@ -37,5 +37,5 @@
 		user.visible_message("[user] starts to wipe down [A] with [src]!")
 		if(do_after(user, 3 SECONDS, NONE, A, , BUSY_ICON_GENERIC))
 			user.visible_message("[user] finishes wiping off the [A]!")
-			A.clean_blood()
+			A.wash()
 

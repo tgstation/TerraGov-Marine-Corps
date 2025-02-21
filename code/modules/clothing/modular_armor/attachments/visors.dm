@@ -8,12 +8,12 @@
 	name = "standard visor"
 	icon_state = "visor"
 	slot = ATTACHMENT_SLOT_VISOR
-	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 	greyscale_config = /datum/greyscale_config/visors
 	greyscale_colors = VISOR_PALETTE_GOLD
 	colorable_colors = VISOR_PALETTES_LIST
 	secondary_color = TRUE
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 	///whether this helmet should be using its emissive overlay or not
 	var/visor_emissive_on = TRUE
@@ -90,6 +90,18 @@
 	name = "\improper Jaeger Pattern Trooper visor"
 	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Trooper class of helmet."
 	icon_state = "trooper_visor"
+	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
+
+/obj/item/armor_module/armor/visor/marine/mjolnir
+	name = "\improper Jaeger Pattern Mjolnir visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Mjolnir class of helmet."
+	icon_state = "mjolnir_visor"
+	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
+
+/obj/item/armor_module/armor/visor/marine/mjolnir_open
+	name = "\improper Jaeger Pattern Open Mjolnir visor"
+	desc = "The visor attachment of the Jaeger modular helmets. This one is designed for the Mjolnir class of helmet."
+	icon_state = "mjolnir_open_visor"
 	colorable_allowed = COLOR_WHEEL_ALLOWED|PRESET_COLORS_ALLOWED
 
 /obj/item/armor_module/armor/visor/marine/eva

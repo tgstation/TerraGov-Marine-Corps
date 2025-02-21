@@ -99,7 +99,7 @@
 	ADD_TRAIT(src, BENCH_BEING_USED, WEIGHTBENCH_TRAIT) // yea this is meh but IN_USE and interact code are a mess rn and too buggy so less sidestep it
 	update_icon()
 	user.setDir(SOUTH)
-	user.flags_atom |= DIRLOCK
+	user.atom_flags |= DIRLOCK
 	ADD_TRAIT(user, TRAIT_IMMOBILE, WEIGHTBENCH_TRAIT)
 	user.forceMove(loc)
 	var/bragmessage = pick("pushing it to the limit","going into overdrive","burning with determination","rising up to the challenge", "getting strong now","getting ripped")
@@ -112,7 +112,7 @@
 	creak_loop.stop(src)
 	playsound(user, 'sound/machines/click.ogg', 60, TRUE)
 	REMOVE_TRAIT(src, BENCH_BEING_USED, WEIGHTBENCH_TRAIT)
-	user.flags_atom &= ~DIRLOCK
+	user.atom_flags &= ~DIRLOCK
 	REMOVE_TRAIT(user, TRAIT_IMMOBILE, WEIGHTBENCH_TRAIT)
 	update_icon()
 	if(user.faction)
@@ -123,7 +123,7 @@
 		broken.fracture()
 		return
 	if(!HAS_TRAIT(user, TRAIT_WORKED_OUT))
-		user.set_skills(user.skills.modifyRating(cqc=1))
+		user.set_skills(user.skills.modifyRating(unarmed=1))
 		ADD_TRAIT(user, TRAIT_WORKED_OUT, WEIGHTBENCH_TRAIT)
 		addtimer(CALLBACK(src, PROC_REF(undo_buff), WEAKREF(user)), 15 MINUTES)
 	var/finishmessage = pick("You feel stronger!","You feel like you're the boss of this gym!","You feel robust!","The challenge is real!")
@@ -137,12 +137,12 @@
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.weights_lifted++
 
-///proc to undo the cqc buff granted by the bench
+///proc to undo the unarmed buff granted by the bench
 /obj/structure/benchpress/proc/undo_buff(datum/weakref/user_ref)
 	var/mob/user = user_ref.resolve()
 	if(!user)
 		return
 	REMOVE_TRAIT(user, TRAIT_WORKED_OUT, WEIGHTBENCH_TRAIT)
-	user.set_skills(user.skills.modifyRating(cqc=-1))
+	user.set_skills(user.skills.modifyRating(unarmed=-1))
 	to_chat(user, span_boldnotice("You no longer feel as fit as you used to!"))
 

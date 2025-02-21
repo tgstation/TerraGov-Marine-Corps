@@ -27,11 +27,18 @@
 
 /datum/loadout_item/back/som_flamer_tank/x_fuel
 	name = "X-fuel tank"
-	desc = "A specialized fuel tank of ultra thick napthal type X, known for its extreme heat and slow burn rate, as well as it's distinct blue flames. For use with the V-62 incinerator."
+	desc = "A specialized fuel tank of ultra thick napthal type X, known for its extreme heat and slow burn rate, as well as its distinct blue flames. For use with the V-62 incinerator."
 	item_typepath = /obj/item/ammo_magazine/flamer_tank/backtank/X
-	purchase_cost = 40
+	purchase_cost = 50
 	unlock_cost = 200
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
+
+/datum/loadout_item/back/som_engineer_pack
+	name = "Welding bag"
+	desc = "A technician backpack with integrated welder tank. Has satchel storage."
+	jobs_supported = list(SOM_SQUAD_ENGINEER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	item_typepath = /obj/item/storage/backpack/marine/engineerpack/som
 
 /datum/loadout_item/back/blinkdrive
 	name = "Blink drive"
@@ -52,13 +59,13 @@
 	desc = "Equipped with a mag harness, bayonet and undebarrel flashlight. The V-51 is the main shotgun utilised by the Sons of Mars. \
 	Semi automatic with great handling and mobility, it is less powerful than the SH-35 used by the TGMC, but makes up for it with a superior rate of fire. \
 	Uses 12 gauge shells."
-	ui_icon = "shotgun"
+	ui_icon = "v51"
 	purchase_cost = 25
 	item_typepath = /obj/item/weapon/gun/shotgun/som/standard
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 	loadout_item_flags = NONE
 
-/datum/loadout_item/back/som_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/back/som_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, SLOT_R_HAND)
 
@@ -67,11 +74,24 @@
 	desc = "This backpack holds 4 RPGs, in addition to a V-71 RPG launcher. Equipped with radioactive and incendiary warheads, \
 	the V-71 is incredibly effective at softening up or flushing out organic targets, making them easy prey to finish off. Has a draw delay."
 	req_desc = "Requires a suit with a Mithridatius environmental protection module."
+	ui_icon = "rpg"
 	purchase_cost = 50
 	quantity = 2
 	item_typepath = /obj/item/storage/holster/backholster/rpg/som/war_crimes
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/mithridatius = ITEM_SLOT_OCLOTHING)
+
+/datum/loadout_item/back/som_heat_rocket_bag
+	name = "HEAT RPG bag"
+	desc = "Unlocked for free with the Heavy weapon specialisation perk. This backpack holds 4 high explosive anti armor RPGs, in addition to a V-71 RPG launcher. Deals significant damage against vehicles and mechs, but will also generally devastate human victims in a pinch. \
+	Has a draw delay and has poor accuracy against human targets."
+	ui_icon = "rpg"
+	unlock_cost = 300
+	purchase_cost = 100
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
+	quantity = 2
+	item_typepath = /obj/item/storage/holster/backholster/rpg/som/heat
+	jobs_supported = list(SOM_SQUAD_VETERAN)
 
 /datum/loadout_item/back/volkite_powerpack
 	name = "M-70 powerpack"
@@ -92,6 +112,6 @@
 	You'll kill pretty much anything you can hit with this - providing you can get close enough to use it."
 	ui_icon = "axe"
 	item_typepath = /obj/item/weapon/twohanded/fireaxe/som
-	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_FIELD_COMMANDER)
+	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 	item_blacklist = list(/obj/item/weapon/twohanded/fireaxe/som = ITEM_SLOT_SUITSTORE)
 	loadout_item_flags = NONE

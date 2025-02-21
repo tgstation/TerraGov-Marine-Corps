@@ -3,11 +3,15 @@
 	name = "bookcase"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "book-0"
+	max_integrity = 200
 	resistance_flags = XENO_DAMAGEABLE
 	anchored = TRUE
 	density = TRUE
 	opacity = TRUE
 	allow_pass_flags = PASS_AIR
+
+/obj/structure/bookcase/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_PAPER, -40, 5)
 
 /obj/structure/bookcase/Initialize(mapload)
 	. = ..()

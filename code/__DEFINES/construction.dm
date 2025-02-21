@@ -28,10 +28,6 @@
 #define GIRDER_REINF_METAL /obj/item/stack/sheet/metal
 #define GIRDER_REINF_PLASTEEL /obj/item/stack/sheet/plasteel
 
-#define STACK_RECIPE_INFINITE_PER_TILE 0
-#define STACK_RECIPE_ONE_PER_TILE 1
-#define STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE 2
-
 #define MAXCOIL 30
 
 //The amount of materials you get from a sheet of mineral like iron/diamond/glass etc

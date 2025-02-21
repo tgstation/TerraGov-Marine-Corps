@@ -56,7 +56,7 @@ FIRE ALARM
 		return
 
 	var/area/A = get_area(src)
-	if(A.flags_alarm_state & ALARM_WARNING_FIRE)
+	if(A.alarm_state_flags & ALARM_WARNING_FIRE)
 		set_light_color(LIGHT_COLOR_EMISSIVE_ORANGE)
 	else
 		switch(GLOB.marine_main_ship.get_security_level())
@@ -74,7 +74,7 @@ FIRE ALARM
 /obj/machinery/firealarm/update_icon_state()
 	. = ..()
 	var/area/A = get_area(src)
-	icon_state = "fire[!CHECK_BITFIELD(A.flags_alarm_state, ALARM_WARNING_FIRE)]"
+	icon_state = "fire[!CHECK_BITFIELD(A.alarm_state_flags, ALARM_WARNING_FIRE)]"
 
 /obj/machinery/firealarm/update_overlays()
 	. = ..()
@@ -86,17 +86,18 @@ FIRE ALARM
 	. += emissive_appearance(icon, "fire_o[(is_mainship_level(z)) ? GLOB.marine_main_ship.get_security_level() : "green"]")
 	. += mutable_appearance(icon, "fire_o[(is_mainship_level(z)) ? GLOB.marine_main_ship.get_security_level() : "green"]")
 	var/area/A = get_area(src)
-	if(A.flags_alarm_state & ALARM_WARNING_FIRE)
+	if(A.alarm_state_flags & ALARM_WARNING_FIRE)
 		. += mutable_appearance(icon, "fire_o1")
 
-/obj/machinery/firealarm/fire_act(temperature, volume)
-	if(detecting && (temperature > T0C+200))
-		alarm()			// added check of detector status here
+/obj/machinery/firealarm/fire_act(burn_level)
+	if(!detecting)
+		return
+	alarm()
 
 /obj/machinery/firealarm/emp_act(severity)
+	. = ..()
 	if(prob(50/severity))
 		alarm()
-	return ..()
 
 /obj/machinery/firealarm/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -178,17 +179,17 @@ FIRE ALARM
 	var/d1
 	var/d2
 
-	if (A.flags_alarm_state & ALARM_WARNING_FIRE)
-		d1 = "<A href='?src=[text_ref(src)];reset=1'>Reset - Lockdown</A>"
+	if (A.alarm_state_flags & ALARM_WARNING_FIRE)
+		d1 = "<A href='byond://?src=[text_ref(src)];reset=1'>Reset - Lockdown</A>"
 	else
-		d1 = "<A href='?src=[text_ref(src)];alarm=1'>Alarm - Lockdown</A>"
+		d1 = "<A href='byond://?src=[text_ref(src)];alarm=1'>Alarm - Lockdown</A>"
 	if(timing)
-		d2 = "<A href='?src=[text_ref(src)];time=0'>Stop Time Lock</A>"
+		d2 = "<A href='byond://?src=[text_ref(src)];time=0'>Stop Time Lock</A>"
 	else
-		d2 = "<A href='?src=[text_ref(src)];time=1'>Initiate Time Lock</A>"
+		d2 = "<A href='byond://?src=[text_ref(src)];time=1'>Initiate Time Lock</A>"
 	var/second = round(time) % 60
 	var/minute = (round(time) - second) / 60
-	var/dat = "<B>Fire alarm</B> [d1]\n<HR>The current alert level is: [GLOB.marine_main_ship.get_security_level()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=[text_ref(src)];tp=-30'>-</A> <A href='?src=[text_ref(src)];tp=-1'>-</A> <A href='?src=[text_ref(src)];tp=1'>+</A> <A href='?src=[text_ref(src)];tp=30'>+</A>"
+	var/dat = "<B>Fire alarm</B> [d1]\n<HR>The current alert level is: [GLOB.marine_main_ship.get_security_level()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='byond://?src=[text_ref(src)];tp=-30'>-</A> <A href='byond://?src=[text_ref(src)];tp=-1'>-</A> <A href='byond://?src=[text_ref(src)];tp=1'>+</A> <A href='byond://?src=[text_ref(src)];tp=30'>+</A>"
 
 	var/datum/browser/popup = new(user, "firealarm", "<div align='center'>Fire alarm</div>")
 	popup.set_content(dat)

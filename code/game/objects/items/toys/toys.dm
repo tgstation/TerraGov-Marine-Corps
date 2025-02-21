@@ -17,7 +17,7 @@
 
 /obj/item/toy
 	icon = 'icons/obj/items/toy.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/toys_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/toys_right.dmi',
 	)
@@ -38,7 +38,7 @@
 	name = "water balloon"
 	desc = "A translucent balloon. There's nothing in it."
 	icon_state = "waterballoon-e"
-	item_state = "balloon-empty"
+	worn_icon_state = "balloon-empty"
 
 /obj/item/toy/balloon/Initialize(mapload)
 	. = ..()
@@ -101,10 +101,10 @@
 	. = ..()
 	if(reagents.total_volume)
 		icon_state = "waterballoon"
-		item_state = "balloon"
+		worn_icon_state = "balloon"
 	else
 		icon_state = "waterballoon-e"
-		item_state = "balloon-empty"
+		worn_icon_state = "balloon-empty"
 
 /obj/item/toy/syndicateballoon
 	name = "syndicate balloon"
@@ -112,9 +112,9 @@
 	throw_speed = 4
 	throw_range = 20
 	force = 0
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/toy.dmi'
 	icon_state = "syndballoon"
-	item_state = "syndballoon"
+	worn_icon_state = "syndballoon"
 	w_class = WEIGHT_CLASS_BULKY
 
 /*
@@ -125,11 +125,11 @@
 	desc = "Blink.  Blink.  Blink. Ages 8 and up."
 	icon = 'icons/obj/items/radio.dmi'
 	icon_state = "beacon"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
 	)
-	item_state = "signaler"
+	worn_icon_state = "signaler"
 
 /*
 * Fake singularity
@@ -152,7 +152,7 @@
 	icon = 'icons/obj/items/crayons.dmi'
 	icon_state = "crayonred"
 	w_class = WEIGHT_CLASS_TINY
-	attack_verb = list("attacked", "coloured")
+	attack_verb = list("attacks", "colours")
 	var/colour = "#FF0000" //RGB
 	var/shadeColour = "#220000" //RGB
 	var/uses = 30 //0 for unlimited uses
@@ -216,7 +216,7 @@
 	desc = "A seemingly innocent sunflower...with a twist."
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "sunflower"
-	item_state = "sunflower"
+	worn_icon_state = "sunflower"
 	var/empty = 0
 	flags
 
@@ -363,15 +363,15 @@
 	name = "inflatable duck"
 	desc = "No bother to sink or swim when you can just float!"
 	icon_state = "inflatable"
-	item_state = "inflatable"
+	worn_icon_state = "inflatable"
 	icon = 'icons/obj/clothing/belts.dmi'
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 
 
 /obj/item/toy/beach_ball
 	name = "beach ball"
 	icon_state = "beachball"
-	item_state = "beachball"
+	worn_icon_state = "beachball"
 	density = FALSE
 	anchored = FALSE
 	w_class = WEIGHT_CLASS_SMALL
@@ -390,7 +390,7 @@
 	icon_state = "d66"
 	w_class = WEIGHT_CLASS_TINY
 	var/sides = 6
-	attack_verb = list("diced")
+	attack_verb = list("dices")
 
 /obj/item/toy/dice/Initialize(mapload)
 	. = ..()
@@ -410,7 +410,7 @@
 	else if(sides == 20 && result == 1)
 		comment = "Ouch, bad luck."
 	icon_state = "[name][result]"
-	user.visible_message(span_notice("[user] has thrown [src]. It lands on [result]. [comment]"), \
+	user.visible_message(span_notice("[user] throws [src]. It lands on [result]. [comment]"), \
 						span_notice("You throw [src]. It lands on a [result]. [comment]"), \
 						span_notice("You hear [src] landing on a [result]. [comment]"))
 
@@ -421,12 +421,12 @@
 	desc = "A horn off of a bicycle."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "bike_horn"
-	item_state = "bike_horn"
+	worn_icon_state = "bike_horn"
 	throwforce = 3
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 15
-	attack_verb = list("HONKED")
+	attack_verb = list("HONKS")
 
 
 /obj/item/toy/bikehorn/Initialize(mapload)
@@ -497,43 +497,66 @@
 	name = "carp plushie"
 	desc = "An adorable stuffed toy that resembles a carp."
 	icon_state = "carpplush"
-	item_state = "carp_plushie"
+	worn_icon_state = "carp_plushie"
 	attack_verb = list("bites", "eats", "fin slaps")
 
 /obj/item/toy/plush/lizard
 	name = "lizard plushie"
 	desc = "An adorable stuffed toy that resembles a lizard."
 	icon_state = "lizplush"
-	item_state = "lizplush"
+	worn_icon_state = "lizplush"
 	attack_verb = list("claws", "hisses", "tail slaps")
 
 /obj/item/toy/plush/snake
 	name = "snake plushie"
 	desc = "An adorable stuffed toy that resembles a snake. Not to be mistaken for the real thing."
 	icon_state = "snakeplush"
-	item_state = "snakeplush"
+	worn_icon_state = "snakeplush"
 	attack_verb = list("bites", "hisses", "tail slaps")
 
 /obj/item/toy/plush/slime
 	name = "slime plushie"
 	desc = "An adorable stuffed toy that resembles a slime. It is practically just a hacky sack."
 	icon_state = "slimeplush"
-	item_state = "slimeplush"
+	worn_icon_state = "slimeplush"
 	attack_verb = list("blorbles", "slimes", "absorbs")
 
 /obj/item/toy/plush/moth
 	name = "moth plushie"
 	desc = "A plushie depicting an adorable mothperson. It's a huggable bug!"
 	icon_state = "moffplush"
-	item_state = "moffplush"
+	worn_icon_state = "moffplush"
 	attack_verb = list("flutters", "flaps")
 
 /obj/item/toy/plush/rouny
 	name = "rouny plushie"
 	desc = "A plushie depicting a rouny, made to commemorate the centenary of the battle of LV-426. Much cuddlier and soft than the real thing."
 	icon_state = "rounyplush"
-	item_state = "rounyplush"
+	worn_icon_state = "rounyplush"
 	attack_verb = list("slashes", "bites", "pounces")
+
+/obj/item/toy/plush/witch
+	name = "witch plushie"
+	desc = "A plushie depicting an adorable witch. It likes to steal books."
+	icon_state = "marisa"
+	worn_icon_state = "marisa"
+
+/obj/item/toy/plush/fairy
+	name = "fairy plushie"
+	desc = "A plushie depicting an adorable fairy. It's cold to the touch."
+	icon_state = "cirno"
+	worn_icon_state = "cirno"
+
+/obj/item/toy/plush/royalqueen
+	name = "royal queen plushie"
+	desc = "A plushie depicting a royal xenomorph queen. Smells faintly of stardust and baguettes, with a tag that has Wee! written on it."
+	icon_state = "queenplushie"
+	worn_icon_state = "queenplushie"
+	attack_verb = list("nuzzles", "bops", "pats")
+
+/obj/item/toy/plush/royalqueen/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/squeak, 'sound/items/wee.ogg', 20)
 
 #define HIGH_GNOME_MOVE_RANGE 40
 #define STANDARD_GNOME_PIPE_CHANCE 50
@@ -543,7 +566,7 @@
 	name = "gnome"
 	desc = "A mythological creature that guarded Terra's garden. You wonder why it is here."
 	icon_state = "gnome"
-	item_state = "gnome"
+	worn_icon_state = "gnome"
 	attack_verb = list("kickes", "punches", "pounces")
 
 /obj/item/toy/plush/gnome/Initialize(mapload)
@@ -676,13 +699,13 @@
 		if(1)
 			pick(playsound(src, 'sound/items/gnome.ogg', 35, TRUE),
 			playsound(src, 'sound/misc/robotic scream.ogg', 35, TRUE),
-			playsound(src, 'sound/voice/pred_laugh1.ogg', 35, TRUE),
-			playsound(src, 'sound/voice/pred_laugh2.ogg', 35, TRUE),
-			playsound(src, 'sound/voice/pred_laugh3.ogg', 35, TRUE),
+			playsound(src, 'sound/voice/predator/laugh1.ogg', 35, TRUE),
+			playsound(src, 'sound/voice/predator/laugh2.ogg', 35, TRUE),
+			playsound(src, 'sound/voice/predator/laugh3.ogg', 35, TRUE),
 			playsound(src, 'sound/voice/gnomelaugh.ogg', 35, TRUE),
 			playsound(src, 'sound/weapons/guns/fire/tank_cannon1.ogg', 35, TRUE),
 			playsound(src, 'sound/weapons/guns/fire/tank_cannon2.ogg', 35, TRUE),
-			playsound(src, 'sound/voice/pred_helpme.ogg', 35, TRUE))
+			playsound(src, 'sound/voice/predator/helpme.ogg', 35, TRUE))
 		if(2)
 			for(var/atom/movable/object AS in targetturf.contents)
 				if(isfood(object))
@@ -745,13 +768,13 @@
 		if(length(GLOB.atmospumps))
 			var/obj/machinery/atmospherics/components/unary/vent_pump/targetpump = pick(GLOB.atmospumps)
 			forceMove(targetpump.loc)
-			playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
+			playsound(src, SFX_ALIEN_VENTPASS, 35, TRUE)
 			pipe_mode = FALSE
 	else //if we're not in pipe mode check the ground for scrubbers/vents, if we find one enter it
 		for(var/atom/movable/object AS in targetturf.contents)
 			if(isatmosvent(object) || isatmosscrubber(object))
 				forceMove(object)
-				playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
+				playsound(src, SFX_ALIEN_VENTPASS, 35, TRUE)
 				pipe_mode = TRUE
 
 #undef HIGH_GNOME_MOVE_RANGE
@@ -761,7 +784,7 @@
 /obj/item/toy/beach_ball/basketball
 	name = "basketball"
 	icon_state = "basketball"
-	item_state = "basketball"
+	worn_icon_state = "basketball"
 	desc = "Here's your chance, do your dance at the Space Jam."
 	w_class = WEIGHT_CLASS_BULKY
 
@@ -773,6 +796,7 @@
 	icon_state = "hoop"
 	anchored = TRUE
 	density = TRUE
+	resistance_flags = XENO_DAMAGEABLE
 	var/side = ""
 	var/id = ""
 

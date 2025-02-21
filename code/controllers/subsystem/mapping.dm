@@ -23,6 +23,31 @@ SUBSYSTEM_DEF(mapping)
 	var/list/reservation_ready = list()
 	var/clearing_reserved_turfs = FALSE
 
+	/// List of z level (as number) -> plane offset of that z level
+	/// Used to maintain the plane cube
+	var/list/z_level_to_plane_offset = list()
+	/// List of z level (as number) -> list of all z levels vertically connected to ours
+	/// Useful for fast grouping lookups and such
+	var/list/z_level_to_stack = list()
+	/// List of z level (as number) -> The lowest plane offset in that z stack
+	var/list/z_level_to_lowest_plane_offset = list()
+	// This pair allows for easy conversion between an offset plane, and its true representation
+	// Both are in the form "input plane" -> output plane(s)
+	/// Assoc list of string plane values to their true, non offset representation
+	var/list/plane_offset_to_true
+	/// Assoc list of true string plane values to a list of all potential offset planess
+	var/list/true_to_offset_planes
+	/// Assoc list of string plane to the plane's offset value
+	var/list/plane_to_offset
+	/// List of planes that do not allow for offsetting
+	var/list/plane_offset_blacklist
+	/// List of render targets that do not allow for offsetting
+	var/list/render_offset_blacklist
+	/// List of plane masters that are of critical priority
+	var/list/critical_planes
+	/// The largest plane offset we've generated so far
+	var/max_plane_offset = 0
+
 	// Z-manager stuff
 	var/ground_start  // should only be used for maploading-related tasks
 	var/list/z_list
@@ -190,10 +215,16 @@ SUBSYSTEM_DEF(mapping)
 	var/datum/map_config/ground_map = configs[GROUND_MAP]
 	INIT_ANNOUNCE("Loading [ground_map.map_name]...")
 	LoadGroup(FailedZs, ground_map.map_name, ground_map.map_path, ground_map.map_file, ground_map.traits, ZTRAITS_GROUND)
+	// Also saving this as a feedback var as we don't have ship_name in the round table.
+	SSblackbox.record_feedback("text", "ground_map", 1, ground_map.map_name)
 
+	#if !(defined(CIBUILDING) && !defined(ALL_MAPS))
 	var/datum/map_config/ship_map = configs[SHIP_MAP]
 	INIT_ANNOUNCE("Loading [ship_map.map_name]...")
 	LoadGroup(FailedZs, ship_map.map_name, ship_map.map_path, ship_map.map_file, ship_map.traits, ZTRAITS_MAIN_SHIP)
+	// Also saving this as a feedback var as we don't have ship_name in the round table.
+	SSblackbox.record_feedback("text", "ship_map", 1, ship_map.map_name)
+	#endif
 
 	if(SSdbcore.Connect())
 		var/datum/db_query/query_round_map_name = SSdbcore.NewQuery({"
@@ -201,10 +232,6 @@ SUBSYSTEM_DEF(mapping)
 		"}, list("map_name" = ground_map.map_name, "round_id" = GLOB.round_id))
 		query_round_map_name.Execute()
 		qdel(query_round_map_name)
-
-	// Also saving this as a feedback var as we don't have ship_name in the round table.
-	SSblackbox.record_feedback("text", "ground_map", 1, ground_map.map_name)
-	SSblackbox.record_feedback("text", "ship_map", 1, ship_map.map_name)
 
 	if(LAZYLEN(FailedZs))	//but seriously, unless the server's filesystem is messed up this will never happen
 		var/msg = "RED ALERT! The following map files failed to load: [FailedZs[1]]"
@@ -344,7 +371,7 @@ SUBSYSTEM_DEF(mapping)
 		// No need to empty() these, because it's world init and they're
 		// already /turf/open/space/basic.
 		var/turf/T = t
-		T.flags_atom |= UNUSED_RESERVATION_TURF_1
+		T.atom_flags |= UNUSED_RESERVATION_TURF_1
 	unused_turfs["[z]"] = block
 	reservation_ready["[z]"] = TRUE
 	clearing_reserved_turfs = FALSE
@@ -355,7 +382,7 @@ SUBSYSTEM_DEF(mapping)
 		T.empty(RESERVED_TURF_TYPE, RESERVED_TURF_TYPE, null, TRUE)
 		LAZYINITLIST(unused_turfs["[T.z]"])
 		unused_turfs["[T.z]"] |= T
-		T.flags_atom |= UNUSED_RESERVATION_TURF_1
+		T.atom_flags |= UNUSED_RESERVATION_TURF_1
 		GLOB.areas_by_type[world.area].contents += T
 		CHECK_TICK
 

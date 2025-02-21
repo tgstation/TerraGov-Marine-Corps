@@ -4,12 +4,12 @@
 	upgrade_name = ""
 	caste_desc = "A grotesque puppet of a puppeteer."
 	wound_type = ""
-
+	base_strain_type = /mob/living/carbon/xenomorph/puppet
 	caste_type_path = /mob/living/carbon/xenomorph/puppet
 
 	tier = XENO_TIER_MINION
 	upgrade = XENO_UPGRADE_BASETYPE
-	melee_damage = 15
+	melee_damage = 12
 	accuracy_malus = 65
 	speed = -0.8
 	plasma_max = 2

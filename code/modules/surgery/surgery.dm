@@ -24,8 +24,8 @@ GLOBAL_LIST_INIT(surgery_steps, init_surgery())
 	var/list/allowed_tools = null //Array of type path referencing tools that can be used for this step, and how well are they suited for it
 	var/list/allowed_species = null //List of names referencing species that this step applies to.
 	var/list/disallowed_species = null
-
-
+	///Surgery skill required for this surgery step to start without the innitial fumble delay
+	var/surgery_skill_required = SKILL_SURGERY_PROFESSIONAL
 
 	var/min_duration = 0 //Minimum duration of the step
 	var/max_duration = 0 //Maximum duration of the step
@@ -147,7 +147,7 @@ GLOBAL_LIST_INIT(surgery_steps, init_surgery())
 			if(SURGERY_INVALID)
 				return TRUE
 
-		if(user.skills.getRating(SKILL_SURGERY) < SKILL_SURGERY_PROFESSIONAL)
+		if(user.skills.getRating(SKILL_SURGERY) < surgery_step.surgery_skill_required)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to operate [M]."),
 			span_notice("You fumble around figuring out how to operate [M]."))
 			var/fumbling_time = max(0, SKILL_TASK_FORMIDABLE - ( 8 SECONDS * user.skills.getRating(SKILL_SURGERY) )) // 20 secs non-trained, 12 amateur, 4 trained, 0 prof

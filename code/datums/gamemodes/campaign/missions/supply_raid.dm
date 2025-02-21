@@ -8,6 +8,7 @@
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SNOWSTORM = TRUE)
 	map_light_colours = list(COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE)
 	map_light_levels = list(225, 150, 100, 75)
+	map_armor_color = MAP_ARMOR_STYLE_ICE
 	objectives_total = 6
 	min_destruction_amount = 4
 	victory_point_rewards = list(
@@ -26,6 +27,24 @@
 	)
 	starting_faction_additional_rewards = "Disrupt enemy supply routes, reducing enemy attrition generation for future missions."
 	hostile_faction_additional_rewards = "Prevent the degradation of our attrition generation. Recon mech and gorgon armor available if you successfully protect this depot."
+	outro_message = list(
+		MISSION_OUTCOME_MAJOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Major victory</u><br> Enemy base is in ruins, outstanding work!",
+			MISSION_HOSTILE_FACTION = "<u>Major loss</u><br> The base is a complete loss. All forces, retreat!",
+		),
+		MISSION_OUTCOME_MINOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Minor victory</u><br> Outstanding work, they won't be recovering from this any time soon!",
+			MISSION_HOSTILE_FACTION = "<u>Minor loss</u><br> This one is a loss. All units regroup, we'll get them next time..",
+		),
+		MISSION_OUTCOME_MINOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Minor loss</u><br> Mission failed, they're still up and running. All forces, fallback!",
+			MISSION_HOSTILE_FACTION = "<u>Minor victory</u><br> We drove them back, confirming minimal damage. Excellent work.",
+		),
+		MISSION_OUTCOME_MAJOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Major loss</u><br> No notable damage inflicted, what are we doing out there? All forces, retreat!",
+			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> Enemy assault completely neutralised. Outstanding work!",
+		),
+	)
 
 /datum/campaign_mission/destroy_mission/supply_raid/play_start_intro()
 	intro_message = list(
@@ -41,6 +60,16 @@
 	hostile_faction_mission_brief = "[starting_faction] forces have been detected moving against our supply depot in this area. \
 		Repel the enemy and protect the installation until reinforcements can arrive. \
 		Loss of this depot will significantly degrade our logistical capabilities and weaken our forces going forwards."
+
+/datum/campaign_mission/destroy_mission/supply_raid/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
+	if(message)
+		return ..()
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			message = "This base is a key logistic hub for the SOM. Tear it apart and they're crippled in this region. Hustle marines!"
+		if(FACTION_SOM)
+			message = "This is a key logistics hub for us. Hold the line marines, throw back those Terran dogs and show them Martian resolve!"
+	return ..()
 
 /datum/campaign_mission/destroy_mission/supply_raid/load_pre_mission_bonuses()
 	. = ..()
@@ -86,6 +115,17 @@
 	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
 	map_traits = list(ZTRAIT_AWAY = TRUE)
 	map_light_levels = list(225, 150, 100, 75)
+	map_armor_color = MAP_ARMOR_STYLE_JUNGLE
 	objectives_total = 8
-	min_destruction_amount = 5
+	min_destruction_amount = 6
 	hostile_faction_additional_rewards = "Prevent the degradation of our attrition generation. B18 power armour available if you successfully protect this depot."
+
+/datum/campaign_mission/destroy_mission/supply_raid/som/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
+	if(message)
+		return ..()
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			message = "This base is a key logistic hub for us. Repel the SOM marauders, protect our assets at all costs!"
+		if(FACTION_SOM)
+			message = "This is a key logistics hub for the TGMC. Smash through their defences and destroy the marked targets. Glory to Mars!"
+	return ..()

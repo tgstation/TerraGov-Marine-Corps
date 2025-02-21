@@ -148,13 +148,20 @@
 
 /area/mainship/hallways/hangar/flight_control
 	name = "Flight Control"
-	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_COMMAND
 
+/area/mainship/hallways/hangar/flight_observation
+	name = "Flight Observation"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/mainship/living/tankerbunks
 	name = "Vehicle Crew Bunks"
 	icon_state = "livingspace"
+	minimap_color = MINIMAP_AREA_COMMAND
+
+/area/mainship/living/mechpilotquarters
+	name = "Mech Pilot Quarters"
+	icon_state = "blueold"
 	minimap_color = MINIMAP_AREA_COMMAND
 
 /area/mainship/hallways/exoarmor
@@ -353,7 +360,9 @@
 	icon_state = "officerrnr"
 
 /area/mainship/medical
+	name = "\improper Medical Bay"
 	minimap_color = MINIMAP_AREA_MEDBAY
+	icon_state = "medical"
 
 /area/mainship/medical/lower_medical
 	name = "Medical Lower"
@@ -521,6 +530,16 @@
 	name = "SOM Barracks"
 	icon_state = "cryo"
 	minimap_color = MINIMAP_AREA_LIVING
+
+/area/mainship/patrol_base/som/medical
+	name = "SOM Medical bay"
+	icon_state = "medical"
+	minimap_color = MINIMAP_AREA_MEDBAY
+
+/area/mainship/patrol_base/som/equipment_bay
+	name = "SOM Equipment bay"
+	icon_state = "req"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/mainship/patrol_base/telecomms
 	name = "Telecommunications"

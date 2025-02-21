@@ -47,6 +47,10 @@
 	. = ..()
 	. += ceiling_desc()
 
+/turf/open/do_acid_melt()
+	. = ..()
+	ScrapeAway()
+
 ///Checks if anything should override the turf's normal footstep sounds
 /turf/open/proc/get_footstep_override(footstep_type)
 	var/list/footstep_overrides = list()
@@ -146,6 +150,84 @@
 /turf/open/shuttle/dropship/fourteen
 	icon_state = "floor6"
 
+/turf/open/shuttle/dropship/fourteen
+	icon_state = "rasputin14"
+
+/turf/open/shuttle/dropship/fifteen
+	icon_state = "rasputin15"
+
+/turf/open/shuttle/dropship/sixteen
+	icon_state = "rasputin16"
+
+/turf/open/shuttle/dropship/seventeen
+	icon_state = "rasputin17"
+
+/turf/open/shuttle/dropship/eighteen
+	icon_state = "rasputin18"
+
+/turf/open/shuttle/dropship/nineteen
+	icon_state = "rasputin19"
+
+/turf/open/shuttle/dropship/twenty
+	icon_state = "rasputin20"
+
+/turf/open/shuttle/dropship/twentyone
+	icon_state = "rasputin21"
+
+/turf/open/shuttle/dropship/twentytwo
+	icon_state = "rasputin22"
+
+/turf/open/shuttle/dropship/twentythree
+	icon_state = "rasputin23"
+
+/turf/open/shuttle/dropship/twentyfour
+	icon_state = "rasputin24"
+
+/turf/open/shuttle/dropship/twentyfive
+	icon_state = "rasputin25"
+
+/turf/open/shuttle/dropship/twentysix
+	icon_state = "rasputin26"
+
+/turf/open/shuttle/dropship/twentyseven
+	icon_state = "rasputin27"
+
+/turf/open/shuttle/dropship/twentyeight
+	icon_state = "rasputin28"
+
+/turf/open/shuttle/dropship/twentynine
+	icon_state = "rasputin29"
+
+/turf/open/shuttle/dropship/thirty
+	icon_state = "rasputin30"
+
+/turf/open/shuttle/dropship/thirtyone
+	icon_state = "rasputin31"
+
+/turf/open/shuttle/dropship/thirtytwo
+	icon_state = "rasputin32"
+
+/turf/open/shuttle/dropship/thirtythree
+	icon_state = "rasputin33"
+
+/turf/open/shuttle/dropship/thirtyfour
+	icon_state = "rasputin34"
+
+/turf/open/shuttle/dropship/thirtyfive
+	icon_state = "rasputin35"
+
+/turf/open/shuttle/dropship/thirtysix
+	icon_state = "rasputin36"
+
+/turf/open/shuttle/dropship/thirtyseven
+	icon_state = "rasputin37"
+
+/turf/open/shuttle/dropship/thirtyeight
+	icon_state = "rasputin38"
+
+/turf/open/shuttle/dropship/thirtynine
+	icon_state = "rasputin39"
+
 /turf/open/shuttle/dropship/grating
 	icon = 'icons/turf/elevator.dmi'
 	icon_state = "floor_grating"
@@ -170,6 +252,9 @@
 /turf/open/shuttle/escapepod/plain
 	icon_state = "floor1"
 
+/turf/open/shuttle/escapepod/plain/buildable
+	allow_construction = TRUE
+
 /turf/open/shuttle/escapepod/zero
 	icon_state = "floor0"
 
@@ -181,6 +266,9 @@
 
 /turf/open/shuttle/escapepod/five
 	icon_state = "floor5"
+
+/turf/open/shuttle/escapepod/five/buildable
+	allow_construction = TRUE
 
 /turf/open/shuttle/escapepod/six
 	icon_state = "floor6"
@@ -247,6 +335,7 @@
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 		SMOOTH_GROUP_AIRLOCK,
 		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_SAND,
 	)
 
 /turf/open/lavaland/basalt/dirt
@@ -280,35 +369,3 @@
 	light_range = 4
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
-
-/turf/open/lavaland/catwalk
-	name = "catwalk"
-	icon_state = "lavacatwalk"
-	light_system = STATIC_LIGHT
-	light_range = 1.4
-	light_power = 2
-	light_color = LIGHT_COLOR_LAVA
-	shoefootstep = FOOTSTEP_CATWALK
-	barefootstep = FOOTSTEP_CATWALK
-	mediumxenofootstep = FOOTSTEP_CATWALK
-
-/turf/open/lavaland/catwalk/built
-	var/deconstructing = FALSE
-
-/turf/open/lavaland/catwalk/built/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
-		return
-	if(xeno_attacker.a_intent != INTENT_HARM)
-		return
-	if(deconstructing)
-		return
-	deconstructing = TRUE
-	if(!do_after(xeno_attacker, 10 SECONDS, NONE, src, BUSY_ICON_BUILD))
-		deconstructing = FALSE
-		return
-	deconstructing = FALSE
-	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
-	var/turf/current_turf = get_turf(src)
-	if(current_turf)
-		current_turf.flags_atom |= AI_BLOCKED
-	ChangeTurf(/turf/open/liquid/lava)

@@ -2,7 +2,7 @@
 	name = "chemical implant"
 	desc = "A chemical implant containing a single use chemical cocktail which is added via syringe."
 	allow_reagents = TRUE
-	flags_implant = ACTIVATE_ON_HEAR|GRANT_ACTIVATION_ACTION
+	implant_flags = ACTIVATE_ON_HEAR|GRANT_ACTIVATION_ACTION|BENEFICIAL_IMPLANT
 	var/used = FALSE
 	var/activation_phrase = "aaaaaa help i dying help maint"
 

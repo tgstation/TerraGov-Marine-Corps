@@ -42,9 +42,9 @@
 /obj/item/implant/deployitem/blade
 	name = "mantis blade implant"
 	desc = "A large folding blade capable of being stored within an arm."
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/weapons/swords.dmi'
 	icon_state = "armblade"
-	helditem = /obj/item/weapon/mantisblade
+	helditem = /obj/item/weapon/sword/mantisblade
 
 /obj/item/implant/deployitem/blade/get_data()
 	return {"
@@ -62,24 +62,13 @@
 	. = ..()
 	playsound(implant_owner.loc, 'sound/weapons/wristblades_off.ogg', 15, TRUE)
 
-/obj/item/weapon/mantisblade
+/obj/item/weapon/sword/mantisblade
 	name = "mantis arm blade"
 	desc = "A wicked-looking folding blade capable of being concealed within a human's arm."
 	icon_state = "armblade"
-	item_state = "armblade"
+	worn_icon_state = "armblade"
 	force = 75
 	attack_speed = 8
-	flags_atom = CONDUCT
-	flags_equip_slot = NONE
+	equip_slot_flags = NONE
 	w_class = WEIGHT_CLASS_BULKY //not needed but just in case why not
-	sharp = IS_SHARP_ITEM_BIG
 	hitsound = 'sound/weapons/slash.ogg'
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	
-/obj/item/weapon/mantisblade/equipped(mob/user, slot)
-	. = ..()
-	toggle_item_bump_attack(user, TRUE)
-
-/obj/item/weapon/mantisblade/dropped(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)

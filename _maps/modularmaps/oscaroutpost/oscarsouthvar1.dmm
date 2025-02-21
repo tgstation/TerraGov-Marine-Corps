@@ -138,7 +138,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "cb" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/plating,
 /area/oscar_outpost/village/abandonedbase)
 "ce" = (
@@ -218,7 +218,7 @@
 "dG" = (
 /obj/structure/closet,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/item/clothing/under/marine/veteran,
 /obj/machinery/light/small{
 	dir = 1
@@ -273,7 +273,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "dX" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -926,7 +926,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "kW" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "lf" = (
@@ -1188,7 +1188,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "oh" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/effect/spawner/random/decal/blood,
@@ -1227,7 +1227,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "oV" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -1298,7 +1298,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "pA" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /turf/open/floor/grayscale/black,
@@ -1464,7 +1464,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "rL" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/faxmachine,
 /turf/open/floor/carpet,
 /area/oscar_outpost/village/abandonedbase)
@@ -1566,7 +1566,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "th" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -1841,7 +1841,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "wt" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/trash/cigbutt/cigarbutt{
 	pixel_y = 14
 	},
@@ -1861,15 +1861,15 @@
 /turf/open/floor/plating/icefloor/warnplate,
 /area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "wI" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/machinery/random_broken_computer/small/pc,
 /turf/open/floor/carpet,
 /area/oscar_outpost/village/abandonedbase)
 "wK" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "wL" = (
@@ -2260,7 +2260,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "BM" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
@@ -2339,7 +2339,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Dt" = (
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	layer = 2.9
 	},
 /obj/item/reagent_containers/food/snacks/carpmeat{
@@ -2392,7 +2392,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Ej" = (
-/obj/structure/table/fancywoodentable{
+/obj/structure/table/wood/fancy{
 	pixel_y = 5
 	},
 /obj/item/tool/pen,
@@ -2689,7 +2689,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Il" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -2836,7 +2836,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "KL" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/machinery/random_broken_computer/small/pc{
 	dir = 4
 	},
@@ -3254,11 +3254,11 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Re" = (
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Rn" = (
-/obj/structure/table/fancywoodentable{
+/obj/structure/table/wood/fancy{
 	pixel_y = 5
 	},
 /obj/item/tool/pen,
@@ -3285,7 +3285,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "RK" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/structure/sign/poster{
@@ -3511,7 +3511,7 @@
 /turf/open/floor/plating,
 /area/oscar_outpost/village/abandonedbase)
 "UH" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/grayscale/black,
@@ -3564,7 +3564,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "VF" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 1
 	},
 /turf/open/floor/grayscale/black,
@@ -3604,7 +3604,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "WA" = (
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
@@ -3686,21 +3686,21 @@
 "XI" = (
 /obj/structure/closet,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/item/clothing/under/marine/veteran,
 /obj/machinery/light/small,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "XP" = (
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = 9
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -8
 	},
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/light,
 /turf/open/floor/carpet,
 /area/oscar_outpost/village/abandonedbase)

@@ -5,9 +5,10 @@
 	name = "\improper R-44 magnum speed loader (.44)"
 	desc = "A revolver speed loader."
 	default_ammo = /datum/ammo/bullet/revolver
-	flags_equip_slot = NONE
+	equip_slot_flags = NONE
 	caliber = CALIBER_44
 	icon_state = "m44"
+	icon = 'icons/obj/items/ammo/revolver.dmi'
 	icon_state_mini = "mag_revolver_bronze"
 	w_class = WEIGHT_CLASS_SMALL
 	max_rounds = 6
@@ -30,7 +31,7 @@
 	name = "\improper R-44 magnum speed loader (.44)"
 	desc = "A revolver speed loader."
 	default_ammo = /datum/ammo/bullet/revolver/tp44
-	flags_equip_slot = NONE
+	equip_slot_flags = NONE
 	caliber = CALIBER_44
 	icon_state = "tp44"
 	icon_state_mini = "mag_revolver"

@@ -1,5 +1,0 @@
-author: "lbnesquik"
-delete-after: True
-changes:
-  - bugfix: "fixed ICC mg mags not having the right name"
-  - bugfix: "fixed ICC mg mags not having the right caliber"

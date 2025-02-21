@@ -13,6 +13,7 @@
 #define CALIBER_50AE ".50 AE"
 #define CALIBER_41RIM ".41 Rimfire" //Derringer
 #define CALIBER_70MANKEY ".70 Mankey" //Don't ask
+#define CALIBER_41AE ".41 AE"
 
 // Revolvers
 #define CALIBER_44 ".44 Magnum"
@@ -47,6 +48,7 @@
 
 // --- Shotguns ---
 #define CALIBER_12G "12 gauge"
+#define CALIBER_6G "6 gauge"
 #define CALIBER_410 ".410 bore"
 
 // --- Snipers ---
@@ -63,6 +65,7 @@
 #define CALIBER_84MM "84mm rocket"
 #define CALIBER_67MM "67mm shell"
 #define CALIBER_68MM "68mm rocket"
+#define CALIBER_32MM "32mm rocket"
 #define CALIBER_37MM "37mm"
 #define CALIBER_15CM "155mm" //Heavy Infantry Support Gun
 
@@ -74,7 +77,6 @@
 #define CALIBER_FUEL_THICK "UT-Napthal Fuel"
 #define CALIBER_WATER "Water"
 #define CALIBER_10X28 "10x28mm" //Sentry, OG Smartgun and SR-26 Sniper?
-#define CALIBER_86 "86mm" //MBT Main Cannon
 #define CALIBER_PEPPERBALL "SAN Ball " //Pepperball gun
 #define CALIBER_10G_RAIL "10 gauge rail"
 
@@ -83,6 +85,11 @@
 #define CALIBER_10X20 "10x20mm" //Minisentry
 #define CALIBER_10X30 "10x30mm caseless"
 #define CALIBER_20 "20mm" //Dualcannon
+#define CALIBER_LASER "Laser cartridge" //Laser Sentry
 
-///Unmanned vehicles
+/// Vehicles
+#define CALIBER_30X17MM "30x170mm" // SARDEN
+#define CALIBER_76MM "76mm shell" // ICC LowVel
 #define CALIBER_11X35 "11x35mm"
+#define CALIBER_ANTIMATTER "antimatter" //BFG
+#define CALIBER_105MM "105mm" //MBT Main Cannon

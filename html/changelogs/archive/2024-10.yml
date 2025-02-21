@@ -1,0 +1,209 @@
+2024-10-01:
+  Lumipharon:
+  - bugfix: fixed some minor visual issues with jumping in some situations
+  - bugfix: Fixed some drag pixel offset issues
+  blackdav123:
+  - bugfix: Bigbury buttons are now on the walls properly.
+  - bugfix: AFK alert now shows the correct amount of minutes afk.
+  - balance: Mortar smokes no longer flash teammates.
+  - balance: GL54 smoke ammos no longer shrapnel teammates.
+  jonash07:
+  - balance: ion storm (communication blackout) has been removed as a random event
+2024-10-02:
+  Isy232:
+  - balance: Explosive Vests no longer in marine vendors.
+  Joe13413:
+  - balance: Devastation does 100 more damage to xenomorphs
+  Notamaniac:
+  - spellcheck: Runner evasion ability text updated to clarify that you can't slash
+      while evading, and that point blank shots still hit you.
+  Vondiech/Citruses:
+  - balance: Hyposprays and Autoinjectors now have a 2 second delay on trying to inject
+      someone in a different faction than yours.
+  ivanmixo:
+  - balance: The chemistry machines are no longer offlimits to marines (fumble still
+      applies)
+  - balance: The chemistry door is no longer access locked
+  - balance: You can no longer refill partially used up oxycodone injectors
+2024-10-03:
+  AusarAtkin:
+  - code_imp: improve nuke logging
+  Lumipharon:
+  - balance: 'Campaign: Gave Tyr for both factions 50% ranged stun mitigation like
+      B18'
+  - balance: 'Campaign: Construction perk allows Engineers to build stronger cades'
+  - balance: Reduced direct hit damage from GL-54 and other related ammo types against
+      most targets
+  - balance: 'Campaign: Melee stun chance lowered by a flat 10%'
+  - balance: 'Campaign: Melee stun chance scales with max hp'
+  - balance: 'Campaign: Melee stuns can no longer chainstun'
+  blackdav123:
+  - balance: The rappel system is now far easier to use.
+2024-10-04:
+  Arturlang:
+  - bugfix: shrike healing and crit healing should now work
+  - rscadd: regen delays now properly are handled by seconds_per_tick
+2024-10-07:
+  Barnet2:
+  - balance: Removes barriers around Delta Station's supermatter
+  Lumipharon:
+  - bugfix: fixed firenado going through dense objects
+  - code_imp: Improved firenado code and pathing
+  - bugfix: fixed bed/chair pixel offsets
+  blackdav123:
+  - bugfix: Fixed a typo in ai codes.
+2024-10-08:
+  Lumipharon:
+  - balance: Hunter health reduced from 360 to 320
+  - balance: Hunter melee armour increased from 40 back to 55
+  Mannybrado:
+  - balance: gives +150 max health to fireproof and bulletproof resin walls
+  - balance: gives +100 max health to hardy walls as well as 50 melee and 50 bomb
+      armor
+  - balance: special resin walls now cost +25 psy points
+  tyeagg:
+  - rscadd: tdf faction for campaign
+2024-10-09:
+  Lumipharon:
+  - code_imp: clients_by_z actually works now
+  Runian:
+  - rscadd: 'Primordial Queens gain an alternative action to Screech which lets them
+      select different types of screeches that can apply an effect to nearby xenomorphs
+      that either: heals over time, increases plasma regeneration, or boosts melee
+      damage.'
+  - soundadd: 'Voicelines for: Heal, Plasma, and Frenzy screech.'
+  - imageadd: 'Colored versions of Screech for: Heal, Plasma, Frenzy.'
+  blackdav123:
+  - rscadd: Added more survivor roles and more survivor equipment.
+  - balance: Water now purges zombium.
+  - balance: Alcohol now gives minor pain reduction at lower levels.
+  - balance: Hatchets, scythes, scalpels, and circular saws all have decent melee
+      stats now.
+  - balance: Armor vests now fit guns, aprons now fit hatchets and scythes.
+  - admin: Added a tab in the select equipment menu for survivors.
+  - rscadd: Added new zombie type, the Smoker.
+2024-10-10:
+  Arturlang:
+  - bugfix: You no longer loose the last sandbag when emptying full sandbags
+  Lumipharon:
+  - rscdel: Sawn-off shotgun removed from req
+  - balance: Sawn-off shotgun buffed to old levels, but with double the falloff
+  - bugfix: fixed deployable Iguana HP being higher than intended
+  - rscadd: Unmanned vehicle IFF and hud are based off the deploying mob
+  - balance: Unmanned vehicles no longer have 100 energy armour
+  - bugfix: jump spins work again in low grav
+  - bugfix: fixed another fueltank runtime
+  - rscadd: 'Campaign: Loadouts cannot be equipt until the next mission has been selected'
+  - qol: Detpack and signaller code is randomised upon spawn
+  - bugfix: cope sentry hud appears correctly when deployed via throw
+  - qol: 'Campaign: Any deployed cameras are deleted on mission end'
+  - bugfix: fixed a sentry runtime
+  - rscadd: 'Campaign: Mission briefing pops up when a new mission is chosen'
+  - bugfix: fixed TDF B18 icon_states
+  - code_imp: Killed some redundant suit vars
+2024-10-14:
+  00ze-cyclone:
+  - rscadd: 'TE powerbackpack: 20 cells worth of power on your back'
+  Barnet2:
+  - balance: Removes a Chigusa intel computer, Chigusa plat miner removals and movals
+  Runian:
+  - bugfix: Wraith's Timeshift cancels if the target changes z-levels.
+2024-10-15:
+  Runian:
+  - bugfix: All types of fire no longer damages or heats you up if you have 100% fire
+      soft/hard armor.
+2024-10-16:
+  Arturlang:
+  - bugfix: Handcuffs won't break your resist anymore
+  Lumipharon:
+  - rscadd: 'Campaign: Added a new ''Secondary'' equipment option for sidearms and
+      specialty equipment'
+  - rscadd: Explosive grenades will blow your hand off if they detonate in-hand
+  jonash07:
+  - qol: The loadout vendor now contains two new tabs for the Field Commander and
+      the Synthetic. Loadout vendor now works with their respective essential kits.
+  - bugfix: deleted a duplicate hairstyle
+2024-10-18:
+  Lumipharon:
+  - imageadd: Fixed some missing minigun powerpack inhand sprites
+  - bugfix: fixed sentries being able to fire out of undeployed sentry holders
+  - balance: Buffed EMP effects against mechs
+  - balance: Larva points required per xeno in Nuke War increased from 8 to 10
+  - balance: Xeno to Marine ratio in Nuke War changed from 1:2.46 to 1:3
+  - qol: Tank minimap icons change when they are wrecked
+  - qol: SOM tank has a different coloured minimap icon to the TGMC tank
+  jonash07:
+  - balance: Synth crit now deals damage by limb instead of applying it all over the
+      body
+2024-10-20:
+  AusarAtkin:
+  - rscadd: added chainsaw to req for 500 points
+  - balance: chainsaw now use fuel and do more damage while having a rev up delay.
+  Lumipharon:
+  - bugfix: fixed a BAS exploit
+  - bugfix: fixed a bug with magharness guns in water
+  - qol: Sounds from outside tanks should now properly have directionality applied
+      to them
+  - code_imp: Improved some sound code performance.
+  Pariah919:
+  - rscadd: Added new ICC Recon Vehicle 'Fallow'. You can try it out in Valhalla.
+      It has no other spawn areas.
+  PibeCantina:
+  - balance: Makes king immune to rocket sledge stun
+  Runian:
+  - qol: Plant Weeds ability's button now dynamically shows its ability cost rather
+      than the consistent 75.
+  - bugfix: Plants Weeds ability no longer prevents usage if you have more than post-discounted,
+      but less than before-discounted plasma (for before shutters drop).
+2024-10-21:
+  AusarAtkin:
+  - bugfix: fixed chainsaw fuel cost on attack on mob
+  TiviPlus:
+  - rscdel: Remove tunnel naming
+2024-10-22:
+  Barnet2:
+  - bugfix: Naming a tunnel no longer leaks your ckey
+2024-10-23:
+  Runian:
+  - rscadd: On destruction, xeno fruit triggers effects that normally only occur if
+      a human tried to interact with it.
+  - rscadd: On destruction, power fruit releases 4-tile see-through smoke that burns
+      humans for inhaling it and applies pyrogen's burning fire stacks for walking
+      through it.
+  - rscdel: Power fruit no longer creates a 3-tile fire when used by a human.
+2024-10-27:
+  Lumipharon:
+  - bugfix: fixed the grenade hand explode message playing if your hand wasn't actually
+      blown off
+  - bugfix: Moonlight particle cutter actually hits mobs again mid lunge
+  - bugfix: fixed a sentry exploit
+  Sun-Soaked:
+  - rscadd: the Gorger Psylink, Infusion, and Oppose abilities on Gorger now have
+      vfx.
+  - qol: gorger drain now briefly stops gorger, preventing them from instantly cancelling
+      it on accident.
+  - balance: buffs oppose, increasing the damage and stagger on a direct marine hit
+      and reducing the cost slightly.
+  - balance: gorger psylink now activates more quickly, but is cancelled more easily
+      (at 50% gorger hp instead of 20%)
+  - imageadd: A vfx shatter effect for Oppose.
+  - spellcheck: removed repeated "Into the ground" from chat feedback on oppose.
+2024-10-28:
+  Runian:
+  - balance: Xenomorphs can toggle movement intent to walk in order to bypass/ignore
+      wraith portals.
+2024-10-29:
+  xSlumLord:
+  - balance: changed xeno to marine ratio back to 2.46, down from 3
+2024-10-30:
+  Lumipharon:
+  - code_imp: Gib code improvements for mapload
+  - code_imp: Ported some optimisations to keyloop
+  - code_imp: Signal code improvements
+  Notamaniac:
+  - balance: Standard webbing can no longer hold powerpacks/powerbackpacks
+  - spellcheck: Plasma SMG now has a description
+  Runian:
+  - spellcheck: Crusher now annihilates instead of "anihilates".
+  blackdav123:
+  - bugfix: Skinks can no longer take c4 as a weapon.

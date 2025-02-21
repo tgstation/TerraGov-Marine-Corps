@@ -3,7 +3,7 @@
 	display_name = "Hunter"
 	upgrade_name = ""
 	caste_desc = "A fast, powerful front line combatant."
-
+	base_strain_type = /mob/living/carbon/xenomorph/hunter
 	caste_type_path = /mob/living/carbon/xenomorph/hunter
 
 	tier = XENO_TIER_TWO
@@ -13,26 +13,26 @@
 	gib_flick = "Hunter Gibbed"
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 25
 	melee_ap = 5
 	attack_delay = 7
 
 	// *** Speed *** //
-	speed = -1.5
+	speed = -1.4
 	weeds_speed_mod = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 200
-	plasma_gain = 18
+	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 290
+	max_health = 330
 
 	// *** Evolution *** //
 	evolution_threshold = 225
 	upgrade_threshold = TIER_TWO_THRESHOLD
 
-	deevolves_to = /mob/living/carbon/xenomorph/runner
+	deevolves_to = /datum/xeno_caste/runner
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
@@ -40,10 +40,10 @@
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 55, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
+	soft_armor = list(MELEE = 55, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
 
 	// *** Stealth ***
-	stealth_break_threshold = 15
+	stealth_break_threshold = 25
 
 	// *** Minimap Icon *** //
 	minimap_icon = "hunter"
@@ -96,6 +96,7 @@
 	upgrade_name = ""
 	caste_desc = "A fast, powerful creature. It has some kind of machinery attached to its head."
 	caste_type_path = /mob/living/carbon/xenomorph/hunter/weapon_x
+	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
 	melee_damage = 26
@@ -110,7 +111,7 @@
 	sunder_recover = 1
 
 	// *** Flags *** //
-	caste_flags = CASTE_INNATE_HEALING|CASTE_INNATE_PLASMA_REGEN|CASTE_HIDE_IN_STATUS
+	caste_flags = CASTE_INNATE_HEALING|CASTE_INNATE_PLASMA_REGEN|CASTE_HIDE_IN_STATUS|CASTE_EXCLUDE_STRAINS
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HEAL_WITHOUT_QUEEN
 
 	// *** Defense *** //

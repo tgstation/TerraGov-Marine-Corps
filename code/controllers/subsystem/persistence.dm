@@ -30,7 +30,6 @@ SUBSYSTEM_DEF(persistence)
 		SEASONAL_GUNS = list(
 		/datum/season_datum/weapons/guns/pistol_seasonal_one,
 		/datum/season_datum/weapons/guns/rifle_seasonal_one,
-		/datum/season_datum/weapons/guns/pistol_seasonal_two,
 		/datum/season_datum/weapons/guns/rifle_seasonal_two,
 		/datum/season_datum/weapons/guns/rifle_seasonal_three,
 		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
@@ -257,20 +256,6 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/revolver/upp = -1,
 		)
 
-/datum/season_datum/weapons/guns/pistol_seasonal_two
-	name = "G22 and high-power gats"
-	description = "Four pistols for the pistol mains."
-	item_list = list(
-		/obj/item/weapon/gun/pistol/g22 = -1,
-		/obj/item/ammo_magazine/pistol/g22 = -1,
-		/obj/item/weapon/gun/pistol/vp78 = -1,
-		/obj/item/ammo_magazine/pistol/vp78 = -1,
-		/obj/item/weapon/gun/pistol/heavy = -1,
-		/obj/item/ammo_magazine/pistol/heavy = -1,
-		/obj/item/weapon/gun/pistol/highpower = -1,
-		/obj/item/ammo_magazine/pistol/highpower = -1,
-		)
-
 /datum/season_datum/weapons/guns/copsandrobbers_seasonal
 	name = "SWAT and Terrorists"
 	description = "Four classic SMGs, and no one's favorite burst revolver."
@@ -356,14 +341,14 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/rocket/recoilless/smoke = 16,
 		/obj/item/ammo_magazine/rocket/recoilless/plasmaloss = 16,
 		/obj/structure/closet/crate/mortar_ammo/mlrs_kit = 2,
-		/obj/item/storage/box/mlrs_rockets_gas = 4,
+		/obj/item/storage/box/mlrs_rockets/gas = 4,
 	)
 
 /datum/season_datum/weapons/guns/heavy_explosions
 	name = "Explosive Heavy Weapons"
 	description = "Flak cannon and Recoilless guns for roundstart vendors."
 	item_list = list(
-		/obj/item/weapon/gun/heavy_isg = 1,
+		/obj/structure/largecrate/supply/weapons/heavy_flakgun = 1,
 		/obj/item/ammo_magazine/heavy_isg/he = 8,
 		/obj/item/ammo_magazine/heavy_isg/sabot = 5,
 		/obj/item/storage/holster/backholster/rpg/full = 2,

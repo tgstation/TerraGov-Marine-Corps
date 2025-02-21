@@ -35,7 +35,7 @@
 	name = "anesthetic tank"
 	desc = "A tank with an N2O/O2 gas mix."
 	icon_state = "anesthetic"
-	item_state = "anesthetic"
+	worn_icon_state = "anesthetic"
 	gas_type = GAS_TYPE_N2O
 
 
@@ -55,8 +55,8 @@
 	name = "phoron tank"
 	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
 	icon_state = "phoron"
-	flags_atom = CONDUCT
-	flags_equip_slot = NONE	//they have no straps!
+	atom_flags = CONDUCT
+	equip_slot_flags = NONE	//they have no straps!
 
 
 
@@ -67,8 +67,8 @@
 	name = "emergency oxygen tank"
 	desc = "Used for emergencies. Contains very little oxygen, so try to conserve it until you actually need it."
 	icon_state = "emergency"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_TINY
 	force = 4
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD

@@ -2,17 +2,11 @@
 	name = "surgical tray"
 	desc = "A small metallic tray covered in sterile tarp. Intended to store surgical tools in a neat and clean fashion."
 	icon_state = "surgical_tray"
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	w_class = WEIGHT_CLASS_BULKY //Should not fit in backpacks
-	storage_slots = 12
-	max_storage_space = 24
-	can_hold = list(
-		/obj/item/tool/surgery,
-		/obj/item/stack/nanopaste,
-	)
+	storage_type = /datum/storage/surgical_tray
 
-/obj/item/storage/surgical_tray/Initialize(mapload, ...)
-	. = ..()
+/obj/item/storage/surgical_tray/PopulateContents()
 	new /obj/item/tool/surgery/scalpel/manager(src)
 	new /obj/item/tool/surgery/scalpel(src)
 	new /obj/item/tool/surgery/hemostat(src)

@@ -16,7 +16,7 @@
 	welded = FALSE
 	level = 1
 	layer = ATMOS_DEVICE_LAYER
-	flags_atom = SHUTTLE_IMMUNE
+	atom_flags = SHUTTLE_IMMUNE
 
 	var/pump_direction = RELEASING
 
@@ -68,8 +68,8 @@
 		icon_state = "vent_in"
 
 
-/obj/machinery/atmospherics/components/unary/vent_pump/weld_cut_act(mob/living/user, obj/item/W)
-	if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
+/obj/machinery/atmospherics/components/unary/vent_pump/plasmacutter_act(mob/living/user, obj/item/W)
+	if(isplasmacutter(W))
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
 		if(!welded)
 			to_chat(user, span_warning("\The [P] can only cut open welds!"))

@@ -26,6 +26,17 @@
 					ExtinguishMob()
 				return TRUE
 
+			var/datum/status_effect/stacking/melting_fire/burning = has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+			if(burning)
+				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+				human_user.visible_message(span_danger("[human_user] tries to put out the fire on [src]!"), \
+				span_warning("You try to put out the fire on [src]!"), null, 5)
+				burning.add_stacks(-PYROGEN_ASSIST_REMOVAL_STRENGTH)
+				if(QDELETED(burning))
+					human_user.visible_message(span_danger("[human_user] has successfully extinguished the fire on [src]!"), \
+					span_notice("You extinguished the fire on [src]."), null, 5)
+				return TRUE
+
 			if(istype(wear_mask, /obj/item/clothing/mask/facehugger) && human_user != src)
 				human_user.stripPanelUnequip(wear_mask, src, SLOT_WEAR_MASK)
 				return TRUE
@@ -42,11 +53,11 @@
 				to_chat(human_user, span_boldnotice("You can't help this one, [p_they()] [p_have()] no lungs!"))
 				return FALSE
 
-			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
+			if((head && (head.inventory_flags & COVERMOUTH)) || (wear_mask && (wear_mask.inventory_flags & COVERMOUTH)))
 				to_chat(human_user, span_boldnotice("Remove [p_their()] mask!"))
 				return FALSE
 
-			if((human_user.head && (human_user.head.flags_inventory & COVERMOUTH)) || (human_user.wear_mask && (human_user.wear_mask.flags_inventory & COVERMOUTH)))
+			if((human_user.head && (human_user.head.inventory_flags & COVERMOUTH)) || (human_user.wear_mask && (human_user.wear_mask.inventory_flags & COVERMOUTH)))
 				to_chat(human_user, span_boldnotice("Remove your mask!"))
 				return FALSE
 
@@ -97,32 +108,32 @@
 
 			var/attack_verb = pick(attack.attack_verb)
 			//if you're lying/buckled, the miss chance is ignored anyway
-			var/target_zone = get_zone_with_miss_chance(human_user.zone_selected, src, 10 - (human_user.skills.getRating(SKILL_CQC) - skills.getRating(SKILL_CQC)) * 5)
+			var/target_zone = get_zone_with_miss_chance(human_user.zone_selected, src, 10 - (human_user.skills.getRating(SKILL_UNARMED) - skills.getRating(SKILL_UNARMED)) * 5)
 
 			if(!human_user.melee_damage || !target_zone)
 				human_user.do_attack_animation(src)
 				playsound(loc, attack.miss_sound, 25, TRUE)
-				visible_message(span_danger("[human_user] tried to [attack_verb] [src]!"), null, null, 5)
-				log_combat(human_user, src, "[attack_verb]ed", "(missed)")
+				visible_message(span_danger("[human_user] [attack_verb] at [src], but misses!"), null, null, 5)
+				log_combat(human_user, src, "[attack_verb]", "(missed)")
 				if(!human_user.mind?.bypass_ff && !mind?.bypass_ff && human_user.faction == faction)
 					var/turf/T = get_turf(src)
-					log_ffattack("[key_name(human_user)] missed a [attack_verb] against [key_name(src)] in [AREACOORD(T)].")
-					msg_admin_ff("[ADMIN_TPMONTY(human_user)] missed a [attack_verb] against [ADMIN_TPMONTY(src)] in [ADMIN_VERBOSEJMP(T)].")
+					log_ffattack("[key_name(human_user)] missed a punch against [key_name(src)] in [AREACOORD(T)].")
+					msg_admin_ff("[ADMIN_TPMONTY(human_user)] missed a punch against [ADMIN_TPMONTY(src)] in [ADMIN_VERBOSEJMP(T)].")
 				return FALSE
 
 			human_user.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
-			var/max_dmg = max(human_user.melee_damage + (human_user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD), 3)
+			var/max_dmg = max(human_user.melee_damage + (human_user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD), 3)
 			var/damage = max_dmg
 			if(!lying_angle)
 				damage = rand(1, max_dmg)
 
 			playsound(loc, attack.attack_sound, 25, TRUE)
 
-			visible_message(span_danger("[human_user] [attack_verb]ed [src]!"), null, null, 5)
+			visible_message(span_danger("[human_user] [attack_verb] [src]!"), null, null, 5)
 			var/list/hit_report = list()
 			if(damage >= 4 && prob(25))
 				visible_message(span_danger("[human_user] has weakened [src]!"), null, null, 5)
-				apply_effect(3 SECONDS, WEAKEN)
+				apply_effect(3 SECONDS, EFFECT_PARALYZE)
 				hit_report += "(KO)"
 
 			damage += attack.damage
@@ -130,7 +141,7 @@
 
 			hit_report += "(RAW DMG: [damage])"
 
-			log_combat(human_user, src, "[attack_verb]ed", "[hit_report.Join(" ")]")
+			log_combat(human_user, src, "[attack_verb]", "[hit_report.Join(" ")]")
 			if(!human_user.mind?.bypass_ff && !mind?.bypass_ff && human_user.faction == faction)
 				var/turf/T = get_turf(src)
 				human_user.ff_check(damage, src)
@@ -142,7 +153,7 @@
 			human_user.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 
 			//Accidental gun discharge
-			if(human_user.skills.getRating(SKILL_CQC) < SKILL_CQC_MP)
+			if(human_user.skills.getRating(SKILL_UNARMED) < SKILL_UNARMED_MP)
 				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
 					var/obj/item/weapon/gun/W = null
 					var/chance = 0
@@ -156,38 +167,38 @@
 						chance = !hand ? 40 : 20
 
 					if(prob(chance))
-						visible_message("<span class='danger'>[src]'s [W] goes off during struggle!", null, null, 5)
-						log_combat(human_user, src, "disarmed", "making their [W] go off")
+						visible_message("<span class='danger'>[src]'s [W.name] goes off during struggle!", null, null, 5)
+						log_combat(human_user, src, "disarmed", "making their [W.name] go off")
 						var/list/turfs = list()
 						for(var/turf/T in view())
 							turfs += T
 						var/turf/target = pick(turfs)
 						return W.afterattack(target,src)
 
-			var/randn = rand(1, 100) + skills.getRating(SKILL_CQC) * CQC_SKILL_DISARM_MOD - human_user.skills.getRating(SKILL_CQC) * CQC_SKILL_DISARM_MOD
+			var/randn = rand(1, 100) + skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DISARM_MOD - human_user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DISARM_MOD
 
 			if (randn <= 25)
-				apply_effect(3 SECONDS, WEAKEN)
+				apply_effect(3 SECONDS, EFFECT_PARALYZE)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-				visible_message(span_danger("[human_user] has pushed [src]!"), null, null, 5)
+				visible_message(span_danger("[human_user] pushes [src] over!"), null, null, 5)
 				log_combat(human_user, src, "pushed")
 				return
 
 			if(randn <= 60)
 				//BubbleWrap: Disarming breaks a pull
 				if(pulling)
-					visible_message(span_danger("[human_user] has broken [src]'s grip on [pulling]!"), null, null, 5)
+					visible_message(span_danger("[human_user] breaks [src]'s grip on [pulling]!"), null, null, 5)
 					stop_pulling()
 				else
 					drop_held_item()
-					visible_message(span_danger("[human_user] has disarmed [src]!"), null, null, 5)
+					visible_message(span_danger("[human_user] disarms [src]!"), null, null, 5)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				log_combat(user, src, "disarmed")
 				return
 
 
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, 7)
-			visible_message(span_danger("[human_user] attempted to disarm [src]!"), null, null, 5)
+			visible_message(span_danger("[human_user] attempts to disarm [src]!"), null, null, 5)
 			log_combat(human_user, src, "missed a disarm")
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
@@ -198,7 +209,6 @@
 	if(src == M)
 		if(holo_card_color) //if we have a triage holocard printed on us, we remove it.
 			holo_card_color = null
-			update_targeted()
 			visible_message(span_notice("[src] removes the holo card on [p_them()]self."),
 				span_notice("You remove the holo card on yourself."), null, 3)
 			return
@@ -317,7 +327,7 @@
 		if(0 to 19)
 			final_msg += span_info("You're [pick("free of grime", "pristine", "freshly laundered")].")
 		if(20 to 79)
-			final_msg += span_info(pick("You've got some grime on you", "You're a bit dirty"))
+			final_msg += span_info(pick("You've got some grime on you.", "You're a bit dirty."))
 		if(80 to 150)
 			final_msg += span_info(pick("You're not far off filthy.", "You're pretty dirty.", "There's still one or two clean spots left on you."))
 		else

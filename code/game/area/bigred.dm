@@ -55,6 +55,7 @@
 /area/bigredv2/caves/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
 
 /area/bigredv2/caves/north
 	name = "Northern Caves"
@@ -77,6 +78,7 @@
 	name = "Underground robotics lab"
 	icon_state = "yellow"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	always_unpowered = FALSE
 
 /area/bigredv2/caves/secomplex
 	name = "Underground research complex"
@@ -232,6 +234,9 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 
+/area/bigredv2/outside/office_complex/crashed_ship
+	name = "Derelict Canterbury"
+
 /area/bigredv2/outside/space_port
 	name = "Space Port"
 	icon_state = "green"
@@ -246,6 +251,7 @@
 	icon_state = "ass_line"
 	ceiling = CEILING_UNDERGROUND_METAL
 	outside = FALSE
+	area_flags = CANNOT_NUKE
 
 /area/bigredv2/outside/engineering
 	name = "West Engineering Complex"

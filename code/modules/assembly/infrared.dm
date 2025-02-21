@@ -178,7 +178,7 @@
 		return
 	if(offender && isitem(offender))
 		var/obj/item/I = offender
-		if(I.flags_item & ITEM_ABSTRACT)
+		if(I.item_flags & ITEM_ABSTRACT)
 			return
 	return refreshBeam()
 
@@ -198,9 +198,9 @@
 		return
 
 	var/dat
-	dat += "<BR><B>Status</B>: [on ? "<A href='?src=[REF(src)];state=0'>On</A>" : "<A href='?src=[REF(src)];state=1'>Off</A>"]"
-	dat += "<BR><B>Visibility</B>: [visible ? "<A href='?src=[REF(src)];visible=0'>Visible</A>" : "<A href='?src=[REF(src)];visible=1'>Invisible</A>"]"
-	dat += "<BR><BR><A href='?src=[REF(src)];refresh=1'>Refresh</A>"
+	dat += "<BR><B>Status</B>: [on ? "<A href='byond://?src=[REF(src)];state=0'>On</A>" : "<A href='byond://?src=[REF(src)];state=1'>Off</A>"]"
+	dat += "<BR><B>Visibility</B>: [visible ? "<A href='byond://?src=[REF(src)];visible=0'>Visible</A>" : "<A href='byond://?src=[REF(src)];visible=1'>Invisible</A>"]"
+	dat += "<BR><BR><A href='byond://?src=[REF(src)];refresh=1'>Refresh</A>"
 
 	var/datum/browser/popup = new(user, "infra", name)
 	popup.set_content(dat)
@@ -248,6 +248,6 @@
 		return
 	if(isitem(AM))
 		var/obj/item/I = AM
-		if(I.flags_item & ITEM_ABSTRACT)
+		if(I.item_flags & ITEM_ABSTRACT)
 			return
 	master.trigger_beam(AM, get_turf(src))

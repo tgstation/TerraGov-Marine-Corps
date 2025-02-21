@@ -223,8 +223,6 @@
 		M.state = 2
 		M.icon_state = "box_1"
 		for(var/obj/O in component_parts)
-			if(O.reliability != 100 && crit_fail)
-				O.crit_fail = TRUE
 			O.forceMove(loc)
 		qdel(src)
 
