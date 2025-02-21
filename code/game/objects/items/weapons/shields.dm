@@ -166,7 +166,7 @@
 	item_flags = IS_DEPLOYABLE
 	strappable = FALSE
 	///The item this deploys into
-	var/deployable_item = /obj/structure/barricade/metal/deployable
+	var/deployable_item = /obj/structure/barricade/solid/deployable
 	///Time to deploy
 	var/deploy_time = 1 SECONDS
 	///Time to undeploy

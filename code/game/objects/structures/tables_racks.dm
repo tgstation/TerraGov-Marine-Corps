@@ -191,7 +191,7 @@
 /obj/structure/table/verb/do_flip()
 	set name = "Flip table"
 	set desc = "Flips a non-reinforced table"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(!can_interact(usr))
@@ -236,7 +236,7 @@
 /obj/structure/table/proc/do_put()
 	set name = "Put table back"
 	set desc = "Puts flipped table back"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(!can_interact(usr))

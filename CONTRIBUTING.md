@@ -19,6 +19,9 @@
 10. [Rust in TGMC](#rust)
 11. [A word on Git](#a-word-on-git)
 
+#### Misc
+- [Quickly setting up a development database with ezdb](./guides/EZDB.md)
+
 ## Reporting Issues
 
 See [this page](https://github.com/tgstation/TerraGov-Marine-Corps/issues/new?template=bug_report.md) for a guide and format to issue reports.

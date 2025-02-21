@@ -331,7 +331,7 @@
 /turf/open/floor/tile/bar,
 /area/slumbridge/inside/houses/recreational)
 "aqm" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 8
 	},
 /obj/structure/prop/mainship/gelida/powercconnectortwoside,
@@ -3708,7 +3708,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/inside/engi/west)
 "cLt" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /obj/effect/landmark/corpsespawner/pirate,
@@ -7339,7 +7339,7 @@
 /turf/open/floor/tile/blue,
 /area/slumbridge/inside/houses/surgery)
 "fHS" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -23871,7 +23871,7 @@
 /turf/open/floor/tile/bar,
 /area/slumbridge/inside/medical/foyer)
 "rAv" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /obj/structure/prop/mainship/gelida/powerccable,
@@ -28836,7 +28836,7 @@
 /area/slumbridge/inside/houses/dorms)
 "vlL" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -30238,7 +30238,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/slumbridge/caves/northeastcaves)
 "wgT" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /obj/structure/prop/mainship/gelida/powercconnectortwosidealt{

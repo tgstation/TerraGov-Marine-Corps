@@ -31,7 +31,7 @@
 
 /obj/item/taperecorder/verb/record()
 	set name = "Start Recording"
-	set category = "Object"
+	set category = "IC.Object"
 
 	if(usr.stat)
 		return
@@ -55,7 +55,7 @@
 
 /obj/item/taperecorder/verb/stop()
 	set name = "Stop"
-	set category = "Object"
+	set category = "IC.Object"
 
 	if(usr.stat)
 		return
@@ -76,7 +76,7 @@
 
 /obj/item/taperecorder/verb/clear_memory()
 	set name = "Clear Memory"
-	set category = "Object"
+	set category = "IC.Object"
 
 	if(usr.stat)
 		return
@@ -93,7 +93,7 @@
 
 /obj/item/taperecorder/verb/playback_memory()
 	set name = "Playback Memory"
-	set category = "Object"
+	set category = "IC.Object"
 
 	if(usr.stat)
 		return
@@ -132,7 +132,7 @@
 
 /obj/item/taperecorder/verb/print_transcript()
 	set name = "Print Transcript"
-	set category = "Object"
+	set category = "IC.Object"
 
 	if(usr.stat)
 		return

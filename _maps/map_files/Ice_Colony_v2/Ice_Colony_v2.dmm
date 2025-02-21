@@ -8014,7 +8014,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "aXi" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor/warnplate{
@@ -8586,7 +8586,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/south)
 "bbe" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
@@ -25133,7 +25133,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/surface/storage_unit/telecomms)
 "mTI" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /obj/machinery/floodlight/colony,
@@ -26461,7 +26461,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east/garbledradio)
 "oEX" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /obj/machinery/floodlight/colony,
@@ -27489,7 +27489,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
 "qgu" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/item/weapon/gun/pistol/highpower{
 	pixel_x = 20;

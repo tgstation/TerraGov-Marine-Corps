@@ -108,7 +108,7 @@
 	return ..()
 
 /obj/vehicle/ridden/powerloader/verb/enter_powerloader(mob/M)
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Enter Power Loader"
 	set src in oview(1)
 
