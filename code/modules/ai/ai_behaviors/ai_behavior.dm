@@ -398,6 +398,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
 	mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown + mob_parent.next_move_slowdown * ( ISDIAGONALDIR(move_dir) ? DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : 1 ) )) //todo: probs dont even need this
 
+///Sets our active combat target
 /datum/ai_behavior/proc/set_combat_target(atom/new_target)
 	if(combat_target == new_target)
 		return
@@ -407,6 +408,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	RegisterSignal(combat_target, COMSIG_QDELETING, PROC_REF(clear_combat_target))
 	return TRUE
 
+///Unsets our combat target
 /datum/ai_behavior/proc/clear_combat_target(atom/source)
 	SIGNAL_HANDLER
 	if(!combat_target)

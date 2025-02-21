@@ -16,19 +16,19 @@ TODO: pathfinding wizardry
 	sidestep_prob = 25
 	identifier = IDENTIFIER_HUMAN
 	base_action = ESCORTING_ATOM
-	distance_to_maintain = list(2, 3)
+	distance_to_maintain = 1
 	target_distance = 9
-	minimum_health = 0.3 //placeholder value
-	//is_offered_on_creation = FALSE
+	minimum_health = 0.3
 	///List of abilities to consider doing every Process()
 	var/list/ability_list = list()
+	//will make these flags
 	///If the mob parent can heal itself and so should flee
 	var/can_heal = TRUE //TURN OFF FOR CARP ETC
-
-	var/uses_weapons = TRUE //test, this base type will be useful for mobs like carp, where this will be false
-
-	var/mob_listens = FALSE //can you actually give audible instructions. these all need to be flags.
-
+	///Uses weapons
+	var/uses_weapons = TRUE
+	///Listens to audible instructions
+	var/mob_listens = FALSE
+	///Inventory datum so the mob_parent can manage its inventory
 	var/datum/inventory/mob_inventory
 
 /datum/ai_behavior/human/New(loc, parent_to_assign, escorted_atom, can_heal = TRUE)
@@ -39,12 +39,18 @@ TODO: pathfinding wizardry
 
 	mob_inventory = new(mob_parent)
 
+/datum/ai_behavior/human/Destroy(force, ...)
+	gun = null
+	melee_weapon = null
+	QDEL_NULL(mob_inventory)
+	return ..()
+
 /datum/ai_behavior/human/start_ai()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))
 	RegisterSignals(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
 	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(check_for_critical_health)) //todo: this is specific at the species level, so only works for humans
 	if(uses_weapons)
-		RegisterSignals(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED), PROC_REF(equip_weaponry)) //todo: this will spam if ai mobs are given loadouts instead of the other way around... but avoid that
+		RegisterSignals(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED), PROC_REF(equip_weaponry))
 		RegisterSignal(mob_parent, COMSIG_LIVING_SET_LYING_ANGLE, PROC_REF(equip_weaponry))
 		equip_weaponry()
 	if(mob_listens)
@@ -63,7 +69,7 @@ TODO: pathfinding wizardry
 	if(gun_firing)
 		stop_fire()
 	if(gun)
-		INVOKE_ASYNC(src, PROC_REF(check_gun_fire), combat_target)
+		INVOKE_ASYNC(src, PROC_REF(weapon_process), combat_target)
 
 /datum/ai_behavior/human/process()
 	if(mob_parent.notransform)
@@ -206,7 +212,7 @@ TODO: pathfinding wizardry
 			if(lock.operating) //Airlock already doing something
 				continue
 			if(lock.welded || lock.locked) //It's welded or locked, can't force that open
-				INVOKE_ASYNC(src, PROC_REF(melee_interact), null, object) //ai is cheating
+				INVOKE_ASYNC(src, PROC_REF(melee_interact), null, object)
 				return COMSIG_OBSTACLE_DEALT_WITH
 			lock.open(TRUE)
 			return COMSIG_OBSTACLE_DEALT_WITH
@@ -231,12 +237,11 @@ TODO: pathfinding wizardry
 		if(obstacle.is_jumpable(mob_parent))
 			should_jump = TRUE
 			continue
-		if(!(obstacle.resistance_flags & INDESTRUCTIBLE)) //todo: do we need to check for obj_flags & CAN_BE_HIT ?
+		if(!(obstacle.resistance_flags & INDESTRUCTIBLE))
 			INVOKE_ASYNC(src, PROC_REF(melee_interact), null, obstacle)
 			return COMSIG_OBSTACLE_DEALT_WITH
 
-	//shitty dup code here for now
-	if(should_jump)
+	if(should_jump) //todo: dup code, can probs be a proc and used in other cases
 		SEND_SIGNAL(mob_parent, COMSIG_AI_JUMP)
 		INVOKE_ASYNC(src, PROC_REF(ai_complete_move), direction, FALSE)
 		return COMSIG_OBSTACLE_DEALT_WITH
@@ -283,10 +288,6 @@ TODO: pathfinding wizardry
 	SIGNAL_HANDLER
 	//todo: audible commands, gooooo
 	return
-
-/datum/ai_behavior/human/ranged
-	distance_to_maintain = list(4, 6)
-	minimum_health = 0.3
 
 /datum/ai_behavior/human/suicidal
 	minimum_health = 0

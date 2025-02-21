@@ -195,7 +195,7 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 		. = TRUE
 	mob_parent.zone_selected = BODY_ZONE_CHEST
 
-//to move/////////////////////////
+//TODO: probs move these
 /obj/item/proc/ai_should_use(mob/living/ai_mob)
 	return TRUE
 

@@ -8,18 +8,18 @@
 #define COMSIG_INVENTORY_DAT_MELEE_ADDED "inventory_dat_melee_added"
 
 /datum/inventory
+	///Mob this inventory is for
 	var/mob/living/owner
-
+	///Items actually equipped to slots
 	var/list/equipped_list
-
+	//item lists - don't make me autodoc these
 	var/list/gun_list
 	var/list/melee_list //excludes bayo boot knife due to type, includes shield
 	var/list/ammo_list
-	///generic stuff, splints etc?
 	var/list/medical_list
 	var/list/grenade_list
 	var/list/engineering_list
-
+	//damage type specific item lists
 	var/list/brute_list
 	var/list/burn_list
 	var/list/tox_list
