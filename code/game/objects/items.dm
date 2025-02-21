@@ -47,7 +47,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	///This is used to determine on which slots an item can fit.
 	var/equip_slot_flags = NONE
 	///Last slot that item was equipped to (aka sticky slot)
-	var/last_equipped_slot = 0
+	var/last_equipped_slot
 
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
 	///This flag is used for various clothing/equipment item stuff
