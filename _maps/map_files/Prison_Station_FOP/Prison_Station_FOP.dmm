@@ -43419,12 +43419,6 @@
 /obj/machinery/door/airlock/mainship/command/free_access{
 	name = "Chief Engineer's Quarters"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /turf/open/floor/plating,
 /area/prison/engineering)
 "lzl" = (
@@ -48022,7 +48016,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/prison,
 /area/prison/engineering)
 "uva" = (
@@ -48194,7 +48187,6 @@
 /area/prison/research)
 "uTB" = (
 /obj/machinery/power/tbg_turbine/cold,
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/prison/engineering)
@@ -48688,7 +48680,6 @@
 /obj/machinery/power/geothermal/tbg{
 	dir = 1
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/prison/engineering)
