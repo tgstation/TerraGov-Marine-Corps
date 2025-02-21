@@ -24,7 +24,7 @@
 	succeed_activate()
 
 	playsound(xeno_owner.loc, 'sound/effects/refill.ogg', 50, 1)
-	var/turflist = get_traversal_line(xeno_owner, target)
+	var/turflist = get_line(xeno_owner, target) //todo: use get_traversal_line and change spray_turfs to use get_dist_euclidean for range
 	spray_turfs(turflist)
 	add_cooldown()
 
