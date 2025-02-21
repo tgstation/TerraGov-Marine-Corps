@@ -791,13 +791,13 @@
 /datum/keybinding/xeno/dodge
 	name = "Dodge"
 	full_name = "Praetorian: Dodge"
-	description = "Gain a speed boost upon activation and the ability to pass through mobs. Enemies automatically receive bump attacks when passed."
+	description = "Flood your body with adrenaline, gaining a speed boost upon activation and the ability to pass through mobs. Enemies automatically receive bump attacks when passed."
 	keybind_signal = COMSIG_XENOABILITY_DODGE
 
 /datum/keybinding/xeno/impale
 	name = "Impale"
 	full_name = "Praetorian: Impale"
-	description = "Impale a marine next to you with your tail for moderate damage. Marked enemies are impaled twice."
+	description = "Skewer an object next to you with your tail. The more debuffs on a living target, the greater the damage done. Penetrates the armor of marked targets."
 	keybind_signal = COMSIG_XENOABILITY_IMPALE
 
 /datum/keybinding/xeno/tail_trip
@@ -805,6 +805,18 @@
 	full_name = "Praetorian: Tail Trip"
 	description = "Target a marine within two tiles of you to disorient and slows them. Marked enemies receive stronger debuffs and are stunned for a second."
 	keybind_signal = COMSIG_XENOABILITY_TAIL_TRIP
+
+/datum/keybinding/xeno/tail_hook
+	name = "Tail Hook"
+	full_name = "Praetorian: Tail Hook"
+	description = "Swing your tail high, sending the hooked edge gouging into any targets within 2 tiles. Hooked marines have their movement slowed and are dragged, spinning, towards you. Marked marines are slowed for longer and briefly knocked over."
+	keybind_signal = COMSIG_XENOABILITY_TAILHOOK
+
+/datum/keybinding/xeno/baton_pass
+	name = "Baton Pass"
+	full_name = "Praetorian: Baton Pass"
+	description = "Inject another xenomorph with your built-up adrenaline, increasing their movement speed considerably for 6 seconds. Puts dodge on cooldown when used. Less effect on quick xenos."
+	keybind_signal = COMSIG_XENOABILITY_BATONPASS
 
 /datum/keybinding/xeno/screech
 	name = "screech"

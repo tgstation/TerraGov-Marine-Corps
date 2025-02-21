@@ -57,10 +57,8 @@
 		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/devour,
-		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/xeno_action/place_acidwell,
-		/datum/action/ability/activable/xeno/corrosive_acid/strong,
+		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/activable/xeno/spray_acid/cone,
 		/datum/action/ability/xeno_action/pheromones,
@@ -85,10 +83,8 @@
 		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/devour,
-		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/xeno_action/place_acidwell,
-		/datum/action/ability/activable/xeno/corrosive_acid/strong,
+		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/activable/xeno/spray_acid/cone,
 		/datum/action/ability/xeno_action/sticky_grenade,
@@ -102,27 +98,36 @@
 	caste_type_path = /mob/living/carbon/xenomorph/praetorian/dancer
 	upgrade_name = ""
 	caste_name = "Dancer Praetorian"
-	display_name = "Praetorian"
+	display_name = "Dancer"
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A giant melee monster. It looks pretty strong."
 
 	// +2 melee damage
 	melee_damage = 25
 
-	// Loses some common armor (-5) for more speed (-0.3).
-	speed = -0.8
-	soft_armor = list(MELEE = 40, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 10, BIO = 40, FIRE = 45, ACID = 40)
+	// +30 hp
+	max_health = 420
+
+	// Gains more speed (-0.2).
+	speed = -0.7
+
+	// +10 melee armor
+	soft_armor = list(MELEE = 55, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 40, FIRE = 50, ACID = 40)
 
 	// Loses ranged spit abilities for close combat combo abilities.
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/dodge,
+		/datum/action/ability/activable/xeno/tail_hook,
+		/datum/action/ability/activable/xeno/tail_trip,
+		/datum/action/ability/activable/xeno/impale,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
-		/datum/action/ability/xeno_action/dodge,
-		/datum/action/ability/activable/xeno/impale,
-		/datum/action/ability/activable/xeno/tail_trip,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
@@ -140,14 +145,18 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/dodge,
+		/datum/action/ability/activable/xeno/tail_hook,
+		/datum/action/ability/activable/xeno/tail_trip,
+		/datum/action/ability/activable/xeno/impale,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
-		/datum/action/ability/xeno_action/dodge,
-		/datum/action/ability/activable/xeno/impale,
-		/datum/action/ability/activable/xeno/tail_trip,
-		/datum/action/ability/activable/xeno/charge/acid_dash, // No unique primordial ability at the moment. Replace eventually with something cooler!
+		/datum/action/ability/activable/xeno/baton_pass,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
