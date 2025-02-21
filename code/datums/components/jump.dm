@@ -74,13 +74,13 @@
 		remove_external_user()
 	if(new_user)
 		external_user = new_user
-		RegisterSignal(external_user, COMSIG_KB_LIVING_JUMP, PROC_REF(start_jump))
+		RegisterSignal(external_user, COMSIG_KB_LIVING_JUMP_DOWN, PROC_REF(start_jump))
 		RegisterSignal(external_user, COMSIG_KB_VEHICLE_OCCUPANT_LEFT, PROC_REF(remove_external_user))
 
 ///Unsets an external controller
 /datum/component/jump/proc/remove_external_user(datum/source, mob/living/old_user)
 	SIGNAL_HANDLER
-	UnregisterSignal(external_user, list(COMSIG_KB_LIVING_JUMP, COMSIG_KB_VEHICLE_OCCUPANT_LEFT))
+	UnregisterSignal(external_user, list(COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_KB_VEHICLE_OCCUPANT_LEFT))
 	external_user = null
 
 ///Starts charging the jump
