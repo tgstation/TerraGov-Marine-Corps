@@ -50,7 +50,7 @@
 #define SCORCHED_EARTH_AOE_SIZE 1
 #define SCORCHED_EARTH_TRAVEL_DAMAGE 5
 #define SCORCHED_EARTH_DEBUFF_DURATION 4 SECONDS
-#define SCORCHED_EARTH_TILE_DAMAGE 5
+#define SCORCHED_EARTH_TILE_DAMAGE 10
 
 /datum/action/ability/activable/xeno/scorched_earth
 	name = "Scorched Earth"
@@ -150,13 +150,13 @@
 	for(var/turf/affected_turf AS in RANGE_TURFS(SCORCHED_EARTH_AOE_SIZE, xeno_owner.loc))
 		if(isclosedturf(affected_turf))
 			continue
-		if(!(/obj/fire/scorched_earth in affected_turf))
-			new /obj/fire/scorched_earth(affected_turf, max(900, rand(0, 1100)), max(1, rand(0, 10)), "red", 0, 0, xeno_owner.hivenumber)
+		var/obj/fire/scorched_earth/bull_fire = locate(/obj/fire/scorched_earth) in affected_turf
+		if(!bull_fire)
+			new /obj/fire/scorched_earth(affected_turf, max(900, rand(0, 1100)), 0, "red", 0, 0, xeno_owner.hivenumber)
 		for(var/mob/living/affected_living in affected_turf)
 			if(affected_living.issamexenohive(xeno_owner) || affected_living.stat == DEAD)
 				continue
 			affected_living.take_overall_damage(SCORCHED_EARTH_TRAVEL_DAMAGE, BRUTE, MELEE, penetration = 100, max_limbs = SCORCHED_EARTH_TRAVEL_DAMAGE)
-			affected_living.jitter(1 SECONDS)
 			affected_living.adjust_stagger(SCORCHED_EARTH_DEBUFF_DURATION)
 			affected_living.adjust_slowdown(SCORCHED_EARTH_DEBUFF_DURATION)
 
@@ -175,10 +175,10 @@
 /obj/fire/scorched_earth
 	name = "Scorched Earth"
 	icon = 'icons/effects/fire.dmi'
-	icon_state = "red_1"
+	icon_state = "bull"
 	light_range = 1
 	light_power = 1
-	burn_decay = 100
+	burn_decay = 80
 	/// The hive this belongs to.
 	var/hivenumber
 
@@ -189,10 +189,9 @@
 /obj/fire/scorched_earth/update_icon_state()
 	light_color = LIGHT_COLOR_BLOOD_MAGIC
 
-/obj/fire/scorched_earth/effect_smoke(obj/effect/particle_effect/smoke/affecting_smoke)
+/obj/fire/scorched_earth/effect_smoke(...)
 	return
 
-// Have to rewrite the proc just to remove unwanted parts
 /obj/fire/scorched_earth/set_fire(new_burn_ticks, new_burn_level, new_flame_color, fire_stacks = 0, fire_damage = 0)
 	if(new_burn_ticks <= 0)
 		qdel(src)
@@ -221,5 +220,5 @@
 		return FALSE
 	affected_living.take_overall_damage(SCORCHED_EARTH_TILE_DAMAGE, BRUTE, MELEE, penetration = 100, max_limbs = 2)
 	affected_living.adjust_blurriness(1)
-	affected_living.adjust_stagger(0.5 SECONDS)
-	affected_living.adjust_slowdown(0.5 SECONDS)
+	affected_living.adjust_stagger(1 SECONDS)
+	affected_living.adjust_slowdown(1 SECONDS)

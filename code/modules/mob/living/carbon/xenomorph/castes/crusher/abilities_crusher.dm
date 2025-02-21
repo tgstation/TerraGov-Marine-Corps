@@ -1,8 +1,6 @@
 // ***************************************
 // *********** Stomp
 // ***************************************
-#define XENO_STOMP_DAMAGE 60
-
 /datum/action/ability/activable/xeno/stomp
 	name = "Stomp"
 	action_icon_state = "stomp"
