@@ -227,15 +227,9 @@
 		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
 			continue
 
-		var/display_name = mob.name
-		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
-		if(!(mob in GLOB.xeno_mob_list) && admin) // If the verb caller is an admin and not a xeno mob, use their fakekey or key instead.
-			display_name = display_key
-		display_name = "[ADMIN_TPMONTY(mob)]" // Admins get a clickable player panel.
-		if(!holder?.fakekey) // Show their key and their fakekey if they have one.
-			display_name = "[mob.key]/([display_name])"
-		else
-			display_name = "[holder.fakekey]/([mob.key]/[display_name])"
+		var/display_name = "[ADMIN_TPMONTY(mob)]"
+		if(holder?.fakekey) // Show their fakekey in addition to real key + buttons if they have one
+			display_name = "[span_tooltip("Stealth key", "'[holder.fakekey]'")] ([display_name])"
 
 		var/avoid_highlight = recv_staff == src
 		to_chat(recv_staff, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "XOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
@@ -340,15 +334,9 @@
 		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
 			continue
 
-		var/display_name = mob.name
-		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
-		if(!((mob in GLOB.human_mob_list) || (mob in GLOB.ai_list)) && admin) // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
-			display_name = display_key
-		display_name = "[ADMIN_TPMONTY(mob)]" // Admins get a clickable player panel.
-		if(!holder?.fakekey) // Show their key and their fakekey if they have one.
-			display_name = "[mob.key]/([display_name])"
-		else
-			display_name = "[holder.fakekey]/([mob.key]/[display_name])"
+		var/display_name = "[ADMIN_TPMONTY(mob)]"
+		if(holder?.fakekey) // Show their fakekey in addition to real key + buttons if they have one
+			display_name = "[span_tooltip("Stealth key", "'[holder.fakekey]'")] ([display_name])"
 
 		var/avoid_highlight = recv_staff == src
 		to_chat(recv_staff, "<font color='#B75800'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "MOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
@@ -444,8 +432,12 @@
 		if(recv_staff.mob == mob)
 			continue
 
+		var/display_name = "[ADMIN_TPMONTY(mob)]"
+		if(holder?.fakekey) // Show their fakekey in addition to real key + buttons if they have one
+			display_name = "[span_tooltip("Stealth key", "'[holder.fakekey]'")] ([display_name])"
+
 		if(recv_staff.prefs.toggles_chat & CHAT_LOOC)
-			to_chat(recv_staff, span_looc_heard_staff("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "LOOC")]: [ADMIN_TPMONTY(mob)]: [span_message("[msg]")]"))
+			to_chat(recv_staff, span_looc_heard_staff("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "LOOC")]: [display_name]: [span_message("[msg]")]"))
 
 /client/verb/motd()
 	set name = "MOTD"
