@@ -170,10 +170,6 @@
 	/// How much damage we can take before tipping over.
 	var/knockdown_threshold = 100
 
-	///Faction of the vendor. Can be null
-	var/faction
-
-
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
 	wires = new /datum/wires/vending(src)

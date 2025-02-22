@@ -174,13 +174,12 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	frequency = FREQ_COMMON
 	atom_flags = CONDUCT | PREVENT_CONTENTS_EXPLOSION
 	freerange = TRUE
+	faction = FACTION_TERRAGOV
 	var/obj/machinery/camera/camera
 	var/datum/atom_hud/squadhud = null
 	var/mob/living/carbon/human/wearer = null
 	var/headset_hud_on = FALSE
 	var/sl_direction = FALSE
-	///The faction this headset belongs to. Used for hudtype, minimap and safety protocol
-	var/faction = FACTION_TERRAGOV
 	///The type of minimap this headset gives access to
 	var/datum/action/minimap/minimap_type = /datum/action/minimap/marine
 
