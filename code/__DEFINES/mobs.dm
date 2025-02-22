@@ -583,6 +583,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_KNOCKBACK_IMMUNE (1<<12) // Immunity to all forms of knockback / throwing.
 #define CASTE_SLOW_IMMUNE (1<<13) // Immunity to all forms of slow.
 #define CASTE_STUN_IMMUNE (1<<14) // Immunity to all forms of stun.
+#define CASTE_EXCLUDED_FROM_PSYCHIC_SUMMON (1<<18) // Excluded from the King's psychic summon.
 
 #define CASTE_DO_NOT_ALERT_LOW_LIFE (1<<15) // When at low life, does not alerts other Xenomorphs (who opt into these low-life alerts). Decreases the font size for the death announcement message.
 #define CASTE_DO_NOT_ANNOUNCE_DEATH (1<<16) // Do not announce to Hive if this Xenomorph died.

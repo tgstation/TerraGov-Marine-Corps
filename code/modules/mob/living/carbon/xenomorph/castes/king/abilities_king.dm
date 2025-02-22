@@ -500,6 +500,8 @@ GLOBAL_LIST_EMPTY(active_summons)
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		if(sister.z != owner.z)
 			continue
+		if(sister.xeno_caste.caste_flags & CASTE_EXCLUDED_FROM_PSYCHIC_SUMMON)
+			continue
 		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))
 
 	GLOB.active_summons += xeno_owner
@@ -507,12 +509,16 @@ GLOBAL_LIST_EMPTY(active_summons)
 	if(!do_after(xeno_owner, 10 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(is_active_summon))))
 		add_cooldown(5 SECONDS)
 		for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
+			if(sister.xeno_caste.caste_flags & CASTE_EXCLUDED_FROM_PSYCHIC_SUMMON)
+				continue
 			sister.remove_filter("summonoutline")
 		return fail_activate()
 
 	allxenos = xeno_owner.hive.get_all_xenos() //refresh the list to account for any changes during the channel
 	var/sisters_teleported = 0
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
+		if(sister.xeno_caste.caste_flags & CASTE_EXCLUDED_FROM_PSYCHIC_SUMMON)
+			continue
 		sister.remove_filter("summonoutline")
 		if(sister.z == owner.z)
 			sister.forceMove(get_turf(xeno_owner))
