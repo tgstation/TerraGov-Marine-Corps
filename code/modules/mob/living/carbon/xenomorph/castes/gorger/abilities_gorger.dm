@@ -508,8 +508,8 @@
 	action_icon_state = "bulwark"
 	action_icon = 'icons/Xeno/actions/gorger.dmi'
 	desc = "Creates a field of defensive energy, filling gaps in the armor of nearby sisters, making them more resilient."
-	ability_cost = 75
-	cooldown_duration = 20 SECONDS
+	ability_cost = 25
+	cooldown_duration = 35 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GORGER_BULWARK,
 	)
