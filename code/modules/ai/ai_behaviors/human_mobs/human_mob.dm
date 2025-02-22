@@ -88,7 +88,8 @@ TODO: pathfinding wizardry
 			action.action_activate()
 
 	if(uses_weapons)
-		grenade_process()
+		if(grenade_process()) //throw nades or shoot, not both at once
+			return ..()
 		weapon_process()
 
 	return ..()
