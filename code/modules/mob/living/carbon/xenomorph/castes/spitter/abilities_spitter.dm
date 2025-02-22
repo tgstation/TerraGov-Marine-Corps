@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	dangerous = TRUE
 	arm_sound = 'sound/voice/alien/yell_alt.ogg'
 	var/mob/living/carbon/xenomorph/owner
-	var/minetype = /datum/globadier_mine
+	var/datum/globadier_mine/minetype = /datum/globadier_mine
 	var/select_message = "Detonates in a star pattern, spreading acid which deals damage to those that stay within it."
 
 /obj/item/explosive/grenade/globadier/prime()
@@ -308,19 +308,42 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	owner = _xeno_owner
 
 /datum/globadier_mine
-	var/greyscale_color = "#19f599"
+	//These are all passed to the actual mine obj
+	var/name = "acid mine"
+	var/desc = "A weird bulb, filled with acid."
+	var/icon = 'icons/obj/items/mines.dmi'
+	var/icon_state = "acid_mine"
+	///If this mine uses greyscale sprites. If false, just takes the default icon_state & icon
+	var/is_greyscale = TRUE
+	///The color this mine takese
+	var/greyscale_color = "#81ff92"
+	///The amount of acid damage this deals
+	var/acid_damage = 30
 	///Message put in chat when the linked grenade type is selected, describing the mine detonation effects.
 	var/select_message = "Detonates in a 3x3, dealing heavy acid damage to those nearby"
 
-/datum/globadier_mine/proc/detonate()
-	for(var/spatter_effect in filled_turfs(get_turf(src), 1, "square", pass_flags_checked = PASS_AIR))
+/datum/globadier_mine/proc/detonate(mine)
+	for(var/spatter_effect in filled_turfs(get_turf(mine), 1, "square", pass_flags_checked = PASS_AIR))
 		new /obj/effect/temp_visual/acid_splatter(spatter_effect)
-	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(src,1))
-		human_victim.apply_damage(15, BURN, BODY_ZONE_L_LEG, ACID,  penetration = 30)
-		human_victim.apply_damage(15, BURN, BODY_ZONE_R_LEG, ACID,  penetration = 30)
-		playsound(src, "sound/bullets/acid_impact1.ogg", 10)
-	qdel(src)
+	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(mine,1))
+		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_L_LEG, ACID,  penetration = 30)
+		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_R_LEG, ACID,  penetration = 30)
+		playsound(mine, "sound/bullets/acid_impact1.ogg", 10)
+	qdel(mine)
 
+/datum/globadier_mine/gas_mine
+	name = "gas mine"
+	desc = "A weird bulb, overflowing with acid. Small wisps of gas escape every so often."
+	icon_state = "gas_mine"
+	select_message = "" // no select message as this is a seperate ability
+	is_greyscale = FALSE
+	acid_damage = 40
+
+/datum/globadier_mine/gas_mine/detonate(mine)
+	var/datum/effect_system/smoke_spread/xeno/acid/opaque/A = new(get_turf(src))
+	A.set_up(1,src)
+	A.start()
+	return ..()
 
 // ***************************************
 // *********** Fire Grenade
@@ -423,8 +446,6 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	desc = "Place an acid mine at your location"
 	cooldown_duration = 5 SECONDS
 	ability_cost = 150
-	///Which mine the ability uses
-	var/mine_type = /obj/structure/xeno/acid_mine
 	///How many mines the ability can store at max
 	var/max_charges = 6
 	///Current amount of mines stored
@@ -507,7 +528,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 		owner.balloon_alert(owner, "No Mines!")
 		return fail_activate()
 	var/turf/T = get_turf(owner)
-	new mine_type(T)
+	new /obj/structure/xeno/acid_mine(T,xeno_owner.selected_grenade.minetype)
 	current_charges--
 	playsound(T, SFX_ALIEN_RESIN_BUILD, 25)
 	timer = addtimer(CALLBACK(src, PROC_REF(regen_mine)), regen_time, TIMER_UNIQUE|TIMER_STOPPABLE)
@@ -534,7 +555,6 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	name = "Gas Mine"
 	desc = "Place an gas mine at your location"
 	ability_cost = 200
-	mine_type = /obj/structure/xeno/acid_mine/gas_mine
 	max_charges = 3
 	current_charges = 3
 	regen_time = 80 SECONDS
@@ -543,6 +563,20 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GAS_MINE,
 	)
+
+/datum/action/ability/xeno_action/acid_mine/gas_mine/action_activate()
+	if(current_charges <= 0)
+		owner.balloon_alert(owner, "No Mines!")
+		return fail_activate()
+	var/turf/T = get_turf(owner)
+	new /obj/structure/xeno/acid_mine(T, /datum/globadier_mine/gas_mine)
+	current_charges--
+	playsound(T, SFX_ALIEN_RESIN_BUILD, 25)
+	timer = addtimer(CALLBACK(src, PROC_REF(regen_mine)), regen_time, TIMER_UNIQUE|TIMER_STOPPABLE)
+	START_PROCESSING(SSprocessing, src)
+	update_button_icon()
+	succeed_activate()
+	add_cooldown()
 
 // ***************************************
 // *********** Acid Rocket
