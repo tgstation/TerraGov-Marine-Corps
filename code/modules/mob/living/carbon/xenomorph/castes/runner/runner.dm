@@ -27,14 +27,6 @@
 	if(. == CONSCIOUS && layer != initial(layer))
 		layer = MOB_LAYER
 
-/mob/living/carbon/xenomorph/runner/UnarmedAttack(atom/A, has_proximity, modifiers)
-	/// Runner should not be able to slash while evading.
-	var/datum/action/ability/xeno_action/evasion/evasion_action = actions_by_path[/datum/action/ability/xeno_action/evasion]
-	if(evasion_action.evade_active)
-		balloon_alert(src, "Cannot slash while evading")
-		return
-	return ..()
-
 /mob/living/carbon/xenomorph/runner/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
 	. = ..()
 	if(!ishuman(over))

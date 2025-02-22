@@ -892,19 +892,6 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_SAVAGE
 
-/datum/keybinding/xeno/evasion
-	name = "evasion"
-	full_name = "Runner: Evasion"
-	description = "Take evasive action, forcing non-friendly projectiles that would hit you to miss so long as you keep moving."
-	keybind_signal = COMSIG_XENOABILITY_EVASION
-	hotkey_keys = list("Z")
-
-/datum/keybinding/xeno/auto_evasion
-	name = "auto_evasion"
-	full_name = "Runner: Toggle Auto Evasion"
-	description = "Toggles Auto Evasion on or off. While active, Auto Evasion will automatically use Evasion when you gain its cooldown reset bonus."
-	keybind_signal = COMSIG_XENOABILITY_AUTO_EVASION
-
 /datum/keybinding/xeno/snatch
 	name = "snatch"
 	full_name = "Runner: Snatch"

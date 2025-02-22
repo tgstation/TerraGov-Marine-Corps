@@ -14,7 +14,7 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 23
-	attack_delay = 6
+	attack_delay = 7
 
 	// *** Speed *** //
 	speed = -1.4
@@ -47,7 +47,6 @@
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/xenohide,
-		/datum/action/ability/xeno_action/evasion,
 		/datum/action/ability/activable/xeno/pounce/runner,
 	)
 
@@ -65,7 +64,6 @@
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/xenohide,
-		/datum/action/ability/xeno_action/evasion,
 		/datum/action/ability/activable/xeno/pounce/runner,
 		/datum/action/ability/activable/xeno/snatch,
 	)
