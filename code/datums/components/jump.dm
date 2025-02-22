@@ -109,7 +109,7 @@
 	var/original_pass_flags = jumper.pass_flags
 
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_STARTED, effective_jump_height, effective_jump_duration)
-	jumper.pass_flags |= effective_jumper_allow_pass_flags
+	jumper.add_traits(get_traits_from_pass_flags(effective_jumper_allow_pass_flags), JUMP_COMPONENT)
 	ADD_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
 	jumper.add_nosubmerge_trait(JUMP_COMPONENT)
 	RegisterSignal(jumper, COMSIG_MOB_THROW, PROC_REF(jump_throw))

@@ -367,20 +367,17 @@
 				var/oldloc = loc
 				var/oldLloc = L.loc
 
-				var/L_passmob = (L.pass_flags & PASS_MOB) // we give PASS_MOB to both mobs to avoid bumping other mobs during swap.
-				var/src_passmob = (pass_flags & PASS_MOB)
-				L.pass_flags |= PASS_MOB
-				pass_flags |= PASS_MOB
+				// we give PASS_MOB to both mobs to avoid bumping other mobs during swap.
+				ADD_TRAIT(L, TRAIT_PASS_MOB, MOVEMENT_SWAP_TRAIT)
+				ADD_TRAIT(src, TRAIT_PASS_MOB, MOVEMENT_SWAP_TRAIT)
 
 				if(!moving_diagonally) //the diagonal move already does this for us
 					Move(oldLloc)
 				if(mob_swap_mode == SWAPPING)
 					L.Move(oldloc)
 
-				if(!src_passmob)
-					pass_flags &= ~PASS_MOB
-				if(!L_passmob)
-					L.pass_flags &= ~PASS_MOB
+				REMOVE_TRAIT(L, TRAIT_PASS_MOB, MOVEMENT_SWAP_TRAIT)
+				REMOVE_TRAIT(src, TRAIT_PASS_MOB, MOVEMENT_SWAP_TRAIT)
 
 				now_pushing = FALSE
 

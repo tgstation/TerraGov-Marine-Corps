@@ -309,7 +309,7 @@
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_POUNCE)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.xeno_flags |= XENO_LEAPING
-	xeno_owner.pass_flags |= PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
+	xeno_owner.add_traits(get_traits_from_pass_flags(PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO), type)
 	xeno_owner.throw_at(A, pounce_range, XENO_POUNCE_SPEED, xeno_owner)
 	addtimer(CALLBACK(src, PROC_REF(reset_pass_flags)), 0.6 SECONDS)
 	succeed_activate()

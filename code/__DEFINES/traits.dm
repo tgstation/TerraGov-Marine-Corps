@@ -123,6 +123,7 @@
 #define NIGHT_VISION_GOGGLES_TRAIT "night_vision_goggles"
 #define SUBMERGED_TRAIT "submerged_trait"
 #define TRAIT_DWARF "dwarf"
+#define MOVEMENT_SWAP_TRAIT "movement_swap_trait"
 /// This trait comes from when a mob is currently typing.
 #define CURRENTLY_TYPING_TRAIT "currently_typing"
 /// Makes you way too tall. Like just too much, dude, it's kind of creepy. Humanoid only.

@@ -300,7 +300,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	owner.add_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_DODGE_SPEED, TRUE, 0, NONE, TRUE, speed_buff)
 	owner.allow_pass_flags |= (PASS_MOB|PASS_XENO)
-	owner.pass_flags |= (PASS_MOB|PASS_XENO)
+	xeno_owner.add_traits(get_traits_from_pass_flags(PASS_MOB|PASS_XENO), type)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	addtimer(CALLBACK(src, PROC_REF(remove_effects)), duration)
 
@@ -335,7 +335,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	owner.remove_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_DODGE_SPEED)
 	owner.allow_pass_flags &= ~(PASS_MOB|PASS_XENO)
-	owner.pass_flags &= ~(PASS_MOB|PASS_XENO)
+	xeno_owner.remove_traits(get_traits_from_pass_flags(PASS_MOB|PASS_XENO), type)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
 /// Toggles particles on or off, adjusting their positioning to fit the buff's owner.
