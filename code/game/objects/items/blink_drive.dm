@@ -213,7 +213,16 @@
 	return TRUE
 
 /datum/action/ability/activable/item_toggle/blink_drive/ai_should_use(atom/target)
-	//todo: make this better
+	var/obj/item/blink_drive/blink_parent = src.target
+	if(isainode(target))
+		if(blink_parent.charges < 2) //keep one for combat
+			return FALSE
+		if(get_dist(owner, movable_target) > 5)
+			return FALSE
+		if(!can_use_ability(movable_target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+			return FALSE
+		return TRUE
+
 	if(!(isliving(target) || ismecha(target) || isarmoredvehicle(target)))
 		return FALSE
 	var/atom/movable/movable_target = target
@@ -221,7 +230,6 @@
 		return FALSE
 	if(!can_use_ability(movable_target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 		return FALSE
-	var/obj/item/blink_drive/blink_parent = src.target
 	if(!blink_parent.charges)
 		return FALSE
 	if(get_dist(owner, movable_target) > 7)
