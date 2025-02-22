@@ -161,3 +161,19 @@
 		if(!istype(chassis.equip_by_category[i], /obj/item/mecha_parts/mecha_equipment))
 			continue
 		INVOKE_ASYNC(chassis.equip_by_category[i], TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, attempt_rearm), owner)
+
+/datum/action/vehicle/sealed/mecha/repairpack
+	name = "Use Repairpack"
+	action_icon_state = "mech_damtype_toxin" // todo kuro needs to make an icon for this
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_REPAIRPACK,
+	)
+
+/datum/action/vehicle/sealed/mecha/reload/action_activate(trigger_flags)
+	if(!owner || !chassis || !(owner in chassis.occupants))
+		return
+
+	for(var/i in chassis.equip_by_category)
+		if(!istype(chassis.equip_by_category[i], /obj/item/mecha_parts/mecha_equipment))
+			continue
+		INVOKE_ASYNC(chassis.equip_by_category[i], TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, attempt_rearm), owner)

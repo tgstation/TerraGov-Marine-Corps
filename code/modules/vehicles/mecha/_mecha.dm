@@ -195,6 +195,13 @@
 	///holds the EMP timer
 	var/emp_timer
 
+
+	// ******** TGMC VARS ******** //
+	///max amt of repairpacks we can store
+	var/max_repairpacks = 0
+	/// actual amt of repairpacks we have stored
+	var/stored_repairpacks = 0
+
 /obj/item/radio/mech //this has to go somewhere
 	subspace_transmission = TRUE
 

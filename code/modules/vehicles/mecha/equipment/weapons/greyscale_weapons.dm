@@ -127,7 +127,7 @@
 	)
 	ammotype = /datum/ammo/bullet/rifle/mech
 	max_integrity = 400
-	projectiles = 80
+	projectiles = 805
 	projectiles_cache = 960
 	projectiles_cache_max = 960
 	variance = 15

@@ -43,6 +43,8 @@
 	var/obj/effect/abstract/particle_holder/holder_left
 	///right particle smoke holder
 	var/obj/effect/abstract/particle_holder/holder_right
+	/// total wight our limbs and equipment contribute. max determined by MECH_GREY_LEGS limb
+	var/weight = 0
 
 /obj/vehicle/sealed/mecha/combat/greyscale/Initialize(mapload)
 	holder_left = new(src, /particles/mecha_smoke)
@@ -236,3 +238,9 @@
 	pivot_step = FALSE
 	max_integrity = 1760
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
+
+/obj/item/repairpack
+	name = "mech repairpack"
+	desc = "A mecha repair pack, consisting of various auto-extinguisher systems, materials and repair nano-scarabs."
+	icon = 'icons/obj/items/assemblies.dmi'
+	icon_state = "posibrain-occupied" // todo kuro needs to make/find an icon for this
