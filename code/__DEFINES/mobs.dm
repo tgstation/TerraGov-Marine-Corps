@@ -803,17 +803,6 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 //Wraith defines
 
-#define WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER 20 //The amount we multiply the cooldown by when we teleport while dragging a non-friendly target
-#define WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER 4 //The amount we multiply the cooldown by when we teleport while dragging a friendly target
-#define WRAITH_BLINK_RANGE 3
-
-#define WRAITH_BANISH_BASE_DURATION 10 SECONDS
-#define WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER 0.5
-#define WRAITH_BANISH_VERY_SHORT_MULTIPLIER 0.3
-
-#define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 SECONDS //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
-#define WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS 3 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
-
 //Larva defines
 #define LARVA_VENT_CRAWL_TIME 1 SECONDS //Larva can crawl into vents fast
 

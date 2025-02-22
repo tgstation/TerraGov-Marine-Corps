@@ -75,8 +75,18 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/Destroy()
 	for(var/key in limbs)
 		var/datum/mech_limb/limb = limbs[key]
-		limb?.detach(src)
+		if(limb)
+			limb.detach(src)
+			qdel(limb)
 	return ..()
+
+/obj/vehicle/sealed/mecha/combat/greyscale/examine(mob/user)
+	. = ..()
+	for(var/limb_key in limbs)
+		if(limb_key == MECH_GREY_TORSO)
+			continue
+		var/datum/mech_limb/limb = limbs[limb_key]
+		. += "It's " + limb.display_name + " has " + "[(limb.part_health / initial(limb.part_health))*100]" + "% integrity."
 
 /obj/vehicle/sealed/mecha/combat/greyscale/generate_actions()
 	. = ..()
@@ -90,6 +100,9 @@
 
 /obj/vehicle/sealed/mecha/combat/greyscale/add_occupant(mob/M)
 	. = ..()
+	var/datum/mech_limb/holding = limbs[MECH_GREY_HEAD]
+	if(!holding || holding.disabled)
+		return
 	ADD_TRAIT(M, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
 	M.update_sight()
 
@@ -196,6 +209,9 @@
 
 	for(var/key in render_order)
 		if(key == MECHA_R_ARM)
+			var/datum/mech_limb/holding = limbs[MECH_GREY_R_ARM]
+			if(!holding || holding?.disabled)
+				continue
 			var/obj/item/mecha_parts/mecha_equipment/right_gun = equip_by_category[MECHA_R_ARM]
 			if(right_gun)
 				var/mutable_appearance/r_gun = mutable_appearance('icons/mecha/mech_gun_overlays.dmi', right_gun.icon_state + "_right", appearance_flags = KEEP_APART)
@@ -203,6 +219,9 @@
 				. += r_gun
 			continue
 		if(key == MECHA_L_ARM)
+			var/datum/mech_limb/holding = limbs[MECH_GREY_L_ARM]
+			if(!holding || holding.disabled)
+				continue
 			var/obj/item/mecha_parts/mecha_equipment/left_gun = equip_by_category[MECHA_L_ARM]
 			if(left_gun)
 				var/mutable_appearance/l_gun = mutable_appearance('icons/mecha/mech_gun_overlays.dmi', left_gun.icon_state + "_left", appearance_flags = KEEP_APART)
@@ -225,6 +244,16 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/throw_bounce(atom/hit_atom, turf/old_throw_source)
 	return //no bounce for us
 
+/obj/vehicle/sealed/mecha/combat/greyscale/needs_welder_repair(mob/user)
+	if(user.zone_selected == BODY_ZONE_CHEST || user.zone_selected == BODY_ZONE_PRECISE_GROIN)
+		return obj_integrity < max_integrity
+	for(var/key in limbs)
+		var/datum/mech_limb/limb = limbs[key]
+		if(!limb)
+			continue
+		if((user.zone_selected in limb.def_zones) && (limb.part_health < initial(limb?.part_health)))
+			return TRUE
+
 /obj/vehicle/sealed/mecha/combat/greyscale/recon
 	name = "Recon Mecha"
 	limbs = list(
@@ -238,6 +267,7 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
+	max_integrity = 1020
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/assault
@@ -253,6 +283,7 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
+	max_integrity = 1390
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard
@@ -268,4 +299,5 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
+	max_integrity = 1760
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
