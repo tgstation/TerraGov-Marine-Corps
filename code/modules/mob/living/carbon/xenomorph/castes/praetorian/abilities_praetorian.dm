@@ -222,6 +222,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	///List of traits given by this action
 	var/list/charge_traits = list(TRAIT_PASS_LOW_STRUCTURE, TRAIT_PASS_DEFENSIVE_STRUCTURE, TRAIT_PASS_FIRE)
 
+
+/datum/action/ability/activable/xeno/charge/acid_dash/Destroy()
+	charge_traits = null
+	return ..()
+
 /datum/action/ability/activable/xeno/charge/acid_dash/use_ability(atom/A)
 	if(!A)
 		return
@@ -297,6 +302,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/effect/abstract/particle_holder/particle_holder
 	///List of traits given by this action
 	var/list/dodge_traits = list(TRAIT_PASS_MOB, TRAIT_PASS_XENO)
+
+/datum/action/ability/xeno_action/dodge/Destroy()
+	dodge_traits = null
+	return ..()
 
 /datum/action/ability/xeno_action/dodge/action_activate(atom/A)
 	owner.balloon_alert(owner, "Dodge ready!")
