@@ -178,13 +178,13 @@
 		return
 	chassis.stored_repairpacks--
 	// does not count as actual repairs for end of round because its annoying to decouple from normal repair and this isnt representative of a real repair
-	chassis.repair_damage(chassis.max_integrity/2)
+	chassis.repair_damage(chassis.max_integrity)
 	var/obj/vehicle/sealed/mecha/combat/greyscale/greyscale = chassis
 	if(!istype(greyscale))
 		return
 	for(var/limb_key in greyscale.limbs)
 		var/datum/mech_limb/limb = greyscale.limbs[limb_key]
-		limb?.do_repairs(initial(limb.part_health)/2)
+		limb?.do_repairs(initial(limb.part_health))
 
 ///checks whether we can still repair this mecha
 /datum/action/vehicle/sealed/mecha/repairpack/proc/can_repair()
