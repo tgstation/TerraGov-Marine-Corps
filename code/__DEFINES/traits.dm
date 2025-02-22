@@ -125,6 +125,7 @@
 #define TRAIT_DWARF "dwarf"
 #define MOVEMENT_SWAP_TRAIT "movement_swap_trait"
 #define INCORPOREAL_TRAIT "incorporeal_trait"
+#define HOVERBIKE_TRAIT "hoverbike_trait"
 /// This trait comes from when a mob is currently typing.
 #define CURRENTLY_TYPING_TRAIT "currently_typing"
 /// Makes you way too tall. Like just too much, dude, it's kind of creepy. Humanoid only.
