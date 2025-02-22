@@ -29,6 +29,7 @@
 	for(var/obj/item/explosive/grenade/option AS in mob_inventory.grenade_list)
 		if(isgun(option.loc))
 			continue
+		var/mob/living/living_parent = mob_parent
 		if(istype(option, /obj/item/explosive/grenade/smokebomb) && (living_parent.health <= minimum_health * 2 * living_parent.maxHealth))
 			return
 		nade_options += option
