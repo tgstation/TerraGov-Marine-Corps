@@ -497,16 +497,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	xeno_owner.enable_throw_parry(0.6 SECONDS)
 
 	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
-	xeno_owner.visible_message(span_danger("\The [xeno_owner] swings the hook on its tail through the air!"))
 
-	var/damage = ((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) / 2)
+	var/damage = ((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) / 2.3) //Heavy nerf to damage due to the fact that Dancers can pull people through objects.
+	//Todo: INVESTIGATE WHY THE OBJECT CHECK WAS FAILING.
 	var/list/inrange = orange(2, xeno_owner)
-
+	xeno_owner.visible_message(span_danger("\The [xeno_owner] swings the hook on its tail through the air!"))
 	for (var/mob/living/carbon/human/living_target in inrange)
-		var/start_turf = get_step(xeno_owner, get_cardinal_dir(xeno_owner, living_target))
-		//no hooking through solid obstacles
-		if(check_path(xeno_owner, start_turf, PASS_THROW) != start_turf)
-			continue
 		if(living_target.stat == DEAD)
 			continue
 		to_chat(living_target, span_xenowarning("\The [xeno_owner] hooks into our flesh and yanks us towards them!"))
@@ -557,7 +553,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	. = ..()
 	if(!.)
 		return
-	if(!iscarbon(A) || !isxeno(A))
+	if(!iscarbon(A)) //Allows baton pass to be used on CLF/etc
 		if(!silent)
 			A.balloon_alert(owner, "can't effect!")
 		return FALSE
