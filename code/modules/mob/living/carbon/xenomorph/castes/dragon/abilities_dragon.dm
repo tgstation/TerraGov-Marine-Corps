@@ -554,7 +554,7 @@
 				var/mob/living/affected_living = affected_atom
 				if(affected_living.stat == DEAD)
 					continue
-				affected_living.take_overall_damage(damage, BURN, FIRE, max_limbs = 6, updating_health = TRUE)
+				affected_living.take_overall_damage(damage, BURN, MELEE, max_limbs = 6, updating_health = TRUE)
 				if(affected_living.move_resist < MOVE_FORCE_OVERPOWERING)
 					affected_living.knockback(xeno_owner, 4, 1)
 
