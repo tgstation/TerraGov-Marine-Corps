@@ -1813,6 +1813,7 @@
 			/obj/item/factory_refill/smartgunner_machinegun_magazine_refill = -1,
 			/obj/item/factory_refill/smartgunner_minigun_box_refill = -1,
 			/obj/item/factory_refill/smartgunner_targetrifle_ammobin_refill = -1,
+			/obj/item/factory_refill/smartgunner_spottingrifle_ammobin_refill = -1,
 			/obj/item/factory_refill/smartgunner_targetrifle_magazine_refill = -1,
 			/obj/item/factory_refill/sniper_flak_magazine_refill = -1,
 		),
