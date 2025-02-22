@@ -204,6 +204,10 @@
 		if(!silent)
 			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 		return FALSE
+	if(!CHECK_BITFIELD(target_xeno.xeno_caste.can_flags, CASTE_CAN_BE_QUEEN_HEALED))
+		if(!silent)
+			to_chat(owner, span_warning("TThey reject our healing."))
+		return FALSE
 	if(target_xeno.stat == DEAD)
 		if(!silent)
 			to_chat(owner, span_notice("We can only help living sisters."))
