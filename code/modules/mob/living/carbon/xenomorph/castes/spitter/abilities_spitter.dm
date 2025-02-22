@@ -176,8 +176,6 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	var/current_grenades = 6
 	///The max amount of grenades this ability can store
 	var/max_grenades = 6
-	///Which grenade this ability uses
-	var/selected_grenade = /obj/item/explosive/grenade/globadier
 	///The timer untill we regenerate another grenade
 	var/timer
 
@@ -221,7 +219,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	if(current_grenades <= 0)
 		owner.balloon_alert(owner, "No Grenades!")
 		return fail_activate()
-	var/obj/item/explosive/grenade/globadier/nade = new selected_grenade(owner.loc, owner)
+	var/obj/item/explosive/grenade/globadier/nade = new xeno_owner.selected_grenade(owner.loc, owner)
 	nade.activate(owner)
 	nade.throw_at(target,GLOBADIER_GRENADE_THROW_RANGE,GLOBADIER_GRENADE_THROW_SPEED)
 	owner.visible_message(span_xenowarning("\The [owner] throws something towards \the [target]!"), \
@@ -264,7 +262,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	var/grenade_choice = show_radial_menu(owner, owner, GLOB.globadier_images_list, radius = 48)
 	if(!grenade_choice)
 		return
-	selected_grenade = grenade_choice
+	xeno_owner.selected_grenade = grenade_choice
 
 // ***************************************
 // *********** Acid Grenade
@@ -279,6 +277,8 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	dangerous = TRUE
 	arm_sound = 'sound/voice/alien/yell_alt.ogg'
 	var/mob/living/carbon/xenomorph/owner
+	var/minetype = /datum/globadier_mine
+	var/select_message = "Detonates in a star pattern, spreading acid which deals damage to those that stay within it."
 
 /obj/item/explosive/grenade/globadier/prime()
 	var/datum/effect_system/smoke_spread/xeno/acid/light/A = new(get_turf(src))
@@ -306,6 +306,21 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 /obj/item/explosive/grenade/globadier/Initialize(mapload, _xeno_owner)
 	. = ..()
 	owner = _xeno_owner
+
+/datum/globadier_mine
+	var/greyscale_color = "#19f599"
+	///Message put in chat when the linked grenade type is selected, describing the mine detonation effects.
+	var/select_message = "Detonates in a 3x3, dealing heavy acid damage to those nearby"
+
+/datum/globadier_mine/proc/detonate()
+	for(var/spatter_effect in filled_turfs(get_turf(src), 1, "square", pass_flags_checked = PASS_AIR))
+		new /obj/effect/temp_visual/acid_splatter(spatter_effect)
+	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(src,1))
+		human_victim.apply_damage(15, BURN, BODY_ZONE_L_LEG, ACID,  penetration = 30)
+		human_victim.apply_damage(15, BURN, BODY_ZONE_R_LEG, ACID,  penetration = 30)
+		playsound(src, "sound/bullets/acid_impact1.ogg", 10)
+	qdel(src)
+
 
 // ***************************************
 // *********** Fire Grenade

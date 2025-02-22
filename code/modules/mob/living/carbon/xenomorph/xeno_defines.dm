@@ -406,6 +406,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
 
+	// *** Globadier vars *** //
+	var/obj/item/explosive/grenade/globadier/selected_grenade = /obj/item/explosive/grenade/globadier
+
 	// *** Behemoth vars *** //
 	/// Whether we are currently charging or not.
 	var/behemoth_charging = FALSE

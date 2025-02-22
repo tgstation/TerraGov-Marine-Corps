@@ -370,18 +370,19 @@
 	anchored = TRUE
 	max_integrity = 5
 	hit_sound = SFX_ALIEN_RESIN_BREAK
-	/// The damage dealt to mobs nearby the detonation point of the mine
-	var/acid_damage = 30
+	///Which datum to pull effects from
+	var/datum/globadier_mine/minetype = /datum/globadier_mine
 
-/obj/structure/xeno/acid_mine/Initialize(mapload)
+/obj/structure/xeno/acid_mine/Initialize(mapload, _minetype)
 	. = ..()
+	minetype = _minetype
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(oncrossed),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/xeno/acid_mine/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	detonate()
+	minetype.detonate()
 	return ..()
 
 /// Checks if the mob walking over the mine is human, and calls detonate if so
@@ -391,17 +392,7 @@
 		return
 	if(CHECK_MULTIPLE_BITFIELDS(A.allow_pass_flags, HOVERING))
 		return
-	INVOKE_ASYNC(src, PROC_REF(detonate))
-
-///Handles detonating the mine, and dealing damage to those nearby
-/obj/structure/xeno/acid_mine/proc/detonate()
-	for(var/spatter_effect in filled_turfs(get_turf(src), 1, "square", pass_flags_checked = PASS_AIR))
-		new /obj/effect/temp_visual/acid_splatter(spatter_effect)
-	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(src,1))
-		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_L_LEG, ACID,  penetration = 30)
-		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_R_LEG, ACID,  penetration = 30)
-		playsound(src, "sound/bullets/acid_impact1.ogg", 10)
-	qdel(src)
+	INVOKE_ASYNC(src, TYPE_PROC_REF(minetype, detonate))
 
 /obj/structure/xeno/acid_mine/gas_mine
 	name = "gas mine"
@@ -409,8 +400,8 @@
 	icon_state = "gas_mine"
 	acid_damage = 40
 
-/obj/structure/xeno/acid_mine/gas_mine/detonate()
-	var/datum/effect_system/smoke_spread/xeno/acid/opaque/A = new(get_turf(src))
-	A.set_up(1,src)
-	A.start()
-	return ..()
+// /obj/structure/xeno/acid_mine/gas_mine/detonate()
+// 	var/datum/effect_system/smoke_spread/xeno/acid/opaque/A = new(get_turf(src))
+// 	A.set_up(1,src)
+// 	A.start()
+// 	return ..()
