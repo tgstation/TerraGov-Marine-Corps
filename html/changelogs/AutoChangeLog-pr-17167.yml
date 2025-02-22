@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - balance: "Mech now has destroyable limbs, to restore functionality fully repair them. Both xenos and marines can see their HP by examining the mech"

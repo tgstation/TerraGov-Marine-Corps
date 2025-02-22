@@ -315,3 +315,29 @@
   - bugfix: fixed spears and other ranged melee items not being able to attack over
       some objects as intended
   - balance: Removed healing from non medical reagents
+2025-02-22:
+  Apple-107:
+  - rscadd: Marines can now hydrate themselves (Hydrocannon fits on most rifles that
+      could take an underbarrel)
+  Isy232:
+  - qol: Starting alien weed nodes have a much higher chance to be sticky weed nodes
+      rather than regular weed nodes.
+  Kuro020:
+  - balance: SG-62 buff's have been reverted
+  Lumipharon:
+  - bugfix: fixed detpacks not deleting after exploding
+  - bugfix: fixed some issues with items not being stored or withdrawn from storage
+      datums correctly
+  Rug-Dealer:
+  - spellcheck: thells -> shells
+  TiviPlus:
+  - balance: Mech now has destroyable limbs, to restore functionality fully repair
+      them. Both xenos and marines can see their HP by examining the mech
+  antropod:
+  - qol: Quick equip (pressing E) will try to put an item to the slot it was drawn
+      from.
+  novaepee:
+  - imageadd: ANOTHER Zaha lobby art
+  yyzsong:
+  - bugfix: Ghosts no longer fumble when opening the chemmaster's UI
+  - qol: The supply console now displays notes attached to certain supply packs
