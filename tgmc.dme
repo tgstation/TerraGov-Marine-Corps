@@ -795,6 +795,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\game\atoms\atom_appearance.dm"
 #include "code\game\atoms\atom_examine.dm"
 #include "code\game\atoms\atom_movable.dm"
+#include "code\game\atoms\atom_movable\init_signals.dm"
 #include "code\game\objects\empulse.dm"
 #include "code\game\objects\items.dm"
 #include "code\game\objects\machinery.dm"
