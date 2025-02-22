@@ -4,7 +4,7 @@
 
 	switch(action)
 		if("show")
-			stickybanpanel()
+			SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/stickybanpanel)
 		if("add")
 			var/list/ban = list()
 			var/ckey
@@ -461,31 +461,24 @@
 
 	. = list2params(.)
 
-
-/datum/admins/proc/stickybanpanel()
-	set name = "Sticky Ban Panel"
-	set category = "Admin"
-
-	if(!check_rights(R_BAN))
-		return
-
+ADMIN_VERB(stickybanpanel, R_BAN, "Sticky Ban Panel", "Opens the Sticky Ban panel.", ADMIN_CATEGORY_MAIN)
 	var/list/bans = sticky_banned_ckeys()
 	var/list/banhtml = list()
 	for(var/key in bans)
 		var/ckey = ckey(key)
 		banhtml += "<br /><hr />\n"
-		banhtml += usr.client.holder.stickyban_gethtml(ckey)
+		banhtml += user.holder.stickyban_gethtml(ckey)
 
 	var/html = {"
 	<head>
 		<title>Sticky Bans</title>
 	</head>
 	<body>
-		<h2>All Sticky Bans:</h2> <a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];stickyban=add'>Add</a><br>
+		<h2>All Sticky Bans:</h2> <a href='byond://?src=[REF(user.holder)];[HrefToken()];stickyban=add'>Add</a><br>
 		[banhtml.Join("")]
 	</body>
 	"}
 
-	var/datum/browser/browser = new(usr, "stickybans", "<div align='center'>Sticky Bans</div>", 700, 400)
+	var/datum/browser/browser = new(user.mob, "stickybans", "<div align='center'>Sticky Bans</div>", 700, 400)
 	browser.set_content(html)
 	browser.open()
