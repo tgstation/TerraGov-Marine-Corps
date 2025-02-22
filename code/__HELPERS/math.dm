@@ -48,25 +48,25 @@
  * Uses the ultra-fast [Bresenham Line-Drawing Algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm).
  */
 /proc/get_traversal_line(atom/starting_atom, atom/ending_atom)
-	var/current_x_step = starting_atom.x
+	var/current_x_step = starting_atom.x //start at x and y, then add 1 or -1 to these to get every turf from starting_atom to ending_atom
 	var/current_y_step = starting_atom.y
 
-	var/list/line = list(get_turf(starting_atom))
+	var/list/line = list(get_turf(starting_atom)) //get_turf(atom) is faster than locate(x, y, z)
 
-	var/x_distance = ending_atom.x - current_x_step
+	var/x_distance = ending_atom.x - current_x_step //x distance
 	var/y_distance = ending_atom.y - current_y_step
 
-	var/abs_x_distance = abs(x_distance)
+	var/abs_x_distance = abs(x_distance) //Absolute value of x distance
 	var/abs_y_distance = abs(y_distance)
 
-	var/x_distance_sign = SIGN(x_distance)
+	var/x_distance_sign = SIGN(x_distance) //Sign of x distance (+ or -)
 	var/y_distance_sign = SIGN(y_distance)
 
-	var/x = abs_x_distance >> 1
-	var/y = abs_y_distance >> 1
+	var/x = abs_x_distance >> 1 //Counters for steps taken, setting to distance/2
+	var/y = abs_y_distance >> 1 //Bit-shifting makes me l33t.  It also makes get_line() unnessecarrily fast.
 
 	if(abs_x_distance >= abs_y_distance)
-		for(var/distance_counter in 0 to (abs_x_distance - 1))
+		for(var/distance_counter in 0 to (abs_x_distance - 1)) //It'll take abs_x_distance steps to get there
 			x += abs_y_distance
 			current_x_step += x_distance_sign
 

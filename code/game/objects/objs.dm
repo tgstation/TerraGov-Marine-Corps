@@ -95,8 +95,6 @@
 		return // humans can check the codex for most of these- xenos should be able to know them "in the moment"
 	if(resistance_flags & CRUSHER_IMMUNE)
 		.[span_xenonotice("crusher-proof")] = "Charging Crushers can't damage this object."
-	if(resistance_flags & BANISH_IMMUNE)
-		.[span_xenonotice("banish immune")] = "Wraiths can't banish this object."
 	if(resistance_flags & PORTAL_IMMUNE)
 		.[span_xenonotice("portal immune")] = "Wraith portals can't teleport this object."
 	if(resistance_flags & XENO_DAMAGEABLE)
