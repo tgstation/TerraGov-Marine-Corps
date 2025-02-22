@@ -14,3 +14,6 @@
   Meghan-Rossi:
   - bugfix: LOOCs are now only visible on the same z-level, instead of being limited
       by x and y coordinates only.
+2025-02-22:
+  Yawet330:
+  - refactor: Dancers
