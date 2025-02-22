@@ -16,17 +16,13 @@
 			var/oldmechaloc = mecha.loc
 
 			var/mecha_passmob = (mecha.allow_pass_flags & PASS_MOB) // we give PASS_MOB to both mobs to avoid bumping other mobs during swap.
-			var/src_passmob = (pass_flags & PASS_MOB)
 			mecha.allow_pass_flags |= PASS_MOB
-			pass_flags |= PASS_MOB
 
 			if(!moving_diagonally) //the diagonal move already does this for us
 				Move(oldmechaloc)
 			if(mob_swap_mode == SWAPPING)
 				mecha.Move(oldloc)
 
-			if(!src_passmob)
-				pass_flags &= ~PASS_MOB
 			if(!mecha_passmob)
 				mecha.allow_pass_flags &= ~PASS_MOB
 
