@@ -39,6 +39,9 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 60, BIO = 75, FIRE = 90, ACID = 75)
 
+	// *** Sunder *** //
+	sunder_multiplier = 0.6
+
 	minimap_icon = "xenoking" // TODO: Replace this with a better minimap icon.
 
 	actions = list(
