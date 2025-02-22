@@ -127,10 +127,14 @@
 	if(isgun(new_item))
 		gun_list_add(new_item)
 		return
-	if((istype(new_item, /obj/item/weapon) && !istype(new_item, /obj/item/weapon/twohanded/offhand))) //|| istype(new_item, /obj/item/attachable/bayonetknife) //they are a completely different type, so fuck out due to the force changes. sob
+	if((istype(new_item, /obj/item/weapon))) //|| istype(new_item, /obj/item/attachable/bayonetknife) //they are a completely different type, so fuck out due to the force changes. sob
+		if(istype(new_item, /obj/item/weapon/twohanded/offhand))
+			return
 		melee_list_add(new_item)
 		return
 	if(istype(new_item, /obj/item/explosive/grenade))
+		if(istype(new_item, /obj/item/explosive/grenade/flare))
+			return
 		grenade_list_add(new_item)
 		return
 	if(istype(new_item, /obj/item/ammo_magazine) || istype(new_item, /obj/item/cell/lasgun))

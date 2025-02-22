@@ -88,6 +88,7 @@ TODO: pathfinding wizardry
 			action.action_activate()
 
 	if(uses_weapons)
+		grenade_process()
 		weapon_process()
 
 	return ..()

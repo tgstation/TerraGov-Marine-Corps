@@ -217,9 +217,9 @@
 	if(isainode(target))
 		if(blink_parent.charges < 2) //keep one for combat
 			return FALSE
-		if(get_dist(owner, movable_target) > 5)
+		if(get_dist(owner, target) > 5)
 			return FALSE
-		if(!can_use_ability(movable_target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+		if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
 			return FALSE
 		return TRUE
 
