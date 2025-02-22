@@ -349,7 +349,7 @@
 	for(var/i=0 to laze_radius)
 		beginning = get_step(beginning, revdir)
 		end = get_step(end, attackdir)
-	return getline(beginning, end)
+	return get_traversal_line(beginning, end)
 
 /obj/structure/ship_ammo/cas/laser_battery/detonate_on(turf/impact, attackdir = NORTH)
 	var/list/turf/lazertargets = get_turfs_to_impact(impact, attackdir)

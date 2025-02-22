@@ -21,7 +21,7 @@
 
 /obj/item/armored_weapon/volkite_carronade/do_fire(turf/source_turf, ammo_override)
 	var/turf/target_turf = get_turf_in_angle(Get_Angle(source_turf, get_turf(current_target)), source_turf, beam_range)
-	var/list/turf/beam_turfs = get_line(source_turf, target_turf)
+	var/list/turf/beam_turfs = get_traversal_line(source_turf, target_turf)
 	var/list/turf/impacted_turfs = list()
 	var/list/light_effects = list()
 	var/list/stop_beam_turfs
