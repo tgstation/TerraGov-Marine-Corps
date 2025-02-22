@@ -103,7 +103,6 @@
 
 /mob/living/Initialize(mapload)
 	. = ..()
-	register_init_signals()
 	update_move_intent_effects()
 	GLOB.mob_living_list += src
 	if(stat != DEAD)
