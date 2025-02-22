@@ -87,7 +87,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(give_mob, R_ADMIN, "Give Mob", ADMIN_VERB_NO_DESCRIP
 	given_living.take_over(mob_received, TRUE)
 
 ADMIN_VERB_AND_CONTEXT_MENU(rejuvenate, R_ADMIN, "Rejuvenate", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_MAIN, mob/living/L in world)
-	if(tgui_alert(user, "Are you sure you want to rejuvenate [key_name(L)]?", "Confirm", list("Rejuvenate", "Yes", "No")) != "Yes")
+	if(tgui_alert(user, "Are you sure you want to rejuvenate [key_name(L)]?", "Confirm", list("Yes", "No")) != "Yes")
 		return
 
 	if(!istype(L))
