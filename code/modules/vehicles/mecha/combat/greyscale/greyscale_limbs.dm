@@ -126,14 +126,18 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 ///intercepts repair intended for the mech and applies it to this limb when needed
 /datum/mech_limb/proc/intercept_repair(datum/source, repair_amount, mob/user)
 	SIGNAL_HANDLER
+	if(!user)
+		return NONE
 	if(!(user.zone_selected in def_zones))
-		return
-	if(part_health >= initial(part_health))
-		return
+		return NONE
+	do_repairs(repair_amount)
+	return COMPONENT_NO_TAKE_DAMAGE
+
+///does the actual repair of this limb
+/datum/mech_limb/proc/do_repairs(repair_amount)
 	part_health = min(initial(part_health), part_health+repair_amount)
 	if(part_health >= initial(part_health))
 		reenable()
-	return COMPONENT_NO_TAKE_DAMAGE
 
 ///makes this limb "destroyed"
 /datum/mech_limb/proc/disable()

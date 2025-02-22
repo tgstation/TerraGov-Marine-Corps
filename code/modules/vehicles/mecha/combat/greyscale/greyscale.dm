@@ -84,6 +84,10 @@
 		var/datum/mech_limb/limb = limbs[limb_key]
 		. += "It's " + limb.display_name + " has " + "[(limb.part_health / initial(limb.part_health))*100]" + "% integrity."
 
+/obj/vehicle/sealed/mecha/combat/greyscale/generate_actions()
+	. = ..()
+	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/repairpack)
+
 /obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
 	if((mecha_flags & MECHA_SKILL_LOCKED) && entering_mob.skills.getRating(SKILL_MECH) < SKILL_MECH_TRAINED)
 		balloon_alert(entering_mob, "You don't know how to pilot this")
