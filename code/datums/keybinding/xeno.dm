@@ -550,6 +550,13 @@
 	keybind_signal = COMSIG_XENOABILITY_FEAST
 	hotkey_keys = list("F")
 
+/datum/keybinding/xeno/gorger_bulwark
+	name = "gorge_bulwark"
+	full_name = "Gorger: Bulwark"
+	description = "Forms an area around you that reduces damage taken by friendly xenomorphs."
+	keybind_signal = COMSIG_XENOABILITY_GORGER_BULWARK
+	hotkey_keys = list("G")
+
 /datum/keybinding/xeno/resin_walker
 	name = "resin_walker"
 	full_name = "Hivelord: Toggle Resin Walker"
@@ -819,13 +826,6 @@
 	full_name = "Queen: Hive Message"
 	description = "Instantly displays a bolded announcement to all xenos in the hive."
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE
-
-/datum/keybinding/xeno/queen_bulwark
-	name = "queen_bulwark"
-	full_name = "Queen: Bulwark"
-	description = "Forms an area around you that reduces damage taken by friendly xenomorphs."
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_BULWARK
-	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/deevolve
 	name = "deevolve"

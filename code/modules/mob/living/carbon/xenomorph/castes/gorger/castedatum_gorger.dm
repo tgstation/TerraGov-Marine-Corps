@@ -59,6 +59,7 @@
 		/datum/action/ability/activable/xeno/carnage,
 		/datum/action/ability/activable/xeno/feast,
 		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/xeno_action/bulwark,
 	)
 
 /datum/xeno_caste/gorger/normal
@@ -80,4 +81,5 @@
 		/datum/action/ability/activable/xeno/carnage,
 		/datum/action/ability/activable/xeno/feast,
 		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/xeno_action/bulwark,
 	)
