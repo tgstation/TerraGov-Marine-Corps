@@ -573,7 +573,7 @@
 	count = 2000
 	spawning = 50
 	gravity = list(0, 0.1)
-	color = LIGHT_COLOR_PURPLE
+	color = LIGHT_COLOR_BLOOD_MAGIC
 	lifespan = 13
 	fade = 5
 	fadein = 5
