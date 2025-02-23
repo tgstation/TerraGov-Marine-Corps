@@ -528,7 +528,7 @@
 		KEYBINDING_NORMAL = COMSIG_KB_VALI_CONNECT,
 	)
 
-//handles xeno abilities mooching our greenblood. Signal is routed through the equipping mob.
+///handles xeno abilities mooching our greenblood. Signal is routed through the equipping mob.
 /datum/component/chem_booster/proc/steal_greenblood(owner, drain_plasma_gain, drainer)
 	SIGNAL_HANDLER
 
