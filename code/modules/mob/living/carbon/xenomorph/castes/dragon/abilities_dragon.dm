@@ -913,7 +913,7 @@
 
 /datum/action/ability/activable/xeno/unleash
 	name = "Unleash"
-	action_icon_state = "shattering_roar"
+	action_icon_state = "unleash"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = ""
 	cooldown_duration = 240 SECONDS
