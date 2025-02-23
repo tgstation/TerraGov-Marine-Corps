@@ -1401,7 +1401,7 @@
 		psy_points_reward = psy_points_reward * 3
 	SSpoints.add_strategic_psy_points(X.hivenumber, psy_points_reward)
 	SSpoints.add_tactical_psy_points(X.hivenumber, psy_points_reward*0.25)
-	if(X.hivenumber == XENO_HIVE_FALLEN)
+	if(X.hivenumber != XENO_HIVE_NORMAL)
 		return
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(larva_point_reward)
