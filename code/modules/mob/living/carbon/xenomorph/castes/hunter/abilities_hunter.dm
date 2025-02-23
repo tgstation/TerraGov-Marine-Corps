@@ -288,10 +288,6 @@
 	///Traits given when leaping
 	var/list/leap_traits = list(TRAIT_PASS_LOW_STRUCTURE, TRAIT_PASS_FIRE, TRAIT_PASS_XENO)
 
-/datum/action/ability/activable/xeno/pounce/Destroy()
-	leap_traits = null
-	return ..()
-
 /datum/action/ability/activable/xeno/pounce/on_cooldown_finish()
 	owner.balloon_alert(owner, "Pounce ready")
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
