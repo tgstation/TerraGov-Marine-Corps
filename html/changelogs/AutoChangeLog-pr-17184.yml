@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - code_imp: "Adds get_traversal_line, like get_line but filled in cardinal steps when going diagonal"
