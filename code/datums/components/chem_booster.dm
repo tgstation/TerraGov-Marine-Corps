@@ -542,7 +542,7 @@
 	update_resource(-drain_value)
 
 	var/mob/living/carbon/xenomorph/xeno_drainer = drainer
-	xeno_drainer.gain_plasma(drain_value * GORGER_GREENBLOOD_BONUS)
+	xeno_drainer.gain_plasma(drain_value * GORGER_GREENBLOOD_CONVERSION)
 
 #undef EXTRACT
 #undef LOAD
