@@ -14,6 +14,10 @@
 		return
 	if(get_dist(mob_parent, combat_target) < 4) //lets not nade ourselves
 		return
+	if(isliving(combat_target))
+		var/mob/living/living_target = combat_target
+		if(living_target.stat)
+			return
 	if(!line_of_sight(mob_parent, combat_target, 7))
 		return
 	return throw_grenade(combat_target, get_grenade())
