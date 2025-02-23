@@ -10,7 +10,7 @@
 	health = 850
 	maxHealth = 850
 	plasma_stored = 0
-	pixel_x = -16
+	pixel_x = -48
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6
 	initial_language_holder = /datum/language_holder/xeno/dragon
@@ -20,7 +20,6 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/hijack,
 	)
-	xeno_flags = XENO_ROUNY // TODO: Get real sprites to use.
 	// If they should be prevented from using the special state icon.
 	var/no_special_state = FALSE
 
@@ -71,7 +70,7 @@
 /mob/living/carbon/xenomorph/dragon/change_form()
 	if(!(status_flags & INCORPOREAL))
 		TIMER_COOLDOWN_START(src, COOLDOWN_DRAGON_CHANGE_FORM, 0.5 SECONDS)
-		animate(src, pixel_x = 0, pixel_y = 500, time = 0.5 SECONDS)
+		animate(src, pixel_x = -48, pixel_y = 500, time = 0.5 SECONDS)
 		addtimer(CALLBACK(src, PROC_REF(finish_flying)), 0.5 SECONDS)
 		return
 
@@ -87,7 +86,7 @@
 /// Ends the animation and sets up the rest of the flying stuff.
 /mob/living/carbon/xenomorph/dragon/proc/finish_flying()
 	TIMER_COOLDOWN_END(src, COOLDOWN_DRAGON_CHANGE_FORM) // Special state won't think it is ready otherwise.
-	animate(src, pixel_x = 0, pixel_y = 0, time = 0)
+	animate(src, pixel_x = -48, pixel_y = 0, time = 0)
 	status_flags = GODMODE|INCORPOREAL
 	resistance_flags = RESIST_ALL|BANISH_IMMUNE
 	pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
