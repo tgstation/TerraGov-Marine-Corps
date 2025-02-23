@@ -73,6 +73,12 @@
 			GLOB.all_req_one_access[txt_access] = req_one_access
 		else
 			req_one_access = GLOB.all_req_one_access[txt_access]
+
+	//Not done at the AM level so we can exclude base AM things
+	if(pass_flags) //for coding convenience we still let people set default pass_flags
+		add_traits(get_traits_from_pass_flags(pass_flags), INNATE_TRAIT)
+	register_init_signals()
+
 	add_debris_element()
 
 /obj/Destroy()
