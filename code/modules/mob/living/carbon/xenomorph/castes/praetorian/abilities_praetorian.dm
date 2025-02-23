@@ -343,19 +343,18 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Impale"
 	action_icon_state = "impale"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "Impale a marine next to you with your tail for moderate damage. Marked enemies are impaled twice."
-	ability_cost = 100
-	cooldown_duration = 8 SECONDS
+	desc = "Skewer an object next to you with your tail. The more debuffs on a living target, the greater the damage done. Penetrates the armor of marked targets."
+	ability_cost = 150
+	cooldown_duration = 15 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPALE,
 	)
-	target_flags = ABILITY_MOB_TARGET
 
 /datum/action/ability/activable/xeno/impale/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!iscarbon(A))
+	if(!iscarbon(A) && !ishitbox(A) && !isvehicle(A) && !ismachinery(A))
 		if(!silent)
 			A.balloon_alert(owner, "cannot impale")
 		return FALSE
@@ -364,41 +363,59 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(owner.issamexenohive(xenomorph_target))
 			A.balloon_alert(owner, "cannot impale ally")
 			return FALSE
-	var/mob/living/carbon/carbon_target = A
-	if(!owner.Adjacent(carbon_target))
-		carbon_target.balloon_alert(owner, "too far")
+	if(!A.Adjacent(owner))
+		A.balloon_alert(owner, "too far")
 		return FALSE
-	if(carbon_target.stat == DEAD)
-		carbon_target.balloon_alert(owner, "already dead")
-		return FALSE
+	if(isliving(A))
+		var/mob/living/living_target = A
+		if(living_target.stat == DEAD)
+			living_target.balloon_alert(owner, "already dead")
+			return FALSE
 
 /datum/action/ability/activable/xeno/impale/use_ability(atom/target_atom)
 	. = ..()
 
-	if(!iscarbon(target_atom))
-		return
-	var/mob/living/carbon/living_target = target_atom
-	var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
-	xeno_owner.visible_message(span_danger("\The [xeno_owner] violently slices [living_target] with its tail [buffed ? "twice" : ""]!"), \
-		span_danger("We slice [living_target] with our tail[buffed ? " twice" : ""]!"))
+	xeno_owner.face_atom(target_atom)
+	xeno_owner.do_attack_animation(target_atom, ATTACK_EFFECT_REDSTAB)
+	playsound(xeno_owner, get_sfx(SFX_ALIEN_TAIL_ATTACK), 30, TRUE)
+	xeno_owner.visible_message(span_danger("\The [xeno_owner] violently spears \the [target_atom] with their tail!"))
+	if(!ishuman(target_atom))
+		target_atom.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage * DANCER_NONHUMAN_IMPALE_MULT)
 
-	try_impale(living_target)
-	if(buffed)
-		xeno_owner.emote("roar")
-		addtimer(CALLBACK(src, PROC_REF(try_impale), living_target), 0.1 SECONDS) // A short delay for animation coolness (and also if they're dead).
-
+	else
+		var/mob/living/carbon/human/human_victim = target_atom
+		var/marked = human_victim.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
+		var/buff_multiplier = min(DANCER_MAX_IMPALE_MULT, determine_buff_mult(human_victim))
+		var/adj_damage = ((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * buff_multiplier)
+		human_victim.apply_damage(adj_damage, BRUTE, blocked = MELEE, penetration = (marked ? DANCER_IMPALE_PENETRATION : 0))
+		human_victim.Shake(duration = 0.5 SECONDS)
+		//you got shishkebabbed really bad
+		if(buff_multiplier > 1.70)
+			xeno_owner.emote("roar")
+			human_victim.knockback(xeno_owner, 1, 1)
+			human_victim.emote("scream")
 	succeed_activate()
 	add_cooldown()
 
-/// Performs the main effect of impale ability like animating and attacking.
-/datum/action/ability/activable/xeno/impale/proc/try_impale(mob/living/carbon/living_target)
-	var/damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier)
-	xeno_owner.face_atom(living_target)
-	xeno_owner.do_attack_animation(living_target, ATTACK_EFFECT_REDSLASH)
-	xeno_owner.spin(4, 1)
-	playsound(living_target, get_sfx(SFX_ALIEN_TAIL_ATTACK), 30, TRUE)
-	if(living_target.stat != DEAD) // If they drop dead from the first impale, keep the effects but do no damage.
-		living_target.apply_damage(damage, BRUTE, blocked = MELEE)
+/// Determines the total damage multiplier of impale based on the presence of several debuffs.
+/datum/action/ability/activable/xeno/impale/proc/determine_buff_mult(mob/living/carbon/human/living_target)
+	var/adjusted_mult = 1.20
+	//tier 1 debuffs
+	if(living_target.IsStaggered())
+		adjusted_mult += 0.25
+	if(living_target.IsSlowed())
+		adjusted_mult += 0.25
+	if(living_target.has_status_effect(STATUS_EFFECT_INTOXICATED))
+		adjusted_mult += 0.25
+	if(living_target.IsConfused())
+		adjusted_mult += 0.25
+	if(living_target.IsImmobilized())
+		adjusted_mult += 0.25
+	//big bonus if target has a "helpless" debuff
+	if(living_target.IsParalyzed() || living_target.IsStun() || living_target.IsKnockdown())
+		adjusted_mult += 0.5
+	return adjusted_mult
+
 
 // ***************************************
 // *********** Tail Trip
@@ -407,69 +424,60 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Tail Trip"
 	action_icon_state = "tail_trip"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "Target a marine within two tiles of you to disorient and slows them. Marked enemies receive stronger debuffs and are stunned for a second."
-	ability_cost = 50
+	desc = "Twirl your tail around low to the ground, knocking over and disorienting any adjacent marines. Marked enemies receive stronger debuffs and are briefly stunned."
+	ability_cost = 75
 	cooldown_duration = 8 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_TRIP,
 	)
-	target_flags = ABILITY_MOB_TARGET
-
-/datum/action/ability/activable/xeno/tail_trip/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!iscarbon(A))
-		if(!silent)
-			A.balloon_alert(owner, "cannot tail trip")
-		return FALSE
-	if(isxeno(A))
-		var/mob/living/carbon/xenomorph/xenomorph_target = A
-		if(owner.issamexenohive(xenomorph_target))
-			A.balloon_alert(owner, "cannot tail trip ally")
-			return FALSE
-	var/mob/living/carbon/carbon_target = A
-	if(get_dist(owner, carbon_target) > 2)
-		if(!silent)
-			carbon_target.balloon_alert(owner, "too far")
-		return FALSE
-	if(!line_of_sight(owner, carbon_target, 2))
-		if(!silent)
-			carbon_target.balloon_alert(owner, "need line of sight")
-		return FALSE
-	if(carbon_target.stat == DEAD)
-		carbon_target.balloon_alert(owner, "already dead")
-		return FALSE
-	if(carbon_target.stat == UNCONSCIOUS)
-		carbon_target.balloon_alert(owner, "not standing")
-		return FALSE
 
 /datum/action/ability/activable/xeno/tail_trip/use_ability(atom/target_atom)
 	. = ..()
-	if(!iscarbon(target_atom))
-		return
 
-	var/mob/living/carbon/living_target = target_atom
+	xeno_owner.add_filter("dancer_tail_trip", 2, gauss_blur_filter(1)) //Add cool SFX
+	var/obj/effect/temp_visual/tail_swing/swing = new
+	xeno_owner.vis_contents += swing
 
-	var/damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier)
-	var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
-
-	xeno_owner.visible_message(span_danger("\The [xeno_owner] sweeps [living_target]'s legs with its tail!"), \
-		span_danger("We trip [living_target] with our tail!"))
-	shake_camera(living_target, 2, 1)
-	xeno_owner.face_atom(living_target)
-	xeno_owner.spin(4, 1)
+	xeno_owner.spin(0.6 SECONDS, 1)
 	xeno_owner.emote("tail")
-	playsound(living_target,'sound/weapons/alien_claw_block.ogg', 50, 1)
+	xeno_owner.enable_throw_parry(0.6 SECONDS)
+	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
+	xeno_owner.visible_message(span_danger("\The [xeno_owner] sweeps its tail in a low circle!"))
 
-	living_target.Paralyze(buffed ? 1 SECONDS : 0.1 SECONDS)
-	living_target.adjust_stagger(buffed ? 5 SECONDS : 4 SECONDS)
-	living_target.adjust_slowdown(buffed ? 1.2 : 0.9)
-	living_target.apply_damage(damage, STAMINA, updating_health = TRUE)
+	var/damage = ((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier))
 
+	var/list/inrange = orange(1, xeno_owner)
+
+	for (var/mob/living/carbon/human/living_target in inrange)
+		if(living_target.stat == DEAD)
+			continue
+		to_chat(living_target, span_xenowarning("Our legs are struck by \the [xeno_owner]'s tail!"))
+		var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
+		if(buffed)
+			living_target.ParalyzeNoChain(1.5 SECONDS)
+			shake_camera(living_target, 2, 1)
+		living_target.AdjustKnockdown(buffed ? 1 SECONDS : 0.5 SECONDS)
+		living_target.adjust_stagger(buffed ? 3 SECONDS : 1.5 SECONDS)
+		living_target.apply_damage(damage, STAMINA, updating_health = TRUE)
+	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/datum, remove_filter), "dancer_tail_trip"), 0.6 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(remove_swing), swing), 3 SECONDS)
 	succeed_activate()
 	add_cooldown()
 
+///Garbage collects the swing attack vis_overlay created during use_ability
+/datum/action/ability/activable/xeno/tail_trip/proc/remove_swing(swing_visual)
+	xeno_owner.vis_contents -= swing_visual
+	QDEL_NULL(swing_visual)
+
+/obj/effect/temp_visual/tail_swing
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "tail_swing"
+	pixel_x = -18
+	pixel_y = -32
+	layer = ABOVE_ALL_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
 
 //DANCER-SPECIFIC REWORK PORT
 //WILL EVENTUALLY MERGE CONFLICT, BUT IS EASILY FIXABLE.
@@ -497,18 +505,16 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	xeno_owner.enable_throw_parry(0.6 SECONDS)
 
 	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
-	xeno_owner.visible_message(span_danger("\The [xeno_owner] swings the hook on its tail through the air!"))
 
-	var/damage = ((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) / 2)
+	var/damage = ((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) / 2.15) //Heavy nerf to damage due to the fact that Dancers can pull people through objects.
+	//Replaced the original check with instead a line_of_sight check that only runs on living targets. Should hopefully reduce lag.
 	var/list/inrange = orange(2, xeno_owner)
-
+	xeno_owner.visible_message(span_danger("\The [xeno_owner] swings the hook on its tail through the air!"))
 	for (var/mob/living/carbon/human/living_target in inrange)
-		var/start_turf = get_step(xeno_owner, get_cardinal_dir(xeno_owner, living_target))
-		//no hooking through solid obstacles
-		if(check_path(xeno_owner, start_turf, PASS_THROW) != start_turf)
-			continue
 		if(living_target.stat == DEAD)
 			continue
+		if(!line_of_sight(xeno_owner, get_turf(living_target)))
+			continue //Replacement check for prior. Makes it work more akin to tailstab (can be used over wall/cades)
 		to_chat(living_target, span_xenowarning("\The [xeno_owner] hooks into our flesh and yanks us towards them!"))
 		var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
 		living_target.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
@@ -557,7 +563,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	. = ..()
 	if(!.)
 		return
-	if(!iscarbon(A) || !isxeno(A))
+	if(!iscarbon(A)) //Allows baton pass to be used on CLF/etc
 		if(!silent)
 			A.balloon_alert(owner, "can't effect!")
 		return FALSE
