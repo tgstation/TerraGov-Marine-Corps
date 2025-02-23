@@ -133,6 +133,9 @@
 ///Enables the teleporter array
 #define COMSIG_GLOB_TELEPORTER_ARRAY_ENABLED "!teleporter_array_enabled"
 
+///from /obj/item/explosive/grenade/stop_throw
+#define COMSIG_GLOB_ACTIVE_GRENADE_LANDED "!active_grenade_landed"
+
 //////////////////////////////////////////////////////////////////
 // /datum/component signals
 #define COMSIG_AUTOFIRE_ONMOUSEDOWN "autofire_onmousedown"

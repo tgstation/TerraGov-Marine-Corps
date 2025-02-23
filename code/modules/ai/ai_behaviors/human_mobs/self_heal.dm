@@ -91,6 +91,8 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 ///Reacts if the mob is below the min health threshold
 /datum/ai_behavior/human/proc/check_for_critical_health(datum/source, damage)
 	SIGNAL_HANDLER
+	if(current_action == MOVING_TO_SAFETY)
+		return
 	var/mob/living/living_mob = mob_parent
 	if(!can_heal || living_mob.health - damage > minimum_health * living_mob.maxHealth)
 		return
@@ -104,8 +106,6 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 		try_speak(pick(retreating_chat))
 	target_distance = 15
 	change_action(MOVING_TO_SAFETY, next_target, INFINITY)
-	UnregisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN)
-
 
 ///Will try healing if possible
 /datum/ai_behavior/human/proc/try_heal()

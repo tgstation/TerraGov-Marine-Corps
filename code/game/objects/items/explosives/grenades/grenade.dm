@@ -75,6 +75,15 @@
 /obj/item/explosive/grenade/fire_act(burn_level)
 	activate()
 
+/obj/item/explosive/grenade/stop_throw(flying = FALSE, original_layer)
+	. = ..()
+	if(!active)
+		return
+	if(!isturf(loc))
+		return
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ACTIVE_GRENADE_LANDED, src)
+
+
 ///Activates the grenade
 /obj/item/explosive/grenade/proc/activate(mob/user)
 	if(active)

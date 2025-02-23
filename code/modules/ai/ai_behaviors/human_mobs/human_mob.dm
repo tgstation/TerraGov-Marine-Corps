@@ -49,6 +49,7 @@ TODO: pathfinding wizardry
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))
 	RegisterSignals(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
 	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(check_for_critical_health)) //todo: this is specific at the species level, so only works for humans
+	RegisterSignal(SSdcs, COMSIG_GLOB_ACTIVE_GRENADE_LANDED, PROC_REF(react_to_grenade))
 	if(uses_weapons)
 		RegisterSignals(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED), PROC_REF(equip_weaponry))
 		RegisterSignal(mob_parent, COMSIG_LIVING_SET_LYING_ANGLE, PROC_REF(equip_weaponry))
@@ -168,12 +169,13 @@ TODO: pathfinding wizardry
 				return
 			change_action(null, next_target)//We found a better target, change course!
 		if(MOVING_TO_SAFETY) //todo: look at this and unfuck some of this behavior
+			if(isitem(atom_to_walk_to) && !QDELETED(atom_to_walk_to) && isturf(atom_to_walk_to.loc)) //we're avoiding something, probably a grenade
+				return
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
 			if(!next_target)//We are safe, try to find some weeds
 				target_distance = initial(target_distance)
 				cleanup_current_action()
 				late_initialize()
-				RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(check_for_critical_health))
 				return
 			set_combat_target(next_target)
 			if(next_target == atom_to_walk_to)

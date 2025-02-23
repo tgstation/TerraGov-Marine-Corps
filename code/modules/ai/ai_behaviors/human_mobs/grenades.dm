@@ -1,8 +1,10 @@
 /datum/ai_behavior/human
 	///Probability of trying to throw a grenade during process
 	var/nade_throw_prop = 15
-	///Chat lines for trying to heal
+	///Chat lines for throwing a nade
 	var/list/nade_throw_chat = list("Grenade out!", "Fire in the hole!", "Grenade!", "Catch this!")
+	///Chat lines for avoiding a live nade
+	var/list/nade_avoid_chat = list("Watch out!", "Watch out, grenade!", "Grenade!", "Run!", "Get out of the way!", "Grenade, move!")
 
 ///Decides if we should throw a grenade
 /datum/ai_behavior/human/proc/grenade_process()
@@ -41,3 +43,16 @@
 		nade_options += option
 
 	return pick(nade_options)
+
+///Reacts to a landed grenade as necessary
+/datum/ai_behavior/human/proc/react_to_grenade(datum/source, obj/item/explosive/grenade/grenade)
+	SIGNAL_HANDLER
+	if(!grenade.dangerous)
+		return
+	if(grenade.z != mob_parent.z)
+		return
+	if(!line_of_sight(mob_parent, grenade, 6))
+		return
+	if(prob(85))
+		try_speak(pick(nade_avoid_chat))
+	change_action(MOVING_TO_SAFETY, grenade, list(6, 8))
