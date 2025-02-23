@@ -86,7 +86,7 @@
 /// Ends the animation and sets up the rest of the flying stuff.
 /mob/living/carbon/xenomorph/dragon/proc/finish_flying()
 	TIMER_COOLDOWN_END(src, COOLDOWN_DRAGON_CHANGE_FORM) // Special state won't think it is ready otherwise.
-	animate(src, pixel_x = -48, pixel_y = 0, time = 0)
+	animate(src, pixel_x = 0, pixel_y = 0, time = 0)
 	status_flags = GODMODE|INCORPOREAL
 	resistance_flags = RESIST_ALL|BANISH_IMMUNE
 	pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
@@ -99,7 +99,7 @@
 /mob/living/carbon/xenomorph/dragon/proc/handle_dropping_animations(list/obj/effect/xeno/dragon_warning/telegraphed_atoms)
 	no_special_state = TRUE
 	update_icons(TRUE)
-	animate(src, pixel_x = 0, pixel_y = 0, time = 0.5 SECONDS)
+	animate(src, pixel_x = -48, pixel_y = 0, time = 0.5 SECONDS)
 
 // Removes telegraphing, does various landing effects, and reverts any changes caused by flying.
 /mob/living/carbon/xenomorph/dragon/proc/finish_dropping(list/obj/effect/xeno/dragon_warning/telegraphed_atoms)

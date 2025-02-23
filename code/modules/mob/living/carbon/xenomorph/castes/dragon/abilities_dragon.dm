@@ -869,7 +869,7 @@
 			xeno_owner.update_glow()
 			return fail_activate()
 		xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_PSYCHIC_CHANNEL, TRUE, 0, NONE, TRUE, 0.9)
-		select_spell(selected_spell, null, TRUE, selected_spell == "psychic_channel" ? TRUE : FALSE)
+		select_spell(selected_spell, TRUE, FALSE, selected_spell == "psychic_channel" ? TRUE : FALSE)
 		RegisterSignals(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taken_damage))
 		return
 
