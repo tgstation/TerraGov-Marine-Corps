@@ -746,6 +746,8 @@
 
 #define COMSIG_XENOMORPH_LEAP_BUMP "xenomorph_leap_bump" //from /mob/living/carbon/xenomorph/bump
 
+#define COMSIG_XENO_GREENBLOOD_DRAIN "xeno_greenblood_drain"
+
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
 

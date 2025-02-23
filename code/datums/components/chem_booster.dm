@@ -172,6 +172,8 @@
 	wearer.overlays -= resource_overlay
 	wearer = null
 
+	UnregisterSignal(wearer, COMSIG_XENO_GREENBLOOD_DRAIN)
+
 ///Sets up actions and vars when the suit is equipped
 /datum/component/chem_booster/proc/equipped(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER
@@ -184,6 +186,8 @@
 
 	wearer.overlays += resource_overlay
 	update_resource(0)
+
+	RegisterSignal(wearer, COMSIG_XENO_GREENBLOOD_DRAIN, PROC_REF(steal_greenblood))
 
 /datum/component/chem_booster/process()
 	if(resource_storage_current < resource_drain_amount)
@@ -523,6 +527,22 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_KB_VALI_CONNECT,
 	)
+
+//handles xeno abilities mooching our greenblood. Signal is routed through the equipping mob.
+/datum/component/chem_booster/proc/steal_greenblood(owner, drain_plasma_gain, drainer)
+	SIGNAL_HANDLER
+
+	//steals a % of total greenblood held plus a small flat bonus
+	var/drain_value = resource_storage_current * (GORGER_GREENBLOOD_STEAL_PERCENTAGE / 100) + GORGER_GREENBLOOD_STEAL_FLAT
+
+	//if there's only a tiny amount in the tank, we take only that much.
+	if(drain_value > resource_storage_current)
+		drain_value = resource_storage_current
+	to_chat(wearer, span_danger("Unregistered User accessing green blood reserves!"))
+	update_resource(-drain_value)
+
+	var/mob/living/carbon/xenomorph/xeno_drainer = drainer
+	xeno_drainer.gain_plasma(drain_value * GORGER_GREENBLOOD_BONUS)
 
 #undef EXTRACT
 #undef LOAD
