@@ -113,7 +113,7 @@
 	radial_icon_state = "hugger_ball"
 	cooldown_time = 10 MINUTES
 	/// range_turfs that huggers will be dropped around the target
-	var/drop_range = 9
+	var/drop_range = 10
 	/// how many huggers get dropped at once, does not stack on turfs if theres not enough turfs
 	var/hugger_count = 60
 	///huggers to choose to spawn
