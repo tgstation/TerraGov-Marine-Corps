@@ -81,8 +81,6 @@
 		return
 	if(!isturf(loc))
 		return
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ACTIVE_GRENADE_LANDED, src)
-
 
 ///Activates the grenade
 /obj/item/explosive/grenade/proc/activate(mob/user)
@@ -103,6 +101,7 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
 		update_icon()
 	det_timer = addtimer(CALLBACK(src, PROC_REF(prime)), det_time, TIMER_STOPPABLE)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GRENADE_ACTIVATED, src)
 	return TRUE
 
 ///Detonation effects

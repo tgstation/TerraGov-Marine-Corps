@@ -3,8 +3,6 @@
 	var/nade_throw_prop = 15
 	///Chat lines for throwing a nade
 	var/list/nade_throw_chat = list("Grenade out!", "Fire in the hole!", "Grenade!", "Catch this!")
-	///Chat lines for avoiding a live nade
-	var/list/nade_avoid_chat = list("Watch out!", "Watch out, grenade!", "Grenade!", "Run!", "Get out of the way!", "Grenade, move!")
 
 ///Decides if we should throw a grenade
 /datum/ai_behavior/human/proc/grenade_process()

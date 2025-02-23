@@ -1,0 +1,100 @@
+/datum/ai_behavior/human
+	///Mob tries to keep away from hazards
+	var/avoid_hazards = TRUE
+	///assoc list of hazards to avoid and the range to stay away from them
+	var/list/hazard_list = list()
+	///Chat lines for avoiding uncategorized hazards
+	var/list/default_avoid_chat = list("Watch out!", "Watch out, hazard!", "hazard!", "Keep away from the hazard!", "Well I've never seen a hazard like this before.")
+	///Chat lines for avoiding a live nade
+	var/list/nade_avoid_chat = list("Watch out!", "Watch out, grenade!", "Grenade!", "Run!", "Get out of the way!", "Grenade, move!")
+	///Chat lines for avoiding fire
+	var/list/fire_avoid_chat = list("Watch out!", "Watch out, fire!", "fire!", "Keep away from the fire!")
+
+/datum/ai_behavior/human/find_next_dirs()
+	. = ..()
+	if(!.)
+		return
+	if(!avoid_hazards)
+		return
+
+	var/list/dir_options = .
+	dir_options = dir_options.Copy()
+	var/list/exclude_dirs = list()
+	for(var/atom/movable/thing AS in hazard_list)
+		var/dist = get_dist(mob_parent, thing)
+		if(dist > hazard_list[thing] + 1) //out of range, wont move into range
+			continue
+		if(!isturf(thing.loc)) //picked up nade etc
+			continue
+		if(dist == 0) //on top of the hazard
+			if(length(dir_options)) //we want to get off the hazard, but if we're trying to go somewhere else already, then that dir is fine
+				continue
+			dir_options = CARDINAL_ALL_DIRS //no specific dir we're trying to go, just move randomly off hazard
+			continue
+			//return
+		var/dir_to_hazard = get_dir(mob_parent, thing)
+		//we are definitely in the hazard radius
+		exclude_dirs |= dir_to_hazard //we remove any options of going closer to the hazard
+		exclude_dirs |= turn(dir_to_hazard, 45)
+		exclude_dirs |= turn(dir_to_hazard, -45)
+
+		dir_options |= REVERSE_DIR(dir_to_hazard) //we add options for going away from the hazard
+		if(dist > (ROUND_UP(hazard_list[thing] * 0.5))) //outer half of danger zone, lets add diagonals for variation
+			dir_options |= turn(dir_to_hazard, 135)
+			dir_options |= turn(dir_to_hazard, 225)
+
+	dir_options -= exclude_dirs
+	if(length(dir_options))
+		return dir_options
+	//if hazards cause movement paralysis, we just say fuck it, and ignore them since apparently every direction is dangerous
+
+///Clear the hazard list if we change z
+/datum/ai_behavior/human/proc/on_change_z(atom/movable/source, old_z, new_z)
+	SIGNAL_HANDLER
+	for(var/hazard in hazard_list)
+		remove_hazard(hazard)
+
+///Adds a hazard to watch for
+/datum/ai_behavior/human/proc/add_hazard(datum/source, atom/hazard)
+	SIGNAL_HANDLER
+	var/turf/hazard_turf = get_turf(hazard)
+	if(hazard_turf.z != mob_parent.z) //other z level, ignore
+		return
+	var/hazard_radius = hazard.get_ai_hazard_radius()
+	if(isnull(hazard_radius))
+		return
+	hazard_list[hazard] = hazard_radius
+	//assoc, or just have some proc to return ai_hazard range? Probs better
+	RegisterSignals(hazard, list(COMSIG_QDELETING, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(remove_hazard))
+	if(get_dist(mob_parent, hazard) > 5)
+		return
+	if(isgrenade(hazard))
+		if(prob(85))
+			try_speak(pick(nade_avoid_chat))
+		return
+	if(isfire(hazard))
+		if(prob(20))
+			try_speak(pick(fire_avoid_chat))
+		return
+
+	if(prob(20))
+		try_speak(pick(default_avoid_chat))
+
+///Removes a hazard
+/datum/ai_behavior/human/proc/remove_hazard(atom/old_hazard)
+	SIGNAL_HANDLER
+	hazard_list -= old_hazard
+	UnregisterSignal(old_hazard, list(COMSIG_QDELETING, COMSIG_MOVABLE_Z_CHANGED))
+
+//maybe move
+///Returns the radius around this considered a hazard.
+/atom/proc/get_ai_hazard_radius()
+	return null //null means no danger, vs 0 means stay off the hazard's turf
+
+/obj/item/explosive/grenade/get_ai_hazard_radius()
+	if(!dangerous)
+		return null
+	return light_impact_range ? light_impact_range : 3
+
+/obj/fire/get_ai_hazard_radius()
+	return 0

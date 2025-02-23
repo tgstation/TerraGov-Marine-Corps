@@ -343,8 +343,15 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	addtimer(CALLBACK(src, PROC_REF(scheduled_move)), next_move, NONE, SSpathfinder)
 	registered_for_move = TRUE
 
-/// Moves the ai toward its atom_to_walk_to
+///Tries to move the ai toward its atom_to_walk_to
 /datum/ai_behavior/proc/ai_do_move()
+	var/list/dir_options = find_next_dirs()
+	if(!length(dir_options))
+		return
+	ai_complete_move(pick(dir_options))
+
+///Find our movement options
+/datum/ai_behavior/proc/find_next_dirs()
 	if(!mob_parent?.canmove || mob_parent.do_actions) //todo: some do_actions allow movement, unsure if there is a way to trace this though
 		return
 	//This allows minions to be buckled to their atom_to_escort without disrupting the movement of atom_to_escort
@@ -378,9 +385,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(dist_to_target < max_range) //less than max range, its valid to walk away
 		dir_options += get_dir(atom_to_walk_to, mob_parent)
 
-	if(!length(dir_options))
-		return
-	ai_complete_move(pick(dir_options))
+	return dir_options
 
 ///Makes a move in a given direction
 /datum/ai_behavior/proc/ai_complete_move(move_dir, try_sidestep = TRUE)
