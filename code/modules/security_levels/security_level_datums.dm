@@ -24,7 +24,7 @@
 	var/sec_level_flags = SEC_LEVEL_FLAG_CAN_SWITCH_COMMS_CONSOLE
 	/// The sound that we will play when lowering to this security level.
 	var/lowering_sound
-	/// The sonud that we will play when elevating to this security level.
+	/// The sound that we will play when elevating to this security level.
 	var/elevating_sound
 	/// Our announcement when lowering to this level.
 	var/lowering_body
