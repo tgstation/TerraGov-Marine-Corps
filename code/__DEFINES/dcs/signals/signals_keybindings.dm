@@ -279,9 +279,6 @@
 
 #define COMSIG_XENOABILITY_PORTAL "xenoablity_portal"
 #define COMSIG_XENOABILITY_PORTAL_ALTERNATE "xenoability_portal_alternate"
-#define COMSIG_XENOABILITY_BLINK "xenoability_blink"
-#define COMSIG_XENOABILITY_BANISH "xenoability_banish"
-#define COMSIG_XENOABILITY_RECALL "xenoability_recall"
 #define COMSIG_XENOABILITY_TIMESTOP "xenoability_timestop"
 #define COMSIG_XENOABILITY_REWIND "xenoability_rewind"
 
@@ -317,7 +314,8 @@
 #define COMSIG_XENOABILITY_FIRECHARGE "xenoability_firecharge"
 #define COMSIG_XENOABILITY_FIRENADO "xenoability_firenado"
 #define COMSIG_XENOABILITY_FIREBALL "xenoability_fireball"
-#define COMSIG_XENOABILITY_HEATRAY "xenoability_heatray"
+#define COMSIG_XENOABILITY_INFERNO "xenoability_inferno"
+#define COMSIG_XENOABILITY_INFERNAL_TRIGGER "xenoability_infernal_trigger"
 
 #define COMSIG_XENOABILITY_TENDRILS "xenoability_tendrils"
 #define COMSIG_XENOABILITY_ORGANICBOMB "xenoability_puppeteerorganicbomb"

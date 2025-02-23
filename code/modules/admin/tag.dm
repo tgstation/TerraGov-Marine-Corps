@@ -50,16 +50,10 @@
 					<font color='#00cccc'>[X.getOxyLoss()]</font>\
 					[X.getCloneLoss() ? " <font color='#1c3ac4'>[X.getCloneLoss()]</font>" : ""])"
 
-/// Display all of the tagged datums
-/datum/admins/proc/display_tags()
-	set category = "Debug"
-	set name = "View Tags"
-
-	var/datum/admins/holdersrc = src
+ADMIN_VERB(display_tags, R_DEBUG, "View Tags", "View all tagged datums", ADMIN_CATEGORY_DEBUG)
+	var/datum/admins/holdersrc = user.holder
 	if (!istype(holdersrc, /datum/admins))
-		holdersrc = usr.client.holder
-	if (!istype(holdersrc, /datum/admins))
-		to_chat(usr, "Error: you are not an admin!", confidential = TRUE)
+		to_chat(user, "Error: you are not an admin!")
 		return
 	holdersrc.index_tags()
 

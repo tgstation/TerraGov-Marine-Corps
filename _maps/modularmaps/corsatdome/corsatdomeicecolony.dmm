@@ -1971,7 +1971,6 @@
 /obj/effect/turf_decal/tile/corsatstraight/lightpurple{
 	dir = 1
 	},
-/obj/item/storage/pill_bottle/packet/russian_red,
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/gamma/biodome/virology)
 "wU" = (

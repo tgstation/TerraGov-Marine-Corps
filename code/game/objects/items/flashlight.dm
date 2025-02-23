@@ -176,7 +176,7 @@
 
 /obj/item/flashlight/lamp/verb/toggle_light()
 	set name = "Toggle light"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(istype(usr, /mob/living/carbon/xenomorph)) //Sneaky xenos turning off the lights

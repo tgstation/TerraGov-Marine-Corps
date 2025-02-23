@@ -199,7 +199,7 @@
 
 /obj/machinery/robotic_cradle/verb/move_inside()
 	set name = "Enter Cradle"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(place_mob_inside(usr, usr))
@@ -248,7 +248,7 @@
 
 /obj/machinery/robotic_cradle/verb/eject()
 	set name = "Eject cradle"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 	if(usr.incapacitated())
 		return

@@ -243,6 +243,14 @@
 #define COMSIG_ATOM_ATTACK_GHOST "atom_attack_ghost"			//from base of atom/attack_ghost(): (mob/dead/observer/ghost)
 	#define COMPONENT_NO_ATTACK_HAND (1<<0)						//works on all attack_hands.
 #define COMSIG_ATOM_ATTACK_POWERLOADER "atom_attack_powerloader"//from base of atom/attack_powerloader: (mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+///from base of [/atom/proc/take_damage]: (damage_amount, damage_type, damage_flag, effects, attack_dir, aurmor_penetration)
+#define COMSIG_ATOM_TAKE_DAMAGE "atom_take_damage"
+	/// Return bitflags for the above signal which prevents the atom taking any damage.
+	#define COMPONENT_NO_TAKE_DAMAGE (1<<0)
+///from base of [/atom/proc/repair_damage]: (repair_amount, mob/user)
+#define COMSIG_ATOM_REPAIR_DAMAGE "atom_repair_damage"
+	/// Return bitflags for the above signal which prevents the atom repairing any damage.
+	#define COMPONENT_NO_REPAIR (1<<0)
 ///from base of atom/emp_act(): (severity)
 #define COMSIG_ATOM_EMP_ACT "atom_emp_act"
 ///from base of atom/examine(): (/mob, list/examine_text)
@@ -733,9 +741,6 @@
 	#define COMPONENT_KEEP_THROWING (1<<0)
 #define COMSIG_XENO_PROJECTILE_HIT "xeno_projectile_hit"			///from [/mob/living/carbon/xenomorph/projectile_hit] called when a projectile hits a xeno but before confirmation of a hit (can miss due to inaccuracy/evasion)
 	#define COMPONENT_PROJECTILE_DODGE (1<<0)
-
-#define COMSIG_XENOMORPH_WRAITH_RECALL "xenomorph_wraith_recall"
-	#define COMPONENT_BANISH_TARGETS_EXIST (1<<0)
 
 #define COMSIG_XENO_PSYCHIC_LINK_REMOVED "xeno_psychic_link_removed"
 

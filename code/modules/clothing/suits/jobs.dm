@@ -256,7 +256,7 @@
 
 /obj/item/clothing/suit/storage/internalaffairs/verb/toggle()
 	set name = "Toggle Coat Buttons"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	if(!usr.canmove || usr.stat || usr.restrained())
@@ -295,7 +295,7 @@
 
 /obj/item/clothing/suit/storage/fr_jacket/verb/toggle()
 	set name = "Toggle Jacket Buttons"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	if(!usr.canmove || usr.stat || usr.restrained())

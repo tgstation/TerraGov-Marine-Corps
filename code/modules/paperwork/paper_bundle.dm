@@ -180,7 +180,7 @@
 
 /obj/item/paper_bundle/verb/rename()
 	set name = "Rename bundle"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	var/n_name = stripped_input(usr, "What would you like to label the bundle?", "Bundle Labelling")
@@ -189,7 +189,7 @@
 
 /obj/item/paper_bundle/verb/remove_all()
 	set name = "Loose bundle"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	to_chat(usr, span_notice("You loosen the bundle."))

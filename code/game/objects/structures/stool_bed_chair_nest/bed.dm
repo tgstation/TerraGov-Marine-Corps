@@ -614,8 +614,6 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	var/list/obj/structure/bed/medevac_stretcher/linked_beds_deployed = list()
 	req_one_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_MEDBAY)
 	var/obj/item/radio/headset/mainship/doc/radio
-	///The faction this beacon belongs to
-	var/faction
 
 /obj/item/medevac_beacon/Initialize(mapload)
 	. = ..()

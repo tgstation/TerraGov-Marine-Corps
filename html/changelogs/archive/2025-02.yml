@@ -237,3 +237,134 @@
   yyzsong:
   - qol: Acid Maws and Acid Jaws now notify ghosts when fired, and their point of
       impact may be jumped to.
+2025-02-18:
+  Kuro020:
+  - balance: The marine standard smg, heavy smg and machine pistol's mag sizes have
+      been increased
+  - balance: The ammo packets for the smgs have had their total bullet count increased
+  Lumipharon:
+  - balance: Tank turret rotation adds a delay to firing
+  Mannybrado:
+  - balance: nerf laser turret range by 1 tile (8 -> 7)
+  nervere:
+  - refactor: Window flashing (i.e. taskbar notifications) while a ghost will now
+      only trigger for stuff related to round re-entry and adminhelps, instead of
+      it happening for everything.
+  novaepee:
+  - imageadd: Another lobby art from Zaha!
+2025-02-19:
+  novaepee:
+  - balance: medical rig can now hold tweezers and ESR-12
+2025-02-20:
+  Cheese (Ported from CM who ported it from RUTGMC):
+  - rscadd: 2 new cade types, made with plasteel and metal respectively.
+  Pariah919:
+  - balance: Target rifle changes. It has better handling, damage and bullet travel
+      time. But worse sunder.
+  RipGrayson:
+  - balance: Removed Russian Red from a few groundside maps.
+  Runian:
+  - balance: Pyrogen has been reworked.
+  - balance: Pyrogen's melee attacks do burn damage and inflict melting fire.
+  - balance: Firestorm's cooldown has been reduced to 12 seconds and create only one
+      firenado.
+  - balance: Firenados always go to their target destination and also create a melting
+      fire onto a nearby turf as it travels.
+  - balance: Firenados now deal damage upon direct contact. It deals 50 damage up
+      from 15.
+  - balance: Firenados go over certain objects like window frames.
+  - balance: Humans damaged by melting fire heal the associated Pyrogen for two health.
+  - balance: Direct hits from Fireball does burn damage against fire armor, rather
+      than toxin against bio.
+  - bugfix: Humans damaged by melting fire correctly gives the associated Pyrogen
+      five plasma.
+  - rscadd: Pyrogen has a new ability called Inferno.
+  - rscadd: Pyrogen has a new primordial ability called Infernal Trigger.
+  - rscdel: Pyrogen's old primordial ability Heat Ray has been removed.
+  - imageadd: Inferno and Infernal Trigger button sprites.
+  - imagedel: Heatray button sprite.
+  SandPoot:
+  - rscadd: Added codex for tesla turrets, GO READ IT.
+  - balance: Adjusted durability, cost and power drain for tesla turrets.
+  - balance: Lasgun cells no longer fit on tesla turrets.
+  - bugfix: Fixed ghosts toggling tesla turrets on and off.
+  - bugfix: Xenomorph plasma may not update from plasma drain debuff, it will now
+      apply properly.
+  - bugfix: Fixed deleting cells if giving up on disassembling.
+  - admin: Var-editing tesla turrets will be transferred over if var-editing.
+  TiviPlus:
+  - code_imp: It is now possible to set up a DB by just running ezdb.bat in tools/ezdb
+      when running the game locally
+  - balance: Mech has night vision
+  - qol: Merged Object and weapons tabs into the ic tab
+  - balance: Non-HvH mechs now spin to fire
+  - qol: Replaced crates teleporting with an animation where they fall from the sky
+  - bugfix: fixed a tutorial error
+  - code_imp: optimized certain operations run by hyperscale and certain icon systems
+  - qol: Mugshots announcements will automatically capitalize themselves
+  breadhunt:
+  - balance: 'Demolition detpack explosion: 3, 5, 6 -> 0, 7, 9'
+  - balance: 'Breach detpack explosion: 2, 2, 3 -> 3, 4, 4'
+  - balance: Breach charge will now explode on the opposite side of a wall, if it
+      is planted on a wall
+  ivanmixo:
+  - balance: Made some changes to curb stacking multiple snipers, check the PR for
+      a more verbose explanation
+2025-02-21:
+  Lumipharon:
+  - bugfix: fixed spears and other ranged melee items not being able to attack over
+      some objects as intended
+  - balance: Removed healing from non medical reagents
+2025-02-22:
+  Apple-107:
+  - rscadd: Marines can now hydrate themselves (Hydrocannon fits on most rifles that
+      could take an underbarrel)
+  Isy232:
+  - qol: Starting alien weed nodes have a much higher chance to be sticky weed nodes
+      rather than regular weed nodes.
+  Kuro020:
+  - balance: SG-62 buff's have been reverted
+  Lumipharon:
+  - bugfix: fixed detpacks not deleting after exploding
+  - bugfix: fixed some issues with items not being stored or withdrawn from storage
+      datums correctly
+  Rug-Dealer:
+  - spellcheck: thells -> shells
+  TiviPlus:
+  - balance: Mech now has destroyable limbs, to restore functionality fully repair
+      them. Both xenos and marines can see their HP by examining the mech
+  antropod:
+  - qol: Quick equip (pressing E) will try to put an item to the slot it was drawn
+      from.
+  novaepee:
+  - imageadd: ANOTHER Zaha lobby art
+  yyzsong:
+  - bugfix: Ghosts no longer fumble when opening the chemmaster's UI
+  - qol: The supply console now displays notes attached to certain supply packs
+2025-02-23:
+  Lumipharon:
+  - code_imp: Faction is defined at the AM level
+  - code_imp: Adds get_traversal_line, like get_line but filled in cardinal steps
+      when going diagonal
+  TiviPlus:
+  - bugfix: fixed some security/permissions issues with admin verbs
+  - bugfix: fixed trying to view too many runtimes crashing the server (this has yet
+      to happen)
+  - refactor: refactored admin verbs to simplify them and make them more secure
+  - admin: Reorganized the admin verb tabs. The following is the intended structure
+  - admin: Admin.main tab = relates to moderating/mentoring
+  - admin: admin.fun = event type verbs and fun stuff like music
+  - admin: debug = primarily intended for debugging and fixing things
+  - admin: server = server operations related stuff, config etc
+  - admin: some verbs were moved to the right click menu only
+  - admin: admins can now show/hide their verbs
+  - admin: fixed some admin procs not logging that they were used
+  - admin: added a sendmaps profiling verb for admins
+  - admin: Some verbs, like the imaginary friend verb, now can both be used to rclick
+      or through the verbs menu
+  - admin: the secrets tab verb was renamed to the utility tab verb
+  - admin: the display tags verb was moved to r_debug from r_admin
+  - admin: made some backend changes to how verbs are issued. it is now based on the
+      actual permissions checked, so everyone with access to a permission will have
+      all verbs marked with that permission by default. this may have added some previously
+      broken verbs and may have moved others' to be assigned to that permission
