@@ -77,22 +77,13 @@
 	accurate_range = 15
 	max_range = 40
 	penetration = 50
-	damage = 200
+	damage = 125
 	hud_state = "bigshell_he"
-	sundering = 20
+	sundering = 15
 	barricade_clear_distance = 4
 
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
 	explosion(T, 0, 2, 5, 0, 3)
-
-/datum/ammo/rocket/ltb/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	var/target_turf = get_turf(target_mob)
-	if(!isxeno(target_mob))
-		if(!(target_mob.status_flags & GODMODE))
-			target_mob.gib()
-	else
-		staggerstun(target_mob, proj, max_range, knockback = 1, hard_size_threshold = 3)
-	drop_nade(target_turf)
 
 /datum/ammo/rocket/ltb/heavy/drop_nade(turf/target_turf)
 	explosion(target_turf, 1, 4, 6, 0, 3)
@@ -122,7 +113,7 @@
 	icon_state = "apfds"
 	hud_state = "bigshell_apfds"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
-	damage = 275
+	damage = 200
 	penetration = 75
 	shell_speed = 7
 	accurate_range = 24
@@ -532,8 +523,6 @@
 
 /datum/ammo/bullet/tank_apfds/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	proj.proj_max_range -= 2
-	if(ishuman(target_mob) && !(target_mob.status_flags & GODMODE) && prob(35))
-		target_mob.gib()
 
 /datum/ammo/bullet/tank_apfds/on_hit_obj(obj/target_object, obj/projectile/proj)
 	if(!isvehicle(target_object) && !ishitbox(target_object))

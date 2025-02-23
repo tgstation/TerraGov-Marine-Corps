@@ -47,7 +47,7 @@
 	///fire mode to use for autofire
 	var/fire_mode = GUN_FIREMODE_SEMIAUTO
 	///how many seconds automatic, and manual, reloading takes
-	var/rearm_time = 4 SECONDS
+	var/rearm_time = 3.5 SECONDS
 	///ammo hud icon to display when no ammo is loaded
 	var/hud_state_empty = "shell_empty"
 
