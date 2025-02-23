@@ -1317,8 +1317,6 @@
 //*********
 // Psy Drain
 //*********
-///How much larva points it gives (10 points for one larva in NW)
-#define LARVA_DRAIN_REWARD 1
 /datum/action/ability/activable/xeno/psydrain
 	name = "Psy drain"
 	action_icon_state = "headbite"
@@ -1329,6 +1327,8 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEADBITE,
 	)
 	gamemode_flags = ABILITY_NUCLEARWAR
+	///How much larva points it gives (10 points for one larva in NW)
+	var/larva_point_reward = 1
 
 /datum/action/ability/activable/xeno/psydrain/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..() //do after checking the below stuff
@@ -1378,7 +1378,6 @@
 /datum/action/ability/activable/xeno/psydrain/use_ability(mob/M)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/victim = M
-	var/larva_reward = LARVA_DRAIN_REWARD
 
 	if(HAS_TRAIT(victim, TRAIT_PSY_DRAINED))
 		to_chat(X, span_warning("Someone drained the life force of our victim before we could do it!"))
@@ -1403,11 +1402,11 @@
 	SSpoints.add_strategic_psy_points(X.hivenumber, psy_points_reward)
 	SSpoints.add_tactical_psy_points(X.hivenumber, psy_points_reward*0.25)
 	if(X.hivenumber == XENO_HIVE_FALLEN)
-		larva_reward = 0
+		return
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	xeno_job.add_job_points(larva_reward)
+	xeno_job.add_job_points(larva_point_reward)
 	X.hive.update_tier_limits()
-	GLOB.round_statistics.larva_from_psydrain += larva_reward / xeno_job.job_points_needed
+	GLOB.round_statistics.larva_from_psydrain += larva_point_reward / xeno_job.job_points_needed
 
 	if(owner.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
