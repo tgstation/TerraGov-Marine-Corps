@@ -36420,7 +36420,6 @@
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/highsec_medsec)
 "cpg" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -36436,7 +36435,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -43539,6 +43537,7 @@
 /area/prison/cellblock/mediumsec/south)
 "lKO" = (
 /obj/structure/cable,
+/obj/machinery/power/apc/drained,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},
@@ -90853,7 +90852,7 @@ cpU
 cpU
 cpU
 cpU
-coI
+vgS
 oAt
 iHZ
 iHZ
@@ -91110,7 +91109,7 @@ cpV
 cwO
 crZ
 csK
-coI
+vgS
 lqx
 cpU
 cpU
@@ -91881,7 +91880,7 @@ cqO
 rEO
 crZ
 cwc
-coI
+vgS
 xtT
 cpU
 tXM
@@ -92138,7 +92137,7 @@ cpV
 pbJ
 crZ
 vME
-coI
+vgS
 lqx
 cqh
 cqh
@@ -92395,7 +92394,7 @@ cpV
 pbJ
 crZ
 cqd
-coI
+vgS
 xtT
 cpU
 cKN
@@ -92652,8 +92651,8 @@ cpW
 vjs
 ccw
 cqd
-coI
-chZ
+vgS
+lqx
 cpU
 cvf
 cvf
