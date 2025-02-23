@@ -53,3 +53,12 @@
 
 /mob/living/carbon/xenomorph/king/death_cry()
 	playsound(loc, 'sound/voice/alien/king_died.ogg', 75, 0)
+
+
+// ***************************************
+// *********** Conqueror
+// ***************************************
+/mob/living/carbon/xenomorph/king/conqueror
+	caste_base_type = /datum/xeno_caste/king/conqueror
+	name = "Conqueror"
+	icon_state = "Conqueror Walking"

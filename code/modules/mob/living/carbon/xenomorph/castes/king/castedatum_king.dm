@@ -101,3 +101,88 @@
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
 	)
+
+
+// ***************************************
+// *********** Conqueror
+// ***************************************
+/datum/xeno_caste/king/conqueror
+	caste_name = "Conqueror"
+	display_name = "Conqueror"
+	caste_type_path = /mob/living/carbon/xenomorph/king/conqueror
+	wound_type = "conqueror"
+
+	// *** Melee Attacks *** //
+	melee_damage = 24
+
+	// *** Speed *** //
+	speed = -0.7
+
+	// *** Plasma *** //
+	plasma_max = 0
+	plasma_gain = 0
+
+	// *** Health *** //
+	max_health = 600
+
+	// *** Sunder *** //
+	sunder_multiplier = 1.0
+
+	// *** Evolution *** //
+	evolve_min_xenos = 0
+
+	// *** Flags *** //
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_STRONG|CASTE_PLASMADRAIN_IMMUNE|CASTE_STAGGER_RESISTANT|CASTE_HAS_WOUND_MASK|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR
+	caste_traits = list(TRAIT_SLOWDOWNIMMUNE, TRAIT_STOPS_TANK_COLLISION)
+
+	// *** Defense *** //
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 60, ACID = 60)
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/hive_message,
+		/datum/action/ability/xeno_action/rally_hive,
+		/datum/action/ability/xeno_action/rally_minion,
+		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+		/datum/action/ability/activable/xeno/conqueror_dash,
+		/datum/action/ability/xeno_action/conqueror_will,
+		/datum/action/ability/xeno_action/conqueror_endurance,
+	)
+
+/datum/xeno_caste/king/conqueror/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/king/conqueror/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "An avatar of death. Running won't help you now."
+	primordial_message = "Death cannot create, but you definitely know how to destroy."
+	upgrade = XENO_UPGRADE_PRIMO
+
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/hive_message,
+		/datum/action/ability/xeno_action/rally_hive,
+		/datum/action/ability/xeno_action/rally_minion,
+		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+		/datum/action/ability/activable/xeno/conqueror_dash,
+		/datum/action/ability/xeno_action/conqueror_will,
+		/datum/action/ability/xeno_action/conqueror_endurance,
+	)

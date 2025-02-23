@@ -701,6 +701,41 @@
 	description = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
 	keybind_signal = COMSIG_XENOABILITY_HIVE_SUMMON
 
+/datum/keybinding/xeno/conqueror_dash
+	name = "Conqueror's Dash"
+	full_name = "Conqueror: Dash"
+	description = "Double tap any movement direction to dash towards it."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_DASH
+
+/datum/keybinding/xeno/conqueror_will_alt
+	name = "Conqueror's Dash (Alternate)"
+	full_name = "Conqueror: Configure Dash"
+	description = "Allows you to setup various settings related to the dash."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_DASH_ALT
+
+/datum/keybinding/xeno/conqueror_will
+	name = "Conqueror's Will"
+	full_name = "Conqueror: Conqueror's Will"
+	description = "Upgrades slash attacks. Left and right click can be strung together to make combos. Results vary based on input order."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_WILL
+
+/datum/keybinding/xeno/conqueror_will_alt
+	name = "Conqueror's Will (Alternate)"
+	full_name = "Conqueror: Disable Combo Display"
+	description = "Disables the combo display for Conqueror's Will."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_WILL_ALT
+
+/datum/keybinding/xeno/conqueror_endurance
+	name = "Conqueror's Endurance"
+	full_name = "Conqueror: Endurance"
+	description = "Blocks attacks, reducing damage received."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_ENDURANCE
+	hotkey_keys = list("Z")
+
+/datum/keybinding/xeno/conqueror_endurance/up(client/user)
+	SEND_SIGNAL(user, COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_UP, TRUE)
+	return ..()
+
 /datum/keybinding/xeno/acid_dash
 	name = "acid_dash"
 	full_name = "Praetorian: Acid Dash"

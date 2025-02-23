@@ -57,6 +57,7 @@
 #define ui_alert3 "EAST-1:28,CENTER+3:23"
 #define ui_alert4 "EAST-1:28,CENTER+2:21"
 #define ui_alert5 "EAST-1:28,CENTER+1:19"
+#define ui_combo "CENTER+1:19,CENTER+4:25"
 
 //Middle right (status indicators)
 #define UI_STAMINA "EAST-1:28,CENTER-2:13"

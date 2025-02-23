@@ -292,6 +292,14 @@
 #define COMSIG_XENOABILITY_ZEROFORMBEAM "xenoability_zeroformbeam"
 #define COMSIG_XENOABILITY_HIVE_SUMMON "xenoability_hive_summon"
 
+#define COMSIG_XENOABILITY_CONQUEROR_DASH "xenoability_conqueror_dash"
+#define COMSIG_XENOABILITY_CONQUEROR_DASH_ALT "xenoability_conqueror_dash_alt"
+#define COMSIG_XENOABILITY_CONQUEROR_WILL "xenoability_conqueror_will"
+#define COMSIG_XENOABILITY_CONQUEROR_WILL_ALT "xenoability_conqueror_will_alt"
+#define COMSIG_XENOABILITY_CONQUEROR_ENDURANCE "xenoability_conqueror_endurance"
+	#define COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_UP "xenoability_conqueror_endurance_up"
+#define COMSIG_XENOABILITY_CONQUEROR_DOMINANCE "xenoability_conqueror_dominance"
+
 #define COMSIG_XENOABILITY_SCATTER_SPIT "xenoability_scatter_spit"
 #define COMSIG_XENOABILITY_TOSS_GRENADE "xenoability_toss_grenade"
 #define COMSIG_XENOABILITY_PICK_GRENADE "xenoability_pick_grenade"

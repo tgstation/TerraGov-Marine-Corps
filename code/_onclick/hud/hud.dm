@@ -48,6 +48,8 @@
 	var/atom/movable/screen/gun_move_icon
 	var/atom/movable/screen/gun_run_icon
 
+	var/atom/movable/screen/combo/combo_display
+
 	var/list/atom/movable/screen/ammo_hud_list = list()
 
 	var/list/static_inventory = list() //the screen objects which are static
@@ -137,6 +139,8 @@
 	gun_item_use_icon = null
 	gun_move_icon = null
 	gun_run_icon = null
+
+	combo_display = null
 
 	QDEL_LIST_ASSOC_VAL(plane_masters)
 
