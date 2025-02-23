@@ -435,7 +435,6 @@
 	suit_store = /obj/item/weapon/gun/shotgun/pump/lever/repeater/beginner
 	l_hand = /obj/item/paper/tutorial/lifesaver
 
-
 	backpack_contents = list(
 		/obj/item/storage/box/m94 = 2,
 		/obj/item/ammo_magazine/packet/p4570 = 4,
