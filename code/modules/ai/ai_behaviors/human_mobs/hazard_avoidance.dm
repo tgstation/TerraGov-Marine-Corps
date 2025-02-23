@@ -84,6 +84,10 @@
 	UnregisterSignal(old_hazard, list(COMSIG_QDELETING, COMSIG_MOVABLE_Z_CHANGED))
 
 //maybe move
+///Notifies AI of a new hazard
+/atom/proc/notify_ai_hazard()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_HAZARD_NOTIFIED, src)
+
 ///Returns the radius around this considered a hazard.
 /atom/proc/get_ai_hazard_radius()
 	return null //null means no danger, vs 0 means stay off the hazard's turf

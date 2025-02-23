@@ -133,11 +133,8 @@
 ///Enables the teleporter array
 #define COMSIG_GLOB_TELEPORTER_ARRAY_ENABLED "!teleporter_array_enabled"
 
-///from /obj/item/explosive/grenade/activate()
-#define COMSIG_GLOB_GRENADE_ACTIVATED "!grenade_activated"
-
-///from /obj/fire/Initialize()
-#define COMSIG_GLOB_FIRE_INITIALIZED "!fire_initialized"
+///from /atom/notify_ai_hazard()
+#define COMSIG_GLOB_AI_HAZARD_NOTIFIED "!ai_hazard_notified"
 
 //////////////////////////////////////////////////////////////////
 // /datum/component signals

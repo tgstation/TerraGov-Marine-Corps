@@ -101,7 +101,7 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
 		update_icon()
 	det_timer = addtimer(CALLBACK(src, PROC_REF(prime)), det_time, TIMER_STOPPABLE)
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GRENADE_ACTIVATED, src)
+	notify_ai_hazard()
 	return TRUE
 
 ///Detonation effects
