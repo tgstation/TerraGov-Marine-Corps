@@ -41,16 +41,3 @@
 		nade_options += option
 
 	return pick(nade_options)
-
-///Reacts to a landed grenade as necessary
-/datum/ai_behavior/human/proc/react_to_grenade(datum/source, obj/item/explosive/grenade/grenade)
-	SIGNAL_HANDLER
-	if(!grenade.dangerous)
-		return
-	if(grenade.z != mob_parent.z)
-		return
-	if(!line_of_sight(mob_parent, grenade, 6))
-		return
-	if(prob(85))
-		try_speak(pick(nade_avoid_chat))
-	change_action(MOVING_TO_SAFETY, grenade, list(6, 8))

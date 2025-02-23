@@ -22,23 +22,21 @@
 	var/list/exclude_dirs = list()
 	for(var/atom/movable/thing AS in hazard_list)
 		var/dist = get_dist(mob_parent, thing)
-		if(dist > hazard_list[thing] + 1) //out of range, wont move into range
+		if(dist > hazard_list[thing] + 1)
 			continue
 		if(!isturf(thing.loc)) //picked up nade etc
 			continue
-		if(dist == 0) //on top of the hazard
+		if(dist == 0)
 			if(length(dir_options)) //we want to get off the hazard, but if we're trying to go somewhere else already, then that dir is fine
 				continue
-			dir_options = CARDINAL_ALL_DIRS //no specific dir we're trying to go, just move randomly off hazard
+			dir_options = CARDINAL_ALL_DIRS
 			continue
-			//return
 		var/dir_to_hazard = get_dir(mob_parent, thing)
-		//we are definitely in the hazard radius
-		exclude_dirs |= dir_to_hazard //we remove any options of going closer to the hazard
+		exclude_dirs |= dir_to_hazard
 		exclude_dirs |= turn(dir_to_hazard, 45)
 		exclude_dirs |= turn(dir_to_hazard, -45)
 
-		dir_options |= REVERSE_DIR(dir_to_hazard) //we add options for going away from the hazard
+		dir_options |= REVERSE_DIR(dir_to_hazard)
 		if(dist > (ROUND_UP(hazard_list[thing] * 0.5))) //outer half of danger zone, lets add diagonals for variation
 			dir_options |= turn(dir_to_hazard, 135)
 			dir_options |= turn(dir_to_hazard, 225)
@@ -58,13 +56,12 @@
 /datum/ai_behavior/human/proc/add_hazard(datum/source, atom/hazard)
 	SIGNAL_HANDLER
 	var/turf/hazard_turf = get_turf(hazard)
-	if(hazard_turf.z != mob_parent.z) //other z level, ignore
+	if(hazard_turf.z != mob_parent.z)
 		return
 	var/hazard_radius = hazard.get_ai_hazard_radius()
 	if(isnull(hazard_radius))
 		return
 	hazard_list[hazard] = hazard_radius
-	//assoc, or just have some proc to return ai_hazard range? Probs better
 	RegisterSignals(hazard, list(COMSIG_QDELETING, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(remove_hazard))
 	if(get_dist(mob_parent, hazard) > 5)
 		return
