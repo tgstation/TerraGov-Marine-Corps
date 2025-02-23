@@ -381,6 +381,7 @@
 	desc = "A single-shot, homing, vehicle-mounted TOW-III launcher designed for precision strikes against armored targets. Equipped with IFF."
 	icon_state = "seeker"
 	fire_sound = SFX_RPG_FIRE
+	interior_fire_sound = null
 	armored_weapon_flags = MODULE_SECONDARY
 	ammo = /obj/item/ammo_magazine/tank/tow_missile
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/tow_missile)
@@ -396,6 +397,7 @@
 	desc = "A TGMC secondary vehicle-mounted multiple launch rocket system with a total of 6 homing microrockets. Capable of unleashing its entire payload in rapid succession."
 	icon_state = "secondary_rocket_multiple"
 	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
+	interior_fire_sound = null
 	armored_weapon_flags = MODULE_SECONDARY
 	ammo = /obj/item/ammo_magazine/tank/microrocket_rack
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/microrocket_rack)
