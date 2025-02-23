@@ -518,7 +518,7 @@
 
 		if(do_after(owner_xeno, KNOCKDOWN_DURATION, IGNORE_HELD_ITEM, target))
 			owner_xeno.gain_plasma(plasma_gain_on_hit)
-			SEND_SIGNAL(target, COMSIG_XENO_GREENBLOOD_DRAIN, owner_xeno.xeno_caste.drain_plasma_gain, owner_xeno);\
+			SEND_SIGNAL(target, COMSIG_XENO_GREENBLOOD_DRAIN, owner_xeno.xeno_caste.drain_plasma_gain, owner_xeno)
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		for(var/mob/living/carbon/xenomorph/target_xeno AS in cheap_get_xenos_near(owner_xeno, 4))
 			if(target_xeno == owner_xeno)
