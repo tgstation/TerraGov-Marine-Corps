@@ -58,7 +58,7 @@
 	var/turf/hazard_turf = get_turf(hazard)
 	if(hazard_turf.z != mob_parent.z)
 		return
-	var/hazard_radius = hazard.get_ai_hazard_radius()
+	var/hazard_radius = hazard.get_ai_hazard_radius(mob_parent)
 	if(isnull(hazard_radius))
 		return
 	hazard_list[hazard] = hazard_radius
@@ -89,13 +89,24 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_HAZARD_NOTIFIED, src)
 
 ///Returns the radius around this considered a hazard.
-/atom/proc/get_ai_hazard_radius()
+/atom/proc/get_ai_hazard_radius(mob/living/victim)
 	return null //null means no danger, vs 0 means stay off the hazard's turf
 
-/obj/item/explosive/grenade/get_ai_hazard_radius()
+/obj/item/explosive/grenade/get_ai_hazard_radius(mob/living/victim)
 	if(!dangerous)
+		return null
+	if((victim.get_soft_armor(BOMB) >= 100))
 		return null
 	return light_impact_range ? light_impact_range : 3
 
-/obj/fire/get_ai_hazard_radius()
+/obj/item/explosive/grenade/smokebomb/get_ai_hazard_radius(mob/living/victim)
+	if(!dangerous)
+		return null
+	if((victim.get_soft_armor(BIO) >= 100))
+		return null
+	return smokeradius
+
+/obj/fire/get_ai_hazard_radius(mob/living/victim)
+	if((victim.get_soft_armor(FIRE) >= 100))
+		return null
 	return 0
