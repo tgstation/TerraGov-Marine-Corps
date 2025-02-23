@@ -34,7 +34,7 @@
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_STAGGER_IMMUNE|CASTE_KNOCKBACK_IMMUNE|CASTE_SLOW_IMMUNE|CASTE_STUN_IMMUNE|CASTE_EXCLUDED_FROM_PSYCHIC_SUMMON|CASTE_INSTANT_EVOLUTION|CASTE_LEADER_TYPE
 	can_flags = CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR
-	caste_traits = null
+	caste_traits = list(TRAIT_XENOMORPH_INVISIBLE_BLOOD)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 60, BIO = 75, FIRE = 90, ACID = 75)
@@ -56,6 +56,7 @@
 		/datum/action/ability/activable/xeno/dragon_breath,
 		/datum/action/ability/activable/xeno/wind_current,
 		/datum/action/ability/activable/xeno/grab,
+		/datum/action/ability/activable/xeno/psychic_channel,
 		/datum/action/ability/xeno_action/hive_message,
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/xeno_action/rally_minion,
@@ -83,10 +84,7 @@
 		/datum/action/ability/activable/xeno/dragon_breath,
 		/datum/action/ability/activable/xeno/wind_current,
 		/datum/action/ability/activable/xeno/grab,
-		/datum/action/ability/activable/xeno/miasma,
-		/datum/action/ability/activable/xeno/lightning_strike,
-		/datum/action/ability/activable/xeno/fire_storm,
-		/datum/action/ability/activable/xeno/ice_spike,
+		/datum/action/ability/activable/xeno/psychic_channel,
 		/datum/action/ability/xeno_action/hive_message,
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/xeno_action/rally_minion,

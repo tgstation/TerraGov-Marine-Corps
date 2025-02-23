@@ -1,6 +1,6 @@
 /datum/action/ability/activable/xeno/backhand
 	name = "Backhand"
-	action_icon_state = "shattering_roar"
+	action_icon_state = "backhand"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "After a windup, deal high damage and a fair knock back to marines in front of you. Vehicles and mechas take more damage, but are not knocked back. If you are grabbing a marine, deal an incredible amount of damage instead."
 	cooldown_duration = 10 SECONDS
@@ -147,7 +147,7 @@
 
 /datum/action/ability/activable/xeno/fly
 	name = "Fly"
-	action_icon_state = "shattering_roar"
+	action_icon_state = "fly"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "After a long cast time, fly into the air. If you're already flying, land with a delay. Landing causes nearby marines to take lots of damage with vehicles taking up to 3x as much."
 	cooldown_duration = 240 SECONDS
@@ -202,7 +202,7 @@
 
 /datum/action/ability/activable/xeno/tailswipe
 	name = "Tailswipe"
-	action_icon_state = "shattering_roar"
+	action_icon_state = "tailswipe"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "After a windup, turn around and deal high damage along with a knockdown to marines behind you. Occupants of vehicles, including those inside mechas, are knocked down."
 	cooldown_duration = 12 SECONDS
@@ -332,7 +332,7 @@
 
 /datum/action/ability/activable/xeno/dragon_breath
 	name = "Dragon Breath"
-	action_icon_state = "shattering_roar"
+	action_icon_state = "dragon_breath"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "After a windup, gain the ability to continuously shoot fire balls with a large spread for a short time. If you are grabbing a marine, deal an incredible amount of damage and knock them back instead."
 	cooldown_duration = 30 SECONDS
@@ -502,7 +502,7 @@
 
 /datum/action/ability/activable/xeno/wind_current
 	name = "Wind Current"
-	action_icon_state = "shattering_roar"
+	action_icon_state = "wind_current"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "After a windup, deal high damage and a knockback to marines in front of you. This also clear any gas in front of you."
 	cooldown_duration = 20 SECONDS
@@ -617,7 +617,7 @@
 
 /datum/action/ability/activable/xeno/grab
 	name = "Grab"
-	action_icon_state = "shattering_roar"
+	action_icon_state = "grab"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = ""
 	desc = "After a windup, drag a marine in front of you and initiate a passive grab allowing you to drag them as you move. They are unable to move on their volition, but are fully capable of fighting back. Your grab automatically breaks if you stop grabbing or take too much damage."
@@ -764,35 +764,159 @@
 	if(damage_taken_so_far >= 300)
 		xeno_owner.stop_pulling()
 
-/datum/action/ability/activable/xeno/miasma
-	name = "Miasma"
+/datum/action/ability/activable/xeno/psychic_channel
+	name = "Psychic Channel"
+	action_icon_state = "psychic_channel"
+	action_icon = 'icons/Xeno/actions/dragon.dmi'
+	desc = "Begin channeling your psychic abilities. During your channeling, you can cast various spells which all have independent cooldowns. Right-click to select what spell to use while channeling."
+	/// The currently selected spell. Will be automatically chosen after channeling if none was selected.
+	var/selected_spell = "psychic_channel"
+	/// Damage taken so far while actively channeling.
+	var/damage_taken_so_far = 0
+	COOLDOWN_DECLARE(miasma_cooldown)
+	COOLDOWN_DECLARE(lightning_shrike_cooldown)
+	COOLDOWN_DECLARE(ice_storm_cooldown)
+
+/datum/action/ability/activable/xeno/psychic_channel/can_use_ability(atom/A, silent, override_flags)
+	if(xeno_owner.status_flags & INCORPOREAL)
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
+		return FALSE
+	return ..()
+
+/datum/action/ability/activable/xeno/psychic_channel/update_button_icon()
+	action_icon_state = is_actively_channeling() ? selected_spell : "psychic_channel"
+	return ..()
+
+/// Opens a radical wheel to select a spell.
+/datum/action/ability/activable/xeno/psychic_channel/alternate_action_activate()
+	INVOKE_ASYNC(src, PROC_REF(select_spell), null, TRUE)
+
+/// Ends the ability early.
+/datum/action/ability/activable/xeno/psychic_channel/on_deselection()
+	if(!is_actively_channeling())
+		return
+	cancel_channel()
+
+/// Selects the chosen spell. Alternatively, lets the owner choose from a radical wheel of spells.
+/datum/action/ability/activable/xeno/psychic_channel/proc/select_spell(spell_name = "Psychic Channel", force_update = FALSE, do_selection = FALSE, pick_randomly = FALSE)
+	if(do_selection)
+		var/spell_images_list = list(
+			"Miasma" = image('icons/Xeno/actions/dragon.dmi', icon_state = "miasma"),
+			"Lightning Strike" = image('icons/Xeno/actions/dragon.dmi', icon_state = "lightning_strike"),
+			"Ice Storm" = image('icons/Xeno/actions/dragon.dmi', icon_state = "ice_storm")
+		)
+		spell_name = show_radial_menu(xeno_owner, xeno_owner, spell_images_list, radius = 35)
+		if(!spell_name)
+			return
+		select_spell(spell_name)
+		return
+	if(pick_randomly)
+		spell_name = pick(list("Miasma", "Lightning Strike", "Ice Storm"))
+	switch(spell_name)
+		if("Psychic Channel")
+			selected_spell = "psychic_channel"
+			if(is_actively_channeling() || force_update)
+				name = "Psychic Channel"
+				desc = "Begin channeling your psychic abilities. During your channeling, you can cast various spells which all have independent cooldowns. Right-click to select what spell to use while channeling."
+		if("Miasma")
+			selected_spell = "miasma"
+			if(is_actively_channeling() || force_update)
+				name = "Miasma"
+				desc = "Fires a projectile that plagues an area with black miasma. Marines caught in the blast are burnt and have their healing reduced."
+		if("Lightning Strike")
+			selected_spell = "lightning_strike"
+			if(is_actively_channeling() || force_update)
+				name = "Lightning Strike"
+				desc = "Up to 15 nearby marines are marked to be struck with lightning. Marines that do not move out of way fast enough are burnt and inflicted with an effect that causes additional damage if they move."
+		if("Ice Storm")
+			selected_spell = "ice_storm"
+			if(is_actively_channeling() || force_update)
+				name = "Ice Storm"
+				desc = "Create 25 homing ice spikes around you in a circle. Each spike will follow the nearest marine and deals a small amount of damage along with a slowdown if they are hit."
+	reset_cooldown()
+	update_button_icon()
+
+/// Determines if the owner is currently channeling.
+/datum/action/ability/activable/xeno/psychic_channel/proc/is_actively_channeling()
+	return xeno_owner.light_on
+
+/// Resets the cooldown depending on what spell is currently selected.
+/datum/action/ability/activable/xeno/psychic_channel/proc/reset_cooldown()
+	clear_cooldown()
+	switch(selected_spell)
+		if("psychic_channel")
+			cooldown_duration = null
+			return
+		if("miasma")
+			var/remaining_cooldown = COOLDOWN_TIMELEFT(src, miasma_cooldown)
+			if(remaining_cooldown)
+				add_cooldown(COOLDOWN_TIMELEFT(src, miasma_cooldown))
+		if("lightning_strike")
+			var/remaining_cooldown = COOLDOWN_TIMELEFT(src, lightning_shrike_cooldown)
+			if(remaining_cooldown)
+				add_cooldown(COOLDOWN_TIMELEFT(src, lightning_shrike_cooldown))
+		if("ice_storm")
+			var/remaining_cooldown = COOLDOWN_TIMELEFT(src, ice_storm_cooldown)
+			if(remaining_cooldown)
+				add_cooldown(COOLDOWN_TIMELEFT(src, ice_storm_cooldown))
+
+/// Either begin channeling or perform the spell.
+/datum/action/ability/activable/xeno/psychic_channel/use_ability(atom/A)
+	if(!is_actively_channeling())
+		xeno_owner.update_glow(3, 3, "#6a59b3")
+		if(!do_after(owner, 2 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
+			xeno_owner.update_glow()
+			return fail_activate()
+		xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_PSYCHIC_CHANNEL, TRUE, 0, NONE, TRUE, 0.9)
+		select_spell(selected_spell, null, TRUE, selected_spell == "psychic_channel" ? TRUE : FALSE)
+		RegisterSignals(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taken_damage))
+		return
+
+	switch(selected_spell)
+		if("miasma")
+			// TODO: Shoot a projectile.
+			COOLDOWN_START(src, miasma_cooldown, 20 SECONDS)
+		if("lightning_strike")
+			// TODO: Get all marines within 9x9. If they cannot see (line of sight), exclude them.
+			// TODO: If there is more than 15, remove a marine from a list until it's 15 or under.
+			// TODO: Telegraph. Beh's stomp telegraph, except it's 1 tiles shorter.
+			// TODO: After 1.5s,
+			COOLDOWN_START(src, lightning_shrike_cooldown, 25 SECONDS)
+		if("ice_storm")
+			var/list/bullets = list()
+			for(var/i = 1 to 25)
+				var/obj/projectile/proj = new(get_turf(xeno_owner))
+				proj.generate_bullet(/datum/ammo/xeno/homing_ice_spike)
+				bullets += proj
+			bullet_burst(xeno_owner, bullets, xeno_owner, "sound/weapons/burst_phaser2.ogg", 10, 0.2, FALSE, -1)
+			COOLDOWN_START(src, ice_storm_cooldown, 30 SECONDS)
+
+	reset_cooldown()
+	succeed_activate()
+
+/// Stops the channel if owner has taken 300 or more damage since beginning the channeling. Damage is calculated after soft armor and plasma reduction.
+/datum/action/ability/activable/xeno/psychic_channel/proc/taken_damage(datum/source, amount, list/amount_mod)
+	SIGNAL_HANDLER
+	if(amount <= 0)
+		return
+	damage_taken_so_far += amount
+	if(damage_taken_so_far >= 300)
+		INVOKE_ASYNC(src, PROC_REF(cancel_channel))
+
+/// Cancels the channel and stops any spells that is currently being casted.
+/datum/action/ability/activable/xeno/psychic_channel/proc/cancel_channel()
+	xeno_owner.update_glow()
+	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_PSYCHIC_CHANNEL)
+	select_spell(force_update = TRUE)
+	UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+
+/datum/action/ability/activable/xeno/unleash
+	name = "Unleash"
 	action_icon_state = "shattering_roar"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = ""
-	cooldown_duration = 30 SECONDS
-
-
-/datum/action/ability/activable/xeno/lightning_strike
-	name = "Lightning Strike"
-	action_icon_state = "shattering_roar"
-	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = ""
-	cooldown_duration = 25 SECONDS
-
-
-/datum/action/ability/activable/xeno/fire_storm
-	name = "Fire Storm"
-	action_icon_state = "shattering_roar"
-	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = ""
-	cooldown_duration = 30 SECONDS
-
-/datum/action/ability/activable/xeno/ice_spike
-	name = "Ice Spike"
-	action_icon_state = "shattering_roar"
-	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = ""
-	cooldown_duration = 30 SECONDS
+	cooldown_duration = 240 SECONDS
 
 /obj/effect/xeno/dragon_warning
 	icon = 'icons/effects/effects.dmi'
