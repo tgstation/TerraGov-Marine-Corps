@@ -656,7 +656,7 @@
 	<BR>
 	<b>TIPS</b><BR>
 	<BR>
-	Your gloves are defibrillators (unless you're a robot, in which case you have no gloves). By clicking on any dead target with their exosuit removed (drag their sprite onto your sprite to remove it) \
+	Your gloves are defibrillators (unless you're a robot, in which case you can't wear gloves). By clicking on any dead target with their exosuit removed (drag their sprite onto your sprite to remove it) \
 	you will attempt to bring them back to life, healing them somewhat and then resuscitating them if they're healed enough. \
 	Drag your gloves to your backpack to recharge them. This even works on robots! \
 	Make sure your intent is help while doing this or you might just punch them right after they revive, taking them out again.<BR>
@@ -707,7 +707,7 @@
 	<BR>
 	<b>TIPS</b><BR>
 	<BR>
-	Your gloves are medical analyzers (unless you're a robot, in which case you have no gloves), which you can use on a patient by left clicking them. \
+	Your gloves are medical analyzers (unless you're a robot, in which case you can't wear gloves), which you can use on a patient by left clicking them. \
 	Before you do ANYTHING to a patient, use your medical analyzer on them. \
 	Not analyzing is the number one cause of overdoses. \
 	Right-click with the analyzer instead shows them their own health scan, useful for getting their attention or informing them that they're fully healed.<BR>
