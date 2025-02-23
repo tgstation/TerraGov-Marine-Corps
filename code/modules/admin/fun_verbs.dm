@@ -500,25 +500,17 @@ ADMIN_VERB(drop_dynex_bomb, R_FUN, "Drop DynEx Bomb", "Cause an explosion of var
 		log_admin("[key_name(user)] created a admin explosion of power [ex_power] at [epicenter.loc].")
 
 ADMIN_VERB(change_security_level, R_FUN, "Set Security Level", "Set the security level of the ship", ADMIN_CATEGORY_FUN)
-	var/sec_level = tgui_input_list(user, "It's currently code [GLOB.marine_main_ship.get_security_level()]. Choose the new security level.", "Set Security Level", list("green", "blue", "red", "delta") - GLOB.marine_main_ship.get_security_level())
+	var/sec_level = tgui_input_list(user, "Security level is currently [SSsecurity_level.get_current_level_as_text()]. Choose the new security level.", "Set Security Level", SSsecurity_level.available_levels - SSsecurity_level.get_current_level_as_text())
 	if(!sec_level)
 		return
 
-	if(tgui_alert(usr, "Switch from code [SSsecurity_level.get_current_level_as_text()] to code [sec_level]?", "Set Security Level", list("Yes", "No")) != "Yes")
-=======
-ADMIN_VERB(change_security_level, R_FUN, "Set Security Level", "Set the security level of the ship", ADMIN_CATEGORY_FUN)
-	var/sec_level = tgui_input_list(user, "It's currently code [GLOB.marine_main_ship.get_security_level()]. Choose the new security level.", "Set Security Level", list("green", "blue", "red", "delta") - GLOB.marine_main_ship.get_security_level())
-	if(!sec_level)
-		return
-
-	if(tgui_alert(user, "Switch from code [GLOB.marine_main_ship.get_security_level()] to code [sec_level]?", "Set Security Level", list("Yes", "No")) != "Yes")
->>>>>>> a3d61be39d023d209e0b99777aa02213c0723b2a
+	if(tgui_alert(user, "Switch from [SSsecurity_level.get_current_level_as_text()] to [sec_level]?", "Set Security Level", list("Yes", "No")) != "Yes")
 		return
 
 	SSsecurity_level.set_level(sec_level, TRUE)
 
-	log_admin("[key_name(user)] changed the security level to code [sec_level].")
-	message_admins("[ADMIN_TPMONTY(user.mob)] changed the security level to code [sec_level].")
+	log_admin("[key_name(user)] changed the security level to [sec_level].")
+	message_admins("[ADMIN_TPMONTY(user.mob)] changed the security level to [sec_level].")
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(rank_and_equipment, R_FUN, "Rank and Equipment", mob/living/carbon/human/H in GLOB.human_mob_list)
 	var/dat = "<br>"
