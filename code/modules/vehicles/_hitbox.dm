@@ -184,7 +184,6 @@
 	if((root.dir == direction) || (root.dir == REVERSE_DIR(direction)))
 		is_strafing = FALSE
 	else if(!is_strafing) //we turn
-		armor?.play_engine_sound()
 		root.setDir(direction)
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	///
@@ -268,7 +267,6 @@
 	if((root.dir == direction) || (root.dir == REVERSE_DIR(direction)))
 		is_strafing = FALSE
 	else if(!is_strafing) //we turn
-		armor?.play_engine_sound()
 		root.setDir(direction)
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	///////////////////////////
@@ -379,8 +377,7 @@
 				break
 	if((root.dir == direction) || (root.dir == REVERSE_DIR(direction)))
 		is_strafing = FALSE
-	else if(isarmoredvehicle(root) && !is_strafing) //we turn
-		armor.play_engine_sound()
+
 
 	/////////////////////////////
 	var/turf/centerturf = get_turf(root)
