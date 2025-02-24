@@ -1,0 +1,4 @@
+author: "Neocloudy"
+delete-after: True
+changes:
+  - refactor: "Refactored security levels and removed GLOB.marine_main_ship. Please report any weird behavior with security levels, or the systems affected by this removal (OB, railgun, maint all access, keycard authentication)."
