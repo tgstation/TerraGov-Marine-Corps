@@ -773,6 +773,9 @@
 	var/selected_spell = "psychic_channel"
 	/// Damage taken so far while actively channeling.
 	var/damage_taken_so_far = 0
+	/// The timer id for any timed spell proc.
+	var/spell_timer
+
 	COOLDOWN_DECLARE(miasma_cooldown)
 	COOLDOWN_DECLARE(lightning_shrike_cooldown)
 	COOLDOWN_DECLARE(ice_storm_cooldown)
@@ -782,6 +785,10 @@
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
 		return FALSE
+	if(spell_timer)
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "busy casting")
+		return FALSE
 	return ..()
 
 /datum/action/ability/activable/xeno/psychic_channel/update_button_icon()
@@ -790,7 +797,7 @@
 
 /// Opens a radical wheel to select a spell.
 /datum/action/ability/activable/xeno/psychic_channel/alternate_action_activate()
-	INVOKE_ASYNC(src, PROC_REF(select_spell), null, TRUE)
+	INVOKE_ASYNC(src, PROC_REF(select_spell), null, FALSE, TRUE)
 
 /// Ends the ability early.
 /datum/action/ability/activable/xeno/psychic_channel/on_deselection()
@@ -875,13 +882,18 @@
 
 	switch(selected_spell)
 		if("miasma")
-			// TODO: Shoot a projectile.
+			var/obj/projectile/proj = new(get_turf(xeno_owner))
+			proj.generate_bullet(/datum/ammo/xeno/miasma_orb)
+			proj.def_zone = xeno_owner.get_limbzone_target()
+			proj.fire_at(A, xeno_owner, xeno_owner, range = 10, speed = 1)
 			COOLDOWN_START(src, miasma_cooldown, 20 SECONDS)
 		if("lightning_strike")
-			// TODO: Get all marines within 9x9. If they cannot see (line of sight), exclude them.
-			// TODO: If there is more than 15, remove a marine from a list until it's 15 or under.
-			// TODO: Telegraph. Beh's stomp telegraph, except it's 1 tiles shorter.
-			// TODO: After 1.5s,
+			var/list/mob/living/carbon/human/acceptable_humans = get_lightning_shrike_marines()
+			var/list/turf/affected_turfs = get_lightning_shrike_hit_turfs(acceptable_humans)
+			var/list/obj/effect/xeno/dragon_warning/telegraphed_atoms = list()
+			for(var/turf/affected_turf AS in affected_turfs)
+				telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
+			spell_timer = addtimer(CALLBACK(src, PROC_REF(finalize_lightning_shrike), telegraphed_atoms, get_lightning_shrike_center_turfs(acceptable_humans)), 1.5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 			COOLDOWN_START(src, lightning_shrike_cooldown, 25 SECONDS)
 		if("ice_storm")
 			var/list/bullets = list()
@@ -910,6 +922,55 @@
 	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_PSYCHIC_CHANNEL)
 	select_spell(force_update = TRUE)
 	UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+	deltimer(spell_timer)
+	spell_timer = null
+
+/// Returns up to 15 humans that are in line of sight, nearby, and not dead.
+/datum/action/ability/activable/xeno/psychic_channel/proc/get_lightning_shrike_marines()
+	var/list/mob/living/carbon/human/acceptable_humans = list()
+	for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(xeno_owner, 9))
+		if(acceptable_humans.len >= 15)
+			break
+		if(nearby_human.stat == DEAD)
+			continue
+		if(!line_of_sight(xeno_owner, nearby_human, 9))
+			continue
+		acceptable_humans += nearby_human
+	return acceptable_humans
+
+/// Returns all the turfs in which a lightning shrike will be centered at given a list of humans.
+/datum/action/ability/activable/xeno/psychic_channel/proc/get_lightning_shrike_center_turfs(list/mob/living/carbon/human/targetted_humans)
+	var/list/turf/center_turfs = list()
+	for(var/mob/living/carbon/human/nearby_human AS in targetted_humans)
+		center_turfs += get_turf(nearby_human)
+	return center_turfs
+
+/// Returns all the turfs in which a lightning shrike will affect.
+/datum/action/ability/activable/xeno/psychic_channel/proc/get_lightning_shrike_hit_turfs(list/mob/living/carbon/human/targetted_humans)
+	var/list/turf/hit_turfs = list()
+	var/list/turf/center_turfs = get_lightning_shrike_center_turfs(targetted_humans)
+	for(var/turf/center_turf AS in center_turfs)
+		var/list/turf/filled_turfs = filled_turfs(center_turf, 1, include_edge = FALSE, pass_flags_checked = PASS_GLASS|PASS_PROJECTILE)
+		for(var/turf/filled_turf AS in filled_turfs)
+			if(locate(/obj/effect/xeno/dragon_warning) in filled_turf.contents)
+				continue
+			hit_turfs += new /obj/effect/xeno/dragon_warning(filled_turf)
+	return hit_turfs
+
+/datum/action/ability/activable/xeno/psychic_channel/proc/finalize_lightning_shrike(list/obj/effect/xeno/dragon_warning/telegraph_warnings, list/turf/center_turfs)
+	deltimer(spell_timer)
+	spell_timer = null
+	for(var/turf/center_turf AS in center_turfs)
+		new /obj/effect/temp_visual/xeno_fireball_explosion(center_turf)
+	for(var/obj/effect/xeno/dragon_warning/telegraph_warning AS in telegraph_warnings)
+		for(var/victim in get_turf(telegraph_warning))
+			if(!iscarbon(victim))
+				continue
+			var/mob/living/carbon/carbon_victim = victim
+			if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
+				continue
+			carbon_victim.take_overall_damage(200 * xeno_owner.xeno_melee_damage_modifier, BURN, FIRE, max_limbs = 1, updating_health = TRUE)
+		qdel(telegraph_warning)
 
 /datum/action/ability/activable/xeno/unleash
 	name = "Unleash"
@@ -917,7 +978,46 @@
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = ""
 	cooldown_duration = 240 SECONDS
+	/// The timer id for the proc regarding the beginning or ending of withdrawal.
+	var/timer_id = FALSE
+
+/datum/action/ability/activable/xeno/unleash/can_use_ability(atom/A, silent, override_flags)
+	if(xeno_owner.status_flags & INCORPOREAL)
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
+		return FALSE
+	if(timer_id)
+		if(!silent)
+			if(xeno_owner.has_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH))
+				xeno_owner.balloon_alert(xeno_owner, "already active")
+			else
+				xeno_owner.balloon_alert(xeno_owner, "undergoing withdrawal")
+		return FALSE
+	return ..()
+
+
+/datum/action/ability/activable/xeno/unleash/use_ability(atom/target)
+	xeno_owner.xeno_melee_damage_modifier += 1/3 // 10+ melee damage
+	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH, TRUE, 0, NONE, TRUE, -1) // TODO: Check if this is accurate.
+	timer_id = addtimer(CALLBACK(src, PROC_REF(start_withdrawal)), 30 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+
+/// Undoes the ability's effects and causes a considerable slowdown for a short while.
+/datum/action/ability/activable/xeno/unleash/proc/start_withdrawal()
+	xeno_owner.visible_message(span_danger("\The [xeno_owner] looks tired."), span_danger("We feel tired."), null, 5) // TODO: span_danger may not be the correct one to use.
+	xeno_owner.xeno_melee_damage_modifier -= 1/3
+	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH)
+	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH_WITHDRAWAL, TRUE, 0, NONE, TRUE, 0.8) // TODO: Check if this is accurate.
+	deltimer(timer_id) // TODO: Is this needed?
+	timer_id = addtimer(CALLBACK(src, PROC_REF(end_withdrawal)), 5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+	succeed_activate()
+	add_cooldown()
+
+/// Undoes the slowdown caused by the end of the ability.
+/datum/action/ability/activable/xeno/unleash/proc/end_withdrawal()
+	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH_WITHDRAWAL)
+	deltimer(timer_id)
+	timer_id = null
 
 /obj/effect/xeno/dragon_warning
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "shallnotpass"
+	icon_state = "shallnotpass" // TODO: Better effect icon state.

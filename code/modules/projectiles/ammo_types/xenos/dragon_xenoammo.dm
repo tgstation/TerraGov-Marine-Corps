@@ -94,3 +94,35 @@
 			continue
 	return closest_human
 
+
+/datum/ammo/xeno/miasma_orb
+	name = "miasma orb"
+	icon_state = "ion"
+	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SKIPS_ALIENS
+	max_range = 10
+	bullet_color = COLOR_GRAY
+
+/datum/ammo/xeno/miasma_orb/drop_nade(turf/T)
+	var/list/turf/hit_turfs = filled_turfs(T, 5, "square", TRUE, PASS_GLASS|PASS_PROJECTILE)
+	for(var/turf/hit_turf AS in hit_turfs)
+		for(var/victim in hit_turf)
+			if(iscarbon(victim))
+				var/mob/living/carbon/carbon_victim = victim
+				if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
+					continue
+				carbon_victim.apply_damage(50, BURN, blocked = BIO)
+				// TODO: Status effect "Plague", make signal that reduce healing of all kind by 50%
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+
+/datum/ammo/xeno/miasma_orb/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	drop_nade(get_turf(target_mob))
+
+/datum/ammo/xeno/miasma_orb/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
+
+/datum/ammo/xeno/miasma_orb/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+
+/datum/ammo/xeno/miasma_orb/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+
