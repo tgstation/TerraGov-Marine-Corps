@@ -415,6 +415,7 @@
 //---- Squad Corpsman loadouts
 /datum/outfit/quick/beginner_robot/corpsman
 	jobtype = "Squad Corpsman"
+	r_hand = /obj/item/medevac_beacon
 
 /datum/outfit/quick/beginner_robot/corpsman/lifesaver
 	name = "Lifesaver"
@@ -432,6 +433,7 @@
 	back = /obj/item/storage/backpack/marine/corpsman
 	belt = /obj/item/storage/belt/lifesaver/beginner
 	suit_store = /obj/item/weapon/gun/shotgun/pump/lever/repeater/beginner
+	l_hand = /obj/item/paper/tutorial/lifesaver
 
 	backpack_contents = list(
 		/obj/item/storage/box/m94 = 2,
@@ -482,6 +484,7 @@
 	back = /obj/item/storage/backpack/marine/corpsman
 	belt = /obj/item/storage/belt/hypospraybelt/beginner
 	suit_store = /obj/item/weapon/gun/shotgun/pump/t35/beginner
+	l_hand = /obj/item/paper/tutorial/hypobelt
 
 	backpack_contents = list(
 		/obj/item/storage/box/m94 = 1,
