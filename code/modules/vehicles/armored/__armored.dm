@@ -27,9 +27,9 @@
 	/// sound that plays inside when we drive around
 	var/datum/looping_sound/drive_inside_loop = /datum/looping_sound/tank_drive_interior
 	/// sound to play outside the tank after the driver leaves
-	var/engine_off_sound = 'sound/vehicles/looping/tank_eng_interior_start.ogg'
+	var/engine_off_sound = 'sound/vehicles/looping/tank_eng_interior_stop.ogg'
 	/// sound to play inside the tank after the driver leaves
-	var/engine_off_interior_sound = 'sound/vehicles/looping/tank_eng_start.ogg'
+	var/engine_off_interior_sound = 'sound/vehicles/looping/tank_eng_stop.ogg'
 
 	///Cool and good turret overlay that allows independently swiveling guns
 	var/atom/movable/vis_obj/turret_overlay/turret_overlay = /atom/movable/vis_obj/turret_overlay
@@ -420,8 +420,8 @@
 		drive_loop?.stop()
 		idle_inside_loop?.stop(occupants)
 		drive_inside_loop?.stop(occupants)
-		play_interior_sound(null, engine_off_interior_sound, 10, TRUE)
-		playsound(src, engine_off_sound, 30)
+		play_interior_sound(null, engine_off_sound, 10, TRUE)
+		playsound(src, engine_off_interior_sound, 30)
 
 /obj/vehicle/sealed/armored/remove_occupant(mob/M)
 	M?.hud_used?.remove_ammo_hud(primary_weapon)
