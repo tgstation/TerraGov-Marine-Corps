@@ -127,9 +127,9 @@
 	flame_radius(2, T)
 
 /datum/ammo/flamethrower/mech_flamer/drop_flame(turf/T)
-	if(!istype(T))
-		return
-	flame_radius(1, T)
+	name = "spraying flames"
+	icon_state = "spray_flamer"
+	damage = 15
 
 /datum/ammo/flamethrower/blue
 	name = "blue flame"

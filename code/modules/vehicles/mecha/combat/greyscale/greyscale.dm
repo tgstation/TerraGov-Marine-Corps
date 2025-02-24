@@ -21,7 +21,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	mech_type = EXOSUIT_MODULE_GREYSCALE
 	pixel_x = -16
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 25, BULLET = 75, FIRE = 25, BOMB = 50, LASER = 40, ENERGY = 40, ACID = 30, BIO = 100)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 1, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1)
 	move_delay = 3
 	max_equip_by_category = MECH_GREYSCALE_MAX_EQUIP
@@ -271,6 +271,7 @@
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
 	max_integrity = 1020
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 75, FIRE = 100, ACID = 0)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/assault
@@ -287,6 +288,7 @@
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
 	max_integrity = 1390
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 75, FIRE = 100, ACID = 0)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard
@@ -303,6 +305,7 @@
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
 	max_integrity = 1760
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 75, FIRE = 100, ACID = 0)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/item/repairpack
