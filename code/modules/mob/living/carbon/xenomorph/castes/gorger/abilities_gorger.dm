@@ -206,7 +206,7 @@
 		return FALSE
 	if(!CHECK_BITFIELD(target_xeno.xeno_caste.can_flags, CASTE_CAN_BE_QUEEN_HEALED))
 		if(!silent)
-			to_chat(owner, span_warning("TThey reject our healing."))
+			to_chat(owner, span_warning("They reject our healing."))
 		return FALSE
 	if(target_xeno.stat == DEAD)
 		if(!silent)
