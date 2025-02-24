@@ -1,0 +1,14 @@
+author: "yyzsong"
+delete-after: True
+changes:
+  - spellcheck: "You will no longer detach armor attachments \"to\" armour"
+  - spellcheck: "Inventory-related warnings will now display an article"
+  - spellcheck: "Officer's sword spellchecking"
+  - spellcheck: "The quartermaster's stamp & locker will no longer be arbitrarily capitalized"
+  - spellcheck: "Adds \\improper to a lot of things that need it"
+  - spellcheck: "Capitalizes projectile damage text"
+  - spellcheck: "Adds a period to the armor equip interruption text"
+  - spellcheck: "Req capitalization (Those who know)"
+  - spellcheck: "Tactical binoculars -> pair of tactical binoculars"
+  - spellcheck: "Removes the random space from face-mangling text"
+  - spellcheck: "Makes grenade launchers report what grenade launcher type is firing, as well as updating it to the simple present tense"

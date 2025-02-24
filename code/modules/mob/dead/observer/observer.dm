@@ -994,6 +994,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		return
 
 	if(src == target_ghost)
-		client.holder.spatial_agent()
+		SSadmin_verbs.dynamic_invoke_verb(src, /datum/admin_verb/spatial_agent)
 	else
 		target_ghost.change_mob_type(/mob/living/carbon/human, delete_old_mob = TRUE)

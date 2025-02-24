@@ -1140,13 +1140,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (disfigured)
 		return
 	if(type == BRUTE)
-		owner.visible_message(span_warning(" You hear a sickening cracking sound coming from \the [owner]'s face."),	\
+		owner.visible_message(span_warning("You hear a sickening cracking sound coming from \the [owner]'s face."),	\
 		span_danger("Your face becomes an unrecognizible mangled mess!"),	\
-		span_warning(" You hear a sickening crack."))
+		span_warning("You hear a sickening crack."))
 	else
-		owner.visible_message(span_warning(" [owner]'s face melts away, turning into a mangled mess!"),	\
+		owner.visible_message(span_warning("[owner]'s face melts away, turning into a mangled mess!"),	\
 		span_danger("Your face melts off!"),	\
-		span_warning(" You hear a sickening sizzle."))
+		span_warning("You hear a sickening sizzle."))
 	disfigured = 1
 	owner.name = owner.get_visible_name()
 
