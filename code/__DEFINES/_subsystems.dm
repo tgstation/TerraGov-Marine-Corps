@@ -83,6 +83,7 @@
 #define INIT_ORDER_ADMIN_VERBS 21 // needs to be pretty high, admins can't do much without it
 #define INIT_ORDER_VIS 20
 #define INIT_ORDER_SOUNDS 19
+#define INIT_ORDER_SECURITY_LEVEL 18
 #define INIT_ORDER_INSTRUMENTS 17
 #define INIT_ORDER_GREYSCALE 16
 #define INIT_ORDER_CODEX 15
