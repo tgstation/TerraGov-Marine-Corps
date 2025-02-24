@@ -608,7 +608,6 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	desc = "A specialized teleportation beacon that links with a medvac stretcher; provides the target destination for the stretcher's displacement field. WARNING: Must be in a powered area to function."
 	icon = 'icons/obj/items/beacon.dmi'
 	icon_state = "med_0"
-	faction = null
 	var/planted = FALSE
 	var/locked = FALSE
 	var/list/obj/item/roller/medevac/linked_beds = list()

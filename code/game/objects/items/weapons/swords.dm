@@ -50,7 +50,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_SWORDLUNGE,
 	)
-
+	///Range of this ability
 	var/lunge_range = 2
 
 /datum/action/ability/activable/weapon_skill/sword_lunge/ai_should_use(atom/target)

@@ -73,12 +73,11 @@
 		return
 
 	var/datum/limb/affecting = .
-	. = FALSE
 	var/mob/living/carbon/human/patient = M //If we've got to this point, the parent proc already checked they're human
 
 	if(affecting.limb_status & LIMB_DESTROYED)
 		patient.balloon_alert(user, "limb destroyed")
-		return
+		return FALSE
 
 	var/unskilled_penalty = (user.skills.getRating(SKILL_MEDICAL) < skill_level_needed) ? 0.5 : 1
 	var/list/patient_limbs = patient.limbs.Copy()
@@ -86,7 +85,7 @@
 	while(affecting && amount)
 		if(!do_after(user, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), NONE, patient, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(can_affect_limb), affecting)))
 			patient.balloon_alert(user, "Stopped tending")
-			return
+			return FALSE
 		var/affected = heal_limb(affecting, unskilled_penalty)
 		if(affected)
 			use(1)
@@ -101,7 +100,7 @@
 			if(!length(patient_limbs))
 				break
 	patient.balloon_alert(user, "Finished tending")
-	return TRUE //THIS MAY FUCK OTHER SHIT?
+	return TRUE
 
 /// return TRUE if a given limb can be healed by src, FALSE otherwise
 /obj/item/stack/medical/heal_pack/proc/can_heal_limb(datum/limb/affecting)

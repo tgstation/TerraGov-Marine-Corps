@@ -75,13 +75,6 @@
 /obj/item/explosive/grenade/fire_act(burn_level)
 	activate()
 
-/obj/item/explosive/grenade/stop_throw(flying = FALSE, original_layer)
-	. = ..()
-	if(!active)
-		return
-	if(!isturf(loc))
-		return
-
 ///Activates the grenade
 /obj/item/explosive/grenade/proc/activate(mob/user)
 	if(active)

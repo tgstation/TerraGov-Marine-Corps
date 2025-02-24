@@ -6,11 +6,11 @@
 
 ///Decides if we should throw a grenade
 /datum/ai_behavior/human/proc/grenade_process()
+	if(!length(mob_inventory.grenade_list))
+		return
 	if(!combat_target)
 		return
 	if(!prob(nade_throw_prop))
-		return
-	if(!length(mob_inventory.grenade_list))
 		return
 	if(get_dist(mob_parent, combat_target) < 4) //lets not nade ourselves
 		return
