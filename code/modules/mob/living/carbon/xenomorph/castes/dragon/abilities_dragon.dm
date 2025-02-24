@@ -14,16 +14,18 @@
 
 /datum/action/ability/activable/xeno/backhand/use_ability(atom/target)
 	var/damage = 60 * xeno_owner.xeno_melee_damage_modifier
+	var/turf/current_turf = get_turf(xeno_owner)
 	var/datum/action/ability/activable/xeno/grab/grab_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/grab]
 	var/mob/living/carbon/human/grabbed_human = grab_ability?.grabbed_human
-	var/turf/current_turf = get_turf(xeno_owner)
+	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
+	var/cooldown_plasma_bonus = unleash_ability?.is_active() ? 2 : 1
 	if(grabbed_human)
 		xeno_owner.face_atom(grabbed_human)
 		xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 		xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 		ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
 		xeno_owner.visible_message(span_danger("[xeno_owner] lifts [grabbed_human] into the air and gets ready to slam!"))
-		if(do_after(xeno_owner, 3 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
+		if(do_after(xeno_owner, 3 SECONDS / cooldown_plasma_bonus, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
 			xeno_owner.stop_pulling()
 			xeno_owner.visible_message(span_danger("[xeno_owner] slams [grabbed_human] into the ground!"))
 			grabbed_human.emote("scream")
@@ -40,7 +42,7 @@
 					if(living_jump_component)
 						TIMER_COOLDOWN_START(living_in_range, JUMP_COMPONENT_COOLDOWN, 0.5 SECONDS)
 			grabbed_human.take_overall_damage(damage * 2.5, BRUTE, MELEE, max_limbs = 5, updating_health = TRUE) // 150
-			xeno_owner.gain_plasma(250)
+			xeno_owner.gain_plasma(250 * cooldown_plasma_bonus)
 		xeno_owner.move_resist = initial(xeno_owner.move_resist)
 		xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 		succeed_activate()
@@ -55,7 +57,7 @@
 
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
+	var/was_successful = do_after(xeno_owner, 1.2 SECONDS / cooldown_plasma_bonus, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	QDEL_LIST(telegraphed_atoms)
@@ -105,7 +107,7 @@
 
 	playsound(current_turf, has_hit_anything ? get_sfx(SFX_ALIEN_BITE) : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 	if(has_hit_anything)
-		xeno_owner.gain_plasma(100)
+		xeno_owner.gain_plasma(100 * cooldown_plasma_bonus)
 	succeed_activate()
 	add_cooldown()
 
@@ -186,18 +188,15 @@
 	if(xeno_owner.status_flags & INCORPOREAL)
 		xeno_owner.change_form()
 		return
+	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
 	xeno_owner.setDir(SOUTH)
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	var/was_successful = do_after(xeno_owner, 5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
+	var/was_successful = do_after(xeno_owner, unleash_ability?.is_active() ? 2.5 SECONDS : 5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-
 	if(!was_successful)
-		succeed_activate()
-		add_cooldown()
 		return
-
 	xeno_owner.change_form()
 
 /datum/action/ability/activable/xeno/tailswipe
@@ -222,10 +221,12 @@
 	for(var/turf/affected_turf AS in affected_turfs)
 		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
 
+	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
+	var/cooldown_plasma_bonus = unleash_ability?.is_active() ? 2 : 1
 	xeno_owner.setDir(turn(xeno_owner.dir, 180))
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
+	var/was_successful = do_after(xeno_owner, 1.2 SECONDS / cooldown_plasma_bonus, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	QDEL_LIST(telegraphed_atoms)
@@ -291,7 +292,7 @@
 
 	playsound(xeno_owner, has_hit_anything ? 'sound/weapons/alien_claw_block.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 	if(has_hit_anything)
-		xeno_owner.gain_plasma(75)
+		xeno_owner.gain_plasma(75 * cooldown_plasma_bonus)
 
 	succeed_activate()
 	add_cooldown()
@@ -356,12 +357,14 @@
 
 	var/datum/action/ability/activable/xeno/grab/grab_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/grab]
 	var/mob/living/carbon/human/grabbed_human = grab_ability?.grabbed_human
+	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
+	var/cooldown_plasma_bonus = unleash_ability?.is_active() ? 2 : 1
 	if(grabbed_human)
 		xeno_owner.face_atom(grabbed_human)
 		xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 		xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 		xeno_owner.visible_message(span_danger("[xeno_owner] inhales and turns their sights to [grabbed_human]..."))
-		if(do_after(xeno_owner, 3 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
+		if(do_after(xeno_owner, 3 SECONDS / cooldown_plasma_bonus, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
 			xeno_owner.stop_pulling()
 			xeno_owner.visible_message(span_danger("[xeno_owner] exhales a massive fireball right ontop of [grabbed_human]!"))
 			grabbed_human.emote("scream")
@@ -375,7 +378,7 @@
 				grabbed_human.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 10)
 			grabbed_human.take_overall_damage(200 * xeno_owner.xeno_melee_damage_modifier, BURN, FIRE, max_limbs = length(grabbed_human.get_damageable_limbs()), updating_health = TRUE)
 			grabbed_human.knockback(xeno_owner, 5, 1)
-			xeno_owner.gain_plasma(250)
+			xeno_owner.gain_plasma(250 * cooldown_plasma_bonus)
 		xeno_owner.move_resist = initial(xeno_owner.move_resist)
 		xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 		succeed_activate()
@@ -385,7 +388,7 @@
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	playsound(xeno_owner, 'sound/effects/alien/behemoth/primal_wrath_roar.ogg', 75, TRUE)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
+	var/was_successful = do_after(xeno_owner, 1.2 SECONDS / cooldown_plasma_bonus, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	if(!was_successful)
@@ -522,9 +525,11 @@
 	for(var/turf/affected_turf AS in affected_turfs)
 		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
 
+	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
+	var/cooldown_plasma_bonus = unleash_ability?.is_active() ? 2 : 1
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
+	var/was_successful = do_after(xeno_owner, 1.2 SECONDS / cooldown_plasma_bonus, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	QDEL_LIST(telegraphed_atoms)
@@ -583,7 +588,7 @@
 
 	playsound(xeno_owner, 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 	if(has_hit_anything)
-		xeno_owner.gain_plasma(200)
+		xeno_owner.gain_plasma(200 * cooldown_plasma_bonus)
 	succeed_activate()
 	add_cooldown()
 
@@ -648,9 +653,10 @@
 	for(var/turf/affected_turf AS in affected_turfs)
 		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
 
+	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
+	var/was_successful = do_after(unleash_ability?.is_active() ? 0.6 SECONDS : 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	QDEL_LIST(telegraphed_atoms)
@@ -731,10 +737,11 @@
 	grabbed_human = thrown_human
 	damage_taken_so_far = 0
 
+	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
 	RegisterSignal(grabbing_item, COMSIG_QDELETING, PROC_REF(end_grabbing))
 	RegisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED, PROC_REF(human_stat_changed))
 	RegisterSignals(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taken_damage))
-	xeno_owner.gain_plasma(250)
+	xeno_owner.gain_plasma(unleash_ability?.is_active() ? 500 : 250)
 	playsound(xeno_owner, 'sound/voice/alien/pounce.ogg', 25, TRUE)
 
 /// Cleans up everything associated with the grabbing and ends the ability.
@@ -872,7 +879,9 @@
 /datum/action/ability/activable/xeno/psychic_channel/use_ability(atom/A)
 	if(!is_actively_channeling())
 		xeno_owner.update_glow(3, 3, "#6a59b3")
-		if(!do_after(owner, 2 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
+
+		var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
+		if(!do_after(owner, unleash_ability?.is_active() ? 1 SECONDS : 2 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
 			xeno_owner.update_glow()
 			return fail_activate()
 		xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_PSYCHIC_CHANNEL, TRUE, 0, NONE, TRUE, 0.9)
@@ -986,15 +995,15 @@
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
 		return FALSE
+	if(is_active())
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "already active")
+		return FALSE
 	if(timer_id)
 		if(!silent)
-			if(xeno_owner.has_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH))
-				xeno_owner.balloon_alert(xeno_owner, "already active")
-			else
-				xeno_owner.balloon_alert(xeno_owner, "undergoing withdrawal")
+			xeno_owner.balloon_alert(xeno_owner, "undergoing withdrawal")
 		return FALSE
 	return ..()
-
 
 /datum/action/ability/activable/xeno/unleash/use_ability(atom/target)
 	xeno_owner.xeno_melee_damage_modifier += 1/3 // 10+ melee damage
@@ -1017,6 +1026,10 @@
 	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH_WITHDRAWAL)
 	deltimer(timer_id)
 	timer_id = null
+
+/// Is this ability currently active?
+/datum/action/ability/activable/xeno/unleash/proc/is_active()
+	return timer_id ? xeno_owner.has_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH) : FALSE
 
 /obj/effect/xeno/dragon_warning
 	icon = 'icons/effects/effects.dmi'

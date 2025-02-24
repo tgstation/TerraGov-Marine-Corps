@@ -74,6 +74,8 @@
 		addtimer(CALLBACK(src, PROC_REF(finish_flying)), 0.5 SECONDS)
 		return
 
+	var/datum/action/ability/activable/xeno/unleash/unleash_ability = actions_by_path[/datum/action/ability/activable/xeno/unleash]
+	unleash_ability?.start_withdrawal()
 	TIMER_COOLDOWN_START(src, COOLDOWN_DRAGON_CHANGE_FORM, 3 SECONDS)
 	animate(src, pixel_x = generator("num", -100, 100, NORMAL_RAND), pixel_y = 500, time = 0)
 	var/list/obj/effect/xeno/dragon_warning/telegraphed_atoms = list()
