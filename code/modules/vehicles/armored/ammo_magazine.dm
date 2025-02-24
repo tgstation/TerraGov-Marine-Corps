@@ -41,7 +41,7 @@
 	icon_state = "ltaap"
 	w_class = WEIGHT_CLASS_GIGANTIC
 	default_ammo = /datum/ammo/bullet/minigun/ltaap
-	max_rounds = 150
+	max_rounds = 999
 	loading_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 
 /obj/item/ammo_magazine/tank/ltaap_chaingun/hv
