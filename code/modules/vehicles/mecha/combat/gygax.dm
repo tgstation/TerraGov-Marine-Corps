@@ -49,11 +49,10 @@
 	//tgmc add
 	if(chassis.leg_overload_mode)
 		sound_loop.start(chassis)
-		chassis.mecha_flags |= QUIET_STEPS
+		ADD_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	else
 		sound_loop.stop(chassis)
-		if(!(initial(chassis.mecha_flags) & QUIET_STEPS))
-			chassis.mecha_flags &= ~QUIET_STEPS
+			REMOVE_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	//tgmc end
 	if(chassis.leg_overload_mode)
 		chassis.speed_mod = min(chassis.move_delay-1, round(chassis.move_delay * 0.5))
