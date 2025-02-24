@@ -30,6 +30,12 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_TOGGLE_ACTUATORS,
 	)
+	///sound to loop when the dash is activated
+	var/datum/looping_sound/mech_overload/sound_loop
+
+/datum/action/vehicle/sealed/mecha/mech_overload_mode/New(Target)
+	. = ..()
+	sound_loop = new
 
 /datum/action/vehicle/sealed/mecha/mech_overload_mode/action_activate(trigger_flags, forced_state = null)
 	if(!owner || !chassis || !(owner in chassis.occupants))
@@ -41,16 +47,13 @@
 	action_icon_state = "mech_overload_[chassis.leg_overload_mode ? "on" : "off"]"
 	chassis.log_message("Toggled leg actuators overload.", LOG_MECHA)
 	//tgmc add
-	var/obj/item/mecha_parts/mecha_equipment/ability/dash/ability = locate() in chassis.equip_by_category[MECHA_UTILITY]
-	if(ability)
-		chassis.cut_overlay(ability.overlay)
-		var/state = chassis.leg_overload_mode ? (initial(ability.icon_state) + "_active") : initial(ability.icon_state)
-		ability.overlay = image('icons/mecha/mecha_ability_overlays.dmi', icon_state = state, layer=chassis.layer+0.001)
-		chassis.add_overlay(ability.overlay)
-		if(chassis.leg_overload_mode)
-			ability.sound_loop.start(chassis)
-		else
-			ability.sound_loop.stop(chassis)
+	if(chassis.leg_overload_mode)
+		sound_loop.start(chassis)
+		chassis.mecha_flags |= QUIET_STEPS
+	else
+		sound_loop.stop(chassis)
+		if(!(initial(chassis.mecha_flags) & QUIET_STEPS))
+			chassis.mecha_flags &= ~QUIET_STEPS
 	//tgmc end
 	if(chassis.leg_overload_mode)
 		chassis.speed_mod = min(chassis.move_delay-1, round(chassis.move_delay * 0.5))

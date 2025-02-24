@@ -315,3 +315,63 @@
   - bugfix: fixed spears and other ranged melee items not being able to attack over
       some objects as intended
   - balance: Removed healing from non medical reagents
+2025-02-22:
+  Apple-107:
+  - rscadd: Marines can now hydrate themselves (Hydrocannon fits on most rifles that
+      could take an underbarrel)
+  Isy232:
+  - qol: Starting alien weed nodes have a much higher chance to be sticky weed nodes
+      rather than regular weed nodes.
+  Kuro020:
+  - balance: SG-62 buff's have been reverted
+  Lumipharon:
+  - bugfix: fixed detpacks not deleting after exploding
+  - bugfix: fixed some issues with items not being stored or withdrawn from storage
+      datums correctly
+  Rug-Dealer:
+  - spellcheck: thells -> shells
+  TiviPlus:
+  - balance: Mech now has destroyable limbs, to restore functionality fully repair
+      them. Both xenos and marines can see their HP by examining the mech
+  antropod:
+  - qol: Quick equip (pressing E) will try to put an item to the slot it was drawn
+      from.
+  novaepee:
+  - imageadd: ANOTHER Zaha lobby art
+  yyzsong:
+  - bugfix: Ghosts no longer fumble when opening the chemmaster's UI
+  - qol: The supply console now displays notes attached to certain supply packs
+2025-02-23:
+  Lumipharon:
+  - code_imp: Faction is defined at the AM level
+  - code_imp: Adds get_traversal_line, like get_line but filled in cardinal steps
+      when going diagonal
+  TiviPlus:
+  - bugfix: fixed some security/permissions issues with admin verbs
+  - bugfix: fixed trying to view too many runtimes crashing the server (this has yet
+      to happen)
+  - refactor: refactored admin verbs to simplify them and make them more secure
+  - admin: Reorganized the admin verb tabs. The following is the intended structure
+  - admin: Admin.main tab = relates to moderating/mentoring
+  - admin: admin.fun = event type verbs and fun stuff like music
+  - admin: debug = primarily intended for debugging and fixing things
+  - admin: server = server operations related stuff, config etc
+  - admin: some verbs were moved to the right click menu only
+  - admin: admins can now show/hide their verbs
+  - admin: fixed some admin procs not logging that they were used
+  - admin: added a sendmaps profiling verb for admins
+  - admin: Some verbs, like the imaginary friend verb, now can both be used to rclick
+      or through the verbs menu
+  - admin: the secrets tab verb was renamed to the utility tab verb
+  - admin: the display tags verb was moved to r_debug from r_admin
+  - admin: made some backend changes to how verbs are issued. it is now based on the
+      actual permissions checked, so everyone with access to a permission will have
+      all verbs marked with that permission by default. this may have added some previously
+      broken verbs and may have moved others' to be assigned to that permission
+2025-02-24:
+  Neocloudy:
+  - admin: Mentors can now hear and speak in OOC channels from anywhere, regardless
+      of faction and observer status (unless OOC is globally disabled).
+  - admin: When a staff member hears OOC channels, the speaker's name is highlighted
+      with PM/PP/JMP/FLW instead of a more info link.
+  - admin: '"Hear LOOC from anywhere" preference replaced with "Hear OOC from anywhere".'

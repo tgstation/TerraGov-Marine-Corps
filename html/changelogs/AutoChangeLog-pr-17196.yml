@@ -1,0 +1,4 @@
+author: "Mantlecrawler"
+delete-after: True
+changes:
+  - bugfix: "Valhalla drains no longer add larva points to the actual hive"

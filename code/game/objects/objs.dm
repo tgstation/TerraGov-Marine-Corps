@@ -95,8 +95,6 @@
 		return // humans can check the codex for most of these- xenos should be able to know them "in the moment"
 	if(resistance_flags & CRUSHER_IMMUNE)
 		.[span_xenonotice("crusher-proof")] = "Charging Crushers can't damage this object."
-	if(resistance_flags & BANISH_IMMUNE)
-		.[span_xenonotice("banish immune")] = "Wraiths can't banish this object."
 	if(resistance_flags & PORTAL_IMMUNE)
 		.[span_xenonotice("portal immune")] = "Wraith portals can't teleport this object."
 	if(resistance_flags & XENO_DAMAGEABLE)
@@ -272,9 +270,9 @@
 
 	if(href_list[VV_HK_OSAY])
 		if(check_rights(R_FUN, FALSE))
-			usr.client.object_say(src)
+			SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/display_tags, src)
 
-	if(href_list[VV_HK_MASS_DEL_TYPE])
+	if(href_list[VV_HK_MASS_DEL_TYPE]) // todo why isnt this just invoking the delete all verb? or why have that one exist?
 		if(!check_rights(R_DEBUG|R_SERVER))
 			return
 		var/action_type = tgui_alert(usr, "Strict type ([type]) or type and all subtypes?",,list("Strict type","Type and subtypes","Cancel"))
