@@ -49,6 +49,8 @@
 	var/last_move_dir
 	/// The timing for activating a dash by double tapping a movement key.
 	var/double_tap_timing = 0.18 SECONDS
+	/// total wight our limbs and equipment contribute. max determined by MECH_GREY_LEGS limb
+	var/weight = 0
 
 /obj/vehicle/sealed/mecha/combat/greyscale/Initialize(mapload)
 	holder_left = new(src, /particles/mecha_smoke)
@@ -91,6 +93,7 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/generate_actions()
 	. = ..()
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_overload_mode)
+	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/repairpack)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
 	if((mecha_flags & MECHA_SKILL_LOCKED) && entering_mob.skills.getRating(SKILL_MECH) < SKILL_MECH_TRAINED)
@@ -301,3 +304,9 @@
 	pivot_step = FALSE
 	max_integrity = 1760
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
+
+/obj/item/repairpack
+	name = "mech repairpack"
+	desc = "A mecha repair pack, consisting of various auto-extinguisher systems, materials and repair nano-scarabs."
+	icon = 'icons/obj/items/assemblies.dmi'
+	icon_state = "posibrain-occupied" // todo kuro needs to make/find an icon for this

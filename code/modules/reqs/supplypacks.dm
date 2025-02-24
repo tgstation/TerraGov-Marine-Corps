@@ -2176,6 +2176,11 @@ VEHICLES
 	contains = list(/obj/item/ammo_magazine/tank/microrocket_rack)
 	cost = 10
 
+/datum/supply_packs/vehicles/repairpack
+	name = "Mech repairpack"
+	contains = list(/obj/item/repairpack)
+	cost = 10
+
 /*******************************************************************************
 FACTORY
 *******************************************************************************/

@@ -57,6 +57,14 @@
 	description = "Reload any equipped weapons"
 	keybind_signal = COMSIG_MECHABILITY_RELOAD
 	hotkey_keys = list("R")
+
+/datum/keybinding/mecha/mech_repairpack
+	name = "mech_repairpack"
+	full_name = "Mech Use Repairpack"
+	description = "Use a repair pack to repair the mech."
+	keybind_signal = COMSIG_MECHABILITY_REPAIRPACK
+	hotkey_keys = list("C")
+
 /datum/keybinding/mecha/mech_toggle_actuators
 	name = "mech_toggle_actuators"
 	full_name = "Mecha Toggle Actuators"
