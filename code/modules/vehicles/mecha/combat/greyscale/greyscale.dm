@@ -28,7 +28,7 @@
 	internal_damage_threshold = 15
 	internal_damage_probability = 5
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
-	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED | MECHA_SPIN_WHEN_NO_ANGLE
+	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED | MECHA_SPIN_WHEN_NO_ANGLE | OMNIDIRECTIONAL_ATTACKS
 	explosion_block = 2
 	pivot_step = TRUE
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
