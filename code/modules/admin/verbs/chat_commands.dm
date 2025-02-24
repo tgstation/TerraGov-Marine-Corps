@@ -108,3 +108,23 @@
 		return
 	last_tgs_check = rtod
 	return "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)"
+
+/datum/tgs_chat_command/seasonals
+	name = "seasonals"
+	help_text = "Checks current seasonals active in the round."
+	var/last_tgs_check = 0
+
+/datum/tgs_chat_command/lagcheck/Run(datum/tgs_chat_user/sender, params)
+	var/rtod = REALTIMEOFDAY
+	if(rtod - last_tgs_check < TGS_STATUS_THROTTLE)
+		return
+	last_tgs_check = rtod
+
+	var/list/messages = list()
+	for(var/season_entry in SSpersistence.season_progress)
+		var/season_name = jointext(splittext("[season_entry]", "_"), " ")
+		var/season_name_first_letter = uppertext(copytext(season_name, 1, 2))
+		var/season_name_remainder = copytext(season_name, 2, length(season_name) + 1)
+		season_name = season_name_first_letter + season_name_remainder
+		messages += "[season_name]: [SSpersistence.season_progress[season_entry][CURRENT_SEASON_NAME]]"
+	return messages.Join("\n")
