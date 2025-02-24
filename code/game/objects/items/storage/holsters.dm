@@ -328,8 +328,8 @@
 	new /obj/item/weapon/sword/katana(src)
 
 /obj/item/storage/holster/blade/officer
-	name = "\improper officer sword scabbard"
-	desc = "A large leather scabbard used to carry a sword. Appears to be a reproduction, rather than original. It can be strapped to the waist or armor."
+	name = "\improper officer's sword scabbard"
+	desc = "A large leather scabbard used to carry a sword. Appears to be a reproduction, rather than an original. It can be strapped to the waist or to armor."
 	icon_state = "officer_sheath"
 	equip_slot_flags = ITEM_SLOT_BELT
 	holsterable_allowed = list(/obj/item/weapon/sword/officersword)

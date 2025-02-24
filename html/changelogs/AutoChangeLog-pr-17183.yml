@@ -1,0 +1,6 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - balance: "mech now has a dash built in"
+  - balance: "the mech sprint is now also built in"
+  - bugfix: "fixed mech stomp sounds playing when it sprinted"
