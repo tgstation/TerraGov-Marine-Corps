@@ -1,0 +1,4 @@
+author: "The_Man"
+delete-after: True
+changes:
+  - qol: "Added Toggles and Follow subheaders to spectators."
