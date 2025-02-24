@@ -194,28 +194,21 @@
 	penetration = 40
 	sundering = 2.5
 
-/datum/ammo/bullet/tank_autocannon
+/datum/ammo/rocket/tank_autocannon
 	name = "autocannon high explosive"
+	icon_state = "bullet"
+	hud_state = "alloy_spike"
+	hud_state_empty = "railgun_hvap"
+	ammo_behavior_flags = AMMO_BALLISTIC
 	damage = 15
 	penetration = 20
 	sundering = 1.5
 
-/datum/ammo/bullet/tank_autocannon/high_explosive/drop_nade(turf/T)
-	explosion(T, light_impact_range = 1, weak_impact_range = 3)
+/datum/ammo/rocket/tank_autocannon/drop_nade(turf/T)
+	explosion(T, weak_impact_range = 3, tiny = TRUE)
 
-/datum/ammo/bullet/tank_autocannon/high_explosive/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	var/target_turf = get_turf(target_mob)
-	staggerstun(target_mob, proj, max_range, knockback = 1, hard_size_threshold = 3)
-	drop_nade(target_turf)
 
-/datum/ammo/bullet/tank_autocannon/high_explosive/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
 
-/datum/ammo/bullet/tank_autocannon/high_explosive/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
-
-/datum/ammo/bullet/tank_autocannon/high_explosive/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 // SARDEN
 

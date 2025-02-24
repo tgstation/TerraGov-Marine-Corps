@@ -54,7 +54,7 @@
 
 /obj/item/ammo_magazine/tank/autocannon
 	name = "Bushwhacker Autocannon APDS Box (30mm)"
-	desc = "A 200 round box for an autocannon. Loaded with Armor Piercing rounds."
+	desc = "A 250 round box for an autocannon. Loaded with Armor Piercing rounds."
 	caliber = CALIBER_30X17MM
 	icon_state = "tank_autocannon_ap"
 	max_rounds = 250
@@ -62,9 +62,9 @@
 
 /obj/item/ammo_magazine/tank/autocannon/high_explosive
 	name = "Bushwhacker Autocannon High Explosive Box (30mm)"
-	desc = "A 200 round box for an autocannon. Loaded with High Explosive rounds."
+	desc = "A 250 round box for an autocannon. Loaded with High Explosive rounds."
 	icon_state = "tank_autocannon_he"
-	default_ammo = /datum/ammo/bullet/tank_autocannon/high_explosive
+	default_ammo = /datum/ammo/rocket/tank_autocannon
 
 /obj/item/ammo_magazine/tank/flamer
 	name = "Flamer Magazine"
