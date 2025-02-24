@@ -1,6 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - admin: "Mentors can now hear and speak in OOC channels from anywhere, regardless of faction and observer status (unless OOC is globally disabled)."
-  - admin: "When a staff member hears OOC channels, the speaker's name is highlighted with PM/PP/JMP/FLW instead of a more info link."
-  - admin: "\"Hear LOOC from anywhere\" preference replaced with \"Hear OOC from anywhere\"."

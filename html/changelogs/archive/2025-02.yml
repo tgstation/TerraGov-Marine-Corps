@@ -368,3 +368,10 @@
       actual permissions checked, so everyone with access to a permission will have
       all verbs marked with that permission by default. this may have added some previously
       broken verbs and may have moved others' to be assigned to that permission
+2025-02-24:
+  Neocloudy:
+  - admin: Mentors can now hear and speak in OOC channels from anywhere, regardless
+      of faction and observer status (unless OOC is globally disabled).
+  - admin: When a staff member hears OOC channels, the speaker's name is highlighted
+      with PM/PP/JMP/FLW instead of a more info link.
+  - admin: '"Hear LOOC from anywhere" preference replaced with "Hear OOC from anywhere".'
