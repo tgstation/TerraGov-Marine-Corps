@@ -35416,7 +35416,6 @@
 	dir = 4
 	},
 /obj/structure/closet/walllocker/emerglocker/full,
-/obj/item/weapon/gun/sentry/big_sentry/premade,
 /turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "ckG" = (
@@ -36481,10 +36480,6 @@
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
-"cnH" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade,
-/turf/open/floor/plating,
-/area/prison/pirate)
 "cnI" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 1
@@ -36880,10 +36875,6 @@
 /obj/structure/table/reinforced/flipped{
 	dir = 1
 	},
-/turf/open/floor/plating/platebot,
-/area/prison/pirate)
-"cpb" = (
-/obj/item/weapon/gun/sentry/big_sentry/premade,
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cpc" = (
@@ -71154,7 +71145,7 @@ lZe
 lZe
 lED
 lED
-cnH
+lZe
 lED
 lED
 lZe
@@ -71927,7 +71918,7 @@ lED
 lED
 hKD
 lED
-cpb
+lED
 lZe
 cqC
 cro
