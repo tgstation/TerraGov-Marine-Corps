@@ -17,6 +17,8 @@
 /datum/action/ability/activable/weapon_skill/ai_should_use(atom/target)
 	if(!target)
 		return FALSE
+	if(isainode(target))
+		return FALSE
 	if(target.resistance_flags & INDESTRUCTIBLE)
 		return FALSE
 	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
