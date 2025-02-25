@@ -41,7 +41,7 @@
 	///scatter of this weapon. in degrees and modified by arm this is attached to
 	var/variance = 0
 	/// since mech guns only get one firemode this is for all types of shots
-	var/projectile_delay = 5 SECONDS
+	var/projectile_delay = 3 SECONDS
 	/// time between shots in a burst
 	var/projectile_burst_delay = 2
 	///bullets per burst if firemode is set to burst
@@ -49,7 +49,7 @@
 	///fire mode to use for autofire
 	var/fire_mode = GUN_FIREMODE_SEMIAUTO
 	///how many seconds automatic, and manual, reloading takes
-	var/rearm_time = 4 SECONDS
+	var/rearm_time = 3 SECONDS
 	///ammo hud icon to display when no ammo is loaded
 	var/hud_state_empty = "shell_empty"
 
