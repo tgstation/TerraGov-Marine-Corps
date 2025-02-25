@@ -6,16 +6,20 @@
 	action_icon = 'icons/Xeno/actions/bull.dmi'
 	charge_type = CHARGE_BULL
 	crush_sound = SFX_ALIEN_TAIL_ATTACK
-	speed_per_step = 0.2
-	steps_for_charge = 7
-	max_steps_buildup = 8
+	speed_per_step = 0.15
+	steps_for_charge = 5
+	max_steps_buildup = 10
 	crush_living_damage = 37
+	plasma_use_multiplier = 2
 
 
 // ***************************************
 // *********** Bull's Stomp
 // ***************************************
+#define BULL_STOMP_DEBUFF_DURATION 3 //SECONDS
+
 /datum/action/ability/activable/xeno/stomp/bull
+	name = "Bull's Stomp"
 	ability_cost = 50
 	cooldown_duration = 5 SECONDS
 
@@ -33,24 +37,25 @@
 			GLOB.round_statistics.crusher_stomp_victims++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
 			living_target.take_overall_damage(stomp_damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 2)
-			living_target.Paralyze(3 SECONDS)
+			living_target.Paralyze(BULL_STOMP_DEBUFF_DURATION SECONDS)
 			shake_camera(living_target, 2, 2)
 		else
 			step_away(living_target, xeno_owner, 1) //Knock away
 			living_target.take_overall_damage(stomp_damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 2)
-			living_target.adjust_stagger(3 SECONDS)
-			living_target.adjust_slowdown(3 SECONDS)
+			living_target.adjust_stagger(BULL_STOMP_DEBUFF_DURATION)
+			living_target.adjust_slowdown(BULL_STOMP_DEBUFF_DURATION)
 
 
 // ***************************************
 // *********** Scorched Earth
 // ***************************************
 #define SCORCHED_EARTH_RANGE 7
-#define SCORCHED_EARTH_GRACE_PERIOD 6 SECONDS
+#define SCORCHED_EARTH_RESET_TIME 6 SECONDS
 #define SCORCHED_EARTH_AOE_SIZE 1
 #define SCORCHED_EARTH_TRAVEL_DAMAGE 5
-#define SCORCHED_EARTH_DEBUFF_DURATION 4 SECONDS
-#define SCORCHED_EARTH_TILE_DAMAGE 10
+#define SCORCHED_EARTH_TRAVEL_DEBUFF 4
+#define SCORCHED_EARTH_TILE_DAMAGE 15
+#define SCORCHED_EARTH_TILE_DEBUFF 1
 
 /datum/action/ability/activable/xeno/scorched_earth
 	name = "Scorched Earth"
@@ -60,18 +65,19 @@
 	ability_cost = 250
 	cooldown_duration = 3 MINUTES
 	target_flags = ABILITY_TURF_TARGET
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCORCHED_EARTH,
 	)
-	/// The current amount of charges of this ability that we have.
-	var/current_charges = 0
-	/// The maximum amount of charges of this ability that we can have.
-	var/maximum_charges = 3
-	/// Timer that warns the player that their grace period is about to end.
+	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	/// Whether this ability is active or not.
+	var/ability_active = FALSE
+	/// The current amount of charges of this ability that we have. Initial value is assumed to be the maximum.
+	var/ability_charges = 3
+	/// Timer ID. Warns the player that the ability's duration is about to end.
 	var/warning_timer
-	/// Timer for the grace period that this ability allows after activation. If it expires, the ability cancels itself.
-	var/grace_period_timer
+	/// Timer ID. Grace period that this ability allows after activation. If it expires, the ability resets.
+	var/reset_timer
 
 /datum/action/ability/activable/xeno/scorched_earth/on_cooldown_finish()
 	playsound(xeno_owner, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
@@ -91,51 +97,52 @@
 	visual_references[VREF_MUTABLE_SCORCHED_EARTH] = null
 
 /datum/action/ability/activable/xeno/scorched_earth/update_button_icon()
-	if(!current_charges)
+	if(!ability_active)
 		return ..()
 	button.cut_overlay(visual_references[VREF_MUTABLE_SCORCHED_EARTH])
 	var/mutable_appearance/number = visual_references[VREF_MUTABLE_SCORCHED_EARTH]
-	number.maptext = MAPTEXT("[current_charges ? "[current_charges]/[maximum_charges]" : ""]")
+	number.maptext = MAPTEXT("[ability_charges]/[initial(ability_charges)]")
 	visual_references[VREF_MUTABLE_SCORCHED_EARTH] = number
 	button.add_overlay(visual_references[VREF_MUTABLE_SCORCHED_EARTH])
 	return ..()
 
-/datum/action/ability/activable/xeno/scorched_earth/can_use_ability(atom/atom_target, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return
-	if(toggled && !current_charges)
+/datum/action/ability/activable/xeno/scorched_earth/action_activate()
+	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER) & COMPONENT_ACTION_BLOCK_TRIGGER)
 		return FALSE
-
-/datum/action/ability/activable/xeno/scorched_earth/use_ability(atom/atom_target)
-	. = ..()
-	if(!toggled && !current_charges)
-		set_toggle(TRUE)
+	if(!ability_active && can_use_action())
+		ability_active = TRUE
 		xeno_owner.emote("roar6")
-		current_charges = maximum_charges
-		use_state_flags = ABILITY_IGNORE_PLASMA
-		keybind_flags = null
-		action_activate()
+		ability_charges = initial(ability_charges)
+		use_state_flags |= ABILITY_IGNORE_PLASMA
+		warning_timer = addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/mob, playsound_local), xeno_owner.loc, 'sound/voice/hiss4.ogg', 40, TRUE), SCORCHED_EARTH_RESET_TIME * 0.7, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+		reset_timer = addtimer(CALLBACK(src, PROC_REF(end_ability)), SCORCHED_EARTH_RESET_TIME, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+		particle_holder = new(xeno_owner, /particles/bull_glow)
+		particle_holder.particles.icon = xeno_owner.icon
+		adjust_particles(new_dir = xeno_owner.dir)
+		RegisterSignals(xeno_owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_DO_RESIST, COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST), PROC_REF(adjust_particles))
+		RegisterSignals(xeno_owner, list(COMSIG_QDELETING, COMSIG_MOB_DEATH), PROC_REF(end_ability))
 		add_cooldown(1.5 SECONDS)
 		succeed_activate()
-		warning_timer = addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/mob, playsound_local), xeno_owner.loc, 'sound/voice/hiss4.ogg', 40, TRUE), SCORCHED_EARTH_GRACE_PERIOD - 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
-		grace_period_timer = addtimer(CALLBACK(src, PROC_REF(end_ability)), SCORCHED_EARTH_GRACE_PERIOD, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+	if(xeno_owner.selected_ability == src)
 		return
-	if(!isturf(atom_target))
-		atom_target = get_turf(atom_target)
+	if(xeno_owner.selected_ability)
+		xeno_owner.selected_ability.deselect()
+	select()
+
+/datum/action/ability/activable/xeno/scorched_earth/use_ability(turf/turf_target)
+	. = ..()
 	xeno_owner.set_canmove(FALSE)
 	playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_enhanced_charge.ogg', 30, TRUE)
-	RegisterSignal(atom_target, COMSIG_QDELETING, PROC_REF(end_throw))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(check_turf))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(end_throw))
-	xeno_owner.throw_at(atom_target, SCORCHED_EARTH_RANGE, 3, xeno_owner, flying = TRUE, impact_bounce = FALSE)
-	current_charges--
-	if(!current_charges)
+	xeno_owner.throw_at(turf_target, SCORCHED_EARTH_RANGE, 3, xeno_owner, flying = TRUE)
+	ability_charges--
+	if(!ability_charges)
 		end_ability()
 		return
 	add_cooldown(1.5 SECONDS)
-	warning_timer = addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/mob, playsound_local), xeno_owner.loc, 'sound/voice/hiss4.ogg', 40, TRUE), SCORCHED_EARTH_GRACE_PERIOD - 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
-	grace_period_timer = addtimer(CALLBACK(src, PROC_REF(end_ability)), SCORCHED_EARTH_GRACE_PERIOD, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+	warning_timer = addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/mob, playsound_local), xeno_owner.loc, 'sound/voice/hiss4.ogg', 40, TRUE), SCORCHED_EARTH_RESET_TIME * 0.7, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+	reset_timer = addtimer(CALLBACK(src, PROC_REF(end_ability)), SCORCHED_EARTH_RESET_TIME, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 
 /// Ends the throw, removing signals and allowing movement.
 /datum/action/ability/activable/xeno/scorched_earth/proc/end_throw()
@@ -158,22 +165,34 @@
 			if(affected_living.issamexenohive(xeno_owner) || affected_living.stat == DEAD)
 				continue
 			affected_living.take_overall_damage(SCORCHED_EARTH_TRAVEL_DAMAGE, BRUTE, MELEE, penetration = 100, max_limbs = SCORCHED_EARTH_TRAVEL_DAMAGE)
-			affected_living.adjust_stagger(SCORCHED_EARTH_DEBUFF_DURATION)
-			affected_living.adjust_slowdown(SCORCHED_EARTH_DEBUFF_DURATION)
+			affected_living.adjust_stagger(SCORCHED_EARTH_TRAVEL_DEBUFF)
+			affected_living.adjust_slowdown(SCORCHED_EARTH_TRAVEL_DEBUFF)
+
+/// Adjusts particles to match the user. Alignments are hand picked, and should be remade if the King's icon ever changes.
+/datum/action/ability/activable/xeno/scorched_earth/proc/adjust_particles(datum/source, unused, new_dir)
+	SIGNAL_HANDLER
+	if(!particle_holder)
+		return
+	if(!(new_dir in GLOB.alldirs))
+		new_dir = xeno_owner.dir
+	particle_holder.particles.icon_state = "[xeno_owner.xeno_caste.caste_name] Glow [closest_cardinal_dir(new_dir)]" // This intentionally misses some states, for the record.
+	particle_holder.layer = xeno_owner.layer + 0.01
+	particle_holder.pixel_x = xeno_owner.pixel_x + 32
+	particle_holder.pixel_y = xeno_owner.pixel_y + 19
 
 /// Ends the ability.
 /datum/action/ability/activable/xeno/scorched_earth/proc/end_ability()
-	set_toggle(FALSE)
-	use_state_flags = initial(use_state_flags)
-	keybind_flags = initial(keybind_flags)
+	SIGNAL_HANDLER
+	ability_active = FALSE
+	use_state_flags &= ~ABILITY_IGNORE_PLASMA
+	deltimer(warning_timer)
+	deltimer(reset_timer)
+	QDEL_NULL(particle_holder)
+	UnregisterSignal(xeno_owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_DO_RESIST, COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST, COMSIG_QDELETING, COMSIG_MOB_DEATH))
+	update_button_icon()
+	button.cut_overlay(visual_references[VREF_MUTABLE_SCORCHED_EARTH])
 	xeno_owner.playsound_local(xeno_owner.loc, 'sound/voice/hiss5.ogg', 40, TRUE)
 	add_cooldown()
-	deltimer(warning_timer)
-	deltimer(grace_period_timer)
-	if(current_charges)
-		current_charges = 0
-	button.cut_overlay(visual_references[VREF_MUTABLE_SCORCHED_EARTH])
-	update_button_icon()
 
 /obj/fire/scorched_earth
 	name = "Scorched Earth"
@@ -222,6 +241,16 @@
 	if(affected_living.pass_flags & PASS_FIRE)
 		return FALSE
 	affected_living.take_overall_damage(SCORCHED_EARTH_TILE_DAMAGE, BRUTE, MELEE, penetration = 100, max_limbs = 2)
-	affected_living.adjust_blurriness(1)
-	affected_living.adjust_stagger(1 SECONDS)
-	affected_living.adjust_slowdown(1 SECONDS)
+	affected_living.adjust_blurriness(SCORCHED_EARTH_TRAVEL_DEBUFF)
+	affected_living.adjust_stagger(SCORCHED_EARTH_TRAVEL_DEBUFF)
+	affected_living.adjust_slowdown(SCORCHED_EARTH_TRAVEL_DEBUFF)
+
+/particles/bull_glow
+	icon_state = "Bull Glow 2"
+	width = 96
+	height = 96
+	count = 1
+	spawning = 1
+	lifespan = 8
+	fadein = 4
+	fade = 4

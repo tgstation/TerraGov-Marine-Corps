@@ -2,7 +2,7 @@
 	caste_base_type = /datum/xeno_caste/crusher
 	name = "Crusher"
 	desc = "A huge alien with an enormous armored head crest."
-	icon = 'icons/Xeno/castes/crusher.dmi'
+	icon = 'icons/Xeno/castes/crusher/crusher.dmi'
 	icon_state = "Crusher Walking"
 	bubble_icon = "alienleft"
 	health = 300
@@ -51,7 +51,7 @@
 	caste_base_type = /datum/xeno_caste/crusher/bull
 	name = "Bull"
 	desc = "A bright red alien with a matching temper."
-	icon = 'icons/Xeno/castes/bull.dmi'
+	icon = 'icons/Xeno/castes/crusher/bull.dmi'
 	icon_state = "Bull Walking"
 	mob_size = MOB_SIZE_XENO
 	pixel_x = -16

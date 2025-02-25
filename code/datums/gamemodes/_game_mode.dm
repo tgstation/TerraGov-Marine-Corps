@@ -450,7 +450,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.ravager_endures)
 		parts += "[GLOB.round_statistics.ravager_endures] number of times Ravagers used Endure."
 	if(GLOB.round_statistics.bull_hit)
-		parts += "[GLOB.round_statistics.bull_hit] number of times Bulls gored marines."
+		parts += "[GLOB.round_statistics.bull_hit] number of times Bulls charged into marines."
 	if(GLOB.round_statistics.hunter_marks)
 		parts += "[GLOB.round_statistics.hunter_marks] number of times Hunters marked a target for death."
 	if(GLOB.round_statistics.ravager_rages)
