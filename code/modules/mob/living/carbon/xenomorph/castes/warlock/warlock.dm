@@ -5,10 +5,6 @@
 	icon = 'icons/Xeno/castes/warlock.dmi'
 	icon_state = "Warlock Walking"
 	bubble_icon = "alienroyal"
-	attacktext = "slashes"
-	attack_sound = null
-	friendly = "nuzzles"
-	wall_smash = FALSE
 	health = 320
 	maxHealth = 320
 	plasma_stored = 1400

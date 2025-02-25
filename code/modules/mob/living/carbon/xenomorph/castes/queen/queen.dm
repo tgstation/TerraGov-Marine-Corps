@@ -4,9 +4,6 @@
 	desc = "A huge, looming alien creature. The biggest and the baddest."
 	icon = 'icons/Xeno/castes/queen.dmi'
 	icon_state = "Queen Walking"
-	attacktext = "bites"
-	attack_sound = null
-	friendly = "nuzzles"
 	health = 300
 	maxHealth = 300
 	plasma_stored = 300
