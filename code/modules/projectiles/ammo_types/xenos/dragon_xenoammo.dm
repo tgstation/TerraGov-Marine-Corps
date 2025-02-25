@@ -72,7 +72,7 @@
 	var/angle_to_target = Get_Angle(get_turf(proj), get_turf(proj.original_target)) //angle uses pixel offsets so we check turfs instead
 	if((proj.dir_angle >= angle_to_target - 5) && (proj.dir_angle <= angle_to_target + 5))
 		return
-	proj.dir_angle = clamp(angle_to_target, proj.dir_angle - 20, proj.dir_angle + 20)
+	proj.dir_angle = clamp(angle_to_target, proj.dir_angle - 30, proj.dir_angle + 30)
 	proj.x_offset = round(sin(proj.dir_angle), 0.01)
 	proj.y_offset = round(cos(proj.dir_angle), 0.01)
 	var/matrix/rotate = matrix()
@@ -93,7 +93,6 @@
 			closest_human = nearby_human
 			continue
 	return closest_human
-
 
 /datum/ammo/xeno/miasma_orb
 	name = "miasma orb"

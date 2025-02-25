@@ -77,6 +77,7 @@
 /// Begins the process of flying.
 /mob/living/carbon/xenomorph/dragon/proc/start_flight()
 	TIMER_COOLDOWN_START(src, COOLDOWN_DRAGON_CHANGE_FORM, 0.5 SECONDS)
+	new /obj/effect/temp_visual/dragon/fly(loc)
 	animate(src, pixel_x = initial(pixel_x), pixel_y = 500, time = 0.5 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(finalize_flight)), 0.5 SECONDS)
 
@@ -124,6 +125,7 @@
 
 // Performs various landing effects.
 /mob/living/carbon/xenomorph/dragon/proc/perform_landing_effects(list/turf/impacted_turfs)
+	new /obj/effect/temp_visual/dragon/land(loc)
 	var/damage = 100 * xeno_melee_damage_modifier
 	var/list/obj/vehicle/already_stunned_vehicles = list() // NOTE: This is to prevent hitting the main body of a vehicle twice.
 	for(var/turf/impacted_turf AS in impacted_turfs)
@@ -165,16 +167,17 @@
 			already_stunned_vehicles += impacted_obj
 	playsound(loc, 'sound/effects/alien/behemoth/seismic_fracture_explosion.ogg', 50, 1)
 
-/// Creates telegraph effects for a list of turfs which will automatically delete in 3 seconds.
+/// Creates telegraph effects for a list of turfs which will automatically delete.
 /mob/living/carbon/xenomorph/dragon/proc/telegraph_these_turfs(list/turf/turfs_to_telegraph)
 	var/list/obj/effect/telegraph_effects = list()
 	for(var/turf/turf_to_telegraph AS in turfs_to_telegraph)
-		telegraph_effects += new /obj/effect/temp_visual/dragon/warning/three(turf_to_telegraph)
+		telegraph_effects += new /obj/effect/temp_visual/dragon/warning(turf_to_telegraph, 3 SECONDS)
 	return telegraph_effects
 
 /// Stuns the vehicle's occupants and does damage to the vehicle itself.
 /mob/living/carbon/xenomorph/dragon/proc/handle_vehicle_effects(obj/vehicle/vehicle, damage, ap, should_stun = FALSE)
-	if(should_stun)
-		for(var/mob/living/living_occupant in vehicle.occupants)
-			living_occupant.apply_effect(3 SECONDS, EFFECT_PARALYZE)
 	vehicle.take_damage(damage, BRUTE, MELEE, armour_penetration = ap, blame_mob = src)
+	if(!should_stun)
+		return
+	for(var/mob/living/living_occupant in vehicle.occupants)
+		living_occupant.apply_effect(3 SECONDS, EFFECT_PARALYZE)

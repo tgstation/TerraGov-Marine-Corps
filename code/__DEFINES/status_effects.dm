@@ -86,6 +86,8 @@
 #define STATUS_EFFECT_MICROWAVE /datum/status_effect/stacking/microwave
 ///armor reduction
 #define STATUS_EFFECT_SHATTER /datum/status_effect/shatter
+/// 5 burn (fire) damage on movement
+#define STATUS_EFFECT_ELECTRIFIED /datum/status_effect/incapacitating/electrified
 
 /////////////
 // NEUTRAL //

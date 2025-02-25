@@ -923,3 +923,56 @@
 /datum/status_effect/incapacitating/dancer_tagged
 	id = "dancer_tagged"
 	duration = 15 SECONDS
+
+// ***************************************
+// *********** Electrified
+// ***************************************
+/datum/status_effect/incapacitating/electrified
+	id = "electrified"
+	duration = 5 SECONDS
+
+/datum/status_effect/incapacitating/electrified/on_creation(mob/living/new_owner, set_duration)
+	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
+		qdel(src)
+		return
+	. = ..()
+
+/datum/status_effect/incapacitating/electrified/on_apply()
+	. = ..()
+	if(!.)
+		return
+	RegisterSignal(owner, COMSIG_LIVING_DO_RESIST, PROC_REF(on_resist))
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
+
+/datum/status_effect/incapacitating/electrified/on_remove()
+	UnregisterSignal(owner, list(COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_MOVED))
+	return ..()
+
+
+/datum/status_effect/incapacitating/electrified/tick(delta_time)
+	. = ..()
+	var/mob/living/living_owner = owner
+	living_owner.do_jitter_animation(250)
+
+/datum/status_effect/incapacitating/electrified/proc/on_resist(datum/source)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(on_resist_async))
+
+/datum/status_effect/incapacitating/electrified/proc/on_resist_async()
+	if(!owner)
+		return
+	if(length(owner.do_actions))
+		return
+	if(!do_after(owner, 2 SECONDS, NONE, owner, BUSY_ICON_GENERIC))
+		return
+	playsound(owner, 'sound/effects/slosh.ogg', 30)
+	qdel(src)
+
+/datum/status_effect/incapacitating/electrified/proc/on_movement(datum/source, atom/old_loc, movement_dir, forced = FALSE, list/old_locs)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(on_movement_async))
+
+/datum/status_effect/incapacitating/electrified/proc/on_movement_async()
+	if(!owner)
+		return
+	owner.take_overall_damage(5, BURN, FIRE, max_limbs = 6, updating_health = TRUE)

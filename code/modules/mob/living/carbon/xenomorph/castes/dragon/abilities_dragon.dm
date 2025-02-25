@@ -537,6 +537,7 @@
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	QDEL_LIST(telegraphed_atoms)
+	new /obj/effect/temp_visual/dragon/wind_current(get_turf(xeno_owner))
 
 	if(!was_successful)
 		succeed_activate()
@@ -881,11 +882,12 @@
 
 /// Either begin channeling or perform the spell.
 /datum/action/ability/activable/xeno/psychic_channel/use_ability(atom/A)
+	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
+	var/castplasma_multiplier = unleash_ability?.is_active() ? 2 : 1
+
 	if(!is_actively_channeling())
 		xeno_owner.update_glow(3, 3, "#6a59b3")
-
-		var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
-		if(!do_after(owner, unleash_ability?.is_active() ? 1 SECONDS : 2 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
+		if(!do_after(owner, 2 SECONDS / castplasma_multiplier, NONE, xeno_owner, BUSY_ICON_DANGER))
 			xeno_owner.update_glow()
 			return fail_activate()
 		xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_PSYCHIC_CHANNEL, TRUE, 0, NONE, TRUE, 0.9)
@@ -902,15 +904,14 @@
 			COOLDOWN_START(src, miasma_cooldown, 20 SECONDS)
 		if("lightning_strike")
 			var/list/mob/living/carbon/human/acceptable_humans = get_lightning_shrike_marines()
-			var/list/turf/affected_turfs = get_lightning_shrike_hit_turfs(acceptable_humans)
-			var/list/obj/effect/xeno/dragon_warning/telegraphed_atoms = list()
-			for(var/turf/affected_turf AS in affected_turfs)
-				telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
-			spell_timer = addtimer(CALLBACK(src, PROC_REF(finalize_lightning_shrike), telegraphed_atoms, get_lightning_shrike_center_turfs(acceptable_humans)), 1.5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+			var/list/turf/impacted_turfs = get_lightning_shrike_hit_turfs(acceptable_humans)
+			for(var/turf/impacted_turf AS in impacted_turfs)
+				new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.5 SECONDS / castplasma_multiplier)
+			spell_timer = addtimer(CALLBACK(src, PROC_REF(finalize_lightning_shrike), get_lightning_shrike_center_turfs(acceptable_humans), impacted_turfs), 1.5 SECONDS / castplasma_multiplier, TIMER_STOPPABLE|TIMER_UNIQUE)
 			COOLDOWN_START(src, lightning_shrike_cooldown, 25 SECONDS)
 		if("ice_storm")
 			var/list/bullets = list()
-			for(var/i = 1 to 25)
+			for(var/i = 1 to 10)
 				var/obj/projectile/proj = new(get_turf(xeno_owner))
 				proj.generate_bullet(/datum/ammo/xeno/homing_ice_spike)
 				bullets += proj
@@ -967,23 +968,36 @@
 		for(var/turf/filled_turf AS in filled_turfs)
 			if(locate(/obj/effect/xeno/dragon_warning) in filled_turf.contents)
 				continue
-			hit_turfs += new /obj/effect/xeno/dragon_warning(filled_turf)
+			hit_turfs += filled_turf
 	return hit_turfs
 
-/datum/action/ability/activable/xeno/psychic_channel/proc/finalize_lightning_shrike(list/obj/effect/xeno/dragon_warning/telegraph_warnings, list/turf/center_turfs)
-	deltimer(spell_timer)
+/// Performs the lightning shrike on various turfs.
+/datum/action/ability/activable/xeno/psychic_channel/proc/finalize_lightning_shrike(list/turf/center_turfs, list/turf/impacted_turfs)
 	spell_timer = null
 	for(var/turf/center_turf AS in center_turfs)
-		new /obj/effect/temp_visual/xeno_fireball_explosion(center_turf)
-	for(var/obj/effect/xeno/dragon_warning/telegraph_warning AS in telegraph_warnings)
-		for(var/victim in get_turf(telegraph_warning))
-			if(!iscarbon(victim))
+		new /obj/effect/temp_visual/dragon/lightning_shrike(center_turf)
+		playsound(get_turf(center_turf), 'sound/magic/lightningshock.ogg', 50, TRUE)
+	for(var/turf/impacted_turf AS in impacted_turfs)
+		impacted_turf.Shake(duration = 0.2 SECONDS)
+		for(var/atom/impacted_atom AS in impacted_turf)
+			if(!(impacted_atom.resistance_flags & XENO_DAMAGEABLE))
 				continue
-			var/mob/living/carbon/carbon_victim = victim
-			if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
+			if(isxeno(impacted_atom))
 				continue
-			carbon_victim.take_overall_damage(200 * xeno_owner.xeno_melee_damage_modifier, BURN, FIRE, max_limbs = 1, updating_health = TRUE)
-		qdel(telegraph_warning)
+			if(isliving(impacted_atom))
+				var/mob/living/impacted_living = impacted_atom
+				if(impacted_living.stat == DEAD)
+					continue
+				impacted_living.take_overall_damage(75 * xeno_owner.xeno_melee_damage_modifier, BURN, FIRE, max_limbs = 6, updating_health = TRUE)
+				impacted_living.apply_status_effect(STATUS_EFFECT_ELECTRIFIED)
+				continue
+			if(!isobj(impacted_atom))
+				continue
+			var/obj/impacted_obj = impacted_atom
+			if(ishitbox(impacted_obj) || isAPC(impacted_obj))
+				impacted_obj.take_damage(15, BURN, FIRE, blame_mob = xeno_owner)
+				continue
+			impacted_obj.take_damage(75, BURN, FIRE, blame_mob = xeno_owner)
 
 /datum/action/ability/activable/xeno/unleash
 	name = "Unleash"
@@ -1098,16 +1112,46 @@
 
 /obj/effect/temp_visual/dragon
 	name = "Dragon"
-	duration = 1.5 SECONDS
+
+/obj/effect/temp_visual/dragon/lightning_shrike
+	icon = 'icons/effects/96x144.dmi'
+	icon_state = "lightning_strike"
+	pixel_x = -32
+	layer = BELOW_MOB_LAYER
+	duration = 1.1 SECONDS
+
+/obj/effect/temp_visual/dragon/fly
+	icon = 'icons/effects/96x144.dmi'
+	icon_state = "fly"
+	pixel_x = -32
+	layer = BELOW_MOB_LAYER
+	duration = 0.8 SECONDS
+
+/obj/effect/temp_visual/dragon/land
+	icon = 'icons/effects/96x144.dmi'
+	icon_state = "fly_landing"
+	pixel_x = -32
+	layer = BELOW_MOB_LAYER
+	duration = 0.56 SECONDS
+
+/obj/effect/temp_visual/dragon/wind_current
+	icon = 'icons/effects/96x144.dmi'
+	icon_state = "wind_current"
+	pixel_x = -32
+	layer = BELOW_MOB_LAYER
+	duration = 0.7 SECONDS
 
 /obj/effect/temp_visual/dragon/warning
 	icon = 'icons/xeno/Effects.dmi'
 	icon_state = "generic_warning"
 	layer = BELOW_MOB_LAYER
 	color = COLOR_RED
+	duration = 1.5 SECONDS
 
-/obj/effect/temp_visual/dragon/warning/three
-	duration = 3 SECONDS
+/obj/effect/temp_visual/dragon/warning/Initialize(mapload, _duration)
+	if(isnum(_duration))
+		duration = _duration
+	return ..()
 
 /obj/effect/temp_visual/shockwave/unleash/Initialize(mapload, radius, direction)
 	. = ..()
