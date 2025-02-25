@@ -245,3 +245,15 @@ CACHE_ASSETS 0
 ## This is primarily useful for developing tutorials. If you have a proper DB setup, you
 ## don't need (or want) this.
 #GIVE_TUTORIALS_WITHOUT_DB
+
+## Discord bot command prefix, if the discord bot is used
+# DISCORDBOTCOMMANDPREFIX ?
+
+## Which channels will have a message about a new game starting and ping people
+#CHANNEL_ANNOUNCE_NEW_GAME
+
+## Ping users who use the `notify` command when a new game starts.
+#CHAT_NEW_GAME_NOTIFICATIONS
+
+## Uncomment this flag to validate admin commands from discord by requiring they come from linked discord accounts and that those discord accounts link to a ckey with the right admin permissions.
+# SECURE_CHAT_COMMANDS
