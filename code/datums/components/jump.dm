@@ -88,31 +88,31 @@
 	external_user = null
 
 ///Starts charging the jump
-/datum/component/jump/proc/charge_jump(mob/living/jumper)
+/datum/component/jump/proc/charge_jump(atom/movable/jumper)
 	jump_start_time = world.timeofday
 
 ///Checks if you can actually jump right now
-/datum/component/jump/proc/can_jump(mob/living/jumper)
+/datum/component/jump/proc/can_jump(atom/movable/jumper)
 	SIGNAL_HANDLER
 	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_COMPONENT_COOLDOWN))
 		return FALSE
 	var/mob/living/living_jumper
 	if(isliving(jumper))
 		living_jumper = jumper
-		if(jumper.buckled)
+		if(living_jumper.buckled)
 			return FALSE
-		if(jumper.incapacitated())
+		if(living_jumper.incapacitated())
 			return FALSE
-		if(stamina_cost && (jumper.getStaminaLoss() > -stamina_cost))
-			if(isrobot(jumper) || issynth(jumper))
-				to_chat(jumper, span_warning("Your leg servos do not allow you to jump!"))
+		if(stamina_cost && (living_jumper.getStaminaLoss() > -stamina_cost))
+			if(isrobot(living_jumper) || issynth(living_jumper))
+				to_chat(living_jumper, span_warning("Your leg servos do not allow you to jump!"))
 				return FALSE
-			to_chat(jumper, span_warning("Catch your breath!"))
+			to_chat(living_jumper, span_warning("Catch your breath!"))
 			return FALSE
 	return TRUE
 
 ///handles pre-jump checks and setup of additional jump behavior.
-/datum/component/jump/proc/start_jump(mob/living/jumper)
+/datum/component/jump/proc/start_jump(atom/movable/jumper)
 	SIGNAL_HANDLER
 	if(jumper == external_user)
 		jumper = parent
@@ -120,14 +120,15 @@
 		return
 
 	do_jump(jumper)
-	if(living_jumper)
+	if(isliving(jumper))
+		var/mob/living/living_jumper = jumper
 		living_jumper.adjustStaminaLoss(stamina_cost)
 	//Forces all who ride to jump alongside the jumper.
 	for(var/mob/buckled_mob AS in jumper.buckled_mobs)
 		do_jump(buckled_mob)
 
 ///Performs the jump
-/datum/component/jump/proc/do_jump(mob/living/jumper)
+/datum/component/jump/proc/do_jump(atom/movable/jumper)
 	var/effective_jump_duration = jump_duration
 	var/effective_jump_height = jump_height
 	var/effective_jumper_allow_pass_flags = jumper_allow_pass_flags
