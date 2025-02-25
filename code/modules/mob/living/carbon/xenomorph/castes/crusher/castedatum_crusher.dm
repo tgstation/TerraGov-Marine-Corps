@@ -27,7 +27,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 
-	deevolves_to = /datum/xeno_caste/bull
+	deevolves_to = /datum/xeno_caste/warrior
 
 	// *** Flags *** //
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
@@ -41,10 +41,6 @@
 
 	// *** Minimap Icon *** //
 	minimap_icon = "crusher"
-
-	// *** Crusher Abilities *** //
-	stomp_damage = 60
-	crest_toss_distance = 6
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
@@ -82,4 +78,58 @@
 		/datum/action/ability/xeno_action/ready_charge,
 		/datum/action/ability/activable/xeno/cresttoss,
 		/datum/action/ability/activable/xeno/advance,
+	)
+
+
+// ***************************************
+// *********** Bull
+// ***************************************
+/datum/xeno_caste/crusher/bull
+	caste_name = "Bull"
+	display_name = "Bull"
+	caste_desc = "A well defended hit-and-runner."
+	caste_type_path = /mob/living/carbon/xenomorph/crusher/bull
+	wound_type = "bull"
+
+	// *** Melee Attacks *** //
+	attack_delay = 7
+
+	// *** Speed *** //
+	speed = -0.8
+
+	// *** Flags *** //
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_STRONG|CASTE_STAGGER_RESISTANT
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_traits = null
+
+	// *** Defense *** //
+	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 65, BIO = 65, FIRE = 65, ACID = 65)
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/ready_charge/bull_charge,
+		/datum/action/ability/xeno_action/toggle_long_range/bull,
+		/datum/action/ability/activable/xeno/stomp/bull,
+	)
+
+/datum/xeno_caste/crusher/bull/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/crusher/bull/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "Bloodthirsty horned devil of the hive. Stay away from its path."
+	primordial_message = "We are the spearhead of the hive. Run them all down."
+	upgrade = XENO_UPGRADE_PRIMO
+
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/ready_charge/bull_charge,
+		/datum/action/ability/xeno_action/toggle_long_range/bull,
+		/datum/action/ability/activable/xeno/stomp/bull,
+		/datum/action/ability/activable/xeno/scorched_earth,
 	)
