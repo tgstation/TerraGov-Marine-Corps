@@ -85,8 +85,13 @@
 #define ui_sl_dir "CENTER,CENTER"
 
 // Ghosts
-#define ui_ghost_slot2 "SOUTH:6,CENTER-1:24"
-#define ui_ghost_slot3 "SOUTH:6,CENTER:24"
+#define ui_ghost_base(horizontal_offset, vertical_offset) "SOUTH" + vertical_offset + ":6" + ",CENTER" + horizontal_offset + ":24"
+
+#define ui_ghost_slot1 ui_ghost_base("-3", "")
+#define ui_ghost_slot2 ui_ghost_base("-2", "")
+#define ui_ghost_slot3 ui_ghost_base("-1", "")
+#define ui_ghost_slot4 ui_ghost_base("", "")
+#define ui_ghost_slot5 ui_ghost_base("+1", "")
 
 // AI
 #define ui_ai_core "SOUTH:6,WEST"
