@@ -1,4 +1,0 @@
-author: "Rug-Dealer"
-delete-after: True
-changes:
-  - bugfix: "Combat robot corpsman beginner loadouts now spawn with medevac beacons like their human counterparts."
