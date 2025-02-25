@@ -603,7 +603,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "baton_pass"
 	pixel_x = -18
-	pixel_y = -16
+	pixel_y = -14
 	layer = BELOW_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
