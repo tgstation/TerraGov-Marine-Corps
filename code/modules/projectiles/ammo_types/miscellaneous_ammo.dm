@@ -126,7 +126,7 @@
 		return
 	flame_radius(2, T)
 
-/datum/ammo/flamethrower/mech_flamer/drop_flame(turf/T)
+/datum/ammo/flamethrower/mech_flamer
 	name = "spraying flames"
 	icon_state = "spray_flamer"
 	damage = 15
