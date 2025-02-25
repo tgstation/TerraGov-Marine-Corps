@@ -23,7 +23,7 @@
 	var/order = 1 // -1 = Descending - 1 = Ascending
 
 /obj/machinery/computer/secure_data/verb/eject_id()
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Eject ID Card"
 	set src in oview(1)
 

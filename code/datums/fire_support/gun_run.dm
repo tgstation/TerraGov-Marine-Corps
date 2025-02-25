@@ -55,7 +55,7 @@
 	var/turf/start_turf = locate(clamp(target_turf.x + rand(-3, 3), 1, world.maxx), clamp(target_turf.y - 6, 1, world.maxy), target_turf.z)
 	var/turf/end_turf = locate(clamp(target_turf.x + rand(-3, 3), 1, world.maxx), clamp(target_turf.y + 6, 1, world.maxy), target_turf.z)
 
-	var/list/strafelist = get_line(start_turf, end_turf)
+	var/list/strafelist = get_traversal_line(start_turf, end_turf)
 	strafe_turfs(strafelist)
 
 ///lases each turf in the line one by one

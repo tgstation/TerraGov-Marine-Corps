@@ -51,12 +51,6 @@
 //Object specific defines
 #define CANDLE_LUM 3 //For how bright candles are
 
-#define SEC_LEVEL_GREEN 0
-#define SEC_LEVEL_BLUE 1
-#define SEC_LEVEL_RED 2
-#define SEC_LEVEL_DELTA 3
-
-
 //=================================================
 #define HOSTILE_STANCE_IDLE 1
 #define HOSTILE_STANCE_ALERT 2

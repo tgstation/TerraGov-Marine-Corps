@@ -86,6 +86,8 @@
 #define STATUS_EFFECT_MICROWAVE /datum/status_effect/stacking/microwave
 ///armor reduction
 #define STATUS_EFFECT_SHATTER /datum/status_effect/shatter
+///recenly hit by a sniper round
+#define STATUS_EFFECT_SNIPED /datum/status_effect/incapacitating/recently_sniped
 
 /////////////
 // NEUTRAL //

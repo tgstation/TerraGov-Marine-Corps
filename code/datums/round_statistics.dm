@@ -78,8 +78,6 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/spitter_acid_sprays = 0
 	var/spitter_scatter_spits = 0
 	var/wraith_phase_shifts = 0
-	var/wraith_blinks = 0
-	var/wraith_banishes = 0
 	var/bull_hit = 0
 	var/ravager_endures = 0
 	var/hunter_marks = 0

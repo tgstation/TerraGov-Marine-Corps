@@ -29,6 +29,8 @@ export type MechVendData = {
   all_equipment: AllEquipment;
   selected_equipment: SelectedEquip;
   cooldown_left?: number;
+  weight: number;
+  max_weight: number;
 };
 
 type MaxEquip = {

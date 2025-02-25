@@ -434,7 +434,7 @@
 
 /obj/machinery/sleeper/verb/eject()
 	set name = "Eject Sleeper"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(usr.stat != CONSCIOUS)
@@ -479,7 +479,7 @@
 
 /obj/machinery/sleeper/verb/move_inside()
 	set name = "Enter Sleeper"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	move_inside_wrapper(usr, usr)

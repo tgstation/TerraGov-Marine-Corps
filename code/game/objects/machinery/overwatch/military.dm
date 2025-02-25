@@ -256,12 +256,12 @@
 			if(operator.interactee != src)
 				to_chat(operator, "[icon2html(src, operator)] [span_warning("You're busy doing something else, and press the wrong button!")]")
 				return
-			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 600) > world.time)
+			if((GLOB.rail_gun?.last_firing + 600) > world.time)
 				to_chat(operator, "[icon2html(src, operator)] [span_warning("The Rail Gun hasn't cooled down yet!")]")
 			else if(!selected_target)
 				to_chat(operator, "[icon2html(src, operator)] [span_warning("No target detected!")]")
 			else
-				GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(get_turf(selected_target),operator)
+				GLOB.rail_gun?.fire_rail_gun(get_turf(selected_target),operator)
 	updateUsrDialog()
 
 ///Provides details on available firesupport options
@@ -270,7 +270,7 @@
 	var/dat
 	dat += "<b>Orbital Bombardment Control</b><br>"
 	dat += "<b>Current Cannon Status:</b> "
-	if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
+	if(!GLOB.orbital_cannon?.chambered_tray)
 		dat += "<font color='red'>No ammo chambered in the cannon.</font><br>"
 	else
 		dat += "<font color='green'>Ready!</font><br>"
@@ -295,10 +295,10 @@
 
 	dat += "<b>Rail Gun Control</b><br>"
 	dat += "<b>Current Rail Gun Status:</b> "
-	var/cooldown_left = (GLOB.marine_main_ship?.rail_gun?.last_firing + 600) - world.time // 60 seconds between shots
+	var/cooldown_left = (GLOB.rail_gun?.last_firing + 600) - world.time // 60 seconds between shots
 	if(cooldown_left > 0)
 		dat += "Rail Gun on cooldown ([round(cooldown_left/10)] seconds)<br>"
-	else if(!GLOB.marine_main_ship?.rail_gun?.rail_gun_ammo?.ammo_count)
+	else if(!GLOB.rail_gun?.rail_gun_ammo?.ammo_count)
 		dat += "<font color='red'>Ammo depleted.</font><br>"
 	else
 		dat += "<font color='green'>Ready!</font><br>"
@@ -460,7 +460,7 @@
 	if(overwatch_flags & OVERWATCH_BUSY)
 		to_chat(operator, "[icon2html(src, operator)] [span_warning("The [name] is busy processing another action!")]")
 		return
-	if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
+	if(!GLOB.orbital_cannon?.chambered_tray)
 		to_chat(operator, "[icon2html(src, operator)] [span_warning("The orbital cannon has no ammo chambered.")]")
 		return
 	if(!selected_target)
@@ -478,7 +478,7 @@
 		to_chat(operator, "[icon2html(src, operator)] [span_warning("The target's landing zone appears to be out of bounds.")]")
 		return
 	overwatch_flags |= OVERWATCH_BUSY //All set, let's do this.
-	var/warhead_type = GLOB.marine_main_ship.orbital_cannon.tray.warhead.name	//For the AI and Admin logs.
+	var/warhead_type = GLOB.orbital_cannon?.tray.warhead.name	//For the AI and Admin logs.
 
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_warning("NOTICE - Orbital bombardment triggered from overwatch consoles. Warhead type: [warhead_type]. Target: [AREACOORD_NO_Z(T)]"))
@@ -515,7 +515,7 @@
 	var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
 	if(target && istype(target))
 		target.ceiling_debris_check(5)
-		GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(target,user)
+		GLOB.orbital_cannon?.fire_ob_cannon(target,user)
 
 ///Changes the current squad leader
 /obj/machinery/computer/camera_advanced/overwatch/military/proc/change_lead(datum/source, mob/living/carbon/human/target)
@@ -638,7 +638,7 @@
 
 	target.playsound_local(target, "sound/machines/dotprinter.ogg", 35)
 	to_chat(target, span_notice("<b><i>New message from [sender.real_name]:</b> [message]</i>"))
-	target.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("CIC MESSAGE FROM [sender.real_name]", message, LEFT_ALIGN_TEXT), new /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot(null, null, sender), "#32cd32")
+	target.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("CIC MESSAGE FROM [sender.real_name]", capitalize(message), LEFT_ALIGN_TEXT), new /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot(null, null, sender), "#32cd32")
 
 	var/list/tts_listeners = filter_tts_listeners(sender, target, null, RADIO_TTS_COMMAND)
 	if(!length(tts_listeners))

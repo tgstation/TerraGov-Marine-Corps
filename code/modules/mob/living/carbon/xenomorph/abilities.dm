@@ -1327,7 +1327,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEADBITE,
 	)
 	gamemode_flags = ABILITY_NUCLEARWAR
-	///How much larva points it gives (8 points for one larva in distress)
+	///How much larva points it gives (10 points for one larva in NW)
 	var/larva_point_reward = 1
 
 /datum/action/ability/activable/xeno/psydrain/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -1401,10 +1401,12 @@
 		psy_points_reward = psy_points_reward * 3
 	SSpoints.add_strategic_psy_points(X.hivenumber, psy_points_reward)
 	SSpoints.add_tactical_psy_points(X.hivenumber, psy_points_reward*0.25)
+	if(X.hivenumber != XENO_HIVE_NORMAL)
+		return
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(larva_point_reward)
 	X.hive.update_tier_limits()
-	GLOB.round_statistics.larva_from_psydrain +=larva_point_reward / xeno_job.job_points_needed
+	GLOB.round_statistics.larva_from_psydrain += larva_point_reward / xeno_job.job_points_needed
 
 	if(owner.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]

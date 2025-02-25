@@ -112,7 +112,7 @@
 /area/kutjevo/interior/foremans_office)
 "agP" = (
 /obj/item/ammo_casing/bullet,
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 4
 	},
 /turf/open/floor/kutjevo/colors/orange,
@@ -1773,7 +1773,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 8
 	},
 /turf/open/floor/kutjevo/colors/purple/inner_corner{
@@ -3508,7 +3508,7 @@
 	},
 /area/kutjevo/interior/complex/med/operating)
 "dOJ" = (
-/obj/structure/barricade/metal/deployable,
+/obj/structure/barricade/solid/deployable,
 /turf/open/floor/kutjevo/colors/purple/edge,
 /area/kutjevo/interior/construction)
 "dOU" = (
@@ -7004,7 +7004,7 @@
 /turf/closed/mineral/smooth/bigred,
 /area/kutjevo/exterior/scrubland/south)
 "hws" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -9248,7 +9248,7 @@
 /area/kutjevo/exterior/stonyfields)
 "keM" = (
 /obj/item/stack/rods,
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 8
 	},
 /turf/open/floor/kutjevo/colors/purple/edge{
@@ -9628,7 +9628,7 @@
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/exterior/colony_central)
 "kxt" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
@@ -9850,7 +9850,7 @@
 /area/kutjevo/interior/power_pt2_electric_boogaloo)
 "kIc" = (
 /obj/effect/spawner/random/weaponry/gun/sidearms,
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 1
 	},
 /turf/open/floor/kutjevo/tan,
@@ -10824,7 +10824,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 8
 	},
 /turf/open/floor/kutjevo/colors/purple/edge{
@@ -14547,7 +14547,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/kutjevo/exterior/Northwest_Colony)
 "ptz" = (
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 1
 	},
 /turf/open/floor/kutjevo/tan,
@@ -14909,7 +14909,7 @@
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/exterior/runoff_bridge)
 "pKK" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -16057,7 +16057,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/runoff_dunes)
 "res" = (
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -22327,7 +22327,7 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
 "xAr" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/mainship/research/containment/floor1,

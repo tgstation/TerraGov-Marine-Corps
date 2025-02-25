@@ -246,7 +246,7 @@
 
 /obj/structure/largecrate/supply/explosives/mines
 	name = "\improper M20 claymore case (x20)"
-	desc = "A case containing five four M20 claymore boxes."
+	desc = "A case containing five four-count M20 claymore boxes."
 	supplies = list(/obj/item/storage/box/explosive_mines = 5)
 
 /obj/structure/largecrate/supply/explosives/grenades
@@ -270,7 +270,7 @@
 	supplies = list(/obj/item/mortal_shell/flare = 25)
 
 /obj/structure/largecrate/supply/explosives/disposable
-	name = "RL-72 disposable rocket launchers (x8)"
+	name = "\improper RL-72 disposable rocket launcher crate (x8)"
 	desc = "A case containing eight RL-72 disposables."
 	supplies = list(/obj/item/weapon/gun/launcher/rocket/oneuse = 8)
 
@@ -279,12 +279,12 @@
 	icon_state = "secure_crate"
 
 /obj/structure/largecrate/supply/supplies/flares
-	name = "Flare supply crate (x100)"
+	name = "flare supply crate (x100)"
 	desc = "A supply crate containing twenty five-flare boxes."
 	supplies = list(/obj/item/storage/box/m94 = 10)
 
 /obj/structure/largecrate/supply/supplies/coifs
-	name = "Heat absorbent coifs supply crate (x25)"
+	name = "heat absorbent coifs supply crate (x25)"
 	desc = "A supply crate containing twenty five heat absorbent coifs."
 	supplies = list(/obj/item/clothing/mask/rebreather/scarf = 25)
 

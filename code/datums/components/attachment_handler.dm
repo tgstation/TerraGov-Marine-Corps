@@ -257,8 +257,8 @@
 	if(!do_after(user, detach_delay, NONE, parent, do_after_icon_type))
 		return
 
-	user.visible_message(span_notice("[user] detaches [attachment_to_remove] to [parent]."),
-	span_notice("You detach [attachment_to_remove] to [parent]."), null, 4)
+	user.visible_message(span_notice("[user] detaches [attachment_to_remove] from [parent]."),
+	span_notice("You detach [attachment_to_remove] from [parent]."), null, 4)
 	playsound(user, attachment_data[ATTACH_SOUND], 15, 1, 4)
 
 	finish_detach(attachment_to_remove, attachment_data, user)
