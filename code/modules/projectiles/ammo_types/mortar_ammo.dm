@@ -58,6 +58,28 @@
 	flame_radius(5, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
+/datum/ammo/mortar/howi/ml
+	name = "150mm Minelayer Shell"
+	///How many mines are deployed
+	var/minecount = 8
+	///What mine is deployed
+	var/minetype = /obj/item/explosive/mine/pressure
+	///How big of a AOE the mines are deployed over
+	var/droprange = 4
+
+/datum/ammo/mortar/howi/ml/drop_nade(turf/T)
+	var/list/turf/turfs = RANGE_TURFS(droprange, T)
+	while(minecount > 0) // Avoiding double stacking mines
+		var/turf/candidate = pick_n_take(turfs)
+		if(candidate.density)
+			continue
+		for(var/atom/blocker AS in candidate.contents)
+			if(blocker.density || istype(blocker,/obj/item/explosive/mine))
+				continue
+		minecount--
+		new /obj/item/explosive/mine/pressure(candidate)
+	minecount = initial(minecount)
+
 /datum/ammo/mortar/smoke/howi
 	name = "150mm shell"
 	icon_state = "howi"
