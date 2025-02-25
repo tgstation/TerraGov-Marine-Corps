@@ -310,7 +310,7 @@ ADMIN_VERB(toggle_synthetic_restrictions, R_FUN, "Toggle Synthetic Restrictions"
 	message_admins("[ADMIN_TPMONTY(user.mob)] has [CONFIG_GET(flag/allow_synthetic_gun_use) ? "enabled" : "disabled"] synthetic weapon use.")
 
 ADMIN_VERB(reload_admins, R_SERVER, "Reload Admins", "Manually load all admins from the .txt", ADMIN_CATEGORY_SERVER)
-	if(alert(user, "Are you sure you want to reload admins?", "Reload admins", list("No", "Yes")) != "Yes")
+	if(alert(user, "Are you sure you want to reload admins?", "Reload admins", "No", "Yes") != "Yes")
 		return
 
 	load_admins()
