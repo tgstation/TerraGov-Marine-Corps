@@ -38,8 +38,9 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 /datum/component/ai_controller/proc/clean_up(register_for_logout = TRUE)
 	SIGNAL_HANDLER
 	GLOB.ai_instances_active -= src
-	UnregisterSignal(parent, COMSIG_MOB_LOGIN)
-	UnregisterSignal(parent, COMSIG_MOB_DEATH)
+	if(!QDELETED(parent))
+		UnregisterSignal(parent, COMSIG_MOB_LOGIN)
+		UnregisterSignal(parent, COMSIG_MOB_DEATH)
 	if(ai_behavior)
 		STOP_PROCESSING(SSprocessing, ai_behavior)
 		ai_behavior.cleanup_signals()
