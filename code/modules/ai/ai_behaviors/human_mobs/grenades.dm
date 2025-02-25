@@ -20,7 +20,9 @@
 			return
 	if(!line_of_sight(mob_parent, combat_target, 7))
 		return
-	return throw_grenade(combat_target, get_grenade())
+	if(!check_path(mob_parent, combat_target, PASS_THROW))
+		return
+	return throw_grenade(pick(RANGE_TURFS(1, combat_target)), get_grenade()) //add a bit of randomness for FUN
 
 ///Throws the grenade
 /datum/ai_behavior/human/proc/throw_grenade(atom/target, obj/item/explosive/grenade/grenade)
@@ -40,7 +42,7 @@
 		if(isgun(option.loc))
 			continue
 		var/mob/living/living_parent = mob_parent
-		if(istype(option, /obj/item/explosive/grenade/smokebomb) && (living_parent.health <= minimum_health * 2 * living_parent.maxHealth))
+		if(istype(option, /obj/item/explosive/grenade/smokebomb) && !option.dangerous && (living_parent.health <= minimum_health * 2 * living_parent.maxHealth))
 			return
 		nade_options += option
 
