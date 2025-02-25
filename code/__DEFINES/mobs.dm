@@ -823,7 +823,6 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define DANCER_IMPALE_PENETRATION 20//armor penetration done by impale to marked targets
 #define DANCER_MAX_IMPALE_MULT 2.5 //the maximum multiplier dancer impale can gain from debuffs
 #define DANCER_NONHUMAN_IMPALE_MULT 1.5//the flat damage multiplier done by impale to non-carbon targets
-#define DANCER_DODGE_BATONPASS_CD 7 SECONDS//the cooldown value added to dodge by Baton Pass
 
 //misc
 
