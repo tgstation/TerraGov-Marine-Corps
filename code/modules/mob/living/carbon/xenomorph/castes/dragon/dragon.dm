@@ -20,8 +20,8 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/hijack,
 	)
-	// If they should be prevented from using the special state icon.
-	var/no_special_state = FALSE
+	// If they are currently doing landing animations and thus should display their regular sprite.
+	var/doing_landing_animations = FALSE
 
 /mob/living/carbon/xenomorph/dragon/Initialize(mapload)
 	. = ..()
@@ -31,14 +31,14 @@
 	playsound(loc, 'sound/voice/alien/king_died.ogg', 75, 0)
 
 /mob/living/carbon/xenomorph/dragon/handle_special_state()
-	if(no_special_state || !(status_flags & INCORPOREAL))
+	if(doing_landing_animations || !(status_flags & INCORPOREAL))
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DRAGON_CHANGE_FORM))
 		return FALSE
 	icon_state = "dragon_marker"
 	return TRUE
 
-/// If they have plasma, reduces their damage accordingly. Ratio is 4 plasma per 1 damage.
+/// If they have plasma, reduces their damage accordingly by up to 50%. Ratio is 4 plasma per 1 damage.
 /mob/living/carbon/xenomorph/dragon/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
 	if((status_flags & GODMODE) || damage <= 0)
 		return FALSE
@@ -46,7 +46,7 @@
 		return FALSE
 	if(stat != DEAD && plasma_stored)
 		var/damage_reduction = min(damage / 2, plasma_stored / 4)
-		use_plasma(ROUND_UP(damage_reduction * 4))
+		use_plasma(ROUND_UP(damage_reduction * 4)) // NOTE: We love whole numbers.
 		damage -= damage_reduction
 	return ..()
 
@@ -59,35 +59,30 @@
 	if(isclosedturf(newloc) && !istype(newloc, /turf/closed/wall/resin))
 		return FALSE
 	for(var/atom/atom_on_turf AS in newloc.contents)
-		if(!atom_on_turf.CanPass(src, newloc))
-			if((atom_on_turf.resistance_flags & RESIST_ALL)) // Like hull windows.
-				return FALSE
-			if(istype(atom_on_turf, /obj/machinery/door/poddoor/timed_late))
-				return FALSE
+		if(atom_on_turf.CanPass(src, newloc))
+			continue
+		if((atom_on_turf.resistance_flags & RESIST_ALL)) // NOTE: This prevents them from going off into space during hijack.
+			return FALSE
+		if(istype(atom_on_turf, /obj/machinery/door/poddoor/timed_late)) /// NOTE: This prevents them from entering the LZ early.
+			return FALSE
 	abstract_move(newloc)
 
 /// Begins changing forms from flight to ground and vice versa.
 /mob/living/carbon/xenomorph/dragon/change_form()
 	if(!(status_flags & INCORPOREAL))
-		TIMER_COOLDOWN_START(src, COOLDOWN_DRAGON_CHANGE_FORM, 0.5 SECONDS)
-		animate(src, pixel_x = -48, pixel_y = 500, time = 0.5 SECONDS)
-		addtimer(CALLBACK(src, PROC_REF(finish_flying)), 0.5 SECONDS)
+		start_flight()
 		return
+	start_landing()
 
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = actions_by_path[/datum/action/ability/activable/xeno/unleash]
-	unleash_ability?.start_withdrawal()
-	TIMER_COOLDOWN_START(src, COOLDOWN_DRAGON_CHANGE_FORM, 3 SECONDS)
-	animate(src, pixel_x = generator("num", -100, 100, NORMAL_RAND), pixel_y = 500, time = 0)
-	var/list/obj/effect/xeno/dragon_warning/telegraphed_atoms = list()
-	var/list/turf/affected_turfs = RANGE_TURFS(2, loc)
-	for(var/turf/affected_turf AS in affected_turfs)
-		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
-	addtimer(CALLBACK(src, PROC_REF(handle_dropping_animations)), 2.5 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(finish_dropping), telegraphed_atoms), 3.0 SECONDS)
+/// Begins the process of flying.
+/mob/living/carbon/xenomorph/dragon/proc/start_flight()
+	TIMER_COOLDOWN_START(src, COOLDOWN_DRAGON_CHANGE_FORM, 0.5 SECONDS)
+	animate(src, pixel_x = initial(pixel_x), pixel_y = 500, time = 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finalize_flight)), 0.5 SECONDS)
 
-/// Ends the animation and sets up the rest of the flying stuff.
-/mob/living/carbon/xenomorph/dragon/proc/finish_flying()
-	TIMER_COOLDOWN_END(src, COOLDOWN_DRAGON_CHANGE_FORM) // Special state won't think it is ready otherwise.
+/// Finalizes the process of flying by granting various flags and so on.
+/mob/living/carbon/xenomorph/dragon/proc/finalize_flight()
+	TIMER_COOLDOWN_END(src, COOLDOWN_DRAGON_CHANGE_FORM) // NOTE: Cooldown needs to end for special state to work as wanted.
 	animate(src, pixel_x = 0, pixel_y = 0, time = 0)
 	status_flags = GODMODE|INCORPOREAL
 	resistance_flags = RESIST_ALL|BANISH_IMMUNE
@@ -97,62 +92,25 @@
 	update_icons(TRUE)
 	update_action_buttons()
 
-// Start the animation of descending and revert our sprite back to normal.
-/mob/living/carbon/xenomorph/dragon/proc/handle_dropping_animations(list/obj/effect/xeno/dragon_warning/telegraphed_atoms)
-	no_special_state = TRUE
+/// Begins the process of landing.
+/mob/living/carbon/xenomorph/dragon/proc/start_landing()
+	TIMER_COOLDOWN_START(src, COOLDOWN_DRAGON_CHANGE_FORM, 3 SECONDS)
+	animate(src, pixel_x = initial(pixel_x), pixel_y = 500, time = 0)
+	var/list/turf/future_impacted_turfs = filled_turfs(src, 2, "square", FALSE, pass_flags_checked = PASS_AIR)
+	telegraph_these_turfs(future_impacted_turfs)
+	addtimer(CALLBACK(src, PROC_REF(continue_landing), future_impacted_turfs), 2.5 SECONDS)
+
+/// Continues the process of landing (mainly because of animations).
+/mob/living/carbon/xenomorph/dragon/proc/continue_landing(list/turf/impacted_turfs)
+	doing_landing_animations = TRUE
+	animate(src, pixel_x = initial(pixel_x), pixel_y = 0, time = 0.5 SECONDS)
 	update_icons(TRUE)
-	animate(src, pixel_x = -48, pixel_y = 0, time = 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(perform_landing_effects), impacted_turfs), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finalize_landing)), 0.5 SECONDS)
 
-// Removes telegraphing, does various landing effects, and reverts any changes caused by flying.
-/mob/living/carbon/xenomorph/dragon/proc/finish_dropping(list/obj/effect/xeno/dragon_warning/telegraphed_atoms)
-	no_special_state = FALSE
-	QDEL_LIST(telegraphed_atoms)
-	var/list/turf/affected_turfs = RANGE_TURFS(2, loc)
-	var/damage = 100 * xeno_melee_damage_modifier
-	var/list/obj/vehicle/vehicles_already_affected_so_far = list() // To stop hitting something the same multitile vehicle twice.
-	for(var/turf/affected_tile AS in affected_turfs)
-		affected_tile.Shake(duration = 0.2 SECONDS)
-		for(var/atom/affected_atom AS in affected_tile)
-			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
-				continue
-			if(affected_atom in vehicles_already_affected_so_far)
-				continue
-			if(isxeno(affected_atom))
-				continue
-			if(isliving(affected_atom))
-				var/mob/living/affected_living = affected_atom
-				if(affected_living.stat == DEAD)
-					continue
-				affected_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5, updating_health = TRUE)
-				animate(affected_living, pixel_z = affected_living.pixel_z + 8, layer = max(MOB_JUMP_LAYER, affected_living.layer), time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
-				animate(affected_living, pixel_z = affected_living.pixel_z - 8, layer = affected_living.layer, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
-				affected_living.animation_spin(0.5 SECONDS, 1, affected_living.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
-				var/datum/component/jump/living_jump_component = affected_living.GetComponent(/datum/component/jump)
-				if(living_jump_component)
-					TIMER_COOLDOWN_START(affected_living, JUMP_COMPONENT_COOLDOWN, 0.25 SECONDS)
-				continue
-			if(!isobj(affected_atom))
-				continue
-			var/obj/affected_obj = affected_atom
-			if(ishitbox(affected_obj))
-				var/obj/hitbox/vehicle_hitbox = affected_obj
-				if(vehicle_hitbox.root in vehicles_already_affected_so_far)
-					continue
-				handle_vehicle_effects(vehicle_hitbox.root, damage / 3)
-				vehicles_already_affected_so_far += vehicle_hitbox.root
-				continue
-			if(!isvehicle(affected_obj))
-				affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = src)
-				continue
-			if(ismecha(affected_obj))
-				handle_vehicle_effects(affected_obj, damage * 3, 50)
-			else if(isarmoredvehicle(affected_obj))
-				handle_vehicle_effects(affected_obj, damage / 3)
-			else
-				handle_vehicle_effects(affected_obj, damage * 3)
-			vehicles_already_affected_so_far += affected_obj
-	playsound(loc, 'sound/effects/alien/behemoth/seismic_fracture_explosion.ogg', 50, 1)
-
+/// Finalizes the process of landing by reversing the effects from flying.
+/mob/living/carbon/xenomorph/dragon/proc/finalize_landing()
+	doing_landing_animations = FALSE
 	status_flags = initial(status_flags)
 	resistance_flags = initial(resistance_flags)
 	pass_flags = initial(pass_flags)
@@ -164,8 +122,59 @@
 	fly_ability?.succeed_activate()
 	fly_ability?.add_cooldown()
 
+// Performs various landing effects.
+/mob/living/carbon/xenomorph/dragon/proc/perform_landing_effects(list/turf/impacted_turfs)
+	var/damage = 100 * xeno_melee_damage_modifier
+	var/list/obj/vehicle/already_stunned_vehicles = list() // NOTE: This is to prevent hitting the main body of a vehicle twice.
+	for(var/turf/impacted_turf AS in impacted_turfs)
+		impacted_turf.Shake(duration = 0.2 SECONDS)
+		for(var/atom/impacted_atom AS in impacted_turf)
+			if(!(impacted_atom.resistance_flags & XENO_DAMAGEABLE))
+				continue
+			if(isxeno(impacted_atom))
+				continue
+			if(isliving(impacted_atom))
+				var/mob/living/impacted_living = impacted_atom
+				if(impacted_living.stat == DEAD)
+					continue
+				impacted_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5, updating_health = TRUE)
+				animate(impacted_living, pixel_z = impacted_living.pixel_z + 8, layer = max(MOB_JUMP_LAYER, impacted_living.layer), time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
+				animate(pixel_z = impacted_living.pixel_z - 8, layer = impacted_living.layer, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
+				impacted_living.animation_spin(0.5 SECONDS, 1, impacted_living.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
+				continue
+			if(!isobj(impacted_atom))
+				continue
+			var/obj/impacted_obj = impacted_atom
+			if(ishitbox(impacted_atom))
+				var/obj/hitbox/impacted_hitbox = impacted_atom
+				var/can_stun = !(impacted_hitbox.root in already_stunned_vehicles)
+				handle_vehicle_effects(impacted_hitbox.root, damage / 3, should_stun = can_stun)
+				if(can_stun)
+					already_stunned_vehicles += impacted_hitbox.root
+				continue
+			if(!isvehicle(impacted_obj))
+				impacted_obj.take_damage(damage, BRUTE, MELEE, blame_mob = src)
+				continue
+			var/can_stun = !(impacted_obj in already_stunned_vehicles)
+			if(ismecha(impacted_obj))
+				handle_vehicle_effects(impacted_obj, damage * 3, 50, should_stun = can_stun)
+			else if(isarmoredvehicle(impacted_obj))
+				handle_vehicle_effects(impacted_obj, damage / 3, should_stun = can_stun)
+			else
+				handle_vehicle_effects(impacted_obj, damage * 3, should_stun = can_stun)
+			already_stunned_vehicles += impacted_obj
+	playsound(loc, 'sound/effects/alien/behemoth/seismic_fracture_explosion.ogg', 50, 1)
+
+/// Creates telegraph effects for a list of turfs which will automatically delete in 3 seconds.
+/mob/living/carbon/xenomorph/dragon/proc/telegraph_these_turfs(list/turf/turfs_to_telegraph)
+	var/list/obj/effect/telegraph_effects = list()
+	for(var/turf/turf_to_telegraph AS in turfs_to_telegraph)
+		telegraph_effects += new /obj/effect/temp_visual/dragon/warning/three(turf_to_telegraph)
+	return telegraph_effects
+
 /// Stuns the vehicle's occupants and does damage to the vehicle itself.
-/mob/living/carbon/xenomorph/dragon/proc/handle_vehicle_effects(obj/vehicle/vehicle, damage, ap)
-	for(var/mob/living/living_occupant in vehicle.occupants)
-		living_occupant.apply_effect(3 SECONDS, EFFECT_PARALYZE)
+/mob/living/carbon/xenomorph/dragon/proc/handle_vehicle_effects(obj/vehicle/vehicle, damage, ap, should_stun = FALSE)
+	if(should_stun)
+		for(var/mob/living/living_occupant in vehicle.occupants)
+			living_occupant.apply_effect(3 SECONDS, EFFECT_PARALYZE)
 	vehicle.take_damage(damage, BRUTE, MELEE, armour_penetration = ap, blame_mob = src)

@@ -178,6 +178,10 @@
 				else
 					xeno_owner.balloon_alert(xeno_owner, "no weeds")
 			return FALSE
+	if(!isxenodragon(xeno_owner))
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "no wings")
+		return FALSE
 	if(TIMER_COOLDOWN_CHECK(xeno_owner, COOLDOWN_DRAGON_CHANGE_FORM))
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "already lifting")
@@ -987,6 +991,8 @@
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = ""
 	cooldown_duration = 240 SECONDS
+	/// If we are currently in the process of roaring.
+	var/currently_roaring = FALSE
 	/// The timer id for the proc regarding the beginning or ending of withdrawal.
 	var/timer_id = FALSE
 
@@ -1003,33 +1009,121 @@
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "undergoing withdrawal")
 		return FALSE
+	if(currently_roaring)
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "currently roaring")
+		return FALSE
 	return ..()
 
+/// Begins the roar which comes with immobility, but godmode until it ends.
 /datum/action/ability/activable/xeno/unleash/use_ability(atom/target)
-	xeno_owner.xeno_melee_damage_modifier += 1/3 // 10+ melee damage
-	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH, TRUE, 0, NONE, TRUE, -1) // TODO: Check if this is accurate.
-	timer_id = addtimer(CALLBACK(src, PROC_REF(start_withdrawal)), 30 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+	currently_roaring = TRUE
+	xeno_owner.status_flags |= GODMODE
+	xeno_owner.fortify = TRUE
+	xeno_owner.set_canmove(FALSE)
+	playsound(get_turf(xeno_owner), 'sound/effects/alien/behemoth/primal_wrath_roar.ogg', 75, TRUE)
+	handle_roar_effects()
+	addtimer(CALLBACK(src, PROC_REF(end_roar)), PRIMAL_WRATH_ACTIVATION_DURATION)
 
-/// Undoes the ability's effects and causes a considerable slowdown for a short while.
+/// Ends the roar and applies the buffs.
+/datum/action/ability/activable/xeno/unleash/proc/end_roar()
+	currently_roaring = FALSE
+	xeno_owner.status_flags &= ~GODMODE
+	xeno_owner.fortify = FALSE
+	xeno_owner.set_canmove(TRUE)
+	apply_buffs()
+
+/// Displays roar effects to nearby humans.
+/datum/action/ability/activable/xeno/unleash/proc/handle_roar_effects()
+	if(!currently_roaring)
+		return
+	new /obj/effect/temp_visual/shockwave/unleash(get_turf(xeno_owner), 4, owner.dir)
+	for(var/mob/living/affected_living in cheap_get_humans_near(xeno_owner, PRIMAL_WRATH_RANGE) + xeno_owner)
+		if(!affected_living.hud_used)
+			continue
+		var/atom/movable/screen/plane_master/floor/floor_plane = affected_living.hud_used.plane_masters["[FLOOR_PLANE]"]
+		var/atom/movable/screen/plane_master/game_world/world_plane = affected_living.hud_used.plane_masters["[GAME_PLANE]"]
+		if(floor_plane.get_filter("dragon_unleash") || world_plane.get_filter("dragon_unleash"))
+			continue
+		var/filter_size = 0.01
+		world_plane.add_filter("dragon_unleash", 2, radial_blur_filter(filter_size))
+		animate(world_plane.get_filter("dragon_unleash"), size = filter_size * 2, time = 0.5 SECONDS, loop = -1)
+		floor_plane.add_filter("dragon_unleash", 2, radial_blur_filter(filter_size))
+		animate(floor_plane.get_filter("dragon_unleash"), size = filter_size * 2, time = 0.5 SECONDS, loop = -1)
+		end_roar_effects_for(affected_living)
+	addtimer(CALLBACK(src, PROC_REF(handle_roar_effects)), 0.1 SECONDS)
+
+/// Ends roar effects if roaring has ended or if said human gets out of rage.
+/datum/action/ability/activable/xeno/unleash/proc/end_roar_effects_for(mob/living/affected_living)
+	if(!affected_living || !xeno_owner)
+		return
+	var/atom/movable/screen/plane_master/floor/floor_plane = affected_living.hud_used.plane_masters["[FLOOR_PLANE]"]
+	var/atom/movable/screen/plane_master/game_world/world_plane = affected_living.hud_used.plane_masters["[GAME_PLANE]"]
+	if(!floor_plane.get_filter("dragon_unleash") || !world_plane.get_filter("dragon_unleash"))
+		return
+	if(!currently_roaring || get_dist(affected_living, xeno_owner) > PRIMAL_WRATH_RANGE)
+		var/resolve_time = 0.2 SECONDS
+		animate(floor_plane.get_filter("dragon_unleash"), size = 0, time = resolve_time, flags = ANIMATION_PARALLEL)
+		animate(world_plane.get_filter("dragon_unleash"), size = 0, time = resolve_time, flags = ANIMATION_PARALLEL)
+		addtimer(CALLBACK(floor_plane, TYPE_PROC_REF(/datum, remove_filter), "dragon_unleash"), resolve_time)
+		addtimer(CALLBACK(world_plane, TYPE_PROC_REF(/datum, remove_filter), "dragon_unleash"), resolve_time)
+		return
+	addtimer(CALLBACK(src, PROC_REF(end_roar_effects_for), affected_living), 0.1 SECONDS)
+
+/// Grants 33% additional slash damage and a boost in movement speed that will wear off in 30 seconds.
+/datum/action/ability/activable/xeno/unleash/proc/apply_buffs()
+	xeno_owner.xeno_melee_damage_modifier += 1/3 // NOTE: This is 33% increase of all slash and ability damage.
+	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH, TRUE, 0, NONE, TRUE, -0.5)
+	timer_id = addtimer(CALLBACK(src, PROC_REF(start_withdrawal)), 30 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+	succeed_activate()
+
+/// Reverses the buffs caused by the ability and gives a temporary slowdown.
 /datum/action/ability/activable/xeno/unleash/proc/start_withdrawal()
+	if(!is_active())
+		return
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] looks tired."), span_danger("We feel tired."), null, 5) // TODO: span_danger may not be the correct one to use.
 	xeno_owner.xeno_melee_damage_modifier -= 1/3
 	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH)
 	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH_WITHDRAWAL, TRUE, 0, NONE, TRUE, 0.8) // TODO: Check if this is accurate.
-	deltimer(timer_id) // TODO: Is this needed?
 	timer_id = addtimer(CALLBACK(src, PROC_REF(end_withdrawal)), 5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
-	succeed_activate()
-	add_cooldown()
 
-/// Undoes the slowdown caused by the end of the ability.
+/// Removes the temporary slowdown and sets the ability on cooldown.
 /datum/action/ability/activable/xeno/unleash/proc/end_withdrawal()
 	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH_WITHDRAWAL)
 	deltimer(timer_id)
 	timer_id = null
+	add_cooldown()
 
-/// Is this ability currently active?
+/// Returns true if the ability's buff is currently active.
 /datum/action/ability/activable/xeno/unleash/proc/is_active()
 	return timer_id ? xeno_owner.has_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH) : FALSE
+
+/obj/effect/temp_visual/dragon
+	name = "Dragon"
+	duration = 1.5 SECONDS
+
+/obj/effect/temp_visual/dragon/warning
+	icon = 'icons/xeno/Effects.dmi'
+	icon_state = "generic_warning"
+	layer = BELOW_MOB_LAYER
+	color = COLOR_RED
+
+/obj/effect/temp_visual/dragon/warning/three
+	duration = 3 SECONDS
+
+/obj/effect/temp_visual/shockwave/unleash/Initialize(mapload, radius, direction)
+	. = ..()
+	switch(direction)
+		if(NORTH)
+			pixel_y += 48
+		if(SOUTH)
+			pixel_y += 32
+		if(WEST)
+			pixel_x -= 56
+			pixel_y += 48
+		if(EAST)
+			pixel_x += 56
+			pixel_y += 48
 
 /obj/effect/xeno/dragon_warning
 	icon = 'icons/effects/effects.dmi'
