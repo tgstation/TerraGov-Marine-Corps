@@ -49,6 +49,8 @@
 	var/last_move_dir
 	/// The timing for activating a dash by double tapping a movement key.
 	var/double_tap_timing = 0.18 SECONDS
+	/// total wight our limbs and equipment contribute. max determined by MECH_GREY_LEGS limb
+	var/weight = 0
 
 /obj/vehicle/sealed/mecha/combat/greyscale/Initialize(mapload)
 	holder_left = new(src, /particles/mecha_smoke)
@@ -56,6 +58,8 @@
 	holder_right = new(src, /particles/mecha_smoke)
 	holder_right.layer = layer+0.001
 	. = ..()
+
+	set_jump_component()
 
 	for(var/key in limbs)
 		if(!limbs[key])
@@ -91,6 +95,7 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/generate_actions()
 	. = ..()
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_overload_mode)
+	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/repairpack)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
 	if((mecha_flags & MECHA_SKILL_LOCKED) && entering_mob.skills.getRating(SKILL_MECH) < SKILL_MECH_TRAINED)
@@ -254,6 +259,34 @@
 		if((user.zone_selected in limb.def_zones) && (limb.part_health < initial(limb?.part_health)))
 			return TRUE
 
+///Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, jump_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
+	var/list/arg_list = list(duration, cooldown, cost, height, sound, flags, jump_pass_flags)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_SET_JUMP_COMPONENT, arg_list))
+		duration = arg_list[1]
+		cooldown = arg_list[2]
+		cost = arg_list[3]
+		height = arg_list[4]
+		sound = arg_list[5]
+		flags = arg_list[6]
+		jump_pass_flags = arg_list[7]
+
+	var/gravity = get_gravity()
+	if(gravity < 1) //low grav
+		duration *= 2.5 - gravity
+		cooldown *= 2 - gravity
+		cost *= gravity * 0.5
+		height *= 2 - gravity
+		if(gravity <= 0.75)
+			jump_pass_flags |= PASS_DEFENSIVE_STRUCTURE
+	else if(gravity > 1) //high grav
+		duration *= gravity * 0.5
+		cooldown *= gravity
+		cost *= gravity
+		height *= gravity * 0.5
+
+	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = jump_pass_flags)
+
 /obj/vehicle/sealed/mecha/combat/greyscale/recon
 	name = "Recon Mecha"
 	limbs = list(
@@ -301,3 +334,9 @@
 	pivot_step = FALSE
 	max_integrity = 1760
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
+
+/obj/item/repairpack
+	name = "mech repairpack"
+	desc = "A mecha repair pack, consisting of various auto-extinguisher systems, materials and repair nano-scarabs."
+	icon = 'icons/obj/items/assemblies.dmi'
+	icon_state = "posibrain-occupied" // todo kuro needs to make/find an icon for this

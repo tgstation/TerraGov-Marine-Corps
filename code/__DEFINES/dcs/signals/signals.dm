@@ -876,3 +876,7 @@
 #define COMSIG_CAMPAIGN_ASSET_ACTIVATION "campaign_asset_activation"
 ///Campaign asset disabler activated
 #define COMSIG_CAMPAIGN_DISABLER_ACTIVATION "campaign_disabler_activation"
+
+/// From [/datum/controller/subsystem/security_level/proc/set_level]
+/// `/datum/security_level/next_level`, `/datum/security_level/previous_level`
+#define COMSIG_SECURITY_LEVEL_CHANGED "security_level_changed"

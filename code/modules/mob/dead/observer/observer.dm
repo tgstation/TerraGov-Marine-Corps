@@ -381,7 +381,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	return TRUE
 
 /mob/dead/observer/verb/toggle_HUDs()
-	set category = "Ghost"
+	set category = "Ghost.Toggles"
 	set name = "Toggle HUDs"
 	set desc = "Toggles various HUDs."
 
@@ -433,7 +433,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/verb/teleport()
-	set category = "Ghost"
+	set category = "Ghost.Follow"
 	set name = "Teleport"
 	set desc = "Teleport to an area."
 
@@ -446,7 +446,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/verb/follow_ghost()
-	set category = "Ghost"
+	set category = "Ghost.Follow"
 	set name = "Follow Ghost"
 
 	var/list/observers = list()
@@ -481,7 +481,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/verb/follow_xeno()
-	set category = "Ghost"
+	set category = "Ghost.Follow"
 	set name = "Follow Xeno"
 
 	var/admin = FALSE
@@ -530,7 +530,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/verb/follow_human()
-	set category = "Ghost"
+	set category = "Ghost.Follow"
 	set name = "Follow Living Human"
 
 	var/admin = FALSE
@@ -585,7 +585,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/verb/follow_dead()
-	set category = "Ghost"
+	set category = "Ghost.Follow"
 	set name = "Follow Dead"
 
 	var/list/dead = list()
@@ -621,7 +621,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/verb/follow()
-	set category = "Ghost"
+	set category = "Ghost.Follow"
 	set name = "Follow"
 
 	if(!orbit_menu)
@@ -698,7 +698,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/verb/toggle_zoom()
-	set category = "Ghost"
+	set category = "Ghost.Toggles"
 	set name = "Toggle Zoom"
 
 	if(!client)
@@ -718,7 +718,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/verb/toggle_darkness()
-	set category = "Ghost"
+	set category = "Ghost.Toggles"
 	set name = "Toggle Darkness"
 
 	switch(lighting_alpha)
@@ -735,7 +735,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/verb/toggle_ghostsee()
-	set category = "Ghost"
+	set category = "Ghost.Toggles"
 	set name = "Toggle Ghost Vision"
 	set desc = "Toggles your ability to see things only ghosts can see, like other ghosts."
 
@@ -812,7 +812,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/dead/observer/verb/observe()
 	set name = "Observe"
-	set category = "Ghost"
+	set category = "Ghost.Follow"
 
 	reset_perspective(null)
 
@@ -866,7 +866,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 /mob/dead/observer/verb/toggle_inquisition()
-	set category = "Ghost"
+	set category = "Ghost.Toggles"
 	set name = "Toggle Inquisitiveness"
 	set desc = "Sets whether your ghost examines everything on click by default"
 
@@ -879,7 +879,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /// Toggle for whether you health-scan living beings on click as observer.
 /mob/dead/observer/verb/toggle_health_scan()
-	set category = "Ghost"
+	set category = "Ghost.Toggles"
 	set name = "Toggle Health Scan"
 	set desc = "Toggles whether you health-scan living beings on click"
 
