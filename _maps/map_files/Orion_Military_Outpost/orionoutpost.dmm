@@ -2974,7 +2974,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
 "oJ" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/structure/platform{
@@ -3948,7 +3948,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostse)
 "tf" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -4821,7 +4821,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/ground/underground/caveN)
 "xz" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/item/stack/rods,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/bunker)
@@ -7455,7 +7455,7 @@
 	},
 /area/orion_outpost/surface/building/cargo)
 "KC" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -7896,7 +7896,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/river/riverside_north)
 "MF" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -9594,7 +9594,7 @@
 	},
 /area/orion_outpost/surface/building/command)
 "UI" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/bunker)
 "UJ" = (
@@ -9632,7 +9632,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/surface/landing_pad_external)
 "US" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/effect/spawner/random/weaponry/gun/rifles,

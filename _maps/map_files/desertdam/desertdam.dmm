@@ -38144,7 +38144,6 @@
 "jXd" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/regular,
-/obj/item/storage/pill_bottle/russian_red,
 /turf/open/floor/tile/blue/whiteblue,
 /area/desert_dam/building/medical/medsecure)
 "jXf" = (

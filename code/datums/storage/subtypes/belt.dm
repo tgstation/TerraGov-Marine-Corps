@@ -87,6 +87,8 @@
 		/obj/item/stack/medical,
 		/obj/item/bodybag,
 		/obj/item/defibrillator,
+		/obj/item/tweezers,
+		/obj/item/tweezers_advanced,
 		/obj/item/roller,
 		/obj/item/tool/research,
 		/obj/item/tool/soap,

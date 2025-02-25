@@ -16042,7 +16042,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/lv759/indoors/power_plant)
 "cSp" = (
-/obj/structure/barricade/metal/deployable,
+/obj/structure/barricade/solid/deployable,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -33379,7 +33379,7 @@
 /area/lv759/indoors/nt_office/floor)
 "fTY" = (
 /obj/machinery/power/port_gen,
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk{
@@ -53332,7 +53332,7 @@
 	},
 /area/lv759/indoors/caves/west_caves)
 "jrZ" = (
-/obj/structure/barricade/metal/deployable,
+/obj/structure/barricade/solid/deployable,
 /obj/structure/largecrate/random/barrel{
 	layer = 5;
 	pixel_y = 12
@@ -58215,7 +58215,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "knC" = (
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk{
@@ -59820,7 +59820,7 @@
 /turf/open/floor/podhatch/floor,
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "kCh" = (
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 4
 	},
 /obj/structure/largecrate/random/barrel{
@@ -83620,7 +83620,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "oJM" = (
 /obj/effect/spawner/random/weaponry/ammo/rifle,
-/obj/structure/barricade/metal/deployable,
+/obj/structure/barricade/solid/deployable,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -93088,7 +93088,7 @@
 "qqz" = (
 /obj/effect/spawner/random/weaponry/gun/rifles,
 /obj/effect/spawner/random/weaponry/ammo/rifle,
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk{
@@ -109351,7 +109351,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/botany/botany_mainroom)
 "tlf" = (
-/obj/structure/barricade/metal/deployable,
+/obj/structure/barricade/solid/deployable,
 /turf/open/floor/prison{
 	dir = 10
 	},
@@ -134197,7 +134197,7 @@
 /area/lv759/indoors/nt_office/vip)
 "xup" = (
 /obj/effect/spawner/random/weaponry/ammo/rifle,
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk{
@@ -137323,7 +137323,7 @@
 /area/lv759/indoors/nt_research_complex/xenoarcheology)
 "xXb" = (
 /obj/effect/urban/decal/dirt,
-/obj/structure/barricade/metal/deployable,
+/obj/structure/barricade/solid/deployable,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},

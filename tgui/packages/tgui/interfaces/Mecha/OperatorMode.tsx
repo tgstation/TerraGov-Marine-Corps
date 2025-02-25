@@ -1,5 +1,6 @@
+import { ByondUi, Section, Stack } from 'tgui-core/components';
+
 import { useBackend } from '../../backend';
-import { ByondUi, Section, Stack } from '../../components';
 import { AlertPane } from './AlertPane';
 import { ArmorPane } from './ArmorPane';
 import { ArmPane } from './ArmPane';

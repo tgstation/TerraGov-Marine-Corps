@@ -42,7 +42,7 @@
 	. = ..()
 	if(.)
 		return
-	user.get_togglebuildmode()
+	SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/get_togglebuildmode)
 	return TRUE
 
 /datum/keybinding/admin/view_tags
@@ -56,5 +56,5 @@
 	. = ..()
 	if(.)
 		return
-	user.holder?.display_tags()
+	SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/display_tags)
 	return TRUE

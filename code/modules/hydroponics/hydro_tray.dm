@@ -647,7 +647,7 @@
 
 /obj/machinery/hydroponics/verb/close_lid()
 	set name = "Toggle Tray Lid"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in view(1)
 
 	if(!usr || usr.stat || usr.restrained())

@@ -1,7 +1,7 @@
-import { classes } from 'common/react';
+import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
 import { useBackend, useLocalState } from '../../backend';
-import { Box, Button, LabeledList, Section, Stack } from '../../components';
 import { IndividualData, LoadoutItemData, OutfitCostData } from './index';
 
 export const IndividualLoadouts = (props) => {
@@ -113,7 +113,7 @@ export const IndividualLoadouts = (props) => {
                             ])}
                           />
                         )}
-                        <Stack.Item bold={1} width={'90px'}>
+                        <Stack.Item bold width={'90px'}>
                           {equippeditem.slot_text + ':'}
                         </Stack.Item>
                         <Stack.Item>{equippeditem.item_type.name}</Stack.Item>
@@ -129,7 +129,7 @@ export const IndividualLoadouts = (props) => {
         <Section fill width={'240px'}>
           <Stack
             fontSize="150%"
-            bold={1}
+            bold
             textAlign="center"
             mt={'10px'}
             mb={'14px'}
@@ -199,7 +199,6 @@ export const IndividualLoadouts = (props) => {
       </Stack.Item>
       <Stack.Item>
         <Section
-          vertical
           title={selectedJob + ' loadout'}
           textColor={
             selectedOutfitCostData.outfit_cost <= data.currency
@@ -210,7 +209,6 @@ export const IndividualLoadouts = (props) => {
           Equip cost: {selectedOutfitCostData.outfit_cost}
         </Section>
         <Section
-          vertical
           title={
             selectedPossibleItem ? (
               <Box>
@@ -226,7 +224,7 @@ export const IndividualLoadouts = (props) => {
                     {selectedPossibleItem.name}
                   </Stack.Item>
                   {!selectedPossibleItem.unlocked && (
-                    <Stack.Item alight="right" position="end">
+                    <Stack.Item align="right" position="end">
                       <Button
                         onClick={() => setUnlockedItem(selectedPossibleItem)}
                         icon={'check'}

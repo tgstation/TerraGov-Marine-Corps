@@ -148,7 +148,7 @@
 
 	suit_store = /obj/item/weapon/gun/rifle/tx11/standard
 	belt = /obj/item/storage/belt/marine/combat_rifle
-	
+
 	backpack_contents = list(
 		/obj/item/ammo_magazine/packet/p492x34mm = 2,
 		/obj/item/ammo_magazine/pistol/standard_heavypistol = 2,
@@ -239,7 +239,7 @@
 	belt = /obj/item/storage/belt/sparepouch
 	suit_store = /obj/item/weapon/gun/rifle/standard_gpmg/machinegunner
 	l_pocket = /obj/item/storage/pouch/construction
-	
+
 	backpack_contents = list(
 		/obj/item/weapon/shield/riot/marine/deployable = 1,
 		/obj/item/ammo_magazine/standard_gpmg = 1,
@@ -1540,7 +1540,7 @@
 	desc = "Keeping your buddies alive and in the fight. Equipped with an MPI_KM assault rifle, medium armor and a good selection of grenades. Packs a large amount of medical supplies, the squad medic is vital to maintaining combat viability. An old weapon that was a common sight during the original Martian rebellion, the MPI's good stopping power, reliability and a healthy dose of nostalgia means it is still seen in use by some among the SOM despite its age."
 
 	suit_store = /obj/item/weapon/gun/rifle/mpi_km/black/magharness
-	
+
 	backpack_contents = list(
 		/obj/item/ammo_magazine/rifle/mpi_km/black = 4,
 		/obj/item/storage/box/MRE/som = 1,

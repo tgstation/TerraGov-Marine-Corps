@@ -398,14 +398,6 @@
 	nutriment_factor = 15
 	taste_description = "sweetness"
 
-/datum/reagent/consumable/honey/on_mob_life(mob/living/L, metabolism)
-	L.reagents.add_reagent(/datum/reagent/consumable/sugar,3)
-	L.adjustBruteLoss(-0.25*effect_str)
-	L.adjustFireLoss(-0.25*effect_str)
-	L.adjustOxyLoss(-0.25*effect_str)
-	L.adjustToxLoss(-0.25*effect_str)
-	return ..()
-
 /datum/reagent/consumable/larvajelly
 	name = "Larva Jelly"
 	description = "The blood and guts of a xenomorph larva blended into a paste. Drinking this is bad for you."
