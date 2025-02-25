@@ -42,7 +42,7 @@
 	var/fire_result = can_shoot_target(combat_target)
 	if(!gun_firing)
 		if(fire_result == AI_FIRE_NO_AMMO)
-			reload_gun()
+			INVOKE_ASYNC(src, PROC_REF(reload_gun))
 			return
 		if(fire_result != AI_FIRE_CAN_HIT)
 			return //cant shoot yet
@@ -65,7 +65,7 @@
 			if(prob(75))
 				try_speak(pick(dead_target_chat))
 		if(AI_FIRE_NO_AMMO)
-			reload_gun()
+			INVOKE_ASYNC(src, PROC_REF(reload_gun))
 		if(AI_FIRE_OUT_OF_RANGE)
 			if(prob(50))
 				try_speak(pick(out_range_chat))
