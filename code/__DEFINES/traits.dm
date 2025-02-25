@@ -123,6 +123,9 @@
 #define NIGHT_VISION_GOGGLES_TRAIT "night_vision_goggles"
 #define SUBMERGED_TRAIT "submerged_trait"
 #define TRAIT_DWARF "dwarf"
+#define MOVEMENT_SWAP_TRAIT "movement_swap_trait"
+#define INCORPOREAL_TRAIT "incorporeal_trait"
+#define HOVERBIKE_TRAIT "hoverbike_trait"
 /// This trait comes from when a mob is currently typing.
 #define CURRENTLY_TYPING_TRAIT "currently_typing"
 /// Makes you way too tall. Like just too much, dude, it's kind of creepy. Humanoid only.
@@ -191,6 +194,19 @@
 ///Builds things better
 #define TRAIT_SUPERIOR_BUILDER "superior_builder"
 
+///Traits for managing AM pass_flags
+#define TRAIT_PASS_LOW_STRUCTURE "pass_low_structure"
+#define TRAIT_PASS_GLASS "pass_glass"
+#define TRAIT_PASS_GRILLE "pass_grille"
+#define TRAIT_PASS_MOB "pass_mob"
+#define TRAIT_PASS_DEFENSIVE_STRUCTURE "pass_defensive_structure"
+#define TRAIT_PASS_FIRE "pass_fire"
+#define TRAIT_PASS_XENO "pass_xeno"
+#define TRAIT_PASS_THROW "pass_throw"
+#define TRAIT_PASS_PROJECTILE "pass_projectile"
+#define TRAIT_PASS_AIR "pass_air"
+#define TRAIT_PASS_WALKOVER "pass_walkover"
+#define TRAIT_PASS_TANK "pass_tank"
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"

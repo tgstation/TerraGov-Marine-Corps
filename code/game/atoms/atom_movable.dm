@@ -1206,19 +1206,18 @@
 		return
 	throwing = new_throwing
 	if(throwing)
-		pass_flags |= PASS_THROW
+		ADD_TRAIT(src, TRAIT_PASS_THROW, THROW_TRAIT)
 		add_nosubmerge_trait(THROW_TRAIT)
 	else
-		pass_flags &= ~PASS_THROW
-		REMOVE_TRAIT(src, TRAIT_NOSUBMERGE, THROW_TRAIT)
+		remove_traits(list(TRAIT_PASS_THROW, TRAIT_NOSUBMERGE), THROW_TRAIT)
 
 ///Toggles AM between flying states
 /atom/movable/proc/set_flying(flying, new_layer)
 	if(flying)
-		pass_flags |= HOVERING
+		add_traits(get_traits_from_pass_flags(HOVERING), THROW_TRAIT)
 		layer = new_layer
 		return
-	pass_flags &= ~HOVERING
+	remove_traits(get_traits_from_pass_flags(HOVERING), THROW_TRAIT)
 	layer = new_layer ? new_layer : initial(layer)
 
 ///returns bool for if we want to get forcepushed

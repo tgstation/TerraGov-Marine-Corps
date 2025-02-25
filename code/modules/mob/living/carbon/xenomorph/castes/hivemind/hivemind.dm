@@ -35,6 +35,8 @@
 	var/datum/weakref/core
 	///The minimum health we can have
 	var/minimum_health = -300
+	///Traits given when going incorporeal
+	var/list/incorporeal_traits = list(TRAIT_PASS_LOW_STRUCTURE, TRAIT_PASS_MOB, TRAIT_PASS_XENO)
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
 	var/obj/structure/xeno/hivemindcore/new_core = new /obj/structure/xeno/hivemindcore(loc, hivenumber)
@@ -129,7 +131,7 @@
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
 		resistance_flags = NONE
-		pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_XENO
+		add_traits(incorporeal_traits, INCORPOREAL_TRAIT)
 		density = TRUE
 		hive.xenos_by_upgrade[upgrade] -= src
 		upgrade = XENO_UPGRADE_MANIFESTATION
@@ -141,7 +143,7 @@
 		return
 	status_flags = initial(status_flags)
 	resistance_flags = initial(resistance_flags)
-	pass_flags = initial(pass_flags)
+	remove_traits(incorporeal_traits, INCORPOREAL_TRAIT)
 	density = FALSE
 	hive.xenos_by_upgrade[upgrade] -= src
 	upgrade = XENO_UPGRADE_BASETYPE
