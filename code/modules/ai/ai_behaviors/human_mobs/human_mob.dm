@@ -307,6 +307,8 @@ TODO: pathfinding wizardry
 
 /mob/living/proc/add_test_ai_all()
 	for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list)
+		if(human_mob.client)
+			continue
 		human_mob.AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
 
 /mob/living/carbon/human/ai/Initialize(mapload)
