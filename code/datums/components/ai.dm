@@ -31,6 +31,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 
 /datum/component/ai_controller/RemoveComponent()
 	clean_up(FALSE)
+	QDEL_NULL(ai_behavior)
 	return ..()
 
 ///Stop the ai behaviour from processing and clean current action
@@ -45,8 +46,6 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 		ai_behavior.atom_to_walk_to = null
 		if(register_for_logout)
 			RegisterSignal(parent, COMSIG_MOB_LOGOUT, PROC_REF(start_ai))
-			return
-		ai_behavior = null
 
 ///Start the ai behaviour
 /datum/component/ai_controller/proc/start_ai()
@@ -65,11 +64,12 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 		break
 	//Iniatialise the behavior of the ai
 	ai_behavior.start_ai()
-	RegisterSignal(parent, COMSIG_MOB_DEATH, PROC_REF(RemoveComponent))
+	RegisterSignals(parent, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(RemoveComponent))
 	RegisterSignal(parent, COMSIG_MOB_LOGIN, PROC_REF(clean_up))
 	UnregisterSignal(parent, COMSIG_MOB_LOGOUT)
 	GLOB.ai_instances_active += src
 
 /datum/component/ai_controller/Destroy()
 	clean_up(FALSE)
+	QDEL_NULL(ai_behavior)
 	return ..()

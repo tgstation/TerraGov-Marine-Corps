@@ -235,10 +235,10 @@
 			return FALSE
 		//calling the proc again with ignore_delay saves a boatload of copypaste
 		return equip_to_slot_if_possible(item_to_equip, slot, TRUE, del_on_fail, warning, redraw_mob, override_nodrop)
-	equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
 	//This will unwield items -without- triggering lights.
 	if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
 		item_to_equip.unwield(src)
+	equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
 	return TRUE
 
 /**

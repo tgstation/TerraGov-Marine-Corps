@@ -142,6 +142,7 @@
 #define CUT "cut"
 #define BRUISE "bruise"
 #define STAMINA "stamina"
+#define PAIN "pain"
 //=================================================
 
 #define EFFECT_STUN "stun"

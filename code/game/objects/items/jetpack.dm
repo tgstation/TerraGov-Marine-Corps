@@ -180,7 +180,7 @@
 	var/obj/item/jetpack_marine/jetpack = Target
 	cooldown_duration = jetpack.cooldown_time
 
-/datum/action/ability/activable/item_toggle/jetpack/can_use_ability(silent, override_flags, selecting)
+/datum/action/ability/activable/item_toggle/jetpack/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/mob/living/carbon/carbon_owner = owner
 	if(carbon_owner.incapacitated() || carbon_owner.lying_angle)
 		return FALSE
@@ -189,6 +189,24 @@
 		carbon_owner.balloon_alert(carbon_owner, "No fuel")
 		return
 	return ..()
+
+/datum/action/ability/activable/item_toggle/jetpack/ai_should_start_consider()
+	return TRUE
+
+/datum/action/ability/activable/item_toggle/jetpack/ai_should_use(atom/target)
+	if(!(isliving(target) || ismecha(target) || isarmoredvehicle(target)))
+		return FALSE
+	var/atom/movable/movable_target = target
+	if(movable_target.faction == owner.faction)
+		return FALSE
+	if(!can_use_ability(movable_target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	var/obj/item/jetpack_marine/jetpack_parent = src.target
+	if(jetpack_parent.fuel_left < FUEL_USE)
+		return FALSE
+	if(!line_of_sight(owner, movable_target, jetpack_parent.calculate_range(owner)))
+		return FALSE
+	return TRUE
 
 /obj/item/jetpack_marine/heavy
 	name = "heavy lift jetpack"

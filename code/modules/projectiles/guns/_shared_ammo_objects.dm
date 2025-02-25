@@ -38,6 +38,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 	AddComponent(/datum/component/submerge_modifier, 10)
 	set_fire(new_burn_ticks, new_burn_level, f_color, fire_stacks, fire_damage)
+	notify_ai_hazard()
 
 /obj/fire/Destroy()
 	STOP_PROCESSING(SSobj, src)

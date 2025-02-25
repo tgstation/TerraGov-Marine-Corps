@@ -22,6 +22,9 @@
 ///Ai component state where the ai tries to flee to heal
 #define MOVING_TO_SAFETY "moving_to_safety"
 
+///AI component state where we're healing
+#define MOB_HEALING "mob_healing"
+
 ///Ai component state where the ai just does nothing
 #define IDLE "idle"
 
@@ -38,6 +41,7 @@
  */
 #define IDENTIFIER_XENO "identifies_xeno"
 #define IDENTIFIER_ZOMBIE "identifies_zombie"
+#define IDENTIFIER_HUMAN "identifies_human"
 
 
 //Flags for the get_nearest_target
@@ -47,10 +51,16 @@
 #define TARGET_XENO (1<<3)
 #define TARGET_UNMANNED_VEHICLE (1<<4)
 #define TARGET_FRIENDLY_XENO (1<<5)
-#define TARGET_HOSTILE (ALL &~ TARGET_FRIENDLY_XENO)
+#define TARGET_FRIENDLY_MOB (1<<6)
+///Tanks and mechs
+#define TARGET_VEHICLE (1<<7)
+#define TARGET_HOSTILE (ALL &~ (TARGET_FRIENDLY_XENO|TARGET_FRIENDLY_MOB))
 
 #define MAX_NODE_RANGE 15
 #define PATHFINDER_MAX_TRIES 200
+
+//AI will escort an ATOM up to this distance away from them
+#define AI_ESCORTING_MAX_DISTANCE 10
 
 GLOBAL_LIST_EMPTY(all_nodes)
 
@@ -60,4 +70,4 @@ GLOBAL_LIST_EMPTY(ai_instances_active)
 //To be implemented in later updates
 GLOBAL_LIST_EMPTY(nodes_with_enemies)
 GLOBAL_LIST_EMPTY(nodes_with_construction)
-#define can_cross_lava_turf(turf_to_check) (!islava(turf_to_check) || locate(/obj/structure/catwalk) in turf_to_check)
+#define can_cross_lava_turf(turf_to_check) (!islava(turf_to_check) || locate(/obj/structure/catwalk) in turf_to_check) //todo: this needs work

@@ -13,6 +13,14 @@
 	. = ..()
 	UnregisterSignal(M, list(COMSIG_CIC_ORDER_SENT, COMSIG_CIC_ORDER_OFF_CD))
 
+/datum/action/skill/issue_order/ai_should_start_consider()
+	return TRUE
+
+/datum/action/skill/issue_order/ai_should_use(atom/target)
+	if(!can_use_action())
+		return FALSE
+	return TRUE
+
 /datum/action/skill/issue_order/can_use_action()
 	. = ..()
 	if(!.)
@@ -55,6 +63,10 @@
 		KEYBINDING_NORMAL = COMSIG_KB_MOVEORDER,
 	)
 
+/datum/action/skill/issue_order/move/ai_should_use(atom/target)
+	return FALSE //test only
+	//the fact the only arg is the current walk to target is not ideal... add a new arg of goal_node?
+
 /datum/action/skill/issue_order/hold
 	name = "Issue Hold Order"
 	order_type = AURA_HUMAN_HOLD
@@ -62,12 +74,25 @@
 		KEYBINDING_NORMAL = COMSIG_KB_HOLDORDER,
 	)
 
+/datum/action/skill/issue_order/hold/ai_should_use(atom/target)
+	if(!isliving(target))
+		return FALSE
+	var/mob/living/living_target = target
+	if(living_target.faction == owner.faction)
+		return FALSE
+	if(living_target.stat)
+		return FALSE
+	return ..()
+
 /datum/action/skill/issue_order/focus
 	name = "Issue Focus Order"
 	order_type = AURA_HUMAN_FOCUS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_KB_FOCUSORDER,
 	)
+
+/datum/action/skill/issue_order/focus/ai_should_use(atom/target)
+	return FALSE //test only
 
 /datum/action/skill/toggle_orders
 	name = "Show/Hide Order Options"

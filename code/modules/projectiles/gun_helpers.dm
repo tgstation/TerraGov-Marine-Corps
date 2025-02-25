@@ -61,7 +61,7 @@
 	//Cannot equip wielded items or items burst firing.
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
-	unwield(user)
+	//unwield(user) //shouldnt need this, just causes unequips when you fail to even unequip
 	return ..()
 
 
