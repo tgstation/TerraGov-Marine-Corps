@@ -56,7 +56,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		qdel(src)
 		return
 	mob_parent = parent_to_assign
-	RegisterSignal(mob_parent, COMSIG_QDELETING, PROC_REF(on_parent_del))
 	set_escorted_atom(null, escorted_atom)
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
 	START_PROCESSING(SSprocessing, src)
@@ -64,17 +63,12 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		LAZYOR(GLOB.ssd_living_mobs, mob_parent)
 
 /datum/ai_behavior/Destroy(force, ...)
-	. = ..()
 	current_node = null
 	escorted_atom = null
 	mob_parent = null
 	atom_to_walk_to = null
 	clear_combat_target()
-
-///deletes when our parent is deleted
-/datum/ai_behavior/proc/on_parent_del(datum/source)
-	SIGNAL_HANDLER
-	qdel(src)
+	return ..()
 
 ///Register ai behaviours
 /datum/ai_behavior/proc/start_ai()
