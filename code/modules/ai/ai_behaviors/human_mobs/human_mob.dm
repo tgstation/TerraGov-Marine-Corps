@@ -62,8 +62,9 @@ TODO: pathfinding wizardry
 	return ..()
 
 /datum/ai_behavior/human/cleanup_signals()
-	UnregisterSignal(mob_parent, list(COMSIG_OBSTRUCTED_MOVE, ACTION_GIVEN, ACTION_REMOVED, COMSIG_HUMAN_DAMAGE_TAKEN, COMSIG_LIVING_SET_LYING_ANGLE, COMSIG_MOVABLE_Z_CHANGED))
+	UnregisterSignal(mob_parent, list(COMSIG_OBSTRUCTED_MOVE, ACTION_GIVEN, ACTION_REMOVED, COMSIG_HUMAN_DAMAGE_TAKEN, COMSIG_LIVING_SET_LYING_ANGLE, COMSIG_MOVABLE_Z_CHANGED, COMSIG_MOVABLE_HEAR))
 	UnregisterSignal(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED))
+	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_HAZARD_NOTIFIED)
 	return ..()
 
 /datum/ai_behavior/human/set_combat_target(atom/new_target)
