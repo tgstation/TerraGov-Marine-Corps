@@ -360,12 +360,12 @@
 	w_class = WEIGHT_CLASS_HUGE
 	self_recharge = TRUE
 	maxcharge = 1000
-	charge_amount = 300
+	charge_amount = 200
 
 /obj/item/cell/mecha/medium
 	name = "medium radiotope cell"
 	maxcharge = 650
-	charge_amount = 500
+	charge_amount = 225
 
 /obj/item/cell/night_vision_battery
 	name = "night vision goggle battery"

@@ -11,8 +11,9 @@
 	iconstate_name = "armor_melee"
 	protect_name = "Medium Booster"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
-	slowdown = -2.0
+	slowdown = -1.1
 	armor_mod = list()
+	weight = 65
 	/// How much energy we use when we dash
 	var/dash_consumption = 200
 	/// How many tiles our dash carries us
@@ -37,13 +38,15 @@
 
 /obj/item/mecha_parts/mecha_equipment/armor/booster/lightweight
 	name = "lightweight booster"
-	desc = "Determines boosting speed and power. Lightweight option. Sets dash consumption to 300 and dash range to 4, and boost consumption per step to 25."
+	desc = "Determines boosting speed and power. Lightweight option. Sets dash consumption to 300 and dash range to 4, and boost consumption per step to 25. Provides about half the speed boost."
 	icon_state = "armor_acid"
 	iconstate_name = "armor_acid"
 	protect_name = "Lightweight Booster"
+	weight = 45
 	dash_consumption = 300
+	slowdown = -0.6
 	dash_range = 4
-	boost_consumption = 25
+	boost_consumption = 30
 
 /obj/item/mecha_parts/mecha_equipment/generator/greyscale
 	name = "phoron engine"
@@ -53,7 +56,7 @@
 	rechargerate = 0
 	slowdown = 0
 	max_fuel = 0
-	weight = 65
+	weight = 150
 	/// cell type to attach. this does the actual passive energy regen, if we have it
 	var/cell_type = /obj/item/cell/mecha
 
@@ -67,9 +70,9 @@
 
 /obj/item/mecha_parts/mecha_equipment/generator/greyscale/heavy
 	name = "fusion engine"
-	desc = "A highly experimental phoron fusion core. Optimized for energy generation and weight."
+	desc = "A highly experimental phoron fusion core. Optimized for energy generation."
 	icon_state = "phoron_engine_adv"
-	weight = 45
+	weight = 150
 	cell_type = /obj/item/cell/mecha/medium
 
 /obj/item/mecha_parts/mecha_equipment/melee_core
