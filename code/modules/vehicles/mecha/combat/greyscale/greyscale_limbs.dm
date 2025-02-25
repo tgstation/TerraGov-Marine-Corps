@@ -24,6 +24,8 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	var/list/colors = list(MECH_GREY_PRIMARY_DEFAULT, MECH_GREY_SECONDARY_DEFAULT, MECH_GREY_VISOR_DEFAULT)
 	///overlay icon to generate
 	var/icon/overlay_icon
+	///The weight that we contribute to the max limit, if this is equipped to a greyscale mech
+	var/weight = 10
 
 /datum/mech_limb/New(noload)
 	..()
@@ -76,6 +78,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	if(part_health)
 		RegisterSignal(attached, COMSIG_ATOM_TAKE_DAMAGE, PROC_REF(intercept_damage))
 		RegisterSignal(attached, COMSIG_ATOM_REPAIR_DAMAGE, PROC_REF(intercept_repair))
+	attached.weight += weight // ignores any checks. we assume that you handle those elsewhere like ui or equipment checks
 
 /**
  * proc to call to remove this limb to the mech object
@@ -88,6 +91,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 		if(detached.limbs[slot] != src)
 			continue
 		detached.limbs[slot] = null
+	detached.weight -= weight
 	UnregisterSignal(owner, list(COMSIG_ATOM_TAKE_DAMAGE, COMSIG_ATOM_REPAIR_DAMAGE))
 	owner = null
 	detached.max_integrity -= health_mod
@@ -122,14 +126,18 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 ///intercepts repair intended for the mech and applies it to this limb when needed
 /datum/mech_limb/proc/intercept_repair(datum/source, repair_amount, mob/user)
 	SIGNAL_HANDLER
+	if(!user)
+		return NONE
 	if(!(user.zone_selected in def_zones))
-		return
-	if(part_health >= initial(part_health))
-		return
+		return NONE
+	do_repairs(repair_amount)
+	return COMPONENT_NO_TAKE_DAMAGE
+
+///does the actual repair of this limb
+/datum/mech_limb/proc/do_repairs(repair_amount)
 	part_health = min(initial(part_health), part_health+repair_amount)
 	if(part_health >= initial(part_health))
 		reenable()
-	return COMPONENT_NO_TAKE_DAMAGE
 
 ///makes this limb "destroyed"
 /datum/mech_limb/proc/disable()
@@ -153,6 +161,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	display_name = "Head"
 	part_health = 200
 	def_zones = list(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH)
+	weight = 35
 	/// greyscale config datum for the visor
 	var/visor_config
 	///amount accuracy is modified by
@@ -222,39 +231,43 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 
 /datum/mech_limb/torso
 	health_mod = 600
-	/// cell typepath to place into the mech when this torso is attached
-	var/cell_type = /obj/item/cell/mecha
+	weight = 80
+	///max repairpacks to set the mech to
+	var/repairpacks = 2
 
 /datum/mech_limb/torso/attach(obj/vehicle/sealed/mecha/combat/greyscale/attached, slot)
 	. = ..()
-	attached.add_cell(new cell_type)
+	attached.max_repairpacks = repairpacks
+	attached.stored_repairpacks = repairpacks
 
 /datum/mech_limb/torso/detach(obj/vehicle/sealed/mecha/combat/greyscale/detached)
 	. = ..()
-	detached.add_cell() //replaces with a standard high cap that does not have built in recharge
+	detached.max_repairpacks = 0
+	detached.stored_repairpacks = 0
 
 /datum/mech_limb/torso/recon
 	health_mod = 180
 	slowdown_mod = 0.4
-	cell_type = /obj/item/cell/mecha
+	repairpacks = 1
 	greyscale_type = /datum/greyscale_config/mech_recon/torso
 
 /datum/mech_limb/torso/assault
 	health_mod = 260
 	slowdown_mod = 0.7
-	cell_type = /obj/item/cell/mecha/medium
+	repairpacks = 2
 	greyscale_type = /datum/greyscale_config/mech_assault/torso
 
 /datum/mech_limb/torso/vanguard
 	health_mod = 340
 	slowdown_mod = 1
-	cell_type = /obj/item/cell/mecha/large
+	repairpacks = 3
 	greyscale_type = /datum/greyscale_config/mech_vanguard/torso
 
 
 //MECH ARMS
 /datum/mech_limb/arm
 	part_health = 200
+	weight = 45
 	/// Amount scatter is modified by when this arm shoots
 	var/scatter_mod = 0
 	///which slot this arm is equipped to when it is attached
@@ -305,6 +318,9 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	display_name = "Legs"
 	part_health = 300
 	def_zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT)
+	weight = 0
+	/// max weight we can carry when this limb is attached
+	var/max_weight = 800
 
 /datum/mech_limb/legs/disable()
 	. = ..()

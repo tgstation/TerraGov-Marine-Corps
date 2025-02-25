@@ -79,7 +79,7 @@ OPERATIONS
 	cost = 130
 
 /datum/supply_packs/operations/deployable_camera
-	name = "3 Deployable cameras"
+	name = "3 deployable cameras"
 	contains = list(
 		/obj/item/deployable_camera,
 		/obj/item/deployable_camera,
@@ -214,22 +214,22 @@ WEAPONS
 	cost = 100
 
 /datum/supply_packs/weapons/sentry_flamer
-	name = "SFT-575 Flamethrower Sentry"
+	name = "SFT-575 flamethrower sentry"
 	contains = list(/obj/item/storage/box/crate/sentry_flamer)
 	cost = 400
 
 /datum/supply_packs/weapons/sentry_flamer_ammo
-	name = "SFT-575 Flamethrower Sentry Ammo"
+	name = "SFT-575 flamethrower sentry ammo"
 	contains = list(/obj/item/ammo_magazine/sentry/flamer)
 	cost = 150
 
 /datum/supply_packs/weapons/sentry_laser
-	name = "SLT-576 Laser Sentry"
+	name = "SLT-576 laser sentry"
 	contains = list(/obj/item/storage/box/crate/sentry_laser)
 	cost = 400
 
 /datum/supply_packs/weapons/sentry_laser_ammo
-	name = "SLT-576 Laser Sentry Ammo"
+	name = "SLT-576 laser sentry ammo"
 	contains = list(/obj/item/ammo_magazine/sentry/laser)
 	cost = 200
 
@@ -2174,6 +2174,11 @@ VEHICLES
 /datum/supply_packs/vehicles/microrocket_pod
 	name = "Microrocket pod"
 	contains = list(/obj/item/ammo_magazine/tank/microrocket_rack)
+	cost = 10
+
+/datum/supply_packs/vehicles/repairpack
+	name = "Mech repairpack"
+	contains = list(/obj/item/repairpack)
 	cost = 10
 
 /*******************************************************************************

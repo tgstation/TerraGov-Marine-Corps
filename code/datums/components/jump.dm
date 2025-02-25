@@ -29,15 +29,21 @@
 	var/jumper_allow_pass_flags
 	///When the jump started. Only relevant for charged jumps
 	var/jump_start_time = null
+	///A 3rd party that controls the jumping of parent. Probably a vehicle driver
+	var/external_user
 
 /datum/component/jump/Initialize(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
 	. = ..()
-	if(!isliving(parent))
+	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
+
 	set_vars(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
+	RegisterSignal(parent, COMSIG_VEHICLE_GRANT_CONTROL_FLAG, PROC_REF(set_external_user))
 
 /datum/component/jump/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_MOB_THROW))
+	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_UP, COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_MOB_THROW, COMSIG_VEHICLE_GRANT_CONTROL_FLAG))
+	if(external_user)
+		remove_external_user()
 
 /datum/component/jump/InheritComponent(datum/component/new_component, original_component, _jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
 	set_vars(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
@@ -52,12 +58,33 @@
 	jump_flags = _jump_flags
 	jumper_allow_pass_flags = _jumper_allow_pass_flags
 
-	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_DOWN))
+	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_KB_LIVING_JUMP_UP))
 	if(jump_flags & JUMP_CHARGEABLE)
 		RegisterSignal(parent, COMSIG_KB_LIVING_JUMP_DOWN, PROC_REF(charge_jump))
 		RegisterSignal(parent, COMSIG_KB_LIVING_JUMP_UP, PROC_REF(start_jump))
 	else
 		RegisterSignal(parent, COMSIG_KB_LIVING_JUMP_DOWN, PROC_REF(start_jump))
+
+///Sets an external controller, such as a vehicle driver
+/datum/component/jump/proc/set_external_user(datum/source, mob/new_user, control_flags = VEHICLE_CONTROL_DRIVE)
+	SIGNAL_HANDLER
+	if(!(control_flags & VEHICLE_CONTROL_DRIVE))
+		return
+	if(external_user) //I don't know how you have 2 drivers, and I don't want to know
+		remove_external_user()
+	if(new_user)
+		external_user = new_user
+		RegisterSignal(external_user, COMSIG_KB_LIVING_JUMP_DOWN, PROC_REF(start_jump))
+		RegisterSignal(parent, COMSIG_VEHICLE_REVOKE_CONTROL_FLAG, PROC_REF(remove_external_user))
+
+///Unsets an external controller
+/datum/component/jump/proc/remove_external_user(datum/source, mob/old_user, control_flags = VEHICLE_CONTROL_DRIVE)
+	SIGNAL_HANDLER
+	if(!(control_flags & VEHICLE_CONTROL_DRIVE))
+		return
+	UnregisterSignal(external_user, COMSIG_KB_LIVING_JUMP_DOWN)
+	UnregisterSignal(parent, COMSIG_VEHICLE_REVOKE_CONTROL_FLAG)
+	external_user = null
 
 ///Starts charging the jump
 /datum/component/jump/proc/charge_jump(mob/living/jumper)
@@ -67,23 +94,30 @@
 /datum/component/jump/proc/start_jump(mob/living/jumper)
 	SIGNAL_HANDLER
 
+	if(jumper == external_user)
+		jumper = parent
+
 	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_COMPONENT_COOLDOWN))
 		return
 
-	if(jumper.buckled)
-		return
-	if(jumper.incapacitated())
-		return
-
-	if(stamina_cost && (jumper.getStaminaLoss() > -stamina_cost))
-		if(isrobot(jumper) || issynth(jumper))
-			to_chat(jumper, span_warning("Your leg servos do not allow you to jump!"))
+	var/mob/living/living_jumper
+	if(isliving(jumper))
+		living_jumper = jumper
+		if(jumper.buckled)
 			return
-		to_chat(jumper, span_warning("Catch your breath!"))
-		return
+		if(jumper.incapacitated())
+			return
+
+		if(stamina_cost && (jumper.getStaminaLoss() > -stamina_cost))
+			if(isrobot(jumper) || issynth(jumper))
+				to_chat(jumper, span_warning("Your leg servos do not allow you to jump!"))
+				return
+			to_chat(jumper, span_warning("Catch your breath!"))
+			return
 
 	do_jump(jumper)
-	jumper.adjustStaminaLoss(stamina_cost)
+	if(living_jumper)
+		living_jumper.adjustStaminaLoss(stamina_cost)
 	//Forces all who ride to jump alongside the jumper.
 	for(var/mob/buckled_mob AS in jumper.buckled_mobs)
 		do_jump(buckled_mob)
@@ -131,7 +165,7 @@
 	TIMER_COOLDOWN_START(jumper, JUMP_COMPONENT_COOLDOWN, jump_cooldown)
 
 ///Ends the jump
-/datum/component/jump/proc/end_jump(mob/living/jumper, list/jump_pass_traits)
+/datum/component/jump/proc/end_jump(atom/movable/living/jumper, list/jump_pass_traits)
 	jumper.remove_filter(JUMP_COMPONENT)
 	jumper.remove_traits(jump_pass_traits += TRAIT_NOSUBMERGE, JUMP_COMPONENT)
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_ENDED, TRUE, 1.5, 2)
@@ -139,7 +173,7 @@
 	UnregisterSignal(jumper, COMSIG_MOB_THROW)
 
 ///Jump throw bonuses
-/datum/component/jump/proc/jump_throw(mob/living/thrower, target, thrown_thing, list/throw_modifiers)
+/datum/component/jump/proc/jump_throw(atom/movable/thrower, target, thrown_thing, list/throw_modifiers)
 	SIGNAL_HANDLER
 	var/obj/item/throw_item = thrown_thing
 	if(!istype(throw_item))

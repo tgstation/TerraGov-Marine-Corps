@@ -276,9 +276,9 @@
 
 	if(href_list[VV_HK_OSAY])
 		if(check_rights(R_FUN, FALSE))
-			usr.client.object_say(src)
+			SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/display_tags, src)
 
-	if(href_list[VV_HK_MASS_DEL_TYPE])
+	if(href_list[VV_HK_MASS_DEL_TYPE]) // todo why isnt this just invoking the delete all verb? or why have that one exist?
 		if(!check_rights(R_DEBUG|R_SERVER))
 			return
 		var/action_type = tgui_alert(usr, "Strict type ([type]) or type and all subtypes?",,list("Strict type","Type and subtypes","Cancel"))

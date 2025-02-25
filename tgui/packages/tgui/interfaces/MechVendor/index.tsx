@@ -4,23 +4,31 @@ import {
   Button,
   LabeledList,
   Modal,
+  ProgressBar,
   Section,
   Stack,
   Tabs,
 } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
+import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
-import { MECHA_ASSEMBLY, MECHA_WEAPONS, MechWeapon, tabs } from './data';
+import {
+  MECHA_ASSEMBLY,
+  MECHA_WEAPONS,
+  MechVendData,
+  MechWeapon,
+  tabs,
+} from './data';
 import { MechAssembly } from './MechAssembly';
 import { MechWeapons } from './MechWeapons';
 
 export const MechVendor = (props) => {
   const [showDesc, setShowDesc] = useState<MechWeapon | null>(null);
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
-
+  const { act, data } = useBackend<MechVendData>();
   return (
-    <Window title={'Mecha Assembler'} width={1440} height={620}>
+    <Window title={'Mecha Assembler'} width={1460} height={620}>
       {showDesc ? (
         <Modal width="500px">
           <Section
@@ -119,10 +127,36 @@ export const MechVendor = (props) => {
             );
           })}
         </Tabs>
-        {selectedTab === MECHA_ASSEMBLY && <MechAssembly />}
-        {selectedTab === MECHA_WEAPONS && (
-          <MechWeapons setShowDesc={setShowDesc} />
-        )}
+        <Stack>
+          <Stack.Item>
+            <ProgressBar
+              style={{
+                transform: 'rotate(270deg) translateX(-48%)',
+                width: 535,
+                marginLeft: -255,
+                marginRight: -255,
+              }}
+              ranges={{
+                good: [0.5, Infinity],
+                average: [0, 0.5],
+                bad: [-Infinity, 0],
+              }}
+              maxValue={data.max_weight}
+              value={data.weight}
+            >
+              Weight
+              {
+                // todo have an icon here instead of text so it looks nicer
+              }
+            </ProgressBar>
+          </Stack.Item>
+          <Stack.Item>
+            {selectedTab === MECHA_ASSEMBLY && <MechAssembly />}
+            {selectedTab === MECHA_WEAPONS && (
+              <MechWeapons setShowDesc={setShowDesc} />
+            )}
+          </Stack.Item>
+        </Stack>
       </Window.Content>
     </Window>
   );

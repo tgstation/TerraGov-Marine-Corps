@@ -8,8 +8,7 @@
 	density = FALSE
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_TURF_LAYER
-	/// The faction of this supply drop
-	var/faction = FACTION_TERRAGOV
+	faction = FACTION_TERRAGOV
 
 /obj/structure/supply_drop/Initialize(mapload)
 	. = ..()

@@ -43,6 +43,14 @@
 	var/obj/effect/abstract/particle_holder/holder_left
 	///right particle smoke holder
 	var/obj/effect/abstract/particle_holder/holder_right
+	/// Stores the time at which we last moved.
+	var/last_mousedown_time
+	/// Stores the direction of the last movement made.
+	var/last_move_dir
+	/// The timing for activating a dash by double tapping a movement key.
+	var/double_tap_timing = 0.18 SECONDS
+	/// total wight our limbs and equipment contribute. max determined by MECH_GREY_LEGS limb
+	var/weight = 0
 
 /obj/vehicle/sealed/mecha/combat/greyscale/Initialize(mapload)
 	holder_left = new(src, /particles/mecha_smoke)
@@ -50,6 +58,8 @@
 	holder_right = new(src, /particles/mecha_smoke)
 	holder_right.layer = layer+0.001
 	. = ..()
+
+	set_jump_component()
 
 	for(var/key in limbs)
 		if(!limbs[key])
@@ -82,6 +92,11 @@
 		var/datum/mech_limb/limb = limbs[limb_key]
 		. += "It's " + limb.display_name + " has " + "[(limb.part_health / initial(limb.part_health))*100]" + "% integrity."
 
+/obj/vehicle/sealed/mecha/combat/greyscale/generate_actions()
+	. = ..()
+	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_overload_mode)
+	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/repairpack)
+
 /obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
 	if((mecha_flags & MECHA_SKILL_LOCKED) && entering_mob.skills.getRating(SKILL_MECH) < SKILL_MECH_TRAINED)
 		balloon_alert(entering_mob, "You don't know how to pilot this")
@@ -100,6 +115,58 @@
 	REMOVE_TRAIT(M, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
 	M.update_sight()
 	return ..()
+
+/obj/vehicle/sealed/mecha/combat/greyscale/grant_controller_actions_by_flag(mob/M, flag)
+	. = ..()
+	if(. && (flag & VEHICLE_CONTROL_DRIVE))
+		RegisterSignal(M, COMSIG_KB_MOVEMENT_EAST_DOWN, PROC_REF(dash_east))
+		RegisterSignal(M, COMSIG_KB_MOVEMENT_NORTH_DOWN, PROC_REF(dash_north))
+		RegisterSignal(M, COMSIG_KB_MOVEMENT_SOUTH_DOWN, PROC_REF(dash_south))
+		RegisterSignal(M, COMSIG_KB_MOVEMENT_WEST_DOWN, PROC_REF(dash_west))
+
+/obj/vehicle/sealed/mecha/combat/greyscale/remove_controller_actions_by_flag(mob/M, flag)
+	. = ..()
+	if(. && (flag & VEHICLE_CONTROL_DRIVE))
+		UnregisterSignal(M, list(COMSIG_KB_MOVEMENT_EAST_DOWN, COMSIG_KB_MOVEMENT_NORTH_DOWN, COMSIG_KB_MOVEMENT_SOUTH_DOWN, COMSIG_KB_MOVEMENT_WEST_DOWN))
+
+/// Checks if we can dash to the east.
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/dash_east()
+	SIGNAL_HANDLER
+	check_dash(EAST)
+
+/// Checks if we can dash to the north.
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/dash_north()
+	SIGNAL_HANDLER
+	check_dash(NORTH)
+
+/// Checks if we can dash to the south.
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/dash_south()
+	SIGNAL_HANDLER
+	check_dash(SOUTH)
+
+/// Checks if we can dash to the west.
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/dash_west()
+	SIGNAL_HANDLER
+	check_dash(WEST)
+
+/// Checks if we can dash in the specified direction, and activates the ability if so.
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/check_dash(direction)
+	if(last_move_dir == direction && last_mousedown_time + double_tap_timing > world.time)
+		if(!use_power(dash_power_consumption))
+			for(var/mob/occupant AS in return_drivers())
+				balloon_alert(occupant, "Not enough for dash")
+			return
+		activate_dash(direction)
+		return
+	last_mousedown_time = world.time
+	last_move_dir = direction
+
+/// Does a dash in the specified direction.
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/activate_dash(direction)
+	var/turf/target_turf = get_step(src, direction)
+	for(var/i in 1 to dash_range)
+		target_turf = get_step(target_turf, direction)
+	throw_at(target_turf, dash_range, 1, src, FALSE, TRUE, TRUE)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/update_icon()
 	. = ..()
@@ -172,6 +239,9 @@
 		var/datum/mech_limb/limb = limbs[key]
 		. += limb.get_overlays()
 
+	var/state = leg_overload_mode ? "booster_active" : "booster"
+	. += image('icons/mecha/mecha_ability_overlays.dmi', icon_state = state, layer=layer+0.001)
+
 /obj/vehicle/sealed/mecha/combat/greyscale/setDir(newdir)
 	. = ..()
 	update_icon() //when available pass UPDATE_OVERLAYS since this is just for layering order
@@ -188,6 +258,34 @@
 			continue
 		if((user.zone_selected in limb.def_zones) && (limb.part_health < initial(limb?.part_health)))
 			return TRUE
+
+///Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, jump_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
+	var/list/arg_list = list(duration, cooldown, cost, height, sound, flags, jump_pass_flags)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_SET_JUMP_COMPONENT, arg_list))
+		duration = arg_list[1]
+		cooldown = arg_list[2]
+		cost = arg_list[3]
+		height = arg_list[4]
+		sound = arg_list[5]
+		flags = arg_list[6]
+		jump_pass_flags = arg_list[7]
+
+	var/gravity = get_gravity()
+	if(gravity < 1) //low grav
+		duration *= 2.5 - gravity
+		cooldown *= 2 - gravity
+		cost *= gravity * 0.5
+		height *= 2 - gravity
+		if(gravity <= 0.75)
+			jump_pass_flags |= PASS_DEFENSIVE_STRUCTURE
+	else if(gravity > 1) //high grav
+		duration *= gravity * 0.5
+		cooldown *= gravity
+		cost *= gravity
+		height *= gravity * 0.5
+
+	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = jump_pass_flags)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/recon
 	name = "Recon Mecha"
@@ -236,3 +334,9 @@
 	pivot_step = FALSE
 	max_integrity = 1760
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
+
+/obj/item/repairpack
+	name = "mech repairpack"
+	desc = "A mecha repair pack, consisting of various auto-extinguisher systems, materials and repair nano-scarabs."
+	icon = 'icons/obj/items/assemblies.dmi'
+	icon_state = "posibrain-occupied" // todo kuro needs to make/find an icon for this
