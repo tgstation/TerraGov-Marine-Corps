@@ -101,7 +101,7 @@
 
 /datum/action/ability/activable/xeno/warrior/use_ability(atom/A)
 	var/datum/action/ability/xeno_action/toggle_agility/agility_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/toggle_agility]
-	if(agility_action?.ability_active)
+	if(agility_action?.toggled)
 		agility_action.action_activate()
 
 /// Adds an outline around the ability button to represent Empower.
