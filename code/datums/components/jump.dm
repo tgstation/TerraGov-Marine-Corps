@@ -87,11 +87,11 @@
 	external_user = null
 
 ///Starts charging the jump
-/datum/component/jump/proc/charge_jump(mob/living/jumper)
+/datum/component/jump/proc/charge_jump(atom/movable/jumper)
 	jump_start_time = world.timeofday
 
 ///handles pre-jump checks and setup of additional jump behavior.
-/datum/component/jump/proc/start_jump(mob/living/jumper)
+/datum/component/jump/proc/start_jump(atom/movable/jumper)
 	SIGNAL_HANDLER
 
 	if(jumper == external_user)
@@ -103,16 +103,16 @@
 	var/mob/living/living_jumper
 	if(isliving(jumper))
 		living_jumper = jumper
-		if(jumper.buckled)
+		if(living_jumper.buckled)
 			return
-		if(jumper.incapacitated())
+		if(living_jumper.incapacitated())
 			return
 
-		if(stamina_cost && (jumper.getStaminaLoss() > -stamina_cost))
-			if(isrobot(jumper) || issynth(jumper))
-				to_chat(jumper, span_warning("Your leg servos do not allow you to jump!"))
+		if(stamina_cost && (living_jumper.getStaminaLoss() > -stamina_cost))
+			if(isrobot(living_jumper) || issynth(living_jumper))
+				to_chat(living_jumper, span_warning("Your leg servos do not allow you to jump!"))
 				return
-			to_chat(jumper, span_warning("Catch your breath!"))
+			to_chat(living_jumper, span_warning("Catch your breath!"))
 			return
 
 	do_jump(jumper)
@@ -123,7 +123,7 @@
 		do_jump(buckled_mob)
 
 ///Performs the jump
-/datum/component/jump/proc/do_jump(mob/living/jumper)
+/datum/component/jump/proc/do_jump(atom/movable/jumper)
 
 	var/effective_jump_duration = jump_duration
 	var/effective_jump_height = jump_height
@@ -165,7 +165,7 @@
 	TIMER_COOLDOWN_START(jumper, JUMP_COMPONENT_COOLDOWN, jump_cooldown)
 
 ///Ends the jump
-/datum/component/jump/proc/end_jump(atom/movable/living/jumper, list/jump_pass_traits)
+/datum/component/jump/proc/end_jump(atom/movable/jumper, list/jump_pass_traits)
 	jumper.remove_filter(JUMP_COMPONENT)
 	jumper.remove_traits(jump_pass_traits += TRAIT_NOSUBMERGE, JUMP_COMPONENT)
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_ENDED, TRUE, 1.5, 2)
