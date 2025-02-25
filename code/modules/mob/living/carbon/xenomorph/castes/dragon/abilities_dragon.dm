@@ -1019,7 +1019,6 @@
 /datum/action/ability/activable/xeno/unleash/use_ability(atom/target)
 	currently_roaring = TRUE
 	xeno_owner.status_flags |= GODMODE
-	xeno_owner.fortify = TRUE
 	xeno_owner.set_canmove(FALSE)
 	playsound(get_turf(xeno_owner), 'sound/effects/alien/behemoth/primal_wrath_roar.ogg', 75, TRUE)
 	handle_roar_effects()
@@ -1029,7 +1028,6 @@
 /datum/action/ability/activable/xeno/unleash/proc/end_roar()
 	currently_roaring = FALSE
 	xeno_owner.status_flags &= ~GODMODE
-	xeno_owner.fortify = FALSE
 	xeno_owner.set_canmove(TRUE)
 	apply_buffs()
 
