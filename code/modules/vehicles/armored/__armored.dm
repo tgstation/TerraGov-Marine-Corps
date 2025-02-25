@@ -420,8 +420,8 @@
 		drive_loop?.stop()
 		idle_inside_loop?.stop(occupants)
 		drive_inside_loop?.stop(occupants)
-		play_interior_sound(null, engine_off_sound, 10, TRUE)
-		playsound(src, engine_off_interior_sound, 30)
+		play_interior_sound(null, engine_off_interior_sound, 10, TRUE)
+		playsound(src, engine_off_sound, 30)
 
 /obj/vehicle/sealed/armored/remove_occupant(mob/M)
 	M?.hud_used?.remove_ammo_hud(primary_weapon)
