@@ -360,6 +360,9 @@
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	if(isopenturf(hit_atom))
 		var/valid_victim = FALSE
+		if(locate(/obj/vehicle/sealed) in hit_atom)
+			kill_hugger()
+			return
 		for(var/mob/living/carbon/M in hit_atom)
 			if(!M.can_be_facehugged(src))
 				continue
