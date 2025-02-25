@@ -44,11 +44,11 @@
 
 /datum/ammo/bullet/minigun/ltaap
 	name = "chaingun bullet"
-	damage = 15
-	penetration = 20
-	sundering = 1
+	damage = 8
+	penetration = 30
+	sundering = 0.5
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_BETTER_COVER_RNG|AMMO_IFF
-	damage_falloff = 1
+	damage_falloff = 0.1
 	accurate_range = 7
 	accuracy = 10
 	barricade_clear_distance = 4
