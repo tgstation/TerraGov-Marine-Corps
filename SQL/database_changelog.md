@@ -3,14 +3,33 @@ Any time you make a change to the schema files, remember to increment the databa
 The latest database version is 2.0; The query to update the schema revision table is:
 
 ```sql
-INSERT INTO `schema_revision` (`major`, `minor`) VALUES (2, 3);
+INSERT INTO `schema_revision` (`major`, `minor`) VALUES (2, 4);
 or
 ```
 ```sql
-INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (2, 3);
+INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (2, 4);
 ```
 In any query remember to add a prefix to the table names if you use one.
 
+----------------------------------------------------
+Version 2.4, 02 February 2025, by ZephyrTFA
+Added `medals` to store persistent medals awared to a player.
+
+```
+CREATE TABLE `medals` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`ckey` VARCHAR(32) NOT NULL,
+	`issued_to_real_name` VARCHAR(255) NOT NULL,
+	`issued_to_rank` VARCHAR(255) NOT NULL,
+	`issued_by_real_name` VARCHAR(255) NOT NULL,
+	`issued_by_rank` VARCHAR(255) NOT NULL,
+	`medal_uid` VARCHAR(255) NOT NULL,
+	`medal_citation` VARCHAR(255) NOT NULL,
+	`issued_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`is_posthumous` TINYINT(1) UNSIGNED NOT NULL,
+	`deleted` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
+	PRIMARY KEY (`id`));
+```
 ----------------------------------------------------
 Version 2.3, 04 February 2025, by TiviPlus
 Fixed admin rank table flags being capped at 16 in the DB instead of 24 (byond max)

@@ -9,6 +9,7 @@ ADMIN_VERB(open_campaign_panel, R_ADMIN, "Campaign Panel", "Opens the campaign p
 		GLOB.campaign_admin_panel = new /datum/campaign_admin_panel()
 
 	GLOB.campaign_admin_panel.ui_interact(usr)
+
 /datum/campaign_admin_panel
 	interaction_flags = INTERACT_UI_INTERACT
 

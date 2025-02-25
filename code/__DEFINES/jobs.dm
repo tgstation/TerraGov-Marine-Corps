@@ -205,3 +205,9 @@ GLOBAL_LIST_INIT(default_marine_points, list(
 		"MEDICAL SUPPLIES" = MEDIC_TOTAL_BUY_POINTS,
 		"COMMANDER SUPPLIES" = COMMANDER_TOTAL_BUY_POINTS,
 	))
+
+// For use with get_paygrade()
+/// Full paygrade, e.g. "Private First Class"
+#define PAYGRADE_FULL 0
+/// Short paygrade, e.g. "PFC"
+#define PAYGRADE_SHORT 1
