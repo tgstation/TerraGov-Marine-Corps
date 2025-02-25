@@ -83,6 +83,13 @@
 	hazard_list -= old_hazard
 	UnregisterSignal(old_hazard, list(COMSIG_QDELETING, COMSIG_MOVABLE_Z_CHANGED))
 
+///Checks if we are in range of any hazards
+/datum/ai_behavior/human/proc/check_hazards()
+	for(var/atom/movable/thing AS in hazard_list)
+		if(get_dist(mob_parent, thing) <= hazard_list[thing])
+			return FALSE
+	return TRUE
+
 //maybe move
 ///Notifies AI of a new hazard
 /atom/proc/notify_ai_hazard()

@@ -98,6 +98,8 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 		return
 	if(mob_parent.incapacitated() || mob_parent.lying_angle) //todo: maybe remove or change this when we add team healing
 		return
+	if(!check_hazards())
+		return
 	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
 	if(!next_target)
 		INVOKE_ASYNC(src, PROC_REF(try_heal))
