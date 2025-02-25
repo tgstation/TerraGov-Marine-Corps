@@ -104,6 +104,15 @@
 	current_rounds = 200
 	max_rounds = 200
 
+/obj/item/ammo_magazine/packet/smart_spottingrifle
+	name = "box of 12.7mm Smart Magnum"
+	desc = "A box containing 25 rounds of 12.7mm spotting rifle rounds."
+	icon_state = "smartspottingrifle"
+	default_ammo = /datum/ammo/bullet/spottingrifle
+	caliber = CALIBER_12x7
+	current_rounds = 25
+	max_rounds = 25
+
 /obj/item/ammo_magazine/packet/scout_rifle
 	name = "Box of A19 high velocity bullets"
 	desc = "A box containing 150 rounds of A19 overpressured high velocity."
