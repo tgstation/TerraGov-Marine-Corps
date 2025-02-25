@@ -1,0 +1,4 @@
+author: "fleewave"
+delete-after: True
+changes:
+  - bugfix: "scorpion auto-spit doesn't get stuck shooting anymore"
