@@ -581,7 +581,7 @@ directive is properly returned.
 
 		var/message
 		if(!isobserver(usr))
-			usr.client.holder.admin_ghost()
+			SSadmin_verbs.dynamic_invoke_verb(C, /datum/admin_verb/aghost)
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob

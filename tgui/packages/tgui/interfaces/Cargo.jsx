@@ -359,13 +359,14 @@ const Pack = (props) => {
   const { act, data } = useBackend();
   const { pack, amount } = props;
   const { supplypackscontents } = data;
-  const { name, cost, contains } = supplypackscontents[pack];
+  const { name, item_notes, cost, contains } = supplypackscontents[pack];
 
   return !!contains && contains.constructor === Object ? (
     <Collapsible
       color="gray"
       title={<PackName cost={cost} name={name} pl={0} amount={amount} />}
     >
+      <b>{item_notes ? 'Notes: ' : null} </b> {item_notes}
       <Table>
         <PackContents contains={contains} />
       </Table>

@@ -734,8 +734,8 @@ ColorTone(rgb, tone)
 	var/curstate = A.icon_state || defstate
 
 	if(!((noIcon = (!curicon))))
-		if(!icon_exists(curstate in curicon))
-			if(icon_exists("" in curicon))
+		if(!icon_exists(curicon, curstate))
+			if(icon_exists(curicon, ""))
 				curstate = ""
 			else
 				noIcon = TRUE // Do not render this object.

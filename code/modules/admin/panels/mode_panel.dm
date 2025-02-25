@@ -1,15 +1,9 @@
-/datum/admins/proc/mode_panel()
-	set category = "Admin"
-	set name = "Mode Panel"
-
-	if(!check_rights(R_ADMIN))
-		return
-
+ADMIN_VERB(mode_panel, R_ADMIN, "Mode Panel", "View the gamemode panel", ADMIN_CATEGORY_FUN)
 	if(!SSticker?.mode || !SSevacuation)
 		return
 
 	var/dat
-	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
+	var/ref = "[REF(user.holder)];[HrefToken()]"
 
 	dat += "Current Game Mode: <B>[SSticker.mode.name]</B><BR>"
 	dat += "Round Duration: <B>[worldtime2text()]</B><BR>"
@@ -87,8 +81,8 @@
 		dat += "<td><a href='byond://?src=[ref];playerpanel=[REF(H)]'>PP</A></td></TR>"
 	dat += "</table>"
 
-	log_admin("[key_name(usr)] opened the mode panel.")
+	log_admin("[key_name(user)] opened the mode panel.")
 
-	var/datum/browser/browser = new(usr, "modepanel", "<div align='center'>Mode Panel</div>", 600, 500)
+	var/datum/browser/browser = new(user.mob, "modepanel", "<div align='center'>Mode Panel</div>", 600, 500)
 	browser.set_content(dat)
 	browser.open()
