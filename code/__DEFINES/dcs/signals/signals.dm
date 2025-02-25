@@ -705,7 +705,6 @@
 
 ///after attacking, accounts for armor
 #define COMSIG_XENOMORPH_POSTATTACK_LIVING "xenomorph_postattack_living"
-	#define CANCEL_FX (1<<0)
 #define COMSIG_XENOMORPH_ATTACK_HUMAN "xenomorph_attack_human"
 #define COMSIG_XENOMORPH_DISARM_HUMAN "xenomorph_disarm_human"
 	#define COMPONENT_BYPASS_SHIELDS (1<<0)

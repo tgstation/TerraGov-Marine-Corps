@@ -16,6 +16,7 @@
 #define ATTACK_EFFECT_YELLOWPUNCH "yellowpunch"
 #define ATTACK_EFFECT_WEAK_PUNCH "weak_punch"
 #define ATTACK_EFFECT_LASERSWORD pick("laser_slash","laser_slash2")
+#define ATTACK_EFFECT_CONQUEROR_PUNCH "conqueror_punch"
 
 //Damage flag defines //
 /// Involves a melee attack or a thrown object.

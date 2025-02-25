@@ -707,17 +707,12 @@
 	description = "Double tap any movement direction to dash towards it."
 	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_DASH
 
-/datum/keybinding/xeno/conqueror_will_alt
-	name = "Conqueror's Dash (Alternate)"
-	full_name = "Conqueror: Configure Dash"
-	description = "Allows you to setup various settings related to the dash."
-	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_DASH_ALT
-
 /datum/keybinding/xeno/conqueror_will
 	name = "Conqueror's Will"
 	full_name = "Conqueror: Conqueror's Will"
 	description = "Upgrades slash attacks. Left and right click can be strung together to make combos. Results vary based on input order."
 	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_WILL
+	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/conqueror_will_alt
 	name = "Conqueror's Will (Alternate)"
@@ -735,6 +730,13 @@
 /datum/keybinding/xeno/conqueror_endurance/up(client/user)
 	SEND_SIGNAL(user, COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_UP, TRUE)
 	return ..()
+
+/datum/keybinding/xeno/conqueror_dominance
+	name = "Conqueror's Domination"
+	full_name = "Conqueror: Domination"
+	description = "Jump towards a target location, creating a large shockwave and affecting foes around you."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_DOMINATION
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/acid_dash
 	name = "acid_dash"

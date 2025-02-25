@@ -105,7 +105,10 @@
 		span_danger("We lunge at [src]!"), null, 5)
 		return FALSE
 
+	X.do_attack_animation(src, X.attack_effect)
+
 	//The normal attack proceeds
+	playsound(loc, X.attack_sound, 25, 1)
 	X.visible_message("[attack_message1]", \
 	"[attack_message2]")
 
@@ -116,12 +119,7 @@
 
 	record_melee_damage(X, damage)
 	var/damage_done = apply_damage(damage, X.xeno_caste.melee_damage_type, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
-
-	if(SEND_SIGNAL(X, COMSIG_XENOMORPH_POSTATTACK_LIVING, src, damage_done, damage_mod, is_right_click) & CANCEL_FX)
-		X.do_attack_animation(src)
-		return TRUE
-	playsound(loc, SFX_ALIEN_CLAW_FLESH, 25, 1)
-	X.do_attack_animation(src, ATTACK_EFFECT_REDSLASH)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_POSTATTACK_LIVING, src, damage_done, damage_mod, is_right_click)
 	return TRUE
 
 /mob/living/silicon/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)

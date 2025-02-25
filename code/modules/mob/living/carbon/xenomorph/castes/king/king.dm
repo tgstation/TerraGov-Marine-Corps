@@ -4,12 +4,9 @@
 	desc = "A primordial creature, evolved to smash the hardiest of defences and hunt the hardiest of prey."
 	icon = 'icons/Xeno/castes/king.dmi'
 	icon_state = "King Walking"
-	attacktext = "bites"
-	attack_sound = null
-	friendly = "nuzzles"
-	health = 500
-	maxHealth = 500
-	plasma_stored = 300
+	health = 700
+	maxHealth = 700
+	plasma_stored = 1200
 	pixel_x = -16
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6
@@ -34,8 +31,6 @@
 			mind.name = name
 		return
 	switch(playtime_mins)
-		if(0 to 600)
-			name = prefix + "Young King ([nicknumber])"
 		if(601 to 1500)
 			name = prefix + "Mature King ([nicknumber])"
 		if(1501 to 4200)
@@ -62,3 +57,24 @@
 	caste_base_type = /datum/xeno_caste/king/conqueror
 	name = "Conqueror"
 	icon_state = "Conqueror Walking"
+
+/mob/living/carbon/xenomorph/king/conqueror/generate_name()
+	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
+	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	if(!client?.prefs.show_xeno_rank || !client)
+		name = prefix + "Conqueror ([nicknumber])"
+		real_name = name
+		if(mind)
+			mind.name = name
+		return
+	switch(playtime_mins)
+		if(601 to 1500)
+			name = prefix + "Mature Conqueror ([nicknumber])"
+		if(1501 to 4200)
+			name = prefix + "Elder Conqueror ([nicknumber])"
+		if(4201 to 10500)
+			name = prefix + "Ancient Conqueror ([nicknumber])"
+		if(10501 to INFINITY)
+			name = prefix + "Exalted Conqueror ([nicknumber])"
+		else
+			name = prefix + "Young Conqueror ([nicknumber])"

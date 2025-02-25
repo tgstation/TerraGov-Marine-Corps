@@ -278,7 +278,8 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	speak_emote = list("hisses")
 	melee_damage = 5 //Arbitrary damage value
 	attacktext = "claws"
-	attack_sound = null
+	attack_sound = SFX_ALIEN_CLAW_FLESH
+	attack_effect = ATTACK_EFFECT_REDSLASH
 	friendly = "nuzzles"
 	wall_smash = FALSE
 	health = 5
