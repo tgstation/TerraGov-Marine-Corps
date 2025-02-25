@@ -76,10 +76,10 @@ GLOBAL_VAR(medal_persistence_sealed)
 
 	while(query.NextRow())
 		var/datum/persistent_medal_info/medal = load_persistent_medal_from_data(query.item)
-		medal.medal_persistence = src
 		if(!medal)
 			stack_trace("Failed to load a medal from the database!")
 			continue
+		medal.medal_persistence = src
 		medals_by_real_name[medal.issued_to_real_name] ||= list(medal)
 		medals_by_real_name[medal.issued_to_real_name] += medal
 

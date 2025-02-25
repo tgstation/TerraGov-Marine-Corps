@@ -137,6 +137,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(narrate_direct, R_FUN, "Direct Narrate", ADMIN_VERB_
 
 	log_admin("DirectNarrate: [key_name(user)] to [key_name(M)]: [msg]")
 	message_admins("[ADMIN_TPMONTY(user.mob)] used Direct Narrate on [ADMIN_TPMONTY(M)]: [msg]")
+
 ADMIN_VERB_AND_CONTEXT_MENU(subtle_message, R_FUN, "Subtle Message", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_FUN, mob/M in GLOB.mob_list)
 	var/msg = tgui_input_text(user, "Subtle PM to [key_name(M)]:", "Subtle Message", "", multiline = TRUE, encode = FALSE)
 
@@ -155,7 +156,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(subtle_message, R_FUN, "Subtle Message", ADMIN_VERB_
 	message_admins("[ADMIN_TPMONTY(user.mob)] used Subtle Message on [ADMIN_TPMONTY(M)]: [msg]")
 
 ADMIN_VERB(award_medal, R_FUN, "Award a Medal", "Award a medal to a marine player", ADMIN_CATEGORY_FUN)
-	give_medal_award()
+	do_award_medal(user.mob)
 
 ADMIN_VERB(custom_info, R_FUN, "Change Custom Info", "Set a custom info to show to everyone and new joining players", ADMIN_CATEGORY_FUN)
 	var/new_info = tgui_input_text(user, "Set the custom information players get on joining or via the OOC tab.", "Custom info", GLOB.custom_info, multiline = TRUE, encode = FALSE)
