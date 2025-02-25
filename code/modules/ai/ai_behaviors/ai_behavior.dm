@@ -266,6 +266,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		return
 	if(goal_node)
 		UnregisterSignal(goal_node, COMSIG_QDELETING)
+		clean_goal_node()
 	goal_node = new_goal_node
 	goal_nodes = null
 	RegisterSignal(goal_node, COMSIG_QDELETING, PROC_REF(clean_goal_node))
@@ -309,10 +310,12 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 ///Clean the goal node
 /datum/ai_behavior/proc/clean_goal_node()
 	SIGNAL_HANDLER
+	if(atom_to_walk_to == goal_node)
+		atom_to_walk_to = null
 	goal_node = null
 	goal_nodes = null
 	if(current_action == MOVING_TO_NODE)
-		look_for_next_node()
+		look_for_next_node(should_reset_goal_nodes = TRUE)
 
 /*
 Registering and unregistering signals related to a particular current_action
