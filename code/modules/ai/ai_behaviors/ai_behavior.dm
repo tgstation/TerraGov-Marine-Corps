@@ -10,10 +10,14 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/atom/atom_to_walk_to
 	///The atom we want to attack at range, separate as we might not be moving in regards to it
 	var/atom/combat_target
-	///How far should we stay away from atom_to_walk_to. This can be a single number or a list
-	var/distance_to_maintain = 1
-	///Range to stay from a hostile target. This can be a single number or a list
-	var/engagement_range = 1
+	///How far should we stay away from atom_to_walk_to. Outer range
+	var/upper_maintain_dist = 1
+	///How far should we stay away from atom_to_walk_to. Inner range
+	var/lower_maintain_dist = 1
+	///Range to stay from a hostile target. Outer range
+	var/upper_engage_dist = 1
+	///Range to stay from a hostile target. Inner range
+	var/lower_engage_dist = 1
 	///Prob chance of sidestepping (left or right) when distance maintained with target
 	var/sidestep_prob = 0
 	///Current node to use for calculating action states: this is the mob's node
@@ -112,7 +116,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		UnregisterSignal(goal_node, COMSIG_QDELETING)
 
 ///Cleanup old state vars, start the movement towards our new target
-/datum/ai_behavior/proc/change_action(next_action, atom/next_target, special_distance_to_maintain)
+/datum/ai_behavior/proc/change_action(next_action, atom/next_target, list/special_distance_to_maintain)
 	if(QDELETED(mob_parent))
 		return
 	cleanup_current_action(next_action)
@@ -135,11 +139,17 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(next_action)
 		current_action = next_action
 	if(current_action == FOLLOWING_PATH)
-		distance_to_maintain = 0
+		upper_maintain_dist = 0
+		lower_maintain_dist = 0
 	else if(current_action == ESCORTING_ATOM)
-		distance_to_maintain = list(1, 3) //Don't stay too close //todo: can make this a var to be adjustable
+		upper_maintain_dist = 3 //Don't stay too close //todo: can make this a var to be adjustable
+		lower_maintain_dist = 1
+	else if(islist(special_distance_to_maintain))
+		upper_maintain_dist = max(special_distance_to_maintain)
+		lower_maintain_dist = min(special_distance_to_maintain)
 	else
-		distance_to_maintain = isnull(special_distance_to_maintain) ? initial(distance_to_maintain) : special_distance_to_maintain
+		upper_maintain_dist = initial(upper_maintain_dist)
+		lower_maintain_dist = initial(lower_maintain_dist)
 	if(next_target)
 		atom_to_walk_to = next_target
 		if(!registered_for_move)
@@ -360,14 +370,11 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 /datum/ai_behavior/proc/find_next_dirs()
 	var/dist_to_target = get_dist(mob_parent, atom_to_walk_to)
 
-	var/list/desired_range = distance_to_maintain
+	var/max_range = upper_maintain_dist
+	var/min_range = lower_maintain_dist
 	if(current_action == MOVING_TO_ATOM && (atom_to_walk_to == combat_target))
-		desired_range = engagement_range
-
-	//lets assume its actually a range for now. list(3, 5)
-	var/min_range = min(desired_range)
-	var/max_range = max(desired_range)
-
+		max_range = upper_engage_dist
+		min_range = lower_engage_dist
 	var/list/dir_options = list()
 
 	if((dist_to_target >= min_range) && (dist_to_target <= max_range)) //in optimal range

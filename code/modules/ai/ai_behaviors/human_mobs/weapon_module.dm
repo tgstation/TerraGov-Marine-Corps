@@ -83,7 +83,8 @@
 		return
 	if(!length(mob_inventory.melee_list) && !length(mob_inventory.gun_list))
 		need_weapons = TRUE
-		engagement_range = initial(engagement_range)
+		upper_engage_dist = initial(upper_engage_dist)
+		lower_engage_dist = initial(lower_engage_dist)
 		find_weapon()
 		return
 	INVOKE_ASYNC(src, PROC_REF(do_equip_weaponry))
@@ -165,7 +166,9 @@
 			equip_melee(secondary)
 			secondary.attack_self(mob_parent)
 
-	engagement_range = primary.get_ai_combat_range()
+	var/list/primary_range = primary.get_ai_combat_range()
+	upper_engage_dist = max(primary_range)
+	lower_engage_dist = min(primary_range)
 
 ///Equips a gun
 /datum/ai_behavior/human/proc/equip_gun(obj/item/weapon/new_weapon)
@@ -198,7 +201,13 @@
 	if(gun == old_weapon)
 		stop_fire()
 		gun = null
-		engagement_range = melee_weapon ? melee_weapon.get_ai_combat_range(): initial(distance_to_maintain)
+		if(melee_weapon)
+			var/list/melee_range = melee_weapon.get_ai_combat_range()
+			upper_engage_dist = max(melee_range)
+			lower_engage_dist = min(melee_range)
+		else
+			upper_engage_dist = initial(upper_maintain_dist)
+			lower_engage_dist = initial(lower_maintain_dist)
 	if(melee_weapon == old_weapon)
 		melee_weapon = null
 

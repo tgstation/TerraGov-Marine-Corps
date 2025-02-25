@@ -105,7 +105,7 @@
 				return
 			if(next_target == atom_to_walk_to)
 				return
-			change_action(null, next_target, INFINITY)
+			change_action(null, next_target, list(INFINITY))
 		if(IDLE)
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)
@@ -251,7 +251,7 @@
 	if(!next_target)
 		return
 	target_distance = 15
-	change_action(MOVING_TO_SAFETY, next_target, INFINITY)
+	change_action(MOVING_TO_SAFETY, next_target, list(INFINITY))
 	UnregisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE)
 
 ///Move the ai mob on top of the window_frame
@@ -261,7 +261,8 @@
 	LAZYDECREMENT(mob_parent.do_actions, window_turf)
 
 /datum/ai_behavior/xeno/ranged
-	distance_to_maintain = 5
+	upper_maintain_dist = 5
+	lower_maintain_dist = 5
 	minimum_health = 0.3
 
 /datum/ai_behavior/xeno/suicidal

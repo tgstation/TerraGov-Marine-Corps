@@ -16,7 +16,8 @@ TODO: pathfinding wizardry
 	sidestep_prob = 25
 	identifier = IDENTIFIER_HUMAN
 	base_action = ESCORTING_ATOM
-	distance_to_maintain = 1
+	upper_maintain_dist = 1
+	lower_maintain_dist = 1
 	target_distance = 9
 	minimum_health = 0.3
 	///List of abilities to consider doing every Process()
@@ -184,7 +185,7 @@ TODO: pathfinding wizardry
 			set_combat_target(next_target)
 			if(next_target == atom_to_walk_to)
 				return
-			change_action(null, next_target, INFINITY)
+			change_action(null, next_target, list(INFINITY))
 		if(IDLE)
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
 			if(!next_target)
