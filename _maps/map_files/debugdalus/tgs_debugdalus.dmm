@@ -2547,6 +2547,10 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"jEJ" = (
+/obj/structure/dropship_equipment/shuttle/tangle_emitter,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "jPH" = (
 /obj/machinery/bot/cleanbot,
 /turf/open/floor/mainship,
@@ -2823,6 +2827,10 @@
 /area/mainship/hallways/hangar)
 "qWN" = (
 /turf/open/floor/mainship/empty,
+/area/mainship/hallways/hangar)
+"rdd" = (
+/obj/structure/dropship_equipment/shuttle/nade_launcher,
+/turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "rmh" = (
 /obj/structure/cable,
@@ -4189,8 +4197,8 @@ ldZ
 bgb
 rmt
 bXE
-dwY
-dwY
+jEJ
+rdd
 dwY
 dwY
 dwY
