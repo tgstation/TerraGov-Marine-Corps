@@ -555,7 +555,7 @@
 	user.move_resist = MOVE_FORCE_OVERPOWERING
 	user.log_message("has been armor locked for [ARMORLOCK_DURATION] ticks", LOG_ATTACK, color="pink")
 
-	var/image/shield_overlay = image('icons/effects/effects.dmi', null, "shield-blue")
+	var/image/shield_overlay = image('icons/effects/effects.dmi', null, "armorlock")
 	user.overlays += shield_overlay
 	user.status_flags |= GODMODE
 	playsound(user, 'sound/items/armorlock.ogg', 50)
