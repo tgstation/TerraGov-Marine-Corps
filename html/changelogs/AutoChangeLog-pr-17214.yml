@@ -1,0 +1,4 @@
+author: "Lewdcifer"
+delete-after: True
+changes:
+  - code_imp: "Minor clean-up of xeno vars. Gets rid of unnecessary overrides, uses the attack_sound var, and implements an attack_effect var as setup for future content."
