@@ -693,9 +693,16 @@
 			var/obj/docking_port/stationary/marine_dropship/crash_target/CT = pick(SSshuttle.crash_targets)
 			if(!CT)
 				return
+			if(SSmonitor.gamestate == SHIPSIDE)
+				to_chat(xeno, span_xenowarning("The shuttle is already at the ship!"))
+				return
+
 			do_hijack(shuttle, CT, xeno)
+
 		if("abduct")
 			var/datum/game_mode/infestation/infestation_mode = SSticker.mode
+			if(!istype(infestation_mode))
+				return
 			if(infestation_mode.round_stage == INFESTATION_MARINE_CRASHING)
 				message_admins("[usr] tried to capture the shuttle after it was already hijacked, possible use of exploits.")
 				return
