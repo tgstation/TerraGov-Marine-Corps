@@ -99,7 +99,7 @@
 	name = "miasma orb"
 	icon_state = "ion"
 	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SKIPS_ALIENS
-	max_range = 10
+	max_range = 7
 	bullet_color = COLOR_GRAY
 
 /datum/ammo/xeno/miasma_orb/drop_nade(turf/T)
