@@ -580,14 +580,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] empowers nearby xenos with increased speed!"))
 
-	var/list/inrange = orange(1, xeno_owner)
-
-	for (var/mob/living/carbon/xenomorph/xeno_target in inrange)
+	for (var/mob/living/carbon/xenomorph/xeno_target in orange(1, xeno_owner))
 		if(xeno_target.stat == DEAD)
 			continue
 		if(xeno_target.hivenumber != xeno_owner.hivenumber)
 			continue
-		to_chat(xeno_target, span_xenowarning("\The [xeno_owner] impales us with the end of their tail, injecting adrenaline!"))
 		xeno_target.apply_status_effect(STATUS_EFFECT_XENO_BATONPASS)
 
 	addtimer(CALLBACK(src, PROC_REF(remove_baton), baton), 3 SECONDS)
