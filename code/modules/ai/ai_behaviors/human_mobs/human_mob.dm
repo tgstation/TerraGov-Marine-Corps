@@ -275,7 +275,7 @@ TODO: pathfinding wizardry
 
 ///Sets run move intent if able
 /datum/ai_behavior/human/proc/set_run(forced = FALSE)
-	if(!forced && !COOLDOWN_CHECK(mob_parent, ai_run_cooldown))
+	if(!forced && !COOLDOWN_CHECK(src, ai_run_cooldown))
 		return
 	mob_parent.toggle_move_intent(MOVE_INTENT_RUN)
 
@@ -283,7 +283,7 @@ TODO: pathfinding wizardry
 /datum/ai_behavior/human/proc/on_move_toggle(datum/source, m_intent)
 	SIGNAL_HANDLER
 	if(m_intent == MOVE_INTENT_WALK)
-		COOLDOWN_START(mob_parent, ai_run_cooldown, 10 SECONDS) //give time for stam to regen
+		COOLDOWN_START(src, ai_run_cooldown, 10 SECONDS) //give time for stam to regen
 
 ///Refresh abilities-to-consider list
 /datum/ai_behavior/human/proc/refresh_abilities()
