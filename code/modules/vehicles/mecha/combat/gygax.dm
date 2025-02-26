@@ -55,7 +55,8 @@
 		REMOVE_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	//tgmc end
 	if(chassis.leg_overload_mode)
-		chassis.speed_mod = min(chassis.move_delay-1, round(chassis.move_delay * 0.5))
+		if(!chassis.speed_mod)
+			chassis.speed_mod = -1
 		chassis.move_delay -= chassis.speed_mod
 		chassis.step_energy_drain = max(chassis.overload_step_energy_drain_min,chassis.step_energy_drain*chassis.leg_overload_coeff)
 		chassis.balloon_alert(owner,"leg actuators overloaded")
