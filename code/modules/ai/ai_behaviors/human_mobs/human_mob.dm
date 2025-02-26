@@ -273,7 +273,8 @@ TODO: pathfinding wizardry
 	if(!mob_parent.CanReach(interactee, melee_weapon)) //todo: copy this for beno code, lots of other stuff too.
 		return
 	if(istype(interactee, /obj/item/weapon)) //snowflake for now
-		mob_parent.UnarmedAttack(interactee, TRUE)
+		if(isturf(interactee.loc)) //no pickpocketing
+			mob_parent.UnarmedAttack(interactee, TRUE)
 		late_initialize()
 		return
 	mob_parent.face_atom(interactee)
