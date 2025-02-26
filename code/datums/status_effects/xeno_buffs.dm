@@ -888,29 +888,33 @@
 	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/status_effect/baton_pass/on_apply()
-	if(!isxeno(owner))
-		return FALSE
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-
-	particle_holder = new(owner_xeno, /particles/baton_pass)
-	var/particle_x = abs(owner_xeno.pixel_x)
+	particle_holder = new(owner, /particles/baton_pass)
+	var/particle_x = abs(owner.pixel_x)
 	particle_holder.pixel_x = particle_x
 	particle_holder.pixel_y = -3
-
+	var/movespeed_mod //Hold this here; as we'll want to apply seperate code for humans. Just incase.
 	//only slower xenos get better movespeed amplify. No gigaspeed runners
-	var/movespeed_mod =((owner_xeno.xeno_caste.speed <= -1) ? -0.1 : (owner_xeno.xeno_caste.speed <= -0.8) ? -0.2 : -0.4)
-	owner_xeno.add_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_BATON_PASS, TRUE, 1, NONE, TRUE, movespeed_mod)
+	if(isxeno(owner))
+		var/mob/living/carbon/xenomorph/owner_xeno = owner
+		movespeed_mod =((owner_xeno.xeno_caste.speed <= -1) ? -0.1 : (owner_xeno.xeno_caste.speed <= -0.8) ? -0.2 : -0.4)
+		owner.emote("roar")
+	else
+		movespeed_mod = -0.18 //Less effective than on slow castes for humans.
+		owner.emote("warcry")
+	owner.add_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_BATON_PASS, TRUE, 1, NONE, TRUE, movespeed_mod)
 
-	to_chat(owner, span_notice("We feel on top of the world! Go, go, go!"))
-	owner_xeno.Shake(duration = 6 SECONDS, shake_interval = 0.08 SECONDS)
-	owner_xeno.emote("roar")
+	to_chat(owner, span_notice("You feel on top of the world! Go, go, go!"))
+	owner.Shake(duration = 6 SECONDS, shake_interval = 0.08 SECONDS)
 
 	return ..()
 
 /datum/status_effect/baton_pass/on_remove()
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	owner_xeno.remove_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_BATON_PASS)
+	if(isxeno(owner))
+		owner_xeno.remove_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_BATON_PASS)
+	else
+		owner.remove_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_BATON_PASS) //ensure to correctly handle this so we dont get infinite speed
 	to_chat(owner, span_notice("We come down from our adrenaline high."))
 	QDEL_NULL(particle_holder)
 
