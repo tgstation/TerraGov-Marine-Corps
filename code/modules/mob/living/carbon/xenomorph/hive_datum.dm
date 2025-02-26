@@ -887,7 +887,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/proc/set_all_xeno_trackers(atom/target)
 	for(var/mob/living/carbon/xenomorph/X AS in get_all_xenos())
 		X.set_tracked(target)
-		to_chat(X, span_notice(" Now tracking [target.name]"))
+		to_chat(X, span_notice("Now tracking [target.name]"))
 
 // ***************************************
 // *********** Normal Xenos

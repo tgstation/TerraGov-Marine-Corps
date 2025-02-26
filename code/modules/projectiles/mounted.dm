@@ -258,7 +258,7 @@
 	var/left = leftright[1] - 1
 	var/right = leftright[2] + 1
 	if(!(left == (angle-1)) && !(right == (angle+1)))
-		to_chat(operator, span_warning(" [src] cannot be rotated so violently."))
+		to_chat(operator, span_warning("[src] cannot be rotated so violently."))
 		return FALSE
 	var/mob/living/carbon/human/user = operator
 
