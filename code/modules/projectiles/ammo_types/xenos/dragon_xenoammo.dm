@@ -37,7 +37,7 @@
 			else
 				carbon_fired.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 2)
 			continue
-		if(ishitbox(fired) || isAPC(fired))
+		if(ishitbox(fired) || isvehicle(fired))
 			var/obj/obj_fired = fired
 			obj_fired.take_damage(40, BURN, FIRE)
 			continue
