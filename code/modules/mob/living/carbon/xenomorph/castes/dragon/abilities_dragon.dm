@@ -77,7 +77,7 @@
 				affected_living.knockback(xeno_owner, 2, 1)
 				xeno_owner.do_attack_animation(affected_living)
 				xeno_owner.visible_message(span_danger("\The [xeno_owner] smacks [affected_living]!"), \
-					span_danger("We smack [affected_living]!"), null, 5) // TODO: Better flavor.
+					span_danger("We smack [affected_living]!"), null, 5)
 				has_hit_anything = TRUE
 				continue
 			if(!isobj(affected_atom))
@@ -258,31 +258,32 @@
 
 				xeno_owner.do_attack_animation(impacted_living)
 				xeno_owner.visible_message(span_danger("\The [xeno_owner] tail swipes [impacted_living]!"), \
-					span_danger("We tail swipes [impacted_living]!"), null, 5) // TODO: Better flavor.
+					span_danger("We tail swipes [impacted_living]!"), null, 5)
 				has_hit_anything = TRUE
 				continue
 			if(!isobj(impacted_atom))
 				continue
 			var/obj/impacted_obj = impacted_atom
-			if(ishitbox(impacted_obj))
-				var/obj/hitbox/vehicle_hitbox = impacted_obj
-				if(vehicle_hitbox.root in vehicles_already_affected_so_far)
-					continue
-				handle_vehicle_effects(vehicle_hitbox.root, damage / 3)
-				vehicles_already_affected_so_far += vehicle_hitbox.root
+			if(ishitbox(impacted_atom))
+				var/obj/hitbox/impacted_hitbox = impacted_atom
+				var/can_stun = !(impacted_hitbox.root in already_stunned_vehicles)
+				handle_vehicle_effects(impacted_hitbox.root, damage / 3, should_stun = can_stun)
+				if(can_stun)
+					already_stunned_vehicles += impacted_hitbox.root
 				has_hit_anything = TRUE
 				continue
 			if(!isvehicle(impacted_obj))
-				impacted_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
-				has_hit_anything = TRUE
+				impacted_obj.take_damage(damage, BRUTE, MELEE, blame_mob = src)
+			has_hit_anything = TRUE
 				continue
+			var/can_stun = !(impacted_obj in already_stunned_vehicles)
 			if(ismecha(impacted_obj))
-				handle_vehicle_effects(impacted_obj, damage * 3, 50)
+				handle_vehicle_effects(impacted_obj, damage * 3, 50, should_stun = can_stun)
 			else if(isarmoredvehicle(impacted_obj))
-				handle_vehicle_effects(impacted_obj, damage / 3)
+				handle_vehicle_effects(impacted_obj, damage / 3, should_stun = can_stun)
 			else
-				handle_vehicle_effects(impacted_obj, damage)
-			vehicles_already_affected_so_far += impacted_obj
+				handle_vehicle_effects(impacted_obj, damage * 3, should_stun = can_stun)
+			already_stunned_vehicles += impacted_obj
 			has_hit_anything = TRUE
 
 	playsound(xeno_owner, has_hit_anything ? 'sound/weapons/alien_claw_block.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
@@ -533,7 +534,7 @@
 
 	new /obj/effect/temp_visual/dragon/wind_current(get_turf(xeno_owner))
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] flaps their wings!"), \
-		span_danger("We flap our wings!"), null, 5) // TODO: Better flavor.
+		span_danger("We flap our wings!"), null, 5)
 
 	var/damage = 50 * xeno_owner.xeno_melee_damage_modifier
 	var/has_hit_anything = FALSE
@@ -670,8 +671,14 @@
 		add_cooldown()
 		return
 
-	// TODO: Pick the closest human rather than a random one.
-	grabbed_human = pick(acceptable_humans)
+	for(var/mob/living/carbon/human/nearest_human in acceptable_humans)
+		if(!grabbed_human)
+			grabbed_human = nearest_human
+			continue
+		if(get_dist(grabbed_human) > nearest_human)
+			continue
+		grabbed_human = nearest_human
+
 	RegisterSignal(grabbed_human, COMSIG_MOVABLE_POST_THROW, PROC_REF(throw_completion))
 	ADD_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
 	grabbed_human.pass_flags |= (PASS_MOB|PASS_XENO)
@@ -1072,7 +1079,7 @@
 
 /// Grants 33% additional slash damage and a boost in movement speed that will wear off in 30 seconds.
 /datum/action/ability/activable/xeno/unleash/proc/apply_buffs()
-	xeno_owner.xeno_melee_damage_modifier += 1/3 // NOTE: This is 33% increase of all slash and ability damage.
+	xeno_owner.xeno_melee_damage_modifier += 1/3 //This is 33% increase of all slash and ability damage.
 	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH, TRUE, 0, NONE, TRUE, -0.5)
 	timer_id = addtimer(CALLBACK(src, PROC_REF(start_withdrawal)), 30 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 	succeed_activate()
@@ -1081,10 +1088,10 @@
 /datum/action/ability/activable/xeno/unleash/proc/start_withdrawal()
 	if(!is_active())
 		return
-	xeno_owner.visible_message(span_danger("\The [xeno_owner] looks tired."), span_danger("We feel tired."), null, 5) // TODO: span_danger may not be the correct one to use.
+	xeno_owner.visible_message(span_danger("\The [xeno_owner] looks tired."), span_danger("We feel tired."), null, 5)
 	xeno_owner.xeno_melee_damage_modifier -= 1/3
 	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH)
-	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH_WITHDRAWAL, TRUE, 0, NONE, TRUE, 0.8) // TODO: Check if this is accurate.
+	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH_WITHDRAWAL, TRUE, 0, NONE, TRUE, 0.8)
 	timer_id = addtimer(CALLBACK(src, PROC_REF(end_withdrawal)), 5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /// Removes the temporary slowdown and sets the ability on cooldown.

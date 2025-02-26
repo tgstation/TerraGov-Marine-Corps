@@ -46,7 +46,7 @@
 		return FALSE
 	if(stat != DEAD && plasma_stored)
 		var/damage_reduction = min(damage / 2, plasma_stored / 4)
-		use_plasma(ROUND_UP(damage_reduction * 4)) // NOTE: We love whole numbers.
+		use_plasma(ROUND_UP(damage_reduction * 4))
 		damage -= damage_reduction
 	return ..()
 
@@ -61,9 +61,9 @@
 	for(var/atom/atom_on_turf AS in newloc.contents)
 		if(atom_on_turf.CanPass(src, newloc))
 			continue
-		if((atom_on_turf.resistance_flags & RESIST_ALL)) // NOTE: This prevents them from going off into space during hijack.
+		if((atom_on_turf.resistance_flags & RESIST_ALL)) // This prevents them from going off into space during hijack.
 			return FALSE
-		if(istype(atom_on_turf, /obj/machinery/door/poddoor/timed_late)) /// NOTE: This prevents them from entering the LZ early.
+		if(istype(atom_on_turf, /obj/machinery/door/poddoor/timed_late)) /// This prevents them from entering the LZ early.
 			return FALSE
 	abstract_move(newloc)
 
@@ -127,7 +127,7 @@
 /mob/living/carbon/xenomorph/dragon/proc/perform_landing_effects(list/turf/impacted_turfs)
 	new /obj/effect/temp_visual/dragon/land(loc)
 	var/damage = 100 * xeno_melee_damage_modifier
-	var/list/obj/vehicle/already_stunned_vehicles = list() // NOTE: This is to prevent hitting the main body of a vehicle twice.
+	var/list/obj/vehicle/already_stunned_vehicles = list() // This prevents hitting the main body of a vehicle twice.
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		impacted_turf.Shake(duration = 0.2 SECONDS)
 		for(var/atom/impacted_atom AS in impacted_turf)
