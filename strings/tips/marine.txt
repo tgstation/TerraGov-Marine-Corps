@@ -4,16 +4,14 @@ If you have an AI onboard the ship, consider bringing a AI coordinate unit next 
 You can jump on tanks and APC's. As long as you have one empty hand you won't be thrown off when it moves.
 You can shoot any target riding on a tank or APC by directly clicking on them. Tanks and APC's often lack methods to deal with hostile riders, and need help from other marines.
 Assault Crewmen can drive APC's, but Transport Crewmen cannot drive tanks. Transport Crewman can still act as a loader for a tank though.
-Got a xenomorph riding on the roof of your vehicle as an Assault Crewman or Transport Crewman? If you have an explosive weapon, try shooting a wall next to you to dislodge them.
 Acid Jaws must be placed outside in the open. This makes them vulnerable to CAS, OB's, Mortars, or being scouted by the Tadpole. Use the xeno structure pinpointer to locate them, and consider lasing them with tactical binoculars if xenomorphs are putting up a heavy defence.
-Lasers have different firing modes that have different effects on xenomorphs, making them extremely versatile in any situation!
+Terra Experimental standard weapons, the laser weapons, have different firing modes that have different effects on xenomorphs, making them extremely versatile in any situation!
 Fire disables pheromones, use this information to your advantage.
-Silo rushing isn't worth it when multiple marines die and get psychic drained for a new silo.
 Fire does NOT hurt pyrogen, the xenomorph on FIRE!
-DO NOT SHUFFLE THE FC OR SL THAT IS USING THE BINOCULAR!
+When FC or SL are using binoculars, moving them interrupt them. Move around them!
 Don't get left behind, corpsmen! Use your minimap to check where marines are, whether alive or dead!
 Catch larval facehuggers by having an empty hand and throw mode on.
-Use fire to remove facehugger on marine's face before the facehugger impregnate!
+Fire removes facehugger on marine's face so that the facehugger can't impregnate!
 Standing in a corner on harm intent stops you from behing shuffled, unless you're a marine and a xenomorph on help intent walks into you.
 Jumping will allow you to throw grenades farther, and over allies. Yeet those grenades to xenomorphs!
 Hunger will slow you down. A single protein bar will fill everyone's stomach. Take an extra protein bar too much and you become slower (ironic) and fat.
@@ -38,7 +36,6 @@ A lone marine is a dead marine and a happy xeno. Stick together!
 Be mindful when using hand grenades. Getting stunned or knocked over after priming a grenade will drop it at your feet. This is obviously very dangerous for not only you, but your friends as well.
 Watch out for friendly fire and marines not in aim mode. Make sure you're not walking into anyone's firing line, and make sure no one else is in yours!
 A few weapons permit aim mode, which prevents friendly fire. Use this behind marines and be a smartgunner-lite!
-Stand behind a marine to shoulder shoot through your allies!
 While medics and doctors are best at it, anyone can use a defibrillator and operate the body scanner and autodoc medical system.
 While engineers and synthetics are best at it, anyone can build barricades and razorsharp obstacles.
 Anyone can make razor wire by using three metal sheets, which is four metal rods and barbed wire from metal sheets. Stop that crusher and bull from charging!
@@ -160,7 +157,7 @@ Gigachads leave the autodoc on automatic.
 You can fit tiny items into your helmet.
 The time it takes for you to wield your gun can be the difference between life and death.
 Switching to your sidearm is faster than reloading.
-You can perform a tactical reload by dragging a fresh magazine from your belt towards your gun.
+You can perform a tactical reload by clicking or dragging a fresh magazine from your belt towards your gun.
 With your sidearm in hand, right-click a pistol pouch to instantly reload.
 You can turn the safety of your gun on.
 Depending on the tactical situations, smoke grenades can do more harm than good.
