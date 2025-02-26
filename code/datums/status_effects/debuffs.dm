@@ -930,7 +930,7 @@
 /datum/status_effect/incapacitating/electrified
 	id = "electrified"
 	duration = 5 SECONDS
-	var/image/shocky
+	var/image/shocky // TODO: Make this work!
 
 /datum/status_effect/incapacitating/electrified/on_creation(mob/living/new_owner, set_duration)
 	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
@@ -985,7 +985,7 @@
 /datum/status_effect/incapacitating/plague
 	id = "plague"
 	duration = 8 SECONDS
-	var/image/halo
+	var/image/halo  // TODO: Make this work!
 
 /datum/status_effect/incapacitating/plague/on_creation(mob/living/new_owner, set_duration)
 	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD || !ishuman(new_owner))
