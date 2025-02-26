@@ -233,12 +233,10 @@
 
 	var/damage = 55 * xeno_owner.xeno_melee_damage_modifier
 	var/has_hit_anything = FALSE
-	var/list/obj/vehicle/vehicles_already_affected_so_far = list() // To stop hitting something the same multitile vehicle twice.
+	var/list/obj/vehicle/already_stunned_vehicles = list() // To stop hitting something the same multitile vehicle twice.
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		for(var/atom/impacted_atom AS in impacted_turf)
 			if(!(impacted_atom.resistance_flags & XENO_DAMAGEABLE))
-				continue
-			if(impacted_atom in vehicles_already_affected_so_far)
 				continue
 			if(isxeno(impacted_atom))
 				continue
@@ -274,7 +272,7 @@
 				continue
 			if(!isvehicle(impacted_obj))
 				impacted_obj.take_damage(damage, BRUTE, MELEE, blame_mob = src)
-			has_hit_anything = TRUE
+				has_hit_anything = TRUE
 				continue
 			var/can_stun = !(impacted_obj in already_stunned_vehicles)
 			if(ismecha(impacted_obj))
