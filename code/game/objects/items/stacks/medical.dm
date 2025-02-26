@@ -104,6 +104,8 @@
 
 /// return TRUE if a given limb can be healed by src, FALSE otherwise
 /obj/item/stack/medical/heal_pack/proc/can_heal_limb(datum/limb/affecting)
+	if(!affecting)
+		return FALSE
 	if(affecting.limb_status & LIMB_DESTROYED)
 		return FALSE
 	if(!can_affect_limb(affecting))
