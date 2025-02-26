@@ -261,9 +261,11 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	return
 
 ///Set the goal node
-/datum/ai_behavior/proc/set_goal_node(datum/source, obj/effect/ai_node/new_goal_node, node_faction)
+/datum/ai_behavior/proc/set_goal_node(datum/source, obj/effect/ai_node/new_goal_node)
 	SIGNAL_HANDLER
-	if(node_faction != mob_parent.faction)
+	if(!new_goal_node)
+		return
+	if(new_goal_node.faction != mob_parent.faction)
 		return
 	if(goal_node)
 		UnregisterSignal(goal_node, COMSIG_QDELETING)

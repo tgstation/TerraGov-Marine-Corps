@@ -152,7 +152,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	. = ..()
 	if(new_faction)
 		faction = new_faction
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_GOAL_SET, src, faction)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_GOAL_SET, src)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, PROC_REF(clean_goal_node))
 	GLOB.goal_nodes[faction] = src
 	if(!new_creator)
@@ -184,9 +184,9 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	creator = null
 
 ///Delete this ai_node goal
-/obj/effect/ai_node/goal/proc/clean_goal_node(datum/source, obj/effect/ai_node/goal/node, node_faction)
+/obj/effect/ai_node/goal/proc/clean_goal_node(datum/source, obj/effect/ai_node/goal/new_node)
 	SIGNAL_HANDLER
-	if(node_faction != faction)
+	if(new_node.faction != faction)
 		return
 	qdel(src)
 
