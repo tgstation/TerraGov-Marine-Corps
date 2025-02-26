@@ -316,9 +316,6 @@ TODO: pathfinding wizardry
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
 
-/mob/living/simple_animal/hostile/carp/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
 
 //todo: move these
 

@@ -829,3 +829,29 @@ ADMIN_VERB(adjust_gravity, R_FUN, "Adjust Gravity", "Adjusts gravity/jump compon
 			return
 
 	log_admin("[key_name(user)] set gravity to [choice].")
+
+ADMIN_VERB(ai_squad, R_FUN, "Spawn AI squad", "Spawns a AI squad of your choice", ADMIN_CATEGORY_FUN)
+	var/turf/spawn_loc = get_turf(user.mob)
+	if(!spawn_loc)
+		return
+	var/squad_choice = tgui_input_list(user, "What squad would you like to spawn?", "squad choice", GLOB.ai_squad_presets)
+	if(!squad_choice)
+		return
+	var/quantity = tgui_input_number(user, "How many mobs would you like in the squad?", title = "Squad Size", default = 5, max_value = length(GLOB.ai_squad_presets[squad_choice]), min_value = 1, timeout = 0, round_value = TRUE)
+	if(!quantity)
+		return
+	var/list/mob_list = list()
+	for(var/i = 1 to quantity)
+		var/mob/living/carbon/human/new_human = new(spawn_loc)
+		mob_list += new_human
+		var/datum/job/new_job = SSjob.GetJob(GLOB.ai_squad_presets[squad_choice][i])
+		var/squad_to_insert_into
+		if(ismarinejob(new_job) || issommarinejob(new_job))
+			squad_to_insert_into = pick(SSjob.active_squads[new_job.faction])
+		new_human.apply_assigned_role_to_spawn(new_job, new_human.client, squad_to_insert_into, admin_action = TRUE)
+		new_human.equip_role_outfit(new_job)
+	for(var/mob/living/carbon/human/dude AS in mob_list)
+		dude.AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
+
+	message_admins("[key_name_admin(user)] spawned a squad of AI humans of type [squad_choice] on the z-level [spawn_loc.z].")
+	log_admin("[key_name(user)] spawned a squad of AI humans of type [squad_choice] on the z-level [spawn_loc.z]")
