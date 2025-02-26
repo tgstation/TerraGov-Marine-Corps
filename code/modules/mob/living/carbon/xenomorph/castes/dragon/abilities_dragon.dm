@@ -1111,7 +1111,7 @@
 		return
 	addtimer(CALLBACK(src, PROC_REF(end_roar_effects_for), affected_living), 0.1 SECONDS)
 
-/// Grants 33% additional slash damage and a boost in movement speed that will wear off in 30 seconds.
+/// Grants 33% additional slash/ability damage and a boost in movement speed that will wear off in 30 seconds.
 /datum/action/ability/activable/xeno/unleash/proc/apply_buffs()
 	xeno_owner.xeno_melee_damage_modifier += 1/3 //This is 33% increase of all slash and ability damage.
 	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH, TRUE, 0, NONE, TRUE, -0.5)
