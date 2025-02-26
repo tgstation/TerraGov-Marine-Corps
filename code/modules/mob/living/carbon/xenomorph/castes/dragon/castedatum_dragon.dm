@@ -8,7 +8,7 @@
 
 	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_BASETYPE
-	wound_type = "" // TODO: No wound sprites for this yet. Get some.
+	wound_type = "dragon"
 
 	// *** Melee Attacks *** //
 	melee_damage = 30
