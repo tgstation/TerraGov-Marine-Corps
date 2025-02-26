@@ -338,8 +338,8 @@
 	hud_state_empty = "rifle_empty"
 
 /obj/item/armored_weapon/tank_autocannon
-	name = "\improper Bushwacker Autocannon"
-	desc = "A Bushwacker 30mm Autocannon for vehicular use."
+	name = "\improper Bushwhacker Autocannon"
+	desc = "A Bushwhacker 30mm Autocannon for vehicular use."
 	icon_state = "tank_autocannon"
 	fire_sound = SFX_AC_FIRE
 	ammo = /obj/item/ammo_magazine/tank/autocannon
