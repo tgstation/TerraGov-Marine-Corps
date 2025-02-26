@@ -376,7 +376,8 @@
 		if(!silent)
 			to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
 		return FALSE
-	if(!CHECK_BITFIELD(patient.xeno_caste.can_flags, CASTE_CAN_BE_QUEEN_HEALED))
+	var/mob/living/carbon/xenomorph/xeno_target = target
+	if(!CHECK_BITFIELD(xeno_target.xeno_caste.can_flags, CASTE_CAN_BE_QUEEN_HEALED))
 		if(!silent)
 			to_chat(owner, span_warning("We cannot link to them."))
 		return FALSE
