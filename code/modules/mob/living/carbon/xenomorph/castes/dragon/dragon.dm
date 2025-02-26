@@ -20,6 +20,7 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/hijack,
 	)
+	attack_effect = list("dragonslash","dragonslash2")
 	gib_chance = 0
 	// If they are currently doing landing animations and thus should display their regular sprite.
 	var/doing_landing_animations = FALSE
@@ -87,7 +88,7 @@
 	TIMER_COOLDOWN_END(src, COOLDOWN_DRAGON_CHANGE_FORM) // NOTE: Cooldown needs to end for special state to work as wanted.
 	animate(src, pixel_x = 0, pixel_y = 0, time = 0)
 	status_flags = GODMODE|INCORPOREAL
-	resistance_flags = RESIST_ALL|BANISH_IMMUNE
+	resistance_flags = RESIST_ALL
 	pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 	density = FALSE
 	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
