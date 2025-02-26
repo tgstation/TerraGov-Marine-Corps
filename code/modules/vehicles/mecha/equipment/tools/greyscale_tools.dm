@@ -45,7 +45,7 @@
 	weight = 45
 	dash_consumption = 300
 	slowdown = -0.6
-	dash_range = 4
+	dash_range = 5
 	boost_consumption = 30
 
 /obj/item/mecha_parts/mecha_equipment/generator/greyscale
