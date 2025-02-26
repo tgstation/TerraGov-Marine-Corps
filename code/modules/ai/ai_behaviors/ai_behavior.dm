@@ -73,7 +73,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	escorted_atom = null
 	mob_parent = null
 	atom_to_walk_to = null
-	clear_combat_target()
+	combat_target = null
+	interact_target = null
 	return ..()
 
 ///Register ai behaviours
@@ -152,9 +153,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		upper_maintain_dist = initial(upper_maintain_dist)
 		lower_maintain_dist = initial(lower_maintain_dist)
 	if(next_target)
-		atom_to_walk_to = next_target
-		if(!registered_for_move)
-			INVOKE_ASYNC(src, PROC_REF(scheduled_move))
+		set_atom_to_walk_to(next_target)
 
 	register_action_signals(current_action)
 	if(current_action == MOVING_TO_SAFETY)
@@ -244,9 +243,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		cleanup_current_action()
 		late_initialize()
 		return
-	atom_to_walk_to = turfs_in_path[length(turfs_in_path)]
-	if(!registered_for_move)
-		INVOKE_ASYNC(src, PROC_REF(scheduled_move))
+	set_atom_to_walk_to(turfs_in_path[length(turfs_in_path)])
 	turfs_in_path.len--
 	return COMSIG_MAINTAIN_POSITION
 
@@ -314,7 +311,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/clean_goal_node()
 	SIGNAL_HANDLER
 	if(atom_to_walk_to == goal_node)
-		atom_to_walk_to = null
+		unset_target(atom_to_walk_to)
 	goal_node = null
 	goal_nodes = null
 	if(current_action == MOVING_TO_NODE)
@@ -417,44 +414,48 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown + mob_parent.next_move_slowdown * ( ISDIAGONALDIR(move_dir) ? DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : 1 ) )) //todo: probs dont even need this
 
 ///Sets our active combat target
+/datum/ai_behavior/proc/set_atom_to_walk_to(atom/new_target)
+	if(atom_to_walk_to == new_target)
+		return
+	if(atom_to_walk_to)
+		do_unset_target(atom_to_walk_to, FALSE)
+	atom_to_walk_to = new_target
+	RegisterSignals(atom_to_walk_to, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT), PROC_REF(unset_target), TRUE)
+	if(!registered_for_move)
+		INVOKE_ASYNC(src, PROC_REF(scheduled_move))
+
+///Sets our active combat target
 /datum/ai_behavior/proc/set_combat_target(atom/new_target)
 	if(combat_target == new_target)
 		return
 	if(combat_target)
-		clear_combat_target(combat_target)
+		do_unset_target(combat_target, FALSE)
 	combat_target = new_target
-	RegisterSignals(combat_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT), PROC_REF(clear_combat_target))
-
-///Unsets our combat target
-/datum/ai_behavior/proc/clear_combat_target(atom/source)
-	SIGNAL_HANDLER
-	if(!combat_target)
-		return
-	UnregisterSignal(combat_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT))
-	combat_target = null
-	if(atom_to_walk_to != combat_target)
-		return
-	atom_to_walk_to = null
-	late_initialize()
+	RegisterSignals(combat_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT), PROC_REF(unset_target), TRUE)
 
 ///Sets an interaction target
-/datum/ai_behavior/human/proc/set_interact_target(atom/new_target)
+/datum/ai_behavior/proc/set_interact_target(atom/new_target)
 	if(interact_target == new_target)
 		return
 	if(interact_target)
-		unset_interact_target(interact_target)
+		do_unset_target(interact_target, FALSE)
 	interact_target = new_target
-	RegisterSignals(interact_target, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unset_interact_target))
+	RegisterSignals(interact_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT), PROC_REF(unset_target), TRUE) //dont follow an item after its picked up... or maybe do? //COMSIG_MOVABLE_MOVED
 	change_action(MOVING_TO_ATOM, interact_target, list(0, 1))
 
-///Unsets an interaction target
-/datum/ai_behavior/human/proc/unset_interact_target(atom/source)
+///Sig handler for unsetting a target
+/datum/ai_behavior/proc/unset_target(atom/source)
 	SIGNAL_HANDLER
-	if(!interact_target)
-		return
-	UnregisterSignal(source, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
-	interact_target = null
-	if(atom_to_walk_to != source)
-		return
-	atom_to_walk_to = null
-	late_initialize()
+	do_unset_target(source)
+
+///Unsets a target from any target vars its in
+/datum/ai_behavior/proc/do_unset_target(atom/old_target, need_new_state = TRUE)
+	UnregisterSignal(old_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT))
+	if(combat_target == old_target)
+		combat_target = null
+	if(interact_target == old_target)
+		interact_target = null
+	if(atom_to_walk_to == old_target)
+		atom_to_walk_to = null
+		if(current_action == MOVING_TO_ATOM && need_new_state)
+			look_for_new_state()

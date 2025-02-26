@@ -104,26 +104,12 @@ TODO: pathfinding wizardry
 	switch(action_type)
 		if(MOVING_TO_ATOM)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(melee_interact))
-			if(ishuman(atom_to_walk_to))
-				RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
-				return
-			if(ismachinery(atom_to_walk_to))
-				RegisterSignal(atom_to_walk_to, COMSIG_PREQDELETED, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
-				return
-
 	return ..()
 
 /datum/ai_behavior/human/unregister_action_signals(action_type)
 	switch(action_type)
 		if(MOVING_TO_ATOM)
 			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
-			if(ishuman(atom_to_walk_to))
-				UnregisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH)
-				return
-			if(ismachinery(atom_to_walk_to))
-				UnregisterSignal(atom_to_walk_to, COMSIG_PREQDELETED)
-				return
-
 	return ..()
 
 /datum/ai_behavior/human/cleanup_current_action(next_action)
@@ -275,7 +261,7 @@ TODO: pathfinding wizardry
 	if(interactee == interact_target)
 		if(isturf(interactee.loc)) //no pickpocketing
 			mob_parent.UnarmedAttack(interactee, TRUE) //todo: expand this with other interactions
-		unset_interact_target(interact_target)
+		unset_target(interact_target)
 		return
 	mob_parent.face_atom(interactee)
 	if(melee_weapon)
