@@ -673,7 +673,7 @@
 		if(!grabbed_human)
 			grabbed_human = nearest_human
 			continue
-		if(get_dist(grabbed_human) > nearest_human)
+		if(get_dist(xeno_owner, grabbed_human) > nearest_human)
 			continue
 		grabbed_human = nearest_human
 
