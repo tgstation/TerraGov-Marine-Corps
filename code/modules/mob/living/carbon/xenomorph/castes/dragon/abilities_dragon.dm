@@ -378,6 +378,7 @@
 		if(do_after(xeno_owner, 3 SECONDS / castplasma_multiplier, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
 			xeno_owner.stop_pulling()
 			xeno_owner.visible_message(span_danger("[xeno_owner] exhales a massive fireball right ontop of [grabbed_human]!"))
+			new /obj/effect/temp_visual/dragon/grab_fire(get_turf(grabbed_human))
 			grabbed_human.emote("scream")
 			grabbed_human.Shake(duration = 0.5 SECONDS) // Must stop pulling first for Shake to work.
 			playsound(get_turf(xeno_owner), 'sound/effects/alien/fireball.ogg', 50, 1)
