@@ -91,6 +91,7 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 ///Reacts if the mob is below the min health threshold
 /datum/ai_behavior/human/proc/check_for_critical_health(datum/source, damage)
 	SIGNAL_HANDLER
+	COOLDOWN_START(src, ai_damage_cooldown, 5 SECONDS)
 	if(current_action == MOVING_TO_SAFETY)
 		return
 	var/mob/living/living_mob = mob_parent
@@ -107,20 +108,21 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 	if(prob(50))
 		try_speak(pick(retreating_chat))
 	set_run(TRUE)
-	target_distance = 15
+	target_distance = 12
 	change_action(MOVING_TO_SAFETY, next_target, list(INFINITY))
 
 ///Will try healing if possible
 /datum/ai_behavior/human/proc/try_heal()
-	if(prob(75))
-		try_speak(pick(healing_chat))
 	var/mob/living/living_parent = mob_parent
-
 	if(living_parent.on_fire)
-		//extinguish proc so they use an extinguisher if they got it?
 		living_parent.do_resist()
 		return
 
+	if(!COOLDOWN_CHECK(src, ai_damage_cooldown))
+		return
+
+	if(prob(75))
+		try_speak(pick(healing_chat))
 	var/list/dam_list = list(
 		BRUTE = living_parent.getBruteLoss(),
 		BURN = living_parent.getFireLoss(),

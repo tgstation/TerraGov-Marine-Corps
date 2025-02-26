@@ -38,6 +38,7 @@ TODO: pathfinding wizardry
 	///Chat lines when engaging a new target
 	var/list/new_target_chat = list("Get some!!", "Engaging!", "You're mine!", "Bring it on!", "Hostiles!", "Take them out!", "Kill 'em!", "Lets rock!", "Go go go!!", "Waste 'em!", "Intercepting.", "Weapons free!", "Fuck you!!", "Moving in!")
 	COOLDOWN_DECLARE(ai_run_cooldown)
+	COOLDOWN_DECLARE(ai_damage_cooldown)
 
 /datum/ai_behavior/human/New(loc, parent_to_assign, escorted_atom, can_heal = TRUE)
 	..()
@@ -142,7 +143,7 @@ TODO: pathfinding wizardry
 			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
 			if(!next_target)
 				if(can_heal && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
-					INVOKE_ASYNC(src, PROC_REF(try_heal)) //todo: add cooldown here from last attack/damage, so we dont try heal the instant we lose sight of an enemy
+					INVOKE_ASYNC(src, PROC_REF(try_heal))
 					return
 				if(!goal_node) // We are randomly moving
 					var/atom/mob_to_follow = get_nearest_target(mob_parent, AI_ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_MOB, mob_parent.faction, need_los = TRUE)
@@ -167,22 +168,26 @@ TODO: pathfinding wizardry
 			if(next_target == atom_to_walk_to)//We didn't find a better target
 				return
 			change_action(null, next_target)//We found a better target, change course!
-		if(MOVING_TO_SAFETY) //todo: look at this and unfuck some of this behavior
-			if(isitem(atom_to_walk_to) && !QDELETED(atom_to_walk_to) && isturf(atom_to_walk_to.loc)) //we're avoiding something, probably a grenade
+		if(MOVING_TO_SAFETY)
+			if(!COOLDOWN_CHECK(src, ai_damage_cooldown))
 				return
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
-			if(!next_target)//We are safe, try to find some weeds
+			if(!next_target)//looks safe
 				target_distance = initial(target_distance)
 				cleanup_current_action()
 				late_initialize()
+				if(can_heal && living_parent.health <= minimum_health * 3 * living_parent.maxHealth)
+					INVOKE_ASYNC(src, PROC_REF(try_heal))
 				return
 			set_combat_target(next_target)
 			if(next_target == atom_to_walk_to)
 				return
-			change_action(null, next_target, list(INFINITY))
+			set_atom_to_walk_to(next_target)
 		if(IDLE)
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
 			if(!next_target)
+				if(can_heal && living_parent.health <= minimum_health * 3 * living_parent.maxHealth)
+					INVOKE_ASYNC(src, PROC_REF(try_heal))
 				return
 			change_action(MOVING_TO_ATOM, next_target)
 
