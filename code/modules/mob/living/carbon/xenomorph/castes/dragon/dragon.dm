@@ -46,8 +46,8 @@
 	if(damagetype != BRUTE && damagetype != BURN)
 		return FALSE
 	if(stat != DEAD && plasma_stored)
-		var/damage_reduction = min(damage / 2, plasma_stored / 4)
-		use_plasma(ROUND_UP(damage_reduction * 4))
+		var/damage_reduction = min(damage / 2, plasma_stored / 5)
+		use_plasma(ROUND_UP(damage_reduction * 5))
 		damage -= damage_reduction
 	return ..()
 
