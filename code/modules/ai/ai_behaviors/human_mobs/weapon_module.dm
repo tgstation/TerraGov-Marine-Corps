@@ -50,15 +50,15 @@
 			INVOKE_ASYNC(src, PROC_REF(reload_gun))
 			return
 		if(fire_result != AI_FIRE_CAN_HIT)
-			return //cant shoot yet
+			return
 		if(prob(90))
 			try_speak(pick(start_fire_chat))
-		if(gun.start_fire(mob_parent, combat_target, get_turf(combat_target)) && gun.gun_firemode != GUN_FIREMODE_SEMIAUTO && gun.gun_firemode != GUN_FIREMODE_BURSTFIRE) //failed to fire or not autofire
+		if(gun.start_fire(mob_parent, combat_target, get_turf(combat_target)) && gun.gun_firemode != GUN_FIREMODE_SEMIAUTO && gun.gun_firemode != GUN_FIREMODE_BURSTFIRE)
 			gun_firing = TRUE
 		return
 
 	if(fire_result == AI_FIRE_CAN_HIT)
-		return //keep shooting, before switch for reload consideration
+		return
 
 	stop_fire()
 
@@ -66,7 +66,7 @@
 	switch(fire_result)
 		if(AI_FIRE_INVALID_TARGET)
 			return //how'd you do this?
-		if(AI_FIRE_TARGET_DEAD) //todo: add chat cooldowns based on these defines
+		if(AI_FIRE_TARGET_DEAD)
 			if(prob(75))
 				try_speak(pick(dead_target_chat))
 		if(AI_FIRE_NO_AMMO)
@@ -110,18 +110,21 @@
 	var/obj/item/weapon/primary
 	var/obj/item/weapon/secondary
 
-	var/obj/item/weapon/high_dam_melee_choice
-	var/obj/item/weapon/melee_choice
+	var/obj/item/weapon/primary_melee_choice
+	var/obj/item/weapon/standard_melee_choice
+	var/obj/item/weapon/low_melee_choice
 	var/obj/item/weapon/shield/shield_choice
 	var/obj/item/weapon/gun/big_gun_choice
 	var/obj/item/weapon/gun/small_gun_choice
 
 	for(var/obj/item/weapon/melee_option AS in mob_inventory.melee_list)
 		var/melee_option_str = max(melee_option.force, melee_option.force_activated)
-		if((melee_option_str >= 50) && (melee_option_str >= max(high_dam_melee_choice?.force, high_dam_melee_choice?.force_activated)))
-			high_dam_melee_choice = melee_option
-		else if((melee_option_str < 50) && (melee_option_str >= max(melee_choice?.force, melee_choice?.force_activated)))
-			melee_choice = melee_option
+		if((melee_option_str >= 80) && (melee_option_str >= max(primary_melee_choice?.force, primary_melee_choice?.force_activated)))
+			primary_melee_choice = melee_option
+		if((melee_option_str >= 50) && (melee_option_str >= max(standard_melee_choice?.force, standard_melee_choice?.force_activated)))
+			standard_melee_choice = melee_option
+		else if((melee_option_str < 50) && (melee_option_str >= max(low_melee_choice?.force, low_melee_choice?.force_activated)))
+			low_melee_choice = melee_option
 		if(istype(melee_option, /obj/item/weapon/shield) && melee_option.obj_integrity > shield_choice?.obj_integrity) //shield could be the best melee weapon full stop
 			shield_choice = melee_option
 
@@ -133,23 +136,19 @@
 
 	if(shield_choice)
 		secondary = shield_choice
-	if(high_dam_melee_choice)
-		primary = high_dam_melee_choice
-	if(big_gun_choice)
-		if(!primary)
-			primary = big_gun_choice
-		else if(!secondary)
-			secondary = big_gun_choice
+	if(primary_melee_choice)
+		primary = primary_melee_choice
+	if(big_gun_choice && !primary)
+		primary = big_gun_choice
+	if(standard_melee_choice)
+		primary = standard_melee_choice
 	if(small_gun_choice)
 		if(!primary)
 			primary = small_gun_choice
 		else if(!secondary && primary != big_gun_choice && !(primary.item_flags & TWOHANDED)) //no double guns for now
 			secondary = small_gun_choice
-	if(melee_choice) //this will never equip pistol dagger. not necessarily a bad thing though
-		if(!primary)
-			primary = melee_choice
-		else if(!secondary && primary != high_dam_melee_choice  && !(primary.item_flags & TWOHANDED)) //no double melee
-			secondary = melee_choice
+	if(low_melee_choice && !primary)
+		primary = low_melee_choice
 
 	need_weapons = FALSE //fuck you if you somehow are unable to equip weapons at this point, you probs have no arms or something.
 	if(primary)
@@ -164,9 +163,8 @@
 	if(secondary)
 		if(isgun(secondary))
 			equip_gun(secondary) //don't wield a pistol and drop your sword
-		else if(secondary == shield_choice) //todo: this is extremely bad and snowflake, but we don't want it to override an actual melee primary. will fix later
-			SEND_SIGNAL(secondary, COMSIG_AI_EQUIPPED_MELEE, mob_parent)
-			RegisterSignals(secondary, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unequip_weapon), TRUE)
+		else if(secondary == shield_choice)
+			after_equip_melee(shield_choice) //doesnt override a primary melee weapon
 		else
 			equip_melee(secondary)
 			secondary.attack_self(mob_parent)
@@ -194,10 +192,14 @@
 		if(!mob_parent.put_in_hands(new_weapon))
 			return FALSE
 
+	melee_weapon = new_weapon
+	after_equip_melee(new_weapon)
+	return TRUE
+
+///Handles signals for equip melee
+/datum/ai_behavior/human/proc/after_equip_melee(obj/item/weapon/new_weapon)
 	SEND_SIGNAL(new_weapon, COMSIG_AI_EQUIPPED_MELEE, mob_parent)
 	RegisterSignals(new_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unequip_weapon), TRUE)
-	melee_weapon = new_weapon
-	return TRUE
 
 ///Unequips a weapon
 /datum/ai_behavior/human/proc/unequip_weapon(obj/item/weapon/old_weapon)
@@ -246,7 +248,7 @@
 		var/list/turf_line = get_traversal_line(mob_parent, target)
 		turf_line.Cut(1, 2) //don't count our own turf
 		for(var/turf/line_turf AS in turf_line)
-			for(var/mob/line_mob in line_turf) //todo: add checks for vehicles etc
+			for(var/mob/line_mob in line_turf) //todo: add checks for vehicles etc //maybe ping signals off the line turfs?
 				if(line_mob.faction == mob_parent.faction)
 					return AI_FIRE_FRIENDLY_BLOCKED
 	return AI_FIRE_CAN_HIT
