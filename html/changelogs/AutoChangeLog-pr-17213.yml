@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes:
+  - balance: "Tank and APC now has 100 bio armor. Tank also gets 20 hard bio armor."

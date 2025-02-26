@@ -1,6 +1,4 @@
-import { classes } from 'common/react';
-
-import { useBackend, useLocalState } from '../../backend';
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -9,7 +7,10 @@ import {
   Section,
   Stack,
   Tabs,
-} from '../../components';
+} from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
+
+import { useBackend } from '../../backend';
 import {
   equipTabs,
   MECHA_ARMOR,
@@ -19,7 +20,6 @@ import {
   MechPower,
   MechUtility,
   MechVendData,
-  MechWeapon,
 } from './data';
 
 const SelectedEquipment = (props) => {
@@ -197,14 +197,11 @@ const SelectedEquipment = (props) => {
 };
 
 const EquipPanelContent = (props) => {
-  const [equipmentTab, setequipmentTab] = useLocalState(
-    'equipmentTab',
-    equipTabs[0],
-  );
+  const { equipmentTab, setShowDesc } = props;
   {
     switch (equipmentTab) {
       case 'Weapons':
-        return <WeaponsTab />;
+        return <WeaponsTab setShowDesc={setShowDesc} />;
       case 'Power':
         return <PowerTab />;
       case 'Armor':
@@ -220,6 +217,7 @@ const EquipPanelContent = (props) => {
 const WeaponsTab = (props) => {
   const { act, data } = useBackend<MechVendData>();
   const { weapons } = data.all_equipment;
+  const { setShowDesc } = props;
   const midway = Math.ceil(weapons.length / 2);
   const firstweapons = weapons.slice(0, midway);
   const secondweapons = weapons.slice(midway);
@@ -227,10 +225,16 @@ const WeaponsTab = (props) => {
     <Stack.Item>
       <Stack>
         <Stack.Item>
-          <WeaponModuleList listtoshow={firstweapons} />
+          <WeaponModuleList
+            listtoshow={firstweapons}
+            setShowDesc={setShowDesc}
+          />
         </Stack.Item>
         <Stack.Item>
-          <WeaponModuleList listtoshow={secondweapons} />
+          <WeaponModuleList
+            listtoshow={secondweapons}
+            setShowDesc={setShowDesc}
+          />
         </Stack.Item>
       </Stack>
     </Stack.Item>
@@ -329,11 +333,7 @@ const UtilityTab = (props) => {
 
 const WeaponModuleList = (props) => {
   const { act, data } = useBackend<MechVendData>();
-  const { listtoshow } = props;
-  const [showDesc, setShowDesc] = useLocalState<MechWeapon | null>(
-    'showDesc',
-    null,
-  );
+  const { listtoshow, setShowDesc } = props;
   const { all_equipment, selected_equipment } = data;
   return (
     <Section>
@@ -412,7 +412,8 @@ const WeaponModuleList = (props) => {
 };
 
 export const MechWeapons = (props) => {
-  const [equipmentTab, setequipmentTab] = useLocalState('equipmentTab', '');
+  const [equipmentTab, setequipmentTab] = useState(equipTabs[0]);
+  const { setShowDesc } = props;
   return (
     <Stack>
       <Stack.Item>
@@ -435,7 +436,10 @@ export const MechWeapons = (props) => {
             })}
           </Tabs>
           <Divider />
-          <EquipPanelContent />
+          <EquipPanelContent
+            equipmentTab={equipmentTab}
+            setShowDesc={setShowDesc}
+          />
         </Section>
       </Stack.Item>
     </Stack>

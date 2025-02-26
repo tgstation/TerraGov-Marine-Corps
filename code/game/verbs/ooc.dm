@@ -111,14 +111,14 @@
 
 		var/display_name = key
 		if(holder?.fakekey)
-			if(check_other_rights(recv_client, R_ADMIN, FALSE))
+			if(check_other_rights(recv_client, R_ADMIN|R_MENTOR, FALSE))
 				display_name = "[holder.fakekey]/([key])"
 			else
 				display_name = holder.fakekey
 
 		// Admins open straight to player panel
 		if(check_other_rights(recv_client, R_ADMIN, FALSE))
-			display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
+			display_name = "<a class='hidelink' href='byond://?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
 		var/avoid_highlight = recv_client == src
 		if(display_colour)
 			to_chat(recv_client, "<font color='[display_colour]'>[span_ooc("<span class='prefix'>OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
@@ -139,7 +139,7 @@
 	if(!msg)
 		return
 
-	var/admin = check_rights(R_ADMIN, FALSE)
+	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
 	if(!mob)
 		return
@@ -207,7 +207,7 @@
 	for(var/client/recv_client AS in GLOB.clients)
 		if(!(recv_client.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!(recv_client.mob in GLOB.xeno_mob_list) && !(recv_client.mob in GLOB.observer_list) || check_other_rights(recv_client, R_ADMIN, FALSE)) // If the client is a xeno, an observer, and not an admin.
+		if(!(recv_client.mob in GLOB.xeno_mob_list) && !(recv_client.mob in GLOB.observer_list) || check_other_rights(recv_client, R_ADMIN|R_MENTOR, FALSE)) // If the client is a xeno, an observer, and not staff.
 			continue
 
 		var/display_name = mob.name
@@ -220,23 +220,19 @@
 
 	// Send chat message to admins
 	for(var/client/recv_staff AS in GLOB.admins)
+		if(!check_other_rights(recv_staff, R_ADMIN|R_MENTOR, FALSE)) // Check if the client is still staff.
+			continue
+		if(!recv_staff.prefs.hear_ooc_anywhere_as_staff)
+			continue
 		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!check_other_rights(recv_staff, R_ADMIN, FALSE)) // Check if the client is still an admin.
-			continue
 
-		var/display_name = mob.name
-		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
-		if(!(mob in GLOB.xeno_mob_list) && admin) // If the verb caller is an admin and not a xeno mob, use their fakekey or key instead.
-			display_name = display_key
-		display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>" // Admins get a clickable player panel.
-		if(!holder?.fakekey) // Show their key and their fakekey if they have one.
-			display_name = "[mob.key]/([display_name])"
-		else
-			display_name = "[holder.fakekey]/([mob.key]/[display_name])"
+		var/display_name = "[ADMIN_TPMONTY(mob)]"
+		if(holder?.fakekey) // Show their fakekey in addition to real key + buttons if they have one
+			display_name = "[span_tooltip("Stealth key", "'[holder.fakekey]'")] ([display_name])"
 
 		var/avoid_highlight = recv_staff == src
-		to_chat(recv_staff, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(recv_staff, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "XOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 
 /client/verb/mooc_wrapper()
@@ -249,7 +245,7 @@
 	set name = "MOOC"
 	set category = "OOC"
 
-	var/admin = check_rights(R_ADMIN, FALSE)
+	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
 	if(!mob)
 		return
@@ -317,7 +313,7 @@
 	for(var/client/recv_client AS in GLOB.clients)
 		if(!(recv_client.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!(recv_client.mob in GLOB.human_mob_list) && !(recv_client.mob in GLOB.observer_list) && !(recv_client.mob in GLOB.ai_list) || check_other_rights(recv_client, R_ADMIN, FALSE)) // If the client is a human, an observer, and not an admin.
+		if(!(recv_client.mob in GLOB.human_mob_list) && !(recv_client.mob in GLOB.observer_list) && !(recv_client.mob in GLOB.ai_list) || check_other_rights(recv_client, R_ADMIN|R_MENTOR, FALSE)) // If the client is a human, an observer, and not staff.
 			continue
 
 		// If the verb caller is an admin and not a human mob, use their key, or if they're stealthmode, hide their key instead.
@@ -331,30 +327,24 @@
 
 	// Send chat message to admins
 	for(var/client/recv_staff AS in GLOB.admins)
+		if(!check_other_rights(recv_staff, R_ADMIN|R_MENTOR, FALSE)) // Check if the client is still staff.
+			continue
+		if(!recv_staff.prefs.hear_ooc_anywhere_as_staff)
+			continue
 		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!check_other_rights(recv_staff, R_ADMIN, FALSE)) // Check if the client is still an admin.
-			continue
 
-		var/display_name = mob.name
-		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
-		if(!((mob in GLOB.human_mob_list) || (mob in GLOB.ai_list)) && admin) // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
-			display_name = display_key
-		display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>" // Admins get a clickable player panel.
-		if(!holder?.fakekey) // Show their key and their fakekey if they have one.
-			display_name = "[mob.key]/([display_name])"
-		else
-			display_name = "[holder.fakekey]/([mob.key]/[display_name])"
+		var/display_name = "[ADMIN_TPMONTY(mob)]"
+		if(holder?.fakekey) // Show their fakekey in addition to real key + buttons if they have one
+			display_name = "[span_tooltip("Stealth key", "'[holder.fakekey]'")] ([display_name])"
 
 		var/avoid_highlight = recv_staff == src
-		to_chat(recv_staff, "<font color='#B75800'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
-
+		to_chat(recv_staff, "<font color='#B75800'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "MOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 /client/verb/looc_wrapper()
 	set hidden = TRUE
 	var/message = input("", "LOOC \"text\"") as null|text
 	looc(message)
-
 
 /client/verb/looc(msg as text)
 	set name = "LOOC"
@@ -362,7 +352,7 @@
 
 	if(!msg)
 		return
-	var/admin = check_rights(R_ADMIN, FALSE)
+	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
 	if(!mob)
 		return
@@ -435,17 +425,19 @@
 				in_range_mob.create_chat_message(mob, raw_message = "(LOOC: [msg])", runechat_flags = OOC_MESSAGE)
 
 	for(var/client/recv_staff AS in GLOB.admins)
-		if(!check_other_rights(recv_staff, R_ADMIN, FALSE) && !is_mentor(recv_staff))
+		if(!check_other_rights(recv_staff, R_ADMIN|R_MENTOR, FALSE))
 			continue
-		if(!recv_staff.prefs.hear_looc_anywhere_as_staff)
+		if(!recv_staff.prefs.hear_ooc_anywhere_as_staff)
 			continue
-		if(is_mentor(recv_staff) && !isobserver(recv_staff.mob))
-			continue // If we are a mentor, only hear LOOC from anywhere as a ghost
 		if(recv_staff.mob == mob)
 			continue
 
+		var/display_name = "[ADMIN_TPMONTY(mob)]"
+		if(holder?.fakekey) // Show their fakekey in addition to real key + buttons if they have one
+			display_name = "[span_tooltip("Stealth key", "'[holder.fakekey]'")] ([display_name])"
+
 		if(recv_staff.prefs.toggles_chat & CHAT_LOOC)
-			to_chat(recv_staff, span_looc_heard_staff("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing LOOC from anywhere enabled.", "LOOC")]: [ADMIN_TPMONTY(mob)]: [span_message("[msg]")]"))
+			to_chat(recv_staff, span_looc_heard_staff("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "LOOC")]: [display_name]: [span_message("[msg]")]"))
 
 /client/verb/motd()
 	set name = "MOTD"
@@ -573,7 +565,7 @@
 	if(fully_created)
 		INVOKE_ASYNC(src, VERB_REF(fit_viewport))
 	else //Delayed to avoid wingets from Login calls.
-		addtimer(CALLBACK(src, VERB_REF(fit_viewport), 1 SECONDS))
+		addtimer(CALLBACK(src, VERB_REF(fit_viewport)), 1 SECONDS)
 
 /client/verb/policy()
 	set name = "Show Policy"

@@ -2766,7 +2766,7 @@
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/west)
 "Dx" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/lavaland/basalt,
@@ -3270,7 +3270,7 @@
 /area/lavaland/engie/refine)
 "IX" = (
 /obj/structure/cable,
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/west)
 "IY" = (
@@ -3309,7 +3309,7 @@
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
 "Jg" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/lavaland/basalt/glowing,
 /area/lavaland/cave/west)
 "Jk" = (
@@ -3371,7 +3371,7 @@
 /turf/open/floor/tile/white,
 /area/lavaland/security)
 "JR" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/west)
 "JU" = (

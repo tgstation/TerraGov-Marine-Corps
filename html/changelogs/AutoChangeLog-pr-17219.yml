@@ -1,0 +1,6 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - code_imp: "Added some tracking for tick allocation to subsystems"
+  - admin: "added focus mode var to controllers, which can be toggled to get a focused profile of ONE subsystem"
+  - admin: "added admin tgui for viewing MC and controller statuses"

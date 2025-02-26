@@ -1,15 +1,6 @@
 @echo off
 cd /D "%~dp0"
 set TG_BOOTSTRAP_CACHE=%cd%
-IF NOT "%1" == "" (
-	rem TGS4: we are passed the game directory on the command line
-	cd %1
-) ELSE IF EXIST "..\Game\B\tgmc.dmb" (
-	rem TGS3: Game/B/tgmc.dmb exists, so build in Game/A
-	cd ..\Game\A
-) ELSE (
-	rem TGS3: Otherwise build in Game/B
-	cd ..\Game\B
-)
+cd %1
 set CBT_BUILD_MODE=TGS
 tools\build\build

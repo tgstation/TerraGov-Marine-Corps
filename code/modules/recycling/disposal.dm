@@ -225,11 +225,11 @@
 
 	if(!isAI(user))  //AI can't pull flush handle
 		if(flush)
-			dat += "Disposal handle: <A href='?src=[text_ref(src)];handle=0'>Disengage</A> <B>Engaged</B>"
+			dat += "Disposal handle: <A href='byond://?src=[text_ref(src)];handle=0'>Disengage</A> <B>Engaged</B>"
 		else
-			dat += "Disposal handle: <B>Disengaged</B> <A href='?src=[text_ref(src)];handle=1'>Engage</A>"
+			dat += "Disposal handle: <B>Disengaged</B> <A href='byond://?src=[text_ref(src)];handle=1'>Engage</A>"
 
-		dat += "<BR><HR><A href='?src=[text_ref(src)];eject=1'>Eject contents</A><HR>"
+		dat += "<BR><HR><A href='byond://?src=[text_ref(src)];eject=1'>Eject contents</A><HR>"
 
 	if(mode <= 0)
 		dat += "Pump: <B>Off</B> On</A><BR>"

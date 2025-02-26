@@ -1,11 +1,12 @@
-import { useBackend } from '../../backend';
 import {
   Button,
   ColorBox,
   LabeledList,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
 import {
   LoopingSelectionPreference,
   SelectFieldPreference,
@@ -427,12 +428,12 @@ export const GameSettings = (props) => {
                   rightLabel={'Disabled'}
                 />
                 <ToggleFieldPreference
-                  label="Hear LOOC from anywhere"
-                  value="hear_looc_anywhere_as_staff"
-                  action="hear_looc_anywhere_as_staff"
+                  label="Hear OOC from anywhere"
+                  value="hear_ooc_anywhere_as_staff"
+                  action="hear_ooc_anywhere_as_staff"
                   leftLabel={'Enabled'}
                   rightLabel={'Disabled'}
-                  tooltip="Enables hearing LOOC from anywhere in any situation. For Mentors, this setting is only relevant when observing."
+                  tooltip="Enables hearing OOC channels from anywhere in any situation."
                 />
               </LabeledList>
             </Section>

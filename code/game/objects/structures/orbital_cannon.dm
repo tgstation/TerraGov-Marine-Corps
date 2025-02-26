@@ -2,6 +2,8 @@
 #define RG_FLY_TIME 1 SECONDS
 #define WARHEAD_FALLING_SOUND_RANGE 15
 #define WARHEAD_FUEL_REQUIREMENT 6
+GLOBAL_DATUM(orbital_cannon, /obj/structure/orbital_cannon)
+GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 
 /obj/structure/orbital_cannon
 	name = "\improper Orbital Cannon"
@@ -23,8 +25,8 @@
 
 /obj/structure/orbital_cannon/Initialize(mapload)
 	. = ..()
-	if(!GLOB.marine_main_ship.orbital_cannon)
-		GLOB.marine_main_ship.orbital_cannon = src
+	if(!GLOB.orbital_cannon)
+		GLOB.orbital_cannon = src
 
 	var/turf/T = locate(x+1,y+1,z)
 	var/obj/structure/orbital_tray/O = new(T)
@@ -35,8 +37,8 @@
 	if(tray)
 		tray.linked_ob = null
 		tray = null
-	if(GLOB.marine_main_ship.orbital_cannon == src)
-		GLOB.marine_main_ship.orbital_cannon = null
+	if(GLOB.orbital_cannon == src)
+		GLOB.orbital_cannon = null
 	QDEL_NULL(tray)
 	return ..()
 
@@ -224,7 +226,7 @@
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/orbital_cannon, handle_ob_firing_effects), target), impact_time - (0.5 SECONDS))
 	var/impact_timerid = addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/structure/orbital_cannon, impact_callback), target, inaccurate_fuel), impact_time, TIMER_STOPPABLE)
 
-	var/canceltext = "Warhead: [tray.warhead.warhead_kind]. Impact at [ADMIN_VERBOSEJMP(target)] <a href='?_src_=holder;[HrefToken(TRUE)];cancelob=[impact_timerid]'>\[CANCEL OB\]</a>"
+	var/canceltext = "Warhead: [tray.warhead.warhead_kind]. Impact at [ADMIN_VERBOSEJMP(target)] <a href='byond://?_src_=holder;[HrefToken(TRUE)];cancelob=[impact_timerid]'>\[CANCEL OB\]</a>"
 	message_admins("[span_prefix("OB FIRED:")] <span class='message linkify'> [canceltext]</span>")
 	log_game("OB fired by [user] at [AREACOORD(src)], OB type: [tray.warhead.warhead_kind], timerid to cancel: [impact_timerid]")
 	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
@@ -457,35 +459,35 @@
 			return
 
 	var/dat
-	if(!GLOB.marine_main_ship?.orbital_cannon)
+	if(!GLOB.orbital_cannon)
 		dat += "No Orbital Cannon System Detected!<BR>"
-	else if(!GLOB.marine_main_ship.orbital_cannon.tray)
+	else if(!GLOB.orbital_cannon.tray)
 		dat += "Orbital Cannon System Tray is missing!<BR>"
 	else
 		if(orbital_window_page == 1)
 			dat += "<font size=3>Warhead Fuel Requirements:</font><BR>"
 			dat += "All orbital warheads require <b>[WARHEAD_FUEL_REQUIREMENT] Solid Fuel blocks.</b><BR>"
 
-			dat += "<BR><BR><A href='?src=[text_ref(src)];back=1'><font size=3>Back</font></A><BR>"
+			dat += "<BR><BR><A href='byond://?src=[text_ref(src)];back=1'><font size=3>Back</font></A><BR>"
 		else
 			var/tray_status = "unloaded"
-			if(GLOB.marine_main_ship.orbital_cannon.chambered_tray)
+			if(GLOB.orbital_cannon.chambered_tray)
 				tray_status = "chambered"
-			else if(GLOB.marine_main_ship.orbital_cannon.loaded_tray)
+			else if(GLOB.orbital_cannon.loaded_tray)
 				tray_status = "loaded"
 			dat += "Orbital Cannon Tray is <b>[tray_status]</b><BR>"
-			if(GLOB.marine_main_ship.orbital_cannon.tray.warhead)
-				dat += "[GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>"
+			if(GLOB.orbital_cannon.tray.warhead)
+				dat += "[GLOB.orbital_cannon.tray.warhead.name] Detected<BR>"
 			else
 				dat += "No Warhead Detected<BR>"
-			dat += "[GLOB.marine_main_ship.orbital_cannon.tray.fuel_amt] Solid Fuel Block\s Detected<BR><HR>"
+			dat += "[GLOB.orbital_cannon.tray.fuel_amt] Solid Fuel Block\s Detected<BR><HR>"
 
-			dat += "<A href='?src=[text_ref(src)];load_tray=1'><font size=3>Load Tray</font></A><BR>"
-			dat += "<A href='?src=[text_ref(src)];unload_tray=1'><font size=3>Unload Tray</font></A><BR>"
-			dat += "<A href='?src=[text_ref(src)];chamber_tray=1'><font size=3>Chamber Tray Payload</font></A><BR>"
-			dat += "<BR><A href='?src=[text_ref(src)];check_req=1'><font size=3>Check Fuel Requirements</font></A><BR>"
+			dat += "<A href='byond://?src=[text_ref(src)];load_tray=1'><font size=3>Load Tray</font></A><BR>"
+			dat += "<A href='byond://?src=[text_ref(src)];unload_tray=1'><font size=3>Unload Tray</font></A><BR>"
+			dat += "<A href='byond://?src=[text_ref(src)];chamber_tray=1'><font size=3>Chamber Tray Payload</font></A><BR>"
+			dat += "<BR><A href='byond://?src=[text_ref(src)];check_req=1'><font size=3>Check Fuel Requirements</font></A><BR>"
 
-		dat += "<HR><BR><A href='?src=[text_ref(src)];close=1'><font size=3>Close</font></A><BR>"
+		dat += "<HR><BR><A href='byond://?src=[text_ref(src)];close=1'><font size=3>Close</font></A><BR>"
 
 
 	var/datum/browser/popup = new(user, "orbital_console", "<div align='center'>Orbital Cannon System Control Console</div>", 500, 350)
@@ -499,13 +501,13 @@
 		return
 
 	if(href_list["load_tray"])
-		GLOB.marine_main_ship?.orbital_cannon?.load_tray(usr)
+		GLOB.orbital_cannon?.load_tray(usr)
 
 	else if(href_list["unload_tray"])
-		GLOB.marine_main_ship?.orbital_cannon?.unload_tray(usr)
+		GLOB.orbital_cannon?.unload_tray(usr)
 
 	else if(href_list["chamber_tray"])
-		GLOB.marine_main_ship?.orbital_cannon?.chamber_payload(usr)
+		GLOB.orbital_cannon?.chamber_payload(usr)
 
 	else if(href_list["check_req"])
 		orbital_window_page = 1
@@ -535,15 +537,15 @@
 
 /obj/structure/ship_rail_gun/Initialize(mapload)
 	. = ..()
-	if(!GLOB.marine_main_ship.rail_gun)
-		GLOB.marine_main_ship.rail_gun = src
+	if(!GLOB.rail_gun)
+		GLOB.rail_gun = src
 	rail_gun_ammo = new /obj/structure/ship_ammo/railgun(src)
 	rail_gun_ammo.max_ammo_count = 8000 //200 uses or 15 full minutes of firing.
 	rail_gun_ammo.ammo_count = 8000
 
 /obj/structure/ship_rail_gun/Destroy()
-	if(GLOB.marine_main_ship.rail_gun == src)
-		GLOB.marine_main_ship.rail_gun = null
+	if(GLOB.rail_gun == src)
+		GLOB.rail_gun = null
 	QDEL_NULL(rail_gun_ammo)
 	return ..()
 

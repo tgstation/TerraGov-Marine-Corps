@@ -36,7 +36,7 @@
 	toggle_item_state(user)
 
 /obj/item/clothing/head/welding/verb/verbtoggle()
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Adjust welding mask"
 	set src in usr
 
