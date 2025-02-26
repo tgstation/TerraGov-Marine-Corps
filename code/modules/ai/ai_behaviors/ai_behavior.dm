@@ -422,13 +422,38 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(combat_target)
 		clear_combat_target(combat_target)
 	combat_target = new_target
-	RegisterSignal(combat_target, COMSIG_QDELETING, PROC_REF(clear_combat_target))
-	return TRUE
+	RegisterSignals(combat_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT), PROC_REF(clear_combat_target))
 
 ///Unsets our combat target
 /datum/ai_behavior/proc/clear_combat_target(atom/source)
 	SIGNAL_HANDLER
 	if(!combat_target)
 		return
-	UnregisterSignal(combat_target, COMSIG_QDELETING)
+	UnregisterSignal(combat_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT))
 	combat_target = null
+	if(atom_to_walk_to != combat_target)
+		return
+	atom_to_walk_to = null
+	late_initialize()
+
+///Sets an interaction target
+/datum/ai_behavior/human/proc/set_interact_target(atom/new_target)
+	if(interact_target == new_target)
+		return
+	if(interact_target)
+		unset_interact_target(interact_target)
+	interact_target = new_target
+	RegisterSignals(interact_target, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unset_interact_target))
+	change_action(MOVING_TO_ATOM, interact_target, list(0, 1))
+
+///Unsets an interaction target
+/datum/ai_behavior/human/proc/unset_interact_target(atom/source)
+	SIGNAL_HANDLER
+	if(!interact_target)
+		return
+	UnregisterSignal(source, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
+	interact_target = null
+	if(atom_to_walk_to != source)
+		return
+	atom_to_walk_to = null
+	late_initialize()

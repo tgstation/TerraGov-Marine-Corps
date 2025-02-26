@@ -299,26 +299,6 @@ TODO: pathfinding wizardry
 	//todo: audible commands, gooooo
 	return
 
-///Sets an interaction target
-/datum/ai_behavior/human/proc/set_interact_target(atom/new_target)
-	if(interact_target)
-		unset_interact_target(interact_target)
-	interact_target = new_target
-	RegisterSignals(interact_target, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unset_interact_target))
-	change_action(MOVING_TO_ATOM, interact_target, list(0, 1))
-
-///Unsets an interaction target
-/datum/ai_behavior/human/proc/unset_interact_target(atom/source)
-	SIGNAL_HANDLER
-	if(!interact_target)
-		return
-	UnregisterSignal(interact_target, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
-	if(atom_to_walk_to != interact_target)
-		return
-	interact_target = null
-	atom_to_walk_to = null
-	late_initialize()
-
 /datum/ai_behavior/human/suicidal
 	minimum_health = 0
 
