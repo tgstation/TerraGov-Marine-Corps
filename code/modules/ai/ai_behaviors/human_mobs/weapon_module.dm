@@ -32,6 +32,11 @@
 	///Chat lines when target dies or is destroyed
 	var/list/dead_target_chat = list("Target down.", "Hostile down.", "Scratch one.", "I got one!", "Down for the count.", "Kill confirmed.")
 
+/datum/ai_behavior/human/do_unset_target(atom/old_target, need_new_state = TRUE)
+	if(combat_target == old_target)
+		stop_fire()
+	return ..()
+
 ///Weapon stuff that happens during process
 /datum/ai_behavior/human/proc/weapon_process()
 	if(need_weapons)
@@ -250,7 +255,7 @@
 /datum/ai_behavior/human/proc/stop_fire()
 	//is there any case where we want this triggering from COMSIG_GUN_STOP_FIRE ?
 	gun_firing = FALSE
-	gun.stop_fire()
+	gun?.stop_fire()
 
 ///Tries to reload our gun
 /datum/ai_behavior/human/proc/reload_gun()
