@@ -976,3 +976,32 @@
 	if(!owner)
 		return
 	owner.take_overall_damage(5, BURN, FIRE, max_limbs = 6, updating_health = TRUE)
+
+// ***************************************
+// *********** Plague
+// ***************************************
+/datum/status_effect/incapacitating/plague
+	id = "plague"
+	duration = 8 SECONDS
+
+/datum/status_effect/incapacitating/plague/on_creation(mob/living/new_owner, set_duration)
+	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD || !ishuman(new_owner))
+		qdel(src)
+		return
+	. = ..()
+
+/datum/status_effect/incapacitating/plague/on_apply()
+	. = ..()
+	if(!.)
+		return
+	RegisterSignals(owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE), PROC_REF(on_damage_taken))
+
+/datum/status_effect/incapacitating/plague/on_remove()
+	UnregisterSignal(owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE))
+	return ..()
+
+/datum/status_effect/incapacitating/plague/proc/on_damage_taken(datum/source, amount, list/amount_mod)
+	SIGNAL_HANDLER
+	if(amount >= 0)
+		return
+	amount_mod += floor(amount/2) // Reduce healing by half.

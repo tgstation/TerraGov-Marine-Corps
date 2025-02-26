@@ -640,7 +640,10 @@
 // /mob/living/carbon/human signals
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"	//from mob/living/carbon/human/UnarmedAttack(): (atom/target)
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK_ALTERNATE "human_melee_unarmed_attack_alternate"	//same as above, but right click
-#define COMSIG_HUMAN_DAMAGE_TAKEN "human_damage_taken"					//from human damage receiving procs: (mob/living/carbon/human/wearer, damage)
+#define COMSIG_HUMAN_DAMAGE_TAKEN "human_damage_taken"					//from human damage receiving procs: (mob/living/carbon/human/wearer, damage, damagetype)
+#define COMSIG_HUMAN_BRUTE_DAMAGE "human_brute_damage" // (amount, amount_mod)
+#define COMSIG_HUMAN_BURN_DAMAGE "human_burn_damage" // (amount, amount_mod)
+
 #define COMSIG_HUMAN_LIMB_FRACTURED "human_limb_fractured"				//from [datum/limb/proc/fracture]: (mob/living/carbon/human/wearer, datum/limb/limb)
 ///from [/mob/living/carbon/human/proc/apply_overlay]: (cache_index, list/overlays_to_apply)
 #define COMSIG_HUMAN_APPLY_OVERLAY "human_overlay_applied"

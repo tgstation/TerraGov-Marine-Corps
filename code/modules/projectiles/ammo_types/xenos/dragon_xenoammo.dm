@@ -44,7 +44,8 @@
 
 /datum/ammo/xeno/homing_ice_spike
 	name = "ice spike"
-	icon_state = "ion"
+	icon = 'icons/Xeno/64x64.dmi' // NOTE: This may be too large since it is not 32x32.
+	icon_state = "icestorm_projectile"
 	damage_type = BURN
 	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SKIPS_ALIENS|AMMO_SPECIAL_PROCESS
 	armor_type = FIRE
@@ -61,7 +62,7 @@
 	living_mob.add_slowdown(1)
 
 /datum/ammo/xeno/homing_ice_spike/ammo_process(obj/projectile/proj, damage)
-	if(proj.distance_travelled < 2) // Homing kicks in after some distance, otherwise it all goes to one person.
+	if(proj.distance_travelled < 2) // Homing kicks in after some distance, otherwise it will all go to one person.
 		return
 	if(QDELETED(proj.original_target))
 		proj.original_target = get_acceptable_target(proj)
@@ -102,16 +103,17 @@
 	bullet_color = COLOR_GRAY
 
 /datum/ammo/xeno/miasma_orb/drop_nade(turf/T)
-	var/list/turf/hit_turfs = filled_turfs(T, 5, "square", TRUE, PASS_GLASS|PASS_PROJECTILE)
-	for(var/turf/hit_turf AS in hit_turfs)
-		for(var/victim in hit_turf)
+	new /obj/effect/temp_visual/dragon/plague_aoe(T)
+	for(var/turf/filled_turf AS in filled_turfs(T, 5, "square", TRUE, PASS_GLASS|PASS_PROJECTILE))
+		filled_turf.Shake(duration = 0.2 SECONDS)
+		for(var/victim in filled_turf)
 			if(iscarbon(victim))
 				var/mob/living/carbon/carbon_victim = victim
 				if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
 					continue
 				carbon_victim.apply_damage(50, BURN, blocked = BIO)
-				// TODO: Status effect "Plague", make signal that reduce healing of all kind by 50%
-	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+				carbon_victim.apply_status_effect(STATUS_EFFECT_PLAGUE)
+	playsound(T, 'sound/effects/EMPulse.ogg', 50, 1)
 
 /datum/ammo/xeno/miasma_orb/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	drop_nade(get_turf(target_mob))

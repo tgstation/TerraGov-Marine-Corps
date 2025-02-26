@@ -915,7 +915,7 @@
 				var/obj/projectile/proj = new(get_turf(xeno_owner))
 				proj.generate_bullet(/datum/ammo/xeno/homing_ice_spike)
 				bullets += proj
-			bullet_burst(xeno_owner, bullets, xeno_owner, "sound/weapons/burst_phaser2.ogg", 10, 0.2, FALSE, -1)
+			bullet_burst(xeno_owner, bullets, xeno_owner, "sound/weapons/burst_phaser2.ogg", 10, 0.3, FALSE, -1)
 			COOLDOWN_START(src, ice_storm_cooldown, 30 SECONDS)
 
 	reset_cooldown()
@@ -1133,6 +1133,27 @@
 	pixel_x = -32
 	layer = BELOW_MOB_LAYER
 	duration = 0.56 SECONDS
+
+/obj/effect/temp_visual/dragon/plague_aoe
+	icon = 'icons/Xeno/64x64.dmi'
+	icon_state = "plague_aoe"
+	pixel_x = -16
+	layer = BELOW_MOB_LAYER
+	duration = 0.56 SECONDS
+
+/obj/effect/temp_visual/dragon/grab
+	icon = 'icons/Xeno/64x64.dmi'
+	icon_state = "grab"
+	pixel_x = -16
+	layer = BELOW_MOB_LAYER
+	duration = 0.72 SECONDS
+
+/obj/effect/temp_visual/dragon/grab_fire
+	icon = 'icons/Xeno/64x64.dmi'
+	icon_state = "grab_fire"
+	pixel_x = -16
+	layer = BELOW_MOB_LAYER
+	duration = 1.19 SECONDS
 
 /obj/effect/temp_visual/dragon/wind_current
 	icon = 'icons/effects/96x144.dmi'

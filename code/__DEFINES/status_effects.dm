@@ -88,6 +88,8 @@
 #define STATUS_EFFECT_SHATTER /datum/status_effect/shatter
 /// 5 burn (fire) damage on movement
 #define STATUS_EFFECT_ELECTRIFIED /datum/status_effect/incapacitating/electrified
+/// reduce human brute/burn healing by half
+#define STATUS_EFFECT_PLAGUE /datum/status_effect/incapacitating/plague
 
 /////////////
 // NEUTRAL //
