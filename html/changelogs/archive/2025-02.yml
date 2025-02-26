@@ -410,3 +410,14 @@
   - spellcheck: Removes the random space from face-mangling text
   - spellcheck: Makes grenade launchers report what grenade launcher type is firing,
       as well as updating it to the simple present tense
+2025-02-26:
+  Lumipharon:
+  - rscadd: Mechs can now jump
+  TiviPlus:
+  - balance: rebalanced mech weapons
+  fleewave:
+  - bugfix: scorpion auto-spit doesn't get stuck shooting anymore
+  yyzsong:
+  - bugfix: Fixes bug preventing non-folding plasteel cades from being built on a
+      tile where there is already a non-folding plasteel cade, even when they are
+      facing in different directions
