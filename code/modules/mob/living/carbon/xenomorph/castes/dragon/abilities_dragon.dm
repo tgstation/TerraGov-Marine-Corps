@@ -186,6 +186,11 @@
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "already lifting")
 		return FALSE
+	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
+	if(unleash_ability?.currently_roaring)
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "busy roaring")
+		return FALSE
 	return ..()
 
 /datum/action/ability/activable/xeno/fly/use_ability(atom/target)
