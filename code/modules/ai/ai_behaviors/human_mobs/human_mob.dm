@@ -37,6 +37,7 @@ TODO: pathfinding wizardry
 	var/list/new_follow_chat = list("Following.", "Following you.", "I got your back!", "Take the lead.", "Let's move!", "Let's go!", "Group up!.", "In formation.", "Where to?",)
 	///Chat lines when engaging a new target
 	var/list/new_target_chat = list("Get some!!", "Engaging!", "You're mine!", "Bring it on!", "Hostiles!", "Take them out!", "Kill 'em!", "Lets rock!", "Go go go!!", "Waste 'em!", "Intercepting.", "Weapons free!", "Fuck you!!", "Moving in!")
+	COOLDOWN_DECLARE(ai_chat_cooldown)
 	COOLDOWN_DECLARE(ai_run_cooldown)
 	COOLDOWN_DECLARE(ai_damage_cooldown)
 
@@ -322,11 +323,11 @@ TODO: pathfinding wizardry
 /datum/ai_behavior/human/proc/try_speak(message, cooldown = 2 SECONDS)
 	if(mob_parent.incapacitated())
 		return
-	if(TIMER_COOLDOWN_CHECK(mob_parent, AI_TALK_COOLDOWN))
+	if(!COOLDOWN_CHECK(src, ai_chat_cooldown))
 		return
 	//maybe radio arg in the future for some things
 	mob_parent.say(message)
-	TIMER_COOLDOWN_START(mob_parent, AI_TALK_COOLDOWN, cooldown)
+	COOLDOWN_START(src, ai_chat_cooldown, cooldown)
 
 ///Reacts to a heard message
 /datum/ai_behavior/human/proc/recieve_message(atom/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
