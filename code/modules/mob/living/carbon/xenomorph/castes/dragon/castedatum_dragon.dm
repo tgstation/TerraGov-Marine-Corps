@@ -42,7 +42,7 @@
 	// *** Sunder *** //
 	sunder_multiplier = 0.6
 
-	minimap_icon = "xenoking" // TODO: Replace this with a better minimap icon.
+	minimap_icon = "xenodragon"
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
