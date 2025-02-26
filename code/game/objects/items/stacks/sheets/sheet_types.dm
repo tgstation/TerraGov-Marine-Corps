@@ -25,6 +25,9 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("chair", /obj/structure/bed/chair, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
 	new/datum/stack_recipe("comfy chair", /obj/structure/bed/chair/comfy/beige, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
 	new/datum/stack_recipe("office chair",/obj/structure/bed/chair/office/dark, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
+	new/datum/stack_recipe("kinky bed",/obj/item/construction_kit/bdsm/bed, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
+	new/datum/stack_recipe("x stand",/obj/item/construction_kit/bdsm/x_stand, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
+	new/datum/stack_recipe("stripper pole",/obj/item/construction_kit/pole, 2, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND), \
 	new/datum/stack_recipe("light fixture frame", /obj/item/frame/light_fixture, req_amount = 2, crafting_flags = NONE), \
 	new/datum/stack_recipe("small light fixture frame", /obj/item/frame/light_fixture/small, crafting_flags = NONE), \
 	new/datum/stack_recipe("table parts", /obj/item/frame/table, crafting_flags = NONE), \

@@ -69,3 +69,7 @@
 #include "code\modules\mob\living\carbon\human\update_icons.dm"
 #include "code\modules\mob\living\carbon\human\genital_selection.dm"
 #include "code\datums\genital_menu.dm"
+#include "code\game\objects\structures\dancing_pole.dm"
+#include "code\game\objects\structures\lewd_structures.dm"
+#include "code\game\objects\structures\lewd_construction.dm"
+#include "code\modules\mob\living\carbon\abstract_handcuffs.dm"
