@@ -106,7 +106,7 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 		return
 	if(prob(50))
 		try_speak(pick(retreating_chat))
-	mob_parent.toggle_move_intent(MOVE_INTENT_RUN)
+	set_run(TRUE)
 	target_distance = 15
 	change_action(MOVING_TO_SAFETY, next_target, list(INFINITY))
 

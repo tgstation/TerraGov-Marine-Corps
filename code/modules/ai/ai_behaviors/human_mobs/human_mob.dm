@@ -37,6 +37,7 @@ TODO: pathfinding wizardry
 	var/list/new_follow_chat = list("Following.", "Following you.", "I got your back!", "Take the lead.", "Let's move!", "Let's go!", "Group up!.", "In formation.", "Where to?",)
 	///Chat lines when engaging a new target
 	var/list/new_target_chat = list("Get some!!", "Engaging!", "You're mine!", "Bring it on!", "Hostiles!", "Take them out!", "Kill 'em!", "Lets rock!", "Go go go!!", "Waste 'em!", "Intercepting.", "Weapons free!", "Fuck you!!", "Moving in!")
+	COOLDOWN_DECLARE(ai_run_cooldown)
 
 /datum/ai_behavior/human/New(loc, parent_to_assign, escorted_atom, can_heal = TRUE)
 	..()
@@ -45,6 +46,7 @@ TODO: pathfinding wizardry
 	src.can_heal = can_heal
 
 	mob_inventory = new(mob_parent)
+	RegisterSignal(mob_parent, COMSIG_MOB_TOGGLEMOVEINTENT, PROC_REF(on_move_toggle))
 
 /datum/ai_behavior/human/Destroy(force, ...)
 	gun = null
@@ -253,6 +255,7 @@ TODO: pathfinding wizardry
 		return
 	if(prob(50))
 		try_speak(pick(new_move_chat))
+	set_run()
 
 /datum/ai_behavior/human/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
 	. = ..()
@@ -260,6 +263,7 @@ TODO: pathfinding wizardry
 		return
 	if(prob(50) && isliving(escorted_atom))
 		try_speak(pick(new_follow_chat))
+	set_run()
 
 /datum/ai_behavior/human/set_combat_target(atom/new_target)
 	. = ..()
@@ -267,6 +271,19 @@ TODO: pathfinding wizardry
 		return
 	if(prob(50))
 		try_speak(pick(new_target_chat))
+	set_run()
+
+///Sets run move intent if able
+/datum/ai_behavior/human/proc/set_run(forced = FALSE)
+	if(!forced && !COOLDOWN_CHECK(mob_parent, ai_run_cooldown))
+		return
+	mob_parent.toggle_move_intent(MOVE_INTENT_RUN)
+
+///Sets behavior on move toggle
+/datum/ai_behavior/human/proc/on_move_toggle(datum/source, m_intent)
+	SIGNAL_HANDLER
+	if(m_intent == MOVE_INTENT_WALK)
+		COOLDOWN_START(mob_parent, ai_run_cooldown, 10 SECONDS) //give time for stam to regen
 
 ///Refresh abilities-to-consider list
 /datum/ai_behavior/human/proc/refresh_abilities()
