@@ -305,7 +305,7 @@ TODO: pathfinding wizardry
 	if(interactee == interact_target)
 		if(isturf(interactee.loc)) //no pickpocketing
 			mob_parent.UnarmedAttack(interactee, TRUE) //todo: expand this with other interactions
-		unset_target(interact_target)
+		unset_target(interactee)
 		return
 	mob_parent.face_atom(interactee)
 	if(melee_weapon)
