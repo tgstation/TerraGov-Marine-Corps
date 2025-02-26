@@ -415,12 +415,25 @@
 	charge_range = 7
 	do_acid_spray_act = FALSE
 
-/datum/action/ability/activable/xeno/acid_shroud/melter
-	desc = "Creates a smokescreen below yourself."
+/datum/action/ability/activable/xeno/melter_shroud
+	name = "Melter Shroud"
+	action_icon_state = "acid_shroud"
+	action_icon = 'icons/Xeno/actions/boiler.dmi'
+	desc = "Creates see-through acid smoke below yourself."
 	ability_cost = 50
+	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	cooldown_duration = 32 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_SHROUD_MELTER,
 	)
+
+/datum/action/ability/activable/xeno/melter_shroud/use_ability(atom/A)
+	var/datum/effect_system/smoke_spread/emitted_gas = new /datum/effect_system/smoke_spread/xeno/acid(xeno_owner)
+	emitted_gas.set_up(2, get_turf(xeno_owner))
+	emitted_gas.start()
+	succeed_activate()
+	add_cooldown()
 
 /datum/action/ability/activable/xeno/charge/acid_dash/melter/mob_hit(datum/source, mob/living/living_target)
 	. = ..()

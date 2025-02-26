@@ -94,7 +94,7 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/corrosive_acid/melter,
 		/datum/action/ability/activable/xeno/charge/acid_dash/melter,
-		/datum/action/ability/activable/xeno/acid_shroud/melter,
+		/datum/action/ability/activable/xeno/melter_shroud,
 		/datum/action/ability/xeno_action/xenohide,
 	)
 
@@ -113,7 +113,7 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/corrosive_acid/melter,
 		/datum/action/ability/activable/xeno/charge/acid_dash/melter,
-		/datum/action/ability/activable/xeno/acid_shroud/melter,
+		/datum/action/ability/activable/xeno/melter_shroud,
 		/datum/action/ability/activable/xeno/acidic_missile,
 		/datum/action/ability/xeno_action/xenohide,
 	)

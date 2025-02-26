@@ -68,7 +68,6 @@
 
 /mob/living/carbon/xenomorph/runner/melter/Initialize(mapload)
 	. = ..()
-	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
 	RegisterSignal(src, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_attack_obj))
 	RegisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(on_postattack_living))
 
