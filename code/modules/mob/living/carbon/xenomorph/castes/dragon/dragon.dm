@@ -20,6 +20,7 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/hijack,
 	)
+	gib_chance = 0
 	// If they are currently doing landing animations and thus should display their regular sprite.
 	var/doing_landing_animations = FALSE
 
