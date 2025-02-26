@@ -103,9 +103,11 @@
 	bullet_color = COLOR_GRAY
 
 /datum/ammo/xeno/miasma_orb/drop_nade(turf/T)
-	new /obj/effect/temp_visual/dragon/plague_aoe(T)
-	for(var/turf/filled_turf AS in filled_turfs(T, 5, "square", TRUE, PASS_GLASS|PASS_PROJECTILE))
-		filled_turf.Shake(duration = 0.2 SECONDS)
+	new /obj/effect/temp_visual/dragon/plague(T)
+	for(var/turf/filled_turf AS in filled_turfs(T, 2, "square", TRUE, PASS_GLASS|PASS_PROJECTILE))
+		if(filled_turf == T)
+			continue
+		new /obj/effect/temp_visual/dragon/plague_mini(filled_turf)
 		for(var/victim in filled_turf)
 			if(iscarbon(victim))
 				var/mob/living/carbon/carbon_victim = victim

@@ -175,7 +175,7 @@
 	return telegraph_effects
 
 /// Stuns the vehicle's occupants and does damage to the vehicle itself.
-/mob/living/carbon/xenomorph/dragon/proc/handle_vehicle_effects(obj/vehicle/vehicle, damage, ap, should_stun = FALSE)
+/mob/living/carbon/xenomorph/dragon/proc/handle_vehicle_effects(obj/vehicle/vehicle, damage, ap, should_stun)
 	vehicle.take_damage(damage, BRUTE, MELEE, armour_penetration = ap, blame_mob = src)
 	if(!should_stun)
 		return

@@ -930,6 +930,7 @@
 /datum/status_effect/incapacitating/electrified
 	id = "electrified"
 	duration = 5 SECONDS
+	var/image/shocky
 
 /datum/status_effect/incapacitating/electrified/on_creation(mob/living/new_owner, set_duration)
 	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
@@ -941,13 +942,14 @@
 	. = ..()
 	if(!.)
 		return
+	shocky = image('icons/Xeno/Effects.dmi', owner, icon_state = "electrified")
 	RegisterSignal(owner, COMSIG_LIVING_DO_RESIST, PROC_REF(on_resist))
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
 
 /datum/status_effect/incapacitating/electrified/on_remove()
+	qdel(shocky)
 	UnregisterSignal(owner, list(COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_MOVED))
 	return ..()
-
 
 /datum/status_effect/incapacitating/electrified/tick(delta_time)
 	. = ..()
@@ -983,6 +985,7 @@
 /datum/status_effect/incapacitating/plague
 	id = "plague"
 	duration = 8 SECONDS
+	var/image/halo
 
 /datum/status_effect/incapacitating/plague/on_creation(mob/living/new_owner, set_duration)
 	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD || !ishuman(new_owner))
@@ -994,9 +997,11 @@
 	. = ..()
 	if(!.)
 		return
+	halo = image('icons/Xeno/Effects.dmi', owner, icon_state = "plague_halo", pixel_y = 32)
 	RegisterSignals(owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE), PROC_REF(on_damage_taken))
 
 /datum/status_effect/incapacitating/plague/on_remove()
+	qdel(halo)
 	UnregisterSignal(owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE))
 	return ..()
 
