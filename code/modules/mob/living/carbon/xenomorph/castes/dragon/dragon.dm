@@ -5,7 +5,6 @@
 	icon = 'icons/Xeno/castes/dragon.dmi'
 	icon_state = "Dragon Walking"
 	attacktext = "bites"
-	attack_sound = null
 	friendly = "nuzzles"
 	health = 850
 	maxHealth = 850
