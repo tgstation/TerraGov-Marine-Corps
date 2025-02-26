@@ -297,6 +297,8 @@
 		var/distance = get_dist(M, xeno_owner)
 		if(xeno_owner.issamexenohive(M))  //Xenos in range will be healed and overhealed, including you.
 			var/mob/living/carbon/xenomorph/target_xeno = M
+			if(!CHECK_BITFIELD(target_xeno.xeno_caste.can_flags, CASTE_CAN_BE_QUEEN_HEALED))
+				continue
 			var/heal_amount = M.maxHealth * GORGER_OPPOSE_HEAL
 			HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
 			adjustOverheal(target_xeno, heal_amount)
@@ -373,6 +375,10 @@
 	if(HAS_TRAIT(target, TRAIT_PSY_LINKED))
 		if(!silent)
 			to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
+		return FALSE
+	if(!CHECK_BITFIELD(patient.xeno_caste.can_flags, CASTE_CAN_BE_QUEEN_HEALED))
+		if(!silent)
+			to_chat(owner, span_warning("We cannot link to them."))
 		return FALSE
 	return TRUE
 
