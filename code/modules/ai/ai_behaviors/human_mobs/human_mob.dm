@@ -31,6 +31,12 @@ TODO: pathfinding wizardry
 	var/mob_listens = FALSE
 	///Inventory datum so the mob_parent can manage its inventory
 	var/datum/inventory/mob_inventory
+	///Chat lines when moving to a new target
+	var/list/new_move_chat = list("Moving.", "On the way.", "Moving out.", "On the move.", "Changing position.", "Watch your spacing!", "Let's move.", "Move out!", "Go go go!!", "moving.", "Mobilising.", "Hoofing it.")
+	///Chat lines when following a new target
+	var/list/new_follow_chat = list("Following.", "Following you.", "I got your back!", "Take the lead.", "Let's move!", "Let's go!", "Group up!.", "In formation.", "Where to?",)
+	///Chat lines when engaging a new target
+	var/list/new_target_chat = list("Get some!!", "Engaging!", "You're mine!", "Bring it on!", "Hostiles!", "Take them out!", "Kill 'em!", "Lets rock!", "Go go go!!", "Waste 'em!", "Intercepting.", "Weapons free!", "Fuck you!!", "Moving in!")
 
 /datum/ai_behavior/human/New(loc, parent_to_assign, escorted_atom, can_heal = TRUE)
 	..()
@@ -134,7 +140,7 @@ TODO: pathfinding wizardry
 			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
 			if(!next_target)
 				if(can_heal && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
-					INVOKE_ASYNC(src, PROC_REF(try_heal))
+					INVOKE_ASYNC(src, PROC_REF(try_heal)) //todo: add cooldown here from last attack/damage, so we dont try heal the instant we lose sight of an enemy
 					return
 				if(!goal_node) // We are randomly moving
 					var/atom/mob_to_follow = get_nearest_target(mob_parent, AI_ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_MOB, mob_parent.faction, need_los = TRUE)
@@ -240,6 +246,27 @@ TODO: pathfinding wizardry
 		SEND_SIGNAL(mob_parent, COMSIG_AI_JUMP)
 		INVOKE_ASYNC(src, PROC_REF(ai_complete_move), direction, FALSE)
 		return COMSIG_OBSTACLE_DEALT_WITH
+
+/datum/ai_behavior/human/set_goal_node(datum/source, obj/effect/ai_node/new_goal_node)
+	. = ..()
+	if(!.)
+		return
+	if(prob(50))
+		try_speak(pick(new_move_chat))
+
+/datum/ai_behavior/human/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
+	. = ..()
+	if(!.)
+		return
+	if(prob(50) && isliving(escorted_atom))
+		try_speak(pick(new_follow_chat))
+
+/datum/ai_behavior/human/set_combat_target(atom/new_target)
+	. = ..()
+	if(!.)
+		return
+	if(prob(50))
+		try_speak(pick(new_target_chat))
 
 ///Refresh abilities-to-consider list
 /datum/ai_behavior/human/proc/refresh_abilities()

@@ -270,6 +270,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	goal_node = new_goal_node
 	goal_nodes = null
 	RegisterSignal(goal_node, COMSIG_QDELETING, PROC_REF(clean_goal_node))
+	return TRUE
 
 ///Set the escorted atom.
 /datum/ai_behavior/proc/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
@@ -432,6 +433,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		do_unset_target(combat_target, FALSE)
 	combat_target = new_target
 	RegisterSignals(combat_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT), PROC_REF(unset_target), TRUE)
+	return TRUE
 
 ///Sets an interaction target
 /datum/ai_behavior/proc/set_interact_target(atom/new_target)
