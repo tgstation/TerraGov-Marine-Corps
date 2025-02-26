@@ -295,7 +295,7 @@
 			else if(isarmoredvehicle(impacted_obj))
 				handle_vehicle_effects(impacted_obj, damage / 3, should_stun = can_stun)
 			else
-				handle_vehicle_effects(impacted_obj, damage * 3, should_stun = can_stun)
+				handle_vehicle_effects(impacted_obj, damage * 2, should_stun = can_stun)
 			already_stunned_vehicles += impacted_obj
 			has_hit_anything = TRUE
 
