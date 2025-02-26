@@ -105,15 +105,14 @@
 /datum/ammo/xeno/miasma_orb/drop_nade(turf/T)
 	new /obj/effect/temp_visual/dragon/plague(T)
 	for(var/turf/filled_turf AS in filled_turfs(T, 2, "square", TRUE, PASS_GLASS|PASS_PROJECTILE))
-		if(filled_turf == T)
-			continue
-		new /obj/effect/temp_visual/dragon/plague_mini(filled_turf)
+		if(filled_turf != T)
+			new /obj/effect/temp_visual/dragon/plague_mini(filled_turf)
 		for(var/victim in filled_turf)
 			if(iscarbon(victim))
 				var/mob/living/carbon/carbon_victim = victim
 				if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
 					continue
-				carbon_victim.apply_damage(50, BURN, blocked = BIO)
+				carbon_victim.apply_damage(50, BURN, blocked = BIO, updating_health = TRUE)
 				carbon_victim.apply_status_effect(STATUS_EFFECT_PLAGUE)
 	playsound(T, 'sound/effects/EMPulse.ogg', 50, 1)
 

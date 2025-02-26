@@ -930,24 +930,29 @@
 /datum/status_effect/incapacitating/electrified
 	id = "electrified"
 	duration = 5 SECONDS
-	var/image/shocky // TODO: Make this work!
+	/// Owner of the debuff is limited to humans.
+	var/mob/living/carbon/human/debuff_owner
+	/// The overlay to give.
+	var/mutable_appearance/electrified_overlay
 
 /datum/status_effect/incapacitating/electrified/on_creation(mob/living/new_owner, set_duration)
-	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
+	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD || !ishuman(new_owner))
 		qdel(src)
 		return
+	debuff_owner = new_owner
 	. = ..()
 
 /datum/status_effect/incapacitating/electrified/on_apply()
 	. = ..()
 	if(!.)
 		return
-	shocky = image('icons/Xeno/Effects.dmi', owner, icon_state = "electrified")
+	electrified_overlay = mutable_appearance('icons/Xeno/Effects.dmi', "electrified")
+	debuff_owner.add_overlay(list(electrified_overlay))
 	RegisterSignal(owner, COMSIG_LIVING_DO_RESIST, PROC_REF(on_resist))
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
 
 /datum/status_effect/incapacitating/electrified/on_remove()
-	qdel(shocky)
+	debuff_owner.cut_overlay(list(electrified_overlay))
 	UnregisterSignal(owner, list(COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_MOVED))
 	return ..()
 
@@ -985,23 +990,28 @@
 /datum/status_effect/incapacitating/plague
 	id = "plague"
 	duration = 8 SECONDS
-	var/image/halo  // TODO: Make this work!
+	/// Owner of the debuff is limited to humans.
+	var/mob/living/carbon/human/debuff_owner
+	/// The overlay to give.
+	var/mutable_appearance/plague_overlay
 
 /datum/status_effect/incapacitating/plague/on_creation(mob/living/new_owner, set_duration)
 	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD || !ishuman(new_owner))
 		qdel(src)
 		return
+	debuff_owner = new_owner
 	. = ..()
 
 /datum/status_effect/incapacitating/plague/on_apply()
 	. = ..()
 	if(!.)
 		return
-	halo = image('icons/Xeno/Effects.dmi', owner, icon_state = "plague_halo", pixel_y = 32)
+	plague_overlay = mutable_appearance('icons/Xeno/32x64.dmi', "plague_halo")
+	debuff_owner.add_overlay(list(plague_overlay))
 	RegisterSignals(owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE), PROC_REF(on_damage_taken))
 
 /datum/status_effect/incapacitating/plague/on_remove()
-	qdel(halo)
+	debuff_owner.cut_overlay(list(plague_overlay))
 	UnregisterSignal(owner, list(COMSIG_HUMAN_BRUTE_DAMAGE, COMSIG_HUMAN_BURN_DAMAGE))
 	return ..()
 
