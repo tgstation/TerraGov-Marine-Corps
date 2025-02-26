@@ -878,7 +878,7 @@
 			selected_spell = "ice_storm"
 			if(is_actively_channeling() || force_update)
 				name = "Ice Storm"
-				desc = "Create 25 homing ice spikes around you in a circle. Each spike will follow the nearest marine and deals a small amount of damage along with a slowdown if they are hit."
+				desc = "Create 10 homing ice spikes around you in a circle. Each spike will follow the nearest marine and deals a small amount of damage along with a slowdown if they are hit."
 	reset_cooldown()
 	update_button_icon()
 
