@@ -158,7 +158,7 @@ TODO: pathfinding wizardry
 				return
 			change_action(MOVING_TO_ATOM, next_target)
 		if(MOVING_TO_ATOM)
-			if(istype(atom_to_walk_to, /obj/item/weapon)) //more temp snowflake... kinda needa a mode
+			if(atom_to_walk_to == interact_target)
 				if(get_dist(atom_to_walk_to, mob_parent) <= target_distance)
 					return
 			if(!weak_escort && escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
@@ -272,10 +272,10 @@ TODO: pathfinding wizardry
 		interactee = atom_to_walk_to //this seems like it should be combat_target, but the only time this should come up is if combat_target IS atom_to_walk_to
 	if(!mob_parent.CanReach(interactee, melee_weapon)) //todo: copy this for beno code, lots of other stuff too.
 		return
-	if(istype(interactee, /obj/item/weapon)) //snowflake for now
+	if(interactee == interact_target)
 		if(isturf(interactee.loc)) //no pickpocketing
-			mob_parent.UnarmedAttack(interactee, TRUE)
-		late_initialize()
+			mob_parent.UnarmedAttack(interactee, TRUE) //todo: expand this with other interactions
+		unset_interact_target(interact_target)
 		return
 	mob_parent.face_atom(interactee)
 	if(melee_weapon)
@@ -298,6 +298,26 @@ TODO: pathfinding wizardry
 	SIGNAL_HANDLER
 	//todo: audible commands, gooooo
 	return
+
+///Sets an interaction target
+/datum/ai_behavior/human/proc/set_interact_target(atom/new_target)
+	if(interact_target)
+		unset_interact_target(interact_target)
+	interact_target = new_target
+	RegisterSignals(interact_target, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unset_interact_target))
+	change_action(MOVING_TO_ATOM, interact_target, list(0, 1))
+
+///Unsets an interaction target
+/datum/ai_behavior/human/proc/unset_interact_target(atom/source)
+	SIGNAL_HANDLER
+	if(!interact_target)
+		return
+	UnregisterSignal(interact_target, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
+	if(atom_to_walk_to != interact_target)
+		return
+	interact_target = null
+	atom_to_walk_to = null
+	late_initialize()
 
 /datum/ai_behavior/human/suicidal
 	minimum_health = 0

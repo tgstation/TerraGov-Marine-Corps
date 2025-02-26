@@ -225,7 +225,7 @@
 	if(!.)
 		return
 	toggle_item_bump_attack(user, FALSE)
-	special_attack.remove_action(user)
+	special_attack?.remove_action(user)
 
 //Special attack
 /datum/action/ability/activable/weapon_skill/axe_sweep

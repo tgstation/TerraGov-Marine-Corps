@@ -97,7 +97,7 @@
 		for(var/obj/obj in turf)
 			if(!istype(obj, /obj/item/weapon))
 				continue
-			change_action(MOVING_TO_ATOM, obj, list(0, 1))
+			set_interact_target(obj)
 			return
 
 ///Tries to equip weaponry, and updates behavior appropriately

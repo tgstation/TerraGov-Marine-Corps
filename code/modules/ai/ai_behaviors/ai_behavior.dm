@@ -10,6 +10,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/atom/atom_to_walk_to
 	///The atom we want to attack at range, separate as we might not be moving in regards to it
 	var/atom/combat_target
+	///An atom we want to interact with, such as picking it up
+	var/atom/interact_target
 	///How far should we stay away from atom_to_walk_to. Outer range
 	var/upper_maintain_dist = 1
 	///How far should we stay away from atom_to_walk_to. Inner range
