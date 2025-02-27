@@ -462,7 +462,7 @@ ADMIN_VERB(jump, R_ADMIN, "Jump", "Teleports you to a location", ADMIN_CATEGORY_
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to [A] at [ADMIN_TPMONTY(T)].")
 
 
-ADMIN_VERB_AND_CONTEXT_MENU(get_mob, R_ADMIN, "Get Mob", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_MAIN, mob/living/M in GLOB.mob_living_list)
+ADMIN_VERB_AND_CONTEXT_MENU(get_mob, R_ADMIN, "Get Mob", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_MAIN, mob/living/M in world)
 
 	var/mob/N = user.mob
 
