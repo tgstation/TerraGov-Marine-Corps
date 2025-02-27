@@ -56,7 +56,7 @@
 	//tgmc end
 	if(chassis.leg_overload_mode)
 		if(!chassis.speed_mod)
-			chassis.speed_mod = -1
+			chassis.speed_mod = 1
 		chassis.move_delay -= chassis.speed_mod
 		chassis.step_energy_drain = max(chassis.overload_step_energy_drain_min,chassis.step_energy_drain*chassis.leg_overload_coeff)
 		chassis.balloon_alert(owner,"leg actuators overloaded")
