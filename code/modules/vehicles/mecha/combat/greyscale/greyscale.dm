@@ -94,7 +94,7 @@
 
 /obj/vehicle/sealed/mecha/combat/greyscale/fire_act(burn_level)
 	. = ..()
-    take_damage(burn_level / 2, BURN, FIRE)
+	take_damage(burn_level / 2, BURN, FIRE)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/generate_actions()
 	. = ..()
