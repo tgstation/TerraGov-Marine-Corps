@@ -437,7 +437,7 @@
 	ability_timer = addtimer(CALLBACK(src, PROC_REF(end_ability)), 10 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 	plasma_timer = addtimer(CALLBACK(src, PROC_REF(regenerate_plasma)), 1 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_BREATH, TRUE, 0, NONE, TRUE, 1)
-	xeno_owner.AddComponent(/datum/component/automatedfire/autofire, 0.2 SECONDS, _fire_mode = GUN_FIREMODE_AUTOMATIC, _callback_reset_fire = CALLBACK(src, PROC_REF(reset_fire)), _callback_fire = CALLBACK(src, PROC_REF(fire)))
+	xeno_owner.AddComponent(/datum/component/automatedfire/autofire, 0.05 SECONDS, _fire_mode = GUN_FIREMODE_AUTOMATIC, _callback_reset_fire = CALLBACK(src, PROC_REF(reset_fire)), _callback_fire = CALLBACK(src, PROC_REF(fire)))
 	RegisterSignal(xeno_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(end_ability)) // An alternative way to end the ability.
 	RegisterSignal(xeno_owner, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	RegisterSignal(xeno_owner, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
@@ -503,7 +503,7 @@
 	dragon_proj.generate_bullet(dragon_spit, dragon_spit.damage)
 	dragon_proj.def_zone = xeno_owner.get_limbzone_target()
 	dragon_proj.fire_at(current_target, xeno_owner, xeno_owner, dragon_spit.max_range, dragon_spit.shell_speed, get_angle_with_scatter(xeno_owner, current_target, dragon_spit.scatter, dragon_proj.p_x, dragon_proj.p_y))
-
+	dragon_proj.add_atom_colour("#00e1ff", FIXED_COLOR_PRIORITY)
 	if(can_use_ability(current_target) && xeno_owner.client)
 		succeed_activate()
 		return AUTOFIRE_CONTINUE
@@ -1265,7 +1265,7 @@
 
 /obj/effect/temp_visual/dragon/lightning_shrike
 	icon = 'icons/effects/96x144.dmi'
-	icon_state = "lightning_shrike"
+	icon_state = "lightning_strike"
 	pixel_x = -32
 	layer = BELOW_MOB_LAYER
 	duration = 1.25 SECONDS

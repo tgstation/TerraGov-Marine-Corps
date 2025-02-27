@@ -1,6 +1,6 @@
 /datum/ammo/xeno/dragon_spit
 	name = "dragon spit"
-	icon_state = "xeno_fireball"
+	icon_state = "fire_puff"
 	max_range = 7
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_TARGET_TURF
 	bullet_color = null
@@ -30,16 +30,18 @@
 			continue
 		if(iscarbon(fired))
 			var/mob/living/carbon/carbon_fired = fired
-			carbon_fired.take_overall_damage(40, BURN, FIRE, FALSE, FALSE, TRUE, 0, max_limbs = 2)
+			carbon_fired.take_overall_damage(10, BURN, FIRE, FALSE, FALSE, TRUE, 0, max_limbs = 2)
 			var/datum/status_effect/stacking/melting_fire/debuff = carbon_fired.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+			if(prob(75))
+				continue
 			if(debuff)
-				debuff.add_stacks(2)
-			else
-				carbon_fired.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 2)
+				debuff.add_stacks(1)
+				continue
+			carbon_fired.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 1)
 			continue
 		if(ishitbox(fired) || isvehicle(fired))
 			var/obj/obj_fired = fired
-			obj_fired.take_damage(40, BURN, FIRE)
+			obj_fired.take_damage(10, BURN, FIRE)
 			continue
 
 /datum/ammo/xeno/homing_ice_spike
