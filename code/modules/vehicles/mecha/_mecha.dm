@@ -201,6 +201,10 @@
 	var/max_repairpacks = 0
 	/// actual amt of repairpacks we have stored
 	var/stored_repairpacks = 0
+	/// How much energy we use per mech dash
+	var/dash_power_consumption = 500
+	/// dash_range
+	var/dash_range = 1
 
 /obj/item/radio/mech //this has to go somewhere
 	subspace_transmission = TRUE
