@@ -96,6 +96,8 @@
 	if(!. || !ishuman(owner))
 		return
 	var/mob/living/carbon/human/howner = owner
+	if((howner.getBruteLoss() + howner.getFireLoss()) == 0)
+		return
 	howner.apply_status_effect(STATUS_EFFECT_REPAIR_MODE, 10 SECONDS)
 	howner.balloon_alert_to_viewers("Repairing")
 
