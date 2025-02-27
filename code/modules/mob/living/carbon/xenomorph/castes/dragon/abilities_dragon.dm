@@ -4,6 +4,9 @@
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "After a windup, deal high damage and a fair knock back to marines in front of you. Vehicles and mechas take more damage, but are not knocked back. If you are grabbing a marine, deal an incredible amount of damage instead."
 	cooldown_duration = 10 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BACKHAND,
+	)
 
 /datum/action/ability/activable/xeno/backhand/can_use_ability(atom/A, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
@@ -153,6 +156,9 @@
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "After a long cast time, fly into the air. If you're already flying, land with a delay. Landing causes nearby marines to take lots of damage with vehicles taking up to 3x as much."
 	cooldown_duration = 240 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLY,
+	)
 
 /datum/action/ability/activable/xeno/fly/can_use_ability(atom/A, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
@@ -214,6 +220,9 @@
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "After a windup, turn around and deal high damage along with a knockdown to marines behind you. Occupants of vehicles, including those inside mechas, are knocked down."
 	cooldown_duration = 12 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAILSWIPE,
+	)
 
 /datum/action/ability/activable/xeno/tailswipe/can_use_ability(atom/A, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
@@ -348,6 +357,9 @@
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "After a windup, gain the ability to continuously shoot fire balls with a large spread for a short time. If you are grabbing a marine, deal an incredible amount of damage and knock them back instead."
 	cooldown_duration = 30 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAGON_BREATH,
+	)
 	/// Current target that the xeno is targeting. This is for aiming.
 	var/current_target
 	/// The timer id for the timer that ends the ability.
@@ -645,6 +657,9 @@
 	desc = ""
 	desc = "After a windup, drag a marine in front of you and initiate a passive grab allowing you to drag them as you move. They are unable to move on their volition, but are fully capable of fighting back. Your grab automatically breaks if you stop grabbing or take too much damage."
 	cooldown_duration = 20 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GRAB,
+	)
 	/// The grab item that is grabbing the human.
 	var/obj/item/grab/grabbing_item
 	/// The human that we are trying to grab or are currently grabbing. Used to differenate from a normal grab vs. ability grab.
@@ -803,6 +818,10 @@
 	action_icon_state = "psychic_channel"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "Begin channeling your psychic abilities. During your channeling, you can cast various spells which all have independent cooldowns. Right-click to select what spell to use while channeling."
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CHANNEL,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PSYCHIC_CHANNEL_SELECTION,
+	)
 	/// The currently selected spell. Will be automatically chosen after channeling if none was selected.
 	var/selected_spell = "psychic_channel"
 	/// Damage taken so far while actively channeling.
@@ -1034,6 +1053,9 @@
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = ""
 	cooldown_duration = 240 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNLEASH,
+	)
 	/// If we are currently in the process of roaring.
 	var/currently_roaring = FALSE
 	/// The timer id for the proc regarding the beginning or ending of withdrawal.
