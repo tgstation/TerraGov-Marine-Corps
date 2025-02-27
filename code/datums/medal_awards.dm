@@ -42,6 +42,14 @@ GLOBAL_LIST_EMPTY(medal_awards)
 	mob/issuer,
 	mob/living/awardee,
 )
+	if(issuer == awardee || issuer.ckey == awardee.ckey)
+		to_chat(issuer, "You can't award yourself a medal.")
+		return FALSE
+	if(issuer == null)
+		CRASH("Attempted to award a medal with a null issuer.")
+	if(awardee == null)
+		CRASH("Attempted to award a medal to a null awardee.")
+
 	var/is_posthumous = awardee.stat == DEAD
 
 	var/list/medal_types = subtypesof(/obj/item/clothing/tie/medal)
