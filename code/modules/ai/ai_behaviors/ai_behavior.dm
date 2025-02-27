@@ -8,6 +8,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior
 	///What atom is the ai moving to
 	var/atom/atom_to_walk_to
+	///What we will escort
+	var/atom/escorted_atom
 	///The atom we want to attack at range, separate as we might not be moving in regards to it
 	var/atom/combat_target
 	///An atom we want to interact with, such as picking it up
@@ -40,8 +42,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/identifier
 	///How far will we look for targets
 	var/target_distance = 8
-	///What we will escort
-	var/atom/escorted_atom
 	///When this timer is up, we force a change of node to ensure that the ai will never stay stuck trying to go to a specific node
 	var/anti_stuck_timer
 	///Minimum health percentage before the ai tries to run away

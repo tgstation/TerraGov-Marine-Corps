@@ -188,3 +188,17 @@
 	throw_modifiers["targetted_throw"] = FALSE
 	throw_modifiers["speed_modifier"] -= 1
 	throw_modifiers["range_modifier"] += 4
+
+///Can this be jumped over
+/atom/movable/proc/is_jumpable(mob/living/jumper)
+	if(allow_pass_flags & (PASS_LOW_STRUCTURE|PASS_TANK))
+		return TRUE
+
+/obj/structure/barricade/is_jumpable(mob/living/jumper)
+	if(is_wired)
+		return FALSE
+	return ..()
+
+///Checks if this mob can jump
+/mob/living/proc/can_jump()
+	return SEND_SIGNAL(src, COMSIG_LIVING_CAN_JUMP)

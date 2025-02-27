@@ -1,7 +1,5 @@
 /datum/ai_behavior/human
-	///Mob tries to keep away from hazards
-	var/avoid_hazards = TRUE
-	///assoc list of hazards to avoid and the range to stay away from them
+		///assoc list of hazards to avoid and the range to stay away from them
 	var/list/hazard_list = list()
 	///Chat lines for avoiding uncategorized hazards
 	var/list/default_avoid_chat = list("Watch out!", "Watch out, hazard!", "hazard!", "Keep away from the hazard!", "Well I've never seen a hazard like this before.")
@@ -14,7 +12,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(!avoid_hazards)
+	if(!human_ai_behavior_flags & HUMAN_AI_AVOID_HAZARDS)
 		return
 
 	var/list/dir_options = .
@@ -95,7 +93,7 @@
 /atom/proc/notify_ai_hazard()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_HAZARD_NOTIFIED, src)
 
-///Returns the radius around this considered a hazard.
+///Returns the radius around this considered a hazard
 /atom/proc/get_ai_hazard_radius(mob/living/victim)
 	return null //null means no danger, vs 0 means stay off the hazard's turf
 

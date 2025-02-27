@@ -1,16 +1,19 @@
-//Generic template for application to a xeno/ mob, contains specific obstacle dealing alongside targeting only humans, xenos of a different hive and sentry turrets
-/*
-*TODO:	MAKE FACTIONS (and/or IFF) ATOM LEVEL, AND MAKE THEM BITFLAGS
-		I.E. FACTION_SOM|FACTION_ICC
-		I.E. FACTION_TGMC|FACTION_NT|FACTION_NEUTRAL
-		I.E. FACTION_ICC|FACTION_SOM|FACTION_CLF
-TODO: voice commands
+///If the mob parent can heal itself and so should flee
+#define HUMAN_AI_SELF_HEAL (1<<0)
+///Uses weapons
+#define HUMAN_AI_USE_WEAPONS (1<<1)
+///Listens to audible instructions
+#define HUMAN_AI_AUDIBLE_CONTROL (1<<2)
+///Will try avoid FF when possible
+#define HUMAN_AI_NO_FF (1<<3)
+///Will try avoid hazards when possible
+#define HUMAN_AI_AVOID_HAZARDS (1<<4)
 
-TODO: pathfinding wizardry
+///Currently shooting
+#define HUMAN_AI_FIRING (1<<0)
+///Looking for weapons
+#define HUMAN_AI_NEED_WEAPONS (1<<1)
 
-*/
-
-#define AI_TALK_COOLDOWN "ai_talk_cooldown"
 
 /datum/ai_behavior/human
 	sidestep_prob = 25
@@ -20,15 +23,12 @@ TODO: pathfinding wizardry
 	lower_maintain_dist = 1
 	target_distance = 9
 	minimum_health = 0.3
+	///Flags that dictate this AI's behavior
+	var/human_ai_behavior_flags = HUMAN_AI_SELF_HEAL|HUMAN_AI_USE_WEAPONS|HUMAN_AI_NO_FF|HUMAN_AI_AVOID_HAZARDS
+	///Flags about what the AI is current doing or wanting
+	var/human_ai_state_flags = HUMAN_AI_NEED_WEAPONS
 	///List of abilities to consider doing every Process()
 	var/list/ability_list = list()
-	//will make these flags
-	///If the mob parent can heal itself and so should flee
-	var/can_heal = TRUE //TURN OFF FOR CARP ETC
-	///Uses weapons
-	var/uses_weapons = TRUE
-	///Listens to audible instructions
-	var/mob_listens = FALSE
 	///Inventory datum so the mob_parent can manage its inventory
 	var/datum/inventory/mob_inventory
 	///Chat lines when moving to a new target
@@ -41,11 +41,12 @@ TODO: pathfinding wizardry
 	COOLDOWN_DECLARE(ai_run_cooldown)
 	COOLDOWN_DECLARE(ai_damage_cooldown)
 
-/datum/ai_behavior/human/New(loc, parent_to_assign, escorted_atom, can_heal = TRUE)
+/datum/ai_behavior/human/New(loc, parent_to_assign, escorted_atom, new_behavior_flags = null)
 	..()
 	refresh_abilities()
 	mob_parent.a_intent = INTENT_HARM
-	src.can_heal = can_heal
+	if(!isnull(new_behavior_flags))
+		human_ai_behavior_flags = new_behavior_flags
 
 	mob_inventory = new(mob_parent)
 	RegisterSignal(mob_parent, COMSIG_MOB_TOGGLEMOVEINTENT, PROC_REF(on_move_toggle))
@@ -60,15 +61,15 @@ TODO: pathfinding wizardry
 /datum/ai_behavior/human/start_ai()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))
 	RegisterSignals(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
-	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(check_for_critical_health)) //todo: this is specific at the species level, so only works for humans
-	if(avoid_hazards)
+	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(check_for_critical_health))
+	if(human_ai_behavior_flags & HUMAN_AI_AVOID_HAZARDS)
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_HAZARD_NOTIFIED, PROC_REF(add_hazard))
 		RegisterSignal(mob_parent, COMSIG_MOVABLE_Z_CHANGED, (PROC_REF(on_change_z)))
-	if(uses_weapons)
+	if(human_ai_behavior_flags & HUMAN_AI_USE_WEAPONS)
 		RegisterSignals(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED), PROC_REF(equip_weaponry))
 		RegisterSignal(mob_parent, COMSIG_LIVING_SET_LYING_ANGLE, PROC_REF(equip_weaponry))
 		equip_weaponry()
-	if(mob_listens)
+	if(human_ai_behavior_flags & HUMAN_AI_AUDIBLE_CONTROL)
 		RegisterSignal(mob_parent, COMSIG_MOVABLE_HEAR, PROC_REF(recieve_message))
 	return ..()
 
@@ -77,15 +78,6 @@ TODO: pathfinding wizardry
 	UnregisterSignal(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED))
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_HAZARD_NOTIFIED)
 	return ..()
-
-/datum/ai_behavior/human/set_combat_target(atom/new_target)
-	. = ..()
-	if(!.)
-		return
-	if(gun_firing)
-		stop_fire()
-	if(gun)
-		INVOKE_ASYNC(src, PROC_REF(weapon_process), combat_target)
 
 /datum/ai_behavior/human/process()
 	if(mob_parent.notransform)
@@ -96,21 +88,20 @@ TODO: pathfinding wizardry
 	for(var/datum/action/action in ability_list)
 		if(!action.ai_should_use(atom_to_walk_to)) //todo: some of these probably should be aimmed at combat_target somehow...
 			continue
-		//activable is activated with a different proc for keybinded actions, so we gotta use the correct proc
 		if(istype(action, /datum/action/ability/activable))
 			var/datum/action/ability/activable/activable_action = action
 			activable_action.use_ability(atom_to_walk_to)
 		else
 			action.action_activate()
 
-	if(uses_weapons)
-		if(grenade_process()) //throw nades or shoot, not both at once
+	if(human_ai_behavior_flags & HUMAN_AI_USE_WEAPONS)
+		if(grenade_process())
 			return ..()
 		weapon_process()
 
 	return ..()
 
-/datum/ai_behavior/human/register_action_signals(action_type) //todo: probably a lot we can do here
+/datum/ai_behavior/human/register_action_signals(action_type)
 	switch(action_type)
 		if(MOVING_TO_ATOM)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(melee_interact))
@@ -143,7 +134,7 @@ TODO: pathfinding wizardry
 		if(MOVING_TO_NODE, FOLLOWING_PATH)
 			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
 			if(!next_target)
-				if(can_heal && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
+				if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
 					INVOKE_ASYNC(src, PROC_REF(try_heal))
 					return
 				if(!goal_node) // We are randomly moving
@@ -177,7 +168,7 @@ TODO: pathfinding wizardry
 				target_distance = initial(target_distance)
 				cleanup_current_action()
 				late_initialize()
-				if(can_heal && living_parent.health <= minimum_health * 3 * living_parent.maxHealth)
+				if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && living_parent.health <= minimum_health * 3 * living_parent.maxHealth)
 					INVOKE_ASYNC(src, PROC_REF(try_heal))
 				return
 			set_combat_target(next_target)
@@ -187,7 +178,7 @@ TODO: pathfinding wizardry
 		if(IDLE)
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
 			if(!next_target)
-				if(can_heal && living_parent.health <= minimum_health * 3 * living_parent.maxHealth)
+				if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && living_parent.health <= minimum_health * 3 * living_parent.maxHealth)
 					INVOKE_ASYNC(src, PROC_REF(try_heal))
 				return
 			change_action(MOVING_TO_ATOM, next_target)
@@ -250,7 +241,7 @@ TODO: pathfinding wizardry
 			INVOKE_ASYNC(src, PROC_REF(melee_interact), null, obstacle)
 			return COMSIG_OBSTACLE_DEALT_WITH
 
-	if(should_jump) //todo: dup code, can probs be a proc and used in other cases
+	if(should_jump)
 		SEND_SIGNAL(mob_parent, COMSIG_AI_JUMP)
 		INVOKE_ASYNC(src, PROC_REF(ai_complete_move), direction, FALSE)
 		return COMSIG_OBSTACLE_DEALT_WITH
@@ -278,6 +269,13 @@ TODO: pathfinding wizardry
 	if(prob(50))
 		try_speak(pick(new_target_chat))
 	set_run()
+	if(gun)
+		INVOKE_ASYNC(src, PROC_REF(weapon_process), combat_target)
+
+/datum/ai_behavior/human/do_unset_target(atom/old_target, need_new_state = TRUE)
+	if(combat_target == old_target && (human_ai_state_flags & HUMAN_AI_FIRING))
+		stop_fire()
+	return ..()
 
 ///Sets run move intent if able
 /datum/ai_behavior/human/proc/set_run(forced = FALSE)
@@ -310,7 +308,7 @@ TODO: pathfinding wizardry
 		return
 	if(interactee == interact_target)
 		if(isturf(interactee.loc)) //no pickpocketing
-			mob_parent.UnarmedAttack(interactee, TRUE) //todo: expand this with other interactions
+			mob_parent.UnarmedAttack(interactee, TRUE)
 		unset_target(interactee)
 		return
 	mob_parent.face_atom(interactee)
@@ -351,20 +349,3 @@ TODO: pathfinding wizardry
 /mob/living/carbon/human/ai/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
-
-
-//todo: move these
-
-///Can this be jumped over
-/atom/movable/proc/is_jumpable(mob/living/jumper)
-	if(allow_pass_flags & (PASS_LOW_STRUCTURE|PASS_TANK))
-		return TRUE
-
-/obj/structure/barricade/is_jumpable(mob/living/jumper)
-	if(is_wired)
-		return FALSE
-	return ..()
-
-///Checks if this mob can jump
-/mob/living/proc/can_jump()
-	return SEND_SIGNAL(src, COMSIG_LIVING_CAN_JUMP)

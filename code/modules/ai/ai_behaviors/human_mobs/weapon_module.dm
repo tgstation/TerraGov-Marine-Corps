@@ -1,9 +1,16 @@
+///We're good to shoot
 #define AI_FIRE_CAN_HIT (1<<0)
+///Invalid due to being deleted or something else strange
 #define AI_FIRE_INVALID_TARGET (1<<1)
+///Need ammo
 #define AI_FIRE_NO_AMMO (1<<2)
+///Out of range
 #define AI_FIRE_OUT_OF_RANGE (1<<3)
+///No line of sight
 #define AI_FIRE_NO_LOS (1<<4)
+///Friendly in the way
 #define AI_FIRE_FRIENDLY_BLOCKED (1<<5)
+///Target already dead
 #define AI_FIRE_TARGET_DEAD (1<<6)
 
 //code specific to ranged and melee weapons
@@ -12,13 +19,6 @@
 	var/obj/item/weapon/gun/gun
 	///Currently equipped and ready melee weapon - could also be the gun
 	var/obj/item/weapon/melee_weapon
-
-	var/gun_firing = FALSE
-
-	var/no_ff = TRUE //make this a flag
-
-	var/need_weapons = TRUE //flag
-
 	///Chat lines when opening fire
 	var/list/start_fire_chat = list("Get some!!", "Engaging!", "Open fire!", "Firing!", "Hostiles!", "Take them out!", "Kill 'em!", "Lets rock!", "Fire!!", "Gun them down!", "Shooting!", "Weapons free!", "Fuck you!!")
 	///Chat lines when reloading
@@ -39,13 +39,13 @@
 
 ///Weapon stuff that happens during process
 /datum/ai_behavior/human/proc/weapon_process()
-	if(need_weapons)
+	if(human_ai_state_flags & HUMAN_AI_NEED_WEAPONS)
 		equip_weaponry()
 
 	if(!gun)
 		return
 	var/fire_result = can_shoot_target(combat_target)
-	if(!gun_firing)
+	if(!(human_ai_state_flags & HUMAN_AI_FIRING))
 		if(fire_result == AI_FIRE_NO_AMMO)
 			INVOKE_ASYNC(src, PROC_REF(reload_gun))
 			return
@@ -54,7 +54,7 @@
 		if(prob(90))
 			try_speak(pick(start_fire_chat))
 		if(gun.start_fire(mob_parent, combat_target, get_turf(combat_target)) && gun.gun_firemode != GUN_FIREMODE_SEMIAUTO && gun.gun_firemode != GUN_FIREMODE_BURSTFIRE)
-			gun_firing = TRUE
+			human_ai_state_flags |= HUMAN_AI_FIRING
 		return
 
 	if(fire_result == AI_FIRE_CAN_HIT)
@@ -81,13 +81,14 @@
 			if(prob(50))
 				try_speak(pick(friendly_blocked_chat))
 
+///Tries to equip weaponry from inventory, or find some if none are available
 /datum/ai_behavior/human/proc/equip_weaponry(datum/source)
 	SIGNAL_HANDLER
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
-		need_weapons = TRUE
+		human_ai_state_flags |= HUMAN_AI_NEED_WEAPONS
 		return
 	if(!length(mob_inventory.melee_list) && !length(mob_inventory.gun_list))
-		need_weapons = TRUE
+		human_ai_state_flags |= HUMAN_AI_NEED_WEAPONS
 		upper_engage_dist = initial(upper_engage_dist)
 		lower_engage_dist = initial(lower_engage_dist)
 		find_weapon()
@@ -150,7 +151,7 @@
 	if(low_melee_choice && !primary)
 		primary = low_melee_choice
 
-	need_weapons = FALSE //fuck you if you somehow are unable to equip weapons at this point, you probs have no arms or something.
+	human_ai_state_flags &= ~HUMAN_AI_NEED_WEAPONS //fuck you if you somehow are unable to equip weapons at this point, you probs have no arms or something.
 	if(primary)
 		if(isgun(primary))
 			equip_gun(primary)
@@ -204,7 +205,8 @@
 ///Unequips a weapon
 /datum/ai_behavior/human/proc/unequip_weapon(obj/item/weapon/old_weapon)
 	UnregisterSignal(old_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
-	need_weapons = TRUE //this may actually make a lot of stuff redundant? need to test
+	human_ai_state_flags |= HUMAN_AI_NEED_WEAPONS
+	//todo: loosen straps?
 	if(gun == old_weapon)
 		stop_fire()
 		gun = null
@@ -241,22 +243,21 @@
 
 	if(get_dist(target, mob_parent) > target_distance)
 		return AI_FIRE_OUT_OF_RANGE
-	if(!line_of_sight(mob_parent, target)) //todo: this proc could have checks for friendlies in it
+	if(!line_of_sight(mob_parent, target)) //todo: This doesnt check if we can actually shoot past stuff in the line, but also checking path seems excessive
 		return AI_FIRE_NO_LOS
 
-	if(no_ff && !(gun.gun_features_flags & GUN_IFF) && !(gun.ammo_datum_type::ammo_behavior_flags & AMMO_IFF)) //ammo_datum_type is always populated, with the last loaded ammo type. This shouldnt be an issue since we check ammo first
+	if((human_ai_behavior_flags & HUMAN_AI_NO_FF) && !(gun.gun_features_flags & GUN_IFF) && !(gun.ammo_datum_type::ammo_behavior_flags & AMMO_IFF)) //ammo_datum_type is always populated, with the last loaded ammo type. This shouldnt be an issue since we check ammo first
 		var/list/turf_line = get_traversal_line(mob_parent, target)
 		turf_line.Cut(1, 2) //don't count our own turf
 		for(var/turf/line_turf AS in turf_line)
-			for(var/mob/line_mob in line_turf) //todo: add checks for vehicles etc //maybe ping signals off the line turfs?
+			for(var/mob/line_mob in line_turf) //todo: add checks for vehicles etc //maybe ping signals off the line turfs? Anything is better than checking contents constantly
 				if(line_mob.faction == mob_parent.faction)
 					return AI_FIRE_FRIENDLY_BLOCKED
 	return AI_FIRE_CAN_HIT
 
 ///Stops gunfire
 /datum/ai_behavior/human/proc/stop_fire()
-	//is there any case where we want this triggering from COMSIG_GUN_STOP_FIRE ?
-	gun_firing = FALSE
+	human_ai_state_flags &= ~HUMAN_AI_FIRING
 	gun?.stop_fire()
 
 ///Tries to reload our gun
@@ -289,7 +290,7 @@
 			if(!gun.reload(handful_mag, mob_parent))
 				return
 	gun.reload(new_ammo, mob_parent) //skips tac reload but w/e. if we want it, then we need to check for skills...
-	//note: force arg on reload will allow reloading closed chamber weapons, but also bypasses reload delays... funny rapid rockets
+	//note: force arg on reload would allow reloading closed chamber weapons, but also bypasses reload delays... funny rapid rockets
 
 //TODO: maybe move these
 ///Optimal range for AI to fight at, using this weapon

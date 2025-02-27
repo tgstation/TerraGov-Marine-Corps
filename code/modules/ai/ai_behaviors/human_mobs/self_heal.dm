@@ -49,7 +49,12 @@ GLOBAL_LIST_INIT(ai_tox_heal_items, list(
 ))
 
 GLOBAL_LIST_INIT(ai_oxy_heal_items, list(
-	/obj/item/reagent_containers/hypospray/autoinjector/dexalin,
+	/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline,
+	/obj/item/reagent_containers/hypospray/advanced/inaprovaline,
+	/obj/item/reagent_containers/pill/inaprovaline,
+	/obj/item/reagent_containers/hypospray/autoinjector/neuraline,
+	/obj/item/reagent_containers/hypospray/autoinjector/russian_red,
+	/obj/item/reagent_containers/hypospray/autoinjector/elite,
 	/obj/item/reagent_containers/pill/tricordrazine,
 	/obj/item/reagent_containers/hypospray/advanced/tricordrazine,
 ))
@@ -73,6 +78,7 @@ GLOBAL_LIST_INIT(ai_pain_heal_items, list(
 	/obj/item/reagent_containers/hypospray/autoinjector/elite,
 ))
 
+///Assoc list of items to use to treat different damage types
 GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 	BRUTE = GLOB.ai_brute_heal_items,
 	BURN = GLOB.ai_burn_heal_items,
@@ -95,7 +101,7 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 	if(current_action == MOVING_TO_SAFETY)
 		return
 	var/mob/living/living_mob = mob_parent
-	if(!can_heal || living_mob.health - damage > minimum_health * living_mob.maxHealth)
+	if(!(human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) || living_mob.health - damage > minimum_health * living_mob.maxHealth)
 		return
 	if(mob_parent.incapacitated() || mob_parent.lying_angle) //todo: maybe remove or change this when we add team healing
 		return
@@ -138,13 +144,12 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 		var/mob/living/carbon/carbon_parent = mob_parent
 		dam_list[PAIN] = carbon_parent.getShock_Stage() * 3 //pain is pretty important, but has low numbers and takes time to change
 
-	var/dam_threshold = 15 //placeholder define
 	var/list/priority_list = sortTim(dam_list.Copy(), /proc/cmp_numeric_dsc, TRUE)
 	for(var/damtype in priority_list)
-		if(dam_list[damtype] <= dam_threshold)
+		if(dam_list[damtype] <= 15)
 			continue
 		if(do_heal(damtype))
-			continue //cycle through all dam types
+			continue
 
 	if(ishuman(mob_parent))
 		var/mob/living/carbon/human/human_parent = mob_parent
@@ -180,14 +185,14 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 			med_list = mob_inventory.pain_list
 
 	for(var/obj/item/stored_item AS in med_list)
-		if(!stored_item.ai_should_use(mob_parent))
+		if(!stored_item.ai_should_use(mob_parent, mob_parent))
 			continue
 		heal_item = stored_item
 		break
 
 	if(!heal_item)
 		return FALSE
-	heal_item.ai_use(mob_parent)
+	heal_item.ai_use(mob_parent, mob_parent)
 	return TRUE
 
 ///Tries to splint a limb
@@ -200,41 +205,41 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 		. = TRUE
 	mob_parent.zone_selected = BODY_ZONE_CHEST
 
-//TODO: probs move these
-/obj/item/proc/ai_should_use(mob/living/ai_mob)
+//TODO: probs move these - more than just medical relevant
+
+///Checks if the AI can or should use this
+/obj/item/proc/ai_should_use(mob/living/target, mob/living/user)
 	return TRUE
 
-//more than just medical relevant
-
-/obj/item/proc/ai_use(mob/living/ai_mob)
+///AI uses this item in some manner
+/obj/item/proc/ai_use(mob/living/target, mob/living/user)
 	return FALSE
 
-/obj/item/stack/medical/ai_use(mob/living/ai_mob)
-	//attackself calls this but doesn't return anything
-	attack(ai_mob, ai_mob)
+/obj/item/stack/medical/ai_use(mob/living/target, mob/living/user)
+	attack(target, user) //attack chain is a bit funny between different medical items like reagent containers below
 
-/obj/item/stack/medical/heal_pack/ai_should_use(mob/living/ai_mob)
-	if(!ishuman(ai_mob))
+/obj/item/stack/medical/heal_pack/ai_should_use(mob/living/target, mob/living/user)
+	if(!ishuman(target))
 		return FALSE
-	var/mob/living/carbon/human/human_mob = ai_mob
+	var/mob/living/carbon/human/human_mob = target
 	for(var/limb AS in human_mob.limbs)
 		if(can_heal_limb(limb))
 			return TRUE
 	return FALSE
 
-/obj/item/reagent_containers/ai_should_use(mob/living/ai_mob)
+/obj/item/reagent_containers/ai_should_use(mob/living/target, mob/living/user)
 	for(var/datum/reagent/reagent AS in reagents.reagent_list)
-		if(reagent.volume + ai_mob.reagents.get_reagent_amount(reagent.type) > reagent.overdose_threshold)
+		if(reagent.volume + target.reagents.get_reagent_amount(reagent.type) > reagent.overdose_threshold)
 			return FALSE
 	return TRUE
 
-/obj/item/reagent_containers/ai_use(mob/living/ai_mob)
-	attack_self(ai_mob)
+/obj/item/reagent_containers/ai_use(mob/living/target, mob/living/user)
+	afterattack(target, user, TRUE)
 
-/obj/item/reagent_containers/hypospray/ai_should_use(mob/living/ai_mob)
-	if(!length(reagents.reagent_list))
+/obj/item/reagent_containers/hypospray/ai_should_use(mob/living/target, mob/living/user)
+	if(!length(reagents.reagent_list)) //todo: discard if empty
 		return FALSE
 	for(var/datum/reagent/reagent AS in reagents.reagent_list)
-		if((reagent.volume / reagents.total_volume * amount_per_transfer_from_this) + ai_mob.reagents.get_reagent_amount(reagent.type) > reagent.overdose_threshold)
+		if((reagent.volume / reagents.total_volume * amount_per_transfer_from_this) + target.reagents.get_reagent_amount(reagent.type) > reagent.overdose_threshold)
 			return FALSE
 	return TRUE

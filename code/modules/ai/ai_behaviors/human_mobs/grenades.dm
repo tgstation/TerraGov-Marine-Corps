@@ -1,6 +1,6 @@
 /datum/ai_behavior/human
 	///Probability of trying to throw a grenade during process
-	var/nade_throw_prop = 15
+	var/nade_throw_prob = 15
 	///Chat lines for throwing a nade
 	var/list/nade_throw_chat = list("Grenade out!", "Fire in the hole!", "Grenade!", "Catch this!")
 
@@ -10,7 +10,7 @@
 		return
 	if(!combat_target)
 		return
-	if(!prob(nade_throw_prop))
+	if(!prob(nade_throw_prob))
 		return
 	if(get_dist(mob_parent, combat_target) < 4) //lets not nade ourselves
 		return
