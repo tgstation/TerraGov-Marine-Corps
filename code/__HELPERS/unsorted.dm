@@ -181,6 +181,8 @@
 		return TRUE
 	var/adir = get_dir(A, B)
 	var/rdir = get_dir(B, A)
+	if(A.density && (!istype(A, /turf/closed/wall/resin) || !(pass_flags_checked & PASS_XENO)))
+		return TRUE
 	if(B.density && (!istype(B, /turf/closed/wall/resin) || !(pass_flags_checked & PASS_XENO))) //TODO: Unsnowflake this check here and in DirBlocked()
 		return TRUE
 	if(adir & (adir - 1))//is diagonal direction
