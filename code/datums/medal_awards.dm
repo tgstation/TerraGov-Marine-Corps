@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(medal_awards)
 		to_chat(user, "Who do that vodoo you do? (No valid targets?)")
 		return FALSE
 
-	var/choice = tgui_input_list(user, "Award a medal to who?", "Medal Tyme", sort_names(all_marines)) // no its not a typo.
+	var/choice = tgui_input_list(user, "Award a medal to who?", "Medal Tyme", sort_list(all_marines)) // no its not a typo.
 	if(!choice || !(choice in all_marines))
 		return FALSE
 	award_medal_to(user, all_marines[choice])
