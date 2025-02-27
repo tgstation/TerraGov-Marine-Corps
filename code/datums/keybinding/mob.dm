@@ -309,5 +309,5 @@
 	. = ..()
 	if(.)
 		return
-	user.clickdrag_override = !user.clickdrag_override
-	user.mob.balloon_alert(user.mob, "You can [!user.clickdrag_override ? "now" : "no longer"] click-drag")
+	user.prefs.toggles_gameplay ^= TOGGLE_CLICKDRAG
+	user.mob.balloon_alert(user.mob, "You can [user.prefs.toggles_gameplay & TOGGLE_CLICKDRAG ? "no longer" : "now"] click-drag")

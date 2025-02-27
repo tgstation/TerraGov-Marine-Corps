@@ -202,6 +202,13 @@ export const GameSettings = (props) => {
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
+              <ToggleFieldPreference
+                label="Toggle Click-dragging"
+                value="toggle_clickdrag"
+                action="toggle_clickdrag"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
             </LabeledList>
           </Section>
         </Stack.Item>
