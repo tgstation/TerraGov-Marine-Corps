@@ -92,6 +92,10 @@
 		var/datum/mech_limb/limb = limbs[limb_key]
 		. += "It's " + limb.display_name + " has " + "[(limb.part_health / initial(limb.part_health))*100]" + "% integrity."
 
+/obj/vehicle/sealed/mecha/combat/greyscale/fire_act(burn_level)
+	. = ..()
+    take_damage(burn_level / 2, BURN, FIRE)
+
 /obj/vehicle/sealed/mecha/combat/greyscale/generate_actions()
 	. = ..()
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_overload_mode)
