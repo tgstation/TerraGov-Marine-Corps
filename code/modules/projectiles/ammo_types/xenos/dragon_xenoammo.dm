@@ -4,7 +4,12 @@
 	max_range = 7
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_TARGET_TURF
 	bullet_color = null
-	scatter = 15
+	scatter = 10
+	bonus_projectiles_type = /datum/ammo/xeno/dragon_spit_bonus
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 2
+	projectile_alpha = 110
+	projectile_size = 0.7
 
 /datum/ammo/xeno/dragon_spit/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	drop_flame(target_mob)
@@ -24,25 +29,17 @@
 /datum/ammo/xeno/dragon_spit/drop_flame(atom/target_atom)
 	var/turf/atom_turf = get_turf(target_atom)
 	new /obj/effect/temp_visual/xeno_fireball_explosion(atom_turf)
-	new /obj/fire/melting_fire(atom_turf)
-	for(var/atom/movable/fired AS in atom_turf)
-		if(isxeno(fired))
-			continue
-		if(iscarbon(fired))
-			var/mob/living/carbon/carbon_fired = fired
-			carbon_fired.take_overall_damage(10, BURN, FIRE, FALSE, FALSE, TRUE, 0, max_limbs = 2)
-			var/datum/status_effect/stacking/melting_fire/debuff = carbon_fired.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-			if(prob(75))
-				continue
-			if(debuff)
-				debuff.add_stacks(1)
-				continue
-			carbon_fired.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 1)
-			continue
-		if(ishitbox(fired) || isvehicle(fired))
-			var/obj/obj_fired = fired
-			obj_fired.take_damage(10, BURN, FIRE)
-			continue
+	new /obj/fire/melting_fire(atom_turf, 18) // This handles all the damage.
+
+/datum/ammo/xeno/dragon_spit_bonus
+	name = "dragon spit"
+	icon_state = "fire_puff"
+	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_TARGET_TURF|AMMO_SPECIAL_PROCESS
+	projectile_alpha = 90
+	projectile_size = 0.5
+
+/datum/ammo/xeno/dragon_spit_bonus/ammo_process(obj/projectile/proj, damage)
+	proj.transform *= 1.30
 
 /datum/ammo/xeno/homing_ice_spike
 	name = "ice spike"

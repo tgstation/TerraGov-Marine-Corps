@@ -495,15 +495,15 @@
 
 /// Fires the projectile.
 /datum/action/ability/activable/xeno/dragon_breath/proc/fire()
-	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien/spitacid.ogg' : 'sound/voice/alien/spitacid2.ogg'
-	playsound(get_turf(xeno_owner), sound_to_play, 25, 1)
+	playsound(get_turf(xeno_owner), SFX_GUN_FLAMETHROWER, 25, TRUE)
 
 	var/datum/ammo/xeno/dragon_spit/dragon_spit = GLOB.ammo_list[/datum/ammo/xeno/dragon_spit]
 	var/obj/projectile/dragon_proj = new /obj/projectile(get_turf(xeno_owner))
 	dragon_proj.generate_bullet(dragon_spit, dragon_spit.damage)
 	dragon_proj.def_zone = xeno_owner.get_limbzone_target()
 	dragon_proj.fire_at(current_target, xeno_owner, xeno_owner, dragon_spit.max_range, dragon_spit.shell_speed, get_angle_with_scatter(xeno_owner, current_target, dragon_spit.scatter, dragon_proj.p_x, dragon_proj.p_y))
-	dragon_proj.add_atom_colour("#00e1ff", FIXED_COLOR_PRIORITY)
+	dragon_proj.add_atom_colour("#00f7ff", FIXED_COLOR_PRIORITY)
+
 	if(can_use_ability(current_target) && xeno_owner.client)
 		succeed_activate()
 		return AUTOFIRE_CONTINUE
