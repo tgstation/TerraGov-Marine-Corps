@@ -73,7 +73,7 @@
 /datum/xeno_caste/runner/melter
 	caste_type_path = /mob/living/carbon/xenomorph/runner/melter
 	upgrade_name = ""
-	caste_name = "Acid Runner"
+	caste_name = "Melter"
 	display_name = "Melter"
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A fast, four-legged terror. It got acid covered all over it."
