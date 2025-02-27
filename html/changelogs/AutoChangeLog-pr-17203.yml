@@ -1,4 +1,0 @@
-author: "yyzsong"
-delete-after: True
-changes:
-  - bugfix: "Fixes bug preventing non-folding plasteel cades from being built on a tile where there is already a non-folding plasteel cade, even when they are facing in different directions"

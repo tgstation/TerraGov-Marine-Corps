@@ -1179,7 +1179,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(admin_smite, R_ADMIN|R_FUN, "Smite", "Smite a player
 	var/configuration_success = smite.configure(usr)
 	if (configuration_success == FALSE)
 		return
-	smite.effect(src, target)
+	smite.effect(user, target)
 
 /client/proc/punish_log(whom, punishment) //log and push to chat the smite victim and punishing admin
 	var/msg = "[key_name_admin(src)] punished [key_name_admin(whom)] with [punishment]."
