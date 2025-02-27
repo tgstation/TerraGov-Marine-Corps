@@ -81,7 +81,7 @@
 	///Bitwise flags denoting things a caste is or is not. Uses defines.
 	var/caste_flags = CASTE_EVOLUTION_ALLOWED
 	///Bitwise flags denoting things a caste can and cannot do. Uses defines.
-	var/can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
+	var/can_flags = CASTE_CAN_BE_HEALED_BY_OTHERS|CASTE_CAN_BE_LEADER
 	///list of traits granted to the owner by becoming this caste
 	var/list/caste_traits = list(TRAIT_CAN_VENTCRAWL)
 	// How long the hive must wait before a new one of this caste can evolve
