@@ -17,11 +17,6 @@
 	///Chat lines when target dies or is destroyed
 	var/list/dead_target_chat = list("Target down.", "Hostile down.", "Scratch one.", "I got one!", "Down for the count.", "Kill confirmed.")
 
-/datum/ai_behavior/human/do_unset_target(atom/old_target, need_new_state = TRUE)
-	if(combat_target == old_target)
-		stop_fire()
-	return ..()
-
 ///Weapon stuff that happens during process
 /datum/ai_behavior/human/proc/weapon_process()
 	if(human_ai_state_flags & HUMAN_AI_NEED_WEAPONS)
