@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "fixed shuttle manipulator bluescreening, and not showing all options"
-  - bugfix: "fixed admin shuttle uploads being disabled for 6+ years for no reason"
