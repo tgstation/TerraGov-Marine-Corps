@@ -77,13 +77,13 @@
 	accurate_range = 15
 	max_range = 40
 	penetration = 50
-	damage = 125
+	damage = 150
 	hud_state = "bigshell_he"
 	sundering = 15
 	barricade_clear_distance = 4
 
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
-	explosion(T, 0, 2, 5, 0, 3)
+	explosion(T, 0, 3, 5, 0, 3)
 
 /datum/ammo/rocket/ltb/heavy/drop_nade(turf/target_turf)
 	explosion(target_turf, 1, 4, 6, 0, 3)
