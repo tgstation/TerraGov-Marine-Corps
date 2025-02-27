@@ -1214,10 +1214,10 @@
 ///Toggles AM between flying states
 /atom/movable/proc/set_flying(flying, new_layer)
 	if(flying)
-		add_traits(get_traits_from_pass_flags(HOVERING), THROW_TRAIT)
+		add_traits(HOVERING_TRAITS, THROW_TRAIT)
 		layer = new_layer
 		return
-	remove_traits(get_traits_from_pass_flags(HOVERING), THROW_TRAIT)
+	remove_traits(HOVERING_TRAITS, THROW_TRAIT)
 	layer = new_layer ? new_layer : initial(layer)
 
 ///returns bool for if we want to get forcepushed

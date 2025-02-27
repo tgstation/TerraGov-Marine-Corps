@@ -208,6 +208,16 @@
 #define TRAIT_PASS_WALKOVER "pass_walkover"
 #define TRAIT_PASS_TANK "pass_tank"
 
+#define HOVERING_TRAITS list(TRAIT_PASS_LOW_STRUCTURE, TRAIT_PASS_MOB, TRAIT_PASS_DEFENSIVE_STRUCTURE, TRAIT_PASS_FIRE)
+
+/*
+GLOBAL_LIST_INIT(hovering_traits, list(
+	TRAIT_PASS_LOW_STRUCTURE,
+	TRAIT_PASS_MOB,
+	TRAIT_PASS_DEFENSIVE_STRUCTURE,
+	TRAIT_PASS_FIRE,
+))
+*/
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"
