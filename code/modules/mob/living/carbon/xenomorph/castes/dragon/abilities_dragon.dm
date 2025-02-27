@@ -914,6 +914,8 @@
 
 /// Determines if the owner is currently channeling.
 /datum/action/ability/activable/xeno/psychic_channel/proc/is_actively_channeling()
+	if(!xeno_owner)
+		return FALSE
 	return xeno_owner.light_on
 
 /// Resets the cooldown depending on what spell is currently selected.
