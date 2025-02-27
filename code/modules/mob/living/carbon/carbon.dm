@@ -144,7 +144,7 @@
 /mob/proc/throw_item(atom/target)
 	return
 
-/mob/living/carbon/throw_item(atom/target)
+/mob/living/carbon/throw_item(atom/target, obj/item/override_item)
 	. = ..()
 	throw_mode_off()
 	if(is_ventcrawling) //NOPE
@@ -155,17 +155,22 @@
 		return FALSE
 
 	var/atom/movable/thrown_thing
-	var/obj/item/I = get_active_held_item()
+	var/obj/item/thrown = override_item ? override_item : get_active_held_item()
+	//if(override_item)
+	//	if(get_turf(override_item) != get_turf(src))
+	//		override_item.forceMove(loc)
+	//else
+	//	thrown = get_active_held_item()
 
-	if(!I || HAS_TRAIT(I, TRAIT_NODROP))
+	if(!thrown || HAS_TRAIT(thrown, TRAIT_NODROP))
 		return
 
 	var/spin_throw = TRUE
-	if(isgrabitem(I))
+	if(isgrabitem(thrown))
 		spin_throw = FALSE
 
 	//real item in hand, not a grab
-	thrown_thing = I.on_thrown(src, target)
+	thrown_thing = thrown.on_thrown(src, target)
 
 	//actually throw it!
 	if(!thrown_thing)

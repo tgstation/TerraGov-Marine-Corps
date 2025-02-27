@@ -41,7 +41,7 @@
 	RegisterSignal(parent, COMSIG_VEHICLE_GRANT_CONTROL_FLAG, PROC_REF(set_external_user))
 
 /datum/component/jump/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_UP, COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_MOB_THROW, COMSIG_VEHICLE_GRANT_CONTROL_FLAG))
+	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_UP, COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_MOB_THROW, COMSIG_VEHICLE_GRANT_CONTROL_FLAG, COMSIG_AI_JUMP, COMSIG_LIVING_CAN_JUMP))
 	if(external_user)
 		remove_external_user()
 
@@ -58,12 +58,13 @@
 	jump_flags = _jump_flags
 	jumper_allow_pass_flags = _jumper_allow_pass_flags
 
-	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_KB_LIVING_JUMP_UP))
+	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_KB_LIVING_JUMP_UP, COMSIG_AI_JUMP, COMSIG_LIVING_CAN_JUMP))
+	RegisterSignal(parent, COMSIG_LIVING_CAN_JUMP, PROC_REF(can_jump))
 	if(jump_flags & JUMP_CHARGEABLE)
 		RegisterSignal(parent, COMSIG_KB_LIVING_JUMP_DOWN, PROC_REF(charge_jump))
-		RegisterSignal(parent, COMSIG_KB_LIVING_JUMP_UP, PROC_REF(start_jump))
+		RegisterSignals(parent, list(COMSIG_KB_LIVING_JUMP_UP, COMSIG_AI_JUMP), PROC_REF(start_jump))
 	else
-		RegisterSignal(parent, COMSIG_KB_LIVING_JUMP_DOWN, PROC_REF(start_jump))
+		RegisterSignals(parent, list(COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_AI_JUMP), PROC_REF(start_jump))
 
 ///Sets an external controller, such as a vehicle driver
 /datum/component/jump/proc/set_external_user(datum/source, mob/new_user, control_flags = VEHICLE_CONTROL_DRIVE)
@@ -90,33 +91,37 @@
 /datum/component/jump/proc/charge_jump(atom/movable/jumper)
 	jump_start_time = world.timeofday
 
-///handles pre-jump checks and setup of additional jump behavior.
-/datum/component/jump/proc/start_jump(atom/movable/jumper)
+///Checks if you can actually jump right now
+/datum/component/jump/proc/can_jump(atom/movable/jumper)
 	SIGNAL_HANDLER
-
-	if(jumper == external_user)
-		jumper = parent
-
 	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_COMPONENT_COOLDOWN))
-		return
-
+		return FALSE
 	var/mob/living/living_jumper
 	if(isliving(jumper))
 		living_jumper = jumper
 		if(living_jumper.buckled)
-			return
+			return FALSE
 		if(living_jumper.incapacitated())
-			return
-
+			return FALSE
 		if(stamina_cost && (living_jumper.getStaminaLoss() > -stamina_cost))
 			if(isrobot(living_jumper) || issynth(living_jumper))
 				to_chat(living_jumper, span_warning("Your leg servos do not allow you to jump!"))
-				return
+				return FALSE
 			to_chat(living_jumper, span_warning("Catch your breath!"))
-			return
+			return FALSE
+	return TRUE
+
+///handles pre-jump checks and setup of additional jump behavior.
+/datum/component/jump/proc/start_jump(atom/movable/jumper)
+	SIGNAL_HANDLER
+	if(jumper == external_user)
+		jumper = parent
+	if(!can_jump(jumper))
+		return
 
 	do_jump(jumper)
-	if(living_jumper)
+	if(isliving(jumper))
+		var/mob/living/living_jumper = jumper
 		living_jumper.adjustStaminaLoss(stamina_cost)
 	//Forces all who ride to jump alongside the jumper.
 	for(var/mob/buckled_mob AS in jumper.buckled_mobs)
@@ -124,7 +129,6 @@
 
 ///Performs the jump
 /datum/component/jump/proc/do_jump(atom/movable/jumper)
-
 	var/effective_jump_duration = jump_duration
 	var/effective_jump_height = jump_height
 	var/effective_jumper_allow_pass_flags = jumper_allow_pass_flags
@@ -183,3 +187,17 @@
 	throw_modifiers["targetted_throw"] = FALSE
 	throw_modifiers["speed_modifier"] -= 1
 	throw_modifiers["range_modifier"] += 4
+
+///Can this be jumped over
+/atom/movable/proc/is_jumpable(mob/living/jumper)
+	if(allow_pass_flags & (PASS_LOW_STRUCTURE|PASS_TANK))
+		return TRUE
+
+/obj/structure/barricade/is_jumpable(mob/living/jumper)
+	if(is_wired)
+		return FALSE
+	return ..()
+
+///Checks if this mob can jump
+/mob/living/proc/can_jump()
+	return SEND_SIGNAL(src, COMSIG_LIVING_CAN_JUMP)

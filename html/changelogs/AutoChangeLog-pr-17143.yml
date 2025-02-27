@@ -1,5 +1,0 @@
-author: "SandPoot"
-delete-after: True
-changes:
-  - rscadd: "Added some onscreen button verbs for ghosts."
-  - imageadd: "Shitty sprite for the button."
