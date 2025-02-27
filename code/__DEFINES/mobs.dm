@@ -600,14 +600,14 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_EXCLUDE_STRAINS (1<<25) // Excludes this caste/basetype from strain selection.
 
 // Xenomorph can_flags:
-#define CASTE_CAN_HOLD_FACEHUGGERS (1<<0)
-#define CASTE_CAN_BE_HEALED_BY_OTHERS (1<<1)
-#define CASTE_CAN_BE_GIVEN_PLASMA (1<<2)
-#define CASTE_CAN_BE_LEADER (1<<3)
-#define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<4) // Xenomorphs can heal even without a queen on the same z level
-#define CASTE_CAN_HOLD_JELLY (1<<5)//whether we can hold fireproof jelly in our hands
-#define CASTE_CAN_CORRUPT_GENERATOR (1<<6) //Can corrupt a generator
-#define CASTE_CAN_RIDE_CRUSHER (1<<7) //Can ride a crusher
+#define CASTE_CAN_HOLD_FACEHUGGERS (1<<0) // Are we allowed to carry facehuggers in our hands?
+#define CASTE_CAN_BE_HEALED_BY_OTHERS (1<<1) // Can we be affected by abilities that heal us or otherwise negate damage?
+#define CASTE_CAN_BE_GIVEN_PLASMA (1<<2) // Can we receive plasma / have our plasma be taken away?
+#define CASTE_CAN_BE_LEADER (1<<3) // Can we be selected as a hive leader (not to be confused with hive ruler)?
+#define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<4) // Can we ignore the healing penalty associated with having a hive ruler not being on the same z-level as us? Only matters on gamemodes where hive rulers are optional.
+#define CASTE_CAN_HOLD_JELLY (1<<5) // Can we hold fireproof jelly in our hands?
+#define CASTE_CAN_CORRUPT_GENERATOR (1<<6) // Can we corrupt a generator?
+#define CASTE_CAN_RIDE_CRUSHER (1<<7) // Can we ride a crusher (or behemoth)?
 
 //Charge-Crush
 #define CHARGE_OFF 0
