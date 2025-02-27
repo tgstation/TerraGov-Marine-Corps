@@ -204,7 +204,7 @@
 		if(!silent)
 			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 		return FALSE
-	if(!CHECK_BITFIELD(target_xeno.xeno_caste.can_flags, CASTE_CAN_BE_QUEEN_HEALED))
+	if(!CHECK_BITFIELD(target_xeno.xeno_caste.can_flags, CASTE_CAN_BE_HEALED_BY_OTHERS))
 		if(!silent)
 			to_chat(owner, span_warning("They reject our healing."))
 		return FALSE
@@ -297,7 +297,7 @@
 		var/distance = get_dist(M, xeno_owner)
 		if(xeno_owner.issamexenohive(M))  //Xenos in range will be healed and overhealed, including you.
 			var/mob/living/carbon/xenomorph/target_xeno = M
-			if(!CHECK_BITFIELD(target_xeno.xeno_caste.can_flags, CASTE_CAN_BE_QUEEN_HEALED))
+			if(!CHECK_BITFIELD(target_xeno.xeno_caste.can_flags, CASTE_CAN_BE_HEALED_BY_OTHERS))
 				continue
 			var/heal_amount = M.maxHealth * GORGER_OPPOSE_HEAL
 			HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
@@ -377,7 +377,7 @@
 			to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
 		return FALSE
 	var/mob/living/carbon/xenomorph/xeno_target = target
-	if(!CHECK_BITFIELD(xeno_target.xeno_caste.can_flags, CASTE_CAN_BE_QUEEN_HEALED))
+	if(!CHECK_BITFIELD(xeno_target.xeno_caste.can_flags, CASTE_CAN_BE_HEALED_BY_OTHERS))
 		if(!silent)
 			to_chat(owner, span_warning("We cannot link to them."))
 		return FALSE

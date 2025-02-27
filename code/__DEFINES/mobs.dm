@@ -601,7 +601,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 // Xenomorph can_flags:
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0)
-#define CASTE_CAN_BE_QUEEN_HEALED (1<<1)
+#define CASTE_CAN_BE_HEALED_BY_OTHERS (1<<1)
 #define CASTE_CAN_BE_GIVEN_PLASMA (1<<2)
 #define CASTE_CAN_BE_LEADER (1<<3)
 #define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<4) // Xenomorphs can heal even without a queen on the same z level

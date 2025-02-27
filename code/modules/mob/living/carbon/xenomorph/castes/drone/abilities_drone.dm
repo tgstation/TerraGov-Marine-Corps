@@ -39,7 +39,7 @@
 	if(!xeno_owner.Adjacent(target))
 		xeno_owner.balloon_alert(xeno_owner, "Not adjacent")
 		return FALSE
-	if(target.tier == XENO_TIER_ZERO || target.tier == XENO_TIER_MINION || !CHECK_BITFIELD(target.xeno_caste.can_flags, CASTE_CAN_BE_QUEEN_HEALED))
+	if(target.tier == XENO_TIER_ZERO || target.tier == XENO_TIER_MINION || !CHECK_BITFIELD(target.xeno_caste.can_flags, CASTE_CAN_BE_HEALED_BY_OTHERS))
 		target.balloon_alert(xeno_owner, "We cannot link to her.")
 		return FALSE
 	if(HAS_TRAIT(xeno_owner, TRAIT_ESSENCE_LINKED))
