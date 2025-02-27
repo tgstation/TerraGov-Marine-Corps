@@ -213,12 +213,13 @@
 	xeno_owner.setDir(SOUTH)
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	playsound(xeno_owner, 'sound/effects/alien/dragon/flying_progress.ogg', 50, TRUE)
+	playsound(get_turf(xeno_owner), unleash_ability?.is_active() ? 'sound/effects/alien/dragon/flying_progress_short.ogg' : 'sound/effects/alien/dragon/flying_progress.ogg', 75, TRUE, 9)
 	var/was_successful = do_after(xeno_owner, unleash_ability?.is_active() ? 2.5 SECONDS : 5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	if(!was_successful)
 		return
+	xeno_owner.stop_pulling()
 	xeno_owner.change_form()
 
 /datum/action/ability/activable/xeno/tailswipe
@@ -318,7 +319,7 @@
 			already_stunned_vehicles += impacted_obj
 			has_hit_anything = TRUE
 
-	playsound(xeno_owner, has_hit_anything ? 'sound/weapons/alien_claw_block.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
+	playsound(get_turf(xeno_owner), has_hit_anything ? 'sound/weapons/alien_claw_block.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 	if(has_hit_anything)
 		xeno_owner.gain_plasma(75 * castplasma_multiplier)
 
@@ -424,7 +425,7 @@
 		add_cooldown()
 		return
 
-	playsound(xeno_owner, 'sound/effects/alien/dragon/dragonbreath_start.ogg', 75, TRUE)
+	playsound(get_turf(xeno_owner), 'sound/effects/alien/dragon/dragonbreath_start.ogg', 75, TRUE)
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	var/was_successful = do_after(xeno_owner, 1.2 SECONDS / castplasma_multiplier, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
@@ -495,7 +496,7 @@
 /// Fires the projectile.
 /datum/action/ability/activable/xeno/dragon_breath/proc/fire()
 	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien/spitacid.ogg' : 'sound/voice/alien/spitacid2.ogg'
-	playsound(xeno_owner.loc, sound_to_play, 25, 1)
+	playsound(get_turf(xeno_owner), sound_to_play, 25, 1)
 
 	var/datum/ammo/xeno/dragon_spit/dragon_spit = GLOB.ammo_list[/datum/ammo/xeno/dragon_spit]
 	var/obj/projectile/dragon_proj = new /obj/projectile(get_turf(xeno_owner))
@@ -626,7 +627,7 @@
 			impacted_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
 			has_hit_anything = TRUE
 
-	playsound(xeno_owner, 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
+	playsound(get_turf(xeno_owner), 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 	if(has_hit_anything)
 		xeno_owner.gain_plasma(200 * castplasma_multiplier)
 	succeed_activate()
@@ -720,7 +721,7 @@
 			acceptable_humans += affected_human
 
 	if(!acceptable_humans.len) // Whiff.
-		playsound(xeno_owner, 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
+		playsound(get_turf(xeno_owner), 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 		succeed_activate()
 		add_cooldown()
 		return
@@ -793,7 +794,7 @@
 	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
 	xeno_owner.gain_plasma(unleash_ability?.is_active() ? 500 : 250)
 	new /obj/effect/temp_visual/dragon/grab(get_turf(grabbed_human))
-	playsound(xeno_owner, 'sound/voice/alien/pounce.ogg', 25, TRUE)
+	playsound(get_turf(xeno_owner), 'sound/voice/alien/pounce.ogg', 25, TRUE)
 
 /// Cleans up everything associated with the grabbing and ends the ability.
 /datum/action/ability/activable/xeno/grab/proc/end_grabbing()
