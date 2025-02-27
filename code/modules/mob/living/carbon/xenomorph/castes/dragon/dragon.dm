@@ -20,7 +20,6 @@
 		/mob/living/carbon/xenomorph/proc/hijack,
 	)
 	attack_effect = list("dragonslash","dragonslash2")
-	gib_chance = 0
 	// If they are currently doing landing animations and thus should display their regular sprite.
 	var/doing_landing_animations = FALSE
 
