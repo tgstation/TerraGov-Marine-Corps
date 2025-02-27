@@ -70,6 +70,7 @@
 /// Begins changing forms from flight to ground and vice versa.
 /mob/living/carbon/xenomorph/dragon/change_form()
 	if(!(status_flags & INCORPOREAL))
+		playsound(src, 'sound/effects/alien/dragon/flying_flight.ogg', 50, TRUE)
 		start_flight()
 		return
 	start_landing()
@@ -108,6 +109,7 @@
 	update_icons(TRUE)
 	addtimer(CALLBACK(src, PROC_REF(perform_landing_effects), impacted_turfs), 0.5 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(finalize_landing)), 0.5 SECONDS)
+	playsound(src, 'sound/effects/alien/dragon/flying_landing.ogg', 50, TRUE)
 
 /// Finalizes the process of landing by reversing the effects from flying.
 /mob/living/carbon/xenomorph/dragon/proc/finalize_landing()

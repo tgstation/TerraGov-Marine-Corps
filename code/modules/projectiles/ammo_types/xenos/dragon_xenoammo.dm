@@ -54,9 +54,11 @@
 	max_range = 10
 	bullet_color = COLOR_PALE_BLUE_GRAY
 
+
 /datum/ammo/xeno/homing_ice_spike/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	if(!isliving(target_mob))
 		return
+	playsound(get_turf(target_mob), 'sound/effects/alien/dragon/icestorm_hit.ogg', 50, TRUE)
 	var/mob/living/living_mob = target_mob
 	living_mob.take_overall_damage(10, BRUTE, FIRE, updating_health = TRUE, penetration = 30)
 	living_mob.add_slowdown(1)
@@ -112,7 +114,7 @@
 				continue
 			affected_human.apply_damage(50, BURN, blocked = BIO, updating_health = TRUE)
 			affected_human.apply_status_effect(STATUS_EFFECT_PLAGUE)
-	playsound(T, 'sound/effects/EMPulse.ogg', 50, 1)
+	playsound(T, 'sound/effects/alien/dragon/miasma_impact.ogg', 50, 1)
 
 /datum/ammo/xeno/miasma_orb/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	drop_nade(get_turf(target_mob))

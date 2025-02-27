@@ -34,6 +34,8 @@
 		ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
 		xeno_owner.visible_message(span_danger("[xeno_owner] lifts [grabbed_human] into the air and gets ready to slam!"))
 		if(do_after(xeno_owner, 3 SECONDS / cooldown_plasma_bonus, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
+			xeno_owner.face_atom(grabbed_human)
+			new /obj/effect/temp_visual/dragon/directional/backhand_slam(get_step(xeno_owner, grabbed_human), xeno_owner)
 			xeno_owner.stop_pulling()
 			xeno_owner.visible_message(span_danger("[xeno_owner] slams [grabbed_human] into the ground!"))
 			grabbed_human.emote("scream")
@@ -69,6 +71,10 @@
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	if(!was_successful)
 		return
+
+	xeno_owner.face_atom(target)
+
+	new /obj/effect/temp_visual/dragon/directional/backhand(get_step(xeno_owner, target), xeno_owner)
 
 	var/has_hit_anything = FALSE
 	for(var/turf/affected_tile AS in affected_turfs)
@@ -108,7 +114,7 @@
 			has_hit_anything = TRUE
 			continue
 
-	playsound(current_turf, has_hit_anything ? get_sfx(SFX_ALIEN_BITE) : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
+	playsound(current_turf, has_hit_anything ? 'sound/effects/alien/dragon/backhand_hit.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 	if(has_hit_anything)
 		xeno_owner.gain_plasma(100 * cooldown_plasma_bonus)
 	succeed_activate()
@@ -207,6 +213,7 @@
 	xeno_owner.setDir(SOUTH)
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+	playsound(xeno_owner, 'sound/effects/alien/dragon/flying_progress.ogg', 50, TRUE)
 	var/was_successful = do_after(xeno_owner, unleash_ability?.is_active() ? 2.5 SECONDS : 5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
@@ -254,6 +261,9 @@
 
 	if(!was_successful)
 		return
+
+	xeno_owner.face_atom(target)
+	new /obj/effect/temp_visual/dragon/directional/tail_swipe(get_step(xeno_owner, target), xeno_owner)
 
 	var/damage = 55 * xeno_owner.xeno_melee_damage_modifier
 	var/has_hit_anything = FALSE
@@ -414,7 +424,7 @@
 		add_cooldown()
 		return
 
-	playsound(xeno_owner, 'sound/effects/alien/behemoth/primal_wrath_roar.ogg', 75, TRUE)
+	playsound(xeno_owner, 'sound/effects/alien/dragon/dragonbreath_start.ogg', 75, TRUE)
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	var/was_successful = do_after(xeno_owner, 1.2 SECONDS / castplasma_multiplier, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
@@ -1024,7 +1034,7 @@
 	spell_timer = null
 	for(var/turf/center_turf AS in center_turfs)
 		new /obj/effect/temp_visual/dragon/lightning_shrike(center_turf)
-		playsound(get_turf(center_turf), 'sound/magic/lightningshock.ogg', 50, TRUE)
+		playsound(get_turf(center_turf), 'sound/effects/alien/dragon/lightning_impact.ogg', 50, TRUE)
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		impacted_turf.Shake(duration = 0.2 SECONDS)
 		for(var/atom/impacted_atom AS in impacted_turf)
@@ -1163,13 +1173,44 @@
 
 /obj/effect/temp_visual/dragon
 	name = "Dragon"
+	randomdir = FALSE
 
-/obj/effect/temp_visual/dragon/lightning_shrike
-	icon = 'icons/effects/96x144.dmi'
-	icon_state = "lightning_strike"
+/obj/effect/temp_visual/dragon/directional
+	icon = 'icons/effects/128x128.dmi'
 	pixel_x = -32
 	layer = BELOW_MOB_LAYER
-	duration = 1 SECONDS
+	randomdir = FALSE
+
+/obj/effect/temp_visual/dragon/directional/Initialize(mapload, atom/creator)
+	if(!creator)
+		return INITIALIZE_HINT_QDEL
+	dir = creator.dir
+	switch(dir)
+		if(NORTH)
+			pixel_x = -48
+			pixel_y = 0
+		if(EAST)
+			pixel_x = 0
+			pixel_y = -48
+		if(WEST)
+			pixel_x = -96
+			pixel_y = -48
+		if(SOUTH)
+			pixel_x = -48
+			pixel_y = -96
+	return ..()
+
+/obj/effect/temp_visual/dragon/directional/backhand
+	icon_state = "backhand"
+	duration = 0.56 SECONDS
+
+/obj/effect/temp_visual/dragon/directional/backhand_slam
+	icon_state = "backhand_slam"
+	duration = 0.64 SECONDS
+
+/obj/effect/temp_visual/dragon/directional/tail_swipe
+	icon_state = "tail_swipe"
+	duration = 0.64 SECONDS
 
 /obj/effect/temp_visual/dragon/fly
 	icon = 'icons/effects/96x144.dmi'
@@ -1185,27 +1226,6 @@
 	layer = BELOW_MOB_LAYER
 	duration = 0.56 SECONDS
 
-/obj/effect/temp_visual/dragon/plague
-	icon = 'icons/Xeno/64x64.dmi'
-	icon_state = "plague"
-	pixel_x = -16
-	layer = BELOW_MOB_LAYER
-	duration = 0.56 SECONDS
-
-/obj/effect/temp_visual/dragon/plague_mini
-	icon = 'icons/Xeno/Effects.dmi'
-	icon_state = "plague_mini"
-	layer = BELOW_MOB_LAYER
-	duration = 0.56 SECONDS
-
-/obj/effect/temp_visual/dragon/grab
-	icon = 'icons/Xeno/64x64.dmi'
-	icon_state = "grab"
-	pixel_x = -16
-	pixel_y = -16
-	layer = BELOW_MOB_LAYER
-	duration = 0.72 SECONDS
-
 /obj/effect/temp_visual/dragon/grab_fire
 	icon = 'icons/Xeno/64x64.dmi'
 	icon_state = "grab_fire"
@@ -1220,6 +1240,34 @@
 	pixel_x = -32
 	layer = BELOW_MOB_LAYER
 	duration = 0.7 SECONDS
+
+/obj/effect/temp_visual/dragon/grab
+	icon = 'icons/Xeno/64x64.dmi'
+	icon_state = "grab"
+	pixel_x = -16
+	pixel_y = -16
+	layer = BELOW_MOB_LAYER
+	duration = 0.72 SECONDS
+
+/obj/effect/temp_visual/dragon/plague
+	icon = 'icons/Xeno/64x64.dmi'
+	icon_state = "plague"
+	pixel_x = -16
+	layer = BELOW_MOB_LAYER
+	duration = 1.04 SECONDS
+
+/obj/effect/temp_visual/dragon/plague_mini
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "plague_mini"
+	layer = BELOW_MOB_LAYER
+	duration = 1.3 SECONDS
+
+/obj/effect/temp_visual/dragon/lightning_shrike
+	icon = 'icons/effects/96x144.dmi'
+	icon_state = "lightning_shrike"
+	pixel_x = -32
+	layer = BELOW_MOB_LAYER
+	duration = 1.25 SECONDS
 
 /obj/effect/temp_visual/dragon/warning
 	icon = 'icons/xeno/Effects.dmi'
