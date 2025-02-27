@@ -39,8 +39,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	SIGNAL_HANDLER
 	GLOB.ai_instances_active -= src
 	if(!QDELETED(parent))
-		UnregisterSignal(parent, COMSIG_MOB_LOGIN)
-		UnregisterSignal(parent, COMSIG_MOB_DEATH)
+		UnregisterSignal(parent, list(COMSIG_MOB_LOGIN, COMSIG_MOB_DEATH, COMSIG_HUD_NO_CLIENT))
 	if(ai_behavior)
 		STOP_PROCESSING(SSprocessing, ai_behavior)
 		ai_behavior.cleanup_signals()
@@ -68,6 +67,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	ai_behavior.start_ai()
 	RegisterSignals(parent, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(RemoveComponent))
 	RegisterSignal(parent, COMSIG_MOB_LOGIN, PROC_REF(clean_up))
+	RegisterSignal(parent, COMSIG_HUD_NO_CLIENT, PROC_REF(parent_hud_no_client))
 	UnregisterSignal(parent, COMSIG_MOB_LOGOUT)
 	GLOB.ai_instances_active += src
 
@@ -75,3 +75,8 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	clean_up(FALSE)
 	QDEL_NULL(ai_behavior)
 	return ..()
+
+///Confirms we are active
+/datum/component/ai_controller/proc/parent_hud_no_client(mob/living/source)
+	SIGNAL_HANDLER
+	return TRUE
