@@ -1026,7 +1026,7 @@
 	if(amount >= 0)
 		return
 	amount_mod += floor(amount/2) // Reduce healing by half.
-  
+
 // Recently sniped status effect, applied when hit by a sniper round
 /datum/status_effect/incapacitating/recently_sniped
 	id = "sniped"
