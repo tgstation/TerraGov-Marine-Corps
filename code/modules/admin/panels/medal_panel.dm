@@ -1,7 +1,7 @@
 GLOBAL_DATUM(medal_management_panel, /datum/medal_management_panel)
 
 ADMIN_VERB(medal_management_panel, R_FUN, "Medal Management", "Manage a players medals.", ADMIN_CATEGORY_MAIN)
-	if(!SSdbcore.Connect())
+	if(!SSdbcore.IsConnected())
 		to_chat(user, span_warning("The database is not connected."))
 		return
 
