@@ -12,7 +12,6 @@
 	pixel_x = -48
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6
-	initial_language_holder = /datum/language_holder/xeno/dragon
 	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_NORMAL
 	bubble_icon = "alienroyal"
