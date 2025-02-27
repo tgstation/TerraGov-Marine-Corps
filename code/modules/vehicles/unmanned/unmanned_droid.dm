@@ -10,6 +10,7 @@
 	spawn_equipped_type = /obj/item/uav_turret/droid
 	allow_pass_flags = PASS_AIR
 	unmanned_flags = HAS_LIGHTS|OVERLAY_TURRET
+	faction = FACTION_TERRAGOV
 	/// Action to activate suppply antenna.
 	var/datum/action/antenna/antenna
 	/// The mob controlling the droid remotely
