@@ -9,11 +9,10 @@
 	///If the mob parent can heal itself and so should flee
 	var/can_heal = TRUE
 
-/datum/ai_behavior/xeno/New(loc, parent_to_assign, escorted_atom, can_heal = TRUE)
+/datum/ai_behavior/xeno/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
 	refresh_abilities()
 	mob_parent.a_intent = INTENT_HARM //Killing time
-	src.can_heal = can_heal
 
 /datum/ai_behavior/xeno/start_ai()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))

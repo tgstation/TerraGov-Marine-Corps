@@ -7,7 +7,7 @@
 #define COMSIG_INVENTORY_DAT_GUN_ADDED "inventory_dat_gun_added"
 #define COMSIG_INVENTORY_DAT_MELEE_ADDED "inventory_dat_melee_added"
 
-/datum/inventory
+/datum/managed_inventory
 	///Mob this inventory is for
 	var/mob/living/owner
 	///Items actually equipped to slots
@@ -27,7 +27,7 @@
 	var/list/clone_list
 	var/list/pain_list
 
-/datum/inventory/New(mob/living/new_owner)
+/datum/managed_inventory/New(mob/living/new_owner)
 	. = ..()
 	owner = new_owner
 
@@ -40,13 +40,13 @@
 	for(var/obj/item AS in equip_list)
 		item_equipped(owner, item)
 
-/datum/inventory/Destroy(force, ...)
+/datum/managed_inventory/Destroy(force, ...)
 	owner = null
 	clear_lists(TRUE)
 	return ..()
 
 ///clears or resets the inventory lists
-/datum/inventory/proc/clear_lists(null_lists = FALSE)
+/datum/managed_inventory/proc/clear_lists(null_lists = FALSE)
 	if(null_lists)
 		QDEL_NULL(equipped_list)
 		QDEL_NULL(gun_list)
@@ -79,7 +79,7 @@
 	pain_list = list()
 
 ///Handles an item being equipped, and its contents
-/datum/inventory/proc/item_equipped(mob/user, obj/item/equipped_item)
+/datum/managed_inventory/proc/item_equipped(mob/user, obj/item/equipped_item)
 	SIGNAL_HANDLER
 	if(!equipped_item)
 		return
@@ -96,7 +96,7 @@
 		sort_item(thing)
 
 ///Recursive proc to retrieve all stored items inside something
-/datum/inventory/proc/get_stored(obj/item/thing)
+/datum/managed_inventory/proc/get_stored(obj/item/thing)
 	var/list/sort_list = list()
 	if(thing.storage_datum)
 		sort_list += thing.contents
@@ -105,7 +105,7 @@
 	return sort_list
 
 ///Handles the removal of an item
-/datum/inventory/proc/item_unequipped(obj/item/unequipped_item, mob/user)
+/datum/managed_inventory/proc/item_unequipped(obj/item/unequipped_item, mob/user)
 	SIGNAL_HANDLER
 	if(unequipped_item.loc == owner)
 		return //still equipped
@@ -119,11 +119,11 @@
 		SEND_SIGNAL(thing, COMSIG_INVENTORY_STORED_REMOVAL)
 
 //wrapper due to arg order, can probs remove tho
-/datum/inventory/proc/item_stored(mob/store_mob, obj/item/new_item, slot)
+/datum/managed_inventory/proc/item_stored(mob/store_mob, obj/item/new_item, slot)
 	SIGNAL_HANDLER
 	sort_item(new_item)
 
-/datum/inventory/proc/sort_item(obj/item/new_item)
+/datum/managed_inventory/proc/sort_item(obj/item/new_item)
 	if(isgun(new_item))
 		gun_list_add(new_item)
 		return
@@ -154,7 +154,7 @@
 //boiler plate
 
 ///Adds an item to this list
-/datum/inventory/proc/gun_list_add(obj/item/new_item)
+/datum/managed_inventory/proc/gun_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
 	if(new_item in gun_list)
 		return
@@ -166,7 +166,7 @@
 	SEND_SIGNAL(src, COMSIG_INVENTORY_DAT_GUN_ADDED)
 
 ///Adds an item to this list
-/datum/inventory/proc/melee_list_add(obj/item/new_item)
+/datum/managed_inventory/proc/melee_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
 	if(new_item in melee_list)
 		return
@@ -175,7 +175,7 @@
 	SEND_SIGNAL(src, COMSIG_INVENTORY_DAT_MELEE_ADDED)
 
 ///Adds an item to the relevant med lists
-/datum/inventory/proc/medical_list_add(obj/item/new_item)
+/datum/managed_inventory/proc/medical_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
 	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(medical_list_removal), TRUE)
 	var/generic = TRUE
@@ -213,25 +213,25 @@
 		medical_list |= new_item
 
 ///Adds an item to this list
-/datum/inventory/proc/ammo_list_add(obj/item/new_item)
+/datum/managed_inventory/proc/ammo_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
 	ammo_list |= new_item
 	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(ammo_list_removal), TRUE)
 
 ///Adds an item to this list
-/datum/inventory/proc/grenade_list_add(obj/item/new_item)
+/datum/managed_inventory/proc/grenade_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
 	grenade_list |= new_item
 	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(grenade_list_removal), TRUE)
 
 ///Adds an item to this list
-/datum/inventory/proc/engineering_list_add(obj/item/new_item)
+/datum/managed_inventory/proc/engineering_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
 	engineering_list |= new_item
 	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(engineering_list_removal), TRUE)
 
 ///Removes an item from this list
-/datum/inventory/proc/gun_list_removal(obj/item/moving_item)
+/datum/managed_inventory/proc/gun_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
 	if(!QDELETED(moving_item) && moving_item.loc == owner)
 		return //still in inventory
@@ -239,7 +239,7 @@
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
 
 ///Removes an item from this list
-/datum/inventory/proc/melee_list_removal(obj/item/moving_item)
+/datum/managed_inventory/proc/melee_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
 	if(!QDELETED(moving_item) && moving_item.loc == owner)
 		return //still in inventory
@@ -247,7 +247,7 @@
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
 
 ///Removes an item from this list
-/datum/inventory/proc/medical_list_removal(obj/item/moving_item)
+/datum/managed_inventory/proc/medical_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
 	if(!QDELETED(moving_item) && moving_item.loc == owner)
 		return //still in inventory
@@ -261,7 +261,7 @@
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
 
 ///Removes an item from this list
-/datum/inventory/proc/ammo_list_removal(obj/item/moving_item)
+/datum/managed_inventory/proc/ammo_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
 	if(!QDELETED(moving_item) && moving_item.loc == owner)
 		return //still in inventory
@@ -269,7 +269,7 @@
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
 
 ///Removes an item from this list
-/datum/inventory/proc/grenade_list_removal(obj/item/moving_item)
+/datum/managed_inventory/proc/grenade_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
 	if(!QDELETED(moving_item) && moving_item.loc == owner)
 		return //still in inventory
@@ -277,7 +277,7 @@
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
 
 ///Removes an item from this list
-/datum/inventory/proc/engineering_list_removal(obj/item/moving_item)
+/datum/managed_inventory/proc/engineering_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
 	if(!QDELETED(moving_item) && moving_item.loc == owner)
 		return //still in inventory

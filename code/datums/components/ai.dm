@@ -25,7 +25,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	if(isnull(behavior_type))
 		stack_trace("An AI controller was initialized without a mind to initialize parameter; component removed")
 		return COMPONENT_INCOMPATIBLE
-	ai_behavior = new behavior_type(src, parent, atom_to_escort, isliving(parent))
+	ai_behavior = new behavior_type(src, parent, atom_to_escort)
 	start_ai()
 
 

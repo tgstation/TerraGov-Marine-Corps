@@ -1,18 +1,3 @@
-///We're good to shoot
-#define AI_FIRE_CAN_HIT (1<<0)
-///Invalid due to being deleted or something else strange
-#define AI_FIRE_INVALID_TARGET (1<<1)
-///Need ammo
-#define AI_FIRE_NO_AMMO (1<<2)
-///Out of range
-#define AI_FIRE_OUT_OF_RANGE (1<<3)
-///No line of sight
-#define AI_FIRE_NO_LOS (1<<4)
-///Friendly in the way
-#define AI_FIRE_FRIENDLY_BLOCKED (1<<5)
-///Target already dead
-#define AI_FIRE_TARGET_DEAD (1<<6)
-
 //code specific to ranged and melee weapons
 /datum/ai_behavior/human
 	///Currently equipped and ready firearm

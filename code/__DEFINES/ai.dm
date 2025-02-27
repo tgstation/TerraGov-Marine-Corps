@@ -72,6 +72,116 @@ GLOBAL_LIST_EMPTY(nodes_with_enemies)
 GLOBAL_LIST_EMPTY(nodes_with_construction)
 #define can_cross_lava_turf(turf_to_check) (!islava(turf_to_check) || locate(/obj/structure/catwalk) in turf_to_check) //todo: this needs work
 
+///If the mob parent can heal itself and so should flee
+#define HUMAN_AI_SELF_HEAL (1<<0)
+///Uses weapons
+#define HUMAN_AI_USE_WEAPONS (1<<1)
+///Listens to audible instructions
+#define HUMAN_AI_AUDIBLE_CONTROL (1<<2)
+///Will try avoid FF when possible
+#define HUMAN_AI_NO_FF (1<<3)
+///Will try avoid hazards when possible
+#define HUMAN_AI_AVOID_HAZARDS (1<<4)
+
+///Currently shooting
+#define HUMAN_AI_FIRING (1<<0)
+///Looking for weapons
+#define HUMAN_AI_NEED_WEAPONS (1<<1)
+
+///We're good to shoot
+#define AI_FIRE_CAN_HIT (1<<0)
+///Invalid due to being deleted or something else strange
+#define AI_FIRE_INVALID_TARGET (1<<1)
+///Need ammo
+#define AI_FIRE_NO_AMMO (1<<2)
+///Out of range
+#define AI_FIRE_OUT_OF_RANGE (1<<3)
+///No line of sight
+#define AI_FIRE_NO_LOS (1<<4)
+///Friendly in the way
+#define AI_FIRE_FRIENDLY_BLOCKED (1<<5)
+///Target already dead
+#define AI_FIRE_TARGET_DEAD (1<<6)
+
+GLOBAL_LIST_INIT(ai_brute_heal_items, list(
+	/obj/item/reagent_containers/pill/bicaridine,
+	/obj/item/reagent_containers/hypospray/autoinjector/bicaridine,
+	/obj/item/reagent_containers/hypospray/advanced/bicaridine,
+	/obj/item/reagent_containers/hypospray/autoinjector/combat,
+	/obj/item/reagent_containers/pill/tricordrazine,
+	/obj/item/reagent_containers/hypospray/advanced/tricordrazine,
+	/obj/item/reagent_containers/hypospray/advanced/combat_advanced,
+	/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+	/obj/item/reagent_containers/pill/meralyne,
+	/obj/item/reagent_containers/hypospray/advanced/meralyne,
+	/obj/item/reagent_containers/hypospray/advanced/meraderm,
+	/obj/item/reagent_containers/hypospray/autoinjector/neuraline,
+	/obj/item/reagent_containers/hypospray/autoinjector/russian_red,
+	/obj/item/reagent_containers/hypospray/autoinjector/elite,
+	/obj/item/stack/medical/heal_pack/gauze/sectoid,
+	/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+	/obj/item/stack/medical/heal_pack/gauze,
+))
+
+GLOBAL_LIST_INIT(ai_burn_heal_items, list(
+	/obj/item/reagent_containers/pill/kelotane,
+	/obj/item/reagent_containers/hypospray/autoinjector/kelotane,
+	/obj/item/reagent_containers/hypospray/advanced/kelotane,
+	/obj/item/reagent_containers/hypospray/autoinjector/combat,
+	/obj/item/reagent_containers/pill/tricordrazine,
+	/obj/item/reagent_containers/hypospray/advanced/tricordrazine,
+	/obj/item/reagent_containers/hypospray/advanced/combat_advanced,
+	/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+	/obj/item/reagent_containers/pill/dermaline,
+	/obj/item/reagent_containers/hypospray/advanced/dermaline,
+	/obj/item/reagent_containers/hypospray/advanced/meraderm,
+	/obj/item/reagent_containers/hypospray/autoinjector/neuraline,
+	/obj/item/reagent_containers/hypospray/autoinjector/russian_red,
+	/obj/item/reagent_containers/hypospray/autoinjector/elite,
+	/obj/item/stack/medical/heal_pack/gauze/sectoid,
+	/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+	/obj/item/stack/medical/heal_pack/ointment,
+))
+
+GLOBAL_LIST_INIT(ai_tox_heal_items, list(
+	/obj/item/reagent_containers/hypospray/autoinjector/antitox_mix,
+	/obj/item/reagent_containers/pill/dylovene,
+	/obj/item/reagent_containers/hypospray/advanced/dylovene,
+	/obj/item/reagent_containers/hypospray/autoinjector/dylovene,
+	/obj/item/reagent_containers/pill/tricordrazine,
+	/obj/item/reagent_containers/hypospray/advanced/tricordrazine,
+))
+
+GLOBAL_LIST_INIT(ai_oxy_heal_items, list(
+	/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline,
+	/obj/item/reagent_containers/hypospray/advanced/inaprovaline,
+	/obj/item/reagent_containers/pill/inaprovaline,
+	/obj/item/reagent_containers/hypospray/autoinjector/neuraline,
+	/obj/item/reagent_containers/hypospray/autoinjector/russian_red,
+	/obj/item/reagent_containers/hypospray/autoinjector/elite,
+	/obj/item/reagent_containers/pill/tricordrazine,
+	/obj/item/reagent_containers/hypospray/advanced/tricordrazine,
+))
+
+GLOBAL_LIST_INIT(ai_clone_heal_items, list(
+	/obj/item/reagent_containers/hypospray/autoinjector/rezadone,
+	/obj/item/reagent_containers/hypospray/autoinjector/elite,
+))
+
+GLOBAL_LIST_INIT(ai_pain_heal_items, list(
+	/obj/item/reagent_containers/pill/tramadol,
+	/obj/item/reagent_containers/hypospray/autoinjector/tramadol,
+	/obj/item/reagent_containers/hypospray/advanced/tramadol,
+	/obj/item/reagent_containers/hypospray/autoinjector/combat,
+	/obj/item/reagent_containers/hypospray/advanced/oxycodone,
+	/obj/item/reagent_containers/hypospray/autoinjector/oxycodone,
+	/obj/item/reagent_containers/hypospray/advanced/combat_advanced,
+	/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced,
+	/obj/item/reagent_containers/hypospray/autoinjector/neuraline,
+	/obj/item/reagent_containers/hypospray/autoinjector/russian_red,
+	/obj/item/reagent_containers/hypospray/autoinjector/elite,
+))
+
 ///List of squads that can be spawned, and the roles in them, sorted in spawn order
 GLOBAL_LIST_INIT(ai_squad_presets, list(
 	"SOM breachers" = list(

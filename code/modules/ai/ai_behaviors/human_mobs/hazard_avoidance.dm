@@ -12,7 +12,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(!human_ai_behavior_flags & HUMAN_AI_AVOID_HAZARDS)
+	if(!(human_ai_behavior_flags & HUMAN_AI_AVOID_HAZARDS))
 		return
 
 	var/list/dir_options = .

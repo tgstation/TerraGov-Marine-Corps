@@ -1,20 +1,3 @@
-///If the mob parent can heal itself and so should flee
-#define HUMAN_AI_SELF_HEAL (1<<0)
-///Uses weapons
-#define HUMAN_AI_USE_WEAPONS (1<<1)
-///Listens to audible instructions
-#define HUMAN_AI_AUDIBLE_CONTROL (1<<2)
-///Will try avoid FF when possible
-#define HUMAN_AI_NO_FF (1<<3)
-///Will try avoid hazards when possible
-#define HUMAN_AI_AVOID_HAZARDS (1<<4)
-
-///Currently shooting
-#define HUMAN_AI_FIRING (1<<0)
-///Looking for weapons
-#define HUMAN_AI_NEED_WEAPONS (1<<1)
-
-
 /datum/ai_behavior/human
 	sidestep_prob = 25
 	identifier = IDENTIFIER_HUMAN
@@ -30,7 +13,7 @@
 	///List of abilities to consider doing every Process()
 	var/list/ability_list = list()
 	///Inventory datum so the mob_parent can manage its inventory
-	var/datum/inventory/mob_inventory
+	var/datum/managed_inventory/mob_inventory
 	///Chat lines when moving to a new target
 	var/list/new_move_chat = list("Moving.", "On the way.", "Moving out.", "On the move.", "Changing position.", "Watch your spacing!", "Let's move.", "Move out!", "Go go go!!", "moving.", "Mobilising.", "Hoofing it.")
 	///Chat lines when following a new target
@@ -41,13 +24,10 @@
 	COOLDOWN_DECLARE(ai_run_cooldown)
 	COOLDOWN_DECLARE(ai_damage_cooldown)
 
-/datum/ai_behavior/human/New(loc, parent_to_assign, escorted_atom, new_behavior_flags = null)
+/datum/ai_behavior/human/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
 	refresh_abilities()
 	mob_parent.a_intent = INTENT_HARM
-	if(!isnull(new_behavior_flags))
-		human_ai_behavior_flags = new_behavior_flags
-
 	mob_inventory = new(mob_parent)
 	RegisterSignal(mob_parent, COMSIG_MOB_TOGGLEMOVEINTENT, PROC_REF(on_move_toggle))
 
