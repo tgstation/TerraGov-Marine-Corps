@@ -1,0 +1,5 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - rscadd: "Marines have been better trained about nutrition and will stop eating before they get fat."
+  - bugfix: "Eating messages use the correct nutrition values."
