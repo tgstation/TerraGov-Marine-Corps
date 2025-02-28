@@ -371,7 +371,7 @@
 	///Holds a copy of the actual datum, so we can call its effects.
 	var/datum/globadier_mine/detonation_holder
 
-/obj/structure/xeno/acid_mine/Initialize(mapload, _minetype)
+/obj/structure/xeno/acid_mine/Initialize(mapload, _minetype = /datum/globadier_mine)
 	. = ..()
 	minetype = _minetype
 	detonation_holder = new minetype
