@@ -178,6 +178,10 @@
 "to" = (
 /turf/open/liquid/water/river/autosmooth,
 /area/campaign/jungle_outpost/ground/river/west)
+"uu" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
 "uP" = (
 /obj/structure/closet/crate/hydroponics,
 /obj/item/tool/plantspray/pests,
@@ -242,6 +246,13 @@
 "yc" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner,
 /area/campaign/jungle_outpost/ground/jungle)
+"zo" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
 "BC" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 8
@@ -320,6 +331,11 @@
 "KQ" = (
 /obj/machinery/light,
 /obj/machinery/hydroponics,
+/turf/open/floor/tile/hydro,
+/area/campaign/jungle_outpost/outpost/living/hydro)
+"KY" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/effect/ai_node,
 /turf/open/floor/tile/hydro,
 /area/campaign/jungle_outpost/outpost/living/hydro)
 "La" = (
@@ -581,15 +597,15 @@ DF
 vA
 gI
 UO
-bp
+uu
 bp
 bp
 rk
-bp
+uu
 rk
 bp
 bp
-bp
+uu
 UO
 gI
 lL
@@ -641,18 +657,18 @@ cw
 bp
 bp
 bp
-bp
+uu
 gI
 ZR
 bp
-bp
+uu
 bp
 uP
 gI
+uu
 bp
 bp
-bp
-bp
+uu
 nN
 yc
 "}
@@ -664,7 +680,7 @@ gI
 bp
 gZ
 bp
-bp
+uu
 ck
 bp
 bp
@@ -673,7 +689,7 @@ bp
 gI
 XQ
 bp
-gZ
+KY
 nZ
 "}
 (10,1,1) = {"
@@ -701,7 +717,7 @@ cw
 bp
 bp
 bp
-bp
+uu
 gI
 YQ
 bp
@@ -761,12 +777,12 @@ WB
 BG
 gI
 UO
-bp
+uu
 bp
 bp
 fu
 bp
-fu
+zo
 bp
 IT
 bp
