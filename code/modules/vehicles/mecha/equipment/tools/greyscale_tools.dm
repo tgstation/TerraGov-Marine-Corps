@@ -1,9 +1,3 @@
-/obj/vehicle/sealed/mecha
-	/// How much energy we use per mech dash
-	var/dash_power_consumption = 500
-	/// dash_range
-	var/dash_range = 1
-
 /obj/item/mecha_parts/mecha_equipment/armor/booster
 	name = "medium booster"
 	desc = "Determines boosting speed and power. Balanced option. Sets dash consumption to 200 and dash range to 3, and boost consumption per step to 50."
@@ -11,9 +5,11 @@
 	iconstate_name = "armor_melee"
 	protect_name = "Medium Booster"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
-	slowdown = -1.1
 	armor_mod = list()
+	slowdown = 0
 	weight = 65
+	///move delay we remove from the mech when sprinting with actuator overload
+	var/speed_mod = 1
 	/// How much energy we use when we dash
 	var/dash_consumption = 200
 	/// How many tiles our dash carries us
@@ -27,12 +23,14 @@
 	chassis.leg_overload_coeff = 0 // forces min usage
 	chassis.dash_power_consumption = dash_consumption
 	chassis.dash_range = dash_range
+	chassis.speed_mod = speed_mod
 
 /obj/item/mecha_parts/mecha_equipment/armor/booster/detach(atom/moveto)
 	chassis.overload_step_energy_drain_min = initial(chassis.overload_step_energy_drain_min)
 	chassis.leg_overload_coeff = initial(chassis.leg_overload_coeff)
 	chassis.dash_power_consumption = initial(chassis.dash_power_consumption)
 	chassis.dash_range = initial(chassis.dash_range)
+	chassis.speed_mod = 0
 	return ..()
 
 
@@ -44,7 +42,7 @@
 	protect_name = "Lightweight Booster"
 	weight = 45
 	dash_consumption = 300
-	slowdown = -0.6
+	speed_mod = 0.7
 	dash_range = 5
 	boost_consumption = 10
 

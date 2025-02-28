@@ -421,3 +421,42 @@
   - bugfix: Fixes bug preventing non-folding plasteel cades from being built on a
       tile where there is already a non-folding plasteel cade, even when they are
       facing in different directions
+2025-02-27:
+  Lewdcifer:
+  - code_imp: Minor clean-up of xeno vars. Gets rid of unnecessary overrides, uses
+      the attack_sound var, and implements an attack_effect var as setup for future
+      content.
+  Lumipharon:
+  - bugfix: fixed armour lock sprites appearing everywhere
+  Notamaniac:
+  - balance: Tank and APC now has 100 bio armor. Tank also gets 20 hard bio armor.
+  SandPoot:
+  - rscadd: Added some onscreen button verbs for ghosts.
+  - imageadd: Shitty sprite for the button.
+  TiviPlus:
+  - imageadd: replaced the armorlock icon with a new one
+  - admin: added edge dev tools verb to admins for UI debugging
+  - bugfix: fixed admin smites not logging
+  - code_imp: Added some tracking for tick allocation to subsystems
+  - admin: added focus mode var to controllers, which can be toggled to get a focused
+      profile of ONE subsystem
+  - admin: added admin tgui for viewing MC and controller statuses
+  - bugfix: fixed mech weight bar in the mech builder ui not coloring correctly
+  - rscadd: Added the !tgs seasonals command for checking the current seasonals from
+      discord
+  - code_imp: Discord PR announcer bot is back
+  - bugfix: fixed shuttle manipulator bluescreening, and not showing all options
+  - bugfix: fixed admin shuttle uploads being disabled for 6+ years for no reason
+  - bugfix: fixed mech spin-to-fire
+  - bugfix: Fixed engine turn off sounds actually being the engine turn on sounds
+2025-02-28:
+  Lumipharon:
+  - rscadd: Added dynamic human mob AI
+  TiviPlus:
+  - bugfix: fixed mech movespeeds being very out of wack with intended values
+  breadhunt:
+  - rscadd: Thermo-Bluespace Generator. Triples disk speed while active; explodes
+      when destroyed by xenos.
+  - imageadd: tbg.dmi
+  - soundadd: tbg_windup, tbg_winddown, tbg_mid1, tbg_mid2, tbg_mid3, tbg_mid4, tbg_mid5,
+      tbg_alarm
