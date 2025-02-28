@@ -1,0 +1,4 @@
+author: "The_Man"
+delete-after: True
+changes:
+  - bugfix: "You can no longer activate robot self-repair if brute and burn damage is 0."
