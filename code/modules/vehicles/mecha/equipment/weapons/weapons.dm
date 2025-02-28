@@ -287,7 +287,7 @@
 		return FALSE
 	if(!projectiles_cache)
 		return FALSE
-	if(user && !do_after(user, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
+	if(user && !do_after(user, rearm_time, IGNORE_HELD_ITEM|IGNORE_TARGET_LOC_CHANGE, chassis, BUSY_ICON_GENERIC))
 		return FALSE
 	return rearm()
 
