@@ -11,6 +11,25 @@
 	damage = _damage
 	penetration = _penetration
 
+/datum/action/ability/activable/weapon_skill/ai_should_start_consider()
+	return TRUE
+
+/datum/action/ability/activable/weapon_skill/ai_should_use(atom/target)
+	if(!target)
+		return FALSE
+	if(isainode(target))
+		return FALSE
+	if(target.resistance_flags & INDESTRUCTIBLE)
+		return FALSE
+	if(!ismovable(target))
+		return
+	var/atom/movable/movable_target = target
+	if(movable_target.faction == owner.faction)
+		return FALSE
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	return TRUE
+
 /datum/action/ability/activable/weapon_skill/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
