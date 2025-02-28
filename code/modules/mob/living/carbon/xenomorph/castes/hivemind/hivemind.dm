@@ -33,7 +33,7 @@
 	///The minimum health we can have
 	var/minimum_health = -300
 	///Traits given when going incorporeal
-	var/list/incorporeal_traits = list(TRAIT_PASS_LOW_STRUCTURE, TRAIT_PASSABLE, TRAIT_PASS_FIRE)
+	var/list/incorporeal_traits = list(TRAIT_PASS_LOW_STRUCTURE, TRAIT_PASS_THROW, TRAIT_PASS_PROJECTILE, TRAIT_PASS_AIR, TRAIT_PASS_FIRE)
 	///Traits given when manifested
 	var/list/manifest_traits = list(TRAIT_PASS_LOW_STRUCTURE, TRAIT_PASS_MOB, TRAIT_PASS_XENO)
 
