@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {
   Box,
   Button,
+  Icon,
   LabeledList,
   Modal,
   ProgressBar,
@@ -137,17 +138,18 @@ export const MechVendor = (props) => {
                 marginRight: -255,
               }}
               ranges={{
-                good: [0.5, Infinity],
-                average: [0, 0.5],
-                bad: [-Infinity, 0],
+                bad: [0.8, Infinity],
+                average: [0.5, 0.8],
+                good: [-Infinity, 0.5],
               }}
-              maxValue={data.max_weight}
-              value={data.weight}
+              value={data.weight / data.max_weight}
             >
-              Weight
-              {
-                // todo have an icon here instead of text so it looks nicer
-              }
+              <Icon
+                name="weight-hanging"
+                style={{
+                  transform: 'rotate(-270deg) translateX(-2%)',
+                }}
+              />
             </ProgressBar>
           </Stack.Item>
           <Stack.Item>

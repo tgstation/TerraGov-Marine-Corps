@@ -48,9 +48,7 @@ ADMIN_VERB(map_template_upload, R_FUN, "Map template - Upload", "Upload and plac
 		if("Normal")
 			M = new /datum/map_template(map, "[map]", TRUE)
 		if("Shuttle")
-			to_chat(user, span_warning("Not implemented yet."))
-			return
-			//M = new /datum/map_template/shuttle(map, "[map]", TRUE)
+			M = new /datum/map_template/shuttle(map, "[map]", TRUE)
 		else
 			return
 	if(!M.cached_map)
