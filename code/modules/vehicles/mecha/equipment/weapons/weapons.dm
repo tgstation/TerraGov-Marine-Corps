@@ -59,16 +59,6 @@
 	if(HAS_TRAIT(chassis, TRAIT_MELEE_CORE) && !CHECK_BITFIELD(range, MECHA_MELEE))
 		to_chat(chassis.occupants, span_warning("Error -- Melee Core active."))
 		return FALSE
-	if(!istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
-		return
-	var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
-	var/datum/mech_limb/arm/holding
-	if(grey.equip_by_category[MECHA_R_ARM] == src)
-		holding = grey.limbs[MECH_GREY_R_ARM]
-	else
-		holding = grey.limbs[MECH_GREY_L_ARM]
-	if(holding.disabled)
-		return FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
