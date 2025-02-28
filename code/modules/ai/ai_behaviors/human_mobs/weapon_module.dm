@@ -271,36 +271,3 @@
 				return
 	gun.reload(new_ammo, mob_parent) //skips tac reload but w/e. if we want it, then we need to check for skills...
 	//note: force arg on reload would allow reloading closed chamber weapons, but also bypasses reload delays... funny rapid rockets
-
-//TODO: maybe move these
-///Optimal range for AI to fight at, using this weapon
-/obj/item/weapon/proc/get_ai_combat_range()
-	return list(0, 1)
-
-/obj/item/weapon/twohanded/spear/get_ai_combat_range()
-	return 2
-
-/obj/item/weapon/gun/get_ai_combat_range()
-	if((gun_features_flags & GUN_IFF) || (ammo_datum_type::ammo_behavior_flags & AMMO_IFF))
-		return list(5, 7)
-	return list(4, 5)
-
-/obj/item/weapon/gun/shotgun/get_ai_combat_range()
-	if(ammo_datum_type == /datum/ammo/bullet/shotgun/buckshot)
-		return 1
-	return list(4, 5)
-
-/obj/item/weapon/gun/smg/get_ai_combat_range()
-	return list(3, 4)
-
-/obj/item/weapon/gun/pistol/get_ai_combat_range()
-	return list(3, 4)
-
-/obj/item/weapon/gun/revolver/get_ai_combat_range()
-	return list(3, 4)
-
-/obj/item/weapon/gun/launcher/get_ai_combat_range()
-	return list(7, 8)
-
-/obj/item/weapon/gun/grenade_launcher/get_ai_combat_range()
-	return list(6, 8)
