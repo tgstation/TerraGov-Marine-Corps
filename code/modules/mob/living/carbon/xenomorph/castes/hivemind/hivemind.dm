@@ -11,11 +11,8 @@
 	icon = 'icons/Xeno/castes/hivemind.dmi'
 	status_flags = GODMODE | INCORPOREAL
 	resistance_flags = RESIST_ALL
-	pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_FIRE //to prevent hivemind eye to catch fire when crossing lava
 	density = FALSE
-
 	a_intent = INTENT_HELP
-
 	health = 1000
 	maxHealth = 1000
 	plasma_stored = 5
@@ -36,7 +33,9 @@
 	///The minimum health we can have
 	var/minimum_health = -300
 	///Traits given when going incorporeal
-	var/list/incorporeal_traits = list(TRAIT_PASS_LOW_STRUCTURE, TRAIT_PASS_MOB, TRAIT_PASS_XENO)
+	var/list/incorporeal_traits = list(TRAIT_PASS_LOW_STRUCTURE, TRAIT_PASSABLE, TRAIT_PASS_FIRE)
+	///Traits given when manifested
+	var/list/manifest_traits = list(TRAIT_PASS_LOW_STRUCTURE, TRAIT_PASS_MOB, TRAIT_PASS_XENO)
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
 	var/obj/structure/xeno/hivemindcore/new_core = new /obj/structure/xeno/hivemindcore(loc, hivenumber)
@@ -45,6 +44,7 @@
 	new_core.parent = WEAKREF(src)
 	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, PROC_REF(return_to_core))
 	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, PROC_REF(change_form))
+	add_traits(incorporeal_traits, INNATE_TRAIT)
 	update_action_buttons()
 
 /mob/living/carbon/xenomorph/hivemind/upgrade_possible()
@@ -131,7 +131,8 @@
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
 		resistance_flags = NONE
-		add_traits(incorporeal_traits, INCORPOREAL_TRAIT)
+		remove_traits(incorporeal_traits, INNATE_TRAIT)
+		add_traits(manifest_traits, MANIFESTED_TRAIT)
 		density = TRUE
 		hive.xenos_by_upgrade[upgrade] -= src
 		upgrade = XENO_UPGRADE_MANIFESTATION
@@ -143,7 +144,8 @@
 		return
 	status_flags = initial(status_flags)
 	resistance_flags = initial(resistance_flags)
-	remove_traits(incorporeal_traits, INCORPOREAL_TRAIT)
+	remove_traits(manifest_traits, MANIFESTED_TRAIT)
+	add_traits(incorporeal_traits, INNATE_TRAIT)
 	density = FALSE
 	hive.xenos_by_upgrade[upgrade] -= src
 	upgrade = XENO_UPGRADE_BASETYPE
