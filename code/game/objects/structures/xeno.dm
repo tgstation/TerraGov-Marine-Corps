@@ -366,8 +366,6 @@
 	anchored = TRUE
 	max_integrity = 5
 	hit_sound = SFX_ALIEN_RESIN_BREAK
-	greyscale_config = /datum/greyscale_config/xenomine
-	greyscale_colors = "#000000"
 	///Which datum to pull effects from
 	var/datum/globadier_mine/minetype = /datum/globadier_mine
 	///Holds a copy of the actual datum, so we can call its effects.
@@ -379,20 +377,15 @@
 	detonation_holder = new minetype
 	name = minetype.name
 	desc = minetype.desc
-	if(!minetype.is_greyscale)
-		icon = minetype.icon
-		icon_state = minetype.icon_state
-	else
-		//Regenrate the gags color, as that occurs before the obj inits, so the greysale color isnt properly updated
-		src.greyscale_colors = "" // We do this to force an update, in some cases it will think nothing changed when it should be refreshing
-		src.set_greyscale_colors(minetype.greyscale_color)
+	icon = minetype.icon
+	icon_state = minetype.icon_state
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(oncrossed),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/xeno/acid_mine/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	detonation_holder.detonate(src)
+	detonation_holder.detonate(src, blame_mob)
 	return ..()
 
 // Checks if the mob walking over the mine is human, and calls detonate if so
@@ -402,4 +395,4 @@
 		return
 	if(CHECK_MULTIPLE_BITFIELDS(A.allow_pass_flags, HOVERING))
 		return
-	INVOKE_ASYNC(detonation_holder, TYPE_PROC_REF(/datum/globadier_mine, detonate), src)
+	INVOKE_ASYNC(detonation_holder, TYPE_PROC_REF(/datum/globadier_mine, detonate), src, A)

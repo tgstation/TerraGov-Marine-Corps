@@ -233,9 +233,11 @@
 	for(var/trait in caste_traits)
 		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
+	xenomorph.RegisterSignal(xenomorph,COMSIG_XENOMORPH_ATTACK_LIVING, TYPE_PROC_REF(/mob/living/carbon/xenomorph, lifesteal))
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
 	xenomorph.remove_component(/datum/component/bump_attack)
+	xenomorph.UnregisterSignal(xenomorph, COMSIG_XENOMORPH_ATTACK_LIVING)
 	for(var/trait in caste_traits)
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
 
@@ -446,3 +448,14 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	COOLDOWN_DECLARE(xeno_resting_cooldown)
 	///The unresting cooldown
 	COOLDOWN_DECLARE(xeno_unresting_cooldown)
+
+/mob/living/carbon/xenomorph/proc/lifesteal(attacker, target) //For globadiers lifesteal debuff
+	SIGNAL_HANDLER
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/victim = target
+	if(!victim.has_status_effect(STATUS_EFFECT_LIFEDRAIN))
+		return
+	var/mob/living/carbon/xenomorph/xeno = attacker
+	var/healamount = xeno.maxHealth * 0.04 //4% of the xenos max health
+	HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
