@@ -1,7 +1,9 @@
+///Tries to heal another mob
 /datum/ai_behavior/human/proc/try_heal_other(mob/living/carbon/human/patient)
 	if(patient.InCritical())
 		crit_heal(patient)
 
+///Handles a friendly in crit
 /datum/ai_behavior/human/proc/crit_heal(mob/living/carbon/human/patient)
 	var/obj/item/heal_item
 
