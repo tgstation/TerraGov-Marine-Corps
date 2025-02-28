@@ -15,7 +15,7 @@
 	/// How many tiles our dash carries us
 	var/dash_range = 3
 	/// how much energy we use per step when boosting
-	var/boost_consumption = 50
+	var/boost_consumption = 20
 
 /obj/item/mecha_parts/mecha_equipment/armor/booster/attach(obj/vehicle/sealed/mecha/M, attach_right)
 	. = ..()
@@ -43,8 +43,8 @@
 	weight = 45
 	dash_consumption = 300
 	speed_mod = 0.7
-	dash_range = 4
-	boost_consumption = 30
+	dash_range = 5
+	boost_consumption = 10
 
 /obj/item/mecha_parts/mecha_equipment/generator/greyscale
 	name = "phoron engine"
