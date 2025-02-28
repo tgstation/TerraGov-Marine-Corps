@@ -17,6 +17,7 @@
 	maptext_width = 480
 	maptext_x = 28
 	maptext_y = 6
+	mouse_over_pointer = MOUSE_HAND_POINTER
 	/// if this text has a different color that we want to display when it's not being mosued over
 	var/unhighlighted_color
 
