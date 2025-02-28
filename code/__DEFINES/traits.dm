@@ -74,6 +74,7 @@
 // common trait
 #define TRAIT_GENERIC "generic"
 #define INNATE_TRAIT "innate"
+#define ADMIN_TRAIT "admin_trait"
 #define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
 #define SLEEPER_TRAIT "sleeper"
 #define STASIS_BAG_TRAIT "stasis_bag"

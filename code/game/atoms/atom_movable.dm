@@ -1182,6 +1182,16 @@
 				moveToNullspace()
 				return TRUE
 			return FALSE
+		if("pass_flags")
+			if(var_value == pass_flags)
+				return FALSE
+			var/new_flags = var_value &= ~pass_flags
+			if(new_flags)
+				add_traits(get_traits_from_pass_flags(new_flags), ADMIN_TRAIT)
+				return TRUE
+			new_flags = pass_flags &= ~var_value
+			remove_traits(get_traits_from_pass_flags(new_flags), ADMIN_TRAIT)
+			return TRUE
 	return ..()
 
 
