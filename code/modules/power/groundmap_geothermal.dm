@@ -22,6 +22,8 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	var/time_to_break = 1.5 SECONDS //How long it takes to break each stage of the generator
 	///Hive it should be powering and whether it should be generating hive psycic points instead of power on process()
 	var/corrupted = XENO_HIVE_NORMAL
+	//Last hive to corrupt the generator
+	var/last_corrupted = XENO_HIVE_NORMAL
 	///whether we wil allow these to be corrupted
 	var/is_corruptible = TRUE
 	///whether they should generate corruption if corrupted
@@ -42,8 +44,6 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 /obj/machinery/power/geothermal/Destroy() //just in case
 	if(is_ground_level(z))
 		GLOB.generators_on_ground--
-		if(is_on)
-			GLOB.active_bluespace_generators--
 	return ..()
 
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
@@ -256,6 +256,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		cut_overlay(GLOB.welding_sparks)
+		last_corrupted = corrupted
 		corrupted = 0
 		stop_processing()
 		update_icon()
@@ -332,6 +333,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 
 /obj/machinery/power/geothermal/proc/corrupt(hivenumber)
 	corrupted = hivenumber
+	last_corrupted = corrupted
 	update_icon()
 	start_processing()
 
@@ -384,10 +386,15 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 		potential_turbine.connected = src
 
 /obj/machinery/power/geothermal/tbg/Destroy()
+	if(is_on)
+		GLOB.active_bluespace_generators--
 	QDEL_NULL(ambient_soundloop)
 	QDEL_NULL(alarm_soundloop)
 	for(var/obj/machinery/power/tbg_turbine/turbine AS in connected_turbines)
 		QDEL_NULL(turbine)
+
+	//After generators get destroyed, psychic mist is emitted
+	new /obj/machinery/mist_origin(get_turf(src), last_corrupted)
 	return ..()
 
 /obj/machinery/power/geothermal/tbg/update_icon_state()
@@ -455,7 +462,8 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	current_apc.emp_act(2)
 
 	addtimer(CALLBACK(src, PROC_REF(trigger_alarms)), 3 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(finish_meltdown)), 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finish_meltdown)), 55 SECONDS)
+	QDEL_IN(src, 56 SECONDS) //Destroy generator after big explosion happens
 
 	//Devastate range -- Heavy range -- Light range -- Fire range -- Time until explosion
 	var/list/list_of_explosions = list(
@@ -472,8 +480,6 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	for(var/explosion_data in list_of_explosions)
 		var/turf/epicenter = locate(loc.x + rand(-2,2), loc.y + rand(-2,2), loc.z)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(explosion), epicenter, explosion_data[1], explosion_data[2], explosion_data[3], explosion_data[4], explosion_data[4]), explosion_data[5])
-	//Destroy generator after big explosion happens
-	QDEL_IN(src, 56 SECONDS)
 
 /// Triggers alarm visual effects and queues alarm warnings for ongoing TBG meltdown
 /obj/machinery/power/geothermal/tbg/proc/trigger_alarms()
@@ -502,7 +508,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	for(var/warning_data in warning_messages)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), warning_data[1]), warning_data[2])
 
-/// Finalises TBG meltdown and resets it back to its initial state
+/// Finalises TBG meltdown and disables alarms before the big explosion
 /obj/machinery/power/geothermal/tbg/proc/finish_meltdown()
 	buildstate = GENERATOR_HEAVY_DAMAGE
 	update_icon()
@@ -510,7 +516,6 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	//Disable alarmlights
 	for(var/obj/machinery/floor_warn_light/toggleable/generator/light AS in GLOB.generator_alarm_lights)
 		light.disable()
-	say("Bluespace restabilisation successful. Planetary assets protected.")
 
 /// TBG turbine attached to the TBG; purely visual
 /obj/machinery/power/tbg_turbine
@@ -588,6 +593,48 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	icon_type = "cold"
 	icon_state = "circ-on75-cold"
 
+
+/// Psychic mist -- Spawns on generator if it explodes; provides point gen as the generator would have
+/obj/machinery/mist_origin
+	name = "psychic resonator"
+	desc = "A seemingly indestructible mass of weeds rooted firmly in the ground. Appears to generate psychic points for the hive."
+	icon = 'icons/Xeno/1x1building.dmi'
+	icon_state = "psychic_resonator"
+	layer = RESIN_STRUCTURE_LAYER
+	resistance_flags = RESIST_ALL|PROJECTILE_IMMUNE|DROPSHIP_IMMUNE
+	//Lists all visual mist effects
+	var/list/mist_list = list()
+	//What hive we should add psy points to
+	var/hivenumber
+
+/obj/machinery/mist_origin/Initialize(mapload, last_corrupted_hivenumber)
+	. = ..()
+	hivenumber = last_corrupted_hivenumber
+	for(var/turf/tile in filled_circle_turfs(src, 10))
+		var/obj/effect/psychic_mist/new_mist = new(tile)
+		mist_list += new_mist
+	start_processing()
+
+// Mimic generator point gen
+/obj/machinery/mist_origin/process()
+	if(!(length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
+		return
+	var/points_generated = GENERATOR_PSYCH_POINT_OUTPUT / (1 + GLOB.generators_on_ground)
+	SSpoints.add_strategic_psy_points(hivenumber, points_generated)
+	SSpoints.add_tactical_psy_points(hivenumber, points_generated*0.25)
+
+/obj/machinery/mist_origin/Destroy()
+	for(var/obj/effect/psychic_mist/mist AS in mist_list)
+		QDEL_NULL(mist)
+	return ..()
+
+
+/obj/effect/psychic_mist
+	name = "psychic mist"
+	desc = "Condensed droplets of raw psychic energy swirl around you."
+	icon = 'icons/effects/weather_effects.dmi'
+	icon_state = "light_ash"
+	color = "#7f16c5"
 
 
 #undef GENERATOR_NO_DAMAGE
