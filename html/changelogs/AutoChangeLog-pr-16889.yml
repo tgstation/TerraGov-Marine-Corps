@@ -1,0 +1,6 @@
+author: "breadhunt"
+delete-after: True
+changes:
+  - rscadd: "Thermo-Bluespace Generator. Triples disk speed while active; explodes when destroyed by xenos."
+  - imageadd: "tbg.dmi"
+  - soundadd: "tbg_windup, tbg_winddown, tbg_mid1, tbg_mid2, tbg_mid3, tbg_mid4, tbg_mid5, tbg_alarm"
