@@ -6,6 +6,7 @@
 	slowdown = 0
 	item_map_variant_flags = NONE
 	armor_features_flags = NONE
+	actions_types = list(/datum/action/item_action/toggle/suit_toggle/boom)
 	///Warcry to yell upon detonation
 	var/bomb_message
 	///List of warcries that are not allowed.
@@ -118,3 +119,23 @@
 
 /obj/item/clothing/suit/storage/marine/boomvest/fast
 	detonate_time = 0.5 SECONDS
+
+//AI logic
+/datum/action/item_action/toggle/suit_toggle/boom/ai_should_start_consider()
+	return TRUE
+
+/datum/action/item_action/toggle/suit_toggle/boom/ai_should_use(atom/target)
+	if(!target)
+		return FALSE
+	if(isainode(target))
+		return FALSE
+	if(!isliving(target) && !isarmoredvehicle(target) && !ismecha(target))
+		return FALSE
+	if(get_dist(owner, target) > 2)
+		return FALSE
+	var/atom/movable/movable_target = target
+	if(movable_target.faction == owner.faction)
+		return FALSE
+	if(!can_use_action())
+		return FALSE
+	return TRUE

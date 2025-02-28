@@ -7,10 +7,9 @@
 	density = FALSE
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = RESIST_ALL
-
+	faction = FACTION_SOM
+	///Current state of teleporter
 	var/teleporter_status = TELEPORTER_ARRAY_READY
-	///The faction this belongs to
-	var/faction = FACTION_SOM
 	///How many times this can be used
 	var/charges = 3
 	///The target turf for teleportation

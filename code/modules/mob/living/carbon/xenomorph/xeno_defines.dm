@@ -181,17 +181,7 @@
 	var/queen_leader_limit = 0
 
 	// *** Wraith Abilities *** //
-	//Banish - Values for the Wraith's Banish ability
-	///Base duration of Banish before modifiers
-	var/wraith_banish_base_duration = WRAITH_BANISH_BASE_DURATION
 
-	//Blink - Values for the Wraith's Blink ability
-	///Cooldown multiplier of Blink when used on non-friendlies
-	var/wraith_blink_drag_nonfriendly_living_multiplier = WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER
-	///Cooldown multiplier of Blink when used on friendlies
-	var/wraith_blink_drag_friendly_multiplier = WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER
-	///Base range of Blink
-	var/wraith_blink_range = WRAITH_BLINK_RANGE
 
 	// *** Hunter Abilities ***
 	///Damage breakpoint to knock out of stealth
@@ -278,8 +268,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	speak_emote = list("hisses")
 	melee_damage = 5 //Arbitrary damage value
 	attacktext = "claws"
-	attack_sound = null
-	friendly = "nuzzles"
+	attack_sound = SFX_ALIEN_CLAW_FLESH
 	wall_smash = FALSE
 	health = 5
 	maxHealth = 5
@@ -382,16 +371,15 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	///Multiplicative melee damage modifier; referenced by attack_alien.dm, most notably attack_alien_harm
 	var/xeno_melee_damage_modifier = 1
 
+	/// Visual effect that appears when doing a normal attack.
+	var/attack_effect = ATTACK_EFFECT_REDSLASH
+
 	//Charge vars
 	///Will the mob charge when moving ? You need the charge verb to change this
 	var/is_charging = CHARGE_OFF
 
 	// Gorger vars
 	var/overheal = 0
-
-	// Warrior vars
-	///0 - upright, 1 - all fours
-	var/agility = 0
 
 	// Defender vars
 	var/fortify = 0

@@ -107,14 +107,14 @@
 		return
 	if(attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE])
 		light_pilot(TRUE)
-	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	gun_user?.hud_used?.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 /obj/item/weapon/gun/flamer/unload(mob/living/user, drop = TRUE, after_fire = FALSE)
 	. = ..()
 	if(!.)
 		return
 	light_pilot(FALSE)
-	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	gun_user?.hud_used?.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 ///Makes the sound of the flamer being lit, and applies the overlay.
 /obj/item/weapon/gun/flamer/proc/light_pilot(light)
@@ -168,7 +168,7 @@
 	var/current_target = get_turf(target)
 	switch(burn_type)
 		if(FLAMER_STREAM_STRAIGHT)
-			var/path_to_target = getline(start_location, current_target)
+			var/path_to_target = get_line(start_location, current_target) //todo: use get_traversal_line and change recursive_flame_straight to use get_dist_euclidean for range
 			path_to_target -= start_location
 			recursive_flame_straight(1, old_turfs, path_to_target, range, current_target, flame_max_wall_pen)
 		if(FLAMER_STREAM_CONE)
@@ -253,7 +253,7 @@
 		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color, turfs_to_burn[turf_to_ignite])
 		adjust_current_rounds(chamber_items[current_chamber_position], -1)
 		rounds--
-	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	gun_user?.hud_used?.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	return TRUE
 
 ///Lights the specific turf on fire and processes melting snow or vines and the like.
