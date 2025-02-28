@@ -41,11 +41,6 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	if(corrupted)
 		corrupt(corrupted)
 
-/obj/machinery/power/geothermal/Destroy() //just in case
-	if(is_ground_level(z))
-		GLOB.generators_on_ground--
-	return ..()
-
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(corrupted)
