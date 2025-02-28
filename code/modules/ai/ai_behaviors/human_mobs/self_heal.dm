@@ -54,11 +54,11 @@
 		var/mob/living/carbon/carbon_parent = mob_parent
 		dam_list[PAIN] = carbon_parent.getShock_Stage() * 3 //pain is pretty important, but has low numbers and takes time to change
 
-	var/list/priority_list = sortTim(dam_list.Copy(), /proc/cmp_numeric_dsc, TRUE)
-	for(var/damtype in priority_list)
-		if(dam_list[damtype] <= 15)
+	dam_list = sortTim(dam_list, /proc/cmp_numeric_dsc, TRUE)
+	for(var/dam_type in dam_list)
+		if(dam_list[dam_type] <= 15)
 			continue
-		if(do_heal(damtype))
+		if(do_heal(dam_type))
 			continue
 
 	if(ishuman(mob_parent))
@@ -76,11 +76,11 @@
 	change_action(MOVING_TO_NODE)
 
 ///Tries to heal damage of a given type
-/datum/ai_behavior/human/proc/do_heal(damtype)
+/datum/ai_behavior/human/proc/do_heal(dam_type)
 	var/obj/item/heal_item
 	var/list/med_list
 
-	switch(damtype)
+	switch(dam_type)
 		if(BRUTE)
 			med_list = mob_inventory.brute_list
 		if(BURN)
@@ -126,7 +126,7 @@
 	return FALSE
 
 /obj/item/stack/medical/ai_use(mob/living/target, mob/living/user)
-	attack(target, user) //attack chain is a bit funny between different medical items like reagent containers below
+	attack(target, user)
 
 /obj/item/stack/medical/heal_pack/ai_should_use(mob/living/target, mob/living/user)
 	if(!ishuman(target))
@@ -144,7 +144,10 @@
 	return TRUE
 
 /obj/item/reagent_containers/ai_use(mob/living/target, mob/living/user)
-	afterattack(target, user, TRUE)
+	afterattack(target, user, TRUE) //why are all these medical item inconsistant with their proc usage, holy shit
+
+/obj/item/reagent_containers/pill/ai_use(mob/living/target, mob/living/user)
+	attack(target, user)
 
 /obj/item/reagent_containers/hypospray/ai_should_use(mob/living/target, mob/living/user)
 	if(!length(reagents.reagent_list)) //todo: discard if empty
