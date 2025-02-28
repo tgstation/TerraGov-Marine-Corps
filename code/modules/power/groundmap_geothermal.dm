@@ -28,14 +28,6 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	update_icon()
 	update_minimap_icon()
 
-	if(is_ground_level(z))
-		GLOB.generators_on_ground++
-
-/obj/machinery/power/geothermal/Destroy() //just in case
-	if(is_ground_level(z))
-		GLOB.generators_on_ground--
-	return ..()
-
 /obj/machinery/power/geothermal/should_have_node()
 	return TRUE
 
@@ -453,6 +445,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 
 /obj/machinery/power/geothermal/tbg/welder_act(mob/living/user, obj/item/I)
 	if(corrupted)
+		var/obj/item/tool/weldingtool/WT = I
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 			user.visible_message(span_notice("[user] fumbles around figuring out the resin tendrils on [src]."),
 			span_notice("You fumble around trying to burn off the resin tendrils."))
@@ -488,7 +481,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 		return FALSE
 	return ..()
 
-/obj/machinery/power/geothermal/update_overlays()
+/obj/machinery/power/geothermal/tbg/update_overlays()
 	. = ..()
 	if(corrupted)
 		. += image(icon, src, "overlay_corrupted", layer)
