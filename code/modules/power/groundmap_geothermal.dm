@@ -596,11 +596,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 
 /// Psychic mist -- Spawns on generator if it explodes; provides point gen as the generator would have
 /obj/machinery/mist_origin
-	name = "psychic resonator"
-	desc = "A seemingly indestructible mass of weeds rooted firmly in the ground. Appears to generate psychic points for the hive."
-	icon = 'icons/Xeno/1x1building.dmi'
-	icon_state = "psychic_resonator"
-	layer = RESIN_STRUCTURE_LAYER
+	name = ""
 	resistance_flags = RESIST_ALL|PROJECTILE_IMMUNE|DROPSHIP_IMMUNE
 	//Lists all visual mist effects
 	var/list/mist_list = list()
@@ -632,10 +628,28 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 /obj/effect/psychic_mist
 	name = "psychic mist"
 	desc = "Condensed droplets of raw psychic energy swirl around you."
+	resistance_flags = RESIST_ALL|PROJECTILE_IMMUNE|DROPSHIP_IMMUNE
 	icon = 'icons/effects/weather_effects.dmi'
 	icon_state = "light_ash"
 	color = "#7f16c5"
 
+/obj/effect/psychic_mist/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/// Psychic mist is difficult to breathe in, even with a mask on
+/obj/effect/psychic_mist/proc/on_cross(datum/source, atom/movable/crosser)
+	SIGNAL_HANDLER
+	if(!iscarbon(crosser) || prob(80))
+		return
+	var/mob/living/carbon/target = crosser
+	if(target.has_smoke_protection())
+		return
+	target.adjustStaminaLoss(10)
+	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "cough")
 
 #undef GENERATOR_NO_DAMAGE
 #undef GENERATOR_LIGHT_DAMAGE
