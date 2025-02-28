@@ -6,6 +6,9 @@
 
 //Count of all generators on the ground
 GLOBAL_VAR_INIT(generators_on_ground, 0)
+GLOBAL_VAR_INIT(total_bluespace_generators, 0) //Includes exploded generators (they still produce points)
+//Counter of how many TBGs there are active, for disks
+GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 
 /obj/machinery/power/geothermal
 	name = "\improper G-11 geothermal generator"
@@ -25,7 +28,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	//Last hive to corrupt the generator
 	var/last_corrupted = XENO_HIVE_NORMAL
 	///whether we wil allow these to be corrupted
-	var/is_corruptible = TRUE
+	var/is_corruptible = FALSE
 	///whether they should generate corruption if corrupted
 	var/corruption_on = FALSE
 
@@ -40,6 +43,11 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 
 	if(corrupted)
 		corrupt(corrupted)
+
+/obj/machinery/power/geothermal/Destroy() //just in case
+	if(is_ground_level(z))
+		GLOB.generators_on_ground--
+	return ..()
 
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -110,13 +118,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 
 /obj/machinery/power/geothermal/process()
 	if(corrupted && corruption_on)
-		if(!GLOB.generators_on_ground) //Prevent division by 0
-			return PROCESS_KILL
-		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
-			//You get points proportional to the % of generators corrupted (for example, if 66% of generators are corrupted the hive gets 0.66 points per second)
-			var/points_generated = GENERATOR_PSYCH_POINT_OUTPUT / GLOB.generators_on_ground
-			SSpoints.add_strategic_psy_points(corrupted, points_generated)
-			SSpoints.add_tactical_psy_points(corrupted, points_generated*0.25)
+		process_corruption()
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL
@@ -133,6 +135,16 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 			if(100)
 				balloon_alert_to_viewers("rumbles loudly as the generator reaches full strength.")
 		add_avail(power_generation_max * (power_gen_percent / 100) ) //Nope, all good, just add the power
+
+/// Handles generating points proportional to this generator type
+/obj/machinery/power/geothermal/proc/process_corruption()
+	if(!GLOB.generators_on_ground) //Prevent division by 0
+		return PROCESS_KILL
+	if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
+		//You get points proportional to the % of generators corrupted (for example, if 66% of generators are corrupted the hive gets 0.66 points per second)
+		var/points_generated = GENERATOR_PSYCH_POINT_OUTPUT / GLOB.generators_on_ground
+		SSpoints.add_strategic_psy_points(corrupted, points_generated)
+		SSpoints.add_tactical_psy_points(corrupted, points_generated*0.25)
 
 /obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
@@ -340,9 +352,6 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	name = "\improper Reinforced Reactor Turbine"
 	is_corruptible = FALSE
 
-//Counter of how many TBGs there are active, for disks
-GLOBAL_VAR_INIT(active_bluespace_generators, 0)
-
 /**
  * Thermo-bluespace generator
  *
@@ -358,6 +367,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	power_generation_max = 5000000 //Powers an entire colony
 	time_to_break = 10 SECONDS
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
+	is_corruptible = TRUE
 	//Stores whether we're in the turning off animation
 	var/winding_down = FALSE
 	//List of turbines connected for visuals
@@ -371,6 +381,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 
 /obj/machinery/power/geothermal/tbg/Initialize()
 	. = ..()
+	GLOB.total_bluespace_generators++
 	ambient_soundloop = new(list(src), is_on)
 	alarm_soundloop = new(list(src), buildstate == GENERATOR_EXPLODING)
 	for(var/direction in GLOB.cardinals)
@@ -379,6 +390,15 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 			continue
 		connected_turbines += potential_turbine
 		potential_turbine.connected = src
+
+/obj/machinery/power/geothermal/tbg/process_corruption()
+	if(!GLOB.total_bluespace_generators) //Prevent division by 0
+		return PROCESS_KILL
+	if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
+		//You get points proportional to the % of generators corrupted (for example, if 66% of generators are corrupted the hive gets 0.66 points per second)
+		var/points_generated = GENERATOR_PSYCH_POINT_OUTPUT / GLOB.total_bluespace_generators
+		SSpoints.add_strategic_psy_points(corrupted, points_generated)
+		SSpoints.add_tactical_psy_points(corrupted, points_generated*0.25)
 
 /obj/machinery/power/geothermal/tbg/Destroy()
 	if(is_on)
@@ -610,11 +630,13 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 /obj/machinery/mist_origin/process()
 	if(!(length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
 		return
-	var/points_generated = GENERATOR_PSYCH_POINT_OUTPUT / (1 + GLOB.generators_on_ground)
-	SSpoints.add_strategic_psy_points(hivenumber, points_generated)
-	SSpoints.add_tactical_psy_points(hivenumber, points_generated*0.25)
+	if(GLOB.total_bluespace_generators) //Avoid dividing by 0
+		var/points_generated = GENERATOR_PSYCH_POINT_OUTPUT / GLOB.total_bluespace_generators
+		SSpoints.add_strategic_psy_points(hivenumber, points_generated)
+		SSpoints.add_tactical_psy_points(hivenumber, points_generated*0.25)
 
 /obj/machinery/mist_origin/Destroy()
+	GLOB.total_bluespace_generators-- //Remove bluespace generator from psy-gen equation, since we're no longer producing points
 	for(var/obj/effect/psychic_mist/mist AS in mist_list)
 		QDEL_NULL(mist)
 	return ..()
