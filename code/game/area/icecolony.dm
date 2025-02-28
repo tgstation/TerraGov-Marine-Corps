@@ -766,8 +766,8 @@
 	icon_state = "quartstorage"
 
 /area/ice_colony/underground/requesition/sec_storage
-	name = "Underground Requesitions Secure Storage"
-	icon_state = "storage"
+	name = "Underground Generator Room"
+	icon_state = "engine"
 
 /*
 * Underground - Research
