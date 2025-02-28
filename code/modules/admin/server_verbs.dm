@@ -318,6 +318,11 @@ ADMIN_VERB(reload_admins, R_SERVER, "Reload Admins", "Manually load all admins f
 	log_admin("[key_name(user)] manually reloaded admins.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] manually reloaded admins.")
 
+ADMIN_VERB(reload_configuration, R_SERVER, "Reload Configuration", "Reloads the configuration from the default path on the disk, wiping any in-round modifications.", ADMIN_CATEGORY_SERVER)
+	if(tgui_alert(user, "Are you absolutely sure you want to reload the configuration from the default path on the disk, wiping any in-round modifications?", "Really reset?", list("No", "Yes")) != "Yes")
+		return
+	config.admin_reload()
+
 ADMIN_VERB(change_ground_map, R_SERVER, "Change Ground Map", "Change Ground Map for the next round.", ADMIN_CATEGORY_SERVER)
 	var/list/maprotatechoices = list()
 	for(var/map in config.maplist[GROUND_MAP])
