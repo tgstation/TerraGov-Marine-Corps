@@ -452,7 +452,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 
 ///Unsets a target from any target vars its in
 /datum/ai_behavior/proc/do_unset_target(atom/old_target, need_new_state = TRUE)
-	UnregisterSignal(old_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_MOVED))
+	UnregisterSignal(old_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_MOVED, COMSIG_MOB_STAT_CHANGED))
 	if(combat_target == old_target)
 		combat_target = null
 	if(interact_target == old_target)

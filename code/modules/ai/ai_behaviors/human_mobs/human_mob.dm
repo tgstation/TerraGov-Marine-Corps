@@ -42,6 +42,7 @@
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))
 	RegisterSignals(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
 	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(check_for_critical_health))
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_ON_CRIT, PROC_REF(on_other_mob_crit))
 	if(human_ai_behavior_flags & HUMAN_AI_AVOID_HAZARDS)
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_HAZARD_NOTIFIED, PROC_REF(add_hazard))
 		RegisterSignal(mob_parent, COMSIG_MOVABLE_Z_CHANGED, (PROC_REF(on_change_z)))
@@ -288,7 +289,7 @@
 		return
 	if(interactee == interact_target)
 		if(isturf(interactee.loc)) //no pickpocketing
-			mob_parent.UnarmedAttack(interactee, TRUE)
+			try_interact(interactee)
 		unset_target(interactee)
 		return
 	mob_parent.face_atom(interactee)
@@ -296,6 +297,16 @@
 		INVOKE_ASYNC(melee_weapon, TYPE_PROC_REF(/obj/item, melee_attack_chain), mob_parent, interactee)
 		return
 	mob_parent.UnarmedAttack(interactee, TRUE)
+
+///Tries to interact with something, usually nonharmfully
+/datum/ai_behavior/human/proc/try_interact(atom/interactee)
+	if(ishuman(interactee))
+		var/mob/living/carbon/human/human = interactee
+		if(mob_parent.faction != human.faction)
+			return
+		try_heal_other(human)
+		return
+	interactee.do_ai_interact(mob_parent)
 
 ///Says an audible message
 /datum/ai_behavior/human/proc/try_speak(message, cooldown = 2 SECONDS)
@@ -313,6 +324,27 @@
 	//todo: audible commands, gooooo
 	return
 
+///Decides if we should do something when another mob goes crit
+/datum/ai_behavior/human/proc/on_other_mob_crit(datum/source, mob/living/carbon/crit_mob)
+	SIGNAL_HANDLER
+	if(crit_mob.faction != mob_parent.faction)
+		return
+	if(crit_mob.z != mob_parent.z)
+		return
+	if(crit_mob == mob_parent)
+		return
+	if(get_dist(mob_parent, crit_mob) > 5)
+		return
+	set_interact_target(crit_mob)
+	RegisterSignal(crit_mob, COMSIG_MOB_STAT_CHANGED, PROC_REF(unset_target))
+
+///Unregisters a friendly target when their stat changes
+/datum/ai_behavior/human/proc/on_interactee_stat_change(mob/source, current_stat, new_stat) //this is only for crit heal currently
+	SIGNAL_HANDLER
+	if(new_stat == current_stat)
+		return
+	unset_target(source)
+
 /datum/ai_behavior/human/suicidal
 	minimum_health = 0
 
@@ -329,3 +361,7 @@
 /mob/living/carbon/human/ai/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
+
+///AI mob interaction with this atom
+/atom/proc/do_ai_interact(mob/living/interactor)
+	interactor.UnarmedAttack(src, TRUE) //only used for picking up items atm

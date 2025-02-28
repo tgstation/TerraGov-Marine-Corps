@@ -136,6 +136,9 @@
 ///from /atom/notify_ai_hazard()
 #define COMSIG_GLOB_AI_HAZARD_NOTIFIED "!ai_hazard_notified"
 
+///from /mob/living/carbon/proc/on_crit()
+#define COMSIG_GLOB_MOB_ON_CRIT "!mob_on_crit"
+
 //////////////////////////////////////////////////////////////////
 // /datum/component signals
 #define COMSIG_AUTOFIRE_ONMOUSEDOWN "autofire_onmousedown"

@@ -115,18 +115,9 @@
 		. = TRUE
 	mob_parent.zone_selected = BODY_ZONE_CHEST
 
-//TODO: probs move these - more than just medical relevant
-
 ///Checks if the AI can or should use this
 /obj/item/proc/ai_should_use(mob/living/target, mob/living/user)
 	return TRUE
-
-///AI uses this item in some manner
-/obj/item/proc/ai_use(mob/living/target, mob/living/user)
-	return FALSE
-
-/obj/item/stack/medical/ai_use(mob/living/target, mob/living/user)
-	attack(target, user)
 
 /obj/item/stack/medical/heal_pack/ai_should_use(mob/living/target, mob/living/user)
 	if(!ishuman(target))
@@ -143,12 +134,6 @@
 			return FALSE
 	return TRUE
 
-/obj/item/reagent_containers/ai_use(mob/living/target, mob/living/user)
-	afterattack(target, user, TRUE) //why are all these medical item inconsistant with their proc usage, holy shit
-
-/obj/item/reagent_containers/pill/ai_use(mob/living/target, mob/living/user)
-	attack(target, user)
-
 /obj/item/reagent_containers/hypospray/ai_should_use(mob/living/target, mob/living/user)
 	if(!length(reagents.reagent_list)) //todo: discard if empty
 		return FALSE
@@ -156,3 +141,16 @@
 		if((reagent.volume / reagents.total_volume * amount_per_transfer_from_this) + target.reagents.get_reagent_amount(reagent.type) > reagent.overdose_threshold)
 			return FALSE
 	return TRUE
+
+///AI uses this item in some manner
+/obj/item/proc/ai_use(mob/living/target, mob/living/user)
+	return FALSE
+
+/obj/item/stack/medical/ai_use(mob/living/target, mob/living/user)
+	attack(target, user)
+
+/obj/item/reagent_containers/ai_use(mob/living/target, mob/living/user)
+	afterattack(target, user, TRUE) //why are all these medical item inconsistant with their proc usage, holy shit
+
+/obj/item/reagent_containers/pill/ai_use(mob/living/target, mob/living/user)
+	attack(target, user)

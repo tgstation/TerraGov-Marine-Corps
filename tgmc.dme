@@ -1407,6 +1407,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\modules\ai\ai_behaviors\ai_behavior.dm"
 #include "code\modules\ai\ai_behaviors\human_mobs\grenades.dm"
 #include "code\modules\ai\ai_behaviors\human_mobs\hazard_avoidance.dm"
+#include "code\modules\ai\ai_behaviors\human_mobs\heal_others.dm"
 #include "code\modules\ai\ai_behaviors\human_mobs\human_mob.dm"
 #include "code\modules\ai\ai_behaviors\human_mobs\self_heal.dm"
 #include "code\modules\ai\ai_behaviors\human_mobs\weapon_module.dm"
