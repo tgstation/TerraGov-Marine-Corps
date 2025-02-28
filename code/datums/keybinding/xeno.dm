@@ -990,8 +990,8 @@
 
 /datum/keybinding/xeno/acid_mine
 	name = "acid_mine"
-	full_name = "Globadier: Place Acid Mine"
-	description = "Place a Acid Mine at your location."
+	full_name = "Globadier: Place Mine"
+	description = "Place a Mine at your location. Its effects depend on your selected grenade"
 	keybind_signal = COMSIG_XENOABILITY_ACID_MINE
 	hotkey_keys = list("G")
 

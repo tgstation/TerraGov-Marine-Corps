@@ -517,10 +517,10 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 // ***************************************
 
 /datum/action/ability/xeno_action/acid_mine
-	name = "Acid Mine"
+	name = "Place Mine"
 	action_icon_state = "acid_mine"
 	action_icon = 'icons/Xeno/actions/spitter.dmi'
-	desc = "Place an acid mine at your location"
+	desc = "Place an mine at your location. Its effects depend on your selected grenade"
 	cooldown_duration = 5 SECONDS
 	ability_cost = 150
 	///How many mines the ability can store at max
