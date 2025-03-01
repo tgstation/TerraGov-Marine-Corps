@@ -45,6 +45,13 @@
 	disable_ability()
 	return ..()
 
+/datum/action/ability/xeno_action/conqueror_dash/can_use_action(silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!xeno_owner.canmove)
+		return FALSE
+
 /datum/action/ability/xeno_action/conqueror_dash/action_activate()
 	toggled = !toggled
 	set_toggle(toggled)
@@ -110,7 +117,7 @@
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(leave_afterimage))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(end_dash))
 	playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_enhanced_charge.ogg', 8, TRUE)
-	xeno_owner.throw_at(get_ranged_target_turf(xeno_owner, direction, CONQUEROR_DASH_RANGE), CONQUEROR_DASH_RANGE, CONQUEROR_DASH_RANGE, targetted_throw = FALSE, impact_bounce = FALSE)
+	xeno_owner.throw_at(get_ranged_target_turf(xeno_owner, direction, CONQUEROR_DASH_RANGE), CONQUEROR_DASH_RANGE, CONQUEROR_DASH_RANGE, targetted_throw = FALSE)
 	last_move_time = 0
 	last_move_dir = null
 	add_cooldown()
@@ -652,7 +659,7 @@
 	check_distance = min(length(valid_turfs), check_distance)
 	var/list/reappearance_turfs = filled_circle_turfs(valid_turfs[check_distance], effect_range)
 	for(var/turf/turf_to_affect AS in reappearance_turfs)
-		if(isclosedturf(turf_to_affect) || isspaceturf(turf_to_affect) || isspacearea(get_area(turf_to_affect)) || !line_of_sight(xeno_owner, turf_target, effect_range))
+		if(isclosedturf(turf_to_affect) || isspaceturf(turf_to_affect) || isspacearea(get_area(turf_to_affect)) || !line_of_sight(turf_target, turf_to_affect, effect_range))
 			reappearance_turfs -= turf_to_affect
 			continue
 		new /obj/effect/temp_visual/behemoth/warning/conqueror(turf_to_affect, CONQUEROR_DOMINATION_CASTING_DELAY)
