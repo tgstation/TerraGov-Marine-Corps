@@ -46,7 +46,7 @@
 	///looping sound for flickering lights
 	var/datum/looping_sound/flickeringambient/lightambient
 	///do we automatically snap to walls?
-	var/autoplace = true
+	var/autoplace = TRUE
 
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload, ...)
@@ -311,7 +311,7 @@
 
 
 //automatically adjust place and offset to make sure sign isn't floating in the middle of nowhere
-/obj/structure/sign/proc/place_lights()
+/obj/machinery/light/proc/place_lights()
 	if(isclosedturf(get_step(loc, dir)))
 		switch(dir)
 			if(NORTH)
