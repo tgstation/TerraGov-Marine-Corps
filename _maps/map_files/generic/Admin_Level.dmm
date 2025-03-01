@@ -11315,8 +11315,8 @@
 "quo" = (
 /obj/machinery/power/geothermal/tbg{
 	dir = 4;
-	corrupted = fallen_hive;
-	last_corrupted = fallen_hive
+	corrupted = "fallen_hive";
+	last_corrupted = "fallen_hive"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
