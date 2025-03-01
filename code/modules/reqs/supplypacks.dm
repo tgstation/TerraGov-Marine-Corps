@@ -1060,7 +1060,7 @@ EXPLOSIVES
 	cost = 60
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/explosives/howitzer_ammo_plasmaloss
+/datum/supply_packs/explosives/howitzer_ammo_minelayer
 	name = "MG-100Y howitzer minelayer shell"
 	contains = list(/obj/item/mortal_shell/howitzer/minelayer)
 	cost = 80
