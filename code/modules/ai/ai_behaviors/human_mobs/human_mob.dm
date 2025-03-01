@@ -10,7 +10,7 @@
 	var/human_ai_behavior_flags = HUMAN_AI_SELF_HEAL|HUMAN_AI_USE_WEAPONS|HUMAN_AI_NO_FF|HUMAN_AI_AVOID_HAZARDS
 	///Flags about what the AI is current doing or wanting
 	var/human_ai_state_flags = HUMAN_AI_NEED_WEAPONS
-
+	///To what level they will handle healing others
 	var/medical_rating = AI_MED_STANDARD
 	///List of abilities to consider doing every Process()
 	var/list/ability_list = list()
@@ -31,10 +31,6 @@
 	refresh_abilities()
 	mob_parent.a_intent = INTENT_HARM
 	mob_inventory = new(mob_parent)
-	RegisterSignal(mob_parent, COMSIG_MOB_TOGGLEMOVEINTENT, PROC_REF(on_move_toggle)) //todo: move these sigs to start_ai?
-	if(mob_parent?.skills?.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_PRACTICED) //placeholder setter. Some jobs have high med but aren't medics...
-		medical_rating = AI_MED_MEDIC
-		RegisterSignals(SSdcs, list(COMSIG_GLOB_AI_NEED_HEAL, COMSIG_GLOB_MOB_CALL_MEDIC), PROC_REF(mob_need_heal))
 
 /datum/ai_behavior/human/Destroy(force, ...)
 	gun = null
@@ -49,7 +45,11 @@
 	RegisterSignals(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
 	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(check_for_critical_health))
 	RegisterSignal(mob_parent, COMSIG_AI_HEALING_MOB, PROC_REF(parent_being_healed))
+	RegisterSignal(mob_parent, COMSIG_MOB_TOGGLEMOVEINTENT, PROC_REF(on_move_toggle))
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_ON_CRIT, PROC_REF(on_other_mob_crit))
+	if(mob_parent?.skills?.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_PRACTICED) //placeholder setter. Some jobs have high med but aren't medics...
+		medical_rating = AI_MED_MEDIC
+		RegisterSignals(SSdcs, list(COMSIG_GLOB_AI_NEED_HEAL, COMSIG_GLOB_MOB_CALL_MEDIC), PROC_REF(mob_need_heal))
 	if(human_ai_behavior_flags & HUMAN_AI_AVOID_HAZARDS)
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_HAZARD_NOTIFIED, PROC_REF(add_hazard))
 		RegisterSignal(mob_parent, COMSIG_MOVABLE_Z_CHANGED, (PROC_REF(on_change_z)))
@@ -62,7 +62,19 @@
 	return ..()
 
 /datum/ai_behavior/human/cleanup_signals()
-	UnregisterSignal(mob_parent, list(COMSIG_OBSTRUCTED_MOVE, ACTION_GIVEN, ACTION_REMOVED, COMSIG_HUMAN_DAMAGE_TAKEN, COMSIG_LIVING_SET_LYING_ANGLE, COMSIG_MOVABLE_Z_CHANGED, COMSIG_MOVABLE_HEAR, COMSIG_AI_HEALING_MOB))
+	UnregisterSignal(mob_parent, list(
+		COMSIG_OBSTRUCTED_MOVE,
+		ACTION_GIVEN,
+		ACTION_REMOVED,
+		COMSIG_HUMAN_DAMAGE_TAKEN,
+		COMSIG_LIVING_SET_LYING_ANGLE,
+		COMSIG_MOVABLE_Z_CHANGED,
+		COMSIG_MOVABLE_HEAR,
+		COMSIG_AI_HEALING_MOB,
+		COMSIG_MOB_TOGGLEMOVEINTENT,
+		COMSIG_GLOB_AI_NEED_HEAL,
+		COMSIG_GLOB_MOB_CALL_MEDIC,
+	))
 	UnregisterSignal(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED))
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_HAZARD_NOTIFIED, COMSIG_GLOB_MOB_ON_CRIT)
 	return ..()
@@ -93,7 +105,7 @@
 	return ..()
 
 /datum/ai_behavior/human/scheduled_move()
-	if(human_ai_state_flags & HUMAN_AI_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
 		registered_for_move = FALSE
 		return
 	return ..()
@@ -116,7 +128,7 @@
 		return
 
 /datum/ai_behavior/human/look_for_new_state()
-	if(human_ai_state_flags & HUMAN_AI_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
 		return
 	var/mob/living/living_parent = mob_parent
 	switch(current_action)
@@ -273,6 +285,8 @@
 	if(combat_target == old_target && (human_ai_state_flags & HUMAN_AI_FIRING))
 		stop_fire()
 	remove_from_heal_list(old_target)
+	if(human_ai_state_flags & HUMAN_AI_HEALING)
+		on_heal_end(old_target)
 	return ..()
 
 ///Sets run move intent if able
@@ -298,12 +312,12 @@
 ///Sig handler for physical interactions, like attacks
 /datum/ai_behavior/human/proc/melee_interact(datum/source, atom/interactee)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(do_melee_interact), interactee)
+	//INVOKE_ASYNC(src, PROC_REF(do_melee_interact), interactee)
 
 ///Handles physical interactions, like attacks
-/datum/ai_behavior/human/proc/do_melee_interact(atom/interactee)
-	if(world.time < mob_parent.next_move)
-		return
+///datum/ai_behavior/human/proc/do_melee_interact(atom/interactee)
+	//if(world.time < mob_parent.next_move)
+	//	return
 	if(!interactee)
 		interactee = atom_to_walk_to //this seems like it should be combat_target, but the only time this should come up is if combat_target IS atom_to_walk_to
 	if(!mob_parent.CanReach(interactee, melee_weapon)) //todo: copy this for beno code, lots of other stuff too.
@@ -311,13 +325,16 @@
 	if(interactee == interact_target)
 		if(isturf(interactee.loc)) //no pickpocketing
 			try_interact(interactee)
+			. = TRUE
 		unset_target(interactee)
 		return
 	mob_parent.face_atom(interactee)
 	if(melee_weapon)
-		melee_weapon.melee_attack_chain(mob_parent, interactee)
-		return
+		INVOKE_ASYNC(melee_weapon, TYPE_PROC_REF(/obj/item, melee_attack_chain), mob_parent, interactee)
+		//melee_weapon.melee_attack_chain(mob_parent, interactee)
+		return TRUE
 	mob_parent.UnarmedAttack(interactee, TRUE)
+	return TRUE
 
 ///Tries to interact with something, usually nonharmfully
 /datum/ai_behavior/human/proc/try_interact(atom/interactee)
@@ -325,9 +342,10 @@
 		var/mob/living/carbon/human/human = interactee
 		if(mob_parent.faction != human.faction)
 			return
-		try_heal_other(human)
-		return
+		INVOKE_ASYNC(src, PROC_REF(try_heal_other), human)
+		return TRUE
 	interactee.do_ai_interact(mob_parent)
+	return TRUE
 
 ///Says an audible message
 /datum/ai_behavior/human/proc/try_speak(message, cooldown = 2 SECONDS)

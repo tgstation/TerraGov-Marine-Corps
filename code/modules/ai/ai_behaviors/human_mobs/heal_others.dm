@@ -2,11 +2,10 @@
 /datum/ai_behavior/human
 	var/list/heal_list = list()
 	///Chat lines for trying to heal
-	var/list/healing_chat = list("healing other mob.")
-	//var/list/healing_chat = list("Healing, cover me!", "Healing over here.", "Where's the damn medic?", "Medic!", "Treating wounds.", "It's just a flesh wound.", "Need a little help here!", "Cover me!.")
+	var/list/healing_chat = list("Healing you.", "Healing you, hold still.", "Stop moving!", "Fixing you up.", "Healing.", "Treating wounds.", "I'll have you patched up in no time.", "Quit your complaining, it's just a fleshwound.", "Cover me!", "Give me some room!")
 
 /datum/ai_behavior/human/late_initialize()
-	if(human_ai_state_flags & HUMAN_AI_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
 		return
 	. = ..()
 	if(!registered_for_move)
@@ -21,7 +20,7 @@
 		return
 	if(current_action == MOVING_TO_SAFETY)
 		return
-	if(human_ai_state_flags & HUMAN_AI_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
 		return
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
 		return
@@ -44,12 +43,12 @@
 /datum/ai_behavior/human/proc/parent_being_healed(mob/living/source, mob/living/carbon/human/healer) //add player healing sig? only AI healing currently
 	SIGNAL_HANDLER
 	human_ai_state_flags |= HUMAN_AI_HEALING
-	RegisterSignals(healer, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_MOVED, COMSIG_AI_HEALING_FINISHED), PROC_REF(on_heal_end))
+	RegisterSignals(healer, list(COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_MOVED, COMSIG_AI_HEALING_FINISHED), PROC_REF(on_heal_end)) //DOC IS NOT SET AS A TARGET, SO THIS MAY FAIL IF THEY JUST GET GIBBED OR SOMETHING
 
 ///Healing ended, successfully or otherwise
-/datum/ai_behavior/human/proc/on_heal_end(mob/living/carbon/human/source)
+/datum/ai_behavior/human/proc/on_heal_end(mob/living/carbon/human/healer)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_MOVED, COMSIG_AI_HEALING_FINISHED))
+	UnregisterSignal(healer, list(COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_MOVED, COMSIG_AI_HEALING_FINISHED))
 	human_ai_state_flags &= ~HUMAN_AI_HEALING
 	late_initialize()
 
@@ -94,7 +93,7 @@
 		return
 	if(current_action == MOVING_TO_SAFETY)
 		return
-	if(human_ai_state_flags & HUMAN_AI_HEALING)
+	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
 		return
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
 		return
@@ -104,7 +103,6 @@
 	if(patient in heal_list)
 		return
 	heal_list += patient
-	//RegisterSignals(patient, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_AI_HEALING_MOB, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(unset_target), TRUE)
 	RegisterSignal(patient, COMSIG_AI_HEALING_MOB, PROC_REF(unset_target))
 
 /datum/ai_behavior/human/proc/remove_from_heal_list(mob/living/carbon/human/old_patient)
@@ -122,9 +120,8 @@
 		return
 
 	do_unset_target(patient, FALSE)
-	//remove_from_heal_list(patient)
 
-	try_speak(pick(healing_chat)) //new lines needed
+	try_speak(pick(healing_chat))
 
 	var/list/dam_list = list(
 		BRUTE = patient.getBruteLoss(),
@@ -158,15 +155,11 @@
 			break
 		did_heal = TRUE
 
-	SEND_SIGNAL(mob_parent, COMSIG_AI_HEALING_FINISHED)
-	human_ai_state_flags &= ~HUMAN_AI_HEALING
-	//if we were unsuccesful in healing them for whatever reason, we stop. Generally because they're as healed as possible
-	///RNG stop so they don't try apply 500 chems to someone
-	if(!did_heal) //|| prob(30)
+	if(!did_heal || prob(30)) //heal interupted or nothing left to heal, or to stop overload
 		do_unset_target(patient)
-	else
-		UnregisterSignal(patient, COMSIG_MOVABLE_MOVED)
-	late_initialize()
+	UnregisterSignal(patient, COMSIG_MOVABLE_MOVED)
+	on_heal_end(mob_parent)
+	SEND_SIGNAL(mob_parent, COMSIG_AI_HEALING_FINISHED)
 
 ///Handles a friendly in crit
 /datum/ai_behavior/human/proc/crit_heal(mob/living/carbon/human/patient)

@@ -86,6 +86,10 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 #define HUMAN_AI_NEED_WEAPONS (1<<1)
 ///Healing or being healed
 #define HUMAN_AI_HEALING (1<<2)
+///Healing self
+#define HUMAN_AI_SELF_HEALING (1<<3)
+
+#define HUMAN_AI_ANY_HEALING (HUMAN_AI_HEALING|HUMAN_AI_SELF_HEALING)
 
 ///We're good to shoot
 #define AI_FIRE_CAN_HIT (1<<0)

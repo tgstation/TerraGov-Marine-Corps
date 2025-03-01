@@ -9,15 +9,17 @@
 	SIGNAL_HANDLER
 	COOLDOWN_START(src, ai_damage_cooldown, 5 SECONDS)
 	if(current_action == MOVING_TO_SAFETY)
+		if(attacker && attacker.faction != mob_parent.faction && !(human_ai_state_flags & HUMAN_AI_FIRING))
+			set_combat_target(attacker)
 		return
-	if((human_ai_state_flags & HUMAN_AI_HEALING) && attacker) //dont just stand there
-		human_ai_state_flags &= ~HUMAN_AI_HEALING
+	if((human_ai_state_flags & HUMAN_AI_ANY_HEALING) && attacker) //dont just stand there
+		human_ai_state_flags &= ~(HUMAN_AI_ANY_HEALING)
 		late_initialize()
 		return
 	var/mob/living/living_mob = mob_parent
 	if(!(human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) || living_mob.health - damage > minimum_health * living_mob.maxHealth)
 		return
-	if(mob_parent.incapacitated() || mob_parent.lying_angle) //todo: maybe remove or change this when we add team healing
+	if(mob_parent.incapacitated() || mob_parent.lying_angle)
 		return
 	if(!check_hazards())
 		return
@@ -53,7 +55,7 @@
 		PAIN = 0,
 	)
 
-	human_ai_state_flags |= HUMAN_AI_HEALING
+	human_ai_state_flags |= HUMAN_AI_SELF_HEALING
 
 	if(iscarbon(mob_parent))
 		var/mob/living/carbon/carbon_parent = mob_parent
@@ -75,11 +77,10 @@
 			broken_limbs += limb
 		for(var/broken_limb in broken_limbs)
 			if(!do_splint(broken_limb))
-				//send sig to call for help splinting
+				//todo: send sig to call for help splinting
 				break
 
-	//change_action(MOVING_TO_NODE)
-	human_ai_state_flags &= ~HUMAN_AI_HEALING
+	human_ai_state_flags &= ~HUMAN_AI_SELF_HEALING
 	late_initialize()
 
 ///Tries to heal damage of a given type
