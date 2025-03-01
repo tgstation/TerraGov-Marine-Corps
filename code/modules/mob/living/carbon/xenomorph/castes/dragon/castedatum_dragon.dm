@@ -4,7 +4,7 @@
 	upgrade_name = ""
 	base_strain_type = /mob/living/carbon/xenomorph/dragon
 	caste_type_path = /mob/living/carbon/xenomorph/dragon
-	caste_desc = "A big scary monster with wings!"
+	caste_desc = "A large monster with prominent wings and a distinctive silhouette."
 
 	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_BASETYPE
