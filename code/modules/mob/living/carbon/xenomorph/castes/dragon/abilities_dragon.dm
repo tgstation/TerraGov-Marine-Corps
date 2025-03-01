@@ -793,7 +793,7 @@
 	add_cooldown()
 
 /// Stops grabbing if the grabbed human dies.
-/datum/action/ability/activable/xeno/grab/proc/human_stat_changed(datum/source, mob/source_mob, new_stat)
+/datum/action/ability/activable/xeno/grab/proc/human_stat_changed(datum/source, old_stat, new_stat)
 	SIGNAL_HANDLER
 	if(new_stat != DEAD)
 		return
