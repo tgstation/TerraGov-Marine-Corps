@@ -1,4 +1,0 @@
-author: "fleewave"
-delete-after: True
-changes:
-  - rscadd: "Added a keybind that toggles click-drag on and off, preventing clicks from not going through when off."
