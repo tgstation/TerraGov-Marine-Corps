@@ -318,6 +318,10 @@
 		/obj/item/supplytablet,
 		/obj/item/radio/headset,
 	))
+
+	if(!linked)
+		return
+
 	for(var/obj/item/item in linked.contents)
 		if(item.type in item_blacklist)
 			qdel(item) // Prevents blacklisted items from being spawned, like ASRS tablets and headsets
