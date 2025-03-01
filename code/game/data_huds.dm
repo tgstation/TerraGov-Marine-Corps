@@ -302,7 +302,7 @@
 		simple_status_hud.icon_state = ""
 		infection_hud.icon_state = "robot"
 
-	var/is_bot = SEND_SIGNAL(src, COMSIG_HUD_NO_CLIENT)
+	var/is_bot = SEND_SIGNAL(src, COMSIG_HUD_NO_CLIENT) & MOB_HAS_AI
 	switch(stat)
 		if(DEAD)
 			simple_status_hud.icon_state = ""

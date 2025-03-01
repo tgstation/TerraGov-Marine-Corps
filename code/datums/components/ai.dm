@@ -79,4 +79,4 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 ///Confirms we are active
 /datum/component/ai_controller/proc/parent_hud_no_client(mob/living/source)
 	SIGNAL_HANDLER
-	return TRUE
+	return MOB_HAS_AI
