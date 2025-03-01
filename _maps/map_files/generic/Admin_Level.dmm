@@ -11515,9 +11515,7 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "qLa" = (
-/obj/machinery/power/geothermal{
-	corrupted = "fallen_hive"
-	},
+/obj/machinery/power/geothermal,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
 "qLI" = (
