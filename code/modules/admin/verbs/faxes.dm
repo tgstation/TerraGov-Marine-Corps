@@ -72,29 +72,21 @@ GLOBAL_LIST_EMPTY(faxes)
 
 		playsound(FM.loc, "sound/machines/dotprinter.ogg", 25, 1)
 
-
-/datum/admins/proc/view_faxes()
-	set category = "Admin.Fun"
-	set name = "View Faxes"
-
-	if(!check_rights(R_ADMIN, FALSE) && !is_mentor(usr.client))
-		return
-
+ADMIN_VERB(view_faxes, R_ADMIN|R_MENTOR, "View Faxes", "View or send faxes", ADMIN_CATEGORY_FUN)
 	var/dat
-
 	for(var/i in GLOB.faxes)
 		var/datum/fax/F = i
 		if(F.admin)
 			dat += "(STAFF) [F.senttime] | Title: '[F.title]' | Addressed to: [F.department]<br>"
-			dat += "Sender: [key_name_admin(F.sender)] [check_rights(R_ADMIN, FALSE) ? "[ADMIN_PP(F.sender)] " : ""](<a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(F)]'>VIEW</a>)"
+			dat += "Sender: [key_name_admin(F.sender)] [check_rights(R_ADMIN, FALSE) ? "[ADMIN_PP(F.sender)] " : ""](<a href='byond://?src=[REF(user.holder)];[HrefToken()];faxview=[REF(F)]'>VIEW</a>)"
 		else
 			dat += "[F.marked ? "(MARKED BY [F.marked] " : "(UNMARKED)"] [F.senttime] | Title: [F.title] | Addressed to: [F.department][F.faxmachine_department ? " | From: [F.faxmachine_department]" : ""]<br>"
-			dat += "Sender: [key_name_admin(F.sender)] [check_rights(R_ADMIN, FALSE) ? "[ADMIN_PP(F.sender)] " : ""][ADMIN_SM(F.sender)] (<a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];faxreply=[REF(F)]'>REPLY</a>) (<a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(F)]'>VIEW</a>) (<a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];faxmark=[REF(F)]'>MARK</a>)"
+			dat += "Sender: [key_name_admin(F.sender)] [check_rights(R_ADMIN, FALSE) ? "[ADMIN_PP(F.sender)] " : ""][ADMIN_SM(F.sender)] (<a href='byond://?src=[REF(user.holder)];[HrefToken()];faxreply=[REF(F)]'>REPLY</a>) (<a href='byond://?src=[REF(user.holder)];[HrefToken()];faxview=[REF(F)]'>VIEW</a>) (<a href='byond://?src=[REF(user.holder)];[HrefToken()];faxmark=[REF(F)]'>MARK</a>)"
 		dat += "<hr>"
 
-	dat += "<a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];faxcreate=[REF(usr)]'>CREATE NEW FAX</a>"
+	dat += "<a href='byond://?src=[REF(user.holder)];[HrefToken()];faxcreate=[REF(user.mob)]'>CREATE NEW FAX</a>"
 
-	var/datum/browser/browser = new(usr, "faxview", "<div align='center'>Faxes</div>")
+	var/datum/browser/browser = new(user, "faxview", "<div align='center'>Faxes</div>")
 	browser.set_content(dat)
 	browser.open(FALSE)
 

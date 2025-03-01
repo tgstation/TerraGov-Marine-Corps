@@ -459,11 +459,11 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	update_minimap_icon()
 
 ///Checks the path to the target for obstructions. Returns TRUE if the path is clear, FALSE if not.
-/obj/machinery/deployable/mounted/sentry/proc/check_target_path(atom/target)
+/obj/machinery/deployable/mounted/sentry/proc/check_target_path(atom/target) //todo: this whole proc is giga stinky and can probably just use line_of_sight and check_path
 	if(target.loc == loc)
 		return TRUE
 	var/turf/starting_turf = get_turf(src)
-	var/list/turf/path = getline(starting_turf, target)
+	var/list/turf/path = get_traversal_line(starting_turf, target)
 	var/turf/target_turf = path[length(path)-1]
 	path -= starting_turf
 	if(!length(path))

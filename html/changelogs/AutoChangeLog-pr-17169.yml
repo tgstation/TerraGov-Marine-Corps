@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed spears and other ranged melee items not being able to attack over some objects as intended"
