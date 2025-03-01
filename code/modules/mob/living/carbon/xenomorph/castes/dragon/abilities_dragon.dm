@@ -1112,7 +1112,7 @@
 		animate(world_plane.get_filter("dragon_unleash"), size = filter_size * 2, time = 0.5 SECONDS, loop = -1)
 		floor_plane.add_filter("dragon_unleash", 2, radial_blur_filter(filter_size))
 		animate(floor_plane.get_filter("dragon_unleash"), size = filter_size * 2, time = 0.5 SECONDS, loop = -1)
-		check_to_end_roar_effects_for(affected_living)
+		INVOKE_NEXT_TICK(src, PROC_REF(check_to_end_roar_effects_for), affected_living)
 	INVOKE_NEXT_TICK(src, PROC_REF(handle_roar_effects))
 
 /// Ends roar effects if roaring has ended or if said human gets out of rage.
@@ -1130,7 +1130,7 @@
 		addtimer(CALLBACK(floor_plane, TYPE_PROC_REF(/datum, remove_filter), "dragon_unleash"), resolve_time)
 		addtimer(CALLBACK(world_plane, TYPE_PROC_REF(/datum, remove_filter), "dragon_unleash"), resolve_time)
 		return
-	addtimer(CALLBACK(src, PROC_REF(check_to_end_roar_effects_for), affected_living), 0.1 SECONDS)
+	INVOKE_NEXT_TICK(src, PROC_REF(check_to_end_roar_effects_for), affected_living)
 
 /// Grants 30% additional slash/ability damage and a boost in movement speed that will wear off in 30 seconds.
 /datum/action/ability/activable/xeno/unleash/proc/apply_buffs()
