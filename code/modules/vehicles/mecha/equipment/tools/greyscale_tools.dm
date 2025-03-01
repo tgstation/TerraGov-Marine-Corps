@@ -16,6 +16,8 @@
 	var/dash_range = 3
 	/// how much energy we use per step when boosting
 	var/boost_consumption = 20
+	///cooldown between dash activations
+	var/dash_cooldown = 5 SECONDS
 
 /obj/item/mecha_parts/mecha_equipment/armor/booster/attach(obj/vehicle/sealed/mecha/M, attach_right)
 	. = ..()
@@ -24,6 +26,7 @@
 	chassis.dash_power_consumption = dash_consumption
 	chassis.dash_range = dash_range
 	chassis.speed_mod = speed_mod
+	chassis.dash_cooldown = dash_cooldown
 
 /obj/item/mecha_parts/mecha_equipment/armor/booster/detach(atom/moveto)
 	chassis.overload_step_energy_drain_min = initial(chassis.overload_step_energy_drain_min)
@@ -31,6 +34,7 @@
 	chassis.dash_power_consumption = initial(chassis.dash_power_consumption)
 	chassis.dash_range = initial(chassis.dash_range)
 	chassis.speed_mod = 0
+	chassis.dash_cooldown = initial(chassis.dash_cooldown)
 	return ..()
 
 
@@ -45,6 +49,7 @@
 	speed_mod = 0.7
 	dash_range = 5
 	boost_consumption = 10
+	dash_cooldown = 7 SECONDS
 
 /obj/item/mecha_parts/mecha_equipment/generator/greyscale
 	name = "phoron engine"

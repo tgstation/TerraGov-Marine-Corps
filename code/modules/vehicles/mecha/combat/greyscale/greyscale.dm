@@ -160,6 +160,11 @@
 			for(var/mob/occupant AS in return_drivers())
 				balloon_alert(occupant, "Not enough for dash")
 			return
+		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_DASH))
+			for(var/mob/occupant AS in return_drivers())
+				balloon_alert(occupant, "Dash cooldown ([(S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA_DASH) / 10)]s)")
+			return
+		S_TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_DASH, dash_cooldown)
 		activate_dash(direction)
 		return
 	last_mousedown_time = world.time
