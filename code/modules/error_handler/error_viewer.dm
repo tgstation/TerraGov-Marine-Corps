@@ -74,9 +74,10 @@ GLOBAL_DATUM_INIT(error_cache, /datum/error_viewer/error_cache, new)
 
 
 /datum/error_viewer/error_cache
+	/// A list of all errors, in order
 	var/list/errors = list()
+	/// A list of all error sources
 	var/list/error_sources = list()
-	var/list/errors_silenced = list()
 
 
 /datum/error_viewer/error_cache/show_to(user, datum/error_viewer/back_to, linear)
@@ -96,7 +97,7 @@ GLOBAL_DATUM_INIT(error_cache, /datum/error_viewer/error_cache, new)
 
 	browse_to(user, html)
 
-
+/// Logs an error in the runtime viewer
 /datum/error_viewer/error_cache/proc/log_error(exception/e, list/desclines, skip_count)
 	if(!istype(e))
 		return // Abnormal exception, don't even bother
