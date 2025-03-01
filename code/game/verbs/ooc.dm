@@ -108,6 +108,8 @@
 	for(var/client/recv_client AS in GLOB.clients)
 		if(!(recv_client.prefs.toggles_chat & CHAT_OOC))
 			continue
+		if((key in recv_client.prefs.ignoring))
+			continue
 
 		var/display_name = key
 		if(holder?.fakekey)
@@ -621,3 +623,76 @@
 	set hidden = TRUE
 
 	init_verbs()
+
+/client/verb/select_ignore()
+	set name = "Ignore"
+	set category = "OOC"
+	set desc ="Ignore a player's messages on the OOC channel"
+
+	var/list/players = list()
+
+	// Use keys and fakekeys for the same purpose
+	var/displayed_key = ""
+
+	for(var/client/C in GLOB.clients)
+		if(C == src)
+			continue
+		if((C.key in prefs.ignoring) && !C.holder?.fakekey)
+			continue
+		if(C.holder?.fakekey in prefs.ignoring)
+			continue
+		if(C.holder?.fakekey)
+			displayed_key = C.holder.fakekey
+		else
+			displayed_key = C.key
+
+		// Check if both we and the player are ghosts and they're not using a fakekey
+		if(isobserver(mob) && isobserver(C.mob) && !C.holder?.fakekey)
+			players["[displayed_key](ghost)"] = displayed_key
+		else
+			players[displayed_key] = displayed_key
+
+	if(!length(players))
+		to_chat(src, span_infoplain("There are no other players you can ignore!"))
+		return
+
+	players = sort_list(players)
+
+	var/selection = tgui_input_list(src, "Select a player", "Ignore", players)
+
+	if(isnull(selection) || !(selection in players))
+		return
+
+	selection = players[selection]
+
+	if(selection in prefs.ignoring)
+		to_chat(src, span_infoplain("You are already ignoring [selection]!"))
+		return
+
+	prefs.ignoring.Add(selection)
+	prefs.save_preferences()
+
+	to_chat(src, span_infoplain("You are now ignoring [selection] on the OOC channel."))
+
+/client/verb/select_unignore()
+	set name = "Unignore"
+	set category = "OOC"
+	set desc = "Stop ignoring a player's messages on the OOC channel"
+
+	if(!length(prefs.ignoring))
+		to_chat(src, span_infoplain("You haven't ignored any players!"))
+		return
+
+	var/selection = tgui_input_list(src, "Select a player", "Unignore", prefs.ignoring)
+
+	if(isnull(selection))
+		return
+
+	if(!(selection in prefs.ignoring))
+		to_chat(src, span_infoplain("You are not ignoring [selection]!"))
+		return
+
+	prefs.ignoring.Remove(selection)
+	prefs.save_preferences()
+
+	to_chat(src, span_infoplain("You are no longer ignoring [selection] on the OOC channel."))
