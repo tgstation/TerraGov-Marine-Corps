@@ -337,7 +337,7 @@
 		return
 	if(isclosedturf(get_turf(loc)))
 		return
-	for(var/i in CARDINAL_ALL_DIRS)
+	for(var/i in CARDINAL_DIRS)
 		if(!isclosedturf(get_step(loc, i)))
 			continue
 		else
@@ -347,21 +347,25 @@
 					light_pixel_x = 0
 					pixel_y = 20
 					pixel_x = 0
+					dir = NORTH //rotate dirs so we visually face the direction of the wall
 				if(SOUTH)
 					light_pixel_y = -15
 					light_pixel_x = 0
 					pixel_y = 0
 					pixel_x = 0
+					dir = SOUTH
 				if(EAST)
 					light_pixel_y = 0
 					light_pixel_x = 15
 					pixel_y = 0
 					pixel_x = -10
+					dir = EAST
 				if(WEST)
 					light_pixel_y = 0
 					light_pixel_x = -15
 					pixel_y = 0
 					pixel_x = 10
+					dir = WEST
 			return
 
 ///update the light state then icon
