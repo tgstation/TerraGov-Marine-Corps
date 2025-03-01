@@ -105,7 +105,7 @@
 		span_danger("We lunge at [src]!"), null, 5)
 		return FALSE
 
-	X.do_attack_animation(src, X.attack_effect)
+	X.do_attack_animation(src, islist(X.attack_effect) ? pick(X.attack_effect) : X.attack_effect)
 
 	//The normal attack proceeds
 	playsound(loc, X.attack_sound, 25, 1)

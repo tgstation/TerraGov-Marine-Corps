@@ -111,18 +111,20 @@
 	display_name = "Conqueror"
 	caste_type_path = /mob/living/carbon/xenomorph/king/conqueror
 	wound_type = "conqueror"
-	caste_desc = "Perfected by eons, it wears evolution's crown. A predator of time, sculpted to dominate."
+	//caste_desc = "Perfected by eons, it wears evolution's crown. A predator of time, sculpted to dominate."
 
 	// *** Melee Attacks *** //
 	melee_damage = 25
+	melee_ap = 15
+	attack_delay = 7
 
 	// *** Speed *** //
 	speed = -0.7
-	weeds_speed_mod = 0
+	weeds_speed_mod = -0.1
 
 	// *** Plasma *** //
-	plasma_max = 0
-	plasma_gain = 0
+	plasma_max = 600
+	plasma_gain = 30
 
 	// *** Health *** //
 	max_health = 600
@@ -134,9 +136,8 @@
 	evolve_min_xenos = 0
 
 	// *** Flags *** //
-	caste_flags = CASTE_INNATE_HEALING|CASTE_IS_INTELLIGENT|CASTE_IS_STRONG|CASTE_PLASMADRAIN_IMMUNE|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
-	can_flags = CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR|CASTE_CAN_HOLD_JELLY
-	caste_traits = list(TRAIT_SLOWDOWNIMMUNE, TRAIT_STOPS_TANK_COLLISION)
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_STRONG|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
+	caste_traits = list(TRAIT_STUNIMMUNE, TRAIT_STAGGERIMMUNE, TRAIT_SLOWDOWNIMMUNE, TRAIT_STOPS_TANK_COLLISION)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 60, ACID = 60)
@@ -144,11 +145,17 @@
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno/psydrain/conqueror,
-		/datum/action/ability/xeno_action/hive_message/conqueror,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong,
+		/datum/action/ability/xeno_action/hive_message,
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 		/datum/action/ability/xeno_action/conqueror_dash,
 		/datum/action/ability/activable/xeno/conqueror_will,
 		/datum/action/ability/xeno_action/conqueror_endurance,
@@ -160,20 +167,27 @@
 
 /datum/xeno_caste/king/conqueror/primordial
 	upgrade_name = "Primordial"
-	primordial_message = "We are the apex of evolution, reigning unchallenged in nature's arena."
+	//primordial_message = "We are the apex of evolution, reigning unchallenged in nature's arena."
 	upgrade = XENO_UPGRADE_PRIMO
 
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
-		/datum/action/ability/activable/xeno/psydrain/conqueror,
-		/datum/action/ability/xeno_action/hive_message/conqueror,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong,
+		/datum/action/ability/xeno_action/hive_message,
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 		/datum/action/ability/xeno_action/conqueror_dash,
 		/datum/action/ability/activable/xeno/conqueror_will,
 		/datum/action/ability/xeno_action/conqueror_endurance,
 		/datum/action/ability/activable/xeno/conqueror_domination,
+//		/datum/action/ability/xeno_action/conqueror_obliteration,
 	)

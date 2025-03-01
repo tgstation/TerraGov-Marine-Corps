@@ -530,6 +530,8 @@
 #define COMSIG_MOB_CLICK_ALT_RIGHT "mob_click_alt_right"		//from base of mob/AltRightClick(): (atom/A)
 	#define COMSIG_MOB_CLICK_CANCELED (1<<0)
 	#define COMSIG_MOB_CLICK_HANDLED (1<<1)
+#define COMSIG_MOB_PRE_UNARMED_ATTACK "mob_pre_unarmed_attack"	//from mob/ClickOn(): (atom/A, params)
+	#define CANCEL_UNARMED_ATTACK (1<<0)
 #define COMSIG_MOB_ATTACK_RANGED "mob_attack_ranged"			//from base of mob/RangedAttack(): (atom/A, params)
 #define COMSIG_MOB_THROW "mob_throw"							//from base of /mob/throw_item(): (atom/target)
 ///from base of /mob/verb/examinate(): (atom/target)

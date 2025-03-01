@@ -279,7 +279,6 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	melee_damage = 5 //Arbitrary damage value
 	attacktext = "claws"
 	attack_sound = SFX_ALIEN_CLAW_FLESH
-	attack_effect = ATTACK_EFFECT_REDSLASH
 	friendly = "nuzzles"
 	wall_smash = FALSE
 	health = 5
@@ -382,6 +381,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 
 	///Multiplicative melee damage modifier; referenced by attack_alien.dm, most notably attack_alien_harm
 	var/xeno_melee_damage_modifier = 1
+
+	/// Visual effect that appears when doing a normal attack.
+	var/attack_effect = ATTACK_EFFECT_REDSLASH
 
 	//Charge vars
 	///Will the mob charge when moving ? You need the charge verb to change this

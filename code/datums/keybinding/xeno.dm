@@ -714,12 +714,6 @@
 	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_WILL
 	hotkey_keys = list("C")
 
-/datum/keybinding/xeno/conqueror_will_alt
-	name = "Conqueror's Will (Alternate)"
-	full_name = "Conqueror: Disable Combo Display"
-	description = "Disables the combo display for Conqueror's Will."
-	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_WILL_ALT
-
 /datum/keybinding/xeno/conqueror_endurance
 	name = "Conqueror's Endurance"
 	full_name = "Conqueror: Endurance"
@@ -737,6 +731,13 @@
 	description = "Jump towards a target location, creating a large shockwave and affecting foes around you."
 	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_DOMINATION
 	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/conqueror_obliteration
+	name = "Conqueror's Obliteration"
+	full_name = "Conqueror: Obliteration"
+	description = "Unleash your latent power, boosting all of your abilities for a duration."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_OBLITERATION
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/acid_dash
 	name = "acid_dash"

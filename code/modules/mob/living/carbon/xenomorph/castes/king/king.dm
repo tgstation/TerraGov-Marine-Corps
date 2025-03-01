@@ -2,7 +2,7 @@
 	caste_base_type = /datum/xeno_caste/king
 	name = "King"
 	desc = "A primordial creature, evolved to smash the hardiest of defences and hunt the hardiest of prey."
-	icon = 'icons/Xeno/castes/king.dmi'
+	icon = 'icons/Xeno/castes/king/king.dmi'
 	icon_state = "King Walking"
 	health = 700
 	maxHealth = 700
@@ -19,7 +19,7 @@
 
 /mob/living/carbon/xenomorph/king/Initialize(mapload)
 	. = ..()
-	playsound(loc, 'sound/voice/alien/xenos_roaring.ogg', 75, 0)
+	spawn_cry()
 
 /mob/living/carbon/xenomorph/king/generate_name()
 	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
@@ -49,6 +49,10 @@
 /mob/living/carbon/xenomorph/king/death_cry()
 	playsound(loc, 'sound/voice/alien/king_died.ogg', 75, 0)
 
+/// Plays a sound when the King spawns in.
+/mob/living/carbon/xenomorph/king/proc/spawn_cry()
+	playsound(loc, 'sound/voice/alien/xenos_roaring.ogg', 75, 0)
+
 
 // ***************************************
 // *********** Conqueror
@@ -56,6 +60,8 @@
 /mob/living/carbon/xenomorph/king/conqueror
 	caste_base_type = /datum/xeno_caste/king/conqueror
 	name = "Conqueror"
+	desc = "Perfected by eons, it wears evolution's crown. A predator of time, sculpted to dominate."
+	icon = 'icons/Xeno/castes/king/conqueror.dmi'
 	icon_state = "Conqueror Walking"
 
 /mob/living/carbon/xenomorph/king/conqueror/generate_name()
@@ -78,3 +84,6 @@
 			name = prefix + "Exalted Conqueror ([nicknumber])"
 		else
 			name = prefix + "Young Conqueror ([nicknumber])"
+
+/mob/living/carbon/xenomorph/king/conqueror/spawn_cry()
+	return

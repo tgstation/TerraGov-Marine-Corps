@@ -72,7 +72,6 @@
 	var/melee_damage = 0
 	var/attacktext = "attacks"
 	var/attack_sound
-	var/attack_effect
 	var/friendly = "nuzzles"
 	var/wall_smash
 	///modifier to gun accuracy
