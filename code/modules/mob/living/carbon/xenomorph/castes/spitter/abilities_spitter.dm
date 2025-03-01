@@ -278,8 +278,11 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	det_time = 1 SECONDS
 	dangerous = TRUE
 	arm_sound = 'sound/voice/alien/yell_alt.ogg'
+	///The xenomorph that created this grenade
 	var/mob/living/carbon/xenomorph/owner
+	///The datum that represents what this grenade does when used as a mine
 	var/datum/globadier_mine/minetype = /datum/globadier_mine
+	///What message is displayed when the grenade is selected
 	var/select_message = "Detonates in a star pattern, spreading acid which deals damage to those that stay within it."
 
 /obj/item/explosive/grenade/globadier/prime()
@@ -311,9 +314,13 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 /datum/globadier_mine
 	//These are all passed to the actual mine obj
+	///The name of the mine, when its created
 	var/name = "acid mine"
+	///Desc of the mine
 	var/desc = "A weird bulb, filled with acid."
+	///Icon file of the mine
 	var/icon = 'icons/obj/items/mines.dmi'
+	///Icon state of the mine
 	var/icon_state = "acid_mine"
 	///The amount of acid damage this deals
 	var/acid_damage = 30

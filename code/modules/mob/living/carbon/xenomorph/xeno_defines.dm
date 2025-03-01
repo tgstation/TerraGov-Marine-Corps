@@ -233,7 +233,7 @@
 	for(var/trait in caste_traits)
 		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
-	xenomorph.RegisterSignal(xenomorph,COMSIG_XENOMORPH_ATTACK_LIVING, TYPE_PROC_REF(/mob/living/carbon/xenomorph, lifesteal))
+	xenomorph.RegisterSignal(xenomorph,COMSIG_XENOMORPH_ATTACK_LIVING, TYPE_PROC_REF(/mob/living/carbon/xenomorph, onhithuman))
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
 	xenomorph.remove_component(/datum/component/bump_attack)
@@ -449,7 +449,8 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	///The unresting cooldown
 	COOLDOWN_DECLARE(xeno_unresting_cooldown)
 
-/mob/living/carbon/xenomorph/proc/lifesteal(attacker, target) //For globadiers lifesteal debuff
+///Called whenever a xeno slashes a human
+/mob/living/carbon/xenomorph/proc/onhithuman(attacker, target) //For globadiers lifesteal debuff
 	SIGNAL_HANDLER
 	if(!ishuman(target))
 		return
