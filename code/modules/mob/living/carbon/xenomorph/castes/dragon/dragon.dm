@@ -183,5 +183,5 @@
 	vehicle.take_damage(damage, BRUTE, MELEE, armour_penetration = ap, blame_mob = src)
 	if(!should_stun)
 		return
-	for(var/mob/living/living_occupant in vehicle.occupants)
-		living_occupant.apply_effect(3 SECONDS, EFFECT_PARALYZE)
+	for(var/mob/living/carbon/human/human_occupant in vehicle.occupants)
+		human_occupant.apply_effect(3 SECONDS, EFFECT_PARALYZE)
