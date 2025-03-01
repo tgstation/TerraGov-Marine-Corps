@@ -1,0 +1,4 @@
+author: "fleewave"
+delete-after: True
+changes:
+  - balance: "Huggers now die if thrown onto a vehicle."
