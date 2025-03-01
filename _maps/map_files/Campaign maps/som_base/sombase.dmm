@@ -4352,7 +4352,7 @@
 	},
 /area/rocinante_base/surface/building/administration)
 "fAC" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -6659,7 +6659,7 @@
 /turf/open/floor/plating/ground/snow,
 /area/rocinante_base/ground/base_e)
 "iDw" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /obj/structure/platform/metalplatform{
@@ -7477,7 +7477,7 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/rocinante_base/surface/building/cargo/vehicle_garage)
 "jHb" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/ground/base_cent)
 "jHi" = (
@@ -8364,7 +8364,7 @@
 	},
 /area/rocinante_base/surface/building/security/garage_sec)
 "kNr" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /obj/structure/platform/metalplatform{
@@ -11266,7 +11266,7 @@
 /turf/open/floor/plating/ground/snow,
 /area/rocinante_base/ground/base_n)
 "oxL" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
@@ -17896,7 +17896,7 @@
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/administration/command)
 "wIz" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -17992,7 +17992,7 @@
 /turf/open/floor/plating/ground/concrete/edge,
 /area/rocinante_base/ground/base_s)
 "wQt" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,

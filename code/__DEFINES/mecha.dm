@@ -11,8 +11,7 @@
 #define SILICON_PILOT (1<<4)
 #define IS_ENCLOSED (1<<5)
 #define HAS_LIGHTS (1<<6)
-#define QUIET_STEPS (1<<7)
-#define QUIET_TURNS (1<<8)
+#define QUIET_TURNS (1<<7)
 ///blocks using equipment and melee attacking.
 #define CANNOT_INTERACT (1<<9)
 /// Can click from any direction and perform stuff
@@ -21,6 +20,8 @@
 #define MECHA_SKILL_LOCKED (1<<11)
 ///Is currently suffering from an EMP
 #define MECHA_EMPED (1<<12)
+///Whether to immeditely spin when we dont have enough angle on the target
+#define MECHA_SPIN_WHEN_NO_ANGLE (1<<12)
 
 #define MECHA_MELEE (1 << 0)
 #define MECHA_RANGED (1 << 1)

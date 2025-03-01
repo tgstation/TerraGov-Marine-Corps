@@ -105,7 +105,7 @@
 /turf/open/floor/light,
 /area/shuttle/ert)
 "x" = (
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /obj/effect/mapping_helpers/barricade/closed,
 /turf/open/floor/podhatch/floor,
 /area/shuttle/ert)

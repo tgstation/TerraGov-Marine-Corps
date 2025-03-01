@@ -38,6 +38,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 	AddComponent(/datum/component/submerge_modifier, 10)
 	set_fire(new_burn_ticks, new_burn_level, f_color, fire_stacks, fire_damage)
+	notify_ai_hazard()
 
 /obj/fire/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -166,6 +167,8 @@
 	light_on = FALSE
 	burn_ticks = 36
 	burn_decay = 9
+	/// The creator of this fire. Only really matters for pyrogens.
+	var/mob/living/carbon/xenomorph/creator
 
 /obj/fire/melting_fire/affect_atom(atom/affected)
 	if(!ishuman(affected))
@@ -182,7 +185,7 @@
 		return FALSE
 	var/datum/status_effect/stacking/melting_fire/debuff = human_affected.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 	if(debuff)
-		debuff.add_stacks(PYROGEN_MELTING_FIRE_EFFECT_STACK)
+		debuff.add_stacks(PYROGEN_MELTING_FIRE_EFFECT_STACK, creator)
 	else
-		human_affected.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_MELTING_FIRE_EFFECT_STACK)
+		human_affected.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_MELTING_FIRE_EFFECT_STACK, creator)
 	human_affected.take_overall_damage(PYROGEN_MELTING_FIRE_DAMAGE, BURN, FIRE, max_limbs = 2)

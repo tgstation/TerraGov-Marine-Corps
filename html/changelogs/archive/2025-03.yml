@@ -1,0 +1,23 @@
+2025-03-01:
+  The_Man:
+  - bugfix: You can no longer activate robot self-repair if brute and burn damage
+      is 0.
+  TiviPlus:
+  - balance: mech take fire damage
+  - admin: Added reload-config admin verb
+  - balance: Mech can now reload on the move
+  - bugfix: Fixed not all mech items respecting arms being blown off
+  - balance: Lightweight mech booster gets +1 dash range
+  - balance: Removed melee core speed boost
+  - bugfix: Fixed get mob not working on cryod mobs
+  - bugfix: fixed reload-admins not working
+  - bugfix: fixed mech sprint not updating the overlay correctly
+  blackdav123:
+  - rscadd: Marines have been better trained about nutrition and will stop eating
+      before they get fat.
+  - bugfix: Eating messages use the correct nutrition values.
+  fleewave:
+  - rscadd: Added a keybind that toggles click-drag on and off, preventing clicks
+      from not going through when off.
+  novaepee:
+  - spellcheck: 2025 tip update!

@@ -79,7 +79,7 @@ OPERATIONS
 	cost = 130
 
 /datum/supply_packs/operations/deployable_camera
-	name = "3 Deployable cameras"
+	name = "3 deployable cameras"
 	contains = list(
 		/obj/item/deployable_camera,
 		/obj/item/deployable_camera,
@@ -214,22 +214,22 @@ WEAPONS
 	cost = 100
 
 /datum/supply_packs/weapons/sentry_flamer
-	name = "SFT-575 Flamethrower Sentry"
+	name = "SFT-575 flamethrower sentry"
 	contains = list(/obj/item/storage/box/crate/sentry_flamer)
 	cost = 400
 
 /datum/supply_packs/weapons/sentry_flamer_ammo
-	name = "SFT-575 Flamethrower Sentry Ammo"
+	name = "SFT-575 flamethrower sentry ammo"
 	contains = list(/obj/item/ammo_magazine/sentry/flamer)
 	cost = 150
 
 /datum/supply_packs/weapons/sentry_laser
-	name = "SLT-576 Laser Sentry"
+	name = "SLT-576 laser sentry"
 	contains = list(/obj/item/storage/box/crate/sentry_laser)
 	cost = 400
 
 /datum/supply_packs/weapons/sentry_laser_ammo
-	name = "SLT-576 Laser Sentry Ammo"
+	name = "SLT-576 laser sentry ammo"
 	contains = list(/obj/item/ammo_magazine/sentry/laser)
 	cost = 200
 
@@ -599,7 +599,7 @@ WEAPONS
 	cost = 1000
 
 /datum/supply_packs/weapons/shotguntracker
-	name = "12 gauge tracker thells"
+	name = "12 gauge tracker shells"
 	contains = list(/obj/item/ammo_magazine/shotgun/tracker)
 	cost = 50
 	available_against_xeno_only = TRUE
@@ -833,6 +833,11 @@ SMARTGUN
 /datum/supply_packs/smartguns/smarttarget_rifle_ammo_bin
 	name = "SG-62 smart target rifle ammo bin"
 	contains = list(/obj/item/ammo_magazine/packet/smart_targetrifle)
+	cost = 50
+
+/datum/supply_packs/smartguns/smartspotting_rifle_ammo_bin
+	name = "SG-153 spotting rifle ammo bin"
+	contains = list(/obj/item/ammo_magazine/packet/smart_spottingrifle)
 	cost = 50
 
 /datum/supply_packs/smartguns/spotting_rifle_ammo
@@ -1562,7 +1567,7 @@ ENGINEERING
 /datum/supply_packs/engineering/tesla_turret
 	name = "Tesla turret"
 	contains = list(/obj/item/tesla_turret)
-	cost = 600
+	cost = 250
 
 /*******************************************************************************
 SUPPLIES
@@ -2176,6 +2181,11 @@ VEHICLES
 	contains = list(/obj/item/ammo_magazine/tank/microrocket_rack)
 	cost = 10
 
+/datum/supply_packs/vehicles/repairpack
+	name = "Mech repairpack"
+	contains = list(/obj/item/repairpack)
+	cost = 10
+
 /*******************************************************************************
 FACTORY
 *******************************************************************************/
@@ -2352,6 +2362,11 @@ FACTORY
 /datum/supply_packs/factory/smartgun_targetrifle_ammobin_refill
 	name = "SG-62 ammo bin parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_targetrifle_ammobin_refill)
+	cost = 400
+
+/datum/supply_packs/factory/smartgun_spottingrifle_ammobin_refill
+	name = "SG-153 ammo bin parts refill"
+	contains = list(/obj/item/factory_refill/smartgunner_spottingrifle_ammobin_refill)
 	cost = 400
 
 /datum/supply_packs/factory/autosniper_magazine_refill

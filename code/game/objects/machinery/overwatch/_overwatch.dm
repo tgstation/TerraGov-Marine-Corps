@@ -46,12 +46,11 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	networks = list("marine")
 	open_prompt = FALSE
 	interaction_flags = INTERACT_MACHINE_DEFAULT
+	faction = FACTION_TERRAGOV
 	///behavior flags for overwatch
 	var/overwatch_flags
 	///which z level is ignored when showing marines.
 	var/z_hidden = HIDE_NONE
-	/// The faction that this computer can overwatch
-	var/faction = FACTION_TERRAGOV
 	/// The list of all squads that can be watched
 	var/list/watchable_squads
 	///Squad being currently overseen

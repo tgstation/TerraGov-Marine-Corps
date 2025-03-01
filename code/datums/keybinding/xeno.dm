@@ -1162,27 +1162,6 @@
 	keybind_signal =COMSIG_XENOABILITY_PORTAL_ALTERNATE
 	hotkey_keys = list("R")
 
-/datum/keybinding/xeno/blink
-	name = "wraith_blink"
-	full_name = "Wraith: Blink"
-	description = "Teleport to a space a short distance away within line of sight. Can teleport mobs you're dragging with you at the cost of higher cooldown."
-	keybind_signal = COMSIG_XENOABILITY_BLINK
-	hotkey_keys = list("Q")
-
-/datum/keybinding/xeno/banish
-	name = "banish"
-	full_name = "Wraith: Banish"
-	description = "Banish a creature or object a short distance away within line of sight to null space. Can target oneself and allies. Can be manually cancelled with Recall."
-	keybind_signal = COMSIG_XENOABILITY_BANISH
-	hotkey_keys = list("F")
-
-/datum/keybinding/xeno/recall
-	name = "recall"
-	full_name = "Wraith: Recall"
-	description = "Recall a target from netherspace, ending Banish's effect."
-	keybind_signal = COMSIG_XENOABILITY_RECALL
-	hotkey_keys = list("G")
-
 /datum/keybinding/xeno/timestop
 	name = "timestop"
 	full_name = "Wraith: Time stop"
@@ -1310,8 +1289,14 @@
 	description = "Unleash a fireball after a small windup."
 	keybind_signal = COMSIG_XENOABILITY_FIREBALL
 
-/datum/keybinding/xeno/heatray
-	name = "Heatray"
-	full_name = "Pyrogen: Heatray"
-	description = "After a windup, unleash a heat ray that will cook any marine it comes across."
-	keybind_signal = COMSIG_XENOABILITY_HEATRAY
+/datum/keybinding/xeno/inferno
+	name = "Inferno"
+	full_name = "Pyrogen: Inferno"
+	description = "Immediately release a large radius of fire and burning nearby marines in the process."
+	keybind_signal = COMSIG_XENOABILITY_INFERNO
+
+/datum/keybinding/xeno/infernal_trigger
+	name = "Infernal Trigger"
+	full_name = "Pyrogen: Infernal Trigger"
+	description = "After a windup, cause a marine who is on fire to explode their flames outward and set on fire those around them."
+	keybind_signal = COMSIG_XENOABILITY_INFERNAL_TRIGGER

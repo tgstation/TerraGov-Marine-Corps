@@ -192,7 +192,7 @@
 /area/shuttle/ert/upp)
 "P" = (
 /obj/effect/mapping_helpers/barricade/closed,
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /turf/open/shuttle/dropship/floor,
@@ -204,7 +204,7 @@
 /area/shuttle/ert/upp)
 "S" = (
 /obj/effect/mapping_helpers/barricade/closed,
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
 "V" = (
@@ -223,7 +223,7 @@
 /area/shuttle/ert/upp)
 "Y" = (
 /obj/effect/mapping_helpers/barricade/closed,
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 8
 	},
 /turf/open/shuttle/dropship/floor,

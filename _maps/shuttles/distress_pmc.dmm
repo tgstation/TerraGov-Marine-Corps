@@ -180,8 +180,14 @@
 "Je" = (
 /turf/closed/shuttle/dropship_white/engine_corner,
 /area/shuttle/ert/pmc)
+<<<<<<< HEAD
 "KF" = (
 /turf/closed/shuttle/dropship_white/logo_wall/three{
+=======
+"O" = (
+/obj/effect/mapping_helpers/barricade/closed,
+/obj/structure/barricade/folding{
+>>>>>>> master
 	dir = 4
 	},
 /area/shuttle/ert/pmc)
@@ -216,8 +222,13 @@
 /area/shuttle/ert/pmc)
 "QM" = (
 /obj/effect/mapping_helpers/barricade/closed,
+<<<<<<< HEAD
 /obj/structure/barricade/plasteel{
 	dir = 4
+=======
+/obj/structure/barricade/folding{
+	dir = 8
+>>>>>>> master
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
@@ -245,6 +256,18 @@
 /obj/machinery/light{
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/area/shuttle/ert/pmc)
+"Y" = (
+/turf/closed/shuttle/ert/engines/left/two{
+	dir = 1
+	},
+/area/shuttle/ert/pmc)
+"Z" = (
+/obj/effect/mapping_helpers/barricade/closed,
+/obj/structure/barricade/folding,
+>>>>>>> master
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 "ZM" = (
