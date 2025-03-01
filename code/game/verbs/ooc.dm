@@ -108,9 +108,9 @@
 	for(var/client/recv_client AS in GLOB.clients)
 		if(!(recv_client.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(key in recv_client.prefs.ignoring)
-			continue
 		if(holder?.fakekey in recv_client.prefs.ignoring)
+			continue
+		if(key in recv_client.prefs.ignoring)
 			continue
 
 		var/display_name = key
