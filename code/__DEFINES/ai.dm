@@ -195,6 +195,33 @@ GLOBAL_LIST_INIT(ai_pain_heal_items, list(
 	/obj/item/reagent_containers/hypospray/autoinjector/elite,
 ))
 
+GLOBAL_LIST_INIT(ai_eye_heal_items, list(
+	/obj/item/reagent_containers/hypospray/advanced/imialky,
+	/obj/item/reagent_containers/pill/imidazoline,
+	/obj/item/reagent_containers/hypospray/autoinjector/imidazoline,
+))
+
+GLOBAL_LIST_INIT(ai_brain_heal_items, list(
+	/obj/item/reagent_containers/hypospray/advanced/imialky,
+	/obj/item/reagent_containers/pill/alkysine,
+	/obj/item/reagent_containers/hypospray/autoinjector/alkysine,
+))
+
+GLOBAL_LIST_INIT(ai_ib_heal_items, list(
+	/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus,
+	/obj/item/reagent_containers/hypospray/advanced/quickclotplus,
+	/obj/item/reagent_containers/hypospray/advanced/quickclotplus_medkit,
+	/obj/item/reagent_containers/hypospray/advanced/big/quickclot,
+	/obj/item/reagent_containers/hypospray/autoinjector/quickclot,
+	/obj/item/reagent_containers/pill/quickclot,
+))
+
+GLOBAL_LIST_INIT(ai_organ_heal_items, list(
+	/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
+	/obj/item/reagent_containers/hypospray/advanced/peridaxonplus,
+	/obj/item/reagent_containers/hypospray/advanced/peridaxonplus_medkit,
+))
+
 ///List of squads that can be spawned, and the roles in them, sorted in spawn order
 GLOBAL_LIST_INIT(ai_squad_presets, list(
 	"SOM breachers" = list(

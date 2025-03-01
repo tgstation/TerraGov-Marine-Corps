@@ -27,6 +27,11 @@
 	var/list/clone_list
 	var/list/pain_list
 
+	var/list/eye_list
+	var/list/brain_list
+	var/list/ib_list
+	var/list/organ_list
+
 /datum/managed_inventory/New(mob/living/new_owner)
 	. = ..()
 	owner = new_owner
@@ -62,6 +67,11 @@
 		QDEL_NULL(oxy_list)
 		QDEL_NULL(clone_list)
 		QDEL_NULL(pain_list)
+
+		QDEL_NULL(eye_list)
+		QDEL_NULL(brain_list)
+		QDEL_NULL(ib_list)
+		QDEL_NULL(organ_list)
 		return
 	equipped_list = list()
 	gun_list = list()
@@ -77,6 +87,11 @@
 	oxy_list = list()
 	clone_list = list()
 	pain_list = list()
+
+	eye_list = list()
+	brain_list = list()
+	ib_list = list()
+	organ_list = list()
 
 ///Handles an item being equipped, and its contents
 /datum/managed_inventory/proc/item_equipped(mob/user, obj/item/equipped_item)
@@ -197,6 +212,14 @@
 				type_list = clone_list
 			if(PAIN)
 				type_list = pain_list
+			if(EYE_DAMAGE)
+				type_list = eye_list
+			if(BRAIN_DAMAGE)
+				type_list = brain_list
+			if(INTERNAL_BLEEDING)
+				type_list = ib_list
+			if(ORGAN_DAMAGE)
+				type_list = organ_list
 
 		if(new_item in type_list) //we can just early return here, due to the signal issue mentioned above
 			return
@@ -258,6 +281,10 @@
 	oxy_list -= moving_item
 	clone_list -= moving_item
 	pain_list -= moving_item
+	eye_list -= moving_item
+	brain_list -= moving_item
+	ib_list -= moving_item
+	organ_list -= moving_item
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
 
 ///Removes an item from this list

@@ -36,7 +36,7 @@
 	for(var/dam_type in dam_list)
 		if(dam_list[dam_type] <= 15)
 			continue
-		if(do_heal(dam_type))
+		if(heal_by_type(mob_parent, dam_type))
 			continue
 
 	if(ishuman(mob_parent))
@@ -48,41 +48,10 @@
 			broken_limbs += limb
 		for(var/broken_limb in broken_limbs)
 			if(!do_splint(broken_limb))
-				//todo: send sig to call for help splinting
 				break
 
 	human_ai_state_flags &= ~HUMAN_AI_SELF_HEALING
 	late_initialize()
-
-///Tries to heal damage of a given type
-/datum/ai_behavior/human/proc/do_heal(dam_type, target = mob_parent)
-	var/obj/item/heal_item
-	var/list/med_list
-
-	switch(dam_type)
-		if(BRUTE)
-			med_list = mob_inventory.brute_list
-		if(BURN)
-			med_list = mob_inventory.burn_list
-		if(TOX)
-			med_list = mob_inventory.tox_list
-		if(OXY)
-			med_list = mob_inventory.oxy_list
-		if(CLONE)
-			med_list = mob_inventory.clone_list
-		if(PAIN)
-			med_list = mob_inventory.pain_list
-
-	for(var/obj/item/stored_item AS in med_list)
-		if(!stored_item.ai_should_use(target, mob_parent))
-			continue
-		heal_item = stored_item
-		break
-
-	if(!heal_item)
-		return FALSE
-	heal_item.ai_use(target, mob_parent)
-	return TRUE
 
 ///Tries to splint a limb
 /datum/ai_behavior/human/proc/do_splint(datum/limb/broken_limb, target = mob_parent)

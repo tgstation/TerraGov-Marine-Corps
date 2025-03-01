@@ -144,13 +144,14 @@
 
 	dam_list = sortTim(dam_list, /proc/cmp_numeric_dsc, TRUE)
 	var/did_heal = FALSE
+	//health
 	for(var/dam_type in dam_list)
 		if(dam_list[dam_type] <= 10)
 			continue
-		if(do_heal(dam_type, patient))
+		if(heal_by_type(patient, dam_type))
 			did_heal = TRUE
 			continue
-
+	//bones
 	var/list/broken_limbs = list()
 	for(var/datum/limb/limb AS in patient.limbs)
 		if(!(limb.limb_status & LIMB_BROKEN) || (limb.limb_status & LIMB_SPLINTED))
@@ -160,7 +161,12 @@
 		if(!do_splint(broken_limb, patient))
 			break
 		did_heal = TRUE
+	//organs
+	do_organ_heal(patient)
+	//IB
 
+
+	//shrap
 	if(!did_heal || prob(30)) //heal interupted or nothing left to heal, or to stop overload
 		do_unset_target(patient)
 	UnregisterSignal(patient, COMSIG_MOVABLE_MOVED)
@@ -172,6 +178,60 @@
 	var/obj/item/heal_item
 
 	for(var/obj/item/stored_item AS in mob_inventory.oxy_list)
+		if(!stored_item.ai_should_use(patient, mob_parent))
+			continue
+		heal_item = stored_item
+		break
+
+	if(!heal_item)
+		return FALSE
+	heal_item.ai_use(patient, mob_parent)
+	return TRUE
+
+///Addresses organ damage
+/datum/ai_behavior/human/proc/do_organ_heal(mob/living/carbon/human/patient = mob_parent)
+	var/organ_damaged = FALSE
+	for(var/datum/internal_organ/organ AS in patient.internal_organs)
+		if(organ.damage < organ.min_bruised_damage)
+			continue
+		if(istype(organ, /datum/internal_organ/eyes))
+			heal_by_type(patient, EYE_DAMAGE)
+			continue
+		if(istype(organ, /datum/internal_organ/brain))
+			heal_by_type(patient, BRAIN_DAMAGE)
+			continue
+		organ_damaged = TRUE
+	if(organ_damaged)
+		heal_by_type(patient, ORGAN_DAMAGE)
+
+///Tries to heal damage of a given type
+/datum/ai_behavior/human/proc/heal_by_type(mob/living/carbon/human/patient, dam_type)
+	var/obj/item/heal_item
+	var/list/med_list
+
+	switch(dam_type)
+		if(BRUTE)
+			med_list = mob_inventory.brute_list
+		if(BURN)
+			med_list = mob_inventory.burn_list
+		if(TOX)
+			med_list = mob_inventory.tox_list
+		if(OXY)
+			med_list = mob_inventory.oxy_list
+		if(CLONE)
+			med_list = mob_inventory.clone_list
+		if(PAIN)
+			med_list = mob_inventory.pain_list
+		if(EYE_DAMAGE)
+			med_list = mob_inventory.eye_list
+		if(BRAIN_DAMAGE)
+			med_list = mob_inventory.brain_list
+		if(INTERNAL_BLEEDING)
+			med_list = mob_inventory.ib_list
+		if(ORGAN_DAMAGE)
+			med_list = mob_inventory.organ_list
+
+	for(var/obj/item/stored_item AS in med_list)
 		if(!stored_item.ai_should_use(patient, mob_parent))
 			continue
 		heal_item = stored_item
