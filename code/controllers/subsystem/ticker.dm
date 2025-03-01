@@ -126,6 +126,7 @@ SUBSYSTEM_DEF(ticker)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 				for(var/client/C AS in GLOB.clients)
 					C.mob?.update_sight() // To reveal ghosts
+				world.TgsTriggerEvent("tg-Roundend", wait_for_completion = TRUE)
 
 
 /datum/controller/subsystem/ticker/proc/setup()

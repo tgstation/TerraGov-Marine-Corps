@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes:
+  - bugfix: "Glasses/Goggles can no longer be toggled in hand creating an empty hud visor sprite"
