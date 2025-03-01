@@ -1112,11 +1112,11 @@
 		animate(world_plane.get_filter("dragon_unleash"), size = filter_size * 2, time = 0.5 SECONDS, loop = -1)
 		floor_plane.add_filter("dragon_unleash", 2, radial_blur_filter(filter_size))
 		animate(floor_plane.get_filter("dragon_unleash"), size = filter_size * 2, time = 0.5 SECONDS, loop = -1)
-		end_roar_effects_for(affected_living)
-	INVOKE_NEXT_TICK(CALLBACK(src, PROC_REF(handle_roar_effects)), 0.1 SECONDS)
+		check_to_end_roar_effects_for(affected_living)
+	INVOKE_NEXT_TICK(src, PROC_REF(handle_roar_effects))
 
 /// Ends roar effects if roaring has ended or if said human gets out of rage.
-/datum/action/ability/activable/xeno/unleash/proc/end_roar_effects_for(mob/living/affected_living)
+/datum/action/ability/activable/xeno/unleash/proc/check_to_end_roar_effects_for(mob/living/affected_living)
 	if(!affected_living || !xeno_owner)
 		return
 	var/atom/movable/screen/plane_master/floor/floor_plane = affected_living.hud_used.plane_masters["[FLOOR_PLANE]"]
@@ -1130,11 +1130,11 @@
 		addtimer(CALLBACK(floor_plane, TYPE_PROC_REF(/datum, remove_filter), "dragon_unleash"), resolve_time)
 		addtimer(CALLBACK(world_plane, TYPE_PROC_REF(/datum, remove_filter), "dragon_unleash"), resolve_time)
 		return
-	addtimer(CALLBACK(src, PROC_REF(end_roar_effects_for), affected_living), 0.1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(check_to_end_roar_effects_for), affected_living), 0.1 SECONDS)
 
-/// Grants 33% additional slash/ability damage and a boost in movement speed that will wear off in 30 seconds.
+/// Grants 30% additional slash/ability damage and a boost in movement speed that will wear off in 30 seconds.
 /datum/action/ability/activable/xeno/unleash/proc/apply_buffs()
-	xeno_owner.xeno_melee_damage_modifier += 1/3 //This is 33% increase of all slash and ability damage.
+	xeno_owner.xeno_melee_damage_modifier += 0.3 //This is 30% increase of all slash and ability damage.
 	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH, TRUE, 0, NONE, TRUE, -0.5)
 	timer_id = addtimer(CALLBACK(src, PROC_REF(start_withdrawal)), 30 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 	succeed_activate()
