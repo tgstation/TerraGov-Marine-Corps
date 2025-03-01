@@ -31,7 +31,14 @@ GLOBAL_LIST_EMPTY(medal_awards)
 	var/choice = tgui_input_list(user, "Award a medal to who?", "Medal Tyme", sort_list(all_marines)) // no its not a typo.
 	if(!choice || !(choice in all_marines))
 		return FALSE
-	award_medal_to(user, all_marines[choice])
+	var/marine = all_marines[choice]
+	if(marine == null)
+		debug_admins("null mob in GLOB.human_mob_list")
+		to_chat(user, span_notice("Failed to select target due to an internal server error."))
+		while(null in GLOB.human_mob_list)
+			GLOB.human_mob_list -= null
+		return
+	award_medal_to(user, marine)
 
 /**
  * Award a medal to a client. Note that players do not get persistent medals if dead (or the body no longer exists).
