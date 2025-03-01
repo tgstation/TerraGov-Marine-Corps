@@ -946,7 +946,7 @@
 		qdel(src)
 		return
 	debuff_owner = new_owner
-	. = ..()
+	return ..()
 
 /datum/status_effect/incapacitating/electrified/on_apply()
 	. = ..()
@@ -1006,7 +1006,7 @@
 		qdel(src)
 		return
 	debuff_owner = new_owner
-	. = ..()
+	return ..()
 
 /datum/status_effect/incapacitating/plague/on_apply()
 	. = ..()

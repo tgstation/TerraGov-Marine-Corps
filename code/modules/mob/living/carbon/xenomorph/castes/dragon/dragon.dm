@@ -29,6 +29,9 @@
 /mob/living/carbon/xenomorph/dragon/death_cry()
 	playsound(loc, 'sound/voice/alien/king_died.ogg', 75, 0)
 
+/mob/living/carbon/xenomorph/dragon/throw_at(atom/target, range, speed = 5, thrower, spin, flying = FALSE, targetted_throw = TRUE)
+	return FALSE
+
 /mob/living/carbon/xenomorph/dragon/handle_special_state()
 	if(doing_landing_animations || !(status_flags & INCORPOREAL))
 		return FALSE

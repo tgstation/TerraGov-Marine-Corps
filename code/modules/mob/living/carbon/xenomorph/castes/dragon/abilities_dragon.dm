@@ -31,7 +31,6 @@
 		xeno_owner.face_atom(grabbed_human)
 		xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 		xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-		ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
 		xeno_owner.visible_message(span_danger("[xeno_owner] lifts [grabbed_human] into the air and gets ready to slam!"))
 		if(do_after(xeno_owner, 3 SECONDS / cooldown_plasma_bonus, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
 			xeno_owner.face_atom(grabbed_human)
@@ -48,9 +47,6 @@
 						continue
 					animate(living_in_range, pixel_z = living_in_range.pixel_z + 8, layer = max(MOB_JUMP_LAYER, living_in_range.layer), time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
 					animate(pixel_z = living_in_range.pixel_z - 8, layer = living_in_range.layer, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
-					var/datum/component/jump/living_jump_component = living_in_range.GetComponent(/datum/component/jump)
-					if(living_jump_component)
-						TIMER_COOLDOWN_START(living_in_range, JUMP_COMPONENT_COOLDOWN, 0.5 SECONDS)
 			grabbed_human.take_overall_damage(damage * 2.5, BRUTE, MELEE, max_limbs = 5, updating_health = TRUE) // 150
 			xeno_owner.gain_plasma(250 * cooldown_plasma_bonus)
 		xeno_owner.move_resist = initial(xeno_owner.move_resist)
@@ -90,8 +86,6 @@
 				affected_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5, updating_health = TRUE)
 				affected_living.knockback(xeno_owner, 2, 1)
 				xeno_owner.do_attack_animation(affected_living)
-				xeno_owner.visible_message(span_danger("\The [xeno_owner] smacks [affected_living]!"), \
-					span_danger("We smack [affected_living]!"), null, 5)
 				has_hit_anything = TRUE
 				continue
 			if(!isobj(affected_atom))
@@ -190,10 +184,6 @@
 				else
 					xeno_owner.balloon_alert(xeno_owner, "no weeds")
 			return FALSE
-	if(!isxenodragon(xeno_owner))
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "no wings")
-		return FALSE
 	if(TIMER_COOLDOWN_CHECK(xeno_owner, COOLDOWN_DRAGON_CHANGE_FORM))
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "already lifting")
@@ -285,9 +275,6 @@
 				animate(impacted_living, pixel_z = impacted_living.pixel_z + 8, layer = max(MOB_JUMP_LAYER, impacted_living.layer), time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
 				animate(pixel_z = impacted_living.pixel_z - 8, layer = impacted_living.layer, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
 				impacted_living.animation_spin(0.5 SECONDS, 1, impacted_living.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
-				var/datum/component/jump/living_jump_component = impacted_living.GetComponent(/datum/component/jump)
-				if(living_jump_component)
-					TIMER_COOLDOWN_START(impacted_living, JUMP_COMPONENT_COOLDOWN, 0.25 SECONDS)
 
 				xeno_owner.do_attack_animation(impacted_living)
 				xeno_owner.visible_message(span_danger("\The [xeno_owner] tail swipes [impacted_living]!"), \
@@ -607,9 +594,6 @@
 				animate(impacted_living, pixel_z = impacted_living.pixel_z + 8, layer = max(MOB_JUMP_LAYER, impacted_living.layer), time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
 				animate(pixel_z = impacted_living.pixel_z - 8, layer = impacted_living.layer, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
 				impacted_living.animation_spin(0.5 SECONDS, 1, impacted_living.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
-				var/datum/component/jump/living_jump_component = impacted_living.GetComponent(/datum/component/jump)
-				if(living_jump_component)
-					TIMER_COOLDOWN_START(impacted_living, JUMP_COMPONENT_COOLDOWN, 0.5 SECONDS)
 				has_hit_anything = TRUE
 				continue
 			if(!isobj(impacted_atom))
@@ -720,13 +704,13 @@
 				continue
 			acceptable_humans += affected_human
 
-	if(!acceptable_humans.len) // Whiff.
+	if(!length(acceptable_humans)) // Whiff.
 		playsound(get_turf(xeno_owner), 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 		succeed_activate()
 		add_cooldown()
 		return
 
-	for(var/mob/living/carbon/human/nearest_human in acceptable_humans)
+	for(var/mob/living/carbon/human/nearest_human AS in acceptable_humans)
 		if(!grabbed_human)
 			grabbed_human = nearest_human
 			continue
@@ -1003,8 +987,8 @@
 /// Returns up to 15 humans that are in line of sight, nearby, and not dead.
 /datum/action/ability/activable/xeno/psychic_channel/proc/get_lightning_shrike_marines()
 	var/list/mob/living/carbon/human/acceptable_humans = list()
-	for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(xeno_owner, 9))
-		if(acceptable_humans.len >= 15)
+	for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(xeno_owner, 7))
+		if(length(acceptable_humans.len) >= 15)
 			break
 		if(nearby_human.stat == DEAD)
 			continue
@@ -1027,6 +1011,8 @@
 	for(var/turf/center_turf AS in center_turfs)
 		var/list/turf/filled_turfs = filled_turfs(center_turf, 1, include_edge = FALSE, pass_flags_checked = PASS_GLASS|PASS_PROJECTILE)
 		for(var/turf/filled_turf AS in filled_turfs)
+			if(filled_turf in hit_turfs)
+				continue
 			if(locate(/obj/effect/temp_visual/dragon/warning) in filled_turf.contents)
 				continue
 			hit_turfs += filled_turf
@@ -1072,7 +1058,7 @@
 	/// If we are currently in the process of roaring.
 	var/currently_roaring = FALSE
 	/// The timer id for the proc regarding the beginning or ending of withdrawal.
-	var/timer_id = FALSE
+	var/timer_id
 
 /datum/action/ability/activable/xeno/unleash/can_use_ability(atom/A, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
@@ -1127,7 +1113,7 @@
 		floor_plane.add_filter("dragon_unleash", 2, radial_blur_filter(filter_size))
 		animate(floor_plane.get_filter("dragon_unleash"), size = filter_size * 2, time = 0.5 SECONDS, loop = -1)
 		end_roar_effects_for(affected_living)
-	addtimer(CALLBACK(src, PROC_REF(handle_roar_effects)), 0.1 SECONDS)
+	INVOKE_NEXT_TICK(CALLBACK(src, PROC_REF(handle_roar_effects)), 0.1 SECONDS)
 
 /// Ends roar effects if roaring has ended or if said human gets out of rage.
 /datum/action/ability/activable/xeno/unleash/proc/end_roar_effects_for(mob/living/affected_living)

@@ -1306,45 +1306,53 @@
 	full_name = "Dragon: Backhand"
 	description = "After a windup, smack a group of marines in front of you away."
 	keybind_signal = COMSIG_XENOABILITY_BACKHAND
+	hotkey_keys = list("Z")
 
 /datum/keybinding/xeno/fly
 	name = "Fly"
 	full_name = "Dragon: Fly"
 	description = "After a windup, begin to fly away. If you're already flying, land."
 	keybind_signal = COMSIG_XENOABILITY_FLY
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/tailswipe
 	name = "Tailswipe"
 	full_name = "Dragon: Tailswipe"
 	description = "After a windup, knock over and stun a group of marines in front of you."
 	keybind_signal = COMSIG_XENOABILITY_TAILSWIPE
+	hotkey_keys = list("X")
 
 /datum/keybinding/xeno/dragon_breath
 	name = "Dragon Breath"
 	full_name = "Dragon: Dragon Breath"
 	description = "After a windup, continuously fire a barrage of fireballs."
 	keybind_signal = COMSIG_XENOABILITY_DRAGON_BREATH
+	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/grab
 	name = "Grab"
 	full_name = "Dragon: Grab"
 	description = "After a windup, firmly grab an nearby marine in front of you and prevent them from moving away."
 	keybind_signal = COMSIG_XENOABILITY_GRAB
+	hotkey_keys = list("V")
 
 /datum/keybinding/xeno/psychic_channel
 	name = "Psychic Channel"
 	full_name = "Dragon: Psychic Channel"
 	description = "After a windup, begin channeling. If already channeled, use one of your sub-abilities."
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHANNEL
+	hotkey_keys = list("B")
 
 /datum/keybinding/xeno/psychic_channel_selection
 	name = "Psychic Channel (Selection)"
 	full_name = "Dragon: Psychic Channel (Selection)"
 	description = "Select which sub-ability that Psychic Channel will use."
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHANNEL_SELECTION
+	hotkey_keys = list("N")
 
 /datum/keybinding/xeno/unleash
 	name = "Unleash"
 	full_name = "Dragon: Unleash"
 	description = "After a windup, get various buffs that bolster your offensive capabilities."
 	keybind_signal = COMSIG_XENOABILITY_UNLEASH
+	hotkey_keys = list("M")
