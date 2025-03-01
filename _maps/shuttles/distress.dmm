@@ -100,9 +100,11 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert)
 "v" = (
+/obj/effect/ai_node,
 /turf/open/shuttle/dropship/four,
 /area/shuttle/ert)
 "w" = (
+/obj/effect/ai_node,
 /turf/open/shuttle/dropship/eight,
 /area/shuttle/ert)
 "x" = (
@@ -194,6 +196,12 @@
 /obj/effect/mapping_helpers/barricade/closed,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert)
+"V" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/distress,
+/obj/effect/ai_node,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert)
 "W" = (
 /obj/structure/barricade/plasteel{
 	dir = 8
@@ -261,11 +269,11 @@ I
 c
 C
 l
+V
 r
 r
 r
-r
-r
+V
 l
 z
 z

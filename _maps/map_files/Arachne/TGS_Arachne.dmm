@@ -221,6 +221,18 @@
 	dir = 8
 	},
 /area/mainship/hallways/port_ert)
+"ajD" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/light/floor{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/hallways/starboard_ert)
 "ajW" = (
 /obj/effect/spawner/random/misc/plant,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -234,6 +246,12 @@
 	dir = 1
 	},
 /area/mainship/hallways/port_ert)
+"akE" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/hallways/starboard_ert)
 "akX" = (
 /obj/structure/window/reinforced/toughened{
 	dir = 8
@@ -16224,6 +16242,18 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical)
+"njH" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/light/floor{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/hallways/port_ert)
 "nkf" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
@@ -20712,6 +20742,15 @@
 	dir = 4
 	},
 /area/mainship/medical)
+"qTo" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/hallways/port_ert)
 "qTP" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -22281,6 +22320,16 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/floor,
 /area/mainship/medical/upper_medical)
+"saA" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/disposalpipe/segment,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/hallways/port_ert)
 "saV" = (
 /turf/open/floor/mainship/tcomms,
 /area/mainship/shipboard/weapon_room)
@@ -22637,6 +22686,15 @@
 	dir = 2
 	},
 /area/mainship/command/self_destruct)
+"soR" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/silver{
+	dir = 4
+	},
+/area/mainship/hallways/starboard_ert)
 "spr" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -31711,11 +31769,11 @@ wDf
 ugu
 pqH
 eaj
+qTo
 pqH
 pqH
 pqH
-pqH
-eaj
+njH
 pqH
 pqH
 pqH
@@ -32629,11 +32687,11 @@ ajW
 pGQ
 xQY
 lUz
+saA
 kqo
 kqo
 kqo
-kqo
-kqo
+saA
 kqo
 jwb
 eaZ
@@ -41911,11 +41969,11 @@ aKU
 eac
 eBT
 pVp
+soR
 eBT
 eBT
 eBT
-eBT
-pVp
+ajD
 eBT
 eBT
 eBT
@@ -42727,7 +42785,7 @@ wvW
 cVA
 oFs
 dmT
-oFs
+iME
 oFs
 oFs
 oFs
@@ -42833,7 +42891,7 @@ xfT
 xfT
 xfT
 iYz
-xfT
+akE
 xfT
 xfT
 cpN

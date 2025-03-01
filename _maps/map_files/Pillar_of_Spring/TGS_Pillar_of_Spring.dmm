@@ -11999,6 +11999,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
+"oZe" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
 "oZh" = (
 /obj/item/reagent_containers/food/snacks/meat{
 	pixel_x = -1;
@@ -16769,6 +16777,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical)
+"uOr" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
 "uOz" = (
 /obj/structure/sign/prop1{
 	dir = 1
@@ -17845,6 +17860,16 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
+"wnI" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/light/mainship/small{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
 "wnJ" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
@@ -42210,7 +42235,7 @@ uSe
 uSe
 uSe
 uSe
-ior
+oZe
 rKn
 vZa
 rKn
@@ -42724,7 +42749,7 @@ uSe
 uSe
 uSe
 uSe
-ior
+oZe
 rKn
 vZa
 rKn
@@ -43481,15 +43506,15 @@ wsG
 fRw
 dMO
 rKn
-sYv
+qFT
 nld
 kLK
 rea
-eWJ
+wnI
 kLK
 kLK
 kLK
-kLK
+uOr
 rea
 eWJ
 kLK
@@ -59704,7 +59729,7 @@ uSe
 uSe
 uSe
 uSe
-ior
+oZe
 esN
 nWT
 nWT
@@ -60218,7 +60243,7 @@ uSe
 uSe
 uSe
 uSe
-ior
+oZe
 esN
 nWT
 nWT
