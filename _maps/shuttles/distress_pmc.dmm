@@ -1,167 +1,128 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"as" = (
+"ds" = (
+/obj/machinery/computer/shuttle/ert,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert/pmc)
+"gj" = (
+/turf/closed/shuttle/ert/engines/left/three{
+	dir = 1
+	},
+/area/shuttle/ert/pmc)
+"gu" = (
+/turf/closed/shuttle/dropship_white/top_corner,
+/area/shuttle/ert/pmc)
+"hB" = (
+/turf/closed/shuttle/dropship_white/logo_wall/four,
+/area/shuttle/ert/pmc)
+"kf" = (
 /turf/closed/shuttle/dropship_white/logo_wall/three{
 	dir = 1
 	},
 /area/shuttle/ert/pmc)
-"ay" = (
-/turf/closed/shuttle/dropship_white/interior_corner{
+"la" = (
+/turf/closed/shuttle/dropship_white/backwall,
+/area/shuttle/ert/pmc)
+"mk" = (
+/turf/closed/shuttle/ert/engines/right/two{
 	dir = 1
 	},
 /area/shuttle/ert/pmc)
-"aG" = (
-/obj/effect/ai_node,
-/turf/open/shuttle/dropship/eight,
+"oa" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/six,
 /area/shuttle/ert/pmc)
-"bE" = (
-/turf/closed/shuttle/dropship_white/logo_wall/two,
+"oV" = (
+/turf/closed/shuttle/dropship_white/interior_corner,
 /area/shuttle/ert/pmc)
-"bW" = (
-/turf/closed/shuttle/dropship_white/logo_wall/four{
+"pm" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/effect/landmark/distress,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert/pmc)
+"pL" = (
+/turf/closed/shuttle/ert/engines/right/three{
 	dir = 1
 	},
 /area/shuttle/ert/pmc)
-"cs" = (
+"pR" = (
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert/pmc)
+"qb" = (
+/turf/closed/shuttle/dropship_white/logo_wall/two{
+	dir = 8
+	},
+/area/shuttle/ert/pmc)
+"qs" = (
+/obj/effect/mapping_helpers/barricade/closed,
+/obj/structure/barricade/folding{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert/pmc)
+"rF" = (
+/turf/closed/shuttle/dropship_white/backhatch{
+	dir = 4
+	},
+/area/shuttle/ert/pmc)
+"rK" = (
 /obj/structure/rack,
 /obj/effect/landmark/distress_item,
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/belt/lifesaver/full,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
-"cZ" = (
-/obj/machinery/light{
-	dir = 8
-	},
+"wk" = (
+/obj/effect/mapping_helpers/barricade/closed,
+/obj/structure/barricade/folding,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
-"eJ" = (
-/obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/distress,
-/obj/effect/ai_node,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/ert/pmc)
-"fd" = (
-/turf/closed/shuttle/dropship_white/logo_wall/two{
-	dir = 8
-	},
-/area/shuttle/ert/pmc)
-"hy" = (
+"wx" = (
 /obj/effect/landmark/distress,
 /turf/open/shuttle/dropship/three,
 /area/shuttle/ert/pmc)
-"iN" = (
+"wF" = (
+/turf/closed/shuttle/dropship_white/backhatch,
+/area/shuttle/ert/pmc)
+"yK" = (
+/turf/closed/shuttle/dropship_white/logo_wall,
+/area/shuttle/ert/pmc)
+"zk" = (
+/turf/closed/shuttle/dropship_white/interior_wall{
+	dir = 8
+	},
+/area/shuttle/ert/pmc)
+"zE" = (
+/turf/closed/shuttle/dropship_white/interior_corner{
+	dir = 1
+	},
+/area/shuttle/ert/pmc)
+"CJ" = (
+/obj/effect/ai_node,
+/turf/open/shuttle/dropship/four,
+/area/shuttle/ert/pmc)
+"Da" = (
 /obj/machinery/door/poddoor/shutters/transit/open,
 /obj/machinery/door/airlock/mainship/generic/ert,
 /turf/open/shuttle/dropship/three,
 /area/shuttle/ert/pmc)
-"mC" = (
+"Dj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/seven,
+/area/shuttle/ert/pmc)
+"EJ" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
 /obj/effect/landmark/distress,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
-"of" = (
-/turf/closed/shuttle/dropship_white/top_corner,
-/area/shuttle/ert/pmc)
-"op" = (
-/obj/structure/rack,
-/obj/effect/landmark/distress_item,
-/obj/item/storage/firstaid/adv,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/ert/pmc)
-"pK" = (
-/turf/closed/shuttle/ert/engines/left/three{
-	dir = 1
-	},
-/area/shuttle/ert/pmc)
-"rc" = (
-/turf/closed/shuttle/ert/engines/left/two{
-	dir = 1
-	},
-/area/shuttle/ert/pmc)
-"ru" = (
-/turf/closed/shuttle/dropship_white/engine_corner{
-	dir = 1
-	},
-/area/shuttle/ert/pmc)
-"tt" = (
-/turf/closed/shuttle/dropship_white/backhatch{
-	dir = 1
-	},
-/area/shuttle/ert/pmc)
-"uD" = (
-/obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/distress,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/ert/pmc)
-"vt" = (
-/turf/open/shuttle/dropship/five,
-/area/shuttle/ert/pmc)
-"wU" = (
-/turf/closed/shuttle/dropship_white/top_corner{
-	dir = 1
-	},
-/area/shuttle/ert/pmc)
-"xt" = (
-/turf/closed/shuttle/dropship_white/top_corner/alt,
-/area/shuttle/ert/pmc)
-"xT" = (
-/turf/closed/shuttle/dropship_white/logo_wall,
-/area/shuttle/ert/pmc)
-"yv" = (
-/turf/closed/shuttle/dropship_white/top_corner/alt{
-	dir = 1
-	},
-/area/shuttle/ert/pmc)
-"CX" = (
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/ert/pmc)
-"Df" = (
-/turf/closed/shuttle/ert/engines/left{
-	dir = 1
-	},
-/area/shuttle/ert/pmc)
-"DX" = (
-/turf/closed/shuttle/ert/engines/right{
-	dir = 1
-	},
-/area/shuttle/ert/pmc)
-"Ed" = (
-/turf/open/shuttle/dropship/three,
-/area/shuttle/ert/pmc)
-"EF" = (
-/turf/closed/shuttle/dropship_white/interior_wall,
-/area/shuttle/ert/pmc)
-"EK" = (
-/turf/closed/shuttle/ert/engines/right/two{
-	dir = 1
-	},
-/area/shuttle/ert/pmc)
-"Fc" = (
-/obj/structure/rack,
-/obj/effect/landmark/distress_item,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/tool/multitool,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/ert/pmc)
-"Fn" = (
-/obj/docking_port/mobile/ert,
-/turf/closed/shuttle/dropship_white/cockpit_window,
-/area/shuttle/ert/pmc)
-"Gl" = (
-/obj/effect/mapping_helpers/barricade/closed,
-/obj/structure/barricade/plasteel,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/ert/pmc)
-"GM" = (
-/obj/machinery/computer/shuttle/ert,
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/ert/pmc)
-"HA" = (
-/turf/closed/shuttle/dropship_white/backwall,
-/area/shuttle/ert/pmc)
-"HV" = (
+"Fm" = (
 /obj/machinery/door/poddoor/shutters/transit/open{
 	dir = 2
 	},
@@ -170,215 +131,231 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
-"IY" = (
-/obj/effect/mapping_helpers/barricade/closed,
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/ert/pmc)
-"Je" = (
-/turf/closed/shuttle/dropship_white/engine_corner,
-/area/shuttle/ert/pmc)
-<<<<<<< HEAD
-"KF" = (
-/turf/closed/shuttle/dropship_white/logo_wall/three{
-=======
-"O" = (
-/obj/effect/mapping_helpers/barricade/closed,
-/obj/structure/barricade/folding{
->>>>>>> master
-	dir = 4
-	},
-/area/shuttle/ert/pmc)
-"LI" = (
-/turf/closed/shuttle/dropship_white/logo_wall/four,
-/area/shuttle/ert/pmc)
-"MY" = (
-/turf/closed/shuttle/dropship_white/backhatch,
-/area/shuttle/ert/pmc)
-"Nh" = (
-/turf/template_noop,
-/area/template_noop)
-"Om" = (
-/obj/effect/ai_node,
-/turf/open/shuttle/dropship/four,
-/area/shuttle/ert/pmc)
-"OG" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
+"GQ" = (
+/obj/structure/bed/chair/dropship/passenger,
 /obj/effect/landmark/distress,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
-"PB" = (
-/obj/machinery/light{
+"Hr" = (
+/turf/closed/shuttle/ert/engines/left{
 	dir = 1
 	},
-/turf/open/shuttle/dropship/seven,
 /area/shuttle/ert/pmc)
-"PU" = (
-/turf/closed/shuttle/dropship_white/interior_corner,
+"It" = (
+/obj/structure/rack,
+/obj/effect/landmark/distress_item,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/tool/multitool,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
-"QM" = (
-/obj/effect/mapping_helpers/barricade/closed,
-<<<<<<< HEAD
-/obj/structure/barricade/plasteel{
+"Iy" = (
+/turf/closed/shuttle/dropship_white/engine_corner{
+	dir = 1
+	},
+/area/shuttle/ert/pmc)
+"IN" = (
+/obj/docking_port/mobile/ert,
+/turf/closed/shuttle/dropship_white/cockpit_window,
+/area/shuttle/ert/pmc)
+"Jw" = (
+/turf/closed/shuttle/dropship_white/top_corner/alt{
+	dir = 1
+	},
+/area/shuttle/ert/pmc)
+"JC" = (
+/turf/closed/shuttle/dropship_white/engine_corner,
+/area/shuttle/ert/pmc)
+"Ki" = (
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1
+	},
+/area/shuttle/ert/pmc)
+"Kz" = (
+/turf/closed/shuttle/dropship_white/logo_wall/three{
 	dir = 4
-=======
-/obj/structure/barricade/folding{
-	dir = 8
->>>>>>> master
+	},
+/area/shuttle/ert/pmc)
+"KE" = (
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
-"SZ" = (
-/turf/closed/shuttle/dropship_white/logo_wall{
-	dir = 1
-	},
+"LP" = (
+/obj/structure/rack,
+/obj/effect/landmark/distress_item,
+/obj/item/storage/firstaid/adv,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
-"Ta" = (
-/turf/closed/shuttle/ert/engines/right/three{
-	dir = 1
-	},
-/area/shuttle/ert/pmc)
-"Zh" = (
-/turf/closed/shuttle/dropship_white/backhatch{
-	dir = 4
-	},
-/area/shuttle/ert/pmc)
-"Zi" = (
-/turf/closed/shuttle/dropship_white/interior_wall{
+"Mo" = (
+/obj/effect/mapping_helpers/barricade/closed,
+/obj/structure/barricade/folding{
 	dir = 8
 	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
-"ZA" = (
-/obj/machinery/light{
-	dir = 4
-	},
-<<<<<<< HEAD
-=======
+"Oj" = (
+/obj/effect/ai_node,
+/turf/open/shuttle/dropship/eight,
 /area/shuttle/ert/pmc)
-"Y" = (
+"Ot" = (
+/turf/closed/shuttle/dropship_white/interior_wall,
+/area/shuttle/ert/pmc)
+"Sp" = (
 /turf/closed/shuttle/ert/engines/left/two{
 	dir = 1
 	},
 /area/shuttle/ert/pmc)
-"Z" = (
-/obj/effect/mapping_helpers/barricade/closed,
-/obj/structure/barricade/folding,
->>>>>>> master
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/ert/pmc)
-"ZM" = (
-/obj/machinery/light{
+"Sr" = (
+/turf/closed/shuttle/dropship_white/backhatch{
 	dir = 1
 	},
-/turf/open/shuttle/dropship/six,
+/area/shuttle/ert/pmc)
+"Tc" = (
+/turf/template_noop,
+/area/template_noop)
+"Ue" = (
+/turf/closed/shuttle/dropship_white/top_corner{
+	dir = 1
+	},
+/area/shuttle/ert/pmc)
+"Uy" = (
+/turf/closed/shuttle/dropship_white/logo_wall/two,
+/area/shuttle/ert/pmc)
+"UR" = (
+/turf/open/shuttle/dropship/five,
+/area/shuttle/ert/pmc)
+"VH" = (
+/turf/closed/shuttle/dropship_white/logo_wall{
+	dir = 1
+	},
+/area/shuttle/ert/pmc)
+"VM" = (
+/turf/closed/shuttle/dropship_white/top_corner/alt,
+/area/shuttle/ert/pmc)
+"YI" = (
+/turf/closed/shuttle/dropship_white/logo_wall/four{
+	dir = 1
+	},
+/area/shuttle/ert/pmc)
+"YT" = (
+/turf/open/shuttle/dropship/three,
+/area/shuttle/ert/pmc)
+"ZD" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/distress,
+/obj/effect/ai_node,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert/pmc)
+"ZN" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 
 (1,1,1) = {"
-Nh
-yv
-LI
-iN
-KF
-bE
-xT
-iN
-EF
-ru
-pK
-rc
-Df
+Tc
+Jw
+hB
+Da
+Kz
+Uy
+yK
+Da
+Ot
+Iy
+gj
+Sp
+Hr
 "}
 (2,1,1) = {"
-Nh
-HA
-Fc
-IY
-mC
-mC
-mC
-IY
-cs
-of
-EF
-EF
-MY
+Tc
+la
+It
+Mo
+EJ
+EJ
+EJ
+Mo
+rK
+gu
+Ot
+Ot
+wF
 "}
 (3,1,1) = {"
-yv
-PU
-ZM
-hy
-hy
-hy
-hy
-hy
-Om
-CX
-cZ
-Gl
-HV
+Jw
+oV
+oa
+wx
+wx
+wx
+wx
+wx
+CJ
+pR
+ZN
+wk
+Fm
 "}
 (4,1,1) = {"
-Fn
-GM
-vt
-eJ
-uD
-uD
-uD
-eJ
-vt
-Ed
-Ed
-Ed
-tt
+IN
+ds
+UR
+ZD
+GQ
+GQ
+GQ
+ZD
+UR
+YT
+YT
+YT
+Sr
 "}
 (5,1,1) = {"
-xt
-ay
-PB
-hy
-hy
-hy
-hy
-hy
-aG
-CX
-ZA
-Gl
-HV
+VM
+zE
+Dj
+wx
+wx
+wx
+wx
+wx
+Oj
+pR
+KE
+wk
+Fm
 "}
 (6,1,1) = {"
-Nh
-HA
-op
-QM
-OG
-OG
-OG
-QM
-cs
-wU
-Zi
-Zi
-Zh
+Tc
+la
+LP
+qs
+pm
+pm
+pm
+qs
+rK
+Ue
+zk
+zk
+rF
 "}
 (7,1,1) = {"
-Nh
-xt
-bW
-iN
-as
-fd
-SZ
-iN
-Zi
-Je
-Ta
-EK
-DX
+Tc
+VM
+YI
+Da
+kf
+qb
+VH
+Da
+zk
+JC
+pL
+mk
+Ki
 "}
