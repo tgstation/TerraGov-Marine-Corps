@@ -1249,7 +1249,7 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
  * Increments in width increases both sizes by said increment while height is only increased once by the increment.
 */
 /proc/get_forward_square_to_target(atom/center, width, height, requires_openturf = TRUE, requires_lineofsight = TRUE)
-	if(width < 0 || height < 0) // This is forward square, not backwards square.
+	if(width < 0 || height <= 0) // This is forward square, not backwards square.
 		return list()
 
 	var/turf/lower_left
