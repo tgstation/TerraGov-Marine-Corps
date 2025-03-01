@@ -1271,9 +1271,9 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 	var/list/turf/acceptable_turfs = list()
 	var/list/turf/possible_turfs = block(lower_left, upper_right)
 	for(var/turf/possible_turf AS in possible_turfs)
-		if(isclosedturf(possible_turf))
+		if(requires_openturf && isclosedturf(possible_turf))
 			continue
-		if(!line_of_sight(center, possible_turf, 3))
+		if(requires_lineofsight && !line_of_sight(center, possible_turf, 3))
 			continue
 		acceptable_turfs += possible_turf
 	return acceptable_turfs
