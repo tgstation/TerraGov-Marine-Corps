@@ -1001,6 +1001,8 @@ ADMIN_VERB(private_message_panel, R_ADMIN|R_MENTOR, "Private Message", "Private 
 	return "Message Successful"
 
 ADMIN_VERB(remove_from_tank, R_ADMIN, "Remove From Tank", "Force all mobs to leave all tanks", ADMIN_CATEGORY_MAIN)
+	if(tgui_alert(user, "Are you sure you want to remove all tank occupants from their tanks?", "Confirm", list("Yes", "No")) != "Yes")
+		return
 	for(var/obj/vehicle/sealed/armored/armor AS in GLOB.tank_list)
 		armor.dump_mobs(TRUE)
 
