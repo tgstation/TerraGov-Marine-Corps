@@ -154,7 +154,7 @@ GLOBAL_VAR(medal_persistence_sealed)
  * - mob/living/target - The player to give the medals to.
  */
 /datum/medal_persistence/proc/give_medals_to(mob/living/target)
-	if(target.ckey != ckey)
+	if(target.ckey && (target.ckey != ckey)) // if they dont have a ckey yet, just assume its correct (game start)
 		CRASH("Attempted to give medals to a player who does not match the ckey of the medal persistence object!")
 
 	var/obj/item/storage/box/medal_box = new

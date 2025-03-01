@@ -21,7 +21,7 @@ GLOBAL_LIST_EMPTY(medal_awards)
  */
 /proc/do_award_medal(mob/user)
 	var/list/all_marines = list()
-	for(var/mob/living/mob as anything in GLOB.mob_living_list)
+	for(var/mob/living/mob as anything in GLOB.human_mob_list) // can award a medal to ANY human, give the survivors a purple heart for their sad and tragic death.
 		all_marines[mob.real_name] = GLOB.joined_player_list[mob.real_name]
 
 	if(!length(all_marines))
@@ -42,13 +42,13 @@ GLOBAL_LIST_EMPTY(medal_awards)
 	mob/issuer,
 	mob/living/awardee,
 )
-	if(issuer == awardee || issuer.ckey == awardee.ckey)
-		to_chat(issuer, "You can't award yourself a medal.")
-		return FALSE
 	if(issuer == null)
 		CRASH("Attempted to award a medal with a null issuer.")
 	if(awardee == null)
 		CRASH("Attempted to award a medal to a null awardee.")
+	if(issuer == awardee || issuer.ckey == awardee.ckey)
+		to_chat(issuer, "You can't award yourself a medal.")
+		return FALSE
 
 	var/is_posthumous = awardee.stat == DEAD
 
