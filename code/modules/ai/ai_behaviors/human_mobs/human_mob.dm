@@ -43,7 +43,7 @@
 /datum/ai_behavior/human/start_ai()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))
 	RegisterSignals(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
-	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(check_for_critical_health))
+	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(on_take_damage))
 	RegisterSignal(mob_parent, COMSIG_AI_HEALING_MOB, PROC_REF(parent_being_healed))
 	RegisterSignal(mob_parent, COMSIG_MOB_TOGGLEMOVEINTENT, PROC_REF(on_move_toggle))
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_ON_CRIT, PROC_REF(on_other_mob_crit))
@@ -312,26 +312,21 @@
 ///Sig handler for physical interactions, like attacks
 /datum/ai_behavior/human/proc/melee_interact(datum/source, atom/interactee)
 	SIGNAL_HANDLER
-	//INVOKE_ASYNC(src, PROC_REF(do_melee_interact), interactee)
-
-///Handles physical interactions, like attacks
-///datum/ai_behavior/human/proc/do_melee_interact(atom/interactee)
-	//if(world.time < mob_parent.next_move)
-	//	return
 	if(!interactee)
 		interactee = atom_to_walk_to //this seems like it should be combat_target, but the only time this should come up is if combat_target IS atom_to_walk_to
 	if(!mob_parent.CanReach(interactee, melee_weapon)) //todo: copy this for beno code, lots of other stuff too.
 		return
+
+	mob_parent.face_atom(interactee)
+
 	if(interactee == interact_target)
 		if(isturf(interactee.loc)) //no pickpocketing
-			try_interact(interactee)
-			. = TRUE
+			. = try_interact(interactee)
 		unset_target(interactee)
 		return
-	mob_parent.face_atom(interactee)
+
 	if(melee_weapon)
 		INVOKE_ASYNC(melee_weapon, TYPE_PROC_REF(/obj/item, melee_attack_chain), mob_parent, interactee)
-		//melee_weapon.melee_attack_chain(mob_parent, interactee)
 		return TRUE
 	mob_parent.UnarmedAttack(interactee, TRUE)
 	return TRUE
@@ -356,6 +351,42 @@
 	//maybe radio arg in the future for some things
 	mob_parent.say(message)
 	COOLDOWN_START(src, ai_chat_cooldown, cooldown)
+
+///Reacts if the mob is below the min health threshold
+/datum/ai_behavior/human/proc/on_take_damage(datum/source, damage, mob/attacker)
+	SIGNAL_HANDLER
+	COOLDOWN_START(src, ai_damage_cooldown, 5 SECONDS)
+	if(human_ai_state_flags & HUMAN_AI_FIRING)
+		return
+	if(attacker)
+		if((human_ai_state_flags & HUMAN_AI_ANY_HEALING)) //dont just stand there
+			human_ai_state_flags &= ~(HUMAN_AI_ANY_HEALING)
+			late_initialize()
+			return
+		if(current_action == MOVING_TO_SAFETY)
+			if(attacker && attacker.faction != mob_parent.faction)
+				set_combat_target(attacker)
+			return
+
+	if(!(human_ai_behavior_flags & HUMAN_AI_SELF_HEAL))
+		return
+	var/mob/living/living_mob = mob_parent
+	if(living_mob.health - damage > minimum_health * living_mob.maxHealth)
+		return
+	if(mob_parent.incapacitated() || mob_parent.lying_angle)
+		return
+	if(!check_hazards())
+		return
+
+	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
+	if(!next_target)
+		INVOKE_ASYNC(src, PROC_REF(try_heal)) //its safe to heal
+		return
+	if(prob(50))
+		try_speak(pick(retreating_chat))
+	set_run(TRUE)
+	target_distance = 12
+	change_action(MOVING_TO_SAFETY, next_target, list(INFINITY)) //fallback
 
 ///Reacts to a heard message
 /datum/ai_behavior/human/proc/recieve_message(atom/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)

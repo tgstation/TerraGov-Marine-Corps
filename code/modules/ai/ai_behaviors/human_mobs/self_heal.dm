@@ -4,35 +4,6 @@
 	///Chat lines for retreating on low health
 	var/list/retreating_chat = list("Falling back!", "Cover me, I'm hit!", "I'm hit!", "Medic!", "Disengaging!", "Help me!", "Need a little help here!", "Tactical withdrawal.", "Repositioning.")
 
-///Reacts if the mob is below the min health threshold
-/datum/ai_behavior/human/proc/check_for_critical_health(datum/source, damage, mob/attacker)
-	SIGNAL_HANDLER
-	COOLDOWN_START(src, ai_damage_cooldown, 5 SECONDS)
-	if(current_action == MOVING_TO_SAFETY)
-		if(attacker && attacker.faction != mob_parent.faction && !(human_ai_state_flags & HUMAN_AI_FIRING))
-			set_combat_target(attacker)
-		return
-	if((human_ai_state_flags & HUMAN_AI_ANY_HEALING) && attacker) //dont just stand there
-		human_ai_state_flags &= ~(HUMAN_AI_ANY_HEALING)
-		late_initialize()
-		return
-	var/mob/living/living_mob = mob_parent
-	if(!(human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) || living_mob.health - damage > minimum_health * living_mob.maxHealth)
-		return
-	if(mob_parent.incapacitated() || mob_parent.lying_angle)
-		return
-	if(!check_hazards())
-		return
-	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
-	if(!next_target)
-		INVOKE_ASYNC(src, PROC_REF(try_heal))
-		return
-	if(prob(50))
-		try_speak(pick(retreating_chat))
-	set_run(TRUE)
-	target_distance = 12
-	change_action(MOVING_TO_SAFETY, next_target, list(INFINITY))
-
 ///Will try healing if possible
 /datum/ai_behavior/human/proc/try_heal()
 	var/mob/living/living_parent = mob_parent

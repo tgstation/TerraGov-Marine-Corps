@@ -1,5 +1,6 @@
 //todo: add a mobs to help list so we can record who needs help, even if we're too busy to help right now
 /datum/ai_behavior/human
+	///A list of mobs that might need healing
 	var/list/heal_list = list()
 	///Chat lines for trying to heal
 	var/list/healing_chat = list("Healing you.", "Healing you, hold still.", "Stop moving!", "Fixing you up.", "Healing.", "Treating wounds.", "I'll have you patched up in no time.", "Quit your complaining, it's just a fleshwound.", "Cover me!", "Give me some room!")
@@ -11,6 +12,7 @@
 	if(!registered_for_move)
 		scheduled_move()
 
+///Checks if we should be healing somebody
 /datum/ai_behavior/human/proc/medic_process()
 	if(!length(heal_list))
 		return
@@ -45,7 +47,7 @@
 	human_ai_state_flags |= HUMAN_AI_HEALING
 	RegisterSignals(healer, list(COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_MOVED, COMSIG_AI_HEALING_FINISHED), PROC_REF(on_heal_end)) //DOC IS NOT SET AS A TARGET, SO THIS MAY FAIL IF THEY JUST GET GIBBED OR SOMETHING
 
-///Healing ended, successfully or otherwise
+///Our healing ended, successfully or otherwise
 /datum/ai_behavior/human/proc/on_heal_end(mob/living/carbon/human/healer)
 	SIGNAL_HANDLER
 	UnregisterSignal(healer, list(COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_MOVED, COMSIG_AI_HEALING_FINISHED))
@@ -74,9 +76,10 @@
 	if(new_stat == current_stat)
 		return
 	if((medical_rating < AI_MED_MEDIC) || (new_stat == DEAD)) //todo: change when adding defib
-		unset_target(source)
+		unset_target(source) //only medics will still try heal
 	UnregisterSignal(source, COMSIG_MOB_STAT_CHANGED)
 
+///Checks if a hurt AI human needs healing
 /datum/ai_behavior/human/proc/mob_need_heal(datum/source, mob/living/carbon/human/patient)
 	SIGNAL_HANDLER
 	if(patient.faction != mob_parent.faction)
@@ -85,6 +88,7 @@
 		return
 	if(patient == mob_parent)
 		return
+
 	add_to_heal_list(patient)
 	//if we're too far away, or busy with other stuff, we don't immediately help
 	if(get_dist(mob_parent, patient) > 7)
@@ -99,12 +103,14 @@
 		return
 	set_interact_target(patient)
 
+///Adds mob to list
 /datum/ai_behavior/human/proc/add_to_heal_list(mob/living/carbon/human/patient)
 	if(patient in heal_list)
 		return
 	heal_list += patient
 	RegisterSignal(patient, COMSIG_AI_HEALING_MOB, PROC_REF(unset_target))
 
+///Removes mob from list
 /datum/ai_behavior/human/proc/remove_from_heal_list(mob/living/carbon/human/old_patient)
 	UnregisterSignal(old_patient, COMSIG_AI_HEALING_MOB)
 	heal_list -= old_patient

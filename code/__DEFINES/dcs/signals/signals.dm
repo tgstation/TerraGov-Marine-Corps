@@ -138,7 +138,7 @@
 
 ///from /mob/living/carbon/proc/on_crit()
 #define COMSIG_GLOB_MOB_ON_CRIT "!mob_on_crit"
-///from /datum/ai_behavior/human/proc/check_for_critical_health()
+///from /datum/ai_behavior/human/proc/on_take_damage()
 #define COMSIG_GLOB_AI_NEED_HEAL "!ai_need_heal"
 
 ///from /datum/emote/living/carbon/human/medic/run_emote()
