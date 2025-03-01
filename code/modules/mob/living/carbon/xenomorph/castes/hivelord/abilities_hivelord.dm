@@ -339,7 +339,7 @@
 		if(!silent)
 			target.balloon_alert(owner, "Cannot heal, already infused")
 		return FALSE
-	if(!CHECK_BITFIELD(patient.xeno_caste.can_flags, CASTE_CAN_BE_HEALED_BY_OTHERS))
+	if(!(patient.xeno_caste.can_flags & CASTE_CAN_BE_HEALED_BY_OTHERS))
 		if(!silent)
 			to_chat(owner, span_warning("Cannot heal, not healable"))
 		return FALSE
