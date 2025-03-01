@@ -22,9 +22,6 @@
 ///Ai component state where the ai tries to flee to heal
 #define MOVING_TO_SAFETY "moving_to_safety"
 
-///AI component state where we're healing
-#define MOB_HEALING "mob_healing"
-
 ///Ai component state where the ai just does nothing
 #define IDLE "idle"
 
@@ -87,6 +84,8 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 #define HUMAN_AI_FIRING (1<<0)
 ///Looking for weapons
 #define HUMAN_AI_NEED_WEAPONS (1<<1)
+///Healing or being healed
+#define HUMAN_AI_HEALING (1<<2)
 
 ///We're good to shoot
 #define AI_FIRE_CAN_HIT (1<<0)
@@ -102,6 +101,16 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 #define AI_FIRE_FRIENDLY_BLOCKED (1<<5)
 ///Target already dead
 #define AI_FIRE_TARGET_DEAD (1<<6)
+
+//Mob medic level
+///Don't help anyone else
+#define AI_MED_SELFISH 0
+///Tries to inap crit friends
+#define AI_MED_STANDARD 1
+///Tries to heal whenver possible
+#define AI_MED_MEDIC 2
+///Prioritises healing above combat
+#define AI_MED_DOCTOR 3
 
 GLOBAL_LIST_INIT(ai_brute_heal_items, list(
 	/obj/item/reagent_containers/pill/bicaridine,

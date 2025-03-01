@@ -1,14 +1,18 @@
 /datum/ai_behavior/human
 	///Chat lines for trying to heal
-	var/list/healing_chat = list("Healing, cover me!", "Healing over here.", "Where's the damn medic?", "Medic!", "Treating wounds.", "It's just a flesh wound.", "Need a little help here!", "Cover me!.")
+	var/list/self_heal_chat = list("Healing, cover me!", "Healing over here.", "Where's the damn medic?", "Medic!", "Treating wounds.", "It's just a flesh wound.", "Need a little help here!", "Cover me!.")
 	///Chat lines for retreating on low health
 	var/list/retreating_chat = list("Falling back!", "Cover me, I'm hit!", "I'm hit!", "Medic!", "Disengaging!", "Help me!", "Need a little help here!", "Tactical withdrawal.", "Repositioning.")
 
 ///Reacts if the mob is below the min health threshold
-/datum/ai_behavior/human/proc/check_for_critical_health(datum/source, damage)
+/datum/ai_behavior/human/proc/check_for_critical_health(datum/source, damage, mob/attacker)
 	SIGNAL_HANDLER
 	COOLDOWN_START(src, ai_damage_cooldown, 5 SECONDS)
 	if(current_action == MOVING_TO_SAFETY)
+		return
+	if((human_ai_state_flags & HUMAN_AI_HEALING) && attacker) //dont just stand there
+		human_ai_state_flags &= ~HUMAN_AI_HEALING
+		late_initialize()
 		return
 	var/mob/living/living_mob = mob_parent
 	if(!(human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) || living_mob.health - damage > minimum_health * living_mob.maxHealth)
@@ -30,6 +34,7 @@
 ///Will try healing if possible
 /datum/ai_behavior/human/proc/try_heal()
 	var/mob/living/living_parent = mob_parent
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_NEED_HEAL, mob_parent)
 	if(living_parent.on_fire)
 		living_parent.do_resist()
 		return
@@ -38,7 +43,7 @@
 		return
 
 	if(prob(75))
-		try_speak(pick(healing_chat))
+		try_speak(pick(self_heal_chat))
 	var/list/dam_list = list(
 		BRUTE = living_parent.getBruteLoss(),
 		BURN = living_parent.getFireLoss(),
@@ -48,7 +53,7 @@
 		PAIN = 0,
 	)
 
-	change_action(MOB_HEALING)
+	human_ai_state_flags |= HUMAN_AI_HEALING
 
 	if(iscarbon(mob_parent))
 		var/mob/living/carbon/carbon_parent = mob_parent
@@ -73,10 +78,12 @@
 				//send sig to call for help splinting
 				break
 
-	change_action(MOVING_TO_NODE)
+	//change_action(MOVING_TO_NODE)
+	human_ai_state_flags &= ~HUMAN_AI_HEALING
+	late_initialize()
 
 ///Tries to heal damage of a given type
-/datum/ai_behavior/human/proc/do_heal(dam_type)
+/datum/ai_behavior/human/proc/do_heal(dam_type, target = mob_parent)
 	var/obj/item/heal_item
 	var/list/med_list
 
@@ -95,22 +102,22 @@
 			med_list = mob_inventory.pain_list
 
 	for(var/obj/item/stored_item AS in med_list)
-		if(!stored_item.ai_should_use(mob_parent, mob_parent))
+		if(!stored_item.ai_should_use(target, mob_parent))
 			continue
 		heal_item = stored_item
 		break
 
 	if(!heal_item)
 		return FALSE
-	heal_item.ai_use(mob_parent, mob_parent)
+	heal_item.ai_use(target, mob_parent)
 	return TRUE
 
 ///Tries to splint a limb
-/datum/ai_behavior/human/proc/do_splint(datum/limb/broken_limb)
+/datum/ai_behavior/human/proc/do_splint(datum/limb/broken_limb, target = mob_parent)
 	var/obj/item/stack/medical/splint/splint = locate(/obj/item/stack/medical/splint) in mob_inventory.medical_list
 	if(!splint)
 		return FALSE
 	mob_parent.zone_selected = broken_limb.name //why god do we rely on the limb name, which isnt a define?
-	if(splint.attack(mob_parent, mob_parent))
+	if(splint.attack(target, mob_parent))
 		. = TRUE
 	mob_parent.zone_selected = BODY_ZONE_CHEST

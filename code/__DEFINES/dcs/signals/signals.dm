@@ -138,6 +138,11 @@
 
 ///from /mob/living/carbon/proc/on_crit()
 #define COMSIG_GLOB_MOB_ON_CRIT "!mob_on_crit"
+///from /datum/ai_behavior/human/proc/check_for_critical_health()
+#define COMSIG_GLOB_AI_NEED_HEAL "!ai_need_heal"
+
+///from /datum/emote/living/carbon/human/medic/run_emote()
+#define COMSIG_GLOB_MOB_CALL_MEDIC "!mob_call_medic"
 
 //////////////////////////////////////////////////////////////////
 // /datum/component signals
@@ -602,6 +607,10 @@
 #define COMSIG_AI_EQUIPPED_GUN "ai_equipped_gun"
 ///AI mob equipped a melee weapon
 #define COMSIG_AI_EQUIPPED_MELEE "ai_equipped_melee"
+///Mob being healed by an AI mob
+#define COMSIG_AI_HEALING_MOB "ai_healing_mob"
+///Mob AI healing finished
+#define COMSIG_AI_HEALING_FINISHED "ai_healing_finished"
 
 //mob/dead/observer
 #define COMSIG_OBSERVER_CLICKON "observer_clickon"				//from mob/dead/observer/ClickOn(): (atom/A, params)
