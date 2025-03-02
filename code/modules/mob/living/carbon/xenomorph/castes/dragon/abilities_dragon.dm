@@ -152,7 +152,7 @@
 	width = 2
 	height = 3
 	turn_around = TRUE
-	vehicle_stun_length = 1.5 SECONDS
+	vehicle_stun_length = 1 SECONDS
 
 /datum/action/ability/activable/xeno/backhand/tailswipe/get_damage()
 	return 55 * xeno_owner.xeno_melee_damage_modifier
@@ -210,10 +210,13 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLY,
 	)
+	/// Is the landing animation currently happening? Used for setting special state for Dragon.
+	var/performing_landing_animation = FALSE
+	COOLDOWN_DECLARE(animation_cooldown)
 
 /datum/action/ability/activable/xeno/fly/can_use_ability(atom/A, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
-		if(TIMER_COOLDOWN_CHECK(xeno_owner, COOLDOWN_DRAGON_CHANGE_FORM))
+		if(COOLDOWN_TIMELEFT(src, animation_cooldown))
 			if(!silent)
 				xeno_owner.balloon_alert(xeno_owner, "already landing")
 			return FALSE
@@ -235,7 +238,7 @@
 				else
 					xeno_owner.balloon_alert(xeno_owner, "no weeds")
 			return FALSE
-	if(TIMER_COOLDOWN_CHECK(xeno_owner, COOLDOWN_DRAGON_CHANGE_FORM))
+	if(COOLDOWN_TIMELEFT(src, animation_cooldown))
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "already lifting")
 		return FALSE
@@ -243,7 +246,7 @@
 
 /datum/action/ability/activable/xeno/fly/use_ability(atom/target)
 	if(xeno_owner.status_flags & INCORPOREAL)
-		xeno_owner.change_form()
+		start_landing()
 		return
 	xeno_owner.setDir(SOUTH)
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
@@ -255,7 +258,132 @@
 	if(!was_successful)
 		return
 	xeno_owner.stop_pulling()
-	xeno_owner.change_form()
+	playsound(xeno_owner, 'sound/effects/alien/dragon/flying_flight.ogg', 50, TRUE)
+	start_flight()
+
+/// Begins the process of flying.
+/datum/action/ability/activable/xeno/fly/proc/start_flight()
+	COOLDOWN_START(src, animation_cooldown, 0.5 SECONDS)
+	new /obj/effect/temp_visual/dragon/fly(get_turf(xeno_owner))
+	animate(xeno_owner, pixel_x = initial(xeno_owner.pixel_x), pixel_y = 500, time = 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finalize_flight)), 0.5 SECONDS)
+
+/// Finalizes the process of flying by granting various flags and so on.
+/datum/action/ability/activable/xeno/fly/proc/finalize_flight()
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(on_move_attempt))
+	COOLDOWN_RESET(src, animation_cooldown)
+	animate(xeno_owner, pixel_x = 0, pixel_y = 0, time = 0)
+	xeno_owner.status_flags = GODMODE|INCORPOREAL
+	xeno_owner.resistance_flags = RESIST_ALL
+	xeno_owner.pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
+	xeno_owner.density = FALSE
+	ADD_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
+	xeno_owner.update_icons(TRUE)
+	xeno_owner.update_action_buttons()
+
+/// Begins the process of landing.
+/datum/action/ability/activable/xeno/fly/proc/start_landing()
+	performing_landing_animation = TRUE
+	COOLDOWN_START(src, animation_cooldown, 3 SECONDS)
+	animate(xeno_owner, pixel_x = initial(xeno_owner.pixel_x), pixel_y = 500, time = 0)
+	var/list/turf/future_impacted_turfs = filled_turfs(xeno_owner, 2, "square", FALSE, pass_flags_checked = PASS_AIR)
+	for(var/turf/turf_to_telegraph AS in future_impacted_turfs)
+		new /obj/effect/temp_visual/dragon/warning(turf_to_telegraph, 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(continue_landing), future_impacted_turfs), 2.5 SECONDS)
+
+/// Continues the process of landing (mainly because of animations).
+/datum/action/ability/activable/xeno/fly/proc/continue_landing(list/turf/impacted_turfs)
+	animate(xeno_owner, pixel_x = initial(xeno_owner.pixel_x), pixel_y = 0, time = 0.5 SECONDS)
+	xeno_owner.update_icons(TRUE)
+	addtimer(CALLBACK(src, PROC_REF(perform_landing_effects), impacted_turfs), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finalize_landing)), 0.5 SECONDS)
+	playsound(xeno_owner, 'sound/effects/alien/dragon/flying_landing.ogg', 50, TRUE)
+
+/// Finalizes the process of landing by reversing the effects from flying.
+/datum/action/ability/activable/xeno/fly/proc/finalize_landing()
+	performing_landing_animation = FALSE
+	xeno_owner.status_flags = initial(xeno_owner.status_flags)
+	xeno_owner.resistance_flags = initial(xeno_owner.resistance_flags)
+	xeno_owner.pass_flags = initial(xeno_owner.pass_flags)
+	xeno_owner.density = TRUE
+	REMOVE_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
+	xeno_owner.update_icons(TRUE)
+	xeno_owner.update_action_buttons()
+	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_PRE_MOVE)
+	succeed_activate()
+	add_cooldown()
+
+// Performs various landing effects.
+/datum/action/ability/activable/xeno/fly/proc/perform_landing_effects(list/turf/affected_turfs)
+	new /obj/effect/temp_visual/dragon/land(get_turf(xeno_owner))
+	var/damage = 100 * xeno_owner.xeno_melee_damage_modifier
+	var/list/obj/vehicle/hit_vehicles = list()
+	for(var/turf/affected_turf AS in affected_turfs)
+		affected_turf.Shake(duration = 0.2 SECONDS)
+		for(var/atom/affected_atom AS in affected_turf)
+			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
+				continue
+			if(isxeno(affected_atom))
+				continue
+			if(isliving(affected_atom))
+				var/mob/living/affected_living = affected_atom
+				if(affected_living.stat == DEAD)
+					continue
+				affected_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5, updating_health = TRUE)
+				animate(affected_living, pixel_z = affected_living.pixel_z + 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
+				animate(pixel_z = affected_living.pixel_z - 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
+				affected_living.animation_spin(0.5 SECONDS, 1, affected_living.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
+				continue
+			if(!isobj(affected_atom))
+				continue
+			var/obj/affected_obj = affected_atom
+			if(ishitbox(affected_obj) || isvehicle(affected_obj))
+				handle_affected_vehicle(affected_obj, hit_vehicles)
+				continue
+			affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
+			continue
+	playsound(xeno_owner, 'sound/effects/alien/behemoth/seismic_fracture_explosion.ogg', 50, 1)
+	succeed_activate()
+	add_cooldown()
+
+/// Does damage to the vehicle and stuns it.
+/datum/action/ability/activable/xeno/fly/proc/handle_affected_vehicle(obj/affected_obj, list/obj/vehicle/hit_vehicles)
+	var/damage = 100 * xeno_owner.xeno_melee_damage_modifier
+	if(ishitbox(affected_obj))
+		var/obj/hitbox/affected_hitbox = affected_obj
+		return handle_affected_vehicle(affected_hitbox.root)
+	if(!isvehicle(affected_obj))
+		return FALSE
+	var/obj/vehicle/affected_vehicle = affected_obj
+	if(ismecha(affected_vehicle))
+		affected_vehicle.take_damage(damage * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = src)
+	else if(isarmoredvehicle(affected_vehicle)) // Obtained from hitbox.
+		affected_vehicle.take_damage(damage / 3, BRUTE, MELEE, blame_mob = src)
+	else
+		affected_vehicle.take_damage(damage * 2, BRUTE, MELEE, blame_mob = src)
+	if(!(affected_vehicle in hit_vehicles))
+		for(var/mob/living/carbon/human/human_occupant in affected_vehicle.occupants)
+			human_occupant.apply_effect(2 SECONDS, EFFECT_PARALYZE)
+
+/// If they are incorporeal, lets them move anywhere as long it is not a bad place.
+/datum/action/ability/activable/xeno/fly/proc/on_move_attempt(atom/source, atom/newloc, direction)
+	SIGNAL_HANDLER
+	if(COOLDOWN_TIMELEFT(src, animation_cooldown))
+		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+	if(!(xeno_owner.status_flags & INCORPOREAL))
+		return
+	. = COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+	if(isclosedturf(newloc) && !istype(newloc, /turf/closed/wall/resin))
+		return
+	for(var/atom/atom_on_turf AS in newloc.contents)
+		if(atom_on_turf.CanPass(xeno_owner, newloc))
+			continue
+		if((atom_on_turf.resistance_flags & RESIST_ALL)) // This prevents them from going off into space during hijack.
+			return
+		if(istype(atom_on_turf, /obj/machinery/door/poddoor/timed_late)) /// This prevents them from entering the LZ early.
+			return
+	xeno_owner.abstract_move(newloc)
+	return
 
 /datum/action/ability/activable/xeno/dragon_breath
 	name = "Dragon Breath"
