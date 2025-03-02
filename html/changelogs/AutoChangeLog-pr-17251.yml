@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscdel: "Removed duplicate follow verbs that just listed what was already in the orbit menu"

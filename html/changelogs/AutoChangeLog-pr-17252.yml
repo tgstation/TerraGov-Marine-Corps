@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - admin: "Remove from tank admin verb has a confirmation popup now"
