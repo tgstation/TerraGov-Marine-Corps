@@ -57,7 +57,7 @@
 	desc = "A 250 round box for an autocannon. Loaded with Armor Piercing rounds."
 	caliber = CALIBER_30X17MM
 	icon_state = "tank_autocannon_ap"
-	max_rounds = 250
+	max_rounds = 100
 	default_ammo = /datum/ammo/bullet/tank_autocannon
 
 /obj/item/ammo_magazine/tank/autocannon/high_explosive
