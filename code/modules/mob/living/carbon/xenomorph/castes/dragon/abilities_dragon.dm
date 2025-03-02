@@ -21,11 +21,6 @@
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
 		return FALSE
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
-	if(unleash_ability?.currently_roaring)
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "busy roaring")
-		return FALSE
 	return ..()
 
 /datum/action/ability/activable/xeno/backhand/use_ability(atom/target)
@@ -37,13 +32,13 @@
 	xeno_owner.face_atom(target)
 	var/list/turf/affected_turfs = get_forward_square_to_target(xeno_owner, width, height)
 	for(var/turf/affected_turf AS in affected_turfs)
-		new /obj/effect/temp_visual/dragon/warning(affected_turf, 1.2 SECONDS / get_bonus())
+		new /obj/effect/temp_visual/dragon/warning(affected_turf, 1.2 SECONDS)
 	if(turn_around)
 		xeno_owner.setDir(turn(xeno_owner.dir, 180))
 
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS / get_bonus(), IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
+	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	if(was_successful)
@@ -54,11 +49,6 @@
 /// Gets the base damage in which the ability does.
 /datum/action/ability/activable/xeno/backhand/proc/get_damage()
 	return 60 * xeno_owner.xeno_melee_damage_modifier
-
-/// Gets the bonus that which will reduce cast times or increase plasma gain.
-/datum/action/ability/activable/xeno/backhand/proc/get_bonus()
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
-	return unleash_ability?.is_active() ? 2 : 1
 
 /// Performs the regular interaction as expected of the ability.
 /datum/action/ability/activable/xeno/backhand/proc/handle_regular_ability(atom/target, list/turf/affected_turfs)
@@ -93,7 +83,7 @@
 
 	playsound(xeno_owner, has_hit_anything ? 'sound/effects/alien/dragon/backhand_hit.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 	if(has_hit_anything)
-		xeno_owner.gain_plasma(100 * get_bonus())
+		xeno_owner.gain_plasma(100)
 
 /// Performs a different interaction based on if there is a grabbed human.
 /datum/action/ability/activable/xeno/backhand/proc/handle_grabbed_human(mob/living/carbon/human/grabbed_human)
@@ -101,7 +91,7 @@
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	xeno_owner.visible_message(span_danger("[xeno_owner] lifts [grabbed_human] into the air and gets ready to slam!"))
-	if(!do_after(xeno_owner, 3 SECONDS / get_bonus(), IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
+	if(!do_after(xeno_owner, 3 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
 		xeno_owner.face_atom(grabbed_human)
 		new /obj/effect/temp_visual/dragon/directional/backhand_slam(get_step(xeno_owner, grabbed_human), xeno_owner.dir)
 		xeno_owner.stop_pulling()
@@ -117,7 +107,7 @@
 				animate(living_in_range, pixel_z = living_in_range.pixel_z + 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
 				animate(pixel_z = living_in_range.pixel_z - 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
 		grabbed_human.take_overall_damage(get_damage() * 2.5, BRUTE, MELEE, max_limbs = 5, updating_health = TRUE) // 150
-		xeno_owner.gain_plasma(250 * get_bonus())
+		xeno_owner.gain_plasma(250)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	succeed_activate()
@@ -188,23 +178,17 @@
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "already lifting")
 		return FALSE
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
-	if(unleash_ability?.currently_roaring)
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "busy roaring")
-		return FALSE
 	return ..()
 
 /datum/action/ability/activable/xeno/fly/use_ability(atom/target)
 	if(xeno_owner.status_flags & INCORPOREAL)
 		xeno_owner.change_form()
 		return
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
 	xeno_owner.setDir(SOUTH)
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	playsound(get_turf(xeno_owner), unleash_ability?.is_active() ? 'sound/effects/alien/dragon/flying_progress_short.ogg' : 'sound/effects/alien/dragon/flying_progress.ogg', 75, TRUE, 9)
-	var/was_successful = do_after(xeno_owner, unleash_ability?.is_active() ? 2.5 SECONDS : 5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
+	playsound(get_turf(xeno_owner), 'sound/effects/alien/dragon/flying_progress.ogg', 75, TRUE, 9)
+	var/was_successful = do_after(xeno_owner, 5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	if(!was_successful)
@@ -268,7 +252,7 @@
 
 	playsound(get_turf(xeno_owner), has_hit_anything ? 'sound/weapons/alien_claw_block.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 	if(has_hit_anything)
-		xeno_owner.gain_plasma(75 * get_bonus())
+		xeno_owner.gain_plasma(75)
 
 /datum/action/ability/activable/xeno/backhand/tailswipe/handle_grabbed_human(mob/living/carbon/human/grabbed_human)
 	return FALSE
@@ -294,11 +278,6 @@
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
 		return FALSE
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
-	if(unleash_ability?.currently_roaring)
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "busy roaring")
-		return FALSE
 	return ..()
 
 /datum/action/ability/activable/xeno/dragon_breath/use_ability(atom/target)
@@ -307,14 +286,12 @@
 
 	var/datum/action/ability/activable/xeno/grab/grab_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/grab]
 	var/mob/living/carbon/human/grabbed_human = grab_ability?.grabbed_human
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
-	var/castplasma_multiplier = unleash_ability?.is_active() ? 2 : 1
 	if(grabbed_human)
 		xeno_owner.face_atom(grabbed_human)
 		xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 		xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 		xeno_owner.visible_message(span_danger("[xeno_owner] inhales and turns their sights to [grabbed_human]..."))
-		if(do_after(xeno_owner, 3 SECONDS / castplasma_multiplier, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
+		if(do_after(xeno_owner, 3 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
 			xeno_owner.stop_pulling()
 			xeno_owner.visible_message(span_danger("[xeno_owner] exhales a massive fireball right ontop of [grabbed_human]!"))
 			new /obj/effect/temp_visual/dragon/grab_fire(get_turf(grabbed_human))
@@ -329,7 +306,7 @@
 				grabbed_human.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 10)
 			grabbed_human.take_overall_damage(200 * xeno_owner.xeno_melee_damage_modifier, BURN, FIRE, max_limbs = length(grabbed_human.get_damageable_limbs()), updating_health = TRUE)
 			grabbed_human.knockback(xeno_owner, 5, 1)
-			xeno_owner.gain_plasma(250 * castplasma_multiplier)
+			xeno_owner.gain_plasma(250)
 		xeno_owner.move_resist = initial(xeno_owner.move_resist)
 		xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 		succeed_activate()
@@ -339,7 +316,7 @@
 	playsound(get_turf(xeno_owner), 'sound/effects/alien/dragon/dragonbreath_start.ogg', 75, TRUE)
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS / castplasma_multiplier, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
+	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	if(!was_successful)
@@ -466,25 +443,18 @@
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
 		return FALSE
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
-	if(unleash_ability?.currently_roaring)
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "busy roaring")
-		return FALSE
 	return ..()
 
 /datum/action/ability/activable/xeno/wind_current/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
-	var/castplasma_multiplier = unleash_ability?.is_active() ? 2 : 1
 	var/list/turf/impacted_turfs = get_forward_square_to_target(xeno_owner, 2, 5) // 5x5
 	for(var/turf/impacted_turf AS in impacted_turfs)
-		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.2 SECONDS / castplasma_multiplier)
+		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.2 SECONDS)
 
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS / castplasma_multiplier, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER)
+	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	if(!was_successful)
@@ -540,7 +510,7 @@
 
 	playsound(get_turf(xeno_owner), 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 	if(has_hit_anything)
-		xeno_owner.gain_plasma(200 * castplasma_multiplier)
+		xeno_owner.gain_plasma(200)
 	succeed_activate()
 	add_cooldown()
 
@@ -570,25 +540,18 @@
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "already grabbing someone")
 		return FALSE
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
-	if(unleash_ability?.currently_roaring)
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "busy roaring")
-		return FALSE
 	return ..()
 
 /datum/action/ability/activable/xeno/grab/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
-	var/castplasma_multiplier = unleash_ability?.is_active() ? 2 : 1
 	var/list/turf/impacted_turfs = get_forward_square_to_target(xeno_owner, 2, 2) // 5x2
 	for(var/turf/impacted_turf AS in impacted_turfs)
-		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.2 SECONDS / castplasma_multiplier)
+		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.2 SECONDS)
 
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS / castplasma_multiplier, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER)
+	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	if(!was_successful)
@@ -646,8 +609,7 @@
 	RegisterSignal(grabbing_item, COMSIG_QDELETING, PROC_REF(end_grabbing))
 	RegisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED, PROC_REF(human_stat_changed))
 	RegisterSignals(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taken_damage))
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
-	xeno_owner.gain_plasma(unleash_ability?.is_active() ? 500 : 250)
+	xeno_owner.gain_plasma(250)
 	new /obj/effect/temp_visual/dragon/grab(get_turf(grabbed_human))
 	playsound(get_turf(xeno_owner), 'sound/voice/alien/pounce.ogg', 25, TRUE)
 
@@ -706,11 +668,6 @@
 	if(spell_timer)
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "busy casting")
-		return FALSE
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
-	if(unleash_ability?.currently_roaring)
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "busy roaring")
 		return FALSE
 	return ..()
 
@@ -790,12 +747,9 @@
 
 /// Either begin channeling or perform the spell.
 /datum/action/ability/activable/xeno/psychic_channel/use_ability(atom/A)
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
-	var/castplasma_multiplier = unleash_ability?.is_active() ? 2 : 1
-
 	if(!is_actively_channeling())
 		xeno_owner.update_glow(3, 3, "#6a59b3")
-		if(!do_after(owner, 2 SECONDS / castplasma_multiplier, NONE, xeno_owner, BUSY_ICON_DANGER))
+		if(!do_after(owner, 2 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
 			xeno_owner.update_glow()
 			return fail_activate()
 		xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_PSYCHIC_CHANNEL, TRUE, 0, NONE, TRUE, 0.9)
@@ -809,15 +763,15 @@
 			proj.generate_bullet(/datum/ammo/xeno/miasma_orb)
 			proj.def_zone = xeno_owner.get_limbzone_target()
 			proj.fire_at(A, xeno_owner, xeno_owner, range = 10, speed = 1)
-			xeno_owner.gain_plasma(100 * castplasma_multiplier)
+			xeno_owner.gain_plasma(100)
 			COOLDOWN_START(src, miasma_cooldown, 20 SECONDS)
 		if(DRAGON_LIGHTNING_SHRIKE)
 			var/list/mob/living/carbon/human/acceptable_humans = get_lightning_shrike_marines()
 			var/list/turf/impacted_turfs = get_lightning_shrike_hit_turfs(acceptable_humans)
 			for(var/turf/impacted_turf AS in impacted_turfs)
-				new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.5 SECONDS / castplasma_multiplier)
-			spell_timer = addtimer(CALLBACK(src, PROC_REF(finalize_lightning_shrike), get_lightning_shrike_center_turfs(acceptable_humans), impacted_turfs), 1.5 SECONDS / castplasma_multiplier, TIMER_STOPPABLE|TIMER_UNIQUE)
-			xeno_owner.gain_plasma(100 * castplasma_multiplier)
+				new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.5 SECONDS)
+			spell_timer = addtimer(CALLBACK(src, PROC_REF(finalize_lightning_shrike), get_lightning_shrike_center_turfs(acceptable_humans), impacted_turfs), 1.5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+			xeno_owner.gain_plasma(100)
 			COOLDOWN_START(src, lightning_shrike_cooldown, 25 SECONDS)
 		if(DRAGON_ICE_STORM)
 			var/list/bullets = list()
@@ -826,7 +780,7 @@
 				proj.generate_bullet(/datum/ammo/xeno/homing_ice_spike)
 				bullets += proj
 			bullet_burst(xeno_owner, bullets, xeno_owner, "sound/weapons/burst_phaser2.ogg", 10, 0.3, FALSE, -1)
-			xeno_owner.gain_plasma(150 * castplasma_multiplier)
+			xeno_owner.gain_plasma(150)
 			COOLDOWN_START(src, ice_storm_cooldown, 30 SECONDS)
 
 	reset_cooldown()
@@ -911,120 +865,6 @@
 				impacted_obj.take_damage(15, BURN, FIRE, blame_mob = xeno_owner)
 				continue
 			impacted_obj.take_damage(75, BURN, FIRE, blame_mob = xeno_owner)
-
-/datum/action/ability/activable/xeno/unleash
-	name = "Unleash"
-	action_icon_state = "unleash"
-	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = ""
-	cooldown_duration = 240 SECONDS
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNLEASH,
-	)
-	/// If we are currently in the process of roaring.
-	var/currently_roaring = FALSE
-	/// The timer id for the proc regarding the beginning or ending of withdrawal.
-	var/timer_id
-
-/datum/action/ability/activable/xeno/unleash/can_use_ability(atom/A, silent, override_flags)
-	if(xeno_owner.status_flags & INCORPOREAL)
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
-		return FALSE
-	if(is_active())
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "already active")
-		return FALSE
-	if(timer_id)
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "undergoing withdrawal")
-		return FALSE
-	if(currently_roaring)
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "currently roaring")
-		return FALSE
-	return ..()
-
-/// Begins the roar which comes with immobility, but godmode until it ends.
-/datum/action/ability/activable/xeno/unleash/use_ability(atom/target)
-	currently_roaring = TRUE
-	xeno_owner.status_flags |= GODMODE
-	xeno_owner.set_canmove(FALSE)
-	playsound(get_turf(xeno_owner), 'sound/effects/alien/behemoth/primal_wrath_roar.ogg', 75, TRUE)
-	handle_roar_effects()
-	addtimer(CALLBACK(src, PROC_REF(end_roar)), PRIMAL_WRATH_ACTIVATION_DURATION)
-
-/// Ends the roar and applies the buffs.
-/datum/action/ability/activable/xeno/unleash/proc/end_roar()
-	currently_roaring = FALSE
-	xeno_owner.status_flags &= ~GODMODE
-	xeno_owner.set_canmove(TRUE)
-	apply_buffs()
-
-/// Displays roar effects to nearby humans.
-/datum/action/ability/activable/xeno/unleash/proc/handle_roar_effects()
-	if(!currently_roaring)
-		return
-	new /obj/effect/temp_visual/shockwave/unleash(get_turf(xeno_owner), 4, owner.dir)
-	for(var/mob/living/affected_living in cheap_get_humans_near(xeno_owner, PRIMAL_WRATH_RANGE) + xeno_owner)
-		if(!affected_living.hud_used)
-			continue
-		var/atom/movable/screen/plane_master/floor/floor_plane = affected_living.hud_used.plane_masters["[FLOOR_PLANE]"]
-		var/atom/movable/screen/plane_master/game_world/world_plane = affected_living.hud_used.plane_masters["[GAME_PLANE]"]
-		if(floor_plane.get_filter("dragon_unleash") || world_plane.get_filter("dragon_unleash"))
-			continue
-		var/filter_size = 0.01
-		world_plane.add_filter("dragon_unleash", 2, radial_blur_filter(filter_size))
-		animate(world_plane.get_filter("dragon_unleash"), size = filter_size * 2, time = 0.5 SECONDS, loop = -1)
-		floor_plane.add_filter("dragon_unleash", 2, radial_blur_filter(filter_size))
-		animate(floor_plane.get_filter("dragon_unleash"), size = filter_size * 2, time = 0.5 SECONDS, loop = -1)
-		INVOKE_NEXT_TICK(src, PROC_REF(check_to_end_roar_effects_for), affected_living)
-	INVOKE_NEXT_TICK(src, PROC_REF(handle_roar_effects))
-
-/// Ends roar effects if roaring has ended or if said human gets out of rage.
-/datum/action/ability/activable/xeno/unleash/proc/check_to_end_roar_effects_for(mob/living/affected_living)
-	if(!affected_living || !xeno_owner)
-		return
-	var/atom/movable/screen/plane_master/floor/floor_plane = affected_living.hud_used.plane_masters["[FLOOR_PLANE]"]
-	var/atom/movable/screen/plane_master/game_world/world_plane = affected_living.hud_used.plane_masters["[GAME_PLANE]"]
-	if(!floor_plane.get_filter("dragon_unleash") || !world_plane.get_filter("dragon_unleash"))
-		return
-	if(!currently_roaring || get_dist(affected_living, xeno_owner) > PRIMAL_WRATH_RANGE)
-		var/resolve_time = 0.2 SECONDS
-		animate(floor_plane.get_filter("dragon_unleash"), size = 0, time = resolve_time, flags = ANIMATION_PARALLEL)
-		animate(world_plane.get_filter("dragon_unleash"), size = 0, time = resolve_time, flags = ANIMATION_PARALLEL)
-		addtimer(CALLBACK(floor_plane, TYPE_PROC_REF(/datum, remove_filter), "dragon_unleash"), resolve_time)
-		addtimer(CALLBACK(world_plane, TYPE_PROC_REF(/datum, remove_filter), "dragon_unleash"), resolve_time)
-		return
-	INVOKE_NEXT_TICK(src, PROC_REF(check_to_end_roar_effects_for), affected_living)
-
-/// Grants 30% additional slash/ability damage and a boost in movement speed that will wear off in 30 seconds.
-/datum/action/ability/activable/xeno/unleash/proc/apply_buffs()
-	xeno_owner.xeno_melee_damage_modifier += 0.3 //This is 30% increase of all slash and ability damage.
-	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH, TRUE, 0, NONE, TRUE, -0.5)
-	timer_id = addtimer(CALLBACK(src, PROC_REF(start_withdrawal)), 30 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
-	succeed_activate()
-
-/// Reverses the buffs caused by the ability and gives a temporary slowdown.
-/datum/action/ability/activable/xeno/unleash/proc/start_withdrawal()
-	if(!is_active())
-		return
-	xeno_owner.visible_message(span_danger("\The [xeno_owner] looks tired."), span_danger("We feel tired."), null, 5)
-	xeno_owner.xeno_melee_damage_modifier -= 1/3
-	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH)
-	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH_WITHDRAWAL, TRUE, 0, NONE, TRUE, 0.8)
-	timer_id = addtimer(CALLBACK(src, PROC_REF(end_withdrawal)), 5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
-
-/// Removes the temporary slowdown and sets the ability on cooldown.
-/datum/action/ability/activable/xeno/unleash/proc/end_withdrawal()
-	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH_WITHDRAWAL)
-	deltimer(timer_id)
-	timer_id = null
-	add_cooldown()
-
-/// Returns true if the ability's buff is currently active.
-/datum/action/ability/activable/xeno/unleash/proc/is_active()
-	return timer_id ? xeno_owner.has_movespeed_modifier(MOVESPEED_ID_DRAGON_UNLEASH) : FALSE
 
 /obj/effect/temp_visual/dragon
 	name = "Dragon"

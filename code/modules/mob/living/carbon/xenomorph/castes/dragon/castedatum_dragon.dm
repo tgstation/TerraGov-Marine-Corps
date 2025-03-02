@@ -85,7 +85,6 @@
 		/datum/action/ability/activable/xeno/wind_current,
 		/datum/action/ability/activable/xeno/grab,
 		/datum/action/ability/activable/xeno/psychic_channel,
-		/datum/action/ability/activable/xeno/unleash,
 		/datum/action/ability/xeno_action/hive_message,
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/xeno_action/rally_minion,
