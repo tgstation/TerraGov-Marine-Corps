@@ -16,12 +16,14 @@
 // ***************************************
 // *********** Bull's Stomp
 // ***************************************
-#define BULL_STOMP_DEBUFF_DURATION 3 //SECONDS
+#define BULL_STOMP_DEBUFF 1.5 //in stacks.
 
 /datum/action/ability/activable/xeno/stomp/bull
 	name = "Bull's Stomp"
 	ability_cost = 50
-	cooldown_duration = 5 SECONDS
+	cooldown_duration = 10 SECONDS
+	stomp_damage = 50
+	paralyze_duration = 2 SECONDS
 
 /datum/action/ability/activable/xeno/stomp/bull/use_ability(atom/A)
 	succeed_activate()
@@ -32,24 +34,25 @@
 		if(xeno_owner.issamexenohive(living_target) || living_target.stat == DEAD || !xeno_owner.Adjacent(living_target))
 			continue
 		var/distance = get_dist(living_target, xeno_owner)
-		var/stomp_damage = XENO_STOMP_DAMAGE / max(1, distance + 1)
+		var/damage = stomp_damage / max(1, distance + 1)
 		if(distance == 0)
 			GLOB.round_statistics.crusher_stomp_victims++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
-			living_target.take_overall_damage(stomp_damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 2)
-			living_target.Paralyze(BULL_STOMP_DEBUFF_DURATION SECONDS)
+			living_target.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 2)
+			living_target.Paralyze(paralyze_duration)
 			shake_camera(living_target, 2, 2)
 		else
 			step_away(living_target, xeno_owner, 1) //Knock away
-			living_target.take_overall_damage(stomp_damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 2)
-			living_target.adjust_stagger(BULL_STOMP_DEBUFF_DURATION)
-			living_target.adjust_slowdown(BULL_STOMP_DEBUFF_DURATION)
+			living_target.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 2)
+			living_target.do_jitter_animation(700, BULL_STOMP_DEBUFF SECONDS)
+			living_target.adjust_stagger(BULL_STOMP_DEBUFF)
+			living_target.adjust_slowdown(BULL_STOMP_DEBUFF)
 
 
 // ***************************************
 // *********** Scorched Earth
 // ***************************************
-#define SCORCHED_EARTH_RANGE 7
+#define SCORCHED_EARTH_RANGE 6
 #define SCORCHED_EARTH_RESET_TIME 6 SECONDS
 #define SCORCHED_EARTH_AOE_SIZE 1
 #define SCORCHED_EARTH_TRAVEL_DAMAGE 5
@@ -135,7 +138,7 @@
 	playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_enhanced_charge.ogg', 30, TRUE)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(check_turf))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(end_throw))
-	xeno_owner.throw_at(turf_target, SCORCHED_EARTH_RANGE, 3, xeno_owner, flying = TRUE)
+	xeno_owner.throw_at(turf_target, SCORCHED_EARTH_RANGE, 3, xeno_owner)
 	ability_charges--
 	if(!ability_charges)
 		end_ability()

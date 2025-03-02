@@ -97,10 +97,13 @@
 	// *** Speed *** //
 	speed = -0.8
 
+	// *** Health *** //
+	max_health = 400
+
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_STRONG|CASTE_STAGGER_RESISTANT
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_STRONG
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
-	caste_traits = null
+	caste_traits = list(TRAIT_STAGGERIMMUNE)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 65, BIO = 65, FIRE = 65, ACID = 65)

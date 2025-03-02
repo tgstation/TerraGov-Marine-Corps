@@ -12,6 +12,10 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_STOMP,
 	)
+	/// The damage dealt by this ability.
+	var/stomp_damage = 60
+	/// The duration of this ability's paralyze debuff.
+	var/paralyze_duration = 3 SECONDS
 
 /datum/action/ability/activable/xeno/stomp/use_ability(atom/A)
 	succeed_activate()
@@ -26,12 +30,12 @@
 		if(xeno_owner.issamexenohive(M) || M.stat == DEAD || isnestedhost(M) || !xeno_owner.Adjacent(M))
 			continue
 		var/distance = get_dist(M, xeno_owner)
-		var/damage = XENO_STOMP_DAMAGE / max(1, distance + 1)
+		var/damage = stomp_damage / max(1, distance + 1)
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			GLOB.round_statistics.crusher_stomp_victims++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
 			M.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
-			M.Paralyze(3 SECONDS)
+			M.Paralyze(paralyze_duration)
 			to_chat(M, span_userdanger("You are stomped on by [xeno_owner]!"))
 			shake_camera(M, 3, 3)
 		else
@@ -39,7 +43,7 @@
 			shake_camera(M, 2, 2)
 			to_chat(M, span_userdanger("You reel from the shockwave of [xeno_owner]'s stomp!"))
 			M.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
-			M.Paralyze(0.5 SECONDS)
+			M.Paralyze(paralyze_duration / 6)
 
 /datum/action/ability/activable/xeno/stomp/ai_should_start_consider()
 	return TRUE
