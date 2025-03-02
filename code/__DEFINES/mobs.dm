@@ -147,6 +147,8 @@
 #define BRAIN_DAMAGE "brain_damage"
 #define INTERNAL_BLEEDING "internal_bleeding"
 #define ORGAN_DAMAGE "organ_damage"
+#define INFECTION "infection"
+
 //=================================================
 
 #define EFFECT_STUN "stun"
@@ -997,4 +999,5 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 	BRAIN_DAMAGE = GLOB.ai_brain_heal_items,
 	INTERNAL_BLEEDING = GLOB.ai_ib_heal_items,
 	ORGAN_DAMAGE = GLOB.ai_organ_heal_items,
+	INFECTION = GLOB.ai_infection_heal_items,
 ))

@@ -31,6 +31,7 @@
 	var/list/brain_list
 	var/list/ib_list
 	var/list/organ_list
+	var/list/infection_list
 
 /datum/managed_inventory/New(mob/living/new_owner)
 	. = ..()
@@ -72,6 +73,7 @@
 		QDEL_NULL(brain_list)
 		QDEL_NULL(ib_list)
 		QDEL_NULL(organ_list)
+		QDEL_NULL(infection_list)
 		return
 	equipped_list = list()
 	gun_list = list()
@@ -92,6 +94,7 @@
 	brain_list = list()
 	ib_list = list()
 	organ_list = list()
+	infection_list = list()
 
 ///Handles an item being equipped, and its contents
 /datum/managed_inventory/proc/item_equipped(mob/user, obj/item/equipped_item)
@@ -162,7 +165,7 @@
 		if(istype(new_item, /obj/item/stack/sheet))
 			engineering_list_add(new_item)
 			return
-	if(isreagentcontainer(new_item))
+	if(isreagentcontainer(new_item) || istype(new_item, /obj/item/tweezers_advanced) || istype(new_item, /obj/item/tweezers))
 		medical_list_add(new_item)
 		return
 
@@ -220,6 +223,8 @@
 				type_list = ib_list
 			if(ORGAN_DAMAGE)
 				type_list = organ_list
+			if(INFECTION )
+				type_list = infection_list
 
 		if(new_item in type_list) //we can just early return here, due to the signal issue mentioned above
 			return
@@ -285,6 +290,7 @@
 	brain_list -= moving_item
 	ib_list -= moving_item
 	organ_list -= moving_item
+	infection_list -= moving_item
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
 
 ///Removes an item from this list

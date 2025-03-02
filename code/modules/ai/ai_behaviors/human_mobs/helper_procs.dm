@@ -40,6 +40,12 @@
 /obj/item/reagent_containers/pill/ai_use(mob/living/target, mob/living/user)
 	attack(target, user)
 
+/obj/item/tweezers/ai_use(mob/living/target, mob/living/user)
+	attack(target, user)
+
+/obj/item/tweezers_advanced/ai_use(mob/living/target, mob/living/user)
+	attack(target, user)
+
 ///AI mob interaction with this atom, such as picking it up
 /atom/proc/do_ai_interact(mob/living/interactor)
 	interactor.UnarmedAttack(src, TRUE) //only used for picking up items atm

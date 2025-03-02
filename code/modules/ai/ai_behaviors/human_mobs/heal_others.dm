@@ -151,22 +151,57 @@
 		if(heal_by_type(patient, dam_type))
 			did_heal = TRUE
 			continue
-	//bones
+
+
+	var/infection
+	var/internal_bleeding
+	var/shrap_limb //we only need one since it will auto cycle to other limbs
 	var/list/broken_limbs = list()
+
 	for(var/datum/limb/limb AS in patient.limbs)
-		if(!(limb.limb_status & LIMB_BROKEN) || (limb.limb_status & LIMB_SPLINTED))
-			continue
-		broken_limbs += limb
+		if(limb.germ_level > INFECTION_LEVEL_ONE)
+			infection = TRUE
+
+		if((limb.limb_status & LIMB_BROKEN) && !(limb.limb_status & LIMB_SPLINTED))
+			broken_limbs += limb
+
+		if(!internal_bleeding)
+			for(var/datum/wound/wound in limb.wounds)
+				if(!istype(wound, /datum/wound/internal_bleeding))
+					continue
+				internal_bleeding = TRUE
+				break
+
+		if(!shrap_limb && length(limb.implants))
+			for(var/obj/item/embedded AS in limb.implants)
+				if(embedded.is_beneficial_implant())
+					continue
+				shrap_limb = limb
+				break
+
+	if(infection)
+		heal_by_type(patient, INFECTION )
+		did_heal = TRUE
+
+	if(internal_bleeding)
+		heal_by_type(patient, INTERNAL_BLEEDING)
+		did_heal = TRUE
+
+	if(shrap_limb)
+		var/obj/item/shrap_remover = locate(/obj/item/tweezers_advanced) in mob_inventory.medical_list
+		if(!shrap_remover)
+			shrap_remover = locate(/obj/item/tweezers) in mob_inventory.medical_list
+		if(shrap_remover)
+			shrap_remover.ai_use(patient, mob_parent)
+			did_heal = TRUE
+
 	for(var/broken_limb in broken_limbs)
 		if(!do_splint(broken_limb, patient))
 			break
 		did_heal = TRUE
-	//organs
+
 	do_organ_heal(patient)
-	//IB
 
-
-	//shrap
 	if(!did_heal || prob(30)) //heal interupted or nothing left to heal, or to stop overload
 		do_unset_target(patient)
 	UnregisterSignal(patient, COMSIG_MOVABLE_MOVED)
@@ -230,6 +265,8 @@
 			med_list = mob_inventory.ib_list
 		if(ORGAN_DAMAGE)
 			med_list = mob_inventory.organ_list
+		if(INFECTION)
+			med_list = mob_inventory.infection_list
 
 	for(var/obj/item/stored_item AS in med_list)
 		if(!stored_item.ai_should_use(patient, mob_parent))

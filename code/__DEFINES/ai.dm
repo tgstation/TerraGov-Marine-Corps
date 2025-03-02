@@ -222,6 +222,12 @@ GLOBAL_LIST_INIT(ai_organ_heal_items, list(
 	/obj/item/reagent_containers/hypospray/advanced/peridaxonplus_medkit,
 ))
 
+GLOBAL_LIST_INIT(ai_infection_heal_items, list(
+	/obj/item/reagent_containers/hypospray/advanced/big/spaceacillin,
+	/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin,
+	/obj/item/reagent_containers/pill/spaceacillin,
+))
+
 ///List of squads that can be spawned, and the roles in them, sorted in spawn order
 GLOBAL_LIST_INIT(ai_squad_presets, list(
 	"SOM breachers" = list(
