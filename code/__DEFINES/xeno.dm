@@ -59,6 +59,12 @@
 #define PUPPET_SEEK_CLOSEST "seeking closest and attack order" //not xeno-usable
 #define PUPPET_ATTACK "seek and attack order"
 
+// Dragon defines
+#define DRAGON_PSYCHIC_CHANNEL "psychic_channel"
+#define DRAGON_MIASMA "miasma"
+#define DRAGON_LIGHTNING_SHRIKE "lightning_strike"
+#define DRAGON_ICE_STORM "ice_storm"
+
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
 	/obj/alien/weeds/node,
@@ -147,6 +153,13 @@ GLOBAL_LIST_INIT(puppeteer_phero_images_list, list(
 	AURA_XENO_BLESSFURY = image('icons/Xeno/actions/puppeteer.dmi', icon_state = "Fury"),
 	AURA_XENO_BLESSWARDING = image('icons/Xeno/actions/puppeteer.dmi', icon_state = "Warding"),
 	AURA_XENO_BLESSFRENZY = image('icons/Xeno/actions/puppeteer.dmi', icon_state = "Frenzy"),
+))
+
+// List of dragon spell images
+GLOBAL_LIST_INIT(dragon_spell_images_list, list(
+	DRAGON_MIASMA = image('icons/Xeno/actions/dragon.dmi', icon_state = DRAGON_MIASMA),
+	DRAGON_LIGHTNING_SHRIKE = image('icons/Xeno/actions/dragon.dmi', icon_state = DRAGON_LIGHTNING_SHRIKE),
+	DRAGON_ICE_STORM = image('icons/Xeno/actions/dragon.dmi', icon_state = DRAGON_ICE_STORM),
 ))
 
 //xeno upgrade flags

@@ -729,38 +729,33 @@
 	cancel_channel()
 
 /// Selects the chosen spell. Alternatively, lets the owner choose from a radical wheel of spells.
-/datum/action/ability/activable/xeno/psychic_channel/proc/select_spell(spell_name = "Psychic Channel", force_update = FALSE, do_selection = FALSE, pick_randomly = FALSE)
+/datum/action/ability/activable/xeno/psychic_channel/proc/select_spell(spell_name = DRAGON_PSYCHIC_CHANNEL, force_update = FALSE, do_selection = FALSE, pick_randomly = FALSE)
 	if(do_selection)
-		var/spell_images_list = list(
-			"Miasma" = image('icons/Xeno/actions/dragon.dmi', icon_state = "miasma"),
-			"Lightning Strike" = image('icons/Xeno/actions/dragon.dmi', icon_state = "lightning_strike"),
-			"Ice Storm" = image('icons/Xeno/actions/dragon.dmi', icon_state = "ice_storm")
-		)
-		spell_name = show_radial_menu(xeno_owner, xeno_owner, spell_images_list, radius = 35)
+		spell_name = show_radial_menu(xeno_owner, xeno_owner, GLOB.dragon_spell_images_list, radius = 35)
 		if(!spell_name)
 			return
 		select_spell(spell_name)
 		return
 	if(pick_randomly)
-		spell_name = pick(list("Miasma", "Lightning Strike", "Ice Storm"))
+		spell_name = pick(list(DRAGON_MIASMA, DRAGON_LIGHTNING_SHRIKE, DRAGON_ICE_STORM))
 	switch(spell_name)
-		if("Psychic Channel")
-			selected_spell = "psychic_channel"
+		if(DRAGON_PSYCHIC_CHANNEL)
+			selected_spell = DRAGON_PSYCHIC_CHANNEL
 			if(is_actively_channeling() || force_update)
 				name = "Psychic Channel"
 				desc = "Begin channeling your psychic abilities. During your channeling, you can cast various spells which all have independent cooldowns. Right-click to select what spell to use while channeling."
-		if("Miasma")
-			selected_spell = "miasma"
+		if(DRAGON_MIASMA)
+			selected_spell = DRAGON_MIASMA
 			if(is_actively_channeling() || force_update)
 				name = "Miasma"
 				desc = "Fires a projectile that plagues an area with black miasma. Marines caught in the blast are burnt and have their healing reduced."
-		if("Lightning Strike")
-			selected_spell = "lightning_strike"
+		if(DRAGON_LIGHTNING_SHRIKE)
+			selected_spell = DRAGON_LIGHTNING_SHRIKE
 			if(is_actively_channeling() || force_update)
 				name = "Lightning Strike"
 				desc = "Up to 15 nearby marines are marked to be struck with lightning. Marines that do not move out of way fast enough are burnt and inflicted with an effect that causes additional damage if they move."
-		if("Ice Storm")
-			selected_spell = "ice_storm"
+		if(DRAGON_ICE_STORM)
+			selected_spell = DRAGON_ICE_STORM
 			if(is_actively_channeling() || force_update)
 				name = "Ice Storm"
 				desc = "Create 10 homing ice spikes around you in a circle. Each spike will follow the nearest marine and deals a small amount of damage along with a slowdown if they are hit."
@@ -777,18 +772,18 @@
 /datum/action/ability/activable/xeno/psychic_channel/proc/reset_cooldown()
 	clear_cooldown()
 	switch(selected_spell)
-		if("psychic_channel")
+		if(DRAGON_PSYCHIC_CHANNEL)
 			cooldown_duration = null
 			return
-		if("miasma")
+		if(DRAGON_MIASMA)
 			var/remaining_cooldown = COOLDOWN_TIMELEFT(src, miasma_cooldown)
 			if(remaining_cooldown)
 				add_cooldown(COOLDOWN_TIMELEFT(src, miasma_cooldown))
-		if("lightning_strike")
+		if(DRAGON_LIGHTNING_SHRIKE)
 			var/remaining_cooldown = COOLDOWN_TIMELEFT(src, lightning_shrike_cooldown)
 			if(remaining_cooldown)
 				add_cooldown(COOLDOWN_TIMELEFT(src, lightning_shrike_cooldown))
-		if("ice_storm")
+		if(DRAGON_ICE_STORM)
 			var/remaining_cooldown = COOLDOWN_TIMELEFT(src, ice_storm_cooldown)
 			if(remaining_cooldown)
 				add_cooldown(COOLDOWN_TIMELEFT(src, ice_storm_cooldown))
@@ -809,14 +804,14 @@
 		return
 
 	switch(selected_spell)
-		if("miasma")
+		if(DRAGON_MIASMA)
 			var/obj/projectile/proj = new(get_turf(xeno_owner))
 			proj.generate_bullet(/datum/ammo/xeno/miasma_orb)
 			proj.def_zone = xeno_owner.get_limbzone_target()
 			proj.fire_at(A, xeno_owner, xeno_owner, range = 10, speed = 1)
 			xeno_owner.gain_plasma(100 * castplasma_multiplier)
 			COOLDOWN_START(src, miasma_cooldown, 20 SECONDS)
-		if("lightning_strike")
+		if(DRAGON_LIGHTNING_SHRIKE)
 			var/list/mob/living/carbon/human/acceptable_humans = get_lightning_shrike_marines()
 			var/list/turf/impacted_turfs = get_lightning_shrike_hit_turfs(acceptable_humans)
 			for(var/turf/impacted_turf AS in impacted_turfs)
@@ -824,7 +819,7 @@
 			spell_timer = addtimer(CALLBACK(src, PROC_REF(finalize_lightning_shrike), get_lightning_shrike_center_turfs(acceptable_humans), impacted_turfs), 1.5 SECONDS / castplasma_multiplier, TIMER_STOPPABLE|TIMER_UNIQUE)
 			xeno_owner.gain_plasma(100 * castplasma_multiplier)
 			COOLDOWN_START(src, lightning_shrike_cooldown, 25 SECONDS)
-		if("ice_storm")
+		if(DRAGON_ICE_STORM)
 			var/list/bullets = list()
 			for(var/i = 1 to 10)
 				var/obj/projectile/proj = new(get_turf(xeno_owner))
