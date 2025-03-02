@@ -785,7 +785,7 @@
 
 /atom/movable/screen/combo/proc/reset_icons()
 	cut_overlays()
-	icon_state = ""
+	icon_state = initial(icon_state)
 
 /atom/movable/screen/combo/update_icon_state(combo_streak = "", time = 2 SECONDS)
 	reset_icons()

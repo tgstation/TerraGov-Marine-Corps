@@ -119,7 +119,7 @@
 	attack_delay = 7
 
 	// *** Speed *** //
-	speed = -0.7
+	speed = -0.6
 	weeds_speed_mod = -0.1
 
 	// *** Plasma *** //
@@ -189,5 +189,5 @@
 		/datum/action/ability/activable/xeno/conqueror_will,
 		/datum/action/ability/xeno_action/conqueror_endurance,
 		/datum/action/ability/activable/xeno/conqueror_domination,
-//		/datum/action/ability/xeno_action/conqueror_obliteration,
+		/datum/action/ability/xeno_action/conqueror_obliteration,
 	)
