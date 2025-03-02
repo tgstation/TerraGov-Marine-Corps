@@ -41,7 +41,7 @@
 #define COOLDOWN_LOADOUT_EQUIPPED "cooldown_loadout_equipped"
 #define COOLDOWN_LOADOUT_VISUALIZATION "cooldown_loadout_visualization"
 #define COOLDOWN_TADPOLE_LAUNCHING "cooldown_tadpole_launching"
-#define COOLDOWN_TANGLE_EMITTER
+#define COOLDOWN_TANGLE_EMITTER "cooldown_tangle_emitter"
 #define COOLDOWN_BOMBVEST_SHIELD_DROP "cooldown_bombvest_shield_drop"
 #define COOLDOWN_HIVEMIND_MANIFESTATION "cooldown_hivemind_manifestation"
 #define COOLDOWN_ORBITAL_SPOTLIGHT "orbital_spotlight"

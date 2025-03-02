@@ -326,10 +326,10 @@
 
 /obj/structure/dropship_equipment/shuttle/nade_launcher/equipment_interact(mob/user)
 	if(!COOLDOWN_CHECK(src, deploy_cooldown)) //prevents spamming deployment
-		user.balloon_alert(user, "[src] is busy.")
+		user.balloon_alert(user, "Busy")
 		return
 	if(length(loaded_grenades) <= 0) //check for inserted flares
-		user.balloon_alert(user, "No grenades remaining.")
+		user.balloon_alert(user, "No grenades left")
 		return
 	var/turf/target = get_ranged_target_turf(src, dir, 10)
 	var/obj/item/explosive/grenade/nade_to_launch = loaded_grenades[1]
@@ -338,7 +338,7 @@
 	nade_to_launch.throw_at(target, 10, 2)
 	LAZYREMOVE(loaded_grenades, nade_to_launch)
 	COOLDOWN_START(src, deploy_cooldown, fire_cooldown)
-	user.balloon_alert(user, "You deploy [src]. Grenades remaining: [length(loaded_grenades)].")
+	user.balloon_alert(user, "[LAZYLEN(loaded_grenades)]/[grenade_capacity] remaining")
 	playsound(loc, 'sound/weapons/guns/fire/grenadelauncher.ogg', 40, 1)
 
 /obj/structure/dropship_equipment/shuttle/nade_launcher/attackby(obj/item/I, mob/user, params)
@@ -397,25 +397,19 @@
 	var/obj/item/explosive/grenade/smokebomb/drain/pellet/pellet_type
 	/// Cooldown for emitting smoke
 	var/cooldown_length = 10 MINUTES
-	/// Identifier for system feedback
-	var/id = 0
 	COOLDOWN_DECLARE(use_cooldown)
 
-
-/obj/structure/dropship_equipment/shuttle/tangle_emitter/Initialize(mapload)
-	. = ..()
-	id = UNIQUEID
 
 /obj/structure/dropship_equipment/shuttle/tangle_emitter/equipment_interact(mob/user)
 	if(!enabled)
 		enabled = TRUE
 		update_icon()
-		user.balloon_alert(user, "You activate [src] #[id]. It will now deploy smoke when landing.")
+		user.balloon_alert(user, "Enabled")
 		RegisterSignal(linked_shuttle, COMSIG_MINIDROPSHIP_BEGIN_LANDING, PROC_REF(drop_pellet_to_location))
 		return
 	enabled = FALSE
 	update_icon()
-	user.balloon_alert(user, "You disable [src] #[id]. It will no longer deploy smoke when landing.")
+	user.balloon_alert(user, "Disabled")
 	UnregisterSignal(linked_shuttle, COMSIG_MINIDROPSHIP_BEGIN_LANDING)
 
 /obj/structure/dropship_equipment/shuttle/tangle_emitter/update_equipment()
@@ -451,7 +445,7 @@
 	if(console.next_fly_state != SHUTTLE_ON_GROUND || !enabled || !landing_spot)
 		return
 	if(!COOLDOWN_CHECK(src, use_cooldown))
-		console.say("Emitter system #[id] recharging. Unable to deploy smoke.")
+		console.say("Emitter system recharging. Unable to deploy smoke.")
 		playsound(console, 'sound/machines/buzz-sigh.ogg', 25)
 		return
 
@@ -462,7 +456,7 @@
 	update_icon()
 	addtimer(CALLBACK(src, PROC_REF(on_cooldown_end)), cooldown_length + 1 SECONDS)
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 40, 1)
-	console.say("Emitter system #[id] deployed successfully.")
+	console.say("Emitter system deployed successfully.")
 	landing_spot.balloon_alert_to_viewers("A small pellet falls out of the sky!")
 
 /// Special effects for when system cooldown finishes
