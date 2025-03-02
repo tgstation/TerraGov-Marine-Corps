@@ -7,6 +7,14 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BACKHAND,
 	)
+	/// The width inputted into `get_forward_square_to_target` used to telegraph and to get targets.
+	var/width = 1
+	/// The height inputted into `get_forward_square_to_target` used to telegraph and to get targets.
+	var/height = 2
+	/// Should they turn around during the initial do_after? Only for regular ability.
+	var/turn_around = FALSE
+	/// The amount of deciseconds to stun occupants of vehicles, if they should be stunned at all.
+	var/vehicle_stun_length = 0
 
 /datum/action/ability/activable/xeno/backhand/can_use_ability(atom/A, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
@@ -21,60 +29,45 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/backhand/use_ability(atom/target)
-	var/damage = 60 * xeno_owner.xeno_melee_damage_modifier
-	var/turf/current_turf = get_turf(xeno_owner)
 	var/datum/action/ability/activable/xeno/grab/grab_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/grab]
 	var/mob/living/carbon/human/grabbed_human = grab_ability?.grabbed_human
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
-	var/cooldown_plasma_bonus = unleash_ability?.is_active() ? 2 : 1
-	if(grabbed_human)
-		xeno_owner.face_atom(grabbed_human)
-		xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
-		xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-		xeno_owner.visible_message(span_danger("[xeno_owner] lifts [grabbed_human] into the air and gets ready to slam!"))
-		if(do_after(xeno_owner, 3 SECONDS / cooldown_plasma_bonus, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
-			xeno_owner.face_atom(grabbed_human)
-			new /obj/effect/temp_visual/dragon/directional/backhand_slam(get_step(xeno_owner, grabbed_human), xeno_owner)
-			xeno_owner.stop_pulling()
-			xeno_owner.visible_message(span_danger("[xeno_owner] slams [grabbed_human] into the ground!"))
-			grabbed_human.emote("scream")
-			grabbed_human.Shake(duration = 0.5 SECONDS) // Must stop pulling first for Shake to work.
-			playsound(current_turf, 'sound/effects/alien/behemoth/seismic_fracture_explosion.ogg', 50, 1)
-			for(var/turf/turf_in_range AS in RANGE_TURFS(2, current_turf))
-				turf_in_range.Shake(duration = 0.25 SECONDS)
-				for(var/mob/living/living_in_range in turf_in_range.contents)
-					if(xeno_owner == living_in_range || grabbed_human == living_in_range)
-						continue
-					animate(living_in_range, pixel_z = living_in_range.pixel_z + 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
-					animate(pixel_z = living_in_range.pixel_z - 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
-			grabbed_human.take_overall_damage(damage * 2.5, BRUTE, MELEE, max_limbs = 5, updating_health = TRUE) // 150
-			xeno_owner.gain_plasma(250 * cooldown_plasma_bonus)
-		xeno_owner.move_resist = initial(xeno_owner.move_resist)
-		xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-		succeed_activate()
-		add_cooldown()
+	if(grabbed_human && handle_grabbed_human(grabbed_human))
 		return
 
 	xeno_owner.face_atom(target)
-	var/list/turf/affected_turfs = get_forward_square_to_target(xeno_owner, 1, 2) // 3x2
+	var/list/turf/affected_turfs = get_forward_square_to_target(xeno_owner, width, height)
 	for(var/turf/affected_turf AS in affected_turfs)
-		new /obj/effect/temp_visual/dragon/warning(affected_turf, 1.2 SECONDS / cooldown_plasma_bonus)
+		new /obj/effect/temp_visual/dragon/warning(affected_turf, 1.2 SECONDS / get_bonus())
+	if(turn_around)
+		xeno_owner.setDir(turn(xeno_owner.dir, 180))
 
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS / cooldown_plasma_bonus, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
+	var/was_successful = do_after(xeno_owner, 1.2 SECONDS / get_bonus(), IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	if(!was_successful)
-		return
+	if(was_successful)
+		handle_regular_ability(target, affected_turfs)
+	succeed_activate()
+	add_cooldown()
 
+/// Gets the base damage in which the ability does.
+/datum/action/ability/activable/xeno/backhand/proc/get_damage()
+	return 60 * xeno_owner.xeno_melee_damage_modifier
+
+/// Gets the bonus that which will reduce cast times or increase plasma gain.
+/datum/action/ability/activable/xeno/backhand/proc/get_bonus()
+	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
+	return unleash_ability?.is_active() ? 2 : 1
+
+/// Performs the regular interaction as expected of the ability.
+/datum/action/ability/activable/xeno/backhand/proc/handle_regular_ability(atom/target, list/turf/affected_turfs)
 	xeno_owner.face_atom(target)
-
-	new /obj/effect/temp_visual/dragon/directional/backhand(get_step(xeno_owner, target), xeno_owner)
-
+	new /obj/effect/temp_visual/dragon/directional/backhand(get_step(xeno_owner, target), xeno_owner.dir)
 	var/has_hit_anything = FALSE
-	for(var/turf/affected_tile AS in affected_turfs)
-		for(var/atom/affected_atom AS in affected_tile)
+	var/list/obj/vehicle/hit_vehicles = list()
+	for(var/turf/affected_turf AS in affected_turfs)
+		for(var/atom/affected_atom AS in affected_turf)
 			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
 				continue
 			if(isxeno(affected_atom))
@@ -83,7 +76,7 @@
 				var/mob/living/affected_living = affected_atom
 				if(affected_living.stat == DEAD)
 					continue
-				affected_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5, updating_health = TRUE)
+				affected_living.take_overall_damage(get_damage(), BRUTE, MELEE, max_limbs = 5, updating_health = TRUE)
 				affected_living.knockback(xeno_owner, 2, 1)
 				xeno_owner.do_attack_animation(affected_living)
 				has_hit_anything = TRUE
@@ -91,27 +84,63 @@
 			if(!isobj(affected_atom))
 				continue
 			var/obj/affected_obj = affected_atom
-			if(ishitbox(affected_obj))
-				affected_obj
-				affected_obj.take_damage(damage * 1/3, BRUTE, MELEE, blame_mob = xeno_owner) // 20, adjusted for 3x3 multitile vehicles.
-				has_hit_anything = TRUE
+			if(ishitbox(affected_obj) || isvehicle(affected_obj))
+				has_hit_anything = handle_affected_vehicle(affected_obj, hit_vehicles)
 				continue
-			if(!isvehicle(affected_obj))
-				affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
-				has_hit_anything = TRUE
-				continue
-			if(ismecha(affected_obj))
-				affected_obj.take_damage(damage * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = xeno_owner) // 180
-			else
-				affected_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = xeno_owner) // 120
+			affected_obj.take_damage(get_damage(), BRUTE, MELEE, blame_mob = xeno_owner)
 			has_hit_anything = TRUE
 			continue
 
-	playsound(current_turf, has_hit_anything ? 'sound/effects/alien/dragon/backhand_hit.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
+	playsound(xeno_owner, has_hit_anything ? 'sound/effects/alien/dragon/backhand_hit.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 	if(has_hit_anything)
-		xeno_owner.gain_plasma(100 * cooldown_plasma_bonus)
+		xeno_owner.gain_plasma(100 * get_bonus())
+
+/// Performs a different interaction based on if there is a grabbed human.
+/datum/action/ability/activable/xeno/backhand/proc/handle_grabbed_human(mob/living/carbon/human/grabbed_human)
+	xeno_owner.face_atom(grabbed_human)
+	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+	xeno_owner.visible_message(span_danger("[xeno_owner] lifts [grabbed_human] into the air and gets ready to slam!"))
+	if(!do_after(xeno_owner, 3 SECONDS / get_bonus(), IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
+		xeno_owner.face_atom(grabbed_human)
+		new /obj/effect/temp_visual/dragon/directional/backhand_slam(get_step(xeno_owner, grabbed_human), xeno_owner.dir)
+		xeno_owner.stop_pulling()
+		xeno_owner.visible_message(span_danger("[xeno_owner] slams [grabbed_human] into the ground!"))
+		grabbed_human.emote("scream")
+		grabbed_human.Shake(duration = 0.5 SECONDS) // Must stop pulling first for Shake to work.
+		playsound(xeno_owner, 'sound/effects/alien/behemoth/seismic_fracture_explosion.ogg', 50, 1)
+		for(var/turf/turf_in_range AS in filled_turfs(xeno_owner, 2, "square", FALSE, pass_flags_checked = PASS_AIR))
+			turf_in_range.Shake(duration = 0.25 SECONDS)
+			for(var/mob/living/living_in_range in turf_in_range.contents)
+				if(xeno_owner == living_in_range || grabbed_human == living_in_range)
+					continue
+				animate(living_in_range, pixel_z = living_in_range.pixel_z + 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
+				animate(pixel_z = living_in_range.pixel_z - 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
+		grabbed_human.take_overall_damage(get_damage() * 2.5, BRUTE, MELEE, max_limbs = 5, updating_health = TRUE) // 150
+		xeno_owner.gain_plasma(250 * get_bonus())
+	xeno_owner.move_resist = initial(xeno_owner.move_resist)
+	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	succeed_activate()
 	add_cooldown()
+	return TRUE
+
+/// Does damage to the vehicle and stuns it if the ability wants it so.
+/datum/action/ability/activable/xeno/backhand/proc/handle_affected_vehicle(obj/affected_obj, list/obj/vehicle/hit_vehicles)
+	if(ishitbox(affected_obj))
+		var/obj/hitbox/affected_hitbox = affected_obj
+		return handle_affected_vehicle(affected_hitbox.root)
+	if(!isvehicle(affected_obj))
+		return FALSE
+	var/obj/vehicle/affected_vehicle = affected_obj
+	if(ismecha(affected_vehicle))
+		affected_vehicle.take_damage(get_damage() * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = src)
+	else if(isarmoredvehicle(affected_vehicle)) // Obtained from hitbox.
+		affected_vehicle.take_damage(get_damage() / 3, BRUTE, MELEE, blame_mob = src)
+	else
+		affected_vehicle.take_damage(get_damage() * 2, BRUTE, MELEE, blame_mob = src)
+	if(!(affected_vehicle in hit_vehicles) && vehicle_stun_length > 0)
+		for(var/mob/living/carbon/human/human_occupant in affected_vehicle.occupants)
+			human_occupant.apply_effect(vehicle_stun_length, EFFECT_PARALYZE)
 
 /// Checks if the ability is still usable and is currently grabbing a human.
 /datum/action/ability/activable/xeno/backhand/proc/grab_extra_check()
@@ -183,7 +212,7 @@
 	xeno_owner.stop_pulling()
 	xeno_owner.change_form()
 
-/datum/action/ability/activable/xeno/tailswipe
+/datum/action/ability/activable/xeno/backhand/tailswipe
 	name = "Tailswipe"
 	action_icon_state = "tailswipe"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
@@ -192,103 +221,57 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAILSWIPE,
 	)
+	width = 2
+	height = 3
+	turn_around = TRUE
+	vehicle_stun_length = 1.5 SECONDS
 
-/datum/action/ability/activable/xeno/tailswipe/can_use_ability(atom/A, silent, override_flags)
-	if(xeno_owner.status_flags & INCORPOREAL)
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
-		return FALSE
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
-	if(unleash_ability?.currently_roaring)
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "busy roaring")
-		return FALSE
-	return ..()
+/datum/action/ability/activable/xeno/backhand/tailswipe/get_damage()
+	return 55 * xeno_owner.xeno_melee_damage_modifier
 
-/datum/action/ability/activable/xeno/tailswipe/use_ability(atom/target)
-	xeno_owner.face_atom(target)
-
-	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
-	var/castplasma_multiplier = unleash_ability?.is_active() ? 2 : 1
-	var/list/turf/impacted_turfs = get_forward_square_to_target(xeno_owner, 2, 3) // 5x3
-	for(var/turf/impacted_turf AS in impacted_turfs)
-		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.2 SECONDS / castplasma_multiplier)
-
-	xeno_owner.setDir(turn(xeno_owner.dir, 180))
-	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
-	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS / castplasma_multiplier, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
-	xeno_owner.move_resist = initial(xeno_owner.move_resist)
-	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-
-	if(!was_successful)
-		return
-
-	xeno_owner.face_atom(target)
-	new /obj/effect/temp_visual/dragon/directional/tail_swipe(get_step(xeno_owner, target), xeno_owner)
-
-	var/damage = 55 * xeno_owner.xeno_melee_damage_modifier
+/datum/action/ability/activable/xeno/backhand/tailswipe/handle_regular_ability(atom/target, list/turf/affected_turfs)
+	xeno_owner.face_atom(get_step(xeno_owner, turn(get_cardinal_dir(xeno_owner, target), 180)))
+	new /obj/effect/temp_visual/dragon/directional/tail_swipe(get_step(xeno_owner, target), get_cardinal_dir(xeno_owner, target))
 	var/has_hit_anything = FALSE
-	var/list/obj/vehicle/already_stunned_vehicles = list() // To stop hitting something the same multitile vehicle twice.
-	for(var/turf/impacted_turf AS in impacted_turfs)
-		for(var/atom/impacted_atom AS in impacted_turf)
-			if(!(impacted_atom.resistance_flags & XENO_DAMAGEABLE))
+	var/list/obj/vehicle/hit_vehicles = list()
+	for(var/turf/affected_turf AS in affected_turfs)
+		for(var/atom/affected_atom AS in affected_turf)
+			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
 				continue
-			if(isxeno(impacted_atom))
+			if(isxeno(affected_atom))
 				continue
-			if(isliving(impacted_atom))
-				var/mob/living/impacted_living = impacted_atom
-				if(impacted_living.stat == DEAD)
+			if(isliving(affected_atom))
+				var/mob/living/affected_living = affected_atom
+				if(affected_living.stat == DEAD)
 					continue
-				impacted_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5, updating_health = TRUE)
-				impacted_living.apply_effect(2 SECONDS, EFFECT_PARALYZE)
+				affected_living.take_overall_damage(get_damage(), BRUTE, MELEE, max_limbs = 5, updating_health = TRUE)
+				affected_living.apply_effect(2 SECONDS, EFFECT_PARALYZE)
 
-				animate(impacted_living, pixel_z = impacted_living.pixel_z + 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
-				animate(pixel_z = impacted_living.pixel_z - 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
-				impacted_living.animation_spin(0.5 SECONDS, 1, impacted_living.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
+				animate(affected_living, pixel_z = affected_living.pixel_z + 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
+				animate(pixel_z = affected_living.pixel_z - 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
+				affected_living.animation_spin(0.5 SECONDS, 1, affected_living.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
 
-				xeno_owner.do_attack_animation(impacted_living)
-				xeno_owner.visible_message(span_danger("\The [xeno_owner] tail swipes [impacted_living]!"), \
-					span_danger("We tail swipes [impacted_living]!"), null, 5)
+				xeno_owner.do_attack_animation(affected_living)
+				xeno_owner.visible_message(span_danger("\The [xeno_owner] tail swipes [affected_living]!"), \
+					span_danger("We tail swipes [affected_living]!"), null, 5)
 				has_hit_anything = TRUE
 				continue
-			if(!isobj(impacted_atom))
+			if(!isobj(affected_atom))
 				continue
-			var/obj/impacted_obj = impacted_atom
-			if(ishitbox(impacted_atom))
-				var/obj/hitbox/impacted_hitbox = impacted_atom
-				var/can_stun = !(impacted_hitbox.root in already_stunned_vehicles)
-				handle_vehicle_effects(impacted_hitbox.root, damage / 3, should_stun = can_stun)
-				if(can_stun)
-					already_stunned_vehicles += impacted_hitbox.root
-				has_hit_anything = TRUE
+			var/obj/affected_obj = affected_atom
+			if(ishitbox(affected_obj) || isvehicle(affected_obj))
+				has_hit_anything = handle_affected_vehicle(affected_obj, hit_vehicles)
 				continue
-			if(!isvehicle(impacted_obj))
-				impacted_obj.take_damage(damage, BRUTE, MELEE, blame_mob = src)
-				has_hit_anything = TRUE
-				continue
-			var/can_stun = !(impacted_obj in already_stunned_vehicles)
-			if(ismecha(impacted_obj))
-				handle_vehicle_effects(impacted_obj, damage * 3, 50, should_stun = can_stun)
-			else
-				handle_vehicle_effects(impacted_obj, damage * 2, should_stun = can_stun)
-			already_stunned_vehicles += impacted_obj
+			affected_obj.take_damage(get_damage(), BRUTE, MELEE, blame_mob = xeno_owner)
 			has_hit_anything = TRUE
+			continue
 
 	playsound(get_turf(xeno_owner), has_hit_anything ? 'sound/weapons/alien_claw_block.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 	if(has_hit_anything)
-		xeno_owner.gain_plasma(75 * castplasma_multiplier)
+		xeno_owner.gain_plasma(75 * get_bonus())
 
-	succeed_activate()
-	add_cooldown()
-
-/// Stuns the vehicle's occupants and does damage to the vehicle itself.
-/datum/action/ability/activable/xeno/tailswipe/proc/handle_vehicle_effects(obj/vehicle/vehicle, damage, ap, should_stun)
-	vehicle.take_damage(damage, BRUTE, MELEE, armour_penetration = ap, blame_mob = src)
-	if(!should_stun)
-		return
-	for(var/mob/living/carbon/human/human_occupant in vehicle.occupants)
-		human_occupant.apply_effect(1.5 SECONDS, EFFECT_PARALYZE)
+/datum/action/ability/activable/xeno/backhand/tailswipe/handle_grabbed_human(mob/living/carbon/human/grabbed_human)
+	return FALSE
 
 /datum/action/ability/activable/xeno/dragon_breath
 	name = "Dragon Breath"
@@ -1058,10 +1041,10 @@
 	layer = BELOW_MOB_LAYER
 	randomdir = FALSE
 
-/obj/effect/temp_visual/dragon/directional/Initialize(mapload, atom/creator)
-	if(!creator)
+/obj/effect/temp_visual/dragon/directional/Initialize(mapload, direction)
+	if(!direction)
 		return INITIALIZE_HINT_QDEL
-	dir = creator.dir
+	dir = direction
 	switch(dir)
 		if(NORTH)
 			pixel_x = -48
