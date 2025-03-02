@@ -56,7 +56,7 @@
 		return
 
 	xeno_owner.face_atom(target)
-	var/list/turf/affected_turfs = get_turfs_to_target()
+	var/list/turf/affected_turfs = get_forward_square_to_target(xeno_owner, 1, 2) // 3x2
 	for(var/turf/affected_turf AS in affected_turfs)
 		new /obj/effect/temp_visual/dragon/warning(affected_turf, 1.2 SECONDS / cooldown_plasma_bonus)
 
@@ -92,6 +92,7 @@
 				continue
 			var/obj/affected_obj = affected_atom
 			if(ishitbox(affected_obj))
+				affected_obj
 				affected_obj.take_damage(damage * 1/3, BRUTE, MELEE, blame_mob = xeno_owner) // 20, adjusted for 3x3 multitile vehicles.
 				has_hit_anything = TRUE
 				continue
@@ -101,8 +102,6 @@
 				continue
 			if(ismecha(affected_obj))
 				affected_obj.take_damage(damage * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = xeno_owner) // 180
-			else if(isarmoredvehicle(affected_obj))
-				affected_obj.take_damage(damage * 1/3, BRUTE, MELEE, blame_mob = xeno_owner) // 20, adjusted for 3x3 multitile vehicles.
 			else
 				affected_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = xeno_owner) // 120
 			has_hit_anything = TRUE
@@ -113,34 +112,6 @@
 		xeno_owner.gain_plasma(100 * cooldown_plasma_bonus)
 	succeed_activate()
 	add_cooldown()
-
-/// Gets a 3x2 block of turfs that are not closed turf and can be seen by the owner.
-/datum/action/ability/activable/xeno/backhand/proc/get_turfs_to_target()
-	var/turf/lower_left
-	var/turf/upper_right
-	switch(xeno_owner.dir)
-		if(NORTH)
-			lower_left = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 1, xeno_owner.y + 2, xeno_owner.z)
-		if(SOUTH)
-			lower_left = locate(xeno_owner.x - 1, xeno_owner.y - 2, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
-		if(WEST)
-			lower_left = locate(xeno_owner.x - 2, xeno_owner.y - 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
-		if(EAST)
-			lower_left = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 2, xeno_owner.y + 1, xeno_owner.z)
-
-	var/list/turf/acceptable_turfs = list()
-	var/list/turf/possible_turfs = block(lower_left, upper_right)
-	for(var/turf/possible_turf AS in possible_turfs)
-		if(isclosedturf(possible_turf))
-			continue
-		if(!line_of_sight(xeno_owner, possible_turf, 3))
-			continue
-		acceptable_turfs += possible_turf
-	return acceptable_turfs
 
 /// Checks if the ability is still usable and is currently grabbing a human.
 /datum/action/ability/activable/xeno/backhand/proc/grab_extra_check()
@@ -239,7 +210,7 @@
 
 	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
 	var/castplasma_multiplier = unleash_ability?.is_active() ? 2 : 1
-	var/list/turf/impacted_turfs = get_turfs_to_target()
+	var/list/turf/impacted_turfs = get_forward_square_to_target(xeno_owner, 2, 3) // 5x3
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.2 SECONDS / castplasma_multiplier)
 
@@ -299,8 +270,6 @@
 			var/can_stun = !(impacted_obj in already_stunned_vehicles)
 			if(ismecha(impacted_obj))
 				handle_vehicle_effects(impacted_obj, damage * 3, 50, should_stun = can_stun)
-			else if(isarmoredvehicle(impacted_obj))
-				handle_vehicle_effects(impacted_obj, damage / 3, should_stun = can_stun)
 			else
 				handle_vehicle_effects(impacted_obj, damage * 2, should_stun = can_stun)
 			already_stunned_vehicles += impacted_obj
@@ -312,34 +281,6 @@
 
 	succeed_activate()
 	add_cooldown()
-
-/// Gets a 5x3 block of turfs that are not closed turf and can be seen by the owner.
-/datum/action/ability/activable/xeno/tailswipe/proc/get_turfs_to_target()
-	var/turf/lower_left
-	var/turf/upper_right
-	switch(xeno_owner.dir)
-		if(NORTH)
-			lower_left = locate(xeno_owner.x - 2, xeno_owner.y + 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 2, xeno_owner.y + 3, xeno_owner.z)
-		if(SOUTH)
-			lower_left = locate(xeno_owner.x - 2, xeno_owner.y - 3, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 2, xeno_owner.y - 1, xeno_owner.z)
-		if(WEST)
-			lower_left = locate(xeno_owner.x - 3, xeno_owner.y - 2, xeno_owner.z)
-			upper_right = locate(xeno_owner.x - 1, xeno_owner.y + 2, xeno_owner.z)
-		if(EAST)
-			lower_left = locate(xeno_owner.x + 1, xeno_owner.y - 2, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 3, xeno_owner.y + 2, xeno_owner.z)
-
-	var/list/turf/acceptable_turfs = list()
-	var/list/turf/possible_turfs = block(lower_left, upper_right)
-	for(var/turf/possible_turf AS in possible_turfs)
-		if(isclosedturf(possible_turf))
-			continue
-		if(!line_of_sight(xeno_owner, possible_turf, 3))
-			continue
-		acceptable_turfs += possible_turf
-	return acceptable_turfs
 
 /// Stuns the vehicle's occupants and does damage to the vehicle itself.
 /datum/action/ability/activable/xeno/tailswipe/proc/handle_vehicle_effects(obj/vehicle/vehicle, damage, ap, should_stun)
@@ -554,7 +495,7 @@
 
 	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
 	var/castplasma_multiplier = unleash_ability?.is_active() ? 2 : 1
-	var/list/turf/impacted_turfs = get_turfs_to_target()
+	var/list/turf/impacted_turfs = get_forward_square_to_target(xeno_owner, 2, 5) // 5x5
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.2 SECONDS / castplasma_multiplier)
 
@@ -599,51 +540,26 @@
 			if(!isobj(impacted_atom))
 				continue
 			var/obj/impacted_obj = impacted_atom
-			if(isvehicle(impacted_obj))
-				if(ismecha(impacted_obj))
-					impacted_obj.take_damage(damage * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = xeno_owner)
-				else if(isarmoredvehicle(impacted_obj) || ishitbox(impacted_obj))
-					impacted_obj.take_damage(damage * 1/3, BRUTE, MELEE, blame_mob = xeno_owner) // Adjusted for 3x3 multitile vehicles.
-				else
-					impacted_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = xeno_owner)
+			if(ishitbox(impacted_obj))
+				impacted_obj.take_damage(damage * 1/3, BRUTE, MELEE, blame_mob = xeno_owner) // Adjusted for 3x3 multitile vehicles.
 				has_hit_anything = TRUE
 				continue
-			impacted_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
+			if(!isvehicle(impacted_obj))
+				impacted_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
+				has_hit_anything = TRUE
+				continue
+			if(ismecha(impacted_obj))
+				impacted_obj.take_damage(damage * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = xeno_owner)
+			else
+				impacted_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = xeno_owner)
 			has_hit_anything = TRUE
+			continue
 
 	playsound(get_turf(xeno_owner), 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 	if(has_hit_anything)
 		xeno_owner.gain_plasma(200 * castplasma_multiplier)
 	succeed_activate()
 	add_cooldown()
-
-/// Gets a 5x5 block of turfs that are not closed turf and can be seen by the owner.
-/datum/action/ability/activable/xeno/wind_current/proc/get_turfs_to_target()
-	var/turf/lower_left
-	var/turf/upper_right
-	switch(xeno_owner.dir)
-		if(NORTH)
-			lower_left = locate(xeno_owner.x - 2, xeno_owner.y + 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 2, xeno_owner.y + 5, xeno_owner.z)
-		if(SOUTH)
-			lower_left = locate(xeno_owner.x - 2, xeno_owner.y - 5, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 2, xeno_owner.y - 1, xeno_owner.z)
-		if(WEST)
-			lower_left = locate(xeno_owner.x - 5, xeno_owner.y - 2, xeno_owner.z)
-			upper_right = locate(xeno_owner.x - 1, xeno_owner.y + 2, xeno_owner.z)
-		if(EAST)
-			lower_left = locate(xeno_owner.x + 1, xeno_owner.y - 2, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 5, xeno_owner.y + 2, xeno_owner.z)
-
-	var/list/turf/acceptable_turfs = list()
-	var/list/turf/possible_turfs = block(lower_left, upper_right)
-	for(var/turf/possible_turf AS in possible_turfs)
-		if(isclosedturf(possible_turf))
-			continue
-		if(!line_of_sight(xeno_owner, possible_turf, 3))
-			continue
-		acceptable_turfs += possible_turf
-	return acceptable_turfs
 
 /datum/action/ability/activable/xeno/grab
 	name = "Grab"
@@ -683,7 +599,7 @@
 
 	var/datum/action/ability/activable/xeno/unleash/unleash_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/unleash]
 	var/castplasma_multiplier = unleash_ability?.is_active() ? 2 : 1
-	var/list/turf/impacted_turfs = get_turfs_to_target()
+	var/list/turf/impacted_turfs = get_forward_square_to_target(xeno_owner, 2, 2) // 5x2
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.2 SECONDS / castplasma_multiplier)
 
@@ -722,34 +638,6 @@
 	ADD_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
 	grabbed_human.pass_flags |= (PASS_MOB|PASS_XENO)
 	grabbed_human.throw_at(get_step(xeno_owner, xeno_owner.dir), 5, 5, xeno_owner)
-
-/// Gets a 5x2 block of turfs that are not closed turf and can be seen by the owner.
-/datum/action/ability/activable/xeno/grab/proc/get_turfs_to_target()
-	var/turf/lower_left
-	var/turf/upper_right
-	switch(xeno_owner.dir)
-		if(NORTH)
-			lower_left = locate(xeno_owner.x - 2, xeno_owner.y + 1, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 2, xeno_owner.y + 2, xeno_owner.z)
-		if(SOUTH)
-			lower_left = locate(xeno_owner.x - 2, xeno_owner.y - 2, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 2, xeno_owner.y - 1, xeno_owner.z)
-		if(WEST)
-			lower_left = locate(xeno_owner.x - 2, xeno_owner.y - 2, xeno_owner.z)
-			upper_right = locate(xeno_owner.x - 1, xeno_owner.y + 2, xeno_owner.z)
-		if(EAST)
-			lower_left = locate(xeno_owner.x + 1, xeno_owner.y - 2, xeno_owner.z)
-			upper_right = locate(xeno_owner.x + 2, xeno_owner.y + 2, xeno_owner.z)
-
-	var/list/turf/acceptable_turfs = list()
-	var/list/turf/possible_turfs = block(lower_left, upper_right)
-	for(var/turf/possible_turf AS in possible_turfs)
-		if(isclosedturf(possible_turf))
-			continue
-		if(!line_of_sight(xeno_owner, possible_turf, 3))
-			continue
-		acceptable_turfs += possible_turf
-	return acceptable_turfs
 
 /// Removes signal and pass_flags from the thrown human and tries to grab them (via async).
 /datum/action/ability/activable/xeno/grab/proc/throw_completion(datum/source)
