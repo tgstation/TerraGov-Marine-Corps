@@ -329,4 +329,3 @@
 	origin.shuttle_port.set_mode(SHUTTLE_CALL)
 	origin.last_valid_ground_port = origin.my_port
 	SSshuttle.moveShuttleToDock(origin.shuttleId, origin.my_port, TRUE)
-	SEND_SIGNAL(origin.shuttle_port, COMSIG_MINIDROPSHIP_BEGIN_LANDING, get_turf(remote_eye))

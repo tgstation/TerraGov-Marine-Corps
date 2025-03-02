@@ -405,12 +405,12 @@
 		enabled = TRUE
 		update_icon()
 		user.balloon_alert(user, "Enabled")
-		RegisterSignal(linked_shuttle, COMSIG_MINIDROPSHIP_BEGIN_LANDING, PROC_REF(drop_pellet_to_location))
+		RegisterSignal(linked_shuttle, COMSIG_SHUTTLE_SETMODE, PROC_REF(drop_pellet_to_location))
 		return
 	enabled = FALSE
 	update_icon()
 	user.balloon_alert(user, "Disabled")
-	UnregisterSignal(linked_shuttle, COMSIG_MINIDROPSHIP_BEGIN_LANDING)
+	UnregisterSignal(linked_shuttle, COMSIG_SHUTTLE_SETMODE)
 
 /obj/structure/dropship_equipment/shuttle/tangle_emitter/update_equipment()
 	. = ..()
@@ -418,7 +418,7 @@
 		setDir(ship_base.dir)
 		if(enabled)
 			update_icon()
-			RegisterSignal(linked_shuttle, COMSIG_MINIDROPSHIP_BEGIN_LANDING, PROC_REF(drop_pellet_to_location))
+			RegisterSignal(linked_shuttle, COMSIG_SHUTTLE_SETMODE, PROC_REF(drop_pellet_to_location))
 	else
 		setDir(initial(dir))
 	update_icon()
@@ -438,11 +438,12 @@
 		icon_state = "tfoot_system"
 
 /// Sets up and activates smoke effect
-/obj/structure/dropship_equipment/shuttle/tangle_emitter/proc/drop_pellet_to_location(datum/source, turf/landing_spot)
+/obj/structure/dropship_equipment/shuttle/tangle_emitter/proc/drop_pellet_to_location(datum/source, new_mode)
 	if(!istype(linked_console, /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship))
 		return
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/console = linked_console
-	if(console.next_fly_state != SHUTTLE_ON_GROUND || !enabled || !landing_spot)
+	var/turf/landing_spot = get_turf(console.eyeobj)
+	if(new_mode != SHUTTLE_PREARRIVAL || console.next_fly_state != SHUTTLE_ON_GROUND || !enabled || !landing_spot)
 		return
 	if(!COOLDOWN_CHECK(src, use_cooldown))
 		console.say("Emitter system recharging. Unable to deploy smoke.")
