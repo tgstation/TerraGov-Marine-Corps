@@ -371,7 +371,7 @@
 /obj/machinery/power/smes/proc/ion_act()
 	if(is_ground_level(z))
 		if(prob(1)) //explosion
-			visible_message(span_warning("\The [src] is making strange noises!"), null, span_warning(" You hear sizzling electronics."))
+			visible_message(span_warning("\The [src] is making strange noises!"), null, span_warning("You hear sizzling electronics."))
 			sleep(10*pick(4,5,6,7,10,14))
 			var/datum/effect_system/smoke_spread/smoke = new(src)
 			smoke.set_up(1, loc)

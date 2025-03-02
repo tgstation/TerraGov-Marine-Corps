@@ -194,9 +194,9 @@
 		return
 
 	if(length(contents) <= 1) //1 because the tray is inside.
-		visible_message(span_warning(" You hear a hollow crackle."))
+		visible_message(span_warning("You hear a hollow crackle."))
 	else
-		visible_message(span_warning(" You hear a roar as the crematorium activates."))
+		visible_message(span_warning("You hear a roar as the crematorium activates."))
 
 		cremating = 1
 
