@@ -119,28 +119,32 @@
 		secondary = shield_choice
 	if(primary_melee_choice)
 		primary = primary_melee_choice
-	if(big_gun_choice && !primary)
+	else if(big_gun_choice && !primary)
 		primary = big_gun_choice
-	if(standard_melee_choice)
+	else if(standard_melee_choice)
 		primary = standard_melee_choice
 	if(small_gun_choice)
 		if(!primary)
 			primary = small_gun_choice
-		else if(!secondary && primary != big_gun_choice && !(primary.item_flags & TWOHANDED)) //no double guns for now
+		else if(!secondary && !(primary.item_flags & TWOHANDED)) //no double guns for now
 			secondary = small_gun_choice
 	if(low_melee_choice && !primary)
 		primary = low_melee_choice
 
-	human_ai_state_flags &= ~HUMAN_AI_NEED_WEAPONS //fuck you if you somehow are unable to equip weapons at this point, you probs have no arms or something.
+	if(!primary)
+		return
+
+	var/equip_success = FALSE
 	if(primary)
 		if(isgun(primary))
-			equip_gun(primary)
+			if(equip_gun(primary))
+				equip_success = TRUE
 			if(!secondary)
 				equip_melee(primary)
-				primary.attack_self(mob_parent)
-		else
-			equip_melee(primary)
-			primary.attack_self(mob_parent)
+				primary.ai_use(null, mob_parent)
+		else if(equip_melee(primary))
+			equip_success = TRUE
+			primary.ai_use(null, mob_parent)
 	if(secondary)
 		if(isgun(secondary))
 			equip_gun(secondary) //don't wield a pistol and drop your sword
@@ -148,7 +152,12 @@
 			after_equip_melee(shield_choice) //doesnt override a primary melee weapon
 		else
 			equip_melee(secondary)
-			secondary.attack_self(mob_parent)
+			secondary.ai_use(null, mob_parent)
+
+	if(!equip_success)
+		return
+
+	human_ai_state_flags &= ~HUMAN_AI_NEED_WEAPONS
 
 	var/list/primary_range = primary.get_ai_combat_range()
 	upper_engage_dist = max(primary_range)
@@ -304,3 +313,22 @@
 
 /obj/item/weapon/gun/grenade_launcher/get_ai_combat_range()
 	return list(6, 8)
+
+/obj/item/weapon/ai_use(mob/living/target, mob/living/user)
+	if(!(item_flags = TWOHANDED))
+		return
+	if(item_flags & WIELDED)
+		return
+	wield(user)
+
+/obj/item/weapon/energy/axe/ai_use(mob/living/target, mob/living/user) //todo: make all energy weapon use the sane code as esword
+	if(!active)
+		attack_self(user)
+
+/obj/item/weapon/energy/sword/ai_use(mob/living/target, mob/living/user)
+	if(!active)
+		switch_state(null, user)
+
+/obj/item/weapon/butterfly/ai_use(mob/living/target, mob/living/user)
+	if(!active)
+		attack_self(user)
