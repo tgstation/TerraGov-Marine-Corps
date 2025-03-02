@@ -110,8 +110,7 @@
 
 /// Does a dash in the specified direction.
 /datum/action/ability/xeno_action/conqueror_dash/proc/activate_dash(direction)
-	xeno_owner.status_flags |= (GODMODE|INCORPOREAL)
-	xeno_owner.pass_flags |= (PASS_LOW_STRUCTURE|PASS_MOB|PASS_FIRE|PASS_XENO|PASS_THROW|PASS_PROJECTILE|PASS_WALKOVER)
+	xeno_owner.pass_flags |= (PASS_LOW_STRUCTURE|PASS_MOB|PASS_FIRE|PASS_XENO|PASS_THROW|PASS_WALKOVER)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(end_dash))
 	playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_enhanced_charge.ogg', 8, TRUE)
 	var/turf/current_turf = xeno_owner.loc
@@ -132,7 +131,6 @@
 /// Gets rid of dash bonuses, if any.
 /datum/action/ability/xeno_action/conqueror_dash/proc/end_dash()
 	SIGNAL_HANDLER
-	xeno_owner.status_flags &= ~(GODMODE|INCORPOREAL)
 	xeno_owner.pass_flags &= ~(PASS_LOW_STRUCTURE|PASS_MOB|PASS_FIRE|PASS_XENO|PASS_THROW|PASS_PROJECTILE|PASS_WALKOVER)
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW)
 
@@ -906,7 +904,7 @@
 	xeno_owner.alpha = 0
 	xeno_owner.set_canmove(FALSE)
 	xeno_owner.status_flags |= (GODMODE|INCORPOREAL)
-	playsound(xeno_owner, 'sound/effects/alien/conqueror/obliteration_roar.ogg', 45, TRUE)
+	playsound(xeno_owner, 'sound/effects/alien/conqueror/obliteration_roar.ogg', 40, TRUE, 15)
 	attack_targets()
 
 /// Removes a target from the list and clears related signals.
@@ -930,7 +928,7 @@
 	new /obj/effect/temp_visual/conqueror/hook/punch(living_target.loc)
 	xeno_owner.forceMove(new_turf)
 	living_target.do_jitter_animation(700, CONQUEROR_OBLITERATION_DEBUFF)
-	living_target.Immobilize(CONQUEROR_OBLITERATION_DEBUFF)
+	living_target.Immobilize(CONQUEROR_OBLITERATION_DEBUFF SECONDS)
 	living_target.adjust_stagger(CONQUEROR_OBLITERATION_DEBUFF)
 	living_target.adjust_slowdown(CONQUEROR_OBLITERATION_DEBUFF)
 	living_target.apply_damage((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * CONQUEROR_OBLITERATION_DAMAGE_MULTIPLIER, BRUTE, 0, MELEE, TRUE, TRUE, TRUE, xeno_owner.xeno_caste.melee_ap)
@@ -945,7 +943,7 @@
 /// Disables the ability.
 /datum/action/ability/xeno_action/conqueror_obliteration/proc/disable_ability()
 	SIGNAL_HANDLER
-	xeno_owner.playsound_local(xeno_owner.loc, 'sound/voice/hiss5.ogg', 35, TRUE)
+	xeno_owner.playsound_local(xeno_owner.loc, 'sound/voice/hiss5.ogg', 25, TRUE)
 	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_CONQUEROR_OBLITERATION)
 	REMOVE_TRAIT(xeno_owner, TRAIT_NOPLASMAREGEN, CONQUEROR_OBLITERATION_TRAIT)
 	STOP_PROCESSING(SSprocessing, src)
