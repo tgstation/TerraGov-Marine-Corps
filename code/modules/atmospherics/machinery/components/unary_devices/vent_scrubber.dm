@@ -87,30 +87,21 @@
 		if(WT.isOn())
 			user.visible_message(span_notice("[user] starts welding [src] with [WT]."), \
 			span_notice("You start welding [src] with [WT]."))
-			add_overlay(GLOB.welding_sparks)
-			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-			if(do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) && WT.remove_fuel(1, user))
-				playsound(get_turf(src), 'sound/items/welder2.ogg', 25, 1)
+			if(WT.use_tool(src, user, 5 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
 				if(!welded)
 					user.visible_message(span_notice("[user] welds [src] shut."), \
 					span_notice("You weld [src] shut."))
-					cut_overlay(GLOB.welding_sparks)
 					welded = TRUE
 				else
 					user.visible_message(span_notice("[user] welds [src] open."), \
 					span_notice("You weld [src] open."))
-					cut_overlay(GLOB.welding_sparks)
 					welded = FALSE
 				update_icon()
 				pipe_vision_img = image(src, loc, dir = dir)
 				SET_PLANE_EXPLICIT(pipe_vision_img, ABOVE_HUD_PLANE, src)
-				cut_overlay(GLOB.welding_sparks)
 				return TRUE
-			else
-				cut_overlay(GLOB.welding_sparks)
 		else
 			to_chat(user, span_warning("[WT] needs to be on to start this task."))
-			cut_overlay(GLOB.welding_sparks)
 	return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/can_unwrench(mob/user)

@@ -198,12 +198,6 @@
 			var/mob/living/L = O
 			L.IgniteMob()
 
-/atom/proc/handle_weldingtool_overlay(removing = FALSE)
-	if(!removing)
-		add_overlay(GLOB.welding_sparks)
-	else
-		cut_overlay(GLOB.welding_sparks)
-
 ///fetches the correct weldint spark sprite to use. ideally we should replace this with an automatically centering system
 /atom/proc/get_weld_spark_icon_and_state()
 	return list('icons/effects/welding_effect.dmi', "welding_sparks")
