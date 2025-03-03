@@ -592,8 +592,8 @@
 #define MOB_GET_DO_AFTER_COEFFICIENT "mob_get_do_after_coefficient"
 ///From get_zone_with_miss_chance
 #define MOB_GET_MISS_CHANCE_MOD "mob_get_miss_chance_mod"
-///From mob/living/carbon/human/med_hud_set_status()
-#define COMSIG_HUD_NO_CLIENT "hud_no_client"
+///From mob/living/carbon/human/has_ai()
+#define COMSIG_HUMAN_HAS_AI "human_has_ai"
 	#define MOB_HAS_AI (1<<0)
 ///AI mob wants to jump
 #define COMSIG_AI_JUMP "ai_jump"

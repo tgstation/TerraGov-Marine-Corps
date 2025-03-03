@@ -1129,3 +1129,7 @@
 		return FALSE
 	user.health_analyzer.analyze_vitals(src, user)
 	return TRUE
+
+///Checks if we have an AI behavior active
+/mob/living/carbon/human/proc/has_ai()
+	return SEND_SIGNAL(src, COMSIG_HUMAN_HAS_AI) & MOB_HAS_AI
