@@ -36,7 +36,7 @@
 	var/obj/vehicle/sealed/armored/owner
 	///The skill required to man this chair
 	var/skill_req = SKILL_LARGE_VEHICLE_VETERAN
-
+	///Control flags given to the mob on buckle
 	var/control_flags = NONE
 
 /obj/structure/bed/chair/vehicle_crew/Destroy()
