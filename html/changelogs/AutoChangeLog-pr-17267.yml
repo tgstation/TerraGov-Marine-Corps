@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - admin: "Blocks admin keybinding usage by people who aren't admins/mentors"
