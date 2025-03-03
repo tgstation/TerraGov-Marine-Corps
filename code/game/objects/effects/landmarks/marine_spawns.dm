@@ -243,6 +243,10 @@
 	icon_state = "PFC"
 	job = /datum/job/pmc/squad/medic
 
+/obj/effect/landmark/start/job/pmc_engineer
+	icon_state = "PFC"
+	job = /datum/job/pmc/squad/engineer
+
 /obj/effect/landmark/start/job/pmc_gunner
 	icon_state = "PFC"
 	job = /datum/job/pmc/squad/gunner
