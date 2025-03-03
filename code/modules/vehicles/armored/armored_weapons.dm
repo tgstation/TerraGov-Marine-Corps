@@ -263,6 +263,12 @@
 	if(ammo)
 		eject_ammo()
 	ammo = popleft(ammo_magazine)
+
+	if(!ammo)
+		for(var/mob/occupant AS in chassis.occupants)
+			occupant.hud_used.update_ammo_hud(src, list(hud_state_empty, hud_state_empty), 0)
+		return
+
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.update_ammo_hud(src, list(ammo.default_ammo.hud_state, ammo.default_ammo.hud_state_empty), ammo.current_rounds)
 

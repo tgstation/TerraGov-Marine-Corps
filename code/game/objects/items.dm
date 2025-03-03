@@ -412,8 +412,12 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 ///Helper function for updating last_equipped_slot when item is drawn from storage
 /obj/item/proc/set_last_equipped_slot_of_storage(datum/storage/storage_datum)
 	var/obj/item/storage_item = storage_datum.parent
+	if(!isitem(storage_item))
+		return
+
 	while(isitem(storage_item.loc)) // for stuff like armor modules we have to find topmost item
 		storage_item = storage_item.loc
+
 	if(storage_item)
 		last_equipped_slot = slot_to_in_storage_slot(storage_item.last_equipped_slot)
 
@@ -428,7 +432,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 ///called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
 /obj/item/proc/on_enter_storage(obj/item/storage/S as obj)
 	item_flags |= IN_STORAGE
-	return
 
 
 ///called when "found" in pockets and storage items. Returns 1 if the search should end.
