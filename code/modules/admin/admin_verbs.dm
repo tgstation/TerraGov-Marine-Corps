@@ -407,7 +407,7 @@ ADMIN_VERB(msay, R_ADMIN|R_MENTOR, "msay", "Speak in the private mentor channel"
 	var/msg = input(src, null, "dsay \"text\"") as text|null
 	SSadmin_verbs.dynamic_invoke_verb(src, /datum/admin_verb/dsay, msg)
 
-ADMIN_VERB(dsay, R_ADMIN|R_MENTOR, "dsay", "Speak as an admin in deadchat.", ADMIN_CATEGORY_MAIN, msg as text)
+ADMIN_VERB(dsay, R_ADMIN, "dsay", "Speak as an admin in deadchat.", ADMIN_CATEGORY_MAIN, msg as text)
 	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
