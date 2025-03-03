@@ -1,0 +1,9 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - rscadd: "Added nodes to the campaign maps."
+  - rscadd: "Added nodes to the campaign map modulars."
+  - rscadd: "Added a mech bay to the debugdalus."
+  - rscadd: "Added a droppod bay to the debugdalus."
+  - bugfix: "Minions can now enter ERT shuttles."
+  - bugfix: "Fixed some improperly rotated platforms on Chigusa."
