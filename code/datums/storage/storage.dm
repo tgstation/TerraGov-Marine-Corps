@@ -866,6 +866,11 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			continue
 		M.client.screen -= item
 
+	if(!QDELETED(item))
+		UnregisterSignal(item, COMSIG_MOVABLE_MOVED)
+		item.on_exit_storage(src)
+		item.mouse_opacity = initial(item.mouse_opacity)
+
 	if(new_location)
 		if(ismob(new_location))
 			item.layer = ABOVE_HUD_LAYER
@@ -884,11 +889,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	for(var/i in can_see_content())
 		var/mob/M = i
 		show_to(M)
-
-	if(!QDELETED(item))
-		UnregisterSignal(item, COMSIG_MOVABLE_MOVED)
-		item.on_exit_storage(src)
-		item.mouse_opacity = initial(item.mouse_opacity)
 
 	for(var/limited_type in storage_type_limits_max)
 		if(istype(item, limited_type))
