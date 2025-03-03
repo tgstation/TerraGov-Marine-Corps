@@ -24,12 +24,6 @@
 		return
 	if(!check_path_ff())
 		return
-	var/list/turf_line = get_traversal_line(mob_parent, target)
-	turf_line.Cut(1, 2) //don't count our own turf
-	for(var/turf/line_turf AS in turf_line)
-		for(var/mob/line_mob in line_turf) //todo: add checks for vehicles etc
-			if(line_mob.faction == mob_parent.faction)
-				return
 	return throw_grenade(pick(RANGE_TURFS(1, combat_target)), get_grenade()) //add a bit of randomness for FUN
 
 ///Throws the grenade
