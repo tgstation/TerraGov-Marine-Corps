@@ -91,7 +91,7 @@
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	xeno_owner.visible_message(span_danger("[xeno_owner] lifts [grabbed_human] into the air and gets ready to slam!"))
-	if(!do_after(xeno_owner, 3 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
+	if(do_after(xeno_owner, 3 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
 		xeno_owner.face_atom(grabbed_human)
 		new /obj/effect/temp_visual/dragon/directional/backhand_slam(get_step(xeno_owner, grabbed_human), xeno_owner.dir)
 		xeno_owner.stop_pulling()
