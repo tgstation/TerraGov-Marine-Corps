@@ -65,9 +65,6 @@
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_PASS_TANK), PROC_REF(trait_pass_tank_trait_gain))
 	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_PASS_TANK), PROC_REF(trait_pass_tank_trait_loss))
 
-/obj/item/register_init_signals()
-	return //surely items should never need pass flags? Don't reg the signals as it can start to noticably effect load times
-
 /obj/effect/register_init_signals()
 	return //surely visual effects should never need pass flags? Don't reg the signals as it can start to noticably effect load times
 
