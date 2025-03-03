@@ -204,6 +204,10 @@
 	penetration = 20
 	sundering = 1.5
 
+/datum/ammo/rocket/tank_autocannon/on_hit_mob(mob/target_mob, obj/projectile/proj) // This is so it doesn't knock back on hit.
+	var/target_turf = get_turf(target_mob)
+	drop_nade(target_turf)
+
 /datum/ammo/rocket/tank_autocannon/drop_nade(turf/T)
 	explosion(T, weak_impact_range = 3, tiny = TRUE)
 
