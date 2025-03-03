@@ -720,7 +720,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set name = "Join Valhalla"
 	set category = "Ghost"
 
-	if(SSticker.mode)
+	if(!SSticker.mode)
 		to_chat(user, span_warning("Please wait for the round to begin first."))
 		return
 
