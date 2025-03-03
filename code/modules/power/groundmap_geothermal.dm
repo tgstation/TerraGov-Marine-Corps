@@ -101,7 +101,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 /// Updates the minimap icon to whether the generator is running or not
 /obj/machinery/power/geothermal/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator[is_on ? "_on" : "_off"]", ABOVE_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator[is_on ? "_on" : "_off"]", MINIMAP_BLIPS_LAYER))
 
 /obj/machinery/power/geothermal/power_change()
 	return

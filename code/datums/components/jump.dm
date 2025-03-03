@@ -155,7 +155,7 @@
 	jumper.add_filter(JUMP_COMPONENT, 2, drop_shadow_filter(color = COLOR_TRANSPARENT_SHADOW, size = 0.9))
 	var/shadow_filter = jumper.get_filter(JUMP_COMPONENT)
 
-	animate(jumper, pixel_z = jumper.pixel_z + effective_jump_height, layer = max(MOB_JUMP_LAYER, original_layer), time = effective_jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
+	animate(jumper, pixel_z = jumper.pixel_z + effective_jump_height, layer = max(MOB_UPPER_LAYER, original_layer), time = effective_jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
 	animate(pixel_z = jumper.pixel_z - effective_jump_height, layer = original_layer, time = effective_jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
 	if(jump_flags & JUMP_SPIN)
 		var/spin_number = ROUND_UP(effective_jump_duration * 0.1)

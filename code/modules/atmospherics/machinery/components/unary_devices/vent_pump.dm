@@ -15,7 +15,7 @@
 	can_unwrench = FALSE
 	welded = FALSE
 	level = 1
-	layer = ATMOS_DEVICE_LAYER
+	layer = GAS_SCRUBBER_LAYER
 	atom_flags = SHUTTLE_IMMUNE
 
 	var/pump_direction = RELEASING
@@ -104,8 +104,8 @@
 					cut_overlay(GLOB.welding_sparks)
 					welded = FALSE
 				update_icon()
-				pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)
-				pipe_vision_img.plane = ABOVE_HUD_PLANE
+				pipe_vision_img = image(src, loc, dir = dir)
+				SET_PLANE_EXPLICIT(pipe_vision_img, ABOVE_HUD_PLANE, src)
 				return TRUE
 			else
 				to_chat(user, span_warning("[WT] needs to be on to start this task."))
@@ -143,8 +143,8 @@
 	xeno_attacker.visible_message("[xeno_attacker] furiously claws at [src]!", "We manage to clear away the stuff blocking the vent", "You hear loud scraping noises.")
 	welded = FALSE
 	update_icon()
-	pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)
-	pipe_vision_img.plane = ABOVE_HUD_PLANE
+	pipe_vision_img = image(src, loc, dir = dir)
+	SET_PLANE_EXPLICIT(pipe_vision_img, ABOVE_HUD_PLANE, src)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 100, 1)
 
 

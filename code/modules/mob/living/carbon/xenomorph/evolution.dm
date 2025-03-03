@@ -183,8 +183,8 @@
 		H.add_hud_to(new_xeno) //keep our mobhud choice
 		new_xeno.xeno_flags |= XENO_MOBHUD
 
-	if(lighting_alpha != new_xeno.lighting_alpha)
-		new_xeno.toggle_nightvision(lighting_alpha)
+	if(lighting_cutoff != new_xeno.lighting_cutoff)
+		new_xeno.toggle_nightvision(lighting_cutoff)
 
 	new_xeno.update_spits() //Update spits to new/better ones
 

@@ -90,7 +90,7 @@
 
 /turf/open/floor/plating/plating_catwalk/proc/update_turf_overlay()
 	var/image/I = image(icon, src, "catwalk", CATWALK_LAYER)
-	I.plane = FLOOR_PLANE
+	SET_PLANE_EXPLICIT(I, FLOOR_PLANE, src)
 	if(covered)
 		overlays += I
 	else

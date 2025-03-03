@@ -102,7 +102,7 @@
 
 /obj/structure/prop/nt_computer/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 
 /obj/structure/prop/nt_computer/rack
 	name = "control rack"
@@ -123,7 +123,7 @@
 	icon_state = "gauss_cannon"
 	density = TRUE
 	anchored = TRUE
-	layer = LADDER_LAYER
+	layer = BELOW_OBJ_LAYER
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64
@@ -139,4 +139,4 @@
 
 /obj/structure/gauss_cannon/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)

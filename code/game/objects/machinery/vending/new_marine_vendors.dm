@@ -49,7 +49,7 @@
 	. = ..()
 	if(!is_operational())
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive")
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 /obj/machinery/marine_selector/can_interact(mob/user)
 	. = ..()

@@ -4,7 +4,7 @@
 	anchored = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
-	layer = ABOVE_MOB_PROP_LAYER
+	layer = ABOVE_MOB_LAYER
 	use_power = FALSE
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	allow_pass_flags = PASSABLE|PASS_LOW_STRUCTURE

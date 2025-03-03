@@ -97,6 +97,14 @@
 	icon = 'icons/misc/pic_in_pic.dmi'
 	icon_state = "room_background"
 
+/turf/open/ai_visible/Initialize(mapload)
+	. = ..()
+	RegisterSignal(SSmapping, COMSIG_PLANE_OFFSET_INCREASE, PROC_REF(multiz_offset_increase))
+	multiz_offset_increase(SSmapping)
+
+/turf/open/ai_visible/proc/multiz_offset_increase(datum/source)
+	SIGNAL_HANDLER
+	SET_PLANE_W_SCALAR(src, initial(plane), SSmapping.max_plane_offset)
 
 /area/ai_multicam_room
 	name = "AI Multicam Room"

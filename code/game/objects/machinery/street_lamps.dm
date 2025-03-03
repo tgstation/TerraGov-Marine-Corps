@@ -3,7 +3,7 @@
 	name = "Colony Streetlight"
 	icon = 'icons/obj/structures/prop/urban/64x64_urbanrandomprops.dmi'
 	icon_state = "street_off"
-	layer = ABOVE_LYING_MOB_LAYER
+	layer = MOB_BELOW_PIGGYBACK_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 220
 	density = FALSE
@@ -31,7 +31,7 @@
 	bound_height = 32
 	density = FALSE
 	max_integrity = 200
-	layer = ABOVE_LYING_MOB_LAYER
+	layer = MOB_BELOW_PIGGYBACK_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 
 /obj/machinery/streetlight/traffic/update_icon_state()
@@ -77,7 +77,7 @@
 	density = FALSE
 	resistance_flags = RESIST_ALL
 	wrenchable = FALSE
-	layer = TURF_LAYER
+	layer = HIGH_TURF_LAYER
 	light_color =  "#00ffa0"
 	light_power = 6
 

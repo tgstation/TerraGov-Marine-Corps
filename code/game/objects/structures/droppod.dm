@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/update_overlays()
 	. = ..()
 	if(operation_started && launch_allowed)
-		. += emissive_appearance(icon, "[icon_state]_emissive")
+		. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 /obj/structure/droppod/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	if(!in_range(user, src) || !in_range(M, src))
@@ -441,7 +441,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	light_color = LIGHT_COLOR_EMISSIVE_ORANGE
 
 /obj/structure/droppod/nonmob/supply_pod/completedrop(mob/user)
-	layer = DOOR_OPEN_LAYER //so anything inside layers over it
+	layer = OPEN_DOOR_LAYER //so anything inside layers over it
 	return ..()
 
 /obj/structure/droppod/nonmob/supply_pod/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)

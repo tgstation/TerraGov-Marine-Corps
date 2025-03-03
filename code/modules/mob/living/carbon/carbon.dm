@@ -326,26 +326,23 @@
 		if(!equip_to_slot_or_del(new G.path, G.slot)) //try to put in the slot it says its supposed to go, if you can't: put it in a bag
 			equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
 
+///ffs why is this on human instead of carbon its breaking shit!!!!! fix this!!!! todo!!!
 /mob/living/carbon/human/update_sight()
 	if(!client)
 		return
 
 	if(stat == DEAD)
-		sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_OBSERVER
+		set_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
+		set_invis_see(SEE_INVISIBLE_OBSERVER)
 		return
 
-	sight = initial(sight)
-	lighting_alpha = initial(lighting_alpha)
-	see_in_dark = initial(see_in_dark)
-	see_invisible = initial(see_invisible)
+	var/new_sight = initial(sight)
+	lighting_cutoff = initial(lighting_cutoff)
+	set_invis_see(initial(see_invisible))
 
 	if(species)
-		if(species.lighting_alpha)
-			lighting_alpha = species.lighting_alpha
-		if(species.see_in_dark)
-			see_in_dark = species.see_in_dark
+		if(species.lighting_cutoff)
+			lighting_cutoff = species.lighting_cutoff
 
 	if(client.eye != src)
 		var/atom/A = client.eye
@@ -355,14 +352,15 @@
 	if(glasses)
 		var/obj/item/clothing/glasses/G = glasses
 		if((G.toggleable && G.active) || !G.toggleable)
-			sight |= G.vision_flags
-			see_in_dark = max(G.darkness_view, see_in_dark)
+			new_sight |= G.vision_flags
 			if(G.invis_override)
-				see_invisible = G.invis_override
+				set_invis_see(G.invis_override)
 			else
-				see_invisible = min(G.invis_view, see_invisible)
-			if(!isnull(G.lighting_alpha))
-				lighting_alpha = min(lighting_alpha, G.lighting_alpha)
+				set_invis_see(min(G.invis_view, see_invisible))
+			if(!isnull(G.lighting_cutoff))
+				lighting_cutoff = min(lighting_cutoff, G.lighting_cutoff)
+			if(length(glasses.color_cutoffs))
+				lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, glasses.color_cutoffs)
 			if(G.tint && !fullscreens["glasses"])
 				var/atom/movable/screen/fullscreen/screen = overlay_fullscreen("glasses", /atom/movable/screen/fullscreen/flash)
 				screen.color = G.tint
@@ -373,12 +371,12 @@
 		clear_fullscreen("glasses")
 
 	if(see_override)
-		see_invisible = see_override
+		set_invis_see(see_override)
 
 	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
-		see_in_dark = max(see_in_dark, 10)
-		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+		lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
 
+	set_sight(new_sight)
 	return ..()
 
 /mob/living/carbon/set_stat(new_stat)

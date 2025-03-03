@@ -58,7 +58,7 @@
 	/// Either FALSE, [EMISSIVE_BLOCK_GENERIC], or [EMISSIVE_BLOCK_UNIQUE]
 	var/blocks_emissive = EMISSIVE_BLOCK_NONE
 	///Internal holder for emissive blocker object, do not use directly use blocks_emissive
-	var/atom/movable/emissive_blocker/em_block
+	var/atom/movable/render_step/emissive_blocker/em_block
 
 	/// The voice that this movable makes when speaking
 	var/voice
@@ -83,26 +83,63 @@
 	///only the last container of a client eye has this list assuming no movement since SSparallax's last fire
 	var/list/client_mobs_in_contents
 
+
+/mutable_appearance/emissive_blocker
+
+/mutable_appearance/emissive_blocker/New()
+	. = ..()
+	// Need to do this here because it's overridden by the parent call
+	color = EM_BLOCK_COLOR
+	appearance_flags = EMISSIVE_APPEARANCE_FLAGS
+
 //===========================================================================
 /atom/movable/Initialize(mapload, ...)
 	. = ..()
+
+#if EMISSIVE_BLOCK_GENERIC != 0
+	#error EMISSIVE_BLOCK_GENERIC is expected to be 0 to facilitate a weird optimization hack where we rely on it being the most common.
+	#error Read the comment in code/game/atoms_movable.dm for details.
+#endif
+
 	// This one is incredible.
 	// `if (x) else { /* code */ }` is surprisingly fast, and it's faster than a switch, which is seemingly not a jump table.
 	// From what I can tell, a switch case checks every single branch individually, although sane, is slow in a hot proc like this.
 	// So, we make the most common `blocks_emissive` value, EMISSIVE_BLOCK_GENERIC, 0, getting to the fast else branch quickly.
 	// If it fails, then we can check over every value it can be (here, EMISSIVE_BLOCK_UNIQUE is the only one that matters).
 	// This saves several hundred milliseconds of init time.
-	if(blocks_emissive)
-		if(blocks_emissive == EMISSIVE_BLOCK_UNIQUE)
+	if (blocks_emissive)
+		if (blocks_emissive == EMISSIVE_BLOCK_UNIQUE)
 			render_target = ref(src)
-			em_block = new(src, render_target)
-			add_overlay(list(em_block))
+			em_block = new(null, src)
+			overlays += em_block
+			if(managed_overlays)
+				if(islist(managed_overlays))
+					managed_overlays += em_block
+				else
+					managed_overlays = list(managed_overlays, em_block)
+			else
+				managed_overlays = em_block
 	else
-		var/mutable_appearance/gen_emissive_blocker = mutable_appearance(icon, icon_state, plane = EMISSIVE_PLANE, alpha = src.alpha)
-		gen_emissive_blocker.color = GLOB.em_block_color
-		gen_emissive_blocker.dir = dir
-		gen_emissive_blocker.appearance_flags |= appearance_flags
-		add_overlay(list(gen_emissive_blocker))
+		var/static/mutable_appearance/emissive_blocker/blocker = new()
+		blocker.icon = icon
+		blocker.icon_state = icon_state
+		blocker.dir = dir
+		blocker.appearance_flags |= appearance_flags
+		blocker.plane = GET_NEW_PLANE(EMISSIVE_PLANE, PLANE_TO_OFFSET(plane))
+		// Ok so this is really cursed, but I want to set with this blocker cheaply while
+		// Still allowing it to be removed from the overlays list later
+		// So I'm gonna flatten it, then insert the flattened overlay into overlays AND the managed overlays list, directly
+		// I'm sorry
+		var/mutable_appearance/flat = blocker.appearance
+		overlays += flat
+		if(managed_overlays)
+			if(islist(managed_overlays))
+				managed_overlays += flat
+			else
+				managed_overlays = list(managed_overlays, flat)
+		else
+			managed_overlays = flat
+
 
 	if(opacity)
 		AddElement(/datum/element/light_blocking)
@@ -168,7 +205,6 @@
 	QDEL_NULL(light)
 	QDEL_NULL(static_light)
 
-///Updates this movables emissive overlay
 /atom/movable/proc/update_emissive_block()
 	// This one is incredible.
 	// `if (x) else { /* code */ }` is surprisingly fast, and it's faster than a switch, which is seemingly not a jump table.
@@ -176,19 +212,26 @@
 	// So, we make the most common `blocks_emissive` value, EMISSIVE_BLOCK_GENERIC, 0, getting to the fast else branch quickly.
 	// If it fails, then we can check over every value it can be (here, EMISSIVE_BLOCK_UNIQUE is the only one that matters).
 	// This saves several hundred milliseconds of init time.
-	if(blocks_emissive)
-		if(blocks_emissive == EMISSIVE_BLOCK_UNIQUE)
-			if(!em_block)
+	if (blocks_emissive)
+		if (blocks_emissive == EMISSIVE_BLOCK_UNIQUE)
+			if(em_block)
+				SET_PLANE(em_block, EMISSIVE_PLANE, src)
+			else if(!QDELETED(src))
 				render_target = ref(src)
-				em_block = new(src, render_target)
+				em_block = new(null, src)
 			return em_block
+		// Implied else if (blocks_emissive == EMISSIVE_BLOCK_NONE) -> return
+	// EMISSIVE_BLOCK_GENERIC == 0
 	else
-		var/mutable_appearance/gen_emissive_blocker = emissive_blocker(icon, icon_state, alpha = src.alpha, appearance_flags = src.appearance_flags)
-		gen_emissive_blocker.dir = dir
+		return fast_emissive_blocker(src)
 
 /atom/movable/update_overlays()
-	. = ..()
-	. += update_emissive_block()
+	var/list/overlays = ..()
+	var/emissive_block = update_emissive_block()
+	if(emissive_block)
+		// Emissive block should always go at the beginning of the list
+		overlays.Insert(1, emissive_block)
+	return overlays
 
 /**
  * meant for movement with zero side effects. only use for objects that are supposed to move "invisibly" (like camera mobs or ghosts)
@@ -446,7 +489,8 @@
 			var/turf/oldturf = get_turf(oldloc)
 			var/turf/destturf = get_turf(destination)
 			if(oldturf?.z != destturf?.z)
-				on_changed_z_level(oldturf, destturf)
+				var/same_z_layer = (GET_TURF_PLANE_OFFSET(oldturf) == GET_TURF_PLANE_OFFSET(destturf))
+				on_changed_z_level(oldturf, destturf, same_z_layer)
 			destination.Entered(src, oldloc)
 			if(destarea && old_area != destarea)
 				destarea.Entered(src, oldloc)
@@ -716,7 +760,7 @@
 		I = image('icons/effects/effects.dmi', A, visual_effect_icon, A.layer + 0.1)
 	else if(used_item)
 		I = image(icon = used_item, loc = A, layer = A.layer + 0.1)
-		I.plane = GAME_PLANE
+		SET_PLANE_EXPLICIT(I, GAME_PLANE, src)
 
 		// Scale the icon.
 		I.transform *= 0.75
@@ -798,7 +842,7 @@
 		var/atom/target
 		switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key", "Coords"))
 			if("Area")
-				var/area/AR = input("Pick an area.", "Pick an area") as null|anything in GLOB.sorted_areas
+				var/area/AR = input("Pick an area.", "Pick an area") as null|anything in get_sorted_areas()
 				if(!AR || !src)
 					return
 				target = pick(get_area_turfs(AR))
@@ -979,16 +1023,36 @@
  * Arguments:
  * * old_turf - The previous turf they were on before.
  * * new_turf - The turf they have now entered.
+ * * same_z_layer - If their old and new z levels are on the same level of plane offsets or not
  * * notify_contents - Whether or not to notify the movable's contents that their z-level has changed. NOTE, IF YOU SET THIS, YOU NEED TO MANUALLY SET PLANE OF THE CONTENTS LATER
  */
-/atom/movable/proc/on_changed_z_level(turf/old_turf, turf/new_turf, notify_contents = TRUE)
+/atom/movable/proc/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents = TRUE)
 	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_turf?.z, new_turf?.z)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_turf?.z, new_turf?.z, same_z_layer)
+
+	// If our turfs are on different z "layers", recalc our planes
+	if(!same_z_layer && !QDELETED(src))
+		SET_PLANE(src, PLANE_TO_TRUE(src.plane), new_turf)
+		// a TON of overlays use planes, and thus require offsets
+		// so we do this. sucks to suck
+		update_appearance()
+
+		if(update_on_z)
+			// I so much wish this could be somewhere else. alas, no.
+			for(var/image/update as anything in update_on_z)
+				SET_PLANE(update, PLANE_TO_TRUE(update.plane), new_turf)
+		if(update_overlays_on_z)
+			// This EVEN more so
+			cut_overlay(update_overlays_on_z)
+			// This even more so
+			for(var/mutable_appearance/update in update_overlays_on_z)
+				SET_PLANE(update, PLANE_TO_TRUE(update.plane), new_turf)
+			add_overlay(update_overlays_on_z)
 
 	if(!notify_contents)
 		return
 	for (var/atom/movable/content as anything in src)
-		content.on_changed_z_level(old_turf, new_turf)
+		content.on_changed_z_level(old_turf, new_turf, same_z_layer)
 
 /atom/movable/proc/safe_throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, force = MOVE_FORCE_STRONG)
 	if(anchored || (force < (move_resist * MOVE_FORCE_THROW_RATIO)) || (move_resist == INFINITY))

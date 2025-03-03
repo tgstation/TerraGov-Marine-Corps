@@ -79,9 +79,8 @@
 
 /obj/item/attachable/scope/update_remote_sight(mob/living/user)
 	. = ..()
-	user.see_in_dark = 32
-	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	user.sync_lighting_plane_alpha()
+	user.lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
+	user.update_sight()
 	return TRUE
 
 /obj/item/attachable/scope/zoom(mob/living/user, tileoffset, viewsize)
@@ -113,11 +112,6 @@
 	zoom_tile_offset = 7
 	zoom_viewsize = 2
 	add_aim_mode = TRUE
-
-/obj/item/attachable/scope/optical/update_remote_sight(mob/living/user)
-	. = ..()
-	user.see_in_dark = 2
-	return TRUE
 
 /obj/item/attachable/scope/mosin
 	name = "Mosin nagant rail scope"

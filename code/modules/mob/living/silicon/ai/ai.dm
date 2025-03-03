@@ -304,11 +304,11 @@
 
 /mob/living/silicon/ai/reset_perspective(atom/new_eye, has_static = TRUE)
 	if(has_static)
-		sight = initial(sight)
+		set_sight(initial(sight))
 		eyeobj?.use_static = initial(eyeobj?.use_static)
 		GLOB.cameranet.visibility(eyeobj, client, all_eyes, initial(eyeobj?.use_static))
 	else
-		sight = NONE
+		set_sight(NONE)
 		eyeobj?.use_static = FALSE
 		GLOB.cameranet.visibility(eyeobj, client, all_eyes, FALSE)
 	if(camera_light_on)
@@ -342,15 +342,13 @@
 
 /mob/living/silicon/ai/update_sight()
 	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
-		see_in_dark = max(see_in_dark, 8)
-		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		eyeobj.see_in_dark = max(eyeobj.see_in_dark, 8)
-		eyeobj.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+		lighting_cutoff = LIGHTING_CUTOFF_HIGH
+		eyeobj.lighting_cutoff = LIGHTING_CUTOFF_HIGH
+		eyeobj.sync_lighting_plane_cutoff()
 		return ..()
-	see_in_dark = initial(see_in_dark)
-	lighting_alpha = initial(lighting_alpha)
-	eyeobj.see_in_dark = initial(eyeobj.see_in_dark)
-	eyeobj.lighting_alpha = initial(eyeobj.lighting_alpha)
+	lighting_cutoff = initial(lighting_cutoff)
+	eyeobj.lighting_cutoff = initial(eyeobj.lighting_cutoff)
+	eyeobj.sync_lighting_plane_cutoff()
 	return ..()
 
 /mob/living/silicon/ai/get_status_tab_items()

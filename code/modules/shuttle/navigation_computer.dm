@@ -369,15 +369,14 @@
 /mob/camera/aiEye/remote/shuttle_docker/update_remote_sight(mob/living/user)
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/console = origin
 	if(nvg_vision_possible && console.nvg_vision_mode)
-		user.see_in_dark = 6
-		user.sight = 0
-		user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-		user.sync_lighting_plane_alpha()
+		user.set_sight(NONE)
+		user.lighting_cutoff = LIGHTING_CUTOFF_HIGH
+		user.sync_lighting_plane_cutoff()
 		return TRUE
-	user.see_in_dark = 0
-	user.sight = BLIND|SEE_TURFS
-	user.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-	user.sync_lighting_plane_alpha()
+	user.set_sight(BLIND|SEE_TURFS)
+	// Pale blue, should look nice I think
+	user.lighting_color_cutoffs = list(30, 40, 50)
+	user.sync_lighting_plane_cutoff()
 	return TRUE
 
 /datum/action/innate/shuttledocker_rotate

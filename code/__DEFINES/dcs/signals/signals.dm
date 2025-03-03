@@ -47,6 +47,12 @@
 /// a client (re)connected, after all /client/New() checks have passed : (client/connected_client)
 #define COMSIG_GLOB_CLIENT_CONNECT "!client_connect"
 
+/// a weather event of some kind occurred
+#define COMSIG_WEATHER_TELEGRAPH(event_type) "!weather_telegraph [event_type]"
+#define COMSIG_WEATHER_START(event_type) "!weather_start [event_type]"
+#define COMSIG_WEATHER_WINDDOWN(event_type) "!weather_winddown [event_type]"
+#define COMSIG_WEATHER_END(event_type) "!weather_end [event_type]"
+
 #define COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED "!player_roundstart_spawned"
 #define COMSIG_GLOB_PLAYER_LATE_SPAWNED "!player_late_spawned"
 
@@ -550,6 +556,16 @@
 #define COMSIG_MOB_EXAMINATE "mob_examinate"
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"				//from base of /mob/update_sight(): ()
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
+///from base of hud/show_to(): (datum/hud/hud_source)
+#define COMSIG_MOB_HUD_REFRESHED "mob_hud_refreshed"
+/// from base of /client/proc/set_eye() : (atom/old_eye, atom/new_eye)
+#define COMSIG_CLIENT_SET_EYE "client_set_eye"
+
+///from base of mob/set_sight(): (new_sight, old_sight)
+#define COMSIG_MOB_SIGHT_CHANGE "mob_sight_changed"
+///from base of mob/set_invis_see(): (new_invis, old_invis)
+#define COMSIG_MOB_SEE_INVIS_CHANGE "mob_see_invis_change"
+
 #define COMSIG_MOB_KEYBINDINGS_UPDATED "mob_bindings_changed"   //from base of datum/preferences/ui_act(): (/datum/keybinding)
 
 #define COMSIG_MOB_SHIELD_DETACH "mob_shield_detached"

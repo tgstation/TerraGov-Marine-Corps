@@ -495,7 +495,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(send_mob, R_ADMIN, "Send Mob", ADMIN_VERB_NO_DESCRIP
 	message_admins("[ADMIN_TPMONTY(usr)] teleported [ADMIN_TPMONTY(M)] to [ADMIN_VERBOSEJMP(T)].")
 
 
-/datum/admins/proc/jump_area(area/A in GLOB.sorted_areas)
+/datum/admins/proc/jump_area(area/A in get_sorted_areas())
 	set category = null
 	set name = "Jump to Area"
 

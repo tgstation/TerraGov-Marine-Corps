@@ -9,7 +9,6 @@
 /atom/movable/screen
 	name = ""
 	icon = 'icons/mob/screen/generic.dmi'
-	layer = HUD_LAYER
 	// NOTE: screen objects do NOT change their plane to match the z layer of their owner
 	// You shouldn't need this, but if you ever do and it's widespread, reconsider what you're doing.
 	plane = HUD_PLANE
@@ -162,7 +161,6 @@
 
 /atom/movable/screen/close
 	name = "close"
-	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 	icon_state = "backpack_close"
 
@@ -398,7 +396,6 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 128
 	anchored = TRUE
-	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 
 /atom/movable/screen/zone_sel/proc/get_zone_at(icon_x, icon_y)
@@ -578,7 +575,6 @@
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "act_drop"
 	screen_loc = ui_drop_throw
-	layer = HUD_LAYER
 
 /atom/movable/screen/drop/Click()
 	usr.drop_item_v()
@@ -624,7 +620,7 @@
 	flash_holder = new
 	flash_holder.icon_state = "frame"
 	flash_holder.icon = icon
-	flash_holder.plane = plane
+	flash_holder.vis_flags = VIS_INHERIT_PLANE
 	flash_holder.layer = layer+0.001
 	flash_holder.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	vis_contents += flash_holder

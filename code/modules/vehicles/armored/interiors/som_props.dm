@@ -15,7 +15,7 @@
 
 /obj/structure/prop/som_tank/computer/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, "[icon_state]_emissive")
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 /obj/structure/prop/som_tank/computer/gunner_console
 	icon_state = "gunner_console"
