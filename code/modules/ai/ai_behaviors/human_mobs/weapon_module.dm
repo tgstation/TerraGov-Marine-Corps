@@ -33,6 +33,8 @@
 			return
 		if(prob(90))
 			try_speak(pick(start_fire_chat))
+		if(gun.reciever_flags & AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION)
+			gun.unique_action(mob_parent)
 		if(gun.start_fire(mob_parent, combat_target, get_turf(combat_target)) && gun.gun_firemode != GUN_FIREMODE_SEMIAUTO && gun.gun_firemode != GUN_FIREMODE_BURSTFIRE)
 			human_ai_state_flags |= HUMAN_AI_FIRING
 		return
@@ -320,15 +322,19 @@
 	if(item_flags & WIELDED)
 		return
 	wield(user)
+	return TRUE
 
 /obj/item/weapon/energy/axe/ai_use(mob/living/target, mob/living/user) //todo: make all energy weapon use the sane code as esword
 	if(!active)
 		attack_self(user)
+		return TRUE
 
 /obj/item/weapon/energy/sword/ai_use(mob/living/target, mob/living/user)
 	if(!active)
 		switch_state(null, user)
+		return TRUE
 
 /obj/item/weapon/butterfly/ai_use(mob/living/target, mob/living/user)
 	if(!active)
 		attack_self(user)
+		return TRUE
