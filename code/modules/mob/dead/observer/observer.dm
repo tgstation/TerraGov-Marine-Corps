@@ -247,10 +247,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(client)
 		animate(client, pixel_x = 0, pixel_y = 0)
 
-	var/mutable_appearance/mutable = new(appearance)
-	ghost.appearance = strip_appearance_underlays(mutable)
-	SET_PLANE_IMPLICIT(ghost, /mob/dead/observer::plane)
-	ghost.layer = /mob/dead/observer::layer
+	//dont copy the appearance so we keep verbs, etc.
+	ghost.overlays = overlays
+	ghost.underlays = underlays
+	ghost.icon = icon
+	ghost.icon_state = icon_state
+	ghost.appearance = strip_appearance_underlays(ghost.appearance)
 
 	if(mind?.name)
 		ghost.real_name = mind.name
