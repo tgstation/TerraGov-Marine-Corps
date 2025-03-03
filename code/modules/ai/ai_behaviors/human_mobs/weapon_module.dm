@@ -237,13 +237,8 @@
 	if(!line_of_sight(mob_parent, target)) //todo: This doesnt check if we can actually shoot past stuff in the line, but also checking path seems excessive
 		return AI_FIRE_NO_LOS
 
-	if((human_ai_behavior_flags & HUMAN_AI_NO_FF) && !(gun.gun_features_flags & GUN_IFF) && !(gun.ammo_datum_type::ammo_behavior_flags & AMMO_IFF)) //ammo_datum_type is always populated, with the last loaded ammo type. This shouldnt be an issue since we check ammo first
-		var/list/turf_line = get_traversal_line(mob_parent, target)
-		turf_line.Cut(1, 2) //don't count our own turf
-		for(var/turf/line_turf AS in turf_line)
-			for(var/mob/line_mob in line_turf) //todo: add checks for vehicles etc //maybe ping signals off the line turfs? Anything is better than checking contents constantly
-				if(line_mob.faction == mob_parent.faction)
-					return AI_FIRE_FRIENDLY_BLOCKED
+	if((human_ai_behavior_flags & HUMAN_AI_NO_FF) && !(gun.gun_features_flags & GUN_IFF) && !(gun.ammo_datum_type::ammo_behavior_flags & AMMO_IFF) && !check_path_ff()) //ammo_datum_type is always populated, with the last loaded ammo type. This shouldnt be an issue since we check ammo first
+		return AI_FIRE_FRIENDLY_BLOCKED
 	return AI_FIRE_CAN_HIT
 
 ///Stops gunfire
@@ -287,6 +282,16 @@
 
 	if(gun.reciever_flags & AMMO_RECIEVER_TOGGLES_OPEN)
 		gun.unique_action(mob_parent)
+
+///Returns true is a path is clear of friendlies
+/datum/ai_behavior/human/proc/check_path_ff(atom/start, atom/end)
+	var/list/turf_line = get_traversal_line(start, end)
+	turf_line.Cut(1, 2) //don't count our own turf
+	for(var/turf/line_turf AS in turf_line)
+		for(var/mob/line_mob in line_turf) //todo: add checks for vehicles etc
+			if(line_mob.faction == mob_parent.faction)
+				return FALSE
+	return TRUE
 
 //TODO: maybe move these
 ///Optimal range for AI to fight at, using this weapon
