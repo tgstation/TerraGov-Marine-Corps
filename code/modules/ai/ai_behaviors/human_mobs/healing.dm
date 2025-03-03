@@ -4,6 +4,8 @@
 	var/list/heal_list = list()
 	///Chat lines for trying to heal
 	var/list/healing_chat = list("Healing you.", "Healing you, hold still.", "Stop moving!", "Fixing you up.", "Healing.", "Treating wounds.", "I'll have you patched up in no time.", "Quit your complaining, it's just a fleshwound.", "Cover me!", "Give me some room!")
+	///Chat lines for trying to heal
+	var/list/self_heal_chat = list("Healing, cover me!", "Healing over here.", "Where's the damn medic?", "Medic!", "Treating wounds.", "It's just a flesh wound.", "Need a little help here!", "Cover me!.")
 
 /datum/ai_behavior/human/late_initialize()
 	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
@@ -115,12 +117,33 @@
 	UnregisterSignal(old_patient, COMSIG_AI_HEALING_MOB)
 	heal_list -= old_patient
 
+///Tries healing themselves
+/datum/ai_behavior/human/proc/try_heal()
+	var/mob/living/living_parent = mob_parent
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_AI_NEED_HEAL, mob_parent)
+	if(living_parent.on_fire)
+		living_parent.do_resist()
+		return
+
+	if(!COOLDOWN_CHECK(src, ai_damage_cooldown))
+		return
+
+	if(prob(75))
+		try_speak(pick(self_heal_chat))
+
+	human_ai_state_flags |= HUMAN_AI_SELF_HEALING
+
+	heal_damage(mob_parent)
+	heal_secondaries(mob_parent)
+	heal_organs(mob_parent)
+
+	human_ai_state_flags &= ~HUMAN_AI_SELF_HEALING
+	late_initialize()
+
 ///Tries to heal another mob
 /datum/ai_behavior/human/proc/try_heal_other(mob/living/carbon/human/patient)
 	if(patient.InCritical()) //crit heal is always priority
-		crit_heal(patient)
-	//if(patient.on_fire)
-	//	extinguish ??? todo
+		heal_by_type(patient, OXY)
 
 	if(medical_rating < AI_MED_MEDIC)
 		return
@@ -129,152 +152,22 @@
 
 	try_speak(pick(healing_chat))
 
-	var/list/dam_list = list(
-		BRUTE = patient.getBruteLoss(),
-		BURN = patient.getFireLoss(),
-		TOX = patient.getToxLoss(),
-		OXY = patient.getOxyLoss(),
-		CLONE = patient.getCloneLoss(),
-		PAIN = patient.getShock_Stage() * 3, //pain is pretty important, but has low numbers and takes time to change
-	)
-
 	human_ai_state_flags |= HUMAN_AI_HEALING
 	SEND_SIGNAL(patient, COMSIG_AI_HEALING_MOB, mob_parent)
 	RegisterSignal(patient, COMSIG_MOVABLE_MOVED, PROC_REF(do_unset_target))
 
-	dam_list = sortTim(dam_list, /proc/cmp_numeric_dsc, TRUE)
 	var/did_heal = FALSE
-	//health
-	for(var/dam_type in dam_list)
-		if(dam_list[dam_type] <= 10)
-			continue
-		if(heal_by_type(patient, dam_type))
-			did_heal = TRUE
-			continue
-
-
-	var/infection
-	var/internal_bleeding
-	var/shrap_limb //we only need one since it will auto cycle to other limbs
-	var/list/broken_limbs = list()
-
-	for(var/datum/limb/limb AS in patient.limbs)
-		if(limb.germ_level > INFECTION_LEVEL_ONE)
-			infection = TRUE
-
-		if((limb.limb_status & LIMB_BROKEN) && !(limb.limb_status & LIMB_SPLINTED))
-			broken_limbs += limb
-
-		if(!internal_bleeding)
-			for(var/datum/wound/wound in limb.wounds)
-				if(!istype(wound, /datum/wound/internal_bleeding))
-					continue
-				internal_bleeding = TRUE
-				break
-
-		if(!shrap_limb && length(limb.implants))
-			for(var/obj/item/embedded AS in limb.implants)
-				if(embedded.is_beneficial_implant())
-					continue
-				shrap_limb = limb
-				break
-
-	if(infection)
-		heal_by_type(patient, INFECTION )
+	if(heal_damage(patient))
 		did_heal = TRUE
 
-	if(internal_bleeding)
-		heal_by_type(patient, INTERNAL_BLEEDING)
+	if(heal_secondaries(patient))
 		did_heal = TRUE
 
-	if(shrap_limb)
-		var/obj/item/shrap_remover = locate(/obj/item/tweezers_advanced) in mob_inventory.medical_list
-		if(!shrap_remover)
-			shrap_remover = locate(/obj/item/tweezers) in mob_inventory.medical_list
-		if(shrap_remover)
-			shrap_remover.ai_use(patient, mob_parent)
-			did_heal = TRUE
-
-	for(var/broken_limb in broken_limbs)
-		if(!do_splint(broken_limb, patient))
-			break
+	if(heal_organs(patient))
 		did_heal = TRUE
-
-	do_organ_heal(patient)
 
 	if(!did_heal || prob(30)) //heal interupted or nothing left to heal, or to stop overload
 		do_unset_target(patient)
 	UnregisterSignal(patient, COMSIG_MOVABLE_MOVED)
 	on_heal_end(mob_parent)
 	SEND_SIGNAL(mob_parent, COMSIG_AI_HEALING_FINISHED)
-
-///Handles a friendly in crit
-/datum/ai_behavior/human/proc/crit_heal(mob/living/carbon/human/patient)
-	var/obj/item/heal_item
-
-	for(var/obj/item/stored_item AS in mob_inventory.oxy_list)
-		if(!stored_item.ai_should_use(patient, mob_parent))
-			continue
-		heal_item = stored_item
-		break
-
-	if(!heal_item)
-		return FALSE
-	heal_item.ai_use(patient, mob_parent)
-	return TRUE
-
-///Addresses organ damage
-/datum/ai_behavior/human/proc/do_organ_heal(mob/living/carbon/human/patient = mob_parent)
-	var/organ_damaged = FALSE
-	for(var/datum/internal_organ/organ AS in patient.internal_organs)
-		if(organ.damage < organ.min_bruised_damage)
-			continue
-		if(istype(organ, /datum/internal_organ/eyes))
-			heal_by_type(patient, EYE_DAMAGE)
-			continue
-		if(istype(organ, /datum/internal_organ/brain))
-			heal_by_type(patient, BRAIN_DAMAGE)
-			continue
-		organ_damaged = TRUE
-	if(organ_damaged)
-		heal_by_type(patient, ORGAN_DAMAGE)
-
-///Tries to heal damage of a given type
-/datum/ai_behavior/human/proc/heal_by_type(mob/living/carbon/human/patient, dam_type)
-	var/obj/item/heal_item
-	var/list/med_list
-
-	switch(dam_type)
-		if(BRUTE)
-			med_list = mob_inventory.brute_list
-		if(BURN)
-			med_list = mob_inventory.burn_list
-		if(TOX)
-			med_list = mob_inventory.tox_list
-		if(OXY)
-			med_list = mob_inventory.oxy_list
-		if(CLONE)
-			med_list = mob_inventory.clone_list
-		if(PAIN)
-			med_list = mob_inventory.pain_list
-		if(EYE_DAMAGE)
-			med_list = mob_inventory.eye_list
-		if(BRAIN_DAMAGE)
-			med_list = mob_inventory.brain_list
-		if(INTERNAL_BLEEDING)
-			med_list = mob_inventory.ib_list
-		if(ORGAN_DAMAGE)
-			med_list = mob_inventory.organ_list
-		if(INFECTION)
-			med_list = mob_inventory.infection_list
-
-	for(var/obj/item/stored_item AS in med_list)
-		if(!stored_item.ai_should_use(patient, mob_parent))
-			continue
-		heal_item = stored_item
-		break
-
-	if(!heal_item)
-		return FALSE
-	heal_item.ai_use(patient, mob_parent)
-	return TRUE
