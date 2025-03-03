@@ -230,10 +230,9 @@
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
 
 ///returns the basetype caste to get what the base caste is (e.g base rav not primo or strain rav)
-/datum/xeno_caste/proc/get_base_caste_type()
-	var/datum/xeno_caste/current_type = type
-	while(initial(current_type.upgrade) != XENO_UPGRADE_BASETYPE)
-		current_type = initial(current_type.parent_type)
+/proc/get_base_caste_type(datum/xeno_caste/current_type)
+	while(current_type::upgrade != XENO_UPGRADE_BASETYPE)
+		current_type = current_type::parent_type
 	return current_type
 
 /// basetype = list(strain1, strain2)
@@ -253,8 +252,10 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	return strain_list
 
 ///returns a list of strains(xeno castedatum paths) that this caste can currently evolve to
-/datum/xeno_caste/proc/get_strain_options()
-	var/datum/xeno_caste/root_type = type
+/proc/get_strain_options(datum/xeno_caste/root_type)
+	RETURN_TYPE(/list)
+
+	ASSERT(ispath(root_type), "Bad root type passed to get_strain_options")
 	while(initial(root_type.parent_type) != /datum/xeno_caste)
 		root_type = root_type::parent_type
 	var/list/options = GLOB.strain_list[root_type]
