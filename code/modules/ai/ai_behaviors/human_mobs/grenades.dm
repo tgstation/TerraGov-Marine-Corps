@@ -22,7 +22,7 @@
 		return
 	if(!check_path(mob_parent, combat_target, PASS_THROW))
 		return
-	if(!check_path_ff())
+	if(!check_path_ff(mob_parent, combat_target))
 		return
 	return throw_grenade(pick(RANGE_TURFS(1, combat_target)), get_grenade()) //add a bit of randomness for FUN
 
