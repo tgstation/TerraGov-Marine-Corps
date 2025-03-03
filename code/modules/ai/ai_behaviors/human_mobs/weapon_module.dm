@@ -237,7 +237,7 @@
 	if(!line_of_sight(mob_parent, target)) //todo: This doesnt check if we can actually shoot past stuff in the line, but also checking path seems excessive
 		return AI_FIRE_NO_LOS
 
-	 //ammo_datum_type is always populated, with the last loaded ammo type. This shouldnt be an issue since we check ammo first
+	//ammo_datum_type is always populated, with the last loaded ammo type. This shouldnt be an issue since we check ammo first
 	if((human_ai_behavior_flags & HUMAN_AI_NO_FF) && !(gun.gun_features_flags & GUN_IFF) && !(gun.ammo_datum_type::ammo_behavior_flags & AMMO_IFF) && !check_path_ff(mob_parent, target))
 		return AI_FIRE_FRIENDLY_BLOCKED
 	return AI_FIRE_CAN_HIT
