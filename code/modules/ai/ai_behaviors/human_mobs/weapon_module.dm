@@ -275,13 +275,18 @@
 		return
 	if(prob(90))
 		try_speak(pick(reloading_chat))
+	if(gun.reciever_flags & AMMO_RECIEVER_TOGGLES_OPEN)
+		gun.unique_action(mob_parent)
 	if((gun.reciever_flags & AMMO_RECIEVER_HANDFULS))
 		var/obj/item/ammo_magazine/handful_mag = new_ammo
 		while(handful_mag.current_rounds)
 			if(!gun.reload(handful_mag, mob_parent))
-				return
-	gun.reload(new_ammo, mob_parent) //skips tac reload but w/e. if we want it, then we need to check for skills...
-	//note: force arg on reload would allow reloading closed chamber weapons, but also bypasses reload delays... funny rapid rockets
+				break
+	else
+		gun.reload(new_ammo, mob_parent)
+
+	if(gun.reciever_flags & AMMO_RECIEVER_TOGGLES_OPEN)
+		gun.unique_action(mob_parent)
 
 //TODO: maybe move these
 ///Optimal range for AI to fight at, using this weapon
