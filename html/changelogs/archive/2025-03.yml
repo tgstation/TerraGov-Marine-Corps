@@ -52,3 +52,8 @@
   - rscdel: The Acid Maw may no longer fire an acid gas shot
   - rscadd: The Acid Jaws may now fire an acid gas shot
   - rscdel: The Acid Jaws may no longer fire a facehugger shot
+2025-03-03:
+  TiviPlus:
+  - balance: nerfed mech power generation and increased boosting cost
+  yyzsong:
+  - bugfix: some messages will no longer have an unnecessary space before them.
