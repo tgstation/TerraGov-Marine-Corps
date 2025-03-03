@@ -350,7 +350,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 	for(var/obj/structure/droppod/pod in GLOB.droppod_list)
 		for(var/mob/user AS in pod.buckled_mobs)
-			user.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("DROP UPDATED", "New target: [target.loc]", LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/command_order)
+			user.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("DROP UPDATED", "New target: [target.loc]", CENTER_ALIGN_TEXT), /atom/movable/screen/text/screen_text/command_order)
 		var/turf/newturf
 		if(length(block))
 			newturf = pick_n_take(block)

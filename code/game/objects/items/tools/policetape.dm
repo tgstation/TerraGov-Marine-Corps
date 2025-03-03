@@ -150,7 +150,7 @@
 	if(user.a_intent == INTENT_HELP && ((!can_puncture(W) && src.allowed(user))))
 		to_chat(user, "You can't break the [src] with that!")
 		return
-	user.visible_message(span_notice(" [user] breaks the [src]!"))
+	user.visible_message(span_notice("[user] breaks the [src]!"))
 
 	var/dir[2]
 	var/icon_dir = src.icon_state

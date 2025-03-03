@@ -21,3 +21,39 @@
       from not going through when off.
   novaepee:
   - spellcheck: 2025 tip update!
+2025-03-02:
+  Apple-107:
+  - rscadd: SG-153 Spotting Rifle Ammo Bin (Underbarrel of SG-62 Target Rifle) now
+      purchasable by Requisitions
+  - balance: Only the standard SR ammunition is available in ammo bin form, you still
+      have to purchase its specialized ammo in individual magazines.
+  - rscadd: SG-153 Spotting Rifle Ammo Bins can also be made by factory.
+  - bugfix: SG-153 uses 12.7mm Smart Magnum rounds rather than the nonsensical 12x7mm
+  Notamaniac:
+  - bugfix: Glasses/Goggles can no longer be toggled in hand creating an empty hud
+      visor sprite
+  TiviPlus:
+  - balance: mech dash has a cooldown now
+  - admin: Remove from tank admin verb has a confirmation popup now
+  - rscdel: Removed duplicate follow verbs that just listed what was already in the
+      orbit menu
+  - bugfix: Fixed drop pods not centering screen text
+  blackdav123:
+  - rscadd: Valhalla vehicle spawner buttons now include the three types of mechs.
+  fleewave:
+  - balance: Huggers now die if thrown onto a vehicle.
+  ivanmixo:
+  - bugfix: Neutral faction mobs can no longer be hive targets
+  - qol: Mousing over clickable UI elements and wall mounted machinery now turns your
+      cursor into a pointer
+  - bugfix: You can no longer hijack alamo shipside
+  yyzsong:
+  - rscadd: The Acid Maw may now fire a facehugger shot
+  - rscdel: The Acid Maw may no longer fire an acid gas shot
+  - rscadd: The Acid Jaws may now fire an acid gas shot
+  - rscdel: The Acid Jaws may no longer fire a facehugger shot
+2025-03-03:
+  TiviPlus:
+  - balance: nerfed mech power generation and increased boosting cost
+  yyzsong:
+  - bugfix: some messages will no longer have an unnecessary space before them.

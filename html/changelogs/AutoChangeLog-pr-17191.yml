@@ -1,7 +1,0 @@
-author: "Apple-107"
-delete-after: True
-changes:
-  - rscadd: "SG-153 Spotting Rifle Ammo Bin (Underbarrel of SG-62 Target Rifle) now purchasable by Requisitions"
-  - balance: "Only the standard SR ammunition is available in ammo bin form, you still have to purchase its specialized ammo in individual magazines."
-  - rscadd: "SG-153 Spotting Rifle Ammo Bins can also be made by factory."
-  - bugfix: "SG-153 uses 12.7mm Smart Magnum rounds rather than the nonsensical 12x7mm"

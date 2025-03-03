@@ -33,9 +33,9 @@
 	playsound(loc, SFX_SPARKS, 25, TRUE)
 	if (shock_damage > 10)
 		src.visible_message(
-			span_warning(" [src] was shocked by the [source]!"), \
+			span_warning("[src] was shocked by the [source]!"), \
 			span_danger("You feel a powerful shock course through your body!"), \
-			span_warning(" You hear a heavy electrical crack.") \
+			span_warning("You hear a heavy electrical crack.") \
 		)
 		if(isxeno(src))
 			if(mob_size != MOB_SIZE_BIG)
@@ -44,9 +44,9 @@
 			Paralyze(8 SECONDS)
 	else
 		src.visible_message(
-			span_warning(" [src] was mildly shocked by the [source]."), \
-			span_warning(" You feel a mild shock course through your body."), \
-			span_warning(" You hear a light zapping.") \
+			span_warning("[src] was mildly shocked by the [source]."), \
+			span_warning("You feel a mild shock course through your body."), \
+			span_warning("You hear a light zapping.") \
 		)
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread

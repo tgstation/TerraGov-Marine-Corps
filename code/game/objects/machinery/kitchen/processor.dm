@@ -104,7 +104,7 @@
 			stack_trace("[O] in processor doesn't have a suitable recipe.") //-rastaf0
 			continue
 		src.processing = 1
-		user.visible_message(span_notice(" [user] turns on [src]."), \
+		user.visible_message(span_notice("[user] turns on [src]."), \
 			"You turn on [src].", \
 			"You hear a food processor.")
 		playsound(src.loc, 'sound/machines/blender.ogg', 25, 1)
@@ -112,5 +112,5 @@
 		sleep(P.time)
 		P.process(src.loc, O)
 		src.processing = 0
-	src.visible_message(span_notice(" \the [src] finished processing."), \
+	src.visible_message(span_notice("\the [src] finished processing."), \
 		"You hear the food processor stopping/")

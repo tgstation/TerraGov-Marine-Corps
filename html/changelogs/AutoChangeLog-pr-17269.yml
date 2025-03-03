@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - admin: "Perms change actually sends over assets and doesn't runtime"

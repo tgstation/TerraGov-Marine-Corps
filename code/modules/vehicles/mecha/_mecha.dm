@@ -205,6 +205,8 @@
 	var/dash_power_consumption = 500
 	/// dash_range
 	var/dash_range = 1
+	///cooldown time between dashes on greyscale mechs
+	var/dash_cooldown = 10 SECONDS
 
 /obj/item/radio/mech //this has to go somewhere
 	subspace_transmission = TRUE

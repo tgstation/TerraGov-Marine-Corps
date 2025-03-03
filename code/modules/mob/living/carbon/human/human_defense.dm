@@ -257,7 +257,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		zone = get_zone_with_miss_chance(zone, src)
 
 		if(!zone)
-			visible_message(span_notice(" \The [thrown_item] misses [src] narrowly!"), null, null, 5)
+			visible_message(span_notice("\The [thrown_item] misses [src] narrowly!"), null, null, 5)
 			if(living_thrower)
 				log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: missed)")
 			return FALSE
@@ -299,7 +299,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			hit_report += "(embedded in [affecting.display_name])"
 
 	if(AM.throw_source && speed >= 15)
-		visible_message(span_warning(" [src] staggers under the impact!"),span_warning(" You stagger under the impact!"), null, null, 5)
+		visible_message(span_warning("[src] staggers under the impact!"),span_warning("You stagger under the impact!"), null, null, 5)
 		throw_at(get_edge_target_turf(src, get_dir(AM.throw_source, src)), 1, speed * 0.5)
 		hit_report += "(thrown away)"
 

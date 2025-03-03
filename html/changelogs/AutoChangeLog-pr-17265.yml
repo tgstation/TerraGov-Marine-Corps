@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Fixed runtime when taking ammo out of tank ammo racks"
+  - bugfix: "Ammo counter for tank should update correctly now when manually unloading breech"
