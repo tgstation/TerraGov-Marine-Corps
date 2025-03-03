@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - admin: "Maintainers now have access to player panel (minus notes, banning, kicking, etc)"
