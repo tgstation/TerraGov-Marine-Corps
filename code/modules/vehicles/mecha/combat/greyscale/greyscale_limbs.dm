@@ -186,7 +186,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 /datum/mech_limb/head/get_overlays()
 	if(disabled)
 		return null
-	return list(icon2appearance(overlay_icon), icon2appearance(visor_icon), emissive_appearance(visor_icon))
+	return list(icon2appearance(overlay_icon), icon2appearance(visor_icon), emissive_appearance(visor_icon, offset_spokesman=owner))
 
 /datum/mech_limb/head/disable()
 	. = ..()

@@ -26,6 +26,10 @@
 	if(client && SHOULD_SHOW_TO(src, screen))
 		screen.update_for_view(client.view)
 		client.screen += screen
+
+	if(screen.needs_offsetting)
+		SET_PLANE_EXPLICIT(screen, PLANE_TO_TRUE(screen.plane), src)
+
 	return screen
 
 ///Removes a fullscreen overlay
@@ -71,7 +75,20 @@
 			else
 				client.screen -= screen
 
+/mob/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
+	. = ..()
+	if(!same_z_layer)
+		relayer_fullscreens()
 
+/mob/proc/relayer_fullscreens()
+	var/turf/our_lad = get_turf(src)
+	var/offset = GET_TURF_PLANE_OFFSET(our_lad)
+	for(var/category in fullscreens)
+		var/atom/movable/screen/fullscreen/screen = fullscreens[category]
+		if(screen.needs_offsetting)
+			screen.plane = GET_NEW_PLANE(initial(screen.plane), offset)
+
+INITIALIZE_IMMEDIATE(/atom/movable/screen/fullscreen)
 /atom/movable/screen/fullscreen
 	icon = 'icons/mob/screen/full/misc.dmi'
 	icon_state = "default"
@@ -80,10 +97,12 @@
 	plane = FULLSCREEN_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/severity = 0
+	// todo tf is the point of this
 	var/fs_view = WORLD_VIEW
 	var/show_when_dead = FALSE
 	///Holder for deletion timer
 	var/removal_timer
+	var/needs_offsetting = TRUE
 
 
 /atom/movable/screen/fullscreen/Destroy()
@@ -100,41 +119,39 @@
 
 /atom/movable/screen/fullscreen/black
 	icon_state = "black" //just a black square, you can change this if you get better ideas
-	layer = FULLSCREEN_INTRO_LAYER
+	layer = INTRO_LAYER
 
 /atom/movable/screen/fullscreen/spawning_in
 	icon_state = "blackimageoverlay" //mostly just a black square, you can change this if you get better ideas
-	layer = FULLSCREEN_INTRO_LAYER
+	layer = INTRO_LAYER
 
 /atom/movable/screen/fullscreen/blind
 	icon_state = "blackimageoverlay"
-	layer = FULLSCREEN_BLIND_LAYER
+	layer = BLIND_LAYER
 
 /atom/movable/screen/fullscreen/damage
 	icon = 'icons/mob/screen/full/damage.dmi'
+	layer = UI_DAMAGE_LAYER
 
 /atom/movable/screen/fullscreen/damage/brute
 	icon_state = "brutedamageoverlay"
-	layer = FULLSCREEN_DAMAGE_LAYER
 
 /atom/movable/screen/fullscreen/damage/oxy
 	icon_state = "oxydamageoverlay"
-	layer = FULLSCREEN_DAMAGE_LAYER
 
 /atom/movable/screen/fullscreen/impaired
 	icon = 'icons/mob/screen/full/impaired.dmi'
 	icon_state = "impairedoverlay"
-	layer = FULLSCREEN_IMPAIRED_LAYER
+	layer = CRIT_LAYER
 
 /atom/movable/screen/fullscreen/impaired/crit
 	icon_state = "critical"
-	layer = FULLSCREEN_CRIT_LAYER
 
 /atom/movable/screen/fullscreen/flash
 	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "flash"
-	layer = FULLSCREEN_FLASH_LAYER
+	layer = FLASH_LAYER
 
 /atom/movable/screen/fullscreen/flash/noise
 	icon = 'icons/mob/screen/generic.dmi'
@@ -145,34 +162,34 @@
 	icon = 'icons/mob/screen/generic.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "druggy"
-	layer = FULLSCREEN_DRUGGY_LAYER
+	layer = FULLSCREEN_LAYER // todo port tg druginess visuals
 
 /atom/movable/screen/fullscreen/pain
 	icon = 'icons/mob/screen/full/pain.dmi'
 	icon_state = "painoverlay"
-	layer = FULLSCREEN_PAIN_LAYER
+	layer = PAIN_LAYER
 
 /atom/movable/screen/fullscreen/particle_flash
 	icon = 'icons/mob/screen/full/particle_flash.dmi'
 	icon_state = "particle_flash"
-	layer = FULLSCREEN_FLASH_LAYER
+	layer = FLASH_LAYER
 
 /atom/movable/screen/fullscreen/animated
 	icon = 'icons/mob/screen/full/animated.dmi'
 
 /atom/movable/screen/fullscreen/animated/bloodlust
 	icon_state = "bloodlust"
-	layer = FULLSCREEN_NERVES_LAYER
+	layer = CURSE_LAYER
 
 /atom/movable/screen/fullscreen/animated/infection
 	icon_state = "curseoverlay"
-	layer = FULLSCREEN_INFECTION_LAYER
+	layer = CURSE_LAYER
 
 /atom/movable/screen/fullscreen/machine
 	icon = 'icons/mob/screen/full/machine.dmi'
 	icon_state = "machine"
 	alpha = 120
-	layer = FULLSCREEN_DRUGGY_LAYER
+	layer = FULLSCREEN_LAYER
 	blend_mode = BLEND_MULTIPLY
 
 /atom/movable/screen/fullscreen/machine/update_for_view(client_view)
@@ -196,29 +213,24 @@
 	icon_state = "flash"
 	transform = matrix(200, 0, 0, 0, 200, 0)
 	plane = LIGHTING_PLANE
+	layer = LIGHTING_ABOVE_ALL
 	blend_mode = BLEND_OVERLAY
 	show_when_dead = TRUE
-
-/atom/movable/screen/fullscreen/lighting_backdrop/update_for_view(client_view)
-	return
+	needs_offsetting = FALSE
 
 //Provides darkness to the back of the lighting plane
 /atom/movable/screen/fullscreen/lighting_backdrop/lit_secondary
 	invisibility = INVISIBILITY_LIGHTING
-	layer = BACKGROUND_LAYER + LIGHTING_PRIMARY_DIMMER_LAYER
+	layer = BACKGROUND_LAYER+21
 	color = "#000"
-	alpha = 60
 
 /atom/movable/screen/fullscreen/lighting_backdrop/backplane
-	invisibility = INVISIBILITY_LIGHTING
-	layer = LIGHTING_BACKPLANE_LAYER
-	color = "#000"
-	blend_mode = BLEND_ADD
+	layer = BACKGROUND_LAYER+20
 
 /atom/movable/screen/fullscreen/see_through_darkness
 	icon_state = "nightvision"
 	plane = LIGHTING_PLANE
-	layer = LIGHTING_PRIMARY_LAYER
+	layer = LIGHTING_ABOVE_ALL
 	blend_mode = BLEND_ADD
 	show_when_dead = TRUE
 

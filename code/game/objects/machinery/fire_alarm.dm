@@ -85,7 +85,7 @@ FIRE ALARM
 		return
 	if(CHECK_BITFIELD(machine_stat, NOPOWER))
 		return
-	. += emissive_appearance(icon, "fire_o[(is_mainship_level(z)) ? SSsecurity_level.get_current_level_as_text() : "green"]")
+	. += emissive_appearance(icon, "fire_o[(is_mainship_level(z)) ? SSsecurity_level.get_current_level_as_text() : "green"]", src)
 	. += mutable_appearance(icon, "fire_o[(is_mainship_level(z)) ? SSsecurity_level.get_current_level_as_text() : "green"]")
 	var/area/A = get_area(src)
 	if(A.alarm_state_flags & ALARM_WARNING_FIRE)

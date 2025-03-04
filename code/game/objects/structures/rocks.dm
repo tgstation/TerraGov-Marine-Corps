@@ -9,7 +9,7 @@
 	soft_armor = list(MELEE = 75, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 100, FIRE = 100, ACID = 25)
 	density = TRUE
 	anchored = TRUE
-	layer = ABOVE_TURF_LAYER
+	layer = ABOVE_NORMAL_TURF_LAYER
 	allow_pass_flags = PASSABLE|PASS_DEFENSIVE_STRUCTURE
 
 /obj/structure/rock/ex_act(severity)
@@ -279,7 +279,7 @@
 
 /obj/structure/rock/crystal/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 
 /obj/structure/rock/crystal/small
 	icon_state = "small_crystal"
@@ -302,4 +302,4 @@
 
 /obj/structure/rock/variable/crystal_mound/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)

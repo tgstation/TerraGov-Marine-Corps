@@ -188,7 +188,7 @@
 							var/list/cache = modelCache[model_key]
 							if(!cache)
 								CRASH("Undefined model key in DMM: [model_key]")
-							build_coordinate(areaCache, cache, locate(xcrd, ycrd, zcrd), no_afterchange, placeOnTop, delete)
+							build_coordinate(areaCache, cache, locate(xcrd, ycrd, zcrd), no_afterchange, placeOnTop, delete, zexpansion)
 
 							// only bother with bounds that actually exist
 							bounds[MAP_MINX] = min(bounds[MAP_MINX], xcrd)
@@ -301,7 +301,12 @@
 
 		.[model_key] = list(members, members_attributes)
 
-/datum/parsed_map/proc/build_coordinate(list/areaCache, list/model, turf/crds, no_changeturf as num, placeOnTop as num, delete)
+// todo remove delete when bringing up to tg standard
+/datum/parsed_map/proc/build_coordinate(list/areaCache, list/model, turf/crds, no_changeturf as num, placeOnTop as num, delete, new_z)
+	// If we don't have a turf, nothing we will do next will actually acomplish anything, so just go back
+	// Note, this would actually drop area vvs in the tile, but like, why tho
+	if(!crds)
+		return
 	var/index
 	var/list/members = model[1]
 	var/list/members_attributes = model[2]
@@ -313,6 +318,7 @@
 	//The next part of the code assumes there's ALWAYS an /area AND a /turf on a given tile
 	//first instance the /area and remove it from the members list
 	index = length(members)
+	var/area/old_area
 	if(members[index] != /area/template_noop)
 		var/atype = members[index]
 		GLOB._preloader.setup(members_attributes[index], atype)//preloader for assigning  set variables on atom creation
@@ -322,11 +328,25 @@
 			if(!instance)
 				instance = new atype(null)
 			areaCache[atype] = instance
-		if(crds)
-			instance.contents.Add(crds)
+
+		if(!new_z)
+			/// see tg for optimized version
+			var/area/area_instance = instance
+			old_area = crds.loc
+			LISTASSERTLEN(old_area.turfs_to_uncontain_by_zlevel, crds.z, list())
+			LISTASSERTLEN(area_instance.turfs_by_zlevel, crds.z, list())
+			old_area.turfs_to_uncontain_by_zlevel[crds.z] += crds
+			area_instance.turfs_by_zlevel[crds.z] += crds
+
+		instance.contents.Add(crds)
 
 		if(GLOB.use_preloader && instance)
 			GLOB._preloader.load(instance)
+
+	// If this isn't template work, we didn't change our turf and we changed area, then we've gotta handle area lighting transfer
+	else if(!no_changeturf && old_area)
+		// Don't do contain/uncontain stuff, this happens a few lines up when the area actally changes
+		crds.on_change_area(old_area, crds.loc)
 
 	//then instance the /turf and, if multiple tiles are presents, simulates the DMM underlays piling effect
 

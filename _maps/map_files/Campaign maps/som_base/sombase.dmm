@@ -11504,7 +11504,6 @@
 /area/rocinante_base/ground/base_cent)
 "oOb" = (
 /obj/structure/closet/crate/miningcar{
-	layer = 3.1;
 	name = "\improper materials storage bin";
 	pixel_y = 8
 	},

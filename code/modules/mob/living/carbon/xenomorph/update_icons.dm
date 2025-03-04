@@ -223,7 +223,7 @@
 	. = ..()
 	if(!owner.on_fire || HAS_TRAIT(owner, TRAIT_BURROWED))
 		return
-	. += emissive_appearance(icon, icon_state)
+	. += emissive_appearance(icon, icon_state, src)
 
 ///Adjusts the light emitted by the flame
 /atom/movable/vis_obj/xeno_wounds/fire_overlay/proc/update_flame_light(intensity)

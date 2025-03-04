@@ -268,8 +268,7 @@
 		A.remove_action(src)
 
 	item_to_equip.screen_loc = null
-	item_to_equip.layer = ABOVE_HUD_LAYER
-	item_to_equip.plane = ABOVE_HUD_PLANE
+	SET_PLANE_EXPLICIT(item_to_equip, ABOVE_HUD_PLANE, src)
 	item_to_equip.forceMove(src)
 
 ///This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
@@ -671,8 +670,7 @@
 
 /mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
 	emote_overlay.appearance_flags = APPEARANCE_UI_TRANSFORM
-	emote_overlay.plane = ABOVE_LIGHTING_PLANE
-	emote_overlay.layer = ABOVE_HUD_LAYER
+	SET_PLANE(emote_overlay, ABOVE_LIGHTING_PLANE, src)
 	overlays += emote_overlay
 
 	if(remove_delay)
@@ -783,17 +781,18 @@
 	return TRUE
 
 
+///Update the lighting plane and sight of this mob (sends COMSIG_MOB_UPDATE_SIGHT)
 /mob/proc/update_sight()
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_MOB_UPDATE_SIGHT)
-	sync_lighting_plane_alpha()
+	sync_lighting_plane_cutoff()
 
-/mob/proc/sync_lighting_plane_alpha()
+///Set the lighting plane hud filters to the mobs lighting_cutoff var
+/mob/proc/sync_lighting_plane_cutoff()
 	if(!hud_used)
 		return
-
-	var/atom/movable/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
-	if(L)
-		L.alpha = lighting_alpha
+	for(var/atom/movable/screen/plane_master/rendering_plate/lighting/light as anything in hud_used.get_true_plane_masters(RENDER_PLANE_LIGHTING))
+		light.set_light_cutoff(lighting_cutoff, lighting_color_cutoffs)
 
 
 /mob/proc/get_photo_description(obj/item/camera/camera)
@@ -866,7 +865,7 @@
 	clear_important_client_contents()
 	canon_client = null
 
-/mob/on_changed_z_level(turf/old_turf, turf/new_turf, notify_contents = TRUE)
+/mob/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents = TRUE)
 	. = ..()
 	if(!client || !hud_used)
 		return

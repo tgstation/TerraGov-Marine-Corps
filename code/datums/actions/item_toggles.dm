@@ -32,7 +32,7 @@
 	if(use_obj_appeareance)
 		var/obj/item/I = target
 		// -0.5 so its below maptext and above the selected frames
-		var/item_image = mutable_appearance(I.icon, I.icon_state, ACTION_LAYER_IMAGE_ONTOP, FLOAT_PLANE)
+		var/item_image = mutable_appearance(I.icon, I.icon_state, ACTION_LAYER_IMAGE_ONTOP)
 		visual_references[VREF_MUTABLE_LINKED_OBJ] = item_image
 		button.add_overlay(item_image)
 	else

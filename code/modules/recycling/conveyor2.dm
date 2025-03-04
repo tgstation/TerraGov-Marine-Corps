@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	icon_state = "conveyor_map"
 	name = "conveyor belt"
 	desc = "A conveyor belt. It can be rotated with a <b>wrench</b>. It can be reversed with a <b>screwdriver</b>."
-	layer = FIREDOOR_OPEN_LAYER
+	layer = OPEN_DOOR_LAYER
 	max_integrity = 50
 	resistance_flags = XENO_DAMAGEABLE
 	///Conveyor specific flags

@@ -308,9 +308,8 @@
 
 
 /obj/machinery/camera/update_remote_sight(mob/living/user)
-	user.see_invisible = SEE_INVISIBLE_LIVING //can't see ghosts through cameras
-	user.sight = NONE
-	user.see_in_dark = 2
+	user.set_invis_see(SEE_INVISIBLE_LIVING) //can't see ghosts through cameras
+	user.set_sight(NONE)
 	return TRUE
 
 /obj/machinery/camera/autoname
@@ -322,7 +321,7 @@
 	. = ..()
 	if(obj_integrity <= 0)
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive")
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 //This camera type automatically sets it's name to whatever the area that it's in is called.
 /obj/machinery/camera/autoname/Initialize(mapload)
@@ -413,7 +412,8 @@
 
 //Special invisible cameras, to get even better angles without looking ugly
 /obj/machinery/camera/autoname/thunderdome/hidden
-
-/obj/machinery/camera/autoname/thunderdome/hidden/update_icon_state()
-	. = ..()
 	icon_state = "nothing"
+
+/obj/machinery/camera/autoname/thunderdome/hidden/update_appearance(updates)
+	SHOULD_CALL_PARENT(FALSE)
+	return

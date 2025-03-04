@@ -63,8 +63,22 @@
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	ENABLE_BITFIELD(atom_flags, INITIALIZED)
 
-	// by default, vis_contents is inherited from the turf that was here before
-	vis_contents.Cut()
+	/// We do NOT use the shortcut here, because this is faster
+	if(SSmapping.max_plane_offset)
+		if(!SSmapping.plane_offset_blacklist["[plane]"])
+			plane = plane - (PLANE_RANGE * SSmapping.z_level_to_plane_offset[z])
+/*
+		var/turf/T = GET_TURF_ABOVE(src)
+		if(T)
+			T.multiz_turf_new(src, DOWN)
+		T = GET_TURF_BELOW(src)
+		if(T)
+			T.multiz_turf_new(src, UP)
+*/
+	// by default, vis_contents is inherited from the turf that was here before.
+	// Checking length(vis_contents) in a proc this hot has huge wins for performance.
+	if (length(vis_contents))
+		vis_contents.Cut()
 
 	assemble_baseturfs()
 
@@ -78,11 +92,6 @@
 
 	if(light_power && light_range)
 		update_light()
-
-	//Get area light
-	var/area/A = loc
-	if(A?.lighting_effect)
-		add_overlay(A.lighting_effect)
 
 	if(opacity)
 		directional_opacity = ALL_CARDINALS
@@ -313,9 +322,11 @@
 	if(W.directional_opacity != old_directional_opacity)
 		W.reconsider_lights()
 
-	if(thisarea.area_has_base_lighting)
-		W.add_overlay(thisarea.lighting_effect)
-		W.luminosity = 1
+	// We will only run this logic if the tile is not on the prime z layer, since we use area overlays to cover that
+	if(SSmapping.z_level_to_plane_offset[z])
+		var/area/our_area = W.loc
+		if(our_area.lighting_effects)
+			W.add_overlay(our_area.lighting_effects[SSmapping.z_level_to_plane_offset[z] + 1])
 
 	if(!W.smoothing_behavior == NO_SMOOTHING)
 		return W
@@ -872,16 +883,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 /turf/proc/visibilityChanged()
 	for(var/datum/cameranet/net AS in list(GLOB.cameranet, GLOB.som_cameranet))
-
 		net.updateVisibility(src)
-		// The cameranet usually handles this for us, but if we've just been
-		// recreated we should make sure we have the cameranet vis_contents.
-		var/datum/camerachunk/C = net.chunkGenerated(x, y, z)
-		if(C)
-			if(C.obscuredTurfs[src])
-				vis_contents += net.vis_contents_opaque
-			else
-				vis_contents -= net.vis_contents_opaque
 
 
 /turf/AllowDrop()

@@ -13,7 +13,7 @@
 	opacity = FALSE
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
-	layer = WINDOW_LAYER
+	layer = ABOVE_WINDOW_LAYER
 
 /obj/structure/shuttle/engine
 	name = "engine"

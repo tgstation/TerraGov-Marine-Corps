@@ -181,7 +181,7 @@
 // =================
 // weed wall
 /obj/alien/weeds/weedwall
-	layer = RESIN_STRUCTURE_LAYER
+	layer = BELOW_OBJ_LAYER
 	plane = GAME_PLANE
 	icon = 'icons/obj/smooth_objects/weedwall.dmi'
 	icon_state = "weedwall"
@@ -201,7 +201,7 @@
 // =================
 // windowed weed wall
 /obj/alien/weeds/weedwall/window
-	layer = ABOVE_TABLE_LAYER
+	layer = GIB_LAYER
 	///The type of window we're expecting to grow on
 	var/window_type = /obj/structure/window/framed
 

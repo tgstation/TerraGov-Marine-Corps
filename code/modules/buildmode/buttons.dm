@@ -1,7 +1,6 @@
 /atom/movable/screen/buildmode
 	icon = 'icons/misc/buildmode.dmi'
 	// If we don't do this, we get occluded by item action buttons
-	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
