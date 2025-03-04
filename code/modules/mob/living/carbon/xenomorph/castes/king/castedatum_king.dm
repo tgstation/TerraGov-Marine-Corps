@@ -137,10 +137,13 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_STRONG|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
-	caste_traits = list(TRAIT_STUNIMMUNE, TRAIT_STAGGERIMMUNE, TRAIT_SLOWDOWNIMMUNE, TRAIT_STOPS_TANK_COLLISION)
+	caste_traits = list(TRAIT_STUNIMMUNE, TRAIT_STAGGERIMMUNE, TRAIT_STOPS_TANK_COLLISION)
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 60, ACID = 60)
+
+	// *** Pheromones *** //
+	aura_strength = 3.0
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
@@ -167,7 +170,7 @@
 
 /datum/xeno_caste/king/conqueror/primordial
 	upgrade_name = "Primordial"
-	//primordial_message = "We are the apex of evolution, reigning unchallenged in nature's arena."
+	primordial_message = "Veni. Vidi. Vici."
 	upgrade = XENO_UPGRADE_PRIMO
 
 	// *** Abilities *** //

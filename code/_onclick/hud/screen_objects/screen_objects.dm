@@ -777,11 +777,12 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	screen_loc = ui_combo
 	plane = ABOVE_HUD_PLANE
-	var/timerid
+	/// Timer ID. After a set duration, the tracked combo streak will reset.
+	var/reset_timer
 
 /atom/movable/screen/combo/proc/clear_streak()
 	animate(src, alpha = 0, 2 SECONDS, SINE_EASING)
-	timerid = addtimer(CALLBACK(src, PROC_REF(reset_icons)), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+	reset_timer = addtimer(CALLBACK(src, PROC_REF(reset_icons)), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 
 /atom/movable/screen/combo/proc/reset_icons()
 	cut_overlays()
@@ -789,12 +790,12 @@
 
 /atom/movable/screen/combo/update_icon_state(combo_streak = "", time = 2 SECONDS)
 	reset_icons()
-	if(timerid)
-		deltimer(timerid)
+	if(reset_timer)
+		deltimer(reset_timer)
 	alpha = 255
 	if(!combo_streak)
 		return ..()
-	timerid = addtimer(CALLBACK(src, PROC_REF(clear_streak)), time, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+	reset_timer = addtimer(CALLBACK(src, PROC_REF(clear_streak)), time, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 	icon_state = "combo"
 	for(var/i = 1; i <= length(combo_streak); ++i)
 		var/click_text = copytext(combo_streak, i, i + 1)
