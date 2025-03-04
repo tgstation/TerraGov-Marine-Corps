@@ -302,6 +302,12 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	leadership = SKILL_LEAD_BEGINNER
 	powerloader = SKILL_POWERLOADER_DABBLING
 
+/datum/skills/combat_engineer/pmc
+	name = "PMC Engineer"
+	unarmed = SKILL_UNARMED_TRAINED
+	medical = SKILL_MEDICAL_NOVICE
+	stamina = SKILL_STAMINA_TRAINED
+
 /datum/skills/combat_medic
 	name = SQUAD_CORPSMAN
 	leadership = SKILL_LEAD_BEGINNER
@@ -316,6 +322,10 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/combat_medic/pmc
 	name = "PMC Medic"
+	unarmed = SKILL_UNARMED_TRAINED
+	engineer = SKILL_ENGINEER_METAL
+	construction = SKILL_ENGINEER_METAL
+	stamina = SKILL_STAMINA_TRAINED
 	medical = SKILL_MEDICAL_EXPERT
 
 /datum/skills/combat_medic/special_forces
@@ -538,6 +548,13 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = "PMC Private"
 	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL
+	unarmed = SKILL_UNARMED_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	leadership = SKILL_LEAD_BEGINNER
+	medical = SKILL_MEDICAL_NOVICE
 
 /datum/skills/crafty
 	name = "Crafty Private"
@@ -584,6 +601,10 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/sl/pmc
 	name = "PMC Leader"
+	unarmed = SKILL_UNARMED_MP
+	melee_weapons = SKILL_MELEE_TRAINED
+	medical = SKILL_MEDICAL_PRACTICED
+	police = SKILL_POLICE_MP
 	combat = SKILL_COMBAT_TRAINED
 	pistols = SKILL_PISTOLS_TRAINED
 	smgs = SKILL_SMGS_TRAINED
@@ -641,7 +662,16 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/specialist/pmc
 	name = "PMC Specialist"
-	engineer = SKILL_ENGINEER_METAL
+	combat = SKILL_COMBAT_TRAINED
+	melee_weapons = SKILL_MELEE_SUPER
+	pistols = SKILL_PISTOLS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	engineer = SKILL_ENGINEER_PLASTEEL
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	surgery = SKILL_SURGERY_TRAINED
 	stamina = SKILL_STAMINA_TRAINED
 
 /datum/skills/specialist/upp
@@ -660,15 +690,16 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/smartgunner/pmc
 	name = "PMC Smartgunner"
-	unarmed = SKILL_UNARMED_TRAINED
+	unarmed = SKILL_UNARMED_MP
+	engineer = SKILL_ENGINEER_METAL
 	construction = SKILL_CONSTRUCTION_METAL
 	combat = SKILL_COMBAT_TRAINED
 	smartgun = SKILL_SMART_TRAINED
 	leadership = SKILL_LEAD_BEGINNER
+	medical = SKILL_MEDICAL_NOVICE
 	melee_weapons = SKILL_MELEE_TRAINED
 	pistols = SKILL_PISTOLS_TRAINED
 	smgs = SKILL_SMGS_TRAINED
-	rifles = SKILL_RIFLES_TRAINED
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 

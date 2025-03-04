@@ -402,6 +402,7 @@
 /area/antag_ship/som/requisition)
 "cP" = (
 /obj/effect/landmark/start/job/pmc_medic,
+/obj/effect/landmark/start/job/pmc_engineer,
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
 	dir = 8
@@ -2819,7 +2820,8 @@
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 2;
-	req_one_access = list(206)
+	req_one_access = list(185);
+	name = "\improper PMC Medical Airlock"
 	},
 /turf/open/floor/prison/sterilewhite/full,
 /area/antag_ship/pmc_ntf/starboard/medbay)
@@ -3372,6 +3374,7 @@
 /area/antag_ship/vsd/port)
 "rY" = (
 /obj/effect/landmark/start/job/pmc_medic,
+/obj/effect/landmark/start/job/pmc_engineer,
 /turf/open/floor/prison/sterilewhite,
 /area/antag_ship/pmc_ntf/starboard/medbay)
 "rZ" = (
@@ -3542,7 +3545,10 @@
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
 "te" = (
-/obj/machinery/door/airlock/mainship/generic,
+/obj/machinery/door/airlock/mainship/generic{
+	name = "\improper PMC Airlock";
+	req_one_access = list(186)
+	},
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/structure/cable,
 /turf/open/floor/mainship/office,
@@ -3893,7 +3899,9 @@
 /area/antag_ship/som/requisition)
 "uZ" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 1
+	dir = 1;
+	req_one_access = list(186);
+	name = "\improper PMC Airlock"
 	},
 /obj/structure/cable,
 /obj/structure/cable,
@@ -4652,10 +4660,6 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
-"zd" = (
-/obj/machinery/marine_selector/gear/smartgun/pmc,
-/turf/open/floor/mainship/sterile/plain,
-/area/antag_ship/pmc_ntf/center/armory)
 "ze" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -5345,7 +5349,9 @@
 /area/antag_ship/clf_base/sleeproom)
 "CV" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 1
+	dir = 1;
+	req_one_access = list(186);
+	name = "\improper PMC Airlock"
 	},
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/structure/cable,
@@ -6044,7 +6050,9 @@
 /area/antag_ship/clf_base/hallways/inside)
 "GP" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 1
+	dir = 1;
+	req_one_access = list(186);
+	name = "\improper PMC Airlock"
 	},
 /obj/structure/cable,
 /turf/open/floor/wood/darker,
@@ -7224,7 +7232,9 @@
 /area/antag_ship/som/office/torture_chamber)
 "No" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 1
+	dir = 1;
+	req_one_access = list(186);
+	name = "\improper PMC Airlock"
 	},
 /obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/box,
@@ -7663,7 +7673,10 @@
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/requisition)
 "Po" = (
-/obj/machinery/door/airlock/mainship/generic,
+/obj/machinery/door/airlock/mainship/generic{
+	name = "\improper PMC Airlock";
+	req_one_access = list(186)
+	},
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/structure/cable,
 /turf/open/floor/mainship/office,
@@ -7729,6 +7742,7 @@
 /area/antag_ship/clf_base/medbay)
 "PM" = (
 /obj/effect/landmark/start/job/pmc_medic,
+/obj/effect/landmark/start/job/pmc_engineer,
 /turf/open/floor/mainship/black/full,
 /area/antag_ship/pmc_ntf/center/armory)
 "PN" = (
@@ -7926,6 +7940,7 @@
 "QJ" = (
 /obj/structure/bed/chair/east,
 /obj/effect/landmark/start/job/pmc_medic,
+/obj/effect/landmark/start/job/pmc_engineer,
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/fore/restroom)
 "QK" = (
@@ -8102,7 +8117,9 @@
 /area/antag_ship/som/mech_bay)
 "RE" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 1
+	dir = 1;
+	req_one_access = list(186);
+	name = "\improper PMC Airlock"
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/office,
@@ -8194,10 +8211,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/reedroom)
 "RZ" = (
-/obj/structure/table/reinforced,
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/machinery/cryopod,
 /turf/open/floor/prison/whitegreen{
 	dir = 5
 	},
@@ -8268,10 +8285,6 @@
 	dir = 1
 	},
 /area/shuttle/transport)
-"Sv" = (
-/obj/machinery/marine_selector/gear/leader/pmc,
-/turf/open/floor/mainship/sterile/plain,
-/area/antag_ship/pmc_ntf/center/armory)
 "Sw" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/mainship/mono,
@@ -9353,7 +9366,7 @@
 	},
 /area/antag_ship/pmc_ntf/center/armory)
 "Xz" = (
-/obj/machinery/marine_selector/gear/medic/pmc,
+/obj/machinery/quick_vendor/pmc,
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/center/armory)
 "XB" = (
@@ -10582,7 +10595,7 @@ Af
 Cc
 NT
 PM
-Sv
+ob
 nJ
 IF
 GX
@@ -10677,7 +10690,7 @@ dB
 xU
 sk
 GX
-ob
+GX
 GX
 GX
 GX
@@ -10962,7 +10975,7 @@ dB
 xU
 bo
 GX
-ob
+GX
 GX
 GX
 GX
@@ -11057,7 +11070,7 @@ Df
 Cc
 NT
 GX
-zd
+ob
 dE
 IF
 nJ
