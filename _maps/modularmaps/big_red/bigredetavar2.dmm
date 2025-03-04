@@ -490,7 +490,6 @@
 "wq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
-	layer = 2.4
 	},
 /turf/open/floor/plating/scorched,
 /area/bigredv2/outside/ne)
