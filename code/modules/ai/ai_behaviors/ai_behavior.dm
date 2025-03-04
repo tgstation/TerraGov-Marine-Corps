@@ -156,7 +156,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		set_atom_to_walk_to(next_target)
 
 	register_action_signals(current_action)
-	if(current_action == MOVING_TO_SAFETY) //human_ai_state_flags & HUMAN_AI_HEALING (and HUMAN_AI_SELF_HEALING ??)
+	if((current_action == MOVING_TO_SAFETY) || (human_ai_state_flags & HUMAN_AI_ANY_HEALING))
 		mob_parent.a_intent = INTENT_HELP
 	else
 		mob_parent.a_intent = INTENT_HARM
@@ -445,7 +445,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(interact_target)
 		do_unset_target(interact_target, FALSE)
 	interact_target = new_target
-	RegisterSignals(interact_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(unset_target), TRUE) //dont follow an item after its picked up... maybe not in the future //COMSIG_MOVABLE_MOVED
+	RegisterSignals(interact_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(unset_target), TRUE)
 	change_action(MOVING_TO_ATOM, interact_target, list(0, 1))
 	return TRUE
 

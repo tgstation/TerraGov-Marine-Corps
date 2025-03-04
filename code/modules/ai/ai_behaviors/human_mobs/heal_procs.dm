@@ -17,6 +17,7 @@
 			. = TRUE
 			continue
 
+///Heal other ailments
 /datum/ai_behavior/human/proc/heal_secondaries(mob/living/carbon/human/patient)
 	var/infection
 	var/internal_bleeding
