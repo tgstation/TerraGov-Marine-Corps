@@ -386,12 +386,14 @@
 	if(client?.observe_used)
 		to_chat(src,  span_warning("You seen enough, time to play."))
 		return FALSE
+	if(!check_other_rights(client, R_ADMIN, FALSE))
+		log_game("[key_name(src)] failed to join as a ghost due to the observe disable.")
+		to_chat(src, span_boldannounce("Observing is currently disabled.  Please do not get around this by joining just to ghost."))
+		spawn()
+			tgui_alert(src, "Observing is currently disabled.  Please do not get around this by joining just to ghost.", "Observe disabled", list("Ok"))
+		return FALSE
 	if(tgui_alert(src, "Are you sure you wish to observe?[SSticker.mode?.observe_respawn_message()]", "Observe", list("Yes", "No")) != "Yes")
 		return
-	if(!check_other_rights(client, R_ADMIN, FALSE))
-		message_admins(src+" joined as a ghost.")
-		to_chat(src, span_warning("No peeking, play instead!"))
-		return FALSE
 	if(!client)
 		return TRUE
 	var/mob/dead/observer/observer = new()
