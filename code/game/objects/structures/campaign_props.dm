@@ -95,6 +95,7 @@
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_FLARE
+	var/use_emissive = TRUE
 
 /obj/structure/prop/nt_computer/Initialize(mapload)
 	. = ..()
@@ -108,6 +109,7 @@
 	name = "control rack"
 	desc = "A system control rack. Who knows what's on it?."
 	icon_state = "recorder_on"
+	use_emissive = FALSE
 
 /obj/structure/prop/nt_computer/recorder
 	name = "backup recorder"
