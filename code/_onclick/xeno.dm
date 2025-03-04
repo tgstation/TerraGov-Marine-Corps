@@ -21,7 +21,6 @@
 
 
 /mob/living/carbon/xenomorph/larva/UnarmedAttack(atom/A, has_proximity, modifiers)
-	. = ..()
 	if(lying_angle)
 		return FALSE
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))

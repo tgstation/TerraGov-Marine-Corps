@@ -40,7 +40,7 @@
 	SIGNAL_HANDLER
 	if(!can_attack(source, clicked_atom))
 		return
-	if(ismob(clicked_atom))
+	if(ismob(clicked_atom) || !isturf(clicked_atom))
 		return
 	var/mob/target_mob = locate() in get_turf(clicked_atom)
 	if(!target_mob || source.faction == target_mob.faction)
@@ -50,8 +50,12 @@
 
 /// Checks if an attack is possible on a given atom.
 /datum/element/directional_attack/proc/can_attack(mob/source, atom/clicked_atom)
-	if(!(source?.client?.prefs?.toggles_gameplay & DIRECTIONAL_ATTACKS))
+	if(!source)
 		return FALSE
 	if(QDELETED(clicked_atom))
+		return FALSE
+	if(!(source.client?.prefs?.toggles_gameplay & DIRECTIONAL_ATTACKS))
+		return FALSE
+	if(source.a_intent != INTENT_HARM)
 		return FALSE
 	return TRUE

@@ -5,7 +5,6 @@
 	. = ..()
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		return
-	A.attack_animal(src)
 
 
 /atom/proc/attack_animal(mob/user as mob)
