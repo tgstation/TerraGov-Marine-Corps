@@ -1,0 +1,4 @@
+author: "chizzy376"
+delete-after: True
+changes:
+  - code_imp: "decreased minplayers from 40 to 1 on riptide"
