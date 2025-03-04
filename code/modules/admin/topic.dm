@@ -730,18 +730,22 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/mob/M = locate(href_list["lobby"])
 
-		if(!M.client)
-			to_chat(usr, span_warning("[M] doesn't seem to have an active client."))
+		if(!M.key)
+			to_chat(usr, span_warning("[M] doesn't seem to have a key."))
 			return
 
 		if(alert("Send [key_name(M)] back to Lobby?", "Send to Lobby", "Yes", "No") != "Yes")
 			return
 
+		if(!M.key)
+			to_chat(usr, span_warning("[M] doesn't seem to have a key."))
+			return	
+
 		log_admin("[key_name(usr)] has sent [key_name(M)] back to the lobby.")
 		message_admins("[ADMIN_TPMONTY(usr)] has sent [key_name_admin(M)] back to the lobby.")
 
 		var/mob/new_player/NP = new()
-		M.client.screen.Cut()
+		M.client?.screen.Cut()
 		NP.name = M.key
 		NP.key = M.key
 		if(isobserver(M))
