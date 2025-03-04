@@ -369,9 +369,8 @@
 	var/body
 
 	body += "<b>[M.name]</b>"
-
+	body += " played by <b>[key_name(M, include_link = false, include_name = false)]</b> "
 	if(M.client)
-		body += " played by <b>[M.client]</b> "
 		body += " <a href='?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key];close=1'>[M.client.holder ? M.client.holder.rank : "Player"]</a>"
 
 	if(isnewplayer(M))
@@ -424,7 +423,7 @@
 	body += "<a href='?src=[ref];showmessageckey=[M.ckey]'>Notes</a> | "
 	body += "<a href='?src=[ref];cryo=[REF(M)]'>Cryo</a>"
 
-	if(M.client)
+	if(M.key)
 		body += "| <a href='?src=[ref];lobby=[REF(M)]'> Send back to Lobby</a>"
 
 	body += "<br>"
