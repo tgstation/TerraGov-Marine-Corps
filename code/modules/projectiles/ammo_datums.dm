@@ -92,6 +92,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/fire_burst_damage = 10
 	///Base fire stacks added on hit if the projectile has AMMO_INCENDIARY
 	var/incendiary_strength = 10
+	/// The projectile's alpha value on creation.
+	var/projectile_alpha = 255
+	/// What to multiply the sprite's size by.
+	var/projectile_size = 1
 
 /datum/ammo/proc/do_at_max_range(turf/target_turf, obj/projectile/proj)
 	return
