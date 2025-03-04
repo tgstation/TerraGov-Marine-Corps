@@ -325,6 +325,8 @@
 
 /obj/item/weapon/gun/flamer/som/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
+	if(icon_used == 'icons/mob/clothing/back.dmi')
+		return
 	if(flamer_features_flags & FLAMER_IS_LIT && rounds)
 		var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive", src)
 		standing.overlays.Add(emissive_overlay)
