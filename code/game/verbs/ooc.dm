@@ -6,7 +6,7 @@
 
 /client/verb/ooc(msg as text)
 	set name = "OOC"
-	set category = "OOC"
+	set category = "OOC.Communication"
 
 	if(!mob)
 		return
@@ -138,7 +138,7 @@
 
 /client/verb/xooc(msg as text) // Same as MOOC, but for xenos.
 	set name = "XOOC"
-	set category = "OOC"
+	set category = "OOC.Communication"
 
 	if(!msg)
 		return
@@ -247,7 +247,7 @@
 
 /client/verb/mooc(msg as text) // Same as XOOC, but for humans.
 	set name = "MOOC"
-	set category = "OOC"
+	set category = "OOC.Communication"
 
 	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
@@ -352,7 +352,7 @@
 
 /client/verb/looc(msg as text)
 	set name = "LOOC"
-	set category = "OOC"
+	set category = "OOC.Communication"
 
 	if(!msg)
 		return
@@ -456,7 +456,7 @@
 
 /client/verb/stop_sounds()
 	set name = "Stop Sounds"
-	set category = "OOC"
+	set category = "OOC.Fix"
 	set desc = "Stop Current Sounds"
 
 	SEND_SOUND(src, sound(null))
@@ -493,7 +493,7 @@
 
 /client/verb/fit_viewport()
 	set name = "Fit Viewport"
-	set category = "OOC"
+	set category = "OOC.Fix"
 	set desc = "Fit the width of the map window to match the viewport"
 
 	// Fetch aspect ratio
@@ -617,7 +617,7 @@
 
 /client/verb/ping()
 	set name = "Ping"
-	set category = "OOC"
+	set category = "OOC.Fix"
 	winset(src, null, "command=.display_ping+[world.time + world.tick_lag * TICK_USAGE_REAL / 100]")
 
 /client/verb/fix_stat_panel()
