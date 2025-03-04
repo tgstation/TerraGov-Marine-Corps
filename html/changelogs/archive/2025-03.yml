@@ -57,3 +57,27 @@
   - balance: nerfed mech power generation and increased boosting cost
   yyzsong:
   - bugfix: some messages will no longer have an unnecessary space before them.
+2025-03-04:
+  RipGrayson:
+  - rscadd: Added nodes to the campaign maps.
+  - rscadd: Added nodes to the campaign map modulars.
+  - rscadd: Added a mech bay to the debugdalus.
+  - rscadd: Added a droppod bay to the debugdalus.
+  - bugfix: Minions can now enter ERT shuttles.
+  - bugfix: Fixed some improperly rotated platforms on Chigusa.
+  ivanmixo:
+  - rscadd: Added a counter for sources of runtimes in runtime viewer
+  - admin: Maintainers now have access to player panel (minus notes, banning, kicking,
+      etc)
+  - qol: Testing with a local database should be easier now
+  - bugfix: Fixed chat subsystem resend blackbox runtime
+  - admin: Blocks admin keybinding usage by people who aren't admins/mentors
+  - bugfix: MREs no longer runtime when the last piece of food is removed from them
+  - admin: Mentors can no longer use the dsay verb
+  - bugfix: Fixed a valhalla button runtime
+  - bugfix: Fixed runtime when taking ammo out of tank ammo racks
+  - bugfix: Ammo counter for tank should update correctly now when manually unloading
+      breech
+  - admin: Perms change actually sends over assets and doesn't runtime
+  yyzsong:
+  - refactor: splits supplypacks.dm into multiple files

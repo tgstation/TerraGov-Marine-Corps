@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - rscadd: "Added a counter for sources of runtimes in runtime viewer"

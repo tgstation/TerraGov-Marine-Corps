@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "MREs no longer runtime when the last piece of food is removed from them"
