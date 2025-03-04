@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - code_imp: "You can no longer join valhalla before the round has started"

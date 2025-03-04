@@ -522,12 +522,11 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 ///Returns a list of lookers, basically any mob that can see our contents
 /datum/storage/proc/can_see_content()
 	var/list/lookers = list()
-	for(var/i in content_watchers)
-		var/mob/content_watcher_mob = i
-		if(content_watcher_mob.s_active == src && content_watcher_mob.client)
-			lookers |= content_watcher_mob
-		else
+	for(var/mob/content_watcher_mob AS in content_watchers)
+		if(!ismob(content_watcher_mob) || !content_watcher_mob.client || content_watcher_mob.s_active != src)
 			content_watchers -= content_watcher_mob
+			continue
+		lookers |= content_watcher_mob
 	return lookers
 
 ///Opens our storage, closes the storage if we are s_active
@@ -712,17 +711,17 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		return FALSE //Means the item is already in the storage item
 	if(storage_slots != null && length(parent.contents) >= storage_slots)
 		if(warning)
-			to_chat(user, span_notice("[parent.name] is full, make some space."))
+			to_chat(user, span_notice("\The [parent.name] is full, make some space."))
 		return FALSE //Storage item is full
 
 	if(length(can_hold) && !is_type_in_typecache(item_to_insert, typecacheof(can_hold)))
 		if(warning)
-			to_chat(user, span_notice("[parent.name] cannot hold [item_to_insert]."))
+			to_chat(user, span_notice("\The [parent.name] cannot hold [item_to_insert]."))
 		return FALSE
 
 	if(is_type_in_typecache(item_to_insert, typecacheof(cant_hold))) //Check for specific items which this container can't hold.
 		if(warning)
-			to_chat(user, span_notice("[parent.name] cannot hold [item_to_insert]."))
+			to_chat(user, span_notice("\The [parent.name] cannot hold [item_to_insert]."))
 		return FALSE
 
 	if(!is_type_in_typecache(item_to_insert, typecacheof(storage_type_limits)) && item_to_insert.w_class > max_w_class)
@@ -736,7 +735,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 	if(sum_storage_cost > max_storage_space)
 		if(warning)
-			to_chat(user, span_notice("[parent.name] is full, make some space."))
+			to_chat(user, span_notice("\The [parent.name] is full, make some space."))
 		return FALSE
 
 	if(isitem(parent))
@@ -744,7 +743,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		if(item_to_insert.w_class >= parent_storage.w_class && istype(item_to_insert, /obj/item/storage) && !is_type_in_typecache(item_to_insert.type, typecacheof(storage_type_limits)))
 			if(!istype(src, /obj/item/storage/backpack/holding)) //bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 				if(warning)
-					to_chat(user, span_notice("[parent.name] cannot hold [item_to_insert] as it's a storage item of the same size."))
+					to_chat(user, span_notice("\The [parent.name] cannot hold \the [item_to_insert] as it's a storage item of the same size."))
 				return FALSE //To prevent the stacking of same sized storage items.
 
 	for(var/limited_type in storage_type_limits_max)
@@ -752,7 +751,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			continue
 		if(storage_type_limits_max[limited_type] == 0)
 			if(warning)
-				to_chat(user, span_warning("[parent.name] can't fit any more of those.") )
+				to_chat(user, span_warning("\The [parent.name] can't fit any more of those.") )
 			return FALSE
 
 	if(istype(item_to_insert, /obj/item/tool/hand_labeler))
@@ -778,7 +777,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(!alert_user)
 		return do_after(user, access_delay, IGNORE_USER_LOC_CHANGE, parent)
 
-	to_chat(user, "<span class='notice'>You begin to [taking_out ? "take" : "put"] [accessed] [taking_out ? "out of" : "into"] [parent.name]")
+	to_chat(user, "<span class='notice'>You begin to [taking_out ? "take" : "put"] [accessed] [taking_out ? "out of" : "into"] \the [parent.name]")
 	if(!do_after(user, access_delay, IGNORE_USER_LOC_CHANGE, parent))
 		to_chat(user, span_warning("You fumble [accessed]!"))
 		return FALSE
@@ -803,7 +802,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
  * such as when picking up all the items on a tile with one click.
  * user can be null, it refers to the potential mob doing the insertion.
  */
-/datum/storage/proc/handle_item_insertion(obj/item/item, prevent_warning = FALSE, mob/user)
+/datum/storage/proc/handle_item_insertion(obj/item/item, prevent_warning = FALSE, mob/user) //todo: this isnt called when spawning some populated items. lacking INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 	if(!istype(item))
 		return FALSE
 	if(!handle_access_delay(item, user, taking_out = FALSE))
@@ -866,6 +865,11 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			continue
 		M.client.screen -= item
 
+	if(!QDELETED(item))
+		UnregisterSignal(item, COMSIG_MOVABLE_MOVED)
+		item.on_exit_storage(src)
+		item.mouse_opacity = initial(item.mouse_opacity)
+
 	if(new_location)
 		if(ismob(new_location))
 			item.layer = ABOVE_HUD_LAYER
@@ -885,11 +889,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		var/mob/M = i
 		show_to(M)
 
-	if(!QDELETED(item))
-		UnregisterSignal(item, COMSIG_MOVABLE_MOVED)
-		item.on_exit_storage(src)
-		item.mouse_opacity = initial(item.mouse_opacity)
-
 	for(var/limited_type in storage_type_limits_max)
 		if(istype(item, limited_type))
 			storage_type_limits_max[limited_type] += 1
@@ -897,11 +896,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	parent.update_icon()
 
 	return TRUE
-
-///Handles if the item is forcemoved out of storage
-/datum/storage/proc/item_removed_from_storage(obj/item/item)
-	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(remove_from_storage), item, item.loc, null, FALSE, TRUE, FALSE)
 
 ///Refills the storage from the refill_types item
 /datum/storage/proc/do_refill(obj/item/storage/refiller, mob/user)
@@ -1019,6 +1013,11 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	SIGNAL_HANDLER
 	if(isitem(movable_atom))
 		INVOKE_ASYNC(src, PROC_REF(remove_from_storage), movable_atom, null, usr, silent = TRUE, bypass_delay = TRUE)
+
+///Handles if the item is forcemoved out of storage
+/datum/storage/proc/item_removed_from_storage(obj/item/item)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(remove_from_storage), item, item.loc, null, FALSE, TRUE, FALSE)
 
 ///signal sent from /atom/proc/max_stack_merging()
 /datum/storage/proc/max_stack_merging(datum/source, obj/item/stack/stacks)

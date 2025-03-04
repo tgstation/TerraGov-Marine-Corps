@@ -93,7 +93,6 @@
 			span_danger("Our slash is blocked by [src]'s shield!"), null, COMBAT_MESSAGE_RANGE)
 		return FALSE
 
-	var/attack_sound = SFX_ALIEN_CLAW_FLESH
 	var/attack_message1 = span_danger("\The [X] slashes [src]!")
 	var/attack_message2 = span_danger("We slash [src]!")
 	var/log = "slashed"
@@ -106,10 +105,11 @@
 		span_danger("We lunge at [src]!"), null, 5)
 		return FALSE
 
-	X.do_attack_animation(src, ATTACK_EFFECT_REDSLASH)
+	var/attack_effect = islist(X.attack_effect) ? pick(X.attack_effect) : X.attack_effect
+	X.do_attack_animation(src, attack_effect)
 
 	//The normal attack proceeds
-	playsound(loc, attack_sound, 25, 1)
+	playsound(loc, X.attack_sound, 25, 1)
 	X.visible_message("[attack_message1]", \
 	"[attack_message2]")
 

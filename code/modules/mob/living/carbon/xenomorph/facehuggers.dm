@@ -359,6 +359,9 @@
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	if(isopenturf(hit_atom))
+		if((locate(/obj/hitbox) in hit_atom) && !leaping) // Kill the hugger if it's thrown on the hitbox of a vehicle
+			kill_hugger()
+			return
 		var/valid_victim = FALSE
 		for(var/mob/living/carbon/M in hit_atom)
 			if(!M.can_be_facehugged(src))

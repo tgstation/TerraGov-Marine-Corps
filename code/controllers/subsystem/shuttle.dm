@@ -540,24 +540,25 @@ SUBSYSTEM_DEF(shuttle)
 	for(var/shuttle_id in SSmapping.shuttle_templates)
 		var/datum/map_template/shuttle/S = SSmapping.shuttle_templates[shuttle_id]
 
-		if(!templates[S.shuttle_id])
-			data["templates_tabs"] += S.shuttle_id
-			templates[S.shuttle_id] = list(
-				"shuttle_id" = S.port_id,
+		if(!templates[S.port_id])
+			data["templates_tabs"] += S.port_id
+			templates[S.port_id] = list(
+				"port_id" = S.port_id,
 				"templates" = list())
 
 		var/list/L = list()
 		L["name"] = S.name
 		L["shuttle_id"] = S.shuttle_id
+		L["port_id"] = S.port_id
 		L["description"] = S.description
 		L["admin_notes"] = S.admin_notes
 
 		if(selected == S)
 			data["selected"] = L
 
-		templates[S.shuttle_id]["templates"] += list(L)
+		templates[S.port_id]["templates"] += list(L)
 
-	data["templates_tabs"] = sortList(data["templates_tabs"])
+	data["templates_tabs"] = sort_list(data["templates_tabs"])
 
 	data["existing_shuttle"] = null
 
@@ -582,13 +583,6 @@ SUBSYSTEM_DEF(shuttle)
 		L["status"] = M.getDbgStatusText()
 		if(M == existing_shuttle)
 			data["existing_shuttle"] = L
-
-
-		if(istype(M, /obj/docking_port/mobile/marine_dropship))
-			var/obj/docking_port/mobile/marine_dropship/D = M
-			L["hijack"] = D.hijack_state
-		else
-			L["hijack"] = "N/A"
 
 		data["shuttles"] += list(L)
 

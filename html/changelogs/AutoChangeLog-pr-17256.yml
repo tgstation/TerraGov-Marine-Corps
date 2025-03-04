@@ -1,0 +1,4 @@
+author: "Neocloudy"
+delete-after: True
+changes:
+  - rscadd: "You can now use the Ignore verb to stop seeing OOC messages from somebody. Use the Unignore verb if you want to hear them again."

@@ -1,4 +1,35 @@
 /mob/living/carbon/xenomorph/Bump(atom/A)
+	if(ismecha(A))
+		var/obj/vehicle/sealed/mecha/mecha = A
+		var/mob_swap_mode = NO_SWAP
+		if(a_intent == INTENT_HELP)
+			mob_swap_mode = SWAPPING
+		// If we're moving diagonally, but the mob isn't on the diagonal destination turf and the destination turf is enterable we have no reason to shuffle/push them
+		if(moving_diagonally && (get_dir(src, mecha) in GLOB.cardinals) && get_step(src, dir).Enter(src, loc))
+			mob_swap_mode = PHASING
+		if(mob_swap_mode)
+			//switch our position with mech
+			if(loc && !loc.Adjacent(mecha.loc))
+				return
+			now_pushing = TRUE
+			var/oldloc = loc
+			var/oldmechaloc = mecha.loc
+
+			var/mecha_passmob = (mecha.allow_pass_flags & PASS_MOB) // we give PASS_MOB to both mobs to avoid bumping other mobs during swap.
+			mecha.allow_pass_flags |= PASS_MOB
+
+			if(!moving_diagonally) //the diagonal move already does this for us
+				Move(oldmechaloc)
+			if(mob_swap_mode == SWAPPING)
+				mecha.Move(oldloc)
+
+			if(!mecha_passmob)
+				mecha.allow_pass_flags &= ~PASS_MOB
+
+			now_pushing = FALSE
+
+			return TURF_ENTER_ALREADY_MOVED
+
 	if(!(xeno_flags & XENO_LEAPING))
 		return ..()
 	if(!isliving(A))
@@ -66,7 +97,7 @@
 			else
 				if(X.nicknumber != xeno_name)
 					continue
-			to_chat(usr,span_notice(" You will now track [X.name]"))
+			to_chat(usr,span_notice("You will now track [X.name]"))
 			set_tracked(X)
 			break
 
@@ -75,7 +106,7 @@
 		for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos_by_hive[hivenumber])
 			if(num2text(resin_silo.number_silo) == silo_number)
 				set_tracked(resin_silo)
-				to_chat(usr,span_notice(" You will now track [resin_silo.name]"))
+				to_chat(usr,span_notice("You will now track [resin_silo.name]"))
 				break
 
 	if(href_list["watch_xeno_name"])
