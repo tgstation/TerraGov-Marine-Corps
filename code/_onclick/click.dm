@@ -266,8 +266,7 @@
  * params is passed on here as the third arg
  */
 /mob/proc/UnarmedAttack(atom/A, has_proximity, params)
-	if(ismob(A))
-		changeNext_move(CLICK_CD_MELEE)
+	SEND_SIGNAL(src, COMSIG_MOB_ATTACK_UNARMED, A, params)
 
 
 /*

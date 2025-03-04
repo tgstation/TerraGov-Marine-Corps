@@ -2,6 +2,7 @@
 	Animals & All Unspecified
 */
 /mob/living/UnarmedAttack(atom/A, has_proximity, modifiers)
+	. = ..()
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		return
 	A.attack_animal(src)
