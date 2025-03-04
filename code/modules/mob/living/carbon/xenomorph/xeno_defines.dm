@@ -258,7 +258,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	ASSERT(ispath(root_type), "Bad root type passed to get_strain_options")
 	while(initial(root_type.parent_type) != /datum/xeno_caste)
 		root_type = root_type::parent_type
-	var/list/options = GLOB.strain_list[root_type]?.Copy()
+	var/list/options = GLOB.strain_list[root_type]
 	options = options.Copy()
 	options += root_type
 	return options
