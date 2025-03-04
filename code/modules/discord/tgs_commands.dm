@@ -57,3 +57,19 @@
 	// If we got here, they arent in the list. Chuck 'em in!
 	SSdiscord.notify_members += sender.mention
 	return new /datum/tgs_message_content("You will now be notified when the server restarts")
+
+/datum/tgs_chat_command/seasonals
+	name = "seasonals"
+	help_text = "Checks current seasonals active in the round."
+
+/datum/tgs_chat_command/seasonals/Run(datum/tgs_chat_user/sender, params)
+	var/list/messages = list()
+	if(!length(SSpersistence.season_progress))
+		return new /datum/tgs_message_content("No seasonals found")
+	for(var/season_entry in SSpersistence.season_progress)
+		var/season_name = jointext(splittext("[season_entry]", "_"), " ")
+		var/season_name_first_letter = uppertext(copytext(season_name, 1, 2))
+		var/season_name_remainder = copytext(season_name, 2, length(season_name) + 1)
+		season_name = season_name_first_letter + season_name_remainder
+		messages += "[season_name]: [SSpersistence.season_progress[season_entry][CURRENT_SEASON_NAME]]"
+	return new /datum/tgs_message_content(messages.Join("\n"))
