@@ -46,6 +46,29 @@
 /obj/item/tweezers_advanced/ai_use(mob/living/target, mob/living/user)
 	attack(target, user)
 
+/obj/item/weapon/ai_use(mob/living/target, mob/living/user)
+	if(!(item_flags = TWOHANDED))
+		return
+	if(item_flags & WIELDED)
+		return
+	wield(user)
+	return TRUE
+
+/obj/item/weapon/energy/axe/ai_use(mob/living/target, mob/living/user) //todo: make all energy weapon use the sane code as esword
+	if(!active)
+		attack_self(user)
+		return TRUE
+
+/obj/item/weapon/energy/sword/ai_use(mob/living/target, mob/living/user)
+	if(!active)
+		switch_state(null, user)
+		return TRUE
+
+/obj/item/weapon/butterfly/ai_use(mob/living/target, mob/living/user)
+	if(!active)
+		attack_self(user)
+		return TRUE
+
 ///AI mob interaction with this atom, such as picking it up
 /atom/proc/do_ai_interact(mob/living/interactor)
 	interactor.UnarmedAttack(src, TRUE) //only used for picking up items atm

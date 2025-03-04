@@ -46,14 +46,12 @@
 		chassis.leg_overload_mode = !chassis.leg_overload_mode
 	action_icon_state = "mech_overload_[chassis.leg_overload_mode ? "on" : "off"]"
 	chassis.log_message("Toggled leg actuators overload.", LOG_MECHA)
-	//tgmc add
 	if(chassis.leg_overload_mode)
 		sound_loop.start(chassis)
 		ADD_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	else
 		sound_loop.stop(chassis)
 		REMOVE_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
-	//tgmc end
 	if(chassis.leg_overload_mode)
 		if(!chassis.speed_mod)
 			chassis.speed_mod = 1
@@ -65,6 +63,7 @@
 		chassis.step_energy_drain = chassis.normal_step_energy_drain
 		chassis.balloon_alert(owner, "you disable the overload")
 	update_button_icon()
+	chassis.update_appearance(UPDATE_OVERLAYS)
 
 /obj/vehicle/sealed/mecha/combat/gygax/dark
 	desc = "A lightweight exosuit, painted in a dark scheme. This model appears to have some modifications."

@@ -33,6 +33,8 @@
 			return
 		if(prob(90))
 			try_speak(pick(start_fire_chat))
+		if(gun.reciever_flags & AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION)
+			gun.unique_action(mob_parent)
 		if(gun.start_fire(mob_parent, combat_target, get_turf(combat_target)) && gun.gun_firemode != GUN_FIREMODE_SEMIAUTO && gun.gun_firemode != GUN_FIREMODE_BURSTFIRE)
 			human_ai_state_flags |= HUMAN_AI_FIRING
 		return
@@ -119,28 +121,32 @@
 		secondary = shield_choice
 	if(primary_melee_choice)
 		primary = primary_melee_choice
-	if(big_gun_choice && !primary)
+	else if(big_gun_choice && !primary)
 		primary = big_gun_choice
-	if(standard_melee_choice)
+	else if(standard_melee_choice)
 		primary = standard_melee_choice
 	if(small_gun_choice)
 		if(!primary)
 			primary = small_gun_choice
-		else if(!secondary && primary != big_gun_choice && !(primary.item_flags & TWOHANDED)) //no double guns for now
+		else if(!secondary && !(primary.item_flags & TWOHANDED)) //no double guns for now
 			secondary = small_gun_choice
 	if(low_melee_choice && !primary)
 		primary = low_melee_choice
 
-	human_ai_state_flags &= ~HUMAN_AI_NEED_WEAPONS //fuck you if you somehow are unable to equip weapons at this point, you probs have no arms or something.
+	if(!primary)
+		return
+
+	var/equip_success = FALSE
 	if(primary)
 		if(isgun(primary))
-			equip_gun(primary)
+			if(equip_gun(primary))
+				equip_success = TRUE
 			if(!secondary)
 				equip_melee(primary)
-				primary.attack_self(mob_parent)
-		else
-			equip_melee(primary)
-			primary.attack_self(mob_parent)
+				primary.ai_use(null, mob_parent)
+		else if(equip_melee(primary))
+			equip_success = TRUE
+			primary.ai_use(null, mob_parent)
 	if(secondary)
 		if(isgun(secondary))
 			equip_gun(secondary) //don't wield a pistol and drop your sword
@@ -148,7 +154,12 @@
 			after_equip_melee(shield_choice) //doesnt override a primary melee weapon
 		else
 			equip_melee(secondary)
-			secondary.attack_self(mob_parent)
+			secondary.ai_use(null, mob_parent)
+
+	if(!equip_success)
+		return
+
+	human_ai_state_flags &= ~HUMAN_AI_NEED_WEAPONS
 
 	var/list/primary_range = primary.get_ai_combat_range()
 	upper_engage_dist = max(primary_range)
@@ -226,13 +237,9 @@
 	if(!line_of_sight(mob_parent, target)) //todo: This doesnt check if we can actually shoot past stuff in the line, but also checking path seems excessive
 		return AI_FIRE_NO_LOS
 
-	if((human_ai_behavior_flags & HUMAN_AI_NO_FF) && !(gun.gun_features_flags & GUN_IFF) && !(gun.ammo_datum_type::ammo_behavior_flags & AMMO_IFF)) //ammo_datum_type is always populated, with the last loaded ammo type. This shouldnt be an issue since we check ammo first
-		var/list/turf_line = get_traversal_line(mob_parent, target)
-		turf_line.Cut(1, 2) //don't count our own turf
-		for(var/turf/line_turf AS in turf_line)
-			for(var/mob/line_mob in line_turf) //todo: add checks for vehicles etc //maybe ping signals off the line turfs? Anything is better than checking contents constantly
-				if(line_mob.faction == mob_parent.faction)
-					return AI_FIRE_FRIENDLY_BLOCKED
+	//ammo_datum_type is always populated, with the last loaded ammo type. This shouldnt be an issue since we check ammo first
+	if((human_ai_behavior_flags & HUMAN_AI_NO_FF) && !(gun.gun_features_flags & GUN_IFF) && !(gun.ammo_datum_type::ammo_behavior_flags & AMMO_IFF) && !check_path_ff(mob_parent, target))
+		return AI_FIRE_FRIENDLY_BLOCKED
 	return AI_FIRE_CAN_HIT
 
 ///Stops gunfire
@@ -264,10 +271,25 @@
 		return
 	if(prob(90))
 		try_speak(pick(reloading_chat))
+	if(gun.reciever_flags & AMMO_RECIEVER_TOGGLES_OPEN)
+		gun.unique_action(mob_parent)
 	if((gun.reciever_flags & AMMO_RECIEVER_HANDFULS))
 		var/obj/item/ammo_magazine/handful_mag = new_ammo
 		while(handful_mag.current_rounds)
 			if(!gun.reload(handful_mag, mob_parent))
-				return
-	gun.reload(new_ammo, mob_parent) //skips tac reload but w/e. if we want it, then we need to check for skills...
-	//note: force arg on reload would allow reloading closed chamber weapons, but also bypasses reload delays... funny rapid rockets
+				break
+	else
+		gun.reload(new_ammo, mob_parent)
+
+	if(gun.reciever_flags & AMMO_RECIEVER_TOGGLES_OPEN)
+		gun.unique_action(mob_parent)
+
+///Returns true is a path is clear of friendlies
+/datum/ai_behavior/human/proc/check_path_ff(atom/start, atom/end)
+	var/list/turf_line = get_traversal_line(start, end)
+	turf_line.Cut(1, 2) //don't count our own turf
+	for(var/turf/line_turf AS in turf_line)
+		for(var/mob/line_mob in line_turf) //todo: add checks for vehicles etc
+			if(line_mob.faction == mob_parent.faction)
+				return FALSE
+	return TRUE

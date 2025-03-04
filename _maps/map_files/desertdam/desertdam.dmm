@@ -17122,7 +17122,7 @@
 /area/desert_dam/exterior/valley/valley_telecoms)
 "cdm" = (
 /obj/structure/platform{
-	dir = 15
+	dir = 2
 	},
 /turf/closed/wall/r_wall/chigusa,
 /area/desert_dam/interior/dam_interior/break_room)
@@ -27199,7 +27199,7 @@
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "dEn" = (
 /obj/structure/platform{
-	dir = 15
+	dir = 2
 	},
 /turf/closed/wall/r_wall/chigusa,
 /area/desert_dam/interior/dam_interior/central_tunnel)
@@ -27249,7 +27249,7 @@
 /area/desert_dam/building/security/southern_hallway)
 "dEW" = (
 /obj/structure/platform{
-	dir = 15
+	dir = 2
 	},
 /turf/closed/wall{
 	name = "reinforced metal wall"
@@ -27264,7 +27264,7 @@
 "dEZ" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/platform{
-	dir = 15
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/break_room)
@@ -27397,13 +27397,13 @@
 "dGv" = (
 /obj/structure/cable,
 /obj/structure/platform{
-	dir = 15
+	dir = 2
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "dGA" = (
 /obj/structure/platform{
-	dir = 15
+	dir = 2
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/central_tunnel)
@@ -41856,7 +41856,7 @@
 	name = "The Titan"
 	},
 /obj/structure/platform{
-	dir = 15
+	dir = 2
 	},
 /turf/open/floor/plating/asteroidplating,
 /area/desert_dam/interior/caves/temple)
@@ -48024,7 +48024,7 @@
 "qhw" = (
 /obj/structure/cable,
 /obj/structure/platform{
-	dir = 15
+	dir = 2
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/desert_dam/exterior/river/riverside_south)
