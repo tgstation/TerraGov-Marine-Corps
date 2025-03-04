@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - balance: "In Nuclear War, resin silos emit all pheromones at a power of 4 and a range of 30."
