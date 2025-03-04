@@ -16,6 +16,8 @@
 	var/initial_render_target_value
 	///This component's personal uid
 	var/personal_uid
+	///The associated action
+	var/datum/action/toggle_seethrough/action
 
 /datum/component/seethrough_mob/Initialize(target_alpha = 170, animation_time = 0.5 SECONDS, clickthrough = TRUE)
 	. = ..()
@@ -39,11 +41,12 @@
 
 	render_source_atom.render_source = "*transparent_bigmob[personal_uid]"
 
-	var/datum/action/toggle_seethrough/action = new(src)
+	action = new(src)
 	action.give_action(parent)
 
 /datum/component/seethrough_mob/Destroy(force)
 	QDEL_NULL(render_source_atom)
+	QDEL_NULL(action)
 	return ..()
 
 ///Set up everything we need to trick the client and keep it looking normal for everyone else
@@ -92,24 +95,24 @@
 	atom_parent.vis_contents -= render_source_atom
 	atom_parent.render_target = initial_render_target_value
 	remove_from?.images -= removee
-	remove_from.mob.update_appearance(UPDATE_ICON)
+	remove_from?.mob.update_appearance(UPDATE_ICON)
 
 ///Effect is disabled when they log out because client gets deleted
-/datum/component/seethrough_mob/proc/on_client_disconnect()
+/datum/component/seethrough_mob/proc/on_client_disconnect(datum/source)
 	SIGNAL_HANDLER
 
-	var/mob/fool = parent
-	UnregisterSignal(fool, COMSIG_MOB_LOGOUT)
-	clear_image(trickery_image, fool.client)
+	untrick_mob()
+	action.set_toggle(FALSE)
+	is_active = FALSE
 
-/datum/component/seethrough_mob/proc/toggle_active(datum/action/ability)
+/datum/component/seethrough_mob/proc/toggle_active()
 	is_active = !is_active
 	if(is_active)
 		trick_mob()
-		ability.set_toggle(TRUE)
+		action.set_toggle(TRUE)
 	else
 		untrick_mob()
-		ability.set_toggle(FALSE)
+		action.set_toggle(FALSE)
 
 /datum/action/toggle_seethrough
 	name = "Toggle Seethrough"
@@ -125,7 +128,7 @@
 		return
 	. = ..()
 	var/datum/component/seethrough_mob/transparency = target
-	transparency.toggle_active(src)
+	transparency.toggle_active()
 	COOLDOWN_START(src, toggle_cooldown, 1 SECONDS)
 
 /datum/action/toggle_seethrough/Destroy()
