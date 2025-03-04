@@ -259,6 +259,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	while(initial(root_type.parent_type) != /datum/xeno_caste)
 		root_type = root_type::parent_type
 	var/list/options = GLOB.strain_list[root_type]?.Copy()
+	options = options.Copy()
 	options += root_type
 	return options
 
