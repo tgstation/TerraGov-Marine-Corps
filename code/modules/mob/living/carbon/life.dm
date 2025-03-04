@@ -80,6 +80,7 @@
 ///called just after this mob goes unconscious due to taking too much dmg
 /mob/living/carbon/proc/on_crit()
 	if(!HAS_TRAIT(src, TRAIT_CRIT_IS_DEATH))
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_ON_CRIT, src)
 		return
 	var/damage_dealt = health - get_death_threshold()
 	if(damage_dealt < 1)

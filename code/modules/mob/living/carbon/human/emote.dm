@@ -492,7 +492,7 @@
 		return
 	var/image/medic = image('icons/mob/talk.dmi', user, icon_state = "medic")
 	user.add_emote_overlay(medic)
-
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_CALL_MEDIC, user)
 
 /datum/emote/living/carbon/human/pain
 	key = "pain"
