@@ -103,7 +103,8 @@
 
 /obj/structure/prop/nt_computer/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
+	if(use_emissive)
+		. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 
 /obj/structure/prop/nt_computer/rack
 	name = "control rack"
