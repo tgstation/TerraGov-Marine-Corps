@@ -633,10 +633,6 @@
 /obj/item/reagent_containers/food/snacks/donkpocket,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
-"hv" = (
-/obj/structure/barricade/solid,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/west)
 "hw" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
@@ -942,13 +938,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lavaland/civilian/cargo)
-"kr" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
-/obj/machinery/power/tbg_turbine/cold,
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "ks" = (
 /turf/open/liquid/water/river,
 /area/lavaland/engie/engine)
@@ -1058,6 +1047,12 @@
 /obj/machinery/light,
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/cave/northeast)
+"lk" = (
+/obj/machinery/power/geothermal/bigred,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "lm" = (
 /obj/structure/fence,
 /turf/open/lavaland/basalt,
@@ -1537,15 +1532,6 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
-"qF" = (
-/obj/structure/cable,
-/obj/structure/barricade/solid,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/west)
-"qG" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "qK" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -1734,14 +1720,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
-"sq" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 1
-	},
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "sw" = (
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/lavaland/basalt,
@@ -1906,12 +1884,6 @@
 	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/botany)
-"uy" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
-/obj/machinery/power/geothermal/tbg,
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "uz" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	name = "\improper Hydroponics"
@@ -1960,10 +1932,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
-"uK" = (
-/obj/structure/barricade/solid,
-/turf/open/lavaland/basalt/glowing,
-/area/lavaland/cave/west)
 "uM" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 8;
@@ -2422,12 +2390,6 @@
 /obj/machinery/vending/engivend,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
-"zQ" = (
-/obj/structure/barricade/solid{
-	dir = 1
-	},
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/north)
 "zY" = (
 /obj/structure/bed,
 /turf/open/floor/wood,
@@ -2707,6 +2669,12 @@
 /obj/structure/largecrate/supply/generator,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
+"Ct" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "Cu" = (
 /obj/structure/toilet{
 	dir = 4
@@ -2797,6 +2765,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/west)
+"Dx" = (
+/obj/structure/barricade/solid{
+	dir = 1
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/north)
 "DC" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1
@@ -3294,6 +3268,11 @@
 /obj/machinery/mineral/unloading_machine,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/refine)
+"IX" = (
+/obj/structure/cable,
+/obj/structure/barricade/solid,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/west)
 "IY" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced{
@@ -3329,6 +3308,10 @@
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
+"Jg" = (
+/obj/structure/barricade/solid,
+/turf/open/lavaland/basalt/glowing,
+/area/lavaland/cave/west)
 "Jk" = (
 /turf/open/floor/tile/white,
 /area/lavaland/security/storage)
@@ -3387,6 +3370,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lavaland/security)
+"JR" = (
+/obj/structure/barricade/solid,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/west)
 "JU" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
@@ -3868,11 +3855,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/refine)
-"Px" = (
-/obj/effect/decal/cleanable/blood,
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "Pz" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -4444,10 +4426,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/lavaland/security)
-"Vd" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/lavaland/engie/engine)
 "Ve" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
@@ -4556,6 +4534,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/north)
+"Wp" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "Wq" = (
 /obj/machinery/vending/engineering,
 /turf/open/floor/tile/dark2,
@@ -4668,10 +4651,6 @@
 "XF" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/lavaland/cave/west)
-"XG" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/mineral/smooth/indestructible,
-/area/lavaland/cave/southwest)
 "XI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
@@ -10251,7 +10230,7 @@ HQ
 HQ
 HQ
 HQ
-XG
+KP
 aI
 aI
 aI
@@ -23249,7 +23228,7 @@ EO
 aZ
 bc
 jo
-zQ
+Dx
 aZ
 ZW
 EY
@@ -25575,7 +25554,7 @@ Dw
 Ix
 Ix
 Dw
-qF
+IX
 Ix
 ZN
 ZW
@@ -26089,7 +26068,7 @@ ZW
 ZN
 BD
 ZN
-uK
+Jg
 Ix
 ZN
 ZN
@@ -26278,7 +26257,7 @@ fw
 fw
 fw
 fw
-Vd
+fw
 fw
 fw
 fw
@@ -26346,7 +26325,7 @@ ZW
 ZW
 ZN
 ZN
-hv
+JR
 Ix
 BD
 ZN
@@ -27046,13 +27025,13 @@ fE
 cW
 aY
 ds
-Vd
+fw
 aY
 dq
 gF
 aY
 aY
-Vd
+fw
 WU
 aY
 aY
@@ -27558,7 +27537,7 @@ al
 fw
 fw
 aY
-Vd
+fw
 fw
 ks
 ks
@@ -27568,16 +27547,16 @@ aY
 ks
 ks
 fw
-Vd
+fw
 aY
 fw
 fw
 fw
 fw
-Vd
 fw
 fw
-Vd
+fw
+fw
 al
 aZ
 al
@@ -27819,9 +27798,9 @@ aY
 ks
 ks
 ks
-qG
+aY
 ke
-qG
+aY
 ks
 ks
 ks
@@ -28333,9 +28312,9 @@ kx
 kx
 kx
 at
-kr
-uy
-sq
+Ct
+lk
+Wp
 Kr
 mI
 mI
@@ -28847,9 +28826,9 @@ aY
 ks
 ks
 ks
-qG
+aY
 gF
-Px
+dq
 ks
 ks
 ks
@@ -29100,7 +29079,7 @@ al
 fw
 fw
 aY
-Vd
+fw
 fw
 ks
 ks
@@ -29110,16 +29089,16 @@ aY
 ks
 ks
 fw
-Vd
+fw
 gF
 fw
 fw
 fw
 fw
-Vd
 fw
 fw
-Vd
+fw
+fw
 al
 al
 aZ
@@ -29616,13 +29595,13 @@ bo
 cW
 aY
 WU
-Vd
+fw
 aY
 aY
 BC
 aY
 aY
-Vd
+fw
 eQ
 aY
 gF
@@ -30390,7 +30369,7 @@ fw
 fw
 fw
 fw
-Vd
+fw
 fw
 fw
 fw

@@ -654,10 +654,6 @@
 /obj/effect/turf_decal/tile/full/black,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/sigma/south/security)
-"ary" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall,
-/area/corsat/gamma/engineering/core)
 "arA" = (
 /turf/open/shuttle/blackfloor,
 /area/corsat/gamma/hangar/monorail/railcart)
@@ -5158,13 +5154,6 @@
 	},
 /turf/open/floor/wood,
 /area/corsat/sigma/cafe)
-"crj" = (
-/obj/effect/turf_decal/tile/corsatstraight/yellow{
-	dir = 8
-	},
-/obj/structure/closet/toolcloset,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/engineering/core)
 "cru" = (
 /obj/structure/closet/cabinet,
 /obj/item/camera,
@@ -10582,11 +10571,6 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/hangar/arrivals)
-"eJU" = (
-/obj/structure/cable,
-/obj/machinery/power/geothermal/tbg,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/engineering/core)
 "eKd" = (
 /obj/machinery/light{
 	dir = 1
@@ -20507,13 +20491,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/bar,
 /area/corsat/gamma/residential/west)
-"jmR" = (
-/obj/effect/turf_decal/tile/corsatstraight/yellow{
-	dir = 4
-	},
-/obj/structure/closet/toolcloset,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/engineering/core)
 "jni" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/fancy/cigarettes,
@@ -27734,10 +27711,6 @@
 	},
 /turf/open/floor/wood,
 /area/corsat/sigma/dorms)
-"mnm" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/engineering/core)
 "mnn" = (
 /obj/effect/turf_decal/tile/corsatstraight/white{
 	dir = 1
@@ -28803,6 +28776,11 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/omega/biodome/two)
+"mKX" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/engineering/core)
 "mLh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -28845,9 +28823,7 @@
 "mLB" = (
 /obj/effect/landmark/corpsespawner/engineer,
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/grayscale/edge/black{
-	dir = 8
-	},
+/turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/engineering/core)
 "mLE" = (
 /obj/machinery/light{
@@ -29312,9 +29288,6 @@
 /area/corsat/sigma/south/offices)
 "mTS" = (
 /obj/effect/decal/cleanable/blood/splatter,
-/obj/machinery/power/monitor{
-	name = "Core Power Monitoring"
-	},
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/engineering/core)
 "mTX" = (
@@ -29842,9 +29815,6 @@
 "nft" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/structure/cable,
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 1
-	},
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/engineering/core)
 "nfJ" = (
@@ -30362,7 +30332,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green{
 	dir = 1
 	},
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/engineering/core)
 "nrA" = (
@@ -38016,11 +37985,6 @@
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/sigma/south/engineering)
-"qId" = (
-/obj/structure/cable,
-/obj/machinery/power/tbg_turbine/cold,
-/turf/open/floor/grayscale/round/black,
-/area/corsat/gamma/engineering/core)
 "qIe" = (
 /obj/structure/flora/jungle/vines,
 /obj/effect/landmark/weed_node,
@@ -41454,7 +41418,6 @@
 	dir = 1
 	},
 /obj/effect/ai_node,
-/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/gamma/engineering/core)
 "siL" = (
@@ -43346,10 +43309,6 @@
 	},
 /turf/open/floor/grayscale/round/darkgray,
 /area/corsat/sigma/airlock/south)
-"sXx" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/corsat/gamma/engineering)
 "sXy" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/grayscale/round/lightgray,
@@ -51560,6 +51519,11 @@
 	},
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/airlock/south)
+"wsd" = (
+/obj/structure/cable,
+/obj/structure/prop/mainship/brokengen,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/gamma/engineering/core)
 "wsh" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/black,
@@ -92088,7 +92052,7 @@ joZ
 joZ
 joZ
 joZ
-ary
+joZ
 joZ
 joZ
 joZ
@@ -92344,16 +92308,16 @@ joZ
 mfZ
 mrY
 aVH
-jmR
-jmR
-jmR
+aVH
+aVH
+aVH
 evr
 sYA
-ary
+joZ
 orU
 vXt
 okX
-sXx
+vpo
 orA
 xDH
 ocK
@@ -92600,10 +92564,10 @@ uVP
 joZ
 mgv
 mrZ
-oFh
-oFh
-oFh
-oFh
+wYF
+mKX
+wsd
+wsd
 reE
 nOj
 joZ
@@ -92854,13 +92818,13 @@ wSP
 wSP
 fdW
 uVP
-ary
+joZ
 nsi
 bxZ
 oFh
-oFh
-oFh
-oFh
+mLo
+mLo
+tyv
 sae
 ijf
 cXS
@@ -93114,10 +93078,10 @@ uVP
 joZ
 mgx
 mtn
-mnm
-oFh
-oFh
-oFh
+wYF
+wsd
+wsd
+wsd
 siJ
 nPJ
 bzI
@@ -93372,9 +93336,9 @@ joZ
 mgv
 mrZ
 oFh
-jCh
-jCh
-jCh
+mLo
+mLo
+mLo
 nqs
 nSd
 joZ
@@ -93629,16 +93593,16 @@ joZ
 nsi
 wYF
 wYF
-qId
-eJU
+wYF
+wYF
 nft
 nqM
 nSo
-ary
+joZ
 orU
 vXt
 okX
-sXx
+vpo
 piP
 ppv
 pwp
@@ -93891,11 +93855,11 @@ mTS
 mAT
 nqs
 nSu
-ary
+joZ
 eaD
 vXt
 gWh
-sXx
+vpo
 piR
 lJR
 pxj
@@ -94143,9 +94107,9 @@ joZ
 mgv
 mrZ
 mAT
-mLo
-mLo
-tyv
+jCh
+jCh
+jCh
 nqs
 nOj
 joZ
@@ -94399,10 +94363,10 @@ lMt
 joZ
 mgx
 wYF
-mnm
-oFh
-oFh
-oFh
+wYF
+wsd
+mKX
+wsd
 nqZ
 nTf
 obw
@@ -94653,13 +94617,13 @@ fgX
 lrv
 lAd
 eyX
-ary
+joZ
 nsi
 bxZ
 oFh
-oFh
-oFh
-oFh
+jCh
+jCh
+jCh
 nsr
 mAT
 cXS
@@ -94913,10 +94877,10 @@ lMY
 joZ
 mgv
 mrZ
-oFh
-oFh
-oFh
-oFh
+wYF
+wsd
+wsd
+wsd
 nsK
 nTj
 joZ
@@ -95171,16 +95135,16 @@ joZ
 mgV
 die
 pJq
-crj
-crj
-crj
+pJq
+pJq
+pJq
 die
 qcx
-ary
+joZ
 orU
 vXt
 gWh
-sXx
+vpo
 pjZ
 jEJ
 pzf
@@ -95429,7 +95393,7 @@ joZ
 joZ
 joZ
 joZ
-ary
+joZ
 joZ
 joZ
 joZ
