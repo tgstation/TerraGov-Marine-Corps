@@ -38,7 +38,7 @@
 /// Inversely to the above proc, this one handles clicks on tiles that are adjacent to the source mob. If there is an eligible mob in the tile, it will attack them.
 /datum/element/directional_attack/proc/on_unarmed_attack(mob/source, atom/clicked_atom, click_params)
 	SIGNAL_HANDLER
-	if(!can_attack(source, clicked_atom))
+	if(!can_attack(source, clicked_atom) || source.a_intent != INTENT_HARM)
 		return
 	if(ismob(clicked_atom) || !isturf(clicked_atom))
 		return
@@ -50,12 +50,8 @@
 
 /// Checks if an attack is possible on a given atom.
 /datum/element/directional_attack/proc/can_attack(mob/source, atom/clicked_atom)
-	if(!source)
-		return FALSE
 	if(QDELETED(clicked_atom))
 		return FALSE
-	if(!(source.client?.prefs?.toggles_gameplay & DIRECTIONAL_ATTACKS))
-		return FALSE
-	if(source.a_intent != INTENT_HARM)
+	if(!(source?.client?.prefs?.toggles_gameplay & DIRECTIONAL_ATTACKS))
 		return FALSE
 	return TRUE
