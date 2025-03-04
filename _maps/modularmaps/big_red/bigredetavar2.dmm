@@ -83,7 +83,6 @@
 "dV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
-	layer = 2.4
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/dmg1,
