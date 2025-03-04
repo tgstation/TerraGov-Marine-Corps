@@ -803,7 +803,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
  * such as when picking up all the items on a tile with one click.
  * user can be null, it refers to the potential mob doing the insertion.
  */
-/datum/storage/proc/handle_item_insertion(obj/item/item, prevent_warning = FALSE, mob/user)
+/datum/storage/proc/handle_item_insertion(obj/item/item, prevent_warning = FALSE, mob/user) //todo: this isnt called when spawning some populated items. lacking INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 	if(!istype(item))
 		return FALSE
 	if(!handle_access_delay(item, user, taking_out = FALSE))
@@ -866,6 +866,11 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			continue
 		M.client.screen -= item
 
+	if(!QDELETED(item))
+		UnregisterSignal(item, COMSIG_MOVABLE_MOVED)
+		item.on_exit_storage(src)
+		item.mouse_opacity = initial(item.mouse_opacity)
+
 	if(new_location)
 		if(ismob(new_location))
 			item.layer = ABOVE_HUD_LAYER
@@ -885,11 +890,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		var/mob/M = i
 		show_to(M)
 
-	if(!QDELETED(item))
-		UnregisterSignal(item, COMSIG_MOVABLE_MOVED)
-		item.on_exit_storage(src)
-		item.mouse_opacity = initial(item.mouse_opacity)
-
 	for(var/limited_type in storage_type_limits_max)
 		if(istype(item, limited_type))
 			storage_type_limits_max[limited_type] += 1
@@ -897,11 +897,6 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	parent.update_icon()
 
 	return TRUE
-
-///Handles if the item is forcemoved out of storage
-/datum/storage/proc/item_removed_from_storage(obj/item/item)
-	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(remove_from_storage), item, item.loc, null, FALSE, TRUE, FALSE)
 
 ///Refills the storage from the refill_types item
 /datum/storage/proc/do_refill(obj/item/storage/refiller, mob/user)
@@ -1019,6 +1014,11 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	SIGNAL_HANDLER
 	if(isitem(movable_atom))
 		INVOKE_ASYNC(src, PROC_REF(remove_from_storage), movable_atom, null, usr, silent = TRUE, bypass_delay = TRUE)
+
+///Handles if the item is forcemoved out of storage
+/datum/storage/proc/item_removed_from_storage(obj/item/item)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(remove_from_storage), item, item.loc, null, FALSE, TRUE, FALSE)
 
 ///signal sent from /atom/proc/max_stack_merging()
 /datum/storage/proc/max_stack_merging(datum/source, obj/item/stack/stacks)

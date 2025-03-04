@@ -407,7 +407,7 @@ ADMIN_VERB(msay, R_ADMIN|R_MENTOR, "msay", "Speak in the private mentor channel"
 	var/msg = input(src, null, "dsay \"text\"") as text|null
 	SSadmin_verbs.dynamic_invoke_verb(src, /datum/admin_verb/dsay, msg)
 
-ADMIN_VERB(dsay, R_ADMIN|R_MENTOR, "dsay", "Speak as an admin in deadchat.", ADMIN_CATEGORY_MAIN, msg as text)
+ADMIN_VERB(dsay, R_ADMIN, "dsay", "Speak as an admin in deadchat.", ADMIN_CATEGORY_MAIN, msg as text)
 	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
@@ -462,7 +462,7 @@ ADMIN_VERB(jump, R_ADMIN, "Jump", "Teleports you to a location", ADMIN_CATEGORY_
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to [A] at [ADMIN_TPMONTY(T)].")
 
 
-ADMIN_VERB_AND_CONTEXT_MENU(get_mob, R_ADMIN, "Get Mob", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_MAIN, mob/living/M in GLOB.mob_living_list)
+ADMIN_VERB_AND_CONTEXT_MENU(get_mob, R_ADMIN, "Get Mob", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_MAIN, mob/living/M in world)
 
 	var/mob/N = user.mob
 
@@ -1001,6 +1001,8 @@ ADMIN_VERB(private_message_panel, R_ADMIN|R_MENTOR, "Private Message", "Private 
 	return "Message Successful"
 
 ADMIN_VERB(remove_from_tank, R_ADMIN, "Remove From Tank", "Force all mobs to leave all tanks", ADMIN_CATEGORY_MAIN)
+	if(tgui_alert(user, "Are you sure you want to remove all tank occupants from their tanks?", "Confirm", list("Yes", "No")) != "Yes")
+		return
 	for(var/obj/vehicle/sealed/armored/armor AS in GLOB.tank_list)
 		armor.dump_mobs(TRUE)
 
@@ -1179,7 +1181,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(admin_smite, R_ADMIN|R_FUN, "Smite", "Smite a player
 	var/configuration_success = smite.configure(usr)
 	if (configuration_success == FALSE)
 		return
-	smite.effect(src, target)
+	smite.effect(user, target)
 
 /client/proc/punish_log(whom, punishment) //log and push to chat the smite victim and punishing admin
 	var/msg = "[key_name_admin(src)] punished [key_name_admin(whom)] with [punishment]."

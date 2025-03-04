@@ -12,17 +12,19 @@ FIRE ALARM
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
+	anchored = TRUE
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 2
+	active_power_usage = 6
+	power_channel = ENVIRON
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
 	var/detecting = 1
 	var/working = 1
 	var/time = 10
 	var/timing = 0
 	var/lockdownbyai = 0
 	var/obj/item/circuitboard/firealarm/electronics = null
-	anchored = TRUE
-	use_power = IDLE_POWER_USE
-	idle_power_usage = 2
-	active_power_usage = 6
-	power_channel = ENVIRON
 	var/last_process = 0
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
@@ -117,11 +119,11 @@ FIRE ALARM
 			if(ismultitool(I))
 				detecting = !detecting
 				if(detecting)
-					user.visible_message(span_warning(" [user] has reconnected [src]'s detecting unit!"), "You have reconnected [src]'s detecting unit.")
+					user.visible_message(span_warning("[user] has reconnected [src]'s detecting unit!"), "You have reconnected [src]'s detecting unit.")
 				else
-					user.visible_message(span_warning(" [user] has disconnected [src]'s detecting unit!"), "You have disconnected [src]'s detecting unit.")
+					user.visible_message(span_warning("[user] has disconnected [src]'s detecting unit!"), "You have disconnected [src]'s detecting unit.")
 			else if(iswirecutter(I))
-				user.visible_message(span_warning(" [user] has cut the wires inside \the [src]!"), "You have cut the wires inside \the [src].")
+				user.visible_message(span_warning("[user] has cut the wires inside \the [src]!"), "You have cut the wires inside \the [src].")
 				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 				buildstage = 1
 				update_icon()

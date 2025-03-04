@@ -59,16 +59,6 @@
 	if(HAS_TRAIT(chassis, TRAIT_MELEE_CORE) && !CHECK_BITFIELD(range, MECHA_MELEE))
 		to_chat(chassis.occupants, span_warning("Error -- Melee Core active."))
 		return FALSE
-	if(!istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
-		return
-	var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
-	var/datum/mech_limb/arm/holding
-	if(grey.equip_by_category[MECHA_R_ARM] == src)
-		holding = grey.limbs[MECH_GREY_R_ARM]
-	else
-		holding = grey.limbs[MECH_GREY_L_ARM]
-	if(holding.disabled)
-		return FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
@@ -175,7 +165,8 @@
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
 		if(chassis.mecha_flags & MECHA_SPIN_WHEN_NO_ANGLE)
 			chassis.face_atom(current_target)
-		return AUTOFIRE_CONTINUE
+		else
+			return AUTOFIRE_CONTINUE
 
 	var/type_to_spawn = CHECK_BITFIELD(initial(ammotype.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
 	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammotype.hitscan_effect_icon))
@@ -296,7 +287,7 @@
 		return FALSE
 	if(!projectiles_cache)
 		return FALSE
-	if(user && !do_after(user, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
+	if(user && !do_after(user, rearm_time, IGNORE_HELD_ITEM|IGNORE_TARGET_LOC_CHANGE, chassis, BUSY_ICON_GENERIC))
 		return FALSE
 	return rearm()
 
@@ -411,7 +402,8 @@
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
 		if(chassis.mecha_flags & MECHA_SPIN_WHEN_NO_ANGLE)
 			chassis.face_atom(current_target)
-		return TRUE
+		else
+			return TRUE
 	var/obj/O = new ammotype(chassis.loc)
 	playsound(chassis, fire_sound, 50, TRUE)
 	log_message("Launched a [O] from [src], targeting [target].", LOG_MECHA)

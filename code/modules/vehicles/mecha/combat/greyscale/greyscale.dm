@@ -21,14 +21,15 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	mech_type = EXOSUIT_MODULE_GREYSCALE
 	pixel_x = -16
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 25, BULLET = 75, FIRE = 25, BOMB = 50, LASER = 40, ENERGY = 40, ACID = 30, BIO = 100)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 1, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1)
+	step_energy_drain = 0
 	move_delay = 3
 	max_equip_by_category = MECH_GREYSCALE_MAX_EQUIP
 	internal_damage_threshold = 15
 	internal_damage_probability = 5
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
-	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED | MECHA_SPIN_WHEN_NO_ANGLE
+	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED | MECHA_SPIN_WHEN_NO_ANGLE | OMNIDIRECTIONAL_ATTACKS
 	explosion_block = 2
 	pivot_step = TRUE
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
@@ -49,6 +50,8 @@
 	var/last_move_dir
 	/// The timing for activating a dash by double tapping a movement key.
 	var/double_tap_timing = 0.18 SECONDS
+	/// total wight our limbs and equipment contribute. max determined by MECH_GREY_LEGS limb
+	var/weight = 0
 
 /obj/vehicle/sealed/mecha/combat/greyscale/Initialize(mapload)
 	holder_left = new(src, /particles/mecha_smoke)
@@ -56,6 +59,8 @@
 	holder_right = new(src, /particles/mecha_smoke)
 	holder_right.layer = layer+0.001
 	. = ..()
+
+	set_jump_component()
 
 	for(var/key in limbs)
 		if(!limbs[key])
@@ -88,9 +93,14 @@
 		var/datum/mech_limb/limb = limbs[limb_key]
 		. += "It's " + limb.display_name + " has " + "[(limb.part_health / initial(limb.part_health))*100]" + "% integrity."
 
+/obj/vehicle/sealed/mecha/combat/greyscale/fire_act(burn_level)
+	. = ..()
+	take_damage(burn_level / 2, BURN, FIRE)
+
 /obj/vehicle/sealed/mecha/combat/greyscale/generate_actions()
 	. = ..()
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_overload_mode)
+	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/repairpack)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
 	if((mecha_flags & MECHA_SKILL_LOCKED) && entering_mob.skills.getRating(SKILL_MECH) < SKILL_MECH_TRAINED)
@@ -151,6 +161,11 @@
 			for(var/mob/occupant AS in return_drivers())
 				balloon_alert(occupant, "Not enough for dash")
 			return
+		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_DASH))
+			for(var/mob/occupant AS in return_drivers())
+				balloon_alert(occupant, "Dash cooldown ([(S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA_DASH) / 10)]s)")
+			return
+		S_TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_DASH, dash_cooldown)
 		activate_dash(direction)
 		return
 	last_mousedown_time = world.time
@@ -254,6 +269,34 @@
 		if((user.zone_selected in limb.def_zones) && (limb.part_health < initial(limb?.part_health)))
 			return TRUE
 
+///Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/set_jump_component(duration = 0.5 SECONDS, cooldown = 1 SECONDS, cost = 8, height = 16, sound = null, flags = JUMP_SHADOW, jump_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_TANK)
+	var/list/arg_list = list(duration, cooldown, cost, height, sound, flags, jump_pass_flags)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_SET_JUMP_COMPONENT, arg_list))
+		duration = arg_list[1]
+		cooldown = arg_list[2]
+		cost = arg_list[3]
+		height = arg_list[4]
+		sound = arg_list[5]
+		flags = arg_list[6]
+		jump_pass_flags = arg_list[7]
+
+	var/gravity = get_gravity()
+	if(gravity < 1) //low grav
+		duration *= 2.5 - gravity
+		cooldown *= 2 - gravity
+		cost *= gravity * 0.5
+		height *= 2 - gravity
+		if(gravity <= 0.75)
+			jump_pass_flags |= PASS_DEFENSIVE_STRUCTURE
+	else if(gravity > 1) //high grav
+		duration *= gravity * 0.5
+		cooldown *= gravity
+		cost *= gravity
+		height *= gravity * 0.5
+
+	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = jump_pass_flags)
+
 /obj/vehicle/sealed/mecha/combat/greyscale/recon
 	name = "Recon Mecha"
 	limbs = list(
@@ -268,6 +311,7 @@
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
 	max_integrity = 1020
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 75, FIRE = 100, ACID = 0)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/assault
@@ -284,6 +328,7 @@
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
 	max_integrity = 1390
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 75, FIRE = 100, ACID = 0)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard
@@ -300,4 +345,11 @@
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
 	max_integrity = 1760
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 75, FIRE = 100, ACID = 0)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
+
+/obj/item/repairpack
+	name = "mech repairpack"
+	desc = "A mecha repair pack, consisting of various auto-extinguisher systems, materials and repair nano-scarabs."
+	icon = 'icons/obj/items/assemblies.dmi'
+	icon_state = "posibrain-occupied" // todo kuro needs to make/find an icon for this

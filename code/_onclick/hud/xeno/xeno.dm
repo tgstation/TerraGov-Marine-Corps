@@ -10,6 +10,8 @@
 	name = "toggle night vision"
 	icon_state = "nightvision2"
 	screen_loc = ui_alien_nightvision
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
 
 /atom/movable/screen/alien/nightvision/Click()
 	. = ..()
@@ -32,6 +34,8 @@
 	icon_state = "trackoff"
 	name = "queen locator (click for hive status)"
 	screen_loc = ui_queen_locator
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
 
 /atom/movable/screen/alien/queen_locator/Click()
 	. = ..()

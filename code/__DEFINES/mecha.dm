@@ -11,8 +11,7 @@
 #define SILICON_PILOT (1<<4)
 #define IS_ENCLOSED (1<<5)
 #define HAS_LIGHTS (1<<6)
-#define QUIET_STEPS (1<<7)
-#define QUIET_TURNS (1<<8)
+#define QUIET_TURNS (1<<7)
 ///blocks using equipment and melee attacking.
 #define CANNOT_INTERACT (1<<9)
 /// Can click from any direction and perform stuff
