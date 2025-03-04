@@ -144,11 +144,10 @@
 		playsound(jumper, jump_sound, 65)
 
 	var/original_layer = jumper.layer
-	var/original_pass_flags = jumper.pass_flags
 
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_STARTED, effective_jump_height, effective_jump_duration)
-	jumper.pass_flags |= effective_jumper_allow_pass_flags
 	ADD_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
+	jumper.add_pass_flags(effective_jumper_allow_pass_flags, JUMP_COMPONENT)
 	jumper.add_nosubmerge_trait(JUMP_COMPONENT)
 	RegisterSignal(jumper, COMSIG_MOB_THROW, PROC_REF(jump_throw))
 
@@ -164,14 +163,14 @@
 		animate(shadow_filter, y = -effective_jump_height, size = 4, time = effective_jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 		animate(y = 0, size = 0.9, time = effective_jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
 
-	addtimer(CALLBACK(src, PROC_REF(end_jump), jumper, original_pass_flags), effective_jump_duration)
+	addtimer(CALLBACK(src, PROC_REF(end_jump), jumper, effective_jumper_allow_pass_flags), effective_jump_duration)
 
 	TIMER_COOLDOWN_START(jumper, JUMP_COMPONENT_COOLDOWN, jump_cooldown)
 
 ///Ends the jump
-/datum/component/jump/proc/end_jump(atom/movable/jumper, original_pass_flags)
+/datum/component/jump/proc/end_jump(atom/movable/jumper, old_pass_flags)
 	jumper.remove_filter(JUMP_COMPONENT)
-	jumper.pass_flags = original_pass_flags
+	jumper.remove_pass_flags(old_pass_flags, JUMP_COMPONENT)
 	jumper.remove_traits(list(TRAIT_SILENT_FOOTSTEPS, TRAIT_NOSUBMERGE), JUMP_COMPONENT)
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_ENDED, TRUE, 1.5, 2)
 	SEND_SIGNAL(jumper.loc, COMSIG_TURF_JUMP_ENDED_HERE, jumper)

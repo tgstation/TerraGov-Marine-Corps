@@ -42,14 +42,14 @@
 
 /obj/vehicle/ridden/hover_bike/post_unbuckle_mob(mob/living/M)
 	remove_occupant(M)
-	M.pass_flags &= ~pass_flags
+	M.remove_pass_flags(pass_flags, HOVERBIKE_TRAIT)
 	. = ..()
 	animate_hover()
 	animate(M)
 
 /obj/vehicle/ridden/hover_bike/post_buckle_mob(mob/living/M)
 	add_occupant(M)
-	M.pass_flags |= pass_flags
+	M.add_pass_flags(pass_flags, HOVERBIKE_TRAIT)
 	. = ..()
 	animate_hover()
 

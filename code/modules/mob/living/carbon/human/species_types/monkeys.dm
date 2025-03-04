@@ -22,7 +22,7 @@
 
 /datum/species/monkey/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.allow_pass_flags |= PASS_LOW_STRUCTURE
+	H.allow_pass_flags |= PASS_LOW_STRUCTURE //todo: this is probably meant to be pass_flags, not allow past?
 
 /datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
 	if(!iscarbon(target))
