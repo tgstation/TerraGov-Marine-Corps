@@ -58,13 +58,15 @@
 
 /obj/fire/update_icon_state()
 	. = ..()
+	var/new_light_color
 	switch(flame_color)
 		if("red")
-			light_color = LIGHT_COLOR_FLAME
+			new_light_color = LIGHT_COLOR_FLAME
 		if("blue")
-			light_color = LIGHT_COLOR_BLUE_FLAME
+			new_light_color = LIGHT_COLOR_BLUE_FLAME
 		if("green")
-			light_color = LIGHT_COLOR_ELECTRIC_GREEN
+			new_light_color = LIGHT_COLOR_ELECTRIC_GREEN
+	set_light_color(new_light_color)
 	switch(burn_ticks)
 		if(1 to 9)
 			icon_state = "[flame_color]_1"
