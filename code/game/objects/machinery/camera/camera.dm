@@ -412,7 +412,8 @@
 
 //Special invisible cameras, to get even better angles without looking ugly
 /obj/machinery/camera/autoname/thunderdome/hidden
-
-/obj/machinery/camera/autoname/thunderdome/hidden/update_icon_state()
-	. = ..()
 	icon_state = "nothing"
+
+/obj/machinery/camera/autoname/thunderdome/hidden/update_appearance(updates)
+	SHOULD_CALL_PARENT(FALSE)
+	return
