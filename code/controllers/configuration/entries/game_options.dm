@@ -120,3 +120,14 @@
 /datum/config_entry/str_list/tts_voice_blacklist
 
 /datum/config_entry/flag/give_tutorials_without_db
+
+/datum/config_entry/str_list/channel_announce_new_game
+
+/datum/config_entry/str_list/chat_new_game_notifications
+
+/datum/config_entry/string/discordbotcommandprefix
+	default = "?"
+
+/// validate ownership of admin flags for chat commands
+/datum/config_entry/flag/secure_chat_commands
+	default = FALSE

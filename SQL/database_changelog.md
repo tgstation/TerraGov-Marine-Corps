@@ -3,13 +3,29 @@ Any time you make a change to the schema files, remember to increment the databa
 The latest database version is 2.0; The query to update the schema revision table is:
 
 ```sql
-INSERT INTO `schema_revision` (`major`, `minor`) VALUES (2, 3);
+INSERT INTO `schema_revision` (`major`, `minor`) VALUES (2, 5);
 or
 ```
 ```sql
-INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (2, 3);
+INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (2, 5);
 ```
 In any query remember to add a prefix to the table names if you use one.
+
+----------------------------------------------------
+Version 2.5, 24 February 2025, by TiviPlus
+Added discord_links table for discord-ckey verification
+```sql
+DROP TABLE IF EXISTS `discord_links`;
+CREATE TABLE `discord_links` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`ckey` VARCHAR(32) NOT NULL,
+	`discord_id` BIGINT(20) DEFAULT NULL,
+	`timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`one_time_token` VARCHAR(100) NOT NULL,
+	`valid` BOOLEAN NOT NULL DEFAULT FALSE,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+```
 
 ----------------------------------------------------
 Version 2.3, 04 February 2025, by TiviPlus
