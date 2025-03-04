@@ -151,7 +151,7 @@
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, UnregisterSignal), source, COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW), 1)
 	var/mob/living/living_target = source
 	living_target.Knockdown(0.5 SECONDS)
-	REMOVE_TRAIT(living_target, TRAIT_PASS_XENO, THROW_TRAIT)
+	living_target.remove_pass_flags(PASS_XENO, THROW_TRAIT)
 
 /obj/effect/temp_visual/warrior/impact
 	icon = 'icons/effects/96x96.dmi'
@@ -351,7 +351,7 @@
 	if(!living_target.issamexenohive(xeno_owner))
 		RegisterSignal(living_target, COMSIG_MOVABLE_IMPACT, PROC_REF(thrown_into))
 		RegisterSignal(living_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(throw_ended))
-	ADD_TRAIT(living_target, TRAIT_PASS_XENO, THROW_TRAIT)
+	living_target.add_pass_flags(PASS_XENO, THROW_TRAIT)
 	var/fling_direction = get_dir(xeno_owner, living_target)
 	living_target.throw_at(get_ranged_target_turf(xeno_owner, fling_direction ? fling_direction : xeno_owner.dir, fling_distance), fling_distance, 1, xeno_owner, TRUE)
 	succeed_activate()
@@ -428,7 +428,7 @@
 		if(living_target.mob_size >= MOB_SIZE_BIG)
 			fling_distance--
 		if(!living_target.issamexenohive(xeno_owner))
-			ADD_TRAIT(living_target, TRAIT_PASS_XENO, THROW_TRAIT)
+			living_target.add_pass_flags(PASS_XENO, THROW_TRAIT)
 			shake_camera(living_target, 1, 1)
 			living_target.adjust_stagger(WARRIOR_GRAPPLE_TOSS_STAGGER)
 			living_target.add_slowdown(WARRIOR_GRAPPLE_TOSS_SLOWDOWN)

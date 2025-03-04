@@ -109,6 +109,9 @@
 	if(light_system == MOVABLE_LIGHT)
 		AddComponent(/datum/component/overlay_lighting)
 
+	if(pass_flags)
+		add_pass_flags(pass_flags, INNATE_TRAIT)
+
 /atom/movable/Destroy()
 	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
@@ -1187,10 +1190,9 @@
 				return FALSE
 			var/new_flags = (var_value &= ~pass_flags)
 			if(new_flags)
-				add_traits(get_traits_from_pass_flags(new_flags), ADMIN_TRAIT)
+				add_pass_flags(var_value, ADMIN_TRAIT)
 				return TRUE
-			new_flags = (pass_flags &= ~var_value)
-			remove_traits(get_traits_from_pass_flags(new_flags), ADMIN_TRAIT)
+			remove_pass_flags(var_value, ADMIN_TRAIT)
 			return TRUE
 	return ..()
 
@@ -1216,18 +1218,19 @@
 		return
 	throwing = new_throwing
 	if(throwing)
-		ADD_TRAIT(src, TRAIT_PASS_THROW, THROW_TRAIT)
+		add_pass_flags(PASS_THROW, THROW_TRAIT)
 		add_nosubmerge_trait(THROW_TRAIT)
 	else
-		remove_traits(list(TRAIT_PASS_THROW, TRAIT_NOSUBMERGE), THROW_TRAIT)
+		REMOVE_TRAIT(src, TRAIT_NOSUBMERGE, THROW_TRAIT)
+		remove_pass_flags(PASS_THROW, THROW_TRAIT)
 
 ///Toggles AM between flying states
 /atom/movable/proc/set_flying(flying, new_layer)
 	if(flying)
-		add_traits(HOVERING_TRAITS, THROW_TRAIT)
+		add_pass_flags(HOVERING, THROW_TRAIT)
 		layer = new_layer
 		return
-	remove_traits(HOVERING_TRAITS, THROW_TRAIT)
+	remove_pass_flags(HOVERING, THROW_TRAIT)
 	layer = new_layer ? new_layer : initial(layer)
 
 ///returns bool for if we want to get forcepushed

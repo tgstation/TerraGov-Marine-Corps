@@ -1,4 +1,4 @@
-/mob/living/register_init_signals()
+/mob/living/proc/register_init_signals()
 	. = ..()
 	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), PROC_REF(on_knockedout_trait_gain))
 	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_KNOCKEDOUT), PROC_REF(on_knockedout_trait_loss))
