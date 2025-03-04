@@ -18,6 +18,10 @@
 	GLOB.aiEyes += src
 	setLoc(loc, TRUE)
 
+/mob/camera/aiEye/Destroy()
+	ai = null
+	return ..()
+
 //Version the normal aiEye that's added to squad HUDs. Visible to marines, not visible to xenos. CAS does this too.
 //This is the one actually used by AI in ai.dm
 /mob/camera/aiEye/hud

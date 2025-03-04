@@ -51,6 +51,14 @@
 	var/datum/trackable/track
 	///Selected order to give to marine
 	var/datum/action/innate/order/current_order
+
+	var/datum/action/innate/order/attack_order/send_attack_order = new
+	var/datum/action/innate/order/defend_order/send_defend_order = new
+	var/datum/action/innate/order/retreat_order/send_retreat_order = new
+	var/datum/action/innate/order/rally_order/send_rally_order = new
+	var/datum/action/control_vehicle/control = new
+	var/datum/action/innate/squad_message/squad_message = new
+
 	/// If it is currently controlling an object
 	var/controlling = FALSE
 
@@ -116,12 +124,12 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_CLONE_PRODUCED, PROC_REF(show_fresh_clone))
 	RegisterSignal(SSdcs, COMSIG_GLOB_HOLOPAD_AI_CALLED, PROC_REF(ping_ai))
 
-	var/datum/action/innate/order/attack_order/send_attack_order = new
-	var/datum/action/innate/order/defend_order/send_defend_order = new
-	var/datum/action/innate/order/retreat_order/send_retreat_order = new
-	var/datum/action/innate/order/rally_order/send_rally_order = new
-	var/datum/action/control_vehicle/control = new
-	var/datum/action/innate/squad_message/squad_message = new
+	send_attack_order = new
+	send_defend_order = new
+	send_retreat_order = new
+	send_rally_order = new
+	control = new
+	squad_message = new
 	send_attack_order.target = src
 	send_attack_order.give_action(src)
 	send_defend_order.target = src
@@ -138,6 +146,13 @@
 	QDEL_NULL(builtInCamera)
 	QDEL_NULL(track)
 	QDEL_NULL(mini)
+	QDEL_NULL(eyeobj)
+	QDEL_NULL(send_attack_order)
+	QDEL_NULL(send_defend_order)
+	QDEL_NULL(send_retreat_order)
+	QDEL_NULL(send_rally_order)
+	QDEL_NULL(control)
+	QDEL_NULL(squad_message)
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint

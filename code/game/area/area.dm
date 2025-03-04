@@ -244,7 +244,6 @@
 	if(!has_contained_turfs())
 		return
 	var/list/areas_in_z = SSmapping.areas_in_z
-	update_areasize()
 	if(!z)
 		WARNING("No z found for [src]")
 		return
@@ -252,18 +251,6 @@
 		areas_in_z["[z]"] = list()
 	areas_in_z["[z]"] += src
 
-/**
- * Set the area size of the area
- *
- * This is the number of open turfs in the area contents, or FALSE if the outdoors var is set
- *
- */
-/area/proc/update_areasize()
-	if(outdoors)
-		return FALSE
-	areasize = 0
-	for(var/turf/open/T in get_contained_turfs())
-		areasize++
 
 // A hook so areas can modify the incoming args
 /area/proc/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)

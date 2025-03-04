@@ -29,6 +29,8 @@
 
 
 /mob/camera/Destroy()
+	for(var/datum/camerachunk/chunk in visibleCameraChunks)
+		chunk.remove(src)
 	if(call_life)
 		GLOB.living_cameras -= src
 	return ..()
