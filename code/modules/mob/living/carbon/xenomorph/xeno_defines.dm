@@ -229,7 +229,7 @@
 	for(var/trait in caste_traits)
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
 
-///returns the basetype caste to get what the base caste is (e.g base rav not primo or strain rav)
+///returns the basetype caste from this caste or typepath to get what the base caste is (e.g base rav not primo or strain rav)
 /proc/get_base_caste_type(datum/xeno_caste/current_type)
 	while(current_type::upgrade != XENO_UPGRADE_BASETYPE)
 		current_type = current_type::parent_type
@@ -258,8 +258,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	ASSERT(ispath(root_type), "Bad root type passed to get_strain_options")
 	while(initial(root_type.parent_type) != /datum/xeno_caste)
 		root_type = root_type::parent_type
-	var/list/options = GLOB.strain_list[root_type]
-	return options?.Copy()
+	var/list/options = GLOB.strain_list[root_type]?.Copy()
+	options += root_type
+	return options
 
 /mob/living/carbon/xenomorph
 	name = "Drone"
