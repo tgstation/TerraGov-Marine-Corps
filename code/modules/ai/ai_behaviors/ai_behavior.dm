@@ -156,10 +156,11 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		set_atom_to_walk_to(next_target)
 
 	register_action_signals(current_action)
-	if((current_action == MOVING_TO_SAFETY) || (human_ai_state_flags & HUMAN_AI_ANY_HEALING))
+	if((current_action == MOVING_TO_SAFETY))
 		mob_parent.a_intent = INTENT_HELP
 	else
 		mob_parent.a_intent = INTENT_HARM
+	return TRUE
 
 ///Try to find a node to go to. If ignore_current_node is true, we will just find the closest current_node, and not the current_node best adjacent node
 /datum/ai_behavior/proc/look_for_next_node(ignore_current_node = TRUE, should_reset_goal_nodes = FALSE)

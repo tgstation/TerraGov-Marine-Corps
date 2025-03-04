@@ -223,7 +223,7 @@
 				type_list = ib_list
 			if(ORGAN_DAMAGE)
 				type_list = organ_list
-			if(INFECTION )
+			if(INFECTION)
 				type_list = infection_list
 
 		if(new_item in type_list) //we can just early return here, due to the signal issue mentioned above

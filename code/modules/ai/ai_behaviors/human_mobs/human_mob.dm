@@ -127,6 +127,13 @@
 	if(next_action == MOVING_TO_NODE)
 		return
 
+/datum/ai_behavior/human/change_action(next_action, atom/next_target, list/special_distance_to_maintain)
+	. = ..()
+	if(!.)
+		return
+	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+		mob_parent.a_intent = INTENT_HELP
+
 /datum/ai_behavior/human/look_for_new_state()
 	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
 		return
