@@ -30,7 +30,7 @@
 /mob/living/carbon/xenomorph/runner/UnarmedAttack(atom/A, has_proximity, modifiers)
 	/// Runner should not be able to slash while evading.
 	var/datum/action/ability/xeno_action/evasion/evasion_action = actions_by_path[/datum/action/ability/xeno_action/evasion]
-	if(evasion_action.evade_active)
+	if(evasion_action?.evade_active)
 		balloon_alert(src, "Cannot slash while evading")
 		return
 	return ..()
@@ -62,3 +62,38 @@
 
 /mob/living/carbon/xenomorph/runner/resisted_against(datum/source)
 	user_unbuckle_mob(source, source)
+
+/mob/living/carbon/xenomorph/runner/melter
+	caste_base_type = /datum/xeno_caste/runner/melter
+
+/mob/living/carbon/xenomorph/runner/melter/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_attack_obj))
+	RegisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(on_postattack_living))
+
+/mob/living/carbon/xenomorph/runner/melter/death(gibbing, deathmessage, silent)
+	for(var/turf/acid_tile AS in RANGE_TURFS(2, loc))
+		if(!line_of_sight(loc, acid_tile))
+			continue
+		new /obj/effect/temp_visual/acid_splatter(acid_tile)
+		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
+			new /obj/effect/xenomorph/spray(acid_tile, 6 SECONDS, 16)
+			for (var/atom/movable/atom_in_acid AS in acid_tile)
+				atom_in_acid.acid_spray_act(src)
+	return ..()
+
+/// Deals a second instance of melee damage as burn damage to damageable objects.
+/mob/living/carbon/xenomorph/runner/melter/proc/on_attack_obj(mob/living/carbon/xenomorph/source, obj/target)
+	SIGNAL_HANDLER
+	if(target.resistance_flags & XENO_DAMAGEABLE)
+		target.take_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, BURN, ACID)
+
+/// Deals a second instance of melee damage as burn damage to living beings.
+/mob/living/carbon/xenomorph/runner/melter/proc/on_postattack_living(mob/living/carbon/xenomorph/source, mob/living/target, damage)
+	SIGNAL_HANDLER
+	target.apply_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, BURN, null, ACID)
+	var/datum/status_effect/stacking/melting_acid/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_ACID)
+	if(!debuff)
+		target.apply_status_effect(STATUS_EFFECT_MELTING_ACID, 2)
+		return
+	debuff.add_stacks(2)
