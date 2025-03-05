@@ -63,15 +63,15 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
-"dn" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/bigredv2/outside/engineering)
 "dz" = (
 /obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"dE" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor,
+/area/bigredv2/outside/engineering/east)
 "dI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/engineering/free_access{
@@ -249,10 +249,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/c)
-"pk" = (
-/obj/machinery/computer/intel_computer,
-/turf/open/floor,
-/area/bigredv2/outside/engineering/east)
 "pq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -310,10 +306,6 @@
 "ro" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/engineering/east)
-"rp" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/engineering)
 "rt" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth{
@@ -682,6 +674,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/caves/southwest)
+"Ie" = (
+/obj/machinery/shower{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/freezer,
+/area/bigredv2/outside/engineering)
 "IN" = (
 /obj/machinery/vending/cola,
 /turf/open/floor,
@@ -856,10 +855,6 @@
 "Qe" = (
 /turf/closed/wall,
 /area/bigredv2/outside/engineering)
-"Qg" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/bigredv2/outside/engineering/east)
 "Qo" = (
 /obj/effect/landmark/corpsespawner/engineer{
 	corpseback = /obj/item/storage/backpack;
@@ -1063,7 +1058,7 @@
 /area/bigredv2/caves/rock)
 
 (1,1,1) = {"
-OK
+Ie
 Sw
 uD
 Va
@@ -1096,7 +1091,7 @@ vP
 vP
 vP
 vP
-dn
+Qe
 EF
 wG
 OK
@@ -1188,7 +1183,7 @@ NI
 Mw
 Mw
 Mw
-rp
+vP
 vP
 vP
 ZD
@@ -1241,7 +1236,7 @@ Qe
 ub
 Qe
 Qe
-dn
+Qe
 oX
 Zv
 Fs
@@ -1306,7 +1301,7 @@ OK
 JS
 OK
 OK
-rp
+vP
 ZD
 ZD
 ZD
@@ -1416,7 +1411,7 @@ OA
 Mw
 ky
 jg
-Qg
+Oo
 Oo
 Oo
 yu
@@ -1442,7 +1437,7 @@ zc
 (14,1,1) = {"
 OK
 DP
-dn
+Qe
 PH
 eH
 Oo
@@ -1529,7 +1524,7 @@ RB
 (17,1,1) = {"
 Qe
 Qe
-dn
+Qe
 fe
 yc
 Oo
@@ -1562,7 +1557,7 @@ TA
 pY
 ug
 Oo
-pk
+dE
 Pw
 GK
 GK
@@ -1590,7 +1585,7 @@ Pp
 Qo
 RM
 XI
-Qg
+Oo
 Oo
 Oo
 yu
@@ -1702,7 +1697,7 @@ RB
 "}
 (23,1,1) = {"
 Oo
-Qg
+Oo
 Aq
 km
 HC

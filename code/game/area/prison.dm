@@ -397,13 +397,6 @@
 	icon_state = "cells_protective"
 	minimap_color = MINIMAP_AREA_CELL_VIP
 
-/area/prison/cellblock/protective/room101
-	name = "Room 101"
-
-/area/prison/material_processing
-	name = "Material Processing"
-	icon_state = "mining"
-
 /area/prison/disposal
 	name = "Disposals"
 	icon_state = "disposal"
