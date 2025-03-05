@@ -9,10 +9,12 @@
 	var/time = 10
 	var/sensitivity = 1
 	var/hearing_range = 3
+	///proximity monitor for threat detection
+	var/datum/proximity_monitor/proximity_monitor
 
 /obj/item/assembly/prox_sensor/Initialize(mapload)
 	. = ..()
-	proximity_monitor = new(src, 0)
+	proximity_monitor = new(src, 0) // starts off
 	START_PROCESSING(SSobj, src)
 
 /obj/item/assembly/prox_sensor/Destroy()
@@ -38,20 +40,19 @@
 	. = ..()
 	if(!.)
 		return
-	else
-		proximity_monitor.SetHost(src,src)
+	proximity_monitor.set_host(src,src)
 
 /obj/item/assembly/prox_sensor/toggle_secure()
 	secured = !secured
 	if(!secured)
 		if(scanning)
 			toggle_scan()
-			proximity_monitor.SetHost(src,src)
+			proximity_monitor.set_host(src,src)
 		timing = FALSE
 		STOP_PROCESSING(SSobj, src)
 	else
 		START_PROCESSING(SSobj, src)
-		proximity_monitor.SetHost(loc,src)
+		proximity_monitor.set_host(loc,src)
 	update_icon()
 	return secured
 
@@ -85,13 +86,13 @@
 	if(!secured)
 		return FALSE
 	scanning = scan
-	proximity_monitor.SetRange(scanning ? sensitivity : 0)
+	proximity_monitor.set_range(scanning ? sensitivity : 0)
 	update_icon()
 
 /obj/item/assembly/prox_sensor/proc/sensitivity_change(value)
 	var/sense = min(max(sensitivity + value, 0), 5)
 	sensitivity = sense
-	if(scanning && proximity_monitor.SetRange(sense))
+	if(scanning && proximity_monitor.set_range(sense))
 		sense()
 
 /obj/item/assembly/prox_sensor/update_overlays()
