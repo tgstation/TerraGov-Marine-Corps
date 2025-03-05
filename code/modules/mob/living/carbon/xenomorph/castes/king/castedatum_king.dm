@@ -101,3 +101,96 @@
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
 	)
+
+
+// ***************************************
+// *********** Conqueror
+// ***************************************
+/datum/xeno_caste/king/conqueror
+	caste_name = "Conqueror"
+	display_name = "Conqueror"
+	caste_type_path = /mob/living/carbon/xenomorph/king/conqueror
+	wound_type = "conqueror"
+	//caste_desc = "Perfected by eons, it wears evolution's crown. A predator of time, sculpted to dominate."
+
+	// *** Melee Attacks *** //
+	melee_damage = 25
+	melee_ap = 15
+	attack_delay = 7
+
+	// *** Speed *** //
+	speed = -0.6
+	weeds_speed_mod = -0.1
+
+	// *** Plasma *** //
+	plasma_max = 600
+	plasma_gain = 30
+
+	// *** Health *** //
+	max_health = 600
+
+	// *** Sunder *** //
+	sunder_multiplier = 1.0
+
+	// *** Evolution *** //
+	evolve_min_xenos = 0
+
+	// *** Flags *** //
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_STRONG|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
+	caste_traits = list(TRAIT_STUNIMMUNE, TRAIT_STAGGERIMMUNE, TRAIT_STOPS_TANK_COLLISION)
+
+	// *** Defense *** //
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 60, ACID = 60)
+
+	// *** Pheromones *** //
+	aura_strength = 3.0
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong,
+		/datum/action/ability/xeno_action/hive_message,
+		/datum/action/ability/xeno_action/rally_hive,
+		/datum/action/ability/xeno_action/rally_minion,
+		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+		/datum/action/ability/xeno_action/conqueror_dash,
+		/datum/action/ability/activable/xeno/conqueror_will,
+		/datum/action/ability/xeno_action/conqueror_endurance,
+		/datum/action/ability/activable/xeno/conqueror_domination,
+	)
+
+/datum/xeno_caste/king/conqueror/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/king/conqueror/primordial
+	upgrade_name = "Primordial"
+	primordial_message = "Veni. Vidi. Vici."
+	upgrade = XENO_UPGRADE_PRIMO
+
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/corrosive_acid/strong,
+		/datum/action/ability/xeno_action/hive_message,
+		/datum/action/ability/xeno_action/rally_hive,
+		/datum/action/ability/xeno_action/rally_minion,
+		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+		/datum/action/ability/xeno_action/conqueror_dash,
+		/datum/action/ability/activable/xeno/conqueror_will,
+		/datum/action/ability/xeno_action/conqueror_endurance,
+		/datum/action/ability/activable/xeno/conqueror_domination,
+		/datum/action/ability/xeno_action/conqueror_obliteration,
+	)

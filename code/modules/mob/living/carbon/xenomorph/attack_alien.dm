@@ -54,7 +54,7 @@
 		affecting = get_limb("chest")
 	return affecting
 
-/mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+/mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null, is_right_click = FALSE)
 
 	if(!can_xeno_slash(X))
 		return FALSE
@@ -105,8 +105,7 @@
 		span_danger("We lunge at [src]!"), null, 5)
 		return FALSE
 
-	var/attack_effect = islist(X.attack_effect) ? pick(X.attack_effect) : X.attack_effect
-	X.do_attack_animation(src, attack_effect)
+	X.do_attack_animation(src, islist(X.attack_effect) ? pick(X.attack_effect) : X.attack_effect)
 
 	//The normal attack proceeds
 	playsound(loc, X.attack_sound, 25, 1)
@@ -120,8 +119,7 @@
 
 	record_melee_damage(X, damage)
 	var/damage_done = apply_damage(damage, X.xeno_caste.melee_damage_type, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_POSTATTACK_LIVING, src, damage_done, damage_mod)
-
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_POSTATTACK_LIVING, src, damage_done, damage_mod, is_right_click)
 	return TRUE
 
 /mob/living/silicon/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
@@ -138,7 +136,7 @@
 	spark_system.start(src)
 	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, TRUE)
 
-/mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+/mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null, is_right_click = FALSE)
 
 	if(stat == DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
 		return FALSE
@@ -153,7 +151,7 @@
 	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, TRUE)
 
 
-/mob/living/carbon/xenomorph/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+/mob/living/carbon/xenomorph/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null, is_right_click = FALSE)
 	if(issamexenohive(X))
 		X.visible_message(span_warning("\The [X] nibbles [src]."),
 		span_warning("We nibble [src]."), null, 5)
@@ -162,7 +160,7 @@
 	return ..()
 
 
-/mob/living/carbon/human/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+/mob/living/carbon/human/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null, is_right_click = FALSE)
 
 	if(stat == DEAD)
 		if(istype(wear_ear, /obj/item/radio/headset/mainship))
@@ -211,7 +209,7 @@
 			return attack_alien_grab(xeno_attacker)
 
 		if(INTENT_HARM, INTENT_DISARM)
-			return attack_alien_harm(xeno_attacker)
+			return attack_alien_harm(xeno_attacker, is_right_click = isrightclick)
 	return FALSE
 
 /mob/living/attack_larva(mob/living/carbon/xenomorph/larva/M)

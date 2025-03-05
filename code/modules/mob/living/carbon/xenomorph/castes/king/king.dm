@@ -2,7 +2,7 @@
 	caste_base_type = /datum/xeno_caste/king
 	name = "King"
 	desc = "A primordial creature, evolved to smash the hardiest of defences and hunt the hardiest of prey."
-	icon = 'icons/Xeno/castes/king.dmi'
+	icon = 'icons/Xeno/castes/king/king.dmi'
 	icon_state = "King Walking"
 	health = 500
 	maxHealth = 500
@@ -19,7 +19,7 @@
 
 /mob/living/carbon/xenomorph/king/Initialize(mapload)
 	. = ..()
-	playsound(loc, 'sound/voice/alien/xenos_roaring.ogg', 75, 0)
+	spawn_cry()
 
 /mob/living/carbon/xenomorph/king/generate_name()
 	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
@@ -31,8 +31,6 @@
 			mind.name = name
 		return
 	switch(playtime_mins)
-		if(0 to 600)
-			name = prefix + "Young King ([nicknumber])"
 		if(601 to 1500)
 			name = prefix + "Mature King ([nicknumber])"
 		if(1501 to 4200)
@@ -50,3 +48,42 @@
 
 /mob/living/carbon/xenomorph/king/death_cry()
 	playsound(loc, 'sound/voice/alien/king_died.ogg', 75, 0)
+
+/// Plays a sound when the King spawns in.
+/mob/living/carbon/xenomorph/king/proc/spawn_cry()
+	playsound(loc, 'sound/voice/alien/xenos_roaring.ogg', 75, 0)
+
+
+// ***************************************
+// *********** Conqueror
+// ***************************************
+/mob/living/carbon/xenomorph/king/conqueror
+	caste_base_type = /datum/xeno_caste/king/conqueror
+	name = "Conqueror"
+	desc = "Perfected by eons, it wears evolution's crown. A predator of time, sculpted to dominate."
+	icon = 'icons/Xeno/castes/king/conqueror.dmi'
+	icon_state = "Conqueror Walking"
+
+/mob/living/carbon/xenomorph/king/conqueror/generate_name()
+	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
+	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
+	if(!client?.prefs.show_xeno_rank || !client)
+		name = prefix + "Conqueror ([nicknumber])"
+		real_name = name
+		if(mind)
+			mind.name = name
+		return
+	switch(playtime_mins)
+		if(601 to 1500)
+			name = prefix + "Mature Conqueror ([nicknumber])"
+		if(1501 to 4200)
+			name = prefix + "Elder Conqueror ([nicknumber])"
+		if(4201 to 10500)
+			name = prefix + "Ancient Conqueror ([nicknumber])"
+		if(10501 to INFINITY)
+			name = prefix + "Exalted Conqueror ([nicknumber])"
+		else
+			name = prefix + "Young Conqueror ([nicknumber])"
+
+/mob/living/carbon/xenomorph/king/conqueror/spawn_cry()
+	return
