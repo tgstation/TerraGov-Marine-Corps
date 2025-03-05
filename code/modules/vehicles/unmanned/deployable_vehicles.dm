@@ -90,7 +90,6 @@
 	pass_flags = PASS_LOW_STRUCTURE|PASS_GRILLE|PASS_MOB
 	turret_pattern = NO_PATTERN
 	unmanned_flags = GIVE_NIGHT_VISION
-	layer = XENO_HIDING_LAYER
 	trigger_gargoyle = FALSE
 	allow_explosives = FALSE
 

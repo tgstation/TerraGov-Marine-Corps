@@ -559,6 +559,16 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	transform = M
 
 
+/atom/movable/screen/click_catcher/Initialize(mapload, datum/hud/hud_owner)
+	. = ..()
+	RegisterSignal(SSmapping, COMSIG_PLANE_OFFSET_INCREASE, PROC_REF(offset_increased))
+	offset_increased(SSmapping, 0, SSmapping.max_plane_offset)
+
+// Draw to the lowest plane level offered
+/atom/movable/screen/click_catcher/proc/offset_increased(datum/source, old_offset, new_offset)
+	SIGNAL_HANDLER
+	SET_PLANE_W_SCALAR(src, initial(plane), new_offset)
+
 /atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
 	var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)

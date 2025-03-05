@@ -76,6 +76,9 @@
 	. = ..()
 	health = clamp(health, 0, maxHealth)
 
+/mob/living/simple_animal/update_sight()
+	lighting_color_cutoffs = list(lighting_cutoff_red, lighting_cutoff_green, lighting_cutoff_blue)
+	return ..()
 
 /mob/living/simple_animal/update_stat()
 	if(status_flags & GODMODE)
@@ -279,7 +282,7 @@
 			stack_trace("Something attempted to set simple animals AI to an invalid state: [togglestatus]")
 
 
-/mob/living/simple_animal/on_changed_z_level(turf/old_turf, turf/new_turf, notify_contents = TRUE)
+/mob/living/simple_animal/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents = TRUE)
 	. = ..()
 	if(AIStatus == AI_Z_OFF)
 		SSidlenpcpool.idle_mobs_by_zlevel[old_turf.z] -= src

@@ -71,7 +71,7 @@
 	switch(outcome)
 		if(1 to 9)
 			var/turf/here = get_turf(src)
-			for(var/turf/closed/T in range(2, src))
+			for(var/turf/closed/T in RANGE_TURFS(2, src))
 				here.PlaceOnTop(T.type)
 				return
 			here.PlaceOnTop(/turf/closed/wall)

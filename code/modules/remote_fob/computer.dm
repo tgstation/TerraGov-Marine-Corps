@@ -58,7 +58,8 @@
 /obj/machinery/computer/camera_advanced/remote_fob/give_eye_control(mob/user)
 	. = ..()
 	screen_overlay = "fob_transfer_emissive"
-	user.lighting_alpha = 120
+	user.lighting_cutoff = LIGHTING_CUTOFF_HIGH
+	user.update_sight()
 	eyeobj.name = "Remote Construction Drone"
 	if(eyeobj.eye_initialized)
 		eyeobj.setLoc(get_turf(spawn_spot))

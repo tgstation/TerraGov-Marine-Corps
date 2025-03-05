@@ -236,7 +236,6 @@
 	},
 /obj/structure/window/reinforced{
 	dir = 8;
-	layer = 3.3;
 	pixel_y = 4
 	},
 /obj/structure/bed,
@@ -246,9 +245,7 @@
 /obj/item/bedsheet/rainbow{
 	pixel_y = 12
 	},
-/obj/item/bedsheet/rainbow{
-	layer = 3.4
-	},
+/obj/item/bedsheet/rainbow,
 /obj/structure/sign/poster,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/abandonedbase)
@@ -1135,7 +1132,6 @@
 	},
 /obj/structure/window/reinforced{
 	dir = 8;
-	layer = 3.3;
 	pixel_y = 4
 	},
 /obj/structure/bed,
@@ -1145,9 +1141,7 @@
 /obj/item/bedsheet/rainbow{
 	pixel_y = 12
 	},
-/obj/item/bedsheet/rainbow{
-	layer = 3.4
-	},
+/obj/item/bedsheet/rainbow,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "nv" = (
@@ -1913,9 +1907,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "yJ" = (
-/obj/structure/flora/pottedplant{
-	layer = 3.1
-	},
+/obj/structure/flora/pottedplant,
 /obj/structure/platform{
 	dir = 8
 	},
@@ -2013,7 +2005,6 @@
 	},
 /obj/structure/window/reinforced{
 	dir = 8;
-	layer = 3.3;
 	pixel_y = 4
 	},
 /obj/structure/bed,
@@ -2023,9 +2014,7 @@
 /obj/item/bedsheet/rainbow{
 	pixel_y = 12
 	},
-/obj/item/bedsheet/rainbow{
-	layer = 3.4
-	},
+/obj/item/bedsheet/rainbow,
 /obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
@@ -2293,15 +2282,9 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Dt" = (
-/obj/item/storage/kitchen_tray{
-	layer = 2.9
-	},
-/obj/item/reagent_containers/food/snacks/carpmeat{
-	layer = 3.3
-	},
-/obj/item/reagent_containers/food/snacks/carpmeat{
-	layer = 3.3
-	},
+/obj/item/storage/kitchen_tray,
+/obj/item/reagent_containers/food/snacks/carpmeat,
+/obj/item/reagent_containers/food/snacks/carpmeat,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "DA" = (
@@ -2616,7 +2599,6 @@
 "IA" = (
 /obj/structure/window/reinforced{
 	dir = 8;
-	layer = 3.3;
 	pixel_y = 4
 	},
 /obj/machinery/marine_selector/clothes,
@@ -2830,7 +2812,6 @@
 	},
 /obj/structure/window/reinforced{
 	dir = 8;
-	layer = 3.3;
 	pixel_y = 4
 	},
 /obj/structure/bed,
@@ -2840,9 +2821,7 @@
 /obj/item/bedsheet/rainbow{
 	pixel_y = 12
 	},
-/obj/item/bedsheet/rainbow{
-	layer = 3.4
-	},
+/obj/item/bedsheet/rainbow,
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Mv" = (
@@ -2875,7 +2854,6 @@
 	},
 /obj/structure/window/reinforced{
 	dir = 8;
-	layer = 3.3;
 	pixel_y = 4
 	},
 /obj/structure/bed,
@@ -2885,9 +2863,7 @@
 /obj/item/bedsheet/rainbow{
 	pixel_y = 12
 	},
-/obj/item/bedsheet/rainbow{
-	layer = 3.4
-	},
+/obj/item/bedsheet/rainbow,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -3068,9 +3044,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Qb" = (
-/obj/structure/flora/pottedplant{
-	layer = 3.1
-	},
+/obj/structure/flora/pottedplant,
 /obj/structure/platform{
 	dir = 4
 	},

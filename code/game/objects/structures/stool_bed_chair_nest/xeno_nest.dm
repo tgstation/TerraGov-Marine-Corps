@@ -13,7 +13,7 @@
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	max_integrity = 100
 	var/resisting_time = 0
-	layer = RESIN_STRUCTURE_LAYER
+	layer = BELOW_OBJ_LAYER
 
 /obj/structure/bed/nest/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	if(!ismob(grab.grabbed_thing))

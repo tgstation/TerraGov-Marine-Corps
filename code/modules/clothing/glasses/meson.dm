@@ -16,8 +16,7 @@
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
 	actions_types = list(/datum/action/item_action/toggle)
 	toggleable = 1
-	darkness_view = 2
-	vision_flags = SEE_TURFS
+	vision_flags = SEE_TURFS // todo replace with tgs TRAIT_MESON_VISION
 
 
 /obj/item/clothing/glasses/meson/prescription

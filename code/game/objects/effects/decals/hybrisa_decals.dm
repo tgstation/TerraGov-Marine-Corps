@@ -3,7 +3,7 @@
 /obj/effect/urban
 	icon = 'icons/effects/64x64hybrisa_decals.dmi'
 	icon_state = "weylandyutanilogo1"
-	layer = TURF_LAYER
+	layer = TURF_DECAL_LAYER
 	plane = FLOOR_PLANE
 
 //Roadlines

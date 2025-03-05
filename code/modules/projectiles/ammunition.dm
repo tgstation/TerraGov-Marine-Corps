@@ -350,7 +350,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon_state = "casing_"
 	throwforce = 1
 	w_class = WEIGHT_CLASS_TINY
-	layer = LOWER_ITEM_LAYER //Below other objects
+	layer = LOW_ITEM_LAYER //Below other objects
 	dir = 1 //Always north when it spawns.
 	atom_flags = CONDUCT|DIRLOCK
 	var/current_casings = 1 //This is manipulated in the procs that use these.

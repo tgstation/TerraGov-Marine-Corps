@@ -1066,16 +1066,16 @@
 
 /datum/action/ability/xeno_action/xenohide/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(X.layer != XENO_HIDING_LAYER)
+	if(X.layer != BELOW_TABLE_LAYER)
 		RegisterSignal(owner, COMSIG_XENOMORPH_POUNCE, PROC_REF(action_activate))
-		X.layer = XENO_HIDING_LAYER
+		X.layer = BELOW_TABLE_LAYER
 		to_chat(X, span_notice("We are now hiding."))
-		button.add_overlay(mutable_appearance('icons/Xeno/actions/general.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE))
+		button.add_overlay(mutable_appearance('icons/Xeno/actions/general.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, null, FLOAT_PLANE))
 	else
 		UnregisterSignal(owner, COMSIG_XENOMORPH_POUNCE)
 		X.layer = MOB_LAYER
 		to_chat(X, span_notice("We have stopped hiding."))
-		button.cut_overlay(mutable_appearance('icons/Xeno/actions/general.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE))
+		button.cut_overlay(mutable_appearance('icons/Xeno/actions/general.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, null, FLOAT_PLANE))
 
 
 //Neurotox Sting

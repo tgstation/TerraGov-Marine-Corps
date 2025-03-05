@@ -10,8 +10,8 @@
 	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
 	set category = "Abilities"
 
-	if (layer != ANIMAL_HIDING_LAYER)
-		layer = ANIMAL_HIDING_LAYER
+	if (layer != BELOW_TABLE_LAYER)
+		layer = BELOW_TABLE_LAYER
 		to_chat(src, span_notice("You are now hiding."))
 		return
 	layer = MOB_LAYER

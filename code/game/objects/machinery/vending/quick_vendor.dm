@@ -140,7 +140,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	. = ..()
 	if(!is_operational())
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive")
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 /obj/machinery/quick_vendor/can_interact(mob/user)
 	. = ..()

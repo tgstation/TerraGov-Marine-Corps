@@ -165,12 +165,12 @@
 	chassis.move_delay = initial(chassis.move_delay)
 	chassis.density = TRUE
 	chassis.layer = initial(chassis.layer)
-	chassis.plane = initial(chassis.plane)
 	skyfall_charge_level = 0
 	chassis.update_icon()
 	for(var/mob/living/shaken in range(7, chassis))
 		shake_camera(shaken, 5, 5)
 	var/turf/landed_on = get_turf(chassis)
+	SET_PLANE(chassis, initial(chassis.plane), landed_on)
 	for(var/thing in range(1, chassis))
 		if(isopenturf(thing))
 			var/turf/open/floor/crushed_tile = thing

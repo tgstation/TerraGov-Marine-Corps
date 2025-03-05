@@ -12,7 +12,6 @@
 	emote_see = list("shakes its head.", "shivers.")
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 6
 	allow_pass_flags = PASS_MOB
 	pass_flags = PASS_MOB|PASS_LOW_STRUCTURE
 	mob_size = MOB_SIZE_SMALL

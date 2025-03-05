@@ -2875,8 +2875,7 @@
 /area/metnal/inside/medical)
 "bZy" = (
 /obj/structure/prop/urban/vehicles/large/truck/mining{
-	dir = 8;
-	layer = 4.2
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/metnal/outside/southwest)
@@ -3651,7 +3650,6 @@
 "cEn" = (
 /obj/effect/decal/cleanable/blood{
 	dir = 8;
-	layer = 4;
 	pixel_x = 12;
 	pixel_y = 3
 	},
@@ -3918,8 +3916,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2
+	dir = 1
 	},
 /turf/open/ground/grass/weedable,
 /area/metnal/inside/Headquarters)
@@ -4162,8 +4159,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2
+	dir = 1
 	},
 /obj/effect/spawner/random/machinery/random_broken_computer/small,
 /obj/structure/table/black,
@@ -5976,9 +5972,7 @@
 	},
 /obj/structure/window/reinforced/toughened,
 /obj/item/reagent_containers/food/snacks/donkpocket,
-/obj/item/card/id/silver{
-	layer = 2.9
-	},
+/obj/item/card/id/silver,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = -6;
 	pixel_y = 6
@@ -11142,7 +11136,6 @@
 /area/metnal/caves/south/garbledradio)
 "hFv" = (
 /obj/structure/reagent_dispensers/water_cooler/nondense{
-	layer = 1;
 	pixel_x = -11;
 	pixel_y = 8
 	},
@@ -12098,8 +12091,7 @@
 /area/metnal/inside/medical/chemistry)
 "ihq" = (
 /obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2
+	dir = 1
 	},
 /turf/open/ground/grass/weedable,
 /area/metnal/inside/Headquarters)
@@ -20109,9 +20101,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/metnal/outside/central)
 "nBv" = (
-/obj/vehicle/ridden/powerloader{
-	layer = 5
-	},
+/obj/vehicle/ridden/powerloader,
 /turf/open/floor/plate,
 /area/metnal/inside/primarystorage)
 "nBw" = (
@@ -20149,8 +20139,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2
+	dir = 1
 	},
 /obj/machinery/prop/computer/communications{
 	dir = 8
@@ -21696,7 +21685,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/mining)
 "oBB" = (
-/obj/item/toy/plush/therapy_red,
+/obj/effect/spawner/random/misc/plushie/fiftyfifty,
 /turf/open/floor/plate,
 /area/metnal/inside/primarystorage)
 "oBQ" = (
@@ -25460,8 +25449,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2
+	dir = 1
 	},
 /obj/machinery/prop/computer/communications{
 	dir = 4
@@ -29113,8 +29101,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2
+	dir = 1
 	},
 /obj/machinery/prop/computer/communications{
 	dir = 8
@@ -29181,7 +29168,6 @@
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/blood{
 	dir = 8;
-	layer = 4;
 	pixel_x = 12;
 	pixel_y = 3
 	},
@@ -30811,8 +30797,7 @@
 /area/metnal/inside/colonydorms)
 "usj" = (
 /obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2
+	dir = 1
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -31712,7 +31697,6 @@
 "uWb" = (
 /obj/effect/decal/cleanable/blood{
 	dir = 8;
-	layer = 4;
 	pixel_x = 12;
 	pixel_y = 3
 	},
@@ -33204,8 +33188,7 @@
 	dir = 4
 	},
 /obj/structure/prop/urban/vehicles/large/truck/mining{
-	dir = 8;
-	layer = 4.2
+	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/outside/southwest)
@@ -36095,9 +36078,7 @@
 /obj/structure/bed/chair/office/light{
 	dir = 4
 	},
-/obj/item/paper{
-	layer = 2
-	},
+/obj/item/paper,
 /obj/effect/urban/decal/trash,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4

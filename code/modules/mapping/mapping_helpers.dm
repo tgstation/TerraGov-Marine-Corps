@@ -5,11 +5,10 @@
 	name = "baseturf editor"
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = ""
-
+	plane = POINT_PLANE
 	var/list/baseturf_to_replace
 	var/baseturf
 
-	layer = POINT_LAYER
 
 /obj/effect/baseturf_helper/Initialize(mapload)
 	. = ..()

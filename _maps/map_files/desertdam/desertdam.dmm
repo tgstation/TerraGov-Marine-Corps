@@ -993,7 +993,8 @@
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/desert_dam/exterior/river/riverside_central_north)
 "ahh" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
@@ -1075,7 +1076,8 @@
 	dir = 4
 	},
 /obj/structure/barricade/wooden,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/desert_dam/exterior/river/riverside_central_north)
 "ahL" = (
 /obj/structure/largecrate/random/secure,
@@ -5349,7 +5351,8 @@
 /area/desert_dam/interior/dam_interior/south_tunnel_entrance)
 "aGD" = (
 /obj/structure/cable,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/desert_dam/exterior/river/riverside_south)
 "aGE" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -8381,7 +8384,8 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/desert_dam/exterior/river/riverside_central_north)
 "bcS" = (
 /obj/machinery/door/poddoor/mainship/open{
@@ -21241,11 +21245,13 @@
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/desert_dam/exterior/river/riverside_central_north)
 "cCS" = (
 /obj/structure/barricade/wooden,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/desert_dam/exterior/river/riverside_central_north)
 "cCU" = (
 /obj/structure/platform_decoration{
@@ -25859,7 +25865,8 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/desert_dam/exterior/river/riverside_south)
 "dqO" = (
 /obj/structure/bed/chair/office/light{
@@ -34455,7 +34462,8 @@
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/desert_dam/exterior/river/riverside_south)
 "hFf" = (
 /obj/effect/ai_node,
@@ -35259,7 +35267,8 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/atmos_storage)
 "ihU" = (
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/desert_dam/exterior/river/riverside_central_north)
 "ihV" = (
 /obj/structure/rock/basalt/pile/alt,
@@ -36748,7 +36757,8 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/warehouse/warehouse)
 "jdv" = (
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/desert_dam/exterior/river/riverside_east)
 "jdB" = (
 /obj/structure/flora/desert/cactus/multiple,
@@ -38139,7 +38149,8 @@
 /turf/open/floor/prison/plate,
 /area/desert_dam/interior/dam_interior/hanger)
 "jXc" = (
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/desert_dam/exterior/river/riverside_south)
 "jXd" = (
 /obj/structure/rack,
@@ -47440,7 +47451,8 @@
 /area/desert_dam/exterior/valley/valley_medical)
 "pQc" = (
 /obj/effect/ai_node,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/desert_dam/exterior/river/riverside_east)
 "pQe" = (
 /obj/structure/platform_decoration{
@@ -52850,7 +52862,8 @@
 /area/desert_dam/exterior/valley/valley_hydro)
 "thp" = (
 /obj/item/stack/sheet/wood,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/desert_dam/exterior/river/riverside_south)
 "thI" = (
 /obj/effect/decal/cleanable/dirt,
@@ -54768,7 +54781,8 @@
 "uqh" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/desert_dam/exterior/river/riverside_south)
 "uqm" = (
 /obj/machinery/computer/intel_computer,
@@ -56479,7 +56493,8 @@
 /area/desert_dam/interior/dam_interior/western_dam_cave)
 "vrM" = (
 /obj/effect/ai_node,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/desert_dam/exterior/river/riverside_south)
 "vrV" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -57469,7 +57484,8 @@
 /area/desert_dam/interior/dam_interior/north_tunnel)
 "vYc" = (
 /obj/effect/ai_node,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/desert_dam/exterior/river/riverside_central_north)
 "vYm" = (
 /obj/structure/cable,

@@ -8,7 +8,7 @@
 
 /obj/structure/xeno/resin_gargoyle/Initialize(mapload, _hivenumber, mob/living/carbon/xenomorph/creator)
 	. = ..()
-	add_overlay(emissive_appearance(icon, "[icon_state]_emissive"))
+	add_overlay(emissive_appearance(icon, "[icon_state]_emissive", src))
 	INVOKE_ASYNC(src, PROC_REF(set_name), creator)
 	update_minimap_icon()
 
@@ -21,4 +21,4 @@
 
 /obj/structure/xeno/resin_gargoyle/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "gargoyle[threat_warning ? "_warn" : "_passive"]", ABOVE_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "gargoyle[threat_warning ? "_warn" : "_passive"]", MINIMAP_LOCATOR_LAYER))

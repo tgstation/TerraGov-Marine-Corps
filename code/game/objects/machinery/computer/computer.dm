@@ -115,7 +115,7 @@
 		return
 	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
 		return
-	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
+	. += emissive_appearance(icon, screen_overlay, src, alpha = src.alpha)
 	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
 
 /obj/machinery/computer/proc/set_broken()

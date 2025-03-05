@@ -25,10 +25,10 @@
 	var/turf/T = loc
 	if(level == 2 || (!T.intact_tile && !istype(T, /turf/open/floor/plating/plating_catwalk)))
 		showpipe = TRUE
-		plane = GAME_PLANE
+		SET_PLANE_IMPLICIT(src, GAME_PLANE)
 	else
 		showpipe = FALSE
-		plane = FLOOR_PLANE
+		SET_PLANE_IMPLICIT(src, FLOOR_PLANE)
 
 	if(!showpipe)
 		return ..()

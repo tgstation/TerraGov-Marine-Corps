@@ -80,7 +80,7 @@
 	density = FALSE
 	opacity = FALSE
 	max_integrity = 36
-	layer = RESIN_STRUCTURE_LAYER
+	layer = BELOW_OBJ_LAYER
 	hit_sound = SFX_ALIEN_RESIN_MOVE
 	var/slow_amt = 8
 	/// Does this refund build points when destoryed?
@@ -152,7 +152,7 @@
 	icon_state = "resin-door-1"
 	base_icon_state = "resin-door"
 	resistance_flags = NONE
-	layer = RESIN_STRUCTURE_LAYER
+	layer = BELOW_OBJ_LAYER
 	max_integrity = 100
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)

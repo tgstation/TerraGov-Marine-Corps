@@ -9,6 +9,9 @@
 	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	resistance_flags = NONE
 	faction = FACTION_NEUTRAL
+	// we never want to hide a turf because it's not lit
+	// We can rely on the lighting plane to handle that for us
+	see_in_dark = 1e6
 
 	//Mob
 	///Whether a mob is alive or dead. TODO: Move this to living - Nodrak
@@ -80,7 +83,20 @@
 	var/list/queued_interactions
 	var/list/datum/action/actions = list()
 	var/list/actions_by_path = list()
-	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
+
+	/// Percentage of how much rgb to max the lighting plane at
+	/// This lets us brighten it without washing out color
+	/// Scale from 0-100, reset off update_sight()
+	var/lighting_cutoff = LIGHTING_CUTOFF_VISIBLE
+	// Individual color max for red, we can use this to color darkness without tinting the light
+	var/lighting_cutoff_red = 0
+	// Individual color max for green, we can use this to color darkness without tinting the light
+	var/lighting_cutoff_green = 0
+	// Individual color max for blue, we can use this to color darkness without tinting the light
+	var/lighting_cutoff_blue = 0
+	/// A list of red, green and blue cutoffs
+	/// This is what actually gets applied to the mob, it's modified by things like glasses
+	var/list/lighting_color_cutoffs = null
 
 	//Interaction
 	///Lazylist assoc list of do_after and do_mob actions the mob is currently performing: list([target] = amount)

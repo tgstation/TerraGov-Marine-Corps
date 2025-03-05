@@ -132,7 +132,7 @@
 	. = ..()
 	if(!on)
 		return
-	. += emissive_appearance(icon, "cell_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, "cell_emissive", src, alpha = src.alpha)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/run_anim(anim_up, image/occupant_overlay)
 	if(!on || !occupant || !is_operational())

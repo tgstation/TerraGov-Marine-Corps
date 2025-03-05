@@ -26,8 +26,8 @@
 /obj/machinery/door/window/Initialize(mapload, set_dir)
 	. = ..()
 	if(dir == NORTH)
-		add_overlay(image(icon, "rwindow_overlay", layer = WINDOW_LAYER))
-		layer = ABOVE_TABLE_LAYER
+		add_overlay(image(icon, "rwindow_overlay", layer = ABOVE_WINDOW_LAYER))
+		layer = GIB_LAYER
 	if(set_dir)
 		setDir(set_dir)
 	if(length(req_access))

@@ -4,7 +4,7 @@
 	density = FALSE
 	anchored = FALSE
 	icon_state = "paper_bin1"
-	layer = LOWER_ITEM_LAYER
+	layer = LOW_ITEM_LAYER
 	var/amount = 30					//How much paper is in the bin.
 	var/list/papers = list()	//List of papers put in the bin for reference.
 

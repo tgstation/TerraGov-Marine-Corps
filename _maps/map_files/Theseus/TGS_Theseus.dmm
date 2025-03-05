@@ -5111,13 +5111,6 @@
 /obj/effect/landmark/start/job/mechpilot,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
-"bEt" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_umbilical)
 "bEM" = (
 /obj/effect/landmark/start/job/researcher,
 /turf/open/floor/mainship/sterile/dark,
@@ -7676,10 +7669,6 @@
 /obj/item/reagent_containers/glass/rag,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/grunt_rnr)
-"cQT" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/port_umbilical)
 "cSl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -13437,13 +13426,6 @@
 	dir = 8
 	},
 /area/mainship/medical/medical_science)
-"lWE" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/port_umbilical)
 "lXa" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access{
 	dir = 2
@@ -14561,7 +14543,6 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
 "nKm" = (
@@ -15914,13 +15895,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/delta)
-"pWK" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_umbilical)
 "pWP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -19666,9 +19640,7 @@
 /obj/machinery/door/window{
 	dir = 8
 	},
-/obj/structure/table/reinforced{
-	layer = 2.1
-	},
+/obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro,
 /turf/open/floor/prison/marked,
@@ -19789,13 +19761,6 @@
 	dir = 4
 	},
 /area/mainship/command/cic)
-"wkt" = (
-/obj/machinery/light/mainship/small{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/port_umbilical)
 "wkL" = (
 /obj/structure/sign/safety/galley,
 /turf/closed/wall/mainship,
@@ -65833,7 +65798,7 @@ nKf
 oBo
 oBo
 oBo
-cQT
+oBo
 jEr
 gCZ
 oBo
@@ -66026,11 +65991,11 @@ abh
 abE
 adk
 adk
-pWK
 adk
 adk
 adk
-pWK
+adk
+adk
 adk
 oXD
 aoY
@@ -66867,7 +66832,7 @@ bRF
 bRF
 bRF
 bRF
-lWE
+tUY
 tfu
 aaa
 aaa
@@ -67381,7 +67346,7 @@ bRF
 bRF
 bRF
 bRF
-lWE
+tUY
 tfu
 aaa
 aaa
@@ -68082,18 +68047,18 @@ abh
 adc
 adl
 adl
-bEt
 adl
 adl
 adl
-bEt
+adl
+adl
 adl
 adl
 adl
 adl
 adl
 cxR
-aal
+rbR
 bbi
 eyL
 bhH
@@ -68394,22 +68359,22 @@ ngm
 bYf
 rnS
 bRQ
-jAD
+fZA
 kBU
 nXn
 oBo
 hyf
-cQT
+oBo
 oAu
 oBo
 oBo
-wkt
+oAu
 hyf
 oBo
 oBo
 oAu
 oBo
-cQT
+oBo
 tfu
 aaa
 aaa

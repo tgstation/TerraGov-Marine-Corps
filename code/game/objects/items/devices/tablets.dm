@@ -13,11 +13,8 @@
 	var/turf/last_turf
 	var/list/network = list("marine")
 	// Stuff needed to render the map
-	var/map_name
 	var/const/default_map_size = 15
 	var/atom/movable/screen/map_view/cam_screen
-	/// All the plane masters that need to be applied.
-	var/list/cam_plane_masters
 	var/atom/movable/screen/background/cam_background
 
 /obj/item/hud_tablet/Initialize(mapload, rank, datum/squad/squad)
@@ -74,30 +71,17 @@
 	// Map name has to start and end with an A-Z character,
 	// and definitely NOT with a square bracket or even a number.
 	// I wasted 6 hours on this. :agony:
-	map_name = "hud_tablet_[REF(src)]_map"
-	// Initialize map objects
+
 	cam_screen = new
-	cam_screen.name = "screen"
-	cam_screen.assigned_map = map_name
-	cam_screen.del_on_map_removal = FALSE
-	cam_screen.screen_loc = "[map_name]:1,1"
-	cam_plane_masters = list()
-	for(var/plane in subtypesof(/atom/movable/screen/plane_master) - /atom/movable/screen/plane_master/blackness)
-		var/atom/movable/screen/plane_master/instance = new plane()
-		instance.assigned_map = map_name
-		instance.del_on_map_removal = FALSE
-		if(instance.blend_mode_override)
-			instance.blend_mode = instance.blend_mode_override
-		instance.screen_loc = "[map_name]:CENTER"
-		cam_plane_masters += instance
+	cam_screen.generate_view("hud_tablet_[REF(src)]_map")
+
 	cam_background = new
-	cam_background.assigned_map = map_name
+	cam_background.assigned_map = cam_screen.assigned_map
 	cam_background.del_on_map_removal = FALSE
 
 /obj/item/hud_tablet/Destroy()
-	qdel(cam_screen)
-	QDEL_LIST(cam_plane_masters)
-	qdel(cam_background)
+	QDEL_NULL(cam_screen)
+	QDEL_NULL(cam_background)
 	return ..()
 
 /obj/item/hud_tablet/proc/get_available_cameras()
@@ -140,13 +124,16 @@
 
 	if(!ui)
 		// Register map objects
-		user.client.register_map_obj(cam_screen)
-		for(var/plane in cam_plane_masters)
-			user.client.register_map_obj(plane)
+		cam_screen.display_to(user)
 		user.client.register_map_obj(cam_background)
 		// Open UI
 		ui = new(user, src, "CameraConsole", name)
 		ui.open()
+
+/obj/item/hud_tablet/ui_close(mob/user)
+	. = ..()
+	// Unregister map objects
+	cam_screen.hide_from(user)
 
 /obj/item/hud_tablet/ui_data()
 	. = list()
@@ -160,7 +147,7 @@
 
 /obj/item/hud_tablet/ui_static_data()
 	var/list/data = list()
-	data["mapRef"] = map_name
+	data["mapRef"] = cam_screen.assigned_map
 	var/list/cameras = get_available_cameras()
 	data["cameras"] = list()
 	for(var/i in cameras)
