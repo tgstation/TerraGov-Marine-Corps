@@ -45,6 +45,8 @@
 	var/flicker_time_lower_min = 0.2 SECONDS
 	///looping sound for flickering lights
 	var/datum/looping_sound/flickeringambient/lightambient
+	///do we automatically snap to walls?
+	var/autoplace = TRUE
 
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload, ...)
@@ -60,7 +62,10 @@
 			if(prob(5))
 				broken(TRUE)
 
-	update_offsets()
+	if(autoplace)
+		place_lights()
+	else
+		update_offsets()
 	update(FALSE)
 
 	return INITIALIZE_HINT_LATELOAD
@@ -76,7 +81,8 @@
 
 /obj/machinery/light/setDir(newdir)
 	. = ..()
-	update_offsets()
+	if(!autoplace)
+		update_offsets()
 
 /obj/machinery/light/update_overlays()
 	. = ..()
@@ -303,6 +309,64 @@
 			light_pixel_x = -15
 			pixel_y = 0
 			pixel_x = 10
+
+
+//automatically adjust place and offset to make sure sign isn't floating in the middle of nowhere
+/obj/machinery/light/proc/place_lights()
+	if(isclosedturf(get_step(loc, dir)))
+		switch(dir)
+			if(NORTH)
+				light_pixel_y = 15
+				light_pixel_x = 0
+				pixel_y = 20
+				pixel_x = 0
+			if(SOUTH)
+				light_pixel_y = -15
+				light_pixel_x = 0
+				pixel_y = 0
+				pixel_x = 0
+			if(EAST)
+				light_pixel_y = 0
+				light_pixel_x = -15
+				pixel_y = 0
+				pixel_x = 10
+			if(WEST)
+				light_pixel_y = 0
+				light_pixel_x = 15
+				pixel_y = 0
+				pixel_x = -10
+		return
+	if(isclosedturf(get_turf(loc)))
+		return
+	for(var/direction in CARDINAL_DIRS)
+		if(!isclosedturf(get_step(loc, direction)))
+			continue
+		switch(direction)
+			if(NORTH)
+				light_pixel_y = 15
+				light_pixel_x = 0
+				pixel_y = 20
+				pixel_x = 0
+				dir = NORTH //rotate dirs so we visually face the direction of the wall
+			if(SOUTH)
+				light_pixel_y = -15
+				light_pixel_x = 0
+				pixel_y = 0
+				pixel_x = 0
+				dir = SOUTH
+			if(EAST)
+				light_pixel_y = 0
+				light_pixel_x = -15
+				pixel_y = 0
+				pixel_x = 10
+				dir = EAST
+			if(WEST)
+				light_pixel_y = 0
+				light_pixel_x = 15
+				pixel_y = 0
+				pixel_x = -10
+				dir = WEST
+		return
 
 ///update the light state then icon
 /obj/machinery/light/proc/update(trigger = TRUE, toggle_on = TRUE)
