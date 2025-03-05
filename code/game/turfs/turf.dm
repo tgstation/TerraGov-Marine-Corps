@@ -626,9 +626,6 @@
 /turf/open/floor/can_dig_xeno_tunnel()
 	return TRUE
 
-/turf/open/floor/plating/catwalk/can_dig_xeno_tunnel()
-	return FALSE
-
 /turf/open/floor/mainship/research/containment/can_dig_xeno_tunnel()
 	return FALSE
 

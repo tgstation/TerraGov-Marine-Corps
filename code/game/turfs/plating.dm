@@ -121,26 +121,10 @@
 	icon = 'icons/turf/prison.dmi'
 
 
-
 /turf/open/floor/plating/ironsand/New()
 	. = ..()
 	name = "Iron Sand"
 	icon_state = "ironsand[rand(1,15)]"
-
-
-
-/turf/open/floor/plating/catwalk
-	icon = 'icons/turf/catwalks.dmi'
-	icon_state = "catwalk0"
-	name = "catwalk"
-	desc = "Cats really don't like these things."
-	shoefootstep = FOOTSTEP_CATWALK
-	barefootstep = FOOTSTEP_CATWALK
-	mediumxenofootstep = FOOTSTEP_CATWALK
-	layer = CATWALK_LAYER
-
-/turf/open/floor/plating/catwalk/ex_act(severity)
-	return
 
 /turf/open/floor/plating/warning
 	icon_state = "warnplate"
