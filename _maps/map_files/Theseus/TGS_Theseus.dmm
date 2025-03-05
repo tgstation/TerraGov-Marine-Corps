@@ -5111,6 +5111,13 @@
 /obj/effect/landmark/start/job/mechpilot,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
+"bEt" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_umbilical)
 "bEM" = (
 /obj/effect/landmark/start/job/researcher,
 /turf/open/floor/mainship/sterile/dark,
@@ -7638,7 +7645,7 @@
 /obj/machinery/line_nexter{
 	dir = 8
 	},
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -7669,6 +7676,10 @@
 /obj/item/reagent_containers/glass/rag,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/grunt_rnr)
+"cQT" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical)
 "cSl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -8348,7 +8359,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_port)
 "dPt" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/side{
@@ -13426,6 +13437,13 @@
 	dir = 8
 	},
 /area/mainship/medical/medical_science)
+"lWE" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical)
 "lXa" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access{
 	dir = 2
@@ -14543,6 +14561,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
 "nKm" = (
@@ -15895,6 +15914,13 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/delta)
+"pWK" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_umbilical)
 "pWP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -19733,7 +19759,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/engineering/ce_room)
 "wgD" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -19763,6 +19789,13 @@
 	dir = 4
 	},
 /area/mainship/command/cic)
+"wkt" = (
+/obj/machinery/light/mainship/small{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical)
 "wkL" = (
 /obj/structure/sign/safety/galley,
 /turf/closed/wall/mainship,
@@ -65800,7 +65833,7 @@ nKf
 oBo
 oBo
 oBo
-oBo
+cQT
 jEr
 gCZ
 oBo
@@ -65993,11 +66026,11 @@ abh
 abE
 adk
 adk
+pWK
 adk
 adk
 adk
-adk
-adk
+pWK
 adk
 oXD
 aoY
@@ -66834,7 +66867,7 @@ bRF
 bRF
 bRF
 bRF
-tUY
+lWE
 tfu
 aaa
 aaa
@@ -67348,7 +67381,7 @@ bRF
 bRF
 bRF
 bRF
-tUY
+lWE
 tfu
 aaa
 aaa
@@ -68049,18 +68082,18 @@ abh
 adc
 adl
 adl
+bEt
 adl
 adl
 adl
-adl
-adl
+bEt
 adl
 adl
 adl
 adl
 adl
 cxR
-rbR
+aal
 bbi
 eyL
 bhH
@@ -68361,22 +68394,22 @@ ngm
 bYf
 rnS
 bRQ
-fZA
+jAD
 kBU
 nXn
 oBo
 hyf
-oBo
+cQT
 oAu
 oBo
 oBo
-oAu
+wkt
 hyf
 oBo
 oBo
 oAu
 oBo
-oBo
+cQT
 tfu
 aaa
 aaa

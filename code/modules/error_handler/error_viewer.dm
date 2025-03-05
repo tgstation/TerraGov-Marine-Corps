@@ -70,18 +70,19 @@ GLOBAL_DATUM_INIT(error_cache, /datum/error_viewer/error_cache, new)
 	if(linear)
 		back_to_param += ";viewruntime_linear=1"
 
-	return "<a href='?_src_=holder;[HrefToken()];viewruntime=[REF(src)][back_to_param]'>[linktext]</a>"
+	return "<a href='byond://?_src_=holder;[HrefToken()];viewruntime=[REF(src)][back_to_param]'>[linktext]</a>"
 
 
 /datum/error_viewer/error_cache
+	/// A list of all errors, in order
 	var/list/errors = list()
+	/// A list of all error sources
 	var/list/error_sources = list()
-	var/list/errors_silenced = list()
 
 
 /datum/error_viewer/error_cache/show_to(user, datum/error_viewer/back_to, linear)
 	var/html = build_header()
-	html += "<b>[GLOB.total_runtimes]</b> runtimes, <b>[GLOB.total_runtimes_skipped]</b> skipped<br><br>"
+	html += "<b>[GLOB.total_runtimes]</b> runtimes from [length(error_sources)] sources, <b>[GLOB.total_runtimes_skipped]</b> skipped<br><br>"
 	if(!linear)
 		html += "Organized | [make_link("Linear", null, 1)]<hr>"
 		var/datum/error_viewer/error_source/error_source
@@ -96,7 +97,7 @@ GLOBAL_DATUM_INIT(error_cache, /datum/error_viewer/error_cache, new)
 
 	browse_to(user, html)
 
-
+/// Logs an error in the runtime viewer
 /datum/error_viewer/error_cache/proc/log_error(exception/e, list/desclines, skip_count)
 	if(!istype(e))
 		return // Abnormal exception, don't even bother
@@ -190,12 +191,12 @@ GLOBAL_DATUM_INIT(error_cache, /datum/error_viewer/error_cache, new)
 	var/html = build_header(back_to, linear)
 	html += "[name]<div class='runtime'>[desc]</div>"
 	if(usr_ref)
-		html += "<br><b>usr</b>: <a href='?_src_=vars;[HrefToken()];vars=[usr_ref]'>VV</a>"
-		html += " <a href='?_src_=holder;[HrefToken()];playerpanel=[usr_ref]'>PP</a>"
-		html += " <a href='?_src_=holder;[HrefToken()];observefollow=[usr_ref]'>FLW</a>"
+		html += "<br><b>usr</b>: <a href='byond://?_src_=vars;[HrefToken()];vars=[usr_ref]'>VV</a>"
+		html += " <a href='byond://?_src_=holder;[HrefToken()];playerpanel=[usr_ref]'>PP</a>"
+		html += " <a href='byond://?_src_=holder;[HrefToken()];observefollow=[usr_ref]'>FLW</a>"
 		if(istype(usr_loc))
-			html += "<br><b>usr.loc</b>: <a href='?_src_=vars;[HrefToken()];vars=[REF(usr_loc)]'>VV</a>"
-			html += " <a href='?_src_=holder;[HrefToken()];observecoordjump=1;X=[usr_loc.x];Y=[usr_loc.y];Z=[usr_loc.z]'>JMP</a>"
+			html += "<br><b>usr.loc</b>: <a href='byond://?_src_=vars;[HrefToken()];vars=[REF(usr_loc)]'>VV</a>"
+			html += " <a href='byond://?_src_=holder;[HrefToken()];observecoordjump=1;X=[usr_loc.x];Y=[usr_loc.y];Z=[usr_loc.z]'>JMP</a>"
 
 	browse_to(user, html)
 

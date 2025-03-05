@@ -180,7 +180,7 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aA" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 8
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -198,7 +198,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aF" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -703,18 +703,18 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /obj/machinery/air_alarm{
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "cZ" = (
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "da" = (
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /obj/machinery/door_control{
 	dir = 8;
 	id = "aft_engine_podlock"

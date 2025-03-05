@@ -1,6 +1,6 @@
 /obj/item/detpack
 	name = "detonation pack"
-	desc = "Programmable remotely triggered 'smart' explosive controlled via a signaler, used for demolitions and impromptu booby traps. Can be set to breach or demolition detonation patterns."
+	desc = "Programmable remotely triggered 'smart' explosive controlled via a signaler, used for demolitions and impromptu booby traps. Can be set to breach or demolition detonation patterns. Unique action to arm. Click on it with a signaler to copy over the signal code."
 	gender = PLURAL
 	icon = 'icons/obj/det.dmi'
 	icon_state = "detpack_off"
@@ -21,6 +21,7 @@
 	var/atom/plant_target = null //which atom the detpack is planted on
 	var/target_drag_delay = null //store this for restoration later
 	var/boom = FALSE //confirms whether we actually detted.
+	var/boom_direction //which direction we were planted in; determines which way breach detpacks blast through walls
 	var/detonation_pending
 	var/sound_timer
 	var/datum/radio_frequency/radio_connection
@@ -39,13 +40,12 @@
 	if(timer)
 		. += "Its timer has [timer] seconds left."
 	if(det_mode)
-		. += "It appears set to demolition mode."
+		. += "It appears set to demolition mode, providing a wider explosion with little damage to walls."
 	else
-		. += "It appears set to breaching mode."
+		. += "It appears set to breaching mode, providing a focused explosion which breaches through walls."
 
 	if(armed)
 		. += "<b>It is armed!</b>"
-
 
 /obj/item/detpack/Destroy()
 	if(sound_timer)
@@ -87,16 +87,21 @@
 		var/obj/item/assembly/signaler/signaler = I
 		code = signaler.code
 		set_frequency(signaler.frequency)
-		to_chat(user, "You transfer the frequency and code of [signaler] to [src].")
+		balloon_alert(user, "Frequency copied over")
+
+/obj/item/detpack/unique_action(mob/user, special_treatment)
+	. = ..()
+	on = !on
+	update_icon()
 
 /obj/item/detpack/attack_hand(mob/living/user)
 	if(armed)
-		to_chat(user, "<font color='warning'>Active anchor bolts are holding it in place! Disarm [src] first to remove it!</font>")
+		balloon_alert(user, "Disarm it first!")
 		return
 	if(plant_target)
 		user.visible_message(span_notice("[user] begins unsecuring [src] from [plant_target]."),
 		span_notice("You begin unsecuring [src] from [plant_target]."))
-		if(!do_after(user, 30, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
 		user.visible_message(span_notice("[user] unsecures [src] from [plant_target]."),
 		span_notice("You unsecure [src] from [plant_target]."))
@@ -215,9 +220,9 @@
 		return
 
 	var/dat = {"
-<A href='?src=[text_ref(src)];power=1'>Turn [on ? "Off" : "On"]</A><BR>
+<A href='byond://?src=[text_ref(src)];power=1'>Turn [on ? "Off" : "On"]</A><BR>
 <B>Current Detonation Mode:</B> [det_mode ? "Demolition" : "Breach"]<BR>
-<A href='?src=[text_ref(src)];det_mode=1'><B>Set Detonation Mode:</B> [det_mode ? "Breach" : "Demolition"]</A><BR>
+<A href='byond://?src=[text_ref(src)];det_mode=1'><B>Set Detonation Mode:</B> [det_mode ? "Breach" : "Demolition"]</A><BR>
 <B>Frequency/Code for Detpack:</B><BR>
 <A href='byond://?src=[text_ref(src)];freq=-10'>-</A>
 <A href='byond://?src=[text_ref(src)];freq=-2'>-</A>
@@ -289,6 +294,7 @@
 		var/location
 		location = target
 		forceMove(location)
+		boom_direction = get_dir(user, location)
 
 		log_game("[key_name(user)] planted [src.name] on [target.name] at [AREACOORD(target.loc)] with [timer] second fuse.")
 		message_admins("[ADMIN_TPMONTY(user)] planted [src.name] on [target.name] at [ADMIN_VERBOSEJMP(target.loc)] with [timer] second fuse.")
@@ -296,8 +302,7 @@
 		notify_ghosts("<b>[user]</b> has planted \a <b>[name]</b> on <b>[target.name]</b> with a <b>[timer]</b> second fuse!", source = user, action = NOTIFY_ORBIT)
 
 		//target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
-		user.visible_message(span_warning("[user] plants [name] on [target]!"),
-		span_warning("You plant [name] on [target]! Timer set for [timer] seconds."))
+		balloon_alert(user, "Timer set for [timer] seconds")
 
 		plant_target = target
 		if(ismovableatom(plant_target))
@@ -364,11 +369,12 @@
 	plant_target.ex_act(EXPLODE_DEVASTATE)
 	plant_target = null
 	if(det_mode == TRUE) //If we're on demolition mode, big boom.
-		explosion(det_location, 3, 5, 6, 0, 6)
+		explosion(det_location, 0, 7, 9, 0, 7)
 	else //if we're not, focused boom.
-		explosion(det_location, 2, 2, 3, 0, 3, throw_range = FALSE)
+		if(iswallturf(det_location)) //Breach the other side of the wall if planted on one
+			det_location = get_step(det_location, boom_direction)
+		explosion(det_location, 3, 4, 4, 0, 4)
 	qdel(src)
-
 
 /obj/item/detpack/attack(mob/M as mob, mob/user as mob, def_zone)
 	return

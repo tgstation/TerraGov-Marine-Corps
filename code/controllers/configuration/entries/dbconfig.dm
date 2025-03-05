@@ -47,3 +47,8 @@
 /datum/config_entry/number/bsql_thread_limit
 	config_entry_value = 50
 	min_val = 1
+
+/// The exe for mariadbd.exe.
+/// Shouldn't really be set on production servers, primarily for EZDB.
+/datum/config_entry/string/db_daemon
+	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN

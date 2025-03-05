@@ -260,7 +260,7 @@
 //Rotates the windoor assembly clockwise
 /obj/structure/windoor_assembly/verb/revrotate()
 	set name = "Rotate Windoor Assembly"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if (src.anchored)
@@ -272,7 +272,7 @@
 //Flips the windoor assembly, determines whather the door opens to the left or the right
 /obj/structure/windoor_assembly/verb/flip()
 	set name = "Flip Windoor Assembly"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(src.facing == "l")

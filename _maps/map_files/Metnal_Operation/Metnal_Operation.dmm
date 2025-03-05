@@ -1450,12 +1450,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/quartermaster)
-"aZX" = (
-/obj/structure/nuke_disk_candidate{
-	set_associations = list("set1")
-	},
-/turf/open/floor/tile/dark,
-/area/metnal/inside/engineering)
 "bao" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/mainship,
@@ -5665,6 +5659,13 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/south)
+"dOo" = (
+/obj/effect/turf_decal/caution{
+	dir = 8
+	},
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/tile/dark,
+/area/metnal/inside/substation)
 "dOL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6302,11 +6303,6 @@
 "ekr" = (
 /turf/open/urban/street/sidewalkfull,
 /area/metnal/outside/northwest)
-"ekz" = (
-/obj/structure/barricade/metal,
-/obj/structure/cable,
-/turf/open/floor/urban/wood/blackwood,
-/area/metnal/inside/bridge)
 "ekY" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -9255,6 +9251,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/southeast)
+"gkF" = (
+/obj/structure/cable,
+/turf/open/floor/plating/heatinggrate{
+	dir = 4
+	},
+/area/metnal/inside/substation)
 "gkH" = (
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/north)
@@ -9734,10 +9736,6 @@
 /obj/effect/turf_decal/trimline/white,
 /turf/open/floor/iron/textured,
 /area/metnal/inside/laundromat)
-"gDt" = (
-/obj/effect/spawner/random/weaponry/gun/rifles,
-/turf/open/floor/tile/dark,
-/area/metnal/inside/substation)
 "gDz" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -10858,12 +10856,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/alt_eleven,
 /area/metnal/inside/cafeteria)
-"hup" = (
-/obj/structure/barricade/metal{
-	dir = 1
-	},
-/turf/open/floor/plate,
-/area/metnal/inside/primarystorage)
 "huK" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/prison/plate,
@@ -11034,6 +11026,11 @@
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/Headquarters)
+"hBv" = (
+/obj/structure/barricade/solid,
+/obj/structure/cable,
+/turf/open/floor/urban/wood/blackwood,
+/area/metnal/inside/bridge)
 "hBw" = (
 /obj/structure/flora/desert/grass/heavy,
 /obj/effect/turf_decal/siding/wood/corner{
@@ -17775,6 +17772,16 @@
 /obj/machinery/light,
 /turf/open/floor/prison/yellow,
 /area/metnal/inside/mining)
+"lWz" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/cold,
+/turf/open/floor/plating/heatinggrate{
+	dir = 4
+	},
+/area/metnal/inside/substation)
 "lXa" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -18735,6 +18742,13 @@
 	},
 /turf/open/floor/iron/dark/textured,
 /area/metnal/inside/landingzoneone)
+"mFo" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal/tbg,
+/turf/open/floor/plating/heatinggrate{
+	dir = 4
+	},
+/area/metnal/inside/substation)
 "mFu" = (
 /obj/structure/prop/tgbrokenvendor/cart,
 /turf/open/floor/tile/dark,
@@ -18978,12 +18992,6 @@
 	dir = 1
 	},
 /area/metnal/inside/mining)
-"mMZ" = (
-/obj/effect/turf_decal/caution{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
-/area/metnal/inside/substation)
 "mNi" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/turf_decal/sandytile/sandyplating,
@@ -22105,6 +22113,11 @@
 	dir = 9
 	},
 /area/metnal/caves/southeast/garbledradio)
+"oOy" = (
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/tile/dark,
+/area/metnal/inside/substation)
 "oOU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -22165,6 +22178,13 @@
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
+"oQW" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/substation)
 "oRd" = (
 /turf/closed/wall/r_wall/prison,
 /area/metnal/inside/medical)
@@ -25033,10 +25053,6 @@
 	},
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
-"qKC" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall/r_wall/prison,
-/area/metnal/inside/substation)
 "qKL" = (
 /obj/machinery/mineral/unloading_machine/corner/alt,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -25566,10 +25582,6 @@
 /obj/item/trash/mre/som,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
-"raL" = (
-/obj/structure/barricade/metal,
-/turf/open/floor/urban/wood/blackwood,
-/area/metnal/inside/bridge)
 "raX" = (
 /obj/effect/turf_decal/siding/wideplating/terracotta{
 	dir = 1
@@ -25662,6 +25674,15 @@
 	},
 /turf/open/floor/prison/yellow,
 /area/metnal/inside/mining)
+"rdk" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 1
+	},
+/turf/open/floor/plating/heatinggrate{
+	dir = 4
+	},
+/area/metnal/inside/substation)
 "rdJ" = (
 /obj/structure/cable,
 /turf/open/floor/prison/blue/plate,
@@ -29263,6 +29284,10 @@
 /obj/item/toy/prize/seraph,
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
+"txx" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/substation)
 "txF" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/urban/tile/tileblackcheckered,
@@ -29297,6 +29322,10 @@
 "tyB" = (
 /turf/open/lavaland/basalt,
 /area/metnal/caves/south)
+"tzu" = (
+/obj/structure/barricade/solid,
+/turf/open/floor/urban/wood/blackwood,
+/area/metnal/inside/bridge)
 "tzA" = (
 /obj/machinery/chem_master,
 /obj/effect/turf_decal/siding/dark_green{
@@ -31880,12 +31909,6 @@
 /obj/machinery/door/airlock/mainship/command/CPTstudy,
 /turf/open/floor/plating/ground/concrete,
 /area/metnal/inside/executivedorms)
-"vdB" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/closed/wall/r_wall/prison,
-/area/metnal/inside/substation)
 "vei" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -33186,6 +33209,12 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/outside/southwest)
+"vSk" = (
+/obj/structure/barricade/solid{
+	dir = 1
+	},
+/turf/open/floor/plate,
+/area/metnal/inside/primarystorage)
 "vSm" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 4
@@ -34301,6 +34330,11 @@
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
+"wHM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/substation)
 "wHR" = (
 /obj/structure/prop/mainship/sensor_computer2,
 /obj/effect/turf_decal/siding/wood{
@@ -39815,11 +39849,11 @@ nZH
 kED
 jMx
 ymg
-ymg
-uoQ
-ymg
-ymg
-ymg
+gkF
+lWz
+mFo
+rdk
+gkF
 uoQ
 jMx
 jVs
@@ -40012,10 +40046,10 @@ jVs
 jVs
 jMx
 jMx
-vdB
+oQW
 wLc
 jMx
-jMx
+txx
 hzp
 lLK
 jMW
@@ -40220,9 +40254,9 @@ dhw
 mMA
 xWr
 sML
-gDt
+oOy
 dBA
-mMZ
+dOo
 sML
 xWr
 crF
@@ -40620,16 +40654,16 @@ cJv
 aXs
 exc
 xWr
+txx
 jMx
-jMx
-jMx
+txx
 sEF
 xWr
+txx
 jMx
-jMx
-jMx
+txx
 saP
-jMx
+txx
 lkt
 bLe
 bLe
@@ -41018,7 +41052,7 @@ sYI
 sYI
 sGy
 kXz
-jMx
+txx
 sJy
 oCP
 bhk
@@ -41235,7 +41269,7 @@ pQR
 aPi
 oaX
 cAv
-jMx
+txx
 jMx
 jVs
 jVs
@@ -41826,20 +41860,20 @@ ohk
 ahE
 nqO
 kXz
-jMx
+txx
 pcB
 kui
 xvZ
 vyN
 xWr
+txx
 jMx
-jMx
-jMx
+txx
 hoT
 pGW
+txx
 jMx
-jMx
-jMx
+txx
 vfA
 jFt
 jMx
@@ -42442,7 +42476,7 @@ nSo
 nSo
 eai
 mPI
-jMx
+txx
 jMx
 bqp
 jMx
@@ -42639,10 +42673,10 @@ jMx
 xWr
 jmL
 jMx
+txx
 jMx
 jMx
-jMx
-qKC
+wHM
 jMx
 nxO
 gHT
@@ -46285,7 +46319,7 @@ jWq
 ogE
 iOC
 giG
-aZX
+iOC
 nxO
 hyA
 ujt
@@ -56148,7 +56182,7 @@ tBM
 ouX
 shC
 eQw
-ekz
+hBv
 eQw
 bZS
 eSk
@@ -56350,7 +56384,7 @@ hEB
 hOt
 hEB
 pbu
-raL
+tzu
 hEB
 dcH
 cVa
@@ -56956,7 +56990,7 @@ lMN
 lMN
 whx
 hEB
-raL
+tzu
 nsf
 hEB
 qeH
@@ -59987,7 +60021,7 @@ oRN
 oRN
 oRN
 sXp
-hup
+vSk
 xrS
 uep
 pPX
@@ -60189,7 +60223,7 @@ oRN
 oRN
 oRN
 kNQ
-hup
+vSk
 pPX
 nHB
 pPX

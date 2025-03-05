@@ -33,9 +33,9 @@
 	playsound(loc, SFX_SPARKS, 25, TRUE)
 	if (shock_damage > 10)
 		src.visible_message(
-			span_warning(" [src] was shocked by the [source]!"), \
+			span_warning("[src] was shocked by the [source]!"), \
 			span_danger("You feel a powerful shock course through your body!"), \
-			span_warning(" You hear a heavy electrical crack.") \
+			span_warning("You hear a heavy electrical crack.") \
 		)
 		if(isxeno(src))
 			if(mob_size != MOB_SIZE_BIG)
@@ -44,9 +44,9 @@
 			Paralyze(8 SECONDS)
 	else
 		src.visible_message(
-			span_warning(" [src] was mildly shocked by the [source]."), \
-			span_warning(" You feel a mild shock course through your body."), \
-			span_warning(" You hear a light zapping.") \
+			span_warning("[src] was mildly shocked by the [source]."), \
+			span_warning("You feel a mild shock course through your body."), \
+			span_warning("You hear a light zapping.") \
 		)
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -144,7 +144,7 @@
 /mob/proc/throw_item(atom/target)
 	return
 
-/mob/living/carbon/throw_item(atom/target)
+/mob/living/carbon/throw_item(atom/target, obj/item/override_item)
 	. = ..()
 	throw_mode_off()
 	if(is_ventcrawling) //NOPE
@@ -155,17 +155,22 @@
 		return FALSE
 
 	var/atom/movable/thrown_thing
-	var/obj/item/I = get_active_held_item()
+	var/obj/item/thrown = override_item ? override_item : get_active_held_item()
+	//if(override_item)
+	//	if(get_turf(override_item) != get_turf(src))
+	//		override_item.forceMove(loc)
+	//else
+	//	thrown = get_active_held_item()
 
-	if(!I || HAS_TRAIT(I, TRAIT_NODROP))
+	if(!thrown || HAS_TRAIT(thrown, TRAIT_NODROP))
 		return
 
 	var/spin_throw = TRUE
-	if(isgrabitem(I))
+	if(isgrabitem(thrown))
 		spin_throw = FALSE
 
 	//real item in hand, not a grab
-	thrown_thing = I.on_thrown(src, target)
+	thrown_thing = thrown.on_thrown(src, target)
 
 	//actually throw it!
 	if(!thrown_thing)
@@ -371,7 +376,7 @@
 		see_invisible = see_override
 
 	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
-		see_in_dark = max(see_in_dark, 8)
+		see_in_dark = max(see_in_dark, 10)
 		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 
 	return ..()

@@ -67,6 +67,8 @@
 
 ///Toggle the functions of the glasses
 /obj/item/clothing/glasses/proc/activate(mob/user)
+	if(!toggleable)
+		return
 	active = !active
 
 	if(active && activation_sound)
@@ -244,13 +246,14 @@
 	eye_protection = 2
 	activation_sound = null
 	deactivation_sound = null
+	toggleable = TRUE
 
 /obj/item/clothing/glasses/welding/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_5, TRUE)
 
 /obj/item/clothing/glasses/welding/verb/verbtoggle()
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Adjust welding goggles"
 	set src in usr
 

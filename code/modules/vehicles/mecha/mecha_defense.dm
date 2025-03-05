@@ -182,6 +182,17 @@
 		ammo_resupply(W, user)
 		return
 
+	if(istype(W, /obj/item/repairpack))
+		if(max_repairpacks <=0)
+			balloon_alert(user, "Repairpacks not supported")
+			return
+		if(stored_repairpacks >= max_repairpacks)
+			balloon_alert(user, "Repairpacks full")
+			return
+		stored_repairpacks++
+		qdel(W)
+		return
+
 	if(isidcard(W))
 		if((mecha_flags & ADDING_ACCESS_POSSIBLE) || (mecha_flags & ADDING_MAINT_ACCESS_POSSIBLE))
 			if(internals_access_allowed(user))

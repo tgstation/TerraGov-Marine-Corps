@@ -1,0 +1,110 @@
+2025-03-01:
+  The_Man:
+  - bugfix: You can no longer activate robot self-repair if brute and burn damage
+      is 0.
+  TiviPlus:
+  - balance: mech take fire damage
+  - admin: Added reload-config admin verb
+  - balance: Mech can now reload on the move
+  - bugfix: Fixed not all mech items respecting arms being blown off
+  - balance: Lightweight mech booster gets +1 dash range
+  - balance: Removed melee core speed boost
+  - bugfix: Fixed get mob not working on cryod mobs
+  - bugfix: fixed reload-admins not working
+  - bugfix: fixed mech sprint not updating the overlay correctly
+  blackdav123:
+  - rscadd: Marines have been better trained about nutrition and will stop eating
+      before they get fat.
+  - bugfix: Eating messages use the correct nutrition values.
+  fleewave:
+  - rscadd: Added a keybind that toggles click-drag on and off, preventing clicks
+      from not going through when off.
+  novaepee:
+  - spellcheck: 2025 tip update!
+2025-03-02:
+  Apple-107:
+  - rscadd: SG-153 Spotting Rifle Ammo Bin (Underbarrel of SG-62 Target Rifle) now
+      purchasable by Requisitions
+  - balance: Only the standard SR ammunition is available in ammo bin form, you still
+      have to purchase its specialized ammo in individual magazines.
+  - rscadd: SG-153 Spotting Rifle Ammo Bins can also be made by factory.
+  - bugfix: SG-153 uses 12.7mm Smart Magnum rounds rather than the nonsensical 12x7mm
+  Notamaniac:
+  - bugfix: Glasses/Goggles can no longer be toggled in hand creating an empty hud
+      visor sprite
+  TiviPlus:
+  - balance: mech dash has a cooldown now
+  - admin: Remove from tank admin verb has a confirmation popup now
+  - rscdel: Removed duplicate follow verbs that just listed what was already in the
+      orbit menu
+  - bugfix: Fixed drop pods not centering screen text
+  blackdav123:
+  - rscadd: Valhalla vehicle spawner buttons now include the three types of mechs.
+  fleewave:
+  - balance: Huggers now die if thrown onto a vehicle.
+  ivanmixo:
+  - bugfix: Neutral faction mobs can no longer be hive targets
+  - qol: Mousing over clickable UI elements and wall mounted machinery now turns your
+      cursor into a pointer
+  - bugfix: You can no longer hijack alamo shipside
+  yyzsong:
+  - rscadd: The Acid Maw may now fire a facehugger shot
+  - rscdel: The Acid Maw may no longer fire an acid gas shot
+  - rscadd: The Acid Jaws may now fire an acid gas shot
+  - rscdel: The Acid Jaws may no longer fire a facehugger shot
+2025-03-03:
+  TiviPlus:
+  - balance: nerfed mech power generation and increased boosting cost
+  yyzsong:
+  - bugfix: some messages will no longer have an unnecessary space before them.
+2025-03-04:
+  RipGrayson:
+  - rscadd: Added nodes to the campaign maps.
+  - rscadd: Added nodes to the campaign map modulars.
+  - rscadd: Added a mech bay to the debugdalus.
+  - rscadd: Added a droppod bay to the debugdalus.
+  - bugfix: Minions can now enter ERT shuttles.
+  - bugfix: Fixed some improperly rotated platforms on Chigusa.
+  ivanmixo:
+  - rscadd: Added a counter for sources of runtimes in runtime viewer
+  - admin: Maintainers now have access to player panel (minus notes, banning, kicking,
+      etc)
+  - qol: Testing with a local database should be easier now
+  - bugfix: Fixed chat subsystem resend blackbox runtime
+  - admin: Blocks admin keybinding usage by people who aren't admins/mentors
+  - bugfix: MREs no longer runtime when the last piece of food is removed from them
+  - admin: Mentors can no longer use the dsay verb
+  - bugfix: Fixed a valhalla button runtime
+  - bugfix: Fixed runtime when taking ammo out of tank ammo racks
+  - bugfix: Ammo counter for tank should update correctly now when manually unloading
+      breech
+  - admin: Perms change actually sends over assets and doesn't runtime
+  yyzsong:
+  - refactor: splits supplypacks.dm into multiple files
+2025-03-05:
+  Lumipharon:
+  - bugfix: Fixed a few AI weapon issues
+  - bugfix: Armoured vehicles now have their faction set by the driver
+  - qol: Added a human bot hud icon, and removed the SSD examine text from AI humans
+  Neocloudy:
+  - rscadd: You can now use the Ignore verb to stop seeing OOC messages from somebody.
+      Use the Unignore verb if you want to hear them again.
+  Rug-Dealer:
+  - rscadd: You can now right click supply beacons to access the supply interface.
+  Runian:
+  - bugfix: Taking damage from melting fire correctly causes your health to update.
+  - balance: In Nuclear War, resin silos emit all pheromones at a power of 4 and a
+      range of 30.
+  Sun-Soaked:
+  - rscadd: Dancer's Baton Pass now has a small animated visual to indicate that it's
+      being used
+  - balance: Dancer's baton pass no longer consumes their dodge, and now hits all
+      adjacent xenomorph allies.
+  The_Man:
+  - qol: Added Communication and Fix subheaders to OOC tab.
+  ivanmixo:
+  - bugfix: fixed a storage runtime
+  - bugfix: Fixed a runtime when disconnecting with xeno seethrough on, ability icon
+      for it will also update properly
+  - code_imp: You can no longer join valhalla before the round has started
+  - bugfix: Fixed a decap runtime

@@ -10,7 +10,7 @@
 	var/datum/action/ability/activable/xeno/feed
 
 
-/datum/ai_behavior/puppet/New(loc, parent_to_assign, escorted_atom)
+/datum/ai_behavior/puppet/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	. = ..()
 	master_ref = WEAKREF(escorted_atom)
 	RegisterSignals(escorted_atom, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(die_on_master_death))

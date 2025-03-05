@@ -25,28 +25,28 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	if(isnull(behavior_type))
 		stack_trace("An AI controller was initialized without a mind to initialize parameter; component removed")
 		return COMPONENT_INCOMPATIBLE
-	ai_behavior = new behavior_type(src, parent, atom_to_escort, isliving(parent))
+	ai_behavior = new behavior_type(src, parent, atom_to_escort)
 	start_ai()
 
 
 /datum/component/ai_controller/RemoveComponent()
 	clean_up(FALSE)
+	QDEL_NULL(ai_behavior)
 	return ..()
 
 ///Stop the ai behaviour from processing and clean current action
 /datum/component/ai_controller/proc/clean_up(register_for_logout = TRUE)
 	SIGNAL_HANDLER
 	GLOB.ai_instances_active -= src
-	UnregisterSignal(parent, COMSIG_MOB_LOGIN)
-	UnregisterSignal(parent, COMSIG_MOB_DEATH)
+	if(!QDELETED(parent))
+		UnregisterSignal(parent, list(COMSIG_MOB_LOGIN, COMSIG_MOB_DEATH, COMSIG_HUMAN_HAS_AI))
 	if(ai_behavior)
 		STOP_PROCESSING(SSprocessing, ai_behavior)
 		ai_behavior.cleanup_signals()
-		ai_behavior.atom_to_walk_to = null
+		if(ai_behavior.atom_to_walk_to)
+			ai_behavior.unset_target(ai_behavior.atom_to_walk_to)
 		if(register_for_logout)
 			RegisterSignal(parent, COMSIG_MOB_LOGOUT, PROC_REF(start_ai))
-			return
-		ai_behavior = null
 
 ///Start the ai behaviour
 /datum/component/ai_controller/proc/start_ai()
@@ -65,11 +65,18 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 		break
 	//Iniatialise the behavior of the ai
 	ai_behavior.start_ai()
-	RegisterSignal(parent, COMSIG_MOB_DEATH, PROC_REF(RemoveComponent))
+	RegisterSignals(parent, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(RemoveComponent))
 	RegisterSignal(parent, COMSIG_MOB_LOGIN, PROC_REF(clean_up))
+	RegisterSignal(parent, COMSIG_HUMAN_HAS_AI, PROC_REF(parent_has_ai))
 	UnregisterSignal(parent, COMSIG_MOB_LOGOUT)
 	GLOB.ai_instances_active += src
 
 /datum/component/ai_controller/Destroy()
 	clean_up(FALSE)
+	QDEL_NULL(ai_behavior)
 	return ..()
+
+///Confirms we are active
+/datum/component/ai_controller/proc/parent_has_ai(mob/living/source)
+	SIGNAL_HANDLER
+	return MOB_HAS_AI
