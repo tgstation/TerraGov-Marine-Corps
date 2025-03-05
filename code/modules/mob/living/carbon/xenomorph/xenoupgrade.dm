@@ -86,14 +86,6 @@
 
 //-----RUNNER END-----//
 //================//
-//-----BULL START-----//
-
-/mob/living/carbon/xenomorph/bull/primordial
-	upgrade = XENO_UPGRADE_PRIMO
-	upgrade_stored = TIER_TWO_THRESHOLD
-
-//-----BULL END-----//
-//================//
 //-----DRONE START-----//
 
 /mob/living/carbon/xenomorph/drone/primordial
