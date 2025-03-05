@@ -3,6 +3,7 @@
 	speech_span = SPAN_ROBOT
 	interaction_flags = INTERACT_OBJ_DEFAULT
 	resistance_flags = NONE
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 	/// Icon to use as a 32x32 preview in crafting menus and such
 	var/icon_preview
