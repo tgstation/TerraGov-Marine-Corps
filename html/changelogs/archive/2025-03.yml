@@ -1,3 +1,14 @@
 2025-03-02:
   FriedrichRatzel:
   - rscadd: Added the dancing pole, bdsm bed and the X stand.
+2025-03-05:
+  Wanderer-Of-Worlds:
+  - rscadd: Added PMC Loadout Vendors, PMC Engineer Job, Shotguns/Melee/Energy Weapons/PMC
+      Nades to Vendors
+  - rscadd: Added hypersleep chamber, PMC comms,
+  - rscdel: Removed old vendors, replaced with new ones
+  - balance: Buffed PMC Skillsets by giving each job atleast 1 level at engineering/medical,
+      changed PMC Sniper to PMC Specialist, adjusted PMC Specialist skills accordingly
+  - bugfix: Adjusted access for medical and PMC Ship
+  chizzy376:
+  - code_imp: decreased minplayers from 40 to 1 on riptide

@@ -1,8 +1,0 @@
-author: "Wanderer-Of-Worlds"
-delete-after: True
-changes:
-  - rscadd: "Added PMC Loadout Vendors, PMC Engineer Job, Shotguns/Melee/Energy Weapons/PMC Nades to Vendors"
-  - rscadd: "Added hypersleep chamber, PMC comms,"
-  - rscdel: "Removed old vendors, replaced with new ones"
-  - balance: "Buffed PMC Skillsets by giving each job atleast 1 level at engineering/medical, changed PMC Sniper to PMC Specialist, adjusted PMC Specialist skills accordingly"
-  - bugfix: "Adjusted access for medical and PMC Ship"
