@@ -127,3 +127,10 @@
 		if(EXPLODE_LIGHT)
 			if(prob(10))
 				qdel(src)
+
+/obj/structure/catwalk/no_smooth
+	name = "catwalk"
+	icon_state = "catwalk-0"
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null
