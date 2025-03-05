@@ -110,7 +110,6 @@
 		AddComponent(/datum/component/overlay_lighting)
 
 /atom/movable/Destroy()
-	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
 	QDEL_NULL(em_block)
 
