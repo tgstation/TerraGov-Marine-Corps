@@ -22,3 +22,4 @@ GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Smartguns", "
 	for(var/i in contains)
 		var/atom/movable/AM = i
 		new AM(location)
+

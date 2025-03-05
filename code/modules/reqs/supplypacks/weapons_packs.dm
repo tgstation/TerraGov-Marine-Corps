@@ -620,3 +620,9 @@ WEAPONS
 	name = "SP-13 smart machinepistol ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 10
+
+/datum/supply_packs/explosives/howitzer_ammo_minelayer
+	name = "MG-100Y howitzer minelayer shell"
+	contains = list(/obj/item/mortal_shell/howitzer/minelayer)
+	cost = 80
+	available_against_xeno_only = TRUE
