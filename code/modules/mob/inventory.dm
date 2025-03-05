@@ -258,6 +258,8 @@
  * If the item can be dropped, it will be forceMove()'d to the ground and the turf's Entered() will be called.
 */
 /mob/proc/dropItemToGround(obj/item/I, force = FALSE)
+	if(!I)
+		return
 	SEND_SIGNAL(src, COMSIG_MOB_DROPPING_ITEM)
 	. = UnEquip(I, force, drop_location())
 	if(.)

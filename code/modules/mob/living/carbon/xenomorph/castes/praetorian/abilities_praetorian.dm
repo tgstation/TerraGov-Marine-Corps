@@ -563,50 +563,47 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Baton Pass"
 	action_icon_state = "baton_pass"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "Inject another xenomorph with your built-up adrenaline, increasing their movement speed considerably for 6 seconds. Adds a short cooldown to dodge when used. Less effect on quick xenos."
-	cooldown_duration = 30 SECONDS
+	desc = "Dose adjacent xenomorphs with your adrenaline, increasing their movement speed for 6 seconds. Less effect on quick xenos."
+	cooldown_duration = 35 SECONDS
 	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BATONPASS,
 	)
-	target_flags = ABILITY_MOB_TARGET
-
-/datum/action/ability/activable/xeno/baton_pass/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return
-	if(!iscarbon(A) || !isxeno(A))
-		if(!silent)
-			A.balloon_alert(owner, "can't effect!")
-		return FALSE
-	if((A.z != owner.z) || get_dist(owner, A) > 1)
-		if(!silent)
-			A.balloon_alert(owner, "too far away!")
-		return FALSE
-	var/mob/living/carbon/carbon_target = A
-	if(carbon_target.stat == DEAD)
-		if(!silent)
-			carbon_target.balloon_alert(owner, "not living!")
-		return FALSE
-	var/datum/action/ability/xeno_action/dodge/ourdodge = owner.actions_by_path[/datum/action/ability/xeno_action/dodge]
-	if(ourdodge.cooldown_timer)
-		to_chat(owner, span_xenowarning("We haven't recovered from our last dodge!"))
-		return FALSE
-
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+\
 /datum/action/ability/activable/xeno/baton_pass/use_ability(atom/target)
 
-	xeno_owner.face_atom(target)
-	xeno_owner.do_attack_animation(target)
-	playsound(target, 'sound/effects/spray3.ogg', 15, TRUE)
+	var/obj/effect/temp_visual/baton_pass/baton = new
+	xeno_owner.vis_contents += baton
+	xeno_owner.spin(0.8 SECONDS, 1)
 
-	xeno_owner.visible_message(span_danger("\The [xeno_owner] stabs [target] with their tail, granting them a surge of adrenaline!"))
-	var/mob/living/carbon/carbon_target = target
-	carbon_target.apply_status_effect(STATUS_EFFECT_XENO_BATONPASS)
+	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
+	xeno_owner.visible_message(span_danger("\The [xeno_owner] empowers nearby xenos with increased speed!"))
 
-	var/datum/action/ability/xeno_action/dodge/ourdodge = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/dodge]
-	ourdodge?.add_cooldown(DANCER_DODGE_BATONPASS_CD)
+	for (var/mob/living/carbon/xenomorph/xeno_target in orange(1, xeno_owner))
+		if(xeno_target.stat == DEAD)
+			continue
+		if(xeno_target.hivenumber != xeno_owner.hivenumber)
+			continue
+		xeno_target.apply_status_effect(STATUS_EFFECT_XENO_BATONPASS)
+
+	addtimer(CALLBACK(src, PROC_REF(remove_baton), baton), 3 SECONDS)
 	succeed_activate()
 	add_cooldown()
+
+///Garbage collects the baton vis_overlay created during use_ability
+/datum/action/ability/activable/xeno/baton_pass/proc/remove_baton(baton_visual)
+	xeno_owner.vis_contents -= baton_visual
+	QDEL_NULL(baton_visual)
+
+/obj/effect/temp_visual/baton_pass
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "baton_pass"
+	pixel_x = -18
+	pixel_y = -14
+	layer = BELOW_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
 
 // ***************************************
 // *********** Abduct

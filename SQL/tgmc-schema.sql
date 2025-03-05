@@ -370,6 +370,20 @@ END
 $$
 DELIMITER ;
 
+--
+-- Table structure for table `discord_links`
+--
+DROP TABLE IF EXISTS `discord_links`;
+CREATE TABLE `discord_links` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`ckey` VARCHAR(32) NOT NULL,
+	`discord_id` BIGINT(20) DEFAULT NULL,
+	`timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`one_time_token` VARCHAR(100) NOT NULL,
+  	`valid` BOOLEAN NOT NULL DEFAULT FALSE,
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
 DROP TABLE IF EXISTS `tutorial_completions`;
 CREATE TABLE `tutorial_completions` (
   `id` INT NOT NULL AUTO_INCREMENT,

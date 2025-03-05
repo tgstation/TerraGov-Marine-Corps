@@ -126,6 +126,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/exp = list()
 	var/list/menuoptions = list()
 
+	/// List of keys we are ignoring in global OOC
+	var/list/ignoring = list()
+
 	// Hud tooltip
 	var/tooltips = TRUE
 
