@@ -369,7 +369,7 @@
 	var/body
 
 	body += "<b>[M.name]</b>"
-	body += " played by <b>[key_name(M, include_link = false, include_name = false)]</b> "
+	body += " played by <b>[key_name(M, include_link = FALSE, include_name = FALSE)]</b> "
 	if(M.client)
 		body += " <a href='?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key];close=1'>[M.client.holder ? M.client.holder.rank : "Player"]</a>"
 
