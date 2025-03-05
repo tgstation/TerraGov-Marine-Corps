@@ -74,33 +74,6 @@
 
 	return line
 
-
-/*
-		//////
-	//if(abs_x_distance >= abs_y_distance) //x distance is greater than y
-		//for(var/distance_counter in 0 to (abs_x_distance - 1))//It'll take abs_x_distance steps to get there
-			//y += abs_y_distance
-
-			if(y >= abs_x_distance) //Every abs_y_distance steps, step once in y direction
-				y -= abs_x_distance
-				current_y_step += y_distance_sign
-
-			current_x_step += x_distance_sign //Step on in x direction
-			line += locate(current_x_step, current_y_step, starting_atom.z)//Add the turf to the list
-	//else
-		for(var/distance_counter in 0 to (abs_y_distance - 1))
-			x += abs_x_distance
-
-			if(x >= abs_y_distance)
-				x -= abs_y_distance
-				current_x_step += x_distance_sign
-
-			current_y_step += y_distance_sign
-			line += locate(current_x_step, current_y_step, starting_atom.z)
-	//return line
-	///////
-*/
-
 ///Returns if a turf can be seen from another turf.
 /proc/can_see_through(turf/from_turf, turf/to_turf)
 	if(IS_OPAQUE_TURF(to_turf))
