@@ -174,6 +174,8 @@
 	switch(href_list["operation"])
 		if("logout_main")
 			selected_target = null
+		if("back")
+			current_squad = null
 		if("use_cam")
 			selected_target = locate(href_list["selected_target"])
 		if("message")
