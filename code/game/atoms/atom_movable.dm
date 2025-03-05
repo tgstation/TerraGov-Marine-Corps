@@ -32,7 +32,7 @@
 	var/status_flags = CANSTUN|CANKNOCKDOWN|CANKNOCKOUT|CANPUSH|CANUNCONSCIOUS|CANCONFUSE	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 	var/generic_canpass = TRUE
 	///What things this atom can move past, if it has the corrosponding flag. Should not be directly modified
-	VAR_PROTECTED/pass_flags = NONE
+	var/pass_flags = NONE
 	///TRUE if we should not push or shuffle on bump/enter
 	var/moving_diagonally = FALSE
 
