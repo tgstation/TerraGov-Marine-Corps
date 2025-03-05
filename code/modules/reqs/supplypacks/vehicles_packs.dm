@@ -164,6 +164,16 @@ VEHICLES
 	contains = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
 	cost = 10
 
+/datum/supply_packs/vehicles/autocannon_ap_rounds
+	name = "Bushwhacker Autocannon Armor Piercing ammo box"
+	contains = list(/obj/item/ammo_magazine/tank/autocannon)
+	cost = 10
+
+/datum/supply_packs/vehicles/autocannon_he_rounds
+	name = "Bushwhacker Autocannon High Explosive ammo box"
+	contains = list(/obj/item/ammo_magazine/tank/autocannon/high_explosive)
+	cost = 10
+
 /datum/supply_packs/vehicles/cupola_rounds
 	name = "Cupola tank magazine"
 	contains = list(/obj/item/ammo_magazine/tank/secondary_cupola)

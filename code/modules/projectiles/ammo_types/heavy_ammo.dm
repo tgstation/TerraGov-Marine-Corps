@@ -183,6 +183,37 @@
 	staggerstun(target_mob, proj, paralyze = 0.2 SECONDS, slowdown = 1, knockback = 3)
 
 
+// Tank Autocannon
+
+/datum/ammo/bullet/tank_autocannon
+	name = "autocannon armor piercing"
+	hud_state = "alloy_spike"
+	hud_state_empty = "smartgun_empty"
+	ammo_behavior_flags = AMMO_BALLISTIC
+	damage = 30
+	penetration = 40
+	sundering = 2.5
+
+/datum/ammo/rocket/tank_autocannon
+	name = "autocannon high explosive"
+	icon_state = "bullet"
+	hud_state = "alloy_spike"
+	hud_state_empty = "railgun_hvap"
+	ammo_behavior_flags = AMMO_BALLISTIC
+	damage = 15
+	penetration = 20
+	sundering = 1.5
+
+/datum/ammo/rocket/tank_autocannon/on_hit_mob(mob/target_mob, obj/projectile/proj) // This is so it doesn't knock back on hit.
+	var/target_turf = get_turf(target_mob)
+	drop_nade(target_turf)
+
+/datum/ammo/rocket/tank_autocannon/drop_nade(turf/T)
+	explosion(T, weak_impact_range = 3, tiny = TRUE)
+
+
+
+
 // SARDEN
 
 /datum/ammo/bullet/sarden
