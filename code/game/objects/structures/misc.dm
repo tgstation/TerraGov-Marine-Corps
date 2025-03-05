@@ -223,7 +223,8 @@
 	icon = 'icons/obj/structures/stairs.dmi'
 	desc = "Stairs.  You walk up and down them."
 	icon_state = "rampbottom"
-	layer = BELOW_OBJ_LAYER
+	plane = FLOOR_PLANE // we want this to render below walls if we place them on top
+	layer = ABOVE_OPEN_TURF_LAYER
 	density = FALSE
 	opacity = FALSE
 
