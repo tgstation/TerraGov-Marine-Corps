@@ -356,6 +356,8 @@
 		if(NAMEOF(src, stat))
 			set_stat(var_value)
 			. = TRUE
+		if(NAMEOF(src, lighting_cutoff))
+			sync_lighting_plane_cutoff()
 
 	if(!isnull(.))
 		datum_flags |= DF_VAR_EDITED

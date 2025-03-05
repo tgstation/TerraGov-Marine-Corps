@@ -252,7 +252,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.underlays = underlays
 	ghost.icon = icon
 	ghost.icon_state = icon_state
-	ghost.appearance = strip_appearance_underlays(ghost.appearance)
+	ghost.appearance = strip_appearance_underlays(ghost)
 
 	if(mind?.name)
 		ghost.real_name = mind.name

@@ -345,13 +345,9 @@
 	var/new_sight = NONE
 	switch(new_lighting_cutoff)
 		if(LIGHTING_CUTOFF_FULLBRIGHT, LIGHTING_CUTOFF_HIGH, LIGHTING_CUTOFF_MEDIUM)
-			new_sight |= SEE_MOBS
-			sight |= SEE_OBJS
-			sight |= SEE_TURFS
+			new_sight = SEE_MOBS|SEE_OBJS|SEE_TURFS
 		if(LIGHTING_CUTOFF_VISIBLE)
-			sight |= SEE_MOBS
-			sight &= ~SEE_OBJS
-			sight &= ~SEE_TURFS
+			new_sight = SEE_MOBS
 
 	lighting_cutoff = new_lighting_cutoff
 

@@ -977,8 +977,6 @@ below 100 is not dizzy
 	switch(var_name)
 		if(NAMEOF(src, maxHealth))
 			updatehealth()
-		if(NAMEOF(src, lighting_cutoff))
-			sync_lighting_plane_cutoff()
 
 /mob/living/vv_get_header()
 	. = ..()

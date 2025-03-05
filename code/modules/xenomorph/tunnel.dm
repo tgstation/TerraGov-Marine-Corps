@@ -12,7 +12,7 @@ TUNNEL
 	opacity = FALSE
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
-	layer = BELOW_OBJ_LAYER
+	layer = BELOW_TABLE_LAYER
 
 	max_integrity = 140
 

@@ -223,7 +223,7 @@
 	icon = 'icons/obj/structures/stairs.dmi'
 	desc = "Stairs.  You walk up and down them."
 	icon_state = "rampbottom"
-	layer = MID_TURF_LAYER
+	layer = BELOW_OBJ_LAYER
 	density = FALSE
 	opacity = FALSE
 

@@ -95,7 +95,7 @@
 		return
 	ADD_TRAIT(new_desant, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
 	new_desant.add_nosubmerge_trait(VEHICLE_TRAIT)
-	LAZYSET(tank_desants, new_desant, PLANE_TO_TRUE(new_desant))
+	LAZYSET(tank_desants, new_desant, PLANE_TO_TRUE(new_desant.plane))
 	SET_PLANE_IMPLICIT(new_desant, ABOVE_GAME_PLANE)
 	RegisterSignal(new_desant, COMSIG_QDELETING, PROC_REF(on_desant_del))
 	root.add_desant(new_desant)

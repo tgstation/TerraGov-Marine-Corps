@@ -289,8 +289,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		break
 	forceMove(targetturf)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPPOD_LANDED, targetturf)
-	pixel_y = 500
-	animate(src, pixel_y = initial(pixel_y), time = falltime, easing = LINEAR_EASING)
+	pixel_z = 500
+	animate(src, pixel_z = initial(pixel_z), time = falltime, easing = LINEAR_EASING)
 	addtimer(CALLBACK(src, PROC_REF(dodrop), targetturf, user), falltime)
 
 ///Do the stuff when it "hits the ground"
