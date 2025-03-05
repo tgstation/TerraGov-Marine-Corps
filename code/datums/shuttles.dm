@@ -126,6 +126,11 @@
 	var/display_name = "Tadpole Standard Model"
 	var/admin_enable = TRUE
 
+/datum/map_template/shuttle/minidropship/urbantower
+	suffix = "_urbantower"
+	description = "With the same great charm as the Standard, here it is! Now this Tadpole is designed for tactical insertions into environments with limiting space. Please Fly and Transport Responsibly"
+	display_name = "Tadpole Urban Tower Model"
+
 /datum/map_template/shuttle/minidropship/old
 	suffix = "_big"
 	description = "Tadpole-01, the old model barely in service for TGMC, replaced by the newer Tadpole-03. Much like an APC, is pretty armored. Very lacking in firing angle."
