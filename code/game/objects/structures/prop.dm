@@ -410,8 +410,9 @@
 	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	icon_state = "TGMC1"
 	density = FALSE
+	plane = FLOOR_PLANE
+	layer = LOWER_RUNE_LAYER
 	resistance_flags = UNACIDABLE
-	layer = ABOVE_NORMAL_TURF_LAYER
 
 /obj/structure/prop/mainship/name_stencil/T
 	icon_state = "TGMC1"
