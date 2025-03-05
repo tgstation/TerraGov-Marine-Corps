@@ -81,3 +81,30 @@
   - admin: Perms change actually sends over assets and doesn't runtime
   yyzsong:
   - refactor: splits supplypacks.dm into multiple files
+2025-03-05:
+  Lumipharon:
+  - bugfix: Fixed a few AI weapon issues
+  - bugfix: Armoured vehicles now have their faction set by the driver
+  - qol: Added a human bot hud icon, and removed the SSD examine text from AI humans
+  Neocloudy:
+  - rscadd: You can now use the Ignore verb to stop seeing OOC messages from somebody.
+      Use the Unignore verb if you want to hear them again.
+  Rug-Dealer:
+  - rscadd: You can now right click supply beacons to access the supply interface.
+  Runian:
+  - bugfix: Taking damage from melting fire correctly causes your health to update.
+  - balance: In Nuclear War, resin silos emit all pheromones at a power of 4 and a
+      range of 30.
+  Sun-Soaked:
+  - rscadd: Dancer's Baton Pass now has a small animated visual to indicate that it's
+      being used
+  - balance: Dancer's baton pass no longer consumes their dodge, and now hits all
+      adjacent xenomorph allies.
+  The_Man:
+  - qol: Added Communication and Fix subheaders to OOC tab.
+  ivanmixo:
+  - bugfix: fixed a storage runtime
+  - bugfix: Fixed a runtime when disconnecting with xeno seethrough on, ability icon
+      for it will also update properly
+  - code_imp: You can no longer join valhalla before the round has started
+  - bugfix: Fixed a decap runtime

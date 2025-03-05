@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Fixed a runtime when disconnecting with xeno seethrough on, ability icon for it will also update properly"

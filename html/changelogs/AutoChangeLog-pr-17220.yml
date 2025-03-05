@@ -1,5 +1,0 @@
-author: "Sun-Soaked"
-delete-after: True
-changes:
-  - rscadd: "Dancer's Baton Pass now has a small animated visual to indicate that it's being used"
-  - balance: "Dancer's baton pass no longer consumes their dodge, and now hits all adjacent xenomorph allies."
