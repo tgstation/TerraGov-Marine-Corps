@@ -92,10 +92,10 @@
 	return (loc_override || (entering_mob.loc in enter_locations(entering_mob)))
 
 /obj/vehicle/sealed/armored/multitile/add_desant(mob/living/new_desant)
-	new_desant.pass_flags |= (desant_pass_flags|pass_flags)
+	new_desant.add_pass_flags(desant_pass_flags|pass_flags, VEHICLE_TRAIT)
 
 /obj/vehicle/sealed/armored/multitile/remove_desant(mob/living/old_desant)
-	old_desant.pass_flags &= ~(desant_pass_flags|pass_flags)
+	old_desant.remove_pass_flags(desant_pass_flags|pass_flags, VEHICLE_TRAIT)
 
 /obj/vehicle/sealed/armored/multitile/ex_act(severity)
 	if(QDELETED(src))

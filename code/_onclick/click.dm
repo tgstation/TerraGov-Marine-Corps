@@ -242,7 +242,7 @@
 			return FALSE //here.Adjacent(there)
 		if(2 to INFINITY)
 			var/obj/dummy = new(get_turf(here))
-			dummy.pass_flags |= PASS_LOW_STRUCTURE
+			dummy.add_pass_flags(PASS_LOW_STRUCTURE, INNATE_TRAIT)
 			dummy.invisibility = INVISIBILITY_ABSTRACT
 			for(var/i in 1 to reach) //Limit it to that many tries
 				var/turf/T = get_step(dummy, get_dir(dummy, there))
