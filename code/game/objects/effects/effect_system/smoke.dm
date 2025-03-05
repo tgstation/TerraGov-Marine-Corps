@@ -8,6 +8,7 @@
 	icon_state = "smoke"
 	opacity = TRUE
 	anchored = TRUE
+	plane = ABOVE_GAME_PLANE
 	layer = FLY_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pass_flags = PASS_AIR
