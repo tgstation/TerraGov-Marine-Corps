@@ -156,7 +156,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		set_atom_to_walk_to(next_target)
 
 	register_action_signals(current_action)
-	if((current_action == MOVING_TO_SAFETY))
+	if(current_action == MOVING_TO_SAFETY)
 		mob_parent.a_intent = INTENT_HELP
 	else
 		mob_parent.a_intent = INTENT_HARM
