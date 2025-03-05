@@ -125,8 +125,5 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
 
-//Actually better performant than reverse_direction()
-#define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
-
 // shorter way to write as anything
 #define AS as anything
