@@ -91,6 +91,12 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/vsd/spec/uslspec_two,
 		/datum/outfit/quick/vsd/juggernaut,
 		/datum/outfit/quick/vsd/eod,
+		/datum/outfit/quick/pmc/standard,
+		/datum/outfit/quick/pmc/engineer,
+		/datum/outfit/quick/pmc/medic,
+		/datum/outfit/quick/pmc/gunner,
+		/datum/outfit/quick/pmc/sniper,
+		/datum/outfit/quick/pmc/squad_leader,
 
 	)
 
@@ -281,4 +287,16 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		"VSD Medic",
 		"VSD Specialist",
 		"VSD Squad Leader",
+	)
+
+/obj/machinery/quick_vendor/pmc
+	name = "PMC Kwik-E-Quip Vendor"
+	faction = FACTION_NANOTRASEN
+	categories = list(
+		"PMC Standard",
+		"PMC Engineer",
+		"PMC Medic",
+		"PMC Gunner",
+		"PMC Specialist",
+		"PMC Squad Leader",
 	)

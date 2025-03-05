@@ -89,6 +89,7 @@
 */
 		/datum/job/pmc/squad/standard = 3,
 		/datum/job/pmc/squad/medic = 1,
+		/datum/job/pmc/squad/engineer = 1,
 		/datum/job/pmc/squad/gunner = 1,
 		/datum/job/pmc/squad/sniper = 1,
 		/datum/job/pmc/squad/leader = 1,
