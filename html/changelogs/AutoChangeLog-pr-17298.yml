@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Catwalks have an alpha layer under them now, which will catch clicks"
