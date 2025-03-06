@@ -9339,6 +9339,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_2)
 "bld" = (
@@ -10657,6 +10658,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_2)
 "cWw" = (
@@ -11563,7 +11565,7 @@
 	dir = 4
 	},
 /obj/effect/soundplayer/deltaplayer,
-/turf/closed/banish_space,
+/turf/open/space/basic,
 /area/space)
 "eho" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
@@ -13524,6 +13526,14 @@
 	dir = 4
 	},
 /area/sulaco/medbay)
+"gGE" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_1)
 "gGK" = (
 /obj/machinery/bot/cleanbot,
 /obj/structure/sink{
@@ -14705,7 +14715,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/banish_space,
+/turf/open/space/basic,
 /area/space)
 "hZq" = (
 /obj/machinery/air_alarm{
@@ -16563,7 +16573,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/closed/banish_space,
+/turf/open/space/basic,
 /area/space)
 "kcP" = (
 /obj/effect/decal/cleanable/cobweb,
@@ -18886,7 +18896,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 6
 	},
-/obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_2)
 "nae" = (
@@ -21473,6 +21482,14 @@
 	},
 /turf/open/floor/freezer,
 /area/sulaco/cap_office)
+"qsQ" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/effect/ai_node,
+/turf/open/floor/prison/plate,
+/area/shuttle/distress/arrive_2)
 "qtj" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -24991,7 +25008,7 @@
 "uzL" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
-/turf/closed/banish_space,
+/turf/open/space/basic,
 /area/space)
 "uAc" = (
 /obj/structure/closet/crate,
@@ -57854,11 +57871,11 @@ aIC
 aIY
 aIY
 dkb
+gGE
 dsw
 dsw
 dsw
-dsw
-dsw
+gGE
 iAC
 ube
 ube
@@ -67108,7 +67125,7 @@ cPc
 ebp
 ebp
 rnR
-gLa
+qsQ
 gLa
 gLa
 mZO

@@ -203,6 +203,13 @@ export const GameSettings = (props) => {
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
+              <ToggleFieldPreference
+                label="Toggle Click-dragging"
+                value="toggle_clickdrag"
+                action="toggle_clickdrag"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
             </LabeledList>
           </Section>
         </Stack.Item>
@@ -428,12 +435,12 @@ export const GameSettings = (props) => {
                   rightLabel={'Disabled'}
                 />
                 <ToggleFieldPreference
-                  label="Hear LOOC from anywhere"
-                  value="hear_looc_anywhere_as_staff"
-                  action="hear_looc_anywhere_as_staff"
+                  label="Hear OOC from anywhere"
+                  value="hear_ooc_anywhere_as_staff"
+                  action="hear_ooc_anywhere_as_staff"
                   leftLabel={'Enabled'}
                   rightLabel={'Disabled'}
-                  tooltip="Enables hearing LOOC from anywhere in any situation. For Mentors, this setting is only relevant when observing."
+                  tooltip="Enables hearing OOC channels from anywhere in any situation."
                 />
               </LabeledList>
             </Section>

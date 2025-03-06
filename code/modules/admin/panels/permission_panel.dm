@@ -1,10 +1,5 @@
-/client/proc/edit_admin_permissions()
-	set category = "Admin"
-	set name = "Permissions Panel"
-	set desc = "Edit admin permissions"
-	if(!check_rights(R_PERMISSIONS))
-		return
-	usr.client.holder.edit_admin_permissions()
+ADMIN_VERB(edit_admin_permissions, R_PERMISSIONS, "Permissions Panel", "Edit admin permissions", ADMIN_CATEGORY_SERVER)
+	user.holder.edit_admin_permissions()
 
 /datum/admins/proc/edit_admin_permissions(action, target, operation, page)
 	if(!check_rights(R_PERMISSIONS))
@@ -139,11 +134,11 @@
 	if(IsAdminAdvancedProcCall())
 		to_chat(usr, "<span class='admin prefix'>Admin Edit blocked: Advanced ProcCall detected.</span>")
 		return
-	var/datum/asset/permissions_assets = get_asset_datum(/datum/asset/simple/namespaced/common)
-	permissions_assets.send(src)
-	var/admin_key = href_list["key"]
-	var/admin_ckey = ckey(admin_key)
-	var/datum/admins/D = GLOB.admin_datums[admin_ckey]
+	var/datum/asset/permissions_assets = get_asset_datum(/datum/asset/simple/permissions)
+	permissions_assets.send(usr.client)
+	var/new_admin_key = href_list["key"]
+	var/new_admin_ckey = ckey(new_admin_key)
+	var/datum/admins/D = GLOB.admin_datums[new_admin_ckey]
 	var/use_db
 	var/task = href_list["editrights"]
 	var/skip
@@ -151,7 +146,7 @@
 	if(task == "activate" || task == "deactivate" || task == "sync")
 		skip = TRUE
 	if(!CONFIG_GET(flag/admin_legacy_system) && CONFIG_GET(flag/protect_legacy_admins) && task == "rank")
-		if(admin_ckey in GLOB.protected_admins)
+		if(new_admin_ckey in GLOB.protected_admins)
 			to_chat(usr, "<span class='admin prefix'>Editing the rank of this admin is blocked by server configuration.</span>")
 			return
 	if(!CONFIG_GET(flag/admin_legacy_system) && CONFIG_GET(flag/protect_legacy_ranks) && task == "permissions")
@@ -177,33 +172,33 @@
 			if(QDELETED(usr))
 				return
 	if(task != "add")
-		D = GLOB.admin_datums[admin_ckey]
+		D = GLOB.admin_datums[new_admin_ckey]
 		if(!D)
-			D = GLOB.deadmins[admin_ckey]
+			D = GLOB.deadmins[new_admin_ckey]
 		if(!D)
 			return
 		if((task != "sync") && !check_if_greater_rights_than_holder(D))
-			message_admins("[key_name_admin(usr)] attempted to change the rank of [admin_key] without sufficient rights.")
-			log_admin("[key_name(usr)] attempted to change the rank of [admin_key] without sufficient rights.")
+			message_admins("[key_name_admin(usr)] attempted to change the rank of [new_admin_key] without sufficient rights.")
+			log_admin("[key_name(usr)] attempted to change the rank of [new_admin_key] without sufficient rights.")
 			return
 	switch(task)
 		if("add")
-			admin_ckey = add_admin(admin_ckey, admin_key, use_db)
-			if(!admin_ckey)
+			new_admin_ckey = add_admin(new_admin_ckey, new_admin_key, use_db)
+			if(!new_admin_ckey)
 				return
-			change_admin_rank(admin_ckey, admin_key, use_db, null, legacy_only)
+			change_admin_rank(new_admin_ckey, new_admin_key, use_db, null, legacy_only)
 		if("remove")
-			remove_admin(admin_ckey, admin_key, use_db, D)
+			remove_admin(new_admin_ckey, new_admin_key, use_db, D)
 		if("rank")
-			change_admin_rank(admin_ckey, admin_key, use_db, D, legacy_only)
+			change_admin_rank(new_admin_ckey, new_admin_key, use_db, D, legacy_only)
 		if("permissions")
-			change_admin_flags(admin_ckey, admin_key, use_db, D, legacy_only)
+			change_admin_flags(new_admin_ckey, new_admin_key, use_db, D, legacy_only)
 		if("activate")
-			force_readmin(admin_key, D)
+			force_readmin(new_admin_key, D)
 		if("deactivate")
-			force_deadmin(admin_key, D)
+			force_deadmin(new_admin_key, D)
 		if("sync")
-			sync_lastadminrank(admin_ckey, admin_key, D)
+			sync_lastadminrank(new_admin_ckey, new_admin_key, D)
 	edit_admin_permissions()
 
 /datum/admins/proc/add_admin(admin_ckey, admin_key, use_db)

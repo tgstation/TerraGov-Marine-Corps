@@ -46,6 +46,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/item_flags = NONE
 	///This is used to determine on which slots an item can fit.
 	var/equip_slot_flags = NONE
+	///Last slot that item was equipped to (aka sticky slot)
+	var/last_equipped_slot
 
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
 	///This flag is used for various clothing/equipment item stuff
@@ -406,16 +408,30 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/proc/do_quick_equip(mob/user)
 	return src
 
+
+///Helper function for updating last_equipped_slot when item is drawn from storage
+/obj/item/proc/set_last_equipped_slot_of_storage(datum/storage/storage_datum)
+	var/obj/item/storage_item = storage_datum.parent
+	if(!isitem(storage_item))
+		return
+
+	while(isitem(storage_item.loc)) // for stuff like armor modules we have to find topmost item
+		storage_item = storage_item.loc
+
+	if(storage_item)
+		last_equipped_slot = slot_to_in_storage_slot(storage_item.last_equipped_slot)
+
+
 ///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
 	item_flags &= ~IN_STORAGE
+	set_last_equipped_slot_of_storage(S)
 	return
 
 
 ///called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
 /obj/item/proc/on_enter_storage(obj/item/storage/S as obj)
 	item_flags |= IN_STORAGE
-	return
 
 
 ///called when "found" in pockets and storage items. Returns 1 if the search should end.
@@ -432,6 +448,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/proc/equipped(mob/user, slot)
 	SHOULD_CALL_PARENT(TRUE) // no exceptions
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_EQUIPPED, src, slot)
+	if (slot != SLOT_R_HAND && slot != SLOT_L_HAND)
+		last_equipped_slot = slot
 
 	var/equipped_to_slot = equip_slot_flags & slotdefine2slotbit(slot)
 	if(equipped_to_slot) // equip_slot_flags is a bitfield
@@ -460,6 +479,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/proc/unequipped(mob/unequipper, slot)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNEQUIPPED, unequipper, slot)
+	SEND_SIGNAL(unequipper, COMSIG_MOB_ITEM_UNEQUIPPED, src, slot)
 
 	var/equipped_from_slot = equip_slot_flags & slotdefine2slotbit(slot)
 
@@ -1368,10 +1388,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	set waitfor = 0
 	playsound(user, 'sound/effects/spin.ogg', 25, 1)
 	if(double)
-		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
+		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice("You flick and spin [src] and [double]!"))
 		animation_wrist_flick(double, 1)
 	else
-		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
+		user.visible_message("[user] deftly flicks and spins [src]!",span_notice("You flick and spin [src]!"))
 	animation_wrist_flick(src, direction)
 	sleep(0.3 SECONDS)
 	if(loc && user) playsound(user, 'sound/effects/thud.ogg', 25, 1)
@@ -1379,7 +1399,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///The fancy trick. Woah.
 /obj/item/proc/throw_catch_trick(mob/living/carbon/human/user)
 	set waitfor = 0
-	user.visible_message("[user] deftly flicks [src] and tosses it into the air!",span_notice(" You flick and toss [src] into the air!"))
+	user.visible_message("[user] deftly flicks [src] and tosses it into the air!",span_notice("You flick and toss [src] into the air!"))
 	var/img_layer = MOB_LAYER+0.1
 	var/image/trick = image(icon,user,icon_state,img_layer)
 	switch(pick(1,2))
@@ -1400,9 +1420,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 
 	if(user.get_inactive_held_item())
-		user.visible_message("[user] catches [src] with the same hand!",span_notice(" You catch [src] as it spins in to your hand!"))
+		user.visible_message("[user] catches [src] with the same hand!",span_notice("You catch [src] as it spins in to your hand!"))
 		return
-	user.visible_message("[user] catches [src] with his other hand!",span_notice(" You snatch [src] with your other hand! Awesome!"))
+	user.visible_message("[user] catches [src] with his other hand!",span_notice("You snatch [src] with your other hand! Awesome!"))
 	user.temporarilyRemoveItemFromInventory(src)
 	user.put_in_inactive_hand(src)
 	user.swap_hand()

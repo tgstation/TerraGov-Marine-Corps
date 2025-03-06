@@ -231,14 +231,14 @@
 		return FALSE
 	if(item_to_equip.equip_delay_self && !ignore_delay)
 		if(!do_after(src, item_to_equip.equip_delay_self, NONE, item_to_equip, BUSY_ICON_FRIENDLY))
-			to_chat(src, "You stop putting on \the [item_to_equip]")
+			to_chat(src, "You stop putting on \the [item_to_equip].")
 			return FALSE
 		//calling the proc again with ignore_delay saves a boatload of copypaste
 		return equip_to_slot_if_possible(item_to_equip, slot, TRUE, del_on_fail, warning, redraw_mob, override_nodrop)
-	equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
 	//This will unwield items -without- triggering lights.
 	if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
 		item_to_equip.unwield(src)
+	equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
 	return TRUE
 
 /**

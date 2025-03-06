@@ -6,7 +6,7 @@
 
 /client/verb/ooc(msg as text)
 	set name = "OOC"
-	set category = "OOC"
+	set category = "OOC.Communication"
 
 	if(!mob)
 		return
@@ -108,10 +108,14 @@
 	for(var/client/recv_client AS in GLOB.clients)
 		if(!(recv_client.prefs.toggles_chat & CHAT_OOC))
 			continue
+		if(holder?.fakekey in recv_client.prefs.ignoring)
+			continue
+		if(key in recv_client.prefs.ignoring)
+			continue
 
 		var/display_name = key
 		if(holder?.fakekey)
-			if(check_other_rights(recv_client, R_ADMIN, FALSE))
+			if(check_other_rights(recv_client, R_ADMIN|R_MENTOR, FALSE))
 				display_name = "[holder.fakekey]/([key])"
 			else
 				display_name = holder.fakekey
@@ -134,12 +138,12 @@
 
 /client/verb/xooc(msg as text) // Same as MOOC, but for xenos.
 	set name = "XOOC"
-	set category = "OOC"
+	set category = "OOC.Communication"
 
 	if(!msg)
 		return
 
-	var/admin = check_rights(R_ADMIN, FALSE)
+	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
 	if(!mob)
 		return
@@ -207,7 +211,7 @@
 	for(var/client/recv_client AS in GLOB.clients)
 		if(!(recv_client.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!(recv_client.mob in GLOB.xeno_mob_list) && !(recv_client.mob in GLOB.observer_list) || check_other_rights(recv_client, R_ADMIN, FALSE)) // If the client is a xeno, an observer, and not an admin.
+		if(!(recv_client.mob in GLOB.xeno_mob_list) && !(recv_client.mob in GLOB.observer_list) || check_other_rights(recv_client, R_ADMIN|R_MENTOR, FALSE)) // If the client is a xeno, an observer, and not staff.
 			continue
 
 		var/display_name = mob.name
@@ -220,23 +224,19 @@
 
 	// Send chat message to admins
 	for(var/client/recv_staff AS in GLOB.admins)
+		if(!check_other_rights(recv_staff, R_ADMIN|R_MENTOR, FALSE)) // Check if the client is still staff.
+			continue
+		if(!recv_staff.prefs.hear_ooc_anywhere_as_staff)
+			continue
 		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!check_other_rights(recv_staff, R_ADMIN, FALSE)) // Check if the client is still an admin.
-			continue
 
-		var/display_name = mob.name
-		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
-		if(!(mob in GLOB.xeno_mob_list) && admin) // If the verb caller is an admin and not a xeno mob, use their fakekey or key instead.
-			display_name = display_key
-		display_name = "<a class='hidelink' href='byond://?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>" // Admins get a clickable player panel.
-		if(!holder?.fakekey) // Show their key and their fakekey if they have one.
-			display_name = "[mob.key]/([display_name])"
-		else
-			display_name = "[holder.fakekey]/([mob.key]/[display_name])"
+		var/display_name = "[ADMIN_TPMONTY(mob)]"
+		if(holder?.fakekey) // Show their fakekey in addition to real key + buttons if they have one
+			display_name = "[span_tooltip("Stealth key", "'[holder.fakekey]'")] ([display_name])"
 
 		var/avoid_highlight = recv_staff == src
-		to_chat(recv_staff, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(recv_staff, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "XOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 
 /client/verb/mooc_wrapper()
@@ -247,9 +247,9 @@
 
 /client/verb/mooc(msg as text) // Same as XOOC, but for humans.
 	set name = "MOOC"
-	set category = "OOC"
+	set category = "OOC.Communication"
 
-	var/admin = check_rights(R_ADMIN, FALSE)
+	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
 	if(!mob)
 		return
@@ -317,7 +317,7 @@
 	for(var/client/recv_client AS in GLOB.clients)
 		if(!(recv_client.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!(recv_client.mob in GLOB.human_mob_list) && !(recv_client.mob in GLOB.observer_list) && !(recv_client.mob in GLOB.ai_list) || check_other_rights(recv_client, R_ADMIN, FALSE)) // If the client is a human, an observer, and not an admin.
+		if(!(recv_client.mob in GLOB.human_mob_list) && !(recv_client.mob in GLOB.observer_list) && !(recv_client.mob in GLOB.ai_list) || check_other_rights(recv_client, R_ADMIN|R_MENTOR, FALSE)) // If the client is a human, an observer, and not staff.
 			continue
 
 		// If the verb caller is an admin and not a human mob, use their key, or if they're stealthmode, hide their key instead.
@@ -331,38 +331,32 @@
 
 	// Send chat message to admins
 	for(var/client/recv_staff AS in GLOB.admins)
+		if(!check_other_rights(recv_staff, R_ADMIN|R_MENTOR, FALSE)) // Check if the client is still staff.
+			continue
+		if(!recv_staff.prefs.hear_ooc_anywhere_as_staff)
+			continue
 		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!check_other_rights(recv_staff, R_ADMIN, FALSE)) // Check if the client is still an admin.
-			continue
 
-		var/display_name = mob.name
-		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
-		if(!((mob in GLOB.human_mob_list) || (mob in GLOB.ai_list)) && admin) // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
-			display_name = display_key
-		display_name = "<a class='hidelink' href='byond://?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>" // Admins get a clickable player panel.
-		if(!holder?.fakekey) // Show their key and their fakekey if they have one.
-			display_name = "[mob.key]/([display_name])"
-		else
-			display_name = "[holder.fakekey]/([mob.key]/[display_name])"
+		var/display_name = "[ADMIN_TPMONTY(mob)]"
+		if(holder?.fakekey) // Show their fakekey in addition to real key + buttons if they have one
+			display_name = "[span_tooltip("Stealth key", "'[holder.fakekey]'")] ([display_name])"
 
 		var/avoid_highlight = recv_staff == src
-		to_chat(recv_staff, "<font color='#B75800'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
-
+		to_chat(recv_staff, "<font color='#B75800'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "MOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 /client/verb/looc_wrapper()
 	set hidden = TRUE
 	var/message = input("", "LOOC \"text\"") as null|text
 	looc(message)
 
-
 /client/verb/looc(msg as text)
 	set name = "LOOC"
-	set category = "OOC"
+	set category = "OOC.Communication"
 
 	if(!msg)
 		return
-	var/admin = check_rights(R_ADMIN, FALSE)
+	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
 	if(!mob)
 		return
@@ -435,17 +429,19 @@
 				in_range_mob.create_chat_message(mob, raw_message = "(LOOC: [msg])", runechat_flags = OOC_MESSAGE)
 
 	for(var/client/recv_staff AS in GLOB.admins)
-		if(!check_other_rights(recv_staff, R_ADMIN, FALSE) && !is_mentor(recv_staff))
+		if(!check_other_rights(recv_staff, R_ADMIN|R_MENTOR, FALSE))
 			continue
-		if(!recv_staff.prefs.hear_looc_anywhere_as_staff)
+		if(!recv_staff.prefs.hear_ooc_anywhere_as_staff)
 			continue
-		if(is_mentor(recv_staff) && !isobserver(recv_staff.mob))
-			continue // If we are a mentor, only hear LOOC from anywhere as a ghost
 		if(recv_staff.mob == mob)
 			continue
 
+		var/display_name = "[ADMIN_TPMONTY(mob)]"
+		if(holder?.fakekey) // Show their fakekey in addition to real key + buttons if they have one
+			display_name = "[span_tooltip("Stealth key", "'[holder.fakekey]'")] ([display_name])"
+
 		if(recv_staff.prefs.toggles_chat & CHAT_LOOC)
-			to_chat(recv_staff, span_looc_heard_staff("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing LOOC from anywhere enabled.", "LOOC")]: [ADMIN_TPMONTY(mob)]: [span_message("[msg]")]"))
+			to_chat(recv_staff, span_looc_heard_staff("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "LOOC")]: [display_name]: [span_message("[msg]")]"))
 
 /client/verb/motd()
 	set name = "MOTD"
@@ -460,7 +456,7 @@
 
 /client/verb/stop_sounds()
 	set name = "Stop Sounds"
-	set category = "OOC"
+	set category = "OOC.Fix"
 	set desc = "Stop Current Sounds"
 
 	SEND_SOUND(src, sound(null))
@@ -497,7 +493,7 @@
 
 /client/verb/fit_viewport()
 	set name = "Fit Viewport"
-	set category = "OOC"
+	set category = "OOC.Fix"
 	set desc = "Fit the width of the map window to match the viewport"
 
 	// Fetch aspect ratio
@@ -573,7 +569,7 @@
 	if(fully_created)
 		INVOKE_ASYNC(src, VERB_REF(fit_viewport))
 	else //Delayed to avoid wingets from Login calls.
-		addtimer(CALLBACK(src, VERB_REF(fit_viewport), 1 SECONDS))
+		addtimer(CALLBACK(src, VERB_REF(fit_viewport)), 1 SECONDS)
 
 /client/verb/policy()
 	set name = "Show Policy"
@@ -621,7 +617,7 @@
 
 /client/verb/ping()
 	set name = "Ping"
-	set category = "OOC"
+	set category = "OOC.Fix"
 	winset(src, null, "command=.display_ping+[world.time + world.tick_lag * TICK_USAGE_REAL / 100]")
 
 /client/verb/fix_stat_panel()
@@ -629,3 +625,76 @@
 	set hidden = TRUE
 
 	init_verbs()
+
+/client/verb/select_ignore()
+	set name = "Ignore"
+	set category = "OOC"
+	set desc ="Ignore a player's messages on the OOC channel"
+
+	var/list/players = list()
+
+	// Use keys and fakekeys for the same purpose
+	var/displayed_key = ""
+
+	for(var/client/C in GLOB.clients)
+		if(C == src)
+			continue
+		if((C.key in prefs.ignoring) && !C.holder?.fakekey)
+			continue
+		if(C.holder?.fakekey in prefs.ignoring)
+			continue
+		if(C.holder?.fakekey)
+			displayed_key = C.holder.fakekey
+		else
+			displayed_key = C.key
+
+		// Check if both we and the player are ghosts and they're not using a fakekey
+		if(isobserver(mob) && isobserver(C.mob) && !C.holder?.fakekey)
+			players["[displayed_key](ghost)"] = displayed_key
+		else
+			players[displayed_key] = displayed_key
+
+	if(!length(players))
+		to_chat(src, span_infoplain("There are no other players you can ignore!"))
+		return
+
+	players = sort_list(players)
+
+	var/selection = tgui_input_list(src, "Select a player", "Ignore", players)
+
+	if(isnull(selection) || !(selection in players))
+		return
+
+	selection = players[selection]
+
+	if(selection in prefs.ignoring)
+		to_chat(src, span_infoplain("You are already ignoring [selection]!"))
+		return
+
+	prefs.ignoring.Add(selection)
+	prefs.save_preferences()
+
+	to_chat(src, span_infoplain("You are now ignoring [selection] on the OOC channel."))
+
+/client/verb/select_unignore()
+	set name = "Unignore"
+	set category = "OOC"
+	set desc = "Stop ignoring a player's messages on the OOC channel"
+
+	if(!length(prefs.ignoring))
+		to_chat(src, span_infoplain("You haven't ignored any players!"))
+		return
+
+	var/selection = tgui_input_list(src, "Select a player", "Unignore", prefs.ignoring)
+
+	if(isnull(selection))
+		return
+
+	if(!(selection in prefs.ignoring))
+		to_chat(src, span_infoplain("You are not ignoring [selection]!"))
+		return
+
+	prefs.ignoring.Remove(selection)
+	prefs.save_preferences()
+
+	to_chat(src, span_infoplain("You are no longer ignoring [selection] on the OOC channel."))

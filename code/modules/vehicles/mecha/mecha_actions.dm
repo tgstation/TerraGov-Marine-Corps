@@ -161,3 +161,36 @@
 		if(!istype(chassis.equip_by_category[i], /obj/item/mecha_parts/mecha_equipment))
 			continue
 		INVOKE_ASYNC(chassis.equip_by_category[i], TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, attempt_rearm), owner)
+
+/datum/action/vehicle/sealed/mecha/repairpack
+	name = "Use Repairpack"
+	action_icon_state = "mech_damtype_toxin" // todo kuro needs to make an icon for this
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_REPAIRPACK,
+	)
+
+/datum/action/vehicle/sealed/mecha/repairpack/action_activate(trigger_flags)
+	if(!can_repair())
+		return
+
+	chassis.balloon_alert(owner, "Repairing...")
+	if(!do_after(owner, 10 SECONDS, NONE, chassis, extra_checks=CALLBACK(src, PROC_REF(can_repair))))
+		return
+	chassis.stored_repairpacks--
+	// does not count as actual repairs for end of round because its annoying to decouple from normal repair and this isnt representative of a real repair
+	chassis.repair_damage(chassis.max_integrity)
+	var/obj/vehicle/sealed/mecha/combat/greyscale/greyscale = chassis
+	if(!istype(greyscale))
+		return
+	for(var/limb_key in greyscale.limbs)
+		var/datum/mech_limb/limb = greyscale.limbs[limb_key]
+		limb?.do_repairs(initial(limb.part_health))
+
+///checks whether we can still repair this mecha
+/datum/action/vehicle/sealed/mecha/repairpack/proc/can_repair()
+	if(!owner || !chassis || !(owner in chassis.occupants))
+		return FALSE
+	if(!chassis.stored_repairpacks)
+		chassis.balloon_alert(owner, "No repairpacks")
+		return FALSE
+	return TRUE

@@ -306,6 +306,7 @@
 		simple_status_hud.icon_state = ""
 		infection_hud.icon_state = "robot"
 
+	var/is_bot = has_ai()
 	switch(stat)
 		if(DEAD)
 			simple_status_hud.icon_state = ""
@@ -337,8 +338,12 @@
 			return TRUE
 		if(UNCONSCIOUS)
 			if(!client) //Nobody home.
-				simple_status_hud.icon_state = "afk"
-				status_hud.icon_state = "afk"
+				if(is_bot)
+					simple_status_hud.icon_state = "ai_mob"
+					status_hud.icon_state = "ai_mob"
+				else
+					simple_status_hud.icon_state = "afk"
+					status_hud.icon_state = "afk"
 				return TRUE
 			if(IsUnconscious()) //Should hopefully get out of it soon.
 				simple_status_hud.icon_state = "knockout"
@@ -349,8 +354,12 @@
 			return TRUE
 		if(CONSCIOUS)
 			if(!key) //Nobody home. Shouldn't affect aghosting.
-				simple_status_hud.icon_state = "afk"
-				status_hud.icon_state = "afk"
+				if(is_bot)
+					simple_status_hud.icon_state = "ai_mob"
+					status_hud.icon_state = "ai_mob"
+				else
+					simple_status_hud.icon_state = "afk"
+					status_hud.icon_state = "afk"
 				return TRUE
 			if(IsParalyzed()) //I've fallen and I can't get up.
 				simple_status_hud.icon_state = "knockdown"

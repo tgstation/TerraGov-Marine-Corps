@@ -28,6 +28,8 @@
 
 	///sound file to play when this weapon you know, fires
 	var/fire_sound = list('sound/weapons/guns/fire/tank_cannon1.ogg', 'sound/weapons/guns/fire/tank_cannon2.ogg')
+	///sound to play when mounted on something with a breech object/interior for the users
+	var/interior_fire_sound = 'sound/vehicles/weapons/ltb_fire_interior.ogg'
 	///Whether freq vary is applied to fire_sound
 	var/fire_sound_vary = TRUE
 	///Tracks windups
@@ -201,7 +203,11 @@
 		chassis.add_overlay(chassis.secondary_weapon_overlay)
 
 	do_fire(source_turf)
-	playsound(chassis, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME, fire_sound_vary)
+	// if we have a interior fire sound and an interior area we use this instead to make the breech play a sound
+	var/atom/sound_play_loc = interior_fire_sound && chassis.interior ? chassis : src
+	playsound(sound_play_loc, islist(fire_sound) ? pick(fire_sound):fire_sound, GUN_FIRE_SOUND_VOLUME, fire_sound_vary)
+	if(interior_fire_sound)
+		chassis.play_interior_sound(chassis.interior.breech, islist(interior_fire_sound) ? pick(interior_fire_sound):interior_fire_sound, 40, fire_sound_vary)
 	chassis.log_message("Fired from [name], targeting [current_target] at [AREACOORD(current_target)].", LOG_ATTACK)
 
 	ammo.current_rounds--
@@ -257,6 +263,12 @@
 	if(ammo)
 		eject_ammo()
 	ammo = popleft(ammo_magazine)
+
+	if(!ammo)
+		for(var/mob/occupant AS in chassis.occupants)
+			occupant.hud_used.update_ammo_hud(src, list(hud_state_empty, hud_state_empty), 0)
+		return
+
 	for(var/mob/occupant AS in chassis.occupants)
 		occupant.hud_used.update_ammo_hud(src, list(ammo.default_ammo.hud_state, ammo.default_ammo.hud_state_empty), ammo.current_rounds)
 
@@ -311,6 +323,7 @@
 	desc = "A robotically controlled minigun that spews lead."
 	icon_state = "cupola"
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
+	interior_fire_sound = null
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	armored_weapon_flags = MODULE_SECONDARY
@@ -327,6 +340,7 @@
 	desc = "A hefty, large caliber chaingun"
 	icon_state = "ltaap_chaingun"
 	fire_sound = 'sound/weapons/guns/fire/tank_minigun_loop.ogg'
+	interior_fire_sound = null
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	ammo = /obj/item/ammo_magazine/tank/ltaap_chaingun
@@ -342,6 +356,7 @@
 	desc = "A double barrelled cannon which can rapidly deploy utility packages to the battlefield."
 	icon_state = "APC uninstalled dualcannon"
 	fire_sound = 'sound/weapons/guns/fire/tank_smokelauncher.ogg'
+	interior_fire_sound = null
 	ammo = /obj/item/ammo_magazine/tank/tank_slauncher
 	accepted_ammo = list(
 		/obj/item/ammo_magazine/tank/tank_slauncher,
@@ -355,6 +370,7 @@
 	desc = "A large, vehicle mounted flamer. This one is capable of spraying it's payload due to a less solid mix."
 	icon_state = "sflamer"
 	fire_sound = "gun_flamethrower"
+	interior_fire_sound = null
 	ammo = /obj/item/ammo_magazine/tank/secondary_flamer_tank
 	armored_weapon_flags = MODULE_SECONDARY
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -371,6 +387,7 @@
 	desc = "A single-shot, homing, vehicle-mounted TOW-III launcher designed for precision strikes against armored targets. Equipped with IFF."
 	icon_state = "seeker"
 	fire_sound = SFX_RPG_FIRE
+	interior_fire_sound = null
 	armored_weapon_flags = MODULE_SECONDARY
 	ammo = /obj/item/ammo_magazine/tank/tow_missile
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/tow_missile)
@@ -386,6 +403,7 @@
 	desc = "A TGMC secondary vehicle-mounted multiple launch rocket system with a total of 6 homing microrockets. Capable of unleashing its entire payload in rapid succession."
 	icon_state = "secondary_rocket_multiple"
 	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
+	interior_fire_sound = null
 	armored_weapon_flags = MODULE_SECONDARY
 	ammo = /obj/item/ammo_magazine/tank/microrocket_rack
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/microrocket_rack)
@@ -402,6 +420,7 @@
 	desc = "A crackling energy weapon, a slightly scaled up model of the classic BFG 9000. Point at people who killed your rabbit."
 	icon_state = "bfg"
 	fire_sound = 'sound/weapons/guns/fire/tank_bfg.ogg'
+	interior_fire_sound = 'sound/vehicles/weapons/particle_fire_interior.ogg'
 	armored_weapon_flags = MODULE_PRIMARY|MODULE_NOT_FABRICABLE
 	ammo = /obj/item/ammo_magazine/tank/bfg
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/bfg)

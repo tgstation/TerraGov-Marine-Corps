@@ -28,6 +28,8 @@
 	var/harmful = FALSE
 	///Sound file: Sound to play when this equipment is destroyed while still attached to the mech
 	destroy_sound = 'sound/mecha/critdestr.ogg'
+	///The weight that we contribute to the max limit, if this is equipped to a greyscale mech
+	var/weight = 10
 
 /obj/item/mecha_parts/mecha_equipment/Destroy()
 	if(chassis)
@@ -91,6 +93,16 @@
 		return FALSE
 	if(!ignore_cooldown && TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return FALSE
+	if(!istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
+		return TRUE
+	var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
+	var/datum/mech_limb/arm/holding
+	if(grey.equip_by_category[MECHA_R_ARM] == src)
+		holding = grey.limbs[MECH_GREY_R_ARM]
+	else
+		holding = grey.limbs[MECH_GREY_L_ARM]
+	if(holding.disabled)
+		return FALSE
 	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/proc/action(mob/source, atom/target, list/modifiers)
@@ -134,6 +146,15 @@
 			if(mech.equip_by_category[MECHA_L_ARM])
 				return FALSE
 		return TRUE
+	///tgmc start
+	if(mech.mech_type & EXOSUIT_MODULE_GREYSCALE)
+		var/obj/vehicle/sealed/mecha/combat/greyscale/greyscale = mech
+		var/datum/mech_limb/legs/legs = greyscale.limbs[MECH_GREY_LEGS]
+		if(!legs)
+			return FALSE
+		if((weight + greyscale.weight) > legs.max_weight)
+			return FALSE
+	/// tgmc end
 	return length(mech.equip_by_category[equipment_slot]) < mech.max_equip_by_category[equipment_slot]
 
 /obj/item/mecha_parts/mecha_equipment/proc/attach(obj/vehicle/sealed/mecha/M, attach_right = FALSE)
