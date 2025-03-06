@@ -64,6 +64,10 @@
 	icon_state = "laser_target3"
 	layer = ABOVE_FLY_LAYER
 
+/obj/effect/overlay/blinking_laser/Initialize(mapload)
+	. = ..()
+	notify_ai_hazard()
+
 //CAS:
 
 //Minirockets

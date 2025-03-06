@@ -115,7 +115,7 @@
 
 ///Returns the radius around this considered a hazard
 /atom/proc/get_ai_hazard_radius(mob/living/victim)
-	return null //null means no danger, vs 0 means stay off the hazard's turf
+	return 0 //null means no danger, vs 0 means stay off the hazard's turf
 
 /obj/item/explosive/grenade/get_ai_hazard_radius(mob/living/victim)
 	if(!dangerous)
@@ -130,6 +130,9 @@
 	if((victim.get_soft_armor(BIO) >= 100))
 		return null
 	return smokeradius
+
+/obj/item/explosive/grenade/globadier/get_ai_hazard_radius(mob/living/victim)
+	return 1
 
 /obj/fire/get_ai_hazard_radius(mob/living/victim)
 	if((victim.get_soft_armor(FIRE) >= 100))

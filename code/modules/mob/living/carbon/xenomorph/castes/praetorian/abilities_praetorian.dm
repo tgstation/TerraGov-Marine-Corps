@@ -723,6 +723,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "abduct_hook"
 
+/obj/effect/xeno/abduct_warning/Initialize(mapload)
+	. = ..()
+	notify_ai_hazard()
+
 // ***************************************
 // *********** Dislocate
 // ***************************************
