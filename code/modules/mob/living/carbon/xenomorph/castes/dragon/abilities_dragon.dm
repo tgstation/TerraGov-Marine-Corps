@@ -404,11 +404,11 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAGON_BREATH,
 	)
 	width = 1
-	height = 7
+	height = 9
 	do_after_sound = 'sound/effects/alien/dragon/dragonbreath_start.ogg'
 	do_after_length = 3 SECONDS
-	/// Particle holder for visual effects.
-	var/obj/effect/abstract/particle_holder/particle_holder
+	/// The visual effect to delete early if needed.
+	var/obj/effect/temp_visual/dragon/fire_breath/visual_effect
 	/// The timer id for the timer that ends the ability after a period of time.
 	var/ability_timer
 	/// The timer id for the timer that occurs every tick.
@@ -456,21 +456,7 @@
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 
-	particle_holder = new(owner, /particles/dragon_breath)
-	switch(xeno_owner.dir)
-		if(NORTH)
-			particle_holder.particles.position = list(-xeno_owner.pixel_x + 0, 56)
-			particle_holder.particles.gravity = list(0, 20)
-		if(EAST)
-			particle_holder.particles.position = list(-xeno_owner.pixel_x + 56, 48)
-			particle_holder.particles.gravity = list(20, -4)
-		if(SOUTH)
-			particle_holder.particles.position = list(-xeno_owner.pixel_x + 0, 32)
-			particle_holder.particles.gravity = list(0, -20)
-		if(WEST)
-			particle_holder.particles.position = list(-xeno_owner.pixel_x - 56, 48)
-			particle_holder.particles.gravity = list(-20, -4)
-
+	visual_effect = new /obj/effect/temp_visual/dragon/fire_breath(get_step(xeno_owner, target), get_cardinal_dir(xeno_owner, target))
 	ability_timer = addtimer(CALLBACK(src, PROC_REF(end_ability)), 10 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 	tick_effects(get_turf(target), affected_turfs, list())
 	return TRUE
@@ -480,22 +466,6 @@
 	if(!ability_timer)
 		return
 	end_ability()
-
-/// Deals damage and creates a melting fire turf on the selected turfs.
-/datum/action/ability/activable/xeno/backhand/dragon_breath/proc/turf_effects(turf/target_turf)
-	refresh_or_create_fire(target_turf)
-	for(var/atom/affected_atom AS in target_turf)
-		if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
-			continue
-		if(isxeno(affected_atom))
-			continue
-		if(!isliving(affected_atom))
-			continue
-		var/mob/living/affected_living = affected_atom
-		if(affected_living.stat == DEAD)
-			continue
-		affected_living.take_overall_damage(get_damage(), BURN, FIRE, updating_health = TRUE, penetration = 30, max_limbs = 5)
-		continue
 
 /// Performs the ability at a pace similar of CAS which is one width length at a length.
 /datum/action/ability/activable/xeno/backhand/dragon_breath/proc/tick_effects(turf/target_turf, list/turf/affected_turfs, list/turf/affected_turfs_in_order)
@@ -516,7 +486,6 @@
 		if(!line_of_sight(xeno_owner, affected_turf, max(width, height)))
 			continue
 		refresh_or_create_fire(affected_turf)
-		new /obj/effect/temp_visual/xeno_fireball_explosion(affected_turf)
 		for(var/atom/affected_atom AS in affected_turf)
 			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
 				continue
@@ -545,8 +514,8 @@
 /datum/action/ability/activable/xeno/backhand/dragon_breath/proc/end_ability()
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	qdel(particle_holder)
-	particle_holder = null
+	qdel(visual_effect)
+	visual_effect = null
 	deltimer(ability_timer)
 	ability_timer = null
 	deltimer(tick_timer)
@@ -996,12 +965,12 @@
 		if(EAST)
 			pixel_x = 0
 			pixel_y = -48
-		if(WEST)
-			pixel_x = -96
-			pixel_y = -48
 		if(SOUTH)
 			pixel_x = -48
 			pixel_y = -96
+		if(WEST)
+			pixel_x = -96
+			pixel_y = -48
 	return ..()
 
 /obj/effect/temp_visual/dragon/directional/backhand
@@ -1015,6 +984,32 @@
 /obj/effect/temp_visual/dragon/directional/tail_swipe
 	icon_state = "tail_swipe"
 	duration = 0.64 SECONDS
+
+/obj/effect/temp_visual/dragon/fire_breath
+	icon = 'icons/Xeno/300x300.dmi'
+	icon_state = "firebreath_hold"
+	layer = BELOW_MOB_LAYER
+	randomdir = FALSE
+	duration = 10 SECONDS
+
+/obj/effect/temp_visual/dragon/fire_breath/Initialize(mapload, direction)
+	if(!direction)
+		return INITIALIZE_HINT_QDEL
+	dir = direction
+	switch(dir)
+		if(NORTH)
+			pixel_x = -128
+			pixel_y = 32
+		if(EAST)
+			pixel_x = 32
+			pixel_y = -128
+		if(SOUTH)
+			pixel_x = -128
+			pixel_y = -300
+		if(WEST)
+			pixel_x = -332
+			pixel_y = -128
+	return ..()
 
 /obj/effect/temp_visual/dragon/fly
 	icon = 'icons/effects/96x144.dmi'
@@ -1098,19 +1093,3 @@
 		if(EAST)
 			pixel_x += 56
 			pixel_y += 48
-
-/particles/dragon_breath
-	icon = 'icons/obj/items/projectiles.dmi'
-	icon_state = "fire_puff"
-	width = 1000
-	height = 500
-	count = 100
-	spawning = 8
-	gravity = list(0, -20)
-	gradient = list("#00f7ff")
-	lifespan = 0.5 SECONDS
-	fade = 0.3 SECONDS
-	fadein = 0.3 SECONDS
-	position = list(0, -10)
-	velocity = generator(GEN_CIRCLE, 5, 10)
-	drift = generator(GEN_CIRCLE, 0, 9)
