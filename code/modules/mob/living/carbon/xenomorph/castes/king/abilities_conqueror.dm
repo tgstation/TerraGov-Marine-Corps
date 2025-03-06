@@ -146,7 +146,7 @@
 	alpha = 200
 	color = COLOR_VIOLET
 	layer = BELOW_MOB_LAYER
-	duration = 0.5 SECONDS
+	duration = 5
 	anchored = FALSE
 	animate_movement = SLIDE_STEPS
 	randomdir = FALSE
@@ -236,8 +236,7 @@
 		adjust_particles(new_dir = xeno_owner.dir)
 	RegisterSignals(xeno_owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_DO_RESIST, COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST), PROC_REF(adjust_particles))
 	RegisterSignal(xeno_owner, COMSIG_MOB_CLICKON, PROC_REF(check_range)) // Happens before the xeno actually attacks.
-	RegisterSignal(xeno_owner, COMSIG_MOB_PRE_UNARMED_ATTACK, PROC_REF(before_attack))
-	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(add_to_attack))
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_EARLY_UNARMED_ATTACK, PROC_REF(add_to_attack))
 	RegisterSignals(xeno_owner, list(COMSIG_MOB_DEATH), PROC_REF(disable_ability))
 	UnregisterSignal(xeno_owner, COMSIG_MOB_REVIVE)
 
@@ -247,7 +246,7 @@
 	xeno_owner.attack_sound = initial(xeno_owner.attack_sound)
 	xeno_owner.attack_effect = initial(xeno_owner.attack_effect)
 	particle_holder?.alpha = 0
-	UnregisterSignal(xeno_owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_DO_RESIST, COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST, COMSIG_MOB_CLICKON, COMSIG_MOB_PRE_UNARMED_ATTACK, COMSIG_XENOMORPH_POSTATTACK_LIVING, COMSIG_MOB_DEATH))
+	UnregisterSignal(xeno_owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_DO_RESIST, COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST, COMSIG_MOB_CLICKON, COMSIG_XENOMORPH_EARLY_UNARMED_ATTACK, COMSIG_MOB_DEATH))
 	RegisterSignal(xeno_owner, COMSIG_MOB_REVIVE, PROC_REF(enable_ability))
 	reset_combo()
 
@@ -296,32 +295,16 @@
 	playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_enhanced_charge.ogg', 8, TRUE)
 	step_towards(xeno_owner, carbon_target, CONQUEROR_WILL_DASH_RANGE - 1)
 
-/// Checks the targeted atom. If it isn't something we can hurt, it'll check the tile instead, and if there's an eligible target in it, it'll attack them instead.
-/datum/action/ability/activable/xeno/conqueror_will/proc/before_attack(datum/source, atom/atom_target, params)
-	SIGNAL_HANDLER
-	if(xeno_owner.a_intent != INTENT_HARM)
-		return
-	if(!can_use_action(TRUE))
-		return
-	if(isturf(atom_target))
-		for(var/mob/potential_mob in get_turf(atom_target))
-			if(potential_mob.issamexenohive(xeno_owner) || potential_mob.stat == DEAD)
-				continue
-			if(iscarbon(potential_mob))
-				atom_target = potential_mob
-				break
-	if(!iscarbon(atom_target))
-		return
-	xeno_owner.UnarmedAttack(atom_target, TRUE, params)
-	return CANCEL_UNARMED_ATTACK
-
 /// Adds bonuses to normal attacks, usually replacing visuals and sound effects, and builds up combos if the ability isn't on cooldown.
-/datum/action/ability/activable/xeno/conqueror_will/proc/add_to_attack(datum/source, mob/living/living_target, attack_damage, damage_mod, isrightclick)
+/datum/action/ability/activable/xeno/conqueror_will/proc/add_to_attack(datum/source, mob/living/living_target, has_proximity, modifiers)
 	SIGNAL_HANDLER
 	if(!iscarbon(living_target))
 		return
 	if(action_cooldown_check() && xeno_owner.selected_ability == src)
-		combo_streak += isrightclick ? "R" : "L"
+		if(islist(modifiers) && modifiers["right"])
+			combo_streak += "R"
+		else
+			combo_streak += "L"
 		if(display_combos)
 			xeno_owner.hud_used?.combo_display.update_icon_state(combo_streak)
 	if(length(combo_streak) < CONQUEROR_WILL_MAX_COMBO)
@@ -487,7 +470,7 @@
 
 /obj/effect/temp_visual/conqueror/hook/jab
 	icon_state = "conqueror_jab"
-	duration = 3.6
+	duration = 4
 
 /obj/effect/temp_visual/conqueror/hook/jab/Initialize(mapload)
 	. = ..()
@@ -507,7 +490,7 @@
 
 /obj/effect/temp_visual/conqueror/hook/uppercut
 	icon_state = "conqueror_uppercut"
-	duration = 4.4
+	duration = 5
 	pixel_y = 2
 
 /obj/effect/temp_visual/conqueror/uppercut_landing
@@ -522,7 +505,7 @@
 
 /obj/effect/temp_visual/conqueror/hook/kick
 	icon_state = "conqueror_kick"
-	duration = 4.4
+	duration = 5
 
 
 // ***************************************
@@ -732,14 +715,14 @@
 /obj/effect/temp_visual/conqueror/reappearance
 	icon = 'icons/effects/128x128.dmi'
 	icon_state = "reappearance"
-	duration = 5.9
+	duration = 6
 	pixel_x = -49
 	pixel_y = -30
 
 /obj/effect/temp_visual/conqueror/domination
 	icon = 'icons/effects/conqueror_domination.dmi'
 	icon_state = "domination"
-	duration = 6.4
+	duration = 7
 	pixel_x = -70
 	pixel_y = -28
 

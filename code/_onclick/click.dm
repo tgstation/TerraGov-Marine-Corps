@@ -147,8 +147,7 @@
 		if(W)
 			W.melee_attack_chain(src, A, params, modifiers["right"])
 		else
-			if(!(SEND_SIGNAL(src, COMSIG_MOB_PRE_UNARMED_ATTACK, A, modifiers) & CANCEL_UNARMED_ATTACK))
-				UnarmedAttack(A, TRUE, modifiers)
+			UnarmedAttack(A, TRUE, modifiers)
 	else
 		if(W)
 			var/proximity = A.Adjacent(src)
