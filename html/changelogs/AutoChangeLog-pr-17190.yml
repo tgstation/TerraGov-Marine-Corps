@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed various pass_flag related bugs"
+  - refactor: "refactored pass_flags to be managed via traits"
