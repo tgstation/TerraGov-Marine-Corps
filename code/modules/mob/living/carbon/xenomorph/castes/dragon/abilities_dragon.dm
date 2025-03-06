@@ -352,6 +352,7 @@
 			affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
 			continue
 	playsound(xeno_owner, 'sound/effects/alien/behemoth/seismic_fracture_explosion.ogg', 50, 1)
+	xeno_owner.gain_plasma(xeno_owner.xeno_caste.plasma_max)
 	succeed_activate()
 	add_cooldown()
 
