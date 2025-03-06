@@ -65,6 +65,7 @@
 
 /obj/effect/temp_visual/behemoth/warning/Initialize(mapload, warning_duration)
 	. = ..()
+	notify_ai_hazard()
 	if(warning_duration)
 		duration = warning_duration
 	animate(src, time = duration - 0.5 SECONDS)
