@@ -7,9 +7,13 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BACKHAND,
 	)
-	/// The width inputted into `get_forward_square_to_target` used to telegraph and to get targets.
+	/// The sound that is played before the do_after, if any.
+	var/do_after_sound
+	/// The length of the do_after.
+	var/do_after_length = 1.2 SECONDS
+	/// The width inputted into `get_forward_square` used to telegraph and to get targets.
 	var/width = 1
-	/// The height inputted into `get_forward_square_to_target` used to telegraph and to get targets.
+	/// The height inputted into `get_forward_square` used to telegraph and to get targets.
 	var/height = 2
 	/// Should they turn around during the initial do_after? Only for regular ability.
 	var/turn_around = FALSE
@@ -30,19 +34,24 @@
 		return
 
 	xeno_owner.face_atom(target)
-	var/list/turf/affected_turfs = get_forward_square_to_target(xeno_owner, width, height)
+	var/list/turf/affected_turfs = get_forward_square(xeno_owner, width, height)
 	for(var/turf/affected_turf AS in affected_turfs)
 		new /obj/effect/temp_visual/dragon/warning(affected_turf, 1.2 SECONDS)
 	if(turn_around)
 		xeno_owner.setDir(turn(xeno_owner.dir, 180))
-
+	if(do_after_sound)
+		playsound(xeno_owner, do_after_sound, 50, 1)
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	if(was_successful)
-		handle_regular_ability(target, affected_turfs)
+		xeno_owner.face_atom(target)
+		if(turn_around)
+			xeno_owner.setDir(turn(xeno_owner.dir, 180))
+		if(handle_regular_ability(target, get_forward_square(xeno_owner, width, height)))
+			return
 	succeed_activate()
 	add_cooldown()
 
@@ -385,7 +394,7 @@
 	xeno_owner.abstract_move(newloc)
 	return
 
-/datum/action/ability/activable/xeno/dragon_breath
+/datum/action/ability/activable/xeno/backhand/dragon_breath
 	name = "Dragon Breath"
 	action_icon_state = "dragon_breath"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
@@ -394,189 +403,161 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAGON_BREATH,
 	)
-	/// Current target that the xeno is targeting. This is for aiming.
-	var/current_target
-	/// The timer id for the timer that ends the ability.
+	width = 1
+	height = 7
+	do_after_sound = 'sound/effects/alien/dragon/dragonbreath_start.ogg'
+	do_after_length = 3 SECONDS
+	/// Particle holder for visual effects.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	/// The timer id for the timer that ends the ability after a period of time.
 	var/ability_timer
-	/// The timer id for the timer that gives plasma every second.
-	var/plasma_timer
+	/// The timer id for the timer that occurs every tick.
+	var/tick_timer
 
-/datum/action/ability/activable/xeno/dragon_breath/can_use_ability(atom/A, silent, override_flags)
-	if(xeno_owner.status_flags & INCORPOREAL)
+/datum/action/ability/activable/xeno/backhand/dragon_breath/can_use_ability(atom/A, silent, override_flags)
+	if(ability_timer)
 		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
+			xeno_owner.balloon_alert(xeno_owner, "already breathing fire")
 		return FALSE
 	return ..()
 
-/datum/action/ability/activable/xeno/dragon_breath/use_ability(atom/target)
-	if(ability_timer)
-		return // The auto fire component handles the shooting.
 
-	var/datum/action/ability/activable/xeno/grab/grab_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/grab]
-	var/mob/living/carbon/human/grabbed_human = grab_ability?.grabbed_human
-	if(grabbed_human)
-		xeno_owner.face_atom(grabbed_human)
-		xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
-		xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-		xeno_owner.visible_message(span_danger("[xeno_owner] inhales and turns their sights to [grabbed_human]..."))
-		if(do_after(xeno_owner, 3 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
-			xeno_owner.stop_pulling()
-			xeno_owner.visible_message(span_danger("[xeno_owner] exhales a massive fireball right ontop of [grabbed_human]!"))
-			new /obj/effect/temp_visual/dragon/grab_fire(get_turf(grabbed_human))
-			grabbed_human.emote("scream")
-			grabbed_human.Shake(duration = 0.5 SECONDS) // Must stop pulling first for Shake to work.
-			playsound(get_turf(xeno_owner), 'sound/effects/alien/fireball.ogg', 50, 1)
-			new /obj/effect/temp_visual/xeno_fireball_explosion(get_turf(grabbed_human))
-			var/datum/status_effect/stacking/melting_fire/debuff = grabbed_human.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-			if(debuff)
-				debuff.add_stacks(10)
-			else
-				grabbed_human.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 10)
-			grabbed_human.take_overall_damage(200 * xeno_owner.xeno_melee_damage_modifier, BURN, FIRE, max_limbs = length(grabbed_human.get_damageable_limbs()), updating_health = TRUE)
-			grabbed_human.knockback(xeno_owner, 5, 1)
-			xeno_owner.gain_plasma(250)
-		xeno_owner.move_resist = initial(xeno_owner.move_resist)
-		xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-		succeed_activate()
-		add_cooldown()
-		return
+/datum/action/ability/activable/xeno/backhand/dragon_breath/get_damage()
+	return 20 * xeno_owner.xeno_melee_damage_modifier
 
-	playsound(get_turf(xeno_owner), 'sound/effects/alien/dragon/dragonbreath_start.ogg', 75, TRUE)
+/datum/action/ability/activable/xeno/backhand/dragon_breath/handle_grabbed_human(mob/living/carbon/human/grabbed_human)
+	xeno_owner.face_atom(grabbed_human)
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
+	xeno_owner.visible_message(span_danger("[xeno_owner] inhales and turns their sights to [grabbed_human]..."))
+	if(do_after(xeno_owner, 3 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
+		xeno_owner.stop_pulling()
+		xeno_owner.visible_message(span_danger("[xeno_owner] exhales a massive fireball right ontop of [grabbed_human]!"))
+		new /obj/effect/temp_visual/dragon/grab_fire(get_turf(grabbed_human))
+		grabbed_human.emote("scream")
+		grabbed_human.Shake(duration = 0.5 SECONDS) // Must stop pulling first for Shake to work.
+		playsound(get_turf(xeno_owner), 'sound/effects/alien/fireball.ogg', 50, 1)
+		new /obj/effect/temp_visual/xeno_fireball_explosion(get_turf(grabbed_human))
+		var/datum/status_effect/stacking/melting_fire/debuff = grabbed_human.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+		if(debuff)
+			debuff.add_stacks(10)
+		else
+			grabbed_human.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 10)
+		grabbed_human.take_overall_damage(get_damage() * 10, BURN, FIRE, max_limbs = length(grabbed_human.get_damageable_limbs()), updating_health = TRUE)
+		grabbed_human.knockback(xeno_owner, 5, 1)
+		xeno_owner.gain_plasma(250)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	if(!was_successful)
-		return
+	succeed_activate()
+	add_cooldown()
+	return TRUE
+
+/datum/action/ability/activable/xeno/backhand/dragon_breath/handle_regular_ability(atom/target, list/turf/affected_turfs)
+	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+
+	particle_holder = new(owner, /particles/dragon_breath)
+	switch(xeno_owner.dir)
+		if(NORTH)
+			particle_holder.particles.position = list(-xeno_owner.pixel_x + 0, 56)
+			particle_holder.particles.gravity = list(0, 20)
+		if(EAST)
+			particle_holder.particles.position = list(-xeno_owner.pixel_x + 56, 48)
+			particle_holder.particles.gravity = list(20, -4)
+		if(SOUTH)
+			particle_holder.particles.position = list(-xeno_owner.pixel_x + 0, 32)
+			particle_holder.particles.gravity = list(0, -20)
+		if(WEST)
+			particle_holder.particles.position = list(-xeno_owner.pixel_x - 56, 48)
+			particle_holder.particles.gravity = list(-20, -4)
 
 	ability_timer = addtimer(CALLBACK(src, PROC_REF(end_ability)), 10 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
-	plasma_timer = addtimer(CALLBACK(src, PROC_REF(regenerate_plasma)), 1 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
-	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_BREATH, TRUE, 0, NONE, TRUE, 1)
-	xeno_owner.AddComponent(/datum/component/automatedfire/autofire, 0.05 SECONDS, _fire_mode = GUN_FIREMODE_AUTOMATIC, _callback_reset_fire = CALLBACK(src, PROC_REF(reset_fire)), _callback_fire = CALLBACK(src, PROC_REF(fire)))
-	RegisterSignal(xeno_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(end_ability)) // An alternative way to end the ability.
-	RegisterSignal(xeno_owner, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
-	RegisterSignal(xeno_owner, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
-	RegisterSignal(xeno_owner, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
+	tick_effects(get_turf(target), affected_turfs, list())
+	return TRUE
 
 /// Ends the ability early.
-/datum/action/ability/activable/xeno/dragon_breath/on_deselection()
+/datum/action/ability/activable/xeno/backhand/dragon_breath/on_deselection()
 	if(!ability_timer)
 		return
 	end_ability()
 
-/// Checks if the ability is still usable and is currently grabbing a human.
-/datum/action/ability/activable/xeno/dragon_breath/proc/grab_extra_check()
-	var/datum/action/ability/activable/xeno/grab/grab_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/grab]
-	var/mob/living/carbon/human/grabbed_human = grab_ability?.grabbed_human
-	if(!grabbed_human || !can_use_ability(grabbed_human, FALSE, ABILITY_USE_BUSY))
-		return FALSE
-	return TRUE
+/// Deals damage and creates a melting fire turf on the selected turfs.
+/datum/action/ability/activable/xeno/backhand/dragon_breath/proc/turf_effects(turf/target_turf)
+	refresh_or_create_fire(target_turf)
+	for(var/atom/affected_atom AS in target_turf)
+		if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
+			continue
+		if(isxeno(affected_atom))
+			continue
+		if(!isliving(affected_atom))
+			continue
+		var/mob/living/affected_living = affected_atom
+		if(affected_living.stat == DEAD)
+			continue
+		affected_living.take_overall_damage(get_damage(), BURN, FIRE, updating_health = TRUE, penetration = 30, max_limbs = 5)
+		continue
+
+/// Performs the ability at a pace similar of CAS which is one width length at a length.
+/datum/action/ability/activable/xeno/backhand/dragon_breath/proc/tick_effects(turf/target_turf, list/turf/affected_turfs, list/turf/affected_turfs_in_order)
+	xeno_owner.face_atom(target_turf)
+	playsound(xeno_owner, SFX_GUN_FLAMETHROWER, 50, 1)
+	xeno_owner.gain_plasma(1.5)
+
+	if(!length(affected_turfs_in_order))
+		var/turf/maximum_distance_turf = get_turf(xeno_owner)
+		for(var/i in 1 to height)
+			maximum_distance_turf = get_step(maximum_distance_turf, xeno_owner.dir)
+			affected_turfs_in_order += maximum_distance_turf
+			affected_turfs_in_order += get_step(maximum_distance_turf, turn(xeno_owner.dir, 90))
+			affected_turfs_in_order += get_step(maximum_distance_turf, turn(xeno_owner.dir, -90))
+	for(var/i = 1 to (1 + width*2))
+		var/turf/affected_turf = affected_turfs_in_order[1]
+		affected_turfs_in_order -= affected_turf
+		if(!line_of_sight(xeno_owner, affected_turf, max(width, height)))
+			continue
+		refresh_or_create_fire(affected_turf)
+		new /obj/effect/temp_visual/xeno_fireball_explosion(affected_turf)
+		for(var/atom/affected_atom AS in affected_turf)
+			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
+				continue
+			if(isxeno(affected_atom))
+				continue
+			if(!isliving(affected_atom))
+				continue
+			var/mob/living/affected_living = affected_atom
+			if(affected_living.stat == DEAD)
+				continue
+			affected_living.take_overall_damage(get_damage(), BURN, FIRE, updating_health = TRUE, penetration = 30, max_limbs = 5)
+			continue
+	tick_timer = addtimer(CALLBACK(src, PROC_REF(tick_effects), target_turf, affected_turfs, affected_turfs_in_order), 0.1 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+
+/// Creates a melting fire if it does not exist. If it does, refresh it and affect all atoms in the same turf.
+/datum/action/ability/activable/xeno/backhand/dragon_breath/proc/refresh_or_create_fire(turf/target_turf)
+	var/obj/fire/melting_fire/fire_in_turf = locate(/obj/fire/melting_fire) in target_turf.contents
+	if(!fire_in_turf)
+		new /obj/fire/melting_fire(target_turf)
+		return
+	fire_in_turf.burn_ticks = initial(fire_in_turf.burn_ticks)
+	for(var/something_in_turf in get_turf(fire_in_turf))
+		fire_in_turf.affect_atom(something_in_turf)
 
 /// Undoes everything associated with starting the ability.
-/datum/action/ability/activable/xeno/dragon_breath/proc/end_ability()
+/datum/action/ability/activable/xeno/backhand/dragon_breath/proc/end_ability()
+	xeno_owner.move_resist = initial(xeno_owner.move_resist)
+	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+	qdel(particle_holder)
+	particle_holder = null
 	deltimer(ability_timer)
 	ability_timer = null
-	deltimer(plasma_timer)
-	plasma_timer = null
-	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_BREATH)
-	qdel(xeno_owner.GetComponent(/datum/component/automatedfire/autofire))
-	UnregisterSignal(xeno_owner, list(COMSIG_LIVING_DO_RESIST, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEDOWN))
-	reset_fire()
+	deltimer(tick_timer)
+	tick_timer = null
 	succeed_activate()
 	add_cooldown()
-
-/// Gives 30 plasma to the ability owner and repeats itself.
-/datum/action/ability/activable/xeno/dragon_breath/proc/regenerate_plasma()
-	xeno_owner.gain_plasma(30)
-	deltimer(plasma_timer)
-	plasma_timer = addtimer(CALLBACK(src, PROC_REF(regenerate_plasma)), 1 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
-
-/// Starts the xeno firing.
-/datum/action/ability/activable/xeno/dragon_breath/proc/start_fire(datum/source, atom/object, turf/location, control, params, can_use_ability_flags)
-	SIGNAL_HANDLER
-	var/list/modifiers = params2list(params)
-	if(((modifiers["right"] || modifiers["middle"]) && (modifiers["shift"] || modifiers["ctrl"] || modifiers["left"])) || \
-	((modifiers["left"] && modifiers["shift"]) && (modifiers["ctrl"] || modifiers["middle"] || modifiers["right"])) || \
-	(modifiers["left"] && !modifiers["shift"]))
-		return
-	if(!can_use_ability(object, TRUE, can_use_ability_flags))
-		return fail_activate()
-	set_target(get_turf_on_clickcatcher(object, xeno_owner, params))
-	if(!current_target)
-		return
-
-	SEND_SIGNAL(xeno_owner, COMSIG_XENO_FIRE)
-	xeno_owner.client?.mouse_pointer_icon = 'icons/effects/xeno_target.dmi'
-
-/// Fires the projectile.
-/datum/action/ability/activable/xeno/dragon_breath/proc/fire()
-	playsound(get_turf(xeno_owner), SFX_GUN_FLAMETHROWER, 25, TRUE)
-
-	var/datum/ammo/xeno/dragon_spit/dragon_spit = GLOB.ammo_list[/datum/ammo/xeno/dragon_spit]
-	var/obj/projectile/dragon_proj = new /obj/projectile(get_turf(xeno_owner))
-	dragon_proj.generate_bullet(dragon_spit, dragon_spit.damage)
-	dragon_proj.def_zone = xeno_owner.get_limbzone_target()
-	dragon_proj.fire_at(current_target, xeno_owner, xeno_owner, dragon_spit.max_range, dragon_spit.shell_speed, get_angle_with_scatter(xeno_owner, current_target, dragon_spit.scatter, dragon_proj.p_x, dragon_proj.p_y))
-	dragon_proj.add_atom_colour("#00f7ff", FIXED_COLOR_PRIORITY)
-
-	if(can_use_ability(current_target) && xeno_owner.client)
-		succeed_activate()
-		return AUTOFIRE_CONTINUE
-	fail_activate()
-	return NONE
-
-/// Resets the autofire component.
-/datum/action/ability/activable/xeno/dragon_breath/proc/reset_fire()
-	set_target(null)
-	owner?.client?.mouse_pointer_icon = initial(owner.client.mouse_pointer_icon)
-
-/// Changes the current target.
-/datum/action/ability/activable/xeno/dragon_breath/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
-	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/xeno = owner
-	set_target(get_turf_on_clickcatcher(over_object, xeno, params))
-	xeno.face_atom(current_target)
-
-/// Sets the current target and registers for qdel to prevent hardels
-/datum/action/ability/activable/xeno/dragon_breath/proc/set_target(atom/object)
-	if(object == current_target || object == owner)
-		return
-	if(current_target)
-		UnregisterSignal(current_target, COMSIG_QDELETING)
-	current_target = object
-	if(current_target)
-		RegisterSignal(current_target, COMSIG_QDELETING, PROC_REF(clean_target))
-
-/// Cleans the current target in case of Hardel.
-/datum/action/ability/activable/xeno/dragon_breath/proc/clean_target()
-	SIGNAL_HANDLER
-	current_target = get_turf(current_target)
-
-/// Stops the Autofire component and resets the current cursor.
-/datum/action/ability/activable/xeno/dragon_breath/proc/stop_fire()
-	SIGNAL_HANDLER
-	owner?.client?.mouse_pointer_icon = initial(owner.client.mouse_pointer_icon)
-	SEND_SIGNAL(owner, COMSIG_XENO_STOP_FIRE)
-
-/datum/action/ability/activable/xeno/wind_current
-	name = "Wind Current"
-	action_icon_state = "wind_current"
-	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = "After a windup, deal high damage and a knockback to marines in front of you. This also clear any gas in front of you."
-	cooldown_duration = 20 SECONDS
-
-/datum/action/ability/activable/xeno/wind_current/can_use_ability(atom/A, silent, override_flags)
-	if(xeno_owner.status_flags & INCORPOREAL)
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
-		return FALSE
-	return ..()
 
 /datum/action/ability/activable/xeno/wind_current/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 
-	var/list/turf/impacted_turfs = get_forward_square_to_target(xeno_owner, 2, 5) // 5x5
+	var/list/turf/impacted_turfs = get_forward_square(xeno_owner, 2, 5) // 5x5
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.2 SECONDS)
 
@@ -673,7 +654,7 @@
 /datum/action/ability/activable/xeno/grab/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 
-	var/list/turf/impacted_turfs = get_forward_square_to_target(xeno_owner, 2, 2) // 5x2
+	var/list/turf/impacted_turfs = get_forward_square(xeno_owner, 2, 2) // 5x2
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.2 SECONDS)
 
@@ -1117,3 +1098,19 @@
 		if(EAST)
 			pixel_x += 56
 			pixel_y += 48
+
+/particles/dragon_breath
+	icon = 'icons/obj/items/projectiles.dmi'
+	icon_state = "fire_puff"
+	width = 1000
+	height = 500
+	count = 100
+	spawning = 8
+	gravity = list(0, -20)
+	gradient = list("#00f7ff")
+	lifespan = 0.5 SECONDS
+	fade = 0.3 SECONDS
+	fadein = 0.3 SECONDS
+	position = list(0, -10)
+	velocity = generator(GEN_CIRCLE, 5, 10)
+	drift = generator(GEN_CIRCLE, 0, 9)
