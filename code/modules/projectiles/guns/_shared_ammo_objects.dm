@@ -206,5 +206,3 @@
 		victim.apply_status_effect(STATUS_EFFECT_SHATTER, 5 SECONDS)
 
 
-
-
