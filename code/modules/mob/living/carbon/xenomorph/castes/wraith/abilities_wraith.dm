@@ -187,7 +187,7 @@
 		if(xeno_crosser.m_intent == MOVE_INTENT_WALK)
 			return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
-	crosser.pass_flags &= ~PASS_MOB
+	crosser.remove_pass_flags(PASS_MOB, PORTAL_TRAIT)
 	RegisterSignal(crosser, COMSIG_MOVABLE_MOVED, PROC_REF(do_teleport_atom))
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
