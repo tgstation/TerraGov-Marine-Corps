@@ -1,0 +1,5 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - bugfix: "Ghosts and lobbied players can now see survivors and clf on the manifest"
+  - rscadd: "Jobs that do not usually appear on the manifest for living players will now appear for living players of their own faction."
