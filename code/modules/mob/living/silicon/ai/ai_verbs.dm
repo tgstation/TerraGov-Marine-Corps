@@ -220,7 +220,7 @@
 	if(incapacitated())
 		return
 
-	var/dat = GLOB.datacore.get_manifest(ooc = FALSE)
+	var/dat = GLOB.datacore.get_manifest(ooc = FALSE, viewfaction = job?.faction)
 
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
 	popup.set_content(dat)
