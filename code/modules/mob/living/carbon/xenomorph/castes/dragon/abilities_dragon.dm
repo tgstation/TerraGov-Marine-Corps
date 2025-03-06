@@ -398,7 +398,7 @@
 	name = "Dragon Breath"
 	action_icon_state = "dragon_breath"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = "After a windup, gain the ability to continuously shoot fire balls with a large spread for a short time. If you are grabbing a marine, deal an incredible amount of damage and knock them back instead."
+	desc = "After a windup, continuously blast fire in a cardinal direction. If you are grabbing a marine, deal an incredible amount of damage and knock them back instead."
 	cooldown_duration = 30 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAGON_BREATH,

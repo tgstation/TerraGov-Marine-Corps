@@ -1325,7 +1325,7 @@
 /datum/keybinding/xeno/dragon_breath
 	name = "Dragon Breath"
 	full_name = "Dragon: Dragon Breath"
-	description = "After a windup, continuously fire a barrage of fireballs."
+	description = "After a windup, After a windup, continuously blast fire in a cardinal direction."
 	keybind_signal = COMSIG_XENOABILITY_DRAGON_BREATH
 	hotkey_keys = list("C")
 
