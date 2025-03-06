@@ -1523,3 +1523,102 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	X.hive.purchases.interact(X)
 	return succeed_activate()
+
+/////////////////////////////////
+// pattern building
+/////////////////////////////////
+
+//Pattern Defines, for the radial menu.
+#define CROSS_3X3 /datum/buildingpattern/cross3x3
+#define SQUARE_2X2 /datum/buildingpattern/square2x2
+
+//List of all images used for Patterns, in the radial selection menu
+GLOBAL_LIST_INIT(pattern_images_list, list(
+	CROSS_3X3 = image('icons/Xeno/actions/general.dmi', icon_state = "recovery"),
+	SQUARE_2X2 = image('icons/xeno/structures.dmi', icon_state = "thickresin0"),
+))
+
+
+
+/datum/action/ability/activable/xeno/place_pattern
+	name = "Place Pattern"
+	desc = "Place a pattern of hive walls."
+	action_icon_state = RESIN_WALL
+	action_icon = 'icons/Xeno/actions/construction.dmi'
+	target_flags = ABILITY_TURF_TARGET
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_PATTERN,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SELECT_PATTERN,
+	)
+	use_state_flags = ABILITY_USE_LYING
+	var/datum/buildingpattern/selected_pattern = new /datum/buildingpattern/square2x2
+
+/datum/action/ability/activable/xeno/place_pattern/alternate_action_activate()
+	INVOKE_ASYNC(src, PROC_REF(selectpattern))
+
+/datum/action/ability/activable/xeno/place_pattern/give_action(mob/living/L)
+	. = ..()
+	//if its not prep, remove the ability instantly
+	if(!(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active))
+		src.remove_action(xeno_owner)
+	RegisterSignals(src, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED), PROC_REF(toggle_off))
+
+/datum/action/ability/activable/xeno/place_pattern/remove_action(mob/living/L)
+	. = ..()
+	UnregisterSignal(src, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED))
+
+///Seperate proc that calls remove_action, to block any signal shenanigans.
+/datum/action/ability/activable/xeno/place_pattern/proc/toggle_off()
+	SIGNAL_HANDLER
+	src.remove_action(xeno_owner)
+
+///Selects the pattern from a radial menu
+/datum/action/ability/activable/xeno/place_pattern/proc/selectpattern()
+	var/pattern_choice = show_radial_menu(owner, owner, GLOB.pattern_images_list, radius = 48)
+	if(!pattern_choice)
+		return
+	selected_pattern = new pattern_choice
+	var/datum/buildingpattern/pattern = pattern_choice
+	xeno_owner.balloon_alert(xeno_owner, pattern.overheadmsg)
+
+/datum/action/ability/activable/xeno/place_pattern/use_ability(atom/A)
+	var/turf/sourceturf = get_turf(A)
+	var/starty = sourceturf.y
+	var/iterx = sourceturf.x
+	var/startz = sourceturf.z
+	var/canbuild = TRUE
+	var/turf/targetturf = locate(sourceturf.x, starty, startz)
+	for(var/layer in selected_pattern.pattern)
+		iterx = sourceturf.x
+		for(var/tile in splittext(layer,""))
+			if(tile == "X")
+				targetturf = locate(iterx, starty, startz)
+				canbuild = TRUE
+				switch(is_valid_for_resin_structure(targetturf, xeno_owner.selected_special_resin == /obj/structure/mineral_door/resin, /turf/closed/wall/resin/regenerating))
+					if(ERROR_CANT_WEED)
+						canbuild = FALSE
+					if(ERROR_NO_WEED)
+						canbuild = FALSE
+					if(ERROR_NO_SUPPORT)
+						canbuild = FALSE
+					if(ERROR_NOT_ALLOWED)
+						canbuild = FALSE
+					if(ERROR_BLOCKER)
+						canbuild = FALSE
+					if(ERROR_FOG)
+						canbuild = FALSE
+					if(ERROR_CONSTRUCT)
+						canbuild = FALSE
+					if(TRUE)
+						canbuild = FALSE
+				if(canbuild)
+					var/list/baseturfs = islist(targetturf.baseturfs) ? targetturf.baseturfs : list(targetturf.baseturfs)
+					baseturfs |= targetturf.type
+					targetturf.ChangeTurf(/turf/closed/wall/resin/regenerating, baseturfs)
+					SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()]--
+			iterx = iterx + 1
+		starty = starty - 1
+
+
+
+

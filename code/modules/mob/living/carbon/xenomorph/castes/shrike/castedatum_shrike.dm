@@ -74,6 +74,7 @@
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
 /datum/xeno_caste/shrike/normal
@@ -113,4 +114,5 @@
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/activable/xeno/psychic_vortex,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)
