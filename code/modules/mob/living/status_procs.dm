@@ -652,7 +652,8 @@
 /mob/living/proc/update_eye_blur()
 	if(!client)
 		return
-
+	if(SEND_SIGNAL(src, COMSIG_LIVING_UPDATE_PLANE_BLUR) & COMPONENT_CANCEL_BLUR)
+		return
 	var/atom/movable/plane_master_controller/game_plane_master_controller = hud_used.plane_master_controllers[PLANE_MASTERS_GAME]
 	if(eye_blurry <= 0)
 		game_plane_master_controller.remove_filter("eye_blur")
