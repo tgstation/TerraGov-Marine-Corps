@@ -30,6 +30,8 @@
 	var/fuel_left = 40
 	///How much fuel we can hold maximum
 	var/fuel_max = 40
+	///whether our engines ar eshowing an overlay
+	var/engines_on = FALSE
 	///Our currently selected weapon we will fire
 	var/obj/structure/dropship_equipment/cas/weapon/active_weapon
 	///Minimap for the pilot to know where the marines have ran off to
@@ -92,19 +94,19 @@
 
 ///Updates state and overlay to make te engines on
 /obj/docking_port/mobile/marine_dropship/casplane/proc/turn_on_engines()
-	for(var/i in engines)
-		var/obj/structure/caspart/internalengine/engine = i
+	for(var/obj/structure/caspart/internalengine/engine AS in engines)
 		var/image/engine_overlay = image('icons/turf/cas.dmi', engine.loc, "engine_idle", ABOVE_MOB_LAYER, pixel_x = engine.x_offset)
 		engine.add_overlay(engine_overlay)
-	state = PLANE_STATE_PREPARED
+	engines_on = TRUE
+	update_state()
 	START_PROCESSING(SSslowprocess, src)
 
 ///Updates state and overlay to make te engines off
 /obj/docking_port/mobile/marine_dropship/casplane/proc/turn_off_engines()
-	for(var/i in engines)
-		var/obj/structure/caspart/internalengine/engine = i
+	for(var/obj/structure/caspart/internalengine/engine AS in engines)
 		engine.cut_overlays()
-	state = PLANE_STATE_ACTIVATED
+	engines_on = FALSE
+	update_state()
 	STOP_PROCESSING(SSslowprocess, src)
 
 ///Called to check if a equipment was changed and to unset the active equipment if it got removed
@@ -113,18 +115,17 @@
 		active_weapon = null
 
 ///Updates our state. We use a different var from mode so we can distinguish when engines are turned on/ we are in-flight
-/obj/docking_port/mobile/marine_dropship/casplane/proc/update_state(datum/source, mode)
+/obj/docking_port/mobile/marine_dropship/casplane/proc/update_state(datum/source, newmode)
+	SIGNAL_HANDLER
 	if(state == PLANE_STATE_DEACTIVATED)
 		return
 	if(!is_mainship_level(z) || mode != SHUTTLE_IDLE)
 		state = PLANE_STATE_FLYING
+		return
+	if(engines_on)
+		state = PLANE_STATE_PREPARED
 	else
-		for(var/i in engines)
-			var/obj/structure/caspart/internalengine/engine = i
-			if(length(engine.overlays))
-				state = PLANE_STATE_PREPARED
-			else
-				state = PLANE_STATE_ACTIVATED
+		state = PLANE_STATE_ACTIVATED
 
 ///Runs checks and creates a new eye/hands over control to the eye
 /obj/docking_port/mobile/marine_dropship/casplane/proc/begin_cas_mission(mob/living/user)
