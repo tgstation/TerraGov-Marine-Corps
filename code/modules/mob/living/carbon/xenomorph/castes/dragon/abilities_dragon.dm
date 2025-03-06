@@ -524,6 +524,20 @@
 	succeed_activate()
 	add_cooldown()
 
+/datum/action/ability/activable/xeno/wind_current
+	name = "Wind Current"
+	action_icon_state = "wind_current"
+	action_icon = 'icons/Xeno/actions/dragon.dmi'
+	desc = "After a windup, deal high damage and a knockback to marines in front of you. This also clear any gas in front of you."
+	cooldown_duration = 20 SECONDS
+
+/datum/action/ability/activable/xeno/wind_current/can_use_ability(atom/A, silent, override_flags)
+	if(xeno_owner.status_flags & INCORPOREAL)
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
+		return FALSE
+	return ..()
+
 /datum/action/ability/activable/xeno/wind_current/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 
