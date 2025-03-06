@@ -16,7 +16,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 
 // TODO: cleanup
-/datum/datacore/proc/get_manifest(monochrome, ooc)
+/datum/datacore/proc/get_manifest(monochrome, ooc, viewfaction)
 	var/list/eng = list()
 	var/list/med = list()
 	var/list/mar = list()
@@ -48,13 +48,17 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
 		var/squad_name = t.fields["squad"]
+		var/mobfaction = null
+		var/active = 0
 
-		if(ooc)
-			var/active = 0
-			for(var/mob/M in GLOB.player_list)
-				if(M.real_name == name && M.client && M.client.inactivity <= 10 * 60 * 10)
+		for(var/mob/living/M in GLOB.player_list)
+			if(M.real_name == name)
+				if(ooc && M.client && M.client.inactivity <= 10 * 60 * 10)
 					active = 1
-					break
+				mobfaction = M.job?.faction
+				break
+		
+		if(ooc)
 			isactive[name] = active ? "Active" : "Inactive"
 		else
 			isactive[name] = t.fields["p_stat"]
@@ -80,26 +84,27 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 			if(rank in GLOB.jobs_regular_all)
 				misc[name] = rank
 			else
-				if(ooc)
+				if(ooc || (viewfaction && viewfaction == mobfaction))
 					other[name] = rank
-	// Adds xenomorphs to the game manifest if it's being polled from the game lobby or ghosts
-	if(ooc)
+
+	//Xenomorphs
+	if(ooc || viewfaction == FACTION_CLF || viewfaction == FACTION_TERRAGOV)
 		for(var/mob/living/carbon/xenomorph/X in GLOB.xeno_mob_list)
+			if(!ooc)
+				if((viewfaction == FACTION_CLF) == (X.hivenumber == XENO_HIVE_CORRUPTED)) //clf can see everyone but corrupted, NTC can only see corrupted
+					break
 			var/name = X.real_name
 			var/rank = X.xeno_caste.caste_name
 			//var/squad_name = "N/A"
-
-			if(ooc)
-				var/active = 0
-				for(var/mob/M in GLOB.player_list)
-					if(M.real_name == name && M.client && M.client.inactivity <= 10 * 60 * 10)
-						active = 1
-						break
-				isactive[name] = active ? "Active" : "Inactive"
+			if(isdead(X))
+				isactive[name] = "*Deceased*"
 			else
-				isactive[name] = !isdead(X)
-
+				if(ooc && (!X.client || (X.client.inactivity > 10 * 60 * 10)))
+					isactive[name] = "Inactive"
+				else
+					isactive[name] = "Active"
 			xeno[name] = rank
+		
 	if(length(heads) > 0)
 		dat += "<tr><th colspan=3>Command</th></tr>"
 		for(var/name in heads)
