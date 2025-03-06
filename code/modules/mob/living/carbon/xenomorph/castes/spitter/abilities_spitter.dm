@@ -344,9 +344,9 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	acid_damage = 40
 
 /datum/globadier_mine/gas_mine/detonate(mine, triggerer)
-	var/datum/effect_system/smoke_spread/xeno/acid/opaque/A = new(get_turf(src))
-	A.set_up(1,src)
-	A.start()
+	var/datum/effect_system/smoke_spread/xeno/acid/opaque/smog = new(get_turf(src))
+	smog.set_up(1,src)
+	smog.start()
 	return ..()
 
 // ***************************************

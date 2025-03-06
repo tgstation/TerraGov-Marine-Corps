@@ -375,10 +375,10 @@
 	. = ..()
 	minetype = _minetype
 	detonation_holder = new minetype
-	name = minetype.name
-	desc = minetype.desc
-	icon = minetype.icon
-	icon_state = minetype.icon_state
+	name = minetype::name
+	desc = minetype::desc
+	icon = minetype::icon
+	icon_state = minetype::icon_state
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(oncrossed),
 	)
