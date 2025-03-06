@@ -358,7 +358,7 @@
 			else
 				set_invis_see(min(G.invis_view, see_invisible))
 			if(!isnull(G.lighting_cutoff))
-				lighting_cutoff = min(lighting_cutoff, G.lighting_cutoff)
+				lighting_cutoff = max(lighting_cutoff, G.lighting_cutoff)
 			if(length(glasses.color_cutoffs))
 				lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, glasses.color_cutoffs)
 			if(G.tint && !fullscreens["glasses"])
