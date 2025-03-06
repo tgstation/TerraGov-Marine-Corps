@@ -2190,7 +2190,7 @@
 			/obj/item/ammo_magazine/pistol/vp70 = -1,
 		),
 		"Grenades" = list(
-			/obj/item/explosive/grenade = 200,
+			/obj/item/explosive/grenade/pmc = 100,
 			/obj/item/explosive/grenade/m15 = 30,
 			/obj/item/explosive/grenade/sticky = 125,
 			/obj/item/explosive/grenade/sticky/trailblazer = 75,
@@ -2215,7 +2215,6 @@
 			/obj/item/explosive/grenade/bullet/hefa = 10,
 			/obj/item/storage/box/m94 = 200,
 			/obj/item/storage/box/m94/cas = 30,
-			/obj/item/explosive/grenade/pmc = 20,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,

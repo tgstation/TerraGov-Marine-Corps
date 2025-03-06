@@ -29,6 +29,7 @@ $_channel_map: (
   'bravo': #d4a046,
   'charlie': #b259b2,
   'delta': #3656d8,
+  'PMC': #1b2447,
 );
 
 $channel_keys: map.keys($_channel_map) !default;

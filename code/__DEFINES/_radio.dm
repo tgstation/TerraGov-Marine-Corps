@@ -53,6 +53,9 @@
 #define RADIO_KEY_DELTA "d"
 #define RADIO_TOKEN_DELTA ":d"
 
+#define RADIO_KEY_PMC "p"
+#define RADIO_TOKEN_PMC ":p"
+
 
 #define RADIO_CHANNEL_COLONIST "Colonist"
 #define RADIO_CHANNEL_PMC "NT PMC"
