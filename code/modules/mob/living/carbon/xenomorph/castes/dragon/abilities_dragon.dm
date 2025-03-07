@@ -1166,21 +1166,21 @@
 	pixel_y = 0
 
 /obj/effect/temp_visual/dragon/scorched_land
-	icon = 'icons/effects/96x144.dmi'
+	icon = 'icons/Xeno/96x144.dmi'
 	icon_state = "primo_impact"
 	pixel_x = -32
 	layer = BELOW_MOB_LAYER
 	duration = 0.4 SECONDS
 
 /obj/effect/temp_visual/dragon/fly
-	icon = 'icons/effects/96x144.dmi'
+	icon = 'icons/Xeno/96x144.dmi'
 	icon_state = "fly"
 	pixel_x = -32
 	layer = BELOW_MOB_LAYER
 	duration = 0.8 SECONDS
 
 /obj/effect/temp_visual/dragon/land
-	icon = 'icons/effects/96x144.dmi'
+	icon = 'icons/Xeno/96x144.dmi'
 	icon_state = "fly_landing"
 	pixel_x = -32
 	layer = BELOW_MOB_LAYER
@@ -1195,7 +1195,7 @@
 	duration = 1.19 SECONDS
 
 /obj/effect/temp_visual/dragon/wind_current
-	icon = 'icons/effects/96x144.dmi'
+	icon = 'icons/Xeno/96x144.dmi'
 	icon_state = "wind_current"
 	pixel_x = -32
 	layer = BELOW_MOB_LAYER
@@ -1223,7 +1223,7 @@
 	duration = 1.3 SECONDS
 
 /obj/effect/temp_visual/dragon/lightning_shrike
-	icon = 'icons/effects/96x144.dmi'
+	icon = 'icons/Xeno/96x144.dmi'
 	icon_state = "lightning_strike"
 	pixel_x = -32
 	layer = BELOW_MOB_LAYER
