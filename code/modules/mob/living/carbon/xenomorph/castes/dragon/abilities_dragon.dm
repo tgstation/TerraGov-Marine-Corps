@@ -527,6 +527,9 @@
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "After a windup, deal high damage and a knockback to marines around. This also clear any gas."
 	cooldown_duration = 20 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WIND_CURRENT,
+	)
 
 /datum/action/ability/activable/xeno/wind_current/can_use_ability(atom/A, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)

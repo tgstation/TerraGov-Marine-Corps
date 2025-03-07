@@ -350,9 +350,10 @@
 #define COMSIG_XENOABILITY_ADVANCE_OPPRESSOR "xenoability_advance_oppressor"
 
 #define COMSIG_XENOABILITY_BACKHAND "xenoability_backhand"
-#define COMSIG_XENOABILITY_FLY "xenoability_fly"
 #define COMSIG_XENOABILITY_TAILSWIPE "xenoability_tailswipe"
+#define COMSIG_XENOABILITY_FLY "xenoability_fly"
 #define COMSIG_XENOABILITY_DRAGON_BREATH "xenoability_dragon_breath"
+#define COMSIG_XENOABILITY_WIND_CURRENT "xenoability_wind_current"
 #define COMSIG_XENOABILITY_GRAB "xenoability_grab"
 #define COMSIG_XENOABILITY_PSYCHIC_CHANNEL "xenoability_psychic_channel"
 #define COMSIG_XENOABILITY_PSYCHIC_CHANNEL_SELECTION "xenoability_psychic_channel_selection"
