@@ -250,7 +250,7 @@
 		M_job = html_encode(M_job)
 		var/M_name = html_encode(M.name)
 		var/M_rname = html_encode(M.real_name)
-		var/M_key = html_encode(M.key)
+		var/M_key = html_encode(key_name(M, include_link = FALSE, include_name = FALSE))
 		var/M_cid = html_encode(M.computer_id)
 		var/M_ip = html_encode(M.ip_address)
 
@@ -315,7 +315,7 @@
 		if(!M.ckey)
 			continue
 
-		dat += "<tr><td>[(M.key ? "[M.key]" : "No Key")]</td>"
+		dat += "<tr><td>[key_name(M, include_link = FALSE, include_name = FALSE)]</td>"
 		dat += "<td><a href='?priv_msg=[M.ckey]'>[M.name]</a></td>"
 		if(isAI(M))
 			dat += "<td>AI</td>"
