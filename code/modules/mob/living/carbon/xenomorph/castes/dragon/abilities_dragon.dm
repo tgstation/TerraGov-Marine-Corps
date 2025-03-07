@@ -1161,7 +1161,7 @@
 /obj/effect/temp_visual/dragon/fire_breath/sky
 	duration = 0.1 SECONDS
 
-/obj/effect/temp_visual/dragon/fire_breath/Initialize(mapload)
+/obj/effect/temp_visual/dragon/fire_breath/sky/Initialize(mapload)
 	. = ..(mapload, SOUTH)
 	pixel_y = 0
 
