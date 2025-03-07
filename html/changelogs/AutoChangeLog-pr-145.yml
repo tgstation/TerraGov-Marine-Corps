@@ -1,0 +1,12 @@
+author: "Waaalalaah-E"
+delete-after: True
+changes:
+  - rscadd: "Added hypersleep chamber, PMC comms"
+  - rscadd: "Added PMC Loadout Vendors, PMC Engineer Job, Shotguns/Melee/Energy Weapons/PMC Nades to Vendors"
+  - rscadd: "Added channel prefix to ntc pmc frequency (:p), updated frequences tgui accordingly to include pmc frequency"
+  - rscadd: "Added shower"
+  - rscdel: "Removed old vendors, replaced with new ones"
+  - qol: "Adjusted access for medical and PMC Ship"
+  - balance: "Buffed PMC Skillsets by giving each job atleast 1 level at engineering/medical, changed PMC Sniper to PMC Specialist, adjusted PMC Specialist skills accordingly"
+  - balance: "Completely replaced basic HE nades with PMC ones and increased their amount because of the fact that basic HE nades and PMC HE nades existing at the same time caused issues."
+  - bugfix: "Fixed PMC Spec access, swapped headsets to fix the issue with not having access to the tacmap, swapped headset default frequency to ntc pmc"
