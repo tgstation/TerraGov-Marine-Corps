@@ -437,6 +437,7 @@
 	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	icon_state = "dropship1"
 	density = FALSE
+	plane = FLOOR_PLANE
 	layer = ABOVE_NORMAL_TURF_LAYER
 
 /obj/structure/prop/mainship/hangar_stencil/two
