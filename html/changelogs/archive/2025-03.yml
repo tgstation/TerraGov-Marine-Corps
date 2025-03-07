@@ -108,3 +108,22 @@
       for it will also update properly
   - code_imp: You can no longer join valhalla before the round has started
   - bugfix: Fixed a decap runtime
+2025-03-06:
+  Lumipharon:
+  - rscadd: Added human AI functionality for healing others
+  TiviPlus:
+  - rscadd: Added !tgs gameversion which is basically just a discord version of show
+      game revision
+  - rscadd: Added !tgs notify to ping you when round ends in discord
+  - rscadd: Added server side backend for linking byond to discord, and backend for
+      a command to ping you when round is over
+  - admin: added a version of admin discord commands that checks permissions. SDQL2
+      command now requires R_DEBUG to run if this is enabled
+2025-03-07:
+  Lumipharon:
+  - bugfix: get_line and get_tranversal_line are much more accurate
+  - bugfix: fixed the main overwatch console getting stuck to one squad
+  - bugfix: fixed various pass_flag related bugs
+  - refactor: refactored pass_flags to be managed via traits
+  - bugfix: fixed xeno turrets
+  - qol: Catwalks have an alpha layer under them now, which will catch clicks

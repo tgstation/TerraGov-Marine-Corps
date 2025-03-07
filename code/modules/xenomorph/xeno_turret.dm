@@ -168,9 +168,9 @@
 		buffer_distance = get_dist(nearby_hostile, src)
 		if(distance <= buffer_distance) //If we already found a target that's closer
 			continue
-
-		if(check_path(src, nearby_hostile, PASS_PROJECTILE) != get_turf(nearby_hostile)) //xeno turret seems to not care about actual sight, for whatever reason
+		if(check_path(get_step_towards(src, nearby_hostile), nearby_hostile, PASS_PROJECTILE) != get_turf(nearby_hostile)) //xeno turret seems to not care about actual sight, for whatever reason
 			continue
+		distance = buffer_distance
 		. = nearby_hostile
 
 ///Return TRUE if a possible target is near
