@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - code_imp: "added MAPPING_DIRECTIONAL_HELPERS for mappers. please use this instead of dir and pixel varedits and initialize() switches"
