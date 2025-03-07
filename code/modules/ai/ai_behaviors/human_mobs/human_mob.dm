@@ -110,6 +110,11 @@
 		return
 	return ..()
 
+/datum/ai_behavior/human/ai_do_move()
+	if(mob_parent.pulledby?.faction == mob_parent.faction)
+		return //lets players wrangle NPC's
+	return ..()
+
 /datum/ai_behavior/human/register_action_signals(action_type)
 	switch(action_type)
 		if(MOVING_TO_ATOM)
