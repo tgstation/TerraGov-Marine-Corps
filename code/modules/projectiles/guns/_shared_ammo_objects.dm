@@ -74,7 +74,7 @@
 
 /obj/fire/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, icon_state)
+	. += emissive_appearance(icon, icon_state, src)
 
 /obj/fire/process()
 	if(!isturf(loc))
