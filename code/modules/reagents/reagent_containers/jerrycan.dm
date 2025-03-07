@@ -58,7 +58,7 @@
 	to_chat(user, span_notice("You refill [src] with [fuel_transfer_amount] units of fuel."))
 	return ..()
 
-/obj/item/reagent_containers/jerrycan/attack_obj(obj/O, mob/living/user)
-	if(istype(O, /obj/alien/weeds))
-		return attack_turf(get_turf(O), user)
+/obj/item/reagent_containers/jerrycan/attack_obj(obj/target_object, mob/living/user)
+	if(istype(target_object, /obj/alien/weeds))
+		return attack_turf(get_turf(target_object), user)
 	return ..()
