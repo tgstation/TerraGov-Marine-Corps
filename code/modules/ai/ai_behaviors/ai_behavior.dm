@@ -160,6 +160,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		mob_parent.a_intent = INTENT_HELP
 	else
 		mob_parent.a_intent = INTENT_HARM
+	return TRUE
 
 ///Try to find a node to go to. If ignore_current_node is true, we will just find the closest current_node, and not the current_node best adjacent node
 /datum/ai_behavior/proc/look_for_next_node(ignore_current_node = TRUE, should_reset_goal_nodes = FALSE)
@@ -272,42 +273,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	RegisterSignal(goal_node, COMSIG_QDELETING, PROC_REF(clean_goal_node))
 	return TRUE
 
-///Set the escorted atom.
-/datum/ai_behavior/proc/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
-	SIGNAL_HANDLER
-	clean_escorted_atom()
-	escorted_atom = atom_to_escort
-	weak_escort = new_escort_is_weak
-	if(!weak_escort)
-		base_action = ESCORTING_ATOM
-	RegisterSignal(escorted_atom, COMSIG_ESCORTED_ATOM_CHANGING, PROC_REF(set_escorted_atom))
-	RegisterSignal(escorted_atom, COMSIG_QDELETING, PROC_REF(clean_escorted_atom))
-	RegisterSignal(escorted_atom, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, PROC_REF(set_agressivity))
-	change_action(ESCORTING_ATOM, escorted_atom)
-
-///Change atom to walk to if the order comes from a corresponding commander
-/datum/ai_behavior/proc/global_set_escorted_atom(datum/source, atom/atom_to_escort)
-	SIGNAL_HANDLER
-	if(!atom_to_escort || atom_to_escort.get_xeno_hivenumber() != mob_parent.get_xeno_hivenumber() || mob_parent.ckey)
-		return
-	if(get_dist(atom_to_escort, mob_parent) > target_distance)
-		return
-	set_escorted_atom(source, atom_to_escort)
-
-///clean the escorted atom var to avoid harddels
-/datum/ai_behavior/proc/clean_escorted_atom()
-	SIGNAL_HANDLER
-	if(!escorted_atom)
-		return
-	UnregisterSignal(escorted_atom, list(COMSIG_ESCORTED_ATOM_CHANGING ,COMSIG_QDELETING, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED))
-	escorted_atom = null
-	base_action = initial(base_action)
-
-///Set the target distance to be normal (initial) or very low (almost passive)
-/datum/ai_behavior/proc/set_agressivity(datum/source, should_be_agressive = TRUE)
-	SIGNAL_HANDLER
-	target_distance = should_be_agressive ? initial(target_distance) : 2
-
 ///Clean the goal node
 /datum/ai_behavior/proc/clean_goal_node()
 	SIGNAL_HANDLER
@@ -414,16 +379,55 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
 	mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown + mob_parent.next_move_slowdown * ( ISDIAGONALDIR(move_dir) ? DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : 1 ) )) //todo: probs dont even need this
 
-///Sets our active combat target
+///Set the escorted atom.
+/datum/ai_behavior/proc/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
+	SIGNAL_HANDLER
+	if(escorted_atom == atom_to_escort)
+		return
+	if(escorted_atom)
+		do_unset_target(escorted_atom, FALSE)
+	escorted_atom = atom_to_escort
+	weak_escort = new_escort_is_weak
+	if(!weak_escort)
+		base_action = ESCORTING_ATOM
+	RegisterSignals(escorted_atom, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(unset_target), TRUE)
+	RegisterSignal(escorted_atom, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, PROC_REF(set_agressivity))
+	change_action(ESCORTING_ATOM, escorted_atom)
+	return TRUE
+
+///Change atom to walk to if the order comes from a corresponding commander
+/datum/ai_behavior/proc/global_set_escorted_atom(datum/source, atom/atom_to_escort)
+	SIGNAL_HANDLER
+	if(!atom_to_escort || atom_to_escort.get_xeno_hivenumber() != mob_parent.get_xeno_hivenumber() || mob_parent.ckey)
+		return
+	if(get_dist(atom_to_escort, mob_parent) > target_distance)
+		return
+	set_escorted_atom(source, atom_to_escort)
+
+///clean the escorted atom var to avoid harddels
+/datum/ai_behavior/proc/clean_escorted_atom()
+	if(!escorted_atom)
+		return
+	UnregisterSignal(escorted_atom, list(COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED))
+	escorted_atom = null
+	base_action = initial(base_action)
+
+///Set the target distance to be normal (initial) or very low (almost passive)
+/datum/ai_behavior/proc/set_agressivity(datum/source, should_be_agressive = TRUE)
+	SIGNAL_HANDLER
+	target_distance = should_be_agressive ? initial(target_distance) : 2
+
+///Sets our direct movement target
 /datum/ai_behavior/proc/set_atom_to_walk_to(atom/new_target)
 	if(atom_to_walk_to == new_target)
 		return
 	if(atom_to_walk_to)
 		do_unset_target(atom_to_walk_to, FALSE)
 	atom_to_walk_to = new_target
-	RegisterSignals(atom_to_walk_to, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT), PROC_REF(unset_target), TRUE)
+	RegisterSignals(atom_to_walk_to, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(unset_target), TRUE)
 	if(!registered_for_move)
 		INVOKE_ASYNC(src, PROC_REF(scheduled_move))
+	return TRUE
 
 ///Sets our active combat target
 /datum/ai_behavior/proc/set_combat_target(atom/new_target)
@@ -432,7 +436,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(combat_target)
 		do_unset_target(combat_target, FALSE)
 	combat_target = new_target
-	RegisterSignals(combat_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT), PROC_REF(unset_target), TRUE)
+	RegisterSignals(combat_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(unset_target), TRUE)
 	return TRUE
 
 ///Sets an interaction target
@@ -442,8 +446,9 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(interact_target)
 		do_unset_target(interact_target, FALSE)
 	interact_target = new_target
-	RegisterSignals(interact_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_MOVED), PROC_REF(unset_target), TRUE) //dont follow an item after its picked up... maybe not in the future
+	RegisterSignals(interact_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(unset_target), TRUE)
 	change_action(MOVING_TO_ATOM, interact_target, list(0, 1))
+	return TRUE
 
 ///Sig handler for unsetting a target
 /datum/ai_behavior/proc/unset_target(atom/source)
@@ -452,7 +457,9 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 
 ///Unsets a target from any target vars its in
 /datum/ai_behavior/proc/do_unset_target(atom/old_target, need_new_state = TRUE)
-	UnregisterSignal(old_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_MOVED))
+	UnregisterSignal(old_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_MOVED, COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_Z_CHANGED))
+	if(escorted_atom == old_target)
+		clean_escorted_atom() //TODO: kill this entirely
 	if(combat_target == old_target)
 		combat_target = null
 	if(interact_target == old_target)
