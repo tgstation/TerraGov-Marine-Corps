@@ -560,7 +560,10 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-/turf/open/floor/iron/white/small,
+/obj/machinery/shower{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/pmc_ntf/port/quarters)
 "dT" = (
 /turf/open/floor/mainship/office,
