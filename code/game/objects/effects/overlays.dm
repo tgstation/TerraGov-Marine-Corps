@@ -132,6 +132,7 @@
 
 /obj/effect/overlay/blinking_laser/marine/Initialize(mapload)
 	. = ..()
+	notify_ai_hazard()
 	prepare_huds()
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 	squad_hud.add_to_hud(src)
@@ -154,7 +155,6 @@
 /obj/effect/overlay/blinking_laser/marine/lines/Initialize(mapload)
 	. = ..()
 	dir = pick(CARDINAL_DIRS) //Randomises type, for variation
-
 
 //Drop pod.
 /obj/effect/overlay/blinking_laser/marine/pod_warning
