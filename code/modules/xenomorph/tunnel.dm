@@ -11,7 +11,7 @@ TUNNEL
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|BANISH_IMMUNE
+	resistance_flags = UNACIDABLE
 	layer = RESIN_STRUCTURE_LAYER
 
 	max_integrity = 140

@@ -164,21 +164,6 @@
 
 	GLOB.ahelp_tickets.ClientLogin(src)
 
-	if(CONFIG_GET(flag/localhost_rank))
-		var/static/list/localhost_addresses = list("127.0.0.1", "::1")
-		if(isnull(address) || (address in localhost_addresses))
-			var/datum/admin_rank/rank = new("!localhost!", R_EVERYTHING, , R_EVERYTHING)
-			var/datum/admins/admin = new(rank, ckey, TRUE)
-			admin.associate(src)
-
-	holder = GLOB.admin_datums[ckey]
-	if(holder)
-		GLOB.admins |= src
-		holder.owner = src
-		holder.activate()
-	else if(GLOB.deadmins[ckey])
-		add_verb(src, /client/proc/readmin)
-
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = GLOB.preferences_datums[ckey]
 	if(!prefs || isnull(prefs) || !istype(prefs))
@@ -225,6 +210,22 @@
 		GLOB.player_details[ckey] = player_details
 
 	. = ..()	//calls mob.Login()
+
+	// Admin Verbs need the client's mob to exist. Must be after ..()
+	var/connecting_admin = FALSE //because de-admined admins connecting should be treated like
+	holder = GLOB.admin_datums[ckey]
+	if(!isnull(holder))
+		holder.associate(src)
+		connecting_admin = TRUE
+	else if(GLOB.deadmins[ckey])
+		add_verb(src, /client/proc/readmin)
+		connecting_admin = TRUE
+
+	if(CONFIG_GET(flag/localhost_rank) && !connecting_admin && is_localhost())
+		var/datum/admin_rank/rank = new("!localhost!", R_EVERYTHING, , R_EVERYTHING)
+		var/datum/admins/admin = new(rank, ckey, TRUE)
+		admin.associate(src)
+
 	if(length(GLOB.stickybanadminexemptions))
 		GLOB.stickybanadminexemptions -= ckey
 		if (!length(GLOB.stickybanadminexemptions))
@@ -527,6 +528,14 @@
 	dir = newdir
 
 
+/client/proc/is_localhost()
+	var/static/localhost_addresses = list(
+		"127.0.0.1",
+		"::1",
+		null,
+	)
+	return address in localhost_addresses
+
 /client/proc/show_character_previews(mutable_appearance/MA)
 	var/pos = 0
 	for(var/D in GLOB.cardinals)
@@ -729,6 +738,8 @@
 
 /client/proc/check_randomizer(topic)
 	. = FALSE
+	if(is_localhost()) // no need to check a localhost
+		return TRUE
 	if (connection != "seeker")
 		return
 	topic = params2list(topic)

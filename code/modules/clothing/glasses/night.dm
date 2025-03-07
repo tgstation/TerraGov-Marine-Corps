@@ -15,6 +15,7 @@
 	worn_icon_state = "glasses"
 	darkness_view = 7
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	toggleable = TRUE
 
 
 /obj/item/clothing/glasses/night/tx8
@@ -55,6 +56,8 @@
 	darkness_view = 7
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 	item_flags = DELONDROP
+	toggleable = FALSE
+	active = TRUE
 
 /obj/item/clothing/glasses/night/sectoid/Initialize(mapload)
 	. = ..()

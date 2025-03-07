@@ -158,7 +158,6 @@
 /obj/structure/xeno/xeno_turret/proc/get_target()
 	var/distance = range + 0.5 //we add 0.5 so if a potential target is at range, it is accepted by the system
 	var/buffer_distance
-	var/list/turf/path = list()
 	for (var/atom/nearby_hostile AS in potential_hostiles)
 		if(isliving(nearby_hostile))
 			var/mob/living/nearby_living_hostile = nearby_hostile
@@ -167,30 +166,12 @@
 		if(HAS_TRAIT(nearby_hostile, TRAIT_TURRET_HIDDEN))
 			continue
 		buffer_distance = get_dist(nearby_hostile, src)
-		if (distance <= buffer_distance) //If we already found a target that's closer
+		if(distance <= buffer_distance) //If we already found a target that's closer
 			continue
-		path = getline(src, nearby_hostile)
-		path -= get_turf(src)
-		if(!length(path)) //Can't shoot if it's on the same turf
+		if(check_path(get_step_towards(src, nearby_hostile), nearby_hostile, PASS_PROJECTILE) != get_turf(nearby_hostile)) //xeno turret seems to not care about actual sight, for whatever reason
 			continue
-		var/blocked = FALSE
-		for(var/turf/T AS in path)
-			if(IS_OPAQUE_TURF(T) || T.density && !(T.allow_pass_flags & PASS_PROJECTILE))
-				blocked = TRUE
-				break //LoF Broken; stop checking; we can't proceed further.
-
-			for(var/obj/machinery/MA in T)
-				if(MA.opacity || MA.density && !(MA.allow_pass_flags & PASS_PROJECTILE))
-					blocked = TRUE
-					break //LoF Broken; stop checking; we can't proceed further.
-
-			for(var/obj/structure/S in T)
-				if(S.opacity || S.density && !(S.allow_pass_flags & PASS_PROJECTILE))
-					blocked = TRUE
-					break //LoF Broken; stop checking; we can't proceed further.
-		if(!blocked)
-			distance = buffer_distance
-			. = nearby_hostile
+		distance = buffer_distance
+		. = nearby_hostile
 
 ///Return TRUE if a possible target is near
 /obj/structure/xeno/xeno_turret/proc/scan()

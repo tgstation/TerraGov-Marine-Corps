@@ -1180,27 +1180,6 @@
 	keybind_signal =COMSIG_XENOABILITY_PORTAL_ALTERNATE
 	hotkey_keys = list("R")
 
-/datum/keybinding/xeno/blink
-	name = "wraith_blink"
-	full_name = "Wraith: Blink"
-	description = "Teleport to a space a short distance away within line of sight. Can teleport mobs you're dragging with you at the cost of higher cooldown."
-	keybind_signal = COMSIG_XENOABILITY_BLINK
-	hotkey_keys = list("Q")
-
-/datum/keybinding/xeno/banish
-	name = "banish"
-	full_name = "Wraith: Banish"
-	description = "Banish a creature or object a short distance away within line of sight to null space. Can target oneself and allies. Can be manually cancelled with Recall."
-	keybind_signal = COMSIG_XENOABILITY_BANISH
-	hotkey_keys = list("F")
-
-/datum/keybinding/xeno/recall
-	name = "recall"
-	full_name = "Wraith: Recall"
-	description = "Recall a target from netherspace, ending Banish's effect."
-	keybind_signal = COMSIG_XENOABILITY_RECALL
-	hotkey_keys = list("G")
-
 /datum/keybinding/xeno/timestop
 	name = "timestop"
 	full_name = "Wraith: Time stop"
