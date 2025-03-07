@@ -648,13 +648,17 @@
 	eye_blurry = max(amount, 0)
 	update_eye_blur()
 
+// todo replace this shit with tg's style status effect for this
 /mob/living/proc/update_eye_blur()
 	if(!client)
 		return
-	var/atom/movable/screen/plane_master/floor/OT = locate(/atom/movable/screen/plane_master/floor) in client.screen
-	var/atom/movable/screen/plane_master/game_world/GW = locate(/atom/movable/screen/plane_master/game_world) in client.screen
-	GW.backdrop(src)
-	OT.backdrop(src)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_UPDATE_PLANE_BLUR) & COMPONENT_CANCEL_BLUR)
+		return
+	var/atom/movable/plane_master_controller/game_plane_master_controller = hud_used.plane_master_controllers[PLANE_MASTERS_GAME]
+	if(eye_blurry <= 0)
+		game_plane_master_controller.remove_filter("eye_blur")
+	else
+		game_plane_master_controller.add_filter("eye_blur", 1, gauss_blur_filter(clamp(eye_blurry * 0.1, 0.6, 3)))
 
 /mob/living/proc/adjust_ear_damage(damage = 0, deaf = 0)
 	ear_damage = max(0, ear_damage + damage)

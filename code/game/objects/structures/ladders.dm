@@ -9,7 +9,7 @@
 	var/obj/structure/ladder/up = null		//The ladder above this one
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
-	layer = LADDER_LAYER
+	layer = BELOW_OBJ_LAYER
 	var/is_watching = 0
 	var/obj/machinery/camera/cam
 

@@ -819,7 +819,7 @@
 /obj/structure/prop/urban/misc/fake/wire
 	name = "power cable"
 	desc = "A small gauge wire for conducting electricity."
-	layer = UNDER_TURF_LAYER
+	layer = ABOVE_NORMAL_TURF_LAYER
 
 /obj/structure/prop/urban/misc/fake/wire/red
 	layer = 2
