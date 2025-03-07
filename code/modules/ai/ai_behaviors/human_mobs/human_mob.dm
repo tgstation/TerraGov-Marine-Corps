@@ -335,7 +335,7 @@
 		return
 
 	if(melee_weapon)
-		INVOKE_ASYNC(melee_weapon, TYPE_PROC_REF(/obj/item, melee_attack_chain), mob_parent, interactee) //user.changeNext_move(I.attack_speed)
+		INVOKE_ASYNC(melee_weapon, TYPE_PROC_REF(/obj/item, melee_attack_chain), mob_parent, interactee)
 		return TRUE
 	mob_parent.UnarmedAttack(interactee, TRUE)
 	return TRUE
