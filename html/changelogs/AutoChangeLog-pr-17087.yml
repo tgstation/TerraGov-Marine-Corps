@@ -1,0 +1,6 @@
+author: "larndey"
+delete-after: True
+changes:
+  - rscadd: "Urban Tower Model Tadpole"
+  - imageadd: "added \"_urbantower.png\" for dropship picking computer UI."
+  - code_imp: "added Urban Tower Tadpole model to respective code files/lists."
