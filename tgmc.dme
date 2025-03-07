@@ -59,6 +59,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\__DEFINES\coordinates.dm"
 #include "code\__DEFINES\crafting.dm"
 #include "code\__DEFINES\defibrillator.dm"
+#include "code\__DEFINES\directional.dm"
 #include "code\__DEFINES\DNA.dm"
 #include "code\__DEFINES\do_afters.dm"
 #include "code\__DEFINES\dropship_equipment.dm"
