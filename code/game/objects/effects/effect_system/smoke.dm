@@ -13,7 +13,6 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pass_flags = PASS_AIR
 	resistance_flags = UNACIDABLE|PLASMACUTTER_IMMUNE|PROJECTILE_IMMUNE|CRUSHER_IMMUNE
-	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	var/amount = 3
 	///Duration in 2 second ticks
 	var/lifetime = 5
