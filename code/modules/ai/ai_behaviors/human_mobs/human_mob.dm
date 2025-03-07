@@ -201,8 +201,7 @@
 
 /datum/ai_behavior/human/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
-	if(obstacle_turf.atom_flags & AI_BLOCKED)
-		return
+
 	for(var/mob/mob_blocker in obstacle_turf.contents)
 		if(!mob_blocker.density)
 			continue
@@ -249,6 +248,11 @@
 	if(should_jump)
 		SEND_SIGNAL(mob_parent, COMSIG_AI_JUMP)
 		INVOKE_ASYNC(src, PROC_REF(ai_complete_move), direction, FALSE)
+		return COMSIG_OBSTACLE_DEALT_WITH
+
+	//We do this last because there could be other stuff blocking us from even reaching the turf
+	if(istype(obstacle_turf, /turf/closed/wall/resin))
+		INVOKE_ASYNC(src, PROC_REF(melee_interact), null, obstacle_turf)
 		return COMSIG_OBSTACLE_DEALT_WITH
 
 /datum/ai_behavior/human/set_goal_node(datum/source, obj/effect/ai_node/new_goal_node)
