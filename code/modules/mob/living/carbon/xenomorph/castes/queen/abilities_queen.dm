@@ -61,6 +61,9 @@
 	succeed_activate()
 	add_cooldown()
 
+/datum/action/ability/xeno_action/hive_message/free
+	ability_cost = 0
+
 
 // ***************************************
 // *********** Screech

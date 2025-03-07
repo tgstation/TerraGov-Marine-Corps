@@ -46,12 +46,8 @@
 	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	if(was_successful)
-		xeno_owner.face_atom(target)
-		if(turn_around)
-			xeno_owner.setDir(turn(xeno_owner.dir, 180))
-		if(handle_regular_ability(target, get_forward_square(xeno_owner, width, height)))
-			return
+	if(was_successful && handle_regular_ability(target, affected_turfs))
+		return
 	succeed_activate()
 	add_cooldown()
 
