@@ -171,7 +171,6 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	var/icon_state_on
 	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM)
 	duration = CIC_ORDER_DURATION
-	layer = TURF_LAYER
 
 /obj/effect/temp_visual/order/Initialize(mapload, faction)
 	. = ..()
@@ -183,7 +182,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 
 	var/marker_flags = GLOB.faction_to_minimap_flag[faction]
 	if(marker_flags)
-		SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips_large.dmi', null, icon_state_on, VERY_HIGH_FLOAT_LAYER))
+		SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips_large.dmi', null, icon_state_on, MINIMAP_BLIPS_LAYER))
 	set_visuals(faction)
 
 /obj/effect/temp_visual/order/attack_order

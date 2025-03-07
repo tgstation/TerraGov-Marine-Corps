@@ -8,15 +8,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	desc = "It's a g-g-g-g-ghooooost!"
 	icon = 'icons/mob/ghost.dmi'
 	icon_state = "ghost"
-	layer = GHOST_LAYER
+	plane = GHOST_PLANE
 	stat = DEAD
 	density = FALSE
 	see_invisible = SEE_INVISIBLE_OBSERVER
-	see_in_dark = 100
 	invisibility = INVISIBILITY_OBSERVER
 	sight = SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
 	hud_type = /datum/hud/ghost
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	dextrous = TRUE
 	status_flags = GODMODE | INCORPOREAL
 
@@ -248,15 +247,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(client)
 		animate(client, pixel_x = 0, pixel_y = 0)
 
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		ghost.icon = H.stand_icon
-		ghost.overlays = H.overlays_standing
-		ghost.underlays = H.underlays_standing
-	else
-		ghost.icon = icon
-		ghost.icon_state = icon_state
-		ghost.overlays = overlays
+	//dont copy the appearance so we keep verbs, etc.
+	ghost.overlays = overlays
+	ghost.underlays = underlays
+	ghost.icon = icon
+	ghost.icon_state = icon_state
+	ghost.appearance = strip_appearance_underlays(ghost)
 
 	if(mind?.name)
 		ghost.real_name = mind.name
@@ -437,7 +433,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set name = "Teleport"
 	set desc = "Teleport to an area."
 
-	var/area/newloc = tgui_input_list(usr, "Choose an area to teleport to.", "Teleport", GLOB.sorted_areas)
+	var/area/newloc = tgui_input_list(usr, "Choose an area to teleport to.", "Teleport", get_sorted_areas())
 	if(!newloc)
 		return
 
@@ -545,15 +541,15 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set category = "Ghost.Toggles"
 	set name = "Toggle Darkness"
 
-	switch(lighting_alpha)
-		if(LIGHTING_PLANE_ALPHA_VISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-		if(LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		if(LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	switch(lighting_cutoff)
+		if (LIGHTING_CUTOFF_VISIBLE)
+			lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
+		if (LIGHTING_CUTOFF_MEDIUM)
+			lighting_cutoff = LIGHTING_CUTOFF_HIGH
+		if (LIGHTING_CUTOFF_HIGH)
+			lighting_cutoff = LIGHTING_CUTOFF_FULLBRIGHT
 		else
-			lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
+			lighting_cutoff = LIGHTING_CUTOFF_VISIBLE
 
 	update_sight()
 
@@ -575,12 +571,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/dead/observer/update_sight()
 	if(ghost_vision)
-		see_invisible = SEE_INVISIBLE_OBSERVER
+		set_invis_see(SEE_INVISIBLE_OBSERVER)
 	else
-		see_invisible = SEE_INVISIBLE_LIVING
+		set_invis_see(SEE_INVISIBLE_LIVING)
 
 	updateghostimages()
 
+	lighting_color_cutoffs = list(lighting_cutoff_red, lighting_cutoff_green, lighting_cutoff_blue)
 	return ..()
 
 
@@ -719,6 +716,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/verb/join_valhalla()
 	set name = "Join Valhalla"
 	set category = "Ghost"
+
+	if(!SSticker.mode)
+		to_chat(usr, span_warning("Please wait for the round to begin first."))
+		return
 
 	if(is_banned_from(ckey, ROLE_VALHALLA))
 		to_chat(usr, span_notice("You are banned from Valhalla!"))

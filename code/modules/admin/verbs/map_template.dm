@@ -14,7 +14,7 @@ ADMIN_VERB(map_template_load, R_FUN, "Map template - Place", "Place an existing 
 	var/list/preview = list()
 	for(var/S in template.get_affected_turfs(T, TRUE))
 		var/image/item = image('icons/turf/overlays.dmi', S, "greenOverlay")
-		item.plane = ABOVE_LIGHTING_PLANE
+		SET_PLANE(item, ABOVE_LIGHTING_PLANE, T)
 		preview += item
 
 	var/delete

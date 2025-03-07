@@ -231,7 +231,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	. = ..()
 	if(!beaker)
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 
 /// Eat up the biomass, start the grow timer
 /obj/machinery/cloning/vats/proc/grow_human(instant = FALSE)

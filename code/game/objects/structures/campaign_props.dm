@@ -95,6 +95,7 @@
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_FLARE
+	var/use_emissive = TRUE
 
 /obj/structure/prop/nt_computer/Initialize(mapload)
 	. = ..()
@@ -102,12 +103,14 @@
 
 /obj/structure/prop/nt_computer/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	if(use_emissive)
+		. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 
 /obj/structure/prop/nt_computer/rack
 	name = "control rack"
 	desc = "A system control rack. Who knows what's on it?."
 	icon_state = "recorder_on"
+	use_emissive = FALSE
 
 /obj/structure/prop/nt_computer/recorder
 	name = "backup recorder"
@@ -123,7 +126,7 @@
 	icon_state = "gauss_cannon"
 	density = TRUE
 	anchored = TRUE
-	layer = LADDER_LAYER
+	layer = BELOW_OBJ_LAYER
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64
@@ -139,4 +142,4 @@
 
 /obj/structure/gauss_cannon/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)

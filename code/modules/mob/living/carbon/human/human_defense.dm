@@ -449,8 +449,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [affecting.display_name]."),\
 		span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.display_name]."))
 
-	add_overlay(GLOB.welding_sparks)
-	while(do_after(user, repair_time, NONE, src, BUSY_ICON_BUILD) && I.use_tool(src, user, volume = 50, amount = 2))
+	while(I.use_tool(src, user, repair_time, 2, 50, null, BUSY_ICON_BUILD))
 		user.visible_message(span_warning("\The [user] patches some dents on [src]'s [affecting.display_name]."), \
 			span_warning("You patch some dents on \the [src]'s [affecting.display_name]."))
 		if(affecting.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE))
@@ -469,5 +468,4 @@ Contains most of the procs that are called when a mob is attacked by something
 			if(previous_limb == affecting)
 				balloon_alert(user, "Dents fully repaired.")
 				break
-	cut_overlay(GLOB.welding_sparks)
 	return TRUE
