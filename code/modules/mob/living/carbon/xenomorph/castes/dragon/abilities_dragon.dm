@@ -745,7 +745,7 @@
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PSYCHIC_CHANNEL_SELECTION,
 	)
 	/// The currently selected spell. Will be automatically chosen after channeling if none was selected.
-	var/selected_spell = "psychic_channel"
+	var/selected_spell = DRAGON_MIASMA
 	/// Damage taken so far while actively channeling.
 	var/damage_taken_so_far = 0
 	/// The timer id for any timed spell proc.
@@ -766,7 +766,7 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/psychic_channel/update_button_icon()
-	action_icon_state = is_actively_channeling() ? selected_spell : "psychic_channel"
+	action_icon_state = is_actively_channeling() ? selected_spell : DRAGON_MIASMA
 	return ..()
 
 /// Opens a radical wheel to select a spell.
@@ -847,7 +847,7 @@
 			xeno_owner.update_glow()
 			return fail_activate()
 		xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_PSYCHIC_CHANNEL, TRUE, 0, NONE, TRUE, 0.9)
-		select_spell(selected_spell, TRUE, FALSE, selected_spell == "psychic_channel" ? TRUE : FALSE)
+		select_spell(selected_spell, TRUE, FALSE, selected_spell == DRAGON_MIASMA ? TRUE : FALSE)
 		RegisterSignals(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taken_damage))
 		return
 
