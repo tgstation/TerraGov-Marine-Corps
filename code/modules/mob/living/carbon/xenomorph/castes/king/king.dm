@@ -60,30 +60,32 @@
 /mob/living/carbon/xenomorph/king/conqueror
 	caste_base_type = /datum/xeno_caste/king/conqueror
 	name = "Conqueror"
-	desc = "Perfected by eons, it wears evolution's crown. A predator of time, sculpted to dominate."
+	//desc = "Perfected by eons, it wears evolution's crown. A predator of time, sculpted to dominate."
 	icon = 'icons/Xeno/castes/king/conqueror.dmi'
 	icon_state = "Conqueror Walking"
 
 /mob/living/carbon/xenomorph/king/conqueror/generate_name()
 	var/playtime_mins = client?.get_exp(xeno_caste.caste_name)
+	var/rank_name
 	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
 	if(!client?.prefs.show_xeno_rank || !client)
-		name = prefix + "Conqueror ([nicknumber])"
+		name = prefix + "[xeno_caste.display_name] ([nicknumber])"
 		real_name = name
 		if(mind)
 			mind.name = name
 		return
 	switch(playtime_mins)
-		if(601 to 1500)
-			name = prefix + "Mature Conqueror ([nicknumber])"
-		if(1501 to 4200)
-			name = prefix + "Elder Conqueror ([nicknumber])"
-		if(4201 to 10500)
-			name = prefix + "Ancient Conqueror ([nicknumber])"
-		if(10501 to INFINITY)
-			name = prefix + "Exalted Conqueror ([nicknumber])"
+		if(601 to 1500) //10 hours
+			rank_name = "Mature"
+		if(1501 to 4200) //25 hours
+			rank_name = "Elder"
+		if(4201 to 10500) //70 hours
+			rank_name = "Ancient"
+		if(10501 to INFINITY) //175 hours
+			rank_name = "Exalted"
 		else
-			name = prefix + "Young Conqueror ([nicknumber])"
+			rank_name = "Young"
+	name = prefix + "[rank_name ? "[rank_name] " : ""][xeno_caste.display_name] ([nicknumber])"
 
 /mob/living/carbon/xenomorph/king/conqueror/spawn_cry()
 	return

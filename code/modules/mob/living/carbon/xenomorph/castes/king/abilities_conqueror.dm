@@ -236,7 +236,7 @@
 		adjust_particles(new_dir = xeno_owner.dir)
 	RegisterSignals(xeno_owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_DO_RESIST, COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST), PROC_REF(adjust_particles))
 	RegisterSignal(xeno_owner, COMSIG_MOB_CLICKON, PROC_REF(check_range)) // Happens before the xeno actually attacks.
-	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_EARLY_UNARMED_ATTACK, PROC_REF(add_to_attack))
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_PRE_ATTACK_ALIEN_HARM, PROC_REF(add_to_attack))
 	RegisterSignals(xeno_owner, list(COMSIG_MOB_DEATH), PROC_REF(disable_ability))
 	UnregisterSignal(xeno_owner, COMSIG_MOB_REVIVE)
 
@@ -246,7 +246,7 @@
 	xeno_owner.attack_sound = initial(xeno_owner.attack_sound)
 	xeno_owner.attack_effect = initial(xeno_owner.attack_effect)
 	particle_holder?.alpha = 0
-	UnregisterSignal(xeno_owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_DO_RESIST, COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST, COMSIG_MOB_CLICKON, COMSIG_XENOMORPH_EARLY_UNARMED_ATTACK, COMSIG_MOB_DEATH))
+	UnregisterSignal(xeno_owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_DO_RESIST, COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST, COMSIG_MOB_CLICKON, COMSIG_XENOMORPH_PRE_ATTACK_ALIEN_HARM, COMSIG_MOB_DEATH))
 	RegisterSignal(xeno_owner, COMSIG_MOB_REVIVE, PROC_REF(enable_ability))
 	reset_combo()
 
@@ -296,15 +296,12 @@
 	step_towards(xeno_owner, carbon_target, CONQUEROR_WILL_DASH_RANGE - 1)
 
 /// Adds bonuses to normal attacks, usually replacing visuals and sound effects, and builds up combos if the ability isn't on cooldown.
-/datum/action/ability/activable/xeno/conqueror_will/proc/add_to_attack(datum/source, mob/living/living_target, has_proximity, modifiers)
+/datum/action/ability/activable/xeno/conqueror_will/proc/add_to_attack(datum/source, mob/living/living_target, isrightclick = FALSE)
 	SIGNAL_HANDLER
-	if(!iscarbon(living_target))
+	if(!iscarbon(living_target) || living_target.stat == DEAD || !living_target.can_xeno_slash(xeno_owner))
 		return
 	if(action_cooldown_check() && xeno_owner.selected_ability == src)
-		if(islist(modifiers) && modifiers["right"])
-			combo_streak += "R"
-		else
-			combo_streak += "L"
+		combo_streak += isrightclick ? "R" : "L"
 		if(display_combos)
 			xeno_owner.hud_used?.combo_display.update_icon_state(combo_streak)
 	if(length(combo_streak) < CONQUEROR_WILL_MAX_COMBO)

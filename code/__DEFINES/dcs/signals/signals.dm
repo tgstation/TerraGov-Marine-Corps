@@ -721,7 +721,7 @@
 #define COMSIG_XENOMORPH_POSTEVOLVING "xenomorph_evolving"
 #define COMSIG_XENOMORPH_ABILITY_ON_UPGRADE "xenomorph_ability_on_upgrade"
 
-#define COMSIG_XENOMORPH_EARLY_UNARMED_ATTACK "xenomorph_early_unarmed_attack" // from /mob/living/carbon/xenomorph/UnarmedAttack(atom/A, has_proximity, modifiers)
+#define COMSIG_XENOMORPH_PRE_ATTACK_ALIEN_HARM "xenomorph_pre_attack_alien_harm" // before /mob/living/attack_alien_harm (isrightclick)
 #define COMSIG_XENOMORPH_GRAB "xenomorph_grab"
 #define COMSIG_XENOMORPH_ATTACK_OBJ "xenomorph_attack_obj"
 ///from /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location, random_location, no_head, no_crit, force_intent)
