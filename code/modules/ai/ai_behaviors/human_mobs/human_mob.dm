@@ -210,31 +210,19 @@
 		return
 
 	var/should_jump = FALSE
-	var/mob/living/living_parent = mob_parent
-	var/can_jump = living_parent.can_jump()
-	for(var/obj/object in obstacle_turf.contents)
+	for(var/obj/object in obstacle_turf)
 		if(!object.density)
 			continue
-		if(can_jump && object.is_jumpable(mob_parent))
-			should_jump = TRUE
+		var/obstacle_reaction = object.ai_handle_obstacle(mob_parent, direction)
+		if(obstacle_reaction == AI_OBSTACLE_RESOLVED)
+			return COMSIG_OBSTACLE_DEALT_WITH //we've dealt with it on the obstacle side
+		if(obstacle_reaction == AI_OBSTACLE_JUMP)
+			should_jump = TRUE //we will try jump if the only obstacles are all jumpable
 			continue
-		if(isstructure(object))
-			var/obj/structure/structure = object
-			if(structure.climbable)
-				INVOKE_ASYNC(structure, TYPE_PROC_REF(/obj/structure, do_climb), mob_parent)
-				return COMSIG_OBSTACLE_DEALT_WITH
-		if(istype(object, /obj/machinery/door/airlock))
-			var/obj/machinery/door/airlock/lock = object
-			if(lock.operating) //Airlock already doing something
-				continue
-			if(lock.welded || lock.locked) //It's welded or locked, can't force that open
-				INVOKE_ASYNC(src, PROC_REF(melee_interact), null, object)
-				return COMSIG_OBSTACLE_DEALT_WITH
-			lock.open(TRUE)
-			return COMSIG_OBSTACLE_DEALT_WITH
-		if(!(object.resistance_flags & INDESTRUCTIBLE))
+		if(obstacle_reaction == AI_OBSTACLE_ATTACK)
 			INVOKE_ASYNC(src, PROC_REF(melee_interact), null, object)
-			return COMSIG_OBSTACLE_DEALT_WITH
+			return COMSIG_OBSTACLE_DEALT_WITH //we gotta hit it
+
 
 	if(should_jump)
 		SEND_SIGNAL(mob_parent, COMSIG_AI_JUMP)
@@ -243,17 +231,18 @@
 
 	if(ISDIAGONALDIR(direction) && ((deal_with_obstacle(null, turn(direction, -45)) & COMSIG_OBSTACLE_DEALT_WITH) || (deal_with_obstacle(null, turn(direction, 45)) & COMSIG_OBSTACLE_DEALT_WITH)))
 		return COMSIG_OBSTACLE_DEALT_WITH
+
 	//Ok we found nothing, yet we are still blocked. Check for blockers on our current turf
-	obstacle_turf = get_turf(mob_parent)
-	for(var/obj/structure/obstacle in obstacle_turf.contents)
+	for(var/obj/obstacle in get_turf(mob_parent))
 		if(!obstacle.density)
 			continue
-		if(!((obstacle.atom_flags & ON_BORDER) && (obstacle.dir & direction)))
-			continue
-		if(obstacle.is_jumpable(mob_parent))
+		var/obstacle_reaction = obstacle.ai_handle_obstacle(mob_parent, direction)
+		if(obstacle_reaction == AI_OBSTACLE_RESOLVED)
+			return COMSIG_OBSTACLE_DEALT_WITH
+		if(obstacle_reaction == AI_OBSTACLE_JUMP)
 			should_jump = TRUE
 			continue
-		if(!(obstacle.resistance_flags & INDESTRUCTIBLE))
+		if(obstacle_reaction == AI_OBSTACLE_ATTACK)
 			INVOKE_ASYNC(src, PROC_REF(melee_interact), null, obstacle)
 			return COMSIG_OBSTACLE_DEALT_WITH
 
