@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - balance: "You can no longer rearm mech weapons while firing"
