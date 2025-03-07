@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - qol: "Mech repair retargets itself to the chest now when a limb is repaired"
