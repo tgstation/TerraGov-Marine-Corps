@@ -10,7 +10,6 @@
 	max_range = 10
 	bullet_color = COLOR_PALE_BLUE_GRAY
 
-
 /datum/ammo/xeno/homing_ice_spike/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	if(!isliving(target_mob))
 		return
@@ -20,7 +19,9 @@
 	living_mob.add_slowdown(1)
 
 /datum/ammo/xeno/homing_ice_spike/ammo_process(obj/projectile/proj, damage)
-	if(proj.distance_travelled < 2) // Homing kicks in after some distance, otherwise it will all go to one person.
+	if(proj.distance_travelled < 2) // We do not want all of them to home on the same exact target if there are a bunch other possible targets around.
+		return
+	if(isxeno(proj.original_target)) // This is our way of saying, "just do nothing instead because we don't want constant cheap_get_humans_near loops".
 		return
 	if(QDELETED(proj.original_target))
 		proj.original_target = get_acceptable_target(proj)
@@ -51,7 +52,7 @@
 		if(get_dist(closest_human, proj) > get_dist(nearby_human, proj))
 			closest_human = nearby_human
 			continue
-	return closest_human
+	return closest_human ? closest_human : proj.shot_from
 
 /datum/ammo/xeno/miasma_orb
 	name = "miasma orb"
