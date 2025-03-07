@@ -12,3 +12,8 @@
   - bugfix: Adjusted access for medical and PMC Ship
   chizzy376:
   - code_imp: decreased minplayers from 40 to 1 on riptide
+2025-03-07:
+  Meghan-Rossi:
+  - bugfix: Ghosts and lobbied players can now see survivors and clf on the manifest
+  - rscadd: Jobs that do not usually appear on the manifest for living players will
+      now appear for living players of their own faction.
