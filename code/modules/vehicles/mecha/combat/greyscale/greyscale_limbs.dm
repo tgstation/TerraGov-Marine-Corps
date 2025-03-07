@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	if(!(blame_mob.zone_selected in def_zones))
 		return
 	if(part_health <= 0)
-		return COMPONENT_NO_TAKE_DAMAGE // intentional, you're supposed to swap target yourself properly?
+		return
 	part_health = max(0, part_health-damage_amount)
 	if(part_health <= 0)
 		disable()
