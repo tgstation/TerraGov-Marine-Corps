@@ -355,4 +355,4 @@
 #define COMSIG_XENOABILITY_GRAB "xenoability_grab"
 #define COMSIG_XENOABILITY_PSYCHIC_CHANNEL "xenoability_psychic_channel"
 #define COMSIG_XENOABILITY_PSYCHIC_CHANNEL_SELECTION "xenoability_psychic_channel_selection"
-#define COMSIG_XENOABILITY_UNLEASH "xenoability_unleash"
+#define COMSIG_XENOABILITY_SCORCHED_LAND "xenoability_scorched_land"

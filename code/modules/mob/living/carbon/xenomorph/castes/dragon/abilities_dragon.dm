@@ -291,14 +291,15 @@
 	xeno_owner.update_action_buttons()
 
 /// Begins the process of landing.
-/datum/action/ability/activable/xeno/fly/proc/start_landing()
+/datum/action/ability/activable/xeno/fly/proc/start_landing(fast_landing = FALSE)
 	performing_landing_animation = TRUE
-	COOLDOWN_START(src, animation_cooldown, 3 SECONDS)
+	var/landing_length = fast_landing ? 1.2 SECONDS : 3 SECONDS
+	COOLDOWN_START(src, animation_cooldown, landing_length)
 	animate(xeno_owner, pixel_x = initial(xeno_owner.pixel_x), pixel_y = 500, time = 0)
 	var/list/turf/future_impacted_turfs = filled_turfs(xeno_owner, 2, "square", FALSE, pass_flags_checked = PASS_AIR)
 	for(var/turf/turf_to_telegraph AS in future_impacted_turfs)
-		new /obj/effect/temp_visual/dragon/warning(turf_to_telegraph, 3 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(continue_landing), future_impacted_turfs), 2.5 SECONDS)
+		new /obj/effect/temp_visual/dragon/warning(turf_to_telegraph, landing_length)
+	addtimer(CALLBACK(src, PROC_REF(continue_landing), future_impacted_turfs), landing_length - 0.5 SECONDS)
 
 /// Continues the process of landing (mainly because of animations).
 /datum/action/ability/activable/xeno/fly/proc/continue_landing(list/turf/impacted_turfs)
@@ -528,7 +529,7 @@
 	name = "Wind Current"
 	action_icon_state = "wind_current"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = "After a windup, deal high damage and a knockback to marines in front of you. This also clear any gas in front of you."
+	desc = "After a windup, deal high damage and a knockback to marines around. This also clear any gas."
 	cooldown_duration = 20 SECONDS
 
 /datum/action/ability/activable/xeno/wind_current/can_use_ability(atom/A, silent, override_flags)
@@ -541,7 +542,7 @@
 /datum/action/ability/activable/xeno/wind_current/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 
-	var/list/turf/impacted_turfs = get_forward_square(xeno_owner, 2, 5) // 5x5
+	var/list/turf/impacted_turfs = filled_turfs(xeno_owner, 2, "square", FALSE, pass_flags_checked = PASS_AIR) // 5x5
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.2 SECONDS)
 
@@ -574,7 +575,7 @@
 				var/mob/living/impacted_living = impacted_atom
 				if(impacted_living.stat == DEAD)
 					continue
-				impacted_living.take_overall_damage(damage, BURN, MELEE, max_limbs = 6, updating_health = TRUE)
+				impacted_living.take_overall_damage(damage, BURN, MELEE, max_limbs = 5, updating_health = TRUE)
 				if(impacted_living.move_resist < MOVE_FORCE_OVERPOWERING)
 					impacted_living.knockback(xeno_owner, 4, 1)
 
@@ -900,7 +901,7 @@
 /// Returns up to 15 humans that are in line of sight, nearby, and not dead.
 /datum/action/ability/activable/xeno/psychic_channel/proc/get_lightning_shrike_marines()
 	var/list/mob/living/carbon/human/acceptable_humans = list()
-	for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(xeno_owner, 7))
+	for(var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(xeno_owner, 9))
 		if(length(acceptable_humans.len) >= 15)
 			break
 		if(nearby_human.stat == DEAD)
@@ -959,9 +960,140 @@
 				continue
 			impacted_obj.take_damage(75, BURN, FIRE, blame_mob = xeno_owner)
 
+/datum/action/ability/activable/xeno/scorched_land
+	name = "Scorched Land"
+	action_icon_state = "unleash"
+	action_icon = 'icons/Xeno/actions/dragon.dmi'
+	desc = "Breath fire downward from the sky in a long line where you're facing. Afterward, land at the end immediately."
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCORCHED_LAND,
+	)
+	/// The timer id for the timer that occurs every tick.
+	var/tick_timer
+
+/datum/action/ability/activable/xeno/scorched_land/can_use_ability(atom/A, silent, override_flags)
+	if(!(xeno_owner.status_flags & INCORPOREAL))
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "cannot while landed")
+		return FALSE
+	var/datum/action/ability/activable/xeno/fly/fly_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/fly]
+	if(!fly_ability)
+		return FALSE
+	if(COOLDOWN_TIMELEFT(fly_ability, animation_cooldown))
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "already landing")
+		return FALSE
+	var/list/mob/living/carbon/xenomorph/nearby_xenos = cheap_get_xenos_near(xeno_owner, 7)
+	var/found_los_xenos = FALSE
+	for(var/mob/living/carbon/xenomorph/nearby_xeno AS in nearby_xenos)
+		if(nearby_xeno == xeno_owner)
+			continue
+		if(!xeno_owner.issamexenohive(nearby_xeno))
+			continue
+		if(line_of_sight(xeno_owner, nearby_xeno, 7))
+			found_los_xenos = TRUE
+			break
+	var/weeds_found = locate(/obj/alien/weeds) in xeno_owner.loc
+	if(!weeds_found && !found_los_xenos)
+		if(!silent)
+			if(nearby_xenos.len > 1)
+				xeno_owner.balloon_alert(xeno_owner, "no friendlies in sight")
+			else
+				xeno_owner.balloon_alert(xeno_owner, "no weeds")
+		return FALSE
+	return ..()
+
+/datum/action/ability/activable/xeno/scorched_land/use_ability(atom/target)
+	xeno_owner.face_atom(target)
+
+	var/list/turf/impacted_turfs = get_forward_square(xeno_owner, 2, 7)
+	for(var/turf/impacted_turf AS in impacted_turfs)
+		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 3 SECONDS)
+
+	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
+	var/was_successful = do_after(xeno_owner, 3 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER)
+	xeno_owner.move_resist = initial(xeno_owner.move_resist)
+	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
+	if(!was_successful)
+		return
+
+	xeno_owner.face_atom(target)
+	var/list/turf/affected_turfs_in_order = list()
+	var/turf/maximum_distance_turf = get_turf(xeno_owner)
+	for(var/i in 1 to 7)
+		maximum_distance_turf = get_step(maximum_distance_turf, xeno_owner.dir)
+		if(!line_of_sight(xeno_owner, maximum_distance_turf, 7))
+			break
+		if(isclosedturf(maximum_distance_turf))
+			break
+		affected_turfs_in_order += maximum_distance_turf
+		affected_turfs_in_order += get_step(maximum_distance_turf, turn(xeno_owner.dir, 90))
+		affected_turfs_in_order += get_step(get_step(maximum_distance_turf, turn(xeno_owner.dir, 90)), turn(xeno_owner.dir, 90))
+		affected_turfs_in_order += get_step(maximum_distance_turf, turn(xeno_owner.dir, -90))
+		affected_turfs_in_order += get_step(get_step(maximum_distance_turf, turn(xeno_owner.dir, -90)), turn(xeno_owner.dir, -90))
+
+	xeno_owner.abstract_move(maximum_distance_turf)
+	var/datum/action/ability/activable/xeno/fly/fly_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/fly]
+	fly_ability?.start_landing(TRUE)
+	tick_timer = addtimer(CALLBACK(src, PROC_REF(tick_effects), affected_turfs_in_order), 0.1 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+
+/// Performs the ability at a pace similar of CAS which is one width length at a length.
+/datum/action/ability/activable/xeno/scorched_land/proc/tick_effects(list/turf/affected_turfs_in_order)
+	playsound(xeno_owner, SFX_GUN_FLAMETHROWER, 50, 1)
+
+	var/effect_already_done = FALSE
+	for(var/i = 1 to 5)
+		var/turf/affected_turf = affected_turfs_in_order[1]
+		if(!effect_already_done)
+			new /obj/effect/temp_visual/dragon/fire_breath/sky(affected_turf)
+			new /obj/effect/temp_visual/dragon/scorched_land(affected_turf)
+			effect_already_done = TRUE
+		affected_turfs_in_order -= affected_turf
+		refresh_or_create_fire(affected_turf)
+		for(var/atom/affected_atom AS in affected_turf)
+			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
+				continue
+			if(isxeno(affected_atom))
+				continue
+			if(!isliving(affected_atom))
+				continue
+			var/mob/living/affected_living = affected_atom
+			if(affected_living.stat == DEAD)
+				continue
+			affected_living.take_overall_damage(100 * xeno_owner.xeno_melee_damage_modifier, BURN, FIRE, updating_health = TRUE, penetration = 30, max_limbs = 5)
+			continue
+	if(!length(affected_turfs_in_order))
+		succeed_activate() // The ability should be nearly (because landing) or completely done at this point.
+		add_cooldown()
+		return
+	tick_timer = addtimer(CALLBACK(src, PROC_REF(tick_effects), affected_turfs_in_order), 0.1 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+
+/// Creates a melting fire if it does not exist. If it does, refresh it and affect all atoms in the same turf.
+/datum/action/ability/activable/xeno/scorched_land/proc/refresh_or_create_fire(turf/target_turf)
+	var/obj/fire/melting_fire/fire_in_turf = locate(/obj/fire/melting_fire) in target_turf.contents
+	if(!fire_in_turf)
+		new /obj/fire/melting_fire(target_turf)
+		return
+	fire_in_turf.burn_ticks = initial(fire_in_turf.burn_ticks)
+	for(var/something_in_turf in get_turf(fire_in_turf))
+		fire_in_turf.affect_atom(something_in_turf)
+
 /obj/effect/temp_visual/dragon
 	name = "Dragon"
 	randomdir = FALSE
+
+/obj/effect/temp_visual/dragon/warning
+	icon = 'icons/xeno/Effects.dmi'
+	icon_state = "generic_warning"
+	layer = BELOW_MOB_LAYER
+	color = COLOR_RED
+	duration = 1.5 SECONDS
+
+/obj/effect/temp_visual/dragon/warning/Initialize(mapload, _duration)
+	if(isnum(_duration))
+		duration = _duration
+	return ..()
 
 /obj/effect/temp_visual/dragon/directional
 	icon = 'icons/effects/128x128.dmi'
@@ -1026,6 +1158,20 @@
 			pixel_y = -128
 	return ..()
 
+/obj/effect/temp_visual/dragon/fire_breath/sky
+	duration = 0.1 SECONDS
+
+/obj/effect/temp_visual/dragon/fire_breath/Initialize(mapload)
+	. = ..(mapload, SOUTH)
+	pixel_y = 0
+
+/obj/effect/temp_visual/dragon/scorched_land
+	icon = 'icons/effects/96x144.dmi'
+	icon_state = "primo_impact"
+	pixel_x = -32
+	layer = BELOW_MOB_LAYER
+	duration = 0.4 SECONDS
+
 /obj/effect/temp_visual/dragon/fly
 	icon = 'icons/effects/96x144.dmi'
 	icon_state = "fly"
@@ -1082,29 +1228,3 @@
 	pixel_x = -32
 	layer = BELOW_MOB_LAYER
 	duration = 1.25 SECONDS
-
-/obj/effect/temp_visual/dragon/warning
-	icon = 'icons/xeno/Effects.dmi'
-	icon_state = "generic_warning"
-	layer = BELOW_MOB_LAYER
-	color = COLOR_RED
-	duration = 1.5 SECONDS
-
-/obj/effect/temp_visual/dragon/warning/Initialize(mapload, _duration)
-	if(isnum(_duration))
-		duration = _duration
-	return ..()
-
-/obj/effect/temp_visual/shockwave/unleash/Initialize(mapload, radius, direction)
-	. = ..()
-	switch(direction)
-		if(NORTH)
-			pixel_y += 48
-		if(SOUTH)
-			pixel_y += 32
-		if(WEST)
-			pixel_x -= 56
-			pixel_y += 48
-		if(EAST)
-			pixel_x += 56
-			pixel_y += 48

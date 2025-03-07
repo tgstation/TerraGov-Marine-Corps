@@ -1350,9 +1350,10 @@
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHANNEL_SELECTION
 	hotkey_keys = list("N")
 
-/datum/keybinding/xeno/unleash
-	name = "Unleash"
-	full_name = "Dragon: Unleash"
-	description = "After a windup, get various buffs that bolster your offensive capabilities."
-	keybind_signal = COMSIG_XENOABILITY_UNLEASH
+/datum/keybinding/xeno/scorched_land
+	name = "Scorched Land"
+	full_name = "Dragon: Scorched Land"
+	description = "Blast a line of fire in a direction and then immediately land afterward."
+	keybind_signal = COMSIG_XENOABILITY_SCORCHED_LAND
 	hotkey_keys = list("M")
+
