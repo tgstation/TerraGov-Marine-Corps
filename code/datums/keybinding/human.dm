@@ -53,7 +53,7 @@
 
 	if(!inactive_hand)
 		return FALSE
-	if(!active_hand) /// If the active_hand is empty - tries to open storage in inactive_hand
+	if(!active_hand)
 		inactive_hand.attack_hand(human_user)
 		return FALSE
 	inactive_hand.attackby(active_hand, human_user)
