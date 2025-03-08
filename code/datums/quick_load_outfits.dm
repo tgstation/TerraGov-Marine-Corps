@@ -2755,7 +2755,7 @@
 	jobtype = "PMC Standard"
 
 	belt = /obj/item/storage/belt/marine
-	ears = /obj/item/radio/headset/distress/pmc
+	ears = /obj/item/radio/headset/mainship/marine/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/holster
 	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc
@@ -2808,7 +2808,7 @@
 	jobtype = "PMC Medic"
 
 	belt = /obj/item/storage/belt/lifesaver/quick
-	ears = /obj/item/radio/headset/distress/pmc
+	ears = /obj/item/radio/headset/mainship/marine/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/holster
 	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc
@@ -2847,7 +2847,7 @@
 	name = "PMC Engineer"
 	jobtype = "PMC Engineer"
 
-	ears = /obj/item/radio/headset/distress/pmc
+	ears = /obj/item/radio/headset/mainship/marine/pmc
 	belt = /obj/item/storage/belt/marine
 	glasses = /obj/item/clothing/glasses/meson
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/holster
@@ -2896,7 +2896,7 @@
 	jobtype = "PMC Gunner"
 
 	belt = /obj/item/belt_harness/marine
-	ears = /obj/item/radio/headset/distress/pmc
+	ears = /obj/item/radio/headset/mainship/marine/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/holster
 	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner
@@ -2945,7 +2945,7 @@
 	jobtype = "PMC Specialist"
 
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp70_pmc
-	ears = /obj/item/radio/headset/distress/pmc
+	ears = /obj/item/radio/headset/mainship/marine/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/webbing
 	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/sniper
@@ -2985,7 +2985,7 @@
 	jobtype = "PMC Squad Leader"
 
 	belt = /obj/item/storage/belt/marine
-	ears = /obj/item/radio/headset/distress/pmc
+	ears = /obj/item/radio/headset/mainship/marine/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/leader/holster
 	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/leader

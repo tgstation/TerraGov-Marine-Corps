@@ -10,7 +10,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	RADIO_CHANNEL_ALPHA = RADIO_TOKEN_ALPHA,
 	RADIO_CHANNEL_BRAVO = RADIO_TOKEN_BRAVO,
 	RADIO_CHANNEL_CHARLIE = RADIO_TOKEN_CHARLIE,
-	RADIO_CHANNEL_DELTA = RADIO_TOKEN_DELTA
+	RADIO_CHANNEL_DELTA = RADIO_TOKEN_DELTA,
+	RADIO_CHANNEL_PMC = RADIO_TOKEN_PMC
 ))
 
 
@@ -616,9 +617,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot2 = /obj/item/encryptionkey/sec
 
 /obj/item/radio/headset/mainship/marine/pmc
-	name = "marine generic radio headset"
+	name = "pmc radio headset"
 	icon_state = "headset_marine_generic"
-	keyslot = /obj/item/encryptionkey/general
+	keyslot = /obj/item/encryptionkey/PMC
+	keyslot2 = /obj/item/encryptionkey/mcom
+	frequency = FREQ_PMC
 
 /obj/item/radio/headset/mainship/marine/icc
 	name = "shiphands headset"
