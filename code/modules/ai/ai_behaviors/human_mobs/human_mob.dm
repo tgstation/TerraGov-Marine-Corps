@@ -319,6 +319,8 @@
 ///Sig handler for physical interactions, like attacks
 /datum/ai_behavior/human/proc/melee_interact(datum/source, atom/interactee)
 	SIGNAL_HANDLER
+	if(mob_parent.next_move > world.time)
+		return
 	if(!interactee)
 		interactee = atom_to_walk_to //this seems like it should be combat_target, but the only time this should come up is if combat_target IS atom_to_walk_to
 	if(!mob_parent.CanReach(interactee, melee_weapon)) //todo: copy this for beno code, lots of other stuff too.
