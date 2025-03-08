@@ -125,7 +125,7 @@
 		living_parent.do_resist()
 		return
 
-	if(!COOLDOWN_CHECK(src, ai_damage_cooldown))
+	if(!COOLDOWN_CHECK(src, ai_heal_after_dam_cooldown))
 		return
 
 	if(prob(75))

@@ -27,6 +27,8 @@
 	COOLDOWN_DECLARE(ai_chat_cooldown)
 	COOLDOWN_DECLARE(ai_run_cooldown)
 	COOLDOWN_DECLARE(ai_damage_cooldown)
+	COOLDOWN_DECLARE(ai_heal_after_dam_cooldown)
+	COOLDOWN_DECLARE(ai_retreat_cooldown)
 
 /datum/ai_behavior/human/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
@@ -177,20 +179,26 @@
 				return
 			change_action(null, next_target)//We found a better target, change course!
 		if(MOVING_TO_SAFETY)
-			if(!COOLDOWN_CHECK(src, ai_damage_cooldown))
-				return
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
-			if(!next_target)//looks safe
+			if(COOLDOWN_CHECK(src, ai_retreat_cooldown))
 				target_distance = initial(target_distance)
 				cleanup_current_action()
 				late_initialize()
 				if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && living_parent.health <= minimum_health * 3 * living_parent.maxHealth)
 					INVOKE_ASYNC(src, PROC_REF(try_heal))
 				return
-			set_combat_target(next_target)
-			if(next_target == atom_to_walk_to)
+			if(combat_target) //keep fighting as you retreat
 				return
-			set_atom_to_walk_to(next_target)
+			var/atom/next_target = get_nearest_target(escorted_atom, initial(target_distance), TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
+			if(next_target)
+				set_combat_target(next_target)
+				if(next_target != atom_to_walk_to)
+					set_atom_to_walk_to(next_target)
+				return
+			target_distance = initial(target_distance)
+			cleanup_current_action()
+			late_initialize()
+			if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && living_parent.health <= minimum_health * 3 * living_parent.maxHealth)
+				INVOKE_ASYNC(src, PROC_REF(try_heal))
 		if(IDLE)
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
 			if(!next_target)
@@ -357,10 +365,15 @@
 ///Reacts if the mob is below the min health threshold
 /datum/ai_behavior/human/proc/on_take_damage(datum/source, damage, mob/attacker)
 	SIGNAL_HANDLER
-	COOLDOWN_START(src, ai_damage_cooldown, 5 SECONDS)
+	if(damage < 5) //Don't want chip damage causing a retreat
+		return
+	if(!COOLDOWN_CHECK(src, ai_damage_cooldown))
+		return
+	COOLDOWN_START(src, ai_damage_cooldown, 1 SECONDS)
 	if(human_ai_state_flags & HUMAN_AI_FIRING)
 		return
 	if(attacker)
+		COOLDOWN_START(src, ai_heal_after_dam_cooldown, 4 SECONDS)
 		if((human_ai_state_flags & HUMAN_AI_ANY_HEALING)) //dont just stand there
 			human_ai_state_flags &= ~(HUMAN_AI_ANY_HEALING)
 			late_initialize()
@@ -372,6 +385,9 @@
 
 	if(!(human_ai_behavior_flags & HUMAN_AI_SELF_HEAL))
 		return
+	if((human_ai_state_flags & HUMAN_AI_ANY_HEALING))
+		return
+
 	var/mob/living/living_mob = mob_parent
 	if(living_mob.health - damage > minimum_health * living_mob.maxHealth)
 		return
@@ -388,6 +404,7 @@
 		try_speak(pick(retreating_chat))
 	set_run(TRUE)
 	target_distance = 12
+	COOLDOWN_START(src, ai_retreat_cooldown, 8 SECONDS)
 	change_action(MOVING_TO_SAFETY, next_target, list(INFINITY)) //fallback
 
 ///Reacts to a heard message
