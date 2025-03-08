@@ -250,7 +250,7 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 	var/eavesdropping
 	var/eavesrendered
 	if(eavesdrop_range)
-		eavesdropping = stars(message_raw)
+		eavesdropping = stars(message_raw, probability=50)
 		eavesrendered = compose_message(src, message_language, eavesdropping, null, spans, message_mode)
 
 	var/list/listened = list()
