@@ -7,6 +7,17 @@
 	///The number of icon state available
 	var/available_icon_state_amounts = 15
 
+
+/turf/open/space/transit/Initialize(mapload)
+	. = ..()
+	update_appearance()
+	RegisterSignal(src, COMSIG_TURF_RESERVATION_RELEASED, PROC_REF(launch_contents))
+
+/turf/open/space/transit/Destroy()
+	//Signals are NOT removed from turfs upon replacement, and we get replaced ALOT, so unregister our signal
+	UnregisterSignal(src, COMSIG_TURF_RESERVATION_RELEASED)
+	return ..()
+
 /turf/open/space/transit/atmos
 	name = "\proper high atmosphere"
 	baseturfs = /turf/open/space/transit/atmos
@@ -17,10 +28,39 @@
 /turf/open/space/transit/attackby(obj/item/I, mob/user, params)
 	return
 
-///turf/open/space/transit/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
-//	. = ..()
-//	underlay_appearance.icon_state = "speedspace_ns_[get_transit_state(asking_turf)]"
-//	underlay_appearance.transform = turn(matrix(), get_transit_angle(asking_turf))
+/turf/open/space/transit/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
+	. = ..()
+	if(plane != FLOOR_PLANE) // snowflake behaviour e.g clouds
+		underlay_appearance.icon_state = "speedspace_ns_[get_transit_state(asking_turf)]"
+		underlay_appearance.transform = turn(matrix(), get_transit_angle(asking_turf))
+
+///Get rid of all our contents, called when our reservation is released (which in our case means the shuttle arrived)
+/turf/open/space/transit/proc/launch_contents(datum/turf_reservation/reservation)
+	SIGNAL_HANDLER
+
+	for(var/atom/movable/movable in contents)
+		dump_in_space(movable)
+
+///Dump a movable in a random eligible tile
+/proc/dump_in_space(atom/movable/dumpee)
+	var/static/list/area/possible_dump_lzs
+	// yes this doesnt update when new areas are added but imo not worth wasting the CPU time
+	// since it doesnt change often. update if you feel different
+	if(!possible_dump_lzs)
+		possible_dump_lzs = list()
+		for(var/area/zone AS in GLOB.areas)
+			if(zone.area_flags & MARINE_BASE || zone.area_flags & NEAR_FOB)
+				possible_dump_lzs += zone
+	var/area/garbage_dump = pick(possible_dump_lzs)
+	var/turf/dumpturf = pick(garbage_dump.get_turfs_from_all_zlevels())
+	dumpee.forceMove(dumpturf)
+	var/dumpee_pix_z = dumpee.pixel_z
+	dumpee.pixel_z += 400
+	animate(dumpee, 1 SECONDS, pixel_z=dumpee_pix_z)
+	if(isliving(dumpee))
+		var/mob/living/skydiver = dumpee
+		skydiver.take_overall_damage(300, BRUTE) // you fell from space!! YOU ARE A PANCAKE
+		skydiver.take_overall_damage(300, BURN) // A BURNING PANCAKE
 
 /turf/open/space/transit/south
 	dir = SOUTH

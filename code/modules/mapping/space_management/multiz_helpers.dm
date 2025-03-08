@@ -11,9 +11,8 @@
 // I wish this was lisp
 /proc/get_highest_turf(atom/ref)
 	var/turf/us = get_turf(ref)
-	return us /*
 	var/turf/next = GET_TURF_ABOVE(us)
 	while(next)
 		us = next
 		next = GET_TURF_ABOVE(us)
-	return us*/
+	return us

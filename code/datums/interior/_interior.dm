@@ -9,7 +9,7 @@
 	var/datum/callback/exit_callback
 	///occupants that entered this interior through the intended way
 	var/list/mob/occupants = list()
-	///turf reservation where we will load our interior
+	///turf reservation where we will load our interior // TODO REPLACE ME WITH LAZYTEMPLATELOAD STUFF
 	var/datum/turf_reservation/reservation
 	///list of all loaded turfs. we keep this around in case we need to update linkages or similar
 	var/list/turf/loaded_turfs = list()
@@ -24,15 +24,13 @@
 	RegisterSignal(container, COMSIG_ATOM_ENTERED, PROC_REF(on_container_enter))
 	INVOKE_NEXT_TICK(src, PROC_REF(init_map))
 
-///actual inits the map, seperate proc because otherwise it fails linter due to "sleep in new"
+///actual inits the map, seperate proc because otherwise it fails linter due to "sleep in new" // TODO REPLACE ME WITH LAZYTEMPLATELOAD STUFF
 /datum/interior/proc/init_map()
 	var/datum/map_template/map = new template
-	reservation = SSmapping.RequestBlockReservation(map.width + (INTERIOR_BUFFER_TILES*2), map.height + (INTERIOR_BUFFER_TILES*2))
+	reservation = SSmapping.request_turf_block_reservation(map.width + (INTERIOR_BUFFER_TILES*2), map.height + (INTERIOR_BUFFER_TILES*2))
 
-	var/list/load_coords = reservation.bottom_left_coords.Copy()
-	load_coords[1] = load_coords[1] + INTERIOR_BUFFER_TILES
-	load_coords[2] = load_coords[2] + INTERIOR_BUFFER_TILES
-	var/turf/load_loc = locate(load_coords[1], load_coords[2], load_coords[3])
+	var/turf/load_turf = reservation.bottom_left_turfs[1]
+	var/turf/load_loc = locate(load_turf.x + INTERIOR_BUFFER_TILES, load_turf.y + INTERIOR_BUFFER_TILES, load_turf.z)
 	var/list/bounds = map.load(load_loc)
 	this_area = load_loc.loc
 
