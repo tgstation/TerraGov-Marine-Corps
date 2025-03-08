@@ -34,6 +34,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	QDEL_NULL(ai_behavior)
 	return ..()
 
+///Handles the death of the npc mob
 /datum/component/ai_controller/proc/on_parent_death()
 	if(ishuman(parent))
 		clean_up()
