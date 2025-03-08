@@ -403,12 +403,12 @@
 /obj/structure/dropship_equipment/shuttle/tangle_emitter/equipment_interact(mob/user)
 	if(!enabled)
 		enabled = TRUE
-		update_icon()
+		update_appearance()
 		user.balloon_alert(user, "Enabled")
 		RegisterSignal(linked_shuttle, COMSIG_SHUTTLE_SETMODE, PROC_REF(drop_pellet_to_location))
 		return
 	enabled = FALSE
-	update_icon()
+	update_appearance()
 	user.balloon_alert(user, "Disabled")
 	UnregisterSignal(linked_shuttle, COMSIG_SHUTTLE_SETMODE)
 
@@ -417,11 +417,11 @@
 	if(ship_base)
 		setDir(ship_base.dir)
 		if(enabled)
-			update_icon()
+			update_appearance()
 			RegisterSignal(linked_shuttle, COMSIG_SHUTTLE_SETMODE, PROC_REF(drop_pellet_to_location))
 	else
 		setDir(initial(dir))
-	update_icon()
+	update_appearance()
 
 
 
@@ -454,7 +454,7 @@
 	pellet_type.activate()
 
 	COOLDOWN_START(src, use_cooldown, cooldown_length)
-	update_icon()
+	update_appearance()
 	addtimer(CALLBACK(src, PROC_REF(on_cooldown_end)), cooldown_length + 1 SECONDS)
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 40, 1)
 	console.say("Emitter system deployed successfully.")
@@ -462,7 +462,7 @@
 
 /// Special effects for when system cooldown finishes
 /obj/structure/dropship_equipment/shuttle/tangle_emitter/proc/on_cooldown_end()
-	update_icon()
+	update_appearance()
 	playsound(loc, 'sound/machines/ping.ogg', 50, FALSE)
 
 //////////////////////////////////// turret holders //////////////////////////////////////
