@@ -292,6 +292,8 @@
 	if(combat_target == old_target && (human_ai_state_flags & HUMAN_AI_FIRING))
 		stop_fire()
 	remove_from_heal_list(old_target)
+	if(medical_rating >= AI_MED_MEDIC) //medics keep them on the list
+		add_to_heal_list(old_target)
 	if(human_ai_state_flags & HUMAN_AI_HEALING)
 		on_heal_end(old_target)
 	return ..()
