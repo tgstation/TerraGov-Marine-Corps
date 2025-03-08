@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "fixed strains ignoring max caste limits"
-  - bugfix: "Strain swap will now show all strains you can swap, including the base caste, excluding your own instead of all strains"
