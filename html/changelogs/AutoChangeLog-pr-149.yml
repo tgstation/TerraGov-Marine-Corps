@@ -1,0 +1,4 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - rscadd: "Whispers now have twice as many stars on average"
