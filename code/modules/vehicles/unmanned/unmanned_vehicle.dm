@@ -15,6 +15,7 @@
 	atom_flags = BUMP_ATTACKABLE
 	soft_armor = list(MELEE = 25, BULLET = 85, LASER = 85, ENERGY = 85, BOMB = 50, BIO = 100, FIRE = 25, ACID = 25)
 	allow_pass_flags = PASS_AIR|PASS_LOW_STRUCTURE|PASS_THROW
+	faction = FACTION_TERRAGOV
 	/// Needed to keep track of any slowdowns and/or diagonal movement
 	var/next_move_delay = 0
 	/// Path of "turret" attached
@@ -71,7 +72,8 @@
 		max_rounds = initial(spawn_equipped_type.max_rounds)
 		update_icon()
 	hud_set_uav_ammo()
-	var/faction = deployer?.faction ? deployer.faction : FACTION_TERRAGOV
+	if(deployer)
+		faction = deployer.faction
 	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips.dmi', null, "uav"))
 	var/datum/atom_hud/sentry_status_hud = GLOB.huds[GLOB.faction_to_data_hud[faction]]
 	if(sentry_status_hud)

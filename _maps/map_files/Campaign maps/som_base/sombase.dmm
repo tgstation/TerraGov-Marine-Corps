@@ -4017,7 +4017,7 @@
 	},
 /area/rocinante_base/surface/building/administration)
 "fAC" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -4432,7 +4432,7 @@
 /area/rocinante_base/surface/building/science/bio_lab)
 "gci" = (
 /obj/machinery/floor_warn_light,
-/turf/closed/shuttle/re_corner,
+/turf/closed/shuttle,
 /area/rocinante_base/surface/building/science/tele_lab)
 "gdi" = (
 /obj/machinery/vending/coffee,
@@ -6166,7 +6166,7 @@
 /turf/open/floor/mainship/red,
 /area/rocinante_base/surface/building/administration)
 "iDw" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /obj/structure/platform/metalplatform{
@@ -6888,7 +6888,7 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/rocinante_base/surface/building/cargo/vehicle_garage)
 "jHb" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/ground/base_cent)
 "jHi" = (
@@ -7694,7 +7694,7 @@
 	},
 /area/rocinante_base/surface/building/security/garage_sec)
 "kNr" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /obj/structure/platform/metalplatform{
@@ -10326,7 +10326,7 @@
 /turf/open/floor/plating/ground/snow,
 /area/rocinante_base/ground/base_n)
 "oxL" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
@@ -12809,7 +12809,7 @@
 /turf/open/floor/plating/dmg1,
 /area/rocinante_base/surface/building/mining_construction)
 "sdN" = (
-/turf/closed/shuttle/re_corner,
+/turf/closed/shuttle,
 /area/rocinante_base/surface/building/science/tele_lab)
 "seF" = (
 /obj/structure/flora/ausbushes/grassybush,
@@ -16427,7 +16427,7 @@
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/administration/command)
 "wIz" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -16510,7 +16510,7 @@
 /turf/open/floor/plating/ground/concrete/edge,
 /area/rocinante_base/ground/base_s)
 "wQt" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,

@@ -205,8 +205,8 @@
 	caliber = CALIBER_10X20_CASELESS
 	default_ammo = /datum/ammo/bullet/smg
 	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 150
-	max_rounds = 150
+	current_rounds = 240
+	max_rounds = 240
 
 /obj/item/ammo_magazine/packet/p4570
 	name = "packet of .45-70"
@@ -236,8 +236,8 @@
 	icon_state = "41AE"
 	default_ammo = /datum/ammo/bullet/smg/heavy
 	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 160
-	max_rounds = 160
+	current_rounds = 165
+	max_rounds = 165
 
 /obj/item/ammo_magazine/packet/p41ae_squashhead
 	name = "packet of .41 AE squashhead"
@@ -246,5 +246,5 @@
 	icon_state = "41AE_squash"
 	default_ammo = /datum/ammo/bullet/smg/squash
 	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 160
-	max_rounds = 160
+	current_rounds = 165
+	max_rounds = 165

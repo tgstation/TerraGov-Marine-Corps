@@ -20,42 +20,40 @@
 
 /datum/action/ability/activable/xeno/recycle/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
-	var/mob/living/carbon/xenomorph/hivelord = owner
 	var/mob/living/carbon/xenomorph/victim = target
 	if(!.)
 		return FALSE
-	if(!hivelord.Adjacent(victim))
+	if(!xeno_owner.Adjacent(victim))
 		if(!silent)
-			hivelord.balloon_alert(hivelord, "Too far")
+			xeno_owner.balloon_alert(xeno_owner, "Too far")
 		return FALSE
-	if(hivelord.on_fire)
+	if(xeno_owner.on_fire)
 		if(!silent)
-			hivelord.balloon_alert(hivelord, "Cannot while burning")
+			xeno_owner.balloon_alert(xeno_owner, "Cannot while burning")
 		return FALSE
 	if(!isxeno(target))
 		if(!silent)
-			hivelord.balloon_alert(hivelord, "Cannot recycle")
+			xeno_owner.balloon_alert(xeno_owner, "Cannot recycle")
 		return FALSE
 	if(victim.stat != DEAD)
 		if(!silent)
-			hivelord.balloon_alert(hivelord, "Sister isn't dead")
+			xeno_owner.balloon_alert(xeno_owner, "Sister isn't dead")
 		return FALSE
 
 /datum/action/ability/activable/xeno/recycle/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/recycled_xeno = target
-	var/mob/living/carbon/xenomorph/hivelord = owner
-	hivelord.face_atom(recycled_xeno) //Face towards the target so we don't look silly
-	hivelord.visible_message(span_warning("\The [hivelord] starts breaking apart \the [recycled_xeno]'s carcass."), \
+	xeno_owner.face_atom(recycled_xeno) //Face towards the target so we don't look silly
+	xeno_owner.visible_message(span_warning("\The [xeno_owner] starts breaking apart \the [recycled_xeno]'s carcass."), \
 	span_danger("We slowly deconstruct upon \the [recycled_xeno]'s carcass!"), null, 20)
 	if(!do_after(owner, 7 SECONDS, IGNORE_HELD_ITEM, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, TRUE, ABILITY_USE_BUSY)))
 		return
 
-	hivelord.record_recycle_points(recycled_xeno)
+	xeno_owner.record_recycle_points(recycled_xeno)
 
 	recycled_xeno.gib()
 
-	playsound(hivelord, 'sound/effects/alien/recycler.ogg', 40)
-	hivelord.visible_message(span_xenowarning("\The [hivelord] brushes xenomorphs' bits off its claws."), \
+	playsound(xeno_owner, 'sound/effects/alien/recycler.ogg', 40)
+	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] brushes xenomorphs' bits off its claws."), \
 	span_danger("We brush xenomorphs' bits off of our claws."), null, 20)
 	return succeed_activate() //dew it
 
@@ -105,23 +103,21 @@
 
 
 /datum/action/ability/xeno_action/toggle_speed/proc/resinwalk_on(silent = FALSE)
-	var/mob/living/carbon/xenomorph/walker = owner
 	speed_activated = TRUE
 	if(!silent)
 		owner.balloon_alert(owner, "Resin walk active")
-	if(walker.loc_weeds_type)
+	if(xeno_owner.loc_weeds_type)
 		speed_bonus_active = TRUE
-		walker.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
+		xeno_owner.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
 	set_toggle(TRUE)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(resinwalk_on_moved))
 
 
 /datum/action/ability/xeno_action/toggle_speed/proc/resinwalk_off(silent = FALSE)
-	var/mob/living/carbon/xenomorph/walker = owner
 	if(!silent)
 		owner.balloon_alert(owner, "Resin walk ended")
 	if(speed_bonus_active)
-		walker.remove_movespeed_modifier(type)
+		xeno_owner.remove_movespeed_modifier(type)
 		speed_bonus_active = FALSE
 	speed_activated = FALSE
 	set_toggle(FALSE)
@@ -130,21 +126,20 @@
 
 /datum/action/ability/xeno_action/toggle_speed/proc/resinwalk_on_moved(datum/source, atom/oldloc, direction, Forced = FALSE)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/walker = owner
-	if(!isturf(walker.loc) || walker.plasma_stored < 10)
+	if(!isturf(xeno_owner.loc) || xeno_owner.plasma_stored < 10)
 		owner.balloon_alert(owner, "Resin walk ended, no plasma")
 		resinwalk_off(TRUE)
 		return
-	if(walker.loc_weeds_type)
+	if(xeno_owner.loc_weeds_type)
 		if(!speed_bonus_active)
 			speed_bonus_active = TRUE
-			walker.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
-		walker.use_plasma(10)
+			xeno_owner.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
+		xeno_owner.use_plasma(10)
 		return
 	if(!speed_bonus_active)
 		return
 	speed_bonus_active = FALSE
-	walker.remove_movespeed_modifier(type)
+	xeno_owner.remove_movespeed_modifier(type)
 
 
 // ***************************************
@@ -180,48 +175,46 @@
 		return FALSE
 
 /datum/action/ability/xeno_action/build_tunnel/on_cooldown_finish()
-	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, span_notice("We are ready to dig a tunnel again."))
+	to_chat(xeno_owner, span_notice("We are ready to dig a tunnel again."))
 	return ..()
 
 /datum/action/ability/xeno_action/build_tunnel/action_activate()
 	var/turf/T = get_turf(owner)
-	var/mob/living/carbon/xenomorph/hivelord/X = owner
 
-	X.balloon_alert(X, "Digging...")
-	X.visible_message(span_xenonotice("[X] begins digging out a tunnel entrance."), \
+	xeno_owner.balloon_alert(xeno_owner, "Digging...")
+	xeno_owner.visible_message(span_xenonotice("[xeno_owner] begins digging out a tunnel entrance."), \
 	span_xenonotice("We begin digging out a tunnel entrance."), null, 5)
-	if(!do_after(X, HIVELORD_TUNNEL_DIG_TIME, NONE, T, BUSY_ICON_BUILD))
-		X.balloon_alert(X, "Digging aborted")
+	if(!do_after(xeno_owner, HIVELORD_TUNNEL_DIG_TIME, NONE, T, BUSY_ICON_BUILD))
+		xeno_owner.balloon_alert(xeno_owner, "Digging aborted")
 		return fail_activate()
 
 	if(!can_use_action(TRUE))
 		return fail_activate()
 
-	T.balloon_alert(X, "Tunnel dug")
-	X.visible_message(span_xenonotice("\The [X] digs out a tunnel entrance."), \
+	T.balloon_alert(xeno_owner, "Tunnel dug")
+	xeno_owner.visible_message(span_xenonotice("\The [xeno_owner] digs out a tunnel entrance."), \
 	span_xenonotice("We dig out a tunnel, connecting it to our network."), null, 5)
-	var/obj/structure/xeno/tunnel/newt = new(T, X.get_xeno_hivenumber())
+	var/obj/structure/xeno/tunnel/newt = new(T, xeno_owner.get_xeno_hivenumber())
 
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
-	newt.creator = X
-	newt.RegisterSignal(X, COMSIG_QDELETING, TYPE_PROC_REF(/obj/structure/xeno/tunnel, clear_creator))
+	newt.creator = xeno_owner
+	newt.RegisterSignal(xeno_owner, COMSIG_QDELETING, TYPE_PROC_REF(/obj/structure/xeno/tunnel, clear_creator))
 
-	X.tunnels.Add(newt)
+	xeno_owner.tunnels.Add(newt)
 
 	add_cooldown()
 
-	to_chat(X, span_xenonotice("We now have <b>[LAZYLEN(X.tunnels)] of [HIVELORD_TUNNEL_SET_LIMIT]</b> tunnels."))
+	to_chat(xeno_owner, span_xenonotice("We now have <b>[LAZYLEN(xeno_owner.tunnels)] of [HIVELORD_TUNNEL_SET_LIMIT]</b> tunnels."))
 
 	newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y])"
 
-	xeno_message("[X.name] has built a new tunnel at [newt.tunnel_desc]!", "xenoannounce", 5, X.hivenumber)
+	xeno_message("[xeno_owner.name] has built a new tunnel at [newt.tunnel_desc]!", "xenoannounce", 5, xeno_owner.hivenumber)
 
-	if(LAZYLEN(X.tunnels) > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
-		var/obj/structure/xeno/tunnel/old_tunnel = X.tunnels[1]
+	if(LAZYLEN(xeno_owner.tunnels) > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
+		var/obj/structure/xeno/tunnel/old_tunnel = xeno_owner.tunnels[1]
 		old_tunnel.deconstruct(FALSE)
-		to_chat(X, span_xenodanger("Having exceeding our tunnel limit, our oldest tunnel has collapsed."))
+		to_chat(xeno_owner, span_xenodanger("Having exceeding our tunnel limit, our oldest tunnel has collapsed."))
 
 	succeed_activate()
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
@@ -257,8 +250,7 @@
 			T.balloon_alert(owner, "Cannot place pod")
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(!owner_xeno.loc_weeds_type)
+	if(!xeno_owner.loc_weeds_type)
 		if(!silent)
 			T.balloon_alert(owner, "Cannot place pod, no weeds")
 		return FALSE
@@ -289,7 +281,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CREATE_JELLY,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED
 
 /datum/action/ability/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -410,43 +402,39 @@
 
 /datum/action/ability/xeno_action/sow/can_use_action(silent = FALSE, override_flags)
 	. = ..()
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(!owner_xeno.loc_weeds_type)
+	if(!xeno_owner.loc_weeds_type)
 		if(!silent)
 			owner.balloon_alert(owner, "Cannot sow, no weeds")
 		return FALSE
 
 	var/turf/T = get_turf(owner)
-	if(!T.check_alien_construction(owner, silent, owner_xeno.selected_plant))
+	if(!T.check_alien_construction(owner, silent, xeno_owner.selected_plant))
 		return FALSE
 
 /datum/action/ability/xeno_action/sow/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!X.selected_plant)
+	if(!xeno_owner.selected_plant)
 		return FALSE
 
 	playsound(src, SFX_ALIEN_RESIN_BUILD, 25)
-	new X.selected_plant(get_turf(owner))
+	new xeno_owner.selected_plant(get_turf(owner))
 	add_cooldown()
 	return succeed_activate()
 
 /datum/action/ability/xeno_action/sow/update_button_icon()
-	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays.Cut()
-	button.overlays += image('icons/Xeno/actions/construction.dmi', button, initial(X.selected_plant.name))
+	button.overlays += image('icons/Xeno/actions/construction.dmi', button, initial(xeno_owner.selected_plant.name))
 	return ..()
 
 ///Shows a radial menu to pick the plant they wish to put down when they use the ability
 /datum/action/ability/xeno_action/sow/proc/choose_plant()
 	var/plant_choice = show_radial_menu(owner, owner, GLOB.plant_images_list, radius = 48)
-	var/mob/living/carbon/xenomorph/X = owner
 	if(!plant_choice)
 		return
 	for(var/obj/structure/xeno/plant/current_plant AS in GLOB.plant_type_list)
 		if(initial(current_plant.name) == plant_choice)
-			X.selected_plant = current_plant
+			xeno_owner.selected_plant = current_plant
 			break
-	X.balloon_alert(X, "[plant_choice]")
+	xeno_owner.balloon_alert(xeno_owner, "[plant_choice]")
 	update_button_icon()
 
 /datum/action/ability/xeno_action/sow/alternate_action_activate()

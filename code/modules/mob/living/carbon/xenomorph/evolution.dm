@@ -265,7 +265,7 @@
 		balloon_alert(src, "We must be at full plasma to evolve")
 		return FALSE
 
-	if (agility || fortify || crest_defense || status_flags & INCORPOREAL)
+	if (fortify || crest_defense || status_flags & INCORPOREAL)
 		balloon_alert(src, "We cannot evolve while in this stance")
 		return FALSE
 

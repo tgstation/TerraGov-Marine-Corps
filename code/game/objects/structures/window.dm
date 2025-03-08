@@ -27,7 +27,7 @@
 	var/deconstructable = TRUE
 
 /obj/structure/window/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_GLASS, -10, 5)
+	AddElement(/datum/element/debris, DEBRIS_GLASS, -40, 5)
 
 //I hate this as much as you do
 /obj/structure/window/full
@@ -208,7 +208,7 @@
 
 /obj/structure/window/verb/rotate()
 	set name = "Rotate Window Counter-Clockwise"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(static_frame)
@@ -225,7 +225,7 @@
 
 /obj/structure/window/verb/revrotate()
 	set name = "Rotate Window Clockwise"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(static_frame)
@@ -643,12 +643,18 @@
 	basestate = "prison_rwindow"
 	window_frame = /obj/structure/window_frame/prison/reinforced
 
+/obj/structure/window/framed/prison/colony
+	name = "window"
+	icon = 'icons/obj/smooth_objects/prison_rwindow.dmi'
+	icon_state = "window-reinforced"
+	base_icon_state = "prison_rwindow"
+	basestate = "prison_rwindow"
+
 /obj/structure/window/framed/prison/reinforced/hull
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one has an automatic shutter system to prevent any atmospheric breach."
 	max_integrity = 200
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
-	resistance_flags = BANISH_IMMUNE
 	icon_state = "window-invincible"
 
 /obj/structure/window/framed/prison/reinforced/hull/Initialize(mapload)

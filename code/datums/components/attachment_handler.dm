@@ -257,8 +257,8 @@
 	if(!do_after(user, detach_delay, NONE, parent, do_after_icon_type))
 		return
 
-	user.visible_message(span_notice("[user] detaches [attachment_to_remove] to [parent]."),
-	span_notice("You detach [attachment_to_remove] to [parent]."), null, 4)
+	user.visible_message(span_notice("[user] detaches [attachment_to_remove] from [parent]."),
+	span_notice("You detach [attachment_to_remove] from [parent]."), null, 4)
 	playsound(user, attachment_data[ATTACH_SOUND], 15, 1, 4)
 
 	finish_detach(attachment_to_remove, attachment_data, user)
@@ -366,7 +366,7 @@
 			else
 				icon = attachment_data[OVERLAY_ICON]
 				suffix = attachment.icon == icon ? "_a" : ""
-		var/mutable_appearance/new_overlay = mutable_appearance(icon, icon_state + suffix, -attachment_data[ATTACHMENT_LAYER])
+		var/mutable_appearance/new_overlay = mutable_appearance(icon, icon_state + suffix, attachment_data[ATTACHMENT_LAYER])
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			new_overlay.overlays += attachment.overlays
 		if(attachment_data[MOB_PIXEL_SHIFT_X])

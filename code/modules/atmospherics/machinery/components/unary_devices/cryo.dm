@@ -209,7 +209,7 @@
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/verb/move_eject()
 	set name = "Eject occupant"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 	if(usr == occupant) //If the user is inside the tube...
 		if (usr.stat == DEAD) //and he's not dead....

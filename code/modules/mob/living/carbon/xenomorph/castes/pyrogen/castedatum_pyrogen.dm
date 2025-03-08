@@ -3,6 +3,7 @@
 	display_name = "Pyrogen"
 	upgrade_name = ""
 	caste_desc = "A xenomorph constantly engulfed by plasma flames."
+	base_strain_type = /mob/living/carbon/xenomorph/pyrogen
 	caste_type_path = /mob/living/carbon/xenomorph/pyrogen
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -11,6 +12,8 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 22
+	melee_damage_type = BURN
+	melee_damage_armor = FIRE
 	attack_delay = 7
 
 	// *** Speed *** //
@@ -48,6 +51,7 @@
 		/datum/action/ability/activable/xeno/charge/fire_charge,
 		/datum/action/ability/activable/xeno/fireball,
 		/datum/action/ability/activable/xeno/firestorm,
+		/datum/action/ability/activable/xeno/inferno,
 	)
 
 /datum/xeno_caste/pyrogen/normal
@@ -67,5 +71,6 @@
 		/datum/action/ability/activable/xeno/charge/fire_charge,
 		/datum/action/ability/activable/xeno/fireball,
 		/datum/action/ability/activable/xeno/firestorm,
-		/datum/action/ability/xeno_action/heatray,
+		/datum/action/ability/activable/xeno/inferno,
+		/datum/action/ability/activable/xeno/infernal_trigger,
 	)

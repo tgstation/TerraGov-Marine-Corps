@@ -253,7 +253,20 @@
 	icon_opened = "open_weapons"
 	icon_closed = "closed_weapons"
 
+/obj/structure/closet/crate/mounted
+	name = "mounted weapon crate"
+	desc = "A robust crate containing stationary weapons."
+	icon_state = "closed_mounted_weapon"
+	icon_opened = "open_mounted_weapon"
+	icon_closed = "closed_mounted_weapon"
 
+/obj/structure/closet/crate/smart
+	name = "smart weapon crate"
+	desc = "A robust crate containing high-tech smartgun weapons and ammunitions."
+	icon_state = "closed_smart"
+	overlay_welded = "welded_smart"
+	icon_opened = "open_smart"
+	icon_closed = "closed_smart"
 
 /obj/structure/closet/crate/miningcar
 	desc = "A mining car. Used on rails, or dragged by hand."

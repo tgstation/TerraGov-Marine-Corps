@@ -311,7 +311,7 @@
 
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in oview(1)
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Toggle Open"
 
 	if(!usr.canmove || usr.stat || usr.restrained())

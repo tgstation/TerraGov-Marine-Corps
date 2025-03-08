@@ -287,9 +287,6 @@
 	return ..(shock_damage, source, siemens_coeff, def_zone)
 
 /mob/living/carbon/human/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
 	if(href_list["squadfireteam"])
 		if(usr.incapacitated() || get_dist(usr, src) >= 7 || !hasHUD(usr,"squadleader"))
 			return
@@ -297,7 +294,7 @@
 		if(!H.mind)
 			return
 		var/obj/item/card/id/ID = get_idcard()
-		if(!ID || !(ID.rank in GLOB.jobs_marines))//still a marine, with an ID.
+		if(!ID || !(ID.rank in GLOB.jobs_squad_roles))//still a marine, with an ID.
 			return
 		if(!(assigned_squad == H.assigned_squad)) //still same squad
 			return
@@ -305,7 +302,7 @@
 		if(!newfireteam || H.incapacitated() || get_dist(H, src) >= 7) //We might've moved away or gotten incapacitated in the meantime
 			return
 		ID = get_idcard()
-		if(!ID || !(ID.rank in GLOB.jobs_marines))//still a marine with an ID
+		if(!ID || !(ID.rank in GLOB.jobs_squad_roles))//still a marine with an ID
 			return
 		if(!(assigned_squad == H.assigned_squad)) //still same squad
 			return
@@ -381,7 +378,7 @@
 				to_chat(usr, "<b>Major Crimes:</b> [security_record.fields["ma_crim"]]")
 				to_chat(usr, "<b>Details:</b> [security_record.fields["ma_crim_d"]]")
 				to_chat(usr, "<b>Notes:</b> [security_record.fields["notes"]]")
-				to_chat(usr, "<a href='?src=[text_ref(src)];secrecordComment=`'>\[View Comment Log\]</a>")
+				to_chat(usr, "<a href='byond://?src=[text_ref(src)];secrecordComment=`'>\[View Comment Log\]</a>")
 				return
 
 		to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
@@ -413,7 +410,7 @@
 					counter++
 				if(counter == 1)
 					to_chat(usr, "No comment found")
-				to_chat(usr, "<a href='?src=[text_ref(src)];secrecordadd=`'>\[Add comment\]</a>")
+				to_chat(usr, "<a href='byond://?src=[text_ref(src)];secrecordadd=`'>\[Add comment\]</a>")
 				return
 
 		to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
@@ -510,7 +507,7 @@
 				to_chat(usr, "<b>Major Disabilities:</b> [medical_record.fields["ma_dis"]]")
 				to_chat(usr, "<b>Details:</b> [medical_record.fields["ma_dis_d"]]")
 				to_chat(usr, "<b>Notes:</b> [medical_record.fields["notes"]]")
-				to_chat(usr, "<a href='?src=[text_ref(src)];medrecordComment=`'>\[View Comment Log\]</a>")
+				to_chat(usr, "<a href='byond://?src=[text_ref(src)];medrecordComment=`'>\[View Comment Log\]</a>")
 				return
 
 		to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
@@ -543,7 +540,7 @@
 					counter++
 				if(counter == 1)
 					to_chat(usr, "No comment found")
-				to_chat(usr, "<a href='?src=[text_ref(src)];medrecordadd=`'>\[Add comment\]</a>")
+				to_chat(usr, "<a href='byond://?src=[text_ref(src)];medrecordadd=`'>\[Add comment\]</a>")
 				return
 
 		to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
@@ -720,7 +717,7 @@
 
 
 /mob/living/carbon/human/verb/check_pulse()
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Check pulse"
 	set desc = "Approximately count somebody's pulse. Requires you to stand still at least 6 seconds."
 	set src in view(1)
@@ -773,7 +770,13 @@
 		new_species = race
 	return ..()
 
+/// Turns our human into a selected species `new_species`
+/// new_species must be either a string or a species datum
 /mob/living/carbon/human/proc/set_species(new_species, default_colour)
+	// Here we'll convert the species into a string. It's a bandaid fix
+	if(istype(new_species, /datum/species))
+		var/datum/species/old_type = new_species
+		new_species = old_type.name
 
 	if(!new_species)
 		new_species = "Human"
@@ -845,7 +848,7 @@
 /mob/living/carbon/human/reagent_check(datum/reagent/R)
 	return species.handle_chemicals(R,src) // if it returns 0, it will run the usual on_mob_life for that reagent. otherwise, it will stop after running handle_chemicals for the species.
 
-/mob/living/carbon/human/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+/mob/living/carbon/human/slip(slip_source_name, stun_level, paralyze_level, run_only, override_noslip, slide_steps)
 	if((shoes?.inventory_flags & NOSLIPPING) && !override_noslip) //If our shoes are noslip just return immediately unless we don't care about the noslip
 		return FALSE
 	return ..()
@@ -1116,6 +1119,13 @@
 	return ..()
 
 /mob/living/carbon/human/get_up()
-	if(!do_after(src, 2 SECONDS, IGNORE_LOC_CHANGE|IGNORE_HELD_ITEM, src))
+	var/get_up_time = (HAS_TRAIT(src, TRAIT_QUICK_GETUP) ? 5 : 20)
+	if(!do_after(src, get_up_time, IGNORE_LOC_CHANGE|IGNORE_HELD_ITEM, src))
 		return
 	return ..()
+
+/mob/living/carbon/human/attack_ghost(mob/dead/observer/user)
+	if(!user.health_scan)
+		return FALSE
+	user.health_analyzer.analyze_vitals(src, user)
+	return TRUE

@@ -1,4 +1,7 @@
-export const tabs = ['Mecha Assembly', 'Weapons'];
+import { Dispatch, SetStateAction } from 'react';
+export const MECHA_ASSEMBLY = 'Mecha Assembly';
+export const MECHA_WEAPONS = 'Weapons';
+export const tabs = [MECHA_ASSEMBLY, MECHA_WEAPONS];
 export const equipTabs = ['Weapons', 'Power', 'Armor', 'Utility'];
 
 export const partdefinetofluff = {
@@ -26,6 +29,8 @@ export type MechVendData = {
   all_equipment: AllEquipment;
   selected_equipment: SelectedEquip;
   cooldown_left?: number;
+  weight: number;
+  max_weight: number;
 };
 
 type MaxEquip = {
@@ -107,6 +112,8 @@ type MechStatData = {
 
 export type BodypartPickerData = {
   displayingpart: string;
+  selectedBodypart: string;
+  setSelectedBodypart: Dispatch<SetStateAction<string>>;
 };
 
 export type ColorDisplayData = {

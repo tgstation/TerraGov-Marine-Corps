@@ -299,7 +299,7 @@
 	return ..()
 
 
-/mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+/mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, paralyze_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
 /mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, force = move_force, suppress_message = TRUE, bypass_crit_delay = FALSE)
@@ -320,7 +320,8 @@
 		if(L.stat == DEAD) //Can't drag dead human bodies.
 			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
 			return FALSE
-		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
+		if(pulling != L)
+			pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	do_attack_animation(L, ATTACK_EFFECT_GRAB)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()
@@ -453,6 +454,20 @@
 	GLOB.offered_mob_list -= src
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
 	a_intent = INTENT_HARM
+
+///Checks for nearby intact weeds
+/mob/living/carbon/xenomorph/proc/check_weeds(turf/T, strict_turf_check = FALSE)
+	SHOULD_BE_PURE(TRUE)
+	if(isnull(T))
+		return FALSE
+	. = TRUE
+	if(locate(/obj/fire/flamer) in T)
+		return FALSE
+	for(var/obj/alien/weeds/W in range(strict_turf_check ? 0 : 1, T ? T : get_turf(src)))
+		if(QDESTROYING(W))
+			continue
+		return
+	return FALSE
 
 /// Handles logic for weeds nearby the xeno getting removed
 /mob/living/carbon/xenomorph/proc/handle_weeds_adjacent_removed(datum/source)
@@ -587,3 +602,19 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 	if(!can_mount(user, TRUE))
 		return
 	INVOKE_ASYNC(src, PROC_REF(carry_target), user, TRUE)
+
+///updates the xenos glow, based on its base glow/color, and its ammo reserves. More green ammo = more green glow; more yellow = more yellow.
+/mob/living/carbon/xenomorph/proc/update_ammo_glow()
+	var/current_ammo = corrosive_ammo + neuro_ammo
+	var/ammo_glow = BOILER_LUMINOSITY_AMMO * current_ammo
+	var/glow = CEILING(BOILER_LUMINOSITY_BASE + ammo_glow, 1)
+	var/color = BOILER_LUMINOSITY_BASE_COLOR
+	if(current_ammo)
+		var/ammo_color = BlendRGB(BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR, BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR, neuro_ammo/current_ammo)
+		color = BlendRGB(color, ammo_color, (ammo_glow*2)/glow)
+	if(!light_on && glow >= BOILER_LUMINOSITY_THRESHOLD)
+		set_light_on(TRUE)
+	else if(glow < BOILER_LUMINOSITY_THRESHOLD && !fire_luminosity)
+		set_light_range_power_color(0, 0)
+		set_light_on(FALSE)
+	set_light_range_power_color(glow, 4, color)

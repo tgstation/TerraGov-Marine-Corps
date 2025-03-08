@@ -140,8 +140,10 @@
 			data["pixel_size"] = pixel_size
 			data["parallax"] = parallax
 			data["fullscreen_mode"] = fullscreen_mode
+			data["show_status_bar"] = show_status_bar
 			data["fast_mc_refresh"] = fast_mc_refresh
 			data["split_admin_tabs"] = split_admin_tabs
+			data["hear_ooc_anywhere_as_staff"] = hear_ooc_anywhere_as_staff
 		if(KEYBIND_SETTINGS)
 			data["is_admin"] = user.client?.holder ? TRUE : FALSE
 			data["key_bindings"] = list()
@@ -619,8 +621,7 @@
 
 		if("auto_fit_viewport")
 			auto_fit_viewport = !auto_fit_viewport
-			if(auto_fit_viewport && parent)
-				parent.fit_viewport()
+			parent?.attempt_auto_fit_viewport()
 
 		if("mute_xeno_health_alert_messages")
 			mute_xeno_health_alert_messages = !mute_xeno_health_alert_messages
@@ -653,13 +654,16 @@
 				if("command")
 					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_COMMAND)
 
+				if("hivemind")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_HIVEMIND)
+
 				if("all")
 					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)
 					if(CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)) //Enable all other channels when 'ALL' is enabled
 						for(var/flag in GLOB.all_radio_tts_options)
 							ENABLE_BITFIELD(radio_tts_flags, flag)
 
-			if(!CHECK_MULTIPLE_BITFIELDS(radio_tts_flags, RADIO_TTS_SL|RADIO_TTS_SQUAD|RADIO_TTS_COMMAND))
+			if(!CHECK_MULTIPLE_BITFIELDS(radio_tts_flags, RADIO_TTS_SL|RADIO_TTS_SQUAD|RADIO_TTS_COMMAND|RADIO_TTS_HIVEMIND))
 				DISABLE_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)
 
 		if("accessible_tgui_themes")
@@ -786,6 +790,10 @@
 		if("fullscreen_mode")
 			fullscreen_mode = !fullscreen_mode
 			user.client?.set_fullscreen(fullscreen_mode)
+
+		if("show_status_bar")
+			show_status_bar = !show_status_bar
+			user.client?.toggle_status_bar(show_status_bar)
 
 		if("set_keybind")
 			var/kb_name = params["keybind_name"]
@@ -936,6 +944,9 @@
 
 		if("split_admin_tabs")
 			split_admin_tabs = !split_admin_tabs
+
+		if("hear_ooc_anywhere_as_staff")
+			hear_ooc_anywhere_as_staff = !hear_ooc_anywhere_as_staff
 
 		else //  Handle the unhandled cases
 			return

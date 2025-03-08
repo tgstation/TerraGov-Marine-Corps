@@ -88,7 +88,7 @@ Buildable meters
 	icon_state = initial(fakeA.pipe_state)
 
 /obj/item/pipe/verb/flip()
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Flip Pipe"
 	set src in view(1)
 

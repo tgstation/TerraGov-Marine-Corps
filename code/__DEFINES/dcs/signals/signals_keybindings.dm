@@ -14,6 +14,7 @@
 #define COMSIG_KB_CLIENT_GETHELP_DOWN "keybinding_client_gethelp_down"
 #define COMSIG_KB_CLIENT_SCREENSHOT_DOWN "keybinding_client_screenshot_down"
 #define COMSIG_KB_CLIENT_MINIMALHUD_DOWN "keybinding_client_minimalhud_down"
+#define COMSIG_KB_CLIENT_FULLSCREEN_DOWN "keybinding_client_fullscreen_down"
 #define COMSIG_KB_CLIENT_SAY_DOWN "keybinding_client_say_down"
 #define COMSIG_KB_CLIENT_RADIO_DOWN "keybinding_client_radio_down"
 #define COMSIG_KB_CLIENT_ME_DOWN "keybinding_client_me_down"
@@ -24,10 +25,6 @@
 #define COMSIG_KB_LIVING_RESIST_DOWN "keybinding_living_resist_down"
 #define COMSIG_KB_LIVING_JUMP_DOWN "keybind_living_jump_down"
 #define COMSIG_KB_LIVING_JUMP_UP "keybind_living_jump_up"
-#define COMSIG_KB_MOB_FACENORTH_DOWN "keybinding_mob_facenorth_down"
-#define COMSIG_KB_MOB_FACEEAST_DOWN "keybinding_mob_faceeast_down"
-#define COMSIG_KB_MOB_FACESOUTH_DOWN "keybinding_mob_facesouth_down"
-#define COMSIG_KB_MOB_FACEWEST_DOWN "keybinding_mob_facewest_down"
 #define COMSIG_KB_MOB_STOPPULLING_DOWN "keybinding_mob_stoppulling_down"
 #define COMSIG_KB_MOB_CYCLEINTENTRIGHT_DOWN "keybinding_mob_cycleintentright_down"
 #define COMSIG_KB_MOB_CYCLEINTENTLEFT_DOWN "keybinding_mob_cycleintentleft_down"
@@ -47,6 +44,7 @@
 #define COMSIG_KB_MOVEMENT_SOUTH_DOWN "keybinding_movement_south_down"
 #define COMSIG_KB_MOVEMENT_WEST_DOWN "keybinding_movement_west_down"
 #define COMSIG_KB_MOVEMENT_EAST_DOWN "keybinding_movement_east_down"
+#define COMSIG_KB_MOB_BLOCKMOVEMENT_DOWN "keybinding_mob_blockmovement_down"
 
 //Admin
 #define COMSIG_KB_ADMIN_ASAY_DOWN "keybinding_admin_asay_down"
@@ -76,7 +74,9 @@
 #define COMSIG_KB_AUTOEJECT "keybind_autoeject"
 #define COMSIG_KB_GIVE "keybind_give"
 #define COMSIG_KB_HELMETMODULE "keybinding_helmetmodule"
+#define COMSIG_KB_ARMORMODULE "keybinding_armormodule"
 #define COMSIG_KB_ROBOT_AUTOREPAIR "keybinding_robot_autorepair"
+#define COMSIG_KB_STIMS "keybinding_stims_menu"
 #define COMSIG_KB_SUITLIGHT "keybinding_suitlight"
 #define COMSIG_KB_MOVEORDER "keybind_moveorder"
 #define COMSIG_KB_HOLDORDER "keybind_holdorder"
@@ -95,6 +95,7 @@
 //Weapon related ability keybinds
 #define COMSIG_WEAPONABILITY_AXESWEEP "weaponability_axesweep"
 #define COMSIG_WEAPONABILITY_SWORDLUNGE "weaponability_swordlunge"
+#define COMSIG_WEAPONABILITY_SHIELDBASH "weaponability_shieldbash"
 
 //Implant abilities
 #define COMSIG_IMPLANT_ABILITY_SANDEVISTAN "implant_ability_sandevistan"
@@ -118,6 +119,7 @@
 #define COMSIG_MECHABILITY_SKYFALL "mechability_skyfall"
 #define COMSIG_MECHABILITY_STRIKE "mechability_strike"
 #define COMSIG_MECHABILITY_RELOAD "mechability_reload"
+#define COMSIG_MECHABILITY_REPAIRPACK "mechability_repairpack"
 #define COMSIG_MECHABILITY_TOGGLE_ACTUATORS "mechability_toggle_actuators"
 
 #define COMSIG_ACTION_EXCLUSIVE_TOGGLE "action_exclusive_toggle"
@@ -145,6 +147,8 @@
 #define COMSIG_XENOABILITY_DODGE "xenoability_dodge"
 #define COMSIG_XENOABILITY_IMPALE "xenoability_impale"
 #define COMSIG_XENOABILITY_TAIL_TRIP "xenoability_tail_trip"
+#define COMSIG_XENOABILITY_TAILHOOK "xenoability_tailhook"
+#define COMSIG_XENOABILITY_BATONPASS "xenoability_batonpass"
 #define COMSIG_XENOABILITY_XENO_SPIT "xenoability_xeno_spit"
 #define COMSIG_XENOABILITY_HIDE "xenoability_hide"
 #define COMSIG_XENOABILITY_NEUROTOX_STING "xenoability_neurotox_sting"
@@ -172,6 +176,9 @@
 #define COMSIG_XENOABILITY_BOMBARD "xenoability_bombard"
 #define COMSIG_XENOABILITY_ACID_SHROUD "xenoability_acid_shroud"
 #define COMSIG_XENOABILITY_ACID_SHROUD_SELECT "xenoability_acid_shroud_select"
+#define COMSIG_XENOABILITY_SMOKESCREEN_SPIT "xenoability_smokescreen_spit"
+#define COMSIG_XENOABILITY_STEAM_RUSH "xenoability_steam_rush"
+#define COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT "xenoability_high_pressure_spit"
 
 #define COMSIG_XENOABILITY_THROW_HUGGER "xenoability_throw_hugger"
 #define COMSIG_XENOABILITY_CALL_YOUNGER "xenoability_call_younger"
@@ -253,6 +260,7 @@
 #define COMSIG_XENOABILITY_ENDURE "xenoability_endure"
 #define COMSIG_XENOABILITY_RAGE "xenoability_rage"
 #define COMSIG_XENOABILITY_VAMPIRISM "xenoability_vampirism"
+#define COMSIG_XENOABILITY_DEATHMARK "xenoability_deathmark"
 
 #define COMSIG_XENOABILITY_RUNNER_POUNCE "xenoability_runner_pounce"
 #define COMSIG_XENOABILITY_HUNTER_POUNCE "xenoability_hunter_pounce"
@@ -272,9 +280,6 @@
 
 #define COMSIG_XENOABILITY_PORTAL "xenoablity_portal"
 #define COMSIG_XENOABILITY_PORTAL_ALTERNATE "xenoability_portal_alternate"
-#define COMSIG_XENOABILITY_BLINK "xenoability_blink"
-#define COMSIG_XENOABILITY_BANISH "xenoability_banish"
-#define COMSIG_XENOABILITY_RECALL "xenoability_recall"
 #define COMSIG_XENOABILITY_TIMESTOP "xenoability_timestop"
 #define COMSIG_XENOABILITY_REWIND "xenoability_rewind"
 
@@ -286,6 +291,11 @@
 #define COMSIG_XENOABILITY_HIVE_SUMMON "xenoability_hive_summon"
 
 #define COMSIG_XENOABILITY_SCATTER_SPIT "xenoability_scatter_spit"
+#define COMSIG_XENOABILITY_TOSS_GRENADE "xenoability_toss_grenade"
+#define COMSIG_XENOABILITY_PICK_GRENADE "xenoability_pick_grenade"
+#define COMSIG_XENOABILITY_ACID_MINE "xenoability_acid_mine"
+#define COMSIG_XENOABILITY_GAS_MINE "xenoability_gas_mine"
+#define COMSIG_XENOABILITY_ACID_ROCKET "xenoability_acid_rocket"
 
 #define COMSIG_XENOABILITY_WEB_SPIT "xenoability_web_spit"
 #define COMSIG_XENOABILITY_BURROW "xenoability_burrow"
@@ -305,7 +315,8 @@
 #define COMSIG_XENOABILITY_FIRECHARGE "xenoability_firecharge"
 #define COMSIG_XENOABILITY_FIRENADO "xenoability_firenado"
 #define COMSIG_XENOABILITY_FIREBALL "xenoability_fireball"
-#define COMSIG_XENOABILITY_HEATRAY "xenoability_heatray"
+#define COMSIG_XENOABILITY_INFERNO "xenoability_inferno"
+#define COMSIG_XENOABILITY_INFERNAL_TRIGGER "xenoability_infernal_trigger"
 
 #define COMSIG_XENOABILITY_TENDRILS "xenoability_tendrils"
 #define COMSIG_XENOABILITY_ORGANICBOMB "xenoability_puppeteerorganicbomb"
@@ -329,3 +340,10 @@
 #define COMSIG_XENOABILITY_EARTH_PILLAR_THROW "xenoability_earth_pillar_throw"
 #define COMSIG_XENOABILITY_SEISMIC_FRACTURE "xenoability_seismic_fracture"
 #define COMSIG_XENOABILITY_PRIMAL_WRATH "xenoability_primal_wrath"
+
+#define COMSIG_XENOABILITY_ABDUCT "xenoability_abduct"
+#define COMSIG_XENOABILITY_DISLOCATE "xenoability_dislocate"
+#define COMSIG_XENOABILITY_ITEM_THROW "xenoability_item_throw"
+#define COMSIG_XENOABILITY_TAIL_LASH "xenoability_tail_lash"
+#define COMSIG_XENOABILITY_TAIL_LASH_SELECT "xenoability_tail_lash_select"
+#define COMSIG_XENOABILITY_ADVANCE_OPPRESSOR "xenoability_advance_oppressor"

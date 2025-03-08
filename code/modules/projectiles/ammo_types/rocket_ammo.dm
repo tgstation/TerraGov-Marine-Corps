@@ -11,7 +11,7 @@
 	hud_state_empty = "rocket_empty"
 	ping = null //no bounce off.
 	sound_bounce = SFX_ROCKET_BOUNCE
-	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER
+	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_BETTER_COVER_RNG
 	armor_type = BOMB
 	damage_falloff = 0
 	shell_speed = 2
@@ -29,7 +29,7 @@
 
 /datum/ammo/rocket/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	var/target_turf = get_turf(target_mob)
-	staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
+	staggerstun(target_mob, proj, max_range, knockback = 1, hard_size_threshold = 3)
 	drop_nade(target_turf)
 
 /datum/ammo/rocket/on_hit_obj(obj/target_obj, obj/projectile/proj)
@@ -53,7 +53,7 @@
 
 /datum/ammo/rocket/he/unguided
 	damage = 100
-	ammo_behavior_flags = AMMO_SNIPER // We want this one to specifically go over onscreen range.
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG // We want this one to specifically go over onscreen range.
 
 /datum/ammo/rocket/he/unguided/drop_nade(turf/T)
 	explosion(T, 0, 7, 0, 0, 2, throw_range = 4)
@@ -73,7 +73,7 @@
 /datum/ammo/rocket/ltb
 	name = "cannon round"
 	icon_state = "ltb"
-	ammo_behavior_flags = AMMO_SNIPER
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG
 	accurate_range = 15
 	max_range = 40
 	penetration = 50
@@ -88,9 +88,10 @@
 /datum/ammo/rocket/ltb/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	var/target_turf = get_turf(target_mob)
 	if(!isxeno(target_mob))
-		target_mob.gib()
+		if(!(target_mob.status_flags & GODMODE))
+			target_mob.gib()
 	else
-		staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
+		staggerstun(target_mob, proj, max_range, knockback = 1, hard_size_threshold = 3)
 	drop_nade(target_turf)
 
 /datum/ammo/rocket/ltb/heavy/drop_nade(turf/target_turf)
@@ -101,7 +102,7 @@
 	icon_state = "heavyrr"
 	hud_state = "bigshell_he"
 	hud_state_empty = "shell_empty"
-	ammo_behavior_flags = AMMO_SNIPER|AMMO_TARGET_TURF
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG|AMMO_TARGET_TURF
 	damage = 100
 	penetration = 200
 	max_range = 30
@@ -114,7 +115,7 @@
 
 /datum/ammo/rocket/heavy_isg/unguided
 	hud_state = "bigshell_he_unguided"
-	ammo_behavior_flags = AMMO_SNIPER
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG
 
 /datum/ammo/bullet/heavy_isg_apfds
 	name = "8.8cm APFDS round"
@@ -141,7 +142,7 @@
 	name = "white phosphorous rocket"
 	icon_state = "rocket_wp"
 	hud_state = "rocket_fire"
-	ammo_behavior_flags = AMMO_SNIPER|AMMO_INCENDIARY|AMMO_TARGET_TURF
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG|AMMO_INCENDIARY|AMMO_TARGET_TURF
 	armor_type = FIRE
 	damage_type = BURN
 	accuracy_var_low = 7
@@ -162,7 +163,7 @@
 /datum/ammo/rocket/wp/quad
 	name = "thermobaric rocket"
 	hud_state = "rocket_thermobaric"
-	ammo_behavior_flags = AMMO_SNIPER
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG
 	damage = 40
 	penetration = 25
 	max_range = 30
@@ -187,13 +188,13 @@
 	name = "white phosphorous RPG"
 	hud_state = "rpg_fire"
 	icon_state = "rpg_incendiary"
-	ammo_behavior_flags = AMMO_SNIPER
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG
 	effect_radius = 5
 
 /datum/ammo/rocket/wp/quad/ds
 	name = "super thermobaric rocket"
 	hud_state = "rocket_thermobaric"
-	ammo_behavior_flags = AMMO_SNIPER
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG
 	damage = 200
 	penetration = 75
 	max_range = 30
@@ -201,7 +202,7 @@
 
 /datum/ammo/rocket/wp/unguided
 	damage = 100
-	ammo_behavior_flags = AMMO_SNIPER|AMMO_INCENDIARY
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG|AMMO_INCENDIARY
 	effect_radius = 5
 
 /datum/ammo/rocket/recoilless
@@ -209,7 +210,7 @@
 	icon_state = "recoilless_rifle_he"
 	hud_state = "shell_he"
 	hud_state_empty = "shell_empty"
-	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER
+	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_BETTER_COVER_RNG
 	armor_type = BOMB
 	damage_falloff = 0
 	shell_speed = 2
@@ -226,7 +227,7 @@
 	name = "HEAT shell"
 	icon_state = "recoilless_rifle_heat"
 	hud_state = "shell_heat"
-	ammo_behavior_flags = AMMO_SNIPER
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG
 	damage = 200
 	penetration = 100
 	sundering = 0
@@ -238,7 +239,7 @@
 	name = "HEAM shell"
 	accuracy = -10 //Not designed for anti human use
 	scatter = 16
-	ammo_behavior_flags = AMMO_SNIPER|AMMO_UNWIELDY
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG|AMMO_UNWIELDY
 
 /datum/ammo/rocket/recoilless/heat/mech/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	drop_nade(get_turf(target_obj))
@@ -252,7 +253,7 @@
 	name = "light explosive shell"
 	icon_state = "recoilless_rifle_le"
 	hud_state = "shell_le"
-	ammo_behavior_flags = AMMO_SNIPER //We want this to specifically go farther than onscreen range.
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG //We want this to specifically go farther than onscreen range.
 	accurate_range = 15
 	max_range = 20
 	damage = 75
@@ -266,7 +267,7 @@
 	name = "low velocity chemical shell"
 	icon_state = "recoilless_rifle_smoke"
 	hud_state = "shell_le"
-	ammo_behavior_flags = AMMO_SNIPER
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG
 	accurate_range = 21
 	max_range = 21
 	damage = 10
@@ -306,7 +307,7 @@
 	name = "low impact explosive shell"
 	icon_state = "recoilless_rifle_le"
 	hud_state = "shell_le"
-	ammo_behavior_flags = AMMO_SNIPER //We want this to specifically go farther than onscreen range.
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG //We want this to specifically go farther than onscreen range.
 	accurate_range = 15
 	max_range = 20
 	damage = 75
@@ -319,15 +320,15 @@
 /datum/ammo/rocket/oneuse
 	name = "explosive rocket"
 	damage = 100
-	penetration = 100
-	sundering = 100
+	penetration = 50
+	sundering = 25
 	max_range = 30
 
 /datum/ammo/rocket/som
 	name = "high explosive RPG"
 	icon_state = "rpg_he"
 	hud_state = "rpg_he"
-	ammo_behavior_flags = AMMO_SNIPER
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG
 	accurate_range = 15
 	max_range = 20
 	damage = 80
@@ -341,7 +342,7 @@
 	name = "low impact RPG"
 	icon_state = "rpg_le"
 	hud_state = "rpg_le"
-	ammo_behavior_flags = AMMO_SNIPER
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG
 	accurate_range = 15
 	damage = 60
 	penetration = 10
@@ -367,7 +368,7 @@
 	sundering = 0
 	accuracy = -10 //Not designed for anti human use
 	scatter = 7
-	ammo_behavior_flags = AMMO_SNIPER|AMMO_UNWIELDY
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG|AMMO_UNWIELDY
 
 /datum/ammo/rocket/som/heat/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	drop_nade(get_turf(target_obj))
@@ -417,7 +418,7 @@
 	icon_state = "atgun"
 	hud_state = "shell_heat"
 	hud_state_empty = "shell_empty"
-	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_PASS_THROUGH_TURF
+	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_BETTER_COVER_RNG|AMMO_PASS_THROUGH_TURF
 	shell_speed = 2
 	damage = 90
 	penetration = 30
@@ -458,7 +459,7 @@
 /datum/ammo/rocket/atgun_shell/he
 	name = "low velocity high explosive shell"
 	hud_state = "shell_he"
-	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER
+	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_BETTER_COVER_RNG
 	damage = 50
 	penetration = 50
 	sundering = 35
@@ -472,7 +473,7 @@
 /datum/ammo/rocket/atgun_shell/beehive
 	name = "beehive shell"
 	hud_state = "shell_le"
-	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER
+	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_BETTER_COVER_RNG
 	shell_speed = 3
 	damage = 30
 	penetration = 30
@@ -509,7 +510,7 @@
 /datum/ammo/rocket/atgun_shell/beehive/incend
 	name = "napalm shell"
 	hud_state = "shell_heat"
-	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER
+	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_BETTER_COVER_RNG
 	shell_speed = 3
 	bonus_projectiles_type = /datum/ammo/bullet/atgun_spread/incendiary
 
@@ -517,7 +518,7 @@
 	name = "8.8cm APFDS round"
 	icon_state = "apfds"
 	hud_state = "bigshell_apfds"
-	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_BETTER_COVER_RNG|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	damage = 300
 	penetration = 75
 	shell_speed = 4
@@ -531,7 +532,7 @@
 
 /datum/ammo/bullet/tank_apfds/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	proj.proj_max_range -= 2
-	if(ishuman(target_mob) && prob(35))
+	if(ishuman(target_mob) && !(target_mob.status_flags & GODMODE) && prob(35))
 		target_mob.gib()
 
 /datum/ammo/bullet/tank_apfds/on_hit_obj(obj/target_object, obj/projectile/proj)
@@ -546,7 +547,7 @@
 	damage = 0
 	penetration = 0
 	max_range = 20
-	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_SPECIAL_PROCESS
+	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_BETTER_COVER_RNG|AMMO_SPECIAL_PROCESS
 	shell_speed = 0.3
 	///If the projectile is pointing at the target with a variance of this number, we don't readjust the angle
 	var/angle_precision = 5
@@ -569,12 +570,37 @@
 	rotate.Turn(proj.dir_angle)
 	animate(proj, transform = rotate, time = SSprojectiles.wait)
 
+/datum/ammo/rocket/homing/microrocket /// this is basically a tgmc version of the above
+	name = "homing HE microrocket"
+	shell_speed = 0.3
+	damage = 75
+	penetration = 40
+	sundering = 10
+	turn_rate = 10
+
+/datum/ammo/rocket/homing/microrocket/drop_nade(turf/T)
+	explosion(T, 0, 0, 0, 4, 1)
+
+/datum/ammo/rocket/homing/tow
+	name = "TOW-III missile"
+	icon_state = "rocket_he"
+	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_SPECIAL_PROCESS|AMMO_IFF
+	shell_speed = 0.3
+	turn_rate = 10
+	damage = 60
+	penetration = 30
+	sundering = 10
+	max_range = 30
+
+/datum/ammo/rocket/homing/tow/drop_nade(turf/T)
+	explosion(T, 0, 0, 4, 0, 2)
+
 /datum/ammo/rocket/coilgun
 	name = "kinetic penetrator"
 	icon_state = "tank_coilgun"
 	hud_state = "rocket_ap"
 	hud_state_empty = "rocket_empty"
-	ammo_behavior_flags = AMMO_SNIPER
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG
 	armor_type = BULLET
 	damage_falloff = 2
 	shell_speed = 3
@@ -608,29 +634,25 @@
 	damage = 450
 	penetration = 70
 	sundering = 20
-	ammo_behavior_flags = AMMO_SNIPER|AMMO_PASS_THROUGH_MOB
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG|AMMO_PASS_THROUGH_MOB
 
 /datum/ammo/rocket/coilgun/high/drop_nade(turf/T)
 	explosion(T, 1, 4, 5, 6, 2)
 
-/datum/ammo/rocket/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	var/target_turf = get_turf(target_mob)
-	staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
-	drop_nade(target_turf)
-
 /datum/ammo/rocket/coilgun/high/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	if(ishuman(target_mob) && prob(50)) //it only has AMMO_PASS_THROUGH_MOB so it can keep going if it gibs a mob
-		target_mob.gib()
+		if(!(target_mob.status_flags & GODMODE))
+			target_mob.gib()
 		proj.proj_max_range -= 5
 		return
 	proj.proj_max_range = 0
-	staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
+	staggerstun(target_mob, proj, max_range, knockback = 1, hard_size_threshold = 3)
 
 /datum/ammo/rocket/icc_lowvel_heat
 	name = "Low Velocity HEAT shell"
 	icon_state = "recoilless_rifle_heat"
 	hud_state = "shell_heat"
-	ammo_behavior_flags = AMMO_SNIPER
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG
 	shell_speed = 1
 	damage = 180
 	penetration = 100
@@ -644,7 +666,7 @@
 	damage = 50
 	penetration = 100
 	sundering = 10
-	ammo_behavior_flags = AMMO_SNIPER // We want this to specifically go over onscreen range.
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG // We want this to specifically go over onscreen range.
 	shell_speed = 1
 
 /datum/ammo/rocket/icc_lowvel_high_explosive/drop_nade(turf/T)

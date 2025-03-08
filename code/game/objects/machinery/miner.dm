@@ -16,7 +16,7 @@
 #define PLATINUM_DROPSHIP_BONUS_AMOUNT 30
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
-	name = "\improper Nanotrasen phoron Mining Well"
+	name = "\improper Nanotrasen phoron mining well"
 	desc = "Top-of-the-line Nanotrasen research drill with it's own export module, used to extract phoron in vast quantities. Selling the phoron mined by these would net a nice profit..."
 	icon = 'icons/obj/mining_drill.dmi'
 	density = TRUE
@@ -26,6 +26,7 @@
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = RESIST_ALL | DROPSHIP_IMMUNE
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
+	faction = FACTION_TERRAGOV
 	///How many sheets of material we have stored
 	var/stored_mineral = 0
 	///Current status of the miner
@@ -44,8 +45,6 @@
 	var/max_miner_integrity = 100
 	///What type of upgrade it has installed , used to change the icon of the miner.
 	var/miner_upgrade_type
-	///What faction secured that miner
-	var/faction = FACTION_TERRAGOV
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
@@ -55,7 +54,7 @@
 	return //Marker will be set by itself once processing pauses when it detects this miner is broke.
 
 /obj/machinery/miner/damaged/platinum
-	name = "\improper Nanotrasen platinum Mining Well"
+	name = "\improper Nanotrasen platinum mining well"
 	desc = "A Nanotrasen platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
 	mineral_value = PLATINUM_CRATE_SELL_AMOUNT
 	dropship_bonus = PLATINUM_DROPSHIP_BONUS_AMOUNT

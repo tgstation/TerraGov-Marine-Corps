@@ -17,15 +17,22 @@
 	light_range = 10
 	///Tank bitflags
 	var/armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_HEADLIGHTS
-	///Sound file(s) to play when we drive around
-	var/engine_sound = 'sound/ambience/tank_driving.ogg'
-	///frequency to play the sound with
-	var/engine_sound_length = 2 SECONDS
-	/// How long it takes to rev (vrrm vrrm!) TODO: merge this up to /vehicle here and on tg because of cars
-	COOLDOWN_DECLARE(enginesound_cooldown)
+
+	///sound loop that plays when we are not moving with a driver present
+	var/datum/looping_sound/idle_loop = /datum/looping_sound/tank_idle
+	/// sound loop that plays inside the tank when driver is in but we're not moving
+	var/datum/looping_sound/idle_inside_loop = /datum/looping_sound/tank_idle_interior
+	/// sound loop that plays while we move around
+	var/datum/looping_sound/drive_loop = /datum/looping_sound/tank_drive
+	/// sound that plays inside when we drive around
+	var/datum/looping_sound/drive_inside_loop = /datum/looping_sound/tank_drive_interior
+	/// sound to play outside the tank after the driver leaves
+	var/engine_off_sound = 'sound/vehicles/looping/tank_eng_interior_stop.ogg'
+	/// sound to play inside the tank after the driver leaves
+	var/engine_off_interior_sound = 'sound/vehicles/looping/tank_eng_stop.ogg'
 
 	///Cool and good turret overlay that allows independently swiveling guns
-	var/atom/movable/vis_obj/turret_overlay/turret_overlay
+	var/atom/movable/vis_obj/turret_overlay/turret_overlay = /atom/movable/vis_obj/turret_overlay
 	///Icon for the rotating turret icon. also should hold the icons for the weapon icons
 	var/turret_icon = 'icons/obj/armored/1x1/tinytank_gun.dmi'
 	///Iconstate for the rotating main turret
@@ -52,9 +59,18 @@
 	///Our driver utility module
 	var/obj/item/tank_module/gunner_utility_module
 	///list of weapons we allow to attach
-	var/list/permitted_weapons = list(/obj/item/armored_weapon, /obj/item/armored_weapon/ltaap, /obj/item/armored_weapon/secondary_weapon, /obj/item/armored_weapon/secondary_flamer)
+	var/list/permitted_weapons = list(
+		/obj/item/armored_weapon,
+		/obj/item/armored_weapon/ltaap,
+		/obj/item/armored_weapon/secondary_weapon,
+		/obj/item/armored_weapon/secondary_flamer,
+	)
 	///list of mods we allow to attach
-	var/list/permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/passenger, /obj/item/tank_module/ability/zoom)
+	var/list/permitted_mods = list(
+		/obj/item/tank_module/overdrive,
+		/obj/item/tank_module/passenger,
+		/obj/item/tank_module/ability/zoom
+	)
 	///Minimap flags to use for this vehcile
 	var/minimap_flags = MINIMAP_FLAG_MARINE
 	///minimap iconstate to use for this vehicle
@@ -72,8 +88,6 @@
 	var/list/easy_load_list
 	///Wether we are strafing
 	var/strafe = FALSE
-	///modifier to view range when manning a control chair
-	var/vis_range_mod = 0
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
 	easy_load_list = typecacheof(easy_load_list)
@@ -89,12 +103,8 @@
 		damage_overlay.layer = layer+0.001
 		vis_contents += damage_overlay
 	if(armored_flags & ARMORED_HAS_PRIMARY_WEAPON)
-		turret_overlay = new()
-		turret_overlay.icon = turret_icon
-		turret_overlay.base_icon_state = turret_icon_state
-		turret_overlay.icon_state = turret_icon_state
-		turret_overlay.setDir(dir)
-		turret_overlay.layer = layer+0.002
+		turret_overlay = new turret_overlay(null, src)
+		setDir(dir) //update turret offsets if needed
 		if(armored_flags & ARMORED_HAS_MAP_VARIANTS)
 			switch(SSmapping.configs[GROUND_MAP].armor_style)
 				if(MAP_ARMOR_STYLE_JUNGLE)
@@ -106,6 +116,8 @@
 				if(MAP_ARMOR_STYLE_DESERT)
 					turret_overlay.icon_state += "_desert"
 		vis_contents += turret_overlay
+	else
+		turret_overlay = null
 	if(armored_flags & ARMORED_HAS_MAP_VARIANTS)
 		switch(SSmapping.configs[GROUND_MAP].armor_style)
 			if(MAP_ARMOR_STYLE_JUNGLE)
@@ -116,6 +128,16 @@
 				icon_state += "_urban"
 			if(MAP_ARMOR_STYLE_DESERT)
 				icon_state += "_desert"
+
+	if(idle_loop)
+		idle_loop = new idle_loop(list(src))
+	if(idle_inside_loop)
+		idle_inside_loop = new idle_inside_loop()
+	if(drive_loop)
+		drive_loop = new drive_loop(list(src))
+	if(drive_inside_loop)
+		drive_inside_loop = new drive_inside_loop()
+
 	update_minimap_icon()
 	GLOB.tank_list += src
 
@@ -130,7 +152,17 @@
 		QDEL_NULL(gunner_utility_module)
 	if(damage_overlay)
 		QDEL_NULL(damage_overlay)
-	if(turret_overlay)
+
+	// can be delled before init makes these due to globs
+	if(isdatum(idle_loop))
+		QDEL_NULL(idle_loop)
+	if(isdatum(idle_inside_loop))
+		QDEL_NULL(idle_inside_loop)
+	if(isdatum(drive_loop))
+		QDEL_NULL(drive_loop)
+	if(isdatum(drive_inside_loop))
+		QDEL_NULL(drive_inside_loop)
+	if(isatom(turret_overlay))
 		QDEL_NULL(turret_overlay)
 	if(isdatum(interior))
 		QDEL_NULL(interior)
@@ -225,7 +257,6 @@
 	. = ..()
 	if(!.)
 		return
-	play_engine_sound()
 	after_move(direction)
 	forceMove(get_step(src, direction)) // still animates and calls moved() and all that stuff BUT we skip checks
 
@@ -247,7 +278,7 @@
 	if(HAS_TRAIT(A, TRAIT_STOPS_TANK_COLLISION))
 		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_VEHICLE_CRUSHSOUND))
 			visible_message(span_danger("[src] is stopped by [A]!"))
-			playsound(src, 'sound/effects/metal_crash.ogg', 45)
+			playsound(A, 'sound/effects/metal_crash.ogg', 45)
 			TIMER_COOLDOWN_START(src, COOLDOWN_VEHICLE_CRUSHSOUND, 1 SECONDS)
 		return
 	var/pilot
@@ -273,17 +304,19 @@
 
 /obj/vehicle/sealed/armored/emp_act(severity)
 	. = ..()
-	playsound(src, 'sound/magic/lightningshock.ogg', 50, FALSE)
+	playsound(get_turf(src), 'sound/magic/lightningshock.ogg', 50, FALSE)
 	take_damage(400 / severity, BURN, ENERGY)
 	for(var/mob/living/living_occupant AS in occupants)
 		living_occupant.Stagger((6 - severity) SECONDS)
 
-///Plays the engine sound for this vehicle if its not on cooldown
-/obj/vehicle/sealed/armored/proc/play_engine_sound(freq_vary = TRUE, sound_freq)
-	if(!COOLDOWN_CHECK(src, enginesound_cooldown))
-		return
-	COOLDOWN_START(src, enginesound_cooldown, engine_sound_length)
-	playsound(get_turf(src), engine_sound, 100, freq_vary, 20, frequency = sound_freq)
+/obj/vehicle/sealed/armored/process()
+	if(cooldown_vehicle_move + 10 > world.time)
+		return // tank is currently trying to move around
+	if(drive_loop?.timer_id)
+		drive_loop.stop()
+		idle_loop?.start(skip_startsound=TRUE)
+		drive_inside_loop?.stop(occupants)
+		idle_inside_loop?.start(occupants.Copy(), TRUE)
 
 ///called when a mob tried to leave our interior
 /obj/vehicle/sealed/armored/proc/interior_exit(mob/leaver, datum/interior/inside, teleport)
@@ -358,6 +391,10 @@
 		else
 			secondary_icons = list(secondary_weapon.hud_state_empty, secondary_weapon.hud_state_empty)
 		M?.hud_used?.add_ammo_hud(secondary_weapon, secondary_icons, secondary_weapon?.ammo?.current_rounds)
+	if(idle_inside_loop?.timer_id)
+		idle_inside_loop.start(M, TRUE)
+	else if(drive_inside_loop?.timer_id)
+		drive_inside_loop.start(M, TRUE)
 
 /obj/vehicle/sealed/armored/after_add_occupant(mob/M)
 	. = ..()
@@ -368,22 +405,43 @@
 	. = ..()
 	if(. && (flag & VEHICLE_CONTROL_EQUIPMENT))
 		RegisterSignal(M, COMSIG_MOB_MOUSEDOWN, PROC_REF(on_mouseclick), TRUE)
+	if(. && (flag & VEHICLE_CONTROL_DRIVE) && !(datum_flags & DF_ISPROCESSING))
+		START_PROCESSING(SSfastprocess, src)
+		idle_loop.start()
+		idle_inside_loop.start(occupants.Copy())
 
 /obj/vehicle/sealed/armored/remove_controller_actions_by_flag(mob/M, flag)
 	. = ..()
 	if(. && (flag & VEHICLE_CONTROL_EQUIPMENT))
 		UnregisterSignal(M, COMSIG_MOB_MOUSEDOWN)
+	if(. && (flag & VEHICLE_CONTROL_DRIVE) && (driver_amount() == 0))
+		STOP_PROCESSING(SSfastprocess, src)
+		idle_loop?.stop()
+		drive_loop?.stop()
+		idle_inside_loop?.stop(occupants)
+		drive_inside_loop?.stop(occupants)
+		play_interior_sound(null, engine_off_interior_sound, 10, TRUE)
+		playsound(src, engine_off_sound, 30)
 
 /obj/vehicle/sealed/armored/remove_occupant(mob/M)
 	M?.hud_used?.remove_ammo_hud(primary_weapon)
 	M?.hud_used?.remove_ammo_hud(secondary_weapon)
 	UnregisterSignal(M, COMSIG_MOB_DEATH)
 	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
+	idle_inside_loop?.output_atoms -= M
+	drive_inside_loop?.output_atoms -= M
 	return ..()
 
 /obj/vehicle/sealed/armored/relaymove(mob/living/user, direction)
 	. = ..()
-	if(!is_driver(user) && is_equipment_controller(user))
+	if(is_driver(user))
+		if(!drive_loop?.timer_id)
+			idle_loop?.stop()
+			drive_loop.start()
+			drive_inside_loop?.start(occupants.Copy())
+			idle_inside_loop?.stop(occupants)
+		return
+	if(is_equipment_controller(user))
 		swivel_turret(null, direction)
 
 /obj/vehicle/sealed/armored/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
@@ -614,10 +672,22 @@
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam
 		return FALSE
-	playsound(src, 'sound/effects/tankswivel.ogg', 80,1)
+	playsound(src, 'sound/vehicles/tankswivel.ogg', 80, TRUE)
+	play_interior_sound(null, 'sound/vehicles/turret_swivel_interior.ogg', 60, TRUE)
 	TIMER_COOLDOWN_START(src, COOLDOWN_TANK_SWIVEL, 3 SECONDS)
+	if(primary_weapon)
+		TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_EQUIPMENT(primary_weapon.type), new_weapon_dir == REVERSE_DIR(turret_overlay.dir) ? 1 SECONDS : 0.5 SECONDS)
 	turret_overlay.setDir(new_weapon_dir)
 	return TRUE
+
+///playsound_local identical args, use this when a sound should be played for the occupants.
+/obj/vehicle/sealed/armored/proc/play_interior_sound(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, sound/sound_to_use, distance_multiplier)
+	if(!interior)
+		return
+	for(var/mob/crew AS in interior.occupants)
+		if(!crew.client)
+			continue
+		crew.playsound_local(arglist(args))
 
 ///handles mouseclicks by a user in the vehicle
 /obj/vehicle/sealed/armored/proc/on_mouseclick(mob/user, atom/target, turf/location, control, list/modifiers)
@@ -680,6 +750,14 @@
 	///icon state for the secondary
 	var/image/secondary_overlay
 
+/atom/movable/vis_obj/turret_overlay/Initialize(mapload, obj/vehicle/sealed/armored/parent)
+	. = ..()
+	icon = parent.turret_icon
+	base_icon_state = parent.turret_icon_state
+	icon_state = parent.turret_icon_state
+	layer = parent.layer + 0.002
+	setDir(parent.dir)
+
 /atom/movable/vis_obj/turret_overlay/Destroy()
 	QDEL_NULL(primary_overlay)
 	return ..()
@@ -705,6 +783,26 @@
 	. = ..()
 	if(secondary_overlay)
 		update_appearance(UPDATE_OVERLAYS)
+
+/atom/movable/vis_obj/turret_overlay/offset
+	/**
+	 * in case snowflake offsets are needed of the turret, set this var to list(dir = list(x, y)) in initialize
+	 * when the parent vehicle rotates, we apply these snowflake offsets seperately. useful primarily for non-centered turrets
+	 */
+	var/list/turret_offsets
+
+/atom/movable/vis_obj/turret_overlay/offset/Initialize(mapload, obj/vehicle/sealed/armored/parent)
+	. = ..()
+	RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, PROC_REF(update_offsets))
+	turret_offsets = list(TEXT_NORTH = list(10, 10), TEXT_EAST = list(-10, -10), TEXT_SOUTH = list(-100, -100), TEXT_WEST = list(100, 100))
+
+///sighandler for updating offsets on owning vehicle move
+/atom/movable/vis_obj/turret_overlay/offset/proc/update_offsets(obj/vehicle/sealed/armored/source, old_dir, new_dir)
+	SIGNAL_HANDLER
+	if(!turret_offsets["[new_dir]"])
+		return
+	pixel_x = turret_offsets["[new_dir]"][1]
+	pixel_y = turret_offsets["[new_dir]"][2]
 
 /atom/movable/vis_obj/tank_damage
 	name = "Tank damage overlay"

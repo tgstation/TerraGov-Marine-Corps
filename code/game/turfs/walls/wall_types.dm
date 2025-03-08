@@ -262,16 +262,17 @@
 
 /turf/closed/wall/indestructible/splashscreen
 	name = "Space Station 13"
-	icon = 'icons/misc/title.dmi'
-	icon_state = "title_painting1"
-//	icon_state = "title_holiday"
+	icon_state = ""
 	layer = FLY_LAYER
 	pixel_x = -64
 
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
-	if(icon_state == "title_painting1")
-		icon_state = "title_painting[rand(0,35)]"
+	var/prefix = "icons/misc/lobby_art/"
+	var/list/lobby_art = flist(prefix)
+	if(!length(lobby_art))
+		return
+	icon = icon("[prefix]" + pick(lobby_art))
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
@@ -368,7 +369,7 @@
 	walltype = "cavewall"
 
 /turf/closed/wall/desertcavewall/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, 1)
+	AddElement(/datum/element/debris, DEBRIS_ROCK, -40, 5, 1)
 
 //Prison wall
 
@@ -392,7 +393,7 @@
 	explosion_block = 1
 
 /turf/closed/wall/wood/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -40, 5)
 
 // Reinforced Wood Wall
 

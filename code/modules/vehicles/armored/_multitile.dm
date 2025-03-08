@@ -15,14 +15,27 @@
 	pixel_x = -56
 	pixel_y = -48
 	max_integrity = 900
-	soft_armor = list(MELEE = 50, BULLET = 100 , LASER = 90, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 50, ACID = 50)
-	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom, /obj/item/tank_module/ability/smoke_launcher)
-	permitted_weapons = list(/obj/item/armored_weapon, /obj/item/armored_weapon/ltaap, /obj/item/armored_weapon/secondary_weapon, /obj/item/armored_weapon/secondary_flamer)
+	soft_armor = list(MELEE = 50, BULLET = 100 , LASER = 90, ENERGY = 60, BOMB = 60, BIO = 100, FIRE = 50, ACID = 50)
+	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 20, FIRE = 0, ACID = 0)
+	permitted_mods = list(
+		/obj/item/tank_module/overdrive,
+		/obj/item/tank_module/ability/zoom,
+		/obj/item/tank_module/ability/smoke_launcher,
+	)
+	permitted_weapons = list(
+		/obj/item/armored_weapon,
+		/obj/item/armored_weapon/ltaap,
+		/obj/item/armored_weapon/bfg,
+
+		/obj/item/armored_weapon/secondary_weapon,
+		/obj/item/armored_weapon/secondary_flamer,
+		/obj/item/armored_weapon/tow,
+		/obj/item/armored_weapon/microrocket_pod,
+	)
 	max_occupants = 4
 	move_delay = 0.75 SECONDS
 	glide_size = 2.5
-	vis_range_mod = 2
+
 	ram_damage = 100
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
@@ -173,7 +186,6 @@
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_HEADLIGHTS|ARMORED_WRECKABLE
 	move_delay = 0.6 SECONDS
 	glide_size = 2.5
-	vis_range_mod = 4
 	faction = FACTION_TERRAGOV
 	ram_damage = 130
 

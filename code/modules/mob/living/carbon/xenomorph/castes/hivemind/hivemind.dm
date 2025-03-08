@@ -10,7 +10,7 @@
 	bubble_icon = "alienroyal"
 	icon = 'icons/Xeno/castes/hivemind.dmi'
 	status_flags = GODMODE | INCORPOREAL
-	resistance_flags = RESIST_ALL|BANISH_IMMUNE
+	resistance_flags = RESIST_ALL
 	pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_FIRE //to prevent hivemind eye to catch fire when crossing lava
 	density = FALSE
 
@@ -128,7 +128,7 @@
 	update_movespeed()
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
-		resistance_flags = BANISH_IMMUNE
+		resistance_flags = NONE
 		pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_XENO
 		density = TRUE
 		hive.xenos_by_upgrade[upgrade] -= src
@@ -156,19 +156,6 @@
 /mob/living/carbon/xenomorph/hivemind/fire_act(burn_level)
 	return_to_core()
 	to_chat(src, span_xenonotice("We were on top of fire, we got moved to our core."))
-
-/mob/living/carbon/xenomorph/hivemind/proc/check_weeds(turf/T, strict_turf_check = FALSE)
-	SHOULD_BE_PURE(TRUE)
-	if(isnull(T))
-		return FALSE
-	. = TRUE
-	if(locate(/obj/fire/flamer) in T)
-		return FALSE
-	for(var/obj/alien/weeds/W in range(strict_turf_check ? 0 : 1, T ? T : get_turf(src)))
-		if(QDESTROYING(W))
-			continue
-		return
-	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/handle_weeds_adjacent_removed()
 	if(loc_weeds_type || check_weeds(get_turf(src)))
@@ -221,8 +208,8 @@
 	abstract_move(newloc)
 
 /mob/living/carbon/xenomorph/hivemind/receive_hivemind_message(mob/living/carbon/xenomorph/speaker, message)
-	var/track = "<a href='?src=[REF(src)];hivemind_jump=[REF(speaker)]'>(F)</a>"
-	show_message("[track] [speaker.hivemind_start()] [span_message("hisses, '[message]'")][speaker.hivemind_end()]", 2)
+	var/track = "<a href='byond://?src=[REF(src)];hivemind_jump=[REF(speaker)]'>(F)</a>"
+	return show_message("[track] [speaker.hivemind_start()] [span_message("hisses, '[message]'")][speaker.hivemind_end()]", 2)
 
 /mob/living/carbon/xenomorph/hivemind/Topic(href, href_list)
 	. = ..()
@@ -256,19 +243,6 @@
 
 /mob/living/carbon/xenomorph/hivemind/update_icons()
 	return
-
-/mob/living/carbon/xenomorph/hivemind/med_hud_set_health()
-	var/image/holder = hud_list[HEALTH_HUD_XENO]
-	if(!holder)
-		return
-
-	if(status_flags & INCORPOREAL)
-		holder.icon_state = ""
-
-	var/amount = round(health * 100 / maxHealth, 10)
-	if(!amount)
-		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
-	holder.icon_state = "health[amount]"
 
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))

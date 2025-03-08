@@ -111,7 +111,6 @@
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, PETRIFY_ABILITY_TRAIT)
 	if(!isxeno(owner))
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.xeno_caste.caste_flags & CASTE_STAGGER_RESISTANT)
 		ADD_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 
@@ -210,9 +209,8 @@
 	owner.dir = get_cardinal_dir(owner, target)
 
 	playsound(owner, 'sound/voice/alien/king_roar.ogg', 70, sound_range = 20)
-	var/mob/living/carbon/xenomorph/king/king_owner = owner
-	if(istype(king_owner))
-		king_owner.icon_state = "King Screeching"
+	if(istype(xeno_owner))
+		xeno_owner.icon_state = "King Screeching"
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT) //Vulnerable while charging up
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, SHATTERING_ROAR_ABILITY_TRAIT)
 
@@ -231,7 +229,7 @@
 
 	var/source = get_turf(owner)
 	var/dir_to_target = Get_Angle(source, target)
-	var/list/turf/turfs_to_attack = generate_true_cone(source, SHATTERING_ROAR_RANGE, 1, SHATTERING_ROAR_ANGLE, dir_to_target, bypass_window = TRUE, air_pass = TRUE)
+	var/list/turf/turfs_to_attack = generate_cone(source, SHATTERING_ROAR_RANGE, 1, SHATTERING_ROAR_ANGLE, dir_to_target, pass_flags_checked = PASS_AIR|PASS_GLASS)
 	execute_attack(1, turfs_to_attack, SHATTERING_ROAR_RANGE, target, source)
 
 	add_cooldown()
@@ -266,7 +264,7 @@
 			carbon_victim.adjust_stagger(6 SECONDS * severity)
 			carbon_victim.add_slowdown(6 * severity)
 			shake_camera(carbon_victim, 3 * severity, 3 * severity)
-			carbon_victim.apply_effect(1 SECONDS, WEAKEN)
+			carbon_victim.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 			to_chat(carbon_victim, "You are smashed to the ground!")
 		else if(isvehicle(victim) || ishitbox(victim))
 			var/obj/obj_victim = victim
@@ -285,7 +283,6 @@
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, SHATTERING_ROAR_ABILITY_TRAIT)
 	if(!isxeno(owner))
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.xeno_caste.caste_flags & CASTE_STAGGER_RESISTANT)
 		ADD_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 
@@ -390,9 +387,8 @@
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
 	sound_loop.start(owner)
 	RegisterSignals(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), PROC_REF(stop_beaming))
-	var/mob/living/carbon/xenomorph/king/king_owner = owner
-	if(istype(king_owner))
-		king_owner.icon_state = "King Screeching"
+	if(istype(xeno_owner))
+		xeno_owner.icon_state = "King Screeching"
 	execute_attack()
 
 /// recursive proc for firing the actual beam
@@ -435,7 +431,6 @@
 
 	if(!isxeno(owner))
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.xeno_caste.caste_flags & CASTE_STAGGER_RESISTANT)
 		ADD_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 
@@ -490,8 +485,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/mob/living/carbon/xenomorph/X = owner
-	if(length(X.hive.get_all_xenos()) <= 1)
+	if(length(xeno_owner.hive.get_all_xenos()) <= 1)
 		if(!silent)
 			owner.balloon_alert(owner, "noone to call")
 		return FALSE
@@ -499,54 +493,50 @@
 GLOBAL_LIST_EMPTY(active_summons)
 
 /datum/action/ability/xeno_action/psychic_summon/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
 
 	log_game("[key_name(owner)] has begun summoning hive in [AREACOORD(owner)]")
-	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", hivenumber = X.hivenumber)
-	var/list/allxenos = X.hive.get_all_xenos()
+	xeno_message("King: \The [owner] has begun a psychic summon in <b>[get_area(owner)]</b>!", hivenumber = xeno_owner.hivenumber)
+	var/list/allxenos = xeno_owner.hive.get_all_xenos()
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		if(sister.z != owner.z)
 			continue
 		sister.add_filter("summonoutline", 2, outline_filter(1, COLOR_VIOLET))
 
-	GLOB.active_summons += X
+	GLOB.active_summons += xeno_owner
 	request_admins()
-	if(!do_after(X, 10 SECONDS, IGNORE_HELD_ITEM, X, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(is_active_summon))))
+	if(!do_after(xeno_owner, 10 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(is_active_summon))))
 		add_cooldown(5 SECONDS)
 		for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 			sister.remove_filter("summonoutline")
 		return fail_activate()
 
-	allxenos = X.hive.get_all_xenos() //refresh the list to account for any changes during the channel
+	allxenos = xeno_owner.hive.get_all_xenos() //refresh the list to account for any changes during the channel
 	var/sisters_teleported = 0
 	for(var/mob/living/carbon/xenomorph/sister AS in allxenos)
 		sister.remove_filter("summonoutline")
 		if(sister.z == owner.z)
-			sister.forceMove(get_turf(X))
+			sister.forceMove(get_turf(xeno_owner))
 			sisters_teleported ++
 
 	log_game("[key_name(owner)] has summoned hive ([sisters_teleported] Xenos) in [AREACOORD(owner)]")
-	X.emote("roar")
+	xeno_owner.emote("roar")
 
 	add_cooldown()
 	succeed_activate()
 
 ///Sends a message to admins, prompting them if they want to cancel a psychic summon
 /datum/action/ability/xeno_action/psychic_summon/proc/request_admins()
-	var/mob/living/carbon/xenomorph/caster = owner
-	var/canceltext = "[caster] is using [name] at [AREACOORD(caster)] [ADMIN_TPMONTY(caster)] <a href='?_src_=holder;[HrefToken(TRUE)];cancelsummon=[10 SECONDS]'>\[CANCEL SUMMON\]</a>"
+	var/canceltext = "[xeno_owner] is using [name] at [AREACOORD(xeno_owner)] [ADMIN_TPMONTY(xeno_owner)] <a href='byond://?_src_=holder;[HrefToken(TRUE)];cancelsummon=[10 SECONDS]'>\[CANCEL SUMMON\]</a>"
 	message_admins("[span_prefix("PSYCHIC SUMMON:")] <span class='message linkify'> [canceltext]</span>")
-	log_game("psychic summon started by [caster] at [AREACOORD(caster)], timerid to cancel: [10 SECONDS]")
-	notify_ghosts("<b>[caster]</b> has begun to summon at [AREACOORD(caster)]!", action = NOTIFY_JUMP)
+	log_game("psychic summon started by [xeno_owner] at [AREACOORD(xeno_owner)], timerid to cancel: [10 SECONDS]")
+	notify_ghosts("<b>[xeno_owner]</b> has begun to summon at [AREACOORD(xeno_owner)]!", action = NOTIFY_JUMP)
 
 ///Checks if our summon was cancelled
 /datum/action/ability/xeno_action/psychic_summon/proc/is_active_summon()
-	var/mob/living/carbon/xenomorph/caster = owner
-	if(!(caster in GLOB.active_summons))
+	if(!(xeno_owner in GLOB.active_summons))
 		return FALSE
 	return TRUE
 
 /datum/action/ability/xeno_action/psychic_summon/succeed_activate()
 	. = ..()
-	var/mob/living/carbon/xenomorph/caster = owner
-	GLOB.active_summons -= caster //Remove ourselves from the list once we have completed our summon
+	GLOB.active_summons -= xeno_owner //Remove ourselves from the list once we have completed our summon

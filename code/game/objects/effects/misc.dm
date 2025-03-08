@@ -37,9 +37,6 @@
 	desc = "This looks like a projection of something."
 	anchored = TRUE
 
-/obj/effect/rune/attunement
-	luminosity = 5
-
 /obj/effect/soundplayer
 	anchored = TRUE
 	opacity = FALSE
@@ -72,6 +69,15 @@
 /obj/effect/soundplayer/deltaplayer/Initialize(mapload)
 	. = ..()
 	GLOB.ship_alarms += src
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_alert_change))
+
+/// Start/stop our active sound player when the alert level changes to/from `SEC_LEVEL_DELTA`
+/obj/effect/soundplayer/deltaplayer/proc/on_alert_change(datum/source, datum/security_level/next_level, datum/security_level/previous_level)
+	SIGNAL_HANDLER
+	if(!(next_level.sec_level_flags & SEC_LEVEL_FLAG_STATE_OF_EMERGENCY))
+		loop_sound.stop(src)
+	else
+		loop_sound.start(src)
 
 /obj/effect/soundplayer/deltaplayer/Destroy()
 	. = ..()

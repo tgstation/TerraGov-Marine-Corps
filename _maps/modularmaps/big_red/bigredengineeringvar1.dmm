@@ -32,6 +32,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"cg" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering/east)
 "ci" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -134,13 +138,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
-"hx" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/freezer,
-/area/bigredv2/outside/engineering)
 "hG" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating,
@@ -567,6 +564,10 @@
 "AJ" = (
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering/east)
+"Br" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor,
+/area/bigredv2/outside/engineering/east)
 "BG" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
@@ -845,6 +846,10 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"Mg" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering)
 "Ml" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	name = "\improper Engine Reactor Control"
@@ -927,6 +932,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering/east)
+"Qw" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/engineering)
 "QE" = (
 /obj/machinery/light{
 	dir = 4
@@ -1156,7 +1165,7 @@
 /area/bigredv2/outside/engineering/east)
 
 (1,1,1) = {"
-hx
+vr
 fl
 FG
 qD
@@ -1189,7 +1198,7 @@ xG
 xG
 xG
 xG
-Uf
+Mg
 ZJ
 wW
 vr
@@ -1281,7 +1290,7 @@ zn
 bJ
 bJ
 bJ
-xG
+Qw
 xG
 xG
 Ft
@@ -1334,7 +1343,7 @@ Uf
 os
 Uf
 Uf
-Uf
+Mg
 zF
 wg
 Wq
@@ -1368,7 +1377,7 @@ JM
 vr
 vr
 bR
-xG
+Qw
 xG
 xG
 Qo
@@ -1509,7 +1518,7 @@ jR
 bJ
 Gu
 UO
-pu
+cg
 pu
 pu
 Ml
@@ -1535,7 +1544,7 @@ Ft
 (14,1,1) = {"
 vr
 Pz
-Uf
+Mg
 JM
 Nb
 pu
@@ -1622,7 +1631,7 @@ Ft
 (17,1,1) = {"
 Uf
 Uf
-Uf
+Mg
 CU
 Ib
 pu
@@ -1655,7 +1664,7 @@ Kn
 hr
 Zx
 pu
-Zs
+Br
 Um
 Zs
 Zs
@@ -1683,7 +1692,7 @@ jy
 LO
 Iu
 WA
-pu
+cg
 pu
 pu
 Ml
@@ -1795,7 +1804,7 @@ Ft
 "}
 (23,1,1) = {"
 pu
-pu
+cg
 lE
 YK
 sS

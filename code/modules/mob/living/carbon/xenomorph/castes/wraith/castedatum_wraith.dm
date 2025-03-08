@@ -3,6 +3,7 @@
 	display_name = "Wraith"
 	upgrade_name = ""
 	caste_desc = "A strange xeno that utilizes its psychic powers to move out of phase with reality."
+	base_strain_type = /mob/living/carbon/xenomorph/wraith
 	caste_type_path = /mob/living/carbon/xenomorph/wraith
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -43,9 +44,6 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/blink,
-		/datum/action/ability/activable/xeno/banish,
-		/datum/action/ability/xeno_action/recall,
 		/datum/action/ability/activable/xeno/rewind,
 		/datum/action/ability/xeno_action/portal,
 	)
@@ -63,9 +61,6 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/blink,
-		/datum/action/ability/activable/xeno/banish,
-		/datum/action/ability/xeno_action/recall,
 		/datum/action/ability/xeno_action/portal,
 		/datum/action/ability/activable/xeno/rewind,
 		/datum/action/ability/xeno_action/timestop,

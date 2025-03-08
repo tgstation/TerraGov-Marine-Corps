@@ -177,10 +177,11 @@
 		sentry = deployed_machine
 	sentry?.set_on(FALSE)
 	user.balloon_alert(user, "You start disassembling [undeployed_item]")
-	if(!do_after(user, deploy_time, NONE, deployed_machine, BUSY_ICON_BUILD))
+	if(!do_after(user, undeploy_time, NONE, deployed_machine, BUSY_ICON_BUILD))
 		sentry?.set_on(TRUE)
 		return
 
+	deployed_machine.post_disassemble(user)
 	undeployed_item.toggle_deployment_flag()
 
 	user.unset_interaction()

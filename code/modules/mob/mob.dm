@@ -206,11 +206,11 @@
 		equip_to_slot_if_possible(W, slot, FALSE) // equiphere
 
 
-///Attempts to put an item in either hand
+///Attempts to put an item in either hand, prioritizing the active hand
 /mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = FALSE, warning = FALSE, redraw_mob = TRUE)
-	if(equip_to_slot_if_possible(W, SLOT_L_HAND, TRUE, del_on_fail, warning, redraw_mob))
+	if(equip_to_slot_if_possible(W, (hand ? SLOT_L_HAND : SLOT_R_HAND), TRUE, del_on_fail, warning, redraw_mob))
 		return TRUE
-	else if(equip_to_slot_if_possible(W, SLOT_R_HAND, TRUE, del_on_fail, warning, redraw_mob))
+	else if(equip_to_slot_if_possible(W, (hand ? SLOT_R_HAND : SLOT_L_HAND), TRUE, del_on_fail, warning, redraw_mob))
 		return TRUE
 	return FALSE
 
@@ -231,14 +231,14 @@
 		return FALSE
 	if(item_to_equip.equip_delay_self && !ignore_delay)
 		if(!do_after(src, item_to_equip.equip_delay_self, NONE, item_to_equip, BUSY_ICON_FRIENDLY))
-			to_chat(src, "You stop putting on \the [item_to_equip]")
+			to_chat(src, "You stop putting on \the [item_to_equip].")
 			return FALSE
 		//calling the proc again with ignore_delay saves a boatload of copypaste
 		return equip_to_slot_if_possible(item_to_equip, slot, TRUE, del_on_fail, warning, redraw_mob, override_nodrop)
-	equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
 	//This will unwield items -without- triggering lights.
 	if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
 		item_to_equip.unwield(src)
+	equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
 	return TRUE
 
 /**
@@ -340,7 +340,7 @@
 /mob/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	.["Player Panel"] = "?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
+	.["Player Panel"] = "byond://?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
 
 /mob/vv_edit_var(var_name, var_value)
 	switch(var_name)
@@ -385,6 +385,13 @@
 		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
 		winset(src, "infowindow.changelog", "font-style=;")
+
+/client/verb/hotkeys_help()
+	set name = "Hotkeys"
+	set category = "Preferences"
+
+	prefs.tab_index = KEYBIND_SETTINGS
+	prefs.ShowChoices(mob)
 
 /mob/Topic(href, href_list)
 	. = ..()
@@ -580,7 +587,7 @@
 /mob/proc/get_idcard(hand_first)
 	return
 
-/mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+/mob/proc/slip(slip_source_name, stun_level, paralyze_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
 /mob/forceMove(atom/destination)

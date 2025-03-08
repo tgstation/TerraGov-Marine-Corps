@@ -141,7 +141,7 @@
 	if(prob(5))
 		to_chat(L, discomfort_message)
 	if(L.bodytemperature == targ_temp)
-		L.apply_effect(agony_amount, AGONY)
+		L.apply_effect(agony_amount, EFFECT_STAMLOSS)
 	return ..()
 
 /datum/reagent/consumable/capsaicin/condensed
@@ -397,14 +397,6 @@
 	color = "#FFFF00"
 	nutriment_factor = 15
 	taste_description = "sweetness"
-
-/datum/reagent/consumable/honey/on_mob_life(mob/living/L, metabolism)
-	L.reagents.add_reagent(/datum/reagent/consumable/sugar,3)
-	L.adjustBruteLoss(-0.25*effect_str)
-	L.adjustFireLoss(-0.25*effect_str)
-	L.adjustOxyLoss(-0.25*effect_str)
-	L.adjustToxLoss(-0.25*effect_str)
-	return ..()
 
 /datum/reagent/consumable/larvajelly
 	name = "Larva Jelly"

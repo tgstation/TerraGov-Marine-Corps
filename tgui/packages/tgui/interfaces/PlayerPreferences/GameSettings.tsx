@@ -1,12 +1,12 @@
-import { useBackend } from '../../backend';
 import {
   Button,
   ColorBox,
   LabeledList,
   Section,
   Stack,
-  Tooltip,
-} from '../../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
 import {
   LoopingSelectionPreference,
   SelectFieldPreference,
@@ -44,17 +44,20 @@ export const GameSettings = (props) => {
     data;
 
   // Remember to update this alongside defines
-  const TTSRadioSetting = ['sl', 'squad', 'command', 'all'];
+  // todo: unfuck. Bruh why is this being handled in the tsx?
+  const TTSRadioSetting = ['sl', 'squad', 'command', 'hivemind', 'all'];
   const TTSRadioSettingToBitfield = {
     sl: 1 << 0,
     squad: 1 << 1,
     command: 1 << 2,
     all: 1 << 3,
+    hivemind: 1 << 4,
   };
   const TTSRadioSettingToName = {
     sl: 'Squad Leader',
     squad: 'Squad',
-    command: 'Command',
+    command: 'Command/Hive Leader',
+    hivemind: 'Hivemind',
     all: 'All Channels',
   };
 
@@ -112,19 +115,27 @@ export const GameSettings = (props) => {
                   />
                 ))}
               </LabeledList.Item>
-              <Tooltip content="Use more accessible TGUI themes/layouts wherever possible.">
-                <ToggleFieldPreference
-                  label="Accessible TGUI themes"
-                  value="accessible_tgui_themes"
-                  action="accessible_tgui_themes"
-                />
-              </Tooltip>
+              <ToggleFieldPreference
+                label="Accessible TGUI themes"
+                value="accessible_tgui_themes"
+                action="accessible_tgui_themes"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+                tooltip="Try to use more accessible or default TGUI themes/layouts wherever possible."
+              />
               <ToggleFieldPreference
                 label="Fullscreen mode"
                 value="fullscreen_mode"
                 action="fullscreen_mode"
                 leftLabel={'Fullscreen'}
                 rightLabel={'Windowed'}
+              />
+              <ToggleFieldPreference
+                label="Status Bar (Bottom left text)"
+                value="show_status_bar"
+                action="show_status_bar"
+                leftLabel={'Show'}
+                rightLabel={'Hide'}
               />
               <ToggleFieldPreference
                 label="TGUI Window Mode"
@@ -208,7 +219,7 @@ export const GameSettings = (props) => {
                 rightLabel={'Disabled'}
               />
               <TextFieldPreference
-                label="Runechat message limit"
+                label="Runechat character limit"
                 value="max_chat_length"
               />
               <ToggleFieldPreference
@@ -290,7 +301,7 @@ export const GameSettings = (props) => {
                 }
               />
               <TextFieldPreference
-                label={'UI Alpha'}
+                label={'UI Opacity'}
                 value={'ui_style_alpha'}
                 action={'uialpha'}
               />
@@ -392,7 +403,7 @@ export const GameSettings = (props) => {
       {!!is_admin && (
         <Stack>
           <Stack.Item grow>
-            <Section title="Administration (admin only)">
+            <Section title="Staff settings">
               <LabeledList>
                 <ToggleFieldPreference
                   label="Fast MC Refresh"
@@ -407,6 +418,7 @@ export const GameSettings = (props) => {
                   action="split_admin_tabs"
                   leftLabel={'Enabled'}
                   rightLabel={'Disabled'}
+                  tooltip="When enabled, staff commands will be split into multiple tabs (Admin/Fun/etc). Otherwise, non-debug commands will remain in one statpanel tab."
                 />
                 <ToggleFieldPreference
                   label="Toggle adminhelp sound"
@@ -414,6 +426,14 @@ export const GameSettings = (props) => {
                   action="toggle_adminhelp_sound"
                   leftLabel={'Enabled'}
                   rightLabel={'Disabled'}
+                />
+                <ToggleFieldPreference
+                  label="Hear OOC from anywhere"
+                  value="hear_ooc_anywhere_as_staff"
+                  action="hear_ooc_anywhere_as_staff"
+                  leftLabel={'Enabled'}
+                  rightLabel={'Disabled'}
+                  tooltip="Enables hearing OOC channels from anywhere in any situation."
                 />
               </LabeledList>
             </Section>

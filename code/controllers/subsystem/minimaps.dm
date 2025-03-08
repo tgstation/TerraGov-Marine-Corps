@@ -380,38 +380,39 @@ SUBSYSTEM_DEF(minimaps)
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	///assoc list of mob choices by clicking on coords. only exists fleetingly for the wait loop in [/proc/get_coords_from_click]
 	var/list/mob/choices_by_mob
-	///should get_coords_from_click stop waiting for an input?
-	var/stop_polling = FALSE
+	///assoc list to determine if get_coords_from_click should stop waiting for an input for that specific mob
+	var/list/mob/stop_polling
 
 /atom/movable/screen/minimap/Initialize(mapload, datum/hud/hud_owner, target, flags)
 	. = ..()
 	if(!SSminimaps.minimaps_by_z["[target]"])
 		return
 	choices_by_mob = list()
+	stop_polling = list()
 	icon = SSminimaps.minimaps_by_z["[target]"].hud_image
 	SSminimaps.add_to_updaters(src, flags, target)
 
 /atom/movable/screen/minimap/Destroy()
 	SSminimaps.hashed_minimaps -= src
-	stop_polling = TRUE
+	stop_polling = null
 	return ..()
 
 /**
  * lets the user get coordinates by clicking the actual map
  * Returns a list(x_coord, y_coord)
- * note: sleeps until the user makes a choice, stop_polling is set to TRUE or they disconnect
+ * note: sleeps until the user makes a choice, stop_polling is set to TRUE for this specific user or they disconnect
  */
 /atom/movable/screen/minimap/proc/get_coords_from_click(mob/user)
 	//lord forgive my shitcode
 	var/signal_by_type = isobserver(user) ? COMSIG_OBSERVER_CLICKON : COMSIG_MOB_CLICKON
 	RegisterSignal(user, signal_by_type, PROC_REF(on_click))
-	while(!(choices_by_mob[user] || stop_polling) && user.client)
+	while(!(choices_by_mob[user] || stop_polling[user]) && user.client && islist(stop_polling))
 		stoplag(1)
 	UnregisterSignal(user, signal_by_type)
 	. = choices_by_mob[user]
 	choices_by_mob -= user
 	// I have an extra layer of shitcode for you
-	stop_polling = FALSE
+	stop_polling -= user
 
 /**
  * Handles fetching the targetted coordinates when the mob tries to click on this map
@@ -523,6 +524,7 @@ SUBSYSTEM_DEF(minimaps)
 	else
 		owner.client.screen -= map
 		owner.client.screen -= locator
+		map.stop_polling -= owner
 		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 	minimap_displayed = force_state
 	return TRUE
@@ -599,13 +601,8 @@ SUBSYSTEM_DEF(minimaps)
 	map = SSminimaps.fetch_minimap_object(tracking.z, minimap_flags)
 
 /datum/action/minimap/remove_action(mob/M)
-	var/atom/movable/tracking = locator_override ? locator_override : M
-	if(minimap_displayed)
-		owner.client?.screen -= map
-		owner.client?.screen -= locator
-		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
-		minimap_displayed = FALSE
-	UnregisterSignal(tracking, COMSIG_MOVABLE_Z_CHANGED)
+	toggle_minimap(FALSE)
+	UnregisterSignal(locator_override || M, COMSIG_MOVABLE_Z_CHANGED)
 	return ..()
 
 /**
@@ -683,13 +680,15 @@ SUBSYSTEM_DEF(minimaps)
 	if(!.)
 		return
 	if(!minimap_displayed)
-		map.stop_polling = TRUE
+		map.stop_polling[owner] = TRUE
 		return
 	var/list/clicked_coords = map.get_coords_from_click(owner)
 	if(!clicked_coords)
+		toggle_minimap(FALSE)
 		return
 	var/turf/clicked_turf = locate(clicked_coords[1], clicked_coords[2], owner.z)
 	if(!clicked_turf)
+		toggle_minimap(FALSE)
 		return
 	// Taken directly from observer/DblClickOn
 	owner.abstract_move(clicked_turf)

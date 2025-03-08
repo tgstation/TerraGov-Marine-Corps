@@ -17,33 +17,32 @@
 
 
 /datum/action/ability/xeno_action/call_of_the_burrowed/action_activate()
-	var/mob/living/carbon/xenomorph/shrike/caller = owner
-	if(!isnormalhive(caller.hive))
-		to_chat(caller, span_warning("Burrowed larva? What a strange concept... It's not for our hive."))
+	if(!isnormalhive(xeno_owner.hive))
+		to_chat(xeno_owner, span_warning("Burrowed larva? What a strange concept... It's not for our hive."))
 		return FALSE
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	if(!stored_larva)
-		to_chat(caller, span_warning("Our hive currently has no burrowed to call forth!"))
+		to_chat(xeno_owner, span_warning("Our hive currently has no burrowed to call forth!"))
 		return FALSE
 
-	playsound(caller,'sound/magic/invoke_general.ogg', 75, TRUE)
-	new /obj/effect/temp_visual/telekinesis(get_turf(caller))
-	caller.visible_message(span_xenowarning("A strange buzzing hum starts to emanate from \the [caller]!"), \
+	playsound(xeno_owner,'sound/magic/invoke_general.ogg', 75, TRUE)
+	new /obj/effect/temp_visual/telekinesis(get_turf(xeno_owner))
+	xeno_owner.visible_message(span_xenowarning("A strange buzzing hum starts to emanate from \the [xeno_owner]!"), \
 	span_xenodanger("We call forth the larvas to rise from their slumber!"))
 
 	if(stored_larva)
-		RegisterSignals(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
-		caller.hive.give_larva_to_next_in_queue()
-		notify_ghosts("\The <b>[caller]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = caller, action = NOTIFY_JOIN_AS_LARVA)
-		addtimer(CALLBACK(src, PROC_REF(calling_larvas_end), caller), CALLING_BURROWED_DURATION)
+		RegisterSignals(xeno_owner.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
+		xeno_owner.hive.give_larva_to_next_in_queue()
+		notify_ghosts("\The <b>[xeno_owner]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = xeno_owner, action = NOTIFY_JOIN_AS_LARVA, flashwindow = TRUE)
+		addtimer(CALLBACK(src, PROC_REF(calling_larvas_end), xeno_owner), CALLING_BURROWED_DURATION)
 
 	succeed_activate()
 	add_cooldown()
 
 
-/datum/action/ability/xeno_action/call_of_the_burrowed/proc/calling_larvas_end(mob/living/carbon/xenomorph/shrike/caller)
-	UnregisterSignal(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
+/datum/action/ability/xeno_action/call_of_the_burrowed/proc/calling_larvas_end(mob/living/carbon/xenomorph/xeno_owner)
+	UnregisterSignal(xeno_owner.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 
 
 /datum/action/ability/xeno_action/call_of_the_burrowed/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos) //Should only register while a viable candidate.
@@ -73,13 +72,15 @@
 	return ..()
 
 
-/datum/action/ability/activable/xeno/psychic_fling/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/psychic_fling/can_use_ability(atom/movable/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
 	if(QDELETED(target))
 		return FALSE
 	if(!isitem(target) && !ishuman(target) && !isdroid(target))	//only items, droids, and mobs can be flung.
+		return FALSE
+	if(target.move_resist >= MOVE_FORCE_OVERPOWERING)
 		return FALSE
 	var/max_dist = 3 //the distance only goes to 3 now, since this is more of a utility then an attack.
 	if(!line_of_sight(owner, target, max_dist))
@@ -156,8 +157,7 @@
 	succeed_activate()
 	add_cooldown()
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_icons)), 1 SECONDS)
-	var/mob/living/carbon/xenomorph/xeno = owner
-	owner.icon_state = "[xeno.xeno_caste.caste_name][(xeno.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Screeching"
+	owner.icon_state = "[xeno_owner.xeno_caste.caste_name][(xeno_owner.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Screeching"
 	if(target) // Keybind use doesn't have a target
 		owner.face_atom(target)
 
@@ -184,11 +184,13 @@
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
 				affected.Shake(duration = 0.5 SECONDS)
 				continue
+			if(affected.move_resist >= MOVE_FORCE_OVERPOWERING)
+				continue
 			if(ishuman(affected))
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
 					continue
-				H.apply_effects(2 SECONDS, 2 SECONDS)
+				H.apply_effects(paralyze = 2 SECONDS)
 				shake_camera(H, 2, 1)
 			things_to_throw += affected
 
@@ -324,8 +326,7 @@
 			to_chat(owner, span_warning("We can't do that here."))
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(!owner_xeno.loc_weeds_type)
+	if(!xeno_owner.loc_weeds_type)
 		if(!silent)
 			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
@@ -410,7 +411,7 @@
 			var/mob/living/carbon/human/H = movable_victim
 			if(H.stat == DEAD)
 				continue
-			H.apply_effects(1,1)
+			H.apply_effects(paralyze = 0.1 SECONDS)
 			H.adjust_stagger(2 SECONDS)
 			shake_camera(H, 2, 1)
 		else if(isitem(movable_victim))

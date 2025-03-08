@@ -48,4 +48,4 @@
 /mob/dead/observer/compose_name_href(name)
 	if(!check_other_rights(client, R_ADMIN, FALSE))
 		return name
-	return "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[name]</a>"
+	return "<a class='hidelink' href='byond://?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[name]</a>"

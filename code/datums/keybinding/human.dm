@@ -115,8 +115,15 @@
 	hotkey_keys = list("h")
 	name = "toggle_helmet_module"
 	full_name = "Toggle helmet module"
-	description = "Toggles your helmet module on or off"
+	description = "Toggles your helmet module on or off or activates it"
 	keybind_signal = COMSIG_KB_HELMETMODULE
+
+/datum/keybinding/human/toggle_armor_module
+	hotkey_keys = list("j")
+	name = "toggle_armor_module"
+	full_name = "Toggle armor module"
+	description = "Toggles your armor module or activates it"
+	keybind_signal = COMSIG_KB_ARMORMODULE
 
 /datum/keybinding/human/toggle_suit_light
 	hotkey_keys = list("l")
@@ -131,6 +138,14 @@
 	full_name = "Activate combat robot autorepair"
 	description = "Activate combat robot's autorepair"
 	keybind_signal = COMSIG_KB_ROBOT_AUTOREPAIR
+
+/datum/keybinding/human/stims_menu
+	hotkey_keys = list("g")
+	name = "stims menu"
+	full_name = "Supersoldier Stims"
+	description = "Manage injecting stims as a prototype supersoldier."
+	keybind_signal = COMSIG_KB_STIMS
+
 
 /datum/keybinding/human/move_order
 	name = "move_order"

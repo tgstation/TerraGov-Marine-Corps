@@ -3,6 +3,7 @@
 	display_name = "Runner"
 	upgrade_name = ""
 	caste_desc = "A fast, four-legged terror. Weak in sustained combat."
+	base_strain_type = /mob/living/carbon/xenomorph/runner
 	caste_type_path = /mob/living/carbon/xenomorph/runner
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE

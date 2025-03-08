@@ -1,3 +1,6 @@
+ADMIN_VERB_AND_CONTEXT_MENU(debug_variables, R_DEBUG, "View Variables", "View the variables of a datum.", ADMIN_CATEGORY_DEBUG, datum/thing in world)
+	user.debug_variables(thing)
+
 /client/proc/debug_variables(datum/thing in world)
 	set category = "Debug"
 	set name = "View Variables"
@@ -5,7 +8,7 @@
 	var/static/cookieoffset = rand(1, 9999) //to force cookies to reset after the round.
 
 	if(!usr.client || !usr.client.holder) //This is usr because admins can call the proc on other clients, even if they're not admins, to show them VVs.
-		to_chat(usr, span_danger("You need to be an administrator to access this."), confidential = TRUE)
+		to_chat(usr, span_danger("You need to be an administrator to access this."))
 		return
 
 	if(!thing)
@@ -231,7 +234,7 @@
 					</td>
 					<td width='50%'>
 						<div align='center'>
-							<a id='refresh_link' href='?_src_=vars;
+							<a id='refresh_link' href='byond://?_src_=vars;
 datumrefresh=[refid];[HrefToken()]'>Refresh</a>
 							<form>
 								<select name="file" size="1"

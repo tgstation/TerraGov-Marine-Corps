@@ -1,21 +1,16 @@
-/datum/admins/proc/game_panel()
-	set name = "Game Panel"
-	set category = "Admin"
+ADMIN_VERB(game_panel, R_ADMIN, "Game Panel", "View the game panel", ADMIN_CATEGORY_FUN)
 
-	if(!check_rights(R_ADMIN))
-		return
-
-	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
+	var/ref = "[REF(user.holder)];[HrefToken()]"
 	var/dat = {"
-		<a href='?src=[ref];modemenu=1'>Change Game Mode</a><br>
+		<a href='byond://?src=[ref];modemenu=1'>Change Game Mode</a><br>
 		<br>
-		<a href='?src=[ref];create_object=1'>Create Object</a><br>
-		<a href='?src=[ref];quick_create_object=1'>Quick Create Object</a><br>
-		<a href='?src=[ref];create_turf=1'>Create Turf</a><br>
-		<a href='?src=[ref];create_mob=1'>Create Mob</a><br>
+		<a href='byond://?src=[ref];create_object=1'>Create Object</a><br>
+		<a href='byond://?src=[ref];quick_create_object=1'>Quick Create Object</a><br>
+		<a href='byond://?src=[ref];create_turf=1'>Create Turf</a><br>
+		<a href='byond://?src=[ref];create_mob=1'>Create Mob</a><br>
 		"}
 
-	var/datum/browser/browser = new(usr, "gamepanel", "<div align='center'>Game Panel</div>", 220, 250)
+	var/datum/browser/browser = new(user.mob, "gamepanel", "<div align='center'>Game Panel</div>", 220, 250)
 	browser.set_content(dat)
 	browser.open()
 

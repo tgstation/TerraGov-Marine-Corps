@@ -754,29 +754,9 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
-"adx" = (
-/obj/machinery/computer/security/marinemainship{
-	dir = 4;
-	pixel_x = 17;
-	pixel_y = 16
-	},
-/obj/machinery/computer/camera_advanced/overwatch/alpha,
-/obj/structure/table/mainship,
-/turf/open/floor/mainship,
-/area/mainship/command/cic)
 "ady" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
-/area/mainship/command/cic)
-"adz" = (
-/obj/machinery/computer/security/marinemainship{
-	dir = 8;
-	pixel_x = -17;
-	pixel_y = 16
-	},
-/obj/machinery/computer/camera_advanced/overwatch/bravo,
-/obj/structure/table/mainship,
-/turf/open/floor/mainship,
 /area/mainship/command/cic)
 "adA" = (
 /obj/effect/landmark/start/job/shiptech,
@@ -1067,15 +1047,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
-"aeV" = (
-/obj/structure/table/mainship,
-/obj/structure/window/reinforced/toughened{
-	dir = 4
-	},
-/obj/structure/window/reinforced/toughened,
-/obj/machinery/computer/camera_advanced/overwatch/main,
-/turf/open/floor/mainship,
-/area/mainship/command/cic)
 "aeW" = (
 /obj/effect/landmark/start/job/synthetic,
 /turf/open/floor/mainship,
@@ -1269,11 +1240,6 @@
 /area/mainship/command/self_destruct)
 "afZ" = (
 /obj/structure/bed/chair/office/dark,
-/turf/open/floor/mainship,
-/area/mainship/command/cic)
-"aga" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/camera_advanced/overwatch/charlie,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "agb" = (
@@ -1949,11 +1915,6 @@
 /obj/machinery/computer/crew,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
-"aiS" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/camera_advanced/overwatch/delta,
-/turf/open/floor/mainship,
-/area/mainship/command/cic)
 "aiT" = (
 /obj/machinery/light,
 /obj/structure/cable,
@@ -2324,6 +2285,10 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"cMt" = (
+/obj/structure/dropship_equipment/shuttle/tangle_emitter,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "cXg" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 2;
@@ -2434,6 +2399,11 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
+"goS" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/camera_advanced/overwatch/military/charlie,
+/turf/open/floor/mainship,
+/area/mainship/command/cic)
 "gsp" = (
 /obj/structure/ship_rail_gun,
 /turf/open/floor/mainship,
@@ -2496,6 +2466,10 @@
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"hHV" = (
+/obj/structure/dropship_equipment/shuttle/nade_launcher,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "hSf" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/plasteel/large_stack,
@@ -2507,6 +2481,15 @@
 /obj/item/pizzabox/margherita,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
+"igj" = (
+/obj/structure/table/mainship,
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/obj/structure/window/reinforced/toughened,
+/obj/machinery/computer/camera_advanced/overwatch/military/main,
+/turf/open/floor/mainship,
+/area/mainship/command/cic)
 "iiS" = (
 /obj/structure/cable,
 /obj/structure/rack,
@@ -2545,10 +2528,6 @@
 	dir = 8;
 	id = "vehicle_elevator_railing"
 	},
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
-"jEJ" = (
-/obj/structure/dropship_equipment/shuttle/tangle_emitter,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "jPH" = (
@@ -2673,6 +2652,11 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"lAz" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/camera_advanced/overwatch/military/delta,
+/turf/open/floor/mainship,
+/area/mainship/command/cic)
 "lGu" = (
 /obj/machinery/tank_part_fabricator,
 /turf/open/floor/mainship,
@@ -2689,6 +2673,16 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
+"lPs" = (
+/obj/machinery/computer/security/marinemainship{
+	dir = 4;
+	pixel_x = 17;
+	pixel_y = 16
+	},
+/obj/machinery/computer/camera_advanced/overwatch/military/alpha,
+/obj/structure/table/mainship,
+/turf/open/floor/mainship,
+/area/mainship/command/cic)
 "lUR" = (
 /obj/machinery/vending/marineFood,
 /obj/machinery/light{
@@ -2709,6 +2703,16 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
+"mIo" = (
+/obj/machinery/computer/security/marinemainship{
+	dir = 8;
+	pixel_x = -17;
+	pixel_y = 16
+	},
+/obj/machinery/computer/camera_advanced/overwatch/military/bravo,
+/obj/structure/table/mainship,
+/turf/open/floor/mainship,
+/area/mainship/command/cic)
 "mRA" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/spare_cord,
@@ -2827,10 +2831,6 @@
 /area/mainship/hallways/hangar)
 "qWN" = (
 /turf/open/floor/mainship/empty,
-/area/mainship/hallways/hangar)
-"rdd" = (
-/obj/structure/dropship_equipment/shuttle/nade_launcher,
-/turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "rmh" = (
 /obj/structure/cable,
@@ -4146,7 +4146,7 @@ dwY
 ljx
 aji
 adr
-adx
+lPs
 adC
 vHf
 azU
@@ -4156,7 +4156,7 @@ aeT
 azU
 azU
 adC
-aga
+goS
 ago
 aji
 agA
@@ -4197,8 +4197,8 @@ ldZ
 bgb
 rmt
 bXE
-jEJ
-rdd
+cMt
+hHV
 dwY
 dwY
 dwY
@@ -4266,17 +4266,17 @@ dwY
 acE
 aji
 adr
-adz
+mIo
 adC
 vHf
 azU
 rSb
 aeG
-aeV
+igj
 azU
 azU
 adC
-aiS
+lAz
 ajd
 aji
 agB

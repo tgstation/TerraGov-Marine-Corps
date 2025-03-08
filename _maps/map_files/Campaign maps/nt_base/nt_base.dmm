@@ -7596,7 +7596,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "fAV" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/corpo)
 "fBw" = (
@@ -13469,7 +13469,7 @@
 /area/gelida/indoors/c_block/mining)
 "jVX" = (
 /obj/structure/table/mainship,
-/obj/item/weapon/gun/rifle/tx11,
+/obj/item/weapon/gun/rifle/tx11/scopeless,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -20248,7 +20248,7 @@
 /obj/item/ammo_magazine/rifle/tx11,
 /obj/item/ammo_magazine/rifle/tx11,
 /obj/item/ammo_magazine/rifle/tx11,
-/obj/item/weapon/gun/rifle/tx11{
+/obj/item/weapon/gun/rifle/tx11/scopeless{
 	pixel_y = -6
 	},
 /turf/open/floor/prison,
@@ -27253,7 +27253,7 @@
 /area/gelida/indoors/a_block/security)
 "tRN" = (
 /obj/structure/closet/crate/ammo,
-/obj/item/weapon/gun/rifle/tx11,
+/obj/item/weapon/gun/rifle/tx11/scopeless,
 /turf/open/shuttle/dropship/floor,
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "tRT" = (
@@ -27656,7 +27656,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "ugQ" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/corpo)

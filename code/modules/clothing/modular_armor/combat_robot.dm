@@ -20,9 +20,13 @@
 		/obj/item/armor_module/module/fire_proof,
 		/obj/item/armor_module/module/tyr_extra_armor,
 		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/eshield,
+		/obj/item/armor_module/module/mirage,
+		/obj/item/armor_module/module/armorlock,
 
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
@@ -141,6 +145,8 @@
 	attachments_allowed = list(
 		/obj/item/armor_module/module/tyr_head,
 		/obj/item/armor_module/module/fire_proof_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/hod_head,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,

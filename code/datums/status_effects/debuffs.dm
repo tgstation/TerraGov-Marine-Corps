@@ -167,7 +167,7 @@
 	if(prob(20))
 		if(carbon_owner)
 			carbon_owner.handle_dreams()
-		if(prob(10) && owner.health > owner.health_threshold_crit)
+		if(prob(10) && owner.health > owner.get_crit_threshold())
 			owner.emote("snore")
 
 ///Basically a temporary self-inflicted shutdown for maintenance
@@ -350,11 +350,8 @@
 
 /datum/status_effect/plasmadrain/tick(delta_time)
 	var/mob/living/carbon/xenomorph/xenoowner = owner
-	if(xenoowner.plasma_stored >= 0)
-		var/remove_plasma_amount = xenoowner.xeno_caste.plasma_max / 10
-		xenoowner.plasma_stored -= remove_plasma_amount
-		if(xenoowner.plasma_stored <= 0)
-			xenoowner.plasma_stored = 0
+	// This proc can handle everything and hud updating, use it.
+	xenoowner.use_plasma(xenoowner.xeno_caste.plasma_max / 10)
 
 /datum/status_effect/noplasmaregen
 	id = "noplasmaregen"
@@ -577,10 +574,10 @@
 	consumed_on_threshold = FALSE
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
+	/// Pyrogen creator of the debuff.
+	var/mob/living/carbon/xenomorph/pyrogen/debuff_creator
 	/// Used for the fire effect.
 	var/obj/vis_melt_fire/visual_fire
-	/// Xenomorph which created the debuff.
-	var/mob/living/carbon/xenomorph/debuff_creator
 
 /obj/vis_melt_fire
 	name = "ouch ouch ouch"
@@ -588,8 +585,8 @@
 	layer = ABOVE_MOB_LAYER
 	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
 
-/datum/status_effect/stacking/melting_fire/on_creation(mob/living/new_owner, stacks_to_apply)
-	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
+/datum/status_effect/stacking/melting_fire/on_creation(mob/living/new_owner, stacks_to_apply, atom/new_creator)
+	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD || new_owner.soft_armor?.getRating(FIRE) >= 100)
 		qdel(src)
 		return
 	. = ..()
@@ -600,6 +597,8 @@
 	debuff_owner.balloon_alert(debuff_owner, "Melting fire")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
+	if(new_creator && isxenopyrogen(new_creator)) // It is possible for a non-pyrogen to create this.
+		debuff_creator = new_creator
 
 /// on remove has owner set to null
 /datum/status_effect/stacking/melting_fire/on_remove()
@@ -622,10 +621,17 @@
 	else
 		visual_fire.icon_state = "melting_low_stacks"
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
-	if(QDELETED(debuff_creator))
+
+	if(QDELETED(debuff_creator) || debuff_creator.stat == DEAD)
 		return
+	var/amount_to_heal = 2 // HEAL_XENO_DAMAGE requires it as a variable.
+	HEAL_XENO_DAMAGE(debuff_creator, amount_to_heal, FALSE)
 	debuff_creator.gain_plasma(5, TRUE)
 
+/datum/status_effect/stacking/melting_fire/add_stacks(stacks_added, atom/xeno_cause)
+	. = ..()
+	if(xeno_cause && isxenopyrogen(xeno_cause))
+		debuff_creator = xeno_cause
 
 /// Called when the debuff's owner uses the Resist action for this debuff.
 /datum/status_effect/stacking/melting_fire/proc/call_resist_debuff()
@@ -922,3 +928,34 @@
 // ***************************************
 /datum/status_effect/incapacitating/dancer_tagged
 	id = "dancer_tagged"
+	duration = 15 SECONDS
+
+// Recently sniped status effect, applied when hit by a sniper round
+/datum/status_effect/incapacitating/recently_sniped
+	id = "sniped"
+	/// Used for the sniped effect
+	var/obj/vis_sniped/visual_sniped
+
+/obj/vis_sniped
+	name = "sniped"
+	icon = 'icons/mob/actions.dmi'
+	pixel_x = 16
+	pixel_y = 10
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
+
+/datum/status_effect/incapacitating/recently_sniped/on_creation(mob/living/new_owner, set_duration)
+	. = ..()
+
+	if(!. || new_owner.stat != CONSCIOUS)
+		return
+
+	visual_sniped = new
+	visual_sniped.icon_state = "sniper_zoom"
+
+	new_owner.vis_contents += visual_sniped
+
+/datum/status_effect/incapacitating/recently_sniped/on_remove()
+	owner.vis_contents -= visual_sniped
+	QDEL_NULL(visual_sniped)

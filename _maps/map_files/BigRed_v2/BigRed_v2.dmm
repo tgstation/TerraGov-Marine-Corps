@@ -2797,15 +2797,6 @@
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
-"aAR" = (
-/obj/machinery/vending/assist,
-/obj/structure/barricade/metal{
-	dir = 4
-	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/bigredv2/caves/lambda_lab)
 "aAT" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -2970,15 +2961,6 @@
 /obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/engine,
 /area/bigredv2/caves/lambda_lab)
-"aCu" = (
-/obj/effect/spawner/random/engineering/ore_box,
-/obj/structure/barricade/metal{
-	dir = 4
-	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 4
-	},
-/area/bigredv2/caves/lambda_lab)
 "aCv" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
@@ -3068,14 +3050,6 @@
 "aDl" = (
 /obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/tile/purple/whitepurple,
-/area/bigredv2/caves/lambda_lab)
-"aDm" = (
-/obj/structure/barricade/metal{
-	dir = 4
-	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 6
-	},
 /area/bigredv2/caves/lambda_lab)
 "aDn" = (
 /obj/structure/cable,
@@ -5075,6 +5049,7 @@
 /area/bigredv2/outside/virology)
 "aXv" = (
 /obj/machinery/light,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aXw" = (
@@ -5759,11 +5734,6 @@
 "bmk" = (
 /turf/closed/wall,
 /area/bigredv2/outside/engineering)
-"bmn" = (
-/obj/machinery/power/smes/buildable/empty/dist,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "bmo" = (
 /obj/structure/closet/toolcloset,
 /turf/open/floor,
@@ -5805,12 +5775,6 @@
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
-"bmQ" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/turf/open/floor/freezer,
-/area/bigredv2/outside/engineering)
 "bmR" = (
 /obj/effect/ai_node,
 /turf/open/floor,
@@ -5853,13 +5817,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"bnr" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "bnu" = (
 /obj/machinery/light{
 	dir = 4
@@ -6283,12 +6240,6 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"btZ" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "bua" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -7577,6 +7528,11 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
+"bTy" = (
+/obj/structure/sign/safety/breakroom,
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering)
 "bTK" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -7720,6 +7676,13 @@
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/asteroidplating,
 /area/bigredv2/outside/space_port/two)
+"cgi" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/obj/machinery/light,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "ciD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -7827,6 +7790,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/full,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
+"cuv" = (
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/shuttle/escapepod/zero,
+/area/bigredv2/outside/engineering)
 "cuO" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning,
@@ -7990,12 +7959,6 @@
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
-"cQs" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "cQv" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -8521,6 +8484,12 @@
 /obj/structure/table,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
+"ebM" = (
+/obj/machinery/power/geothermal/tbg{
+	dir = 4
+	},
+/turf/open/shuttle/escapepod/plain,
+/area/bigredv2/outside/engineering)
 "ech" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -8612,15 +8581,16 @@
 	dir = 1
 	},
 /area/bigredv2/outside/space_port/two)
+"ejQ" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering)
 "ekl" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
-"ekq" = (
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "ekI" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -8628,13 +8598,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/e)
-"ele" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/effect/landmark/weed_node,
-/turf/open/floor/freezer,
-/area/bigredv2/outside/engineering)
 "elj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -8861,6 +8824,16 @@
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
+"eLh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "eMf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -9291,10 +9264,6 @@
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/purple/whitepurple,
 /area/bigredv2/caves/lambda_lab)
-"fNY" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "fOe" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -9312,10 +9281,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/c)
-"fOE" = (
-/obj/structure/sign/safety/breakroom,
-/turf/closed/wall,
-/area/bigredv2/outside/engineering)
 "fQz" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -9334,6 +9299,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
+"fSg" = (
+/obj/structure/table,
+/obj/machinery/computer/station_alert{
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "fSl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -9429,6 +9401,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
+"gaT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "gaV" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
@@ -9438,6 +9415,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
+"gbg" = (
+/obj/machinery/power/smes/buildable/empty/dist,
+/turf/open/floor/plating,
+/area/bigredv2/outside/filtration_plant)
 "gbB" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -9875,6 +9856,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"gWG" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/shuttle/escapepod/plain/buildable,
+/area/bigredv2/outside/engineering)
 "gWS" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -10228,6 +10215,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
+"hQv" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/shuttle/escapepod/plain/buildable,
+/area/bigredv2/outside/engineering)
 "hSR" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -10544,11 +10536,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"iEL" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/bigredv2/outside/filtration_plant)
 "iFp" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -10650,6 +10637,9 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
+"iRv" = (
+/turf/open/shuttle/escapepod/plain/buildable,
+/area/bigredv2/outside/engineering)
 "iSp" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
@@ -10969,6 +10959,11 @@
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
+"jsA" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "jsL" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -11018,6 +11013,15 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
+"jwX" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/bigredv2/outside/filtration_plant)
 "jwY" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -11128,6 +11132,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northeast)
+"jFw" = (
+/obj/effect/ai_node,
+/turf/open/shuttle/escapepod/plain/buildable,
+/area/bigredv2/outside/engineering)
 "jGk" = (
 /obj/structure/bookcase/manuals/research_and_development,
 /obj/structure/cable,
@@ -11210,6 +11218,12 @@
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/tile/purple/whitepurple,
 /area/bigredv2/caves/lambda_lab)
+"jLW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "jNo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -11464,13 +11478,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
-"krs" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/freezer,
-/area/bigredv2/outside/engineering)
 "krA" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -11588,6 +11595,11 @@
 /obj/effect/spawner/modularmap/bigred/lambdatunnelsouth,
 /turf/open/space/basic,
 /area/space)
+"kHU" = (
+/turf/open/shuttle/escapepod/plain/buildable{
+	dir = 1
+	},
+/area/bigredv2/outside/engineering)
 "kII" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -11961,6 +11973,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark/red2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"lHO" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/cargo)
 "lIi" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -12338,6 +12354,14 @@
 "mxa" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
+"mzf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/tbg_turbine/cold{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/shuttle/escapepod/plain,
+/area/bigredv2/outside/engineering)
 "mAi" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northwest)
@@ -12417,12 +12441,6 @@
 /obj/effect/spawner/modularmap/bigred/engineering,
 /turf/open/space/basic,
 /area/space)
-"mHJ" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "mHM" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/tool,
@@ -12541,6 +12559,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/full,
 /area/bigredv2/outside/marshal_office)
+"mWx" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "mXK" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/bigredv2/outside/sw)
@@ -12694,6 +12720,13 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
+"nnb" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "nnD" = (
 /obj/machinery/door_control{
@@ -12955,12 +12988,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"nLY" = (
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "nNq" = (
 /obj/structure/closet/toolcloset,
 /obj/effect/decal/cleanable/dirt,
@@ -13002,6 +13029,14 @@
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
+"nQt" = (
+/obj/structure/barricade/solid{
+	dir = 4
+	},
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 6
+	},
+/area/bigredv2/caves/lambda_lab)
 "nQA" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northeast/garbledradio)
@@ -13035,12 +13070,22 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/west)
+"nWR" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/shuttle/escapepod/plain/buildable,
+/area/bigredv2/outside/engineering)
 "nXq" = (
 /obj/structure/prop/vehicle/truck{
 	dir = 8
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
+"nXB" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering)
 "nZm" = (
 /obj/machinery/light,
 /turf/open/floor/asteroidfloor,
@@ -13234,6 +13279,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
+"otk" = (
+/obj/machinery/light,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "otu" = (
 /obj/machinery/light{
 	dir = 4
@@ -13327,6 +13376,10 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
+"oFm" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/engineering)
 "oFP" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -13455,6 +13508,15 @@
 /area/bigredv2/outside/space_port)
 "oWn" = (
 /turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/caves/lambda_lab)
+"oXK" = (
+/obj/effect/spawner/random/engineering/ore_box,
+/obj/structure/barricade/solid{
+	dir = 4
+	},
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 4
+	},
 /area/bigredv2/caves/lambda_lab)
 "oZA" = (
 /obj/structure/sign/safety/hazard{
@@ -13585,6 +13647,11 @@
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
+/area/bigredv2/outside/nanotrasen_lab/inside)
+"pqQ" = (
+/obj/structure/cable,
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "prH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -14512,6 +14579,13 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
+"rss" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "rtg" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -14819,6 +14893,13 @@
 /obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
+"rYn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering)
 "rZg" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -15758,12 +15839,6 @@
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
-"umL" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "unk" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/darkish,
@@ -16877,6 +16952,13 @@
 "wAW" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/rock)
+"wCd" = (
+/obj/structure/table,
+/obj/machinery/computer/atmos_alert{
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "wDd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -16888,13 +16970,6 @@
 /obj/effect/spawner/random/machinery/machine_frame,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"wDU" = (
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/weed_node,
-/turf/open/floor,
-/area/bigredv2/outside/filtration_plant)
 "wEK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -16909,6 +16984,15 @@
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
+	},
+/area/bigredv2/caves/lambda_lab)
+"wFe" = (
+/obj/machinery/vending/assist,
+/obj/structure/barricade/solid{
+	dir = 4
+	},
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
 "wFx" = (
@@ -17092,12 +17176,6 @@
 	},
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/caves/lambda_lab)
-"xdP" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/filtration_plant)
 "xdX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -17283,6 +17361,10 @@
 	dir = 4
 	},
 /area/bigredv2/outside/nw)
+"xzo" = (
+/obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
+/turf/open/floor/plating,
+/area/bigredv2/outside/engineering)
 "xzw" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
@@ -17369,6 +17451,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
+"xLL" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 4
+	},
+/turf/open/shuttle/escapepod/plain,
+/area/bigredv2/outside/engineering)
 "xLT" = (
 /obj/machinery/light{
 	dir = 4
@@ -17480,11 +17569,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
-"xUu" = (
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
-/area/bigredv2/outside/filtration_plant)
 "xUV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -29555,7 +29639,7 @@ blJ
 blJ
 blJ
 gQc
-fOE
+bTy
 brf
 blJ
 hEq
@@ -29979,7 +30063,7 @@ aaa
 aaa
 aaa
 bmf
-bmf
+bnQ
 bmf
 bnQ
 hwc
@@ -30196,14 +30280,14 @@ aaa
 aaa
 aaa
 pqs
-pqs
+jLW
 brN
 hwc
 pqs
 pqs
 hwc
 blJ
-bmk
+ejQ
 kzl
 eFj
 kOk
@@ -30412,10 +30496,10 @@ aaa
 aaa
 aaa
 aaa
-umL
-mHJ
-dgo
-dgo
+cgi
+nXB
+rYn
+eLh
 dgo
 obD
 yap
@@ -30629,14 +30713,14 @@ aaa
 aaa
 aaa
 aaa
-hwc
-bmk
-bmk
-bmk
-bmk
+otk
+ejQ
+ejQ
 boI
+hwc
+hwc
 bor
-bmk
+ejQ
 pqs
 pqs
 pqs
@@ -30847,9 +30931,9 @@ aaa
 aaa
 aaa
 cHM
-ele
-bmQ
-krs
+xzw
+hwc
+gaT
 aaa
 aaa
 aaa
@@ -31064,9 +31148,9 @@ aaa
 aaa
 aaa
 blJ
-blJ
-blJ
-blJ
+xzo
+xzo
+xzo
 aaa
 aaa
 aaa
@@ -31280,10 +31364,10 @@ aaa
 aaa
 aaa
 aaa
-cQs
-bmn
-bnr
-ekq
+mzf
+iRv
+iRv
+hQv
 aaa
 aaa
 aaa
@@ -31497,10 +31581,10 @@ aaa
 aaa
 aaa
 aaa
-tAM
-bmn
-bnr
-nLY
+ebM
+iRv
+nWR
+iRv
 aaa
 aaa
 aaa
@@ -31714,10 +31798,10 @@ aaa
 aaa
 aaa
 aaa
-tAM
-bmn
-bnr
-ekq
+xLL
+iRv
+nWR
+iRv
 aaa
 aaa
 aaa
@@ -31931,10 +32015,10 @@ aaa
 aaa
 aaa
 aaa
-nLY
-ekq
-btZ
-fNY
+cuv
+kHU
+gWG
+jFw
 aaa
 aaa
 aaa
@@ -32150,8 +32234,8 @@ aaa
 aaa
 gVL
 bmk
-bmk
-bmk
+xzo
+xzo
 aaa
 aaa
 aaa
@@ -32358,17 +32442,17 @@ nlp
 roT
 biv
 aXK
-aXK
+lHO
 bju
 aXK
 aXK
-aXK
+lHO
 aXK
 blJ
 uNS
 hwc
-hwc
-hwc
+wCd
+fSg
 aaa
 aaa
 aaa
@@ -32581,7 +32665,7 @@ fAX
 bko
 fAX
 wor
-blJ
+oFm
 uNS
 mnP
 hwc
@@ -34320,7 +34404,7 @@ djb
 blJ
 bmk
 ggV
-bmk
+ejQ
 bmk
 aaa
 aaa
@@ -41773,7 +41857,7 @@ hya
 rHD
 jGk
 bEs
-sEu
+pqQ
 jJZ
 rHD
 tQE
@@ -42127,7 +42211,7 @@ yhc
 lKw
 lKw
 bkt
-wOA
+jsA
 blC
 bkt
 aaa
@@ -43212,8 +43296,8 @@ aXp
 ban
 aZF
 bkx
-wDU
-xdP
+mWx
+rss
 axj
 aaa
 aaa
@@ -44514,9 +44598,9 @@ scS
 scS
 dKR
 bkt
-eKb
-xUu
-eKb
+nnb
+jwX
+nnb
 aaa
 aaa
 aaa
@@ -44731,9 +44815,9 @@ scS
 scS
 scS
 bkt
-iEL
-iEL
-iEL
+gbg
+gbg
+gbg
 aaa
 aaa
 aaa
@@ -57482,10 +57566,10 @@ adZ
 gCQ
 gCQ
 adZ
-aAR
+wFe
 amO
-aCu
-aDm
+oXK
+nQt
 adZ
 gCQ
 gCQ

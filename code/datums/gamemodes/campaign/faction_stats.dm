@@ -213,13 +213,13 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 
 	if(old_leader && old_leader != faction_leader)
 		for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list_faction[faction])
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[old_leader] has been demoted from the role of faction commander", faction_portrait)
+			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[old_leader] has been demoted from the role of faction commander", LEFT_ALIGN_TEXT), faction_portrait)
 	if(!faction_leader)
 		return
 
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list_faction[faction])
 		human.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
-		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[faction_leader] has been promoted to the role of faction commander", faction_portrait)
+		human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[faction_leader] has been promoted to the role of faction commander", LEFT_ALIGN_TEXT), faction_portrait)
 	to_chat(faction_leader, span_userdanger("You have been promoted to the role of commander for your faction. It is your responsibility to determine your side's course of action, and how to best utilise the resources at your disposal. \
 	Attrition must be set BEFORE a mission starts ensure you team has access to respawns. Check this in the Faction UI screen. \
 	You are the only one that can choose the next mission for your faction. If your faction wins a mission, select the next one in the Faction UI screen, in the Missions tab."))
@@ -534,7 +534,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			for(var/mob/living/carbon/human/faction_member in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 				var/portrait = choice.asset_portrait ? choice.asset_portrait : faction_portrait
-				faction_member.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[choice.name] asset activated", portrait)
+				faction_member.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[choice.name] asset activated", LEFT_ALIGN_TEXT), portrait)
 				to_chat(faction_member, span_warning("[user] has activated the [choice.name] campaign asset."))
 			return TRUE
 

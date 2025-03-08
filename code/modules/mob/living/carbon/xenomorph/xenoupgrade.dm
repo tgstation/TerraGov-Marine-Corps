@@ -157,6 +157,10 @@
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
+/mob/living/carbon/xenomorph/praetorian/oppressor/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
 //----PRAETORIAN END----//
 //================//
 //----RAVAGER START----//
@@ -165,6 +169,10 @@
 	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/ravager/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
+/mob/living/carbon/xenomorph/ravager/bloodthirster/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
@@ -207,6 +215,13 @@
 	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/spitter/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_TWO_THRESHOLD
+
+/mob/living/carbon/xenomorph/spitter/globadier
+	upgrade = XENO_UPGRADE_NORMAL
+
+/mob/living/carbon/xenomorph/spitter/globadier/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_TWO_THRESHOLD
 
@@ -305,6 +320,13 @@
 	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/boiler/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
+/mob/living/carbon/xenomorph/boiler/sizzler
+	upgrade = XENO_UPGRADE_NORMAL
+
+/mob/living/carbon/xenomorph/boiler/sizzler/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 

@@ -4,7 +4,9 @@
 	var/upgrade_name = "Young"
 	var/caste_desc = null
 	var/job_type = /datum/job/xenomorph
-
+	///The parent strain of this caste
+	var/base_strain_type
+	///The base caste typepath
 	var/caste_type_path = null
 
 	///primordial message that is shown when a caste becomes primordial
@@ -22,6 +24,10 @@
 	// *** Melee Attacks *** //
 	///The amount of damage a xenomorph caste will do with a 'slash' attack.
 	var/melee_damage = 10
+	/// The damage typing of the melee damage.
+	var/melee_damage_type = BRUTE
+	/// The armor typing of the melee damage.
+	var/melee_damage_armor = MELEE
 	///The amount of armour pen their melee attacks have
 	var/melee_ap = 0
 	///number of ticks between attacks for a caste.
@@ -175,17 +181,7 @@
 	var/queen_leader_limit = 0
 
 	// *** Wraith Abilities *** //
-	//Banish - Values for the Wraith's Banish ability
-	///Base duration of Banish before modifiers
-	var/wraith_banish_base_duration = WRAITH_BANISH_BASE_DURATION
 
-	//Blink - Values for the Wraith's Blink ability
-	///Cooldown multiplier of Blink when used on non-friendlies
-	var/wraith_blink_drag_nonfriendly_living_multiplier = WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER
-	///Cooldown multiplier of Blink when used on friendlies
-	var/wraith_blink_drag_friendly_multiplier = WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER
-	///Base range of Blink
-	var/wraith_blink_range = WRAITH_BLINK_RANGE
 
 	// *** Hunter Abilities ***
 	///Damage breakpoint to knock out of stealth
@@ -272,8 +268,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	speak_emote = list("hisses")
 	melee_damage = 5 //Arbitrary damage value
 	attacktext = "claws"
-	attack_sound = null
-	friendly = "nuzzles"
+	attack_sound = SFX_ALIEN_CLAW_FLESH
 	wall_smash = FALSE
 	health = 5
 	maxHealth = 5
@@ -376,16 +371,15 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	///Multiplicative melee damage modifier; referenced by attack_alien.dm, most notably attack_alien_harm
 	var/xeno_melee_damage_modifier = 1
 
+	/// Visual effect that appears when doing a normal attack.
+	var/attack_effect = ATTACK_EFFECT_REDSLASH
+
 	//Charge vars
 	///Will the mob charge when moving ? You need the charge verb to change this
 	var/is_charging = CHARGE_OFF
 
 	// Gorger vars
 	var/overheal = 0
-
-	// Warrior vars
-	///0 - upright, 1 - all fours
-	var/agility = 0
 
 	// Defender vars
 	var/fortify = 0
@@ -406,6 +400,10 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	/// The amount of Wrath currently stored.
 	var/wrath_stored = 0
 
+	// *** Boiler vars *** //
+	///When true the boiler gains speed and resets the duration on attack
+	var/steam_rush = FALSE
+
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices
@@ -417,6 +415,15 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
+
+	//list of active tunnels
+	var/list/tunnels = list()
+	///Number of huggers the xeno is currently carrying
+	var/huggers = 0
+	///Boiler acid ammo
+	var/corrosive_ammo = 0
+	///Boiler Neuro ammo
+	var/neuro_ammo = 0
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
 

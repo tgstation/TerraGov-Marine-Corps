@@ -18,7 +18,7 @@
 	throw_speed = 1
 	equip_slot_flags = ITEM_SLOT_HEAD
 	armor_protection_flags = HEAD
-	attack_verb = list("bapped")
+	attack_verb = list("baps")
 
 	var/info		//What's actually written on the paper.
 	var/info_links	//A different version of the paper which includes html links at fields and EOF
@@ -76,7 +76,7 @@
 
 /obj/item/paper/verb/rename()
 	set name = "Rename paper"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	var/n_name = stripped_input(usr, "What would you like to label the paper?", "Paper Labelling")
@@ -126,6 +126,10 @@
 		H.makeup_style = null
 		H.update_body()
 
+/obj/item/paper/attack_self(mob/user)
+	. = ..()
+	examine(user)
+
 /obj/item/paper/proc/addtofield(id, text, links = 0)
 	var/locid = 0
 	var/laststart = 1
@@ -169,8 +173,8 @@
 /obj/item/paper/proc/updateinfolinks()
 	info_links = info
 	for(var/i=1,  i<=min(fields, 15), i++)
-		addtofield(i, "<font face=\"[deffont]\"><A href='?src=[text_ref(src)];write=[i]'>write</A></font>", 1)
-	info_links = info_links + "<font face=\"[deffont]\"><A href='?src=[text_ref(src)];write=end'>write</A></font>"
+		addtofield(i, "<font face=\"[deffont]\"><A href='byond://?src=[text_ref(src)];write=[i]'>write</A></font>", 1)
+	info_links = info_links + "<font face=\"[deffont]\"><A href='byond://?src=[text_ref(src)];write=end'>write</A></font>"
 
 
 /obj/item/paper/proc/clearpaper()

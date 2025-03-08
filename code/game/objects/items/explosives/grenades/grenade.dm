@@ -29,7 +29,8 @@
 	var/light_impact_range = 4
 	///Weak impact range when exploding
 	var/weak_impact_range = 0
-
+	///The actual timer for the grenade
+	var/det_timer
 
 /obj/item/explosive/grenade/Initialize(mapload)
 	. = ..()
@@ -79,7 +80,7 @@
 	if(active)
 		return
 
-	if(user)
+	if(user?.client)
 		log_bomber(user, "primed", src)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.grenades_primed ++
@@ -92,7 +93,8 @@
 		GLOB.round_statistics.grenades_thrown++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
 		update_icon()
-	addtimer(CALLBACK(src, PROC_REF(prime)), det_time)
+	det_timer = addtimer(CALLBACK(src, PROC_REF(prime)), det_time, TIMER_STOPPABLE)
+	notify_ai_hazard()
 	return TRUE
 
 ///Detonation effects

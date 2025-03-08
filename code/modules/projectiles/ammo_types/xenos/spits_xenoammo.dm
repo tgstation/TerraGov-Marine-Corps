@@ -23,8 +23,8 @@
 	var/list/datum/reagent/spit_reagents
 	///Amount of reagents transferred upon spit impact if any
 	var/reagent_transfer_amount
-	///Amount of stagger stacks imposed on impact if any
-	var/stagger_stacks
+	///Amount of stagger imposed on impact if any
+	var/stagger_duration
 	///Amount of slowdown stacks imposed on impact if any
 	var/slowdown_stacks
 	///These define the reagent transfer strength of the smoke caused by the spit, if any, and its aoe
@@ -45,7 +45,7 @@
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	damage = 40
-	stagger_stacks = 1.1 SECONDS
+	stagger_duration = 1.1 SECONDS
 	slowdown_stacks = 1.5
 	smoke_strength = 0.5
 	smoke_range = 0
@@ -70,7 +70,7 @@
 	if(isnestedhost(carbon_victim))
 		return
 
-	carbon_victim.adjust_stagger(stagger_stacks)
+	carbon_victim.adjust_stagger(stagger_duration)
 	carbon_victim.add_slowdown(slowdown_stacks)
 
 	set_reagents()
@@ -139,7 +139,7 @@
 	damage = 20 //minor; this is mostly just to provide confirmation of a hit
 	max_range = 40
 	bullet_color = COLOR_PURPLE
-	stagger_stacks = 2
+	stagger_duration = 1 SECONDS
 	slowdown_stacks = 3
 
 
@@ -149,7 +149,7 @@
 		var/mob/living/carbon/target_carbon = target_mob
 		if(target_carbon.issamexenohive(proj.firer))
 			return
-		target_carbon.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
+		target_carbon.adjust_stagger(stagger_duration) //stagger briefly; useful for support
 		target_carbon.add_slowdown(slowdown_stacks) //slow em down
 
 
@@ -306,3 +306,150 @@
 	bonus_projectiles_scatter = 2
 	max_range = 8
 	puddle_duration = 1 SECONDS //Lasts 2-4 seconds
+
+///For the Sizzler Boiler's Spit
+/datum/ammo/xeno/acid/airburst
+	name = "acid steam spittle"
+	spit_cost = 50
+	damage = 15
+	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF
+	bonus_projectiles_type = /datum/ammo/xeno/acid/airburst_bomblet
+	bonus_projectiles_scatter = 10
+	///How many projectiles we split into
+	var/bonus_projectile_quantity = 3
+
+/datum/ammo/xeno/acid/airburst/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	var/turf/det_turf = get_step_towards(target_mob, proj)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_mob), loc_override = det_turf)
+
+/datum/ammo/xeno/acid/airburst/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	var/turf/det_turf = get_step_towards(target_obj, proj)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_obj), loc_override = det_turf)
+
+/datum/ammo/xeno/acid/airburst/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	var/turf/det_turf = get_step_towards(target_turf, proj)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
+
+/datum/ammo/xeno/acid/airburst/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	var/turf/det_turf = get_step_towards(target_turf, proj)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
+
+/datum/ammo/xeno/acid/airburst_bomblet
+	name = "acid steam spatter"
+	icon_state = "neurotoxin"
+	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_PASS_THROUGH_MOB|AMMO_LEAVE_TURF
+	max_range = 3
+	shell_speed = 1
+	damage = 10
+	penetration = 0
+	/// smoke type created when the projectile detonates
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/xeno/acid
+	///radius this smoke will encompass
+	var/smoke_radius = 0
+	///duration the smoke will last
+	var/smoke_duration = 2
+
+/datum/ammo/xeno/acid/airburst_bomblet/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(smoke_radius, T, smoke_duration)
+	smoke.start()
+
+/datum/ammo/xeno/acid/airburst_bomblet/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	drop_nade(target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : get_turf(target_obj))
+
+/datum/ammo/xeno/acid/airburst_bomblet/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+
+/datum/ammo/xeno/acid/airburst_bomblet/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+
+/datum/ammo/xeno/acid/airburst/heavy
+	name = "acid steam glob"
+	icon_state = "neurotoxin"
+	added_spit_delay = 1 SECONDS
+	spit_cost = 50
+	damage = 35
+	stagger_duration = 2 SECONDS
+	slowdown_stacks = 3
+	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF
+	bonus_projectiles_type = /datum/ammo/xeno/acid/airburst_bomblet/smokescreen
+	bonus_projectiles_scatter = 30
+	bonus_projectile_quantity = 5
+
+/datum/ammo/xeno/acid/airburst/heavy/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	. = ..()
+	if(iscarbon(target_mob))
+		var/mob/living/carbon/target_carbon = target_mob
+		if(target_carbon.issamexenohive(proj.firer))
+			return
+		target_carbon.adjust_stagger(stagger_duration)
+		target_carbon.add_slowdown(slowdown_stacks)
+
+/datum/ammo/xeno/acid/airburst_bomblet/smokescreen
+	max_range = 5
+	damage = 0
+	smoketype = /datum/effect_system/smoke_spread/xeno/acid/opaque
+	smoke_radius = 1
+	smoke_duration = 4
+
+///For the Sizzler Boiler's primo
+/datum/ammo/xeno/acid/heavy/high_pressure_spit
+	name = "pressurized steam glob"
+	icon_state = "boiler_gas"
+	damage = 50
+	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS
+	max_range = 16
+	shell_speed = 1.5
+	stagger_duration = 2 SECONDS
+	slowdown_stacks = 3
+	///How long it knocks down the target
+	var/knockdown_duration = 2 SECONDS
+	///Knockback dealt on hit
+	var/knockback = 7
+	///shatter effection duration when hitting mobs
+	var/shatter_duration = 10 SECONDS
+
+/datum/ammo/xeno/acid/heavy/high_pressure_spit/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(!iscarbon(target_mob))
+		return
+	var/mob/living/carbon/target_carbon = target_mob
+	if(target_carbon.issamexenohive(proj.firer))
+		return
+	staggerstun(target_mob, proj, max_range, 0, knockdown_duration, stagger_duration, slowdown_stacks, knockback)
+	target_carbon.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
+
+///Vehicle damage dealt, for the globadiers primo, Acid Rocket
+#define XADAR_VEHICLE_DAMAGE 117 /// 1.3 * 90
+
+/datum/ammo/rocket/he/xadar
+	name = "Acid Rocket"
+	icon_state = "xadar"
+	damage = 30
+	penetration = 10
+	damage_type = BURN
+	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SKIPS_ALIENS
+
+/datum/ammo/rocket/he/xadar/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	if(istype(target_obj,/obj/hitbox))
+		var/obj/hitbox/vehiclehitbox = target_obj
+		vehiclehitbox.root.take_damage(XADAR_VEHICLE_DAMAGE)
+		drop_nade(get_turf(target_obj))
+		return
+	if(isvehicle(target_obj))
+		target_obj.take_damage(XADAR_VEHICLE_DAMAGE)
+		drop_nade(get_turf(target_obj))
+
+/datum/ammo/rocket/he/xadar/drop_nade(turf/T)
+	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(T,2))
+		human_victim.adjust_stagger(4 SECONDS)
+		human_victim.apply_damage(90, BURN, BODY_ZONE_CHEST, ACID,  penetration = 10)
+		var/throwlocation = human_victim.loc
+		for(var/x in 1 to 3)
+			throwlocation = get_step(throwlocation, pick(GLOB.alldirs))
+		if(human_victim.stat == DEAD)
+			continue
+		human_victim.throw_at(throwlocation, 6, 1.5, src, TRUE)
+	for(var/acid_tile in filled_turfs(get_turf(T), 1.5, "circle", pass_flags_checked = PASS_AIR|PASS_PROJECTILE))
+		new /obj/effect/temp_visual/acid_splatter(acid_tile)
+		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, 40)

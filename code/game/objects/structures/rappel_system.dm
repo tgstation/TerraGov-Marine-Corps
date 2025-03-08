@@ -230,13 +230,15 @@
 	rope.update_icon_state()
 	flick("rope_deploy", rope)
 	SSminimaps.add_marker(rope, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "rappel"))
+	var/area/rappel_area = get_area(target)
+	if(!(rappel_area.area_flags & MARINE_BASE))
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ)
 
 	playsound(target, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)
 	playsound(target, 'sound/effects/rappel.ogg', 50, TRUE)
 	playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
 	target.balloon_alert_to_viewers("You see a dropship fly overhead and begin dropping ropes!")
 	balloon_alert_to_viewers("You hear a hiss as [src] unlocks!")
-
 
 ///Feedback for when PO manually retracts the rope. Leads back into retract_rope after sounds and balloon alerts are done.
 /obj/structure/dropship_equipment/shuttle/rappel_system/proc/pre_retract()
@@ -354,7 +356,7 @@
 	light_system = STATIC_LIGHT
 	light_power = 0.5
 	light_range = 2
-	resistance_flags = RESIST_ALL | PROJECTILE_IMMUNE | DROPSHIP_IMMUNE | BANISH_IMMUNE //Things might implode if we allow these
+	resistance_flags = RESIST_ALL | PROJECTILE_IMMUNE | DROPSHIP_IMMUNE //Things might implode if we allow these
 	///The rappel system this rope originates from
 	var/obj/structure/dropship_equipment/shuttle/rappel_system/parent_system
 
@@ -408,7 +410,7 @@
 
 ///Replacement rappel cord, necessary to fully repair a damaged rappel system
 /obj/item/spare_cord
-	name = "Replacement rappel cord box"
+	name = "replacement rappel cord box"
 	desc = "A box full of expensive, plasteel-infused spare rappel cord for a rappel system. Click on a rappel system to replace any damaged cord, making the system functional again."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "cordbox"

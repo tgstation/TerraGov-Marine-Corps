@@ -368,8 +368,8 @@
 
 	///If the gun is deployable, the time it takes for the weapon to deploy.
 	var/deploy_time = 0
-	///If the gun is deployable, the time it takes for the weapon to undeploy.
-	var/undeploy_time = 0
+	///If the gun is deployable, the time it takes for the weapon to undeploy. Defaults to deploy time
+	var/undeploy_time = null
 	///If the gun is deployed, change the scatter amount by this number. Negative reduces scatter, positive adds.
 	var/deployed_scatter_change = 0
 	///Flags that the deployed sentry uses upon deployment.
@@ -407,7 +407,7 @@
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
 	if(deployable_item)
-		AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time)
+		AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, isnum(undeploy_time) ? undeploy_time : deploy_time)
 
 	GLOB.nightfall_toggleable_lights += src
 
@@ -749,6 +749,7 @@
 	if(master_gun)
 		SEND_SIGNAL(gun_user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, master_gun)
 	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	return TRUE
 
 ///Set the target and take care of hard delete
 /obj/item/weapon/gun/proc/set_target(atom/object)
@@ -805,7 +806,8 @@
 /obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
 	set_target(get_turf_on_clickcatcher(over_object, gun_user, params))
-	gun_user?.face_atom(target)
+	if(!HAS_TRAIT(gun_user, TRAIT_INCAPACITATED))
+		gun_user?.face_atom(target)
 
 
 
@@ -874,7 +876,7 @@
 			playsound(src, empty_sound, 25, 1)
 			unload(after_fire = TRUE)
 	update_ammo_count()
-	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	gun_user?.hud_used?.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	update_icon()
 	if(dual_wield && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
 		var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
@@ -1613,7 +1615,7 @@
 				new_rounds++
 		rounds = new_rounds
 		max_rounds = max_chamber_items + 1
-		gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+		gun_user?.hud_used?.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 		return
 	var/total_rounds
 	var/total_max_rounds
@@ -1624,7 +1626,7 @@
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE))
 		rounds += in_chamber ? rounds_per_shot : 0
 	max_rounds = total_max_rounds
-	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	gun_user?.hud_used?.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 ///Checks to see if the current object in chamber is a worn magazine and if so unloads it
 /obj/item/weapon/gun/proc/drop_connected_mag(datum/source, mob/user)

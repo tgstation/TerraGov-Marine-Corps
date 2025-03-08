@@ -59,6 +59,16 @@
 	if(HAS_TRAIT(chassis, TRAIT_MELEE_CORE) && !CHECK_BITFIELD(range, MECHA_MELEE))
 		to_chat(chassis.occupants, span_warning("Error -- Melee Core active."))
 		return FALSE
+	if(!istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
+		return
+	var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
+	var/datum/mech_limb/arm/holding
+	if(grey.equip_by_category[MECHA_R_ARM] == src)
+		holding = grey.limbs[MECH_GREY_R_ARM]
+	else
+		holding = grey.limbs[MECH_GREY_L_ARM]
+	if(holding.disabled)
+		return FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
@@ -163,7 +173,10 @@
 		return NONE
 	var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.dir))
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
-		return AUTOFIRE_CONTINUE
+		if(chassis.mecha_flags & MECHA_SPIN_WHEN_NO_ANGLE)
+			chassis.face_atom(current_target)
+		else
+			return AUTOFIRE_CONTINUE
 
 	var/type_to_spawn = CHECK_BITFIELD(initial(ammotype.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
 	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammotype.hitscan_effect_icon))
@@ -397,7 +410,10 @@
 		return FALSE
 	var/dir_target_diff = get_between_angles(Get_Angle(chassis, target), dir2angle(chassis.dir))
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
-		return TRUE
+		if(chassis.mecha_flags & MECHA_SPIN_WHEN_NO_ANGLE)
+			chassis.face_atom(current_target)
+		else
+			return TRUE
 	var/obj/O = new ammotype(chassis.loc)
 	playsound(chassis, fire_sound, 50, TRUE)
 	log_message("Launched a [O] from [src], targeting [target].", LOG_MECHA)

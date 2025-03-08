@@ -1,6 +1,7 @@
+import { Box, Button, Flex, Image, Section } from 'tgui-core/components';
+
 import { resolveAsset } from '../assets';
 import { useBackend } from '../backend';
-import { Box, Button, Flex, Section } from '../components';
 import { Window } from '../layouts';
 
 type DropshipEntry = {
@@ -29,8 +30,7 @@ export const DropshipPicker = (_props) => {
             <ShuttleSelection />
           </Flex.Item>
           <Flex.Item width={'55%'} height={'35%'}>
-            <Box
-              as="img"
+            <Image
               src={data.assetpath ? resolveAsset(data.assetpath) : ''}
               height={'284px'}
             />

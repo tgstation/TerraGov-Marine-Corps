@@ -244,7 +244,7 @@
 		patient.setOxyLoss(0)
 		patient.updatehealth()
 
-		var/heal_target = patient.get_death_threshold() - patient.health + 1
+		var/heal_target = patient.get_crit_threshold() - patient.health + 1
 		var/all_loss = patient.getBruteLoss() + patient.getFireLoss() + patient.getToxLoss()
 		if(all_loss && (heal_target > 0))
 			var/brute_ratio = patient.getBruteLoss() / all_loss
@@ -253,6 +253,9 @@
 			if(tox_ratio)
 				patient.adjustToxLoss(-(tox_ratio * heal_target))
 			patient.heal_overall_damage(brute_ratio*heal_target, burn_ratio*heal_target, TRUE) // explicitly also heals robot parts
+
+		if(HAS_TRAIT_FROM(patient, TRAIT_IMMEDIATE_DEFIB, SUPERSOLDIER_TRAIT))
+			heart.take_damage(15) // estimated to be 1/2 of the health of the heart so 2 zaps kill you
 
 	else if(!issynth(patient)) // TODO make me a trait :)
 		patient.adjustBruteLoss(-defib_heal_amt)
@@ -296,8 +299,8 @@
 	patient.resuscitate() // time for a smoke
 	patient.emote("gasp")
 	patient.flash_act()
-	patient.apply_effect(10, EYE_BLUR)
-	patient.apply_effect(20 SECONDS, PARALYZE)
+	patient.apply_effect(10, EFFECT_EYE_BLUR)
+	patient.apply_effect(20 SECONDS, EFFECT_UNCONSCIOUS)
 
 	ghost = patient.get_ghost(TRUE) // just in case they re-entered their body
 	if(ghost) // register a signal to bring them into their body on reconnect
