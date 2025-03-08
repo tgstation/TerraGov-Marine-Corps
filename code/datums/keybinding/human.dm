@@ -35,6 +35,30 @@
 	full_name = "Quick equip 5"
 	quick_equip_slot = 5
 
+/datum/keybinding/human/interact_other_hand
+	hotkey_keys = list("Unbound")
+	name = "interact_other_hand"
+	full_name = "Interact with other hand"
+	keybind_signal = COMSIG_KB_HUMAN_INTERACT_OTHER_HAND
+
+/datum/keybinding/human/interact_other_hand/down(client/user)
+	. = ..()
+	if(.)
+		return
+
+	var/mob/living/carbon/human/human_user = user.mob
+
+	var/atom/active_hand = human_user.get_active_held_item()
+	var/atom/inactive_hand = human_user.get_inactive_held_item()
+
+	if(!inactive_hand)
+		return FALSE
+	if(!active_hand) /// If the active_hand is empty - tries to open storage in inactive_hand
+		inactive_hand.attack_hand(human_user)
+		return FALSE
+	inactive_hand.attackby(active_hand, human_user)
+	return TRUE
+
 /datum/keybinding/human/unique_action
 	hotkey_keys = list("Space")
 	name = "unique_action"
