@@ -104,6 +104,7 @@
 /mob/living/Initialize(mapload)
 	. = ..()
 	register_init_signals()
+
 	update_move_intent_effects()
 	GLOB.mob_living_list += src
 	if(stat != DEAD)
@@ -368,20 +369,17 @@
 				var/oldloc = loc
 				var/oldLloc = L.loc
 
-				var/L_passmob = (L.pass_flags & PASS_MOB) // we give PASS_MOB to both mobs to avoid bumping other mobs during swap.
-				var/src_passmob = (pass_flags & PASS_MOB)
-				L.pass_flags |= PASS_MOB
-				pass_flags |= PASS_MOB
+				// we give PASS_MOB to both mobs to avoid bumping other mobs during swap.
+				L.add_pass_flags(PASS_MOB, MOVEMENT_SWAP_TRAIT)
+				add_pass_flags(PASS_MOB, MOVEMENT_SWAP_TRAIT)
 
 				if(!moving_diagonally) //the diagonal move already does this for us
 					Move(oldLloc)
 				if(mob_swap_mode == SWAPPING)
 					L.Move(oldloc)
 
-				if(!src_passmob)
-					pass_flags &= ~PASS_MOB
-				if(!L_passmob)
-					L.pass_flags &= ~PASS_MOB
+				L.remove_pass_flags(PASS_MOB, MOVEMENT_SWAP_TRAIT)
+				remove_pass_flags(PASS_MOB, MOVEMENT_SWAP_TRAIT)
 
 				now_pushing = FALSE
 
@@ -679,7 +677,7 @@ below 100 is not dizzy
 
 /mob/living/update_sight()
 	if(SSticker.current_state == GAME_STATE_FINISHED && !is_centcom_level(z)) //Reveal ghosts to remaining survivors
-		see_invisible = SEE_INVISIBLE_OBSERVER
+		set_invis_see(SEE_INVISIBLE_OBSERVER)
 	return ..()
 
 /mob/living/proc/can_track(mob/living/user)
@@ -770,7 +768,7 @@ below 100 is not dizzy
 /mob/living/can_interact_with(datum/D)
 	return D == src || D.Adjacent(src)
 
-/mob/living/on_changed_z_level(turf/old_turf, turf/new_turf, notify_contents = TRUE)
+/mob/living/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents = TRUE)
 	set_jump_component()
 	. = ..()
 	update_z(new_turf?.z)
@@ -962,8 +960,6 @@ below 100 is not dizzy
 			set_blindness(var_value)
 		if(NAMEOF(src, eye_blurry))
 			set_blurriness(var_value)
-		if(NAMEOF(src, lighting_alpha))
-			sync_lighting_plane_alpha()
 		if(NAMEOF(src, resize))
 			if(var_value == 0) //prevents divisions of and by zero.
 				return FALSE

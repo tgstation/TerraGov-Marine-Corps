@@ -95,19 +95,15 @@
 	radial_icon_state = "smoke_mortar"
 	smoke_type = /datum/effect_system/smoke_spread/xeno/neuro
 
-/datum/maw_ammo/smoke/acid_big
-	name = "strategic acid maw glob"
-	cooldown_time = 10 MINUTES
+/datum/maw_ammo/smoke/acid_small
+	name = "tactical acid maw glob"
+	cooldown_time = 3 MINUTES
 	radial_icon_state = "acid_smoke_mortar"
 	smoke_type = /datum/effect_system/smoke_spread/xeno/acid
-	smokeradius = 12
+	smokeradius = 7
 	duration = 10
 
-/datum/maw_ammo/smoke/acid_big/launch_animation(turf/target, obj/structure/xeno/acid_maw/maw)
-	. = ..()
-	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 100)
-
-/datum/maw_ammo/smoke/acid_big/on_impact(turf/target)
+/datum/maw_ammo/smoke/acid_small/on_impact(turf/target)
 	. = ..()
 	for(var/turf/newspray in view(smokeradius*0.5, target))
 		new /obj/effect/xenomorph/spray(newspray, duration*2, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
@@ -115,11 +111,11 @@
 /datum/maw_ammo/hugger
 	name = "ball of huggers"
 	radial_icon_state = "hugger_ball"
-	cooldown_time = 3 MINUTES
+	cooldown_time = 10 MINUTES
 	/// range_turfs that huggers will be dropped around the target
-	var/drop_range = 8
+	var/drop_range = 10
 	/// how many huggers get dropped at once, does not stack on turfs if theres not enough turfs
-	var/hugger_count = 30
+	var/hugger_count = 60
 	///huggers to choose to spawn
 	var/list/hugger_options = list(
 		/obj/item/clothing/mask/facehugger,
@@ -135,6 +131,7 @@
 	var/obj/effect/temp_visual/hugger_ball_launch/anim = new(maw.loc)
 	anim.pixel_x = (maw.bound_width/2) - 16
 	animate(anim, anim.duration, easing=EASE_OUT|CUBIC_EASING, pixel_y=600)
+	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 100)
 
 /datum/maw_ammo/hugger/impact_visuals(turf/target)
 	var/list/turf/turfs = RANGE_TURFS(drop_range, target)
@@ -284,13 +281,13 @@
 	var/minimap_icon = "acid_maw"
 	///list of paths that we can choose from when using this maw. converts to a list for radials on init (path = image)
 	var/list/maw_options = list(
-		/datum/maw_ammo/smoke/acid_big,
+		/datum/maw_ammo/hugger,
 		/datum/maw_ammo/minion,
 	)
 
 /obj/structure/xeno/acid_maw/Initialize(mapload, _hivenumber)
 	. = ..()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, minimap_icon, ABOVE_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, minimap_icon, MINIMAP_LABELS_LAYER))
 	var/list/parsed_maw_options = list()
 	for(var/datum/maw_ammo/path AS in maw_options)
 		parsed_maw_options[path] = image(icon='icons/mob/radial.dmi', icon_state=path::radial_icon_state)
@@ -392,6 +389,6 @@
 	minimap_icon = "acid_jaw"
 	maw_options = list(
 		/datum/maw_ammo/smoke/neuro,
-		/datum/maw_ammo/hugger,
+		/datum/maw_ammo/smoke/acid_small,
 		/datum/maw_ammo/xeno_fire,
 	)

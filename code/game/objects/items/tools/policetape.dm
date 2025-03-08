@@ -111,7 +111,7 @@
 		var/obj/item/tape/P = new tape_type(T.x,T.y,T.z)
 		P.loc = locate(T.x,T.y,T.z)
 		P.icon_state = "[src.icon_base]_door"
-		P.layer = WINDOW_LAYER
+		P.layer = ABOVE_WINDOW_LAYER
 		to_chat(user, span_notice("You finish placing the [src]."))
 
 /obj/item/tape/proc/crumple()
@@ -150,7 +150,7 @@
 	if(user.a_intent == INTENT_HELP && ((!can_puncture(W) && src.allowed(user))))
 		to_chat(user, "You can't break the [src] with that!")
 		return
-	user.visible_message(span_notice(" [user] breaks the [src]!"))
+	user.visible_message(span_notice("[user] breaks the [src]!"))
 
 	var/dir[2]
 	var/icon_dir = src.icon_state

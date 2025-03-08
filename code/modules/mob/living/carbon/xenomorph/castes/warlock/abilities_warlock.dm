@@ -510,6 +510,7 @@
 	. = ..()
 	particle_holder = new(src, channel_particle)
 	particle_holder.pixel_y = 0
+	notify_ai_hazard()
 
 /obj/effect/xeno/crush_orb
 	icon = 'icons/xeno/2x2building.dmi'

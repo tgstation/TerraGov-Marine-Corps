@@ -93,7 +93,7 @@
 	if(user != loc)
 		return
 	if(modded)
-		. += span_warning(" Fuel faucet is wrenched open, leaking the fuel!")
+		. += span_warning("Fuel faucet is wrenched open, leaking the fuel!")
 	if(rig)
 		. += span_notice("There is some kind of device rigged to the tank.")
 
