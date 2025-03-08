@@ -375,7 +375,6 @@
 	if(!COOLDOWN_CHECK(src, ai_damage_cooldown))
 		return
 	COOLDOWN_START(src, ai_damage_cooldown, 1 SECONDS)
-	//
 	if(human_ai_state_flags & HUMAN_AI_FIRING)
 		return
 	if(attacker)
