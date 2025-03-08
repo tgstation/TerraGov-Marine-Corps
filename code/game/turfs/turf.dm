@@ -439,6 +439,8 @@
 /turf/proc/can_lay_cable()
 	return can_have_cabling() & !intact_tile
 
+/turf/proc/burn_tile()
+	return
 
 /turf/proc/ceiling_debris_check(size = 1)
 	return
