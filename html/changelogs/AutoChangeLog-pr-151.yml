@@ -1,0 +1,4 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - balance: "COPE sentries can no longer be stacked on top of each other or walked over."
