@@ -139,6 +139,45 @@
 		return null
 	return 0
 
+//Obstacle handling
+///Handles the obstacle or tells AI behavior how to interact with it
+/obj/proc/ai_handle_obstacle(mob/living/user, move_dir) //do we need to/can we just check can_pass???
+	if((loc == user.loc) && !(atom_flags & ON_BORDER)) //dense things under us don't block
+		return
+	if((atom_flags & ON_BORDER) && (move_dir != (loc == user.loc ? dir : REVERSE_DIR(dir)))) //we only care about border objects actually blocking us
+		return
+	//todo:walkover stuff?
+	if(user.can_jump() && is_jumpable(user))
+		return AI_OBSTACLE_JUMP
+	if(faction == user.faction) //don't break our shit
+		return AI_OBSTACLE_RESOLVED //not sure if I need something new here
+	if(!(resistance_flags & INDESTRUCTIBLE) && (obj_flags & CAN_BE_HIT))
+		return AI_OBSTACLE_ATTACK
+
+/obj/structure/ai_handle_obstacle(mob/living/user, move_dir)
+	. = ..()
+	if(. == AI_OBSTACLE_JUMP)
+		return //jumping is always best
+	if(!climbable)
+		return
+	INVOKE_ASYNC(src, PROC_REF(do_climb), user)
+	return AI_OBSTACLE_RESOLVED
+
+/obj/structure/barricade/folding/ai_handle_obstacle(mob/living/user, move_dir)
+	toggle_open(null, user)
+	return AI_OBSTACLE_RESOLVED
+
+/obj/machinery/door/airlock/ai_handle_obstacle(mob/living/user, move_dir)
+	. = ..()
+	if(!.)
+		return
+	if(operating) //Airlock already doing something
+		return null
+	if(welded || locked) //It's welded or locked, can't force that open
+		return
+	open(TRUE)
+	return AI_OBSTACLE_RESOLVED
+
 //test stuff
 /mob/living/proc/add_test_ai()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
