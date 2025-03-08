@@ -7659,6 +7659,11 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/antag_ship/som/medbay)
+"Pl" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/cryopod,
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/hangar/west)
 "Pm" = (
 /obj/machinery/vending/mech_vendor{
 	req_access = list(207)
@@ -9411,6 +9416,7 @@
 /area/antag_ship/clf_base/hallways/outside)
 "XP" = (
 /obj/effect/turf_decal/warning_stripes/thin,
+/obj/machinery/cryopod/right,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
 "XQ" = (
@@ -16670,7 +16676,7 @@ rG
 JB
 jb
 Py
-XP
+Pl
 Uy
 Ye
 JH
@@ -17525,7 +17531,7 @@ rG
 JB
 jb
 Py
-XP
+Pl
 JL
 Ye
 JH
