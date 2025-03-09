@@ -540,6 +540,7 @@
 		span_danger("We flap our wings!"), null, 5)
 
 	var/damage = 100 * xeno_owner.xeno_melee_damage_modifier
+	var/list/mob/living/living_to_knockback = list()
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		impacted_turf.Shake(duration = 0.25 SECONDS)
 		for(var/atom/impacted_atom AS in impacted_turf)
@@ -556,7 +557,7 @@
 					continue
 				impacted_living.take_overall_damage(damage, BURN, MELEE, max_limbs = 5, updating_health = TRUE)
 				if(impacted_living.move_resist < MOVE_FORCE_OVERPOWERING)
-					impacted_living.knockback(xeno_owner, 4, 1)
+					living_to_knockback += impacted_living
 
 				animate(impacted_living, pixel_z = impacted_living.pixel_z + 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
 				animate(pixel_z = impacted_living.pixel_z - 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
@@ -578,6 +579,10 @@
 				continue
 			impacted_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = xeno_owner)
 			continue
+
+	// This is separate because it is possible for them to be pushed into an unprocessed turf which will then do the effects again, causing instant death (or more damage than desired).
+	for(var/mob/living/knockbacked_living AS in living_to_knockback)
+		knockbacked_living.knockback(xeno_owner, 4, 1)
 
 	playsound(get_turf(xeno_owner), 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 	xeno_owner.gain_plasma(xeno_owner.xeno_caste.plasma_max / 2)
