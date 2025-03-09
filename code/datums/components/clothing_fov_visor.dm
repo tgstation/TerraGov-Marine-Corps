@@ -11,7 +11,6 @@
 	. = ..()
 	if(!isclothing(parent))
 		return COMPONENT_INCOMPATIBLE
-	var/obj/item/clothing/clothing_parent = parent
 	src.fov_angle = fov_angle
 
 // fyi does not currently support visor toggling since ours arent standardized
