@@ -87,6 +87,9 @@ require only minor tweaks.
 //Reserved/Transit turf type
 #define RESERVED_TURF_TYPE /turf/open/space/basic			//What the turf is when not being used
 
+/// A map key that corresponds to being one exclusively for Space.
+#define SPACE_KEY "space"
+
 //Ruin Generation
 
 #define PLACEMENT_TRIES 100 //How many times we try to fit the ruin somewhere until giving up (really should just swap to some packing algo)
