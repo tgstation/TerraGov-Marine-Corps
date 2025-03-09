@@ -133,7 +133,7 @@
 	var/drain_healing = GORGER_DRAIN_HEAL;\
 	HEAL_XENO_DAMAGE(xeno_owner, drain_healing, TRUE);\
 	adjustOverheal(xeno_owner, drain_healing);\
-	SEND_SIGNAL(target_human, COMSIG_XENO_GREENBLOOD_DRAIN, xeno_owner.xeno_caste.drain_plasma_gain, xeno_owner);\
+	SEND_SIGNAL(target_human, COMSIG_XENO_DRAIN_HIT, xeno_owner.xeno_caste.drain_plasma_gain, xeno_owner);\
 	xeno_owner.gain_plasma(xeno_owner.xeno_caste.drain_plasma_gain)
 
 /datum/action/ability/activable/xeno/drain/use_ability(mob/living/carbon/human/target_human)

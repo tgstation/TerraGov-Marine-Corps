@@ -172,7 +172,7 @@
 	wearer.overlays -= resource_overlay
 	wearer = null
 
-	UnregisterSignal(wearer, COMSIG_XENO_GREENBLOOD_DRAIN)
+	UnregisterSignal(wearer, list(COMSIG_XENO_DRAIN_HIT, COMSIG_XENO_CARNAGE_HIT))
 
 ///Sets up actions and vars when the suit is equipped
 /datum/component/chem_booster/proc/equipped(datum/source, mob/equipper, slot)
@@ -187,7 +187,7 @@
 	wearer.overlays += resource_overlay
 	update_resource(0)
 
-	RegisterSignal(wearer, COMSIG_XENO_GREENBLOOD_DRAIN, PROC_REF(steal_greenblood))
+	RegisterSignals(wearer, list(COMSIG_XENO_DRAIN_HIT, COMSIG_XENO_CARNAGE_HIT), PROC_REF(steal_greenblood))
 
 /datum/component/chem_booster/process()
 	if(resource_storage_current < resource_drain_amount)
