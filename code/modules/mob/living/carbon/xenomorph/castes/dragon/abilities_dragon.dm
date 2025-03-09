@@ -2,7 +2,7 @@
 	name = "Backhand"
 	action_icon_state = "backhand"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = "After a windup, deal high damage and a fair knock back to marines in front of you. Vehicles and mechas take more damage, but are not knocked back. If you are grabbing a marine, deal an incredible amount of damage instead."
+	desc = "Deal high damage, a knockback, and stun to marines in front of you. Vehicles and mechas take more damage, but are not knocked back nor stunned. If you are grabbing a marine, deal an incredible amount of damage to that marine after a windup."
 	cooldown_duration = 15 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BACKHAND,
@@ -67,10 +67,10 @@
 	var/list/obj/vehicle/hit_vehicles = list()
 	for(var/turf/affected_turf AS in affected_turfs)
 		for(var/atom/affected_atom AS in affected_turf)
-			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
-				continue
 			if(isxeno(affected_atom))
-				continue
+				var/mob/living/carbon/xenomorph/affected_xenomorph = affected_atom
+				if(xeno_owner.issamexenohive(affected_xenomorph))
+					continue
 			if(isliving(affected_atom))
 				var/mob/living/affected_living = affected_atom
 				if(affected_living.stat == DEAD)
@@ -82,6 +82,8 @@
 				has_hit_anything = TRUE
 				continue
 			if(!isobj(affected_atom))
+				continue
+			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
 				continue
 			var/obj/affected_obj = affected_atom
 			if(ishitbox(affected_obj) || isvehicle(affected_obj))
@@ -217,9 +219,10 @@
 
 /// Finalizes the process of flying by granting various flags and so on.
 /datum/action/ability/activable/xeno/fly/proc/finalize_flight()
+	var/health_to_regenerate = xeno_owner.xeno_caste.max_health
+	HEAL_XENO_DAMAGE(xeno_owner, health_to_regenerate, FALSE)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(on_move_attempt))
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_SUNDER_REGEN, PROC_REF(on_sunder_regen))
-	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(on_health_regen))
 	COOLDOWN_RESET(src, animation_cooldown)
 	animate(xeno_owner, pixel_x = 0, pixel_y = 0, time = 0)
 	xeno_owner.status_flags = GODMODE|INCORPOREAL
@@ -259,7 +262,7 @@
 	REMOVE_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 	xeno_owner.update_icons(TRUE)
 	xeno_owner.update_action_buttons()
-	UnregisterSignal(xeno_owner, list(COMSIG_MOVABLE_PRE_MOVE, COMSIG_XENOMORPH_SUNDER_REGEN, COMSIG_XENOMORPH_HEALTH_REGEN))
+	UnregisterSignal(xeno_owner, list(COMSIG_MOVABLE_PRE_MOVE, COMSIG_XENOMORPH_SUNDER_REGEN))
 	succeed_activate()
 	add_cooldown()
 
@@ -271,8 +274,6 @@
 	for(var/turf/affected_turf AS in affected_turfs)
 		affected_turf.Shake(duration = 0.2 SECONDS)
 		for(var/atom/affected_atom AS in affected_turf)
-			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
-				continue
 			if(isxeno(affected_atom))
 				continue
 			if(isliving(affected_atom))
@@ -285,6 +286,8 @@
 				affected_living.animation_spin(0.5 SECONDS, 1, affected_living.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
 				continue
 			if(!isobj(affected_atom))
+				continue
+			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
 				continue
 			var/obj/affected_obj = affected_atom
 			if(ishitbox(affected_obj) || isvehicle(affected_obj))
@@ -336,16 +339,10 @@
 	xeno_owner.abstract_move(newloc)
 	return
 
-/// Regenerates 5x additional sunder.
+/// Regenerates 5x additional sunder and 20% maximum health.
 /datum/action/ability/activable/xeno/fly/proc/on_sunder_regen(datum/source, seconds_per_tick)
 	SIGNAL_HANDLER
-	xeno_owner.adjust_sunder(xeno_owner.xeno_caste.sunder_recover * seconds_per_tick * 5)
-
-/// Regenerate 20% maximum health.
-/datum/action/ability/activable/xeno/fly/proc/on_health_regen(datum/source, list/data, seconds_per_tick)
-	SIGNAL_HANDLER
-	var/health_to_regenerate = xeno_owner.xeno_caste.max_health * 0.2
-	HEAL_XENO_DAMAGE(xeno_owner, health_to_regenerate, TRUE)
+	xeno_owner.adjust_sunder(xeno_owner.xeno_caste.sunder_recover * seconds_per_tick * -5)
 
 /datum/action/ability/activable/xeno/backhand/dragon_breath
 	name = "Dragon Breath"
@@ -377,7 +374,6 @@
 			xeno_owner.balloon_alert(xeno_owner, "already breathing fire")
 		return FALSE
 	return ..()
-
 
 /datum/action/ability/activable/xeno/backhand/dragon_breath/get_damage()
 	return 20 * xeno_owner.xeno_melee_damage_modifier
@@ -460,9 +456,10 @@
 			continue
 		refresh_or_create_fire(affected_turf)
 		for(var/atom/affected_atom AS in affected_turf)
-			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
-				continue
 			if(isxeno(affected_atom))
+				var/mob/living/carbon/xenomorph/affected_xenomorph = affected_atom
+				if(xeno_owner.issamexenohive(affected_xenomorph))
+					continue
 				continue
 			if(!isliving(affected_atom))
 				continue
@@ -520,7 +517,12 @@
 /datum/action/ability/activable/xeno/wind_current/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 
-	var/list/turf/impacted_turfs = generate_cone(xeno_owner, 7, 1, 60, dir2angle(xeno_owner.dir), pass_flags_checked = PASS_AIR)
+	var/list/turf/impacted_turfs = generate_cone(xeno_owner, 9, 1, 60, dir2angle(xeno_owner.dir), pass_flags_checked = PASS_AIR)
+	for(var/turf/impacted_turf in impacted_turfs) // This gets us a flat-ended cone.
+		if(get_dist(impacted_turf, get_turf(xeno_owner)) <= 7)
+			continue
+		impacted_turfs -= impacted_turf
+
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 0.5 SECONDS)
 
@@ -543,9 +545,10 @@
 			if(istype(impacted_atom, /obj/effect/particle_effect/smoke))
 				qdel(impacted_atom)
 				continue
-			if(!(impacted_atom.resistance_flags & XENO_DAMAGEABLE))
-				continue
 			if(isxeno(impacted_atom))
+				var/mob/living/carbon/xenomorph/impacted_xenomorph = impacted_atom
+				if(xeno_owner.issamexenohive(impacted_xenomorph))
+					continue
 				continue
 			if(isliving(impacted_atom))
 				var/mob/living/impacted_living = impacted_atom
@@ -560,6 +563,8 @@
 				impacted_living.animation_spin(0.5 SECONDS, 1, impacted_living.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
 				continue
 			if(!isobj(impacted_atom))
+				continue
+			if(!(impacted_atom.resistance_flags & XENO_DAMAGEABLE))
 				continue
 			var/obj/impacted_obj = impacted_atom
 			if(ishitbox(impacted_obj))
@@ -716,14 +721,14 @@
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PSYCHIC_CHANNEL_SELECTION,
 	)
 	/// The currently selected spell. Will be automatically chosen after channeling if none was selected.
-	var/selected_spell = DRAGON_MIASMA
+	var/selected_spell = DRAGON_VOID_RIFT
 	/// Damage taken so far while actively channeling.
 	var/damage_taken_so_far = 0
 	/// The timer id for any timed spell proc.
 	var/spell_timer
-	COOLDOWN_DECLARE(miasma_cooldown)
+	COOLDOWN_DECLARE(void_rift_cooldown)
 	COOLDOWN_DECLARE(lightning_shrike_cooldown)
-	COOLDOWN_DECLARE(ice_storm_cooldown)
+	COOLDOWN_DECLARE(cryogensis_cooldown)
 
 /datum/action/ability/activable/xeno/psychic_channel/can_use_ability(atom/A, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
@@ -759,28 +764,28 @@
 		select_spell(spell_name)
 		return
 	if(pick_randomly)
-		spell_name = pick(list(DRAGON_MIASMA, DRAGON_LIGHTNING_SHRIKE, DRAGON_ICE_STORM))
+		spell_name = pick(list(DRAGON_VOID_RIFT, DRAGON_LIGHTNING_SHRIKE, DRAGON_CRYOGENSIS))
 	switch(spell_name)
 		if(DRAGON_PSYCHIC_CHANNEL)
 			selected_spell = DRAGON_PSYCHIC_CHANNEL
 			if(is_actively_channeling() || force_update)
 				name = "Psychic Channel"
 				desc = "Begin channeling your psychic abilities. During your channeling, you can cast various spells which all have independent cooldowns. Right-click to select what spell to use while channeling."
-		if(DRAGON_MIASMA)
-			selected_spell = DRAGON_MIASMA
+		if(DRAGON_VOID_RIFT)
+			selected_spell = DRAGON_VOID_RIFT
 			if(is_actively_channeling() || force_update)
-				name = "Miasma"
-				desc = "Fires a projectile that plagues an area with black miasma. Marines caught in the blast are burnt and have their healing reduced."
+				name = "Void Rift"
+				desc = "Create 10 void rifts around you which will shoot a homing projectile toward the nearest marine which causes a small explosion on impact or ending. Marines caught in the blast are burnt and have their healing reduced."
 		if(DRAGON_LIGHTNING_SHRIKE)
 			selected_spell = DRAGON_LIGHTNING_SHRIKE
 			if(is_actively_channeling() || force_update)
 				name = "Lightning Strike"
 				desc = "Up to 15 nearby marines are marked to be struck with lightning. Marines that do not move out of way fast enough are burnt and inflicted with an effect that causes additional damage if they move."
-		if(DRAGON_ICE_STORM)
-			selected_spell = DRAGON_ICE_STORM
+		if(DRAGON_CRYOGENSIS)
+			selected_spell = DRAGON_CRYOGENSIS
 			if(is_actively_channeling() || force_update)
-				name = "Ice Storm"
-				desc = "Create 10 homing ice spikes around you in a circle. Each spike will follow the nearest marine and deals a small amount of damage along with a slowdown if they are hit."
+				name = "Cryogensis"
+				desc = "After a windup, create a line of cryogenic energy in front of you that will hit any marine in the way and slow them down."
 	reset_cooldown()
 	update_button_icon()
 
@@ -797,18 +802,18 @@
 		if(DRAGON_PSYCHIC_CHANNEL)
 			cooldown_duration = null
 			return
-		if(DRAGON_MIASMA)
-			var/remaining_cooldown = COOLDOWN_TIMELEFT(src, miasma_cooldown)
+		if(DRAGON_VOID_RIFT)
+			var/remaining_cooldown = COOLDOWN_TIMELEFT(src, void_rift_cooldown)
 			if(remaining_cooldown)
-				add_cooldown(COOLDOWN_TIMELEFT(src, miasma_cooldown))
+				add_cooldown(COOLDOWN_TIMELEFT(src, void_rift_cooldown))
 		if(DRAGON_LIGHTNING_SHRIKE)
 			var/remaining_cooldown = COOLDOWN_TIMELEFT(src, lightning_shrike_cooldown)
 			if(remaining_cooldown)
 				add_cooldown(COOLDOWN_TIMELEFT(src, lightning_shrike_cooldown))
-		if(DRAGON_ICE_STORM)
-			var/remaining_cooldown = COOLDOWN_TIMELEFT(src, ice_storm_cooldown)
+		if(DRAGON_CRYOGENSIS)
+			var/remaining_cooldown = COOLDOWN_TIMELEFT(src, cryogensis_cooldown)
 			if(remaining_cooldown)
-				add_cooldown(COOLDOWN_TIMELEFT(src, ice_storm_cooldown))
+				add_cooldown(COOLDOWN_TIMELEFT(src, cryogensis_cooldown))
 
 /// Either begin channeling or perform the spell.
 /datum/action/ability/activable/xeno/psychic_channel/use_ability(atom/A)
@@ -823,30 +828,58 @@
 		return
 
 	switch(selected_spell)
-		if(DRAGON_MIASMA)
-			var/obj/projectile/proj = new(get_turf(xeno_owner))
-			proj.generate_bullet(/datum/ammo/xeno/miasma_orb)
-			proj.def_zone = xeno_owner.get_limbzone_target()
-			proj.fire_at(A, xeno_owner, xeno_owner, range = 10, speed = 1)
-			xeno_owner.gain_plasma(100)
-			COOLDOWN_START(src, miasma_cooldown, 20 SECONDS)
+		if(DRAGON_VOID_RIFT)
+			var/list/turf/turfs = RANGE_TURFS(7, xeno_owner)
+			var/remaining_void_rifts = 10
+			assignturfs:
+				while(length(turfs) && remaining_void_rifts)
+					var/turf/candidate = pick_n_take(turfs)
+					if(candidate.density)
+						continue assignturfs
+					for(var/atom/blocker AS in candidate.contents)
+						if(blocker.density)
+							continue assignturfs
+					remaining_void_rifts--
+					new /obj/effect/temp_visual/dragon/portal_open(candidate)
+					var/obj/projectile/proj = new(candidate)
+					proj.generate_bullet(/datum/ammo/xeno/void_rift)
+					proj.fire_at(A, xeno_owner, candidate, range = 10, speed = 0.1)
+			xeno_owner.gain_plasma(500)
+			COOLDOWN_START(src, void_rift_cooldown, 1 SECONDS)
 		if(DRAGON_LIGHTNING_SHRIKE)
 			var/list/mob/living/carbon/human/acceptable_humans = get_lightning_shrike_marines()
 			var/list/turf/impacted_turfs = get_lightning_shrike_hit_turfs(acceptable_humans)
 			for(var/turf/impacted_turf AS in impacted_turfs)
 				new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.5 SECONDS)
 			spell_timer = addtimer(CALLBACK(src, PROC_REF(finalize_lightning_shrike), get_lightning_shrike_center_turfs(acceptable_humans), impacted_turfs), 1.5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
-			xeno_owner.gain_plasma(100)
+			xeno_owner.gain_plasma(350)
 			COOLDOWN_START(src, lightning_shrike_cooldown, 25 SECONDS)
-		if(DRAGON_ICE_STORM)
-			var/list/bullets = list()
-			for(var/i = 1 to 10)
-				var/obj/projectile/proj = new(get_turf(xeno_owner))
-				proj.generate_bullet(/datum/ammo/xeno/homing_ice_spike)
-				bullets += proj
-			bullet_burst(xeno_owner, bullets, xeno_owner, "sound/weapons/burst_phaser2.ogg", 10, 0.3, FALSE, -1)
-			xeno_owner.gain_plasma(150)
-			COOLDOWN_START(src, ice_storm_cooldown, 30 SECONDS)
+		if(DRAGON_CRYOGENSIS)
+			xeno_owner.face_atom(A)
+			var/list/turf/affected_turfs_in_order = list()
+			var/turf/maximum_distance_turf = get_turf(xeno_owner)
+			for(var/i in 1 to 7)
+				maximum_distance_turf = get_step(maximum_distance_turf, xeno_owner.dir)
+				if(!line_of_sight(xeno_owner, maximum_distance_turf, 7))
+					break
+				if(isclosedturf(maximum_distance_turf))
+					break
+				affected_turfs_in_order += maximum_distance_turf
+				affected_turfs_in_order += get_step(maximum_distance_turf, turn(xeno_owner.dir, 90))
+				affected_turfs_in_order += get_step(maximum_distance_turf, turn(xeno_owner.dir, -90))
+
+			for(var/turf/affected_turf AS in affected_turfs_in_order)
+				new /obj/effect/temp_visual/dragon/warning(affected_turf, 2 SECONDS)
+			xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+			xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+			var/was_successful = do_after(xeno_owner, 2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY))
+			xeno_owner.move_resist = initial(xeno_owner.move_resist)
+			xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+			if(!was_successful)
+				return
+			cryogensis_tick_effects(affected_turfs_in_order)
+			xeno_owner.gain_plasma(350)
+			COOLDOWN_START(src, cryogensis_cooldown, 35 SECONDS)
 
 	reset_cooldown()
 	succeed_activate()
@@ -912,9 +945,10 @@
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		impacted_turf.Shake(duration = 0.2 SECONDS)
 		for(var/atom/impacted_atom AS in impacted_turf)
-			if(!(impacted_atom.resistance_flags & XENO_DAMAGEABLE))
-				continue
 			if(isxeno(impacted_atom))
+				var/mob/living/carbon/xenomorph/impacted_xenomorph = impacted_atom
+				if(xeno_owner.issamexenohive(impacted_xenomorph))
+					continue
 				continue
 			if(isliving(impacted_atom))
 				var/mob/living/impacted_living = impacted_atom
@@ -925,17 +959,46 @@
 				continue
 			if(!isobj(impacted_atom))
 				continue
+			if(!(impacted_atom.resistance_flags & XENO_DAMAGEABLE))
+				continue
 			var/obj/impacted_obj = impacted_atom
 			if(ishitbox(impacted_obj) || isAPC(impacted_obj))
 				impacted_obj.take_damage(15, BURN, FIRE, blame_mob = xeno_owner)
 				continue
 			impacted_obj.take_damage(75, BURN, FIRE, blame_mob = xeno_owner)
 
+/// Performs the ability at a pace similar of CAS which is one width length at a length.
+/datum/action/ability/activable/xeno/psychic_channel/proc/cryogensis_tick_effects(list/turf/affected_turfs_in_order)
+	if(!length(affected_turfs_in_order))
+		return
+
+	var/already_done_effect = FALSE
+	for(var/i = 1 to 3)
+		var/turf/affected_turf = affected_turfs_in_order[1]
+		affected_turfs_in_order -= affected_turf
+		if(!already_done_effect)
+			already_done_effect = TRUE
+			new /obj/effect/temp_visual/dragon/ice_storm(affected_turf)
+		for(var/atom/affected_atom AS in affected_turf)
+			if(isxeno(affected_atom))
+				var/mob/living/carbon/xenomorph/affected_xenomorph = affected_atom
+				if(xeno_owner.issamexenohive(affected_xenomorph))
+					continue
+				continue
+			if(!isliving(affected_atom))
+				continue
+			var/mob/living/affected_living = affected_atom
+			if(affected_living.stat == DEAD)
+				continue
+			affected_living.take_overall_damage(120, BURN, FIRE, updating_health = TRUE, penetration = 30, max_limbs = 5)
+			continue
+	INVOKE_NEXT_TICK(src, PROC_REF(cryogensis_tick_effects), affected_turfs_in_order)
+
 /datum/action/ability/activable/xeno/scorched_land
 	name = "Scorched Land"
-	action_icon_state = "unleash"
+	action_icon_state = "scorched_land"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = "Breath fire downward from the sky in a long line where you're facing. Afterward, land at the end immediately."
+	desc = "While flying, breath fire downward from the sky in a long line where you're facing."
 	cooldown_duration = 150 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCORCHED_LAND,
@@ -1013,9 +1076,10 @@
 		affected_turfs_in_order -= affected_turf
 		refresh_or_create_fire(affected_turf)
 		for(var/atom/affected_atom AS in affected_turf)
-			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
-				continue
 			if(isxeno(affected_atom))
+				var/mob/living/carbon/xenomorph/affected_xenomorph = affected_atom
+				if(xeno_owner.issamexenohive(affected_xenomorph))
+					continue
 				continue
 			if(!isliving(affected_atom))
 				continue
@@ -1189,3 +1253,31 @@
 	pixel_x = -32
 	layer = BELOW_MOB_LAYER
 	duration = 1.25 SECONDS
+
+/obj/effect/temp_visual/dragon/portal_open
+	icon = 'icons/Xeno/96x144.dmi'
+	icon_state = "portal_open"
+	pixel_x = -32
+	layer = BELOW_MOB_LAYER
+	duration = 0.55 SECONDS
+
+/obj/effect/temp_visual/dragon/portal_close
+	icon = 'icons/Xeno/96x144.dmi'
+	icon_state = "portal_close"
+	pixel_x = -32
+	layer = BELOW_MOB_LAYER
+	duration = 0.54 SECONDS
+
+/obj/effect/temp_visual/dragon/void_explosion
+	icon = 'icons/Xeno/96x144.dmi'
+	icon_state = "void_explosion"
+	pixel_x = -32
+	layer = BELOW_MOB_LAYER
+	duration = 0.6 SECONDS
+
+/obj/effect/temp_visual/dragon/ice_storm
+	icon = 'icons/Xeno/160x450.dmi'
+	icon_state = "ice_storm"
+	pixel_x = -64
+	layer = BELOW_MOB_LAYER
+	duration = 1.6 SECONDS

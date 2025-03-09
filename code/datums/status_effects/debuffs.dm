@@ -988,7 +988,7 @@
 /datum/status_effect/incapacitating/electrified/proc/on_movement_async()
 	if(!owner)
 		return
-	owner.take_overall_damage(5, BURN, FIRE, max_limbs = 6, updating_health = TRUE)
+	owner.take_overall_damage(10, BURN, FIRE, max_limbs = 6, updating_health = TRUE)
 
 // ***************************************
 // *********** Plague
