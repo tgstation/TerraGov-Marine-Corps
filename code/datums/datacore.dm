@@ -19,7 +19,6 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 /datum/datacore/proc/get_manifest(monochrome, ooc, viewfaction)
 	var/list/eng = list()
 	var/list/med = list()
-	var/list/mar = list()
 	var/list/heads = list()
 	var/list/xeno = list()
 	var/list/misc = list()
@@ -42,8 +41,17 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	"}
 
 	var/even = 0
-	// sort mobs
 
+	var/list/squad_names = SSjob?.squads_by_name
+	if(istype(squad_names))
+		for(var/list/squad_group in squad_names)
+			for(var/squad_name in squad_group)
+				squads[squad_name] = list()
+	squads["No Squad"] = list()
+	
+	var/non_empty_squad_exists = null
+
+	// sort mobs
 	for(var/datum/data/record/t in GLOB.datacore.general)
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
@@ -77,8 +85,10 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 			med[name] = rank
 			department = 1
 		if(rank in GLOB.jobs_marines)
-			squads[name] = squad_name
-			mar[name] = rank
+			if(!squad_name)
+				squad_name = "No Squad"
+			squads[squad_name][name] = rank
+			non_empty_squad_exists = TRUE
 			department = 1
 		if(!department && !(name in heads))
 			if(rank in GLOB.jobs_regular_all)
@@ -115,14 +125,13 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		for(var/name in support)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[support[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
 			even = !even
-	if(length(mar) > 0)
+	if(non_empty_squad_exists)
 		dat += "<tr><th colspan=3>Marine Personnel</th></tr>"
-		for(var/j in LAZYACCESS(SSjob.squads_by_name, FACTION_TERRAGOV))
+		for(var/j in squads)
 			if(length(squads[j]))
 				dat += "<tr><th colspan=3>[j]</th></tr>"
-			for(var/name in mar)
-				if(squads[name] == j)
-					dat += "<tr[even ? " class='alt'" : ""]><td>[mar[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
+				for(var/name in squads[j])
+					dat += "<tr[even ? " class='alt'" : ""]><td>[squads[j][name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
 					even = !even
 	if(length(eng) > 0)
 		dat += "<tr><th colspan=3>Engineering</th></tr>"

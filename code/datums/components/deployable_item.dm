@@ -73,6 +73,27 @@
 	INVOKE_ASYNC(src, PROC_REF(finish_deploy), parent, user, location)
 	return COMSIG_KB_ACTIVATED
 
+/datum/component/deployable_item/proc/check_space_to_deploy(obj/item/item_to_deploy, mob/user, turf/location, direction)
+	if(location.density)
+		return FALSE
+	if(deploy_type.atom_flags & ON_BORDER)
+		for(var/obj/object in location)
+			if(!(object.obj_flags & BLOCKS_CONSTRUCTION))
+				if(!object.density)
+					continue
+				if(!(object.atom_flags & ON_BORDER))
+					continue
+				if(object.dir != direction)
+					continue
+			return FALSE
+	else
+		for(var/obj/object in location)
+			if(!(object.obj_flags & BLOCKS_CONSTRUCTION))
+				if(!object.density)
+					continue
+			return FALSE
+	return TRUE
+
 ///Handles the conversion of item into machine. Source is the Item to be deployed, user is who is deploying. If user is null, a direction must be set.
 /datum/component/deployable_item/proc/finish_deploy(obj/item/item_to_deploy, mob/user, turf/location, direction)
 
@@ -94,16 +115,9 @@
 			location.balloon_alert(user, "No room to deploy")
 			return
 		var/newdir = get_dir(user, location)
-		if(deploy_type.atom_flags & ON_BORDER)
-			for(var/obj/object in location)
-				if(!object.density)
-					continue
-				if(!(object.atom_flags & ON_BORDER))
-					continue
-				if(object.dir != newdir)
-					continue
-				location.balloon_alert(user, "No room to deploy")
-				return
+		if(!check_space_to_deploy(item_to_deploy, user, location, newdir))
+			location.balloon_alert(user, "No room to deploy")
+			return
 		if(user.do_actions)
 			user.balloon_alert(user, "You are already doing something!")
 			return
@@ -122,6 +136,9 @@
 
 	else
 		direction_to_deploy = direction || item_to_deploy.dir
+		if(!check_space_to_deploy(item_to_deploy, user, location, direction_to_deploy))
+			item_to_deploy.balloon_alert_to_viewers("No room to deploy")
+			return
 
 	deployed_machine = new deploy_type(location,item_to_deploy, user)//Creates new structure or machine at 'deploy' location and passes on 'item_to_deploy'
 	deployed_machine.setDir(direction_to_deploy)

@@ -34,3 +34,11 @@
       the same time caused issues.
   - bugfix: Fixed PMC Spec access, swapped headsets to fix the issue with not having
       access to the tacmap, swapped headset default frequency to ntc pmc
+2025-03-09:
+  Meghan-Rossi:
+  - bugfix: Fixed PMCs not showing on manifest
+  - bugfix: Fixed squad name dividers not showing on manifest
+  - rscadd: The ICC base now has hypersleep chambers.
+  - rscadd: Whispers now have twice as many stars on average
+  - balance: COPE sentries can no longer be stacked on top of each other or walked
+      over.

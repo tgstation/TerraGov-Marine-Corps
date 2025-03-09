@@ -160,6 +160,11 @@
 		return
 	do_deploy(user)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/do_deploy(mob/user, turf/location)
+	. = ..()
+	spawn(1)
+		if(!(CHECK_BITFIELD(item_flags, IS_DEPLOYED)))
+			reset()
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 
