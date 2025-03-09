@@ -155,10 +155,12 @@ SUBSYSTEM_DEF(mapping)
 		index++
 	lists_to_reserve.Cut(1, index)
 
+/// generates z level linkages for all z
 /datum/controller/subsystem/mapping/proc/generate_z_level_linkages()
 	for(var/z_level in 1 to length(z_list))
 		generate_linkages_for_z_level(z_level)
 
+/// generates z level linkages for multiz for a given z
 /datum/controller/subsystem/mapping/proc/generate_linkages_for_z_level(z_level)
 	if(!isnum(z_level) || z_level <= 0)
 		return FALSE
@@ -174,13 +176,14 @@ SUBSYSTEM_DEF(mapping)
 	multiz_levels[z_level][Z_LEVEL_UP] = !!z_above
 	multiz_levels[z_level][Z_LEVEL_DOWN] = !!z_below
 
-//Loads the number of players we had last round, for use in modular mapping
+///Loads the number of players we had last round, for use in modular mapping
 /datum/controller/subsystem/mapping/proc/load_last_round_playercount()
 	var/json_file = file("data/last_round_player_count.json")
 	if(!fexists(json_file))
 		return
 	last_round_player_count = json_decode(file2text(json_file))
 
+///clears all map reservations
 /datum/controller/subsystem/mapping/proc/wipe_reservations(wipe_safety_delay = 100)
 	if(clearing_reserved_turfs || !initialized)			//in either case this is just not needed.
 		return
@@ -666,6 +669,7 @@ SUBSYSTEM_DEF(mapping)
 	return z_level_to_stack[z_level]
 
 
+///lazy loads a map template in a reserved z. use for stuff like rooms that you teleport to like interiors or similar
 /datum/controller/subsystem/mapping/proc/lazy_load_template(template_key, force = FALSE)
 	RETURN_TYPE(/datum/turf_reservation)
 
