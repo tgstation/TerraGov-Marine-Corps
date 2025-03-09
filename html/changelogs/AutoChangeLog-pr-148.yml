@@ -1,5 +1,0 @@
-author: "Meghan-Rossi"
-delete-after: True
-changes:
-  - bugfix: "Fixed PMCs not showing on manifest"
-  - bugfix: "Fixed squad name dividers not showing on manifest"
