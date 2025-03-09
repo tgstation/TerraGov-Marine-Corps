@@ -1,6 +1,6 @@
 /obj/structure/xeno
 	hit_sound = SFX_ALIEN_RESIN_BREAK
-	layer = RESIN_STRUCTURE_LAYER
+	layer = BELOW_OBJ_LAYER
 	resistance_flags = UNACIDABLE
 	///Bitflags specific to xeno structures
 	var/xeno_structure_flags

@@ -195,6 +195,8 @@
 #define TRAIT_TANK_DESANT "tank_desant"
 ///Builds things better
 #define TRAIT_SUPERIOR_BUILDER "superior_builder"
+/// Mob has fov applied to it
+#define TRAIT_FOV_APPLIED "fov_applied"
 
 ///Traits for managing AM pass_flags
 #define TRAIT_PASS_LOW_STRUCTURE "pass_low_structure"

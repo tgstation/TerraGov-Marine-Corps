@@ -72,6 +72,7 @@
 #include "keybinding_init.dm"
 #include "map_templates.dm"
 #include "mapping.dm"
+#include "plane_double_transform.dm"
 #include "security_levels.dm"
 #include "spawn_guns.dm"
 #include "spawn_humans.dm"

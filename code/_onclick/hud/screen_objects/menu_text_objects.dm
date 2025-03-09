@@ -12,6 +12,8 @@
 
 ///Unclickable Lobby UI objects
 /atom/movable/screen/text/lobby
+	plane = SPLASHSCREEN_PLANE
+	layer = LOBBY_MENU_LAYER
 	screen_loc = "CENTER"
 	maptext_height = 480
 	maptext_width = 480

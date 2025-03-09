@@ -350,8 +350,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		if((SEND_SIGNAL(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE) & COMSIG_MAINTAIN_POSITION))
 			return
 		if(!get_dir(mob_parent, atom_to_walk_to)) //We're right on top, move out of it
-			ai_complete_move(pick(CARDINAL_ALL_DIRS))
-			return
+			return CARDINAL_ALL_DIRS
 		if(prob(50)) //placeholder number, will probs be a var like sidestep prob, so they're not just constantly wiggling about
 			return
 		if(prob(sidestep_prob)) //shuffle about
