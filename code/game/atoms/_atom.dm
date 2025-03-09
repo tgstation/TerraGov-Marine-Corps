@@ -870,6 +870,7 @@ directive is properly returned.
 		var/image/removee = hud_list[key]
 		LAZYREMOVE(update_on_z, removee)
 	hud_list = list()
+	var/static/list/higher_hud_list = HUDS_LAYERING_HIGH
 	for(var/hud in hud_possible) //Providing huds.
 		var/hint = hud_possible[hud]
 		switch(hint)
@@ -878,8 +879,9 @@ directive is properly returned.
 			else
 				var/image/I = image('icons/mob/hud/human.dmi', src, "")
 				I.appearance_flags = RESET_COLOR|RESET_TRANSFORM|KEEP_APART
-				SET_PLANE_EXPLICIT(I, HIGH_GAME_PLANE, src)
-				LAZYADD(update_on_z, I)
+				if(hud in higher_hud_list)
+					SET_PLANE_EXPLICIT(I, POINT_PLANE, src)
+					LAZYADD(update_on_z, I)
 				hud_list[hud] = I
 
 /**
