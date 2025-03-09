@@ -73,6 +73,9 @@ SUBSYSTEM_DEF(mapping)
 	///shows the gravity value for each z level
 	var/list/gravity_by_z_level = list()
 
+	/// list of traits and their associated z leves
+	var/list/z_trait_levels = list()
+
 	/// list of lazy templates that have been loaded
 	var/list/loaded_lazy_templates
 
