@@ -27,6 +27,8 @@
 	COOLDOWN_DECLARE(ai_chat_cooldown)
 	COOLDOWN_DECLARE(ai_run_cooldown)
 	COOLDOWN_DECLARE(ai_damage_cooldown)
+	COOLDOWN_DECLARE(ai_heal_after_dam_cooldown)
+	COOLDOWN_DECLARE(ai_retreat_cooldown)
 
 /datum/ai_behavior/human/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
@@ -110,6 +112,11 @@
 		return
 	return ..()
 
+/datum/ai_behavior/human/ai_do_move()
+	if(mob_parent.pulledby?.faction == mob_parent.faction)
+		return //lets players wrangle NPC's
+	return ..()
+
 /datum/ai_behavior/human/register_action_signals(action_type)
 	switch(action_type)
 		if(MOVING_TO_ATOM)
@@ -177,20 +184,26 @@
 				return
 			change_action(null, next_target)//We found a better target, change course!
 		if(MOVING_TO_SAFETY)
-			if(!COOLDOWN_CHECK(src, ai_damage_cooldown))
-				return
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
-			if(!next_target)//looks safe
+			if(COOLDOWN_CHECK(src, ai_retreat_cooldown))
 				target_distance = initial(target_distance)
 				cleanup_current_action()
 				late_initialize()
 				if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && living_parent.health <= minimum_health * 3 * living_parent.maxHealth)
 					INVOKE_ASYNC(src, PROC_REF(try_heal))
 				return
-			set_combat_target(next_target)
-			if(next_target == atom_to_walk_to)
+			if(combat_target) //keep fighting as you retreat
 				return
-			set_atom_to_walk_to(next_target)
+			var/atom/next_target = get_nearest_target(escorted_atom, initial(target_distance), TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
+			if(next_target)
+				set_combat_target(next_target)
+				if(next_target != atom_to_walk_to)
+					set_atom_to_walk_to(next_target)
+				return
+			target_distance = initial(target_distance)
+			cleanup_current_action()
+			late_initialize()
+			if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && living_parent.health <= minimum_health * 3 * living_parent.maxHealth)
+				INVOKE_ASYNC(src, PROC_REF(try_heal))
 		if(IDLE)
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
 			if(!next_target)
@@ -201,8 +214,7 @@
 
 /datum/ai_behavior/human/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
-	if(obstacle_turf.atom_flags & AI_BLOCKED)
-		return
+
 	for(var/mob/mob_blocker in obstacle_turf.contents)
 		if(!mob_blocker.density)
 			continue
@@ -210,31 +222,19 @@
 		return
 
 	var/should_jump = FALSE
-	var/mob/living/living_parent = mob_parent
-	var/can_jump = living_parent.can_jump()
-	for(var/obj/object in obstacle_turf.contents)
+	for(var/obj/object in obstacle_turf)
 		if(!object.density)
 			continue
-		if(can_jump && object.is_jumpable(mob_parent))
-			should_jump = TRUE
+		var/obstacle_reaction = object.ai_handle_obstacle(mob_parent, direction)
+		if(obstacle_reaction == AI_OBSTACLE_RESOLVED)
+			return COMSIG_OBSTACLE_DEALT_WITH //we've dealt with it on the obstacle side
+		if(obstacle_reaction == AI_OBSTACLE_JUMP)
+			should_jump = TRUE //we will try jump if the only obstacles are all jumpable
 			continue
-		if(isstructure(object))
-			var/obj/structure/structure = object
-			if(structure.climbable)
-				INVOKE_ASYNC(structure, TYPE_PROC_REF(/obj/structure, do_climb), mob_parent)
-				return COMSIG_OBSTACLE_DEALT_WITH
-		if(istype(object, /obj/machinery/door/airlock))
-			var/obj/machinery/door/airlock/lock = object
-			if(lock.operating) //Airlock already doing something
-				continue
-			if(lock.welded || lock.locked) //It's welded or locked, can't force that open
-				INVOKE_ASYNC(src, PROC_REF(melee_interact), null, object)
-				return COMSIG_OBSTACLE_DEALT_WITH
-			lock.open(TRUE)
-			return COMSIG_OBSTACLE_DEALT_WITH
-		if(!(object.resistance_flags & INDESTRUCTIBLE))
+		if(obstacle_reaction == AI_OBSTACLE_ATTACK)
 			INVOKE_ASYNC(src, PROC_REF(melee_interact), null, object)
-			return COMSIG_OBSTACLE_DEALT_WITH
+			return COMSIG_OBSTACLE_DEALT_WITH //we gotta hit it
+
 
 	if(should_jump)
 		SEND_SIGNAL(mob_parent, COMSIG_AI_JUMP)
@@ -243,23 +243,29 @@
 
 	if(ISDIAGONALDIR(direction) && ((deal_with_obstacle(null, turn(direction, -45)) & COMSIG_OBSTACLE_DEALT_WITH) || (deal_with_obstacle(null, turn(direction, 45)) & COMSIG_OBSTACLE_DEALT_WITH)))
 		return COMSIG_OBSTACLE_DEALT_WITH
+
 	//Ok we found nothing, yet we are still blocked. Check for blockers on our current turf
-	obstacle_turf = get_turf(mob_parent)
-	for(var/obj/structure/obstacle in obstacle_turf.contents)
+	for(var/obj/obstacle in get_turf(mob_parent))
 		if(!obstacle.density)
 			continue
-		if(!((obstacle.atom_flags & ON_BORDER) && (obstacle.dir & direction)))
-			continue
-		if(obstacle.is_jumpable(mob_parent))
+		var/obstacle_reaction = obstacle.ai_handle_obstacle(mob_parent, direction)
+		if(obstacle_reaction == AI_OBSTACLE_RESOLVED)
+			return COMSIG_OBSTACLE_DEALT_WITH
+		if(obstacle_reaction == AI_OBSTACLE_JUMP)
 			should_jump = TRUE
 			continue
-		if(!(obstacle.resistance_flags & INDESTRUCTIBLE))
+		if(obstacle_reaction == AI_OBSTACLE_ATTACK)
 			INVOKE_ASYNC(src, PROC_REF(melee_interact), null, obstacle)
 			return COMSIG_OBSTACLE_DEALT_WITH
 
 	if(should_jump)
 		SEND_SIGNAL(mob_parent, COMSIG_AI_JUMP)
 		INVOKE_ASYNC(src, PROC_REF(ai_complete_move), direction, FALSE)
+		return COMSIG_OBSTACLE_DEALT_WITH
+
+	//We do this last because there could be other stuff blocking us from even reaching the turf
+	if(istype(obstacle_turf, /turf/closed/wall/resin))
+		INVOKE_ASYNC(src, PROC_REF(melee_interact), null, obstacle_turf)
 		return COMSIG_OBSTACLE_DEALT_WITH
 
 /datum/ai_behavior/human/set_goal_node(datum/source, obj/effect/ai_node/new_goal_node)
@@ -319,6 +325,8 @@
 ///Sig handler for physical interactions, like attacks
 /datum/ai_behavior/human/proc/melee_interact(datum/source, atom/interactee)
 	SIGNAL_HANDLER
+	if(mob_parent.next_move > world.time)
+		return
 	if(!interactee)
 		interactee = atom_to_walk_to //this seems like it should be combat_target, but the only time this should come up is if combat_target IS atom_to_walk_to
 	if(!mob_parent.CanReach(interactee, melee_weapon)) //todo: copy this for beno code, lots of other stuff too.
@@ -362,10 +370,15 @@
 ///Reacts if the mob is below the min health threshold
 /datum/ai_behavior/human/proc/on_take_damage(datum/source, damage, mob/attacker)
 	SIGNAL_HANDLER
-	COOLDOWN_START(src, ai_damage_cooldown, 5 SECONDS)
+	if(damage < 5) //Don't want chip damage causing a retreat
+		return
+	if(!COOLDOWN_CHECK(src, ai_damage_cooldown))
+		return
+	COOLDOWN_START(src, ai_damage_cooldown, 1 SECONDS)
 	if(human_ai_state_flags & HUMAN_AI_FIRING)
 		return
 	if(attacker)
+		COOLDOWN_START(src, ai_heal_after_dam_cooldown, 4 SECONDS)
 		if((human_ai_state_flags & HUMAN_AI_ANY_HEALING)) //dont just stand there
 			human_ai_state_flags &= ~(HUMAN_AI_ANY_HEALING)
 			late_initialize()
@@ -377,6 +390,9 @@
 
 	if(!(human_ai_behavior_flags & HUMAN_AI_SELF_HEAL))
 		return
+	if((human_ai_state_flags & HUMAN_AI_ANY_HEALING))
+		return
+
 	var/mob/living/living_mob = mob_parent
 	if(living_mob.health - damage > minimum_health * living_mob.maxHealth)
 		return
@@ -393,6 +409,7 @@
 		try_speak(pick(retreating_chat))
 	set_run(TRUE)
 	target_distance = 12
+	COOLDOWN_START(src, ai_retreat_cooldown, 8 SECONDS)
 	change_action(MOVING_TO_SAFETY, next_target, list(INFINITY)) //fallback
 
 ///Reacts to a heard message
