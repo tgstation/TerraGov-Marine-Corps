@@ -383,12 +383,9 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 		if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
 			return FALSE
 
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		cut_overlay(GLOB.welding_sparks)
 		GLOB.gens_corruption_by_hive["[corrupted]"]--
 		last_corrupted = corrupted
 		corrupted = 0
-		stop_processing()
 		update_icon()
 	return ..()
 
