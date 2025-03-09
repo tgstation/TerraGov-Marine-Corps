@@ -239,14 +239,6 @@
 		return INITIALIZE_HINT_QDEL
 
 
-//Makes a tile fully lit no matter what
-/obj/effect/fullbright
-	icon = 'icons/effects/alphacolors.dmi'
-	icon_state = "white"
-	plane = LIGHTING_PLANE
-	layer = BACKGROUND_LAYER + LIGHTING_PRIMARY_LAYER
-	blend_mode = BLEND_ADD
-
 /obj/effect/overlay/temp/timestop_effect
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "time"

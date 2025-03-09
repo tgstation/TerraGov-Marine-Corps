@@ -93,6 +93,16 @@
 		return FALSE
 	if(!ignore_cooldown && TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return FALSE
+	if(!istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
+		return TRUE
+	var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
+	var/datum/mech_limb/arm/holding
+	if(grey.equip_by_category[MECHA_R_ARM] == src)
+		holding = grey.limbs[MECH_GREY_R_ARM]
+	else
+		holding = grey.limbs[MECH_GREY_L_ARM]
+	if(holding.disabled)
+		return FALSE
 	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/proc/action(mob/source, atom/target, list/modifiers)

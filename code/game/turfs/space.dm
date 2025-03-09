@@ -39,6 +39,10 @@
 	ENABLE_BITFIELD(atom_flags, INITIALIZED)
 	icon_state = SPACE_ICON_STATE(x, y, z)
 
+	// We make the assumption that the space plane will never be blacklisted, as an optimization
+	if(SSmapping.max_plane_offset)
+		plane = PLANE_SPACE - (PLANE_RANGE * SSmapping.z_level_to_plane_offset[z])
+
 	return INITIALIZE_HINT_NORMAL
 
 /area/space/Entered(atom/movable/arrived, atom/old_loc)

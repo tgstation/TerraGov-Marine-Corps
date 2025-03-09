@@ -119,7 +119,7 @@
 	. = ..()
 	if(machine_stat & NOPOWER)
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 
 /obj/machinery/autodoc/process()
 	if(!occupant)
@@ -564,7 +564,7 @@
 							if(A)
 								for(A in occupant)
 									sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
-									occupant.visible_message(span_warning(" [src] defty extracts a wriggling parasite from [occupant]'s ribcage!"))
+									occupant.visible_message(span_warning("[src] defty extracts a wriggling parasite from [occupant]'s ribcage!"))
 									var/mob/living/carbon/xenomorph/larva/L = locate() in occupant //the larva was fully grown, ready to burst.
 									if(L)
 										L.forceMove(get_turf(src))

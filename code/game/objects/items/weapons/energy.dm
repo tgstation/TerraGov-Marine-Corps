@@ -114,7 +114,7 @@
 		icon_state = "[initial(icon_state)]"
 		w_class = WEIGHT_CLASS_SMALL
 		playsound(src, 'sound/weapons/saberoff.ogg', 25, 1)
-		special_attack.remove_action(user)
+		special_attack?.remove_action(user)
 
 /obj/item/weapon/energy/sword/pirate
 	name = "energy cutlass"
@@ -156,5 +156,5 @@
 
 /obj/item/weapon/energy/sword/som/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
-	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive", src)
 	standing.overlays.Add(emissive_overlay)

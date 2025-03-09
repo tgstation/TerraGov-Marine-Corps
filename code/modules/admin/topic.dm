@@ -821,7 +821,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key", "Coords"))
 			if("Area")
-				var/area/A = input("Pick an area.", "Pick an area") as null|anything in GLOB.sorted_areas
+				var/area/A = input("Pick an area.", "Pick an area") as null|anything in get_sorted_areas()
 				if(!A || !M)
 					return
 				target = pick(get_area_turfs(A))
@@ -1412,6 +1412,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 
 	else if(href_list["showmessageckeylinkless"])
+		if(!check_rights(R_BAN))
+			return
 		var/target = href_list["showmessageckeylinkless"]
 		browse_messages(target_ckey = target, linkless = TRUE)
 

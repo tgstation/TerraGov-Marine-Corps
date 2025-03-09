@@ -15,7 +15,9 @@
 	/// How many tiles our dash carries us
 	var/dash_range = 3
 	/// how much energy we use per step when boosting
-	var/boost_consumption = 50
+	var/boost_consumption = 55
+	///cooldown between dash activations
+	var/dash_cooldown = 5 SECONDS
 
 /obj/item/mecha_parts/mecha_equipment/armor/booster/attach(obj/vehicle/sealed/mecha/M, attach_right)
 	. = ..()
@@ -24,6 +26,7 @@
 	chassis.dash_power_consumption = dash_consumption
 	chassis.dash_range = dash_range
 	chassis.speed_mod = speed_mod
+	chassis.dash_cooldown = dash_cooldown
 
 /obj/item/mecha_parts/mecha_equipment/armor/booster/detach(atom/moveto)
 	chassis.overload_step_energy_drain_min = initial(chassis.overload_step_energy_drain_min)
@@ -31,6 +34,7 @@
 	chassis.dash_power_consumption = initial(chassis.dash_power_consumption)
 	chassis.dash_range = initial(chassis.dash_range)
 	chassis.speed_mod = 0
+	chassis.dash_cooldown = initial(chassis.dash_cooldown)
 	return ..()
 
 
@@ -43,8 +47,9 @@
 	weight = 45
 	dash_consumption = 300
 	speed_mod = 0.7
-	dash_range = 4
-	boost_consumption = 30
+	dash_range = 5
+	boost_consumption = 35
+	dash_cooldown = 7 SECONDS
 
 /obj/item/mecha_parts/mecha_equipment/generator/greyscale
 	name = "phoron engine"
@@ -79,18 +84,13 @@
 	icon_state = "melee_core"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	equipment_slot = MECHA_UTILITY
-	///speed amount we modify the mech by
-	var/speed_mod
 
 /obj/item/mecha_parts/mecha_equipment/melee_core/attach(obj/vehicle/sealed/mecha/M, attach_right)
 	. = ..()
 	ADD_TRAIT(M, TRAIT_MELEE_CORE, REF(src))
-	speed_mod = min(chassis.move_delay-1, round(chassis.move_delay * 0.5))
-	M.move_delay -= speed_mod
 
 /obj/item/mecha_parts/mecha_equipment/melee_core/detach(atom/moveto)
 	REMOVE_TRAIT(chassis, TRAIT_MELEE_CORE, REF(src))
-	chassis.move_delay += speed_mod
 	return ..()
 
 
@@ -162,7 +162,7 @@
 	name = "tanglefoot generator"
 	desc = "A tanglefoot smoke generator capable of dispensing large amounts of non-lethal gas that saps the energy from any xenoform creatures it touches."
 	icon_state = "tfoot_gas"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+//	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_smoke
 	smoke_type = /datum/effect_system/smoke_spread/plasmaloss
 

@@ -262,10 +262,12 @@
 
 /turf/closed/wall/indestructible/splashscreen
 	name = "Space Station 13"
+	plane = SPLASHSCREEN_PLANE
 	icon_state = ""
-	layer = FLY_LAYER
 	pixel_x = -64
 
+//todo this should be using immediate instead of New()
+INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	var/prefix = "icons/misc/lobby_art/"

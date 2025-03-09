@@ -763,24 +763,24 @@
 	return ..()
 
 ///Handle chainsaw attack loop on object
-/obj/item/weapon/twohanded/chainsaw/attack_obj(obj/object, mob/living/user)
+/obj/item/weapon/twohanded/chainsaw/attack_obj(obj/target_object, mob/living/user)
 	. = ..()
 	if(!active)
 		return
 
 	if(user.do_actions)
-		object.balloon_alert(user, "already busy")
+		target_object.balloon_alert(user, "already busy")
 		return TRUE
 
-	if(user.incapacitated() || get_dist(user,object) > 1 || user.resting)  // loop attacking an adjacent object while user is not incapacitated nor resting, mostly here for the one handed chainsword
+	if(user.incapacitated() || get_dist(user, target_object) > 1 || user.resting)  // loop attacking an adjacent object while user is not incapacitated nor resting, mostly here for the one handed chainsword
 		return TRUE
 
 	rip_apart(user)
 
-	if(!do_after(user, src.attack_speed, NONE, object, BUSY_ICON_DANGER, null,PROGRESS_BRASS) || !active) //attack channel to loop attack, and second active check in case fuel ran out.
+	if(!do_after(user, src.attack_speed, NONE, target_object, BUSY_ICON_DANGER, null,PROGRESS_BRASS) || !active) //attack channel to loop attack, and second active check in case fuel ran out.
 		return
 
-	attack_obj(object, user)
+	attack_obj(target_object, user)
 
 /obj/item/weapon/twohanded/chainsaw/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))

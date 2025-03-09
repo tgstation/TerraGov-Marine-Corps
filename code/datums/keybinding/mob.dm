@@ -297,3 +297,17 @@
 	if(.)
 		return
 	user.movement_locked = FALSE
+
+/datum/keybinding/mob/toggle_clickdrag
+	hotkey_keys = list("")
+	name = "toggle_clickdrag"
+	full_name = "Toggle Click-Drag"
+	description = "Toggles click-dragging on and off."
+	keybind_signal = COMSIG_KB_MOB_TOGGLE_CLICKDRAG
+
+/datum/keybinding/mob/toggle_clickdrag/down(client/user)
+	. = ..()
+	if(.)
+		return
+	user.prefs.toggles_gameplay ^= TOGGLE_CLICKDRAG
+	user.mob.balloon_alert(user.mob, "You can [user.prefs.toggles_gameplay & TOGGLE_CLICKDRAG ? "no longer" : "now"] click-drag")

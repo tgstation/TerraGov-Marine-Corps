@@ -103,7 +103,7 @@
 /obj/item/paper/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(user.zone_selected == "eyes")
 		user.visible_message(span_notice("You show the paper to [M]. "), \
-			span_notice(" [user] holds up a paper and shows it to [M]. "))
+			span_notice("[user] holds up a paper and shows it to [M]. "))
 		examine(M)
 		return
 

@@ -14,17 +14,20 @@
 	for (var/I in 1 to length(default_map_traits))
 		var/list/features = default_map_traits[I]
 		var/datum/space_level/S = new(I, features[DL_NAME], features[DL_TRAITS])
-		z_list += S
+		manage_z_level(S, filled_with_space = FALSE)
 
-/datum/controller/subsystem/mapping/proc/add_new_zlevel(name, traits = list(), z_type = /datum/space_level)
+/datum/controller/subsystem/mapping/proc/add_new_zlevel(name, traits = list(), z_type = /datum/space_level, contain_turfs = TRUE)
+	UNTIL(!adding_new_zlevel)
+	adding_new_zlevel = TRUE
 	var/new_z = length(z_list) + 1
 	if (world.maxz < new_z)
 		world.incrementMaxZ()
 		CHECK_TICK
 	// TODO: sleep here if the Z level needs to be cleared
 	var/datum/space_level/S = new z_type(new_z, name, traits)
-	z_list += S
+	manage_z_level(S, filled_with_space = TRUE, contain_turfs = contain_turfs)
 	calculate_z_level_gravity(new_z)
+	adding_new_zlevel = FALSE
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NEW_Z, S)
 	return S
 

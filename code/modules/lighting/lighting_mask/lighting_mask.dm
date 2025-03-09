@@ -11,7 +11,6 @@
 	anchored = TRUE
 	plane = LIGHTING_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	layer = LIGHTING_SECONDARY_LAYER
 	invisibility = INVISIBILITY_LIGHTING
 	blend_mode = BLEND_ADD
 	appearance_flags = KEEP_TOGETHER|RESET_TRANSFORM

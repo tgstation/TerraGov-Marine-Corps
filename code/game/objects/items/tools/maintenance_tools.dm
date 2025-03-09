@@ -157,7 +157,7 @@
 // If welding tool ran out of fuel during a construction task, construction fails.
 /obj/item/tool/weldingtool/tool_use_check(mob/living/user, amount)
 	if(!isOn() || !check_fuel())
-		balloon_alert(user, "[src] not on")
+		balloon_alert(user, "not on")
 		return FALSE
 
 	if(get_fuel() < amount)
@@ -198,20 +198,18 @@
 			var/mob/living/L = O
 			L.IgniteMob()
 
-/obj/proc/handle_weldingtool_overlay(removing = FALSE)
-	if(!removing)
-		add_overlay(GLOB.welding_sparks)
-	else
-		cut_overlay(GLOB.welding_sparks)
+///fetches the correct weldint spark sprite to use. ideally we should replace this with an automatically centering system
+/atom/proc/get_weld_spark_icon_and_state()
+	return list('icons/effects/welding_effect.dmi', "welding_sparks")
 
 /obj/item/tool/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks)
-	if(isobj(target))
-		var/obj/O = target
-		O.handle_weldingtool_overlay()
-		. = ..()
-		O.handle_weldingtool_overlay(TRUE)
-	else
-		. = ..()
+	var/list/icons = target.get_weld_spark_icon_and_state()
+	var/mutable_appearance/sparks = mutable_appearance(icons[1], icons[2], WELDING_TOOL_EFFECT_LAYER, src, ABOVE_LIGHTING_PLANE)
+	target.add_overlay(sparks)
+	LAZYADD(update_overlays_on_z, sparks)
+	. = ..()
+	LAZYREMOVE(update_overlays_on_z, sparks)
+	target.cut_overlay(sparks)
 
 /obj/item/tool/weldingtool/attack_self(mob/user as mob)
 	if(!status)

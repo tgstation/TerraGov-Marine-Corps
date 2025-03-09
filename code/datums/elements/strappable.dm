@@ -37,6 +37,7 @@
 
 ///AI tries to toggle the strap
 /datum/element/strappable/proc/ai_try_strap(datum/source, mob/user, unequip = FALSE)
+	SIGNAL_HANDLER
 	if(HAS_TRAIT_FROM(source, TRAIT_NODROP, STRAPPABLE_ITEM_TRAIT))
 		if(!unequip)
 			return

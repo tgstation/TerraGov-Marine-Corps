@@ -47,6 +47,12 @@
 /// a client (re)connected, after all /client/New() checks have passed : (client/connected_client)
 #define COMSIG_GLOB_CLIENT_CONNECT "!client_connect"
 
+/// a weather event of some kind occurred
+#define COMSIG_WEATHER_TELEGRAPH(event_type) "!weather_telegraph [event_type]"
+#define COMSIG_WEATHER_START(event_type) "!weather_start [event_type]"
+#define COMSIG_WEATHER_WINDDOWN(event_type) "!weather_winddown [event_type]"
+#define COMSIG_WEATHER_END(event_type) "!weather_end [event_type]"
+
 #define COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED "!player_roundstart_spawned"
 #define COMSIG_GLOB_PLAYER_LATE_SPAWNED "!player_late_spawned"
 
@@ -139,6 +145,14 @@
 
 ///from /atom/notify_ai_hazard()
 #define COMSIG_GLOB_AI_HAZARD_NOTIFIED "!ai_hazard_notified"
+
+///from /mob/living/carbon/proc/on_crit()
+#define COMSIG_GLOB_MOB_ON_CRIT "!mob_on_crit"
+///from /datum/ai_behavior/human/proc/on_take_damage()
+#define COMSIG_GLOB_AI_NEED_HEAL "!ai_need_heal"
+
+///from /datum/emote/living/carbon/human/medic/run_emote()
+#define COMSIG_GLOB_MOB_CALL_MEDIC "!mob_call_medic"
 
 //////////////////////////////////////////////////////////////////
 // /datum/component signals
@@ -550,6 +564,16 @@
 #define COMSIG_MOB_EXAMINATE "mob_examinate"
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"				//from base of /mob/update_sight(): ()
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
+///from base of hud/show_to(): (datum/hud/hud_source)
+#define COMSIG_MOB_HUD_REFRESHED "mob_hud_refreshed"
+/// from base of /client/proc/set_eye() : (atom/old_eye, atom/new_eye)
+#define COMSIG_CLIENT_SET_EYE "client_set_eye"
+
+///from base of mob/set_sight(): (new_sight, old_sight)
+#define COMSIG_MOB_SIGHT_CHANGE "mob_sight_changed"
+///from base of mob/set_invis_see(): (new_invis, old_invis)
+#define COMSIG_MOB_SEE_INVIS_CHANGE "mob_see_invis_change"
+
 #define COMSIG_MOB_KEYBINDINGS_UPDATED "mob_bindings_changed"   //from base of datum/preferences/ui_act(): (/datum/keybinding)
 
 #define COMSIG_MOB_SHIELD_DETACH "mob_shield_detached"
@@ -596,13 +620,19 @@
 #define MOB_GET_DO_AFTER_COEFFICIENT "mob_get_do_after_coefficient"
 ///From get_zone_with_miss_chance
 #define MOB_GET_MISS_CHANCE_MOD "mob_get_miss_chance_mod"
-
+///From mob/living/carbon/human/has_ai()
+#define COMSIG_HUMAN_HAS_AI "human_has_ai"
+	#define MOB_HAS_AI (1<<0)
 ///AI mob wants to jump
 #define COMSIG_AI_JUMP "ai_jump"
 ///AI mob equipped a melee weapon
 #define COMSIG_AI_EQUIPPED_GUN "ai_equipped_gun"
 ///AI mob equipped a melee weapon
 #define COMSIG_AI_EQUIPPED_MELEE "ai_equipped_melee"
+///Mob being healed by an AI mob
+#define COMSIG_AI_HEALING_MOB "ai_healing_mob"
+///Mob AI healing finished
+#define COMSIG_AI_HEALING_FINISHED "ai_healing_finished"
 
 //mob/dead/observer
 #define COMSIG_OBSERVER_CLICKON "observer_clickon"				//from mob/dead/observer/ClickOn(): (atom/A, params)
@@ -848,7 +878,6 @@
 
 //Signals for ais
 #define COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED "escorting_behaviour_changed"
-#define COMSIG_ESCORTED_ATOM_CHANGING "escorted_atom_changing"
 #define COMSIG_POINT_TO_ATOM "point_to_atom"
 
 /// From reequip components

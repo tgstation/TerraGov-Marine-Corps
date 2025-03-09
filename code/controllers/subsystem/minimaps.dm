@@ -375,7 +375,7 @@ SUBSYSTEM_DEF(minimaps)
 	name = "Minimap"
 	icon = null
 	icon_state = ""
-	layer = ABOVE_HUD_LAYER
+	layer = MINIMAP_IMAGE_LAYER
 	screen_loc = "1,1"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	///assoc list of mob choices by clicking on coords. only exists fleetingly for the wait loop in [/proc/get_coords_from_click]
@@ -439,7 +439,7 @@ SUBSYSTEM_DEF(minimaps)
 	name = "You are here"
 	icon = 'icons/UI_icons/map_blips.dmi'
 	icon_state = "locator"
-	layer = INTRO_LAYER // 1 above minimap
+	layer = MINIMAP_LOCATOR_LAYER // 1 above minimap
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 ///updates the screen loc of the locator so that it's on the movers location on the minimap

@@ -90,7 +90,7 @@
 	if(!.)
 		return
 	if(src.reagents.total_volume >= 1)
-		src.visible_message(span_warning(" The [src] bursts!"),"You hear a pop and a splash.")
+		src.visible_message(span_warning("The [src] bursts!"),"You hear a pop and a splash.")
 		src.reagents.reaction(get_turf(hit_atom), TOUCH)
 		for(var/atom/A in get_turf(hit_atom))
 			src.reagents.reaction(A, TOUCH)
@@ -187,7 +187,7 @@
 	s.set_up(3, 1, src)
 	s.start()
 	new /obj/effect/decal/cleanable/ash(src.loc)
-	src.visible_message(span_warning(" The [src.name] explodes!"),span_warning(" You hear a snap!"))
+	src.visible_message(span_warning("The [src.name] explodes!"),span_warning("You hear a snap!"))
 	playsound(src, 'sound/effects/snap.ogg', 25, 1)
 	qdel(src)
 
@@ -204,7 +204,7 @@
 	s.set_up(2, 0, src)
 	s.start()
 	new /obj/effect/decal/cleanable/ash(src.loc)
-	visible_message(span_warning(" The [src.name] explodes!"),span_warning(" You hear a snap!"))
+	visible_message(span_warning("The [src.name] explodes!"),span_warning("You hear a snap!"))
 	playsound(src, 'sound/effects/snap.ogg', 25, 1)
 	qdel(src)
 
@@ -843,9 +843,9 @@
 				if(X.id == id)
 					X.score(side)
 					// no break, to update multiple scoreboards
-			visible_message(span_notice(" Swish! \the [I] lands in \the [src]."), 3)
+			visible_message(span_notice("Swish! \the [I] lands in \the [src]."), 3)
 		else
-			visible_message(span_warning(" \the [I] bounces off of \the [src]'s rim!"), 3)
+			visible_message(span_warning("\the [I] bounces off of \the [src]'s rim!"), 3)
 		return FALSE
 	else
 		return ..()

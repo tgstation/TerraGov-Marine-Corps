@@ -50,7 +50,9 @@
 /mob/living/carbon/xenomorph/proc/get_evolution_options()
 	. = list()
 	if(HAS_TRAIT(src, TRAIT_STRAIN_SWAP))
-		return xeno_caste.get_strain_options()
+		var/list/all_strains = get_strain_options(xeno_caste.type)
+		all_strains -= get_base_caste_type(xeno_caste.type)
+		return all_strains
 	if(HAS_TRAIT(src, TRAIT_CASTE_SWAP))
 		switch(tier)
 			if(XENO_TIER_ZERO, XENO_TIER_FOUR)
@@ -183,8 +185,8 @@
 		H.add_hud_to(new_xeno) //keep our mobhud choice
 		new_xeno.xeno_flags |= XENO_MOBHUD
 
-	if(lighting_alpha != new_xeno.lighting_alpha)
-		new_xeno.toggle_nightvision(lighting_alpha)
+	if(lighting_cutoff != new_xeno.lighting_cutoff)
+		new_xeno.toggle_nightvision(lighting_cutoff)
 
 	new_xeno.update_spits() //Update spits to new/better ones
 
@@ -316,8 +318,11 @@
 		if(death_timer)
 			to_chat(src, span_warning("The hivemind is still recovering from the last [initial(new_caste.display_name)]'s death. We must wait [DisplayTimeText(timeleft(death_timer))] before we can evolve."))
 			return FALSE
+
 	var/maximum_active_caste = new_caste.maximum_active_caste
-	if(maximum_active_caste != INFINITY && maximum_active_caste <= length(hive.xenos_by_typepath[new_caste_type]))
+	var/list/xenos = hive.get_all_caste_members(new_caste.type) - src // ignores outselves
+	var/active_caste = length(xenos)
+	if(maximum_active_caste != INFINITY && maximum_active_caste <= active_caste)
 		to_chat(src, span_warning("There is already a [initial(new_caste.display_name)] in the hive. We must wait for it to die."))
 		return FALSE
 	var/turf/T = get_turf(src)

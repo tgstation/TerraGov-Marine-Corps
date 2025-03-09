@@ -55,8 +55,7 @@
 	if(!l_hand)
 		W.forceMove(src)
 		l_hand = W
-		W.layer = ABOVE_HUD_LAYER
-		W.plane = ABOVE_HUD_PLANE
+		SET_PLANE_EXPLICIT(W, ABOVE_HUD_PLANE, src)
 		update_inv_l_hand()
 		W.pixel_x = initial(W.pixel_x)
 		W.pixel_y = initial(W.pixel_y)
@@ -83,8 +82,7 @@
 	if(!r_hand)
 		W.forceMove(src)
 		r_hand = W
-		W.layer = ABOVE_HUD_LAYER
-		W.plane = ABOVE_HUD_PLANE
+		SET_PLANE_EXPLICIT(W, ABOVE_HUD_PLANE, src)
 		update_inv_r_hand()
 		W.pixel_x = initial(W.pixel_x)
 		W.pixel_y = initial(W.pixel_y)
@@ -146,7 +144,7 @@
 		return FALSE
 	W.forceMove(get_turf(src))
 	W.layer = initial(W.layer)
-	W.plane = initial(W.plane)
+	SET_PLANE_EXPLICIT(W, initial(W.plane), src)
 	W.dropped(src)
 	return FALSE
 
@@ -260,6 +258,8 @@
  * If the item can be dropped, it will be forceMove()'d to the ground and the turf's Entered() will be called.
 */
 /mob/proc/dropItemToGround(obj/item/I, force = FALSE)
+	if(!I)
+		return
 	SEND_SIGNAL(src, COMSIG_MOB_DROPPING_ITEM)
 	. = UnEquip(I, force, drop_location())
 	if(.)
@@ -298,7 +298,7 @@
 	if (client)
 		client.screen -= I
 	I.layer = initial(I.layer)
-	I.plane = initial(I.plane)
+	SET_PLANE_EXPLICIT(I, initial(I.plane), src)
 	if(newloc)
 		I.forceMove(newloc)
 		I.removed_from_inventory(src)
