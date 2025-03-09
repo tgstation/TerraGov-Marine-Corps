@@ -1304,7 +1304,7 @@
 /datum/keybinding/xeno/backhand
 	name = "Backhand"
 	full_name = "Dragon: Backhand"
-	description = "After a windup, smack a group of marines in front of you away."
+	description = "Smack a group of marines in front of you away and stun them."
 	keybind_signal = COMSIG_XENOABILITY_BACKHAND
 	hotkey_keys = list("Z")
 
@@ -1325,7 +1325,7 @@
 /datum/keybinding/xeno/wind_current
 	name = "Wind Current"
 	full_name = "Dragon: Wind Current"
-	description = "After a windup, clear gas and knock away marines around you."
+	description = "After a windup, clear gas and knock away marines in a cone in front of you."
 	keybind_signal = COMSIG_XENOABILITY_WIND_CURRENT
 	hotkey_keys = list("V")
 
@@ -1353,7 +1353,7 @@
 /datum/keybinding/xeno/scorched_land
 	name = "Scorched Land"
 	full_name = "Dragon: Scorched Land"
-	description = "Blast a line of fire in a direction and then immediately land afterward."
+	description = "While flying, blast a line of fire in a direction."
 	keybind_signal = COMSIG_XENOABILITY_SCORCHED_LAND
 	hotkey_keys = list("G")
 

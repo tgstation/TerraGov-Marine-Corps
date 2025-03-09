@@ -275,7 +275,9 @@
 		affected_turf.Shake(duration = 0.2 SECONDS)
 		for(var/atom/affected_atom AS in affected_turf)
 			if(isxeno(affected_atom))
-				continue
+				var/mob/living/carbon/xenomorph/affected_xenomorph = affected_atom
+				if(xeno_owner.issamexenohive(affected_xenomorph))
+					continue
 			if(isliving(affected_atom))
 				var/mob/living/affected_living = affected_atom
 				if(affected_living.stat == DEAD)
@@ -460,7 +462,6 @@
 				var/mob/living/carbon/xenomorph/affected_xenomorph = affected_atom
 				if(xeno_owner.issamexenohive(affected_xenomorph))
 					continue
-				continue
 			if(!isliving(affected_atom))
 				continue
 			var/mob/living/affected_living = affected_atom
@@ -501,7 +502,7 @@
 	name = "Wind Current"
 	action_icon_state = "wind_current"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = "After a windup, deal high damage and a knockback to marines around. This also clear any gas."
+	desc = "After a short windup, deal high damage and a knockback to marines in a cone in front of you. This also clear any gas."
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WIND_CURRENT,
@@ -549,7 +550,6 @@
 				var/mob/living/carbon/xenomorph/impacted_xenomorph = impacted_atom
 				if(xeno_owner.issamexenohive(impacted_xenomorph))
 					continue
-				continue
 			if(isliving(impacted_atom))
 				var/mob/living/impacted_living = impacted_atom
 				if(impacted_living.stat == DEAD)
