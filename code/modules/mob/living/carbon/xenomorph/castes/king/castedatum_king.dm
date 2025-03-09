@@ -119,15 +119,15 @@
 	attack_delay = 7
 
 	// *** Speed *** //
-	speed = -0.6
+	speed = -0.7
 	weeds_speed_mod = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 600
-	plasma_gain = 30
+	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 600
+	max_health = 800
 
 	// *** Sunder *** //
 	sunder_multiplier = 1.0
@@ -137,10 +137,10 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_STRONG|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
-	caste_traits = list(TRAIT_STUNIMMUNE, TRAIT_STAGGERIMMUNE, TRAIT_STOPS_TANK_COLLISION)
+	caste_traits = list(TRAIT_STAGGERIMMUNE, TRAIT_STOPS_TANK_COLLISION)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 60, ACID = 60)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 60, BIO = 60, FIRE = 60, ACID = 60)
 
 	// *** Pheromones *** //
 	aura_strength = 3.0

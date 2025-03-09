@@ -7,7 +7,6 @@
 // *********** Conqueror's Dash
 // ***************************************
 #define CONQUEROR_DASH_RANGE 2 // How far we can go with this ability.
-#define CONQUEROR_DASH_BOOSTED_COOLDOWN 1 SECONDS // The new cooldown for this ability for when it is boosted by Obliteration.
 
 /datum/action/ability/xeno_action/conqueror_dash
 	name = "Dash"
@@ -15,8 +14,8 @@
 	action_type = ACTION_TOGGLE
 	action_icon = 'icons/Xeno/actions/wraith.dmi'
 	action_icon_state = "rewind"
-	ability_cost = 25
-	cooldown_duration = 3 SECONDS
+	ability_cost = 15
+	cooldown_duration = 3.5 SECONDS
 	use_state_flags = ABILITY_USE_FORTIFIED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CONQUEROR_DASH,
@@ -67,7 +66,7 @@
 
 /// Enables the ability.
 /datum/action/ability/xeno_action/conqueror_dash/proc/enable_ability()
-	RegisterSignal(xeno_owner, COMSIG_MOB_DEATH, PROC_REF(disable_ability))
+	RegisterSignal(xeno_owner, COMSIG_MOB_DEATH, PROC_REF(on_death))
 	RegisterSignal(xeno_owner, COMSIG_KB_MOVEMENT_EAST_DOWN, PROC_REF(dash_east))
 	RegisterSignal(xeno_owner, COMSIG_KB_MOVEMENT_NORTH_DOWN, PROC_REF(dash_north))
 	RegisterSignal(xeno_owner, COMSIG_KB_MOVEMENT_SOUTH_DOWN, PROC_REF(dash_south))
@@ -77,6 +76,12 @@
 /datum/action/ability/xeno_action/conqueror_dash/proc/disable_ability()
 	SIGNAL_HANDLER
 	UnregisterSignal(xeno_owner, list(COMSIG_MOB_DEATH, COMSIG_KB_MOVEMENT_EAST_DOWN, COMSIG_KB_MOVEMENT_NORTH_DOWN, COMSIG_KB_MOVEMENT_SOUTH_DOWN, COMSIG_KB_MOVEMENT_WEST_DOWN))
+
+/// If the user dies, a check will be added in the case of revival, to reenable the ability.
+/datum/action/ability/xeno_action/conqueror_dash/proc/on_death()
+	SIGNAL_HANDLER
+	disable_ability()
+	RegisterSignal(xeno_owner, COMSIG_MOB_REVIVE, PROC_REF(enable_ability))
 
 /// Checks if we can dash to the east.
 /datum/action/ability/xeno_action/conqueror_dash/proc/dash_east()
@@ -164,13 +169,10 @@
 #define CONQUEROR_WILL_DASH_RANGE 2 // The range for most of this ability's bonuses (in tiles).
 #define CONQUEROR_WILL_MAX_COMBO 3 // The maximum amount of hits that a combo can have.
 #define CONQUEROR_WILL_RESET_TIME 6 SECONDS // The time before the ability's combo is reset.
-#define CONQUEROR_WILL_PUNCH_DEBUFF 1.6 SECONDS // The duration of this ability's combo debuffs.
+#define CONQUEROR_WILL_COMBO_DEBUFF 1.5 SECONDS // The duration of this ability's combo debuffs.
 #define CONQUEROR_WILL_JAB_MULTIPLIER 0.2 // The damage multiplier for this ability's Jab combo, as a percentage (0.2 = 20%)
 #define CONQUEROR_WILL_JAB_PENETRATION 100 // The penetration bonus for this ability's Jab combo.
-#define CONQUEROR_WILL_KICK_DEBUFF 0.5 SECONDS // The duration of this ability's kick combo debuff.
-#define CONQUEROR_WILL_KICK_PUSH 3 // How far the kick combo will fling victims away.
-
-#define CONQUEROR_WILL_BOOSTED_ATTACK_RANGE 7 // The range for most of this ability's bonuses, when boosted by Obliteration.
+#define CONQUEROR_WILL_KICK_PUSH 2 // How far the kick combo will fling victims away.
 
 // Combo defines. L represents left click, and R represents right click.
 #define COMBO_LEFT_RIGHT "LR"
@@ -183,7 +185,7 @@
 	desc = "Imbue your punches with charged plasma. Upgrades attacks, and allows you to execute powerful combos while this ability is selected."
 	action_icon = 'icons/Xeno/actions/warrior.dmi'
 	action_icon_state = "punch"
-	cooldown_duration = 15 SECONDS
+	cooldown_duration = 10 SECONDS
 	use_state_flags = ABILITY_USE_BUCKLED|ABILITY_USE_STAGGERED|ABILITY_IGNORE_COOLDOWN|ABILITY_DO_AFTER_ATTACK
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CONQUEROR_WILL,
@@ -201,17 +203,19 @@
 
 /datum/action/ability/activable/xeno/conqueror_will/give_action(mob/living/L)
 	. = ..()
-	particle_holder = new(xeno_owner, /particles/conqueror_will)
+	xeno_owner.attack_sound = null
+	xeno_owner.attack_effect = null
 	enable_ability()
 
 /datum/action/ability/activable/xeno/conqueror_will/remove_action(mob/living/L)
-	QDEL_NULL(particle_holder)
+	xeno_owner.attack_sound = initial(xeno_owner.attack_sound)
+	xeno_owner.attack_effect = initial(xeno_owner.attack_effect)
 	disable_ability()
 	return ..()
 
 /datum/action/ability/activable/xeno/conqueror_will/on_cooldown_finish()
 	. = ..()
-	xeno_owner.playsound_local(xeno_owner, 'sound/effects/alien/new_larva.ogg', 35, 0)
+	xeno_owner.playsound_local(xeno_owner, 'sound/effects/alien/new_larva.ogg', 30, 0)
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
 
 /// Toggles the combo display.
@@ -223,32 +227,31 @@
 		xeno_owner.hud_used?.combo_display.reset_icons()
 
 /datum/action/ability/activable/xeno/conqueror_will/clean_action()
-	QDEL_NULL(particle_holder)
 	disable_ability()
 	return ..()
 
 /// Enables the ability.
 /datum/action/ability/activable/xeno/conqueror_will/proc/enable_ability()
-	xeno_owner.attack_sound = null
-	xeno_owner.attack_effect = null
-	if(particle_holder)
-		particle_holder.alpha = initial(particle_holder.alpha)
-		adjust_particles(new_dir = xeno_owner.dir)
-	RegisterSignals(xeno_owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_DO_RESIST, COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST), PROC_REF(adjust_particles))
+	if(!particle_holder)
+		particle_holder = new(xeno_owner, /particles/conqueror_will)
+	adjust_particles(new_dir = xeno_owner.dir)
+	RegisterSignal(xeno_owner, COMSIG_MOB_DEATH, PROC_REF(on_death))
+	RegisterSignals(xeno_owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_DO_RESIST, COMSIG_LIVING_STATUS_KNOCKDOWN, COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST), PROC_REF(adjust_particles))
 	RegisterSignal(xeno_owner, COMSIG_MOB_CLICKON, PROC_REF(check_range)) // Happens before the xeno actually attacks.
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_PRE_ATTACK_ALIEN_HARM, PROC_REF(add_to_attack))
-	RegisterSignals(xeno_owner, list(COMSIG_MOB_DEATH), PROC_REF(disable_ability))
-	UnregisterSignal(xeno_owner, COMSIG_MOB_REVIVE)
 
 /// Disables the ability.
 /datum/action/ability/activable/xeno/conqueror_will/proc/disable_ability()
 	SIGNAL_HANDLER
-	xeno_owner.attack_sound = initial(xeno_owner.attack_sound)
-	xeno_owner.attack_effect = initial(xeno_owner.attack_effect)
-	particle_holder?.alpha = 0
-	UnregisterSignal(xeno_owner, list(COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_DO_RESIST, COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST, COMSIG_MOB_CLICKON, COMSIG_XENOMORPH_PRE_ATTACK_ALIEN_HARM, COMSIG_MOB_DEATH))
+	reset_combo(TRUE)
+	QDEL_NULL(particle_holder)
+	UnregisterSignal(xeno_owner, list(COMSIG_MOB_DEATH, COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_DO_RESIST, COMSIG_XENOMORPH_REST, COMSIG_XENOMORPH_UNREST, COMSIG_MOB_CLICKON, COMSIG_XENOMORPH_PRE_ATTACK_ALIEN_HARM))
+
+/// If the user dies, a check will be added in the case of revival, to reenable the ability.
+/datum/action/ability/activable/xeno/conqueror_will/proc/on_death()
+	SIGNAL_HANDLER
+	disable_ability()
 	RegisterSignal(xeno_owner, COMSIG_MOB_REVIVE, PROC_REF(enable_ability))
-	reset_combo()
 
 /// Adjusts particles to match the user. Alignments are hand picked, and may have to be remade if the Conqueror's icon ever changes.
 /datum/action/ability/activable/xeno/conqueror_will/proc/adjust_particles(datum/source, unused, new_dir)
@@ -269,31 +272,33 @@
 			particle_holder.pixel_x = xeno_owner.pixel_x + 32
 
 /// Checks if an eligible target is within the specified range. If true, the user will be moved towards them.
-/datum/action/ability/activable/xeno/conqueror_will/proc/check_range(datum/source, atom/atom_target)
+/datum/action/ability/activable/xeno/conqueror_will/proc/check_range(datum/source, atom/atom_target, params)
 	SIGNAL_HANDLER
-	if(atom_target.issamexenohive(xeno_owner) || xeno_owner.buckled || xeno_owner.a_intent != INTENT_HARM || world.time <= xeno_owner.next_move)
+	var/list/modifiers = params2list(params)
+	if(modifiers["shift"] || modifiers["ctrl"] || modifiers["alt"])
 		return
-	if(!line_of_sight(xeno_owner, atom_target, CONQUEROR_WILL_DASH_RANGE))
+	if(xeno_owner.buckled || world.time <= xeno_owner.next_move)
 		return
 	if(!can_use_action(TRUE))
 		return
-	if(isturf(atom_target))
-		for(var/mob/potential_mob in get_turf(atom_target))
-			if(potential_mob.issamexenohive(xeno_owner) || potential_mob.stat == DEAD)
-				continue
-			if(iscarbon(potential_mob))
-				atom_target = potential_mob
+	var/list/turf/turfs_to_check = get_line(xeno_owner.loc, atom_target) - xeno_owner.loc
+	while(length(turfs_to_check) > CONQUEROR_WILL_DASH_RANGE)
+		pop(turfs_to_check)
+	for(var/turf/turf_to_check AS in turfs_to_check)
+		for(var/atom/atom_to_check in turf_to_check)
+			if(!atom_to_check.CanPass(xeno_owner, turf_to_check))
 				break
-	if(!iscarbon(atom_target))
-		return
-	var/mob/living/carbon/carbon_target = atom_target
-	if(carbon_target.stat == DEAD)
-		return
-	var/distance = get_dist(xeno_owner, carbon_target)
-	if(distance <= 1 || distance > CONQUEROR_WILL_DASH_RANGE)
-		return
-	playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_enhanced_charge.ogg', 8, TRUE)
-	step_towards(xeno_owner, carbon_target, CONQUEROR_WILL_DASH_RANGE - 1)
+		for(var/mob/potential_mob in turf_to_check)
+			if(!iscarbon(potential_mob))
+				continue
+			if(!line_of_sight(potential_mob, xeno_owner, CONQUEROR_WILL_DASH_RANGE))
+				continue
+			if(potential_mob.stat == DEAD || potential_mob.issamexenohive(xeno_owner))
+				continue
+			if(!potential_mob.Adjacent(xeno_owner))
+				playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_enhanced_charge.ogg', 7, TRUE)
+				step_towards(xeno_owner, potential_mob, get_dist(xeno_owner, potential_mob) - 1)
+			break
 
 /// Adds bonuses to normal attacks, usually replacing visuals and sound effects, and builds up combos if the ability isn't on cooldown.
 /datum/action/ability/activable/xeno/conqueror_will/proc/add_to_attack(datum/source, mob/living/living_target, isrightclick = FALSE)
@@ -307,7 +312,7 @@
 	if(length(combo_streak) < CONQUEROR_WILL_MAX_COMBO)
 		no_combo(living_target)
 		if(action_cooldown_check() && xeno_owner.selected_ability == src)
-			reset_timer = addtimer(CALLBACK(src, PROC_REF(reset_combo), FALSE), CONQUEROR_WILL_RESET_TIME, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+			reset_timer = addtimer(CALLBACK(src, PROC_REF(reset_combo)), CONQUEROR_WILL_RESET_TIME, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 			warning_timer = addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/mob, playsound_local), xeno_owner, 'sound/voice/hiss4.ogg', 25, TRUE), CONQUEROR_WILL_RESET_TIME - 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 		return
 	var/combo_check = CONQUEROR_WILL_MAX_COMBO - 1
@@ -321,11 +326,11 @@
 		combo_kick(living_target)
 	playsound(living_target, 'sound/effects/alien/conqueror/will_extra_3.ogg', 20, TRUE)
 	playsound(xeno_owner, 'sound/voice/alien/roar2.ogg', 20, TRUE)
-	reset_combo()
+	reset_combo(TRUE)
 	add_cooldown()
 
 /// Resets any ongoing combos.
-/datum/action/ability/activable/xeno/conqueror_will/proc/reset_combo(silent = TRUE)
+/datum/action/ability/activable/xeno/conqueror_will/proc/reset_combo(silent = FALSE)
 	if(display_combos)
 		if(!silent)
 			xeno_owner.hud_used?.combo_display.reset_icons()
@@ -348,46 +353,47 @@
 
 /// A well delivered punch to a weak point, incapacitating the target for the duration.
 /datum/action/ability/activable/xeno/conqueror_will/proc/combo_punch(mob/living/living_target)
-	step_away(living_target, xeno_owner)
 	playsound(living_target, 'sound/effects/alien/conqueror/will_punch.ogg', 40, TRUE)
 	new /obj/effect/temp_visual/conqueror/hook/punch(living_target.loc)
-	living_target.Immobilize(CONQUEROR_WILL_PUNCH_DEBUFF)
 	living_target.do_attack_animation(get_step(living_target, REVERSE_DIR(get_dir(living_target, xeno_owner))))
-	living_target.do_jitter_animation(700, CONQUEROR_WILL_PUNCH_DEBUFF / 10)
+	living_target.do_jitter_animation(700, CONQUEROR_WILL_COMBO_DEBUFF / 10)
+	living_target.knockback(xeno_owner, 1, 1)
+	var/immobilize_time = CONQUEROR_WILL_COMBO_DEBUFF * 0.7
+	living_target.Immobilize(immobilize_time)
+	addtimer(CALLBACK(living_target, TYPE_PROC_REF(/mob/living, Knockdown), CONQUEROR_WILL_COMBO_DEBUFF * 0.3), immobilize_time)
 	INVOKE_ASYNC(living_target, TYPE_PROC_REF(/mob, emote), "gored")
 
 /// A strong uppercut that knocks the target upwards, incapacitating them for the duration.
 /datum/action/ability/activable/xeno/conqueror_will/proc/combo_uppercut(mob/living/living_target)
 	playsound(living_target, 'sound/effects/alien/conqueror/will_uppercut.ogg', 40, TRUE)
 	new /obj/effect/temp_visual/conqueror/hook/uppercut(living_target.loc)
-	living_target.Immobilize(CONQUEROR_WILL_PUNCH_DEBUFF * 0.8)
+	var/immobilize_duration = CONQUEROR_WILL_COMBO_DEBUFF * 0.8
+	living_target.Immobilize(immobilize_duration)
 	if(!(living_target.pass_flags & PASS_MOB))
 		living_target.pass_flags |= PASS_MOB
-	step_away(living_target, xeno_owner)
-	addtimer(CALLBACK(src, PROC_REF(uppercut_landing), living_target), CONQUEROR_WILL_PUNCH_DEBUFF * 0.8)
-	animate(living_target, pixel_y = living_target.pixel_y + 50, time = CONQUEROR_WILL_PUNCH_DEBUFF * 0.4, easing = SINE_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
-	animate(pixel_y = living_target.pixel_y - 50, time = CONQUEROR_WILL_PUNCH_DEBUFF * 0.4, easing = SINE_EASING|EASE_OUT)
+	living_target.knockback(xeno_owner, 1, 1)
+	addtimer(CALLBACK(src, PROC_REF(uppercut_landing), living_target, CONQUEROR_WILL_COMBO_DEBUFF * 0.2), immobilize_duration)
+	animate(living_target, pixel_y = living_target.pixel_y + 70, time = immobilize_duration * 0.3, easing = SINE_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
+	animate(time = immobilize_duration * 0.4)
+	animate(pixel_y = living_target.pixel_y - 70, time = immobilize_duration * 0.3, easing = SINE_EASING|EASE_IN)
 	INVOKE_ASYNC(living_target, TYPE_PROC_REF(/mob, emote), "gored")
 
 /// After the target lands, certain traits are reset, and the rest of the effects are applied.
-/datum/action/ability/activable/xeno/conqueror_will/proc/uppercut_landing(mob/living/living_target)
+/datum/action/ability/activable/xeno/conqueror_will/proc/uppercut_landing(mob/living/living_target, debuff_duration)
 	if(!living_target)
 		return
 	if(living_target.pass_flags & PASS_MOB)
 		living_target.pass_flags &= ~PASS_MOB
 	playsound(living_target, 'sound/effects/alien/conqueror/will_uppercut_landing.ogg', 30, TRUE)
-	new /obj/effect/temp_visual/conqueror/uppercut_landing(living_target.loc)
-	living_target.Knockdown(CONQUEROR_WILL_PUNCH_DEBUFF * 0.2)
+	living_target.Knockdown(debuff_duration)
 
 /// A flurry of rapid and precise strikes, dealing additional damage.
 /datum/action/ability/activable/xeno/conqueror_will/proc/combo_jab(mob/living/living_target)
 	playsound(living_target, 'sound/effects/alien/conqueror/will_jab.ogg', 40, TRUE)
 	addtimer(CALLBACK(src, GLOBAL_PROC_REF(playsound), living_target, 'sound/effects/alien/conqueror/will_extra_3.ogg', 15, TRUE), 0.2 SECONDS, TIMER_CLIENT_TIME)
 	new /obj/effect/temp_visual/conqueror/hook/jab/initial(living_target.loc)
-	var/jab_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * CONQUEROR_WILL_JAB_MULTIPLIER
-	var/jab_zone = xeno_owner.get_limb(xeno_owner.zone_selected)
-	living_target.apply_damage(jab_damage, BRUTE, jab_zone, MELEE, TRUE, TRUE, TRUE, CONQUEROR_WILL_JAB_PENETRATION)
 	living_target.do_attack_animation(get_step(living_target, REVERSE_DIR(get_dir(living_target, xeno_owner))))
+	living_target.apply_damage((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * CONQUEROR_WILL_JAB_MULTIPLIER, BRUTE, xeno_owner.get_limb(xeno_owner.zone_selected), MELEE, TRUE, TRUE, TRUE, CONQUEROR_WILL_JAB_PENETRATION)
 	INVOKE_ASYNC(living_target, TYPE_PROC_REF(/mob, emote), "pain")
 
 /// A mighty kick that sends the target flying. If they collide with another atom, that atom is also affected.
@@ -398,8 +404,7 @@
 		living_target.pass_flags |= PASS_XENO
 	RegisterSignal(living_target, COMSIG_MOVABLE_IMPACT, PROC_REF(kicked_into))
 	RegisterSignal(living_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(kicked_end))
-	var/push_direction = get_dir(xeno_owner, living_target)
-	living_target.throw_at(get_ranged_target_turf(xeno_owner, push_direction, CONQUEROR_WILL_KICK_PUSH), CONQUEROR_WILL_KICK_PUSH, 1, xeno_owner, TRUE)
+	living_target.knockback(xeno_owner, CONQUEROR_WILL_KICK_PUSH, 1)
 	INVOKE_ASYNC(living_target, TYPE_PROC_REF(/mob, emote), "scream")
 
 /// If the target collides into another atom, that atom is affected. Taken from Warrior code.
@@ -407,7 +412,6 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_MOVABLE_IMPACT)
 	var/mob/living/living_target = source
-	living_target.Knockdown(CONQUEROR_WILL_KICK_DEBUFF)
 	new /obj/effect/temp_visual/warrior/impact(living_target.loc, get_dir(living_target, xeno_owner))
 	if(!isliving(hit_atom))
 		return
@@ -417,8 +421,8 @@
 	INVOKE_ASYNC(hit_living, TYPE_PROC_REF(/mob, emote), "scream")
 	playsound(hit_living, 'sound/weapons/punch1.ogg', 30, TRUE)
 	hit_living.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, 0, MELEE, TRUE, TRUE, TRUE, xeno_owner.xeno_caste.melee_ap)
-	hit_living.Knockdown(CONQUEROR_WILL_KICK_DEBUFF)
-	step_away(hit_living, living_target, 1, 1)
+	hit_living.Knockdown(CONQUEROR_WILL_COMBO_DEBUFF * 2)
+	hit_living.knockback(living_target, 1, 1)
 
 /// Ends the target's throw. Taken from Warrior code.
 /datum/action/ability/activable/xeno/conqueror_will/proc/kicked_end(datum/source)
@@ -429,7 +433,7 @@
 	it at that point would cause thrown_into() to never get called, and that is exactly the reason why the line of code below exists. */
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, UnregisterSignal), source, COMSIG_MOVABLE_IMPACT, COMSIG_MOVABLE_POST_THROW), 0.5)
 	var/mob/living/living_target = source
-	living_target.Knockdown(CONQUEROR_WILL_KICK_DEBUFF)
+	living_target.Knockdown(CONQUEROR_WILL_COMBO_DEBUFF)
 	if(living_target.pass_flags & PASS_XENO)
 		living_target.pass_flags &= ~PASS_XENO
 
@@ -471,8 +475,8 @@
 
 /obj/effect/temp_visual/conqueror/hook/jab/Initialize(mapload)
 	. = ..()
-	pixel_x += rand(-5, 5)
-	pixel_y += rand(-5, 5)
+	pixel_x += rand(-6, 6)
+	pixel_y += rand(-6, 6)
 
 /obj/effect/temp_visual/conqueror/hook/jab/initial/Initialize(mapload)
 	. = ..()
@@ -482,23 +486,12 @@
 /obj/effect/temp_visual/conqueror/hook/jab/initial/proc/repeat_effect()
 	new /obj/effect/temp_visual/conqueror/hook/jab/duplicate(loc)
 
-// This is not the looping part anymore! This is where it ends.
-/obj/effect/temp_visual/conqueror/hook/jab/duplicate
+/obj/effect/temp_visual/conqueror/hook/jab/duplicate // This doesn't loop anymore, for the record.
 
 /obj/effect/temp_visual/conqueror/hook/uppercut
 	icon_state = "conqueror_uppercut"
 	duration = 5
 	pixel_y = 2
-
-/obj/effect/temp_visual/conqueror/uppercut_landing
-	icon_state = "behemoth_stomp"
-	duration = 5
-
-/obj/effect/temp_visual/conqueror/uppercut_landing/Initialize(mapload)
-	. = ..()
-	var/matrix/current_matrix = matrix()
-	current_matrix.Scale(2.2, 2.2)
-	animate(src, alpha = 0, transform = matrix().Scale(0.6, 0.6), time = duration - 0.1 SECONDS, easing = CIRCULAR_EASING|EASE_OUT)
 
 /obj/effect/temp_visual/conqueror/hook/kick
 	icon_state = "conqueror_kick"
@@ -511,6 +504,7 @@
 #define CONQUEROR_ENDURANCE_SPEED_MODIFIER 2.5 // Speed modifier applied while this ability is active.
 #define CONQUEROR_ENDURANCE_SUNDER_MULTIPLIER 0 // Amount of sunder reduction applied while this ability is active (as a percentage; 0 is 100%).
 #define CONQUEROR_ENDURANCE_DAMAGE_REDUCTION 0.5 // Amount of damage reduction applied while this ability is active (as a percentage).
+#define CONQUEROR_ENDURANCE_BROKEN_KNOCKDOWN 1.5 SECONDS // Duration of the debuff inflicted when this ability loses all of its resource.
 
 /datum/action/ability/xeno_action/conqueror_endurance
 	name = "Endurance"
@@ -518,7 +512,7 @@
 	action_type = ACTION_TOGGLE
 	action_icon = 'icons/Xeno/actions/defender.dmi'
 	action_icon_state = "fortify"
-	cooldown_duration = 2 SECONDS
+	cooldown_duration = 0.2 SECONDS
 	use_state_flags = ABILITY_USE_BUCKLED|ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_HOLD,
@@ -529,49 +523,84 @@
 
 /datum/action/ability/xeno_action/conqueror_endurance/give_action(mob/living/L)
 	. = ..()
+	xeno_owner.endurance_health_max = xeno_owner.xeno_caste.max_health * 2
+	xeno_owner.endurance_health = xeno_owner.endurance_health_max
+	START_PROCESSING(SSprocessing, src)
 	particle_holder = new(xeno_owner, /particles/conqueror_endurance)
 	adjust_particles()
 
 /datum/action/ability/xeno_action/conqueror_endurance/remove_action(mob/living/L)
+	if(datum_flags & DF_ISPROCESSING)
+		STOP_PROCESSING(SSprocessing, src)
 	if(toggled)
 		disable_ability()
 	return ..()
+
+/datum/action/ability/xeno_action/conqueror_endurance/clean_action()
+	if(datum_flags & DF_ISPROCESSING)
+		STOP_PROCESSING(SSprocessing, src)
+	if(toggled)
+		disable_ability()
+	return ..()
+
+/datum/action/ability/xeno_action/conqueror_endurance/can_use_action(silent, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(xeno_owner.endurance_broken)
+		return FALSE
+	return TRUE
 
 /datum/action/ability/xeno_action/conqueror_endurance/keybind_activation()
 	if(can_use_action())
 		INVOKE_ASYNC(src, PROC_REF(toggle_ability), TRUE)
 	return COMSIG_KB_ACTIVATED
 
+// Should only happen when clicking on the button. Toggle functionality.
 /datum/action/ability/xeno_action/conqueror_endurance/action_activate()
 	. = ..()
 	toggle_ability()
 
+// Should only happen when clicking on the button OR using the alternate keybind. Toggle functionality.
 /datum/action/ability/xeno_action/conqueror_endurance/alternate_action_activate()
 	. = ..()
 	toggle_ability()
 
-/datum/action/ability/xeno_action/conqueror_endurance/clean_action()
-	if(toggled)
-		disable_ability()
-	return ..()
+/datum/action/ability/xeno_action/conqueror_endurance/process()
+	if(xeno_owner.stat == DEAD)
+		if(datum_flags & DF_ISPROCESSING)
+			STOP_PROCESSING(SSprocessing, src)
+		RegisterSignal(xeno_owner, COMSIG_MOB_REVIVE, PROC_REF(restart_regen))
+		return
+	if(xeno_owner.endurance_health >= xeno_owner.endurance_health_max)
+		return
+	if(!xeno_owner.loc_weeds_type && !(xeno_owner.xeno_caste.caste_flags & CASTE_INNATE_HEALING))
+		return
+	var/regen_amount = 1 + (xeno_owner.xeno_caste.max_health * 0.0375)
+	if(xeno_owner.recovery_aura)
+		regen_amount += (xeno_owner.recovery_aura * xeno_owner.xeno_caste.max_health * 0.01)
+	if(xeno_owner.regen_power < 0)
+		return
+	regen_amount *= xeno_owner.regen_power
+	xeno_owner.endurance_health = clamp(xeno_owner.endurance_health + regen_amount, 0, xeno_owner.endurance_health_max)
+	if(xeno_owner.endurance_health >= xeno_owner.endurance_health_max && xeno_owner.endurance_broken)
+		xeno_owner.endurance_broken = FALSE
 
 /// Toggles the ability.
 /datum/action/ability/xeno_action/conqueror_endurance/proc/toggle_ability(keybind = FALSE)
 	SIGNAL_HANDLER
-	toggled = !toggled
-	set_toggle(toggled)
-	xeno_owner.fortify = !xeno_owner.fortify // Prevents attacking while this ability is active.
-	if(!toggled)
+	if(toggled)
 		disable_ability()
-		add_cooldown()
 		return
 	enable_ability(keybind)
 
 /// Enables the ability.
 /datum/action/ability/xeno_action/conqueror_endurance/proc/enable_ability(keybind)
+	toggled = TRUE
+	set_toggle(TRUE)
+	xeno_owner.fortify = TRUE
 	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_CONQUEROR_ENDURANCE, TRUE, 0, NONE, TRUE, CONQUEROR_ENDURANCE_SPEED_MODIFIER)
 	xeno_owner.xeno_caste.sunder_multiplier = CONQUEROR_ENDURANCE_SUNDER_MULTIPLIER
-	ADD_TRAIT(xeno_owner, TRAIT_NOPLASMAREGEN, FORTIFY_TRAIT)
 	RegisterSignal(xeno_owner, COMSIG_MOB_DEATH, PROC_REF(disable_ability))
 	RegisterSignals(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(reduce_damage))
 	if(keybind && xeno_owner.client)
@@ -580,20 +609,33 @@
 /// Disables the ability.
 /datum/action/ability/xeno_action/conqueror_endurance/proc/disable_ability()
 	SIGNAL_HANDLER
+	toggled = FALSE
+	set_toggle(FALSE)
+	xeno_owner.fortify = FALSE
 	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_CONQUEROR_ENDURANCE)
 	xeno_owner.xeno_caste.sunder_multiplier = initial(xeno_owner.xeno_caste.sunder_multiplier)
-	REMOVE_TRAIT(xeno_owner, TRAIT_NOPLASMAREGEN, FORTIFY_TRAIT)
+	add_cooldown()
 	UnregisterSignal(xeno_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
 	if(xeno_owner.client)
 		UnregisterSignal(xeno_owner.client, COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_UP)
 
-/// Reduces damage received.
+/// Reduces damage received and deduces that amount from this ability's health.
 /datum/action/ability/xeno_action/conqueror_endurance/proc/reduce_damage(datum/source, amount, list/amount_mod)
 	SIGNAL_HANDLER
 	if(amount <= 0 || xeno_owner.stat || xeno_owner.lying_angle)
 		return
-	amount_mod += amount * CONQUEROR_ENDURANCE_DAMAGE_REDUCTION
 	adjust_particles()
+	amount_mod += amount * CONQUEROR_ENDURANCE_DAMAGE_REDUCTION
+	xeno_owner.endurance_health = clamp(xeno_owner.endurance_health - amount, 0, xeno_owner.endurance_health_max)
+	if(!xeno_owner.endurance_health)
+		endurance_broken()
+
+/// If this ability loses all of its health, it will knock down the user and prevent the ability from being used until it has regenerated.
+/datum/action/ability/xeno_action/conqueror_endurance/proc/endurance_broken()
+	disable_ability()
+	xeno_owner.endurance_broken = TRUE
+	INVOKE_ASYNC(xeno_owner, TYPE_PROC_REF(/mob, emote), "hiss1")
+	xeno_owner.Knockdown(CONQUEROR_ENDURANCE_BROKEN_KNOCKDOWN)
 
 /// Adjust particles and their visuals.
 /datum/action/ability/xeno_action/conqueror_endurance/proc/adjust_particles()
@@ -604,6 +646,11 @@
 	particle_holder.pixel_x = xeno_owner.pixel_x + 32
 	particle_holder.alpha = initial(particle_holder.alpha)
 	animate(particle_holder, alpha = 0, time = 0.2 SECONDS)
+
+/// Restarts regeneration if the user died and was revived.
+/datum/action/ability/xeno_action/conqueror_endurance/proc/restart_regen()
+	SIGNAL_HANDLER
+	START_PROCESSING(SSprocessing, src)
 
 /particles/conqueror_endurance
 	icon = 'icons/effects/particles/conqueror.dmi'
@@ -618,17 +665,18 @@
 // *********** Conqueror's Domination
 // ***************************************
 #define CONQUEROR_DOMINATION_CASTING_RANGE 5 // The casting range for this ability, in tiles.
-#define CONQUEROR_DOMINATION_CASTING_DELAY 1.5 SECONDS // The wind-up delay for this ability.
+#define CONQUEROR_DOMINATION_CASTING_DELAY 1.2 SECONDS // The wind-up delay for this ability.
 #define CONQUEROR_DOMINATION_EFFECT_RADIUS 2 // The radius for this ability's area of effect, in tiles.
 #define CONQUEROR_DOMINATION_MAX_PUSH_RANGE 3 // How far can our ability knock back its victims.
+#define CONQUEROR_DOMINATION_KNOCKDOWN 0.8 SECONDS // The stacks or duration of this ability's debuffs, if any.
 
 /datum/action/ability/activable/xeno/conqueror_domination
 	name = "Domination"
 	desc = "Teleport towards a target location, distorting reality, and creating powerful shockwaves upon reappearing."
 	action_icon = 'icons/Xeno/actions/king.dmi'
 	action_icon_state = "conqueror_domination"
-	ability_cost = 150
-	cooldown_duration = 30 SECONDS
+	ability_cost = 120
+	cooldown_duration = 20 SECONDS
 	use_state_flags = ABILITY_USE_BUCKLED
 	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
@@ -637,7 +685,7 @@
 
 /datum/action/ability/activable/xeno/conqueror_domination/on_cooldown_finish()
 	. = ..()
-	xeno_owner.playsound_local(xeno_owner, 'sound/effects/alien/new_larva.ogg', 35, 0)
+	xeno_owner.playsound_local(xeno_owner, 'sound/effects/alien/new_larva.ogg', 30, 0)
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
 
 /datum/action/ability/activable/xeno/conqueror_domination/can_use_action(silent, override_flags)
@@ -659,9 +707,8 @@
 	var/check_distance = min(CONQUEROR_DOMINATION_CASTING_RANGE, get_dist(xeno_owner, turf_target))
 	var/list/valid_turfs = list()
 	for(var/turf/turf_to_check AS in get_line(xeno_owner.loc, turf_target) - xeno_owner.loc)
-		for(var/atom/atom_to_check AS in turf_to_check)
-			if(!atom_to_check.CanPass(xeno_owner, turf_to_check))
-				break
+		if(LinkBlocked(xeno_owner.loc, turf_to_check, xeno_owner.pass_flags))
+			break
 		valid_turfs += turf_to_check
 	check_distance = min(length(valid_turfs), check_distance)
 	var/list/turf/reappearance_turfs = filled_circle_turfs(valid_turfs[check_distance], CONQUEROR_DOMINATION_EFFECT_RADIUS)
@@ -702,11 +749,11 @@
 			if(!isliving(mob_target) || mob_target.stat == DEAD || mob_target.issamexenohive(xeno_owner))
 				continue
 			var/distance = get_dist(mob_target, xeno_owner)
-			var/debuff_value = clamp(CONQUEROR_DOMINATION_MAX_PUSH_RANGE - distance, 1, CONQUEROR_DOMINATION_MAX_PUSH_RANGE)
 			if(distance)
-				mob_target.knockback(xeno_owner, debuff_value, 1)
+				var/knockback_dist = clamp(CONQUEROR_DOMINATION_MAX_PUSH_RANGE - distance, 1, CONQUEROR_DOMINATION_MAX_PUSH_RANGE)
+				mob_target.knockback(xeno_owner, knockback_dist, 1)
 			var/mob/living/living_target = mob_target
-			living_target.Knockdown((debuff_value / 2) SECONDS)
+			living_target.Knockdown(CONQUEROR_DOMINATION_KNOCKDOWN)
 			living_target.take_overall_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, xeno_owner.xeno_caste.melee_damage_type, MELEE, TRUE, TRUE, TRUE, xeno_owner.xeno_caste.melee_ap, 5)
 
 /obj/effect/temp_visual/conqueror/reappearance
@@ -742,8 +789,8 @@
 	action_type = ACTION_TOGGLE
 	action_icon = 'icons/Xeno/actions/queen.dmi'
 	action_icon_state = "screech"
-	ability_cost = 200
-	cooldown_duration = 30 SECONDS
+	ability_cost = 150
+	cooldown_duration = 20 SECONDS
 	use_state_flags = ABILITY_USE_BUCKLED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_HOLD,
@@ -765,7 +812,7 @@
 
 /datum/action/ability/xeno_action/conqueror_obliteration/on_cooldown_finish()
 	. = ..()
-	xeno_owner.playsound_local(xeno_owner, 'sound/effects/alien/new_larva.ogg', 35, 0)
+	xeno_owner.playsound_local(xeno_owner, 'sound/effects/alien/new_larva.ogg', 30, 0)
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
 
 /datum/action/ability/xeno_action/conqueror_obliteration/can_use_action(silent, override_flags)
@@ -891,6 +938,7 @@
 	if(length(targets_to_attack))
 		attack_timer = addtimer(CALLBACK(src, PROC_REF(attack_targets)), CONQUEROR_OBLITERATION_ATTACK_DELAY, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 		return
+	add_cooldown()
 	end_ability()
 
 /// Ends the ability.

@@ -89,3 +89,17 @@
 
 /mob/living/carbon/xenomorph/king/conqueror/spawn_cry()
 	return
+
+/// Includes Endurance's health in the status tab.
+/mob/living/carbon/xenomorph/king/conqueror/get_status_tab_items()
+	. = ..()
+	. += "Endurance: [endurance_health] / [endurance_health_max] [endurance_broken ? "(BROKEN)" : ""]"
+
+/// Includes Endurance's health as a HUD element.
+/mob/living/carbon/xenomorph/king/conqueror/hud_set_plasma()
+	. = ..()
+	if(!xeno_caste)
+		return
+	var/image/holder = hud_list[PLASMA_HUD]
+	var/endurance_amount = round(endurance_health * 100 / endurance_health_max, 10)
+	holder?.overlays += "[endurance_broken ? "no_endurance" : "endurance"][endurance_amount]"
