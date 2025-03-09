@@ -1308,13 +1308,6 @@
 	keybind_signal = COMSIG_XENOABILITY_BACKHAND
 	hotkey_keys = list("Z")
 
-/datum/keybinding/xeno/tailswipe
-	name = "Tailswipe"
-	full_name = "Dragon: Tailswipe"
-	description = "After a windup, knock over and stun a group of marines in front of you."
-	keybind_signal = COMSIG_XENOABILITY_TAILSWIPE
-	hotkey_keys = list("X")
-
 /datum/keybinding/xeno/fly
 	name = "Fly"
 	full_name = "Dragon: Fly"

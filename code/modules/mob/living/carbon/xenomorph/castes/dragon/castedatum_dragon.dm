@@ -17,13 +17,13 @@
 	speed = -0.5
 
 	// *** Plasma *** //
-	plasma_max = 500
+	plasma_max = 1000
 	plasma_gain = 0
 	plasma_regen_limit = 0
 	plasma_icon_state = "armor"
 
 	// *** Health *** //
-	max_health = 850
+	max_health = 1000
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -40,6 +40,7 @@
 	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 60, BIO = 75, FIRE = 200, ACID = 75)
 
 	// *** Sunder *** //
+	sunder_recover = 1
 	sunder_multiplier = 0.6
 
 	minimap_icon = "xenodragon"
@@ -50,7 +51,6 @@
 		/datum/action/ability/activable/xeno/psydrain/free,
 		/datum/action/ability/xeno_action/call_of_the_burrowed/free,
 		/datum/action/ability/activable/xeno/backhand,
-		/datum/action/ability/activable/xeno/backhand/tailswipe,
 		/datum/action/ability/activable/xeno/backhand/dragon_breath,
 		/datum/action/ability/activable/xeno/wind_current,
 		/datum/action/ability/activable/xeno/grab,
@@ -77,7 +77,6 @@
 		/datum/action/ability/activable/xeno/psydrain/free,
 		/datum/action/ability/xeno_action/call_of_the_burrowed/free,
 		/datum/action/ability/activable/xeno/backhand,
-		/datum/action/ability/activable/xeno/backhand/tailswipe,
 		/datum/action/ability/activable/xeno/backhand/dragon_breath,
 		/datum/action/ability/activable/xeno/wind_current,
 		/datum/action/ability/activable/xeno/grab,

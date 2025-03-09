@@ -3,22 +3,22 @@
 	action_icon_state = "backhand"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "After a windup, deal high damage and a fair knock back to marines in front of you. Vehicles and mechas take more damage, but are not knocked back. If you are grabbing a marine, deal an incredible amount of damage instead."
-	cooldown_duration = 10 SECONDS
+	cooldown_duration = 15 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BACKHAND,
 	)
 	/// The sound that is played before the do_after, if any.
 	var/do_after_sound
 	/// The length of the do_after.
-	var/do_after_length = 1.2 SECONDS
+	var/do_after_length = 0 SECONDS
 	/// The width inputted into `get_forward_square` used to telegraph and to get targets.
-	var/width = 1
+	var/width = 2
 	/// The height inputted into `get_forward_square` used to telegraph and to get targets.
-	var/height = 2
+	var/height = 3
 	/// Should they turn around during the initial do_after? Only for regular ability.
 	var/turn_around = FALSE
 	/// The amount of deciseconds to stun occupants of vehicles, if they should be stunned at all.
-	var/vehicle_stun_length = 0
+	var/vehicle_stun_length = 0 SECONDS
 
 /datum/action/ability/activable/xeno/backhand/can_use_ability(atom/A, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
@@ -35,17 +35,21 @@
 
 	xeno_owner.face_atom(target)
 	var/list/turf/affected_turfs = get_forward_square(xeno_owner, width, height)
-	for(var/turf/affected_turf AS in affected_turfs)
-		new /obj/effect/temp_visual/dragon/warning(affected_turf, 1.2 SECONDS)
+	if(do_after_length)
+		for(var/turf/affected_turf AS in affected_turfs)
+			new /obj/effect/temp_visual/dragon/warning(affected_turf, do_after_length)
 	if(turn_around)
 		xeno_owner.setDir(turn(xeno_owner.dir, 180))
 	if(do_after_sound)
 		playsound(xeno_owner, do_after_sound, 50, 1)
-	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
-	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
-	xeno_owner.move_resist = initial(xeno_owner.move_resist)
-	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+
+	var/was_successful = TRUE
+	if(do_after_length)
+		xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+		xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+		was_successful = do_after(xeno_owner, do_after_length, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
+		xeno_owner.move_resist = initial(xeno_owner.move_resist)
+		xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	if(was_successful && handle_regular_ability(target, affected_turfs))
 		return
 	succeed_activate()
@@ -73,6 +77,7 @@
 					continue
 				affected_living.take_overall_damage(get_damage(), BRUTE, MELEE, max_limbs = 5, updating_health = TRUE)
 				affected_living.knockback(xeno_owner, 2, 1)
+				affected_living.apply_effect(2 SECONDS, EFFECT_PARALYZE)
 				xeno_owner.do_attack_animation(affected_living)
 				has_hit_anything = TRUE
 				continue
@@ -85,10 +90,8 @@
 			affected_obj.take_damage(get_damage(), BRUTE, MELEE, blame_mob = xeno_owner)
 			has_hit_anything = TRUE
 			continue
-
 	playsound(xeno_owner, has_hit_anything ? 'sound/effects/alien/dragon/backhand_hit.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
-	if(has_hit_anything)
-		xeno_owner.gain_plasma(100)
+	xeno_owner.gain_plasma(xeno_owner.xeno_caste.plasma_max / 2)
 
 /// Performs a different interaction based on if there is a grabbed human.
 /datum/action/ability/activable/xeno/backhand/proc/handle_grabbed_human(mob/living/carbon/human/grabbed_human)
@@ -145,73 +148,12 @@
 		return FALSE
 	return TRUE
 
-/datum/action/ability/activable/xeno/backhand/tailswipe
-	name = "Tailswipe"
-	action_icon_state = "tailswipe"
-	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = "After a windup, turn around and deal high damage along with a knockdown to marines behind you. Occupants of vehicles, including those inside mechas, are knocked down."
-	cooldown_duration = 12 SECONDS
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAILSWIPE,
-	)
-	width = 2
-	height = 3
-	turn_around = TRUE
-	vehicle_stun_length = 1 SECONDS
-
-/datum/action/ability/activable/xeno/backhand/tailswipe/get_damage()
-	return 55 * xeno_owner.xeno_melee_damage_modifier
-
-/datum/action/ability/activable/xeno/backhand/tailswipe/handle_regular_ability(atom/target, list/turf/affected_turfs)
-	xeno_owner.face_atom(get_step(xeno_owner, turn(get_cardinal_dir(xeno_owner, target), 180)))
-	new /obj/effect/temp_visual/dragon/directional/tail_swipe(get_step(xeno_owner, target), get_cardinal_dir(xeno_owner, target))
-	var/has_hit_anything = FALSE
-	var/list/obj/vehicle/hit_vehicles = list()
-	for(var/turf/affected_turf AS in affected_turfs)
-		for(var/atom/affected_atom AS in affected_turf)
-			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
-				continue
-			if(isxeno(affected_atom))
-				continue
-			if(isliving(affected_atom))
-				var/mob/living/affected_living = affected_atom
-				if(affected_living.stat == DEAD)
-					continue
-				affected_living.take_overall_damage(get_damage(), BRUTE, MELEE, max_limbs = 5, updating_health = TRUE)
-				affected_living.apply_effect(2 SECONDS, EFFECT_PARALYZE)
-
-				animate(affected_living, pixel_z = affected_living.pixel_z + 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
-				animate(pixel_z = affected_living.pixel_z - 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
-				affected_living.animation_spin(0.5 SECONDS, 1, affected_living.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
-
-				xeno_owner.do_attack_animation(affected_living)
-				xeno_owner.visible_message(span_danger("\The [xeno_owner] tail swipes [affected_living]!"), \
-					span_danger("We tail swipes [affected_living]!"), null, 5)
-				has_hit_anything = TRUE
-				continue
-			if(!isobj(affected_atom))
-				continue
-			var/obj/affected_obj = affected_atom
-			if(ishitbox(affected_obj) || isvehicle(affected_obj))
-				has_hit_anything = handle_affected_vehicle(affected_obj, hit_vehicles)
-				continue
-			affected_obj.take_damage(get_damage(), BRUTE, MELEE, blame_mob = xeno_owner)
-			has_hit_anything = TRUE
-			continue
-
-	playsound(get_turf(xeno_owner), has_hit_anything ? 'sound/weapons/alien_claw_block.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
-	if(has_hit_anything)
-		xeno_owner.gain_plasma(75)
-
-/datum/action/ability/activable/xeno/backhand/tailswipe/handle_grabbed_human(mob/living/carbon/human/grabbed_human)
-	return FALSE
-
 /datum/action/ability/activable/xeno/fly
 	name = "Fly"
 	action_icon_state = "fly"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "After a long cast time, fly into the air. If you're already flying, land with a delay. Landing causes nearby marines to take lots of damage with vehicles taking up to 3x as much."
-	cooldown_duration = 240 SECONDS
+	cooldown_duration = 120 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLY,
 	)
@@ -276,6 +218,8 @@
 /// Finalizes the process of flying by granting various flags and so on.
 /datum/action/ability/activable/xeno/fly/proc/finalize_flight()
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(on_move_attempt))
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_SUNDER_REGEN, PROC_REF(on_sunder_regen))
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(on_health_regen))
 	COOLDOWN_RESET(src, animation_cooldown)
 	animate(xeno_owner, pixel_x = 0, pixel_y = 0, time = 0)
 	xeno_owner.status_flags = GODMODE|INCORPOREAL
@@ -283,19 +227,19 @@
 	xeno_owner.pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 	xeno_owner.density = FALSE
 	ADD_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
+	xeno_owner.gain_plasma(xeno_owner.xeno_caste.plasma_max)
 	xeno_owner.update_icons(TRUE)
 	xeno_owner.update_action_buttons()
 
 /// Begins the process of landing.
-/datum/action/ability/activable/xeno/fly/proc/start_landing(fast_landing = FALSE)
+/datum/action/ability/activable/xeno/fly/proc/start_landing()
 	performing_landing_animation = TRUE
-	var/landing_length = fast_landing ? 1.2 SECONDS : 3 SECONDS
-	COOLDOWN_START(src, animation_cooldown, landing_length)
+	COOLDOWN_START(src, animation_cooldown, 3 SECONDS)
 	animate(xeno_owner, pixel_x = initial(xeno_owner.pixel_x), pixel_y = 500, time = 0)
 	var/list/turf/future_impacted_turfs = filled_turfs(xeno_owner, 2, "square", FALSE, pass_flags_checked = PASS_AIR)
 	for(var/turf/turf_to_telegraph AS in future_impacted_turfs)
-		new /obj/effect/temp_visual/dragon/warning(turf_to_telegraph, landing_length)
-	addtimer(CALLBACK(src, PROC_REF(continue_landing), future_impacted_turfs), landing_length - 0.5 SECONDS)
+		new /obj/effect/temp_visual/dragon/warning(turf_to_telegraph, 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(continue_landing), future_impacted_turfs), 2.5 SECONDS)
 
 /// Continues the process of landing (mainly because of animations).
 /datum/action/ability/activable/xeno/fly/proc/continue_landing(list/turf/impacted_turfs)
@@ -315,7 +259,7 @@
 	REMOVE_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 	xeno_owner.update_icons(TRUE)
 	xeno_owner.update_action_buttons()
-	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_PRE_MOVE)
+	UnregisterSignal(xeno_owner, list(COMSIG_MOVABLE_PRE_MOVE, COMSIG_XENOMORPH_SUNDER_REGEN, COMSIG_XENOMORPH_HEALTH_REGEN))
 	succeed_activate()
 	add_cooldown()
 
@@ -392,6 +336,17 @@
 	xeno_owner.abstract_move(newloc)
 	return
 
+/// Regenerates 5x additional sunder.
+/datum/action/ability/activable/xeno/fly/proc/on_sunder_regen(datum/source, seconds_per_tick)
+	SIGNAL_HANDLER
+	xeno_owner.adjust_sunder(xeno_owner.xeno_caste.sunder_recover * seconds_per_tick * 5)
+
+/// Regenerate 20% maximum health.
+/datum/action/ability/activable/xeno/fly/proc/on_health_regen(datum/source, list/data, seconds_per_tick)
+	SIGNAL_HANDLER
+	var/health_to_regenerate = xeno_owner.xeno_caste.max_health * 0.2
+	HEAL_XENO_DAMAGE(xeno_owner, health_to_regenerate, TRUE)
+
 /datum/action/ability/activable/xeno/backhand/dragon_breath
 	name = "Dragon Breath"
 	action_icon_state = "dragon_breath"
@@ -405,11 +360,15 @@
 	height = 9
 	do_after_sound = 'sound/effects/alien/dragon/dragonbreath_start.ogg'
 	do_after_length = 3 SECONDS
+	/// The starting direction of the ability.
+	var/starting_direction
+	/// The turfs that will (eventually) get affected by the ability. Reset upon movement or when empty.
+	var/list/turf/affected_turfs_in_order = list()
 	/// The visual effect to delete early if needed.
 	var/obj/effect/temp_visual/dragon/fire_breath/visual_effect
 	/// The timer id for the timer that ends the ability after a period of time.
 	var/ability_timer
-	/// The timer id for the timer that occurs every tick.
+	/// The timer id for the timer that occurs every tick while the ability is active.
 	var/tick_timer
 
 /datum/action/ability/activable/xeno/backhand/dragon_breath/can_use_ability(atom/A, silent, override_flags)
@@ -451,10 +410,13 @@
 	return TRUE
 
 /datum/action/ability/activable/xeno/backhand/dragon_breath/handle_regular_ability(atom/target, list/turf/affected_turfs)
+	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_BREATH, TRUE, 0, NONE, TRUE, 1.6)
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
-	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-
-	visual_effect = new /obj/effect/temp_visual/dragon/fire_breath(get_step(xeno_owner, target), get_cardinal_dir(xeno_owner, target))
+	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(15)
+	ADD_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, DRAGON_ABILITY_TRAIT)
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+	starting_direction = get_cardinal_dir(xeno_owner, target)
+	visual_effect = new /obj/effect/temp_visual/dragon/fire_breath(get_step(xeno_owner, target), starting_direction)
 	ability_timer = addtimer(CALLBACK(src, PROC_REF(end_ability)), 10 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 	tick_effects(get_turf(target), affected_turfs, list())
 	return TRUE
@@ -465,11 +427,24 @@
 		return
 	end_ability()
 
+/// Rotates the owner back to the starting direction.
+/datum/action/ability/activable/xeno/backhand/dragon_breath/proc/on_move(datum/source)
+	SIGNAL_HANDLER
+	xeno_owner.setDir(starting_direction)
+	visual_effect.forceMove(get_turf(xeno_owner))
+	affected_turfs_in_order.Cut()
+	var/turf/maximum_distance_turf = get_turf(xeno_owner)
+	for(var/i in 1 to height)
+		maximum_distance_turf = get_step(maximum_distance_turf, xeno_owner.dir)
+		affected_turfs_in_order += maximum_distance_turf
+		affected_turfs_in_order += get_step(maximum_distance_turf, turn(xeno_owner.dir, 90))
+		affected_turfs_in_order += get_step(maximum_distance_turf, turn(xeno_owner.dir, -90))
+
 /// Performs the ability at a pace similar of CAS which is one width length at a length.
-/datum/action/ability/activable/xeno/backhand/dragon_breath/proc/tick_effects(turf/target_turf, list/turf/affected_turfs, list/turf/affected_turfs_in_order)
-	xeno_owner.face_atom(target_turf)
+/datum/action/ability/activable/xeno/backhand/dragon_breath/proc/tick_effects()
+	xeno_owner.setDir(starting_direction)
 	playsound(xeno_owner, SFX_GUN_FLAMETHROWER, 50, 1)
-	xeno_owner.gain_plasma(1.5)
+	xeno_owner.gain_plasma(3)
 
 	if(!length(affected_turfs_in_order))
 		var/turf/maximum_distance_turf = get_turf(xeno_owner)
@@ -496,7 +471,7 @@
 				continue
 			affected_living.take_overall_damage(get_damage(), BURN, FIRE, updating_health = TRUE, penetration = 30, max_limbs = 5)
 			continue
-	tick_timer = addtimer(CALLBACK(src, PROC_REF(tick_effects), target_turf, affected_turfs, affected_turfs_in_order), 0.1 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+	tick_timer = addtimer(CALLBACK(src, PROC_REF(tick_effects)), 0.1 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /// Creates a melting fire if it does not exist. If it does, refresh it and affect all atoms in the same turf.
 /datum/action/ability/activable/xeno/backhand/dragon_breath/proc/refresh_or_create_fire(turf/target_turf)
@@ -510,10 +485,14 @@
 
 /// Undoes everything associated with starting the ability.
 /datum/action/ability/activable/xeno/backhand/dragon_breath/proc/end_ability()
+	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_BREATH)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
-	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	qdel(visual_effect)
-	visual_effect = null
+	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-15)
+	REMOVE_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, DRAGON_ABILITY_TRAIT)
+	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
+	starting_direction = null
+	affected_turfs_in_order.Cut()
+	QDEL_NULL(visual_effect)
 	deltimer(ability_timer)
 	ability_timer = null
 	deltimer(tick_timer)
@@ -541,13 +520,13 @@
 /datum/action/ability/activable/xeno/wind_current/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 
-	var/list/turf/impacted_turfs = filled_turfs(xeno_owner, 2, "square", FALSE, pass_flags_checked = PASS_AIR) // 5x5
+	var/list/turf/impacted_turfs = generate_cone(xeno_owner, 7, 1, 60, dir2angle(xeno_owner.dir), pass_flags_checked = PASS_AIR)
 	for(var/turf/impacted_turf AS in impacted_turfs)
-		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.2 SECONDS)
+		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 0.5 SECONDS)
 
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER)
+	var/was_successful = do_after(xeno_owner, 0.5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	if(!was_successful)
@@ -557,14 +536,12 @@
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] flaps their wings!"), \
 		span_danger("We flap our wings!"), null, 5)
 
-	var/damage = 50 * xeno_owner.xeno_melee_damage_modifier
-	var/has_hit_anything = FALSE
+	var/damage = 100 * xeno_owner.xeno_melee_damage_modifier
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		impacted_turf.Shake(duration = 0.25 SECONDS)
 		for(var/atom/impacted_atom AS in impacted_turf)
 			if(istype(impacted_atom, /obj/effect/particle_effect/smoke))
 				qdel(impacted_atom)
-				has_hit_anything = TRUE
 				continue
 			if(!(impacted_atom.resistance_flags & XENO_DAMAGEABLE))
 				continue
@@ -581,29 +558,24 @@
 				animate(impacted_living, pixel_z = impacted_living.pixel_z + 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
 				animate(pixel_z = impacted_living.pixel_z - 8, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
 				impacted_living.animation_spin(0.5 SECONDS, 1, impacted_living.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
-				has_hit_anything = TRUE
 				continue
 			if(!isobj(impacted_atom))
 				continue
 			var/obj/impacted_obj = impacted_atom
 			if(ishitbox(impacted_obj))
 				impacted_obj.take_damage(damage * 1/3, BRUTE, MELEE, blame_mob = xeno_owner) // Adjusted for 3x3 multitile vehicles.
-				has_hit_anything = TRUE
 				continue
 			if(!isvehicle(impacted_obj))
 				impacted_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
-				has_hit_anything = TRUE
 				continue
 			if(ismecha(impacted_obj))
 				impacted_obj.take_damage(damage * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = xeno_owner)
-			else
-				impacted_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = xeno_owner)
-			has_hit_anything = TRUE
+				continue
+			impacted_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = xeno_owner)
 			continue
 
 	playsound(get_turf(xeno_owner), 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
-	if(has_hit_anything)
-		xeno_owner.gain_plasma(200)
+	xeno_owner.gain_plasma(xeno_owner.xeno_caste.plasma_max / 2)
 	succeed_activate()
 	add_cooldown()
 
@@ -964,6 +936,7 @@
 	action_icon_state = "unleash"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "Breath fire downward from the sky in a long line where you're facing. Afterward, land at the end immediately."
+	cooldown_duration = 150 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCORCHED_LAND,
 	)
@@ -974,13 +947,6 @@
 	if(!(xeno_owner.status_flags & INCORPOREAL))
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "cannot while landed")
-		return FALSE
-	var/datum/action/ability/activable/xeno/fly/fly_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/fly]
-	if(!fly_ability)
-		return FALSE
-	if(COOLDOWN_TIMELEFT(fly_ability, animation_cooldown))
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "already landing")
 		return FALSE
 	var/list/mob/living/carbon/xenomorph/nearby_xenos = cheap_get_xenos_near(xeno_owner, 7)
 	var/found_los_xenos = FALSE
@@ -1031,10 +997,6 @@
 		affected_turfs_in_order += get_step(get_step(maximum_distance_turf, turn(xeno_owner.dir, 90)), turn(xeno_owner.dir, 90))
 		affected_turfs_in_order += get_step(maximum_distance_turf, turn(xeno_owner.dir, -90))
 		affected_turfs_in_order += get_step(get_step(maximum_distance_turf, turn(xeno_owner.dir, -90)), turn(xeno_owner.dir, -90))
-
-	xeno_owner.abstract_move(maximum_distance_turf)
-	var/datum/action/ability/activable/xeno/fly/fly_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/fly]
-	fly_ability?.start_landing(TRUE)
 	tick_timer = addtimer(CALLBACK(src, PROC_REF(tick_effects), affected_turfs_in_order), 0.1 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /// Performs the ability at a pace similar of CAS which is one width length at a length.
@@ -1063,7 +1025,7 @@
 			affected_living.take_overall_damage(100 * xeno_owner.xeno_melee_damage_modifier, BURN, FIRE, updating_health = TRUE, penetration = 30, max_limbs = 5)
 			continue
 	if(!length(affected_turfs_in_order))
-		succeed_activate() // The ability should be nearly (because landing) or completely done at this point.
+		succeed_activate()
 		add_cooldown()
 		return
 	tick_timer = addtimer(CALLBACK(src, PROC_REF(tick_effects), affected_turfs_in_order), 0.1 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)

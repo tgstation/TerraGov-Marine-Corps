@@ -59,7 +59,6 @@
 #define COOLDOWN_WHISTLE_WARCRY "cooldown_whistle_warcry"
 #define COOLDOWN_ARMORED_SMOKE "cooldown_armored_smoke"
 #define COOLDOWN_LOCATE_APC "cooldown_locate_apc"
-#define COOLDOWN_DRAGON_CHANGE_FORM "cooldown_dragon_change_form"
 
 //Mecha cooldowns
 #define COOLDOWN_MECHA "mecha"
