@@ -5,9 +5,9 @@
 	ability_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
+		/turf/closed/wall/resin/membrane,
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
-		/turf/closed/wall/resin/membrane,
 		/obj/structure/bed/nest,
 		/obj/structure/bed/nest/wall,
 		/obj/structure/xeno/lighttower,
