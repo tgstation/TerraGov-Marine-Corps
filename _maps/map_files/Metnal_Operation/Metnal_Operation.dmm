@@ -19761,6 +19761,9 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/mining)
+"nol" = (
+/turf/closed/mineral/smooth/outdoor,
+/area/metnal/caves/south/garbledradio)
 "nou" = (
 /obj/effect/turf_decal/arrows{
 	dir = 4
@@ -26388,6 +26391,9 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/research)
+"rDo" = (
+/turf/closed/mineral/smooth/outdoor,
+/area/metnal/caves/southeast/garbledradio)
 "rDp" = (
 /turf/open/floor/prison/darkbrown{
 	dir = 1
@@ -61920,7 +61926,7 @@ ewG
 rLX
 ewG
 ewG
-ewG
+nol
 ewG
 ewG
 ewG
@@ -62121,9 +62127,9 @@ wIw
 wIw
 ewG
 wHx
+nol
+nol
 ewG
-ewG
-wpl
 wpl
 ewG
 ewG
@@ -62324,8 +62330,8 @@ wpl
 viJ
 ewG
 ewG
+wHx
 ewG
-wpl
 uSl
 ewG
 wIw
@@ -69196,7 +69202,7 @@ rIj
 pdY
 kAf
 vfz
-vfz
+rDo
 vfz
 vfz
 bNU
@@ -69397,8 +69403,8 @@ qve
 nlb
 vfz
 vfz
-vfz
-vfz
+rDo
+rDo
 vfz
 vfz
 bNU
@@ -69599,7 +69605,7 @@ vfz
 nlb
 vfz
 vfz
-vfz
+rDo
 vfz
 kbL
 vfz
