@@ -1,5 +1,5 @@
 /datum/ammo/xeno/void_rift
-	name = "miasma orb"
+	name = "void orb"
 	icon = 'icons/Xeno/96x144.dmi' // This sucks major ass because proj code is based on 32x32 and this obviously isn't 32x32.
 	icon_state = "void_projectile"
 	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SKIPS_ALIENS|AMMO_SPECIAL_PROCESS
@@ -26,7 +26,7 @@
 				continue
 			affected_human.apply_damage(100, BURN, blocked = BIO, updating_health = TRUE, penetration = 30)
 			affected_human.apply_status_effect(STATUS_EFFECT_PLAGUE)
-	playsound(T, 'sound/effects/alien/dragon/miasma_impact.ogg', 50, 1)
+	playsound(T, 'sound/effects/alien/dragon/void_explosion.ogg', 50, 1)
 
 /datum/ammo/xeno/void_rift/ammo_process(obj/projectile/proj, damage)
 	if(isxeno(proj.original_target)) // This is our way of saying, "just do nothing instead because we don't want constant cheap_get_humans_near loops".

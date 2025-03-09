@@ -843,7 +843,7 @@
 					new /obj/effect/temp_visual/dragon/portal_open(candidate)
 					var/obj/projectile/proj = new(candidate)
 					proj.generate_bullet(/datum/ammo/xeno/void_rift)
-					proj.fire_at(A, xeno_owner, candidate, range = 10, speed = 0.1)
+					proj.fire_at(get_turf(A), xeno_owner, candidate, range = 10, speed = 0.1) // Proj will select their own target rather than being chosen by the xeno owner.
 			xeno_owner.gain_plasma(500)
 			COOLDOWN_START(src, void_rift_cooldown, 1 SECONDS)
 		if(DRAGON_LIGHTNING_SHRIKE)
@@ -991,6 +991,7 @@
 			if(affected_living.stat == DEAD)
 				continue
 			affected_living.take_overall_damage(120, BURN, FIRE, updating_health = TRUE, penetration = 30, max_limbs = 5)
+			playsound(affected_living, 'sound/effects/alien/dragon/crytogensis_impact.ogg', 50, TRUE)
 			continue
 	INVOKE_NEXT_TICK(src, PROC_REF(cryogensis_tick_effects), affected_turfs_in_order)
 
