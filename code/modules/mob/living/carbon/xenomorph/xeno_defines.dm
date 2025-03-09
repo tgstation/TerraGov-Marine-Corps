@@ -400,9 +400,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 
 	// *** Conqueror vars *** //
 	/// The amount of remaining health that Endurance has.
-	var/endurance_health = 0
+	var/endurance_health = 1
 	/// The maximum amount of health that Endurance can have.
-	var/endurance_health_max = 0
+	var/endurance_health_max = 1
 	/// Whether our Endurance has been broken, due to losing all of its health.
 	var/endurance_broken = FALSE
 
