@@ -166,6 +166,7 @@
 		set_greyscale_config(ammo.projectile_greyscale_config)
 		set_greyscale_colors(ammo.projectile_greyscale_colors)
 
+	icon = ammo.icon
 	icon_state = ammo.icon_state
 	damage = ammo.damage + bonus_damage //Mainly for emitters.
 	penetration = ammo.penetration
