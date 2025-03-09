@@ -845,7 +845,7 @@
 					proj.generate_bullet(/datum/ammo/xeno/void_rift)
 					proj.fire_at(get_turf(A), xeno_owner, candidate, range = 10, speed = 0.1) // Proj will select their own target rather than being chosen by the xeno owner.
 			xeno_owner.gain_plasma(500)
-			COOLDOWN_START(src, void_rift_cooldown, 1 SECONDS)
+			COOLDOWN_START(src, void_rift_cooldown, 45 SECONDS)
 		if(DRAGON_LIGHTNING_SHRIKE)
 			var/list/mob/living/carbon/human/acceptable_humans = get_lightning_shrike_marines()
 			var/list/turf/impacted_turfs = get_lightning_shrike_hit_turfs(acceptable_humans)
