@@ -1881,6 +1881,7 @@
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
 "bqu" = (
+/obj/effect/spawner/random/decal/blood,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -13317,7 +13318,9 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/metnal/inside/security)
 "jcu" = (
-/obj/effect/spawner/random/decal/blood,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set1")
+	},
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
 "jcy" = (
