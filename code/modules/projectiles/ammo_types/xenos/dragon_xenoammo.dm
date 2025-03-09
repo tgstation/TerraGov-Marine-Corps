@@ -24,7 +24,7 @@
 		for(var/mob/living/carbon/human/affected_human in filled_turf)
 			if(isxeno(affected_human) || affected_human.stat == DEAD)
 				continue
-			affected_human.apply_damage(100, BURN, blocked = BIO, updating_health = TRUE, penetration = 30)
+			affected_human.apply_damage(30, BURN, blocked = BIO, updating_health = TRUE, penetration = 30)
 			affected_human.apply_status_effect(STATUS_EFFECT_PLAGUE)
 	playsound(T, 'sound/effects/alien/dragon/void_explosion.ogg', 50, 1)
 

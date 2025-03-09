@@ -839,6 +839,9 @@
 					for(var/atom/blocker AS in candidate.contents)
 						if(blocker.density)
 							continue assignturfs
+					var/area/turf_area = get_area(candidate)
+					if(turf_area.area_flags & MARINE_BASE)
+						continue assignturfs
 					remaining_void_rifts--
 					new /obj/effect/temp_visual/dragon/portal_open(candidate)
 					var/obj/projectile/proj = new(candidate)
