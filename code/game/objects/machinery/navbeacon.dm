@@ -4,5 +4,5 @@
 	name = "navigation beacon"
 	desc = "A radio beacon used for bot navigation."
 	level = 1		// underfloor
-	layer = UNDERFLOOR_OBJ_LAYER
+	layer = LOW_OBJ_LAYER
 	anchored = TRUE

@@ -233,7 +233,7 @@
 	if(!human_user.throwing) //if we instantly run into something, the throw is already over
 		return
 	if(human_user.a_intent != INTENT_HELP)
-		human_user.pass_flags &= ~PASS_MOB //we explicitly want to hit people
+		human_user.remove_pass_flags(PASS_MOB, THROW_TRAIT) //we explicitly want to hit people
 	RegisterSignal(human_user, COMSIG_MOVABLE_PREBUMP_MOVABLE, PROC_REF(mob_hit))
 
 /obj/item/jetpack_marine/heavy/reset_flame(mob/living/carbon/human/human_user)

@@ -140,6 +140,10 @@
 	},
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/outer/west)
+"D" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/outer/west)
 "E" = (
 /obj/structure/platform_decoration{
 	dir = 10
@@ -214,6 +218,11 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
+"S" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/campaign/jungle_outpost/outpost/outer/west)
 "T" = (
 /obj/machinery/power/apc/drained{
 	dir = 1
@@ -302,13 +311,13 @@ d
 y
 i
 a
-a
+D
 a
 a
 j
 a
 a
-a
+D
 a
 a
 j
@@ -382,13 +391,13 @@ Y
 X
 f
 f
+S
 f
-f
 a
 a
 a
 a
-a
+D
 a
 B
 V

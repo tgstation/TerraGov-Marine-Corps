@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "NPC obstacle handling improved"
+  - qol: "Barricades and sentries have their faction set by their deployer. NPC's will avoid destroying friendly obstacles"

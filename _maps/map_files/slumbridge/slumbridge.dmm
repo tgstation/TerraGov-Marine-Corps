@@ -1290,7 +1290,8 @@
 "baQ" = (
 /obj/structure/cable,
 /obj/effect/landmark/corpsespawner/engineer/regular,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "baV" = (
 /obj/item/trash/pillpacket,
@@ -3968,7 +3969,8 @@
 /area/slumbridge/outside/southeast)
 "cWh" = (
 /obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "cWA" = (
 /obj/effect/landmark/corpsespawner/pmc,
@@ -4537,7 +4539,8 @@
 /area/slumbridge/inside/hydrotreatment)
 "dsK" = (
 /obj/structure/cable,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "dsV" = (
 /turf/open/floor/stairs/rampbottom{
@@ -5426,7 +5429,8 @@
 "ebg" = (
 /obj/effect/landmark/corpsespawner/engineer/regular,
 /obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "ebh" = (
 /obj/effect/decal/cleanable/dirt,
@@ -6480,7 +6484,8 @@
 "eXk" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "eXv" = (
 /obj/machinery/power/apc/drained{
@@ -7046,7 +7051,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "fux" = (
 /obj/structure/barricade/snow{
@@ -11511,7 +11517,8 @@
 "iAf" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "iAA" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -22177,7 +22184,8 @@
 /obj/structure/prop/mainship/gelida/planterboxsoil/nondense,
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid/nondense,
 /obj/structure/cable,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/caves/mining)
 "qoC" = (
 /obj/item/clothing/suit/modular/som/light,
@@ -24828,7 +24836,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "seG" = (
 /obj/item/stack/rods,
@@ -27125,7 +27134,8 @@
 /area/slumbridge/inside/colony/kitchen)
 "tTW" = (
 /obj/effect/landmark/corpsespawner/engineer/regular,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "tUa" = (
 /obj/structure/table,
@@ -29307,7 +29317,8 @@
 "vAg" = (
 /obj/structure/cable,
 /obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "vAq" = (
 /turf/open/liquid/lava/single/middle{
@@ -30298,7 +30309,8 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "whB" = (
 /obj/effect/decal/cleanable/blood,
@@ -30670,7 +30682,8 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "wtR" = (
 /obj/machinery/light{
@@ -32060,7 +32073,8 @@
 	dir = 8
 	},
 /obj/effect/ai_node,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "xuV" = (
 /obj/item/trash/used_stasis_bag,
@@ -32815,7 +32829,8 @@
 /turf/open/floor/mainship/floor,
 /area/slumbridge/inside/colony/northerndome)
 "xXL" = (
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "xXZ" = (
 /obj/structure/window/reinforced{

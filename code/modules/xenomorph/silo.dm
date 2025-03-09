@@ -26,6 +26,11 @@
 		SSspawning.spawnerdata[src].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
 	update_minimap_icon()
 
+	if(SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN)
+		SSaura.add_emitter(src, AURA_XENO_RECOVERY, 30, 4, -1, FACTION_XENO, hivenumber)
+		SSaura.add_emitter(src, AURA_XENO_WARDING, 30, 4, -1, FACTION_XENO, hivenumber)
+		SSaura.add_emitter(src, AURA_XENO_FRENZY, 30, 4, -1, FACTION_XENO, hivenumber)
+
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/xeno/silo/LateInitialize()
@@ -94,7 +99,7 @@
 
 /obj/structure/xeno/silo/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "silo[threat_warning ? "_warn" : "_passive"]", HIGH_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "silo[threat_warning ? "_warn" : "_passive"]", MINIMAP_LABELS_LAYER))
 
 /obj/structure/xeno/silo/process()
 	//Regenerate if we're at less than max integrity

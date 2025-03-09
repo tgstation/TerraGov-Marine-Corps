@@ -58,7 +58,7 @@ GLOBAL_LIST_INIT_TYPED(xeno_caste_datums, /list/datum/xeno_caste, init_xeno_cast
 
 	for(var/typepath in typelist)
 		var/datum/xeno_caste/caste = new typepath
-		.[caste.get_base_caste_type()][caste.upgrade] = caste
+		.[get_base_caste_type(caste)][caste.upgrade] = caste
 
 GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/runner,

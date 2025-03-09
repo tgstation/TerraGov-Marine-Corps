@@ -1,4 +1,4 @@
-ADMIN_VERB(player_panel, R_BAN, "Player Panel", "View the player panel", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(player_panel, R_ADMIN, "Player Panel", "View the player panel", ADMIN_CATEGORY_MAIN)
 	var/dat = {"<html>
 
 		<head>
@@ -294,7 +294,7 @@ ADMIN_VERB(player_panel, R_BAN, "Player Panel", "View the player panel", ADMIN_C
 	browser.open()
 
 
-ADMIN_VERB(player_panel_extended, R_BAN, "Player Panel Extended", "View the extended player panel", ADMIN_CATEGORY_MAIN)
+ADMIN_VERB(player_panel_extended, R_ADMIN, "Player Panel Extended", "View the extended player panel", ADMIN_CATEGORY_MAIN)
 	var/ref = "[REF(user.holder)];[HrefToken()]"
 	var/dat = "<table border=0 cellspacing=5><B><tr><th>Key</th><th>Name</th><th>Type</th><th>PP</th><th>CID</th><th>IP</th><th>JMP</th><th>FLW</th><th>Notes</th></tr></B>"
 
@@ -341,7 +341,7 @@ ADMIN_VERB(player_panel_extended, R_BAN, "Player Panel Extended", "View the exte
 	browser.set_content(dat)
 	browser.open()
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_BAN, "Show Player Panel", mob/M in world)
+ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mob/M in world)
 	if(!istype(M))
 		return
 

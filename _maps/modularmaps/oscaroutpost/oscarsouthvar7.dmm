@@ -1394,8 +1394,7 @@
 "IO" = (
 /obj/structure/table,
 /obj/structure/platform{
-	dir = 4;
-	layer = 2
+	dir = 4
 	},
 /turf/open/floor/tile/bar,
 /area/oscar_outpost/village/abandonedbase)
@@ -1421,8 +1420,7 @@
 "Jp" = (
 /obj/structure/table,
 /obj/structure/platform{
-	dir = 4;
-	layer = 2
+	dir = 4
 	},
 /obj/effect/spawner/random/misc/folder,
 /turf/open/floor/tile/bar,
@@ -1689,8 +1687,7 @@
 /obj/structure/table,
 /obj/item/paper,
 /obj/structure/platform{
-	dir = 4;
-	layer = 2
+	dir = 4
 	},
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/bar,
@@ -1771,8 +1768,7 @@
 "RC" = (
 /obj/structure/table,
 /obj/structure/platform{
-	dir = 4;
-	layer = 2
+	dir = 4
 	},
 /obj/machinery/computer3/laptop/secure_data,
 /turf/open/floor/tile/bar,
@@ -1951,8 +1947,7 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced{
-	dir = 1;
-	layer = 2
+	dir = 1
 	},
 /obj/structure/prop/mainship/gelida/miner,
 /turf/open/floor/tile/bar,
@@ -2095,8 +2090,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/misc/folder,
 /obj/structure/platform{
-	dir = 4;
-	layer = 2
+	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/bar,
@@ -2116,8 +2110,7 @@
 "XS" = (
 /obj/structure/table,
 /obj/structure/platform{
-	dir = 4;
-	layer = 2
+	dir = 4
 	},
 /obj/item/paper,
 /obj/item/tool/pen/blue,

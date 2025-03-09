@@ -8,15 +8,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	desc = "It's a g-g-g-g-ghooooost!"
 	icon = 'icons/mob/ghost.dmi'
 	icon_state = "ghost"
-	layer = GHOST_LAYER
+	plane = GHOST_PLANE
 	stat = DEAD
 	density = FALSE
 	see_invisible = SEE_INVISIBLE_OBSERVER
-	see_in_dark = 100
 	invisibility = INVISIBILITY_OBSERVER
 	sight = SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
 	hud_type = /datum/hud/ghost
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	dextrous = TRUE
 	status_flags = GODMODE | INCORPOREAL
 
@@ -248,15 +247,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(client)
 		animate(client, pixel_x = 0, pixel_y = 0)
 
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		ghost.icon = H.stand_icon
-		ghost.overlays = H.overlays_standing
-		ghost.underlays = H.underlays_standing
-	else
-		ghost.icon = icon
-		ghost.icon_state = icon_state
-		ghost.overlays = overlays
+	//dont copy the appearance so we keep verbs, etc.
+	ghost.overlays = overlays
+	ghost.underlays = underlays
+	ghost.icon = icon
+	ghost.icon_state = icon_state
+	ghost.appearance = strip_appearance_underlays(ghost)
 
 	if(mind?.name)
 		ghost.real_name = mind.name
@@ -437,188 +433,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set name = "Teleport"
 	set desc = "Teleport to an area."
 
-	var/area/newloc = tgui_input_list(usr, "Choose an area to teleport to.", "Teleport", GLOB.sorted_areas)
+	var/area/newloc = tgui_input_list(usr, "Choose an area to teleport to.", "Teleport", get_sorted_areas())
 	if(!newloc)
 		return
 
 	abstract_move(pick(get_area_turfs(newloc)))
 	update_parallax_contents()
-
-
-/mob/dead/observer/verb/follow_ghost()
-	set category = "Ghost.Follow"
-	set name = "Follow Ghost"
-
-	var/list/observers = list()
-	var/list/names = list()
-	var/list/namecounts = list()
-
-	for(var/mob/dead/observer/O in sortNames(GLOB.dead_mob_list))
-		if(!O.client || !O.name)
-			continue
-		var/name = O.name
-		if(name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-
-		name += " (ghost)"
-
-		observers[name] = O
-
-	if(!length(observers))
-		to_chat(usr, span_warning("There are no ghosts at the moment."))
-		return
-
-	var/selected = tgui_input_list(usr, "Please select a Ghost:", "Follow Ghost", observers)
-	if(!selected)
-		return
-
-	var/mob/target = observers[selected]
-	ManualFollow(target)
-
-
-/mob/dead/observer/verb/follow_xeno()
-	set category = "Ghost.Follow"
-	set name = "Follow Xeno"
-
-	var/admin = FALSE
-	if(check_rights(R_ADMIN, FALSE))
-		admin = TRUE
-
-	var/list/xenos = list()
-	var/list/names = list()
-	var/list/namecounts = list()
-
-	for(var/x in sortNames(GLOB.alive_xeno_list))
-		var/mob/living/carbon/xenomorph/X = x
-		var/name = X.name
-		if(name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-
-
-		if((X.client && X.client?.is_afk()) || (!X.client && (X.key || X.ckey)))
-			if(isaghost(X))
-				if(admin)
-					name += " (AGHOSTED)"
-			else
-				switch(X.afk_status)
-					if(MOB_RECENTLY_DISCONNECTED)
-						name += " (Away)"
-					if(MOB_DISCONNECTED)
-						name += " (DC)"
-
-		xenos[name] = X
-
-	if(!length(xenos))
-		to_chat(usr, span_warning("There are no xenos at the moment."))
-		return
-
-
-	var/selected = tgui_input_list(usr, "Please select a Xeno:", "Follow Xeno", xenos)
-	if(!selected)
-		return
-
-	var/mob/target = xenos[selected]
-	ManualFollow(target)
-
-
-/mob/dead/observer/verb/follow_human()
-	set category = "Ghost.Follow"
-	set name = "Follow Living Human"
-
-	var/admin = FALSE
-	if(check_rights(R_ADMIN, FALSE))
-		admin = TRUE
-
-	var/list/humans = list()
-	var/list/names = list()
-	var/list/namecounts = list()
-	for(var/x in sortNames(GLOB.alive_human_list))
-		var/mob/living/carbon/human/H = x
-		if(!ishumanbasic(H) && !issynth(H) || istype(H, /mob/living/carbon/human/dummy) || !H.name)
-			continue
-		var/name = H.name
-		if(name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if(H.real_name && H.real_name != H.name)
-			name += " as ([H.real_name])"
-		if(issynth(H))
-			name += " - Synth"
-		else if(issurvivorjob(H.job))
-			name += " - Survivor"
-		else if(H.faction != "TerraGov")
-			name += " - [H.faction]"
-		if((H.client && H.client.is_afk()) || (!H.client && (H.key || H.ckey)))
-			if(isaghost(H))
-				if(admin)
-					name += " (AGHOSTED)"
-			else
-				switch(H.afk_status)
-					if(MOB_RECENTLY_DISCONNECTED)
-						name += " (Away)"
-					if(MOB_DISCONNECTED)
-						name += " (DC)"
-
-		humans[name] = H
-
-	if(!length(humans))
-		to_chat(usr, span_warning("There are no living humans at the moment."))
-		return
-
-	var/selected = tgui_input_list(usr, "Please select a Living Human:", "Follow Living Human", humans)
-	if(!selected)
-		return
-
-	var/mob/target = humans[selected]
-	ManualFollow(target)
-
-
-/mob/dead/observer/verb/follow_dead()
-	set category = "Ghost.Follow"
-	set name = "Follow Dead"
-
-	var/list/dead = list()
-	var/list/names = list()
-	var/list/namecounts = list()
-
-	for(var/x in sortNames(GLOB.dead_mob_list))
-		var/mob/M = x
-		if(isobserver(M) || isnewplayer(M) || !M.name)
-			continue
-		var/name = M.name
-		if(name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-
-		name += " (dead)"
-
-		dead[name] = M
-
-	if(!length(dead))
-		to_chat(usr, span_warning("There are no dead mobs at the moment."))
-		return
-
-	var/selected = tgui_input_list(usr, "Please select a Dead Mob:", "Follow Dead", dead)
-	if(!selected)
-		return
-
-	var/mob/target = dead[selected]
-	ManualFollow(target)
-
 
 /mob/dead/observer/verb/follow()
 	set category = "Ghost.Follow"
@@ -721,15 +541,15 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set category = "Ghost.Toggles"
 	set name = "Toggle Darkness"
 
-	switch(lighting_alpha)
-		if(LIGHTING_PLANE_ALPHA_VISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-		if(LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		if(LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
-			lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	switch(lighting_cutoff)
+		if (LIGHTING_CUTOFF_VISIBLE)
+			lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
+		if (LIGHTING_CUTOFF_MEDIUM)
+			lighting_cutoff = LIGHTING_CUTOFF_HIGH
+		if (LIGHTING_CUTOFF_HIGH)
+			lighting_cutoff = LIGHTING_CUTOFF_FULLBRIGHT
 		else
-			lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
+			lighting_cutoff = LIGHTING_CUTOFF_VISIBLE
 
 	update_sight()
 
@@ -751,12 +571,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/dead/observer/update_sight()
 	if(ghost_vision)
-		see_invisible = SEE_INVISIBLE_OBSERVER
+		set_invis_see(SEE_INVISIBLE_OBSERVER)
 	else
-		see_invisible = SEE_INVISIBLE_LIVING
+		set_invis_see(SEE_INVISIBLE_LIVING)
 
 	updateghostimages()
 
+	lighting_color_cutoffs = list(lighting_cutoff_red, lighting_cutoff_green, lighting_cutoff_blue)
 	return ..()
 
 
@@ -895,6 +716,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/verb/join_valhalla()
 	set name = "Join Valhalla"
 	set category = "Ghost"
+
+	if(!SSticker.mode)
+		to_chat(usr, span_warning("Please wait for the round to begin first."))
+		return
 
 	if(is_banned_from(ckey, ROLE_VALHALLA))
 		to_chat(usr, span_notice("You are banned from Valhalla!"))

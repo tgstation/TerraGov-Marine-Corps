@@ -351,7 +351,7 @@
 		return
 	new/obj/effect/decal/cleanable/egg_smudge(src.loc)
 	src.reagents.reaction(hit_atom, TOUCH)
-	src.visible_message(span_warning(" [src.name] has been squashed."),span_warning(" You hear a smack."))
+	src.visible_message(span_warning("[src.name] has been squashed."),span_warning("You hear a smack."))
 	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/egg/blue

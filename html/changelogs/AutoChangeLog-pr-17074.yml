@@ -1,7 +1,0 @@
-author: "yyzsong"
-delete-after: True
-changes:
-  - rscadd: "The Acid Maw may now fire a facehugger shot"
-  - rscdel: "The Acid Maw may no longer fire an acid gas shot"
-  - rscadd: "The Acid Jaws may now fire an acid gas shot"
-  - rscdel: "The Acid Jaws may no longer fire a facehugger shot"

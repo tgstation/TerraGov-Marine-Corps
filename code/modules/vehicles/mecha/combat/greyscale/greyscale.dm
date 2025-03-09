@@ -23,6 +23,7 @@
 	pixel_x = -16
 	soft_armor = list(MELEE = 25, BULLET = 75, FIRE = 25, BOMB = 50, LASER = 40, ENERGY = 40, ACID = 30, BIO = 100)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 1, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1)
+	step_energy_drain = 0
 	move_delay = 3
 	max_equip_by_category = MECH_GREYSCALE_MAX_EQUIP
 	internal_damage_threshold = 15
@@ -156,10 +157,15 @@
 /// Checks if we can dash in the specified direction, and activates the ability if so.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/check_dash(direction)
 	if(last_move_dir == direction && last_mousedown_time + double_tap_timing > world.time)
+		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_DASH))
+			for(var/mob/occupant AS in return_drivers())
+				balloon_alert(occupant, "Dash cooldown ([(S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA_DASH) / 10)]s)")
+			return
 		if(!use_power(dash_power_consumption))
 			for(var/mob/occupant AS in return_drivers())
 				balloon_alert(occupant, "Not enough for dash")
 			return
+		S_TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_DASH, dash_cooldown)
 		activate_dash(direction)
 		return
 	last_mousedown_time = world.time
