@@ -47,7 +47,7 @@
 	attack(target, user)
 
 /obj/item/weapon/ai_use(mob/living/target, mob/living/user)
-	if(item_flags != TWOHANDED)
+	if(!(item_flags & TWOHANDED))
 		return
 	if(item_flags & WIELDED)
 		return
