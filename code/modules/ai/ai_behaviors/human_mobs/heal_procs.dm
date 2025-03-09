@@ -133,7 +133,7 @@
 	mob_parent.zone_selected = broken_limb.name //why god do we rely on the limb name, which isnt a define?
 	if(splint.attack(target, mob_parent))
 		. = TRUE
-	mob_parent.zone_selected = BODY_ZONE_CHEST
+	mob_parent?.zone_selected = BODY_ZONE_CHEST
 
 ///Tries to revive a dead dude
 /datum/ai_behavior/human/proc/do_defib(mob/living/carbon/human/patient, obj/item/defibrillator/defib)

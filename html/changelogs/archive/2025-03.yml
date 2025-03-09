@@ -127,3 +127,72 @@
   - refactor: refactored pass_flags to be managed via traits
   - bugfix: fixed xeno turrets
   - qol: Catwalks have an alpha layer under them now, which will catch clicks
+2025-03-08:
+  Lumipharon:
+  - rscadd: Added more things for NPC's to avoid as hazards
+  - rscadd: simian intelligence increased
+  TiviPlus:
+  - bugfix: fixed strains ignoring max caste limits
+  - bugfix: Strain swap will now show all strains you can swap, including the base
+      caste, excluding your own instead of all strains
+  - bugfix: Fixed monkey sprites being really small
+  - balance: You can no longer rearm mech weapons while firing
+  - code_imp: added MAPPING_DIRECTIONAL_HELPERS for mappers. please use this instead
+      of dir and pixel varedits and initialize() switches
+  - bugfix: Fixed failed mech dashes still using power
+  - qol: You can now use more advanced regexes in chat highlighting
+  - qol: Mech repair retargets itself to the chest now when a limb is repaired
+  Tiviplus, Lumipharon & Ripgrayson:
+  - refactor: Refactored the backend for rendering heavily in support of Multi-Z
+  - code_imp: Added plane controllers properly
+  - refactor: refactored night vision to support rgb night vision, instead of a flat
+      number
+  - refactor: Resorted all our layers and compressed them down
+  - bugfix: This has fixed some previous layering issues (and probably caused new
+      ones)
+  - code_imp: As a byproduct, some visual related stuff was optimized
+  - rscadd: 'NEW PERFORMANCE OPTIONS: Ambient occlusion can be turned off, multi-z
+      parallax can be turned off, multi-z prettiness can be turned down'
+  - refactor: Also changed the rendering method to match the 3/4 perspective. This
+      changes how some layering is performed and may result in some wonkiness in layering.
+      Please make an issue report if you see anything out of place.
+  - code_imp: Added get_turfs_by_zlevel and get_turfs_from_all_zlevels to interface
+      with area turf management. Use this where you can instead of looping over area
+      contents.
+  - code_imp: 'CODERS!!!: Since we now use SIDE_MAP, pixel_z and pixel_w now actually
+      do something. Go read the guide in github/guides/VISUALS.md'
+  - bugfix: Fixed shuttle walls and the gunner seats' turf on opendream layering under
+      the floor
+  - bugfix: Fixed some cases where you couldn't see a lit area
+  - bugfix: Fixed some overlays (e.g lighting) following screen alerts and mugshot
+      announcements
+  - bugfix: The Splashscreen should immediately load the correct way now
+  - bugfix: Xeno abilities that distort your screen (e.g ravager or behemoth rage)
+      will now apply it to all game-world objects by default
+  - bugfix: Improved the layering logic of minimap blips somewhat. They now use a
+      priority layering system
+  - bugfix: Fixed orbital cannon console layering under the cannon a little
+  - bugfix: Fixed Orbital cannon, it's tray, and the ship railgun popping in sometimes
+  - bugfix: Standardized how welders are used, as there was a bunch of unnecessary
+      duplication. Due to this many previously non-welding fuel consuming welds now
+      consume fuel, check if it's on correctly, etc.
+  - bugfix: Fixed using tools on mobs always returning the opposite value
+  - bugfix: Fixed base lighting not fully respecting it's alpha values
+  - admin: added a debug/edit planes ui
+  - bugfix: Fixed issues with some maps having mappers having edited thing's layers
+      and planes
+  - code_imp: added linting for plane and layer varedits
+  - code_imp: added MAP_SWITCH for mappers, this allows you to set one variable (like
+      layer or plane) when viewing in the mapviewer, and another in the game
+  larndey:
+  - rscadd: Urban Tower Model Tadpole
+  - imageadd: added "_urbantower.png" for dropship picking computer UI.
+  - code_imp: added Urban Tower Tadpole model to respective code files/lists.
+2025-03-09:
+  Lumipharon:
+  - bugfix: fixed one handed weapons appearing wielded by NPC's
+  - code_imp: Improved some NPC behavior when retreating
+  - rscadd: NPC obstacle handling improved
+  - qol: Barricades and sentries have their faction set by their deployer. NPC's will
+      avoid destroying friendly obstacles
+  - bugfix: fixed items not using the right attack delay when hitting objects
