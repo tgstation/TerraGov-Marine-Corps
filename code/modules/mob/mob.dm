@@ -621,6 +621,8 @@
 	. = ..()
 	if(!.)
 		return
+	if(currently_z_moving)
+		return
 	stop_pulling()
 	if(buckled)
 		buckled.unbuckle_mob(src)
