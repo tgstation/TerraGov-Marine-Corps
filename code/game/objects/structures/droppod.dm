@@ -131,10 +131,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		action.give_action(buckling_mob)
 	buckling_mob.pixel_y = 7
 
-/obj/structure/droppod/unbuckle_mob(mob/living/buckled_mob, force)
+/obj/structure/droppod/post_unbuckle_mob(mob/living/buckled_mob)
 	. = ..()
-	if(!.)
-		return
 	for(var/datum/action/innate/action AS in interaction_actions)
 		action.remove_action(buckled_mob)
 	buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
