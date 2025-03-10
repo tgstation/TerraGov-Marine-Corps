@@ -157,11 +157,11 @@ export const CameraRoles = (props) => {
   }
 
   // Render each role group
-  return Object.entries(rolesCameras).map(([role, roleCameras]) => {
+  return Object.entries(rolesCameras).map(([role, cameras]) => {
     return (
       <div key={role}>
         {useRoles && <div className="CameraConsole__role">{role}</div>}
-        <CameraEntries cameras={roleCameras} activeCamera={activeCamera} />
+        <CameraEntries cameras={cameras} activeCamera={activeCamera} />
       </div>
     );
   });
