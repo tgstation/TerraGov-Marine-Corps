@@ -622,7 +622,7 @@
 
 	var/list/turf/impacted_turfs = get_forward_square(xeno_owner, 2, 2) // 5x2
 	for(var/turf/impacted_turf AS in impacted_turfs)
-		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 1.2 SECONDS)
+		new /obj/effect/temp_visual/dragon/warning(impacted_turf, 0.5 SECONDS)
 
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
