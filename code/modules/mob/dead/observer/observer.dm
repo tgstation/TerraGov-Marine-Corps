@@ -54,6 +54,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 
 /mob/dead/observer/Initialize(mapload)
+	. = ..()
 	invisibility = GLOB.observer_default_invisibility
 
 	if(icon_state in GLOB.ghost_forms_with_directions_list)
@@ -102,7 +103,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	grant_all_languages()
 
-	return ..()
 
 
 /mob/dead/observer/Destroy()
