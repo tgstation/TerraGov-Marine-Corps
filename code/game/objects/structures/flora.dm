@@ -216,7 +216,7 @@
 	name = "tall grass"
 	icon = 'icons/obj/flora/tallgrass.dmi'
 	icon_state = "tallgrass"
-	plane = ABOVE_GAME_PLANE
+	plane = GAME_PLANE
 	opacity = TRUE
 	color = "#7a8c54"
 
