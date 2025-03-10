@@ -201,6 +201,8 @@
 #define TRAIT_SUPERIOR_BUILDER "superior_builder"
 /// Mob has fov applied to it
 #define TRAIT_FOV_APPLIED "fov_applied"
+/// Expands our FOV by 30 degrees if restricted
+#define TRAIT_EXPANDED_FOV "expanded_fov"
 
 ///Traits for managing AM pass_flags
 #define TRAIT_PASS_LOW_STRUCTURE "pass_low_structure"
