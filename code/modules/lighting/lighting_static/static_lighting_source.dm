@@ -297,7 +297,7 @@
 					continue
 				INSERT_CORNERS(corners, T)
 
-				var/turf/below = GET_TURF_BELOW(T)
+				var/turf/below = SSmapping.get_turf_below(T)
 //				var/turf/previous = T
 				while(below)
 					// If we find a non transparent previous, end
@@ -311,15 +311,15 @@
 					INSERT_CORNERS(corners, below)
 					// ANNND then we add the one below it
 //					previous = below
-					below = GET_TURF_BELOW(below)
+					below = SSmapping.get_turf_below(below)
 
-				var/turf/above = GET_TURF_ABOVE(T)
+				var/turf/above = SSmapping.get_turf_above(T)
 				while(above)
 					// If we find a non transparent turf, end
 //					if(!istransparentturf(above) || IS_OPAQUE_TURF(above))
 //						break
 					INSERT_CORNERS(corners, above)
-					above = GET_TURF_ABOVE(above)
+					above = SSmapping.get_turf_above(above)
 		else // Yes I know this could be acomplished with an if in the for loop, but it's fukin lighting code man
 			for(var/turf/T in view(CEILING(light_range, 1), source_turf))
 				if(IS_OPAQUE_TURF(T))
