@@ -12,7 +12,7 @@
 	light_power = 0.7
 	anchored = TRUE
 	density = FALSE
-	interaction_flags_machine = INTERACT_MACHINE_OPEN
+//	interaction_flags_machine = INTERACT_MACHINE_OPEN
 	circuit = /obj/item/circuitboard/machine/crossing_signal
 	// pointless if it only takes 2 seconds to cross but updates every 2 seconds
 	subsystem_type = /datum/controller/subsystem/processing/transport
@@ -73,7 +73,6 @@
 	layer = TRAM_SIGNAL_LAYER
 	max_integrity = 250
 	integrity_failure = 0.25
-	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 3.6
 	anchored = TRUE
 	density = FALSE
 	light_range = 1.5
@@ -270,10 +269,10 @@
 	// Immediately process for snappy feedback
 	var/should_process = process() != PROCESS_KILL
 	if(should_process)
-		update_use_power(ACTIVE_POWER_USE)
+		use_power = (ACTIVE_POWER_USE)
 		start_processing()
 		return
-	update_use_power(IDLE_POWER_USE)
+	use_power = (IDLE_POWER_USE)
 	stop_processing()
 
 /obj/machinery/transport/crossing_signal/process()
@@ -407,7 +406,8 @@
 		else
 			new_color = LIGHT_COLOR_FLARE
 
-	set_light(l_on = TRUE, l_color = new_color)
+	set_light_color(new_color)
+	set_light_on(TRUE)
 
 /obj/machinery/transport/crossing_signal/update_overlays()
 	. = ..()

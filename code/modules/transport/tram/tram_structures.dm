@@ -22,7 +22,6 @@
 	anchored = TRUE
 	atom_flags = PREVENT_CLICK_UNDER
 	pass_flags = PASS_GLASS
-
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = SMOOTH_GROUP_TRAM_STRUCTURE
 	canSmoothWith = SMOOTH_GROUP_TRAM_STRUCTURE
@@ -30,20 +29,20 @@
 	/// What state of de/construction it's in
 	var/state = TRAM_SCREWED_TO_FRAME
 	/// Mineral to return when deconstructed
-	var/mineral = /obj/item/stack/sheet/titaniumglass
+	var/mineral = /obj/item/stack/sheet/plasteel
 	/// Amount of mineral to return when deconstructed
 	var/mineral_amount = 2
 	/// Type of structure made out of girder
 	var/tram_wall_type = /obj/structure/tram
 	/// Type of girder made when deconstructed
-	var/girder_type = /obj/structure/girder/tram
+	var/girder_type = /obj/structure/girder
 	var/mutable_appearance/damage_overlay
 	/// Sound when it breaks
 	var/break_sound = SFX_SHATTER
 	/// Sound when hit without combat mode
-	var/knock_sound = 'sound/effects/glass/glassknock.ogg'
+	var/knock_sound = 'sound/effects/glassknock.ogg'
 	/// Sound when hit with combat mode
-	var/bash_sound = 'sound/effects/glass/glassbash.ogg'
+	var/bash_sound = 'sound/effects/Glasshit.ogg'
 
 /obj/structure/tram/split
 	base_icon_state = "tram-split"
@@ -72,7 +71,7 @@
 
 /obj/structure/tram/update_overlays(updates = ALL)
 	. = ..()
-	var/ratio = atom_integrity / max_integrity
+	var/ratio = obj_integrity / max_integrity
 	ratio = CEILING(ratio * 4, 1) * 25
 	cut_overlay(damage_overlay)
 	if(ratio > 75)
@@ -93,7 +92,7 @@
 			span_warning("You bash [src]!"))
 		playsound(src, bash_sound, 100, TRUE)
 
-/obj/structure/tram/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
+/obj/structure/tram/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
 	if(.) //received damage
 		update_appearance()
@@ -111,61 +110,63 @@
 		update_appearance()
 	return TRUE
 
-/obj/structure/tram/attackby_secondary(obj/item/tool, mob/user, params)
+/obj/structure/tram/attackby_alternate(obj/item/attacking_item, mob/user, params)
 	switch(state)
 		if(TRAM_SCREWED_TO_FRAME)
-			if(tool.tool_behaviour == TOOL_SCREWDRIVER)
+			if(attacking_item.tool_behaviour == TOOL_SCREWDRIVER)
 				user.visible_message(span_notice("[user] begins to unscrew the tram panel from the frame..."),
 				span_notice("You begin to unscrew the tram panel from the frame..."))
-				if(tool.use_tool(src, user, 1 SECONDS, volume = 50))
+				if(attacking_item.use_tool(src, user, 1 SECONDS, volume = 50))
 					state = TRAM_IN_FRAME
 					to_chat(user, span_notice("The screws come out, and a gap forms around the edge of the pane."))
 					return TRUE
 
-			if(tool.tool_behaviour)
+			if(attacking_item.tool_behaviour)
 				to_chat(user, span_warning("The security screws need to be removed first!"))
 
 		if(TRAM_IN_FRAME)
-			if(tool.tool_behaviour == TOOL_CROWBAR)
-				user.visible_message(span_notice("[user] wedges \the [tool] into the tram panel's gap in the frame and starts prying..."),
-				span_notice("You wedge \the [tool] into the tram panel's gap in the frame and start prying..."))
-				if(tool.use_tool(src, user, 1 SECONDS, volume = 50))
+			if(attacking_item.tool_behaviour == TOOL_CROWBAR)
+				user.visible_message(span_notice("[user] wedges \the [attacking_item] into the tram panel's gap in the frame and starts prying..."),
+				span_notice("You wedge \the [attacking_item] into the tram panel's gap in the frame and start prying..."))
+				if(attacking_item.use_tool(src, user, 1 SECONDS, volume = 50))
 					state = TRAM_OUT_OF_FRAME
 					to_chat(user, span_notice("The panel pops out of the frame, exposing some cabling that look like they can be cut."))
 					return TRUE
 
-			if(tool.tool_behaviour == TOOL_SCREWDRIVER)
+			if(attacking_item.tool_behaviour == TOOL_SCREWDRIVER)
 				user.visible_message(span_notice("[user] resecures the tram panel to the frame..."),
 				span_notice("You resecure the tram panel to the frame..."))
 				state = TRAM_SCREWED_TO_FRAME
 				return TRUE
 
 		if(TRAM_OUT_OF_FRAME)
-			if(tool.tool_behaviour == TOOL_WIRECUTTER)
+			if(attacking_item.tool_behaviour == TOOL_WIRECUTTER)
 				user.visible_message(span_notice("[user] starts cutting the connective cabling on \the [src]..."),
 				span_notice("You start cutting the connective cabling on \the [src]"))
-				if(tool.use_tool(src, user, 1 SECONDS, volume = 50))
+				if(attacking_item.use_tool(src, user, 1 SECONDS, volume = 50))
 					to_chat(user, span_notice("The panels falls out of the way exposing the frame backing."))
 					deconstruct(disassembled = TRUE)
 
-			if(tool.tool_behaviour == TOOL_CROWBAR)
+			if(attacking_item.tool_behaviour == TOOL_CROWBAR)
 				user.visible_message(span_notice("[user] snaps the tram panel into place."),
 				span_notice("You snap the tram panel into place..."))
 				state = TRAM_IN_FRAME
 				return TRUE
 
-			if(tool.tool_behaviour)
+			if(attacking_item.tool_behaviour)
 				to_chat(user, span_warning("The cabling need to be cut first!"))
 
 	return ..()
 
-/obj/structure/tram/atom_deconstruct(disassembled = TRUE)
+/obj/structure/tram/deconstruct(disassembled, mob/living/blame_mob)
+	. = ..()
 	if(disassembled)
 		new girder_type(loc)
 	if(mineral_amount)
 		for(var/i in 1 to mineral_amount)
 			new mineral(loc)
 
+/*
 /obj/structure/tram/attackby(obj/item/item, mob/user, params)
 	. = ..()
 
@@ -181,7 +182,7 @@
 		frame.attach(src, user)
 
 	return
-
+*/
 /*
  * Other misc tramwall types
  */
@@ -370,8 +371,7 @@
 	icon_state = "tram-spoiler-retracted"
 	max_integrity = 400
 	obj_flags = CAN_BE_HIT
-	mineral = /obj/item/stack/sheet/mineral/titanium
-	girder_type = /obj/structure/girder/tram/corner
+	girder_type = /obj/structure/girder
 	smoothing_flags = NONE
 	smoothing_groups = null
 	canSmoothWith = null

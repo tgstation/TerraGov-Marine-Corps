@@ -9,9 +9,7 @@
 	max_integrity = 400
 	integrity_failure = 0.1
 	power_channel = ENVIRON
-	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 0.25
-
-	circuit = /obj/item/circuitboard/computer/tram_controls
+//	circuit = /obj/item/circuitboard/computer/tram_controls
 	light_color = COLOR_BLUE_LIGHT
 	light_range = 0 //we dont want to spam SSlighting with source updates every movement
 	/// What sign face prefixes we have icons for
@@ -26,7 +24,7 @@
 	var/split_mode = FALSE
 
 /obj/machinery/computer/tram_controls/split
-	circuit = /obj/item/circuitboard/computer/tram_controls/split
+//	circuit = /obj/item/circuitboard/computer/tram_controls/split
 	split_mode = TRUE
 
 /obj/machinery/computer/tram_controls/split/directional/north
@@ -47,6 +45,7 @@
 	dir = EAST
 	pixel_x = -32
 
+
 /obj/machinery/computer/tram_controls/Initialize(mapload)
 	. = ..()
 	var/obj/item/circuitboard/computer/tram_controls/my_circuit = circuit
@@ -63,9 +62,6 @@
 	var/datum/transport_controller/linear/tram/tram = transport_ref?.resolve()
 	if(tram)
 		RegisterSignal(SStransport, COMSIG_TRANSPORT_ACTIVE, PROC_REF(update_display))
-
-/obj/machinery/computer/tram_controls/update_current_power_usage()
-	return // We get power from area rectifiers
 
 /**
  * Finds the tram from the console

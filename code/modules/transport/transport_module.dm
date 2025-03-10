@@ -133,7 +133,7 @@
 /obj/structure/transport/linear/proc/add_item_on_transport(datum/source, atom/movable/new_transport_contents)
 	SIGNAL_HANDLER
 	var/static/list/blacklisted_types = typecacheof(list(/obj/structure/fluff/tram_rail, /obj/effect/decal/cleanable, /obj/structure/transport/linear, /mob/camera))
-	if(is_type_in_typecache(new_transport_contents, blacklisted_types) || new_transport_contents.invisibility == INVISIBILITY_ABSTRACT || HAS_TRAIT(new_transport_contents, TRAIT_UNDERFLOOR)) //prevents the tram from stealing things like landmarks
+	if(is_type_in_typecache(new_transport_contents, blacklisted_types) || new_transport_contents.invisibility == INVISIBILITY_ABSTRACT || level == 1) //prevents the tram from stealing things like landmarks
 		return FALSE
 	if(new_transport_contents in transport_contents)
 		return FALSE
@@ -418,10 +418,10 @@
 				switch(extra_ouch)
 					if(TRUE)
 						playsound(src, 'sound/effects/grillehit.ogg', 50, TRUE)
-						var/obj/item/bodypart/head/head = victim_living.get_bodypart("head")
+						var/datum/limb/head/head = victim_living.get_limb("head")
 						if(head)
 							log_combat(src, victim_living, "beheaded")
-							head.dismember()
+							head.droplimb(TRUE)
 							victim_living.regenerate_icons()
 							add_overlay(mutable_appearance(icon, "blood_overlay"))
 							register_collision(points = 3)
@@ -698,7 +698,7 @@
  * * boolean, FALSE if the menu should be closed, TRUE if the menu is clear to stay opened.
  */
 /obj/structure/transport/linear/proc/check_menu(mob/user, starting_loc)
-	if(user.incapacitated || !user.Adjacent(src) || starting_loc != src.loc)
+	if(user.incapacitated() || !user.Adjacent(src) || starting_loc != src.loc)
 		return FALSE
 	return TRUE
 

@@ -19,7 +19,8 @@
 	SStransport.hello(src, name, id_tag)
 
 //set tram destination
-/obj/item/assembly/control/transport/remote/attack_self_secondary(mob/user)
+/obj/item/assembly/control/transport/remote/attack_hand_alternate(mob/living/user)
+	. = ..()
 	var/list/available_platforms = list()
 	for(var/obj/effect/landmark/transport/nav_beacon/tram/platform/platform as anything in SStransport.nav_beacons[specific_transport_id])
 		LAZYADD(available_platforms, platform.name)
@@ -34,7 +35,9 @@
 	to_chat(user, span_notice("You change the platform ID on [src] to [selected_platform]."))
 
 ///set safety bypass
-/obj/item/assembly/control/transport/remote/item_ctrl_click(mob/user)
+/obj/item/assembly/control/transport/remote/CtrlClick(mob/user)
+	if(!Adjacent(user))
+		return
 	switch(options)
 		if(!RAPID_MODE)
 			options |= RAPID_MODE
@@ -42,7 +45,6 @@
 			options &= ~RAPID_MODE
 	update_appearance()
 	balloon_alert(user, "mode: [options ? "fast" : "safe"]")
-	return CLICK_ACTION_SUCCESS
 
 /obj/item/assembly/control/transport/remote/examine(mob/user)
 	. = ..()
@@ -51,8 +53,8 @@
 		. += "Left-click to link to a tram."
 		return
 	. += "The rapid mode light is [options ? "on" : "off"]."
-	if(cooldown)
-		. += "The number on the display shows [DisplayTimeText(cooldown, 1)]."
+	if(!COOLDOWN_CHECK(src, tram_remote))
+		. += "The number on the display shows [DisplayTimeText(COOLDOWN_TIMELEFT(src, tram_remote), 1)]."
 	else
 		. += "The display indicates ready."
 	. += "Left-click to dispatch tram."
@@ -79,8 +81,8 @@
 		link_tram(user)
 		return
 
-	if(cooldown)
-		balloon_alert(user, "cooldown: [DisplayTimeText(cooldown, 1)]")
+	if(COOLDOWN_CHECK(src, tram_remote))
+		balloon_alert(user, "cooldown: [DisplayTimeText(COOLDOWN_TIMELEFT(src, tram_remote), 1)]")
 		return
 
 	activate(user)
@@ -97,9 +99,11 @@
 
 	SEND_SIGNAL(src, COMSIG_TRANSPORT_REQUEST, specific_transport_id, destination, options)
 
-/obj/item/assembly/control/transport/remote/click_alt(mob/user)
+// how i wish we had tgcode for clicks
+/obj/item/assembly/control/transport/remote/AltClick(mob/user)
+	if(!Adjacent(user))
+		return
 	link_tram(user)
-	return CLICK_ACTION_SUCCESS
 
 /obj/item/assembly/control/transport/remote/proc/link_tram(mob/user)
 	specific_transport_id = null

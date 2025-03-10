@@ -56,12 +56,10 @@
 		. += span_notice("It is secured to the tram wall with [EXAMINE_HINT("bolts.")]")
 
 /obj/machinery/transport/destination_sign/on_deconstruction(disassembled)
-	if(disassembled)
-		new /obj/item/wallframe/indicator_display(drop_location())
-	else
-		new /obj/item/shard(drop_location())
-		new /obj/item/shard(drop_location())
+	new /obj/item/shard(drop_location())
+	new /obj/item/shard(drop_location())
 
+/*
 /obj/machinery/transport/destination_sign/indicator/wrench_act_secondary(mob/living/user, obj/item/tool)
 	. = ..()
 	balloon_alert(user, "[anchored ? "un" : ""]securing...")
@@ -71,7 +69,7 @@
 		balloon_alert(user, "[anchored ? "un" : ""]secured")
 		deconstruct()
 		return TRUE
-
+*/
 /obj/machinery/transport/destination_sign/proc/update_sign(datum/source, datum/transport_controller/linear/tram/controller, controller_active, controller_status, travel_direction, obj/effect/landmark/transport/nav_beacon/tram/platform/destination_platform)
 	SIGNAL_HANDLER
 
@@ -118,10 +116,10 @@
 	. = ..()
 
 	if(isnull(sign_face))
-		set_light(l_on = FALSE)
+		set_light_on(FALSE)
 		return
-
-	set_light(l_on = TRUE, l_color = sign_color)
+	set_light_color(sign_color)
+	set_light_on(TRUE)
 	. += emissive_appearance(icon, "[sign_face]_e", src, alpha = src.alpha)
 
 /obj/machinery/transport/destination_sign/indicator/power_change()

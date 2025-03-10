@@ -3,8 +3,6 @@
 	desc = "An electrical device that converts alternating current (AC) to direct current (DC) for powering the tram."
 	icon = 'icons/obj/tram/tram_controllers.dmi'
 	icon_state = "rectifier"
-	idle_power_usage = BASE_MACHINE_IDLE_CONSUMPTION * 11.4
-	active_power_usage = BASE_MACHINE_ACTIVE_CONSUMPTION * 114
 	power_channel = ENVIRON
 	anchored = TRUE
 	density = FALSE
@@ -37,9 +35,9 @@
 	SIGNAL_HANDLER
 
 	if(controller_active && destination_platform == connected_platform)
-		update_use_power(ACTIVE_POWER_USE)
+		use_power = (ACTIVE_POWER_USE)
 	else
-		update_use_power(IDLE_POWER_USE)
+		use_power = (IDLE_POWER_USE)
 
 	update_appearance()
 

@@ -377,7 +377,7 @@
 		addtimer(CALLBACK(src, PROC_REF(cycle_doors), CYCLE_OPEN), 2 SECONDS)
 		malf_active = TRANSPORT_SYSTEM_NORMAL
 		throw_chance = initial(throw_chance)
-		playsound(paired_cabinet, 'sound/machines/buzz/buzz-sigh.ogg', 60, vary = FALSE)
+		playsound(paired_cabinet, 'sound/machines/buzz-sigh.ogg', 60, vary = FALSE)
 		paired_cabinet.say("Controller error. Please contact your engineering department.")
 	idle_platform = destination_platform
 	tram_registration.distance_travelled += (travel_trip_length - travel_remaining)
@@ -395,7 +395,7 @@
 /datum/transport_controller/linear/tram/proc/halt_and_catch_fire()
 	if(controller_status & SYSTEM_FAULT)
 		if(!isnull(paired_cabinet))
-			playsound(paired_cabinet, 'sound/machines/buzz/buzz-sigh.ogg', 60, vary = FALSE)
+			playsound(paired_cabinet, 'sound/machines/buzz-sigh.ogg', 60, vary = FALSE)
 			paired_cabinet.say("Controller error. Please contact your engineering department.")
 		log_transport("TC: [specific_transport_id] Transport Controller failed!")
 
@@ -439,7 +439,7 @@
 	var/reset_beacon = closest_nav_in_travel_dir(nav_beacon, tram_velocity_sign, specific_transport_id)
 
 	if(!reset_beacon)
-		playsound(paired_cabinet, 'sound/machines/buzz/buzz-sigh.ogg', 60, vary = FALSE)
+		playsound(paired_cabinet, 'sound/machines/buzz-sigh.ogg', 60, vary = FALSE)
 		paired_cabinet.say("Controller reset failed. Contact manufacturer.") // If you screwed up the tram this bad, I don't even
 		log_transport("TC: [specific_transport_id] non-recoverable error! Tram is at ([nav_beacon.x], [nav_beacon.y], [nav_beacon.z] [tram_velocity_sign ? "OUTBOUND" : "INBOUND"]) and can't find a reset beacon.")
 		message_admins("Tram ID [specific_transport_id] is in a non-recoverable error state at [ADMIN_JMP(nav_beacon)]. If it's causing problems, delete the controller datum from the 'Reset Tram' proc in the Debug tab.")
@@ -460,7 +460,7 @@
 	log_transport("TC: [specific_transport_id] trying to reset at [destination_platform].")
 
 /datum/transport_controller/linear/tram/proc/estop()
-	playsound(paired_cabinet, 'sound/machines/buzz/buzz-sigh.ogg', 60, vary = FALSE)
+	playsound(paired_cabinet, 'sound/machines/buzz-sigh.ogg', 60, vary = FALSE)
 	paired_cabinet.say("Emergency stop activated!")
 	set_status_code(EMERGENCY_STOP, TRUE)
 	log_transport("TC: [specific_transport_id] requested emergency stop.")
@@ -541,7 +541,7 @@
  * TODO: this is probably better renamed check_door_status()
  */
 /datum/transport_controller/linear/tram/proc/update_status()
-	for(var/obj/machinery/door/airlock/tram/door as anything in SStransport.doors)
+	for(var/obj/machinery/door/airlock/multi_tile/tram/door as anything in SStransport.doors)
 		if(door.transport_linked_id != specific_transport_id)
 			continue
 		if(door.crushing_in_progress)
@@ -557,14 +557,14 @@
 /datum/transport_controller/linear/tram/proc/cycle_doors(door_status, rapid)
 	switch(door_status)
 		if(CYCLE_OPEN)
-			for(var/obj/machinery/door/airlock/tram/door as anything in SStransport.doors)
+			for(var/obj/machinery/door/airlock/multi_tile/tram/door as anything in SStransport.doors)
 				if(door.transport_linked_id == specific_transport_id)
-					INVOKE_ASYNC(door, TYPE_PROC_REF(/obj/machinery/door/airlock/tram, open), rapid)
+					INVOKE_ASYNC(door, TYPE_PROC_REF(/obj/machinery/door/airlock/multi_tile/tram, open), rapid)
 
 		if(CYCLE_CLOSED)
-			for(var/obj/machinery/door/airlock/tram/door as anything in SStransport.doors)
+			for(var/obj/machinery/door/airlock/multi_tile/tram/door as anything in SStransport.doors)
 				if(door.transport_linked_id == specific_transport_id)
-					INVOKE_ASYNC(door, TYPE_PROC_REF(/obj/machinery/door/airlock/tram, close), rapid)
+					INVOKE_ASYNC(door, TYPE_PROC_REF(/obj/machinery/door/airlock/multi_tile/tram, close), rapid)
 
 /datum/transport_controller/linear/tram/proc/notify_controller(obj/machinery/transport/tram_controller/new_cabinet)
 	paired_cabinet = new_cabinet
@@ -758,7 +758,7 @@
 	anchored = TRUE
 	density = FALSE
 	resistance_flags = ALL
-	interaction_flags_machine = parent_type::interaction_flags_machine | INTERACT_MACHINE_OFFLINE
+//	interaction_flags_machine = parent_type::interaction_flags_machine | INTERACT_MACHINE_OFFLINE
 	max_integrity = 750
 	integrity_failure = 0.25
 	layer = SIGN_LAYER
@@ -774,9 +774,6 @@
 
 /obj/machinery/transport/tram_controller/hilbert
 	configured_transport_id = HILBERT_LINE_1
-
-/obj/machinery/transport/tram_controller/wrench_act_secondary(mob/living/user, obj/item/tool)
-	return NONE
 
 /obj/machinery/transport/tram_controller/Initialize(mapload)
 	. = ..()
@@ -795,9 +792,6 @@
 /obj/machinery/transport/tram_controller/obj_break(damage_flag)
 	set_machine_stat(machine_stat | BROKEN)
 	..()
-
-/obj/machinery/transport/tram_controller/update_current_power_usage()
-	return // We get power from area rectifiers
 
 /obj/machinery/transport/tram_controller/examine(mob/user)
 	. = ..()
@@ -822,7 +816,7 @@
 		return ..()
 
 	if(has_cover)
-		var/obj/item/card/id/id_card = user.get_id_in_hand()
+		var/obj/item/card/id/id_card = weapon //user.get_id_in_hand()
 		if(!isnull(id_card))
 			try_toggle_lock(user, id_card)
 			return
@@ -911,10 +905,7 @@
 /obj/machinery/transport/tram_controller/on_deconstruction(disassembled)
 	var/turf/drop_location = drop_location()
 
-	if(disassembled)
-		new /obj/item/wallframe/tram/controller(drop_location)
-	else
-		new /obj/item/stack/sheet/metal(drop_location, 1)
+	new /obj/item/stack/sheet/metal(drop_location, 1)
 
 /**
  * Update the blinky lights based on the controller status, allowing to quickly check without opening up the cabinet.
@@ -1137,12 +1128,3 @@
 		return
 	controller_datum.set_home_controller(src)
 	RegisterSignal(SStransport, COMSIG_TRANSPORT_ACTIVE, PROC_REF(sync_controller))
-
-/obj/item/wallframe/tram/controller
-	name = "tram controller cabinet"
-	desc = "A box that contains the equipment to control a tram. Just secure to the tram wall."
-	icon = 'icons/obj/tram/tram_controllers.dmi'
-	icon_state = "tram-controller"
-	custom_materials = list(/datum/material/titanium = SHEET_MATERIAL_AMOUNT * 4, /datum/material/iron = SHEET_MATERIAL_AMOUNT * 2, /datum/material/glass = SHEET_MATERIAL_AMOUNT * 2)
-	result_path = /obj/machinery/transport/tram_controller
-	pixel_shift = 32

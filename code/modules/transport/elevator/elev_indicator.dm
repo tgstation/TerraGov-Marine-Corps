@@ -103,7 +103,7 @@
 		set_lift_state(0, 0, force = !is_operational())
 		return PROCESS_KILL
 
-	use_energy(active_power_usage)
+	use_power(active_power_usage)
 
 	var/obj/structure/transport/linear/lift_part = lift.transport_modules[1]
 

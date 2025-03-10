@@ -72,7 +72,7 @@ ADMIN_VERB(reset_tram, R_DEBUG|R_ADMIN, "Reset Tram", "Reset a tram controller o
 				tram_cabinet.controller_datum = null
 				tram_cabinet.update_appearance()
 
-			broken_controller.cycle_doors(CYCLE_OPEN, BYPASS_DOOR_CHECKS)
+			broken_controller.cycle_doors(CYCLE_OPEN)
 			broken_controller.estop()
 			qdel(broken_controller)
 			message_admins("[key_name_admin(user)] performed a datum delete of tram ID [selected_transport_id].")

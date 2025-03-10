@@ -117,6 +117,7 @@
 /turf/open/floor/tram/plate/energized/burnt_states()
 	return list("energized_plate_damaged")
 
+/*
 /turf/open/floor/tram/plate/energized/attackby(obj/item/attacking_item, mob/living/user, params)
 	if((broken || burnt) && istype(attacking_item, /obj/item/stack/sheet/mineral/titanium))
 		if(attacking_item.use(1))
@@ -125,7 +126,7 @@
 			balloon_alert(user, "plate replaced")
 			return
 	return ..()
-
+*/
 /turf/open/floor/tram/plate/energized/broken
 	broken = TRUE
 
@@ -167,7 +168,7 @@
 	obj_flags = BLOCK_Z_OUT_DOWN | BLOCK_Z_OUT_UP
 	appearance_flags = PIXEL_SCALE|KEEP_TOGETHER
 	var/secured = TRUE
-	var/floor_tile = /obj/item/stack/thermoplastic
+	var/floor_tile = /obj/item/stack/sheet/metal
 	var/mutable_appearance/damage_overlay
 
 /datum/armor/tram_floor
@@ -181,7 +182,7 @@
 /obj/structure/thermoplastic/light
 	icon_state = "tram_light"
 	base_icon_state = "tram_light"
-	floor_tile = /obj/item/stack/thermoplastic/light
+	floor_tile =  /obj/item/stack/sheet/plasteel
 
 /obj/structure/thermoplastic/examine(mob/user)
 	. = ..()
@@ -192,14 +193,14 @@
 		. += span_notice("You can [EXAMINE_HINT("crowbar")] to remove the tile.")
 		. += span_notice("It can be re-secured using a [EXAMINE_HINT("screwdriver.")]")
 
-/obj/structure/thermoplastic/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
+/obj/structure/thermoplastic/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
 	if(.) //received damage
 		update_appearance()
 
 /obj/structure/thermoplastic/update_icon_state()
 	. = ..()
-	var/ratio = atom_integrity / max_integrity
+	var/ratio = obj_integrity / max_integrity
 	ratio = CEILING(ratio * 4, 1) * 25
 	if(ratio > 75)
 		icon_state = base_icon_state

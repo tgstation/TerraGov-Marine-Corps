@@ -422,6 +422,10 @@
 	#define COMPONENT_POWERED (1<<0)
 #define COMSIG_MACHINERY_USE_POWER "machinery_use_power"		/// from /obj/machinery/proc/use_power: (amount, chan, list/power_sources)
 	#define COMPONENT_POWER_USED (1<<0)
+///from base power_change() when power is lost
+#define COMSIG_MACHINERY_POWER_LOST "machinery_power_lost"
+///from base power_change() when power is restored
+#define COMSIG_MACHINERY_POWER_RESTORED "machinery_power_restored"
 
 #define COMSIG_PORTGEN_POWER_TOGGLE "portgen_power_toggle"		/// from /obj/machinery/power/port_gen/proc/TogglePower: ()
 #define COMSIG_PORTGEN_PROCESS "portgen_process"				/// from /obj/machinery/power/port_gen/process: ()

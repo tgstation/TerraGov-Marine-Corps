@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY(elevator_music)
 	desc = "You can't see this because it's mounted on the roof of the elevator."
 	anchored = TRUE
 	invisibility = INVISIBILITY_MAXIMUM // Setting this to ABSTRACT means it isn't moved by the lift
-	icon = 'icons/obj/art/musician.dmi'
+	icon = 'icons/obj/musician.dmi'
 	icon_state = "piano"
 	/// What specific_transport_id do we link with?
 	var/linked_elevator_id = ""

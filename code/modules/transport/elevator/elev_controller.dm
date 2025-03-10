@@ -4,23 +4,16 @@
 	base_icon_state = "tram"
 	icon_state = "tram"
 	light_color = COLOR_DISPLAY_BLUE
-	device_type = /obj/item/assembly/control/elevator
 	req_access = list()
 	id = 1
-
-/obj/machinery/button/elevator/Initialize(mapload, ndir, built)
-	. = ..()
-
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
-
-/obj/item/assembly/control/elevator
-	name = "elevator controller"
-	desc = "A small device used to call elevators to the current floor."
-	/// A weakref to the transport_controller datum we control
 	var/datum/weakref/lift_weakref
 	COOLDOWN_DECLARE(elevator_cooldown)
 
-/obj/item/assembly/control/elevator/Initialize(mapload)
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
+
+
+/obj/machinery/button/elevator/Initialize(mapload)
 	. = ..()
 
 	if(mapload)
@@ -32,7 +25,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
 
 	lift_weakref = WEAKREF(lift)
 
-/obj/item/assembly/control/elevator/LateInitialize()
+/obj/machinery/button/elevator/LateInitialize()
 	var/datum/transport_controller/linear/lift = get_lift()
 	if(!lift)
 		log_mapping("Elevator call button at [AREACOORD(src)] found no associated elevator to link with, this may be a mapping error.")
@@ -41,7 +34,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
 	lift_weakref = WEAKREF(lift)
 /*
 // Multitooling emagged elevator buttons will fix the safeties
-/obj/item/assembly/control/elevator/multitool_act(mob/living/user)
+/obj/machinery/button/elevator/multitool_act(mob/living/user)
 	if(!(obj_flags & EMAGGED))
 		return ..()
 
@@ -66,14 +59,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
 	balloon_alert(user, "safeties reset")
 	obj_flags &= ~EMAGGED
 */
-/obj/item/assembly/control/elevator/activate(mob/activator)
+/obj/machinery/button/elevator/attack_hand(mob/living/user)
 	if(!COOLDOWN_CHECK(src, elevator_cooldown))
 		return
 
 	// Actually try to call the elevator - this sleeps.
 	// If we failed to call it, play a buzz sound.
-	if(!call_elevator(activator))
-		playsound(loc, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
+	if(!call_elevator(user))
+		playsound(loc, 'sound/machines/buzz-two.ogg', 50, TRUE)
 
 	// Finally, give people a chance to get off after it's done before going back off cooldown
 	COOLDOWN_START(src, elevator_cooldown, 2 SECONDS)
@@ -81,7 +74,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
 /// Actually calls the elevator.
 /// Returns FALSE if we failed to setup the move.
 /// Returns TRUE if the move setup was a success, EVEN IF the move itself fails afterwards
-/obj/item/assembly/control/elevator/proc/call_elevator(mob/activator)
+/obj/machinery/button/elevator/proc/call_elevator(mob/activator)
 	// We can't call an elevator that doesn't exist
 	var/datum/transport_controller/linear/lift = lift_weakref?.resolve()
 	if(!lift)
@@ -121,7 +114,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
 	if(!QDELETED(prime_lift) && prime_lift.z != loc.z)
 		if(!QDELETED(activator))
 			loc.balloon_alert(activator, "elevator out of service!")
-		playsound(loc, 'sound/machines/buzz/buzz-sigh.ogg', 50, TRUE)
+		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, TRUE)
 		return TRUE
 
 	// Everything went according to plan
@@ -131,13 +124,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
 	return TRUE
 
 /// Callback for move_to_zlevel / general proc to check if we're still in a button
-/obj/item/assembly/control/elevator/proc/check_button()
+/obj/machinery/button/elevator/proc/check_button()
 	if(QDELETED(src) || !istype(loc, /obj/machinery/button))
 		return FALSE
 	return TRUE
 
 /// Gets the elevator associated with our assembly / button
-/obj/item/assembly/control/elevator/proc/get_lift()
+/obj/machinery/button/elevator/proc/get_lift()
 	for(var/datum/transport_controller/linear/possible_match as anything in SStransport.transports_by_type[TRANSPORT_TYPE_ELEVATOR])
 		if(possible_match.specific_transport_id != id)
 			continue
