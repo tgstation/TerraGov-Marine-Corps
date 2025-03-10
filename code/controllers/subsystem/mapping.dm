@@ -50,11 +50,7 @@ SUBSYSTEM_DEF(mapping)
 
 	// Z-manager stuff
 	var/ground_start  // should only be used for maploading-related tasks
-	///list of all z level datums in the order of their z (z level 1 is at index 1, etc.)
 	var/list/z_list
-	///list of all z level indices that form multiz connections and whether theyre linked up or down.
-	///list of lists, inner lists are of the form: list("up or down link direction" = TRUE)
-	var/list/multiz_levels = list()
 	var/datum/space_level/transit
 	var/num_of_res_levels = 1
 	/// True when in the process of adding a new Z-level, global locking
@@ -73,17 +69,16 @@ SUBSYSTEM_DEF(mapping)
 	///shows the gravity value for each z level
 	var/list/gravity_by_z_level = list()
 
-	/// list of traits and their associated z leves
-	var/list/z_trait_levels = list()
-
-	/// list of lazy templates that have been loaded
-	var/list/loaded_lazy_templates
-
-/datum/controller/subsystem/mapping/PreInit()
-	..()
-	configs = load_map_configs(ALL_MAPTYPES, error_if_missing = FALSE)
+//dlete dis once #39770 is resolved
+/datum/controller/subsystem/mapping/proc/HACK_LoadMapConfig()
+	if(!configs)
+		configs = load_map_configs(ALL_MAPTYPES, error_if_missing = FALSE)
+		for(var/i in GLOB.clients)
+			var/client/C = i
+			winset(C, null, "mainwindow.title='[CONFIG_GET(string/title)] - [SSmapping.configs[SHIP_MAP].map_name]'")
 
 /datum/controller/subsystem/mapping/Initialize()
+	HACK_LoadMapConfig()
 	if(initialized)
 		return SS_INIT_SUCCESS
 
@@ -158,35 +153,13 @@ SUBSYSTEM_DEF(mapping)
 		index++
 	lists_to_reserve.Cut(1, index)
 
-/// generates z level linkages for all z
-/datum/controller/subsystem/mapping/proc/generate_z_level_linkages()
-	for(var/z_level in 1 to length(z_list))
-		generate_linkages_for_z_level(z_level)
-
-/// generates z level linkages for multiz for a given z
-/datum/controller/subsystem/mapping/proc/generate_linkages_for_z_level(z_level)
-	if(!isnum(z_level) || z_level <= 0)
-		return FALSE
-
-	if(multiz_levels.len < z_level)
-		multiz_levels.len = z_level
-
-	var/z_above = level_trait(z_level, ZTRAIT_UP)
-	var/z_below = level_trait(z_level, ZTRAIT_DOWN)
-	if(!(z_above == TRUE || z_above == FALSE || z_above == null) || !(z_below == TRUE || z_below == FALSE || z_below == null))
-		stack_trace("Warning, numeric mapping offsets are deprecated. Instead, mark z level connections by setting UP/DOWN to true if the connection is allowed")
-	multiz_levels[z_level] = new /list(LARGEST_Z_LEVEL_INDEX)
-	multiz_levels[z_level][Z_LEVEL_UP] = !!z_above
-	multiz_levels[z_level][Z_LEVEL_DOWN] = !!z_below
-
-///Loads the number of players we had last round, for use in modular mapping
+//Loads the number of players we had last round, for use in modular mapping
 /datum/controller/subsystem/mapping/proc/load_last_round_playercount()
 	var/json_file = file("data/last_round_player_count.json")
 	if(!fexists(json_file))
 		return
 	last_round_player_count = json_decode(file2text(json_file))
 
-///clears all map reservations
 /datum/controller/subsystem/mapping/proc/wipe_reservations(wipe_safety_delay = 100)
 	if(clearing_reserved_turfs || !initialized)			//in either case this is just not needed.
 		return
@@ -216,10 +189,6 @@ SUBSYSTEM_DEF(mapping)
 		returning += M
 		qdel(T, TRUE)
 
-/datum/controller/subsystem/mapping/proc/get_reservation_from_turf(turf/T)
-	RETURN_TYPE(/datum/turf_reservation)
-	return used_turfs[T]
-
 /datum/controller/subsystem/mapping/Recover()
 	flags |= SS_NO_INIT
 	initialized = SSmapping.initialized
@@ -239,8 +208,6 @@ SUBSYSTEM_DEF(mapping)
 	clearing_reserved_turfs = SSmapping.clearing_reserved_turfs
 
 	z_list = SSmapping.z_list
-	multiz_levels = SSmapping.multiz_levels
-	loaded_lazy_templates = SSmapping.loaded_lazy_templates
 
 #define INIT_ANNOUNCE(X) to_chat(world, span_alert("<b>[X]</b>")); log_world(X)
 /datum/controller/subsystem/mapping/proc/LoadGroup(list/errorList, name, path, files, list/traits, list/default_traits, silent = FALSE, height_autosetup = TRUE)
@@ -296,7 +263,7 @@ SUBSYSTEM_DEF(mapping)
 		var/bounds = pm.bounds
 		var/x_offset = bounds ? round(world.maxx / 2 - bounds[MAP_MAXX] / 2) + 1 : 1
 		var/y_offset = bounds ? round(world.maxy / 2 - bounds[MAP_MAXY] / 2) + 1 : 1
-		if (!pm.load(x_offset, y_offset, start_z + parsed_maps[P], no_changeturf = TRUE, new_z = TRUE))
+		if (!pm.load(x_offset, y_offset, start_z + parsed_maps[P], no_changeturf = TRUE)) //, new_z = TRUE))
 			errorList |= pm.original_path
 	if(!silent)
 		INIT_ANNOUNCE("Loaded [name] in [(REALTIMEOFDAY - start_time)/10]s!")
@@ -314,14 +281,14 @@ SUBSYSTEM_DEF(mapping)
 
 	var/datum/map_config/ground_map = configs[GROUND_MAP]
 	INIT_ANNOUNCE("Loading [ground_map.map_name]...")
-	LoadGroup(FailedZs, ground_map.map_name, ground_map.map_path, ground_map.map_file, ground_map.traits, ZTRAITS_GROUND, height_autosetup = ground_map.height_autosetup)
+	LoadGroup(FailedZs, ground_map.map_name, ground_map.map_path, ground_map.map_file, ground_map.traits, ZTRAITS_GROUND)
 	// Also saving this as a feedback var as we don't have ship_name in the round table.
 	SSblackbox.record_feedback("text", "ground_map", 1, ground_map.map_name)
 
 	#if !(defined(CIBUILDING) && !defined(ALL_MAPS))
 	var/datum/map_config/ship_map = configs[SHIP_MAP]
 	INIT_ANNOUNCE("Loading [ship_map.map_name]...")
-	LoadGroup(FailedZs, ship_map.map_name, ship_map.map_path, ship_map.map_file, ship_map.traits, ZTRAITS_MAIN_SHIP, height_autosetup = ship_map.height_autosetup)
+	LoadGroup(FailedZs, ship_map.map_name, ship_map.map_path, ship_map.map_file, ship_map.traits, ZTRAITS_MAIN_SHIP)
 	// Also saving this as a feedback var as we don't have ship_name in the round table.
 	SSblackbox.record_feedback("text", "ship_map", 1, ship_map.map_name)
 	#endif
@@ -431,66 +398,48 @@ SUBSYSTEM_DEF(mapping)
 			modular_templates[M.modular_id] += M
 		map_templates[M.type] = M
 
-/// Adds a new reservation z level. A bit of space that can be handed out on request
-/// Of note, reservations default to transit turfs, to make their most common use, shuttles, faster
-/datum/controller/subsystem/mapping/proc/add_reservation_zlevel(for_shuttles)
-	num_of_res_levels++
-	return add_new_zlevel("Transit/Reserved #[num_of_res_levels]", list(ZTRAIT_RESERVED = TRUE))
-
-/// Requests a /datum/turf_reservation based on the given width, height, and z_size. You can specify a z_reservation to use a specific z level, or leave it null to use any z level.
-/datum/controller/subsystem/mapping/proc/request_turf_block_reservation(
-	width,
-	height,
-	z_size = 1,
-	z_reservation = null,
-	reservation_type = /datum/turf_reservation,
-	turf_type_override = null,
-)
-	UNTIL((!z_reservation || reservation_ready["[z_reservation]"]) && !clearing_reserved_turfs)
-	var/datum/turf_reservation/reserve = new reservation_type
-	if(!isnull(turf_type_override))
+/datum/controller/subsystem/mapping/proc/RequestBlockReservation(width, height, z, type = /datum/turf_reservation, turf_type_override)
+	UNTIL(initialized && !clearing_reserved_turfs)
+	var/datum/turf_reservation/reserve = new type
+	if(turf_type_override)
 		reserve.turf_type = turf_type_override
-	if(!z_reservation)
+	if(!z)
 		for(var/i in levels_by_trait(ZTRAIT_RESERVED))
-			if(reserve.reserve(width, height, z_size, i))
+			if(reserve.Reserve(width, height, i))
 				return reserve
 		//If we didn't return at this point, theres a good chance we ran out of room on the exisiting reserved z levels, so lets try a new one
-		var/datum/space_level/newReserved = add_reservation_zlevel()
+		num_of_res_levels += 1
+		var/datum/space_level/newReserved = add_new_zlevel("Transit/Reserved [num_of_res_levels]", list(ZTRAIT_RESERVED = TRUE))
 		initialize_reserved_level(newReserved.z_value)
-		if(reserve.reserve(width, height, z_size, newReserved.z_value))
-			return reserve
+		for(var/i in levels_by_trait(ZTRAIT_RESERVED))
+			if(reserve.Reserve(width, height, i))
+				return reserve
+		CRASH("Despite adding a fresh reserved zlevel still failed to get a reservation")
 	else
-		if(!level_trait(z_reservation, ZTRAIT_RESERVED))
+		if(!level_trait(z, ZTRAIT_RESERVED))
 			qdel(reserve)
 			return
 		else
-			if(reserve.reserve(width, height, z_size, z_reservation))
+			if(reserve.Reserve(width, height, z))
 				return reserve
 	QDEL_NULL(reserve)
 
-///Sets up a z level as reserved
-///This is not for wiping reserved levels, use wipe_reservations() for that.
-///If this is called after SSatom init, it will call Initialize on all turfs on the passed z, as its name promises
+//This is not for wiping reserved levels, use wipe_reservations() for that.
 /datum/controller/subsystem/mapping/proc/initialize_reserved_level(z)
 	UNTIL(!clearing_reserved_turfs)				//regardless, lets add a check just in case.
 	clearing_reserved_turfs = TRUE			//This operation will likely clear any existing reservations, so lets make sure nothing tries to make one while we're doing it.
 	if(!level_trait(z,ZTRAIT_RESERVED))
 		clearing_reserved_turfs = FALSE
 		CRASH("Invalid z level prepared for reservations.")
-	var/list/reserved_block = block(
-		SHUTTLE_TRANSIT_BORDER, SHUTTLE_TRANSIT_BORDER, z,
-		world.maxx - SHUTTLE_TRANSIT_BORDER, world.maxy - SHUTTLE_TRANSIT_BORDER, z
-	)
-	for(var/turf/T as anything in reserved_block)
-		// No need to empty() these, because they just got created and are already /turf/open/space/basic.
-		T.turf_flags = UNUSED_RESERVATION_TURF
-		CHECK_TICK
-
-	// Gotta create these suckers if we've not done so already
-	if(SSatoms.initialized)
-		SSatoms.InitializeAtoms(Z_TURFS(z))
-
-	unused_turfs["[z]"] = reserved_block
+	var/turf/A = get_turf(locate(SHUTTLE_TRANSIT_BORDER,SHUTTLE_TRANSIT_BORDER,z))
+	var/turf/B = get_turf(locate(world.maxx - SHUTTLE_TRANSIT_BORDER,world.maxy - SHUTTLE_TRANSIT_BORDER,z))
+	var/block = block(A, B)
+	for(var/t in block)
+		// No need to empty() these, because it's world init and they're
+		// already /turf/open/space/basic.
+		var/turf/T = t
+		T.atom_flags |= UNUSED_RESERVATION_TURF_1
+	unused_turfs["[z]"] = block
 	reservation_ready["[z]"] = TRUE
 	clearing_reserved_turfs = FALSE
 
@@ -503,18 +452,17 @@ SUBSYSTEM_DEF(mapping)
 
 //DO NOT CALL THIS PROC DIRECTLY, CALL wipe_reservations().
 /datum/controller/subsystem/mapping/proc/do_wipe_turf_reservations()
-	PRIVATE_PROC(TRUE)
-	UNTIL(initialized) //This proc is for AFTER init, before init turf reservations won't even exist and using this will likely break things.
+	UNTIL(initialized)							//This proc is for AFTER init, before init turf reservations won't even exist and using this will likely break things.
 	for(var/i in turf_reservations)
 		var/datum/turf_reservation/TR = i
 		if(!QDELETED(TR))
 			qdel(TR, TRUE)
 	UNSETEMPTY(turf_reservations)
 	var/list/clearing = list()
-	for(var/l in unused_turfs) //unused_turfs is an assoc list by z = list(turfs)
+	for(var/l in unused_turfs)			//unused_turfs is a assoc list by z = list(turfs)
 		if(islist(unused_turfs[l]))
 			clearing |= unused_turfs[l]
-	clearing |= used_turfs //used turfs is an associative list, BUT, reserve_turfs() can still handle it. If the code above works properly, this won't even be needed as the turfs would be freed already.
+	clearing |= used_turfs		//used turfs is an associative list, BUT, reserve_turfs() can still handle it. If the code above works properly, this won't even be needed as the turfs would be freed already.
 	unused_turfs.Cut()
 	used_turfs.Cut()
 	reserve_turfs(clearing, await = TRUE)
@@ -669,31 +617,4 @@ SUBSYSTEM_DEF(mapping)
 	var/z_level = connected
 	if(isturf(z_level))
 		z_level = connected.z
-	return z_level_to_stack[z_level]
-
-
-///lazy loads a map template in a reserved z. use for stuff like rooms that you teleport to like interiors or similar
-/datum/controller/subsystem/mapping/proc/lazy_load_template(template_key, force = FALSE)
-	RETURN_TYPE(/datum/turf_reservation)
-
-	UNTIL(initialized)
-	var/static/lazy_loading = FALSE
-	UNTIL(!lazy_loading)
-
-	lazy_loading = TRUE
-	. = _lazy_load_template(template_key, force)
-	lazy_loading = FALSE
-	return .
-
-/datum/controller/subsystem/mapping/proc/_lazy_load_template(template_key, force = FALSE)
-	PRIVATE_PROC(TRUE)
-
-	if(LAZYACCESS(loaded_lazy_templates, template_key)  && !force)
-		var/datum/lazy_template/template = GLOB.lazy_templates[template_key]
-		return template.reservations[1]
-	LAZYSET(loaded_lazy_templates, template_key, TRUE)
-
-	var/datum/lazy_template/target = GLOB.lazy_templates[template_key]
-	if(!target)
-		CRASH("Attempted to lazy load a template key that does not exist: '[template_key]'")
-	return target.lazy_load()
+	//return z_level_to_stack[z_level]

@@ -28,12 +28,8 @@
 
 /turf
 	icon = 'icons/turf/floors.dmi'
-	luminosity = 1
 	var/intact_tile = 1 //used by floors to distinguish floor with/without a floortile(e.g. plating).
 	var/can_bloody = TRUE //Can blood spawn on this turf?
-
-	/// Turf bitflags, see code/__DEFINES/flags.dm
-	var/turf_flags = NONE
 
 	// baseturfs can be either a list or a single turf type.
 	// In class definition like here it should always be a single type.
@@ -41,6 +37,7 @@
 	// In the case of a list it is sorted from bottom layer to top.
 	// This shouldn't be modified directly, use the helper procs.
 	var/list/baseturfs = /turf/baseturf_bottom
+	luminosity = 1
 
 	var/changing_turf = FALSE
 
@@ -70,14 +67,14 @@
 	if(SSmapping.max_plane_offset)
 		if(!SSmapping.plane_offset_blacklist["[plane]"])
 			plane = plane - (PLANE_RANGE * SSmapping.z_level_to_plane_offset[z])
-
+/*
 		var/turf/T = GET_TURF_ABOVE(src)
 		if(T)
 			T.multiz_turf_new(src, DOWN)
 		T = GET_TURF_BELOW(src)
 		if(T)
 			T.multiz_turf_new(src, UP)
-
+*/
 	// by default, vis_contents is inherited from the turf that was here before.
 	// Checking length(vis_contents) in a proc this hot has huge wins for performance.
 	if (length(vis_contents))
@@ -400,11 +397,7 @@
 				L.Add(t)
 	return L
 
-/turf/proc/multiz_turf_del(turf/T, dir)
-	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_DEL, T, dir)
 
-/turf/proc/multiz_turf_new(turf/T, dir)
-	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_NEW, T, dir)
 
 /turf/proc/Distance(turf/t)
 	if(get_dist(src,t) == 1)
@@ -439,8 +432,6 @@
 /turf/proc/can_lay_cable()
 	return can_have_cabling() & !intact_tile
 
-/turf/proc/burn_tile()
-	return
 
 /turf/proc/ceiling_debris_check(size = 1)
 	return
@@ -692,7 +683,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 // Make a new turf and put it on top
 // The args behave identical to PlaceOnBottom except they go on top
 // Things placed on top of closed turfs will ignore the topmost closed turf
-// Returns the new turf // todo you can split me into 2, see tg's impl of place_on_top
+// Returns the new turf
 /turf/proc/PlaceOnTop(list/new_baseturfs, turf/fake_turf_type, flags)
 	var/area/turf_area = loc
 	if(new_baseturfs && !length(new_baseturfs))
