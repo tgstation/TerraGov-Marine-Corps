@@ -196,3 +196,20 @@
   - qol: Barricades and sentries have their faction set by their deployer. NPC's will
       avoid destroying friendly obstacles
   - bugfix: fixed items not using the right attack delay when hitting objects
+2025-03-10:
+  Lumipharon:
+  - bugfix: NPC's actually wield their guns again
+  - qol: Grabbed friendly human NPC's will not move
+  Runian:
+  - rscadd: A new strain for Runner called Melter. Themed around acid.
+  - imageadd: Melter runner sprites.
+  TiviPlus:
+  - rscadd: Jumping out of a shuttle on the move will send you flying out of into
+      into the ground now
+  - bugfix: partially fixed the shuttle flying animation not working
+  - code_imp: optimized the map reader
+  - code_imp: maps will automatically now load multiz based on how they were mapped
+      instead of needing to be manually set
+  - code_imp: supports multiz on the transit z-layer
+  - code_imp: 'added "see_dirty_varedits" when compiling in #TESTING mode to show
+      dirty varedits from all loaded maps/templates'
