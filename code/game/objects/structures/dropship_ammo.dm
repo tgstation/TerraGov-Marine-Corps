@@ -301,7 +301,7 @@
 
 /obj/structure/ship_ammo/railgun/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, color = COLOR_CYAN)//no messaging admin, that'd spam them.
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, color = COLOR_CYAN, explosion_cause="railgun")//no messaging admin, that'd spam them.
 	if(!ammo_count)
 		QDEL_IN(src, travelling_time) //deleted after last railgun has fired and impacted the ground.
 
@@ -394,7 +394,7 @@
 
 /obj/structure/ship_ammo/cas/rocket/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause=src)
 	qdel(src)
 
 //ATGMs, defined by 3 second travel time and tight explosion sizes.
@@ -440,7 +440,7 @@
 
 /obj/structure/ship_ammo/cas/rocket/napalm/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause=src)
 	flame_radius(fire_range, impact, 30, 60) //cooking for a long time
 	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
 	warcrime.set_up(fire_range + 1, impact, 7)
@@ -467,7 +467,7 @@
 
 /obj/structure/ship_ammo/cas/rocket/banshee/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, flame_range = fire_range) //more spread out, with flames
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, flame_range = fire_range, explosion_cause=src) //more spread out, with flames
 	qdel(src)
 
 //The fatty is well.. Fat.
@@ -486,7 +486,7 @@
 
 /obj/structure/ship_ammo/cas/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range) //first explosion is small to trick xenos into thinking its a minirocket.
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause=src) //first explosion is small to trick xenos into thinking its a minirocket.
 	addtimer(CALLBACK(src, PROC_REF(delayed_detonation), impact), 3 SECONDS)
 
 /**
@@ -502,7 +502,7 @@
 		var/list/coords = impact_coords[i]
 		var/turf/detonation_target = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
 		detonation_target.ceiling_debris_check(2)
-		explosion(detonation_target, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE)
+		explosion(detonation_target, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, explosion_cause=src)
 	qdel(src)
 
 // This is the "Default" heavy rocket.
@@ -557,7 +557,7 @@
 
 /obj/structure/ship_ammo/cas/minirocket/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE)//no messaging admin, that'd spam them.
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause=src)
 	if(!ammo_count)
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
 
@@ -614,7 +614,7 @@
 
 /obj/structure/ship_ammo/cas/minirocket/tangle/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, throw_range = 0)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, throw_range = 0, explosion_cause=src)
 	var/datum/effect_system/smoke_spread/plasmaloss/S = new
 	S.set_up(9, impact, 9)// Between grenade and mortar
 	S.start()
@@ -665,7 +665,7 @@
 
 /obj/structure/ship_ammo/cas/bomb/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE)//no messaging admin, that'd spam them.
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, explosion_cause=src)
 
 // Four hundos have no real gimmick beyond being a bigger payload.
 /obj/structure/ship_ammo/cas/bomb/fourhundred
@@ -720,7 +720,7 @@
 
 /obj/structure/ship_ammo/cas/bomblet/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, heavy_explosion_range, light_explosion_range, adminlog = FALSE)//no messaging admin, that'd spam them.
+	explosion(impact, heavy_explosion_range, light_explosion_range, explosion_cause=src)
 
 /obj/structure/ship_ammo/cas/bomblet/medium
 	name = "\improper AOE-75lb 'Poppies' stack"
