@@ -260,7 +260,7 @@
 
 /atom/movable/screen/plane_master/point
 	name = "Point"
-	documentation = "I mean like, what do you want me to say? Points draw over pretty much everything else, so they get their own plane. Remember we layer render relays to draw planes in their proper order on render plates."
+	documentation = "I mean like, what do you want me to say? Points draw over pretty much everything else, so they get their own plane. We also draw HUD images to here for the same reason. Remember we layer render relays to draw planes in their proper order on render plates."
 	plane = POINT_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
