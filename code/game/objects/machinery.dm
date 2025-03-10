@@ -210,13 +210,13 @@
 	var/initial_stat = machine_stat
 	if(!powered(power_channel) && machine_current_charge <= 0)
 		machine_stat |= NOPOWER
-		if(initial_stat & NOPOWER)
-			SEND_SIGNAL(src, COMSIG_MACHINERY_POWER_RESTORED)
+		if(!(initial_stat & NOPOWER))
+			SEND_SIGNAL(src, COMSIG_MACHINERY_POWER_LOST)
 			. = TRUE
 	else
 		machine_stat &= ~NOPOWER
-		if(!(initial_stat & NOPOWER))
-			SEND_SIGNAL(src, COMSIG_MACHINERY_POWER_LOST)
+		if(initial_stat & NOPOWER)
+			SEND_SIGNAL(src, COMSIG_MACHINERY_POWER_RESTORED)
 			. = TRUE
 
 	update_icon()

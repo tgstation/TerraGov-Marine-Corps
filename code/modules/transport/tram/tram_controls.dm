@@ -9,7 +9,8 @@
 	max_integrity = 400
 	integrity_failure = 0.1
 	power_channel = ENVIRON
-//	circuit = /obj/item/circuitboard/computer/tram_controls
+	interaction_flags = INTERACT_MACHINE_TGUI
+	circuit = /obj/item/circuitboard/computer/tram_controls
 	light_color = COLOR_BLUE_LIGHT
 	light_range = 0 //we dont want to spam SSlighting with source updates every movement
 	/// What sign face prefixes we have icons for
@@ -24,7 +25,7 @@
 	var/split_mode = FALSE
 
 /obj/machinery/computer/tram_controls/split
-//	circuit = /obj/item/circuitboard/computer/tram_controls/split
+	circuit = /obj/item/circuitboard/computer/tram_controls/split
 	split_mode = TRUE
 
 /obj/machinery/computer/tram_controls/split/directional/north

@@ -759,6 +759,7 @@
 	density = FALSE
 	resistance_flags = ALL
 //	interaction_flags_machine = parent_type::interaction_flags_machine | INTERACT_MACHINE_OFFLINE
+	interaction_flags = INTERACT_MACHINE_TGUI
 	max_integrity = 750
 	integrity_failure = 0.25
 	layer = SIGN_LAYER
@@ -779,6 +780,7 @@
 	. = ..()
 	if(!id_tag)
 		id_tag = assign_random_name()
+	return INITIALIZE_HINT_LATELOAD
 
 /**
  * Mapped or built tram cabinet isn't located on a transport module.
