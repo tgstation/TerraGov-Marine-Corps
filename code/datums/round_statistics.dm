@@ -37,7 +37,6 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/trap_holes = 0
 	var/boiler_acid_smokes = 0
 	var/boiler_neuro_smokes = 0
-	var/crusher_stomps = 0
 	var/crusher_stomp_victims = 0
 	var/praetorian_acid_sprays = 0
 	var/praetorian_spray_direct_hits = 0
@@ -79,9 +78,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/spitter_acid_sprays = 0
 	var/spitter_scatter_spits = 0
 	var/wraith_phase_shifts = 0
-	var/bull_crush_hit = 0
-	var/bull_gore_hit = 0
-	var/bull_headbutt_hit = 0
+	var/bull_hit = 0
 	var/ravager_endures = 0
 	var/hunter_marks = 0
 	var/hunter_silence_targets = 0

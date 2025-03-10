@@ -50,6 +50,8 @@
 #define VREF_MUTABLE_GAS_MINE_TIMER "VREF_GASMINE_CHARGETIMER"
 // extra reference for how long untill we recharge a new gas mine
 #define VREF_MUTABLE_ACID_MINE_TIMER "VREF_ACIDMINE_CHARGETIMER"
+// extra reference for how many scorched earth charges we have
+#define VREF_MUTABLE_SCORCHED_EARTH "VREF_SCORCHED_EARTH"
 
 /// Actions that toggle on click/trigger
 #define ACTION_TOGGLE "toggle"
