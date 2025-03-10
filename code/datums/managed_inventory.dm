@@ -142,6 +142,7 @@
 	sort_item(new_item)
 
 /datum/managed_inventory/proc/sort_item(obj/item/new_item)
+	//todo: replace this mess with an item proc
 	if(isgun(new_item))
 		gun_list_add(new_item)
 		return
@@ -165,7 +166,7 @@
 		if(istype(new_item, /obj/item/stack/sheet))
 			engineering_list_add(new_item)
 			return
-	if(isreagentcontainer(new_item) || istype(new_item, /obj/item/tweezers_advanced) || istype(new_item, /obj/item/tweezers))
+	if(isreagentcontainer(new_item) || istype(new_item, /obj/item/tweezers_advanced) || istype(new_item, /obj/item/tweezers) || istype(new_item, /obj/item/defibrillator))
 		medical_list_add(new_item)
 		return
 
