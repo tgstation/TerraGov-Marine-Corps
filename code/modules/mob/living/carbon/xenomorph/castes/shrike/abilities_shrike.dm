@@ -251,10 +251,6 @@
 		if(!silent)
 			to_chat(owner, span_warning("It's too late. This sister won't be coming back."))
 		return FALSE
-	if(!(patient.xeno_caste.can_flags & CASTE_CAN_BE_HEALED_BY_OTHERS))
-		if(!silent)
-			to_chat(owner, span_warning("They can't be healed."))
-		return FALSE
 
 /datum/action/ability/activable/xeno/psychic_cure/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)

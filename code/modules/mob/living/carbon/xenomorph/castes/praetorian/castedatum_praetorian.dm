@@ -28,7 +28,7 @@
 	deevolves_to = /datum/xeno_caste/spitter
 
 	// *** Flags *** //
-	can_flags = CASTE_CAN_BE_HEALED_BY_OTHERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 	caste_traits = null
 
 	// *** Defense *** //

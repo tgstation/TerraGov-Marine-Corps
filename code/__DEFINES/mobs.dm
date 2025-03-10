@@ -604,7 +604,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 // Xenomorph can_flags:
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0) // Are we allowed to carry facehuggers in our hands?
-#define CASTE_CAN_BE_HEALED_BY_OTHERS (1<<1) // Can we be affected by abilities that heal us or otherwise negate damage?
+#define CASTE_CAN_BE_QUEEN_HEALED (1<<1) // Does nothing.
 #define CASTE_CAN_BE_GIVEN_PLASMA (1<<2) // Can we receive plasma / have our plasma be taken away?
 #define CASTE_CAN_BE_LEADER (1<<3) // Can we be selected as a hive leader (not to be confused with hive ruler)?
 #define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<4) // Can we ignore the healing penalty associated with having a hive ruler not being on the same z-level as us? Only matters on gamemodes where hive rulers are optional.

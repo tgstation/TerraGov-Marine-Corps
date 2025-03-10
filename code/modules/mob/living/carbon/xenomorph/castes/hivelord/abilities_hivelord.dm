@@ -339,10 +339,6 @@
 		if(!silent)
 			target.balloon_alert(owner, "Cannot heal, already infused")
 		return FALSE
-	if(!(patient.xeno_caste.can_flags & CASTE_CAN_BE_HEALED_BY_OTHERS))
-		if(!silent)
-			to_chat(owner, span_warning("Cannot heal, not healable"))
-		return FALSE
 
 /datum/action/ability/activable/xeno/healing_infusion/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
