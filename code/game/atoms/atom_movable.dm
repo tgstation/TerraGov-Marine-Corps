@@ -1283,7 +1283,7 @@
 /atom/movable/proc/check_pulling(only_pulling = FALSE, z_allowed = FALSE)
 	if(pulling)
 		var/atom/movable/pullee = pulling
-		if(pullee && get_dist(src, pullee) > 1 || (z != pulling.z && !z_allowed))
+		if(get_dist(src, pullee) > 1 || (z != pulling.z && !z_allowed))
 			stop_pulling()
 			return
 		if(!isturf(loc))
@@ -1295,7 +1295,7 @@
 		if(pulling.anchored)
 			stop_pulling()
 			return
-	if(pulledby && get_dist(src, pulledby) > 1 || (z != pulledby.z && !z_allowed))		//separated from our puller and not in the middle of a diagonal move.
+	if(pulledby && (get_dist(src, pulledby) > 1 || (z != pulledby.z && !z_allowed)))	//separated from our puller and not in the middle of a diagonal move.
 		pulledby.stop_pulling()
 
 
