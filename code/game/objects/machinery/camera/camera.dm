@@ -85,6 +85,11 @@
 			. += span_info("It can reactivated with a <b>screwdriver</b>.")
 
 
+/obj/machinery/camera/proc/camera_ui_data()
+	return list(
+		"name" = c_tag,
+	)
+
 /obj/machinery/camera/proc/setViewRange(num = 7)
 	view_range = num
 
@@ -349,6 +354,14 @@
 	name = "headset camera"
 	network = list("marine")
 	resistance_flags = RESIST_ALL //If the containing headset is not destroyed, neither should this be.
+	// role of the wearer, set on the headset itself
+	var/role_name
+
+/obj/machinery/camera/headset/camera_ui_data()
+	return list(
+		"name" = c_tag,
+		"role" = role_name
+	)
 
 /obj/machinery/camera/headset/som
 	network = list(SOM_CAMERA_NETWORK)

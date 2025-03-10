@@ -152,9 +152,7 @@
 	data["cameras"] = list()
 	for(var/i in cameras)
 		var/obj/machinery/camera/C = cameras[i]
-		data["cameras"] += list(list(
-			name = C.c_tag,
-		))
+		data["cameras"] += list(C.camera_ui_data())
 	return data
 
 /obj/item/hud_tablet/ui_act(action, params)
