@@ -150,10 +150,6 @@
 	for(var/target in _signal_procs)
 		UnregisterSignal(target, _signal_procs[target])
 
-/datum/proc/GenerateTag()
-	SHOULD_CALL_PARENT(TRUE)
-	datum_flags |= DF_USE_TAG
-
 #ifdef DATUMVAR_DEBUGGING_MODE
 /datum/proc/save_vars()
 	cached_vars = list()

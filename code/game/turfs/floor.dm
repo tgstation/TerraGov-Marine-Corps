@@ -98,7 +98,7 @@
 	update_icon()
 
 ///Burns the turf
-/turf/open/floor/burn_tile()
+/turf/open/floor/proc/burn_tile()
 	if(!burnable_tile || hull_floor)
 		return
 	if(burnt)

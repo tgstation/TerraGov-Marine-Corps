@@ -6,6 +6,7 @@
 		. = new /datum/armor(melee, bullet, laser, energy, bomb, bio, fire, acid)
 
 /datum/armor
+	datum_flags = DF_USE_TAG
 	var/melee = 0
 	var/bullet = 0
 	var/laser = 0
@@ -24,10 +25,6 @@
 	src.bio = bio
 	src.fire = fire
 	src.acid = acid
-	GenerateTag()
-
-/datum/armor/GenerateTag()
-	. = ..()
 	tag = ARMORID
 
 /datum/armor/proc/modifyRating(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, fire = 0, acid = 0)
@@ -68,6 +65,6 @@
 	if (var_name == NAMEOF(src, tag))
 		return FALSE
 	. = ..()
-	GenerateTag() // update tag in case armor values were edited
+	tag = ARMORID // update tag in case armor values were edited
 
 #undef ARMORID
