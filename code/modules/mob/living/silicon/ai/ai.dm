@@ -51,6 +51,14 @@
 	var/datum/trackable/track
 	///Selected order to give to marine
 	var/datum/action/innate/order/current_order
+
+	var/datum/action/innate/order/attack_order/send_attack_order = new
+	var/datum/action/innate/order/defend_order/send_defend_order = new
+	var/datum/action/innate/order/retreat_order/send_retreat_order = new
+	var/datum/action/innate/order/rally_order/send_rally_order = new
+	var/datum/action/control_vehicle/control = new
+	var/datum/action/innate/squad_message/squad_message = new
+
 	/// If it is currently controlling an object
 	var/controlling = FALSE
 
@@ -116,12 +124,12 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_CLONE_PRODUCED, PROC_REF(show_fresh_clone))
 	RegisterSignal(SSdcs, COMSIG_GLOB_HOLOPAD_AI_CALLED, PROC_REF(ping_ai))
 
-	var/datum/action/innate/order/attack_order/send_attack_order = new
-	var/datum/action/innate/order/defend_order/send_defend_order = new
-	var/datum/action/innate/order/retreat_order/send_retreat_order = new
-	var/datum/action/innate/order/rally_order/send_rally_order = new
-	var/datum/action/control_vehicle/control = new
-	var/datum/action/innate/squad_message/squad_message = new
+	send_attack_order = new
+	send_defend_order = new
+	send_retreat_order = new
+	send_rally_order = new
+	control = new
+	squad_message = new
 	send_attack_order.target = src
 	send_attack_order.give_action(src)
 	send_defend_order.target = src
@@ -138,6 +146,13 @@
 	QDEL_NULL(builtInCamera)
 	QDEL_NULL(track)
 	QDEL_NULL(mini)
+	QDEL_NULL(eyeobj)
+	QDEL_NULL(send_attack_order)
+	QDEL_NULL(send_defend_order)
+	QDEL_NULL(send_retreat_order)
+	QDEL_NULL(send_rally_order)
+	QDEL_NULL(control)
+	QDEL_NULL(squad_message)
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
@@ -284,7 +299,7 @@
 /mob/living/silicon/ai/proc/relay_speech(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
 	var/start = "Relayed Speech: "
 	var/namepart = "[speaker.GetVoice()][speaker.get_alt_name()]"
-	var/hrefpart = "<a href='?src=[REF(src)];track=[html_encode(namepart)]'>"
+	var/hrefpart = "<a href='byond://?src=[REF(src)];track=[html_encode(namepart)]'>"
 	var/jobpart
 	var/speech_part = lang_treat(speaker, message_language, raw_message, spans, message_mode)
 
@@ -304,11 +319,11 @@
 
 /mob/living/silicon/ai/reset_perspective(atom/new_eye, has_static = TRUE)
 	if(has_static)
-		sight = initial(sight)
+		set_sight(initial(sight))
 		eyeobj?.use_static = initial(eyeobj?.use_static)
 		GLOB.cameranet.visibility(eyeobj, client, all_eyes, initial(eyeobj?.use_static))
 	else
-		sight = NONE
+		set_sight(NONE)
 		eyeobj?.use_static = FALSE
 		GLOB.cameranet.visibility(eyeobj, client, all_eyes, FALSE)
 	if(camera_light_on)
@@ -342,15 +357,13 @@
 
 /mob/living/silicon/ai/update_sight()
 	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
-		see_in_dark = max(see_in_dark, 8)
-		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		eyeobj.see_in_dark = max(eyeobj.see_in_dark, 8)
-		eyeobj.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+		lighting_cutoff = LIGHTING_CUTOFF_HIGH
+		eyeobj.lighting_cutoff = LIGHTING_CUTOFF_HIGH
+		eyeobj.sync_lighting_plane_cutoff()
 		return ..()
-	see_in_dark = initial(see_in_dark)
-	lighting_alpha = initial(lighting_alpha)
-	eyeobj.see_in_dark = initial(eyeobj.see_in_dark)
-	eyeobj.lighting_alpha = initial(eyeobj.lighting_alpha)
+	lighting_cutoff = initial(lighting_cutoff)
+	eyeobj.lighting_cutoff = initial(eyeobj.lighting_cutoff)
+	eyeobj.sync_lighting_plane_cutoff()
 	return ..()
 
 /mob/living/silicon/ai/get_status_tab_items()
@@ -365,22 +378,22 @@
 	. += "- Operation information -"
 	. += "Current orbit: [GLOB.current_orbit]"
 
-	if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
+	if(!GLOB.orbital_cannon?.chambered_tray)
 		. += "Orbital bombardment status: No ammo chambered in the cannon."
 	else
-		. += "Orbital bombardment warhead: [GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected"
+		. += "Orbital bombardment warhead: [GLOB.orbital_cannon.tray.warhead.name] Detected"
 
 	. += "Current supply points: [round(SSpoints.supply_points[FACTION_TERRAGOV])]"
 
 	. += "Current dropship points: [round(SSpoints.dropship_points)]"
 
-	. += "Current alert level: [GLOB.marine_main_ship.get_security_level()]"
+	. += "Current alert level: [SSsecurity_level.get_current_level_as_text()]"
 
 	if(SSticker.mode)
 		. += "Number of living marines: [SSticker.mode.count_humans_and_xenos()[1]]"
 
-	if(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE > world.time)
-		. += "Railgun status: Cooling down, next fire in [(GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE - world.time)/10] seconds."
+	if(GLOB.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE > world.time)
+		. += "Railgun status: Cooling down, next fire in [(GLOB.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE - world.time)/10] seconds."
 	else
 		. += "Railgun status: Railgun is ready to fire."
 
@@ -530,7 +543,7 @@
 	deadchat_broadcast(" has sent the command order \"[text]\"", owner, owner)
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == owner.faction)
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>ORDERS UPDATED:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
+			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("<u>ORDERS UPDATED:</u>", text, CENTER_ALIGN_TEXT), /atom/movable/screen/text/screen_text/command_order)
 
 
 ///takes an atom A and sends an alert, coordinate and for the atom to eligible marine forces if cooldown is over

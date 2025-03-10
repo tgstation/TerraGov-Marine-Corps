@@ -136,13 +136,18 @@
 			data["radiallasersgunpref"] = !!(toggles_gameplay & RADIAL_LASERGUNS)
 			data["autointeractdeployablespref"] = !!(toggles_gameplay & AUTO_INTERACT_DEPLOYABLES)
 			data["directional_attacks"] = !!(toggles_gameplay & DIRECTIONAL_ATTACKS)
+			data["toggle_clickdrag"] = !(toggles_gameplay & TOGGLE_CLICKDRAG)
 			data["scaling_method"] = scaling_method
 			data["pixel_size"] = pixel_size
 			data["parallax"] = parallax
 			data["fullscreen_mode"] = fullscreen_mode
+			data["show_status_bar"] = show_status_bar
+			data["ambient_occlusion"] = ambient_occlusion
+			data["multiz_parallax"] = multiz_parallax
+			data["multiz_performance"] = multiz_performance
 			data["fast_mc_refresh"] = fast_mc_refresh
 			data["split_admin_tabs"] = split_admin_tabs
-			data["hear_looc_anywhere_as_staff"] = hear_looc_anywhere_as_staff
+			data["hear_ooc_anywhere_as_staff"] = hear_ooc_anywhere_as_staff
 		if(KEYBIND_SETTINGS)
 			data["is_admin"] = user.client?.holder ? TRUE : FALSE
 			data["key_bindings"] = list()
@@ -620,8 +625,7 @@
 
 		if("auto_fit_viewport")
 			auto_fit_viewport = !auto_fit_viewport
-			if(auto_fit_viewport && parent)
-				parent.fit_viewport()
+			parent?.attempt_auto_fit_viewport()
 
 		if("mute_xeno_health_alert_messages")
 			mute_xeno_health_alert_messages = !mute_xeno_health_alert_messages
@@ -791,6 +795,35 @@
 			fullscreen_mode = !fullscreen_mode
 			user.client?.set_fullscreen(fullscreen_mode)
 
+		if("show_status_bar")
+			show_status_bar = !show_status_bar
+			user.client?.toggle_status_bar(show_status_bar)
+
+		if("ambient_occlusion")
+			ambient_occlusion = !ambient_occlusion
+			for(var/atom/movable/screen/plane_master/plane_master as anything in parent.mob?.hud_used?.get_true_plane_masters(GAME_PLANE))
+				plane_master.show_to(parent.mob)
+
+		if("multiz_parallax")
+			multiz_parallax = !multiz_parallax
+			var/datum/hud/my_hud = parent.mob?.hud_used
+			if(!my_hud)
+				return
+
+			for(var/group_key as anything in my_hud.master_groups)
+				var/datum/plane_master_group/group = my_hud.master_groups[group_key]
+				group.build_planes_offset(my_hud, my_hud.current_plane_offset)
+
+		if("multiz_performance")
+			multiz_performance = WRAP(multiz_performance + 1, MAX_EXPECTED_Z_DEPTH-1, MULTIZ_PERFORMANCE_DISABLE + 1)
+			var/datum/hud/my_hud = parent.mob?.hud_used
+			if(!my_hud)
+				return
+
+			for(var/group_key as anything in my_hud.master_groups)
+				var/datum/plane_master_group/group = my_hud.master_groups[group_key]
+				group.build_planes_offset(my_hud, my_hud.current_plane_offset)
+
 		if("set_keybind")
 			var/kb_name = params["keybind_name"]
 			if(!kb_name)
@@ -903,6 +936,9 @@
 		if("directional_attacks")
 			toggles_gameplay ^= DIRECTIONAL_ATTACKS
 
+		if("toggle_clickdrag")
+			toggles_gameplay ^= TOGGLE_CLICKDRAG
+
 		if("pixel_size")
 			switch(pixel_size)
 				if(PIXEL_SCALING_AUTO)
@@ -941,8 +977,8 @@
 		if("split_admin_tabs")
 			split_admin_tabs = !split_admin_tabs
 
-		if("hear_looc_anywhere_as_staff")
-			hear_looc_anywhere_as_staff = !hear_looc_anywhere_as_staff
+		if("hear_ooc_anywhere_as_staff")
+			hear_ooc_anywhere_as_staff = !hear_ooc_anywhere_as_staff
 
 		else //  Handle the unhandled cases
 			return

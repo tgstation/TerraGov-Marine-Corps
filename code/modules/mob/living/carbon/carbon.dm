@@ -33,9 +33,9 @@
 	playsound(loc, SFX_SPARKS, 25, TRUE)
 	if (shock_damage > 10)
 		src.visible_message(
-			span_warning(" [src] was shocked by the [source]!"), \
+			span_warning("[src] was shocked by the [source]!"), \
 			span_danger("You feel a powerful shock course through your body!"), \
-			span_warning(" You hear a heavy electrical crack.") \
+			span_warning("You hear a heavy electrical crack.") \
 		)
 		if(isxeno(src))
 			if(mob_size != MOB_SIZE_BIG)
@@ -44,9 +44,9 @@
 			Paralyze(8 SECONDS)
 	else
 		src.visible_message(
-			span_warning(" [src] was mildly shocked by the [source]."), \
-			span_warning(" You feel a mild shock course through your body."), \
-			span_warning(" You hear a light zapping.") \
+			span_warning("[src] was mildly shocked by the [source]."), \
+			span_warning("You feel a mild shock course through your body."), \
+			span_warning("You hear a light zapping.") \
 		)
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -144,7 +144,7 @@
 /mob/proc/throw_item(atom/target)
 	return
 
-/mob/living/carbon/throw_item(atom/target)
+/mob/living/carbon/throw_item(atom/target, obj/item/override_item)
 	. = ..()
 	throw_mode_off()
 	if(is_ventcrawling) //NOPE
@@ -155,17 +155,22 @@
 		return FALSE
 
 	var/atom/movable/thrown_thing
-	var/obj/item/I = get_active_held_item()
+	var/obj/item/thrown = override_item ? override_item : get_active_held_item()
+	//if(override_item)
+	//	if(get_turf(override_item) != get_turf(src))
+	//		override_item.forceMove(loc)
+	//else
+	//	thrown = get_active_held_item()
 
-	if(!I || HAS_TRAIT(I, TRAIT_NODROP))
+	if(!thrown || HAS_TRAIT(thrown, TRAIT_NODROP))
 		return
 
 	var/spin_throw = TRUE
-	if(isgrabitem(I))
+	if(isgrabitem(thrown))
 		spin_throw = FALSE
 
 	//real item in hand, not a grab
-	thrown_thing = I.on_thrown(src, target)
+	thrown_thing = thrown.on_thrown(src, target)
 
 	//actually throw it!
 	if(!thrown_thing)
@@ -321,26 +326,23 @@
 		if(!equip_to_slot_or_del(new G.path, G.slot)) //try to put in the slot it says its supposed to go, if you can't: put it in a bag
 			equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
 
+///ffs why is this on human instead of carbon its breaking shit!!!!! fix this!!!! todo!!!
 /mob/living/carbon/human/update_sight()
 	if(!client)
 		return
 
 	if(stat == DEAD)
-		sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_OBSERVER
+		set_sight(SEE_TURFS|SEE_MOBS|SEE_OBJS)
+		set_invis_see(SEE_INVISIBLE_OBSERVER)
 		return
 
-	sight = initial(sight)
-	lighting_alpha = initial(lighting_alpha)
-	see_in_dark = initial(see_in_dark)
-	see_invisible = initial(see_invisible)
+	var/new_sight = initial(sight)
+	lighting_cutoff = initial(lighting_cutoff)
+	set_invis_see(initial(see_invisible))
 
 	if(species)
-		if(species.lighting_alpha)
-			lighting_alpha = species.lighting_alpha
-		if(species.see_in_dark)
-			see_in_dark = species.see_in_dark
+		if(species.lighting_cutoff)
+			lighting_cutoff = species.lighting_cutoff
 
 	if(client.eye != src)
 		var/atom/A = client.eye
@@ -350,14 +352,15 @@
 	if(glasses)
 		var/obj/item/clothing/glasses/G = glasses
 		if((G.toggleable && G.active) || !G.toggleable)
-			sight |= G.vision_flags
-			see_in_dark = max(G.darkness_view, see_in_dark)
+			new_sight |= G.vision_flags
 			if(G.invis_override)
-				see_invisible = G.invis_override
+				set_invis_see(G.invis_override)
 			else
-				see_invisible = min(G.invis_view, see_invisible)
-			if(!isnull(G.lighting_alpha))
-				lighting_alpha = min(lighting_alpha, G.lighting_alpha)
+				set_invis_see(min(G.invis_view, see_invisible))
+			if(!isnull(G.lighting_cutoff))
+				lighting_cutoff = max(lighting_cutoff, G.lighting_cutoff)
+			if(length(glasses.color_cutoffs))
+				lighting_color_cutoffs = blend_cutoff_colors(lighting_color_cutoffs, glasses.color_cutoffs)
 			if(G.tint && !fullscreens["glasses"])
 				var/atom/movable/screen/fullscreen/screen = overlay_fullscreen("glasses", /atom/movable/screen/fullscreen/flash)
 				screen.color = G.tint
@@ -368,12 +371,12 @@
 		clear_fullscreen("glasses")
 
 	if(see_override)
-		see_invisible = see_override
+		set_invis_see(see_override)
 
 	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
-		see_in_dark = max(see_in_dark, 8)
-		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+		lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
 
+	set_sight(new_sight)
 	return ..()
 
 /mob/living/carbon/set_stat(new_stat)

@@ -107,7 +107,7 @@
 		return
 	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
 		return
-	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
+	. += emissive_appearance(icon, screen_overlay, src, alpha = src.alpha)
 	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
 
 /obj/machinery/prop/computer/PC
@@ -209,13 +209,13 @@
 
 //RND Props
 /obj/machinery/prop/r_n_d/protolathe
-	name = "Protolathe"
+	name = "protolathe"
 	icon = 'icons/obj/machines/research.dmi'
 	desc = "Protolathe, used to be used to print tools and such."
 	icon_state = "protolathe"
 
 /obj/machinery/prop/computer/rdconsole
-	name = "R&D Console"
+	name = "\improper R&D console"
 	icon = 'icons/obj/machines/computer.dmi'
 	desc = "A research console."
 	icon_state = "computer"
@@ -223,15 +223,15 @@
 	broken_icon = "computer_blue_broken"
 
 /obj/machinery/prop/r_n_d/server
-	name = "R&D Server"
+	name = "\improper R&D server"
 	icon = 'icons/obj/machines/research.dmi'
-	desc = "A research server"
+	desc = "A research server."
 	icon_state = "server"
 
 /obj/machinery/prop/computer/rdservercontrol
-	name = "R&D Server Controller"
+	name = "\improper R&D server controller"
 	icon = 'icons/obj/machines/computer.dmi'
-	desc = "Oversees all research"
+	desc = "Oversees all research."
 	icon_state = "computer"
 	screen_overlay = "rdcomp"
 	broken_icon = "computer_blue_broken"
@@ -243,16 +243,16 @@
 	icon = 'icons/obj/machines/computer.dmi'
 
 /obj/machinery/prop/computer/crew
-	name = "Crew monitoring computer"
+	name = "crew monitoring computer"
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
 	icon_state = "computer"
 	screen_overlay = "crew"
 	icon = 'icons/obj/machines/computer.dmi'
 
 /obj/machinery/prop/r_n_d/server/alt
-	name = "Alternate R&D Server"
+	name = "alternate R&D server"
 	icon = 'icons/obj/machines/research.dmi'
-	desc = "A research server"
+	desc = "A research server."
 	icon_state = "server_alt"
 //End RND props
 
@@ -410,8 +410,9 @@
 	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	icon_state = "TGMC1"
 	density = FALSE
+	plane = FLOOR_PLANE
+	layer = LOWER_RUNE_LAYER
 	resistance_flags = UNACIDABLE
-	layer = ABOVE_TURF_LAYER
 
 /obj/structure/prop/mainship/name_stencil/T
 	icon_state = "TGMC1"
@@ -436,7 +437,8 @@
 	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	icon_state = "dropship1"
 	density = FALSE
-	layer = ABOVE_TURF_LAYER
+	plane = FLOOR_PLANE
+	layer = ABOVE_NORMAL_TURF_LAYER
 
 /obj/structure/prop/mainship/hangar_stencil/two
 	icon_state = "dropship2"
@@ -458,14 +460,14 @@
 	icon_state = "cannon_cables"
 	density = FALSE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	layer = LADDER_LAYER
+	layer = BELOW_OBJ_LAYER
 
 /obj/structure/prop/mainship/supermatter //functionally inert, but will consume mobs and objects
 	name = "supermatter crystal"
 	desc = "A strangely translucent and iridescent crystal."
 	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	icon_state = "darkmatter"
-	layer = LADDER_LAYER
+	layer = BELOW_OBJ_LAYER
 	light_range = 4
 	resistance_flags = RESIST_ALL //no delaminations here
 
@@ -496,7 +498,7 @@
 	desc = "A device which uses radiation and plasma to produce power."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "radcollector"
-	layer = LADDER_LAYER
+	layer = BELOW_OBJ_LAYER
 	resistance_flags = RESIST_ALL
 
 /obj/structure/prop/mainship/invincibleshutter
@@ -505,7 +507,7 @@
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	icon_state = "shutter1"
 	density = TRUE
-	layer = LADDER_LAYER
+	layer = BELOW_OBJ_LAYER
 	light_range = 4
 	resistance_flags = RESIST_ALL //no delaminations here
 	allow_pass_flags = NONE
@@ -1198,7 +1200,7 @@
 ///BROKEN VEHICLE PROPS
 /obj/structure/prop/vehicle
 	icon = 'icons/obj/vehicles/64x64.dmi'
-	layer = ABOVE_MOB_PROP_LAYER
+	layer = ABOVE_MOB_LAYER
 	density = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 300
@@ -1413,7 +1415,7 @@
 
 /obj/structure/prop/vehicle/tank/east/barrel
 	icon_state = "ltb_cannon_0"
-	layer = ABOVE_MOB_PROP_LAYER
+	layer = ABOVE_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/prop/vehicle/tank/east/barrel/broken
@@ -1837,7 +1839,7 @@
 	desc = "A heavy cable node used for connecting high performance cables between buildings."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "powerconnector"
-	layer = ATMOS_PIPE_LAYER
+	layer = GAS_PIPE_HIDDEN_LAYER
 	density = FALSE
 
 /obj/structure/prop/mainship/gelida/powerccable
@@ -1845,7 +1847,7 @@
 	desc = "A heavy cable wire used rapid data transfer between buildings."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "powercableheavy"
-	layer = ATMOS_PIPE_LAYER
+	layer = GAS_PIPE_HIDDEN_LAYER
 	density = FALSE
 
 /obj/structure/prop/mainship/gelida/powercconnectortwoside
@@ -1853,7 +1855,7 @@
 	desc = "A heavy cable wire used rapid data transfer between buildings."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "powerconnectortwoside"
-	layer = ATMOS_PIPE_LAYER
+	layer = GAS_PIPE_HIDDEN_LAYER
 	density = FALSE
 
 /obj/structure/prop/mainship/gelida/powercconnectortwosidealt
@@ -1861,7 +1863,7 @@
 	desc = "A heavy cable wire used rapid data transfer between buildings."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "powerconnectortwosidealt"
-	layer = ATMOS_PIPE_LAYER
+	layer = GAS_PIPE_HIDDEN_LAYER
 	density = FALSE
 
 /obj/structure/prop/mainship/gelida/powercconnectorthreeside
@@ -1869,7 +1871,7 @@
 	desc = "A heavy cable wire used rapid data transfer between buildings."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "powerconnectorthreeside"
-	layer = ATMOS_PIPE_LAYER
+	layer = GAS_PIPE_HIDDEN_LAYER
 	density = FALSE
 
 /obj/structure/prop/mainship/gelida/powercconnectorfourside
@@ -1877,7 +1879,7 @@
 	desc = "A heavy cable wire used rapid data transfer between buildings."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "powerconnectorfourside"
-	layer = ATMOS_PIPE_LAYER
+	layer = GAS_PIPE_HIDDEN_LAYER
 	density = FALSE
 
 /obj/structure/prop/mainship/gelida/rails

@@ -1,5 +1,5 @@
 /atom
-	layer = TURF_LAYER
+	layer = ABOVE_NORMAL_TURF_LAYER
 	plane = GAME_PLANE
 	appearance_flags = TILE_BOUND
 	var/level = 2
@@ -357,10 +357,6 @@ directive is properly returned.
 /atom/proc/psi_act(psi_power, mob/living/user)
 	return
 
-/atom/proc/GenerateTag()
-	return
-
-
 /atom/proc/prevent_content_explosion()
 	return FALSE
 
@@ -375,13 +371,19 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ATOM_CONTENTS_DEL, A)
 
-
+/**
+ * Called when an atom is created in byond (built in engine proc)
+ *
+ * Not a lot happens here in SS13 code, as we offload most of the work to the
+ * [Initialization][/atom/proc/Initialize] proc, mostly we run the preloader
+ * if the preloader is being used and then call [InitAtom][/datum/controller/subsystem/atoms/proc/InitAtom] of which the ultimate
+ * result is that the Initialize proc is called.
+ *
+ */
 /atom/New(loc, ...)
-	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
-		GLOB._preloader.load(src)
-
-	if(datum_flags & DF_USE_TAG)
-		GenerateTag()
+	//atom creation method that preloads variables at creation
+	if(GLOB.use_preloader && src.type == GLOB._preloader_path)//in case the instantiated atom is creating other atoms in New()
+		world.preloader_load(src)
 
 	var/do_initialize = SSatoms.initialized
 	if(do_initialize != INITIALIZATION_INSSATOMS)
@@ -493,6 +495,8 @@ directive is properly returned.
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	atom_flags |= INITIALIZED
 
+	SET_PLANE_IMPLICIT(src, plane)
+
 	update_greyscale()
 
 	if(light_system != MOVABLE_LIGHT && light_power && light_range)
@@ -581,7 +585,7 @@ directive is properly returned.
 
 		var/message
 		if(!isobserver(usr))
-			usr.client.holder.admin_ghost()
+			SSadmin_verbs.dynamic_invoke_verb(C, /datum/admin_verb/aghost)
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob
@@ -681,7 +685,7 @@ directive is properly returned.
 	. = ..()
 	var/refid = REF(src)
 	. += "[VV_HREF_TARGETREF(refid, VV_HK_AUTO_RENAME, "<b id='name'>[src]</b>")]"
-	. += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(dir) || dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
+	. += "<br><font size='1'><a href='byond://?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='byond://?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(dir) || dir]</a> <a href='byond://?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
 
 /atom/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, arrived, old_loc, old_locs)

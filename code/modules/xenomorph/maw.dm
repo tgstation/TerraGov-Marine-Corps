@@ -95,19 +95,15 @@
 	radial_icon_state = "smoke_mortar"
 	smoke_type = /datum/effect_system/smoke_spread/xeno/neuro
 
-/datum/maw_ammo/smoke/acid_big
-	name = "strategic acid maw glob"
-	cooldown_time = 10 MINUTES
+/datum/maw_ammo/smoke/acid_small
+	name = "tactical acid maw glob"
+	cooldown_time = 3 MINUTES
 	radial_icon_state = "acid_smoke_mortar"
 	smoke_type = /datum/effect_system/smoke_spread/xeno/acid
-	smokeradius = 12
+	smokeradius = 7
 	duration = 10
 
-/datum/maw_ammo/smoke/acid_big/launch_animation(turf/target, obj/structure/xeno/acid_maw/maw)
-	. = ..()
-	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 100)
-
-/datum/maw_ammo/smoke/acid_big/on_impact(turf/target)
+/datum/maw_ammo/smoke/acid_small/on_impact(turf/target)
 	. = ..()
 	for(var/turf/newspray in view(smokeradius*0.5, target))
 		new /obj/effect/xenomorph/spray(newspray, duration*2, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
@@ -115,11 +111,11 @@
 /datum/maw_ammo/hugger
 	name = "ball of huggers"
 	radial_icon_state = "hugger_ball"
-	cooldown_time = 3 MINUTES
+	cooldown_time = 10 MINUTES
 	/// range_turfs that huggers will be dropped around the target
-	var/drop_range = 8
+	var/drop_range = 10
 	/// how many huggers get dropped at once, does not stack on turfs if theres not enough turfs
-	var/hugger_count = 30
+	var/hugger_count = 60
 	///huggers to choose to spawn
 	var/list/hugger_options = list(
 		/obj/item/clothing/mask/facehugger,
@@ -135,6 +131,7 @@
 	var/obj/effect/temp_visual/hugger_ball_launch/anim = new(maw.loc)
 	anim.pixel_x = (maw.bound_width/2) - 16
 	animate(anim, anim.duration, easing=EASE_OUT|CUBIC_EASING, pixel_y=600)
+	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 100)
 
 /datum/maw_ammo/hugger/impact_visuals(turf/target)
 	var/list/turf/turfs = RANGE_TURFS(drop_range, target)
@@ -284,13 +281,13 @@
 	var/minimap_icon = "acid_maw"
 	///list of paths that we can choose from when using this maw. converts to a list for radials on init (path = image)
 	var/list/maw_options = list(
-		/datum/maw_ammo/smoke/acid_big,
+		/datum/maw_ammo/hugger,
 		/datum/maw_ammo/minion,
 	)
 
 /obj/structure/xeno/acid_maw/Initialize(mapload, _hivenumber)
 	. = ..()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, minimap_icon, ABOVE_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, minimap_icon, MINIMAP_LABELS_LAYER))
 	var/list/parsed_maw_options = list()
 	for(var/datum/maw_ammo/path AS in maw_options)
 		parsed_maw_options[path] = image(icon='icons/mob/radial.dmi', icon_state=path::radial_icon_state)
@@ -303,49 +300,69 @@
 
 /obj/structure/xeno/acid_maw/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration, isrightclick)
 	. = ..()
-	if(xeno_attacker.hivenumber != hivenumber)
-		balloon_alert(xeno_attacker, "wrong hive")
+	try_fire(xeno_attacker, src)
+
+/// Tries to fire the acid maw after going through various checks and player inputs.
+/obj/structure/xeno/acid_maw/proc/try_fire(mob/living/carbon/xenomorph/xeno_shooter, atom/radical_target, slient, leaders_only = TRUE, requires_adjacency = TRUE)
+	if(xeno_shooter.hivenumber != hivenumber)
+		if(!slient)
+			balloon_alert(xeno_shooter, "wrong hive")
 		return FALSE
-	if(!isxenoqueen(xeno_attacker) && !isxenoshrike(xeno_attacker) && !isxenoking(xeno_attacker) && !(xeno_attacker.xeno_flags & XENO_LEADER))
-		balloon_alert(xeno_attacker, "must be leader")
+	if(leaders_only && xeno_shooter.tier != XENO_TIER_FOUR && !(xeno_shooter.xeno_flags & XENO_LEADER))
+		if(!slient)
+			balloon_alert(xeno_shooter, "must be leader")
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MAW_GLOB)) // repeat this every time after we have a sleep for quick feedback
 		var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MAW_GLOB)
-		balloon_alert(xeno_attacker, "cooldown: [timeleft/10] seconds")
+		if(!slient)
+			balloon_alert(xeno_shooter, "cooldown: [timeleft/10] seconds")
 		return FALSE
-	var/custom_cb = CALLBACK(src, TYPE_PROC_REF(/datum, Adjacent), xeno_attacker)// cant use is near arg because that is within 1 tile of loc and we are multitile
-	var/selected_type = show_radial_menu(xeno_attacker, src, maw_options, custom_check=custom_cb)
+
+	var/selected_type = !requires_adjacency ? show_radial_menu(xeno_shooter, radical_target, maw_options) : show_radial_menu(xeno_shooter, radical_target, maw_options, custom_check = CALLBACK(src, TYPE_PROC_REF(/datum, Adjacent), xeno_shooter))
 	if(!selected_type)
 		return FALSE
 
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MAW_GLOB))
 		var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MAW_GLOB)
-		balloon_alert(xeno_attacker, "cooldown: [timeleft/10] seconds")
+		if(!slient)
+			balloon_alert(xeno_shooter, "cooldown: [timeleft/10] seconds")
 		return FALSE
 
 	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(z, MINIMAP_FLAG_XENO)
-	xeno_attacker.client.screen += map
-	var/list/polled_coords = map.get_coords_from_click(xeno_attacker)
-	xeno_attacker?.client?.screen -= map
+	xeno_shooter.client.screen += map
+	var/list/polled_coords = map.get_coords_from_click(xeno_shooter)
+	xeno_shooter?.client?.screen -= map
 	if(!polled_coords)
-		return
-	if(!Adjacent(xeno_attacker))
-		balloon_alert(xeno_attacker, "moved too far away")
+		return FALSE
+	if(requires_adjacency && !Adjacent(xeno_shooter))
+		if(!slient)
+			balloon_alert(xeno_shooter, "moved too far away")
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MAW_GLOB))
 		var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MAW_GLOB)
-		balloon_alert(xeno_attacker, "cooldown: [timeleft/10] seconds")
+		if(!slient)
+			balloon_alert(xeno_shooter, "cooldown: [timeleft/10] seconds")
 		return FALSE
 
 	var/datum/maw_ammo/ammo = new selected_type
 	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], z)
-	addtimer(CALLBACK(src, PROC_REF(maw_impact_start), ammo, clicked_turf, xeno_attacker), ammo.impact_time-2 SECONDS)
-	GLOB.round_statistics.acid_maw_fires++
-	if(xeno_attacker.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_attacker.ckey]
-		personal_statistics.acid_maw_uses++
+	addtimer(CALLBACK(src, PROC_REF(maw_impact_start), ammo, clicked_turf, xeno_shooter), ammo.impact_time-2 SECONDS)
+	notify_ghosts("<b>[xeno_shooter]</b> has just fired \the <b>[src]</b> !", source = clicked_turf, action = NOTIFY_JUMP)
+	//this is stinky but we need to call parent for acid jaw regardless so have to do the tracking, for both, here
+	switch(type)
+		if(/obj/structure/xeno/acid_maw)
+			GLOB.round_statistics.acid_maw_fires++
+			if(xeno_shooter.client)
+				var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_shooter.ckey]
+				personal_statistics.acid_maw_uses++
+		if(/obj/structure/xeno/acid_maw/acid_jaws)
+			GLOB.round_statistics.acid_jaw_fires++
+			if(xeno_shooter.client)
+				var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_shooter.ckey]
+				personal_statistics.acid_jaw_uses++
 	ammo.launch_animation(clicked_turf, src)
 	S_TIMER_COOLDOWN_START(src, COOLDOWN_MAW_GLOB, ammo.cooldown_time)
+	return TRUE
 
 /// incoming effects for this ammo, 2 sec prior to impact
 /obj/structure/xeno/acid_maw/proc/maw_impact_start(datum/maw_ammo/ammo, turf/target, mob/living/user)
@@ -372,13 +389,6 @@
 	minimap_icon = "acid_jaw"
 	maw_options = list(
 		/datum/maw_ammo/smoke/neuro,
-		/datum/maw_ammo/hugger,
+		/datum/maw_ammo/smoke/acid_small,
 		/datum/maw_ammo/xeno_fire,
 	)
-
-/obj/structure/xeno/acid_maw/acid_jaws/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration, isrightclick)
-	GLOB.round_statistics.acid_jaw_fires++
-	if(xeno_attacker.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_attacker.ckey]
-		personal_statistics.acid_jaw_uses++
-	. = ..()

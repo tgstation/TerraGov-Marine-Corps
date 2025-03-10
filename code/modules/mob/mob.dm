@@ -23,6 +23,11 @@
 	set_focus(null)
 	return ..()
 
+/mob/New()
+	// This needs to happen IMMEDIATELY. I'm sorry :(
+	GenerateTag()
+	return ..()
+
 /mob/Initialize(mapload)
 	GLOB.mob_list += src
 	if(stat == DEAD)
@@ -45,6 +50,15 @@
 	update_movespeed(TRUE)
 	log_mob_tag("\[[tag]\] CREATED: [key_name(src)]")
 	become_hearing_sensitive()
+
+/**
+ * Generate the tag for this mob
+ *
+ * This is simply "mob_"+ a global incrementing counter that goes up for every mob
+ */
+/mob/GenerateTag()
+	. = ..()
+	tag = "mob_[next_mob_id++]"
 
 /mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
@@ -231,14 +245,14 @@
 		return FALSE
 	if(item_to_equip.equip_delay_self && !ignore_delay)
 		if(!do_after(src, item_to_equip.equip_delay_self, NONE, item_to_equip, BUSY_ICON_FRIENDLY))
-			to_chat(src, "You stop putting on \the [item_to_equip]")
+			to_chat(src, "You stop putting on \the [item_to_equip].")
 			return FALSE
 		//calling the proc again with ignore_delay saves a boatload of copypaste
 		return equip_to_slot_if_possible(item_to_equip, slot, TRUE, del_on_fail, warning, redraw_mob, override_nodrop)
-	equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
 	//This will unwield items -without- triggering lights.
 	if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
 		item_to_equip.unwield(src)
+	equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
 	return TRUE
 
 /**
@@ -268,8 +282,7 @@
 		A.remove_action(src)
 
 	item_to_equip.screen_loc = null
-	item_to_equip.layer = ABOVE_HUD_LAYER
-	item_to_equip.plane = ABOVE_HUD_PLANE
+	SET_PLANE_EXPLICIT(item_to_equip, ABOVE_HUD_PLANE, src)
 	item_to_equip.forceMove(src)
 
 ///This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
@@ -340,7 +353,18 @@
 /mob/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	.["Player Panel"] = "?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
+	.["Player Panel"] = "byond://?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
+	VV_DROPDOWN_OPTION(VV_HK_VIEW_PLANES, "View/Edit Planes")
+
+/mob/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+	if(href_list[VV_HK_VIEW_PLANES])
+		if(!check_rights(R_DEBUG))
+			return
+		usr.client.edit_plane_masters(src)
 
 /mob/vv_edit_var(var_name, var_value)
 	switch(var_name)
@@ -357,6 +381,8 @@
 		if(NAMEOF(src, stat))
 			set_stat(var_value)
 			. = TRUE
+		if(NAMEOF(src, lighting_cutoff))
+			sync_lighting_plane_cutoff()
 
 	if(!isnull(.))
 		datum_flags |= DF_VAR_EDITED
@@ -385,6 +411,13 @@
 		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
 		winset(src, "infowindow.changelog", "font-style=;")
+
+/client/verb/hotkeys_help()
+	set name = "Hotkeys"
+	set category = "Preferences"
+
+	prefs.tab_index = KEYBIND_SETTINGS
+	prefs.ShowChoices(mob)
 
 /mob/Topic(href, href_list)
 	. = ..()
@@ -515,6 +548,7 @@
 
 
 /mob/GenerateTag()
+	. = ..()
 	tag = "mob_[next_mob_id++]"
 
 /mob/serialize_list(list/options, list/semvers)
@@ -580,7 +614,7 @@
 /mob/proc/get_idcard(hand_first)
 	return
 
-/mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+/mob/proc/slip(slip_source_name, stun_level, paralyze_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
 /mob/forceMove(atom/destination)
@@ -664,8 +698,7 @@
 
 /mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
 	emote_overlay.appearance_flags = APPEARANCE_UI_TRANSFORM
-	emote_overlay.plane = ABOVE_LIGHTING_PLANE
-	emote_overlay.layer = ABOVE_HUD_LAYER
+	SET_PLANE(emote_overlay, ABOVE_LIGHTING_PLANE, src)
 	overlays += emote_overlay
 
 	if(remove_delay)
@@ -776,17 +809,18 @@
 	return TRUE
 
 
+///Update the lighting plane and sight of this mob (sends COMSIG_MOB_UPDATE_SIGHT)
 /mob/proc/update_sight()
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_MOB_UPDATE_SIGHT)
-	sync_lighting_plane_alpha()
+	sync_lighting_plane_cutoff()
 
-/mob/proc/sync_lighting_plane_alpha()
+///Set the lighting plane hud filters to the mobs lighting_cutoff var
+/mob/proc/sync_lighting_plane_cutoff()
 	if(!hud_used)
 		return
-
-	var/atom/movable/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
-	if(L)
-		L.alpha = lighting_alpha
+	for(var/atom/movable/screen/plane_master/rendering_plate/lighting/light as anything in hud_used.get_true_plane_masters(RENDER_PLANE_LIGHTING))
+		light.set_light_cutoff(lighting_cutoff, lighting_color_cutoffs)
 
 
 /mob/proc/get_photo_description(obj/item/camera/camera)
@@ -859,7 +893,7 @@
 	clear_important_client_contents()
 	canon_client = null
 
-/mob/on_changed_z_level(turf/old_turf, turf/new_turf, notify_contents = TRUE)
+/mob/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents = TRUE)
 	. = ..()
 	if(!client || !hud_used)
 		return

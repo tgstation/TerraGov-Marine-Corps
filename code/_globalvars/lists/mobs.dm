@@ -58,11 +58,13 @@ GLOBAL_LIST_INIT_TYPED(xeno_caste_datums, /list/datum/xeno_caste, init_xeno_cast
 
 	for(var/typepath in typelist)
 		var/datum/xeno_caste/caste = new typepath
-		.[caste.get_base_caste_type()][caste.upgrade] = caste
+		.[get_base_caste_type(caste)][caste.upgrade] = caste
 
 GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/runner,
 	/mob/living/carbon/xenomorph/runner/primordial,
+	/mob/living/carbon/xenomorph/runner/melter,
+	/mob/living/carbon/xenomorph/runner/melter/primordial,
 	/mob/living/carbon/xenomorph/drone,
 	/mob/living/carbon/xenomorph/drone/primordial,
 	/mob/living/carbon/xenomorph/sentinel,
@@ -77,6 +79,8 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/warrior/primordial,
 	/mob/living/carbon/xenomorph/spitter,
 	/mob/living/carbon/xenomorph/spitter/primordial,
+	/mob/living/carbon/xenomorph/spitter/globadier,
+	/mob/living/carbon/xenomorph/spitter/globadier/primordial,
 	/mob/living/carbon/xenomorph/hivelord,
 	/mob/living/carbon/xenomorph/hivelord/primordial,
 	/mob/living/carbon/xenomorph/carrier,
@@ -97,6 +101,8 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/praetorian/primordial,
 	/mob/living/carbon/xenomorph/praetorian/dancer,
 	/mob/living/carbon/xenomorph/praetorian/dancer/primordial,
+	/mob/living/carbon/xenomorph/praetorian/oppressor,
+	/mob/living/carbon/xenomorph/praetorian/oppressor/primordial,
 	/mob/living/carbon/xenomorph/boiler,
 	/mob/living/carbon/xenomorph/boiler/primordial,
 	/mob/living/carbon/xenomorph/boiler/sizzler,

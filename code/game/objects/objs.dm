@@ -3,6 +3,7 @@
 	speech_span = SPAN_ROBOT
 	interaction_flags = INTERACT_OBJ_DEFAULT
 	resistance_flags = NONE
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 	/// Icon to use as a 32x32 preview in crafting menus and such
 	var/icon_preview
@@ -73,6 +74,7 @@
 			GLOB.all_req_one_access[txt_access] = req_one_access
 		else
 			req_one_access = GLOB.all_req_one_access[txt_access]
+
 	add_debris_element()
 
 /obj/Destroy()
@@ -95,8 +97,6 @@
 		return // humans can check the codex for most of these- xenos should be able to know them "in the moment"
 	if(resistance_flags & CRUSHER_IMMUNE)
 		.[span_xenonotice("crusher-proof")] = "Charging Crushers can't damage this object."
-	if(resistance_flags & BANISH_IMMUNE)
-		.[span_xenonotice("banish immune")] = "Wraiths can't banish this object."
 	if(resistance_flags & PORTAL_IMMUNE)
 		.[span_xenonotice("portal immune")] = "Wraith portals can't teleport this object."
 	if(resistance_flags & XENO_DAMAGEABLE)
@@ -272,9 +272,9 @@
 
 	if(href_list[VV_HK_OSAY])
 		if(check_rights(R_FUN, FALSE))
-			usr.client.object_say(src)
+			SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/display_tags, src)
 
-	if(href_list[VV_HK_MASS_DEL_TYPE])
+	if(href_list[VV_HK_MASS_DEL_TYPE]) // todo why isnt this just invoking the delete all verb? or why have that one exist?
 		if(!check_rights(R_DEBUG|R_SERVER))
 			return
 		var/action_type = tgui_alert(usr, "Strict type ([type]) or type and all subtypes?",,list("Strict type","Type and subtypes","Cancel"))
@@ -343,7 +343,7 @@
 	if(obj_integrity <= max_integrity * repair_threshold)
 		return BELOW_INTEGRITY_THRESHOLD
 
-	if(obj_integrity >= max_integrity)
+	if(!needs_welder_repair(user))
 		balloon_alert(user, "already repaired")
 		return TRUE
 
@@ -358,31 +358,23 @@
 
 	repair_time *= welder.toolspeed
 	balloon_alert_to_viewers("starting repair...")
-	handle_weldingtool_overlay()
-	while(obj_integrity < max_integrity)
-		playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-		welder.eyecheck(user)
-		if(!do_after(user, repair_time, NONE, src, BUSY_ICON_FRIENDLY))
-			cut_overlay(GLOB.welding_sparks)
-			balloon_alert(user, "interrupted!")
-			return TRUE
-
-		if(obj_integrity <= max_integrity * repair_threshold || obj_integrity >= max_integrity)
-			handle_weldingtool_overlay(TRUE)
-			return TRUE
-
-		if(!welder.remove_fuel(fuel_req))
-			balloon_alert(user, "not enough fuel")
-			handle_weldingtool_overlay(TRUE)
+	while(needs_welder_repair(user))
+		if(!I.use_tool(src, user, repair_time, fuel_req, 25, CALLBACK(src, PROC_REF(is_repaired_enough), user, repair_threshold), BUSY_ICON_FRIENDLY))
 			return TRUE
 
 		repair_damage(repair_amount, user)
 		update_icon()
 
 	balloon_alert_to_viewers("repaired")
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-	handle_weldingtool_overlay(TRUE)
 	return TRUE
+
+///callback check to see if we're done repairing
+/obj/proc/is_repaired_enough(mob/user, repair_threshold)
+	return !needs_welder_repair(user) || (obj_integrity >= max_integrity * repair_threshold)
+
+//Returns true if we want to try to repair this object with welder_repair_act, false otherwise
+/obj/proc/needs_welder_repair(mob/user)
+	return obj_integrity < max_integrity
 
 /obj/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	if(isxeno(user))
@@ -426,6 +418,10 @@
 			balloon_alert(user, "Cannot disassemble")
 		return FALSE
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
+	return TRUE
+
+/// Handles successful disassembly tasks on a deployable, cannot be used for failure checks as disassembly has completed already
+/obj/proc/post_disassemble(mob/user)
 	return TRUE
 
 /obj/plasmacutter_act(mob/living/user, obj/item/I)

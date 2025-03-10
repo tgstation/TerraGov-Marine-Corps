@@ -9,17 +9,29 @@
 	///If the mob parent can heal itself and so should flee
 	var/can_heal = TRUE
 
-/datum/ai_behavior/xeno/New(loc, parent_to_assign, escorted_atom, can_heal = TRUE)
+/datum/ai_behavior/xeno/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
 	refresh_abilities()
 	mob_parent.a_intent = INTENT_HARM //Killing time
-	src.can_heal = can_heal
 
 /datum/ai_behavior/xeno/start_ai()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))
 	RegisterSignals(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
 	RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(check_for_critical_health))
+	if(!escorted_atom)
+		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom))
 	return ..()
+
+/datum/ai_behavior/xeno/clean_escorted_atom()
+	if(!escorted_atom)
+		return
+	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom))
+	return ..()
+
+/datum/ai_behavior/xeno/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
+	. = ..()
+	if(!new_escort_is_weak)
+		UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
 
 ///Refresh abilities-to-consider list
 /datum/ai_behavior/xeno/proc/refresh_abilities()
@@ -46,13 +58,11 @@
 			action.action_activate()
 	return ..()
 
-#define ESCORTING_MAX_DISTANCE 10
-
 /datum/ai_behavior/xeno/look_for_new_state()
 	var/mob/living/living_parent = mob_parent
 	switch(current_action)
 		if(ESCORTING_ATOM)
-			if(get_dist(escorted_atom, mob_parent) > ESCORTING_MAX_DISTANCE)
+			if(get_dist(escorted_atom, mob_parent) > AI_ESCORTING_MAX_DISTANCE)
 				look_for_next_node()
 				return
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
@@ -66,7 +76,7 @@
 					try_to_heal() //If we have some damage, look for some healing
 					return
 				if(!goal_node) // We are randomly moving
-					var/atom/xeno_to_follow = get_nearest_target(mob_parent, ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_XENO, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+					var/atom/xeno_to_follow = get_nearest_target(mob_parent, AI_ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_XENO, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 					if(xeno_to_follow)
 						set_escorted_atom(null, xeno_to_follow, TRUE)
 						return
@@ -94,7 +104,7 @@
 				return
 			if(next_target == atom_to_walk_to)
 				return
-			change_action(null, next_target, INFINITY)
+			change_action(null, next_target, list(INFINITY))
 		if(IDLE)
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
 			if(!next_target)
@@ -159,6 +169,7 @@
 	UnregisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE)
 	UnregisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED))
 	UnregisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
 
 ///Signal handler to try to attack our target
 /datum/ai_behavior/xeno/proc/attack_target(datum/source, atom/attacked)
@@ -211,8 +222,8 @@
 			living_mob.do_resist()
 		return TRUE
 	SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
-	RegisterSignal(mob_parent, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(check_for_health))
-	RegisterSignal(mob_parent, COMSIG_XENOMORPH_PLASMA_REGEN, PROC_REF(check_for_plasma))
+	RegisterSignal(mob_parent, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(check_for_health), TRUE) //resting can occasionally fail, if you're stunned etc
+	RegisterSignal(mob_parent, COMSIG_XENOMORPH_PLASMA_REGEN, PROC_REF(check_for_plasma), TRUE)
 	return TRUE
 
 ///Wait for the xeno to be full life and plasma to unrest
@@ -239,7 +250,7 @@
 	if(!next_target)
 		return
 	target_distance = 15
-	change_action(MOVING_TO_SAFETY, next_target, INFINITY)
+	change_action(MOVING_TO_SAFETY, next_target, list(INFINITY))
 	UnregisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE)
 
 ///Move the ai mob on top of the window_frame
@@ -249,7 +260,8 @@
 	LAZYDECREMENT(mob_parent.do_actions, window_turf)
 
 /datum/ai_behavior/xeno/ranged
-	distance_to_maintain = 5
+	upper_maintain_dist = 5
+	lower_maintain_dist = 5
 	minimum_health = 0.3
 
 /datum/ai_behavior/xeno/suicidal

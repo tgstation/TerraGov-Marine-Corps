@@ -1,4 +1,35 @@
 /mob/living/carbon/xenomorph/Bump(atom/A)
+	if(ismecha(A))
+		var/obj/vehicle/sealed/mecha/mecha = A
+		var/mob_swap_mode = NO_SWAP
+		if(a_intent == INTENT_HELP)
+			mob_swap_mode = SWAPPING
+		// If we're moving diagonally, but the mob isn't on the diagonal destination turf and the destination turf is enterable we have no reason to shuffle/push them
+		if(moving_diagonally && (get_dir(src, mecha) in GLOB.cardinals) && get_step(src, dir).Enter(src, loc))
+			mob_swap_mode = PHASING
+		if(mob_swap_mode)
+			//switch our position with mech
+			if(loc && !loc.Adjacent(mecha.loc))
+				return
+			now_pushing = TRUE
+			var/oldloc = loc
+			var/oldmechaloc = mecha.loc
+
+			var/mecha_passmob = (mecha.allow_pass_flags & PASS_MOB) // we give PASS_MOB to both mobs to avoid bumping other mobs during swap.
+			mecha.allow_pass_flags |= PASS_MOB
+
+			if(!moving_diagonally) //the diagonal move already does this for us
+				Move(oldmechaloc)
+			if(mob_swap_mode == SWAPPING)
+				mecha.Move(oldloc)
+
+			if(!mecha_passmob)
+				mecha.allow_pass_flags &= ~PASS_MOB
+
+			now_pushing = FALSE
+
+			return TURF_ENTER_ALREADY_MOVED
+
 	if(!(xeno_flags & XENO_LEAPING))
 		return ..()
 	if(!isliving(A))
@@ -66,7 +97,7 @@
 			else
 				if(X.nicknumber != xeno_name)
 					continue
-			to_chat(usr,span_notice(" You will now track [X.name]"))
+			to_chat(usr,span_notice("You will now track [X.name]"))
 			set_tracked(X)
 			break
 
@@ -75,7 +106,7 @@
 		for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos_by_hive[hivenumber])
 			if(num2text(resin_silo.number_silo) == silo_number)
 				set_tracked(resin_silo)
-				to_chat(usr,span_notice(" You will now track [resin_silo.name]"))
+				to_chat(usr,span_notice("You will now track [resin_silo.name]"))
 				break
 
 	if(href_list["watch_xeno_name"])
@@ -299,30 +330,28 @@
 
 	return ..() //Do the parent otherwise, for turfs.
 
-/mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)
-	if(!new_lighting_alpha)
-		switch(lighting_alpha)
-			if(LIGHTING_PLANE_ALPHA_NV_TRAIT)
-				new_lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-			if(LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
-				new_lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-			if(LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
-				new_lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+/mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_cutoff)
+	if(!new_lighting_cutoff)
+		switch(lighting_cutoff)
+			if(LIGHTING_CUTOFF_VISIBLE)
+				new_lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
+			if(LIGHTING_CUTOFF_MEDIUM)
+				new_lighting_cutoff = LIGHTING_CUTOFF_HIGH
+			if(LIGHTING_CUTOFF_HIGH)
+				new_lighting_cutoff = LIGHTING_CUTOFF_FULLBRIGHT
 			else
-				new_lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
+				new_lighting_cutoff = LIGHTING_CUTOFF_VISIBLE
 
-	switch(new_lighting_alpha)
-		if(LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE, LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE, LIGHTING_PLANE_ALPHA_INVISIBLE)
-			ENABLE_BITFIELD(sight, SEE_MOBS)
-			ENABLE_BITFIELD(sight, SEE_OBJS)
-			ENABLE_BITFIELD(sight, SEE_TURFS)
-		if(LIGHTING_PLANE_ALPHA_NV_TRAIT)
-			ENABLE_BITFIELD(sight, SEE_MOBS)
-			DISABLE_BITFIELD(sight, SEE_OBJS)
-			DISABLE_BITFIELD(sight, SEE_TURFS)
+	var/new_sight = NONE
+	switch(new_lighting_cutoff)
+		if(LIGHTING_CUTOFF_FULLBRIGHT, LIGHTING_CUTOFF_HIGH, LIGHTING_CUTOFF_MEDIUM)
+			new_sight = SEE_MOBS|SEE_OBJS|SEE_TURFS
+		if(LIGHTING_CUTOFF_VISIBLE)
+			new_sight = SEE_MOBS
 
-	lighting_alpha = new_lighting_alpha
+	lighting_cutoff = new_lighting_cutoff
 
+	set_sight(new_sight)
 	update_sight()
 
 
@@ -565,7 +594,7 @@
 		return
 
 	SSminimaps.remove_marker(src)
-	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon)
+	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER)
 	if(makeleader)
 		blip.overlays += image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_leadered_overlay)
 	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, blip)

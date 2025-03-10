@@ -28,8 +28,12 @@
 
 /turf
 	icon = 'icons/turf/floors.dmi'
+	luminosity = 1
 	var/intact_tile = 1 //used by floors to distinguish floor with/without a floortile(e.g. plating).
 	var/can_bloody = TRUE //Can blood spawn on this turf?
+
+	/// Turf bitflags, see code/__DEFINES/flags.dm
+	var/turf_flags = NONE
 
 	// baseturfs can be either a list or a single turf type.
 	// In class definition like here it should always be a single type.
@@ -37,7 +41,6 @@
 	// In the case of a list it is sorted from bottom layer to top.
 	// This shouldn't be modified directly, use the helper procs.
 	var/list/baseturfs = /turf/baseturf_bottom
-	luminosity = 1
 
 	var/changing_turf = FALSE
 
@@ -63,8 +66,22 @@
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	ENABLE_BITFIELD(atom_flags, INITIALIZED)
 
-	// by default, vis_contents is inherited from the turf that was here before
-	vis_contents.Cut()
+	/// We do NOT use the shortcut here, because this is faster
+	if(SSmapping.max_plane_offset)
+		if(!SSmapping.plane_offset_blacklist["[plane]"])
+			plane = plane - (PLANE_RANGE * SSmapping.z_level_to_plane_offset[z])
+
+		var/turf/T = GET_TURF_ABOVE(src)
+		if(T)
+			T.multiz_turf_new(src, DOWN)
+		T = GET_TURF_BELOW(src)
+		if(T)
+			T.multiz_turf_new(src, UP)
+
+	// by default, vis_contents is inherited from the turf that was here before.
+	// Checking length(vis_contents) in a proc this hot has huge wins for performance.
+	if (length(vis_contents))
+		vis_contents.Cut()
 
 	assemble_baseturfs()
 
@@ -78,11 +95,6 @@
 
 	if(light_power && light_range)
 		update_light()
-
-	//Get area light
-	var/area/A = loc
-	if(A?.lighting_effect)
-		add_overlay(A.lighting_effect)
 
 	if(opacity)
 		directional_opacity = ALL_CARDINALS
@@ -313,9 +325,11 @@
 	if(W.directional_opacity != old_directional_opacity)
 		W.reconsider_lights()
 
-	if(thisarea.area_has_base_lighting)
-		W.add_overlay(thisarea.lighting_effect)
-		W.luminosity = 1
+	// We will only run this logic if the tile is not on the prime z layer, since we use area overlays to cover that
+	if(SSmapping.z_level_to_plane_offset[z])
+		var/area/our_area = W.loc
+		if(our_area.lighting_effects)
+			W.add_overlay(our_area.lighting_effects[SSmapping.z_level_to_plane_offset[z] + 1])
 
 	if(!W.smoothing_behavior == NO_SMOOTHING)
 		return W
@@ -386,7 +400,11 @@
 				L.Add(t)
 	return L
 
+/turf/proc/multiz_turf_del(turf/T, dir)
+	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_DEL, T, dir)
 
+/turf/proc/multiz_turf_new(turf/T, dir)
+	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_NEW, T, dir)
 
 /turf/proc/Distance(turf/t)
 	if(get_dist(src,t) == 1)
@@ -421,6 +439,8 @@
 /turf/proc/can_lay_cable()
 	return can_have_cabling() & !intact_tile
 
+/turf/proc/burn_tile()
+	return
 
 /turf/proc/ceiling_debris_check(size = 1)
 	return
@@ -615,9 +635,6 @@
 /turf/open/floor/can_dig_xeno_tunnel()
 	return TRUE
 
-/turf/open/floor/plating/catwalk/can_dig_xeno_tunnel()
-	return FALSE
-
 /turf/open/floor/mainship/research/containment/can_dig_xeno_tunnel()
 	return FALSE
 
@@ -675,7 +692,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 // Make a new turf and put it on top
 // The args behave identical to PlaceOnBottom except they go on top
 // Things placed on top of closed turfs will ignore the topmost closed turf
-// Returns the new turf
+// Returns the new turf // todo you can split me into 2, see tg's impl of place_on_top
 /turf/proc/PlaceOnTop(list/new_baseturfs, turf/fake_turf_type, flags)
 	var/area/turf_area = loc
 	if(new_baseturfs && !length(new_baseturfs))
@@ -872,16 +889,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 
 /turf/proc/visibilityChanged()
 	for(var/datum/cameranet/net AS in list(GLOB.cameranet, GLOB.som_cameranet))
-
 		net.updateVisibility(src)
-		// The cameranet usually handles this for us, but if we've just been
-		// recreated we should make sure we have the cameranet vis_contents.
-		var/datum/camerachunk/C = net.chunkGenerated(x, y, z)
-		if(C)
-			if(C.obscuredTurfs[src])
-				vis_contents += net.vis_contents_opaque
-			else
-				vis_contents -= net.vis_contents_opaque
 
 
 /turf/AllowDrop()

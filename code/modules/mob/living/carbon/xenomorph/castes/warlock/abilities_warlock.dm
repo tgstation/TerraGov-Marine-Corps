@@ -175,7 +175,7 @@
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
 					continue
-				H.apply_effects(1 SECONDS, 1 SECONDS)
+				H.apply_effects(paralyze = 1 SECONDS)
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc
 			for(var/x in 1 to 6)
@@ -192,7 +192,7 @@
 /obj/effect/xeno/shield
 	icon = 'icons/Xeno/96x96.dmi'
 	icon_state = "shield"
-	resistance_flags = BANISH_IMMUNE|UNACIDABLE|PLASMACUTTER_IMMUNE
+	resistance_flags = UNACIDABLE|PLASMACUTTER_IMMUNE
 	max_integrity = 650
 	layer = ABOVE_MOB_LAYER
 	///Who created the shield
@@ -232,11 +232,11 @@
 	alpha = obj_integrity * 255 / max_integrity
 	if(obj_integrity <= 0)
 		release_projectiles()
-		owner.apply_effect(1 SECONDS, WEAKEN)
+		owner.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 
 /obj/effect/xeno/shield/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	release_projectiles()
-	owner.apply_effect(1 SECONDS, WEAKEN)
+	owner.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 	return ..()
 
 ///Unfeezes the projectiles on their original path
@@ -510,6 +510,7 @@
 	. = ..()
 	particle_holder = new(src, channel_particle)
 	particle_holder.pixel_y = 0
+	notify_ai_hazard()
 
 /obj/effect/xeno/crush_orb
 	icon = 'icons/xeno/2x2building.dmi'

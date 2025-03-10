@@ -7638,7 +7638,7 @@
 /obj/machinery/line_nexter{
 	dir = 8
 	},
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -8348,7 +8348,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_port)
 "dPt" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/side{
@@ -12888,7 +12888,7 @@
 "lkZ" = (
 /obj/structure/table/mainship/nometal,
 /obj/structure/window/reinforced/toughened,
-/obj/machinery/computer/camera_advanced/overwatch/main,
+/obj/machinery/computer/camera_advanced/overwatch/military/main,
 /turf/open/floor/mainship/silver,
 /area/mainship/command/cic)
 "llf" = (
@@ -16613,14 +16613,14 @@
 /area/mainship/command/bridge)
 "rau" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/computer/camera_advanced/overwatch/charlie,
+/obj/machinery/computer/camera_advanced/overwatch/military/charlie,
 /turf/open/floor/mainship/silver{
 	dir = 4
 	},
 /area/mainship/command/cic)
 "raw" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/computer/camera_advanced/overwatch/delta,
+/obj/machinery/computer/camera_advanced/overwatch/military/delta,
 /turf/open/floor/mainship/silver{
 	dir = 8
 	},
@@ -19640,9 +19640,7 @@
 /obj/machinery/door/window{
 	dir = 8
 	},
-/obj/structure/table/reinforced{
-	layer = 2.1
-	},
+/obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro,
 /turf/open/floor/prison/marked,
@@ -19733,7 +19731,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/engineering/ce_room)
 "wgD" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -20120,7 +20118,7 @@
 	pixel_x = 17;
 	pixel_y = 16
 	},
-/obj/machinery/computer/camera_advanced/overwatch/alpha,
+/obj/machinery/computer/camera_advanced/overwatch/military/alpha,
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/silver{
 	dir = 4
@@ -20136,7 +20134,7 @@
 	pixel_x = -17;
 	pixel_y = 16
 	},
-/obj/machinery/computer/camera_advanced/overwatch/bravo,
+/obj/machinery/computer/camera_advanced/overwatch/military/bravo,
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)

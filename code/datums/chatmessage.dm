@@ -13,9 +13,14 @@
 /// Approximate height in pixels of an 'average' line, used for height decay
 #define CHAT_MESSAGE_APPROX_LHEIGHT 11
 /// Max width of chat message in pixels
-#define CHAT_MESSAGE_WIDTH 96
+#define CHAT_MESSAGE_WIDTH 112
 /// Max length of chat message in characters
 #define CHAT_MESSAGE_MAX_LENGTH 110
+
+///Base layer of chat elements
+#define CHAT_LAYER 1
+///Highest possible layer of chat elements
+#define CHAT_LAYER_MAX 2
 /// Maximum precision of float before rounding errors occur (in this context)
 #define CHAT_LAYER_Z_STEP 0.0001
 /// The number of z-layer 'slices' usable by the chat message layering
@@ -129,6 +134,10 @@
 	if (!ismob(target))
 		extra_classes |= "small"
 
+	// Why are you yelling?
+	if(copytext_char(text, -2) == "!!")
+		extra_classes |= SPAN_YELL
+
 	// Append radio icon if from a virtual speaker
 	if (extra_classes.Find("virtual-speaker"))
 		var/image/r_icon = image('icons/UI_Icons/chat_icons.dmi', icon_state = "radio")
@@ -141,7 +150,7 @@
 	var/tgt_color = extra_classes.Find("italics") ? target.chat_color_darkened : target.chat_color
 
 
-	var/complete_text = "<span class='center maptext [extra_classes.Join(" ")]' style='color: [tgt_color]'>[owner.say_emphasis(text)]</span>"
+	var/complete_text = "<span style='color: [tgt_color]'><span class='center [extra_classes.Join(" ")]'>[owner.say_emphasis(text)]</span></span>"
 
 	var/mheight
 	WXH_TO_HEIGHT(owned_by.MeasureText(complete_text, null, CHAT_MESSAGE_WIDTH), mheight)
@@ -199,14 +208,14 @@
 
 	// Build message image
 	message = image(loc = message_loc, layer = CHAT_LAYER + CHAT_LAYER_Z_STEP * current_z_idx++)
-	message.plane = GAME_PLANE
+	SET_PLANE_EXPLICIT(message, RUNECHAT_PLANE, message_loc)
 	message.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
 	message.alpha = 0
 	message.pixel_y = owner.bound_height * 0.95
 	message.maptext_width = CHAT_MESSAGE_WIDTH
-	message.maptext_height = mheight
+	message.maptext_height = mheight * 1.25 // We add extra because some characters are superscript, like actions
 	message.maptext_x = (CHAT_MESSAGE_WIDTH - owner.bound_width) * -0.5
-	message.maptext = complete_text
+	message.maptext = MAPTEXT(complete_text)
 
 	animate_start = rough_time
 	animate_lifespan = lifespan

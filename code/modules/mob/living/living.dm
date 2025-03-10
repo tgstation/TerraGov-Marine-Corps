@@ -104,6 +104,7 @@
 /mob/living/Initialize(mapload)
 	. = ..()
 	register_init_signals()
+
 	update_move_intent_effects()
 	GLOB.mob_living_list += src
 	if(stat != DEAD)
@@ -368,20 +369,17 @@
 				var/oldloc = loc
 				var/oldLloc = L.loc
 
-				var/L_passmob = (L.pass_flags & PASS_MOB) // we give PASS_MOB to both mobs to avoid bumping other mobs during swap.
-				var/src_passmob = (pass_flags & PASS_MOB)
-				L.pass_flags |= PASS_MOB
-				pass_flags |= PASS_MOB
+				// we give PASS_MOB to both mobs to avoid bumping other mobs during swap.
+				L.add_pass_flags(PASS_MOB, MOVEMENT_SWAP_TRAIT)
+				add_pass_flags(PASS_MOB, MOVEMENT_SWAP_TRAIT)
 
 				if(!moving_diagonally) //the diagonal move already does this for us
 					Move(oldLloc)
 				if(mob_swap_mode == SWAPPING)
 					L.Move(oldloc)
 
-				if(!src_passmob)
-					pass_flags &= ~PASS_MOB
-				if(!L_passmob)
-					L.pass_flags &= ~PASS_MOB
+				L.remove_pass_flags(PASS_MOB, MOVEMENT_SWAP_TRAIT)
+				remove_pass_flags(PASS_MOB, MOVEMENT_SWAP_TRAIT)
 
 				now_pushing = FALSE
 
@@ -484,7 +482,7 @@
 
 /mob/living/proc/offer_mob()
 	GLOB.offered_mob_list += src
-	notify_ghosts(span_boldnotice("A mob is being offered! Name: [name][job ? " Job: [job.title]" : ""] "), enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT)
+	notify_ghosts(span_boldnotice("A mob is being offered! Name: [name][job ? " Job: [job.title]" : ""] "), enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT, flashwindow = TRUE)
 
 //used in datum/reagents/reaction() proc
 /mob/living/proc/get_permeability_protection()
@@ -679,7 +677,7 @@ below 100 is not dizzy
 
 /mob/living/update_sight()
 	if(SSticker.current_state == GAME_STATE_FINISHED && !is_centcom_level(z)) //Reveal ghosts to remaining survivors
-		see_invisible = SEE_INVISIBLE_OBSERVER
+		set_invis_see(SEE_INVISIBLE_OBSERVER)
 	return ..()
 
 /mob/living/proc/can_track(mob/living/user)
@@ -760,7 +758,7 @@ below 100 is not dizzy
 //for more info on why this is not atom/pull, see examinate() in mob.dm
 /mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
 	set name = "Pull"
-	set category = "Object"
+	set category = "IC.Object"
 
 	if(istype(AM) && Adjacent(AM))
 		start_pulling(AM)
@@ -770,7 +768,7 @@ below 100 is not dizzy
 /mob/living/can_interact_with(datum/D)
 	return D == src || D.Adjacent(src)
 
-/mob/living/on_changed_z_level(turf/old_turf, turf/new_turf, notify_contents = TRUE)
+/mob/living/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents = TRUE)
 	set_jump_component()
 	. = ..()
 	update_z(new_turf?.z)
@@ -962,8 +960,6 @@ below 100 is not dizzy
 			set_blindness(var_value)
 		if(NAMEOF(src, eye_blurry))
 			set_blurriness(var_value)
-		if(NAMEOF(src, lighting_alpha))
-			sync_lighting_plane_alpha()
 		if(NAMEOF(src, resize))
 			if(var_value == 0) //prevents divisions of and by zero.
 				return FALSE
@@ -986,12 +982,12 @@ below 100 is not dizzy
 	. += {"
 		<br><font size='1'>[VV_HREF_TARGETREF(refid, VV_HK_GIVE_DIRECT_CONTROL, "[ckey || "no ckey"]")] / [VV_HREF_TARGETREF_1V(refid, VV_HK_BASIC_EDIT, "[real_name || "no real name"]", NAMEOF(src, real_name))]</font>
 		<br><font size='1'>
-			BRUTE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brute' id='brute'>[getBruteLoss()]</a>
-			FIRE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=fire' id='fire'>[getFireLoss()]</a>
-			TOXIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=toxin' id='toxin'>[getToxLoss()]</a>
-			OXY:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[getOxyLoss()]</a>
-			CLONE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[getCloneLoss()]</a>
-			STAMINA:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[getStaminaLoss()]</a>
+			BRUTE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brute' id='brute'>[getBruteLoss()]</a>
+			FIRE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=fire' id='fire'>[getFireLoss()]</a>
+			TOXIN:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=toxin' id='toxin'>[getToxLoss()]</a>
+			OXY:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[getOxyLoss()]</a>
+			CLONE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[getCloneLoss()]</a>
+			STAMINA:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[getStaminaLoss()]</a>
 		</font>
 	"}
 

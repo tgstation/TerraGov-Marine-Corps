@@ -1,6 +1,3 @@
-
-
-
 /*
 FIRE ALARM
 */
@@ -12,20 +9,27 @@ FIRE ALARM
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
+	anchored = TRUE
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 2
+	active_power_usage = 6
+	power_channel = ENVIRON
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
 	var/detecting = 1
 	var/working = 1
 	var/time = 10
 	var/timing = 0
 	var/lockdownbyai = 0
 	var/obj/item/circuitboard/firealarm/electronics = null
-	anchored = TRUE
-	use_power = IDLE_POWER_USE
-	idle_power_usage = 2
-	active_power_usage = 6
-	power_channel = ENVIRON
 	var/last_process = 0
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
+
+//whoever made these the sprites on these inverted I will find you, fix this shit and change the offset
+// todo: actually replace all of these in maps
+// also remove the 	switch(dir) when you do
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/firealarm, (-32))
 
 /obj/machinery/firealarm/Initialize(mapload, direction, building)
 	. = ..()
@@ -47,6 +51,14 @@ FIRE ALARM
 		if(WEST)
 			pixel_x = 32
 
+	if(is_mainship_level(z))
+		RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_alert_change))
+
+	update_icon()
+
+/// wrapper so we can update the icon on [COMSIG_SECURITY_LEVEL_CHANGED]
+/obj/machinery/firealarm/proc/on_alert_change(datum/source, datum/security_level/next_level, datum/security_level/previous_level)
+	SIGNAL_HANDLER
 	update_icon()
 
 /obj/machinery/firealarm/update_icon()
@@ -59,15 +71,7 @@ FIRE ALARM
 	if(A.alarm_state_flags & ALARM_WARNING_FIRE)
 		set_light_color(LIGHT_COLOR_EMISSIVE_ORANGE)
 	else
-		switch(GLOB.marine_main_ship.get_security_level())
-			if("delta")
-				set_light_color(LIGHT_COLOR_PINK)
-			if("red")
-				set_light_color(LIGHT_COLOR_EMISSIVE_RED)
-			if("blue")
-				set_light_color(LIGHT_COLOR_BLUE)
-			else
-				set_light_color(LIGHT_COLOR_EMISSIVE_GREEN)
+		set_light_color(SSsecurity_level?.current_security_level?.fire_alarm_light_color || LIGHT_COLOR_WHITE)
 
 	set_light(initial(light_range))
 
@@ -83,8 +87,8 @@ FIRE ALARM
 		return
 	if(CHECK_BITFIELD(machine_stat, NOPOWER))
 		return
-	. += emissive_appearance(icon, "fire_o[(is_mainship_level(z)) ? GLOB.marine_main_ship.get_security_level() : "green"]")
-	. += mutable_appearance(icon, "fire_o[(is_mainship_level(z)) ? GLOB.marine_main_ship.get_security_level() : "green"]")
+	. += emissive_appearance(icon, "fire_o[(is_mainship_level(z)) ? SSsecurity_level.get_current_level_as_text() : "green"]", src)
+	. += mutable_appearance(icon, "fire_o[(is_mainship_level(z)) ? SSsecurity_level.get_current_level_as_text() : "green"]")
 	var/area/A = get_area(src)
 	if(A.alarm_state_flags & ALARM_WARNING_FIRE)
 		. += mutable_appearance(icon, "fire_o1")
@@ -117,11 +121,11 @@ FIRE ALARM
 			if(ismultitool(I))
 				detecting = !detecting
 				if(detecting)
-					user.visible_message(span_warning(" [user] has reconnected [src]'s detecting unit!"), "You have reconnected [src]'s detecting unit.")
+					user.visible_message(span_warning("[user] has reconnected [src]'s detecting unit!"), "You have reconnected [src]'s detecting unit.")
 				else
-					user.visible_message(span_warning(" [user] has disconnected [src]'s detecting unit!"), "You have disconnected [src]'s detecting unit.")
+					user.visible_message(span_warning("[user] has disconnected [src]'s detecting unit!"), "You have disconnected [src]'s detecting unit.")
 			else if(iswirecutter(I))
-				user.visible_message(span_warning(" [user] has cut the wires inside \the [src]!"), "You have cut the wires inside \the [src].")
+				user.visible_message(span_warning("[user] has cut the wires inside \the [src]!"), "You have cut the wires inside \the [src].")
 				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 				buildstage = 1
 				update_icon()
@@ -180,16 +184,16 @@ FIRE ALARM
 	var/d2
 
 	if (A.alarm_state_flags & ALARM_WARNING_FIRE)
-		d1 = "<A href='?src=[text_ref(src)];reset=1'>Reset - Lockdown</A>"
+		d1 = "<A href='byond://?src=[text_ref(src)];reset=1'>Reset - Lockdown</A>"
 	else
-		d1 = "<A href='?src=[text_ref(src)];alarm=1'>Alarm - Lockdown</A>"
+		d1 = "<A href='byond://?src=[text_ref(src)];alarm=1'>Alarm - Lockdown</A>"
 	if(timing)
-		d2 = "<A href='?src=[text_ref(src)];time=0'>Stop Time Lock</A>"
+		d2 = "<A href='byond://?src=[text_ref(src)];time=0'>Stop Time Lock</A>"
 	else
-		d2 = "<A href='?src=[text_ref(src)];time=1'>Initiate Time Lock</A>"
+		d2 = "<A href='byond://?src=[text_ref(src)];time=1'>Initiate Time Lock</A>"
 	var/second = round(time) % 60
 	var/minute = (round(time) - second) / 60
-	var/dat = "<B>Fire alarm</B> [d1]\n<HR>The current alert level is: [GLOB.marine_main_ship.get_security_level()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=[text_ref(src)];tp=-30'>-</A> <A href='?src=[text_ref(src)];tp=-1'>-</A> <A href='?src=[text_ref(src)];tp=1'>+</A> <A href='?src=[text_ref(src)];tp=30'>+</A>"
+	var/dat = "<B>Fire alarm</B> [d1]\n<HR>The current alert level is: [SSsecurity_level.get_current_level_as_text()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='byond://?src=[text_ref(src)];tp=-30'>-</A> <A href='byond://?src=[text_ref(src)];tp=-1'>-</A> <A href='byond://?src=[text_ref(src)];tp=1'>+</A> <A href='byond://?src=[text_ref(src)];tp=30'>+</A>"
 
 	var/datum/browser/popup = new(user, "firealarm", "<div align='center'>Fire alarm</div>")
 	popup.set_content(dat)

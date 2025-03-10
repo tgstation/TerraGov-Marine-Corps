@@ -15,8 +15,8 @@
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS|ARMORED_WRECKABLE
 	pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
-	pixel_x = -65
-	pixel_y = -80
+	pixel_w = -65
+	pixel_z = -80
 	max_integrity = 1200
 	soft_armor = list(MELEE = 90, BULLET = 95 , LASER = 95, ENERGY = 95, BOMB = 80, BIO = 100, FIRE = 100, ACID = 70)
 	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 10, BOMB = 35, BIO = 100, FIRE = 0, ACID = 0)
@@ -30,9 +30,10 @@
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 	)
-	engine_sound = SFX_HOVER_TANK
-	engine_sound_length = 1.2 SECONDS
-	vis_range_mod = 4
+	idle_loop = /datum/looping_sound/som_tank_idle
+	idle_inside_loop = /datum/looping_sound/som_tank_idle_interior
+	drive_loop = /datum/looping_sound/som_tank_drive
+	drive_inside_loop = /datum/looping_sound/som_tank_drive_interior
 	faction = FACTION_SOM
 
 /obj/vehicle/sealed/armored/multitile/som_tank/Initialize(mapload)
@@ -58,9 +59,6 @@
 	turret_overlay.setDir(new_weapon_dir)
 	return TRUE
 
-/obj/vehicle/sealed/armored/multitile/som_tank/play_engine_sound(freq_vary = TRUE, sound_freq = 32000) //arg override
-	return ..()
-
 /obj/vehicle/sealed/armored/multitile/som_tank/lava_act()
 	return //we flying baby
 
@@ -76,8 +74,8 @@
 		if(stop_hover)
 			animate(atom)
 			continue
-		animate(atom, time = 1.2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE|ANIMATION_END_NOW, pixel_y = 3)
-		animate(time = 1.2 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE, pixel_y = -3)
+		animate(atom, time = 1.2 SECONDS, loop = -1, easing = SINE_EASING, flags = ANIMATION_RELATIVE|ANIMATION_END_NOW, pixel_z = 3)
+		animate(time = 1.2 SECONDS, easing = SINE_EASING, flags = ANIMATION_RELATIVE, pixel_z = -3)
 
 /obj/vehicle/sealed/armored/multitile/som_tank/add_desant(mob/living/new_desant)
 	. = ..()

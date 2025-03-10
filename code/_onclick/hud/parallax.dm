@@ -3,7 +3,12 @@
 	var/mob/screenmob = viewmob || mymob
 	var/client/C = screenmob.client
 	if (!apply_parallax_pref(viewmob)) //don't want shit computers to crash when specing someone with insane parallax, so use the viewer's pref
+		for(var/atom/movable/screen/plane_master/parallax as anything in get_true_plane_masters(PLANE_SPACE_PARALLAX))
+			parallax.hide_plane(screenmob)
 		return
+
+	for(var/atom/movable/screen/plane_master/parallax as anything in get_true_plane_masters(PLANE_SPACE_PARALLAX))
+		parallax.unhide_plane(screenmob)
 
 	if(!length(C.parallax_layers_cached))
 		C.parallax_layers_cached = list()
@@ -20,33 +25,45 @@
 		C.parallax_layers.len = C.parallax_layers_max
 
 	C.screen |= (C.parallax_layers)
-	var/atom/movable/screen/plane_master/PM = screenmob.hud_used.plane_masters["[PLANE_SPACE]"]
-	if(screenmob != mymob)
-		C.screen -= locate(/atom/movable/screen/plane_master/parallax_white) in C.screen
-		C.screen += PM
-	PM.color = list(
-		0, 0, 0, 0,
-		0, 0, 0, 0,
-		0, 0, 0, 0,
-		1, 1, 1, 1,
-		0, 0, 0, 0
-		)
+
+	// We could do not do parallax for anything except the main plane group
+	// This could be changed, but it would require refactoring this whole thing
+	// And adding non client particular hooks for all the inputs, and I do not have the time I'm sorry :(
+	for(var/atom/movable/screen/plane_master/plane_master as anything in screenmob.hud_used.get_true_plane_masters(PLANE_SPACE))
+		if(screenmob != mymob)
+			C.screen -= locate(/atom/movable/screen/plane_master/parallax_white) in C.screen
+			C.screen += plane_master
+		plane_master.color = list(
+			0, 0, 0, 0,
+			0, 0, 0, 0,
+			0, 0, 0, 0,
+			1, 1, 1, 1,
+			0, 0, 0, 0
+			)
 
 
 /datum/hud/proc/remove_parallax(mob/viewmob)
 	var/mob/screenmob = viewmob || mymob
 	var/client/C = screenmob.client
 	C.screen -= (C.parallax_layers_cached)
-	var/atom/movable/screen/plane_master/PM = screenmob.hud_used.plane_masters["[PLANE_SPACE]"]
-	if(screenmob != mymob)
-		C.screen -= locate(/atom/movable/screen/plane_master/parallax_white) in C.screen
-		C.screen += PM
-	PM.color = initial(PM.color)
+	for(var/atom/movable/screen/plane_master/plane_master as anything in screenmob.hud_used.get_true_plane_masters(PLANE_SPACE))
+		if(screenmob != mymob)
+			C.screen -= locate(/atom/movable/screen/plane_master/parallax_white) in C.screen
+			C.screen += plane_master
+		plane_master.color = initial(plane_master.color)
 	C.parallax_layers = null
 
 /datum/hud/proc/apply_parallax_pref(mob/viewmob)
 	var/mob/screenmob = viewmob || mymob
 	var/client/C = screenmob.client
+/*	if(SSmapping.level_trait(screen_location?.z, ZTRAIT_NOPARALLAX))
+		for(var/atom/movable/screen/plane_master/white_space as anything in get_true_plane_masters(PLANE_SPACE))
+			white_space.hide_plane(screenmob)
+		return FALSE
+*/
+	for(var/atom/movable/screen/plane_master/white_space as anything in get_true_plane_masters(PLANE_SPACE))
+		white_space.unhide_plane(screenmob)
+
 	if(C.prefs)
 		var/pref = C.prefs.parallax
 		if (isnull(pref))
@@ -152,7 +169,7 @@
 		var/newstate = initial(L.icon_state)
 		var/T = PARALLAX_LOOP_TIME / L.speed
 
-		if (newstate in icon_states(L.icon))
+		if (icon_exists(L.icon, newstate))
 			L.icon_state = newstate
 			L.update_o(C.view)
 

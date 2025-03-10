@@ -6,10 +6,9 @@
 /obj/effect/landmark/patrol_point
 	name = "Patrol exit point"
 	icon = 'icons/effects/campaign_effects.dmi'
+	faction = FACTION_TERRAGOV
 	///ID to link with an associated start point
 	var/id = null
-	///Faction this belongs to for minimap purposes
-	var/faction = FACTION_TERRAGOV
 	///minimap icon state
 	var/minimap_icon = "patrol_1"
 	///List of open turfs around the point to deploy onto
@@ -26,7 +25,7 @@
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_GAMEMODE_LOADED, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED))
 	if(!(SSticker?.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS) && !mode_override)
 		return
-	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon))
+	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon, MINIMAP_BLIPS_LAYER))
 
 	deploy_turfs = filled_circle_turfs(src, 5)
 	for(var/turf/turf AS in deploy_turfs)

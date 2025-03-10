@@ -44,7 +44,7 @@
 	var/image/final_image = image(apc_appearance)
 
 	final_image.layer = WALL_OBJ_LAYER
-	final_image.plane = GAME_PLANE
+	SET_PLANE_EXPLICIT(final_image, GAME_PLANE, area_apc)
 	final_image.loc = get_turf(area_apc)
 	final_image.dir = apc_appearance.dir
 	final_image.alpha = 225

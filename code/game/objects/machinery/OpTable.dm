@@ -176,7 +176,7 @@
 
 /obj/machinery/optable/verb/climb_on()
 	set name = "Climb On Table"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(usr.stat || !ishuman(usr) || usr.restrained() || !check_table(usr))
@@ -195,6 +195,17 @@
 		user.transferItemToLoc(I, src)
 		anes_tank = I
 		to_chat(user, span_notice("You connect \the [anes_tank] to \the [src]."))
+
+	if(istype(I, /obj/item/riding_offhand))
+		var/obj/item/riding_offhand/carry_obj = I
+		if(carry_obj.is_rider(user))
+			return
+		if(victim)
+			balloon_alert(user, "already has patient!")
+			return
+		if(!take_victim(carry_obj.rider, user))
+			return
+		qdel(carry_obj)
 
 /obj/machinery/optable/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	. = ..()

@@ -3,10 +3,9 @@
 /obj/structure/campaign_objective/destruction_objective
 	name = "GENERIC CAMPAIGN DESTRUCTION OBJECTIVE"
 	soft_armor = list(MELEE = 200, BULLET = 200, LASER = 200, ENERGY = 200, BOMB = 200, BIO = 200, FIRE = 200, ACID = 200) //require c4 normally
+	faction = FACTION_TERRAGOV
 	///explosion smoke particle holder
 	var/obj/effect/abstract/particle_holder/explosion_smoke
-	///The faction this belongs to
-	var/faction = FACTION_TERRAGOV
 
 /obj/structure/campaign_objective/destruction_objective/Destroy()
 	QDEL_NULL(explosion_smoke)
@@ -283,10 +282,10 @@
 	switch(status)
 		if(BLUESPACE_CORE_OK)
 			. += image(icon, icon_state = "top_overlay", layer = ABOVE_MOB_LAYER)
-			. += image(icon, icon_state = "bsd_c_s", layer = ABOVE_MOB_PROP_LAYER)
+			. += image(icon, icon_state = "bsd_c_s", layer = ABOVE_MOB_LAYER)
 		if(BLUESPACE_CORE_UNSTABLE)
 			. += image(icon, icon_state = "top_overlay", layer = ABOVE_MOB_LAYER)
-			. += image(icon, icon_state = "bsd_c_u", layer = ABOVE_MOB_PROP_LAYER)
+			. += image(icon, icon_state = "bsd_c_u", layer = ABOVE_MOB_LAYER)
 		if(BLUESPACE_CORE_BROKEN)
 			. += image(icon, icon_state = "top_overlay_broken", layer = ABOVE_MOB_LAYER)
 

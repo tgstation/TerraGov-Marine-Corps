@@ -170,10 +170,6 @@
 	/// How much damage we can take before tipping over.
 	var/knockdown_threshold = 100
 
-	///Faction of the vendor. Can be null
-	var/faction
-
-
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
 	wires = new /datum/wires/vending(src)
@@ -473,11 +469,11 @@
 		return FALSE
 
 	if(tipped_level == 2)
-		user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
+		user.visible_message(span_notice("[user] begins to heave the vending machine back into place!"),span_notice("You start heaving the vending machine back into place.."))
 		if(!do_after(user, 80, IGNORE_HELD_ITEM, src, BUSY_ICON_FRIENDLY))
 			return FALSE
 
-		user.visible_message(span_notice(" [user] rights the [src]!"),span_notice(" You right the [src]!"))
+		user.visible_message(span_notice("[user] rights the [src]!"),span_notice("You right the [src]!"))
 		flip_back()
 		return TRUE
 
@@ -495,10 +491,10 @@
 		return
 	if(!iscarbon(user)) // AI can't heave remotely
 		return
-	user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
+	user.visible_message(span_notice("[user] begins to heave the vending machine back into place!"),span_notice("You start heaving the vending machine back into place.."))
 	if(!do_after(user, 80, IGNORE_HELD_ITEM, src, BUSY_ICON_FRIENDLY))
 		return FALSE
-	user.visible_message(span_notice(" [user] rights the [src]!"),span_notice(" You right the [src]!"))
+	user.visible_message(span_notice("[user] rights the [src]!"),span_notice("You right the [src]!"))
 	flip_back()
 	return TRUE
 
@@ -873,7 +869,7 @@
 	. = ..()
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive")
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 //Oh no we're malfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()

@@ -42,9 +42,6 @@
 
 	//Attack
 	melee_damage = 0
-	attacktext = "attacks"
-	attack_sound = null
-	friendly = "nuzzles" //If the mob does no damage with it's attack
 	var/obj_damage = 0 //how much damage this simple animal does to objects, if any
 	var/attacked_sound = SFX_PUNCH //Played when someone punches the creature
 	var/armour_penetration = 0 //How much armour they ignore, as a flat reduction from the targets armour value
@@ -79,6 +76,9 @@
 	. = ..()
 	health = clamp(health, 0, maxHealth)
 
+/mob/living/simple_animal/update_sight()
+	lighting_color_cutoffs = list(lighting_cutoff_red, lighting_cutoff_green, lighting_cutoff_blue)
+	return ..()
 
 /mob/living/simple_animal/update_stat()
 	if(status_flags & GODMODE)
@@ -282,7 +282,7 @@
 			stack_trace("Something attempted to set simple animals AI to an invalid state: [togglestatus]")
 
 
-/mob/living/simple_animal/on_changed_z_level(turf/old_turf, turf/new_turf, notify_contents = TRUE)
+/mob/living/simple_animal/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents = TRUE)
 	. = ..()
 	if(AIStatus == AI_Z_OFF)
 		SSidlenpcpool.idle_mobs_by_zlevel[old_turf.z] -= src

@@ -74,6 +74,7 @@
 // common trait
 #define TRAIT_GENERIC "generic"
 #define INNATE_TRAIT "innate"
+#define ADMIN_TRAIT "admin_trait"
 #define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
 #define SLEEPER_TRAIT "sleeper"
 #define STASIS_BAG_TRAIT "stasis_bag"
@@ -93,6 +94,7 @@
 #define ENDURE_TRAIT "endure" //Ravager Endure ability.
 #define RAGE_TRAIT "rage" //Ravager Rage ability.
 #define UNMANNED_VEHICLE "unmanned"
+#define MECH_VENDOR_TRAIT "mechvendor"
 #define STEALTH_TRAIT "stealth" //From hunter stealth
 #define REVIVE_TO_CRIT_TRAIT "revive_to_crit"
 #define GUN_TRAIT "gun" //Traits related to guns
@@ -122,10 +124,13 @@
 #define NIGHT_VISION_GOGGLES_TRAIT "night_vision_goggles"
 #define SUBMERGED_TRAIT "submerged_trait"
 #define TRAIT_DWARF "dwarf"
+#define MOVEMENT_SWAP_TRAIT "movement_swap_trait"
+#define MANIFESTED_TRAIT "manifested_trait"
+#define HOVERBIKE_TRAIT "hoverbike_trait"
+/// This trait comes from when a mob is currently typing.
+#define CURRENTLY_TYPING_TRAIT "currently_typing"
 /// Makes you way too tall. Like just too much, dude, it's kind of creepy. Humanoid only.
 #define TRAIT_TOO_TALL "too_tall"
-///massively decreases human MANUAL get up time
-#define TRAIT_QUICK_GETUP "quick_getup"
 
 #define ABSTRACT_ITEM_TRAIT "abstract_item"
 /// A trait given by any status effect
@@ -143,7 +148,7 @@
 ///AM will not be submerged. Trait must ALWAYS be added via the add_nosubmerge_trait proc for correct behavior
 #define TRAIT_NOSUBMERGE "trait_nosubmerge"
 
-
+#define TRAIT_HAS_SPAWNED_MECH "has_spawned_mech"
 
 //added b grilling a food
 #define TRAIT_FOOD_GRILLED "food_grilled"
@@ -151,6 +156,8 @@
 //atom/movable traits
 /// Trait that tracks if something has been renamed. Typically holds a REF() to the object itself (AKA src) for wide addition/removal.
 #define TRAIT_WAS_RENAMED "was_renamed"
+///Lets the movable move freely in the soft-cordon area of transit space, which would otherwise teleport them away just before they got to see the true cordon
+#define TRAIT_FREE_HYPERSPACE_SOFTCORDON_MOVEMENT "free_hyperspace_softcordon_movement"
 
 //mob traits
 #define TRAIT_POSSESSING "possessing" // Prevents mob from being taken by ghosts
@@ -189,7 +196,22 @@
 #define TRAIT_TANK_DESANT "tank_desant"
 ///Builds things better
 #define TRAIT_SUPERIOR_BUILDER "superior_builder"
+/// Mob has fov applied to it
+#define TRAIT_FOV_APPLIED "fov_applied"
 
+///Traits for managing AM pass_flags
+#define TRAIT_PASS_LOW_STRUCTURE "pass_low_structure"
+#define TRAIT_PASS_GLASS "pass_glass"
+#define TRAIT_PASS_GRILLE "pass_grille"
+#define TRAIT_PASS_MOB "pass_mob"
+#define TRAIT_PASS_DEFENSIVE_STRUCTURE "pass_defensive_structure"
+#define TRAIT_PASS_FIRE "pass_fire"
+#define TRAIT_PASS_XENO "pass_xeno"
+#define TRAIT_PASS_THROW "pass_throw"
+#define TRAIT_PASS_PROJECTILE "pass_projectile"
+#define TRAIT_PASS_AIR "pass_air"
+#define TRAIT_PASS_WALKOVER "pass_walkover"
+#define TRAIT_PASS_TANK "pass_tank"
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
@@ -212,6 +234,8 @@
 #define TRAIT_STAGGER_RESISTANT	"stagger_resistant" //Resistance to certain sources of stagger
 #define TRAIT_SLOWDOWNIMMUNE "slowdown_immunity" //Immunity to slowdown
 #define TRAIT_EARDAMAGE_IMMUNE "eardmgimmune" //immune to getting deaf through ear dmg
+///massively decreases human MANUAL get up time
+#define TRAIT_QUICK_GETUP "quick_getup"
 #define TRAIT_SEE_IN_DARK "see_in_dark" //Able to see in dark
 #define TRAIT_MUTED "muted" //target is mute and can't speak
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
@@ -228,6 +252,9 @@
  */
 #define TRAIT_AREA_SENSITIVE "area-sensitive"
 #define TRAIT_HEARING_SENSITIVE "hearing_sensitive" //target is hearing sensitive. Every hearing sensitive atom has this trait
+
+/// Trait given to a mob that is currently thinking (giving off the "thinking" icon), used in an IC context
+#define TRAIT_THINKING_IN_CHARACTER "currently_thinking_IC"
 
 #define TRAIT_DROOLING "drooling" //target is drooling
 #define TRAIT_INTOXICATION_IMMUNE "intoxication_immune" // Immune to the Intoxication debuff.
@@ -282,5 +309,17 @@
 #define TRAIT_REGRESSING "regressing"
 #define TRAIT_STRAIN_SWAP "strain swap"
 
-///Pauses campaign mission timer
-#define CAMPAIGN_MISSION_TIMER_PAUSED "campaign_mission_timer_paused"
+GLOBAL_LIST_INIT(traits_to_pass_flags, list(
+	TRAIT_PASS_LOW_STRUCTURE = PASS_LOW_STRUCTURE,
+	TRAIT_PASS_GLASS = PASS_GLASS,
+	TRAIT_PASS_GRILLE = PASS_GRILLE,
+	TRAIT_PASS_MOB = PASS_MOB,
+	TRAIT_PASS_DEFENSIVE_STRUCTURE = PASS_DEFENSIVE_STRUCTURE,
+	TRAIT_PASS_FIRE = PASS_FIRE,
+	TRAIT_PASS_XENO = PASS_XENO,
+	TRAIT_PASS_THROW = PASS_THROW,
+	TRAIT_PASS_PROJECTILE = PASS_PROJECTILE,
+	TRAIT_PASS_AIR = PASS_AIR,
+	TRAIT_PASS_WALKOVER = PASS_WALKOVER,
+	TRAIT_PASS_TANK = PASS_TANK,
+))

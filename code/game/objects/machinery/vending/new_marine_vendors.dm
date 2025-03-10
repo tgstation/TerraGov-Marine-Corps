@@ -26,8 +26,6 @@
 
 	var/list/categories
 	var/list/listed_products
-	///The faction of that vendor, can be null
-	var/faction
 
 /obj/machinery/marine_selector/Initialize(mapload)
 	. = ..()
@@ -49,9 +47,9 @@
 
 /obj/machinery/marine_selector/update_overlays()
 	. = ..()
-	if(!is_operational())
+	if(!is_operational() || !icon_state)
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive")
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 /obj/machinery/marine_selector/can_interact(mob/user)
 	. = ..()
@@ -208,7 +206,7 @@
 			user_id.id_flags |= USED_GHMME
 
 /obj/machinery/marine_selector/clothes
-	name = "GHMME Automated Closet"
+	name = "\improper GHMME Automated Closet"
 	desc = "An automated closet hooked up to a colossal storage unit of standard-issue uniform and armor."
 	icon_state = "marineuniform"
 	icon_vend = "marineuniform-vend"
@@ -251,7 +249,7 @@
 
 
 /obj/machinery/marine_selector/clothes/engi
-	name = "GHMME Automated Engineer Closet"
+	name = "\improper GHMME Automated Engineer Closet"
 	req_access = list(ACCESS_MARINE_ENGPREP)
 	vendor_role = /datum/job/terragov/squad/engineer
 	gives_webbing = FALSE
@@ -282,7 +280,7 @@
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/medic
-	name = "GHMME Automated Corpsman Closet"
+	name = "\improper GHMME Automated Corpsman Closet"
 	req_access = list(ACCESS_MARINE_MEDPREP)
 	vendor_role = /datum/job/terragov/squad/corpsman
 	gives_webbing = FALSE
@@ -314,7 +312,7 @@
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/smartgun
-	name = "GHMME Automated Smartgunner Closet"
+	name = "\improper GHMME Automated Smartgunner Closet"
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 	vendor_role = /datum/job/terragov/squad/smartgunner
 	gives_webbing = FALSE
@@ -345,7 +343,7 @@
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/leader
-	name = "GHMME Automated Leader Closet"
+	name = "\improper GHMME Automated Leader Closet"
 	req_access = list(ACCESS_MARINE_LEADER)
 	vendor_role = /datum/job/terragov/squad/leader
 	gives_webbing = FALSE
@@ -381,7 +379,7 @@
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/commander
-	name = "GHMME Automated Commander Closet"
+	name = "\improper GHMME Automated Commander Closet"
 	req_access = list(ACCESS_MARINE_COMMANDER)
 	vendor_role = /datum/job/terragov/command/fieldcommander
 	lock_flags = JOB_LOCK
@@ -482,14 +480,14 @@
 
 
 /obj/machinery/marine_selector/gear
-	name = "NEXUS Automated Equipment Rack"
+	name = "\improper NEXUS Automated Equipment Rack"
 	desc = "An automated equipment rack hooked up to a colossal storage unit."
 	icon_state = "marinearmory"
 	use_points = TRUE
 
 /obj/machinery/marine_selector/gear/medic
-	name = "NEXUS Automated Medical Equipment Rack"
-	desc = "An automated medic equipment rack hooked up to a colossal storage unit."
+	name = "\improper NEXUS automated medical equipment rack"
+	desc = "An automated equipment rack hooked up to a colossal storage of medical goods."
 	icon_state = "medic"
 	icon_vend = "medic-vend"
 	icon_deny = "medic-deny"
@@ -506,8 +504,8 @@
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/engi
-	name = "NEXUS Automated Engineer Equipment Rack"
-	desc = "An automated engineer equipment rack hooked up to a colossal storage unit."
+	name = "\improper NEXUS automated engineering equipment rack"
+	desc = "An automated equipment rack hooked up to a colossal storage of engineering-related goods."
 	icon_state = "engineer"
 	icon_vend = "engineer-vend"
 	icon_deny = "engineer-deny"
@@ -524,8 +522,8 @@
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/smartgun
-	name = "NEXUS Automated Smartgunner Equipment Rack"
-	desc = "An automated smartgunner equipment rack hooked up to a colossal storage unit."
+	name = "\improper NEXUS automated smartgun equipment rack"
+	desc = "An automated equipment rack hooked up to a colossal storage of smartgun-related goods."
 	icon_state = "smartgunner"
 	icon_vend = "smartgunner-vend"
 	icon_deny = "smartgunner-deny"
@@ -542,8 +540,8 @@
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/leader
-	name = "NEXUS Automated Squad Leader Equipment Rack"
-	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
+	name = "\improper NEXUS automated squad leader's equipment rack"
+	desc = "An automated equipment rack hooked up to a colossal storage of basic cat-herding devices."
 	icon_state = "squadleader"
 	icon_vend = "squadleader-vend"
 	icon_deny = "squadleader-deny"
@@ -560,8 +558,8 @@
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/commander
-	name = "NEXUS Automated Field Commander Equipment Rack"
-	desc = "An automated field commander equipment rack hooked up to a colossal storage unit."
+	name = "\improper NEXUS automated command equipment rack"
+	desc = "An automated equipment rack hooked up to a colossal storage unit of advanced cat-herding devices."
 	icon_state = "squadleader"
 	icon_vend = "squadleader-vend"
 	icon_deny = "squadleader-deny"

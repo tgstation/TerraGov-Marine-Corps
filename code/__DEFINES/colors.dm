@@ -10,8 +10,9 @@
 ///how many colour priority levels there are.
 #define COLOR_PRIORITY_AMOUNT 4
 
-#define COLOR_INPUT_DISABLED "#F0F0F0"
-#define COLOR_INPUT_ENABLED "#D3B5B5"
+//Filters
+#define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, color="#04080FAA")
+#define GAUSSIAN_BLUR(filter_size) filter(type="blur", size=filter_size)
 
 #define LIGHTMODE_BACKGROUND "none"
 #define LIGHTMODE_TEXT "#000000"

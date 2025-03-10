@@ -16,7 +16,7 @@
 #define PLATINUM_DROPSHIP_BONUS_AMOUNT 30
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
-	name = "\improper Nanotrasen phoron Mining Well"
+	name = "\improper Nanotrasen phoron mining well"
 	desc = "Top-of-the-line Nanotrasen research drill with it's own export module, used to extract phoron in vast quantities. Selling the phoron mined by these would net a nice profit..."
 	icon = 'icons/obj/mining_drill.dmi'
 	density = TRUE
@@ -26,6 +26,7 @@
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = RESIST_ALL | DROPSHIP_IMMUNE
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
+	faction = FACTION_TERRAGOV
 	///How many sheets of material we have stored
 	var/stored_mineral = 0
 	///Current status of the miner
@@ -44,8 +45,6 @@
 	var/max_miner_integrity = 100
 	///What type of upgrade it has installed , used to change the icon of the miner.
 	var/miner_upgrade_type
-	///What faction secured that miner
-	var/faction = FACTION_TERRAGOV
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
@@ -55,7 +54,7 @@
 	return //Marker will be set by itself once processing pauses when it detects this miner is broke.
 
 /obj/machinery/miner/damaged/platinum
-	name = "\improper Nanotrasen platinum Mining Well"
+	name = "\improper Nanotrasen platinum mining well"
 	desc = "A Nanotrasen platinum drill with an internal export module. Produces even more valuable materials than it's phoron counterpart"
 	mineral_value = PLATINUM_CRATE_SELL_AMOUNT
 	dropship_bonus = PLATINUM_DROPSHIP_BONUS_AMOUNT
@@ -71,7 +70,7 @@
  **/
 /obj/machinery/miner/proc/init_marker()
 	var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on"
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon, MINIMAP_BLIPS_LAYER))
 
 /obj/machinery/miner/update_icon_state()
 	. = ..()
@@ -178,22 +177,16 @@
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(weldingtool, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 			return FALSE
-	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 	user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
 	span_notice("You start welding [src]'s internal damage."))
-	add_overlay(GLOB.welding_sparks)
-	if(!do_after(user, 200, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(weldingtool, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
-		cut_overlay(GLOB.welding_sparks)
+	if(!I.use_tool(src, user, 20 SECONDS, 2, 25, null, BUSY_ICON_BUILD))
+		return
+	if(miner_status != MINER_DESTROYED)
 		return FALSE
-	if(miner_status != MINER_DESTROYED )
-		cut_overlay(GLOB.welding_sparks)
-		return FALSE
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	miner_integrity = 0.33 * max_miner_integrity
 	set_miner_status()
 	user.visible_message(span_notice("[user] welds [src]'s internal damage."),
 	span_notice("You weld [src]'s internal damage."))
-	cut_overlay(GLOB.welding_sparks)
 	record_miner_repair(user)
 	return TRUE
 
@@ -291,7 +284,7 @@
 		stop_processing()
 		SSminimaps.remove_marker(src)
 		var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off"
-		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon, MINIMAP_BLIPS_LAYER))
 		return
 	if(add_tick >= required_ticks)
 		if(miner_upgrade_type == MINER_AUTOMATED)
@@ -354,7 +347,7 @@
 			start_processing()
 			SSminimaps.remove_marker(src)
 			var/marker_icon = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on"
-			SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon))
+			SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, marker_icon, MINIMAP_BLIPS_LAYER))
 			miner_status = MINER_RUNNING
 	update_icon()
 

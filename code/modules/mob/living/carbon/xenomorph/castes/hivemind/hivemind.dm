@@ -10,23 +10,18 @@
 	bubble_icon = "alienroyal"
 	icon = 'icons/Xeno/castes/hivemind.dmi'
 	status_flags = GODMODE | INCORPOREAL
-	resistance_flags = RESIST_ALL|BANISH_IMMUNE
-	pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_FIRE //to prevent hivemind eye to catch fire when crossing lava
+	resistance_flags = RESIST_ALL
 	density = FALSE
-
 	a_intent = INTENT_HELP
-
 	health = 1000
 	maxHealth = 1000
 	plasma_stored = 5
 	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_BASETYPE
 
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_invisible = SEE_INVISIBLE_LIVING
 	invisibility = INVISIBILITY_MAXIMUM
 	sight = SEE_MOBS|SEE_TURFS|SEE_OBJS
-	see_in_dark = 8
 	move_on_shuttle = TRUE
 
 	hud_type = /datum/hud/hivemind
@@ -35,6 +30,10 @@
 	var/datum/weakref/core
 	///The minimum health we can have
 	var/minimum_health = -300
+	///pass_flags given when going incorporeal
+	var/incorporeal_pass_flags = PASS_LOW_STRUCTURE|PASS_THROW|PASS_PROJECTILE|PASS_AIR|PASS_FIRE
+	///pass_flags given when manifested
+	var/manifest_pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_XENO
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
 	var/obj/structure/xeno/hivemindcore/new_core = new /obj/structure/xeno/hivemindcore(loc, hivenumber)
@@ -43,6 +42,7 @@
 	new_core.parent = WEAKREF(src)
 	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, PROC_REF(return_to_core))
 	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, PROC_REF(change_form))
+	add_pass_flags(incorporeal_pass_flags, INNATE_TRAIT)
 	update_action_buttons()
 
 /mob/living/carbon/xenomorph/hivemind/upgrade_possible()
@@ -128,8 +128,9 @@
 	update_movespeed()
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
-		resistance_flags = BANISH_IMMUNE
-		pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_XENO
+		resistance_flags = NONE
+		remove_pass_flags(incorporeal_pass_flags, INNATE_TRAIT)
+		add_pass_flags(manifest_pass_flags, MANIFESTED_TRAIT)
 		density = TRUE
 		hive.xenos_by_upgrade[upgrade] -= src
 		upgrade = XENO_UPGRADE_MANIFESTATION
@@ -141,7 +142,8 @@
 		return
 	status_flags = initial(status_flags)
 	resistance_flags = initial(resistance_flags)
-	pass_flags = initial(pass_flags)
+	remove_pass_flags(manifest_pass_flags, MANIFESTED_TRAIT)
+	add_pass_flags(incorporeal_pass_flags, INNATE_TRAIT)
 	density = FALSE
 	hive.xenos_by_upgrade[upgrade] -= src
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -208,7 +210,7 @@
 	abstract_move(newloc)
 
 /mob/living/carbon/xenomorph/hivemind/receive_hivemind_message(mob/living/carbon/xenomorph/speaker, message)
-	var/track = "<a href='?src=[REF(src)];hivemind_jump=[REF(speaker)]'>(F)</a>"
+	var/track = "<a href='byond://?src=[REF(src)];hivemind_jump=[REF(speaker)]'>(F)</a>"
 	return show_message("[track] [speaker.hivemind_start()] [span_message("hisses, '[message]'")][speaker.hivemind_end()]", 2)
 
 /mob/living/carbon/xenomorph/hivemind/Topic(href, href_list)
@@ -243,19 +245,6 @@
 
 /mob/living/carbon/xenomorph/hivemind/update_icons()
 	return
-
-/mob/living/carbon/xenomorph/hivemind/med_hud_set_health()
-	var/image/holder = hud_list[HEALTH_HUD_XENO]
-	if(!holder)
-		return
-
-	if(status_flags & INCORPOREAL)
-		holder.icon_state = ""
-
-	var/amount = round(health * 100 / maxHealth, 10)
-	if(!amount)
-		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
-	holder.icon_state = "health[amount]"
 
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))

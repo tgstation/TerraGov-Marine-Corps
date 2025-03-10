@@ -107,14 +107,14 @@
 		return
 	if(attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE])
 		light_pilot(TRUE)
-	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	gun_user?.hud_used?.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 /obj/item/weapon/gun/flamer/unload(mob/living/user, drop = TRUE, after_fire = FALSE)
 	. = ..()
 	if(!.)
 		return
 	light_pilot(FALSE)
-	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	gun_user?.hud_used?.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 ///Makes the sound of the flamer being lit, and applies the overlay.
 /obj/item/weapon/gun/flamer/proc/light_pilot(light)
@@ -168,7 +168,7 @@
 	var/current_target = get_turf(target)
 	switch(burn_type)
 		if(FLAMER_STREAM_STRAIGHT)
-			var/path_to_target = getline(start_location, current_target)
+			var/path_to_target = get_line(start_location, current_target) //todo: use get_traversal_line and change recursive_flame_straight to use get_dist_euclidean for range
 			path_to_target -= start_location
 			recursive_flame_straight(1, old_turfs, path_to_target, range, current_target, flame_max_wall_pen)
 		if(FLAMER_STREAM_CONE)
@@ -253,7 +253,7 @@
 		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color, turfs_to_burn[turf_to_ignite])
 		adjust_current_rounds(chamber_items[current_chamber_position], -1)
 		rounds--
-	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	gun_user?.hud_used?.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	return TRUE
 
 ///Lights the specific turf on fire and processes melting snow or vines and the like.
@@ -325,8 +325,11 @@
 
 /obj/item/weapon/gun/flamer/som/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
-	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
-	standing.overlays.Add(emissive_overlay)
+	if(icon_used == 'icons/mob/clothing/back.dmi' || icon_used == 'icons/mob/suit_slot.dmi')
+		return
+	if(flamer_features_flags & FLAMER_IS_LIT && rounds)
+		var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive", src)
+		standing.overlays.Add(emissive_overlay)
 
 /obj/item/weapon/gun/flamer/som/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide, /obj/item/attachable/magnetic_harness)
@@ -458,7 +461,7 @@
 		/obj/item/attachable/magnetic_harness,
 	)
 
-/turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+/turf/proc/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0, fire_type = /obj/fire/flamer)
 	//extinguish any flame present
 	var/obj/fire/flamer/old_fire = locate(/obj/fire/flamer) in src
 	if(old_fire)
@@ -467,7 +470,7 @@
 		old_fire.set_fire(new_fire_level, new_burn_level, f_color, fire_stacks, fire_damage)
 		return
 
-	new /obj/fire/flamer(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+	new fire_type(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
 	for(var/obj/structure/flora/jungle/vines/vines in src)
 		QDEL_NULL(vines)
 

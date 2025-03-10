@@ -119,7 +119,7 @@
 	. = ..()
 	if(machine_stat & NOPOWER)
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 
 /obj/machinery/autodoc/process()
 	if(!occupant)
@@ -564,7 +564,7 @@
 							if(A)
 								for(A in occupant)
 									sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
-									occupant.visible_message(span_warning(" [src] defty extracts a wriggling parasite from [occupant]'s ribcage!"))
+									occupant.visible_message(span_warning("[src] defty extracts a wriggling parasite from [occupant]'s ribcage!"))
 									var/mob/living/carbon/xenomorph/larva/L = locate() in occupant //the larva was fully grown, ready to burst.
 									if(L)
 										L.forceMove(get_turf(src))
@@ -706,7 +706,7 @@
 
 /obj/machinery/autodoc/verb/eject()
 	set name = "Eject Med-Pod"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 	if(usr.incapacitated())
 		return // nooooooooooo
@@ -814,7 +814,7 @@
 
 /obj/machinery/autodoc/verb/move_inside()
 	set name = "Enter Med-Pod"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	move_inside_wrapper(usr, usr)
@@ -1006,19 +1006,19 @@
 	var/dat = ""
 
 	if(locked)
-		dat += "<hr>Lock Console</span> | <a href='?src=[text_ref(src)];locktoggle=1'>Unlock Console</a><BR>"
+		dat += "<hr>Lock Console</span> | <a href='byond://?src=[text_ref(src)];locktoggle=1'>Unlock Console</a><BR>"
 	else
-		dat += "<hr><a href='?src=[text_ref(src)];locktoggle=1'>Lock Console</a> | Unlock Console<BR>"
+		dat += "<hr><a href='byond://?src=[text_ref(src)];locktoggle=1'>Lock Console</a> | Unlock Console<BR>"
 
 	if(release_notice)
-		dat += "<hr>Notifications On</span> | <a href='?src=[text_ref(src)];noticetoggle=1'>Notifications Off</a><BR>"
+		dat += "<hr>Notifications On</span> | <a href='byond://?src=[text_ref(src)];noticetoggle=1'>Notifications Off</a><BR>"
 	else
-		dat += "<hr><a href='?src=[text_ref(src)];noticetoggle=1'>Notifications On</a> | Notifications Off<BR>"
+		dat += "<hr><a href='byond://?src=[text_ref(src)];noticetoggle=1'>Notifications On</a> | Notifications Off<BR>"
 
 	if(connected.automaticmode)
-		dat += "<hr>[span_notice("Automatic Mode")] | <a href='?src=[text_ref(src)];automatictoggle=1'>Manual Mode</a>"
+		dat += "<hr>[span_notice("Automatic Mode")] | <a href='byond://?src=[text_ref(src)];automatictoggle=1'>Manual Mode</a>"
 	else
-		dat += "<hr><a href='?src=[text_ref(src)];automatictoggle=1'>Automatic Mode</a> | Manual Mode"
+		dat += "<hr><a href='byond://?src=[text_ref(src)];automatictoggle=1'>Automatic Mode</a> | Manual Mode"
 
 	dat += "<hr><font color='#487553'><B>Occupant Statistics:</B></FONT><BR>"
 	if(!connected.occupant)
@@ -1130,10 +1130,10 @@
 				dat += "<br>"
 
 	dat += "<hr> Med-Pod Status: [operating] "
-	dat += "<hr><a href='?src=[text_ref(src)];clear=1'>Clear Surgery Queue</a>"
-	dat += "<hr><a href='?src=[text_ref(src)];refresh=1'>Refresh Menu</a>"
-	dat += "<hr><a href='?src=[text_ref(src)];surgery=1'>Begin Surgery Queue</a>"
-	dat += "<hr><a href='?src=[text_ref(src)];ejectify=1'>Eject Patient</a>"
+	dat += "<hr><a href='byond://?src=[text_ref(src)];clear=1'>Clear Surgery Queue</a>"
+	dat += "<hr><a href='byond://?src=[text_ref(src)];refresh=1'>Refresh Menu</a>"
+	dat += "<hr><a href='byond://?src=[text_ref(src)];surgery=1'>Begin Surgery Queue</a>"
+	dat += "<hr><a href='byond://?src=[text_ref(src)];ejectify=1'>Eject Patient</a>"
 	if(!connected.surgery)
 		if(connected.automaticmode)
 			dat += "<hr>Manual Surgery Interface Unavaliable, Automatic Mode Engaged."
@@ -1142,45 +1142,45 @@
 			dat += "<b>Trauma Surgeries</b>"
 			dat += "<br>"
 			if(isnull(surgeryqueue["brute"]))
-				dat += "<a href='?src=[text_ref(src)];brute=1'>Surgical Brute Damage Treatment</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];brute=1'>Surgical Brute Damage Treatment</a><br>"
 			if(isnull(surgeryqueue["burn"]))
-				dat += "<a href='?src=[text_ref(src)];burn=1'>Surgical Burn Damage Treatment</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];burn=1'>Surgical Burn Damage Treatment</a><br>"
 			dat += "<b>Orthopedic Surgeries</b>"
 			dat += "<br>"
 			if(isnull(surgeryqueue["broken"]))
-				dat += "<a href='?src=[text_ref(src)];broken=1'>Broken Bone Surgery</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];broken=1'>Broken Bone Surgery</a><br>"
 			if(isnull(surgeryqueue["internal"]))
-				dat += "<a href='?src=[text_ref(src)];internal=1'>Internal Bleeding Surgery</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];internal=1'>Internal Bleeding Surgery</a><br>"
 			if(isnull(surgeryqueue["shrapnel"]))
-				dat += "<a href='?src=[text_ref(src)];shrapnel=1'>Foreign Body Removal Surgery</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];shrapnel=1'>Foreign Body Removal Surgery</a><br>"
 			if(isnull(surgeryqueue["missing"]))
-				dat += "<a href='?src=[text_ref(src)];missing=1'>Limb Replacement Surgery</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];missing=1'>Limb Replacement Surgery</a><br>"
 			dat += "<b>Organ Surgeries</b>"
 			dat += "<br>"
 			if(isnull(surgeryqueue["organdamage"]))
-				dat += "<a href='?src=[text_ref(src)];organdamage=1'>Surgical Organ Damage Treatment</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];organdamage=1'>Surgical Organ Damage Treatment</a><br>"
 			if(isnull(surgeryqueue["organgerms"]))
-				dat += "<a href='?src=[text_ref(src)];organgerms=1'>Organ Infection Treatment</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];organgerms=1'>Organ Infection Treatment</a><br>"
 			if(isnull(surgeryqueue["eyes"]))
-				dat += "<a href='?src=[text_ref(src)];eyes=1'>Corrective Eye Surgery</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];eyes=1'>Corrective Eye Surgery</a><br>"
 			dat += "<b>Hematology Treatments</b>"
 			dat += "<br>"
 			if(isnull(surgeryqueue["blood"]))
-				dat += "<a href='?src=[text_ref(src)];blood=1'>Blood Transfer</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];blood=1'>Blood Transfer</a><br>"
 			if(isnull(surgeryqueue["toxin"]))
-				dat += "<a href='?src=[text_ref(src)];toxin=1'>Toxin Damage Chelation</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];toxin=1'>Toxin Damage Chelation</a><br>"
 			if(isnull(surgeryqueue["dialysis"]))
-				dat += "<a href='?src=[text_ref(src)];dialysis=1'>Dialysis</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];dialysis=1'>Dialysis</a><br>"
 			if(isnull(surgeryqueue["necro"]))
-				dat += "<a href='?src=[text_ref(src)];necro=1'>Necrosis Removal Surgery</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];necro=1'>Necrosis Removal Surgery</a><br>"
 			if(isnull(surgeryqueue["limbgerm"]))
-				dat += "<a href='?src=[text_ref(src)];limbgerm=1'>Limb Disinfection Procedure</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];limbgerm=1'>Limb Disinfection Procedure</a><br>"
 			dat += "<b>Special Surgeries</b>"
 			dat += "<br>"
 			if(isnull(surgeryqueue["facial"]))
-				dat += "<a href='?src=[text_ref(src)];facial=1'>Facial Reconstruction Surgery</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];facial=1'>Facial Reconstruction Surgery</a><br>"
 			if(isnull(surgeryqueue["open"]))
-				dat += "<a href='?src=[text_ref(src)];open=1'>Close Open Incision</a><br>"
+				dat += "<a href='byond://?src=[text_ref(src)];open=1'>Close Open Incision</a><br>"
 
 	var/datum/browser/popup = new(user, "autodoc", "<div align='center'>Autodoc Console</div>", 600, 600)
 	popup.set_content(dat)
@@ -1383,7 +1383,7 @@
 		if(!(R.fields["last_scan_time"]))
 			. += span_deptradio("No scan report on record")
 		else
-			. += span_deptradio("<a href='?src=[text_ref(src)];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[active]</a>")
+			. += span_deptradio("<a href='byond://?src=[text_ref(src)];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[active]</a>")
 		break
 
 /obj/machinery/autodoc/Topic(href, href_list)

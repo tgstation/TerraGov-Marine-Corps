@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/update_overlays()
 	. = ..()
 	if(operation_started && launch_allowed)
-		. += emissive_appearance(icon, "[icon_state]_emissive")
+		. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 /obj/structure/droppod/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	if(!in_range(user, src) || !in_range(M, src))
@@ -229,7 +229,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	deadchat_broadcast(" has been launched", src, turf_target = target)
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_notice("[user ? user : "unknown"] has launched [src] towards [target.loc] at X:[target_x] Y:[target_y]"))
-	reserved_area = SSmapping.RequestBlockReservation(3,3)
+	reserved_area = SSmapping.request_turf_block_reservation(3,3)
 
 	drop_state = DROPPOD_ACTIVE
 	GLOB.droppod_list -= src
@@ -289,8 +289,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		break
 	forceMove(targetturf)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPPOD_LANDED, targetturf)
-	pixel_y = 500
-	animate(src, pixel_y = initial(pixel_y), time = falltime, easing = LINEAR_EASING)
+	pixel_z = 500
+	animate(src, pixel_z = initial(pixel_z), time = falltime, easing = LINEAR_EASING)
 	addtimer(CALLBACK(src, PROC_REF(dodrop), targetturf, user), falltime)
 
 ///Do the stuff when it "hits the ground"
@@ -350,7 +350,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 	for(var/obj/structure/droppod/pod in GLOB.droppod_list)
 		for(var/mob/user AS in pod.buckled_mobs)
-			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>DROP UPDATED:</u></span><br>New target: [target.loc]", /atom/movable/screen/text/screen_text/command_order)
+			user.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("DROP UPDATED", "New target: [target.loc]", CENTER_ALIGN_TEXT), /atom/movable/screen/text/screen_text/command_order)
 		var/turf/newturf
 		if(length(block))
 			newturf = pick_n_take(block)
@@ -376,7 +376,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		if(!(LAZYLEN(pod.buckled_mobs) || LAZYLEN(pod.contents)))
 			continue
 		for(var/mob/dropper AS in pod.buckled_mobs)
-			dropper.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>DROP UPDATED:</u></span><br>COMMENCING MASS DEPLOYMENT", /atom/movable/screen/text/screen_text/command_order)
+			dropper.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("DROP UPDATED", "COMMENCING MASS DEPLOYMENT", CENTER_ALIGN_TEXT), /atom/movable/screen/text/screen_text/command_order)
 		var/predroptime = rand(1.5 SECONDS, 2.5 SECONDS) //Randomize it a bit so its staggered
 		addtimer(CALLBACK(pod, TYPE_PROC_REF(/obj/structure/droppod, start_launch_pod), LAZYLEN(pod.buckled_mobs) ? pod.buckled_mobs[1] : null, TRUE), predroptime)
 
@@ -441,7 +441,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	light_color = LIGHT_COLOR_EMISSIVE_ORANGE
 
 /obj/structure/droppod/nonmob/supply_pod/completedrop(mob/user)
-	layer = DOOR_OPEN_LAYER //so anything inside layers over it
+	layer = OPEN_DOOR_LAYER //so anything inside layers over it
 	return ..()
 
 /obj/structure/droppod/nonmob/supply_pod/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)

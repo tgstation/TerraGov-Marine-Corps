@@ -1,7 +1,7 @@
 /obj/structure
 	icon = 'icons/obj/structures/structures.dmi'
 	var/climbable = FALSE
-	var/climb_delay = 50
+	var/climb_delay = 1 SECONDS
 	var/barrier_flags = NONE
 	var/broken = FALSE //similar to machinery's stat BROKEN
 	obj_flags = CAN_BE_HIT
@@ -44,7 +44,7 @@
 
 	set name = "Climb structure"
 	set desc = "Climbs onto a structure."
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	do_climb(usr)

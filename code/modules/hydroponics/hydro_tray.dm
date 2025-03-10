@@ -442,7 +442,7 @@
 	pestlevel = 0
 	sampled = 0
 	update_icon()
-	visible_message(span_notice(" [src] has been overtaken by [seed.display_name]."))
+	visible_message(span_notice("[src] has been overtaken by [seed.display_name]."))
 
 
 /obj/machinery/hydroponics/proc/mutate(severity)
@@ -494,7 +494,7 @@
 	weedlevel = 0
 
 	update_icon()
-	visible_message(span_warning(" The <span class='notice'> [previous_plant] <span class='warning'> has suddenly mutated into <span class='notice'> [seed.display_name]!"))
+	visible_message(span_warning("The <span class='notice'> [previous_plant] <span class='warning'> has suddenly mutated into <span class='notice'> [seed.display_name]!"))
 
 
 /obj/machinery/hydroponics/attackby(obj/item/I, mob/user, params)
@@ -588,7 +588,7 @@
 			to_chat(user, span_warning("This plot is completely devoid of weeds. It doesn't need uprooting."))
 			return
 
-		user.visible_message(span_warning(" [user] starts uprooting the weeds."), span_warning(" You remove the weeds from the [src]."))
+		user.visible_message(span_warning("[user] starts uprooting the weeds."), span_warning("You remove the weeds from the [src]."))
 		weedlevel = 0
 		update_icon()
 
@@ -632,22 +632,22 @@
 
 	else
 		if(seed && !dead)
-			to_chat(usr, "[src] has [span_notice(" [seed.display_name] \black planted.")]")
+			to_chat(usr, "[src] has [span_notice("[seed.display_name] \black planted.")]")
 			if(health <= (seed.endurance / 2))
-				to_chat(usr, "The plant looks [span_warning(" unhealthy.")]")
+				to_chat(usr, "The plant looks [span_warning("unhealthy.")]")
 		else
 			to_chat(usr, "[src] is empty.")
 		to_chat(usr, "Water: [round(waterlevel,0.1)]/100")
 		to_chat(usr, "Nutrient: [round(nutrilevel,0.1)]/10")
 		if(weedlevel >= 5)
-			to_chat(usr, "[src] is [span_warning(" filled with weeds!")]")
+			to_chat(usr, "[src] is [span_warning("filled with weeds!")]")
 		if(pestlevel >= 5)
-			to_chat(usr, "[src] is [span_warning(" filled with tiny worms!")]")
+			to_chat(usr, "[src] is [span_warning("filled with tiny worms!")]")
 
 
 /obj/machinery/hydroponics/verb/close_lid()
 	set name = "Toggle Tray Lid"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in view(1)
 
 	if(!usr || usr.stat || usr.restrained())

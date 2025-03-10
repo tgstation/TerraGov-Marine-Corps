@@ -1,4 +1,3 @@
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -7,8 +6,10 @@ import {
   ProgressBar,
   Section,
   Slider,
-} from '../components';
-import { formatPower } from '../format';
+} from 'tgui-core/components';
+import { formatPower } from 'tgui-core/format';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 // Common power multiplier

@@ -128,7 +128,8 @@
 
 	new /obj/effect/skyfall_landingzone(get_turf(chassis), chassis)
 	chassis.resistance_flags |= INDESTRUCTIBLE //not while jumping at least
-	chassis.mecha_flags |= QUIET_STEPS|QUIET_TURNS|CANNOT_INTERACT
+	chassis.mecha_flags |= QUIET_TURNS|CANNOT_INTERACT
+	ADD_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	chassis.phasing = "flying"
 	chassis.move_delay = 1
 	chassis.density = FALSE
@@ -158,17 +159,18 @@
 	chassis.visible_message(span_danger("[chassis] lands from above!"))
 	playsound(chassis, 'sound/effects/explosion/large1.ogg', 50, 1)
 	chassis.resistance_flags &= ~INDESTRUCTIBLE
-	chassis.mecha_flags &= ~(QUIET_STEPS|QUIET_TURNS|CANNOT_INTERACT)
+	chassis.mecha_flags &= ~(QUIET_TURNS|CANNOT_INTERACT)
+	REMOVE_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	chassis.phasing = initial(chassis.phasing)
 	chassis.move_delay = initial(chassis.move_delay)
 	chassis.density = TRUE
 	chassis.layer = initial(chassis.layer)
-	chassis.plane = initial(chassis.plane)
 	skyfall_charge_level = 0
 	chassis.update_icon()
 	for(var/mob/living/shaken in range(7, chassis))
 		shake_camera(shaken, 5, 5)
 	var/turf/landed_on = get_turf(chassis)
+	SET_PLANE(chassis, initial(chassis.plane), landed_on)
 	for(var/thing in range(1, chassis))
 		if(isopenturf(thing))
 			var/turf/open/floor/crushed_tile = thing

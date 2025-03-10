@@ -50,7 +50,7 @@
 
 /datum/ammo/bullet/sniper/mech
 	name = "light anti-tank bullet"
-	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_BETTER_COVER_RNG|AMMO_SNIPER
 	damage = 100
 	penetration = 35
 	sundering = 0
@@ -68,13 +68,14 @@
 	damage = 35
 	penetration = 10
 	sundering = 0.5
+	damage_falloff = 0.4
 
 /datum/ammo/bullet/rifle/mech
 	name = "super-heavy rifle bullet"
-	damage = 25
-	penetration = 15
-	sundering = 0.5
-	damage_falloff = 0.8
+	damage = 30
+	penetration = 10
+	sundering = 1
+	damage_falloff = 0.2
 
 /datum/ammo/bullet/rifle/mech/burst
 	damage = 35
@@ -88,8 +89,8 @@
 /datum/ammo/bullet/smg/mech
 	name = "super-heavy submachinegun bullet"
 	damage = 20
-	sundering = 0.25
-	penetration = 10
+	sundering = 0.5
+	penetration = 5
 
 /datum/ammo/bullet/shotgun/mech
 	name = "super-heavy shotgun buckshot shell"
@@ -101,18 +102,22 @@
 	accuracy_var_low = 10
 	accuracy_var_high = 10
 	max_range = 10
-	damage = 100
-	damage_falloff = 4
+	sundering = 0
+	penetration = 15
+	damage = 50
+	damage_falloff = 10
 
 /datum/ammo/bullet/shotgun/mech/spread
 	name = "super-heavy additional buckshot"
 	icon_state = "buckshot"
 	max_range = 10
-	damage = 75
-	damage_falloff = 4
+	damage = 50
+	sundering = 0
+	penetration = 15
+	damage_falloff = 10
 
 /datum/ammo/bullet/shotgun/mech/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
+	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
 
 /datum/ammo/energy/lasgun/marine/mech
 	name = "superheated laser bolt"
@@ -135,7 +140,7 @@
 
 /datum/ammo/energy/lasgun/marine/mech/lance_strike
 	name = "particle lance"
-	ammo_behavior_flags = AMMO_ENERGY|AMMO_SNIPER|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_MOB
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_BETTER_COVER_RNG|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_MOB
 	damage_type = BRUTE
 	damage = 100
 	armor_type = MELEE

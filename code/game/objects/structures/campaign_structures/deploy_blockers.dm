@@ -17,17 +17,16 @@
 	icon = 'icons/obj/structures/campaign/blockers.dmi'
 	icon_state = "tele_blocker"
 	pixel_x = -16
+	faction = FACTION_TERRAGOV
 	///What flag this removes from the mission
 	var/to_remove_flags = MISSION_DISALLOW_TELEPORT
-	///The faction this belongs to
-	var/faction = FACTION_TERRAGOV
 	var/owning_faction_notification = "A teleportation disruptor has been deployed in this area. Protect the disruptor to ensure hostile forces cannot deploy via teleportation. "
 	var/hostile_faction_notification = "The enemy has a device in this area that will prevent the use of the teleporter array. Destroy this first to allow for teleportation insertion against primary objectives. "
 
 /obj/structure/campaign_deployblocker/Initialize(mapload)
 	. = ..()
 	GLOB.campaign_structures += src
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "tele_block", HIGH_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "tele_block", MINIMAP_BLIPS_LAYER))
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	if(!istype(mode))
 		return

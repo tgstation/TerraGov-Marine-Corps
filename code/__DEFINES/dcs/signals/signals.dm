@@ -21,6 +21,8 @@
 #define COMSIG_GLOB_GAMESTATE_SHIPSIDE "!gamestate_shipside"
 
 #define COMSIG_GLOB_TADPOLE_LAUNCHED "!tadpole_launched"
+#define COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ "!tadpole_landed_out_lz"
+#define COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ "!tadpole_rappel_deployed_out_lz"
 #define COMSIG_GLOB_DROPPOD_LANDED "!pod_landed"
 #define COMSIG_GLOB_EVACUATION_STARTED "!evacuation_started"
 
@@ -45,6 +47,12 @@
 /// a client (re)connected, after all /client/New() checks have passed : (client/connected_client)
 #define COMSIG_GLOB_CLIENT_CONNECT "!client_connect"
 
+/// a weather event of some kind occurred
+#define COMSIG_WEATHER_TELEGRAPH(event_type) "!weather_telegraph [event_type]"
+#define COMSIG_WEATHER_START(event_type) "!weather_start [event_type]"
+#define COMSIG_WEATHER_WINDDOWN(event_type) "!weather_winddown [event_type]"
+#define COMSIG_WEATHER_END(event_type) "!weather_end [event_type]"
+
 #define COMSIG_GLOB_PLAYER_ROUNDSTART_SPAWNED "!player_roundstart_spawned"
 #define COMSIG_GLOB_PLAYER_LATE_SPAWNED "!player_late_spawned"
 
@@ -56,7 +64,6 @@
 #define COMSIG_GLOB_AI_GOAL_SET "!ai_goal_set"
 #define COMSIG_GLOB_AI_MINION_RALLY "!ai_minion_rally"
 #define COMSIG_GLOB_HIVE_TARGET_DRAINED "!hive_target_drained"
-
 
 /// Sent when a marine dropship enters transit level
 #define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
@@ -90,6 +97,10 @@
 
 ///called when an AI is requested by a holopad
 #define COMSIG_GLOB_HOLOPAD_AI_CALLED "!holopad_calling"
+
+///called whenever a groundside thermal bluespace generator turns on/off
+#define COMSIG_GLOB_BLUESPACE_GEN_ACTIVATED "!bluespace_gen_activated"
+#define COMSIG_GLOB_ALL_BLUESPACE_GEN_DEACTIVATED "!all_bluespace_gen_deactivated"
 
 ///Sent when mob is deployed via a patrol point
 #define COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED "!hvh_deploy_point_activated"
@@ -131,6 +142,17 @@
 #define COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED "!campaign_ob_beacon_triggered"
 ///Enables the teleporter array
 #define COMSIG_GLOB_TELEPORTER_ARRAY_ENABLED "!teleporter_array_enabled"
+
+///from /atom/notify_ai_hazard()
+#define COMSIG_GLOB_AI_HAZARD_NOTIFIED "!ai_hazard_notified"
+
+///from /mob/living/carbon/proc/on_crit()
+#define COMSIG_GLOB_MOB_ON_CRIT "!mob_on_crit"
+///from /datum/ai_behavior/human/proc/on_take_damage()
+#define COMSIG_GLOB_AI_NEED_HEAL "!ai_need_heal"
+
+///from /datum/emote/living/carbon/human/medic/run_emote()
+#define COMSIG_GLOB_MOB_CALL_MEDIC "!mob_call_medic"
 
 //////////////////////////////////////////////////////////////////
 // /datum/component signals
@@ -230,6 +252,10 @@
 #define COMSIG_ATOM_EXITED "atom_exited"						//from base of atom/Exited(): (atom/movable/exiting, direction)
 #define COMSIG_ATOM_BUMPED "atom_bumped"						///from base of atom/Bumped(): (/atom/movable)
 #define COMSIG_ATOM_DIR_CHANGE "atom_dir_change"				//from base of atom/setDir(): (old_dir, new_dir)
+///from base of atom/movable/keybind_face_direction(): (dir). Called before turning with the movement lock key.
+#define COMSIG_MOVABLE_KEYBIND_FACE_DIR "keybind_face_dir"
+	///ignores the movement lock key, used for turning while strafing in a mech
+	#define COMSIG_IGNORE_MOVEMENT_LOCK (1<<0)
 #define COMSIG_ATOM_CANREACH "atom_can_reach"					//from internal loop in atom/movable/proc/CanReach(): (list/next)
 	#define COMPONENT_BLOCK_REACH (1<<0)
 #define COMSIG_ATOM_ATTACK_HAND "atom_attack_hand"				//from base of atom/attack_hand(mob/living/user)
@@ -237,6 +263,14 @@
 #define COMSIG_ATOM_ATTACK_GHOST "atom_attack_ghost"			//from base of atom/attack_ghost(): (mob/dead/observer/ghost)
 	#define COMPONENT_NO_ATTACK_HAND (1<<0)						//works on all attack_hands.
 #define COMSIG_ATOM_ATTACK_POWERLOADER "atom_attack_powerloader"//from base of atom/attack_powerloader: (mob/living/user, obj/item/powerloader_clamp/attached_clamp)
+///from base of [/atom/proc/take_damage]: (damage_amount, damage_type, damage_flag, effects, attack_dir, aurmor_penetration)
+#define COMSIG_ATOM_TAKE_DAMAGE "atom_take_damage"
+	/// Return bitflags for the above signal which prevents the atom taking any damage.
+	#define COMPONENT_NO_TAKE_DAMAGE (1<<0)
+///from base of [/atom/proc/repair_damage]: (repair_amount, mob/user)
+#define COMSIG_ATOM_REPAIR_DAMAGE "atom_repair_damage"
+	/// Return bitflags for the above signal which prevents the atom repairing any damage.
+	#define COMPONENT_NO_REPAIR (1<<0)
 ///from base of atom/emp_act(): (severity)
 #define COMSIG_ATOM_EMP_ACT "atom_emp_act"
 ///from base of atom/examine(): (/mob, list/examine_text)
@@ -366,6 +400,12 @@
 #define COMSIG_TURF_CHECK_COVERED "turf_check_covered" //from /turf/open/liquid/Entered checking if something is covering the turf
 #define COMSIG_TURF_TELEPORT_CHECK "turf_teleport_check" //from /turf/proc/can_teleport_here()
 #define COMSIG_TURF_SUBMERGE_CHECK "turf_submerge_check" //from /turf/proc/get_submerge_height() checking if something on the turf should submerge an AM
+///from base of /datum/turf_reservation/proc/Release: (datum/turf_reservation/reservation)
+#define COMSIG_TURF_RESERVATION_RELEASED "turf_reservation_released"
+///from base of turf/multiz_turf_del(): (turf/source, direction)
+#define COMSIG_TURF_MULTIZ_DEL "turf_multiz_del"
+///from base of turf/multiz_turf_new: (turf/source, direction)
+#define COMSIG_TURF_MULTIZ_NEW "turf_multiz_new"
 
 // /obj signals
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"				//called in /obj/structure/setAnchored(): (value)
@@ -530,6 +570,16 @@
 #define COMSIG_MOB_EXAMINATE "mob_examinate"
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"				//from base of /mob/update_sight(): ()
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
+///from base of hud/show_to(): (datum/hud/hud_source)
+#define COMSIG_MOB_HUD_REFRESHED "mob_hud_refreshed"
+/// from base of /client/proc/set_eye() : (atom/old_eye, atom/new_eye)
+#define COMSIG_CLIENT_SET_EYE "client_set_eye"
+
+///from base of mob/set_sight(): (new_sight, old_sight)
+#define COMSIG_MOB_SIGHT_CHANGE "mob_sight_changed"
+///from base of mob/set_invis_see(): (new_invis, old_invis)
+#define COMSIG_MOB_SEE_INVIS_CHANGE "mob_see_invis_change"
+
 #define COMSIG_MOB_KEYBINDINGS_UPDATED "mob_bindings_changed"   //from base of datum/preferences/ui_act(): (/datum/keybinding)
 
 #define COMSIG_MOB_SHIELD_DETACH "mob_shield_detached"
@@ -576,6 +626,19 @@
 #define MOB_GET_DO_AFTER_COEFFICIENT "mob_get_do_after_coefficient"
 ///From get_zone_with_miss_chance
 #define MOB_GET_MISS_CHANCE_MOD "mob_get_miss_chance_mod"
+///From mob/living/carbon/human/has_ai()
+#define COMSIG_HUMAN_HAS_AI "human_has_ai"
+	#define MOB_HAS_AI (1<<0)
+///AI mob wants to jump
+#define COMSIG_AI_JUMP "ai_jump"
+///AI mob equipped a melee weapon
+#define COMSIG_AI_EQUIPPED_GUN "ai_equipped_gun"
+///AI mob equipped a melee weapon
+#define COMSIG_AI_EQUIPPED_MELEE "ai_equipped_melee"
+///Mob being healed by an AI mob
+#define COMSIG_AI_HEALING_MOB "ai_healing_mob"
+///Mob AI healing finished
+#define COMSIG_AI_HEALING_FINISHED "ai_healing_finished"
 
 //mob/dead/observer
 #define COMSIG_OBSERVER_CLICKON "observer_clickon"				//from mob/dead/observer/ClickOn(): (atom/A, params)
@@ -593,6 +656,9 @@
 ///from /mob/living/proc/set_lying_angle
 #define COMSIG_LIVING_SET_LYING_ANGLE "living_set_lying_angle"
 #define COMSIG_LIVING_IGNITED "living_ignited" //from /mob/living/proc/IgniteMob() : (fire_stacks)
+
+///From /mob/living/can_jump
+#define COMSIG_LIVING_CAN_JUMP "living_can_jump"
 
 /// From mob/living/treat_message(): (list/message_args)
 #define COMSIG_LIVING_TREAT_MESSAGE "living_treat_message"
@@ -728,9 +794,6 @@
 #define COMSIG_XENO_PROJECTILE_HIT "xeno_projectile_hit"			///from [/mob/living/carbon/xenomorph/projectile_hit] called when a projectile hits a xeno but before confirmation of a hit (can miss due to inaccuracy/evasion)
 	#define COMPONENT_PROJECTILE_DODGE (1<<0)
 
-#define COMSIG_XENOMORPH_WRAITH_RECALL "xenomorph_wraith_recall"
-	#define COMPONENT_BANISH_TARGETS_EXIST (1<<0)
-
 #define COMSIG_XENO_PSYCHIC_LINK_REMOVED "xeno_psychic_link_removed"
 
 #define COMSIG_XENOMORPH_LEAP_BUMP "xenomorph_leap_bump" //from /mob/living/carbon/xenomorph/bump
@@ -821,7 +884,6 @@
 
 //Signals for ais
 #define COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED "escorting_behaviour_changed"
-#define COMSIG_ESCORTED_ATOM_CHANGING "escorted_atom_changing"
 #define COMSIG_POINT_TO_ATOM "point_to_atom"
 
 /// From reequip components
@@ -853,3 +915,7 @@
 #define COMSIG_CAMPAIGN_ASSET_ACTIVATION "campaign_asset_activation"
 ///Campaign asset disabler activated
 #define COMSIG_CAMPAIGN_DISABLER_ACTIVATION "campaign_disabler_activation"
+
+/// From [/datum/controller/subsystem/security_level/proc/set_level]
+/// `/datum/security_level/next_level`, `/datum/security_level/previous_level`
+#define COMSIG_SECURITY_LEVEL_CHANGED "security_level_changed"

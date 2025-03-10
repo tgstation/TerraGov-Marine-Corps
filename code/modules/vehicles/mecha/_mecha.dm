@@ -70,6 +70,8 @@
 	var/completely_disabled = FALSE
 	///Whether this mech is allowed to move diagonally
 	var/allow_diagonal_movement = FALSE
+	///Whether this mech moves into a direct as soon as it goes to move. Basically, turn and step in the same key press.
+	var/pivot_step = FALSE
 	///Whether or not the mech destroys walls by running into it.
 	var/bumpsmash = FALSE
 
@@ -189,19 +191,34 @@
 	/// Ui size, so you can make the UI bigger if you let it load a lot of stuff
 	var/ui_y = 600
 	/// ref to screen object that displays in the middle of the UI
-	var/atom/movable/screen/mech_view/ui_view
+	var/atom/movable/screen/map_view/ui_view
 	///holds the EMP timer
 	var/emp_timer
+
+
+	// ******** TGMC VARS ******** //
+	///max amt of repairpacks we can store
+	var/max_repairpacks = 0
+	/// actual amt of repairpacks we have stored
+	var/stored_repairpacks = 0
+	/// How much energy we use per mech dash
+	var/dash_power_consumption = 500
+	/// dash_range
+	var/dash_range = 1
+	///cooldown time between dashes on greyscale mechs
+	var/dash_cooldown = 10 SECONDS
 
 /obj/item/radio/mech //this has to go somewhere
 	subspace_transmission = TRUE
 
 /obj/vehicle/sealed/mecha/Initialize(mapload)
 	. = ..()
-	ui_view = new(null, null, src)
+	ui_view = new()
+	ui_view.generate_view("mech_view_[REF(src)]")
 	if(enclosed)
 		internal_tank = new (src)
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(play_stepsound))
+	RegisterSignal(src, COMSIG_ELEMENT_JUMP_ENDED, PROC_REF(on_jump_land))
 
 	spark_system.set_up(2, 0, src)
 	spark_system.attach(src)
@@ -610,6 +627,10 @@
 			speech_bubble_recipients.Add(M.client)
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), image('icons/mob/talk.dmi', src, "machine[say_test(speech_args[SPEECH_MESSAGE])]",MOB_LAYER+1), speech_bubble_recipients, 30)
 
+///Stuff that happens when a mech finishes a jump
+/obj/vehicle/sealed/mecha/proc/on_jump_land()
+	SIGNAL_HANDLER
+	playsound(loc, 'sound/effects/alien/behemoth/stomp.ogg', 30, TRUE)
 
 /////////////////////////
 ////// Access stuff /////

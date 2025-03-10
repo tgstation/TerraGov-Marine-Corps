@@ -101,6 +101,8 @@
 		private_message(href_list["priv_msg"], null)
 		return
 
+	if(href_list["commandbar_typing"])
+		handle_commandbar_typing(href_list)
 
 	switch(href_list["_src_"])
 		if("holder")
@@ -143,6 +145,9 @@
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
+	if(byond_version >= 516)
+		winset(src, null, list("browser-options" = "find,refresh,byondstorage"))
+
 	//On creation of a client, add an entry into the GLOB list of the client with their stats
 	GLOB.personal_statistics_list[ckey] = new /datum/personal_statistics
 
@@ -155,22 +160,9 @@
 
 	tgui_say = new(src, "tgui_say")
 
+	initialize_commandbar_spy()
+
 	GLOB.ahelp_tickets.ClientLogin(src)
-
-	if(CONFIG_GET(flag/localhost_rank))
-		var/static/list/localhost_addresses = list("127.0.0.1", "::1")
-		if(isnull(address) || (address in localhost_addresses))
-			var/datum/admin_rank/rank = new("!localhost!", R_EVERYTHING, , R_EVERYTHING)
-			var/datum/admins/admin = new(rank, ckey, TRUE)
-			admin.associate(src)
-
-	holder = GLOB.admin_datums[ckey]
-	if(holder)
-		GLOB.admins |= src
-		holder.owner = src
-		holder.activate()
-	else if(GLOB.deadmins[ckey])
-		add_verb(src, /client/proc/readmin)
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = GLOB.preferences_datums[ckey]
@@ -218,6 +210,22 @@
 		GLOB.player_details[ckey] = player_details
 
 	. = ..()	//calls mob.Login()
+
+	// Admin Verbs need the client's mob to exist. Must be after ..()
+	var/connecting_admin = FALSE //because de-admined admins connecting should be treated like
+	holder = GLOB.admin_datums[ckey]
+	if(!isnull(holder))
+		holder.associate(src)
+		connecting_admin = TRUE
+	else if(GLOB.deadmins[ckey])
+		add_verb(src, /client/proc/readmin)
+		connecting_admin = TRUE
+
+	if(CONFIG_GET(flag/localhost_rank) && !connecting_admin && is_localhost())
+		var/datum/admin_rank/rank = new("!localhost!", R_EVERYTHING, , R_EVERYTHING)
+		var/datum/admins/admin = new(rank, ckey, TRUE)
+		admin.associate(src)
+
 	if(length(GLOB.stickybanadminexemptions))
 		GLOB.stickybanadminexemptions -= ckey
 		if (!length(GLOB.stickybanadminexemptions))
@@ -353,11 +361,13 @@
 	view_size.update_zoom_mode()
 
 	set_fullscreen(prefs.fullscreen_mode)
+	toggle_status_bar(prefs.show_status_bar)
 
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
 
 	Master.UpdateTickRate()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CLIENT_CONNECT, src)
+	fully_created = TRUE
 
 
 
@@ -517,6 +527,14 @@
 /client/proc/setDir(newdir)
 	dir = newdir
 
+
+/client/proc/is_localhost()
+	var/static/localhost_addresses = list(
+		"127.0.0.1",
+		"::1",
+		null,
+	)
+	return address in localhost_addresses
 
 /client/proc/show_character_previews(mutable_appearance/MA)
 	var/pos = 0
@@ -720,6 +738,8 @@
 
 /client/proc/check_randomizer(topic)
 	. = FALSE
+	if(is_localhost()) // no need to check a localhost
+		return TRUE
 	if (connection != "seeker")
 		return
 	topic = params2list(topic)
@@ -881,22 +901,24 @@
 	view = new_size
 	apply_clickcatcher()
 	mob.reload_fullscreens()
-	if(prefs.auto_fit_viewport)
-		INVOKE_NEXT_TICK(src, VERB_REF(fit_viewport), 1 SECONDS) //Delayed to avoid wingets from Login calls.
+	attempt_auto_fit_viewport()
 
 ///Change the fullscreen setting of the client
 /client/proc/set_fullscreen(fullscreen_mode)
-	if(fullscreen_mode)
-		winset(src, "mainwindow", "is-maximized=false;can-resize=false;titlebar=false")
-		winset(src, "mainwindow", "menu=null;statusbar=false")
-		winset(src, "mainwindow.split", "pos=0x0")
+	if (fullscreen_mode)
+		// ATTN!! ONCE 515.1631 IS REQUIRED REPLACE WITH winset(src, "mainwindow", "menu=;is-fullscreen=true") (and remember to replace the other call of course)
+		// this means no double maximise calls to make sure window fits, and supresses, titlebar, can-resize and is-maximized
+		// both implementations are functionally "windowed borderless"
+		winset(src, "mainwindow", "on-size=;titlebar=false;can-resize=false;menu=;is-maximized=false")
 		winset(src, "mainwindow", "is-maximized=true")
-		return
-	winset(src, "mainwindow", "is-maximized=false;can-resize=true;titlebar=true")
-	winset(src, "mainwindow", "menu=menu;statusbar=true")
-	winset(src, "mainwindow.split", "pos=3x0")
-	winset(src, "mainwindow", "is-maximized=true")
+	else
+		winset(src, "mainwindow", "menu=menu;titlebar=true;can-resize=true;is-maximized=true;on-size=attempt_auto_fit_viewport")
 
+/client/proc/toggle_status_bar(show_status_bar)
+	if (show_status_bar)
+		winset(src, "mapwindow.status_bar", "is-visible=true")
+	else
+		winset(src, "mapwindow.status_bar", "is-visible=false")
 
 ///Creates and applies a clickcatcher
 /client/proc/apply_clickcatcher()
@@ -1019,7 +1041,7 @@ GLOBAL_VAR_INIT(automute_on, null)
 /client/proc/check_panel_loaded()
 	if(stat_panel.is_ready())
 		return
-	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
+	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='byond://?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
 
 /**
  * Handles incoming messages from the stat-panel TGUI.

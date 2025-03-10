@@ -105,11 +105,6 @@
 /datum/config_entry/flag/roony
 	config_entry_value = FALSE
 
-/datum/config_entry/number/marine_respawn
-	config_entry_value = 30 MINUTES
-	max_val = 30 MINUTES
-	min_val = 0
-
 /datum/config_entry/flag/tts_no_whisper
 
 /datum/config_entry/string/tts_http_url
@@ -125,3 +120,14 @@
 /datum/config_entry/str_list/tts_voice_blacklist
 
 /datum/config_entry/flag/give_tutorials_without_db
+
+/datum/config_entry/str_list/channel_announce_new_game
+
+/datum/config_entry/str_list/chat_new_game_notifications
+
+/datum/config_entry/string/discordbotcommandprefix
+	default = "?"
+
+/// validate ownership of admin flags for chat commands
+/datum/config_entry/flag/secure_chat_commands
+	default = FALSE

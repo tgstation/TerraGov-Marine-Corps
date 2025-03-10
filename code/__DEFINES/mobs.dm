@@ -142,17 +142,24 @@
 #define CUT "cut"
 #define BRUISE "bruise"
 #define STAMINA "stamina"
+#define PAIN "pain"
+#define EYE_DAMAGE "eye_damage"
+#define BRAIN_DAMAGE "brain_damage"
+#define INTERNAL_BLEEDING "internal_bleeding"
+#define ORGAN_DAMAGE "organ_damage"
+#define INFECTION "infection"
+
 //=================================================
 
-#define STUN "stun"
-#define WEAKEN "weaken"
-#define PARALYZE "paralyze"
-#define STAGGER "stagger"
-#define AGONY "agony" // Added in PAIN!
-#define STUTTER "stutter"
-#define EYE_BLUR "eye_blur"
-#define DROWSY "drowsy"
-#define SLUR "slur"
+#define EFFECT_STUN "stun"
+#define EFFECT_PARALYZE "paralyze"
+#define EFFECT_UNCONSCIOUS "unconscious"
+#define EFFECT_STAGGER "stagger"
+#define EFFECT_STAMLOSS "stamloss"
+#define EFFECT_STUTTER "stutter"
+#define EFFECT_EYE_BLUR "eye_blur"
+#define EFFECT_DROWSY "drowsy"
+
 //=================================================
 
 //damagetype
@@ -618,7 +625,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define HUNTER_SNEAK_SLASH_ARMOR_PEN 20 //bonus AP
 #define HUNTER_SNEAK_ATTACK_RUN_DELAY 2 SECONDS
 #define HUNTER_PSYCHIC_TRACE_COOLDOWN 5 SECONDS //Cooldown of the Hunter's Psychic Trace, and duration of its arrow
-#define HUNTER_SILENCE_STAGGER_STACKS 1 //Silence imposes this many stagger stacks
+#define HUNTER_SILENCE_STAGGER_DURATION 1 SECONDS //Silence imposes this much stagger
 #define HUNTER_SILENCE_SENSORY_STACKS 7 //Silence imposes this many eyeblur and deafen stacks.
 #define HUNTER_SILENCE_MUTE_DURATION 10 SECONDS //Silence imposes this many seconds of the mute status effect.
 #define HUNTER_SILENCE_RANGE 5 //Range in tiles of the Hunter's Silence.
@@ -721,7 +728,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 /// How many  tornadoes we unleash when using the firestorm
 #define PYROGEN_FIRESTORM_TORNADE_COUNT 3
 /// Damage on fire tornado hit
-#define PYROGEN_TORNADE_HIT_DAMAGE 15
+#define PYROGEN_TORNADE_HIT_DAMAGE 50
 /// melting fire stacks on fire tornado hit
 #define PYROGEN_TORNADO_MELTING_FIRE_STACKS 2
 /// damage on direct hit with the heatray
@@ -803,17 +810,6 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 //Wraith defines
 
-#define WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER 20 //The amount we multiply the cooldown by when we teleport while dragging a non-friendly target
-#define WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER 4 //The amount we multiply the cooldown by when we teleport while dragging a friendly target
-#define WRAITH_BLINK_RANGE 3
-
-#define WRAITH_BANISH_BASE_DURATION 10 SECONDS
-#define WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER 0.5
-#define WRAITH_BANISH_VERY_SHORT_MULTIPLIER 0.3
-
-#define WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS 2 SECONDS //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
-#define WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS 3 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
-
 //Larva defines
 #define LARVA_VENT_CRAWL_TIME 1 SECONDS //Larva can crawl into vents fast
 
@@ -829,6 +825,11 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 //Praetorian defines
 #define PRAE_CHARGEDISTANCE 5
+
+//Dancer defines
+#define DANCER_IMPALE_PENETRATION 20//armor penetration done by impale to marked targets
+#define DANCER_MAX_IMPALE_MULT 2.5 //the maximum multiplier dancer impale can gain from debuffs
+#define DANCER_NONHUMAN_IMPALE_MULT 1.5//the flat damage multiplier done by impale to non-carbon targets
 
 //misc
 
@@ -983,3 +984,19 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 
 ///Filter name for illusion impacts
 #define ILLUSION_HIT_FILTER "illusion_hit_filter"
+
+//This is here because the damage defines aren't set before the AI defines and it breaks everything and I don't know where else to put it
+///Assoc list of items to use to treat different damage types
+GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
+	BRUTE = GLOB.ai_brute_heal_items,
+	BURN = GLOB.ai_burn_heal_items,
+	TOX = GLOB.ai_tox_heal_items,
+	OXY = GLOB.ai_oxy_heal_items,
+	CLONE = GLOB.ai_clone_heal_items,
+	PAIN = GLOB.ai_pain_heal_items,
+	EYE_DAMAGE = GLOB.ai_eye_heal_items,
+	BRAIN_DAMAGE = GLOB.ai_brain_heal_items,
+	INTERNAL_BLEEDING = GLOB.ai_ib_heal_items,
+	ORGAN_DAMAGE = GLOB.ai_organ_heal_items,
+	INFECTION = GLOB.ai_infection_heal_items,
+))

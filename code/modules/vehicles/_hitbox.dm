@@ -95,14 +95,14 @@
 		return
 	ADD_TRAIT(new_desant, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
 	new_desant.add_nosubmerge_trait(VEHICLE_TRAIT)
-	LAZYSET(tank_desants, new_desant, new_desant.layer)
+	LAZYSET(tank_desants, new_desant, PLANE_TO_TRUE(new_desant.plane))
+	SET_PLANE_IMPLICIT(new_desant, ABOVE_GAME_PLANE)
 	RegisterSignal(new_desant, COMSIG_QDELETING, PROC_REF(on_desant_del))
-	new_desant.layer = ABOVE_MOB_PLATFORM_LAYER
 	root.add_desant(new_desant)
 
 ///Removes a desant
 /obj/hitbox/proc/remove_desant(atom/movable/desant)
-	desant.layer = LAZYACCESS(tank_desants, desant)
+	SET_PLANE_IMPLICIT(desant, LAZYACCESS(tank_desants, desant))
 	desant.remove_traits(list(TRAIT_TANK_DESANT, TRAIT_NOSUBMERGE), VEHICLE_TRAIT)
 	LAZYREMOVE(tank_desants, desant)
 	UnregisterSignal(desant, COMSIG_QDELETING)
@@ -184,7 +184,6 @@
 	if((root.dir == direction) || (root.dir == REVERSE_DIR(direction)))
 		is_strafing = FALSE
 	else if(!is_strafing) //we turn
-		armor?.play_engine_sound()
 		root.setDir(direction)
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	///
@@ -268,7 +267,6 @@
 	if((root.dir == direction) || (root.dir == REVERSE_DIR(direction)))
 		is_strafing = FALSE
 	else if(!is_strafing) //we turn
-		armor?.play_engine_sound()
 		root.setDir(direction)
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	///////////////////////////
@@ -381,8 +379,7 @@
 				break
 	if((root.dir == direction) || (root.dir == REVERSE_DIR(direction)))
 		is_strafing = FALSE
-	else if(isarmoredvehicle(root) && !is_strafing) //we turn
-		armor.play_engine_sound()
+
 
 	/////////////////////////////
 	var/turf/centerturf = get_turf(root)

@@ -139,7 +139,7 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 	icon_state = "oppose_shatter"
 	name = "veined terrain"
 	desc = "blood rushes below the ground, forcing it upwards."
-	layer = PODDOOR_OPEN_LAYER
+	layer = BLASTDOOR_LAYER
 	pixel_x = -32
 	pixel_y = -32
 	duration = 3 SECONDS

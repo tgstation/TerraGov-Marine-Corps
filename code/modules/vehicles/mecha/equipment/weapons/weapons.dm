@@ -163,7 +163,10 @@
 		return NONE
 	var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.dir))
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
-		return AUTOFIRE_CONTINUE
+		if(chassis.mecha_flags & MECHA_SPIN_WHEN_NO_ANGLE)
+			chassis.face_atom(current_target)
+		else
+			return AUTOFIRE_CONTINUE
 
 	var/type_to_spawn = CHECK_BITFIELD(initial(ammotype.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
 	var/obj/projectile/projectile_to_fire = new type_to_spawn(get_turf(src), initial(ammotype.hitscan_effect_icon))
@@ -284,9 +287,14 @@
 		return FALSE
 	if(!projectiles_cache)
 		return FALSE
-	if(user && !do_after(user, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
+	if(user.do_actions)
+		return FALSE
+	if(user && !do_after(user, rearm_time, IGNORE_HELD_ITEM|IGNORE_TARGET_LOC_CHANGE, chassis, BUSY_ICON_GENERIC, extra_checks=CALLBACK(src, PROC_REF(can_keep_reloading), projectiles)))
 		return FALSE
 	return rearm()
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/proc/can_keep_reloading(old_ammo)
+	return projectiles == old_ammo
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rearm()
 	if(projectiles >= initial(projectiles))
@@ -397,7 +405,10 @@
 		return FALSE
 	var/dir_target_diff = get_between_angles(Get_Angle(chassis, target), dir2angle(chassis.dir))
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
-		return TRUE
+		if(chassis.mecha_flags & MECHA_SPIN_WHEN_NO_ANGLE)
+			chassis.face_atom(current_target)
+		else
+			return TRUE
 	var/obj/O = new ammotype(chassis.loc)
 	playsound(chassis, fire_sound, 50, TRUE)
 	log_message("Launched a [O] from [src], targeting [target].", LOG_MECHA)

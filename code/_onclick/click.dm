@@ -242,7 +242,7 @@
 			return FALSE //here.Adjacent(there)
 		if(2 to INFINITY)
 			var/obj/dummy = new(get_turf(here))
-			dummy.allow_pass_flags |= PASS_LOW_STRUCTURE
+			dummy.add_pass_flags(PASS_LOW_STRUCTURE, INNATE_TRAIT)
 			dummy.invisibility = INVISIBILITY_ABSTRACT
 			for(var/i in 1 to reach) //Limit it to that many tries
 				var/turf/T = get_step(dummy, get_dir(dummy, there))
@@ -558,6 +558,16 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	M.Scale(px/sx, py/sy)
 	transform = M
 
+
+/atom/movable/screen/click_catcher/Initialize(mapload, datum/hud/hud_owner)
+	. = ..()
+	RegisterSignal(SSmapping, COMSIG_PLANE_OFFSET_INCREASE, PROC_REF(offset_increased))
+	offset_increased(SSmapping, 0, SSmapping.max_plane_offset)
+
+// Draw to the lowest plane level offered
+/atom/movable/screen/click_catcher/proc/offset_increased(datum/source, old_offset, new_offset)
+	SIGNAL_HANDLER
+	SET_PLANE_W_SCALAR(src, initial(plane), new_offset)
 
 /atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)

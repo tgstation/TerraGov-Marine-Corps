@@ -28,7 +28,7 @@
 */
 
 /obj/machinery/vending/boozeomat
-	name = "Booze-O-Mat"
+	name = "\improper Booze-O-Mat"
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
 	icon_state = "boozeomat"        //////////////18 drink entities below, plus the glasses, in case someone wants to edit the number of bottles
 	icon_deny = "boozeomat-deny"
@@ -81,7 +81,7 @@
 	)
 
 /obj/machinery/vending/coffee
-	name = "Hot Drinks machine"
+	name = "\improper Hot Drinks machine"
 	desc = "A vending machine which dispenses hot drinks."
 	//product_ads = "Have a drink!;Drink up!;It's good for you!;Would you like a hot joe?;I'd kill for some coffee!;The best beans in the galaxy.;Only the finest brew for you.;Mmmm. Nothing like a coffee.;I like coffee, don't you?;Coffee helps you work!;Try some tea.;We hope you like the best!;Try our new chocolate!;Admin conspiracies"
 	icon_state = "coffee"
@@ -98,7 +98,7 @@
 	)
 
 /obj/machinery/vending/snack
-	name = "Hot Foods Machine"
+	name = "\improper Hot Foods machine"
 	desc = "A vending machine full of ready to cook meals, mhmmmm taste the nutritional goodness!"
 	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!;Eat a Nanotrasen brand packaged hamburger.;Eat a Nanotrasen brand packaged hot dog.;Eat a Nanotrasen brand packaged burrito.;"
 	icon_state = "snack"
@@ -122,7 +122,7 @@
 		wrenchable = FALSE
 
 /obj/machinery/vending/cola
-	name = "Souto Softdrinks"
+	name = "\improper Souto Softdrinks"
 	desc = "A softdrink vendor provided by Souto Soda Company, Havana."
 	icon_state = "Cola_Machine"
 	product_slogans = "Souto Soda: Have a Souto and be taken away to a tropical paradise!;Souto Classic. You can't beat that tangerine goodness!;Souto Cherry. The sweet flavor of a cool winter morning!;Souto Lime. For that sweet and sour flavor that you know and love!;Souto Grape. There's nothing better than a grape soda.;Nanotrasen Fruit Beer. Nothing came from that lawsuit!;Nanotrasen Spring Water. It came from a spring!"
@@ -146,7 +146,7 @@
 		wrenchable = FALSE
 
 /obj/machinery/vending/medical
-	name = "NanotrasenMed Plus"
+	name = "\improper NanotrasenMed Plus"
 	desc = "Medical Pharmaceutical dispenser.  Provided by Nanotrasen Pharmaceuticals Division(TM)."
 	icon_state = "med"
 	icon_deny = "med-deny"
@@ -317,7 +317,7 @@
 
 //This one's from bay12
 /obj/machinery/vending/phoronresearch
-	name = "Toximate 3000"
+	name = "\improper Toximate 3000"
 	desc = "All the fine parts you need in one vending machine!"
 	icon_vend = "generic-vend"
 	icon_deny = "generic-deny"
@@ -333,7 +333,7 @@
 	)
 
 /obj/machinery/vending/nanomed
-	name = "NanoMed"
+	name = "\improper NanoMed"
 	desc = "Wall-mounted Medical Equipment dispenser."
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
 	icon_state = "wallmed"
@@ -354,6 +354,8 @@
 		/obj/item/healthanalyzer = 1,
 		/obj/item/stack/medical/splint = 1,
 	)
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
 
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)
 	. = ..()
@@ -368,7 +370,7 @@
 			pixel_x = 21
 
 /obj/machinery/vending/nanomed/tadpolemed
-	name = "Flight surgeon medical equipment dispenser"
+	name = "\improper Flight surgeon medical equipment dispenser"
 	desc = "Dedicated for the surgeon with wings, this humble box contains a lot for its size."
 	layer = ABOVE_OBJ_LAYER
 	products = list(
@@ -407,7 +409,7 @@
 	)
 
 /obj/machinery/vending/security
-	name = "SecTech"
+	name = "\improper SecTech"
 	desc = "A security equipment vendor."
 	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
 	icon_state = "sec"
@@ -427,7 +429,7 @@
 	)
 
 /obj/machinery/vending/hydronutrients
-	name = "NutriMax"
+	name = "\improper NutriMax"
 	desc = "A plant nutrients vendor."
 	//product_slogans = "Aren't you glad you don't have to fertilize the natural way?;Now with 50% less stink!;Plants are people too!"
 	//product_ads = "We like plants!;Don't you want some?;The greenest thumbs ever.;We like big plants.;Soft soil..."
@@ -447,7 +449,7 @@
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
 /obj/machinery/vending/hydroseeds
-	name = "MegaSeed Servitor"
+	name = "\improper MegaSeed Servitor"
 	desc = "When you need seeds fast!"
 	//product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the station!;Also certain mushroom varieties available, more for experts! Get certified today!"
 	//product_ads = "We like plants!;Grow some crops!;Grow, baby, growww!;Aw h'yeah son!"
@@ -498,7 +500,7 @@
 	)
 
 /obj/machinery/vending/magivend
-	name = "MagiVend"
+	name = "\improper MagiVend"
 	desc = "A magic vending machine."
 	icon_state = "MagiVend"
 	//product_slogans = "Sling spells the proper way with MagiVend!;Be your own Houdini! Use MagiVend!"
@@ -514,7 +516,7 @@
 	)
 
 /obj/machinery/vending/dinnerware
-	name = "Dinnerware"
+	name = "\improper Dinnerware"
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
@@ -545,7 +547,7 @@
 	idle_power_usage = 211
 
 /obj/machinery/vending/engivend
-	name = "Engi-Vend"
+	name = "\improper Engi-Vend"
 	desc = "Spare engineer vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_vend = "engivend-vend"
@@ -582,7 +584,7 @@
 
 //This one's from bay12
 /obj/machinery/vending/robotics
-	name = "Robotech Deluxe"
+	name = "\improper Robotech Deluxe"
 	desc = "All the tools you need to create your own robot army."
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"

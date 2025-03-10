@@ -72,7 +72,7 @@
 		O.stop_throw()
 		apply_damage(O.throwforce*(speed * 0.2), O.damtype, BODY_ZONE_CHEST, MELEE, is_sharp(O), has_edge(O), TRUE, O.penetration)
 
-	visible_message(span_warning(" [src] has been hit by [AM]."), null, null, 5)
+	visible_message(span_warning("[src] has been hit by [AM]."), null, null, 5)
 	if(ismob(AM.thrower))
 		var/mob/M = AM.thrower
 		if(M.client)
@@ -85,7 +85,7 @@
 		if(W.sharp && prob(W.embedding.embed_chance))
 			W.embed_into(src)
 	if(AM.throw_source)
-		visible_message(span_warning(" [src] staggers under the impact!"),span_warning(" You stagger under the impact!"), null, 5)
+		visible_message(span_warning("[src] staggers under the impact!"),span_warning("You stagger under the impact!"), null, 5)
 		src.throw_at(get_edge_target_turf(src, get_dir(AM.throw_source, src)), 1, speed * 0.5)
 
 /mob/living/turf_collision(turf/T, speed)
@@ -198,12 +198,12 @@
 /mob/living/fire_act(burn_level)
 	if(!burn_level)
 		return
-	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
+	if(status_flags & (INCORPOREAL|GODMODE))
+		return FALSE
+	if(pass_flags & PASS_FIRE)
 		return FALSE
 	if(soft_armor.getRating(FIRE) >= 100)
 		to_chat(src, span_warning("You are untouched by the flames."))
-		return FALSE
-	if(pass_flags & PASS_FIRE) //Pass fire allow to cross fire without being affected.
 		return FALSE
 
 	take_overall_damage(rand(10, burn_level), BURN, FIRE, updating_health = TRUE, max_limbs = 4)

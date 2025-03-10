@@ -40,8 +40,8 @@
 		to_chat(owner, span_warning("[target_datum] was not already tagged."))
 
 /// Quick define for readability
-#define TAG_DEL(X) "<b>(<A href='?src=[REF(src)];[HrefToken(forceGlobal = TRUE)];del_tag=[REF(X)]'>UNTAG</a>)</b>"
-#define TAG_MARK(X) "<b>(<A href='?src=[REF(src)];[HrefToken(forceGlobal = TRUE)];mark_datum=[REF(X)]'>MARK</a>)</b>"
+#define TAG_DEL(X) "<b>(<A href='byond://?src=[REF(src)];[HrefToken(forceGlobal = TRUE)];del_tag=[REF(X)]'>UNTAG</a>)</b>"
+#define TAG_MARK(X) "<b>(<A href='byond://?src=[REF(src)];[HrefToken(forceGlobal = TRUE)];mark_datum=[REF(X)]'>MARK</a>)</b>"
 #define TAG_SIMPLE_HEALTH(X) "<font color='#ff0000'><b>Health: [X.health]</b></font>"
 #define TAG_CARBON_HEALTH(X) "<font color='#ff0000'><b>Health: [X.health]</b></font> (\
 					<font color='#ff3333'>[X.getBruteLoss()]</font> \
@@ -50,16 +50,10 @@
 					<font color='#00cccc'>[X.getOxyLoss()]</font>\
 					[X.getCloneLoss() ? " <font color='#1c3ac4'>[X.getCloneLoss()]</font>" : ""])"
 
-/// Display all of the tagged datums
-/datum/admins/proc/display_tags()
-	set category = "Debug"
-	set name = "View Tags"
-
-	var/datum/admins/holdersrc = src
+ADMIN_VERB(display_tags, R_DEBUG, "View Tags", "View all tagged datums", ADMIN_CATEGORY_DEBUG)
+	var/datum/admins/holdersrc = user.holder
 	if (!istype(holdersrc, /datum/admins))
-		holdersrc = usr.client.holder
-	if (!istype(holdersrc, /datum/admins))
-		to_chat(usr, "Error: you are not an admin!", confidential = TRUE)
+		to_chat(user, "Error: you are not an admin!")
 		return
 	holdersrc.index_tags()
 
@@ -67,7 +61,7 @@
 	var/index = 0
 	var/list/dat = list("<center><B>Tag Menu</B></center><hr>")
 
-	dat += "<br><A href='?src=[REF(src)];[HrefToken(forceGlobal = TRUE)];show_tags=1'>Refresh</a><br>"
+	dat += "<br><A href='byond://?src=[REF(src)];[HrefToken(forceGlobal = TRUE)];show_tags=1'>Refresh</a><br>"
 	if(LAZYLEN(tagged_datums))
 		for(var/datum/iter_datum as anything in tagged_datums)
 			index++

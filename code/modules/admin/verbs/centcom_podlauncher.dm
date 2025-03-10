@@ -9,12 +9,9 @@
 //The user can change properties of the supplypod using the UI, and change the way that items are taken from the bay (One at a time, ordered, random, etc)
 //Many of the effects of the supplypod set here are put into action in supplypod.dm
 
-/client/proc/centcom_podlauncher() //Creates a verb for admins to open up the ui
-	set name = "Config/Launch Supplypod"
-	set desc = "Configure and launch a Centcom supplypod full of whatever your heart desires!"
-	set category = "Admin"
-	var/datum/centcom_podlauncher/plaunch = new(usr)//create the datum
-	plaunch.ui_interact(usr)//datum has a tgui component, here we open the window
+ADMIN_VERB(centcom_podlauncher, R_FUN, "Config/Launch Supplypod", "Configure and launch a Centcom supplypod full of whatever your heart desires!", ADMIN_CATEGORY_FUN)
+	var/datum/centcom_podlauncher/plaunch = new(user)//create the datum
+	plaunch.ui_interact(user.mob)//datum has a tgui component, here we open the window
 
 //Variables declared to change how items in the launch bay are picked and launched. (Almost) all of these are changed in the ui_act proc
 //Some effect groups are choices, while other are booleans. This is because some effects can stack, while others dont (ex: you can stack explosion and quiet, but you cant stack ordered launch and random launch)
@@ -475,7 +472,7 @@
 		to_chat(holder.mob, "No /area/centcom/supplypod/loading/one (or /two or /three or /four) in the world! You can make one yourself (then refresh) for now, but yell at a mapper to fix this, today!")
 		CRASH("No /area/centcom/supplypod/loading/one (or /two or /three or /four) has been mapped into the centcom z-level!")
 	orderedArea = list()
-	if (!isemptylist(A.contents)) //Go through the area passed into the proc, and figure out the top left and bottom right corners by calculating max and min values
+	if (A.has_contained_turfs()) //Go through the area passed into the proc, and figure out the top left and bottom right corners by calculating max and min values
 		var/startX = A.contents[1].x //Create the four values (we do it off a.contents[1] so they have some sort of arbitrary initial value. They should be overwritten in a few moments)
 		var/endX = A.contents[1].x
 		var/startY = A.contents[1].y
