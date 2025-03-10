@@ -16,8 +16,8 @@
 	soft_armor = list(MELEE = 90, BULLET = 90 , LASER = 90, ENERGY = 90, BOMB = 85, BIO = 100, FIRE = 100, ACID = 75)
 	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 20, BIO = 100, FIRE = 0, ACID = 0)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.7, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
-	max_occupants = 20 //Clown car? Clown car.
-	enter_delay = 0.5 SECONDS
+	max_occupants = 10
+	enter_delay = 0.4 SECONDS
 	ram_damage = 50
 	move_delay = 0.3 SECONDS
 	glide_size = 4.333
