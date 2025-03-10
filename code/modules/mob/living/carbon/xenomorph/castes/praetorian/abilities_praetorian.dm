@@ -219,6 +219,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/recast = FALSE
 	///The last tile we dashed through, used when swapping with a human
 	var/turf/last_turf
+	/// If we should do acid_spray_act on those we pass over.
+	var/do_acid_spray_act = TRUE
 	///List of pass_flags given by this action
 	var/charge_pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 
@@ -269,6 +271,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	SIGNAL_HANDLER
 	last_turf = OldLoc
 	new /obj/effect/xenomorph/spray(get_turf(xeno_owner), 5 SECONDS, xeno_owner.xeno_caste.acid_spray_damage) //Add a modifier here to buff the damage if needed
+	if(!do_acid_spray_act)
+		return
 	for(var/obj/O in get_turf(xeno_owner))
 		O.acid_spray_act(xeno_owner)
 
