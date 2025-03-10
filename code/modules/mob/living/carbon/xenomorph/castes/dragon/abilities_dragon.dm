@@ -225,6 +225,7 @@
 
 /// Finalizes the process of flying by granting various flags and so on.
 /datum/action/ability/activable/xeno/fly/proc/finalize_flight()
+	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_FLIGHT, TRUE, 0, NONE, TRUE, -1)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(on_move_attempt))
 	COOLDOWN_RESET(src, animation_cooldown)
 	animate(xeno_owner, pixel_x = 0, pixel_y = 0, time = 0)
@@ -257,6 +258,7 @@
 
 /// Finalizes the process of landing by reversing the effects from flying.
 /datum/action/ability/activable/xeno/fly/proc/finalize_landing()
+	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_FLIGHT)
 	performing_landing_animation = FALSE
 	xeno_owner.status_flags = initial(xeno_owner.status_flags)
 	xeno_owner.resistance_flags = initial(xeno_owner.resistance_flags)
