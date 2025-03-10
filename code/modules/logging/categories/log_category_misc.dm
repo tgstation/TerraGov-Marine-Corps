@@ -2,6 +2,9 @@
 	category = LOG_CATEGORY_MECHA
 	config_flag = /datum/config_entry/flag/log_mecha
 
+/datum/log_category/transport
+	category = LOG_CATEGORY_TRANSPORT
+
 /datum/log_category/paper
 	category = LOG_CATEGORY_PAPER
 

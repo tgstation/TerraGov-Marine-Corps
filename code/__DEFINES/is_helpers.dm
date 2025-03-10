@@ -30,6 +30,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isspaceturf(A) (istype(A, /turf/open/space))
 
+#define isplatingturf(A) (istype(A, /turf/open/floor/plating))
+
 #define islava(A) (istype(A, /turf/open/liquid/lava))
 
 #define iswater(A) (istype(A, /turf/open/liquid/water))
