@@ -259,6 +259,12 @@
 	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD
 	hotkey_keys = list("Q")
 
+/datum/keybinding/xeno/acid_shroud_melter
+	name = "Melter: Acid Shroud"
+	full_name = "Melter: Acid Shroud"
+	description = "Create a smokescreen for a getaway."
+	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD_MELTER
+
 /datum/keybinding/xeno/acid_shroud_select
 	name = "select_acid_shroud"
 	full_name = "Boiler: Select Acid Shroud"
@@ -707,6 +713,18 @@
 	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Has reset potential."
 	keybind_signal = COMSIG_XENOABILITY_ACID_DASH
 	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/acid_dash_melter
+	name = "Melter: Acid Dash"
+	full_name = "Melter: Acid Dash"
+	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Has reset potential."
+	keybind_signal = COMSIG_XENOABILITY_ACID_DASH_MELTER
+
+/datum/keybinding/xeno/acidic_missile
+	name = "Melter: Acidic Missile"
+	full_name = "Melter: Acid Missile"
+	description = "Begin building up acid. If you're already building up acid, launch yourself at a target and splash acid all around you."
+	keybind_signal = COMSIG_XENOABILITY_ACIDIC_MISSILE
 
 /datum/keybinding/xeno/dodge
 	name = "Dodge"
