@@ -34,14 +34,19 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	QDEL_NULL(ai_behavior)
 	return ..()
 
+///qdels us
+/datum/component/ai_controller/proc/do_qdel(datum/source)
+	SIGNAL_HANDLER
+	qdel(src)
+
 ///Handles the death of the npc mob
 /datum/component/ai_controller/proc/on_parent_death()
 	if(ishuman(parent))
 		clean_up()
-		RegisterSignal(parent, COMSIG_HUMAN_SET_UNDEFIBBABLE, PROC_REF(RemoveComponent))
+		RegisterSignal(parent, COMSIG_HUMAN_SET_UNDEFIBBABLE, PROC_REF(do_qdel))
 		RegisterSignal(parent, COMSIG_MOB_REVIVE, PROC_REF(start_ai))
 		return
-	RemoveComponent()
+	qdel(src)
 
 ///Stop the ai behaviour from processing and clean current action
 /datum/component/ai_controller/proc/clean_up(register_for_logout = TRUE)
@@ -77,7 +82,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	//Iniatialise the behavior of the ai
 	ai_behavior.start_ai()
 	RegisterSignal(parent, COMSIG_MOB_DEATH, PROC_REF(on_parent_death))
-	RegisterSignal(parent, COMSIG_QDELETING, PROC_REF(RemoveComponent))
+	RegisterSignal(parent, COMSIG_QDELETING, PROC_REF(do_qdel))
 	RegisterSignal(parent, COMSIG_MOB_LOGIN, PROC_REF(clean_up))
 	RegisterSignal(parent, COMSIG_HUMAN_HAS_AI, PROC_REF(parent_has_ai))
 	UnregisterSignal(parent, list(COMSIG_MOB_LOGOUT, COMSIG_MOB_REVIVE, COMSIG_HUMAN_SET_UNDEFIBBABLE))
