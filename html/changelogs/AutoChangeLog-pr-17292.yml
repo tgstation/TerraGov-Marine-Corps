@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - refactor: "refactored how proximity alerts for the proximity assembly and xeno strucutre alerts are handled to optimize them and fix some edgecases"
