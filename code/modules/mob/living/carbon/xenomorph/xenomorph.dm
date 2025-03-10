@@ -66,7 +66,6 @@
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, XENO_TRAIT)
 	if(xeno_caste.caste_flags & CASTE_STAGGER_RESISTANT)
 		ADD_TRAIT(src, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
-
 	hive.update_tier_limits()
 	if(CONFIG_GET(flag/xenos_on_strike))
 		replace_by_ai()

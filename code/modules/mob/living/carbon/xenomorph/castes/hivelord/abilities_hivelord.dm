@@ -340,6 +340,7 @@
 			target.balloon_alert(owner, "Cannot heal, already infused")
 		return FALSE
 
+
 /datum/action/ability/activable/xeno/healing_infusion/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
 	if(dist > heal_range)
