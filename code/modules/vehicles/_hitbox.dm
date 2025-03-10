@@ -440,29 +440,29 @@
 			bound_width = vehicle_width
 			bound_x = 0
 			bound_y = -32
-			root.pixel_x = 8
-			root.pixel_y = -32
+			root.pixel_w = 8
+			root.pixel_z = -32
 		if(SOUTH)
 			bound_height = vehicle_length
 			bound_width = vehicle_width
 			bound_x = -32
 			bound_y = -32
-			root.pixel_x = -24
-			root.pixel_y = -32
+			root.pixel_w = -24
+			root.pixel_z = -32
 		if(WEST)
 			bound_height = vehicle_width
 			bound_width = vehicle_length
 			bound_x = -32
 			bound_y = 0
-			root.pixel_x = -40
-			root.pixel_y = 0
+			root.pixel_w = -40
+			root.pixel_z = 0
 		if(EAST)
 			bound_height = vehicle_width
 			bound_width = vehicle_length
 			bound_x = -32
 			bound_y = -32
-			root.pixel_x = -40
-			root.pixel_y = -32
+			root.pixel_w = -40
+			root.pixel_z = -32
 
 	var/angle_change = dir2angle(new_dir) - dir2angle(old_dir)
 	//north needing to be considered 0 OR 360 is inconvenient, I'm sure there is a non ungabrain way to do this
@@ -540,7 +540,6 @@
 
 	if(!ISDIAGONALDIR(direction))
 		armor.forceMove(get_step(armor.loc, movement_dir))
-		armor.play_engine_sound()
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	//moving left, our mid point stays unchanged either way
 	if(direction == NORTHEAST)
@@ -549,5 +548,4 @@
 		armor.forceMove(get_step(armor.loc, turn(armor.dir, -135)))
 
 	root.setDir(facing_dir)
-	armor.play_engine_sound()
 	return COMPONENT_DRIVER_BLOCK_MOVE
