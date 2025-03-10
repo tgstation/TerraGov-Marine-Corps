@@ -199,6 +199,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
+	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/sniper.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
@@ -279,6 +280,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
+	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/sniper.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
 
@@ -1214,6 +1216,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
 	)
+	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/shotgun.dmi'
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh15.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = CALIBER_16G //codex
@@ -1480,6 +1483,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
+	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/sniper.dmi'
 
 	inhand_x_dimension = 64
 	inhand_y_dimension = 32
@@ -1549,6 +1553,7 @@
 	desc = "The Kauser-KT SR-81 is the TerraGov Marine Corps's automatic sniper rifle usually married to it's iconic NVG/KTLD scope combo. It is notable for its high rate of fire for its class, and has decent performance in any range. Uses 8.6x70mm caseless with specialized pressures for IFF fire."
 	icon_state = "t81"
 	worn_icon_state = "t81"
+	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/sniper.dmi'
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
@@ -2002,6 +2007,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/guns/marksman_left_64.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_64.dmi',
 	)
+	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/sniper.dmi'
 	fire_sound = 'sound/weapons/guns/fire/garand.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/garand_ping.ogg'
@@ -2588,6 +2594,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/guns/shotguns_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/shotguns_right_1.dmi',
 	)
+	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/shotgun.dmi'
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = CALIBER_12G //codex

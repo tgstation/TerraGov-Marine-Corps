@@ -90,7 +90,7 @@
 	RegisterSignal(source, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
 	RegisterSignal(source, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	SEND_SIGNAL(src, COMSIG_MECH_FIRE)
-	source?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	source?.client?.mouse_pointer_icon = 'icons/UI_Icons/gun_crosshairs/rifle.dmi'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/set_bursting(bursting)
 	if(bursting)
