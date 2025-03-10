@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "A new strain for Runner called Melter. Themed around acid."
+  - imageadd: "Melter runner sprites."
