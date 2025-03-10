@@ -50,6 +50,8 @@
 	if(!owner.incapacitated())
 		mothers += owner //Adding them to the list.
 
+/datum/action/ability/xeno_action/call_of_the_burrowed/free
+	ability_cost = 0
 
 // ***************************************
 // *********** Psychic Fling
@@ -249,7 +251,6 @@
 		if(!silent)
 			to_chat(owner, span_warning("It's too late. This sister won't be coming back."))
 		return FALSE
-
 
 /datum/action/ability/activable/xeno/psychic_cure/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
