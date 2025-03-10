@@ -788,3 +788,36 @@
 	icon_state = "Red_arrow"
 	duration = HUNTER_PSYCHIC_TRACE_COOLDOWN
 	color = COLOR_ORANGE
+
+/atom/movable/screen/combo
+	icon_state = ""
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	screen_loc = ui_combo
+	plane = ABOVE_HUD_PLANE
+	/// Timer ID. After a set duration, the tracked combo streak will reset.
+	var/reset_timer
+
+/atom/movable/screen/combo/proc/clear_streak()
+	animate(src, alpha = 0, 2 SECONDS, SINE_EASING)
+	reset_timer = addtimer(CALLBACK(src, PROC_REF(reset_icons)), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+
+/atom/movable/screen/combo/proc/reset_icons()
+	cut_overlays()
+	icon_state = initial(icon_state)
+
+/atom/movable/screen/combo/update_icon_state(combo_streak = "", time = 2 SECONDS)
+	reset_icons()
+	if(reset_timer)
+		deltimer(reset_timer)
+	alpha = 255
+	if(!combo_streak)
+		return ..()
+	reset_timer = addtimer(CALLBACK(src, PROC_REF(clear_streak)), time, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+	icon_state = "combo"
+	for(var/i = 1; i <= length(combo_streak); ++i)
+		var/click_text = copytext(combo_streak, i, i + 1)
+		var/image/click_icon = image(icon, src, "combo_[click_text]")
+		click_icon.pixel_x = 16 * (i - 1) - 8 * length(combo_streak)
+		click_icon.pixel_y = -16
+		add_overlay(click_icon)
+	return ..()
