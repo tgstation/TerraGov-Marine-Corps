@@ -5,6 +5,7 @@
 	icon_state = "cablerelay-on"
 	cable_layer = CABLE_LAYER_1|CABLE_LAYER_2|CABLE_LAYER_3
 	machinery_layer = null
+	resistance_flags = RESIST_ALL //deleting multi-z connectors causes problems, so we don't
 
 /obj/structure/cable/multilayer/multiz/get_cable_connections(powernetless_only)
 	. = ..()
@@ -18,3 +19,6 @@
 	. += span_notice("[locate(/obj/structure/cable/multilayer/multiz) in (GET_TURF_BELOW(T)) ? "Detected" : "Undetected"] hub UP.")
 	. += span_notice("[locate(/obj/structure/cable/multilayer/multiz) in (GET_TURF_ABOVE(T)) ? "Detected" : "Undetected"] hub DOWN.")
 
+// no cutting the cable either
+/obj/structure/cable/multilayer/multiz/handlecable(obj/item/W, mob/user, params)
+	return
