@@ -23,7 +23,7 @@
 	plasma_icon_state = "armor"
 
 	// *** Health *** //
-	max_health = 1000
+	max_health = 900
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -41,7 +41,7 @@
 
 	// *** Sunder *** //
 	sunder_recover = 1
-	sunder_multiplier = 0.6
+	sunder_multiplier = 0.8
 
 	minimap_icon = "xenodragon"
 

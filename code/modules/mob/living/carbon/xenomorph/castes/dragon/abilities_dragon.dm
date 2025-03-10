@@ -3,7 +3,7 @@
 	action_icon_state = "backhand"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "Deal high damage, a knockback, and stun to marines in front of you. Vehicles and mechas take more damage, but are not knocked back nor stunned. If you are grabbing a marine, deal an incredible amount of damage to that marine after a windup."
-	cooldown_duration = 15 SECONDS
+	cooldown_duration = 18 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BACKHAND,
 	)
@@ -57,13 +57,14 @@
 
 /// Gets the base damage in which the ability does.
 /datum/action/ability/activable/xeno/backhand/proc/get_damage()
-	return 60 * xeno_owner.xeno_melee_damage_modifier
+	return 45 * xeno_owner.xeno_melee_damage_modifier
 
 /// Performs the regular interaction as expected of the ability.
 /datum/action/ability/activable/xeno/backhand/proc/handle_regular_ability(atom/target, list/turf/affected_turfs)
 	xeno_owner.face_atom(target)
 	new /obj/effect/temp_visual/dragon/directional/backhand(get_step(xeno_owner, target), xeno_owner.dir)
 	var/has_hit_anything = FALSE
+	var/list/mob/living/living_to_knockback = list()
 	var/list/obj/vehicle/hit_vehicles = list()
 	for(var/turf/affected_turf AS in affected_turfs)
 		for(var/atom/affected_atom AS in affected_turf)
@@ -76,7 +77,7 @@
 				if(affected_living.stat == DEAD)
 					continue
 				affected_living.take_overall_damage(get_damage(), BRUTE, MELEE, max_limbs = 5, updating_health = TRUE)
-				affected_living.knockback(xeno_owner, 2, 1)
+				living_to_knockback += affected_living
 				affected_living.apply_effect(2 SECONDS, EFFECT_PARALYZE)
 				xeno_owner.do_attack_animation(affected_living)
 				has_hit_anything = TRUE
@@ -92,6 +93,11 @@
 			affected_obj.take_damage(get_damage(), BRUTE, MELEE, blame_mob = xeno_owner)
 			has_hit_anything = TRUE
 			continue
+
+	// This is separate because it is possible for them to be pushed into an unprocessed turf which will then do the effects again, causing instant death (or more damage than desired).
+	for(var/mob/living/knockbacked_living AS in living_to_knockback)
+		knockbacked_living.knockback(xeno_owner, 2, 1)
+
 	playsound(xeno_owner, has_hit_anything ? 'sound/effects/alien/dragon/backhand_hit.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 	xeno_owner.gain_plasma(xeno_owner.xeno_caste.plasma_max / 2)
 
@@ -219,10 +225,7 @@
 
 /// Finalizes the process of flying by granting various flags and so on.
 /datum/action/ability/activable/xeno/fly/proc/finalize_flight()
-	var/health_to_regenerate = xeno_owner.xeno_caste.max_health
-	HEAL_XENO_DAMAGE(xeno_owner, health_to_regenerate, FALSE)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(on_move_attempt))
-	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_SUNDER_REGEN, PROC_REF(on_sunder_regen))
 	COOLDOWN_RESET(src, animation_cooldown)
 	animate(xeno_owner, pixel_x = 0, pixel_y = 0, time = 0)
 	xeno_owner.status_flags = GODMODE|INCORPOREAL
@@ -340,11 +343,6 @@
 			return
 	xeno_owner.abstract_move(newloc)
 	return
-
-/// Regenerates 5x additional sunder and 20% maximum health.
-/datum/action/ability/activable/xeno/fly/proc/on_sunder_regen(datum/source, seconds_per_tick)
-	SIGNAL_HANDLER
-	xeno_owner.adjust_sunder(xeno_owner.xeno_caste.sunder_recover * seconds_per_tick * -5)
 
 /datum/action/ability/activable/xeno/backhand/dragon_breath
 	name = "Dragon Breath"
@@ -539,7 +537,7 @@
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] flaps their wings!"), \
 		span_danger("We flap our wings!"), null, 5)
 
-	var/damage = 100 * xeno_owner.xeno_melee_damage_modifier
+	var/damage = 55 * xeno_owner.xeno_melee_damage_modifier
 	var/list/mob/living/living_to_knockback = list()
 	for(var/turf/impacted_turf AS in impacted_turfs)
 		impacted_turf.Shake(duration = 0.25 SECONDS)
@@ -626,7 +624,7 @@
 
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER)
+	var/was_successful = do_after(xeno_owner, 0.5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	if(!was_successful)
@@ -839,14 +837,13 @@
 			assignturfs:
 				while(length(turfs) && remaining_void_rifts)
 					var/turf/candidate = pick_n_take(turfs)
+					if(!line_of_sight(xeno_owner, candidate, 7))
+						continue assignturfs
 					if(candidate.density)
 						continue assignturfs
 					for(var/atom/blocker AS in candidate.contents)
 						if(blocker.density)
 							continue assignturfs
-					var/area/turf_area = get_area(candidate)
-					if(turf_area.area_flags & MARINE_BASE)
-						continue assignturfs
 					remaining_void_rifts--
 					new /obj/effect/temp_visual/dragon/portal_open(candidate)
 					var/obj/projectile/proj = new(candidate)
@@ -864,7 +861,7 @@
 			COOLDOWN_START(src, lightning_shrike_cooldown, 25 SECONDS)
 		if(DRAGON_CRYOGENSIS)
 			xeno_owner.face_atom(A)
-			var/list/turf/affected_turfs_in_order = list()
+			var/list/list/turf/sets_of_turfs_in_order = list()
 			var/turf/maximum_distance_turf = get_turf(xeno_owner)
 			for(var/i in 1 to 7)
 				maximum_distance_turf = get_step(maximum_distance_turf, xeno_owner.dir)
@@ -872,12 +869,16 @@
 					break
 				if(isclosedturf(maximum_distance_turf))
 					break
-				affected_turfs_in_order += maximum_distance_turf
-				affected_turfs_in_order += get_step(maximum_distance_turf, turn(xeno_owner.dir, 90))
-				affected_turfs_in_order += get_step(maximum_distance_turf, turn(xeno_owner.dir, -90))
-
-			for(var/turf/affected_turf AS in affected_turfs_in_order)
-				new /obj/effect/temp_visual/dragon/warning(affected_turf, 2 SECONDS)
+				var/list/turf/turf_set = list()
+				if(ISODD(i))
+					turf_set += get_step(maximum_distance_turf, turn(xeno_owner.dir, 90))
+					turf_set += get_step(maximum_distance_turf, turn(xeno_owner.dir, -90))
+				else
+					turf_set += maximum_distance_turf
+				sets_of_turfs_in_order += list(turf_set)
+			for(var/list/turf/turf_set AS in sets_of_turfs_in_order)
+				for(var/turf/affected_turf AS in turf_set)
+					new /obj/effect/temp_visual/dragon/warning(affected_turf, 2 SECONDS)
 			xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 			xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 			var/was_successful = do_after(xeno_owner, 2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY))
@@ -885,7 +886,7 @@
 			xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 			if(!was_successful)
 				return
-			cryogensis_tick_effects(affected_turfs_in_order)
+			cryogensis_tick_effects(sets_of_turfs_in_order)
 			xeno_owner.gain_plasma(350)
 			COOLDOWN_START(src, cryogensis_cooldown, 35 SECONDS)
 
@@ -976,17 +977,14 @@
 			impacted_obj.take_damage(75, BURN, FIRE, blame_mob = xeno_owner)
 
 /// Performs the ability at a pace similar of CAS which is one width length at a length.
-/datum/action/ability/activable/xeno/psychic_channel/proc/cryogensis_tick_effects(list/turf/affected_turfs_in_order)
-	if(!length(affected_turfs_in_order))
+/datum/action/ability/activable/xeno/psychic_channel/proc/cryogensis_tick_effects(list/list/turf/sets_of_turfs_in_order, list_number = 1)
+	if(!length(sets_of_turfs_in_order) || list_number > length(sets_of_turfs_in_order))
 		return
+	var/list/turf/turf_set = sets_of_turfs_in_order[list_number]
+	if(length(turf_set) == 1)
+		new /obj/effect/temp_visual/dragon/cryogenesis(turf_set[1])
 
-	var/already_done_effect = FALSE
-	for(var/i = 1 to 3)
-		var/turf/affected_turf = affected_turfs_in_order[1]
-		affected_turfs_in_order -= affected_turf
-		if(!already_done_effect)
-			already_done_effect = TRUE
-			new /obj/effect/temp_visual/dragon/ice_storm(affected_turf)
+	for(var/turf/affected_turf AS in turf_set)
 		for(var/atom/affected_atom AS in affected_turf)
 			if(isxeno(affected_atom))
 				var/mob/living/carbon/xenomorph/affected_xenomorph = affected_atom
@@ -1001,7 +999,7 @@
 			affected_living.take_overall_damage(120, BURN, FIRE, updating_health = TRUE, penetration = 30, max_limbs = 5)
 			playsound(affected_living, 'sound/effects/alien/dragon/crytogensis_impact.ogg', 50, TRUE)
 			continue
-	INVOKE_NEXT_TICK(src, PROC_REF(cryogensis_tick_effects), affected_turfs_in_order)
+	INVOKE_NEXT_TICK(src, PROC_REF(cryogensis_tick_effects), sets_of_turfs_in_order, list_number + 1)
 
 /datum/action/ability/activable/xeno/scorched_land
 	name = "Scorched Land"
@@ -1284,9 +1282,9 @@
 	layer = BELOW_MOB_LAYER
 	duration = 0.6 SECONDS
 
-/obj/effect/temp_visual/dragon/ice_storm
+/obj/effect/temp_visual/dragon/cryogenesis
 	icon = 'icons/Xeno/160x450.dmi'
-	icon_state = "ice_storm"
+	icon_state = "cryogenesis"
 	pixel_x = -64
 	layer = BELOW_MOB_LAYER
 	duration = 1.6 SECONDS
