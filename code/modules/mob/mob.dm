@@ -895,14 +895,8 @@
 
 /mob/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents = TRUE)
 	. = ..()
-	if(!client || !hud_used)
-		return
-	if(old_turf?.z == new_turf?.z)
-		return
-	if(is_ground_level(new_turf.z))
-		hud_used.remove_parallax(src)
-		return
-	hud_used.create_parallax(src)
+	if(!same_z_layer)
+		relayer_fullscreens()
 
 /mob/proc/point_to_atom(atom/pointed_atom)
 	var/turf/tile = get_turf(pointed_atom)

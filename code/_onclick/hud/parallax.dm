@@ -56,11 +56,13 @@
 /datum/hud/proc/apply_parallax_pref(mob/viewmob)
 	var/mob/screenmob = viewmob || mymob
 	var/client/C = screenmob.client
-/*	if(SSmapping.level_trait(screen_location?.z, ZTRAIT_NOPARALLAX))
+	var/turf/screen_location = get_turf(screenmob)
+
+	if(SSmapping.level_trait(screen_location?.z, ZTRAIT_NOPARALLAX))
 		for(var/atom/movable/screen/plane_master/white_space as anything in get_true_plane_masters(PLANE_SPACE))
 			white_space.hide_plane(screenmob)
 		return FALSE
-*/
+
 	for(var/atom/movable/screen/plane_master/white_space as anything in get_true_plane_masters(PLANE_SPACE))
 		white_space.unhide_plane(screenmob)
 
@@ -93,11 +95,12 @@
 	return TRUE
 
 /datum/hud/proc/update_parallax_pref(mob/viewmob)
-	if(is_ground_level(viewmob.z))
+	var/mob/screen_mob = viewmob || mymob
+	if(!screen_mob.client)
 		return
-	remove_parallax(viewmob)
-	create_parallax(viewmob)
-	update_parallax(viewmob)
+	remove_parallax(screen_mob)
+	create_parallax(screen_mob)
+	update_parallax(screen_mob)
 
 // This sets which way the current shuttle is moving (returns true if the shuttle has stopped moving so the caller can append their animation)
 /datum/hud/proc/set_parallax_movedir(new_parallax_movedir, skip_windups, mob/viewmob)
