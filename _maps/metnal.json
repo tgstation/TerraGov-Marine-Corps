@@ -12,6 +12,9 @@
 	"armor": "prison",
 	"quickbuilds": 2100,
 	"announce_text": "A scrambled automated distress signal has been picked up from the nearby Metnal Mining Operation, though attempts to establish communications with the outpost have been unsuccessful. The ship has jumped within range to investigate. TGMC, prepare to deploy!",
-	"traits":[{"Baseturf": "/turf/open/floor/plating"}]
+	"traits":[{
+		"No Parallax": true,
+		"Baseturf": "/turf/open/floor/plating"
+	}]
 }
 

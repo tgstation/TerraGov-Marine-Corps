@@ -621,6 +621,8 @@
 	. = ..()
 	if(!.)
 		return
+	if(currently_z_moving)
+		return
 	stop_pulling()
 	if(buckled)
 		buckled.unbuckle_mob(src)
@@ -773,6 +775,8 @@
 		else
 			client.perspective = EYE_PERSPECTIVE
 			client.eye = loc
+	/// Signal sent after the eye has been successfully updated, with the client existing.
+	SEND_SIGNAL(src, COMSIG_MOB_RESET_PERSPECTIVE)
 	return TRUE
 
 /mob/proc/update_joined_player_list(newname, oldname)
@@ -895,14 +899,8 @@
 
 /mob/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents = TRUE)
 	. = ..()
-	if(!client || !hud_used)
-		return
-	if(old_turf?.z == new_turf?.z)
-		return
-	if(is_ground_level(new_turf.z))
-		hud_used.remove_parallax(src)
-		return
-	hud_used.create_parallax(src)
+	if(!same_z_layer)
+		relayer_fullscreens()
 
 /mob/proc/point_to_atom(atom/pointed_atom)
 	var/turf/tile = get_turf(pointed_atom)
