@@ -150,7 +150,6 @@
 		add_pass_flags(pass_flags, INNATE_TRAIT)
 
 /atom/movable/Destroy()
-	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
 	QDEL_NULL(em_block)
 
