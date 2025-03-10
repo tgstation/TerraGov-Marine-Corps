@@ -34,7 +34,6 @@
 	var/explosion_block = 0
 
 	var/datum/component/orbiter/orbiters
-	var/datum/proximity_monitor/proximity_monitor
 
 	var/datum/wires/wires = null
 
