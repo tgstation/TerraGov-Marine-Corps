@@ -73,11 +73,13 @@
 	. = ..()
 	var/ratio = obj_integrity / max_integrity
 	ratio = CEILING(ratio * 4, 1) * 25
-	cut_overlay(damage_overlay)
 	if(ratio > 75)
 		return
-
-	damage_overlay = mutable_appearance('icons/obj/structures.dmi', "damage[ratio]", -(layer + 0.1))
+	// tivi todo does this look ok check with actual walls
+	var/alpha_inc = 256 * ratio
+	damage_overlay = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")
+	damage_overlay.blend_mode = BLEND_MULTIPLY
+	damage_overlay.alpha = (alpha_inc) - 1
 	. += damage_overlay
 
 /obj/structure/tram/attack_hand(mob/living/user, list/modifiers)

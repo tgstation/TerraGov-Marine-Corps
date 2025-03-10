@@ -1460,6 +1460,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\modules\animations\animation_library.dm"
 #include "code\modules\antagonists\_common\antag_datum.dm"
 #include "code\modules\assembly\assembly.dm"
+#include "code\modules\assembly\doorcontrol.dm"
 #include "code\modules\assembly\helpers.dm"
 #include "code\modules\assembly\holder.dm"
 #include "code\modules\assembly\igniter.dm"

@@ -5,7 +5,7 @@
 /obj/structure/transport/linear
 	name = "linear transport module"
 	desc = "A lightweight lift platform. It moves."
-	icon = 'icons/obj/smooth_structures/catwalk.dmi'
+	icon = 'icons/obj/smooth_objects/catwalk.dmi'
 	icon_state = "catwalk-0"
 	base_icon_state = "catwalk"
 	density = FALSE
@@ -449,8 +449,8 @@
 
 				victim_living.throw_at()
 				//if travel_direction EAST, will turn to the NORTHEAST or SOUTHEAST and throw the ran over guy away
-				var/datum/callback/land_slam = new(victim_living, TYPE_PROC_REF(/mob/living/, tram_slam_land))
-				victim_living.throw_at(throw_target, 200 * collision_lethality, 4 * collision_lethality, callback = land_slam)
+//				var/datum/callback/land_slam = new(victim_living, TYPE_PROC_REF(/mob/living/, tram_slam_land))
+				victim_living.throw_at(throw_target, 200 * collision_lethality, 4 * collision_lethality) //, callback = land_slam)
 
 				//increment the hit counters
 				if(ismob(victim_living) && victim_living.client && istype(transport_controller_datum, /datum/transport_controller/linear/tram))
@@ -635,14 +635,14 @@
 	if(transport_controller_datum.Check_lift_move(UP))
 		var/static/image/up_arrow
 		if(!up_arrow)
-			up_arrow = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = NORTH)
+			up_arrow = image(icon = 'icons/mob/screen/arrows.dmi', icon_state = "point_arrow", dir = NORTH)
 
 		possible_directions["Up"] = up_arrow
 
 	if(transport_controller_datum.Check_lift_move(DOWN))
 		var/static/image/down_arrow
 		if(!down_arrow)
-			down_arrow = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = SOUTH)
+			down_arrow = image(icon = 'icons/mob/screen/arrows.dmi', icon_state = "point_arrow", dir = SOUTH)
 
 		possible_directions["Down"] = down_arrow
 
@@ -786,14 +786,14 @@
 		return
 //NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST
 	var/static/list/tool_list = list(
-		"NORTH" = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = NORTH),
-		"NORTHEAST" = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = NORTH),
-		"EAST" = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = EAST),
-		"SOUTHEAST" = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = EAST),
-		"SOUTH" = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = SOUTH),
-		"SOUTHWEST" = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = SOUTH),
-		"WEST" = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = WEST),
-		"NORTHWEST" = image(icon = 'icons/testing/turf_analysis.dmi', icon_state = "red_arrow", dir = WEST)
+		"NORTH" = image(icon = 'icons/mob/screen/arrows.dmi', icon_state = "point_arrow", dir = NORTH),
+		"NORTHEAST" = image(icon = 'icons/mob/screen/arrows.dmi', icon_state = "point_arrow", dir = NORTH),
+		"EAST" = image(icon = 'icons/mob/screen/arrows.dmi', icon_state = "point_arrow", dir = EAST),
+		"SOUTHEAST" = image(icon = 'icons/mob/screen/arrows.dmi', icon_state = "point_arrow", dir = EAST),
+		"SOUTH" = image(icon = 'icons/mob/screen/arrows.dmi', icon_state = "point_arrow", dir = SOUTH),
+		"SOUTHWEST" = image(icon = 'icons/mob/screen/arrows.dmi', icon_state = "point_arrow", dir = SOUTH),
+		"WEST" = image(icon = 'icons/mob/screen/arrows.dmi', icon_state = "point_arrow", dir = WEST),
+		"NORTHWEST" = image(icon = 'icons/mob/screen/arrows.dmi', icon_state = "point_arrow", dir = WEST)
 		)
 
 	var/result = show_radial_menu(user, src, tool_list, custom_check = CALLBACK(src, PROC_REF(can_open_lift_radial), user, starting_position), require_near = TRUE, tooltips = FALSE)
