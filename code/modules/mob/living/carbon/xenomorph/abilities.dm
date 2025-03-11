@@ -1616,8 +1616,8 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 					baseturfs |= targetturf.type
 					targetturf.ChangeTurf(/turf/closed/wall/resin/regenerating, baseturfs)
 					SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()]--
-			iterx = iterx + 1
-		starty = starty - 1
+			iterx = iterx - 1
+		starty = starty + 1
 
 
 
