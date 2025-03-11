@@ -1,7 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscadd: "added open space turfs"
-  - code_imp: "added multi-z movement backend"
-  - code_imp: "added backend code for turf transparency"
-  - bugfix: "fixed ghosts being invis on multi-z maps"

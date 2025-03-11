@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - qol: "Certain HUDs will now appear over game world objects. Most notably this means that xeno HUDS now layer over smoke"
