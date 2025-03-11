@@ -683,6 +683,7 @@
 
 	RegisterSignal(grabbing_item, COMSIG_QDELETING, PROC_REF(end_grabbing))
 	RegisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED, PROC_REF(human_stat_changed))
+	RegisterSignal(grabbed_human, COMSIG_LIVING_DO_MOVE_RESIST, PROC_REF(on_resist_attempt))
 	RegisterSignals(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taken_damage))
 	xeno_owner.gain_plasma(250)
 	new /obj/effect/temp_visual/dragon/grab(get_turf(grabbed_human))
@@ -693,7 +694,7 @@
 	SIGNAL_HANDLER
 	REMOVE_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
 	UnregisterSignal(grabbing_item, COMSIG_QDELETING)
-	UnregisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED)
+	UnregisterSignal(grabbed_human, list(COMSIG_MOB_STAT_CHANGED, COMSIG_LIVING_DO_MOVE_RESIST))
 	UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
 	grabbed_human = null
 	grabbing_item = null
@@ -706,6 +707,11 @@
 	if(new_stat != DEAD)
 		return
 	xeno_owner.stop_pulling()
+
+/// Prevents all atempts to resist (and move).
+/datum/action/ability/activable/xeno/grab/proc/on_resist_attempt(datum/source)
+	SIGNAL_HANDLER
+	return COMSIG_LIVING_RESIST_SUCCESSFUL
 
 /// Stops grabbing if owner has taken 300 or more damage since beginning the grab. Damage is calculated after soft armor and plasma reduction.
 /datum/action/ability/activable/xeno/grab/proc/taken_damage(datum/source, amount, list/amount_mod)
