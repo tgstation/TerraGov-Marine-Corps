@@ -163,6 +163,8 @@
 	ghost_track = sound(ghost_track, channel = CHANNEL_CINEMATIC)
 
 	for(var/mob/mob AS in GLOB.player_list)
+		if(mob.client?.prefs?.toggles_sound & SOUND_NOENDOFROUND)
+			continue
 		switch(mob.faction)
 			if(FACTION_SOM)
 				SEND_SOUND(mob, som_track)
