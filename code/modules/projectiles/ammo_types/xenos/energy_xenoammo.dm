@@ -5,7 +5,6 @@
 */
 
 /datum/ammo/energy/xeno
-	barricade_clear_distance = 0
 	///Plasma cost to fire this projectile
 	var/ability_cost
 	///Particle type used when this ammo is used
