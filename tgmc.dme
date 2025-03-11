@@ -168,6 +168,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\__DEFINES\dcs\signals\signals_food.dm"
 #include "code\__DEFINES\dcs\signals\signals_hud.dm"
 #include "code\__DEFINES\dcs\signals\signals_keybindings.dm"
+#include "code\__DEFINES\dcs\signals\signals_ladder.dm"
 #include "code\__DEFINES\dcs\signals\signals_lazy_templates.dm"
 #include "code\__DEFINES\dcs\signals\signals_mind.dm"
 #include "code\__DEFINES\dcs\signals\signals_plane_master_group.dm"
