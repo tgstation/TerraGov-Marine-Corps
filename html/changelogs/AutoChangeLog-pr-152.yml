@@ -1,6 +1,0 @@
-author: "Meghan-Rossi"
-delete-after: True
-changes:
-  - bugfix: "Fixed Primordial Hivelord not being able to devour."
-  - bugfix: "Fixed Widow Secrete Resin menu having wrong icons."
-  - bugfix: "Fixed Widows having two copies of the button to change pheromones."
