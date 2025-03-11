@@ -132,7 +132,7 @@
 			nearest_target = nearby_vehicle
 			shorter_distance = get_dist(source, nearby_vehicle)
 	if(target_flags & TARGET_UNMANNED_VEHICLE)
-		for(var/atom/nearby_unmanned AS in GLOB.unmanned_vehicles)
+		for(var/obj/vehicle/unmanned/nearby_unmanned AS in GLOB.unmanned_vehicles)
 			if(source.z != nearby_unmanned.z)
 				continue
 			if(nearby_unmanned.faction == attacker_faction)
