@@ -26,13 +26,13 @@
 		link_down(down)
 
 	return INITIALIZE_HINT_LATELOAD
-/*
+
 /obj/structure/ladder/examine(mob/user)
 	. = ..()
 	. += span_info("[EXAMINE_HINT("Left-click")] it to start moving up; [EXAMINE_HINT("Right-click")] to start moving down.")
 	. += span_info("[EXAMINE_HINT("Left-click")] with an item to throw something up; [EXAMINE_HINT("Right-click")] with an item to throw it down.")
 	. += span_info("[EXAMINE_HINT("Drag to yourself")] to look up or down.")
-*/
+
 
 /obj/structure/ladder/Destroy(force)
 	GLOB.ladder_list -= src
