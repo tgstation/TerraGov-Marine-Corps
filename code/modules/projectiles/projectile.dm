@@ -37,8 +37,9 @@
 	animate_movement = NO_STEPS
 	light_system = MOVABLE_LIGHT
 	light_range = 1.5
-	light_power = 2
+	light_power = 1
 	light_color = COLOR_VERY_SOFT_YELLOW
+	appearance_flags = KEEP_TOGETHER
 
 	///greyscale support
 	greyscale_config
@@ -354,6 +355,7 @@
 		if(ammo.bullet_color)
 			set_light_color(ammo.bullet_color)
 			set_light_on(TRUE)
+			add_overlay(emissive_appearance(icon, icon_state, src, attached = TRUE))
 	else
 		alpha = 64
 

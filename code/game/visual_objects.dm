@@ -12,13 +12,14 @@
 	icon_state = "muzzle_flash"
 	layer = MOB_BELOW_PIGGYBACK_LAYER
 	plane = GAME_PLANE // todo we can make these emissive
-	appearance_flags = KEEP_APART|TILE_BOUND
+	appearance_flags = KEEP_APART|TILE_BOUND|KEEP_TOGETHER
 	var/applied = FALSE
 
 /atom/movable/vis_obj/effect/muzzle_flash/Initialize(mapload, new_icon_state)
 	. = ..()
 	if(new_icon_state)
 		icon_state = new_icon_state
+	add_overlay(emissive_appearance(icon, icon_state, src, attached = TRUE))
 
 /atom/movable/vis_obj/fulton_balloon
 	appearance_flags = RESET_COLOR|RESET_ALPHA|RESET_TRANSFORM
