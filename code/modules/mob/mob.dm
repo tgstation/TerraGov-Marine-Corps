@@ -23,6 +23,11 @@
 	set_focus(null)
 	return ..()
 
+/mob/New()
+	// This needs to happen IMMEDIATELY. I'm sorry :(
+	GenerateTag()
+	return ..()
+
 /mob/Initialize(mapload)
 	GLOB.mob_list += src
 	if(stat == DEAD)
@@ -45,6 +50,15 @@
 	update_movespeed(TRUE)
 	log_mob_tag("\[[tag]\] CREATED: [key_name(src)]")
 	become_hearing_sensitive()
+
+/**
+ * Generate the tag for this mob
+ *
+ * This is simply "mob_"+ a global incrementing counter that goes up for every mob
+ */
+/mob/GenerateTag()
+	. = ..()
+	tag = "mob_[next_mob_id++]"
 
 /mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
@@ -534,6 +548,7 @@
 
 
 /mob/GenerateTag()
+	. = ..()
 	tag = "mob_[next_mob_id++]"
 
 /mob/serialize_list(list/options, list/semvers)
@@ -605,6 +620,8 @@
 /mob/forceMove(atom/destination)
 	. = ..()
 	if(!.)
+		return
+	if(currently_z_moving)
 		return
 	stop_pulling()
 	if(buckled)
@@ -758,6 +775,8 @@
 		else
 			client.perspective = EYE_PERSPECTIVE
 			client.eye = loc
+	/// Signal sent after the eye has been successfully updated, with the client existing.
+	SEND_SIGNAL(src, COMSIG_MOB_RESET_PERSPECTIVE)
 	return TRUE
 
 /mob/proc/update_joined_player_list(newname, oldname)
@@ -880,14 +899,8 @@
 
 /mob/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents = TRUE)
 	. = ..()
-	if(!client || !hud_used)
-		return
-	if(old_turf?.z == new_turf?.z)
-		return
-	if(is_ground_level(new_turf.z))
-		hud_used.remove_parallax(src)
-		return
-	hud_used.create_parallax(src)
+	if(!same_z_layer)
+		relayer_fullscreens()
 
 /mob/proc/point_to_atom(atom/pointed_atom)
 	var/turf/tile = get_turf(pointed_atom)

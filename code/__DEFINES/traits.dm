@@ -133,6 +133,9 @@
 #define CURRENTLY_TYPING_TRAIT "currently_typing"
 /// Makes you way too tall. Like just too much, dude, it's kind of creepy. Humanoid only.
 #define TRAIT_TOO_TALL "too_tall"
+#define TRAIT_FREERUNNING "freerunning"
+/// This mob always lands on their feet when they fall, for better or for worse.
+#define TRAIT_CATLIKE_GRACE "catlike_grace"
 
 #define ABSTRACT_ITEM_TRAIT "abstract_item"
 /// A trait given by any status effect
@@ -158,6 +161,8 @@
 //atom/movable traits
 /// Trait that tracks if something has been renamed. Typically holds a REF() to the object itself (AKA src) for wide addition/removal.
 #define TRAIT_WAS_RENAMED "was_renamed"
+///Lets the movable move freely in the soft-cordon area of transit space, which would otherwise teleport them away just before they got to see the true cordon
+#define TRAIT_FREE_HYPERSPACE_SOFTCORDON_MOVEMENT "free_hyperspace_softcordon_movement"
 
 //mob traits
 #define TRAIT_POSSESSING "possessing" // Prevents mob from being taken by ghosts
@@ -198,6 +203,8 @@
 #define TRAIT_SUPERIOR_BUILDER "superior_builder"
 /// Mob has fov applied to it
 #define TRAIT_FOV_APPLIED "fov_applied"
+/// Expands our FOV by 30 degrees if restricted
+#define TRAIT_EXPANDED_FOV "expanded_fov"
 
 ///Traits for managing AM pass_flags
 #define TRAIT_PASS_LOW_STRUCTURE "pass_low_structure"
@@ -281,6 +288,8 @@
 #define TRAIT_STRAPPABLE "strappable"
 // turf traits
 #define TRAIT_TURF_BULLET_MANIPULATION "bullet_manipulation" //This tile is doing something to projectile
+///Turf trait for when a turf is transparent
+#define TURF_Z_TRANSPARENT_TRAIT "turf_z_transparent"
 // projectile traits
 #define TRAIT_PROJ_HIT_SOMETHING "hit_something" //If projectile hit something on its path
 //structure traits
