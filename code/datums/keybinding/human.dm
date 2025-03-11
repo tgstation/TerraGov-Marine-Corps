@@ -47,6 +47,8 @@
 		return
 
 	var/mob/living/carbon/human/human_user = user.mob
+	if(!ishuman(human_user))
+		return
 
 	human_user?.interact_other_hand()
 
