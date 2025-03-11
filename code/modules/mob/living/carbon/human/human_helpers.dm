@@ -376,3 +376,15 @@
 	var/datum/internal_organ/organ = get_organ_slot(string)
 	internal_organs_by_name -= string
 	internal_organs -= organ
+
+/mob/living/carbon/human/proc/interact_other_hand()
+	var/atom/active_hand = get_active_held_item()
+	var/atom/inactive_hand = get_inactive_held_item()
+
+	if(!inactive_hand)
+		return FALSE
+	if(!active_hand)
+		inactive_hand.attack_hand(src)
+		return FALSE
+	inactive_hand.attackby(active_hand, src)
+	return TRUE

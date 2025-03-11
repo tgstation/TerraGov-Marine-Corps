@@ -48,16 +48,7 @@
 
 	var/mob/living/carbon/human/human_user = user.mob
 
-	var/atom/active_hand = human_user.get_active_held_item()
-	var/atom/inactive_hand = human_user.get_inactive_held_item()
-
-	if(!inactive_hand)
-		return FALSE
-	if(!active_hand)
-		inactive_hand.attack_hand(human_user)
-		return FALSE
-	inactive_hand.attackby(active_hand, human_user)
-	return TRUE
+	human_user?.interact_other_hand()
 
 /datum/keybinding/human/unique_action
 	hotkey_keys = list("Space")
