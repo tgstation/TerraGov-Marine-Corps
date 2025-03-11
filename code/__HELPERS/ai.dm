@@ -113,6 +113,8 @@
 				continue
 			if((GLOB.faction_to_iff[attacker_faction] == nearby_turret.iff_signal))
 				continue
+			if(nearby_turret.faction == attacker_faction)
+				continue
 			if(get_dist(source, nearby_turret) >= shorter_distance)
 				continue
 			if(need_los && !line_of_sight(source, nearby_turret))
@@ -132,6 +134,8 @@
 	if(target_flags & TARGET_UNMANNED_VEHICLE)
 		for(var/atom/nearby_unmanned AS in GLOB.unmanned_vehicles)
 			if(source.z != nearby_unmanned.z)
+				continue
+			if(nearby_unmanned.faction == attacker_faction)
 				continue
 			if(get_dist(source, nearby_unmanned) >= shorter_distance)
 				continue
