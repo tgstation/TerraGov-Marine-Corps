@@ -75,11 +75,6 @@
 	fov_traits[source] = type
 	update_fov()
 
-/mob/living/verb/test()
-	set category = "test"
-	set name = "test"
-	add_fov_trait("test", FOV_180_DEGREES)
-
 /// Removes a trait which limits a user's FOV
 /mob/living/proc/remove_fov_trait(source, type)
 	if(!fov_traits) //Clothing equip/unequip is bad code and invokes this several times
