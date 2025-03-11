@@ -131,6 +131,8 @@
 //❤ - Cyberboss
 /proc/load_new_z_level(file, name, minimap = TRUE, list/traits = list(), no_place_on_top = FALSE)
 	var/datum/map_template/template = new(file, name, TRUE)
+	if(!template.cached_map || template.cached_map.check_for_errors())
+		return FALSE
 	if(no_place_on_top)
 		template.should_place_on_top = FALSE
 	return template.load_new_z(minimap, traits)
