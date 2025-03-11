@@ -95,14 +95,14 @@
 		return
 	ADD_TRAIT(new_desant, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
 	new_desant.add_nosubmerge_trait(VEHICLE_TRAIT)
-	LAZYSET(tank_desants, new_desant, new_desant.layer)
+	LAZYSET(tank_desants, new_desant, PLANE_TO_TRUE(new_desant.plane))
+	SET_PLANE_IMPLICIT(new_desant, ABOVE_GAME_PLANE)
 	RegisterSignal(new_desant, COMSIG_QDELETING, PROC_REF(on_desant_del))
-	new_desant.layer = ABOVE_MOB_PLATFORM_LAYER
 	root.add_desant(new_desant)
 
 ///Removes a desant
 /obj/hitbox/proc/remove_desant(atom/movable/desant)
-	desant.layer = LAZYACCESS(tank_desants, desant)
+	SET_PLANE_IMPLICIT(desant, LAZYACCESS(tank_desants, desant))
 	desant.remove_traits(list(TRAIT_TANK_DESANT, TRAIT_NOSUBMERGE), VEHICLE_TRAIT)
 	LAZYREMOVE(tank_desants, desant)
 	UnregisterSignal(desant, COMSIG_QDELETING)
@@ -317,29 +317,29 @@
 			bound_width = vehicle_width
 			bound_x = -32
 			bound_y = -32
-			root.pixel_x = -65
-			root.pixel_y = -48
+			root.pixel_w = -65
+			root.pixel_z = -48
 		if(SOUTH)
 			bound_height = vehicle_length
 			bound_width = vehicle_width
 			bound_x = -32
 			bound_y = -64
-			root.pixel_x = -65
-			root.pixel_y = -80
+			root.pixel_w = -65
+			root.pixel_z = -80
 		if(WEST)
 			bound_height = vehicle_width
 			bound_width = vehicle_length
 			bound_x = -64
 			bound_y = -32
-			root.pixel_x = -80
-			root.pixel_y = -56
+			root.pixel_w = -80
+			root.pixel_z = -56
 		if(EAST)
 			bound_height = vehicle_width
 			bound_width = vehicle_length
 			bound_x = -32
 			bound_y = -32
-			root.pixel_x = -48
-			root.pixel_y = -56
+			root.pixel_w = -48
+			root.pixel_z = -56
 
 	var/angle_change = dir2angle(new_dir) - dir2angle(old_dir)
 	//north needing to be considered 0 OR 360 is inconvenient, I'm sure there is a non ungabrain way to do this

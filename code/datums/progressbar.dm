@@ -32,6 +32,8 @@
 		return
 	bar = new bar_tag
 	bar.loc = target
+	SET_PLANE_EXPLICIT(bar, ABOVE_HUD_PLANE, U)
+	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	LAZYINITLIST(user.progressbars)
 	LAZYINITLIST(user.progressbars[bar.loc])
 	LAZYOR(user.progbar_towers, bar.loc)
@@ -116,7 +118,6 @@
 
 /image/progress/bar
 	icon_state = "prog_bar_1"
-	layer = HUD_LAYER
 	alpha = 0
 	var/interval = 5
 	var/height = PROGRESSBAR_STANDARD_HEIGHT

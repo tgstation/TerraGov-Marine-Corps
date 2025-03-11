@@ -78,14 +78,14 @@
 
 	return attacking_item.attack_obj(src, user)
 
-/obj/item/proc/attack_obj(obj/O, mob/living/user)
-	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, O, user) & COMPONENT_NO_ATTACK_OBJ)
+/obj/item/proc/attack_obj(obj/target_object, mob/living/user)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, target_object, user) & COMPONENT_NO_ATTACK_OBJ)
 		return
 	if(item_flags & NOBLUDGEON)
 		return
-	user.changeNext_move(CLICK_CD_MELEE)
-	user.do_attack_animation(O, used_item = src)
-	return O.attacked_by(src, user)
+	user.changeNext_move(attack_speed)
+	user.do_attack_animation(target_object, used_item = src)
+	return target_object.attacked_by(src, user)
 
 
 /atom/movable/proc/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)

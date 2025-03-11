@@ -69,6 +69,7 @@
 #define COOLDOWN_MECHA_SMOKE "mecha_smoke"
 #define COOLDOWN_MECHA_SKYFALL "mecha_skyfall"
 #define COOLDOWN_MECHA_MISSILE_STRIKE "mecha_missile_strike"
+#define COOLDOWN_MECHA_DASH "mecha_dash"
 
 #define COOLDOWN_VEHICLE_CRUSHSOUND "cooldown_vehicle_crushsound"
 //// COOLDOWN SYSTEMS

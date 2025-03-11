@@ -47,7 +47,7 @@
 		return
 
 	var/dat
-	user.visible_message(span_notice(" [user] runs the scanner over [target]."))
+	user.visible_message(span_notice("[user] runs the scanner over [target]."))
 
 	dat += "<h2>General Data</h2>"
 

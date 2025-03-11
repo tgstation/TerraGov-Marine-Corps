@@ -17,9 +17,9 @@
 	density = FALSE
 	obj_flags = CAN_BE_HIT
 	allow_pass_flags = NONE
-	layer = FIREDOOR_OPEN_LAYER
-	open_layer = FIREDOOR_OPEN_LAYER // Just below doors when open
-	closed_layer = FIREDOOR_CLOSED_LAYER // Just above doors when closed
+	layer = BELOW_OPEN_DOOR_LAYER
+	open_layer = BELOW_OPEN_DOOR_LAYER // Just below doors when open
+	closed_layer = CLOSED_FIREDOOR_LAYER // Just above doors when closed
 	power_channel = ENVIRON
 	use_power = TRUE
 	idle_power_usage = 5

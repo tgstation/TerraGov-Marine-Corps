@@ -188,4 +188,4 @@
 		debuff.add_stacks(PYROGEN_MELTING_FIRE_EFFECT_STACK, creator)
 	else
 		human_affected.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_MELTING_FIRE_EFFECT_STACK, creator)
-	human_affected.take_overall_damage(PYROGEN_MELTING_FIRE_DAMAGE, BURN, FIRE, max_limbs = 2)
+	human_affected.take_overall_damage(PYROGEN_MELTING_FIRE_DAMAGE, BURN, FIRE, updating_health = TRUE, max_limbs = 2)

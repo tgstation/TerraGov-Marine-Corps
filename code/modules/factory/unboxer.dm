@@ -284,6 +284,12 @@
 	refill_type = /obj/item/factory_part/smartgunner_targetrifle_ammobin
 	refill_amount = 10
 
+/obj/item/factory_refill/smartgunner_spottingrifle_ammobin_refill
+	name = "box of rounded metal plates (SG-153)"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/smartgunner_spottingrifle_ammobin
+	refill_amount = 10
+
 /obj/item/factory_refill/auto_sniper_magazine_refill
 	name = "box of rounded metal plates (SR-81)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These become produce SR-81 magazines, once finished."

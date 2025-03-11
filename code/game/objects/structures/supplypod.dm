@@ -272,7 +272,6 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	desc = "A holographic projection designating the landing zone of something. It's probably best to stand back."
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "sniper_zoom"
-	layer = XENO_HIDING_LAYER
 	var/obj/effect/temp_visual/fallingPod
 	var/obj/structure/closet/supplypod/pod
 

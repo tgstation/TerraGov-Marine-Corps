@@ -10,6 +10,8 @@
 	var/human_ai_behavior_flags = HUMAN_AI_SELF_HEAL|HUMAN_AI_USE_WEAPONS|HUMAN_AI_NO_FF|HUMAN_AI_AVOID_HAZARDS
 	///Flags about what the AI is current doing or wanting
 	var/human_ai_state_flags = HUMAN_AI_NEED_WEAPONS
+	///To what level they will handle healing others
+	var/medical_rating = AI_MED_STANDARD
 	///List of abilities to consider doing every Process()
 	var/list/ability_list = list()
 	///Inventory datum so the mob_parent can manage its inventory
@@ -20,28 +22,38 @@
 	var/list/new_follow_chat = list("Following.", "Following you.", "I got your back!", "Take the lead.", "Let's move!", "Let's go!", "Group up!.", "In formation.", "Where to?",)
 	///Chat lines when engaging a new target
 	var/list/new_target_chat = list("Get some!!", "Engaging!", "You're mine!", "Bring it on!", "Hostiles!", "Take them out!", "Kill 'em!", "Lets rock!", "Go go go!!", "Waste 'em!", "Intercepting.", "Weapons free!", "Fuck you!!", "Moving in!")
+	///Chat lines for retreating on low health
+	var/list/retreating_chat = list("Falling back!", "Cover me, I'm hit!", "I'm hit!", "Cover me!", "Disengaging!", "Help me!", "Need a little help here!", "Tactical withdrawal.", "Repositioning.", "Taking fire!", "Taking heavy fire!", "Run for it!")
 	COOLDOWN_DECLARE(ai_chat_cooldown)
 	COOLDOWN_DECLARE(ai_run_cooldown)
 	COOLDOWN_DECLARE(ai_damage_cooldown)
+	COOLDOWN_DECLARE(ai_heal_after_dam_cooldown)
+	COOLDOWN_DECLARE(ai_retreat_cooldown)
 
 /datum/ai_behavior/human/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
 	refresh_abilities()
 	mob_parent.a_intent = INTENT_HARM
 	mob_inventory = new(mob_parent)
-	RegisterSignal(mob_parent, COMSIG_MOB_TOGGLEMOVEINTENT, PROC_REF(on_move_toggle))
 
 /datum/ai_behavior/human/Destroy(force, ...)
 	gun = null
 	melee_weapon = null
 	hazard_list = null
+	heal_list = null
 	QDEL_NULL(mob_inventory)
 	return ..()
 
 /datum/ai_behavior/human/start_ai()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))
 	RegisterSignals(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
-	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(check_for_critical_health))
+	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(on_take_damage))
+	RegisterSignal(mob_parent, COMSIG_AI_HEALING_MOB, PROC_REF(parent_being_healed))
+	RegisterSignal(mob_parent, COMSIG_MOB_TOGGLEMOVEINTENT, PROC_REF(on_move_toggle))
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_ON_CRIT, PROC_REF(on_other_mob_crit))
+	if(mob_parent?.skills?.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_PRACTICED) //placeholder setter. Some jobs have high med but aren't medics...
+		medical_rating = AI_MED_MEDIC
+		RegisterSignals(SSdcs, list(COMSIG_GLOB_AI_NEED_HEAL, COMSIG_GLOB_MOB_CALL_MEDIC), PROC_REF(mob_need_heal))
 	if(human_ai_behavior_flags & HUMAN_AI_AVOID_HAZARDS)
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_HAZARD_NOTIFIED, PROC_REF(add_hazard))
 		RegisterSignal(mob_parent, COMSIG_MOVABLE_Z_CHANGED, (PROC_REF(on_change_z)))
@@ -54,9 +66,19 @@
 	return ..()
 
 /datum/ai_behavior/human/cleanup_signals()
-	UnregisterSignal(mob_parent, list(COMSIG_OBSTRUCTED_MOVE, ACTION_GIVEN, ACTION_REMOVED, COMSIG_HUMAN_DAMAGE_TAKEN, COMSIG_LIVING_SET_LYING_ANGLE, COMSIG_MOVABLE_Z_CHANGED, COMSIG_MOVABLE_HEAR))
+	UnregisterSignal(mob_parent, list(
+		COMSIG_OBSTRUCTED_MOVE,
+		ACTION_GIVEN,
+		ACTION_REMOVED,
+		COMSIG_HUMAN_DAMAGE_TAKEN,
+		COMSIG_LIVING_SET_LYING_ANGLE,
+		COMSIG_MOVABLE_Z_CHANGED,
+		COMSIG_MOVABLE_HEAR,
+		COMSIG_AI_HEALING_MOB,
+		COMSIG_MOB_TOGGLEMOVEINTENT,
+	))
 	UnregisterSignal(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED))
-	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_HAZARD_NOTIFIED)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_HAZARD_NOTIFIED, COMSIG_GLOB_MOB_ON_CRIT, COMSIG_GLOB_AI_NEED_HEAL, COMSIG_GLOB_MOB_CALL_MEDIC)
 	return ..()
 
 /datum/ai_behavior/human/process()
@@ -64,6 +86,9 @@
 		return ..()
 	if(mob_parent.do_actions)
 		return ..()
+
+	if((medical_rating >= AI_MED_MEDIC) && medic_process())
+		return
 
 	for(var/datum/action/action in ability_list)
 		if(!action.ai_should_use(atom_to_walk_to)) //todo: some of these probably should be aimmed at combat_target somehow...
@@ -79,6 +104,17 @@
 			return ..()
 		weapon_process()
 
+	return ..()
+
+/datum/ai_behavior/human/scheduled_move()
+	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+		registered_for_move = FALSE
+		return
+	return ..()
+
+/datum/ai_behavior/human/ai_do_move()
+	if(mob_parent.pulledby?.faction == mob_parent.faction)
+		return //lets players wrangle NPC's
 	return ..()
 
 /datum/ai_behavior/human/register_action_signals(action_type)
@@ -98,11 +134,18 @@
 	if(next_action == MOVING_TO_NODE)
 		return
 
+/datum/ai_behavior/human/change_action(next_action, atom/next_target, list/special_distance_to_maintain)
+	. = ..()
+	if(!.)
+		return
+	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+		mob_parent.a_intent = INTENT_HELP
+
 /datum/ai_behavior/human/look_for_new_state()
+	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+		return
 	var/mob/living/living_parent = mob_parent
 	switch(current_action)
-		if(MOB_HEALING)
-			return
 		if(ESCORTING_ATOM)
 			if(get_dist(escorted_atom, mob_parent) > AI_ESCORTING_MAX_DISTANCE)
 				look_for_next_node()
@@ -141,20 +184,26 @@
 				return
 			change_action(null, next_target)//We found a better target, change course!
 		if(MOVING_TO_SAFETY)
-			if(!COOLDOWN_CHECK(src, ai_damage_cooldown))
-				return
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
-			if(!next_target)//looks safe
+			if(COOLDOWN_CHECK(src, ai_retreat_cooldown))
 				target_distance = initial(target_distance)
 				cleanup_current_action()
 				late_initialize()
 				if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && living_parent.health <= minimum_health * 3 * living_parent.maxHealth)
 					INVOKE_ASYNC(src, PROC_REF(try_heal))
 				return
-			set_combat_target(next_target)
-			if(next_target == atom_to_walk_to)
+			if(combat_target) //keep fighting as you retreat
 				return
-			set_atom_to_walk_to(next_target)
+			var/atom/next_target = get_nearest_target(escorted_atom, initial(target_distance), TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
+			if(next_target)
+				set_combat_target(next_target)
+				if(next_target != atom_to_walk_to)
+					set_atom_to_walk_to(next_target)
+				return
+			target_distance = initial(target_distance)
+			cleanup_current_action()
+			late_initialize()
+			if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && living_parent.health <= minimum_health * 3 * living_parent.maxHealth)
+				INVOKE_ASYNC(src, PROC_REF(try_heal))
 		if(IDLE)
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
 			if(!next_target)
@@ -165,8 +214,7 @@
 
 /datum/ai_behavior/human/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
-	if(obstacle_turf.atom_flags & AI_BLOCKED)
-		return
+
 	for(var/mob/mob_blocker in obstacle_turf.contents)
 		if(!mob_blocker.density)
 			continue
@@ -174,31 +222,19 @@
 		return
 
 	var/should_jump = FALSE
-	var/mob/living/living_parent = mob_parent
-	var/can_jump = living_parent.can_jump()
-	for(var/obj/object in obstacle_turf.contents)
+	for(var/obj/object in obstacle_turf)
 		if(!object.density)
 			continue
-		if(can_jump && object.is_jumpable(mob_parent))
-			should_jump = TRUE
+		var/obstacle_reaction = object.ai_handle_obstacle(mob_parent, direction)
+		if(obstacle_reaction == AI_OBSTACLE_RESOLVED)
+			return COMSIG_OBSTACLE_DEALT_WITH //we've dealt with it on the obstacle side
+		if(obstacle_reaction == AI_OBSTACLE_JUMP)
+			should_jump = TRUE //we will try jump if the only obstacles are all jumpable
 			continue
-		if(isstructure(object))
-			var/obj/structure/structure = object
-			if(structure.climbable)
-				INVOKE_ASYNC(structure, TYPE_PROC_REF(/obj/structure, do_climb), mob_parent)
-				return COMSIG_OBSTACLE_DEALT_WITH
-		if(istype(object, /obj/machinery/door/airlock))
-			var/obj/machinery/door/airlock/lock = object
-			if(lock.operating) //Airlock already doing something
-				continue
-			if(lock.welded || lock.locked) //It's welded or locked, can't force that open
-				INVOKE_ASYNC(src, PROC_REF(melee_interact), null, object)
-				return COMSIG_OBSTACLE_DEALT_WITH
-			lock.open(TRUE)
-			return COMSIG_OBSTACLE_DEALT_WITH
-		if(!(object.resistance_flags & INDESTRUCTIBLE))
+		if(obstacle_reaction == AI_OBSTACLE_ATTACK)
 			INVOKE_ASYNC(src, PROC_REF(melee_interact), null, object)
-			return COMSIG_OBSTACLE_DEALT_WITH
+			return COMSIG_OBSTACLE_DEALT_WITH //we gotta hit it
+
 
 	if(should_jump)
 		SEND_SIGNAL(mob_parent, COMSIG_AI_JUMP)
@@ -207,23 +243,29 @@
 
 	if(ISDIAGONALDIR(direction) && ((deal_with_obstacle(null, turn(direction, -45)) & COMSIG_OBSTACLE_DEALT_WITH) || (deal_with_obstacle(null, turn(direction, 45)) & COMSIG_OBSTACLE_DEALT_WITH)))
 		return COMSIG_OBSTACLE_DEALT_WITH
+
 	//Ok we found nothing, yet we are still blocked. Check for blockers on our current turf
-	obstacle_turf = get_turf(mob_parent)
-	for(var/obj/structure/obstacle in obstacle_turf.contents)
+	for(var/obj/obstacle in get_turf(mob_parent))
 		if(!obstacle.density)
 			continue
-		if(!((obstacle.atom_flags & ON_BORDER) && (obstacle.dir & direction)))
-			continue
-		if(obstacle.is_jumpable(mob_parent))
+		var/obstacle_reaction = obstacle.ai_handle_obstacle(mob_parent, direction)
+		if(obstacle_reaction == AI_OBSTACLE_RESOLVED)
+			return COMSIG_OBSTACLE_DEALT_WITH
+		if(obstacle_reaction == AI_OBSTACLE_JUMP)
 			should_jump = TRUE
 			continue
-		if(!(obstacle.resistance_flags & INDESTRUCTIBLE))
+		if(obstacle_reaction == AI_OBSTACLE_ATTACK)
 			INVOKE_ASYNC(src, PROC_REF(melee_interact), null, obstacle)
 			return COMSIG_OBSTACLE_DEALT_WITH
 
 	if(should_jump)
 		SEND_SIGNAL(mob_parent, COMSIG_AI_JUMP)
 		INVOKE_ASYNC(src, PROC_REF(ai_complete_move), direction, FALSE)
+		return COMSIG_OBSTACLE_DEALT_WITH
+
+	//We do this last because there could be other stuff blocking us from even reaching the turf
+	if(istype(obstacle_turf, /turf/closed/wall/resin))
+		INVOKE_ASYNC(src, PROC_REF(melee_interact), null, obstacle_turf)
 		return COMSIG_OBSTACLE_DEALT_WITH
 
 /datum/ai_behavior/human/set_goal_node(datum/source, obj/effect/ai_node/new_goal_node)
@@ -255,6 +297,9 @@
 /datum/ai_behavior/human/do_unset_target(atom/old_target, need_new_state = TRUE)
 	if(combat_target == old_target && (human_ai_state_flags & HUMAN_AI_FIRING))
 		stop_fire()
+	remove_from_heal_list(old_target)
+	if(human_ai_state_flags & HUMAN_AI_HEALING)
+		on_heal_end(old_target)
 	return ..()
 
 ///Sets run move intent if able
@@ -277,25 +322,40 @@
 		if(action.ai_should_start_consider())
 			ability_list += action
 
-///Handles physical interactions, like attacks
+///Sig handler for physical interactions, like attacks
 /datum/ai_behavior/human/proc/melee_interact(datum/source, atom/interactee)
 	SIGNAL_HANDLER
-	if(world.time < mob_parent.next_move)
+	if(mob_parent.next_move > world.time)
 		return
 	if(!interactee)
 		interactee = atom_to_walk_to //this seems like it should be combat_target, but the only time this should come up is if combat_target IS atom_to_walk_to
 	if(!mob_parent.CanReach(interactee, melee_weapon)) //todo: copy this for beno code, lots of other stuff too.
 		return
+
+	mob_parent.face_atom(interactee)
+
 	if(interactee == interact_target)
 		if(isturf(interactee.loc)) //no pickpocketing
-			mob_parent.UnarmedAttack(interactee, TRUE)
+			. = try_interact(interactee)
 		unset_target(interactee)
 		return
-	mob_parent.face_atom(interactee)
+
 	if(melee_weapon)
 		INVOKE_ASYNC(melee_weapon, TYPE_PROC_REF(/obj/item, melee_attack_chain), mob_parent, interactee)
-		return
+		return TRUE
 	mob_parent.UnarmedAttack(interactee, TRUE)
+	return TRUE
+
+///Tries to interact with something, usually nonharmfully
+/datum/ai_behavior/human/proc/try_interact(atom/interactee)
+	if(ishuman(interactee))
+		var/mob/living/carbon/human/human = interactee
+		if(mob_parent.faction != human.faction)
+			return
+		INVOKE_ASYNC(src, PROC_REF(try_heal_other), human)
+		return TRUE
+	interactee.do_ai_interact(mob_parent)
+	return TRUE
 
 ///Says an audible message
 /datum/ai_behavior/human/proc/try_speak(message, cooldown = 2 SECONDS)
@@ -307,6 +367,51 @@
 	mob_parent.say(message)
 	COOLDOWN_START(src, ai_chat_cooldown, cooldown)
 
+///Reacts if the mob is below the min health threshold
+/datum/ai_behavior/human/proc/on_take_damage(datum/source, damage, mob/attacker)
+	SIGNAL_HANDLER
+	if(damage < 5) //Don't want chip damage causing a retreat
+		return
+	if(!COOLDOWN_CHECK(src, ai_damage_cooldown))
+		return
+	COOLDOWN_START(src, ai_damage_cooldown, 1 SECONDS)
+	if(human_ai_state_flags & HUMAN_AI_FIRING)
+		return
+	if(attacker)
+		COOLDOWN_START(src, ai_heal_after_dam_cooldown, 4 SECONDS)
+		if((human_ai_state_flags & HUMAN_AI_ANY_HEALING)) //dont just stand there
+			human_ai_state_flags &= ~(HUMAN_AI_ANY_HEALING)
+			late_initialize()
+			return
+		if(current_action == MOVING_TO_SAFETY)
+			if(attacker && attacker.faction != mob_parent.faction)
+				set_combat_target(attacker)
+			return
+
+	if(!(human_ai_behavior_flags & HUMAN_AI_SELF_HEAL))
+		return
+	if((human_ai_state_flags & HUMAN_AI_ANY_HEALING))
+		return
+
+	var/mob/living/living_mob = mob_parent
+	if(living_mob.health - damage > minimum_health * living_mob.maxHealth)
+		return
+	if(mob_parent.incapacitated() || mob_parent.lying_angle)
+		return
+	if(!check_hazards())
+		return
+
+	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
+	if(!next_target)
+		INVOKE_ASYNC(src, PROC_REF(try_heal)) //its safe to heal
+		return
+	if(prob(50))
+		try_speak(pick(retreating_chat))
+	set_run(TRUE)
+	target_distance = 12
+	COOLDOWN_START(src, ai_retreat_cooldown, 8 SECONDS)
+	change_action(MOVING_TO_SAFETY, next_target, list(INFINITY)) //fallback
+
 ///Reacts to a heard message
 /datum/ai_behavior/human/proc/recieve_message(atom/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	SIGNAL_HANDLER
@@ -315,17 +420,3 @@
 
 /datum/ai_behavior/human/suicidal
 	minimum_health = 0
-
-//test stuff
-/mob/living/proc/add_test_ai()
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
-
-/mob/living/proc/add_test_ai_all()
-	for(var/mob/living/carbon/human/human_mob AS in GLOB.alive_human_list)
-		if(human_mob.client)
-			continue
-		human_mob.AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
-
-/mob/living/carbon/human/ai/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
