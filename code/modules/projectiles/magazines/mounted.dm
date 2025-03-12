@@ -219,3 +219,16 @@
 	default_ammo = /datum/ammo/bullet/machinegun
 	reload_delay = 5 SECONDS
 	icon_state_mini = "mag_hmg"
+
+/obj/item/ammo_magazine/at45
+	name = "CC/AT45 drum magazine (10x30mm Caseless)"
+	desc = "A drum mag loaded with 10x30mm caseless rounds for the CC/AT45."
+	w_class = WEIGHT_CLASS_NORMAL
+	icon_state = "at45"
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
+	magazine_flags = NONE
+	caliber = CALIBER_10X30
+	max_rounds = 300
+	default_ammo = /datum/ammo/bullet/machinegun
+	reload_delay = 5 SECONDS
+	icon_state_mini = "mag_hmg"
