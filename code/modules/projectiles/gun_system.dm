@@ -1891,6 +1891,7 @@
 		flash_loc.vis_contents -= muzzle_flash
 	muzzle_flash.applied = FALSE
 
+///Updates the current mouse pointer to use the gun crosshair or not
 /obj/item/weapon/gun/proc/update_mouse_pointer(reset)
 	if(reset)
 		gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
