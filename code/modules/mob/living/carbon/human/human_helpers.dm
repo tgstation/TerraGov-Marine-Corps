@@ -383,9 +383,9 @@
 	var/atom/inactive_hand = get_inactive_held_item()
 
 	if(!inactive_hand)
-		return FALSE
+		return
 	if(!active_hand)
 		inactive_hand.attack_hand(src)
-		return FALSE
+		return
 	inactive_hand.attackby(active_hand, src)
-	return TRUE
+	return
