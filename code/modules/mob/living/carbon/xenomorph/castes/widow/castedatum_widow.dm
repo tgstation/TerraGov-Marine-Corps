@@ -74,10 +74,6 @@
 		/datum/action/ability/xeno_action/attach_spiderlings,
 		/datum/action/ability/activable/xeno/cannibalise,
 		/datum/action/ability/activable/xeno/spiderling_mark,
-		/datum/action/ability/xeno_action/pheromones,
-		/datum/action/ability/xeno_action/pheromones/emit_recovery,
-		/datum/action/ability/xeno_action/pheromones/emit_warding,
-		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 	)
 
 /datum/xeno_caste/widow/on_caste_applied(mob/xenomorph)
@@ -128,8 +124,4 @@
 		/datum/action/ability/activable/xeno/spiderling_mark,
 		/datum/action/ability/xeno_action/sow,
 		/datum/action/ability/activable/xeno/web_hook,
-		/datum/action/ability/xeno_action/pheromones,
-		/datum/action/ability/xeno_action/pheromones/emit_recovery,
-		/datum/action/ability/xeno_action/pheromones/emit_warding,
-		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 	)
