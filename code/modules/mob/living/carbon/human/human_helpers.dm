@@ -388,4 +388,3 @@
 		inactive_hand.attack_hand(src)
 		return
 	inactive_hand.attackby(active_hand, src)
-	return
