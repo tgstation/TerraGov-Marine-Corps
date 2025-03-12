@@ -22,8 +22,13 @@
 	var/list/obj/structure/xeno/psychictower/psychictowers = list()
 	///list of phero towers
 	var/list/obj/structure/xeno/pherotower/pherotowers = list()
+<<<<<<< HEAD
 	/// List of recovery pylons.
 	var/list/obj/structure/xeno/recovery_pylon/recovery_pylons = list()
+=======
+	/// List of recovery nodes.
+	var/list/obj/structure/xeno/recovery_node/recovery_nodes = list()
+>>>>>>> c16bd7823c (hivelord recovery node)
 
 	///list of hivemind cores
 	var/list/obj/structure/xeno/hivemindcore/hivemindcores = list()

@@ -255,7 +255,11 @@
 #define TRAIT_XENOMORPH_INVISIBLE_BLOOD "invisible_blood"
 #define TRAIT_VALHALLA_XENO "valhalla_xeno"
 #define TRAIT_BULWARKED_TURF "bulwarked_turf" // turf is affected by bulwark ability
+<<<<<<< HEAD
 #define TRAIT_RECOVERY_PYLON_TURF "recovery_pylon_turf" // Turf is affected by a recovery pylon.
+=======
+#define TRAIT_RECOVERY_NODE_TURF "recovery_node_turf" // Turf is affected by a recovery node.
+>>>>>>> c16bd7823c (hivelord recovery node)
 #define TRAIT_BLOODTHIRSTER "bloodthirster" // xeno has the bloodthirster ability
 
 //important_recursive_contents traits
