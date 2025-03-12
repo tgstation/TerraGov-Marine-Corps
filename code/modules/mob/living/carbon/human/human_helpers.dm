@@ -377,6 +377,7 @@
 	internal_organs_by_name -= string
 	internal_organs -= organ
 
+/// Current active hand will interact with the other hand. Uses attackby and attack_hand.
 /mob/living/carbon/human/proc/interact_other_hand()
 	var/atom/active_hand = get_active_held_item()
 	var/atom/inactive_hand = get_inactive_held_item()
