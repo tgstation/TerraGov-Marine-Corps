@@ -95,8 +95,11 @@
 		return
 
 	if((human_parent.nutrition <= NUTRITION_HUNGRY) && length(mob_inventory.food_list) && (human_parent.nutrition + (37.5 * human_parent.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)) < NUTRITION_WELLFED))
-		var/obj/item/reagent_containers/food/food = mob_inventory.food_list[1]
-		food.ai_use(human_parent, human_parent)
+		for(var/obj/item/reagent_containers/food/food AS in mob_inventory.food_list)
+			if(!food.ai_should_use(human_parent))
+				continue
+			food.ai_use(human_parent, human_parent)
+			break
 
 	if(mob_parent.buckled && !istype(mob_parent.buckled, /obj/structure/droppod)) //unbuckling from your pod midflight is not ideal
 		mob_parent.buckled.unbuckle_mob(mob_parent)
