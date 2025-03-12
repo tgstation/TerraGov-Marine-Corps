@@ -48,6 +48,13 @@
 	if(prob(10))
 		L.emote(pick("twitch","blink_r","shiver"))
 
+/datum/reagent/medicine/inaprovaline/ai_should_use(mob/living/target, inject_vol)
+	if(!target.InCritical())
+		return FALSE
+	if(TIMER_COOLDOWN_CHECK(target, name))
+		return FALSE
+	return ..()
+
 /datum/reagent/medicine/ryetalyn
 	name = "Ryetalyn"
 	description = "Ryetalyn is a long-duration shield against toxic chemicals."
@@ -169,6 +176,11 @@
 	to_chat(L, span_userdanger("The room spins slightly as you start to come down off your painkillers!"))
 	TIMER_COOLDOWN_START(L, name, 60 SECONDS)
 
+/datum/reagent/medicine/oxycodone/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
+
 /datum/reagent/medicine/hydrocodone
 	name = "Hydrocodone"
 	description = "An effective but very short lasting painkiller only made by autodocs."
@@ -265,6 +277,11 @@
 
 /datum/reagent/medicine/dermaline/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(3*effect_str, 0, 3*effect_str)
+
+/datum/reagent/medicine/dermaline/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/saline_glucose
 	name = "Saline-Glucose"
@@ -389,6 +406,11 @@
 		if(E)
 			E.take_damage(1.5*effect_str, TRUE)
 
+/datum/reagent/medicine/dylovene/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type)) //it has downsides so lets not spam it
+		return FALSE
+	return ..()
+
 /datum/reagent/medicine/adminordrazine //An OP chemical for admins
 	name = "Adminordrazine"
 	description = "It's magic. We don't have to explain it."
@@ -465,6 +487,11 @@
 	to_chat(L, span_userdanger("The room spins as you start to come down off your stimulants!"))
 	TIMER_COOLDOWN_START(L, name, 60 SECONDS)
 
+/datum/reagent/medicine/synaptizine/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type)) //it has downsides so lets not spam it
+		return FALSE
+	return ..()
+
 /datum/reagent/medicine/neuraline //injected by neurostimulator implant and medic-only injector
 	name = "Neuraline"
 	description = "A chemical cocktail tailored to enhance or dampen specific neural processes."
@@ -511,6 +538,11 @@
 
 /datum/reagent/medicine/neuraline/overdose_crit_process(mob/living/L, metabolism)
 	L.adjustBrainLoss(10*effect_str, TRUE) //if you double inject, you're fucked till surgery. This is the downside of a very strong chem.
+
+/datum/reagent/medicine/neuraline/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/hyronalin
 	name = "Hyronalin"
@@ -585,6 +617,11 @@
 	L.apply_damages(effect_str, 2*effect_str, effect_str)
 	L.adjustBrainLoss(2*effect_str, TRUE)
 
+/datum/reagent/medicine/russian_red/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
+
 /datum/reagent/medicine/alkysine
 	name = "Alkysine"
 	description = "Alkysine is a drug used to lessen the damage to neurological and auditory tissue after a catastrophic injury. Can heal brain and ear tissue."
@@ -604,6 +641,11 @@
 
 /datum/reagent/medicine/alkysine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(0, effect_str, effect_str)
+
+/datum/reagent/medicine/alkysine/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"
@@ -628,6 +670,11 @@
 
 /datum/reagent/medicine/imidazoline/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(0, effect_str, 2*effect_str)
+
+/datum/reagent/medicine/imidazoline/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/peridaxon_plus
 	name = "Peridaxon Plus"
@@ -655,6 +702,11 @@
 
 /datum/reagent/medicine/peridaxon_plus/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(15*effect_str, TOX) //Ya triple-clicked. Ya shouldn'ta did that.
+
+/datum/reagent/medicine/peridaxon_plus/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
@@ -706,6 +758,11 @@
 /datum/reagent/medicine/meralyne/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(2*effect_str, 6*effect_str, 4*effect_str)
 
+/datum/reagent/medicine/meralyne/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
+
 /datum/reagent/medicine/quickclot
 	name = "Quick Clot"
 	description = "A chemical designed to quickly arrest all sorts of bleeding by encouraging coagulation. Can rectify internal bleeding at cryogenic temperatures."
@@ -731,6 +788,10 @@
 /datum/reagent/medicine/quickclot/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(0, 2*effect_str, 2*effect_str)
 
+/datum/reagent/medicine/quickclot/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/quickclotplus
 	name = "Quick Clot Plus"
@@ -805,6 +866,11 @@
 /datum/reagent/medicine/quickclotplus/overdose_crit_process(mob/living/L, metabolism)
 	L.adjust_blood_volume(-20)
 
+/datum/reagent/medicine/quickclotplus/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
+
 /datum/reagent/medicine/nanoblood
 	name = "Nanoblood"
 	description = "A chemical designed to massively boost the body's natural blood restoration rate. Causes fatigue and minor toxic effects."
@@ -829,6 +895,11 @@
 
 /datum/reagent/medicine/nanoblood/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(3*effect_str, TOX)
+
+/datum/reagent/medicine/nanoblood/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/ultrazine
 	name = "Ultrazine"
@@ -907,8 +978,6 @@
 		var/datum/internal_organ/I = H.internal_organs_by_name[affected_organ]
 		I.take_damage(5.5*effect_str)
 
-
-
 /datum/reagent/medicine/ultrazine/overdose_process(mob/living/L, metabolism)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
@@ -928,6 +997,11 @@
 		var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
 		if(E)
 			E.take_damage(1.5*effect_str, TRUE)
+
+/datum/reagent/medicine/ultrazine/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/cryoxadone
 	name = "Cryoxadone"
@@ -995,6 +1069,11 @@
 /datum/reagent/medicine/rezadone/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(2*effect_str, TOX)
 
+/datum/reagent/medicine/rezadone/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
+
 /datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"
 	description = "An all-purpose antiviral agent."
@@ -1008,6 +1087,11 @@
 
 /datum/reagent/medicine/spaceacillin/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(2*effect_str, TOX)
+
+/datum/reagent/medicine/spaceacillin/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/polyhexanide
 	name = "Polyhexanide"

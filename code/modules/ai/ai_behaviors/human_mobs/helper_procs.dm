@@ -23,7 +23,7 @@
 	if(!length(reagents.reagent_list)) //todo: discard if empty
 		return FALSE
 	for(var/datum/reagent/reagent AS in reagents.reagent_list)
-		if((reagent.volume / reagents.total_volume * amount_per_transfer_from_this) + target.reagents.get_reagent_amount(reagent.type) > reagent.overdose_threshold)
+		if(!ai_should_use(target, reagent.volume / reagents.total_volume * amount_per_transfer_from_this))
 			return FALSE
 	return TRUE
 
