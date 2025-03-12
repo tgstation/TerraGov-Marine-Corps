@@ -87,16 +87,16 @@
 	if(mob_parent.do_actions)
 		return ..()
 
+	var/mob/living/carbon/human/human_parent = mob_parent
 	if(human_parent.lying_angle)
 		INVOKE_ASYNC(human_parent, TYPE_PROC_REF(/mob/living/carbon/human, get_up))
 
 	if((medical_rating >= AI_MED_MEDIC) && medic_process())
 		return
 
-	var/mob/living/carbon/human/human_parent = mob_parent
 	if((human_parent.nutrition <= NUTRITION_HUNGRY) && length(mob_inventory.food_list) && (human_parent.nutrition + (37.5 * human_parent.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)) < NUTRITION_WELLFED))
 		var/obj/item/reagent_containers/food/food = mob_inventory.food_list[1]
-		food.ai_use(mob_parent, mob_parent)
+		food.ai_use(human_parent, human_parent)
 
 	if(mob_parent.buckled && !istype(mob_parent.buckled, /obj/structure/droppod)) //unbuckling from your pod midflight is not ideal
 		mob_parent.buckled.unbuckle_mob(mob_parent)
