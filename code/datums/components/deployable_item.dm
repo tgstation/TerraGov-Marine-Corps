@@ -91,6 +91,8 @@
 			if(!(object.obj_flags & BLOCKS_CONSTRUCTION))
 				if(!object.density)
 					continue
+				if(object.atom_flags & ON_BORDER)
+					continue
 			return FALSE
 	return TRUE
 
