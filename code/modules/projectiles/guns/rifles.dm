@@ -2861,6 +2861,10 @@
 /obj/item/weapon/gun/rifle/vsd_rifle/medic
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip, /obj/item/attachable/suppressor)
 
+/obj/item/weapon/gun/rifle/vsd_rifle/export
+	icon_state = "c550_export"
+	worn_icon_state = "c550_export"
+
 // CC/74
 
 /obj/item/weapon/gun/rifle/vsd_lmg_main

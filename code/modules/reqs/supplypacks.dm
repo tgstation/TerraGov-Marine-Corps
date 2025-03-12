@@ -1900,6 +1900,16 @@ Imports
 	cost = 15
 
 /datum/supply_packs/imports/aug	//Vietnam time
+	name = "CC/67 assault rifle"
+	contains = list(/obj/item/weapon/gun/rifle/vsd_rifle/export)
+	cost = 120
+
+/datum/supply_packs/imports/aug/ammo
+	name = "CC/67 assault rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/vsd_rifle)
+	cost = 5
+
+/datum/supply_packs/imports/aug	//Vietnam time
 	name = "L&S EM-88 assault carbine"
 	contains = list(/obj/item/weapon/gun/rifle/icc_assaultcarbine/export)
 	cost = 120
