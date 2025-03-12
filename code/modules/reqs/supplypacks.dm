@@ -24,6 +24,7 @@ GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Smartguns", "
 		new AM(location)
 
 
+
 /*******************************************************************************
 OPERATIONS
 *******************************************************************************/
@@ -2643,3 +2644,4 @@ FACTORY
 	name = "500 cigarettes assembly refill"
 	contains = list(/obj/item/factory_refill/cigarette_refill)
 	cost = 500
+

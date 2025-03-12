@@ -10,6 +10,7 @@
 	spawn_equipped_type = /obj/item/uav_turret/droid
 	allow_pass_flags = PASS_AIR
 	unmanned_flags = HAS_LIGHTS|OVERLAY_TURRET
+	faction = FACTION_TERRAGOV
 	/// Action to activate suppply antenna.
 	var/datum/action/antenna/antenna
 	/// The mob controlling the droid remotely
@@ -95,7 +96,7 @@
 ///Plays effects and doafter effects for the drone
 /obj/vehicle/unmanned/droid/scout/proc/start_cloak(mob/user)
 	if(!do_after(user, 3 SECONDS, IGNORE_HELD_ITEM, src))
-		to_chat(user, span_warning(" WARNING. Cloak activation failed; Error code 423: Subject moved during activation."))
+		to_chat(user, span_warning("WARNING. Cloak activation failed; Error code 423: Subject moved during activation."))
 		remove_wibbly_filters(src)
 		return
 	remove_wibbly_filters(src)

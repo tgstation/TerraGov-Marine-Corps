@@ -1,8 +1,3 @@
-GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", WELDING_TOOL_EFFECT_LAYER, ABOVE_LIGHTING_PLANE))
-GLOBAL_DATUM_INIT(welding_sparks_multitiledoor_vertical, /mutable_appearance, mutable_appearance('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_vertical", WELDING_TOOL_EFFECT_LAYER, ABOVE_LIGHTING_PLANE))
-GLOBAL_DATUM_INIT(welding_sparks_multitiledoor_horizontal, /mutable_appearance, mutable_appearance('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_horizontal", WELDING_TOOL_EFFECT_LAYER, ABOVE_LIGHTING_PLANE))
-GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearance('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_marinedoor", WELDING_TOOL_EFFECT_LAYER, ABOVE_LIGHTING_PLANE))
-
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items/items.dmi'
@@ -412,8 +407,12 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 ///Helper function for updating last_equipped_slot when item is drawn from storage
 /obj/item/proc/set_last_equipped_slot_of_storage(datum/storage/storage_datum)
 	var/obj/item/storage_item = storage_datum.parent
+	if(!isitem(storage_item))
+		return
+
 	while(isitem(storage_item.loc)) // for stuff like armor modules we have to find topmost item
 		storage_item = storage_item.loc
+
 	if(storage_item)
 		last_equipped_slot = slot_to_in_storage_slot(storage_item.last_equipped_slot)
 
@@ -428,7 +427,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 ///called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
 /obj/item/proc/on_enter_storage(obj/item/storage/S as obj)
 	item_flags |= IN_STORAGE
-	return
 
 
 ///called when "found" in pockets and storage items. Returns 1 if the search should end.
@@ -445,6 +443,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/proc/equipped(mob/user, slot)
 	SHOULD_CALL_PARENT(TRUE) // no exceptions
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_EQUIPPED, src, slot)
 	if (slot != SLOT_R_HAND && slot != SLOT_L_HAND)
 		last_equipped_slot = slot
 
@@ -475,6 +474,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/proc/unequipped(mob/unequipper, slot)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNEQUIPPED, unequipper, slot)
+	SEND_SIGNAL(unequipper, COMSIG_MOB_ITEM_UNEQUIPPED, src, slot)
 
 	var/equipped_from_slot = equip_slot_flags & slotdefine2slotbit(slot)
 
@@ -787,7 +787,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(!isturf(loc))
 		return
 	var/image/pickup_animation = image(icon = src, loc = loc, layer = layer + 0.1)
-	pickup_animation.plane = GAME_PLANE
+	SET_PLANE_EXPLICIT(pickup_animation, GAME_PLANE, src)
 	pickup_animation.transform.Scale(0.75)
 	pickup_animation.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 
@@ -1152,7 +1152,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 // Called when a mob tries to use the item as a tool.
 // Handles most checks.
-/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount = 0, volume = 0, datum/callback/extra_checks)
+/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount = 0, volume = 0, datum/callback/extra_checks, user_display=PROGRESS_GENERIC)
 	// No delay means there is no start message, and no reason to call tool_start_check before use_tool.
 	// Run the start check here so we wouldn't have to call it manually.
 	if(!delay && !tool_start_check(user, amount))
@@ -1167,11 +1167,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		// Create a callback with checks that would be called every tick by do_after.
 		var/datum/callback/tool_check = CALLBACK(src, PROC_REF(tool_check_callback), user, amount, extra_checks)
 
-		if(ismob(target))
-			if(do_after(user, delay, NONE, target, extra_checks = tool_check))
-				return
-
-		else if(!do_after(user, delay, target = target, extra_checks = tool_check))
+		if(!do_after(user, delay, target = target, extra_checks = tool_check, user_display=user_display))
 			return
 
 	else if(extra_checks && !extra_checks.Invoke()) // Invoke the extra checks once, just in case.
@@ -1321,7 +1317,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	SHOULD_CALL_PARENT(TRUE)
 	if(blocks_emissive != EMISSIVE_BLOCK_NONE)
-		standing.overlays += emissive_blocker(icon_used, state_used, alpha = standing.alpha)
+		standing.overlays += emissive_blocker(icon_used, state_used, src, alpha = standing.alpha)
 	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing, inhands, icon_used, state_used)
 	return standing
 
@@ -1383,10 +1379,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	set waitfor = 0
 	playsound(user, 'sound/effects/spin.ogg', 25, 1)
 	if(double)
-		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
+		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice("You flick and spin [src] and [double]!"))
 		animation_wrist_flick(double, 1)
 	else
-		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
+		user.visible_message("[user] deftly flicks and spins [src]!",span_notice("You flick and spin [src]!"))
 	animation_wrist_flick(src, direction)
 	sleep(0.3 SECONDS)
 	if(loc && user) playsound(user, 'sound/effects/thud.ogg', 25, 1)
@@ -1394,7 +1390,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///The fancy trick. Woah.
 /obj/item/proc/throw_catch_trick(mob/living/carbon/human/user)
 	set waitfor = 0
-	user.visible_message("[user] deftly flicks [src] and tosses it into the air!",span_notice(" You flick and toss [src] into the air!"))
+	user.visible_message("[user] deftly flicks [src] and tosses it into the air!",span_notice("You flick and toss [src] into the air!"))
 	var/img_layer = MOB_LAYER+0.1
 	var/image/trick = image(icon,user,icon_state,img_layer)
 	switch(pick(1,2))
@@ -1415,9 +1411,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 
 	if(user.get_inactive_held_item())
-		user.visible_message("[user] catches [src] with the same hand!",span_notice(" You catch [src] as it spins in to your hand!"))
+		user.visible_message("[user] catches [src] with the same hand!",span_notice("You catch [src] as it spins in to your hand!"))
 		return
-	user.visible_message("[user] catches [src] with his other hand!",span_notice(" You snatch [src] with your other hand! Awesome!"))
+	user.visible_message("[user] catches [src] with his other hand!",span_notice("You snatch [src] with your other hand! Awesome!"))
 	user.temporarilyRemoveItemFromInventory(src)
 	user.put_in_inactive_hand(src)
 	user.swap_hand()

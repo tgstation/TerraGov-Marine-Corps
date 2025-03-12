@@ -12,7 +12,10 @@
 	name = new_name
 	traits = new_traits
 
-	if(length(GLOB.default_lighting_underlays_by_z) < z_value)
-		GLOB.default_lighting_underlays_by_z.len = z_value
-	GLOB.default_lighting_underlays_by_z[z_value] = mutable_appearance(LIGHTING_ICON, "transparent", new_z, LIGHTING_PLANE, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM)
+	if (islist(new_traits))
+		for (var/trait in new_traits)
+			SSmapping.z_trait_levels[trait] += list(new_z)
+	else // in case a single trait is passed in
+		SSmapping.z_trait_levels[new_traits] += list(new_z)
+
 	//set_linkage(new_traits[ZTRAIT_LINKAGE])

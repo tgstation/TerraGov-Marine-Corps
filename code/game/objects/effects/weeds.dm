@@ -181,8 +181,8 @@
 // =================
 // weed wall
 /obj/alien/weeds/weedwall
-	layer = RESIN_STRUCTURE_LAYER
-	plane = GAME_PLANE
+	layer = WEEDWALL_LAYER
+	plane = WALL_PLANE
 	icon = 'icons/obj/smooth_objects/weedwall.dmi'
 	icon_state = "weedwall"
 
@@ -201,7 +201,7 @@
 // =================
 // windowed weed wall
 /obj/alien/weeds/weedwall/window
-	layer = ABOVE_TABLE_LAYER
+	layer = GIB_LAYER
 	///The type of window we're expecting to grow on
 	var/window_type = /obj/structure/window/framed
 
@@ -299,8 +299,7 @@
 
 /obj/alien/weeds/node/update_overlays()
 	. = ..()
-	overlays.Cut()
-	overlays += node_icon + "[rand(0,5)]"
+	. += mutable_appearance(icon, node_icon + "[rand(0,5)]")
 
 //Sticky weed node
 /obj/alien/weeds/node/sticky

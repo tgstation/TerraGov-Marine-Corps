@@ -5,4 +5,4 @@
 	icon_state = "supply_elevator_lowered"
 	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	layer = ABOVE_TURF_LAYER
+	layer = LOW_FLOOR_LAYER

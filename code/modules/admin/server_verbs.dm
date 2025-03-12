@@ -310,13 +310,18 @@ ADMIN_VERB(toggle_synthetic_restrictions, R_FUN, "Toggle Synthetic Restrictions"
 	message_admins("[ADMIN_TPMONTY(user.mob)] has [CONFIG_GET(flag/allow_synthetic_gun_use) ? "enabled" : "disabled"] synthetic weapon use.")
 
 ADMIN_VERB(reload_admins, R_SERVER, "Reload Admins", "Manually load all admins from the .txt", ADMIN_CATEGORY_SERVER)
-	if(alert(user, "Are you sure you want to reload admins?", "Reload admins", list("No", "Yes")) != "Yes")
+	if(alert(user, "Are you sure you want to reload admins?", "Reload admins", "No", "Yes") != "Yes")
 		return
 
 	load_admins()
 
 	log_admin("[key_name(user)] manually reloaded admins.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] manually reloaded admins.")
+
+ADMIN_VERB(reload_configuration, R_SERVER, "Reload Configuration", "Reloads the configuration from the default path on the disk, wiping any in-round modifications.", ADMIN_CATEGORY_SERVER)
+	if(tgui_alert(user, "Are you absolutely sure you want to reload the configuration from the default path on the disk, wiping any in-round modifications?", "Really reset?", list("No", "Yes")) != "Yes")
+		return
+	config.admin_reload()
 
 ADMIN_VERB(change_ground_map, R_SERVER, "Change Ground Map", "Change Ground Map for the next round.", ADMIN_CATEGORY_SERVER)
 	var/list/maprotatechoices = list()

@@ -51,7 +51,7 @@
 	icon_state = "monorail"
 	density = FALSE
 	anchored = TRUE
-	layer = ATMOS_PIPE_LAYER + 0.01
+	layer = LOW_OBJ_LAYER
 
 /obj/structure/mopbucket
 	name = "mop bucket"
@@ -223,7 +223,8 @@
 	icon = 'icons/obj/structures/stairs.dmi'
 	desc = "Stairs.  You walk up and down them."
 	icon_state = "rampbottom"
-	layer = TURF_LAYER
+	plane = FLOOR_PLANE // we want this to render below walls if we place them on top
+	layer = ABOVE_OPEN_TURF_LAYER
 	density = FALSE
 	opacity = FALSE
 

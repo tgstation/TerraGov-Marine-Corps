@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	if(!(blame_mob.zone_selected in def_zones))
 		return
 	if(part_health <= 0)
-		return COMPONENT_NO_TAKE_DAMAGE // intentional, you're supposed to swap target yourself properly?
+		return
 	part_health = max(0, part_health-damage_amount)
 	if(part_health <= 0)
 		disable()
@@ -186,7 +186,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 /datum/mech_limb/head/get_overlays()
 	if(disabled)
 		return null
-	return list(icon2appearance(overlay_icon), icon2appearance(visor_icon), emissive_appearance(visor_icon))
+	return list(icon2appearance(overlay_icon), icon2appearance(visor_icon), emissive_appearance(visor_icon, offset_spokesman=owner))
 
 /datum/mech_limb/head/disable()
 	. = ..()
@@ -337,18 +337,18 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 
 /datum/mech_limb/legs/recon
 	part_health = 145
-	slowdown_mod = -0.6
+	slowdown_mod = -0.5
 	max_weight = 500
 	greyscale_type = /datum/greyscale_config/mech_recon/legs
 
 /datum/mech_limb/legs/assault
 	part_health = 175
-	slowdown_mod = -0.4
+	slowdown_mod = -0.3
 	max_weight = 800
 	greyscale_type = /datum/greyscale_config/mech_assault/legs
 
 /datum/mech_limb/legs/vanguard
 	part_health = 200
-	slowdown_mod = -0.2
+	slowdown_mod = 0.1
 	max_weight = 1000
 	greyscale_type = /datum/greyscale_config/mech_vanguard/legs

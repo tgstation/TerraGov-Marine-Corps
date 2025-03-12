@@ -12,7 +12,8 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	icon_state = "OBC_unloaded"
 	density = TRUE
 	anchored = TRUE
-	layer = LADDER_LAYER
+	layer = BELOW_OBJ_LAYER
+	appearance_flags = PIXEL_SCALE|LONG_GLIDE
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64
@@ -252,7 +253,8 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	density = TRUE
 	anchored = TRUE
 	climbable = TRUE
-	layer = LADDER_LAYER + 0.01
+	appearance_flags = PIXEL_SCALE|LONG_GLIDE
+	layer = BELOW_OBJ_LAYER + 0.01
 	bound_width = 64
 	bound_height = 32
 	resistance_flags = RESIST_ALL
@@ -427,6 +429,7 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	icon_state = "ob_console"
 	screen_overlay = "ob_console_screen"
 	dir = WEST
+	layer = LOW_ITEM_LAYER
 	atom_flags = ON_BORDER|CONDUCT
 	var/orbital_window_page = 0
 
@@ -525,7 +528,8 @@ GLOBAL_DATUM(rail_gun, /obj/structure/ship_rail_gun)
 	icon_state = "Railgun"
 	density = TRUE
 	anchored = TRUE
-	layer = LADDER_LAYER
+	appearance_flags = PIXEL_SCALE|LONG_GLIDE
+	layer = BELOW_OBJ_LAYER
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64

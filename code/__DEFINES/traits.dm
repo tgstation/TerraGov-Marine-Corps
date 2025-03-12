@@ -74,6 +74,7 @@
 // common trait
 #define TRAIT_GENERIC "generic"
 #define INNATE_TRAIT "innate"
+#define ADMIN_TRAIT "admin_trait"
 #define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
 #define SLEEPER_TRAIT "sleeper"
 #define STASIS_BAG_TRAIT "stasis_bag"
@@ -123,10 +124,16 @@
 #define NIGHT_VISION_GOGGLES_TRAIT "night_vision_goggles"
 #define SUBMERGED_TRAIT "submerged_trait"
 #define TRAIT_DWARF "dwarf"
+#define MOVEMENT_SWAP_TRAIT "movement_swap_trait"
+#define MANIFESTED_TRAIT "manifested_trait"
+#define HOVERBIKE_TRAIT "hoverbike_trait"
 /// This trait comes from when a mob is currently typing.
 #define CURRENTLY_TYPING_TRAIT "currently_typing"
 /// Makes you way too tall. Like just too much, dude, it's kind of creepy. Humanoid only.
 #define TRAIT_TOO_TALL "too_tall"
+#define TRAIT_FREERUNNING "freerunning"
+/// This mob always lands on their feet when they fall, for better or for worse.
+#define TRAIT_CATLIKE_GRACE "catlike_grace"
 
 #define ABSTRACT_ITEM_TRAIT "abstract_item"
 /// A trait given by any status effect
@@ -152,6 +159,8 @@
 //atom/movable traits
 /// Trait that tracks if something has been renamed. Typically holds a REF() to the object itself (AKA src) for wide addition/removal.
 #define TRAIT_WAS_RENAMED "was_renamed"
+///Lets the movable move freely in the soft-cordon area of transit space, which would otherwise teleport them away just before they got to see the true cordon
+#define TRAIT_FREE_HYPERSPACE_SOFTCORDON_MOVEMENT "free_hyperspace_softcordon_movement"
 
 //mob traits
 #define TRAIT_POSSESSING "possessing" // Prevents mob from being taken by ghosts
@@ -190,7 +199,24 @@
 #define TRAIT_TANK_DESANT "tank_desant"
 ///Builds things better
 #define TRAIT_SUPERIOR_BUILDER "superior_builder"
+/// Mob has fov applied to it
+#define TRAIT_FOV_APPLIED "fov_applied"
+/// Expands our FOV by 30 degrees if restricted
+#define TRAIT_EXPANDED_FOV "expanded_fov"
 
+///Traits for managing AM pass_flags
+#define TRAIT_PASS_LOW_STRUCTURE "pass_low_structure"
+#define TRAIT_PASS_GLASS "pass_glass"
+#define TRAIT_PASS_GRILLE "pass_grille"
+#define TRAIT_PASS_MOB "pass_mob"
+#define TRAIT_PASS_DEFENSIVE_STRUCTURE "pass_defensive_structure"
+#define TRAIT_PASS_FIRE "pass_fire"
+#define TRAIT_PASS_XENO "pass_xeno"
+#define TRAIT_PASS_THROW "pass_throw"
+#define TRAIT_PASS_PROJECTILE "pass_projectile"
+#define TRAIT_PASS_AIR "pass_air"
+#define TRAIT_PASS_WALKOVER "pass_walkover"
+#define TRAIT_PASS_TANK "pass_tank"
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
@@ -260,6 +286,8 @@
 #define TRAIT_STRAPPABLE "strappable"
 // turf traits
 #define TRAIT_TURF_BULLET_MANIPULATION "bullet_manipulation" //This tile is doing something to projectile
+///Turf trait for when a turf is transparent
+#define TURF_Z_TRANSPARENT_TRAIT "turf_z_transparent"
 // projectile traits
 #define TRAIT_PROJ_HIT_SOMETHING "hit_something" //If projectile hit something on its path
 //structure traits
@@ -288,5 +316,17 @@
 #define TRAIT_REGRESSING "regressing"
 #define TRAIT_STRAIN_SWAP "strain swap"
 
-///Pauses campaign mission timer
-#define CAMPAIGN_MISSION_TIMER_PAUSED "campaign_mission_timer_paused"
+GLOBAL_LIST_INIT(traits_to_pass_flags, list(
+	TRAIT_PASS_LOW_STRUCTURE = PASS_LOW_STRUCTURE,
+	TRAIT_PASS_GLASS = PASS_GLASS,
+	TRAIT_PASS_GRILLE = PASS_GRILLE,
+	TRAIT_PASS_MOB = PASS_MOB,
+	TRAIT_PASS_DEFENSIVE_STRUCTURE = PASS_DEFENSIVE_STRUCTURE,
+	TRAIT_PASS_FIRE = PASS_FIRE,
+	TRAIT_PASS_XENO = PASS_XENO,
+	TRAIT_PASS_THROW = PASS_THROW,
+	TRAIT_PASS_PROJECTILE = PASS_PROJECTILE,
+	TRAIT_PASS_AIR = PASS_AIR,
+	TRAIT_PASS_WALKOVER = PASS_WALKOVER,
+	TRAIT_PASS_TANK = PASS_TANK,
+))

@@ -829,3 +829,61 @@ ADMIN_VERB(adjust_gravity, R_FUN, "Adjust Gravity", "Adjusts gravity/jump compon
 			return
 
 	log_admin("[key_name(user)] set gravity to [choice].")
+
+ADMIN_VERB(ai_squad, R_FUN, "Spawn AI squad", "Spawns a AI squad of your choice", ADMIN_CATEGORY_FUN)
+	var/squad_choice = tgui_input_list(user, "What squad would you like to spawn?", "squad choice", GLOB.ai_squad_presets)
+	if(!squad_choice)
+		return
+	var/quantity = tgui_input_number(user, "How many mobs would you like in the squad?", title = "Squad Size", default = 5, max_value = length(GLOB.ai_squad_presets[squad_choice]), min_value = 1, timeout = 0, round_value = TRUE)
+	if(!quantity)
+		return
+	var/turf/spawn_loc = get_turf(user.mob)
+	if(!spawn_loc)
+		return
+	var/list/mob_list = list()
+	for(var/i = 1 to quantity)
+		var/mob/living/carbon/human/new_human = new()
+		mob_list += new_human
+		var/datum/job/new_job = SSjob.GetJob(GLOB.ai_squad_presets[squad_choice][i])
+		var/squad_to_insert_into
+		if(ismarinejob(new_job) || issommarinejob(new_job))
+			squad_to_insert_into = pick(SSjob.active_squads[new_job.faction])
+		new_human.apply_assigned_role_to_spawn(new_job, new_human.client, squad_to_insert_into, admin_action = TRUE)
+		stoplag()
+	for(var/mob/living/carbon/human/dude AS in mob_list)
+		dude.forceMove(spawn_loc)
+		dude.AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
+
+	message_admins("[key_name_admin(user)] spawned a [quantity] man [squad_choice] of AI humans on the z-level [spawn_loc.z].")
+	log_admin("[key_name(user)] spawned a [quantity] man [squad_choice] of AI humans on the z-level [spawn_loc.z]")
+
+
+ADMIN_VERB(load_lazy_template, R_FUN, "Load/Jump Lazy Template", "Loads a lazy template and/or jumps to it.", ADMIN_CATEGORY_FUN)
+	var/list/choices = LAZY_TEMPLATE_KEY_LIST_ALL()
+	var/choice = tgui_input_list(user, "Key?", "Lazy Loader", choices)
+	var/teleport_to_template = tgui_input_list(user, "Jump to template after loading?", "Where to?", list("Yes", "No"))
+	if(!choice)
+		return
+
+	choice = choices[choice]
+	if(!choice)
+		to_chat(user, span_warning("No template with that key found, report this!"))
+		return
+
+	var/already_loaded = LAZYACCESS(SSmapping.loaded_lazy_templates, choice)
+	var/force_load = FALSE
+	if(already_loaded && (tgui_alert(user, "Template already loaded.", "", list("Jump", "Load Again")) == "Load Again"))
+		force_load = TRUE
+
+	var/datum/turf_reservation/reservation = SSmapping.lazy_load_template(choice, force = force_load)
+	if(!reservation)
+		to_chat(user, span_boldwarning("Failed to load template!"))
+		return
+
+	if(teleport_to_template == "Yes")
+		if(!isobserver(user.mob))
+			SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/aghost)
+		user.mob.forceMove(reservation.bottom_left_turfs[1])
+		to_chat(user, span_notice("Template loaded, you have been moved to the bottom left of the reservation."))
+
+	message_admins("[key_name_admin(user)] has loaded lazy template '[choice]'")

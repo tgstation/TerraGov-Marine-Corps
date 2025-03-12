@@ -8,7 +8,7 @@
 	density = FALSE
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "glowshroomf"
-	layer = ABOVE_TURF_LAYER
+	layer = ABOVE_NORMAL_TURF_LAYER
 	max_integrity = 30
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/attackblob.ogg'

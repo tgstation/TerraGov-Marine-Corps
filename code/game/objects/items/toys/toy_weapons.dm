@@ -50,12 +50,12 @@
 	if (flag)
 		return
 	if (src.bullets < 1)
-		user.show_message(span_warning(" *click* *click*"), 2)
+		user.show_message(span_warning("*click* *click*"), 2)
 		playsound(user, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
 		return
 	playsound(user, 'sound/weapons/guns/fire/gunshot.ogg', 15, 1)
 	src.bullets--
-	visible_message(span_danger("[user] fires a cap gun at [target]!"), null, span_warning(" You hear a gunshot"))
+	visible_message(span_danger("[user] fires a cap gun at [target]!"), null, span_warning("You hear a gunshot"))
 
 /obj/item/toy/gun_ammo
 	name = "ammo-caps"

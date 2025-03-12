@@ -219,6 +219,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/recast = FALSE
 	///The last tile we dashed through, used when swapping with a human
 	var/turf/last_turf
+	/// If we should do acid_spray_act on those we pass over.
+	var/do_acid_spray_act = TRUE
+	///List of pass_flags given by this action
+	var/charge_pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 
 /datum/action/ability/activable/xeno/charge/acid_dash/use_ability(atom/A)
 	if(!A)
@@ -235,7 +239,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	succeed_activate()
 
 	last_turf = get_turf(owner)
-	owner.pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
+	xeno_owner.add_pass_flags(charge_pass_flags, type)
 	owner.throw_at(A, charge_range, 2, owner)
 
 /datum/action/ability/activable/xeno/charge/acid_dash/mob_hit(datum/source, mob/living/living_target)
@@ -259,7 +263,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		recast = FALSE
 		add_cooldown()
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-	xeno_owner.pass_flags = initial(xeno_owner.pass_flags)
+	xeno_owner.remove_pass_flags(charge_pass_flags, type)
 	recast_available = FALSE
 
 ///Drops an acid puddle on the current owner's tile, will do 0 damage if the owner has no acid_spray_damage
@@ -267,6 +271,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	SIGNAL_HANDLER
 	last_turf = OldLoc
 	new /obj/effect/xenomorph/spray(get_turf(xeno_owner), 5 SECONDS, xeno_owner.xeno_caste.acid_spray_damage) //Add a modifier here to buff the damage if needed
+	if(!do_acid_spray_act)
+		return
 	for(var/obj/O in get_turf(xeno_owner))
 		O.acid_spray_act(xeno_owner)
 
@@ -293,6 +299,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/duration = 8 SECONDS
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
+	///List of pass_flags given by this action
+	var/dodge_pass_flags = PASS_MOB|PASS_XENO
 
 /datum/action/ability/xeno_action/dodge/action_activate(atom/A)
 	owner.balloon_alert(owner, "Dodge ready!")
@@ -300,7 +308,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	owner.add_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_DODGE_SPEED, TRUE, 0, NONE, TRUE, speed_buff)
 	owner.allow_pass_flags |= (PASS_MOB|PASS_XENO)
-	owner.pass_flags |= (PASS_MOB|PASS_XENO)
+	xeno_owner.add_pass_flags(dodge_pass_flags, type)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	addtimer(CALLBACK(src, PROC_REF(remove_effects)), duration)
 
@@ -335,7 +343,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	owner.remove_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_DODGE_SPEED)
 	owner.allow_pass_flags &= ~(PASS_MOB|PASS_XENO)
-	owner.pass_flags &= ~(PASS_MOB|PASS_XENO)
+	xeno_owner.remove_pass_flags(dodge_pass_flags, type)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
 /// Toggles particles on or off, adjusting their positioning to fit the buff's owner.
@@ -563,50 +571,47 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Baton Pass"
 	action_icon_state = "baton_pass"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "Inject another xenomorph with your built-up adrenaline, increasing their movement speed considerably for 6 seconds. Adds a short cooldown to dodge when used. Less effect on quick xenos."
-	cooldown_duration = 30 SECONDS
+	desc = "Dose adjacent xenomorphs with your adrenaline, increasing their movement speed for 6 seconds. Less effect on quick xenos."
+	cooldown_duration = 35 SECONDS
 	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BATONPASS,
 	)
-	target_flags = ABILITY_MOB_TARGET
-
-/datum/action/ability/activable/xeno/baton_pass/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return
-	if(!iscarbon(A) || !isxeno(A))
-		if(!silent)
-			A.balloon_alert(owner, "can't effect!")
-		return FALSE
-	if((A.z != owner.z) || get_dist(owner, A) > 1)
-		if(!silent)
-			A.balloon_alert(owner, "too far away!")
-		return FALSE
-	var/mob/living/carbon/carbon_target = A
-	if(carbon_target.stat == DEAD)
-		if(!silent)
-			carbon_target.balloon_alert(owner, "not living!")
-		return FALSE
-	var/datum/action/ability/xeno_action/dodge/ourdodge = owner.actions_by_path[/datum/action/ability/xeno_action/dodge]
-	if(ourdodge.cooldown_timer)
-		to_chat(owner, span_xenowarning("We haven't recovered from our last dodge!"))
-		return FALSE
-
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+\
 /datum/action/ability/activable/xeno/baton_pass/use_ability(atom/target)
 
-	xeno_owner.face_atom(target)
-	xeno_owner.do_attack_animation(target)
-	playsound(target, 'sound/effects/spray3.ogg', 15, TRUE)
+	var/obj/effect/temp_visual/baton_pass/baton = new
+	xeno_owner.vis_contents += baton
+	xeno_owner.spin(0.8 SECONDS, 1)
 
-	xeno_owner.visible_message(span_danger("\The [xeno_owner] stabs [target] with their tail, granting them a surge of adrenaline!"))
-	var/mob/living/carbon/carbon_target = target
-	carbon_target.apply_status_effect(STATUS_EFFECT_XENO_BATONPASS)
+	playsound(xeno_owner,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
+	xeno_owner.visible_message(span_danger("\The [xeno_owner] empowers nearby xenos with increased speed!"))
 
-	var/datum/action/ability/xeno_action/dodge/ourdodge = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/dodge]
-	ourdodge?.add_cooldown(DANCER_DODGE_BATONPASS_CD)
+	for (var/mob/living/carbon/xenomorph/xeno_target in orange(1, xeno_owner))
+		if(xeno_target.stat == DEAD)
+			continue
+		if(xeno_target.hivenumber != xeno_owner.hivenumber)
+			continue
+		xeno_target.apply_status_effect(STATUS_EFFECT_XENO_BATONPASS)
+
+	addtimer(CALLBACK(src, PROC_REF(remove_baton), baton), 3 SECONDS)
 	succeed_activate()
 	add_cooldown()
+
+///Garbage collects the baton vis_overlay created during use_ability
+/datum/action/ability/activable/xeno/baton_pass/proc/remove_baton(baton_visual)
+	xeno_owner.vis_contents -= baton_visual
+	QDEL_NULL(baton_visual)
+
+/obj/effect/temp_visual/baton_pass
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "baton_pass"
+	pixel_x = -18
+	pixel_y = -14
+	layer = BELOW_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
 
 // ***************************************
 // *********** Abduct
@@ -725,6 +730,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /obj/effect/xeno/abduct_warning
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "abduct_hook"
+
+/obj/effect/xeno/abduct_warning/Initialize(mapload)
+	. = ..()
+	notify_ai_hazard()
 
 // ***************************************
 // *********** Dislocate
