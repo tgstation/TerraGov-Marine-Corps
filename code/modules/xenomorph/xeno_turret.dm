@@ -35,7 +35,7 @@
 ///Change minimap icon if its firing or not firing
 /obj/structure/xeno/xeno_turret/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xeno_turret[firing ? "_firing" : "_passive"]"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xeno_turret[firing ? "_firing" : "_passive"]", MINIMAP_BLIPS_LAYER))
 
 /obj/structure/xeno/xeno_turret/Initialize(mapload, _hivenumber)
 	. = ..()
@@ -168,9 +168,9 @@
 		buffer_distance = get_dist(nearby_hostile, src)
 		if(distance <= buffer_distance) //If we already found a target that's closer
 			continue
-
-		if(check_path(src, nearby_hostile, PASS_PROJECTILE) != get_turf(nearby_hostile)) //xeno turret seems to not care about actual sight, for whatever reason
+		if(check_path(get_step_towards(src, nearby_hostile), nearby_hostile, PASS_PROJECTILE) != get_turf(nearby_hostile)) //xeno turret seems to not care about actual sight, for whatever reason
 			continue
+		distance = buffer_distance
 		. = nearby_hostile
 
 ///Return TRUE if a possible target is near

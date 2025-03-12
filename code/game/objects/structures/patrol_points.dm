@@ -5,7 +5,7 @@
 	icon_state = "patrol_point_1"
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
-	layer = LADDER_LAYER
+	layer = BELOW_OBJ_LAYER
 	///ID to link with associated exit point
 	var/id = null
 	///The linked exit point

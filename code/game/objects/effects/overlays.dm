@@ -39,17 +39,17 @@
 	name = "Danger"
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "danger"
-	layer = ABOVE_FLY_LAYER
+	layer = ABOVE_ALL_MOB_LAYER
 
 /obj/effect/overlay/sparks
 	name = "Sparks"
-	layer = ABOVE_FLY_LAYER
+	layer = ABOVE_ALL_MOB_LAYER
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "electricity"
 
 /obj/effect/overlay/temp
 	anchored = TRUE
-	layer = ABOVE_FLY_LAYER //above mobs
+	layer = ABOVE_ALL_MOB_LAYER //above mobs
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT //can't click to examine it
 	var/effect_duration = 10 //in deciseconds
 
@@ -62,7 +62,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon = 'icons/effects/lases.dmi'
 	icon_state = "laser_target3"
-	layer = ABOVE_FLY_LAYER
+	layer = ABOVE_TREE_LAYER
 
 //CAS:
 
@@ -132,6 +132,7 @@
 
 /obj/effect/overlay/blinking_laser/marine/Initialize(mapload)
 	. = ..()
+	notify_ai_hazard()
 	prepare_huds()
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 	squad_hud.add_to_hud(src)
@@ -154,7 +155,6 @@
 /obj/effect/overlay/blinking_laser/marine/lines/Initialize(mapload)
 	. = ..()
 	dir = pick(CARDINAL_DIRS) //Randomises type, for variation
-
 
 //Drop pod.
 /obj/effect/overlay/blinking_laser/marine/pod_warning
@@ -181,7 +181,7 @@
 	desc = "It's an arrow hanging in mid-air. There may be a wizard about."
 	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "arrow"
-	layer = POINT_LAYER
+	plane = POINT_PLANE
 	anchored = TRUE
 	effect_duration = 25
 
@@ -372,19 +372,6 @@
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
-
-///Lighting overlay for the Light overlay component
-/obj/effect/overlay/light_visible
-	name = ""
-	icon = 'icons/effects/light_overlays/light_32.dmi'
-	icon_state = "light"
-	layer = O_LIGHTING_VISUAL_LAYER
-	plane = O_LIGHTING_VISUAL_PLANE
-	appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	alpha = 0
-	vis_flags = NONE
-	blocks_emissive = EMISSIVE_BLOCK_NONE
 
 /obj/effect/overlay/temp/timestop_effect
 	icon = 'icons/effects/160x160.dmi'

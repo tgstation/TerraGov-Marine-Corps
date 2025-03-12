@@ -80,6 +80,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/structure/catwalk
+	desc = "You can walk on this, even if you're not a cat."
 	icon = 'icons/obj/smooth_objects/catwalk.dmi'
 	icon_state = "catwalk-icon"
 	base_icon_state = "catwalk"
@@ -127,3 +128,10 @@
 		if(EXPLODE_LIGHT)
 			if(prob(10))
 				qdel(src)
+
+/obj/structure/catwalk/no_smooth
+	name = "catwalk"
+	icon_state = "catwalk-0"
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null

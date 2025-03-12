@@ -17,7 +17,7 @@
 	var/id = null
 
 	level = 1
-	layer = ATMOS_DEVICE_LAYER
+	layer = GAS_SCRUBBER_LAYER
 
 	pipe_state = "injector"
 

@@ -738,6 +738,8 @@
 
 /client/proc/check_randomizer(topic)
 	. = FALSE
+	if(is_localhost()) // no need to check a localhost
+		return TRUE
 	if (connection != "seeker")
 		return
 	topic = params2list(topic)

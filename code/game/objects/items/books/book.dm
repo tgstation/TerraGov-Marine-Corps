@@ -108,8 +108,8 @@
 
 /obj/item/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(user.zone_selected == "eyes")
-		user.visible_message(span_notice("You open up the book and show it to [M]. "), \
-			span_notice(" [user] opens up a book and shows it to [M]. "))
+		user.visible_message(span_notice("You open up the book and show it to [M]."), \
+			span_notice("[user] opens up a book and shows it to [M]."))
 		M << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
 
 

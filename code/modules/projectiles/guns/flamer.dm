@@ -325,8 +325,11 @@
 
 /obj/item/weapon/gun/flamer/som/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
-	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
-	standing.overlays.Add(emissive_overlay)
+	if(icon_used == 'icons/mob/clothing/back.dmi' || icon_used == 'icons/mob/suit_slot.dmi')
+		return
+	if(flamer_features_flags & FLAMER_IS_LIT && rounds)
+		var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive", src)
+		standing.overlays.Add(emissive_overlay)
 
 /obj/item/weapon/gun/flamer/som/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide, /obj/item/attachable/magnetic_harness)
