@@ -1899,12 +1899,12 @@ Imports
 	contains = list(/obj/item/ammo_magazine/packet/pnato)
 	cost = 15
 
-/datum/supply_packs/imports/aug	//Vietnam time
+/datum/supply_packs/imports/vsd	//Vietnam time
 	name = "CC/67 assault rifle"
 	contains = list(/obj/item/weapon/gun/rifle/vsd_rifle/export)
 	cost = 120
 
-/datum/supply_packs/imports/aug/ammo
+/datum/supply_packs/imports/vsd/ammo
 	name = "CC/67 assault rifle ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/vsd_rifle)
 	cost = 5
