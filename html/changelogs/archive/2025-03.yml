@@ -232,3 +232,8 @@
   - code_imp: Added backend for allowing items to have a FOV when worn
   yyzsong:
   - spellcheck: ajacent -> adjacent
+2025-03-12:
+  Lumipharon:
+  - bugfix: removed a stray dev verb
+  Neocloudy:
+  - bugfix: ignore/unignore actually works now.
