@@ -10,20 +10,21 @@
 
 GLOBAL_LIST_EMPTY(blood_particles)
 /particles/splatter
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "smoke"
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "smoke5"
 	width = 500
 	height = 500
-	count = 20
-	spawning = 20
+	count = 5
+	spawning = 15
 	lifespan = 0.5 SECONDS
-	fade = 0.7 SECONDS
-	grow = 0.1
+	fade = 0.4 SECONDS
+	grow = 0.065
+	drift = generator(GEN_CIRCLE, 5, 5)
 	scale = 0.2
 	spin = generator(GEN_NUM, -20, 20)
 	velocity = list(50, 0)
-	friction = generator(GEN_NUM, 0.1, 0.5)
-	position = generator(GEN_CIRCLE, 6, 6)
+	friction = generator(GEN_NUM, 0.1, 0.3)
+	position = generator(GEN_CIRCLE, 4, 4)
 
 /particles/splatter/New(set_color)
 	..()
@@ -35,8 +36,8 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	icon = 'icons/effects/blood.dmi'
 	duration = 0.5 SECONDS
 	randomdir = FALSE
-	layer = ABOVE_MOB_LAYER
-	alpha = 175
+	layer = ABOVE_ALL_MOB_LAYER
+	alpha = 200
 	var/splatter_type = "splatter"
 
 /obj/effect/temp_visual/dir_setting/bloodsplatter/Initialize(mapload, angle, blood_color)
