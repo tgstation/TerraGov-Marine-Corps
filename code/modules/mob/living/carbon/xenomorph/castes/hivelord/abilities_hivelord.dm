@@ -440,6 +440,7 @@
 /datum/action/ability/xeno_action/sow/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(choose_plant))
 	return COMSIG_KB_ACTIVATED
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 /datum/action/ability/xeno_action/place_recovery_pylon
@@ -526,3 +527,5 @@
 	playsound(xeno_owner, SFX_ALIEN_RESIN_BUILD, 25)
 	succeed_activate()
 	add_cooldown()
+=======
+>>>>>>> aef13b57b1 (Revert "hivelord recovery node")

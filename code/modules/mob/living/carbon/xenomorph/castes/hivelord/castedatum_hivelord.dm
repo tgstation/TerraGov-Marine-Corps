@@ -77,10 +77,13 @@
 		/datum/action/ability/xeno_action/create_jelly,
 		/datum/action/ability/xeno_action/place_jelly_pod,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/datum/action/ability/xeno_action/place_recovery_pylon,
 =======
 		/datum/action/ability/xeno_action/place_recovery_node,
 >>>>>>> c16bd7823c (hivelord recovery node)
+=======
+>>>>>>> aef13b57b1 (Revert "hivelord recovery node")
 		/datum/action/ability/activable/xeno/recycle,
 	)
 
@@ -119,9 +122,12 @@
 		/datum/action/ability/xeno_action/create_jelly,
 		/datum/action/ability/xeno_action/place_jelly_pod,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/datum/action/ability/xeno_action/place_recovery_pylon,
 =======
 		/datum/action/ability/xeno_action/place_recovery_node,
 >>>>>>> c16bd7823c (hivelord recovery node)
+=======
+>>>>>>> aef13b57b1 (Revert "hivelord recovery node")
 		/datum/action/ability/activable/xeno/recycle,
 	)

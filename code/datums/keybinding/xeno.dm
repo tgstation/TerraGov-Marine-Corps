@@ -577,6 +577,7 @@
 	keybind_signal = COMSIG_XENOABILITY_PLACE_JELLY_POD
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /datum/keybinding/xeno/place_recovery_pylon
 	name = "Hivelord: Place Recovery Pylon"
 	full_name = "Hivelord: Recovery Pylon"
@@ -590,6 +591,8 @@
 	keybind_signal = COMSIG_XENOABILITY_PLACE_RECOVERY_NODE
 >>>>>>> c16bd7823c (hivelord recovery node)
 
+=======
+>>>>>>> aef13b57b1 (Revert "hivelord recovery node")
 /datum/keybinding/xeno/create_jelly
 	name = "create_jelly"
 	full_name = "Hivelord: Create Jelly"

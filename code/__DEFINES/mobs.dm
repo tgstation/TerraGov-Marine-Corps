@@ -771,10 +771,13 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define HIVELORD_TUNNEL_DIG_TIME 10 SECONDS
 #define HIVELORD_TUNNEL_SET_LIMIT 8
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define HIVELORD_RECOVERY_PYLON_SET_LIMIT 4
 =======
 #define HIVELORD_RECOVERY_NODE_SET_LIMIT 4
 >>>>>>> c16bd7823c (hivelord recovery node)
+=======
+>>>>>>> aef13b57b1 (Revert "hivelord recovery node")
 #define HIVELORD_HEAL_RANGE 3
 #define HIVELORD_HEALING_INFUSION_DURATION 60 SECONDS
 #define HIVELORD_HEALING_INFUSION_TICKS 10
