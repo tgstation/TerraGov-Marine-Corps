@@ -46,7 +46,7 @@
 	if(.)
 		return
 
-	if(!ishuman(human_user))
+	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/human_user = user.mob
 
