@@ -107,14 +107,14 @@
 		return
 	if(attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE])
 		light_pilot(TRUE)
-	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	gun_user?.hud_used?.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 /obj/item/weapon/gun/flamer/unload(mob/living/user, drop = TRUE, after_fire = FALSE)
 	. = ..()
 	if(!.)
 		return
 	light_pilot(FALSE)
-	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	gun_user?.hud_used?.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 ///Makes the sound of the flamer being lit, and applies the overlay.
 /obj/item/weapon/gun/flamer/proc/light_pilot(light)
@@ -253,7 +253,7 @@
 		flame_turf(turf_to_ignite, gun_user, burn_time, burn_level, fire_color, turfs_to_burn[turf_to_ignite])
 		adjust_current_rounds(chamber_items[current_chamber_position], -1)
 		rounds--
-	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	gun_user?.hud_used?.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	return TRUE
 
 ///Lights the specific turf on fire and processes melting snow or vines and the like.
@@ -325,8 +325,11 @@
 
 /obj/item/weapon/gun/flamer/som/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
-	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
-	standing.overlays.Add(emissive_overlay)
+	if(icon_used == 'icons/mob/clothing/back.dmi' || icon_used == 'icons/mob/suit_slot.dmi')
+		return
+	if(flamer_features_flags & FLAMER_IS_LIT && rounds)
+		var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive", src)
+		standing.overlays.Add(emissive_overlay)
 
 /obj/item/weapon/gun/flamer/som/mag_harness
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle/wide, /obj/item/attachable/magnetic_harness)

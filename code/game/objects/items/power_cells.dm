@@ -320,6 +320,9 @@
 	maxcharge = 300
 	minor_fault = 1
 
+/obj/item/cell/rtg // todo should kill this subtype
+	charge_overlay = null
+
 /obj/item/cell/rtg/small
 	name = "recharger cell"
 	desc = "This is a miniature radioisotope generator that can fit into APC's, but not laser-based weapory. The needed shielding lowers the maximum capacity significantly."
@@ -358,14 +361,15 @@
 	icon_state = "trashmelt"
 	worn_icon_state = "trashmelt"
 	w_class = WEIGHT_CLASS_HUGE
+	charge_overlay = null
 	self_recharge = TRUE
 	maxcharge = 1000
-	charge_amount = 200
+	charge_amount = 150
 
 /obj/item/cell/mecha/medium
 	name = "medium radiotope cell"
 	maxcharge = 650
-	charge_amount = 225
+	charge_amount = 175
 
 /obj/item/cell/night_vision_battery
 	name = "night vision goggle battery"

@@ -142,6 +142,13 @@
 #define CUT "cut"
 #define BRUISE "bruise"
 #define STAMINA "stamina"
+#define PAIN "pain"
+#define EYE_DAMAGE "eye_damage"
+#define BRAIN_DAMAGE "brain_damage"
+#define INTERNAL_BLEEDING "internal_bleeding"
+#define ORGAN_DAMAGE "organ_damage"
+#define INFECTION "infection"
+
 //=================================================
 
 #define EFFECT_STUN "stun"
@@ -823,7 +830,6 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define DANCER_IMPALE_PENETRATION 20//armor penetration done by impale to marked targets
 #define DANCER_MAX_IMPALE_MULT 2.5 //the maximum multiplier dancer impale can gain from debuffs
 #define DANCER_NONHUMAN_IMPALE_MULT 1.5//the flat damage multiplier done by impale to non-carbon targets
-#define DANCER_DODGE_BATONPASS_CD 7 SECONDS//the cooldown value added to dodge by Baton Pass
 
 //misc
 
@@ -978,3 +984,19 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 
 ///Filter name for illusion impacts
 #define ILLUSION_HIT_FILTER "illusion_hit_filter"
+
+//This is here because the damage defines aren't set before the AI defines and it breaks everything and I don't know where else to put it
+///Assoc list of items to use to treat different damage types
+GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
+	BRUTE = GLOB.ai_brute_heal_items,
+	BURN = GLOB.ai_burn_heal_items,
+	TOX = GLOB.ai_tox_heal_items,
+	OXY = GLOB.ai_oxy_heal_items,
+	CLONE = GLOB.ai_clone_heal_items,
+	PAIN = GLOB.ai_pain_heal_items,
+	EYE_DAMAGE = GLOB.ai_eye_heal_items,
+	BRAIN_DAMAGE = GLOB.ai_brain_heal_items,
+	INTERNAL_BLEEDING = GLOB.ai_ib_heal_items,
+	ORGAN_DAMAGE = GLOB.ai_organ_heal_items,
+	INFECTION = GLOB.ai_infection_heal_items,
+))

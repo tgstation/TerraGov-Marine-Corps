@@ -60,3 +60,6 @@
 #define MISSION_CODE_BLUE "blue"
 #define MISSION_CODE_RED "red"
 #define MISSION_CODE_GREEN "green"
+
+///Pauses campaign mission timer
+#define CAMPAIGN_MISSION_TIMER_PAUSED "campaign_mission_timer_paused"

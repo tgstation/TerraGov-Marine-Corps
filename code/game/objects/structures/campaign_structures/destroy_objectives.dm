@@ -282,10 +282,10 @@
 	switch(status)
 		if(BLUESPACE_CORE_OK)
 			. += image(icon, icon_state = "top_overlay", layer = ABOVE_MOB_LAYER)
-			. += image(icon, icon_state = "bsd_c_s", layer = ABOVE_MOB_PROP_LAYER)
+			. += image(icon, icon_state = "bsd_c_s", layer = ABOVE_MOB_LAYER)
 		if(BLUESPACE_CORE_UNSTABLE)
 			. += image(icon, icon_state = "top_overlay", layer = ABOVE_MOB_LAYER)
-			. += image(icon, icon_state = "bsd_c_u", layer = ABOVE_MOB_PROP_LAYER)
+			. += image(icon, icon_state = "bsd_c_u", layer = ABOVE_MOB_LAYER)
 		if(BLUESPACE_CORE_BROKEN)
 			. += image(icon, icon_state = "top_overlay_broken", layer = ABOVE_MOB_LAYER)
 

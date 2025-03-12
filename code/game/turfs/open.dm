@@ -51,6 +51,24 @@
 	. = ..()
 	ScrapeAway()
 
+//direction is direction of travel of A
+/turf/open/zPassIn(direction)
+	if(direction != DOWN)
+		return FALSE
+	for(var/obj/on_us in contents)
+		if(on_us.obj_flags & BLOCK_Z_IN_DOWN)
+			return FALSE
+	return TRUE
+
+//direction is direction of travel of an atom
+/turf/open/zPassOut(direction)
+	if(direction != UP)
+		return FALSE
+	for(var/obj/on_us in contents)
+		if(on_us.obj_flags & BLOCK_Z_OUT_UP)
+			return FALSE
+	return TRUE
+
 ///Checks if anything should override the turf's normal footstep sounds
 /turf/open/proc/get_footstep_override(footstep_type)
 	var/list/footstep_overrides = list()

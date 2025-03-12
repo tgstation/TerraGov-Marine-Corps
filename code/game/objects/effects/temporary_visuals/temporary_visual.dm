@@ -139,7 +139,7 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 	icon_state = "oppose_shatter"
 	name = "veined terrain"
 	desc = "blood rushes below the ground, forcing it upwards."
-	layer = PODDOOR_OPEN_LAYER
+	layer = BLASTDOOR_LAYER
 	pixel_x = -32
 	pixel_y = -32
 	duration = 3 SECONDS
@@ -221,3 +221,20 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 /obj/effect/temp_visual/gib_particles/proc/stop_spawning()
 	blood.particles.count = 0
 	gib_splatter.particles.count = 0
+
+/obj/effect/temp_visual/leap_dust
+	name = "dust"
+	desc = "It's just a dust cloud!"
+	icon = 'icons/effects/64x64.dmi'
+	icon_state = "leap_cloud"
+	layer = BELOW_MOB_LAYER
+	plane = GAME_PLANE
+	pixel_x = -16
+	pixel_y = -16
+	duration = 1 SECONDS
+
+/obj/effect/temp_visual/leap_dust/small
+
+/obj/effect/temp_visual/leap_dust/small/Initialize(mapload)
+	. = ..()
+	transform = transform.Scale(0.5)

@@ -595,11 +595,11 @@
 	if(!deployed)
 		icon_state = "[initial(icon_state)]"
 		if(closed_overlay)
-			. += image('icons/obj/items/storage/storage_boxes.dmi', icon_state = closed_overlay)
+			. += mutable_appearance('icons/obj/items/storage/storage_boxes.dmi', closed_overlay)
 		return // We early return here since we don't draw the insides when it's closed.
 
 	if(open_overlay)
-		. += image('icons/obj/items/storage/storage_boxes.dmi', icon_state = open_overlay)
+		. += mutable_appearance('icons/obj/items/storage/storage_boxes.dmi', open_overlay)
 
 	if(variety > max_overlays) // Too many items inside so lets make it cluttered
 		return
@@ -624,12 +624,15 @@
 			total_overlays -= adjustment
 
 		for(var/i = 1 to overlays_to_draw) //Same item type, but now we actually draw them since we know how many to draw
-			var/imagepixel_x = overlay_pixel_x + FLOOR((current_iteration / amt_vertical) - 0.01, 1) * shift_x //Shift to the right only after all vertical spaces are occupied.
-			var/imagepixel_y = overlay_pixel_y + min(amt_vertical - WRAP(current_iteration - 1, 0, amt_vertical) - 1, total_overlays - current_iteration) * shift_y //Vertical shifting that draws the top overlays first if applicable
+			var/imagepixel_w = overlay_pixel_x + FLOOR((current_iteration / amt_vertical) - 0.01, 1) * shift_x //Shift to the right only after all vertical spaces are occupied.
+			var/imagepixel_z = overlay_pixel_y + min(amt_vertical - WRAP(current_iteration - 1, 0, amt_vertical) - 1, total_overlays - current_iteration) * shift_y //Vertical shifting that draws the top overlays first if applicable
 			//Getting the mini icon_state to display
 			var/obj/item/relateditem = obj_typepath
 
-			. += image('icons/obj/items/items_mini.dmi', icon_state = initial(relateditem.icon_state_mini), pixel_x = imagepixel_x, pixel_y = imagepixel_y)
+			var/mutable_appearance/new_overlay = mutable_appearance('icons/obj/items/items_mini.dmi', initial(relateditem.icon_state_mini))
+			new_overlay.pixel_w = imagepixel_w
+			new_overlay.pixel_z = imagepixel_z
+			. += new_overlay
 			current_iteration++
 
 // --MAG BOXES--

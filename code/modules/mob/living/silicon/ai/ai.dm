@@ -51,6 +51,14 @@
 	var/datum/trackable/track
 	///Selected order to give to marine
 	var/datum/action/innate/order/current_order
+
+	var/datum/action/innate/order/attack_order/send_attack_order = new
+	var/datum/action/innate/order/defend_order/send_defend_order = new
+	var/datum/action/innate/order/retreat_order/send_retreat_order = new
+	var/datum/action/innate/order/rally_order/send_rally_order = new
+	var/datum/action/control_vehicle/control = new
+	var/datum/action/innate/squad_message/squad_message = new
+
 	/// If it is currently controlling an object
 	var/controlling = FALSE
 
@@ -116,12 +124,12 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_CLONE_PRODUCED, PROC_REF(show_fresh_clone))
 	RegisterSignal(SSdcs, COMSIG_GLOB_HOLOPAD_AI_CALLED, PROC_REF(ping_ai))
 
-	var/datum/action/innate/order/attack_order/send_attack_order = new
-	var/datum/action/innate/order/defend_order/send_defend_order = new
-	var/datum/action/innate/order/retreat_order/send_retreat_order = new
-	var/datum/action/innate/order/rally_order/send_rally_order = new
-	var/datum/action/control_vehicle/control = new
-	var/datum/action/innate/squad_message/squad_message = new
+	send_attack_order = new
+	send_defend_order = new
+	send_retreat_order = new
+	send_rally_order = new
+	control = new
+	squad_message = new
 	send_attack_order.target = src
 	send_attack_order.give_action(src)
 	send_defend_order.target = src
@@ -138,6 +146,13 @@
 	QDEL_NULL(builtInCamera)
 	QDEL_NULL(track)
 	QDEL_NULL(mini)
+	QDEL_NULL(eyeobj)
+	QDEL_NULL(send_attack_order)
+	QDEL_NULL(send_defend_order)
+	QDEL_NULL(send_retreat_order)
+	QDEL_NULL(send_rally_order)
+	QDEL_NULL(control)
+	QDEL_NULL(squad_message)
 	return ..()
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
@@ -304,11 +319,11 @@
 
 /mob/living/silicon/ai/reset_perspective(atom/new_eye, has_static = TRUE)
 	if(has_static)
-		sight = initial(sight)
+		set_sight(initial(sight))
 		eyeobj?.use_static = initial(eyeobj?.use_static)
 		GLOB.cameranet.visibility(eyeobj, client, all_eyes, initial(eyeobj?.use_static))
 	else
-		sight = NONE
+		set_sight(NONE)
 		eyeobj?.use_static = FALSE
 		GLOB.cameranet.visibility(eyeobj, client, all_eyes, FALSE)
 	if(camera_light_on)
@@ -340,17 +355,18 @@
 		else
 			clear_fullscreen("remote_view", 0)
 
+	// I am so sorry
+	SEND_SIGNAL(src, COMSIG_MOB_RESET_PERSPECTIVE)
+
 /mob/living/silicon/ai/update_sight()
 	if(HAS_TRAIT(src, TRAIT_SEE_IN_DARK))
-		see_in_dark = max(see_in_dark, 8)
-		lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		eyeobj.see_in_dark = max(eyeobj.see_in_dark, 8)
-		eyeobj.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+		lighting_cutoff = LIGHTING_CUTOFF_HIGH
+		eyeobj.lighting_cutoff = LIGHTING_CUTOFF_HIGH
+		eyeobj.sync_lighting_plane_cutoff()
 		return ..()
-	see_in_dark = initial(see_in_dark)
-	lighting_alpha = initial(lighting_alpha)
-	eyeobj.see_in_dark = initial(eyeobj.see_in_dark)
-	eyeobj.lighting_alpha = initial(eyeobj.lighting_alpha)
+	lighting_cutoff = initial(lighting_cutoff)
+	eyeobj.lighting_cutoff = initial(eyeobj.lighting_cutoff)
+	eyeobj.sync_lighting_plane_cutoff()
 	return ..()
 
 /mob/living/silicon/ai/get_status_tab_items()

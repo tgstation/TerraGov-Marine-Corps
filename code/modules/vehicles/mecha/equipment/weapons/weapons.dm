@@ -59,16 +59,6 @@
 	if(HAS_TRAIT(chassis, TRAIT_MELEE_CORE) && !CHECK_BITFIELD(range, MECHA_MELEE))
 		to_chat(chassis.occupants, span_warning("Error -- Melee Core active."))
 		return FALSE
-	if(!istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
-		return
-	var/obj/vehicle/sealed/mecha/combat/greyscale/grey = chassis
-	var/datum/mech_limb/arm/holding
-	if(grey.equip_by_category[MECHA_R_ARM] == src)
-		holding = grey.limbs[MECH_GREY_R_ARM]
-	else
-		holding = grey.limbs[MECH_GREY_L_ARM]
-	if(holding.disabled)
-		return FALSE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
@@ -297,9 +287,14 @@
 		return FALSE
 	if(!projectiles_cache)
 		return FALSE
-	if(user && !do_after(user, rearm_time, IGNORE_HELD_ITEM, chassis, BUSY_ICON_GENERIC))
+	if(user.do_actions)
+		return FALSE
+	if(user && !do_after(user, rearm_time, IGNORE_HELD_ITEM|IGNORE_TARGET_LOC_CHANGE, chassis, BUSY_ICON_GENERIC, extra_checks=CALLBACK(src, PROC_REF(can_keep_reloading), projectiles)))
 		return FALSE
 	return rearm()
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/proc/can_keep_reloading(old_ammo)
+	return projectiles == old_ammo
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rearm()
 	if(projectiles >= initial(projectiles))

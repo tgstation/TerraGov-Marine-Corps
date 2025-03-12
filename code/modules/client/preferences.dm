@@ -126,6 +126,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/exp = list()
 	var/list/menuoptions = list()
 
+	/// List of keys we are ignoring in global OOC
+	var/list/ignoring = list()
+
 	// Hud tooltip
 	var/tooltips = TRUE
 
@@ -177,6 +180,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/fullscreen_mode = FALSE
 	///Hide status bar (bottom left)
 	var/show_status_bar = TRUE
+	///ambient occlusion, or the shadows drawn below objects
+	var/ambient_occlusion = TRUE
+	///whether we want to use multi-z parallax. performance option
+	var/multiz_parallax = TRUE
+	///performance setting for multiz
+	var/multiz_performance = -1
 
 	///Whether or not the MC tab of the Stat Panel refreshes fast. This is expensive so make sure you need it.
 	var/fast_mc_refresh = FALSE
