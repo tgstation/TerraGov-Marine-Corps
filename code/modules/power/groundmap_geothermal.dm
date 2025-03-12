@@ -81,7 +81,11 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 	return
 
 /obj/machinery/power/geothermal/process()
-	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
+	//Default logic checking
+	if(!is_on)
+		return PROCESS_KILL
+	if(buildstate || !anchored)
+		turn_off()
 		return PROCESS_KILL
 
 	if(power_gen_percent < 100)
@@ -95,7 +99,7 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 				balloon_alert_to_viewers("hums loudly as it reaches half capacity.")
 			if(100)
 				balloon_alert_to_viewers("rumbles loudly as the generator reaches full strength.")
-		add_avail(power_generation_max * (power_gen_percent / 100) ) //Nope, all good, just add the power
+	add_avail(power_generation_max * (power_gen_percent / 100) ) //Nope, all good, just add the power
 
 /obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
