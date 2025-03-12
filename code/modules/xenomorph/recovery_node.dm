@@ -3,7 +3,6 @@
 	desc = "A resin pillar with a purple orb on the top. It pulsates with a faint hum."
 	icon = 'icons/Xeno/2x2building.dmi'
 	icon_state = "recovery_node"
-	obj_integrity = 100
 	max_integrity = 100
 	bound_width = 32
 	bound_height = 32
@@ -33,8 +32,7 @@
 
 /obj/structure/xeno/recovery_node/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "gargoyle[threat_warning ? "_warn" : "_passive"]", ABOVE_FLOAT_LAYER))
-	//SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "recovery", ABOVE_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "recovery", -0.9)) // ABOVE_FLOAT_LAYER is clearly defined, but lint says it's not.
 
 /obj/structure/xeno/recovery_node/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(xeno_attacker.a_intent != INTENT_HARM || !(xeno_attacker.xeno_caste.caste_flags & CASTE_IS_BUILDER))
