@@ -1,0 +1,5 @@
+author: "tyeagg"
+delete-after: True
+changes:
+  - qol: "each cas ammo now have their own crosshair"
+  - imageadd: "cas crosshairs"
