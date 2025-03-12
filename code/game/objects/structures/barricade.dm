@@ -1158,9 +1158,6 @@
 	barricade_type = "new_plasteel"
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 50)
 
-/obj/structure/barricade/solid/plasteel/attempt_barricade_upgrade()
-	return //not upgradable
-
 /*----------------------*/
 // FOLDING METAL
 /*----------------------*/
