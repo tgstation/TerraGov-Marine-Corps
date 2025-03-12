@@ -739,7 +739,6 @@
 	var/spell_timer
 	COOLDOWN_DECLARE(void_rift_cooldown)
 	COOLDOWN_DECLARE(lightning_shrike_cooldown)
-	COOLDOWN_DECLARE(cryogensis_cooldown)
 
 /datum/action/ability/activable/xeno/psychic_channel/can_use_ability(atom/A, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
@@ -775,7 +774,7 @@
 		select_spell(spell_name)
 		return
 	if(pick_randomly)
-		spell_name = pick(list(DRAGON_VOID_RIFT, DRAGON_LIGHTNING_SHRIKE, DRAGON_CRYOGENSIS))
+		spell_name = pick(list(DRAGON_VOID_RIFT, DRAGON_LIGHTNING_SHRIKE))
 	switch(spell_name)
 		if(DRAGON_PSYCHIC_CHANNEL)
 			selected_spell = DRAGON_PSYCHIC_CHANNEL
@@ -792,11 +791,6 @@
 			if(is_actively_channeling() || force_update)
 				name = "Lightning Strike"
 				desc = "Up to 15 nearby marines are marked to be struck with lightning. Marines that do not move out of way fast enough are burnt and inflicted with an effect that causes additional damage if they move."
-		if(DRAGON_CRYOGENSIS)
-			selected_spell = DRAGON_CRYOGENSIS
-			if(is_actively_channeling() || force_update)
-				name = "Cryogensis"
-				desc = "After a windup, create a line of cryogenic energy in front of you that will hit any marine in the way and slow them down."
 	reset_cooldown()
 	update_button_icon()
 
@@ -821,10 +815,6 @@
 			var/remaining_cooldown = COOLDOWN_TIMELEFT(src, lightning_shrike_cooldown)
 			if(remaining_cooldown)
 				add_cooldown(COOLDOWN_TIMELEFT(src, lightning_shrike_cooldown))
-		if(DRAGON_CRYOGENSIS)
-			var/remaining_cooldown = COOLDOWN_TIMELEFT(src, cryogensis_cooldown)
-			if(remaining_cooldown)
-				add_cooldown(COOLDOWN_TIMELEFT(src, cryogensis_cooldown))
 
 /// Either begin channeling or perform the spell.
 /datum/action/ability/activable/xeno/psychic_channel/use_ability(atom/A)
@@ -867,36 +857,6 @@
 			spell_timer = addtimer(CALLBACK(src, PROC_REF(finalize_lightning_shrike), get_lightning_shrike_center_turfs(acceptable_humans), impacted_turfs), 1.5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 			xeno_owner.gain_plasma(350)
 			COOLDOWN_START(src, lightning_shrike_cooldown, 25 SECONDS)
-		if(DRAGON_CRYOGENSIS)
-			xeno_owner.face_atom(A)
-			var/list/list/turf/sets_of_turfs_in_order = list()
-			var/turf/maximum_distance_turf = get_turf(xeno_owner)
-			for(var/i in 1 to 7)
-				maximum_distance_turf = get_step(maximum_distance_turf, xeno_owner.dir)
-				if(!line_of_sight(xeno_owner, maximum_distance_turf, 7))
-					break
-				if(isclosedturf(maximum_distance_turf))
-					break
-				var/list/turf/turf_set = list()
-				if(ISODD(i))
-					turf_set += get_step(maximum_distance_turf, turn(xeno_owner.dir, 90))
-					turf_set += get_step(maximum_distance_turf, turn(xeno_owner.dir, -90))
-				else
-					turf_set += maximum_distance_turf
-				sets_of_turfs_in_order += list(turf_set)
-			for(var/list/turf/turf_set AS in sets_of_turfs_in_order)
-				for(var/turf/affected_turf AS in turf_set)
-					new /obj/effect/temp_visual/dragon/warning(affected_turf, 2 SECONDS)
-			xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
-			xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-			var/was_successful = do_after(xeno_owner, 2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY))
-			xeno_owner.move_resist = initial(xeno_owner.move_resist)
-			xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-			if(!was_successful)
-				return
-			cryogensis_tick_effects(sets_of_turfs_in_order)
-			xeno_owner.gain_plasma(350)
-			COOLDOWN_START(src, cryogensis_cooldown, 35 SECONDS)
 
 	reset_cooldown()
 	succeed_activate()
@@ -983,31 +943,6 @@
 				impacted_obj.take_damage(15, BURN, FIRE, blame_mob = xeno_owner)
 				continue
 			impacted_obj.take_damage(75, BURN, FIRE, blame_mob = xeno_owner)
-
-/// Performs the ability at a pace similar of CAS which is one width length at a length.
-/datum/action/ability/activable/xeno/psychic_channel/proc/cryogensis_tick_effects(list/list/turf/sets_of_turfs_in_order, list_number = 1)
-	if(!length(sets_of_turfs_in_order) || list_number > length(sets_of_turfs_in_order))
-		return
-	var/list/turf/turf_set = sets_of_turfs_in_order[list_number]
-	if(length(turf_set) == 1)
-		new /obj/effect/temp_visual/dragon/cryogenesis(turf_set[1])
-
-	for(var/turf/affected_turf AS in turf_set)
-		for(var/atom/affected_atom AS in affected_turf)
-			if(isxeno(affected_atom))
-				var/mob/living/carbon/xenomorph/affected_xenomorph = affected_atom
-				if(xeno_owner.issamexenohive(affected_xenomorph))
-					continue
-				continue
-			if(!isliving(affected_atom))
-				continue
-			var/mob/living/affected_living = affected_atom
-			if(affected_living.stat == DEAD)
-				continue
-			affected_living.take_overall_damage(120, BURN, FIRE, updating_health = TRUE, penetration = 30, max_limbs = 5)
-			playsound(affected_living, 'sound/effects/alien/dragon/crytogensis_impact.ogg', 50, TRUE)
-			continue
-	INVOKE_NEXT_TICK(src, PROC_REF(cryogensis_tick_effects), sets_of_turfs_in_order, list_number + 1)
 
 /datum/action/ability/activable/xeno/scorched_land
 	name = "Scorched Land"
@@ -1289,10 +1224,3 @@
 	pixel_x = -32
 	layer = BELOW_MOB_LAYER
 	duration = 0.6 SECONDS
-
-/obj/effect/temp_visual/dragon/cryogenesis
-	icon = 'icons/Xeno/160x450.dmi'
-	icon_state = "cryogenesis"
-	pixel_x = -64
-	layer = BELOW_MOB_LAYER
-	duration = 1.6 SECONDS

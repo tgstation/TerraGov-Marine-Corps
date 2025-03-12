@@ -63,7 +63,6 @@
 #define DRAGON_PSYCHIC_CHANNEL "psychic_channel"
 #define DRAGON_VOID_RIFT "void_rift"
 #define DRAGON_LIGHTNING_SHRIKE "lightning_strike"
-#define DRAGON_CRYOGENSIS "cryogensis"
 
 //List of weed types
 GLOBAL_LIST_INIT(weed_type_list, typecacheof(list(
@@ -159,7 +158,6 @@ GLOBAL_LIST_INIT(puppeteer_phero_images_list, list(
 GLOBAL_LIST_INIT(dragon_spell_images_list, list(
 	DRAGON_VOID_RIFT = image('icons/Xeno/actions/dragon.dmi', icon_state = DRAGON_VOID_RIFT),
 	DRAGON_LIGHTNING_SHRIKE = image('icons/Xeno/actions/dragon.dmi', icon_state = DRAGON_LIGHTNING_SHRIKE),
-	DRAGON_CRYOGENSIS = image('icons/Xeno/actions/dragon.dmi', icon_state = DRAGON_CRYOGENSIS),
 ))
 
 //xeno upgrade flags
