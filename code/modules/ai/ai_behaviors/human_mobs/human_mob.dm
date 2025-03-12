@@ -87,8 +87,19 @@
 	if(mob_parent.do_actions)
 		return ..()
 
+	if(human_parent.lying_angle)
+		INVOKE_ASYNC(human_parent, TYPE_PROC_REF(/mob/living/carbon/human, get_up))
+
 	if((medical_rating >= AI_MED_MEDIC) && medic_process())
 		return
+
+	var/mob/living/carbon/human/human_parent = mob_parent
+	if((human_parent.nutrition <= NUTRITION_HUNGRY) && length(mob_inventory.food_list) && (human_parent.nutrition + (37.5 * human_parent.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)) < NUTRITION_WELLFED))
+		var/obj/item/reagent_containers/food/food = mob_inventory.food_list[1]
+		food.ai_use(mob_parent, mob_parent)
+
+	if(mob_parent.buckled && !istype(mob_parent.buckled, /obj/structure/droppod)) //unbuckling from your pod midflight is not ideal
+		mob_parent.buckled.unbuckle_mob(mob_parent)
 
 	for(var/datum/action/action in ability_list)
 		if(!action.ai_should_use(atom_to_walk_to)) //todo: some of these probably should be aimmed at combat_target somehow...
@@ -383,7 +394,7 @@
 			human_ai_state_flags &= ~(HUMAN_AI_ANY_HEALING)
 			late_initialize()
 			return
-		if(current_action == MOVING_TO_SAFETY)
+		if((current_action == MOVING_TO_SAFETY) || !combat_target)
 			if(attacker && attacker.faction != mob_parent.faction)
 				set_combat_target(attacker)
 			return

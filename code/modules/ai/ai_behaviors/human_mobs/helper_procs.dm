@@ -27,6 +27,14 @@
 			return FALSE
 	return TRUE
 
+/obj/item/reagent_containers/food/ai_should_use(mob/living/target, mob/living/user)
+	if(!ishuman(target))
+		return FALSE
+	var/mob/living/carbon/human/human_target = target
+	if((reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 37.5) + human_target.nutrition >= NUTRITION_OVERFED)
+		return FALSE
+	return TRUE
+
 ///AI uses this item in some manner, such as consuming or activating it
 /obj/item/proc/ai_use(mob/living/target, mob/living/user)
 	return FALSE
@@ -68,6 +76,14 @@
 	if(!active)
 		attack_self(user)
 		return TRUE
+
+/obj/item/reagent_containers/food/ai_use(mob/living/target, mob/living/user)
+	target.attackby(src, user)
+
+/obj/item/reagent_containers/food/snacks/ai_use(mob/living/target, mob/living/user)
+	if(package)
+		attack_self(user)
+	return ..()
 
 ///AI mob interaction with this atom, such as picking it up
 /atom/proc/do_ai_interact(mob/living/interactor)
