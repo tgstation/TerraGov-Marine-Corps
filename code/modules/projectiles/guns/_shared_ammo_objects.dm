@@ -199,6 +199,7 @@
 	name = "shattering fire"
 	desc = "Cold to the touch, it rapidly spreads cracks through anything it contacts."
 	icon_state = "violet_1"
+	flame_color = "violet"
 
 /obj/fire/melting_fire/shattering/affect_atom(atom/affected)
 	. = ..()

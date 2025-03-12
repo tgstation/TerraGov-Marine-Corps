@@ -344,8 +344,8 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	acid_damage = 40
 
 /datum/globadier_mine/gas_mine/detonate(mine, triggerer)
-	var/datum/effect_system/smoke_spread/xeno/acid/opaque/smog = new(get_turf(src))
-	smog.set_up(1,src)
+	var/datum/effect_system/smoke_spread/xeno/acid/opaque/smog = new(get_turf(mine))
+	smog.set_up(1,mine)
 	smog.start()
 	return ..()
 
@@ -374,7 +374,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 
 /datum/globadier_mine/incen/detonate(mine, triggerer)
-	flame_radius(1.5, get_turf(mine), fire_type = /obj/fire/melting_fire/shattering, burn_intensity = 20, burn_duration = 180, colour = "purple")
+	flame_radius(1.5, get_turf(mine), fire_type = /obj/fire/melting_fire/shattering, burn_intensity = 20, burn_duration = 180, colour = "violet")
 	qdel(mine)
 
 // ***************************************
@@ -471,9 +471,9 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	icon_state = "neuro_mine"
 
 /datum/globadier_mine/neuro/detonate(mine, triggerer)
-	var/datum/effect_system/smoke_spread/xeno/neuro/A = new(get_turf(mine))
-	A.set_up(1, mine)
-	A.start()
+	var/datum/effect_system/smoke_spread/xeno/neuro/medium/gas = new(get_turf(mine))
+	gas.set_up(1, mine)
+	gas.start()
 
 	if(ishuman(triggerer))
 		var/mob/living/carbon/human/victim = triggerer
@@ -491,11 +491,13 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	greyscale_colors = "#09ffde"
 	det_time = 4 SECONDS
 	minetype = /datum/globadier_mine/heal
-	select_message = "Detonates and heals nearby xenos."
+	select_message = "Detonates and heals nearby xenos, and applies melting to nearby humans."
 
 /obj/item/explosive/grenade/globadier/heal/prime()
 	for(var/turf/effect_tile in filled_turfs(get_turf(src), 1, "square", pass_flags_checked = PASS_AIR))
 		new /obj/effect/temp_visual/heal(effect_tile)
+	for(var/mob/living/carbon/human/nerd in cheap_get_humans_near(src,1))
+		nerd.apply_status_effect(STATUS_EFFECT_MELTING,2)
 	for(var/mob/living/carbon/xenomorph/xeno AS in cheap_get_xenos_near(src,1))
 		var/healamount = (25 + (xeno.recovery_aura * xeno.maxHealth * 0.03))
 		HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
