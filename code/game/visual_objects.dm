@@ -19,7 +19,7 @@
 	. = ..()
 	if(new_icon_state)
 		icon_state = new_icon_state
-	add_overlay(emissive_appearance(icon, icon_state, src, attached = TRUE))
+	add_overlay(emissive_appearance(icon, icon_state, src, layer, attached = TRUE))
 
 /atom/movable/vis_obj/fulton_balloon
 	appearance_flags = RESET_COLOR|RESET_ALPHA|RESET_TRANSFORM

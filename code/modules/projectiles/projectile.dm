@@ -355,7 +355,7 @@
 		if(ammo.bullet_color)
 			set_light_color(ammo.bullet_color)
 			set_light_on(TRUE)
-			add_overlay(emissive_appearance(icon, icon_state, src, attached = TRUE))
+			add_overlay(emissive_appearance(icon, icon_state, src, layer, attached = TRUE))
 	else
 		alpha = 64
 

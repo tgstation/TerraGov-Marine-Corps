@@ -15,7 +15,7 @@
 	set_light_color(laser_color)
 	set_light_on(TRUE)
 	icon_state = effect_icon
-	add_overlay(emissive_appearance(icon, icon_state, src, attached = TRUE))
+	add_overlay(emissive_appearance(icon, icon_state, src, layer, attached = TRUE))
 	pixel_x = p_x
 	pixel_y = p_y
 	var/matrix/M = transform
