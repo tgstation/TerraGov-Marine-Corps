@@ -570,12 +570,6 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PLACE_JELLY_POD
 
-/datum/keybinding/xeno/place_recovery_node
-	name = "Hivelord: Place Recovery Node"
-	full_name = "Hivelord: Recovery Node"
-	description = "Plants a recovery node that increases the amount of regeneration power restored."
-	keybind_signal = COMSIG_XENOABILITY_PLACE_RECOVERY_NODE
-
 /datum/keybinding/xeno/create_jelly
 	name = "create_jelly"
 	full_name = "Hivelord: Create Jelly"
