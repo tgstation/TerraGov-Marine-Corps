@@ -440,3 +440,49 @@
 /datum/action/ability/xeno_action/sow/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(choose_plant))
 	return COMSIG_KB_ACTIVATED
+
+/datum/action/ability/xeno_action/place_recovery_node
+	name = "Place Recovery Node"
+	action_icon_state = "recovery_node"
+	action_icon = 'icons/Xeno/actions/construction.dmi'
+	desc = "Place down a recovery node that increases the amount of regeneration power restored."
+	ability_cost = 500
+	cooldown_duration = 1 MINUTES
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_RECOVERY_NODE,
+	)
+	use_state_flags = ABILITY_USE_LYING
+
+/datum/action/ability/xeno_action/place_recovery_node/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	var/turf/current_turf = get_turf(owner)
+	if(!current_turf || !current_turf.is_weedable() || current_turf.density)
+		if(!silent)
+			current_turf.balloon_alert(owner, "Cannot place recovery node.")
+		return FALSE
+	if(!xeno_owner.loc_weeds_type)
+		if(!silent)
+			current_turf.balloon_alert(owner, "No weeds here.")
+		return FALSE
+	if(!current_turf.check_disallow_alien_fortification(owner, silent))
+		return FALSE
+	if(!current_turf.check_alien_construction(owner, silent, /obj/structure/xeno/recovery_node))
+		return FALSE
+	var/list/turf/affected_turfs = RANGE_TURFS(3, xeno_owner)
+	for(var/turf/affected_turf AS in affected_turfs)
+		if(!(locate(/obj/structure/xeno/recovery_node) in affected_turf))
+			continue
+		if(!silent)
+			current_turf.balloon_alert(owner, "Nearby recovery node already.")
+		return FALSE
+	if(LAZYLEN(GLOB.hive_datums[xeno_owner.hivenumber].recovery_nodes) >= HIVELORD_RECOVERY_NODE_SET_LIMIT)
+		if(!silent)
+			current_turf.balloon_alert(owner, "Maximum recovery nodes made.")
+		return FALSE
+
+/datum/action/ability/xeno_action/place_recovery_node/action_activate()
+	var/obj/structure/xeno/recovery_node/recovery_node = new(get_turf(xeno_owner), xeno_owner.get_xeno_hivenumber())
+	to_chat(xeno_owner, span_xenonotice("We shape some resin into \a [recovery_node]."))
+	playsound(xeno_owner, SFX_ALIEN_RESIN_BUILD, 25)
+	succeed_activate()
+	add_cooldown()
