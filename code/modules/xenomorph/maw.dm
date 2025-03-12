@@ -173,9 +173,9 @@
 	var/minion_count = 16
 	///minions to choose to spawn
 	var/list/minion_options = list(
-		/mob/living/carbon/xenomorph/beetle/ai,
-		/mob/living/carbon/xenomorph/mantis/ai,
-		/mob/living/carbon/xenomorph/scorpion/ai,
+		/mob/living/carbon/xenomorph/beetle/ai/cheap,
+		/mob/living/carbon/xenomorph/mantis/ai/cheap,
+		/mob/living/carbon/xenomorph/scorpion/ai/cheap,
 	)
 	/// used to track our spawned minions for animations and stuff
 	var/list/spawned_minions = list()
