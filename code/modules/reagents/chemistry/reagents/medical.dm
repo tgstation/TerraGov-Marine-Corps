@@ -51,7 +51,7 @@
 /datum/reagent/medicine/inaprovaline/ai_should_use(mob/living/target, inject_vol)
 	if(!target.InCritical())
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(target, name))
+	if(TIMER_COOLDOWN_CHECK(target, name) && (target.getOxyLoss() < 15))
 		return FALSE
 	return ..()
 
