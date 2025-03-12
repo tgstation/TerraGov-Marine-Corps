@@ -30,7 +30,7 @@
 	///is this barriade wired?
 	var/is_wired = FALSE
 
-/obj/structure/barricade/Initialize(mapload)
+/obj/structure/barricade/Initialize(mapload, mob/user)
 	. = ..()
 	update_icon()
 	var/static/list/connections = list(
@@ -38,6 +38,8 @@
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	if(user)
+		faction = user.faction
 
 /obj/structure/barricade/handle_barrier_chance(mob/living/M)
 	return prob(max(30,(100.0*obj_integrity)/max_integrity))

@@ -101,7 +101,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 /// Updates the minimap icon to whether the generator is running or not
 /obj/machinery/power/geothermal/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator[is_on ? "_on" : "_off"]", ABOVE_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator[is_on ? "_on" : "_off"]", MINIMAP_BLIPS_LAYER))
 
 /obj/machinery/power/geothermal/power_change()
 	return
@@ -244,18 +244,13 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 		if(!WT.remove_fuel(1, user))
 			to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			return
-		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 		user.visible_message(span_notice("[user] carefully starts burning [src]'s resin off."),
 		span_notice("You start carefully burning the resin off."))
 		user.balloon_alert(user, "You start carefully burning the resin off.")
-		add_overlay(GLOB.welding_sparks)
 
-		if(!do_after(user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20) SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
-			cut_overlay(GLOB.welding_sparks)
+		if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
 			return FALSE
 
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		cut_overlay(GLOB.welding_sparks)
 		corrupted = 0
 		stop_processing()
 		update_icon()
@@ -272,18 +267,13 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	if(!WT.remove_fuel(1, user))
 		to_chat(user, span_warning("You need more welding fuel to complete this task."))
 		return
-	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-	user.balloon_alert(user, "You start welding the internals back together.")
-	add_overlay(GLOB.welding_sparks)
 
-	if(!do_after(user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20) SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || buildstate != GENERATOR_HEAVY_DAMAGE || is_on)
-		cut_overlay(GLOB.welding_sparks)
+	user.balloon_alert(user, "You start welding the internals back together.")
+	if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
 		return FALSE
 
-	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 	buildstate = GENERATOR_MEDIUM_DAMAGE
 	user.balloon_alert(user, "You weld the internals back together.")
-	cut_overlay(GLOB.welding_sparks)
 	update_icon()
 	record_generator_repairs(user)
 	return TRUE

@@ -1,6 +1,6 @@
 /obj/structure/prop/som_tank/computer
 	icon = 'icons/obj/armored/3x4/som_interior_props.dmi'
-	icon_state = "computer_overhead"
+	icon_state = ""
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	allow_pass_flags = PASSABLE|PASS_LOW_STRUCTURE
 	density = TRUE
@@ -15,7 +15,8 @@
 
 /obj/structure/prop/som_tank/computer/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, "[icon_state]_emissive")
+	if(icon_state)
+		. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 /obj/structure/prop/som_tank/computer/gunner_console
 	icon_state = "gunner_console"

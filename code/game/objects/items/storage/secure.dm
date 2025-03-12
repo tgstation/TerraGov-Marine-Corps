@@ -90,22 +90,22 @@
 			return
 
 		open = !open
-		user.show_message(span_notice(" You [open ? "open" : "close"] the service panel."))
+		user.show_message(span_notice("You [open ? "open" : "close"] the service panel."))
 
 	else if(ismultitool(I) && open && !l_hacking)
-		user.show_message(span_warning(" Now attempting to reset internal memory, please hold."))
+		user.show_message(span_warning("Now attempting to reset internal memory, please hold."))
 		l_hacking = TRUE
 		if(!do_after(user, 100, NONE, src, BUSY_ICON_BUILD))
 			return
 
 		if(!prob(40))
-			user.show_message(span_warning(" Unable to reset internal memory."), 1)
+			user.show_message(span_warning("Unable to reset internal memory."), 1)
 			l_hacking = FALSE
 			return
 
 		l_setshort = TRUE
 		l_set = FALSE
-		user.show_message(span_warning(" Internal memory reset.  Please give it a few seconds to reinitialize."))
+		user.show_message(span_warning("Internal memory reset.  Please give it a few seconds to reinitialize."))
 		sleep(8 SECONDS)
 		l_setshort = FALSE
 		l_hacking = FALSE

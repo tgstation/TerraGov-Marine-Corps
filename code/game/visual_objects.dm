@@ -4,15 +4,14 @@
 
 /atom/movable/vis_obj/action
 	appearance_flags = NO_CLIENT_COLOR
-	layer = HUD_LAYER
 	plane = HUD_PLANE
 	icon = 'icons/mob/actions.dmi'
 
 /atom/movable/vis_obj/effect/muzzle_flash
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "muzzle_flash"
-	layer = ABOVE_LYING_MOB_LAYER
-	plane = GAME_PLANE
+	layer = MOB_BELOW_PIGGYBACK_LAYER
+	plane = GAME_PLANE // todo we can make these emissive
 	appearance_flags = KEEP_APART|TILE_BOUND
 	var/applied = FALSE
 

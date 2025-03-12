@@ -19640,9 +19640,7 @@
 /obj/machinery/door/window{
 	dir = 8
 	},
-/obj/structure/table/reinforced{
-	layer = 2.1
-	},
+/obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro,
 /turf/open/floor/prison/marked,

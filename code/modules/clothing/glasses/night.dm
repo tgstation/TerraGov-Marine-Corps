@@ -13,8 +13,8 @@
 		"Ratcher Combat Robot" = 'icons/mob/species/robot/glasses_deltad.dmi')
 	icon_state = "night"
 	worn_icon_state = "glasses"
-	darkness_view = 7
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
+	toggleable = TRUE
 
 
 /obj/item/clothing/glasses/night/tx8
@@ -24,7 +24,6 @@
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
 	vision_flags = SEE_TURFS
-	darkness_view = 12
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle)
 
@@ -36,7 +35,6 @@
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
 	vision_flags = SEE_TURFS
-	darkness_view = 24
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle)
 
@@ -52,9 +50,10 @@
 	desc = "A thick, black coating over an alien's eyes, allowing them to see in the dark."
 	icon_state = "alien_lens"
 	worn_icon_state = "alien_lens"
-	darkness_view = 7
-	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	lighting_cutoff = LIGHTING_CUTOFF_FULLBRIGHT
 	item_flags = DELONDROP
+	toggleable = FALSE
+	active = TRUE
 
 /obj/item/clothing/glasses/night/sectoid/Initialize(mapload)
 	. = ..()
@@ -66,7 +65,6 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
-	darkness_view = 5
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
 	vision_flags = SEE_TURFS
@@ -78,7 +76,6 @@
 	icon_state = "m56sunglasses"
 	worn_icon_state = "m56sunglasses"
 	deactive_state = "degoggles_mesonsunglasses"
-	darkness_view = 5
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
 	vision_flags = SEE_TURFS
@@ -90,7 +87,6 @@
 	icon_state = "optgoggles"
 	worn_icon_state = "optgoggles"
 	deactive_state = "degoggles_optgoggles"
-	darkness_view = 2
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
 	species_exception = list(/datum/species/robot)
@@ -115,7 +111,6 @@
 	icon_state = "vsd_nvg"
 	worn_icon_state = "vsd_nvg"
 	deactive_state = "vsd_nvg_off"
-	darkness_view = 9
 	toggleable = TRUE
 	actions_types = list(/datum/action/item_action/toggle)
 	tint = COLOR_GREEN
