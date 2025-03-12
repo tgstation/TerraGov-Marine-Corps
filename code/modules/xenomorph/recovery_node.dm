@@ -47,7 +47,7 @@
 	if(!isxeno(entering_movable))
 		return
 	var/mob/living/carbon/xenomorph/entering_xenomorph = entering_movable
-	if(entering_xenomorph in buffed_xenos || entering_xenomorph.hivenumber != src.hivenumber)
+	if((entering_xenomorph in buffed_xenos) || entering_xenomorph.hivenumber != src.hivenumber)
 		return
 	buffed_xenos += entering_xenomorph
 	entering_xenomorph.xeno_caste.regen_delay = 1 SECONDS
