@@ -40,6 +40,9 @@
 	var/list/req_one_access = null
 	///Odds of a projectile hitting the object, if the object is dense
 	var/coverage = 50
+	/// Map tag for something.  Tired of it being used on snowflake items.  Moved here for some semblance of a standard.
+	/// Next pr after the network fix will have me refactor door interactions, so help me god.
+	var/id_tag = null
 
 /obj/Initialize(mapload)
 	. = ..()
