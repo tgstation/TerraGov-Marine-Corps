@@ -189,7 +189,7 @@
 			return engineering_list
 	if(isfood(new_item))
 		return food_list
-	if(isreagentcontainer(new_item) || istype(new_item, /obj/item/tweezers_advanced) || istype(new_item, /obj/item/tweezers))
+	if(isreagentcontainer(new_item) || istype(new_item, /obj/item/tweezers_advanced) || istype(new_item, /obj/item/tweezers) || istype(new_item, /obj/item/defibrillator))
 		return medical_list
 
 //boiler plate

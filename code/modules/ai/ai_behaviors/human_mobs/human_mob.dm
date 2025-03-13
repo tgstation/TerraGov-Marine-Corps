@@ -78,7 +78,7 @@
 		COMSIG_MOB_TOGGLEMOVEINTENT,
 	))
 	UnregisterSignal(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED))
-	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_HAZARD_NOTIFIED, COMSIG_GLOB_MOB_ON_CRIT, COMSIG_GLOB_AI_NEED_HEAL, COMSIG_GLOB_MOB_CALL_MEDIC)
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_AI_HAZARD_NOTIFIED, COMSIG_GLOB_MOB_ON_CRIT, COMSIG_GLOB_AI_NEED_HEAL, COMSIG_GLOB_MOB_CALL_MEDIC))
 	return ..()
 
 /datum/ai_behavior/human/process()
@@ -311,8 +311,16 @@
 /datum/ai_behavior/human/do_unset_target(atom/old_target, need_new_state = TRUE)
 	if(combat_target == old_target && (human_ai_state_flags & HUMAN_AI_FIRING))
 		stop_fire()
-	remove_from_heal_list(old_target)
-	if(human_ai_state_flags & HUMAN_AI_HEALING)
+	var/revive_target = FALSE
+	if((medical_rating >= AI_MED_MEDIC) && (old_target in heal_list))
+		var/mob/living/living_target = old_target
+		if(living_target.stat == DEAD) //medics keep them on the list
+			revive_target = TRUE
+		else
+			remove_from_heal_list(old_target)
+	else
+		remove_from_heal_list(old_target)
+	if((human_ai_state_flags & HUMAN_AI_HEALING) && !revive_target)
 		on_heal_end(old_target)
 	return ..()
 

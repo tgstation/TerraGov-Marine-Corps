@@ -83,6 +83,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		global_set_escorted_atom(null, escorted_atom)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, PROC_REF(set_goal_node))
 	set_goal_node(null, GLOB.goal_nodes[mob_parent.faction])
+	START_PROCESSING(SSprocessing, src)
 	late_initialize()
 
 ///Set behaviour to base behavior

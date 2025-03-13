@@ -213,3 +213,47 @@
   - code_imp: supports multiz on the transit z-layer
   - code_imp: 'added "see_dirty_varedits" when compiling in #TESTING mode to show
       dirty varedits from all loaded maps/templates'
+2025-03-11:
+  Lumipharon:
+  - bugfix: fixed SOM tank offsets
+  TiviPlus:
+  - refactor: refactored how proximity alerts for the proximity assembly and xeno
+      strucutre alerts are handled to optimize them and fix some edgecases
+  - rscadd: added open space turfs
+  - code_imp: added multi-z movement backend
+  - code_imp: added backend code for turf transparency
+  - bugfix: fixed ghosts being invis on multi-z maps
+  - bugfix: fixed dropship attachment points layering too low
+  - bugfix: fixed tallgrass layering over too much
+  - qol: Certain HUDs will now appear over game world objects. Most notably this means
+      that xeno HUDS now layer over smoke
+  - balance: MultiZ Cables can't be destroyed
+  - bugfix: Slumbridge,deltastation and other maps now have working parallax
+  - code_imp: Added backend for allowing items to have a FOV when worn
+  yyzsong:
+  - spellcheck: ajacent -> adjacent
+2025-03-12:
+  Lumipharon:
+  - bugfix: removed a stray dev verb
+  Neocloudy:
+  - bugfix: ignore/unignore actually works now.
+2025-03-13:
+  Lumipharon:
+  - bugfix: NPC's actually check turret and droid faction when looking for targets
+  Runian:
+  - bugfix: Warlock's Psyblast now goes over objects like many other xeno ranged abilities
+      as intended.
+  TiviPlus:
+  - rscadd: Glass floors are seethough
+  - rscadd: Added multiz stair subtype
+  - balance: mech legs now slow increasingly based on hp instead of when destroyed
+  - bugfix: Fixed pod launcher not always working
+  - code_imp: added backend for trams and elevators
+  - bugfix: tank riding should work better now for non-mobs
+  - qol: Added queen visually warping shriek wave
+  Tiviplus & Lumipharon:
+  - bugfix: fixed turfs sometimes turning into space tiles on ground maps, hopefully
+      for good
+  tyeagg:
+  - qol: each cas ammo now have their own crosshair
+  - imageadd: cas crosshairs

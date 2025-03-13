@@ -236,7 +236,7 @@
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
 "abb" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "medsci"
 	},
@@ -566,7 +566,7 @@
 	},
 /area/sulaco/medbay/storage)
 "acw" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "hall3"
 	},
@@ -829,7 +829,7 @@
 /turf/closed/wall/mainship/white/outer,
 /area/sulaco/medbay/surgery_two)
 "ady" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "hall4"
 	},
@@ -3255,14 +3255,14 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
 "asD" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "hall1"
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
 "asE" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "hall2"
 	},
@@ -3287,7 +3287,7 @@
 	name = "Briefing Shutters";
 	pixel_y = 30
 	},
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "hall10"
 	},
@@ -3495,7 +3495,7 @@
 	},
 /area/sulaco/hallway/central_hall)
 "atE" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "cicext1"
 	},
@@ -3882,7 +3882,7 @@
 	},
 /area/sulaco/bridge)
 "avf" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "hall7"
 	},
@@ -3925,14 +3925,14 @@
 	},
 /area/sulaco/hallway/central_hall)
 "avn" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "hall8"
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
 "avo" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "cicext2"
 	},
@@ -4292,7 +4292,7 @@
 /turf/open/floor/prison/red,
 /area/sulaco/bridge)
 "awN" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "cicext3"
 	},
@@ -4588,7 +4588,7 @@
 /turf/open/floor/prison,
 /area/sulaco/engineering)
 "ayI" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "hall5"
 	},
@@ -4596,7 +4596,7 @@
 /area/sulaco/hallway/central_hall2)
 "ayJ" = (
 /obj/machinery/light/mainship,
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "hall6"
 	},
@@ -4610,7 +4610,7 @@
 /turf/open/floor/prison,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "ayM" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "hall9"
 	},
@@ -6166,7 +6166,7 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/evac)
 "aHh" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "hub2"
 	},
@@ -7163,7 +7163,7 @@
 	},
 /area/sulaco/firingrange)
 "aMW" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "hub2"
 	},
@@ -7499,7 +7499,7 @@
 /turf/open/floor/plating,
 /area/sulaco/hangar)
 "aQg" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "hub3"
 	},
@@ -7925,7 +7925,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/medbay/hangar)
 "aSB" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "hall3"
 	},
@@ -8170,7 +8170,7 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/maintenance/lower_maint)
 "aUF" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "hall8"
 	},
@@ -8400,21 +8400,21 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "aWa" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "hall1"
 	},
 /turf/open/floor/prison/marked,
 /area/sulaco/hallway/lower_main_hall)
 "aWb" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "hall2"
 	},
 /turf/open/floor/prison/marked,
 /area/sulaco/hallway/lower_main_hall)
 "aWd" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "hall4"
 	},
@@ -8422,7 +8422,7 @@
 /turf/open/floor/prison/marked,
 /area/sulaco/hallway/lower_main_hall)
 "aWe" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "hall10"
 	},
@@ -8687,7 +8687,7 @@
 /area/sulaco/hydro)
 "aYV" = (
 /obj/structure/window/reinforced,
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "cicext3"
 	},
@@ -8705,14 +8705,14 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/liaison)
 "aZf" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "hall5"
 	},
 /turf/open/floor/prison/marked,
 /area/sulaco/hallway/lower_main_hall)
 "aZg" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "hall6"
 	},
@@ -8725,14 +8725,14 @@
 /turf/open/floor/prison/marked,
 /area/sulaco/hallway/lower_main_hall)
 "aZh" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "hall7"
 	},
 /turf/open/floor/prison/marked,
 /area/sulaco/hallway/lower_main_hall)
 "aZj" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "hall9"
 	},
@@ -8919,7 +8919,7 @@
 /area/sulaco/cargo)
 "bbd" = (
 /obj/effect/decal/cleanable/cobweb2,
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "hub1"
 	},
@@ -13891,7 +13891,7 @@
 /area/sulaco/hallway/lower_main_hall)
 "hbW" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "morgue"
 	},
@@ -16320,7 +16320,7 @@
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
 "jQe" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "cicext1"
 	},
@@ -19180,7 +19180,7 @@
 /area/mainship/shipboard/weapon_room)
 "nxz" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "morgue"
 	},
@@ -19649,7 +19649,7 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "cicext2"
 	},
@@ -20005,7 +20005,7 @@
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "oxw" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "medsci"
 	},
@@ -25198,7 +25198,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 5
 	},
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "hub1"
 	},
@@ -27601,7 +27601,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
 "xUM" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "hub3"
 	},

@@ -14,8 +14,10 @@
 	return FALSE
 
 /obj/item/reagent_containers/ai_should_use(mob/living/target, mob/living/user)
+	if(!length(reagents.reagent_list)) //this should never fail but some reagent container code is old and cursed
+		return FALSE
 	for(var/datum/reagent/reagent AS in reagents.reagent_list)
-		if(reagent.volume + target.reagents.get_reagent_amount(reagent.type) > reagent.overdose_threshold)
+		if(!reagent.ai_should_use(target, reagent.volume))
 			return FALSE
 	return TRUE
 
@@ -23,7 +25,7 @@
 	if(!length(reagents.reagent_list)) //todo: discard if empty
 		return FALSE
 	for(var/datum/reagent/reagent AS in reagents.reagent_list)
-		if((reagent.volume / reagents.total_volume * amount_per_transfer_from_this) + target.reagents.get_reagent_amount(reagent.type) > reagent.overdose_threshold)
+		if(!reagent.ai_should_use(target, reagent.volume / reagents.total_volume * amount_per_transfer_from_this))
 			return FALSE
 	return TRUE
 
