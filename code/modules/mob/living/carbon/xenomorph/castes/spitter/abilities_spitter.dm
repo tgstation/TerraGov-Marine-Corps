@@ -363,7 +363,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 
 /obj/item/explosive/grenade/globadier/incen/prime()
-	flame_radius(0.5, get_turf(src), fire_type = /obj/fire/melting_fire, burn_intensity = 20, burn_duration = 144, colour = "purple")
+	flame_radius(0.5, get_turf(src), fire_type = /obj/fire/melting_fire/shattering, burn_intensity = 20, burn_duration = 144, colour = "violet")
 	qdel(src)
 
 /datum/globadier_mine/incen
@@ -374,7 +374,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 
 /datum/globadier_mine/incen/detonate(mine, triggerer)
-	flame_radius(1.5, get_turf(mine), fire_type = /obj/fire/melting_fire/shattering, burn_intensity = 20, burn_duration = 180, colour = "violet")
+	flame_radius(1, get_turf(mine), fire_type = /obj/fire/melting_fire/shattering, burn_intensity = 20, burn_duration = 180, colour = "violet")
 	qdel(mine)
 
 // ***************************************
@@ -472,7 +472,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 /datum/globadier_mine/neuro/detonate(mine, triggerer)
 	var/datum/effect_system/smoke_spread/xeno/neuro/medium/gas = new(get_turf(mine))
-	gas.set_up(1, mine)
+	gas.set_up(2, mine)
 	gas.start()
 
 	if(ishuman(triggerer))

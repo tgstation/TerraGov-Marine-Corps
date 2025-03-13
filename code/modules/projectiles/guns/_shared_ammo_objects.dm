@@ -205,6 +205,6 @@
 	. = ..()
 	if(.) // parent proc only returns true if it applies its effects to a human, so affected must be a human, ergo no type validation needed
 		var/mob/living/carbon/human/victim = affected
-		victim.apply_status_effect(STATUS_EFFECT_SHATTER, 5 SECONDS)
+		victim.apply_status_effect(STATUS_EFFECT_SHATTER, 3 SECONDS)
 
 
