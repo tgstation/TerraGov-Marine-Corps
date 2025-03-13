@@ -52,7 +52,7 @@
 	title = "VSD Specialist"
 	paygrade = "VSD4"
 	skills_type = /datum/skills/crafty
-	outfit = /datum/outfit/job/vsd/spec/flamer
+	outfit = /datum/outfit/job/vsd/spec/demolitionist
 	multiple_outfits = TRUE
 	outfits = list(
 		/datum/outfit/job/vsd/spec/demolitionist,
