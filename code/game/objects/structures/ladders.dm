@@ -94,6 +94,7 @@
 
 	return ..()
 
+///sig handler to clean us up with parent
 /obj/effect/abstract/ladder_hole/proc/cleanup()
 	SIGNAL_HANDLER
 
@@ -101,12 +102,14 @@
 	// this is just an extra layer of safety, in case the ladder gets moved or something
 	qdel(src)
 
+///sig handler for when turf changes
 /obj/effect/abstract/ladder_hole/proc/turf_changing(datum/source, path, new_baseturfs, flags, list/datum/callback/post_change_callbacks)
 	SIGNAL_HANDLER
 
 	post_change_callbacks += CALLBACK(ladder, TYPE_PROC_REF(/obj/structure/ladder, make_base_transparent))
 	qdel(src)
 
+///adds ladder rim iconstate to the overlays
 /obj/effect/abstract/ladder_hole/proc/add_ladder_rim(turf/source, list/overlays)
 	SIGNAL_HANDLER
 
@@ -211,6 +214,11 @@
 	icon_state = "[base_icon_state][!!up][!!down]"
 	return ..()
 
+/**
+ * Actually try to use the ladder as a standard mob
+ * * user: mob to make go up or down
+ * * going_up: whether we move to the up or down ladder
+ */
 /obj/structure/ladder/proc/use(mob/user, going_up = TRUE)
 	if(!in_range(src, user) || LAZYACCESS(user.do_actions, src))
 		return
@@ -245,6 +253,7 @@
 	var/up_down = going_up ? "up" : "down"
 	user.balloon_alert_to_viewers("climbing [up_down]...")
 
+///handles actual teleportation of mobs
 /obj/structure/ladder/proc/travel(mob/user, going_up = TRUE, is_ghost = FALSE)
 	var/obj/structure/ladder/ladder = going_up ? up : down
 	if(!ladder)
@@ -300,6 +309,7 @@
 	else
 		INVOKE_ASYNC(src, PROC_REF(start_travelling), user, going_up)
 
+///callback for if we can use the menu
 /obj/structure/ladder/proc/check_menu(mob/user, is_ghost)
 	if(user.incapacitated() || (!user.Adjacent(src)))
 		return FALSE
@@ -434,7 +444,7 @@
 	..()
 	user.reset_perspective(null)
 
-//Peeking up/down
+///Peeking up/down
 /obj/structure/ladder/MouseDrop(over_object, src_location, over_location)
 	if(over_object != usr || !in_range(src, usr))
 		return
