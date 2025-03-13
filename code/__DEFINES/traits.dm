@@ -137,6 +137,9 @@
 /// This mob always lands on their feet when they fall, for better or for worse.
 #define TRAIT_CATLIKE_GRACE "catlike_grace"
 
+///Used for managing KEEP_TOGETHER in [/atom/var/appearance_flags]
+#define TRAIT_KEEP_TOGETHER "keep-together"
+
 #define ABSTRACT_ITEM_TRAIT "abstract_item"
 /// A trait given by any status effect
 #define STATUS_EFFECT_TRAIT "status-effect"
