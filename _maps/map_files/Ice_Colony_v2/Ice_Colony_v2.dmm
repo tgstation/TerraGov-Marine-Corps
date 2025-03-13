@@ -20886,7 +20886,6 @@
 /area/ice_colony/surface/excavation/storage)
 "gOL" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/tile/transparent/brown/fourcorners,
 /obj/machinery/power/terminal{
 	dir = 4
 	},
@@ -30752,12 +30751,6 @@
 	dir = 8
 	},
 /area/ice_colony/surface/hangar/beta)
-"uar" = (
-/turf/open/floor/tile/vault{
-	dir = 8
-	},
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/requesition/sec_storage)
 "ubk" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating,
@@ -31624,9 +31617,6 @@
 "veE" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
-/turf/open/floor/tile/vault{
-	dir = 8
-	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/sec_storage)
 "veJ" = (
@@ -39213,12 +39203,12 @@ mpQ
 mpQ
 hSY
 veE
-uar
+reR
 cet
 daS
 sAj
-uar
-uar
+reR
+reR
 hSY
 pNy
 qnZ
