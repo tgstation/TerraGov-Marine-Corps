@@ -355,12 +355,15 @@
 		if(ammo.bullet_color)
 			set_light_color(ammo.bullet_color)
 			set_light_on(TRUE)
-			add_overlay(emissive_appearance(icon, icon_state, src, layer, attached = TRUE))
+			update_icon()
 	else
 		alpha = 64
 
 	START_PROCESSING(SSprojectiles, src) //If no hits on the first moves, enter the processing queue for next.
 
+/obj/projectile/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, icon_state, src, layer, reset_transform = FALSE)
 
 /obj/projectile/process()
 	if(QDELETED(src))

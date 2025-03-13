@@ -19,7 +19,11 @@
 	. = ..()
 	if(new_icon_state)
 		icon_state = new_icon_state
-	add_overlay(emissive_appearance(icon, icon_state, src, layer, attached = TRUE))
+	update_icon()
+
+/atom/movable/vis_obj/effect/muzzle_flash/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, icon_state, src, layer, reset_transform = FALSE)
 
 /atom/movable/vis_obj/fulton_balloon
 	appearance_flags = RESET_COLOR|RESET_ALPHA|RESET_TRANSFORM

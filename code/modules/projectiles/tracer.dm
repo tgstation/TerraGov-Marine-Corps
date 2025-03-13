@@ -15,13 +15,17 @@
 	set_light_color(laser_color)
 	set_light_on(TRUE)
 	icon_state = effect_icon
-	add_overlay(emissive_appearance(icon, icon_state, src, layer, attached = TRUE))
+	update_icon()
 	pixel_x = p_x
 	pixel_y = p_y
 	var/matrix/M = transform
 	M.Turn(angle_override)
 	M.Scale(1, scaling)
 	transform = M
+
+/atom/movable/hitscan_projectile_effect/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, icon_state, src, layer, reset_transform = FALSE)
 
 ///Signal handler to delete this effect
 /atom/movable/hitscan_projectile_effect/proc/remove_effect()
