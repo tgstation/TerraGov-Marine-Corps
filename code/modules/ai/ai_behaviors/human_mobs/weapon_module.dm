@@ -112,6 +112,8 @@
 			shield_choice = melee_option
 
 	for(var/obj/item/weapon/gun/gun_option AS in mob_inventory.gun_list)
+		if(!gun_option.ai_should_use(user = mob_parent))
+			continue
 		if((gun_option.w_class >= 4) && ((gun_option.fire_delay * 0.1 * gun_option.ammo_datum_type::damage) > (big_gun_choice?.fire_delay * 0.1 * big_gun_choice?.ammo_datum_type::damage)))
 			big_gun_choice = gun_option
 		if((gun_option.w_class < 4) && ((gun_option.fire_delay * 0.1 * gun_option.ammo_datum_type::damage) > (small_gun_choice?.fire_delay * 0.1 * small_gun_choice?.ammo_datum_type::damage)))

@@ -29,6 +29,11 @@
 			return FALSE
 	return TRUE
 
+/obj/item/weapon/gun/ai_should_use(mob/living/target, mob/living/user)
+	if(gun_features_flags & GUN_DEPLOYED_FIRE_ONLY)
+		return FALSE //some day
+	return TRUE
+
 ///AI uses this item in some manner, such as consuming or activating it
 /obj/item/proc/ai_use(mob/living/target, mob/living/user)
 	return FALSE
@@ -70,6 +75,11 @@
 	if(!active)
 		attack_self(user)
 		return TRUE
+
+/obj/item/weapon/gun/ai_use(mob/living/target, mob/living/user)
+	. = ..()
+	if((GUN_FIREMODE_AUTOBURST in gun_firemode_list) && gun_firemode != GUN_FIREMODE_AUTOBURST)
+		do_toggle_firemode(new_firemode = GUN_FIREMODE_AUTOBURST) //auto is on by default for guns that have it, but autoburst is always the best mode if its available
 
 ///AI mob interaction with this atom, such as picking it up
 /atom/proc/do_ai_interact(mob/living/interactor)
