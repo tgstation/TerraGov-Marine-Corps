@@ -216,7 +216,6 @@
 	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(fire_weapons_at))
 	RegisterSignal(user, COMSIG_TOPIC, PROC_REF(handle_topic))
 
-	user.client.mouse_pointer_icon = 'icons/effects/supplypod_down_target.dmi'
 
 ///Ends the CAS mission
 /obj/docking_port/mobile/marine_dropship/casplane/proc/end_cas_mission(mob/living/user)

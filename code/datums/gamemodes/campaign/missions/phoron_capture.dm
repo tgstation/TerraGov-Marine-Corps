@@ -4,7 +4,7 @@
 	mission_icon = "phoron_raid"
 	map_name = "Jungle Outpost SR-422"
 	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating", ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
 	mission_flags = MISSION_DISALLOW_DROPPODS|MISSION_DISALLOW_TELEPORT
 	victory_point_rewards = list(

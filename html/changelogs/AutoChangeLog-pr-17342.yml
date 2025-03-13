@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Warlock's Psyblast now goes over objects like many other xeno ranged abilities as intended."

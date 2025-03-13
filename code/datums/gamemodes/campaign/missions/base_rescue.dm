@@ -5,7 +5,7 @@
 	mission_flags = MISSION_DISALLOW_TELEPORT
 	map_name = "NT Site B-403"
 	map_file = '_maps/map_files/Campaign maps/nt_base/nt_base.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SNOWSTORM = TRUE)
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating", ZTRAIT_SNOWSTORM = TRUE)
 	map_light_colours = list(COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE)
 	map_light_levels = list(225, 150, 100, 75)
 	map_armor_color = MAP_ARMOR_STYLE_ICE
