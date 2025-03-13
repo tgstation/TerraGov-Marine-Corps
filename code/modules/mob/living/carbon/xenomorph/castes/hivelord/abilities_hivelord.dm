@@ -445,7 +445,7 @@
 	name = "Place Recovery Pylon"
 	action_icon_state = "recovery_pylon"
 	action_icon = 'icons/Xeno/actions/construction.dmi'
-	desc = "Place down a recovery plyon that increases the amount of regeneration power restored."
+	desc = "Place down a recovery pylon that increases the amount of regeneration power restored."
 	ability_cost = 500
 	cooldown_duration = 1 MINUTES
 	keybinding_signals = list(
