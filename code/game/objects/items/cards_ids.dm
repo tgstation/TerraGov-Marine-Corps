@@ -218,14 +218,24 @@
 	iff_signal = SOM_IFF
 
 /obj/item/card/id/captains_spare
-	name = "captain's spare ID"
-	desc = "The spare ID of the High Lord himself."
+	name = CAPTAIN + "'s spare ID"
+	desc = "The spare ID of the "+CAPTAIN+" himself."
 	icon_state = "gold"
 	worn_icon_state = "gold_id"
 	registered_name = CAPTAIN
 	assignment = CAPTAIN
 	access = ALL_MARINE_ACCESS
 	iff_signal = TGMC_LOYALIST_IFF
+
+/obj/item/card/id/captains_spare/som
+	name = SOM_COMMANDER + "'s spare ID"
+	desc = "The spare ID of the "+SOM_COMMANDER+" himself."
+	icon_state = "gold"
+	worn_icon_state = "gold_id"
+	registered_name = SOM_COMMANDER
+	assignment = SOM_COMMANDER
+	access = ALL_SOM_ACCESS
+	iff_signal = SOM_IFF
 
 /obj/item/card/id/captains_spare/survival
 	name = "identification card"
