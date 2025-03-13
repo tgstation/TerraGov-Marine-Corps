@@ -44,9 +44,11 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 	var/list/squad_names = SSjob?.squads_by_name
 	if(istype(squad_names))
-		for(var/list/squad_group in squad_names)
-			for(var/squad_name in squad_group)
-				squads[squad_name] = list()
+		for(var/squad_group_index in squad_names)
+			var/list/squad_group = squad_names[squad_group_index]
+			if(istype(squad_group))
+				for(var/squad_name in squad_group)
+					squads[squad_name] = list()
 	squads["No Squad"] = list()
 	
 	var/non_empty_squad_exists = null
@@ -87,6 +89,8 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		if(rank in GLOB.jobs_marines)
 			if(!squad_name)
 				squad_name = "No Squad"
+			if(!(squad_name in squads))
+				squads[squad_name] = list()
 			squads[squad_name][name] = rank
 			non_empty_squad_exists = TRUE
 			department = 1
