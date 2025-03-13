@@ -2381,7 +2381,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\modules\xenomorph\jellypod.dm"
 #include "code\modules\xenomorph\maw.dm"
 #include "code\modules\xenomorph\pherotower.dm"
-#include "code\modules\xenomorph\recovery_node.dm"
+#include "code\modules\xenomorph\recovery_pylon.dm"
 #include "code\modules\xenomorph\resin_gargoyle.dm"
 #include "code\modules\xenomorph\silo.dm"
 #include "code\modules\xenomorph\spawner.dm"

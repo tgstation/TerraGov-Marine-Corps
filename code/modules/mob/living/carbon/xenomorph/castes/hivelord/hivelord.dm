@@ -25,4 +25,4 @@
 /mob/living/carbon/xenomorph/hivelord/get_status_tab_items()
 	. = ..()
 	. += "Active Tunnel Sets: [LAZYLEN(tunnels)] / [HIVELORD_TUNNEL_SET_LIMIT]"
-	. += "Active Recovery Nodes: [LAZYLEN(GLOB.hive_datums[hivenumber].recovery_nodes)] / [HIVELORD_RECOVERY_NODE_SET_LIMIT]"
+	. += "Active Recovery Pylons: [LAZYLEN(GLOB.hive_datums[hivenumber].recovery_pylons)] / [HIVELORD_RECOVERY_PYLON_SET_LIMIT]"
