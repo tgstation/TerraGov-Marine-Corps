@@ -1,0 +1,5 @@
+author: "tyeagg"
+delete-after: True
+changes:
+  - rscadd: "blood splatter on sharp melee and xeno claws"
+  - code_imp: "adjusted blood splatter particles"
