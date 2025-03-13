@@ -266,7 +266,7 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 	desc = "A marvel of modern engineering and a shining example of pioneering bluespace technology, able to power entire colonies with very little material consumption - perfectly suited for isolated areas on the outer rim.\nHighly volatile, but that shouldn't matter on some quiet backwater colony, right..?"
 	icon = 'icons/obj/machines/tbg.dmi'
 	power_generation_max = 5000000 //Powers an entire colony
-	time_to_break = 3 SECONDS
+	time_to_break = 20 SECONDS
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 	//Stores whether we're in the turning off animation
 	var/winding_down = FALSE
@@ -361,7 +361,7 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 	sparks.attach(sparks_target)
 	sparks.start()
 
-	if(buildstate == GENERATOR_HEAVY_DAMAGE && power_gen_percent > 0) //Must be actually producing power to blow up
+	if(power_gen_percent > 0) //Must be actually producing power to blow up
 		initiate_meltdown()
 
 	return TRUE
