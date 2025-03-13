@@ -22,3 +22,19 @@
 		"XXX",
 		"OXO",
 	)
+
+/datum/buildingpattern/cube3x3
+	overheadmsg = "3 by 3 Square"
+	pattern = list(
+		"XXX",
+		"XXX",
+		"XXX",
+	)
+
+/datum/buildingpattern/cross3x3
+	overheadmsg = "3 by 3 Hollow Cross (+)"
+	pattern = list(
+		"OXO",
+		"XOX",
+		"OXO",
+	)

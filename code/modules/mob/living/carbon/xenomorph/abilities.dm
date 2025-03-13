@@ -1546,6 +1546,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	action_icon_state = RESIN_WALL
 	action_icon = 'icons/Xeno/actions/construction.dmi'
 	target_flags = ABILITY_TURF_TARGET
+	gamemode_flags = ABILITY_NUCLEARWAR
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_PATTERN,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SELECT_PATTERN,
@@ -1570,7 +1571,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 ///Seperate proc that calls remove_action, to block any signal shenanigans.
 /datum/action/ability/activable/xeno/place_pattern/proc/toggle_off()
 	SIGNAL_HANDLER
-	src.remove_action(xeno_owner)
+	remove_action(xeno_owner)
 
 ///Selects the pattern from a radial menu
 /datum/action/ability/activable/xeno/place_pattern/proc/selectpattern()
