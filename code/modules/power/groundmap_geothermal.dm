@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 /// Handle turning off the generator and updating power
 /obj/machinery/power/geothermal/proc/turn_off()
 	is_on = FALSE
-	power_gen_percent = 0
+	power_gen_percent = 5
 	update_icon()
 	update_desc()
 	stop_processing()
@@ -361,7 +361,7 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 	sparks.attach(sparks_target)
 	sparks.start()
 
-	if(power_gen_percent > 0) //Must be actually producing power to blow up
+	if(power_gen_percent >= 5) //Must be actually producing power to blow up
 		initiate_meltdown()
 
 	return TRUE
@@ -428,6 +428,7 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 
 /// Updates the turbine animation after the winding down sound effect has finished
 /obj/machinery/power/geothermal/tbg/proc/finish_winding_down()
+	power_gen_percent = 0
 	winding_down = FALSE
 	update_icon()
 
