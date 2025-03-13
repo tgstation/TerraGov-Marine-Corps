@@ -1561,7 +1561,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	. = ..()
 	//if its not prep, remove the ability instantly
 	if(!(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active))
-		src.remove_action(xeno_owner)
+		remove_action(xeno_owner)
 	RegisterSignals(src, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED), PROC_REF(toggle_off))
 
 /datum/action/ability/activable/xeno/place_pattern/remove_action(mob/living/L)
