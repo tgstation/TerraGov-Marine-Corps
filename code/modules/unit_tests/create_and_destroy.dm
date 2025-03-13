@@ -55,6 +55,8 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 	ignore += typesof(/atom/movable/vis_obj/turret_overlay)
 	// Can't spawn openspace above nothing, it'll get pissy at me
 	ignore += typesof(/turf/open/openspace)
+	//runtimes if not paired with a landmark
+	ignore += typesof(/obj/structure/transport/linear)
 
 	var/list/cached_contents = spawn_at.contents.Copy()
 	var/original_turf_type = spawn_at.type

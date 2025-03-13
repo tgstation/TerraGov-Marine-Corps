@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "fixed dropship attachment points layering too low"
-  - bugfix: "fixed tallgrass layering over too much"

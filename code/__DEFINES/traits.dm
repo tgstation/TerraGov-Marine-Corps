@@ -95,6 +95,8 @@
 #define RAGE_TRAIT "rage" //Ravager Rage ability.
 #define UNMANNED_VEHICLE "unmanned"
 #define MECH_VENDOR_TRAIT "mechvendor"
+/// Trait applied to tram passengers
+#define TRAM_PASSENGER_TRAIT "tram-passenger"
 #define STEALTH_TRAIT "stealth" //From hunter stealth
 #define REVIVE_TO_CRIT_TRAIT "revive_to_crit"
 #define GUN_TRAIT "gun" //Traits related to guns
@@ -182,6 +184,8 @@
 #define TRAIT_WORKED_OUT "worked_out" //user has a unarmed buff from working out
 ///Makes no footsteps at all
 #define TRAIT_SILENT_FOOTSTEPS "silent_footsteps"
+/// Prevents a mob from being unbuckled, currently only used to prevent people from falling over on the tram
+#define TRAIT_CANNOT_BE_UNBUCKLED "cannot_be_unbuckled"
 ///quieter footsteps
 #define TRAIT_LIGHT_STEP "light_step"
 ///noisier footsteps
