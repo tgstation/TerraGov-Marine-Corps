@@ -284,16 +284,6 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	animate(src, time=duration, transform=matrix().Scale(0.1,0.1))
 	set_light(9, 9, LIGHT_COLOR_DARK_BLUE)
 
-
-/**
- * Visual shockwave effect using a displacement filter applied to the game world plate
- * Args:
- * * radius: visual max radius of the effect
- * * speed_rate: propagation rate of the effect as a ratio (0.5 is twice as fast)
- * * easing_type: easing type to use in the anim
- * * y_offset: additional pixel_y offsets
- * * x_offset: additional pixel_x offsets
- */
 /obj/effect/temp_visual/shockwave
 	icon = 'icons/effects/light_overlays/shockwave.dmi'
 	icon_state = "shockwave"
@@ -301,14 +291,12 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	pixel_x = -496
 	pixel_y = -496
 
-/obj/effect/temp_visual/shockwave/Initialize(mapload, radius, direction, speed_rate=1, easing_type = LINEAR_EASING, y_offset=0, x_offset=0)
+/obj/effect/temp_visual/shockwave/Initialize(mapload, radius)
 	. = ..()
-	pixel_x += x_offset
-	pixel_y += y_offset
 	deltimer(timerid)
-	timerid = QDEL_IN_STOPPABLE(src, 0.5 * radius * speed_rate)
+	timerid = QDEL_IN_STOPPABLE(src, 0.5 * radius)
 	transform = matrix().Scale(32 / 1024, 32 / 1024)
-	animate(src, time = 1/2 * radius * speed_rate, transform=matrix().Scale((32 / 1024) * radius * 1.5, (32 / 1024) * radius * 1.5), easing=easing_type)
+	animate(src, time = 1/2 * radius, transform=matrix().Scale((32 / 1024) * radius * 1.5, (32 / 1024) * radius * 1.5))
 
 /obj/effect/temp_visual/dir_setting/water_splash
 	icon = 'icons/effects/effects.dmi'
