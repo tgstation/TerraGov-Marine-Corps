@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - balance: "mech legs now slow increasingly based on hp instead of when destroyed"
