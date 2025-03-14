@@ -236,7 +236,7 @@
 	max_range = 21
 
 /datum/ammo/bullet/sarden/high_explosive/drop_nade(turf/T)
-	explosion(T, light_impact_range = 2, weak_impact_range = 4)
+	explosion(T, light_impact_range = 2, weak_impact_range = 4, explosion_cause=src)
 
 /datum/ammo/bullet/sarden/high_explosive/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	var/target_turf = get_turf(target_mob)
