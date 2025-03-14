@@ -1,6 +1,7 @@
 //turfs with density = FALSE
 /turf/open
 	plane = FLOOR_PLANE
+	layer = LOW_FLOOR_LAYER
 	minimap_color = MINIMAP_AREA_COLONY
 	resistance_flags = PROJECTILE_IMMUNE|UNACIDABLE
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
