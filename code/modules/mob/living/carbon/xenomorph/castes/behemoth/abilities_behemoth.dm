@@ -919,13 +919,9 @@
 	var/decay_time = 12 SECONDS
 	/// Base amount of Wrath lost every valid tick.
 	var/decay_amount = 10
-	/// The overlay used when Primal Wrath blocks fatal damage.
-	var/atom/movable/vis_obj/block_overlay
 
 /datum/action/ability/xeno_action/primal_wrath/give_action(mob/living/L)
 	. = ..()
-	block_overlay = new(null, src)
-	owner.vis_contents += block_overlay
 	START_PROCESSING(SSprocessing, src)
 	RegisterSignals(owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(stop_ability))
 	RegisterSignals(owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taking_damage))
@@ -1026,30 +1022,6 @@
 		return
 	xeno_owner.wrath_stored = clamp(xeno_owner.wrath_stored - (action_cost / 2), 0, xeno_owner.xeno_caste.wrath_max)
 	return SUCCEED_ACTIVATE_CANCEL
-
-/**
- * When taking damage, resets decay and returns an amount of Wrath proportional to the damage.
- * If damage taken would kill the user, it is instead reduced, and
- * * source: The source of this proc.
- * * amount: The RAW amount of damage taken.
- * * amount_mod: If provided, this list includes modifiers applied to the damage. This, for example, can be useful for reducing the damage.
-*/
-/datum/action/ability/xeno_action/primal_wrath/proc/taking_damage(datum/source, amount, list/amount_mod)
-	SIGNAL_HANDLER
-	if(amount <= 0 || owner.stat || owner.lying_angle)
-		return
-	if(ability_active)
-		if(amount >= xeno_owner.health)
-			var/damage_amount = (amount - xeno_owner.health)
-			xeno_owner.wrath_stored = clamp(xeno_owner.wrath_stored - damage_amount, 0, xeno_owner.xeno_caste.wrath_max)
-			amount_mod += damage_amount + 1
-		if(xeno_owner.wrath_stored <= 0)
-			toggle_buff(FALSE)
-		return
-	decay_time = initial(decay_time)
-	decay_amount = initial(decay_amount)
-	if(xeno_owner.wrath_stored < xeno_owner.xeno_caste.wrath_max)
-		xeno_owner.wrath_stored = clamp(xeno_owner.wrath_stored + (amount * PRIMAL_WRATH_GAIN_MULTIPLIER), 0, xeno_owner.xeno_caste.wrath_max)
 
 /**
  * Toggles the buff, which increases the owner's damage based on a multiplier, and gives them a particle effect.
