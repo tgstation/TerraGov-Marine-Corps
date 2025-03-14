@@ -41,6 +41,12 @@
 	var/last_larva_check
 	bioscan_interval = 0
 
+	// Crash Xeno Player Requirements to Evolve, applied with loop in post_setup().
+	evo_requirements = list(
+		/datum/xeno_caste/king = 14,
+		/datum/xeno_caste/queen = 10,
+	)
+
 /datum/game_mode/infestation/crash/pre_setup()
 	. = ..()
 
@@ -111,6 +117,13 @@
 		else // Handles Shrike etc
 			var/mob/living/carbon/xenomorph/X = i
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
+
+
+
+	// Apply Evolution Xeno Population Locks:
+	//for(var/datum/xeno_caste/caste AS in evo_requirements)
+	//	GLOB.xeno_caste_datums[caste][XENO_UPGRADE_BASETYPE].evolve_min_xenos = evo_requirements[caste]
+
 
 
 /datum/game_mode/infestation/crash/announce()

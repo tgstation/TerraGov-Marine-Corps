@@ -37,6 +37,12 @@
 		/datum/job/xenomorph = NUCLEAR_WAR_LARVA_POINTS_NEEDED,
 	)
 
+	// Nuclear War Xeno Player Requirements to Evolve, applied with loop in post_setup().
+	evo_requirements = list(
+		/datum/xeno_caste/king = 12,
+		/datum/xeno_caste/queen = 4,
+	)
+
 /datum/game_mode/infestation/nuclear_war/post_setup()
 	. = ..()
 
@@ -56,6 +62,10 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, PROC_REF(on_nuclear_explosion))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, PROC_REF(on_nuclear_diffuse))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(on_nuke_started))
+
+	// Apply Evolution Xeno Population Locks:
+	//for(var/datum/xeno_caste/caste in evo_requirements)
+	//	GLOB.xeno_caste_datums[caste][XENO_UPGRADE_BASETYPE].evolve_min_xenos = evo_requirements[caste]
 
 /datum/game_mode/infestation/nuclear_war/orphan_hivemind_collapse()
 	if(round_finished)
