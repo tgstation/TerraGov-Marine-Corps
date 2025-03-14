@@ -145,6 +145,8 @@
 	switch(attacking_item.damtype)
 		if(BRUTE)
 			apply_damage(power, BRUTE, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration)
+			if(is_sharp(attacking_item))
+				new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, Get_Angle(user, src), get_blood_color())
 		if(BURN)
 			if(apply_damage(power, BURN, user.zone_selected, FIRE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration))
 				attack_message_local = "[attack_message_local] It burns!"

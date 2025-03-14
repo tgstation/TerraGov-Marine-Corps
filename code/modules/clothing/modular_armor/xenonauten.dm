@@ -229,6 +229,12 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
+/obj/item/clothing/suit/modular/xenonauten/heavy/npc_medic
+	starting_attachments = list(
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/storage/grenade,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/pilot
 	name = "\improper TerraGov standard flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."

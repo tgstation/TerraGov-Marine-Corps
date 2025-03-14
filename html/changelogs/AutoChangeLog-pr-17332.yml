@@ -1,4 +1,0 @@
-author: "Tiviplus & Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed turfs sometimes turning into space tiles on ground maps, hopefully for good"
