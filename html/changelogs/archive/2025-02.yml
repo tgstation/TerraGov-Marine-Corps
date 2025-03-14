@@ -187,7 +187,6 @@
   - bugfix: having just spawned a mech now does not prevent you from spawning ammo
   novaepee:
   - rscadd: updating PoS medbay ONCE AGAIN for 2025!
-<<<<<<< HEAD
 2025-02-16:
   Apple-107:
   - rscadd: Card decks are now available for Marines in Character Customization and
@@ -461,5 +460,3 @@
   - imageadd: tbg.dmi
   - soundadd: tbg_windup, tbg_winddown, tbg_mid1, tbg_mid2, tbg_mid3, tbg_mid4, tbg_mid5,
       tbg_alarm
-=======
->>>>>>> 73cbd3acb1 (Automatic changelog compile [ci skip])
