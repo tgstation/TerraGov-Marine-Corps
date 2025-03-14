@@ -94,11 +94,6 @@
 
 
 /mob/living/carbon/human/adjustBruteLoss(amount, updating_health = FALSE)
-	var/list/amount_mod = list()
-	SEND_SIGNAL(src, COMSIG_HUMAN_BRUTE_DAMAGE, amount, amount_mod)
-	for(var/i in amount_mod)
-		amount -= i
-
 	if(species?.brute_mod && amount > 0)
 		amount = amount*species.brute_mod
 
@@ -109,11 +104,6 @@
 
 
 /mob/living/carbon/human/adjustFireLoss(amount, updating_health = FALSE)
-	var/list/amount_mod = list()
-	SEND_SIGNAL(src, COMSIG_HUMAN_BURN_DAMAGE, amount, amount_mod)
-	for(var/i in amount_mod)
-		amount -= i
-
 	if(species?.burn_mod && amount > 0)
 		amount = amount*species.burn_mod
 
