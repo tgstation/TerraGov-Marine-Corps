@@ -77,7 +77,7 @@
 		),
 		"Melee" = list(
 			/obj/item/weapon/combat_knife = -1,
-			/obj/item/attachable/bayonetknife = -1,
+			/obj/item/attachable/bayonet = -1,
 			/obj/item/stack/throwing_knife = -1,
 			/obj/item/storage/belt/knifepouch = -1,
 			/obj/item/storage/holster/blade/machete/full = -1,
@@ -150,7 +150,7 @@
 			/obj/item/ammo_magazine/heavymachinegun/small = 10,
 		),
 		"Attachments" = list(
-			/obj/item/attachable/bayonet = -1,
+			/obj/item/attachable/bayonet/converted = -1,
 			/obj/item/attachable/compensator = -1,
 			/obj/item/attachable/extended_barrel = -1,
 			/obj/item/attachable/suppressor = -1,
@@ -301,7 +301,7 @@
 		),
 		"Melee" = list(
 			/obj/item/weapon/combat_knife = -1,
-			/obj/item/attachable/bayonetknife = -1,
+			/obj/item/attachable/bayonet = -1,
 			/obj/item/stack/throwing_knife = -1,
 			/obj/item/storage/belt/knifepouch = -1,
 			/obj/item/storage/holster/blade/machete/full = -1,
@@ -355,7 +355,7 @@
 			/obj/item/jetpack_marine = 3,
 		),
 		"Attachments" = list(
-			/obj/item/attachable/bayonet = -1,
+			/obj/item/attachable/bayonet/converted = -1,
 			/obj/item/attachable/compensator = -1,
 			/obj/item/attachable/extended_barrel = -1,
 			/obj/item/attachable/suppressor = -1,
@@ -510,7 +510,7 @@
 		),
 		"Melee" = list(
 			/obj/item/weapon/combat_knife = -1,
-			/obj/item/attachable/bayonetknife = -1,
+			/obj/item/attachable/bayonet = -1,
 			/obj/item/stack/throwing_knife = -1,
 			/obj/item/storage/belt/knifepouch = -1,
 			/obj/item/storage/holster/blade/machete/full = -1,
@@ -587,7 +587,7 @@
 			/obj/item/ammo_magazine/heavymachinegun/small = -1,
 		),
 		"Attachments" = list(
-			/obj/item/attachable/bayonet = -1,
+			/obj/item/attachable/bayonet/converted = -1,
 			/obj/item/attachable/compensator = -1,
 			/obj/item/attachable/extended_barrel = -1,
 			/obj/item/attachable/suppressor = -1,

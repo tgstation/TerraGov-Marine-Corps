@@ -172,7 +172,7 @@
 /datum/managed_inventory/proc/get_right_list(obj/item/new_item)
 	if(isgun(new_item))
 		return gun_list
-	if((istype(new_item, /obj/item/weapon))) //|| istype(new_item, /obj/item/attachable/bayonetknife) //they are a completely different type, so fuck out due to the force changes. sob
+	if((istype(new_item, /obj/item/weapon))) //todo: non weapon type weapons
 		if(istype(new_item, /obj/item/weapon/twohanded/offhand))
 			return
 		return melee_list
