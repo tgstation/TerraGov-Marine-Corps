@@ -96,7 +96,7 @@
 		if(recovery_aura)
 			regen_power = clamp(regen_power + xeno_caste.regen_ramp_amount * time_modifier * 30, 0, 1) //Ignores the cooldown, and gives a 50% boost.
 		else if(regen_power < 0) // We're not supposed to regenerate yet. Start a countdown for regeneration.
-			regen_power += seconds_per_tick SECONDS
+			regen_power = (regen_power + seconds_per_tick SECONDS >= 0) ? 0 : regen_power + seconds_per_tick SECONDS
 			return
 		else
 			regen_power = min(regen_power + xeno_caste.regen_ramp_amount * time_modifier * 20, 1)
