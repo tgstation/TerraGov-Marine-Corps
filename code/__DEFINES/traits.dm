@@ -95,6 +95,8 @@
 #define RAGE_TRAIT "rage" //Ravager Rage ability.
 #define UNMANNED_VEHICLE "unmanned"
 #define MECH_VENDOR_TRAIT "mechvendor"
+/// Trait applied to tram passengers
+#define TRAM_PASSENGER_TRAIT "tram-passenger"
 #define STEALTH_TRAIT "stealth" //From hunter stealth
 #define REVIVE_TO_CRIT_TRAIT "revive_to_crit"
 #define GUN_TRAIT "gun" //Traits related to guns
@@ -134,6 +136,9 @@
 #define TRAIT_FREERUNNING "freerunning"
 /// This mob always lands on their feet when they fall, for better or for worse.
 #define TRAIT_CATLIKE_GRACE "catlike_grace"
+
+///Used for managing KEEP_TOGETHER in [/atom/var/appearance_flags]
+#define TRAIT_KEEP_TOGETHER "keep-together"
 
 #define ABSTRACT_ITEM_TRAIT "abstract_item"
 /// A trait given by any status effect
@@ -179,6 +184,8 @@
 #define TRAIT_WORKED_OUT "worked_out" //user has a unarmed buff from working out
 ///Makes no footsteps at all
 #define TRAIT_SILENT_FOOTSTEPS "silent_footsteps"
+/// Prevents a mob from being unbuckled, currently only used to prevent people from falling over on the tram
+#define TRAIT_CANNOT_BE_UNBUCKLED "cannot_be_unbuckled"
 ///quieter footsteps
 #define TRAIT_LIGHT_STEP "light_step"
 ///noisier footsteps
@@ -248,6 +255,7 @@
 #define TRAIT_XENOMORPH_INVISIBLE_BLOOD "invisible_blood"
 #define TRAIT_VALHALLA_XENO "valhalla_xeno"
 #define TRAIT_BULWARKED_TURF "bulwarked_turf" // turf is affected by bulwark ability
+#define TRAIT_RECOVERY_PYLON_TURF "recovery_pylon_turf" // Turf is affected by a recovery pylon.
 #define TRAIT_BLOODTHIRSTER "bloodthirster" // xeno has the bloodthirster ability
 
 //important_recursive_contents traits

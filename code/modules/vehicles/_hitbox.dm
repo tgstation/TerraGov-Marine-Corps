@@ -73,7 +73,7 @@
 		return FALSE
 	if(vehicle_length != vehicle_width)
 		return TRUE //handled by child types
-	for(var/mob/living/desant AS in tank_desants)
+	for(var/atom/movable/desant AS in tank_desants)
 		if(desant.loc == root.loc)
 			continue
 		var/turf/new_pos
@@ -116,8 +116,6 @@
 ///signal handler when something thrown lands on us
 /obj/hitbox/proc/on_stop_throw(datum/source, atom/movable/thrown_movable)
 	SIGNAL_HANDLER
-	if(!isliving(thrown_movable)) //TODO: Make desants properly work for all AM's instead of mobs
-		return
 	add_desant(thrown_movable)
 
 ///signal handler when we leave a turf under the hitbox
@@ -151,22 +149,23 @@
 	var/move_dist = get_dist(oldloc, mover)
 	forceMove(mover.loc)
 	var/new_z = (z != oldloc.z)
-	for(var/mob/living/tank_desant AS in tank_desants)
+	for(var/atom/movable/tank_desant AS in tank_desants)
 		tank_desant.set_glide_size(root.glide_size)
 		if(new_z)
 			tank_desant.abstract_move(loc) //todo: have some better code to actually preserve their location
 		else
 			tank_desant.forceMove(get_step(tank_desant, direction))
-		if(isxeno(tank_desant))
-			continue
 		if(move_dist > 1)
 			continue
-		if(!tank_desant.l_hand || !tank_desant.r_hand)
+		if(isxeno(tank_desant) || !isliving(tank_desant))
 			continue
-		balloon_alert(tank_desant, "poor grip!")
-		var/away_dir = REVERSE_DIR(get_dir(tank_desant, root) || pick(GLOB.alldirs))
-		var/turf/target = get_ranged_target_turf(tank_desant, away_dir, 3)
-		tank_desant.throw_at(target, 3, 3, root)
+		var/mob/living/living_rider = tank_desant
+		if(!living_rider.l_hand || !living_rider.r_hand)
+			continue
+		balloon_alert(living_rider, "poor grip!")
+		var/away_dir = REVERSE_DIR(get_dir(living_rider, root) || pick(GLOB.alldirs))
+		var/turf/target = get_ranged_target_turf(living_rider, away_dir, 3)
+		living_rider.throw_at(target, 3, 3, root)
 
 ///called when the tank is off movement cooldown and someone tries to move it
 /obj/hitbox/proc/on_attempt_drive(atom/movable/movable_parent, mob/living/user, direction)
@@ -348,7 +347,7 @@
 			angle_change = 90
 		if(270)
 			angle_change = -90
-	for(var/mob/living/desant AS in tank_desants)
+	for(var/atom/movable/desant AS in tank_desants)
 		if(desant.loc == root.loc)
 			continue
 		var/new_x

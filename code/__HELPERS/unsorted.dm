@@ -410,6 +410,23 @@
 
 	return L
 
+///Returns the closest atom of a specific type in a list from a source
+/proc/get_closest_atom(type, list/atom_list, source)
+	var/closest_atom
+	var/closest_distance
+	for(var/atom in atom_list)
+		if(!istype(atom, type))
+			continue
+		var/distance = get_dist(source, atom)
+		if(!closest_atom)
+			closest_distance = distance
+			closest_atom = atom
+		else
+			if(closest_distance > distance)
+				closest_distance = distance
+				closest_atom = atom
+	return closest_atom
+
 // returns the turf located at the map edge in the specified direction relative to A
 // used for mass driver
 /proc/get_edge_target_turf(atom/A, direction)
