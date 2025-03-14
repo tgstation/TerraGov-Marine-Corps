@@ -26,6 +26,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 		stack_trace("An AI controller was initialized without a mind to initialize parameter; component removed")
 		return COMPONENT_INCOMPATIBLE
 	ai_behavior = new behavior_type(src, parent, atom_to_escort)
+	RegisterSignal(parent, COMSIG_HUMAN_HAS_AI, PROC_REF(parent_has_ai))
 	start_ai()
 
 
@@ -53,7 +54,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	SIGNAL_HANDLER
 	GLOB.ai_instances_active -= src
 	if(!QDELETED(parent))
-		UnregisterSignal(parent, list(COMSIG_MOB_LOGIN, COMSIG_MOB_DEATH, COMSIG_HUMAN_HAS_AI, COMSIG_HUMAN_SET_UNDEFIBBABLE, COMSIG_MOB_REVIVE, COMSIG_QDELETING))
+		UnregisterSignal(parent, list(COMSIG_MOB_LOGIN, COMSIG_MOB_DEATH, COMSIG_HUMAN_SET_UNDEFIBBABLE, COMSIG_MOB_REVIVE, COMSIG_QDELETING))
 	if(ai_behavior)
 		STOP_PROCESSING(SSprocessing, ai_behavior)
 		ai_behavior.cleanup_signals()
@@ -84,7 +85,6 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	RegisterSignal(parent, COMSIG_MOB_DEATH, PROC_REF(on_parent_death))
 	RegisterSignal(parent, COMSIG_QDELETING, PROC_REF(do_qdel))
 	RegisterSignal(parent, COMSIG_MOB_LOGIN, PROC_REF(clean_up))
-	RegisterSignal(parent, COMSIG_HUMAN_HAS_AI, PROC_REF(parent_has_ai))
 	UnregisterSignal(parent, list(COMSIG_MOB_LOGOUT, COMSIG_MOB_REVIVE, COMSIG_HUMAN_SET_UNDEFIBBABLE))
 	GLOB.ai_instances_active += src
 
