@@ -497,7 +497,8 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	for(var/turf/effect_tile in filled_turfs(get_turf(src), 1, "square", pass_flags_checked = PASS_AIR))
 		new /obj/effect/temp_visual/heal(effect_tile)
 	for(var/mob/living/carbon/human/nerd in cheap_get_humans_near(src,1))
-		nerd.apply_status_effect(STATUS_EFFECT_MELTING,2)
+		nerd.apply_status_effect(STATUS_EFFECT_MELTING, 2)
+		nerd.apply_status_effect(STATUS_EFFECT_LIFEDRAIN, 1 SECONDS)
 	for(var/mob/living/carbon/xenomorph/xeno AS in cheap_get_xenos_near(src,1))
 		var/healamount = (25 + (xeno.recovery_aura * xeno.maxHealth * 0.03))
 		HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
@@ -518,6 +519,10 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	if(ishuman(triggerer))
 		var/mob/living/carbon/human/victim = triggerer
 		victim.apply_status_effect(STATUS_EFFECT_LIFEDRAIN)
+		new /obj/effect/temp_visual/telekinesis(get_turf(victim))
+	var/datum/effect_system/smoke_spread/xeno/hemodile/gas = new(get_turf(mine))
+	gas.set_up(2, mine)
+	gas.start()
 	qdel(mine)
 
 
