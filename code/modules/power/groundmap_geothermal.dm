@@ -109,7 +109,7 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 	while(buildstate < GENERATOR_HEAVY_DAMAGE)
 		if(xeno_attacker.do_actions)
 			return balloon_alert(xeno_attacker, "busy")
-		if(!do_after(xeno_attacker, time_to_break, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+		if(!do_after(xeno_attacker, time_to_break, NONE, src, BUSY_ICON_DANGER))
 			return
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		xeno_attacker.visible_message(span_danger("[xeno_attacker] slashes \the [src]!"), \
@@ -361,6 +361,7 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 	sparks.attach(sparks_target)
 	sparks.start()
 
+	buildstate = GENERATOR_HEAVY_DAMAGE //Long windup breaks the generator in one hit
 	if(power_gen_percent >= 5) //Must be actually producing power to blow up
 		initiate_meltdown()
 
@@ -623,10 +624,10 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 /// Psychic mist is difficult to breathe in, even with a mask on
 /obj/effect/psychic_mist/proc/on_cross(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
-	if(!iscarbon(crosser) || prob(90))
+	if(!iscarbon(crosser) || prob(85))
 		return
 	var/mob/living/carbon/target = crosser
-	if(target.has_smoke_protection())
+	if(target.stat == DEAD || target.species?.species_flags & NO_BREATHE)
 		return
 	target.adjustStaminaLoss(10)
 	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "cough")
