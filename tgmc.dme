@@ -1,4 +1,4 @@
-F// DM Environment file for baystation12.dme.
+// DM Environment file for baystation12.dme.
 // All manual changes should be made outside the BEGIN_ and END_ blocks.
  // New source code should be placed in .dm files: choose File/New --> Code File.
 // BEGIN_INTERNALS
@@ -1897,6 +1897,9 @@ F// DM Environment file for baystation12.dme.
 #include "code\modules\mob\living\carbon\xenomorph\castes\hunter\abilities_hunter.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\hunter\castedatum_hunter.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\hunter\hunter.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\jester\abilities_jester.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\jester\castedatum_jester.dm"
+#include "code\modules\mob\living\carbon\xenomorph\castes\jester\jester.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\king\abilities_king.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\king\castedatum_king.dm"
 #include "code\modules\mob\living\carbon\xenomorph\castes\king\king.dm"
