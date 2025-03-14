@@ -231,11 +231,7 @@
 	animate(xeno_owner, pixel_x = 0, pixel_y = 0, time = 0)
 	xeno_owner.status_flags = GODMODE|INCORPOREAL
 	xeno_owner.resistance_flags = RESIST_ALL
-<<<<<<< HEAD
 	xeno_owner.add_pass_flags(PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE, DRAGON_ABILITY_TRAIT)
-=======
-	xeno_owner.pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
->>>>>>> 7470d97943ff3b8559ea509745f307e71007d739
 	xeno_owner.density = FALSE
 	ADD_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 	xeno_owner.gain_plasma(xeno_owner.xeno_caste.plasma_max)
@@ -266,11 +262,7 @@
 	performing_landing_animation = FALSE
 	xeno_owner.status_flags = initial(xeno_owner.status_flags)
 	xeno_owner.resistance_flags = initial(xeno_owner.resistance_flags)
-<<<<<<< HEAD
 	xeno_owner.remove_pass_flags(PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE, DRAGON_ABILITY_TRAIT)
-=======
-	xeno_owner.pass_flags = initial(xeno_owner.pass_flags)
->>>>>>> 7470d97943ff3b8559ea509745f307e71007d739
 	xeno_owner.density = TRUE
 	REMOVE_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 	xeno_owner.update_icons(TRUE)
@@ -665,11 +657,7 @@
 
 	RegisterSignal(grabbed_human, COMSIG_MOVABLE_POST_THROW, PROC_REF(throw_completion))
 	ADD_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
-<<<<<<< HEAD
 	grabbed_human.add_pass_flags(PASS_MOB|PASS_XENO, DRAGON_ABILITY_TRAIT)
-=======
-	grabbed_human.pass_flags |= (PASS_MOB|PASS_XENO)
->>>>>>> 7470d97943ff3b8559ea509745f307e71007d739
 	grabbed_human.throw_at(get_step(xeno_owner, xeno_owner.dir), 5, 5, xeno_owner)
 
 /// Removes signal and pass_flags from the thrown human and tries to grab them (via async).
@@ -677,11 +665,7 @@
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/thrown_human = source
 	UnregisterSignal(thrown_human, COMSIG_MOVABLE_POST_THROW)
-<<<<<<< HEAD
 	thrown_human.remove_pass_flags(PASS_MOB|PASS_XENO, DRAGON_ABILITY_TRAIT)
-=======
-	thrown_human.pass_flags &= ~(PASS_MOB|PASS_XENO)
->>>>>>> 7470d97943ff3b8559ea509745f307e71007d739
 	INVOKE_ASYNC(src, PROC_REF(try_grabbing), thrown_human)
 
 /// Try to grab the thrown human.
