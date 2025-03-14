@@ -6199,7 +6199,7 @@
 /turf/open/floor/plating,
 /area/antag_ship/som/office/commander/field)
 "HE" = (
-/obj/effect/landmark/start/job/fieldcommander,
+/obj/effect/landmark/start/job/som/fieldcommander,
 /turf/open/floor/carpet/side{
 	dir = 10
 	},
