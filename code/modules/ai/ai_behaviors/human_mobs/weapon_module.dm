@@ -90,6 +90,8 @@
 
 ///Tries to equip weaponry, and updates behavior appropriately
 /datum/ai_behavior/human/proc/do_equip_weaponry()
+	store_hands()
+
 	var/obj/item/weapon/primary
 	var/obj/item/weapon/secondary
 
