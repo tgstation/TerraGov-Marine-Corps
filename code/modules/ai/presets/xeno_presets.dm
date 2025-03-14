@@ -4,11 +4,6 @@
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/suicidal)
 
-/mob/living/carbon/xenomorph/beetle/ai/cheap
-
-/mob/living/carbon/xenomorph/beetle/ai/cheap/get_export_value()
-	return list(10, 1)
-
 /mob/living/carbon/xenomorph/baneling/ai
 
 /mob/living/carbon/xenomorph/baneling/ai/Initialize(mapload)
@@ -63,11 +58,6 @@
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/suicidal)
 
-/mob/living/carbon/xenomorph/mantis/ai/cheap
-
-/mob/living/carbon/xenomorph/mantis/ai/cheap/get_export_value()
-	return list(10, 1)
-
 /mob/living/carbon/xenomorph/ravager/ai
 
 /mob/living/carbon/xenomorph/ravager/ai/Initialize(mapload)
@@ -85,12 +75,6 @@
 /mob/living/carbon/xenomorph/scorpion/ai/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno/ranged)
-
-/mob/living/carbon/xenomorph/scorpion/ai/cheap
-
-/mob/living/carbon/xenomorph/scorpion/ai/cheap/get_export_value()
-	return list(10, 1)
-
 
 /mob/living/carbon/xenomorph/sentinel/ai
 
