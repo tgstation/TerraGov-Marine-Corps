@@ -7110,6 +7110,13 @@
 	},
 /turf/open/shuttle/dropship/three,
 /area/shuttle/transport)
+"MG" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/item/card/id/captains_spare/som,
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/hangar)
 "MI" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -11235,7 +11242,7 @@ nm
 RK
 RK
 RK
-RK
+MG
 RK
 RK
 RK
