@@ -232,3 +232,59 @@
   - code_imp: Added backend for allowing items to have a FOV when worn
   yyzsong:
   - spellcheck: ajacent -> adjacent
+2025-03-12:
+  Lumipharon:
+  - bugfix: removed a stray dev verb
+  Neocloudy:
+  - bugfix: ignore/unignore actually works now.
+2025-03-13:
+  Lumipharon:
+  - bugfix: NPC's actually check turret and droid faction when looking for targets
+  Runian:
+  - bugfix: Warlock's Psyblast now goes over objects like many other xeno ranged abilities
+      as intended.
+  TiviPlus:
+  - rscadd: Glass floors are seethough
+  - rscadd: Added multiz stair subtype
+  - balance: mech legs now slow increasingly based on hp instead of when destroyed
+  - bugfix: Fixed pod launcher not always working
+  - code_imp: added backend for trams and elevators
+  - bugfix: tank riding should work better now for non-mobs
+  - qol: Added queen visually warping shriek wave
+  Tiviplus & Lumipharon:
+  - bugfix: fixed turfs sometimes turning into space tiles on ground maps, hopefully
+      for good
+  tyeagg:
+  - qol: each cas ammo now have their own crosshair
+  - imageadd: cas crosshairs
+2025-03-14:
+  Lumipharon:
+  - rscadd: Fixed and improved lighting effects from fire
+  - rscadd: Foam submerges like fire or tallgrass
+  - rscadd: Added revival mechanics to NPC medics
+  - rscadd: NPC's are a bit more intelligent with how they use chems
+  Pariah919:
+  - rscadd: Added new tank Autocannon. Has two ammo types- HE and AP. It fires faster
+      than LTAAP and does not have IFF.
+  Runian:
+  - rscadd: 'An xenomorph structure called: Recovery Node.'
+  - rscadd: Recovery Node doubles the regeneration power of nearby xenomorphs and
+      begins regeneration immediately.
+  - rscadd: Hivelord gets a new ability called "Plant Recovery Node".
+  - bugfix: Weapon X (Hunter) from Campaign correctly gains 60% regeneration power
+      per tick instead of 1000%.
+  TiviPlus:
+  - bugfix: fixed a runtime with new player huds
+  - rscadd: You can now throw ANY item up and down ladders instead of just grenades
+      and lamps
+  - rscadd: Added multiz ladders
+  - qol: ladders, if possible, will try to have you use left and right click to go
+      up and down respectively instead of opening a menu
+  - qol: said menu is no longer a window but a radial menu now
+  - qol: removed restriction on only one person being able to look through a ladder
+      at a time
+  tyeagg:
+  - rscadd: blood splatter on sharp melee and xeno claws
+  - code_imp: adjusted blood splatter particles
+  witherc6:
+  - rscadd: added paramedic labcoat to marine clothing vendor

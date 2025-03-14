@@ -3,7 +3,7 @@
 	desc = "Watch your step!"
 	// We don't actually draw openspace, but it needs to have color
 	// In its icon state so we can count it as a "non black" tile
-	icon_state = MAP_SWITCH("pure_white", "invisible")
+	icon_state = MAP_SWITCH("pure_white", "transparent")
 	baseturfs = /turf/open/openspace
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	plane = TRANSPARENT_FLOOR_PLANE

@@ -63,7 +63,7 @@
 		y,
 		level.z_value,
 		no_changeturf = (SSatoms.initialized == INITIALIZATION_INSSATOMS),
-		place_on_top = should_place_on_top,
+		place_on_top = FALSE,
 		new_z = TRUE,
 	)
 	var/list/bounds = parsed.bounds
@@ -129,6 +129,10 @@
 
 //for your ever biggening badminnery kevinz000
 //❤ - Cyberboss
-/proc/load_new_z_level(file, name, minimap = TRUE, list/traits = list())
-	var/datum/map_template/template = new(file, name)
+/proc/load_new_z_level(file, name, minimap = TRUE, list/traits = list(), no_place_on_top = FALSE)
+	var/datum/map_template/template = new(file, name, TRUE)
+	if(!template.cached_map || template.cached_map.check_for_errors())
+		return FALSE
+	if(no_place_on_top)
+		template.should_place_on_top = FALSE
 	return template.load_new_z(minimap, traits)

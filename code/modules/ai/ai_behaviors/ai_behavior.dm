@@ -64,7 +64,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	mob_parent = parent_to_assign
 	set_escorted_atom(null, escorted_atom)
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
-	START_PROCESSING(SSprocessing, src)
 	if(is_offered_on_creation)
 		LAZYOR(GLOB.ssd_living_mobs, mob_parent)
 
@@ -83,6 +82,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		global_set_escorted_atom(null, escorted_atom)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, PROC_REF(set_goal_node))
 	set_goal_node(null, GLOB.goal_nodes[mob_parent.faction])
+	START_PROCESSING(SSprocessing, src)
 	late_initialize()
 
 ///Set behaviour to base behavior

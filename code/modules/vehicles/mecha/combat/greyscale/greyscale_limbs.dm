@@ -320,20 +320,28 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	part_health = 300
 	def_zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT)
 	weight = 0
+	/// current slowdown delay we are applying to the mech
+	var/slowdown_delay = 0
 	/// max weight we can carry when this limb is attached
 	var/max_weight = 800
 
-/datum/mech_limb/legs/disable()
+/datum/mech_limb/legs/intercept_damage(datum/source, damage_amount, damage_type, armor_type, effects, attack_dir, armour_penetration, mob/living/blame_mob)
 	. = ..()
-	if(!.)
+	if(. != COMPONENT_NO_TAKE_DAMAGE) // took dmg
 		return
-	owner.move_delay *= 2
+	update_movespeed()
 
-/datum/mech_limb/legs/reenable()
+/datum/mech_limb/legs/intercept_repair(datum/source, repair_amount, mob/user)
 	. = ..()
-	if(!.)
+	if(. != COMPONENT_NO_TAKE_DAMAGE) // repaired dmg
 		return
-	owner.move_delay /= 2
+	update_movespeed()
+
+//updates movespeed after integrity changes
+/datum/mech_limb/legs/proc/update_movespeed()
+	owner.move_delay -= slowdown_delay
+	slowdown_delay = (owner.move_delay) * (1-(part_health / initial(part_health)))
+	owner.move_delay += slowdown_delay
 
 /datum/mech_limb/legs/recon
 	part_health = 145

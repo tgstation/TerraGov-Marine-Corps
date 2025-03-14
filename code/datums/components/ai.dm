@@ -34,12 +34,26 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	QDEL_NULL(ai_behavior)
 	return ..()
 
+///qdels us
+/datum/component/ai_controller/proc/do_qdel(datum/source)
+	SIGNAL_HANDLER
+	qdel(src)
+
+///Handles the death of the npc mob
+/datum/component/ai_controller/proc/on_parent_death()
+	if(ishuman(parent))
+		clean_up()
+		RegisterSignal(parent, COMSIG_HUMAN_SET_UNDEFIBBABLE, PROC_REF(do_qdel))
+		RegisterSignal(parent, COMSIG_MOB_REVIVE, PROC_REF(start_ai))
+		return
+	qdel(src)
+
 ///Stop the ai behaviour from processing and clean current action
 /datum/component/ai_controller/proc/clean_up(register_for_logout = TRUE)
 	SIGNAL_HANDLER
 	GLOB.ai_instances_active -= src
 	if(!QDELETED(parent))
-		UnregisterSignal(parent, list(COMSIG_MOB_LOGIN, COMSIG_MOB_DEATH, COMSIG_HUMAN_HAS_AI))
+		UnregisterSignal(parent, list(COMSIG_MOB_LOGIN, COMSIG_MOB_DEATH, COMSIG_HUMAN_HAS_AI, COMSIG_HUMAN_SET_UNDEFIBBABLE, COMSIG_MOB_REVIVE, COMSIG_QDELETING))
 	if(ai_behavior)
 		STOP_PROCESSING(SSprocessing, ai_behavior)
 		ai_behavior.cleanup_signals()
@@ -56,6 +70,8 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	var/mob/living/living_parent = parent
 	if(living_parent.stat == DEAD)
 		return
+	if(living_parent.client)
+		return
 	if((length(GLOB.ai_instances_active) + 1) >= AI_INSTANCE_HARDCAP)
 		message_admins("Notice: An AI controller failed resume because there's already too many AI controllers existing.")
 		ai_behavior = null
@@ -65,10 +81,11 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 		break
 	//Iniatialise the behavior of the ai
 	ai_behavior.start_ai()
-	RegisterSignals(parent, list(COMSIG_MOB_DEATH, COMSIG_QDELETING), PROC_REF(RemoveComponent))
+	RegisterSignal(parent, COMSIG_MOB_DEATH, PROC_REF(on_parent_death))
+	RegisterSignal(parent, COMSIG_QDELETING, PROC_REF(do_qdel))
 	RegisterSignal(parent, COMSIG_MOB_LOGIN, PROC_REF(clean_up))
 	RegisterSignal(parent, COMSIG_HUMAN_HAS_AI, PROC_REF(parent_has_ai))
-	UnregisterSignal(parent, COMSIG_MOB_LOGOUT)
+	UnregisterSignal(parent, list(COMSIG_MOB_LOGOUT, COMSIG_MOB_REVIVE, COMSIG_HUMAN_SET_UNDEFIBBABLE))
 	GLOB.ai_instances_active += src
 
 /datum/component/ai_controller/Destroy()
