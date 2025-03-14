@@ -1513,7 +1513,7 @@
 			/obj/item/ammo_magazine/sniper/incendiary = -1,
 			/obj/item/ammo_magazine/sniper/flak = -1,
 		),
-		"Mounted" = list(
+		"Emplaced" = list(
 			/obj/item/weapon/gun/standard_atgun = -1,
 			/obj/item/ammo_magazine/standard_atgun = -1,
 			/obj/item/ammo_magazine/standard_atgun/apcr = -1,
@@ -1536,6 +1536,18 @@
 			/obj/item/ammo_magazine/heavy_isg/sabot = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable = -1,
 			/obj/item/cell/lasgun/heavy_laser = -1,
+			/obj/item/storage/box/crate/minisentry = -1,
+			/obj/item/ammo_magazine/minisentry = -1,
+			/obj/item/storage/box/crate/sentry_shotgun = -1,
+			/obj/item/ammo_magazine/sentry/shotgun = -1,
+			/obj/item/storage/box/crate/sentry_sniper = -1,
+			/obj/item/ammo_magazine/sentry/sniper = -1,
+			/obj/item/storage/box/crate/sentry_flamer = -1,
+			/obj/item/ammo_magazine/sentry/flamer = -1,
+			/obj/item/storage/box/crate/sentry_laser = -1,
+			/obj/item/ammo_magazine/sentry/laser = -1,
+			/obj/item/attachable/buildasentry = -1,
+
 		),
 		"Equipment" = list(
 			/obj/item/clothing/glasses/hud/xenohud = -1,
