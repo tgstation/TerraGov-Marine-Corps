@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Various minor improvements to NPC behavior"
+  - code_imp: "Cleaned up some managed_inventory and snack code"

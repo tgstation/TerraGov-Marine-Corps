@@ -731,6 +731,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\datums\outfits\marines.dm"
 #include "code\datums\outfits\mercenaries.dm"
 #include "code\datums\outfits\misc.dm"
+#include "code\datums\outfits\npc_marines.dm"
 #include "code\datums\outfits\pmc.dm"
 #include "code\datums\outfits\quick_load_beginners.dm"
 #include "code\datums\outfits\quick_load_civil_war.dm"
