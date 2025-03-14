@@ -1,7 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - rscadd: "An xenomorph structure called: Recovery Node."
-  - rscadd: "Recovery Node doubles the regeneration power of nearby xenomorphs and begins regeneration immediately."
-  - rscadd: "Hivelord gets a new ability called \"Plant Recovery Node\"."
-  - bugfix: "Weapon X (Hunter) from Campaign correctly gains 60% regeneration power per tick instead of 1000%."
