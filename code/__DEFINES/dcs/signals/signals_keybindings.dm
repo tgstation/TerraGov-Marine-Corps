@@ -227,7 +227,14 @@
 #define COMSIG_XENOABILITY_RESIN_WALKER "xenoability_resin_walker"
 #define COMSIG_XENOABILITY_BUILD_TUNNEL "xenoability_build_tunnel"
 #define COMSIG_XENOABILITY_PLACE_JELLY_POD "xenoability_place_jelly_pod"
+<<<<<<< HEAD
+<<<<<<< HEAD
 #define COMSIG_XENOABILITY_PLACE_RECOVERY_PYLON "xenoability_place_recovery_pylon"
+=======
+#define COMSIG_XENOABILITY_PLACE_RECOVERY_NODE "xenoability_place_recovery_node"
+>>>>>>> c16bd7823c (hivelord recovery node)
+=======
+>>>>>>> aef13b57b1 (Revert "hivelord recovery node")
 #define COMSIG_XENOABILITY_CREATE_JELLY "xenoability_create_jelly"
 #define COMSIG_XENOABILITY_HEALING_INFUSION "xenoability_healing_infusion"
 #define COMSIG_XENOABILITY_RECYCLE "xenoability_recycle"
