@@ -34,7 +34,7 @@
 	max_range = 30
 
 /datum/ammo/rocket/mech/drop_nade(turf/T)
-	explosion(T, 0, 0, 5, 0, 5)
+	explosion(T, 0, 0, 5, 0, 5, explosion_cause=src)
 
 /*
 //================================================

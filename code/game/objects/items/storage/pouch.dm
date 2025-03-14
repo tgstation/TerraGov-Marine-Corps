@@ -101,7 +101,7 @@
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/stack/throwing_knife,
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 	))
 	storage_datum.storage_slots = 3
 	storage_datum.draw_mode = TRUE
