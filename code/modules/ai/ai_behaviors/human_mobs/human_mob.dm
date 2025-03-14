@@ -404,10 +404,8 @@
 		if((human_ai_state_flags & HUMAN_AI_ANY_HEALING)) //dont just stand there
 			human_ai_state_flags &= ~(HUMAN_AI_ANY_HEALING)
 			late_initialize()
-			return
-		if((current_action == MOVING_TO_SAFETY) || !combat_target)
-			if(attacker && attacker.faction != mob_parent.faction)
-				set_combat_target(attacker)
+		if(((current_action == MOVING_TO_SAFETY) || !combat_target) && (attacker.faction != mob_parent.faction))
+			set_combat_target(attacker)
 			return
 
 	if(!(human_ai_behavior_flags & HUMAN_AI_SELF_HEAL))
