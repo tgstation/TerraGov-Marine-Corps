@@ -198,7 +198,7 @@
 		set_light_range(muzzle_flash_lum)
 		set_light_color(muzzle_flash_color)
 		set_light_on(TRUE)
-		addtimer(CALLBACK(src, PROC_REF(reset_light_range), prev_light), 1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(reset_light_range), prev_light), 0.1 SECONDS)
 
 	var/mech_slot = chassis.equip_by_category[MECHA_R_ARM] == src ? MECHA_R_ARM : MECHA_L_ARM
 	muzzle_flash.pixel_x = flash_offsets[mech_slot][dir2text_short(chassis.dir)][1]
