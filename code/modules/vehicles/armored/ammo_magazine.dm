@@ -59,6 +59,7 @@
 	icon_state = "tank_autocannon_ap"
 	max_rounds = 100
 	default_ammo = /datum/ammo/bullet/tank_autocannon
+	loading_sound = 'sound/vehicles/weapons/tank_autocannon_reload.ogg'
 
 /obj/item/ammo_magazine/tank/autocannon/high_explosive
 	name = "Bushwhacker Autocannon High Explosive Box (30mm)"
