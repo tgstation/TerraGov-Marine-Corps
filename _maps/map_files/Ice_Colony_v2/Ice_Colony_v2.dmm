@@ -19872,10 +19872,6 @@
 	dir = 5
 	},
 /area/ice_colony/underground/medical/treatment/garbledradio)
-"fuf" = (
-/turf/open/space/basic,
-/turf/closed/mineral/smooth/darkfrostwall/indestructible,
-/area/space)
 "fuh" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -34718,11 +34714,11 @@ aaa
 aaa
 aaa
 aaa
-fuf
-fuf
-fuf
-fuf
-fuf
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -34930,11 +34926,11 @@ aaa
 aaa
 aaa
 aaa
-fuf
-fuf
-fuf
-fuf
-fuf
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
