@@ -486,5 +486,3 @@
 	playsound(xeno_owner, SFX_ALIEN_RESIN_BUILD, 25)
 	succeed_activate()
 	add_cooldown()
-=======
->>>>>>> aef13b57b1 (Revert "hivelord recovery node")
