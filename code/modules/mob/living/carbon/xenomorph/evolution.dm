@@ -88,7 +88,7 @@
 			return GLOB.xeno_types_tier_four + /datum/xeno_caste/hivemind
 		if(XENO_TIER_FOUR)
 			if(istype(xeno_caste, /datum/xeno_caste/shrike))
-				return list(/datum/xeno_caste/queen, /datum/xeno_caste/king, /datum/xeno_caste/dragon)
+				return list(/datum/xeno_caste/queen, /datum/xeno_caste/king)
 
 
 ///Handles the evolution or devolution of the xenomorph

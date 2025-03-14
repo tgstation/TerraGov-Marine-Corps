@@ -50,8 +50,6 @@
 	if(!owner.incapacitated())
 		mothers += owner //Adding them to the list.
 
-/datum/action/ability/xeno_action/call_of_the_burrowed/free
-	ability_cost = 0
 
 // ***************************************
 // *********** Psychic Fling

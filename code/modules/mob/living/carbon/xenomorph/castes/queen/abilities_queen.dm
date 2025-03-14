@@ -48,7 +48,7 @@
 		switch(xeno_owner.caste_base_type) // TODO MAKE DYING SOUND A CASTE VAR????
 			if(/datum/xeno_caste/queen, /datum/xeno_caste/shrike)
 				SEND_SOUND(xeno, queen_sound)
-			if(/datum/xeno_caste/king, /datum/xeno_caste/dragon)
+			if(/datum/xeno_caste/king)
 				SEND_SOUND(xeno, king_sound)
 		//Display the ruler's hive message at the top of the game screen.
 		xeno.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
@@ -60,9 +60,6 @@
 
 	succeed_activate()
 	add_cooldown()
-
-/datum/action/ability/xeno_action/hive_message/free
-	ability_cost = 0
 
 
 // ***************************************
