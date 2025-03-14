@@ -343,8 +343,7 @@
 
 /datum/hive_status/normal/total_xenos_for_evolving()
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	return get_total_xeno_number() + stored_larva
+	return xeno_job.total_positions
 
 /datum/hive_status/proc/get_total_tier_zeros()
 	return length(xenos_by_tier[XENO_TIER_ZERO])
