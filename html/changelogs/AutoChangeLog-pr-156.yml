@@ -1,0 +1,4 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - rscadd: "Added a spare NTC commander's ID on the NTC ship and a spare SOM commander's ID on the SOM ship"
