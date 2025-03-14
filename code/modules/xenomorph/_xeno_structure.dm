@@ -60,6 +60,9 @@
 	if(!COOLDOWN_CHECK(src, proxy_alert_cooldown))
 		return
 
+	if(issamexenohive(hostile))
+		return
+
 	if(!iscarbon(hostile) && !isvehicle(hostile))
 		return
 
@@ -67,10 +70,6 @@
 		var/mob/living/carbon/carbon_triggerer = hostile
 		if(carbon_triggerer.stat == DEAD)
 			return
-		if(isxeno(hostile))
-			var/mob/living/carbon/xenomorph/xeno_triggerer = hostile
-			if(xeno_triggerer.hive == GLOB.hive_datums[hivenumber]) //Trigger proxy alert only for hostile xenos
-				return
 
 	if(isvehicle(hostile))
 		var/obj/vehicle/vehicle_triggerer = hostile
