@@ -574,10 +574,6 @@
 		/obj/item/explosive/grenade/vsd = 2,
 	)
 
-	head_contents = list(
-		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 2,
-	)
-
 	webbing_contents = list(
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
 		/obj/item/stack/medical/heal_pack/gauze = 1,
@@ -603,6 +599,10 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
 	)
 
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 2,
+	)
+
 /datum/outfit/job/vsd/juggernaut/eod
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/eod
 	suit_store = /obj/item/weapon/gun/launcher/rocket/vsd
@@ -621,6 +621,10 @@
 		/obj/item/ammo_magazine/rocket/vsd/chemical = 2,
 	)
 
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 2,
+	)
+
 	l_pocket_contents = list(
 		/obj/item/ammo_magazine/rocket/vsd/he = 2,
 		/obj/item/ammo_magazine/rocket/vsd/incendiary = 2,
@@ -637,6 +641,10 @@
 		/obj/item/storage/box/MRE = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/combat = 2,
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
+	)
+
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 2,
 	)
 
 	suit_contents = list(
