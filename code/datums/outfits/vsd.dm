@@ -570,10 +570,6 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
 	)
 
-	suit_contents = list(
-		/obj/item/explosive/grenade/vsd = 2,
-	)
-
 	webbing_contents = list(
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
 		/obj/item/stack/medical/heal_pack/gauze = 1,
@@ -597,6 +593,10 @@
 		/obj/item/storage/box/MRE = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/combat = 2,
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
+	)
+
+	suit_contents = list(
+		/obj/item/explosive/grenade/vsd = 2,
 	)
 
 	head_contents = list(
