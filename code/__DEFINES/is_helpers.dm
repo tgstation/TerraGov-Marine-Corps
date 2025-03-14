@@ -146,6 +146,7 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 #define isxenowarlock(A) (istype(A, /mob/living/carbon/xenomorph/warlock))
 #define isxenoking(A) (istype(A, /mob/living/carbon/xenomorph/king))
 #define isxenobehemoth(A) (istype(A, /mob/living/carbon/xenomorph/behemoth))
+#define isxenodragon(A) (istype(A, /mob/living/carbon/xenomorph/dragon))
 #define isxenopyrogen(A) (istype(A, /mob/living/carbon/xenomorph/pyrogen))
 
 //Silicon mobs
