@@ -355,7 +355,7 @@
 		if(ammo.bullet_color)
 			set_light_color(ammo.bullet_color)
 			set_light_on(TRUE)
-			update_icon()
+			update_appearance(UPDATE_OVERLAYS)
 	else
 		alpha = 64
 

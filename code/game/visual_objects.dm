@@ -19,7 +19,7 @@
 	. = ..()
 	if(new_icon_state)
 		icon_state = new_icon_state
-	update_icon()
+	update_appearance(UPDATE_OVERLAYS)
 
 /atom/movable/vis_obj/effect/muzzle_flash/update_overlays()
 	. = ..()

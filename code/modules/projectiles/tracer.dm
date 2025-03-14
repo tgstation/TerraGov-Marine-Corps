@@ -15,7 +15,7 @@
 	set_light_color(laser_color)
 	set_light_on(TRUE)
 	icon_state = effect_icon
-	update_icon()
+	update_appearance(UPDATE_OVERLAYS)
 	pixel_x = p_x
 	pixel_y = p_y
 	var/matrix/M = transform
