@@ -5,7 +5,7 @@
 	mission_flags = MISSION_DISALLOW_DROPPODS
 	map_name = "Rocinante base"
 	map_file = '_maps/map_files/Campaign maps/som_base/sombase.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SNOWSTORM = TRUE)
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating", ZTRAIT_SNOWSTORM = TRUE)
 	map_light_colours = list(COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE)
 	map_light_levels = list(225, 150, 100, 75)
 	map_armor_color = MAP_ARMOR_STYLE_JUNGLE
@@ -75,7 +75,7 @@
 	map_name = "Orion outpost"
 	map_file = '_maps/map_files/Campaign maps/orion_2/orionoutpost_2.dmm'
 	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
-	map_traits = list(ZTRAIT_AWAY = TRUE)
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating")
 	map_light_levels = list(225, 150, 100, 75)
 	map_armor_color = MAP_ARMOR_STYLE_JUNGLE
 	objectives_total = 8

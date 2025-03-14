@@ -54,6 +54,8 @@
 	var/list/toggleable_inventory = list() //the screen objects which can be hidden
 	var/list/atom/movable/screen/hotkeybuttons = list() //the buttons that can be used via hotkeys
 	var/list/infodisplay = list() //the screen objects that display mob info (health, alien plasma, etc...)
+	/// Screen objects that never exit view.
+	var/list/always_visible_inventory = list()
 
 	var/atom/movable/screen/action_button/hide_toggle/hide_actions_toggle
 	var/action_buttons_hidden = 0
@@ -97,11 +99,6 @@
 	RegisterSignal(mymob, COMSIG_MOB_LOGOUT, PROC_REF(clear_client))
 	RegisterSignal(mymob, COMSIG_MOB_SIGHT_CHANGE, PROC_REF(update_sightflags))
 	update_sightflags(mymob, mymob.sight, NONE)
-
-	//not sure if "hack" or tg having something working by coincidence, but we need to do this so the planes actually attach
-	// if i had to guess their pref code may apply it already but we need this
-	// do fix if you know better
-	//INVOKE_NEXT_TICK(src, PROC_REF(show_hud), hud_version)
 
 /datum/hud/proc/should_use_scale()
 	return should_sight_scale(mymob.sight)
@@ -164,6 +161,7 @@
 	QDEL_LIST_ASSOC_VAL(plane_master_controllers)
 
 	QDEL_LIST(ammo_hud_list)
+	QDEL_LIST(always_visible_inventory)
 
 	mymob = null
 	return ..()
@@ -313,6 +311,8 @@
 				screenmob.client.screen += infodisplay
 			if(action_intent)
 				action_intent.screen_loc = initial(action_intent.screen_loc) //Restore intent selection to the original position
+			if(length(always_visible_inventory))
+				screenmob.client.screen += always_visible_inventory
 
 		if(HUD_STYLE_REDUCED)	//Reduced HUD
 			hud_shown = 0	//Governs behavior of other procs
@@ -324,6 +324,8 @@
 				screenmob.client.screen -= hotkeybuttons
 			if(length(infodisplay))
 				screenmob.client.screen += infodisplay
+			if(length(always_visible_inventory))
+				screenmob.client.screen += always_visible_inventory
 
 			//These ones are a part of 'static_inventory', 'toggleable_inventory' or 'hotkeybuttons' but we want them to stay
 			if(l_hand_hud_object)
@@ -344,6 +346,8 @@
 				screenmob.client.screen -= hotkeybuttons
 			if(length(infodisplay))
 				screenmob.client.screen -= infodisplay
+			if(length(always_visible_inventory))
+				screenmob.client.screen += always_visible_inventory
 
 	hud_version = display_hud_version
 	persistent_inventory_update(screenmob)

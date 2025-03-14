@@ -336,7 +336,7 @@ This function restores all limbs.
 		UpdateDamageIcon()
 
 
-/mob/living/carbon/proc/get_limb(zone)
+/mob/living/proc/get_limb(zone)
 	return
 
 /mob/living/carbon/human/get_limb(zone)

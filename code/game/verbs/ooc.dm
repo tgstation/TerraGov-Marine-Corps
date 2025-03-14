@@ -674,7 +674,7 @@
 	prefs.ignoring.Add(selection)
 	prefs.save_preferences()
 
-	to_chat(src, span_infoplain("You are now ignoring [selection] on the OOC channel."))
+	to_chat(src, span_info("You are now ignoring [selection] on the OOC channel."))
 
 /client/verb/select_unignore()
 	set name = "Unignore"
@@ -697,4 +697,4 @@
 	prefs.ignoring.Remove(selection)
 	prefs.save_preferences()
 
-	to_chat(src, span_infoplain("You are no longer ignoring [selection] on the OOC channel."))
+	to_chat(src, span_info("You are no longer ignoring [selection] on the OOC channel."))
