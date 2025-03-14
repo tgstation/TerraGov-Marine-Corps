@@ -648,7 +648,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!client || !target || !isliving(target))
 		return
 
-	client.eye = target
+	client.set_eye(target)
 
 	if(!target.hud_used)
 		return
