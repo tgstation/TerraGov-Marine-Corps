@@ -1354,20 +1354,6 @@
 	keybind_signal = COMSIG_XENOABILITY_GRAB
 	hotkey_keys = list("B")
 
-/datum/keybinding/xeno/psychic_channel
-	name = "Psychic Channel"
-	full_name = "Dragon: Psychic Channel"
-	description = "After a windup, begin channeling. If already channeled, use one of your sub-abilities."
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHANNEL
-	hotkey_keys = list("N")
-
-/datum/keybinding/xeno/psychic_channel_selection
-	name = "Psychic Channel (Selection)"
-	full_name = "Dragon: Psychic Channel (Selection)"
-	description = "Select which sub-ability that Psychic Channel will use."
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHANNEL_SELECTION
-	hotkey_keys = list("M")
-
 /datum/keybinding/xeno/scorched_land
 	name = "Scorched Land"
 	full_name = "Dragon: Scorched Land"
