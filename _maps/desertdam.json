@@ -10,6 +10,7 @@
 	"quickbuilds": 3300,
 	"announce_text": "We've lost contact with NT's extra-solar colony, \"Chigusa Dam\", on the planet \"Trivonus IV.\" Your ship has been dispatched to assist.",
 	"traits":[{
-		"No Parallax": true
+		"No Parallax": true,
+		"Baseturf": "/turf/open/floor/plating"
 	}]
 }

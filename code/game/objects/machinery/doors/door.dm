@@ -36,6 +36,13 @@
 	///what airlock we are linked with
 	var/obj/machinery/door/airlock/cycle_linked_airlock
 
+	/// Special operating mode for elevator doors
+	var/elevator_mode = FALSE
+	/// Current elevator status for processing
+	var/elevator_status
+	/// What specific lift ID do we link with?
+	var/transport_linked_id
+
 	//Multi-tile doors
 	dir = EAST
 	var/width = 1
@@ -53,12 +60,21 @@
 	var/turf/current_turf = get_turf(src)
 	current_turf.atom_flags &= ~ AI_BLOCKED
 
+	if(elevator_mode)
+		if(transport_linked_id)
+			elevator_status = LIFT_PLATFORM_LOCKED
+			GLOB.elevator_doors += src
+		else
+			stack_trace("Elevator door [src] ([x],[y],[z]) has no linked elevator ID!")
+
 	if(glass)
 		allow_pass_flags |= PASS_GLASS
 
 /obj/machinery/door/Destroy()
 	for(var/o in fillers)
 		qdel(o)
+	if(elevator_mode)
+		GLOB.elevator_doors -= src
 	return ..()
 
 /obj/machinery/door/proc/handle_multidoor()
@@ -102,11 +118,13 @@
 	if(operating)
 		return
 
-	if(!src.requiresID())
+	if(!requiresID())
 		user = null
 
 	if(density)
-		if(allowed(user) || emergency || unrestricted_side(user))
+		if(elevator_mode && elevator_status == LIFT_PLATFORM_UNLOCKED)
+			open()
+		else if(allowed(user) || emergency || unrestricted_side(user))
 			if(cycle_linked_airlock)
 				if(!emergency && !cycle_linked_airlock.emergency && allowed(user))
 					cycle_linked_airlock.close()
