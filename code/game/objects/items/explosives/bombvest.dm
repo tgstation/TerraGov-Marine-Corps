@@ -9,8 +9,6 @@
 	actions_types = list(/datum/action/item_action/toggle/suit_toggle/boom)
 	///Warcry to yell upon detonation
 	var/bomb_message
-	///List of warcries that are not allowed.
-	var/bad_warcries_regex = "allahu ackbar|allah|ackbar"
 	///Time it takes to detonate
 	var/detonate_time = 2 SECONDS
 

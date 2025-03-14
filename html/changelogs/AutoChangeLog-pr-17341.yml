@@ -1,0 +1,4 @@
+author: "witherc6"
+delete-after: True
+changes:
+  - rscadd: "added paramedic labcoat to marine clothing vendor"

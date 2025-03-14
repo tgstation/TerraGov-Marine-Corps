@@ -8,6 +8,7 @@
 	"quickbuilds": 1800,
 	"announce_text": "An automated distress signal has been received from Nanotrasen colony Kutjevo Refinery, known for botanical research, export, and raw materials processing and refinement. The ###SHIPNAME### has been dispatched to investigate.",
 	"traits":[{
-		"No Parallax": true
+		"No Parallax": true,
+		"Baseturf": "/turf/open/floor/plating"
 	}]
 }

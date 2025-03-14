@@ -77,8 +77,9 @@
 	add_fingerprint(user, "bumpopen")
 	if(!requiresID())
 		user = null
-
-	if(allowed(user))
+	if(elevator_mode && elevator_status == LIFT_PLATFORM_UNLOCKED)
+		open()
+	else if(allowed(user))
 		open_and_close()
 	else
 		do_animate("deny")

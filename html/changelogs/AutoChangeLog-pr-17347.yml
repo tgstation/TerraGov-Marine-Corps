@@ -1,0 +1,8 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - rscadd: "You can now throw ANY item up and down ladders instead of just grenades and lamps"
+  - rscadd: "Added multiz ladders"
+  - qol: "ladders, if possible, will try to have you use left and right click to go up and down respectively instead of opening a menu"
+  - qol: "said menu is no longer a window but a radial menu now"
+  - qol: "removed restriction on only one person being able to look through a ladder at a time"

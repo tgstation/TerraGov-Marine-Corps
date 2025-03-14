@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - rscadd: "Added new tank Autocannon. Has two ammo types- HE and AP. It fires faster than LTAAP and does not have IFF."

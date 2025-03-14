@@ -624,8 +624,8 @@
 	if(currently_z_moving)
 		return
 	stop_pulling()
-	if(buckled)
-		buckled.unbuckle_mob(src)
+	if(buckled && !HAS_TRAIT(src, TRAIT_CANNOT_BE_UNBUCKLED))
+		buckled.unbuckle_mob(src, TRUE)
 
 
 /mob/proc/trainteleport(atom/destination)

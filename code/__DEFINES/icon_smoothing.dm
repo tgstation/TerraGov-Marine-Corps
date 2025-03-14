@@ -114,6 +114,8 @@
 #define SMOOTH_GROUP_DECAL  S_OBJ(43)
 #define SMOOTH_GROUP_DECAL_WARNING_STRIPE  S_OBJ(44)
 
+#define SMOOTH_GROUP_INDUSTRIAL_LIFT S_OBJ(46) ///obj/structure/transport/linear
+#define SMOOTH_GROUP_TRAM_STRUCTURE S_OBJ(47) //obj/structure/tram
 
 #define SMOOTH_GROUP_WOOD_TABLES S_OBJ(51)				///obj/structure/table/wood
 #define SMOOTH_GROUP_FANCY_WOOD_TABLES S_OBJ(52)		///obj/structure/table/wood/fancy

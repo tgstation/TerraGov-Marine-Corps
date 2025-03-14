@@ -237,3 +237,23 @@
   - bugfix: removed a stray dev verb
   Neocloudy:
   - bugfix: ignore/unignore actually works now.
+2025-03-13:
+  Lumipharon:
+  - bugfix: NPC's actually check turret and droid faction when looking for targets
+  Runian:
+  - bugfix: Warlock's Psyblast now goes over objects like many other xeno ranged abilities
+      as intended.
+  TiviPlus:
+  - rscadd: Glass floors are seethough
+  - rscadd: Added multiz stair subtype
+  - balance: mech legs now slow increasingly based on hp instead of when destroyed
+  - bugfix: Fixed pod launcher not always working
+  - code_imp: added backend for trams and elevators
+  - bugfix: tank riding should work better now for non-mobs
+  - qol: Added queen visually warping shriek wave
+  Tiviplus & Lumipharon:
+  - bugfix: fixed turfs sometimes turning into space tiles on ground maps, hopefully
+      for good
+  tyeagg:
+  - qol: each cas ammo now have their own crosshair
+  - imageadd: cas crosshairs

@@ -491,6 +491,11 @@
 			set_currently_z_moving(FALSE, TRUE)
 	return TRUE
 
+/// Called when src is being moved to a target turf because another movable (puller) is moving around.
+/atom/movable/proc/move_from_pull(atom/movable/puller, turf/target_turf, glide_size_override)
+	moving_from_pull = puller
+	Move(target_turf, get_dir(src, target_turf), glide_size_override)
+	moving_from_pull = null
 
 /atom/movable/Bump(atom/A)
 	SHOULD_CALL_PARENT(TRUE)
