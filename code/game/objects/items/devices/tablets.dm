@@ -101,7 +101,7 @@
 			continue // dropped headsets havee an unknown tag
 		var/list/tempnetwork = C.network & network
 		if(length(tempnetwork))
-			valid_cams += C
+			valid_cams[ref(C)] += C
 	return valid_cams
 
 /obj/item/hud_tablet/proc/show_camera_static()
@@ -160,14 +160,11 @@
 		return
 
 	if(action == "switch_camera")
-		var/c_tag = params["name"]
+		var/camera_reference = params["ref"]
 		var/list/cameras = get_available_cameras()
 		var/obj/machinery/camera/selected_camera
-		for(var/obj/machinery/camera/camera as anything in cameras)
-			if(camera.c_tag == c_tag)
-				selected_camera = camera
-				break
-		active_camera = selected_camera
+
+		active_camera = locate(camera_reference) in cameras
 		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
 
 		if(!selected_camera)

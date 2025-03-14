@@ -8,18 +8,31 @@ import { Window } from '../layouts';
 
 const defaultRole = 'Other';
 
+interface Camera {
+  name: string;
+  ref: string;
+  role?: string;
+}
+
+interface CameraConsoleBaseProps {
+  cameras: Camera[];
+  activeCamera?: Camera;
+}
+
+interface CameraConsoleProps extends CameraConsoleBaseProps {
+  mapRef?: string;
+}
+
 /**
  * Returns previous and next camera names relative to the currently
  * active camera.
  */
-export const prevNextCamera = (cameras, activeCamera) => {
+export const prevNextCamera = (cameras: Camera[], activeCamera: Camera) => {
   if (!activeCamera) {
     return [];
   }
-  const index = cameras.findIndex(
-    (camera) => camera.name === activeCamera.name,
-  );
-  return [cameras[index - 1]?.name, cameras[index + 1]?.name];
+  const index = cameras.findIndex((camera) => camera.ref === activeCamera.ref);
+  return [cameras[index - 1]?.ref, cameras[index + 1]?.ref];
 };
 
 /**
@@ -27,7 +40,10 @@ export const prevNextCamera = (cameras, activeCamera) => {
  *
  * Filters cameras, applies search terms and sorts the alphabetically.
  */
-export const selectCameras = (cameras, searchText = '') => {
+export const selectCameras = (cameras?: Camera[], searchText = '') => {
+  if (!cameras) {
+    return [];
+  }
   const useRoles = cameras.some((camera) => camera.role);
 
   let camerasToSort = cameras;
@@ -40,7 +56,7 @@ export const selectCameras = (cameras, searchText = '') => {
 
   const testSearch = createSearch(
     searchText,
-    (camera) => camera.name + camera.role,
+    (camera: Camera) => camera.name + camera.role,
   );
   return camerasToSort
     .filter((camera) => camera?.name)
@@ -57,19 +73,27 @@ export const selectCameras = (cameras, searchText = '') => {
     });
 };
 
-export const CameraConsole = (props) => {
-  const { act, data } = useBackend();
-  const { cameras, mapRef, activeCamera } = data;
+export const CameraConsole = ({
+  cameras,
+  mapRef,
+  activeCamera,
+}: Partial<CameraConsoleProps>) => {
   const filteredCameras = selectCameras(cameras);
-  const [prevCameraName, nextCameraName] = prevNextCamera(
+
+  const [prevCameraRef, nextCameraRef] = prevNextCamera(
     filteredCameras,
-    activeCamera,
+    activeCamera || { ref: '', name: '' },
   );
   return (
     <Window width={870} height={708}>
       <div className="CameraConsole__left">
         <Window.Content scrollable>
-          <CameraConsoleContent />
+          {cameras && cameras.length > 0 && (
+            <CameraConsoleContent
+              cameras={cameras}
+              activeCamera={activeCamera}
+            />
+          )}
         </Window.Content>
       </div>
       <div className="CameraConsole__right">
@@ -77,26 +101,10 @@ export const CameraConsole = (props) => {
           <b>Camera: </b>
           {(activeCamera && activeCamera.name) || '—'}
         </div>
-        <div className="CameraConsole__toolbarRight">
-          <Button
-            icon="chevron-left"
-            disabled={!prevCameraName}
-            onClick={() =>
-              act('switch_camera', {
-                name: prevCameraName,
-              })
-            }
-          />
-          <Button
-            icon="chevron-right"
-            disabled={!nextCameraName}
-            onClick={() =>
-              act('switch_camera', {
-                name: nextCameraName,
-              })
-            }
-          />
-        </div>
+        <CameraConsoleList
+          prevCameraRef={prevCameraRef}
+          nextCameraRef={nextCameraRef}
+        />
         <ByondUi
           className="CameraConsole__map"
           params={{
@@ -109,10 +117,46 @@ export const CameraConsole = (props) => {
   );
 };
 
-export const CameraConsoleContent = (props) => {
-  const { data } = useBackend();
+interface CameraConsoleListProps {
+  prevCameraRef: string;
+  nextCameraRef: string;
+}
+
+export const CameraConsoleList = ({
+  prevCameraRef,
+  nextCameraRef,
+}: CameraConsoleListProps) => {
+  const { act } = useBackend();
+
+  return (
+    <div className="CameraConsole__toolbarRight">
+      <Button
+        icon="chevron-left"
+        disabled={!prevCameraRef}
+        onClick={() =>
+          act('switch_camera', {
+            ref: prevCameraRef,
+          })
+        }
+      />
+      <Button
+        icon="chevron-right"
+        disabled={!nextCameraRef}
+        onClick={() =>
+          act('switch_camera', {
+            ref: nextCameraRef,
+          })
+        }
+      />
+    </div>
+  );
+};
+
+export const CameraConsoleContent = ({
+  activeCamera,
+  cameras,
+}: CameraConsoleBaseProps) => {
   const [searchText, setSearchText] = useState('');
-  const { activeCamera, cameras } = data;
   const useRoles = cameras.some((camera) => camera.role);
   const filteredCameras = selectCameras(cameras, searchText);
   return (
@@ -139,15 +183,20 @@ export const CameraConsoleContent = (props) => {
   );
 };
 
-export const CameraRoles = (props) => {
-  const { cameras, activeCamera, useRoles } = props;
-  const { data } = useBackend();
+interface CameraRoleProps extends CameraConsoleBaseProps {
+  useRoles: boolean;
+}
+export const CameraRoles = ({
+  cameras,
+  activeCamera,
+  useRoles,
+}: CameraRoleProps) => {
   if (!cameras) {
     return null;
   }
 
   // Group cameras by role
-  const rolesCameras = {};
+  const rolesCameras: Record<string, Camera[]> = {};
   for (let i = 0; i < cameras.length; i++) {
     const role = cameras[i].role || defaultRole;
     if (!rolesCameras[role]) {
@@ -167,9 +216,11 @@ export const CameraRoles = (props) => {
   });
 };
 
-export const CameraEntries = (props) => {
-  const { cameras, activeCamera } = props;
-  const { data, act } = useBackend();
+export const CameraEntries = ({
+  cameras,
+  activeCamera,
+}: CameraConsoleBaseProps) => {
+  const { act } = useBackend();
   return cameras.map((camera) => (
     // We're not using the component here because performance
     // would be absolutely abysmal (50+ ms for each re-render).
@@ -185,7 +236,7 @@ export const CameraEntries = (props) => {
       ])}
       onClick={() =>
         act('switch_camera', {
-          name: camera.name,
+          ref: camera.ref,
         })
       }
     >

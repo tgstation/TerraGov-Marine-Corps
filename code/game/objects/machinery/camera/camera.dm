@@ -88,6 +88,7 @@
 /obj/machinery/camera/proc/camera_ui_data()
 	return list(
 		"name" = c_tag,
+		"ref" = ref(src)
 	)
 
 /obj/machinery/camera/proc/setViewRange(num = 7)
@@ -358,10 +359,7 @@
 	var/role_name
 
 /obj/machinery/camera/headset/camera_ui_data()
-	return list(
-		"name" = c_tag,
-		"role" = role_name
-	)
+	.["role"] = role_name
 
 /obj/machinery/camera/headset/som
 	network = list(SOM_CAMERA_NETWORK)
