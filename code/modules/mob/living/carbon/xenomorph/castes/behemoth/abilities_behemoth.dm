@@ -859,7 +859,6 @@
 #define PRIMAL_WRATH_ACTIVATION_DURATION 3 SECONDS // Timed with the sound played.
 #define PRIMAL_WRATH_RANGE 12
 #define PRIMAL_WRATH_DAMAGE_MULTIPLIER 1.2
-#define PRIMAL_WRATH_SPEED_BONUS -0.3
 #define PRIMAL_WRATH_DECAY_MULTIPLIER 1.2
 #define PRIMAL_WRATH_ACTIVE_DECAY_DIVISION 40
 #define PRIMAL_WRATH_GAIN_MULTIPLIER 0.3
@@ -917,7 +916,7 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// Timer that determines when Wrath will start decaying.
-	var/decay_time = 60 SECONDS
+	var/decay_time = 12 SECONDS
 	/// Base amount of Wrath lost every valid tick.
 	var/decay_amount = 10
 	/// The overlay used when Primal Wrath blocks fatal damage.
@@ -1066,7 +1065,6 @@
 		QDEL_NULL(particle_holder)
 		decay_time = initial(decay_time)
 		xeno_owner.xeno_melee_damage_modifier = initial(xeno_owner.xeno_melee_damage_modifier)
-		xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_BEHEMOTH_PRIMAL_WRATH)
 		landslide_action?.change_maximum_charges(initial(landslide_action.maximum_charges))
 		earth_riser_action?.cooldown_duration = initial(earth_riser_action?.cooldown_duration)
 		earth_riser_action?.change_maximum_pillars(initial(earth_riser_action.maximum_pillars))
@@ -1080,7 +1078,6 @@
 	particle_holder.pixel_x = 3
 	particle_holder.pixel_y = -20
 	xeno_owner.xeno_melee_damage_modifier = PRIMAL_WRATH_DAMAGE_MULTIPLIER
-	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_BEHEMOTH_PRIMAL_WRATH, TRUE, 0, NONE, TRUE, PRIMAL_WRATH_SPEED_BONUS)
 	landslide_action?.change_maximum_charges(PRIMAL_WRATH_LANDSLIDE_CHARGES)
 	landslide_action?.clear_cooldown()
 	earth_riser_action?.cooldown_duration = EARTH_RISER_PRIMAL_WRATH_COOLDOWN
