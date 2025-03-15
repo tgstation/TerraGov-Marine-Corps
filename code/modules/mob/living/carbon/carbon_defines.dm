@@ -49,3 +49,7 @@
 	if(!istype(destination))
 		return
 	destination.blood_type = blood_type
+
+///Kick the player from this mob, replace it by a more competent ai
+/mob/living/carbon/proc/replace_by_ai()
+	return

@@ -85,6 +85,8 @@
 #define EXOSUIT_MODULE_SAVANNAH (1<<6)
 /// Module is compatible with Greyscale Exosuit models
 #define EXOSUIT_MODULE_GREYSCALE (1<<7)
+/// Module is shown in the greyscale mech menu purchasing screen
+#define EXOSUIT_MODULE_VENDABLE (1<<8)
 
 /// Module is compatible with "Working" Exosuit models - Ripley and Clarke
 #define EXOSUIT_MODULE_WORKING EXOSUIT_MODULE_RIPLEY

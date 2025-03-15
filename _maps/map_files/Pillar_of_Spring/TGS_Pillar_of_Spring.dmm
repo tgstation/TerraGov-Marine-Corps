@@ -2889,7 +2889,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/cryo_cells)
 "dvZ" = (
-/obj/item/attachable/bayonetknife,
+/obj/item/attachable/bayonet,
 /obj/structure/table/mainship/nometal,
 /obj/item/book/manual/marine_law,
 /obj/effect/spawner/random/misc/gnome,
@@ -12180,7 +12180,7 @@
 	},
 /obj/effect/landmark/start/job/medicalofficer,
 /obj/item/tool/soap,
-/obj/item/attachable/bayonetknife,
+/obj/item/attachable/bayonet,
 /obj/effect/decal/cleanable/blood,
 /obj/item/storage/pill_bottle/quickclot,
 /obj/machinery/door/window{

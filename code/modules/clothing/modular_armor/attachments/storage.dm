@@ -153,7 +153,7 @@
 	new /obj/item/weapon/combat_knife(src)
 
 /obj/item/armor_module/storage/boot/som_knife/PopulateContents()
-	new /obj/item/attachable/bayonetknife/som(src)
+	new /obj/item/attachable/bayonet/som(src)
 
 /obj/item/armor_module/storage/helmet
 	name = "Jaeger Pattern helmet storage"

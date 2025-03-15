@@ -112,7 +112,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 
 /obj/machinery/deployable/mounted/sentry/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!disassembled)
-		explosion(loc, light_impact_range = 3)
+		explosion(loc, light_impact_range = 3, explosion_cause=blame_mob)
 	return ..()
 
 /obj/machinery/deployable/mounted/sentry/on_deconstruction()

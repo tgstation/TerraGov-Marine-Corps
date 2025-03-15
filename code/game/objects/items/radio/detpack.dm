@@ -369,11 +369,11 @@
 	plant_target.ex_act(EXPLODE_DEVASTATE)
 	plant_target = null
 	if(det_mode == TRUE) //If we're on demolition mode, big boom.
-		explosion(det_location, 0, 7, 9, 0, 7)
+		explosion(det_location, 0, 7, 9, 0, 7, explosion_cause=src) // TODO PASS THE USER HERE
 	else //if we're not, focused boom.
 		if(iswallturf(det_location)) //Breach the other side of the wall if planted on one
 			det_location = get_step(det_location, boom_direction)
-		explosion(det_location, 3, 4, 4, 0, 4)
+		explosion(det_location, 3, 4, 4, 0, 4, explosion_cause=src) // TODO PASS THE USER HERE
 	qdel(src)
 
 /obj/item/detpack/attack(mob/M as mob, mob/user as mob, def_zone)

@@ -78,7 +78,7 @@
 		COMSIG_MOB_TOGGLEMOVEINTENT,
 	))
 	UnregisterSignal(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED))
-	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_HAZARD_NOTIFIED, COMSIG_GLOB_MOB_ON_CRIT, COMSIG_GLOB_AI_NEED_HEAL, COMSIG_GLOB_MOB_CALL_MEDIC)
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_AI_HAZARD_NOTIFIED, COMSIG_GLOB_MOB_ON_CRIT, COMSIG_GLOB_AI_NEED_HEAL, COMSIG_GLOB_MOB_CALL_MEDIC))
 	return ..()
 
 /datum/ai_behavior/human/process()
@@ -87,8 +87,22 @@
 	if(mob_parent.do_actions)
 		return ..()
 
+	var/mob/living/carbon/human/human_parent = mob_parent
+	if(human_parent.lying_angle)
+		INVOKE_ASYNC(human_parent, TYPE_PROC_REF(/mob/living/carbon/human, get_up))
+
 	if((medical_rating >= AI_MED_MEDIC) && medic_process())
 		return
+
+	if((human_parent.nutrition <= NUTRITION_HUNGRY) && length(mob_inventory.food_list) && (human_parent.nutrition + (37.5 * human_parent.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)) < NUTRITION_WELLFED))
+		for(var/obj/item/reagent_containers/food/food AS in mob_inventory.food_list)
+			if(!food.ai_should_use(human_parent))
+				continue
+			food.ai_use(human_parent, human_parent)
+			break
+
+	if(mob_parent.buckled && !istype(mob_parent.buckled, /obj/structure/droppod)) //unbuckling from your pod midflight is not ideal
+		mob_parent.buckled.unbuckle_mob(mob_parent)
 
 	for(var/datum/action/action in ability_list)
 		if(!action.ai_should_use(atom_to_walk_to)) //todo: some of these probably should be aimmed at combat_target somehow...
@@ -297,8 +311,16 @@
 /datum/ai_behavior/human/do_unset_target(atom/old_target, need_new_state = TRUE)
 	if(combat_target == old_target && (human_ai_state_flags & HUMAN_AI_FIRING))
 		stop_fire()
-	remove_from_heal_list(old_target)
-	if(human_ai_state_flags & HUMAN_AI_HEALING)
+	var/revive_target = FALSE
+	if((medical_rating >= AI_MED_MEDIC) && (old_target in heal_list))
+		var/mob/living/living_target = old_target
+		if(living_target.stat == DEAD) //medics keep them on the list
+			revive_target = TRUE
+		else
+			remove_from_heal_list(old_target)
+	else
+		remove_from_heal_list(old_target)
+	if((human_ai_state_flags & HUMAN_AI_HEALING) && !revive_target)
 		on_heal_end(old_target)
 	return ..()
 
@@ -382,10 +404,8 @@
 		if((human_ai_state_flags & HUMAN_AI_ANY_HEALING)) //dont just stand there
 			human_ai_state_flags &= ~(HUMAN_AI_ANY_HEALING)
 			late_initialize()
-			return
-		if(current_action == MOVING_TO_SAFETY)
-			if(attacker && attacker.faction != mob_parent.faction)
-				set_combat_target(attacker)
+		if(((current_action == MOVING_TO_SAFETY) || !combat_target) && (attacker.faction != mob_parent.faction))
+			set_combat_target(attacker)
 			return
 
 	if(!(human_ai_behavior_flags & HUMAN_AI_SELF_HEAL))
@@ -411,6 +431,21 @@
 	target_distance = 12
 	COOLDOWN_START(src, ai_retreat_cooldown, 8 SECONDS)
 	change_action(MOVING_TO_SAFETY, next_target, list(INFINITY)) //fallback
+
+///Tries to store an item
+/datum/ai_behavior/human/proc/try_store_item(obj/item/item)
+	if(!mob_parent.equip_to_appropriate_slot(item))
+		return FALSE
+	mob_parent.update_inv_l_hand(FALSE)
+	mob_parent.update_inv_r_hand(FALSE)
+	return TRUE
+
+///Tries to store any items in hand
+/datum/ai_behavior/human/proc/store_hands()
+	if(mob_parent.l_hand)
+		try_store_item(mob_parent.l_hand)
+	if(mob_parent.r_hand)
+		try_store_item(mob_parent.r_hand)
 
 ///Reacts to a heard message
 /datum/ai_behavior/human/proc/recieve_message(atom/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
