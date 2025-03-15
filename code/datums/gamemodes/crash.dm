@@ -120,10 +120,6 @@
 
 
 
-	// Apply Evolution Xeno Population Locks:
-	//for(var/datum/xeno_caste/caste AS in evo_requirements)
-	//	GLOB.xeno_caste_datums[caste][XENO_UPGRADE_BASETYPE].evolve_min_xenos = evo_requirements[caste]
-
 
 
 /datum/game_mode/infestation/crash/announce()
