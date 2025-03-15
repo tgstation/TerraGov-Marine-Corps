@@ -165,11 +165,13 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 
 /// Handle turning on the generator and updating power
 /obj/machinery/power/geothermal/proc/turn_on()
+	if(buildstate != GENERATOR_NO_DAMAGE)
+		return FALSE
 	is_on = TRUE
 	update_icon()
 	update_desc()
 	start_processing()
-
+	return TRUE
 
 /// Handle turning off the generator and updating power
 /obj/machinery/power/geothermal/proc/turn_off()
@@ -331,11 +333,14 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 	return ..()
 
 /obj/machinery/power/geothermal/tbg/turn_on()
+	. = ..()
+	if(!.)
+		return FALSE
 	COOLDOWN_START(src, toggle_power, 10 SECONDS)
 	ambient_soundloop.start()
 	GLOB.active_bluespace_generators++
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_BLUESPACE_GEN_ACTIVATED, TRUE)
-	return ..()
+	return TRUE
 
 /obj/machinery/power/geothermal/tbg/turn_off()
 	COOLDOWN_START(src, toggle_power, 10 SECONDS)
