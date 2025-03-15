@@ -112,6 +112,7 @@
 	name = "ball of huggers"
 	radial_icon_state = "hugger_ball"
 	cooldown_time = 10 MINUTES
+	impact_time = 12 SECONDS
 	/// range_turfs that huggers will be dropped around the target
 	var/drop_range = 10
 	/// how many huggers get dropped at once, does not stack on turfs if theres not enough turfs
@@ -167,6 +168,7 @@
 	name = "ball of minions"
 	radial_icon_state = "minion"
 	cooldown_time = 5 MINUTES
+	impact_time = 12 SECONDS
 	/// range_turfs that minions will be dropped around the target
 	var/drop_range = 7
 	/// how many minions get dropped at once, does not stack on turfs if theres not enough turfs
