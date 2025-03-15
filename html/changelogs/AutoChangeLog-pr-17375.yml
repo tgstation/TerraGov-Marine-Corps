@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - code_imp: "passing invalid playsound() arguments will now cause a runtime"

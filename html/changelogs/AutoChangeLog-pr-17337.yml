@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - code_imp: "added backend or directional explosions"
-  - admin: "admin explosion logs will now try to provide an explosion cause or user to blame"

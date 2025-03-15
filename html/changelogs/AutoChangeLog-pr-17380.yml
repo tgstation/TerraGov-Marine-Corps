@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "NPC's won't try use guns that require deploying"
-  - rscadd: "NPC's will use autoburst when available"

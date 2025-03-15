@@ -1,9 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - rscadd: "A new tier 4 caste named Dragon. It is a combat-oriented caste."
-  - rscadd: "A bunch of Dragon-related abilities."
-  - soundadd: "Various sounds involving dragon and its ability."
-  - imageadd: "Various sprites involving dragon and its abilities."
-  - imageadd: "Attack slash effect unique to Dragon."
-  - code_imp: "Ammo now set the icon of projectiles created from it."

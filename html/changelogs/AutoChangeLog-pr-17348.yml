@@ -1,7 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscadd: "Trying to scroll while ctrl click is held will now make you try to look up/down a zlevel"
-  - rscadd: "Trying to scroll while shift click is held (unless you're a ghost) will try to move you up/down a zlevel"
-  - rscadd: "Added keybindings and verbs for moving up/down and looking up/down a zlevel."
-  - qol: "trying to move up/down when theres a ladder on your turf will try to use the ladder"

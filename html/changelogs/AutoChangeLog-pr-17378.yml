@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "Fixed untoggleable glasses turning themselves off on load with no way to turn them on"
