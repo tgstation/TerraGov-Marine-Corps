@@ -625,6 +625,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter = -100
 	placed_overlay_iconstate = "sadar"
 	windup_delay = 0.4 SECONDS
+	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/explosive.dmi'
 	///removes backblast damage if false
 	var/backblastdamage = TRUE
 

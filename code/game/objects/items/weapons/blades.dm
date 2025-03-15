@@ -177,7 +177,7 @@
 	if(!current_target)
 		return
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
-	living_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	living_user?.client?.mouse_pointer_icon = 'icons/UI_Icons/gun_crosshairs/rifle.dmi'
 
 ///Throws a knife from the stack, or, if the stack is one, throws the stack.
 /obj/item/stack/throwing_knife/proc/throw_knife()
