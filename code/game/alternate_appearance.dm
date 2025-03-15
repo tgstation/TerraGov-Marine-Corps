@@ -68,6 +68,7 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 	transfer_overlays = options & AA_MATCH_TARGET_OVERLAYS
 	image = I
 	target = I.loc
+	LAZYADD(target.update_on_z, image)
 	if(transfer_overlays)
 		I.copy_overlays(target)
 
@@ -83,6 +84,7 @@ GLOBAL_LIST_EMPTY(active_alternate_appearances)
 
 /datum/atom_hud/alternate_appearance/basic/Destroy()
 	. = ..()
+	LAZYREMOVE(target.update_on_z, image)
 	QDEL_NULL(image)
 	target = null
 	if(ghost_appearance)
