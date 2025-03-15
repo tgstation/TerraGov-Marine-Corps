@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed bayonets having no hit sound"
+  - code_imp: "Combat knife bayos are now just subtypes of normal bayonets"
