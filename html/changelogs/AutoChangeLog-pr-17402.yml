@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - code_imp: "Dragon's abilities use the managed passflag system."
