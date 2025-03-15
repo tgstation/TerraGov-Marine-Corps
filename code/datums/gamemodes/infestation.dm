@@ -14,6 +14,13 @@
 	/// State of the nuke
 	var/planet_nuked = INFESTATION_NUKE_NONE
 
+	// Base Infestation HvX Xeno Player Requirements to Evolve, applied with loop in post_setup().
+	// Redefined in nuclear_war.dm and crash.dm
+	var/list/evo_requirements = list(
+		/datum/xeno_caste/king = 12,
+		/datum/xeno_caste/queen = 8,
+	)
+
 /datum/game_mode/infestation/post_setup()
 	. = ..()
 	if(bioscan_interval)
@@ -32,6 +39,10 @@
 		new_tunnel.tunnel_desc = "["[get_area_name(new_tunnel)]"] (X: [new_tunnel.x], Y: [new_tunnel.y])"
 	for(var/i in GLOB.xeno_jelly_pod_turfs)
 		new /obj/structure/xeno/resin_jelly_pod(i, XENO_HIVE_NORMAL)
+
+	// Apply Evolution Xeno Population Locks:
+	for(var/datum/xeno_caste/caste AS in evo_requirements)
+		GLOB.xeno_caste_datums[caste][XENO_UPGRADE_BASETYPE].evolve_min_xenos = evo_requirements[caste]
 
 /datum/game_mode/infestation/process()
 	if(round_finished)
