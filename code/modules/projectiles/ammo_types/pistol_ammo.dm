@@ -83,7 +83,7 @@
 	handful_icon_state = "derringer"
 
 /datum/ammo/bullet/pistol/superheavy/derringer/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, slowdown = 0.5)
+	staggerstun(target_mob, proj, knockback = 1)
 
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
