@@ -73,13 +73,10 @@ export const selectCameras = (cameras?: Camera[], searchText = '') => {
     });
 };
 
-export const CameraConsole = ({
-  cameras,
-  mapRef,
-  activeCamera,
-}: Partial<CameraConsoleProps>) => {
+export const CameraConsole = () => {
+  const { data } = useBackend<Partial<CameraConsoleProps>>();
+  const { cameras, mapRef, activeCamera } = data;
   const filteredCameras = selectCameras(cameras);
-
   const [prevCameraRef, nextCameraRef] = prevNextCamera(
     filteredCameras,
     activeCamera || { ref: '', name: '' },
@@ -232,7 +229,7 @@ export const CameraEntries = ({
         'Button--fluid',
         'Button--color--transparent',
         'Button--ellipsis',
-        activeCamera && camera.name === activeCamera.name && 'Button--selected',
+        activeCamera && camera.ref === activeCamera.ref && 'Button--selected',
       ])}
       onClick={() =>
         act('switch_camera', {

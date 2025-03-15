@@ -87,7 +87,7 @@
 
 /obj/machinery/camera/proc/camera_ui_data()
 	return list(
-		"name" = c_tag,
+		"name" = c_tag ? c_tag : "unnamed camera",
 		"ref" = ref(src)
 	)
 
@@ -359,6 +359,7 @@
 	var/role_name
 
 /obj/machinery/camera/headset/camera_ui_data()
+	. = ..()
 	.["role"] = role_name
 
 /obj/machinery/camera/headset/som
