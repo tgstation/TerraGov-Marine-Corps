@@ -1,0 +1,6 @@
+author: "yyzsong"
+delete-after: True
+changes:
+  - rscadd: "Adds the shotgun, sniper, flamer, and laser sentries to the valhalla req vendor"
+  - rscadd: "Adds the minisentry and build-a-sentry to the valhalla req vendor"
+  - spellcheck: "Renames the valhalla req vendor's \"Mounted\" tab to the \"Emplaced\" tab"
