@@ -119,9 +119,6 @@
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
 
 
-
-
-
 /datum/game_mode/infestation/crash/announce()
 	to_chat(world, span_round_header("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
 	priority_announce(
