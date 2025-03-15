@@ -293,7 +293,6 @@
 		user_image = image(icon, top, icon_state, FLY_LAYER)
 		eye_user.client.images += user_image
 
-
 /mob/camera/aiEye/remote/relaymove(mob/user, direct)
 	if(istype(origin, /obj/machinery/computer/camera_advanced))
 		var/obj/machinery/computer/camera_advanced/CA = origin

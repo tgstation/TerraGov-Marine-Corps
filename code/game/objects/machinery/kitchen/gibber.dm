@@ -93,7 +93,7 @@
 	for(var/obj/O in src)
 		O.loc = loc
 	if (occupant.client)
-		occupant.client.eye = occupant.client.mob
+		occupant.client.set_eye(occupant.client.mob)
 		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.loc = loc
 	occupant = null
