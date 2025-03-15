@@ -65,7 +65,7 @@
 	name = "Bushwhacker Autocannon High Explosive Box (30mm)"
 	desc = "A 100 round box for an autocannon. Loaded with High Explosive rounds."
 	icon_state = "tank_autocannon_he"
-	default_ammo = /datum/ammo/rocket/tank_autocannon
+	default_ammo = /datum/ammo/rocket/tank_autocannon/he
 
 /obj/item/ammo_magazine/tank/flamer
 	name = "Flamer Magazine"

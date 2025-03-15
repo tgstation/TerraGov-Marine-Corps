@@ -187,32 +187,29 @@
 
 /datum/ammo/bullet/tank_autocannon
 	name = "autocannon armor piercing"
-	hud_state = "alloy_spike"
-	hud_state_empty = "smartgun_empty"
+	hud_state = "hivelo"
+	hud_state_empty = "hivelo_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	damage = 30
 	penetration = 40
 	sundering = 2.5
 
-/datum/ammo/rocket/tank_autocannon
+/datum/ammo/rocket/tank_autocannon/he
 	name = "autocannon high explosive"
 	icon_state = "bullet"
-	hud_state = "alloy_spike"
-	hud_state_empty = "railgun_hvap"
+	hud_state = "hivelo_fire"
+	hud_state_empty = "hivelo_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	damage = 15
 	penetration = 20
 	sundering = 1.5
 
-/datum/ammo/rocket/tank_autocannon/on_hit_mob(mob/target_mob, obj/projectile/proj) // This is so it doesn't knock back on hit.
-	var/target_turf = get_turf(target_mob)
-	drop_nade(target_turf)
-
-/datum/ammo/rocket/tank_autocannon/drop_nade(turf/T)
+/datum/ammo/rocket/tank_autocannon/he/drop_nade(turf/T)
 	explosion(T, weak_impact_range = 3, tiny = TRUE)
 
-
-
+/datum/ammo/rocket/tank_autocannon/he/on_hit_mob(mob/target_mob, obj/projectile/proj) // This is so it doesn't knock back on hit.
+	var/target_turf = get_turf(target_mob) // skipping staggerstun on parent
+	drop_nade(target_turf)
 
 // SARDEN
 
@@ -237,17 +234,3 @@
 
 /datum/ammo/bullet/sarden/high_explosive/drop_nade(turf/T)
 	explosion(T, light_impact_range = 2, weak_impact_range = 4)
-
-/datum/ammo/bullet/sarden/high_explosive/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	var/target_turf = get_turf(target_mob)
-	staggerstun(target_mob, proj, max_range, knockback = 1, hard_size_threshold = 3)
-	drop_nade(target_turf)
-
-/datum/ammo/bullet/sarden/high_explosive/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
-
-/datum/ammo/bullet/sarden/high_explosive/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
-
-/datum/ammo/bullet/sarden/high_explosive/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)

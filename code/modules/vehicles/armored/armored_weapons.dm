@@ -363,7 +363,7 @@
 	variance = 2
 	projectile_delay = 0.35 SECONDS
 	rearm_time = 9 SECONDS
-	hud_state_empty = "rifle_empty"
+	hud_state_empty = "hivelo_empty"
 
 /obj/item/armored_weapon/apc_cannon
 	name = "\improper MKV-7 utility payload launcher"
