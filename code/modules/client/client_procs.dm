@@ -829,6 +829,13 @@
 /client/proc/rescale_view(change, min, max)
 	view_size.set_view_radius_to(clamp(change, min, max), clamp(change, min, max))
 
+/client/proc/set_eye(new_eye)
+	if(new_eye == eye)
+		return
+	var/atom/old_eye = eye
+	eye = new_eye
+	SEND_SIGNAL(src, COMSIG_CLIENT_SET_EYE, old_eye, new_eye)
+
 /**
  * Updates the keybinds for special keys
  *
