@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - balance: "Doubled xeno maw impact time from 6 to 12 seconds"
