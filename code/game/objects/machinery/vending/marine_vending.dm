@@ -102,8 +102,8 @@
 			/obj/item/ammo_magazine/pistol/vp70 = -1,
 			/obj/item/weapon/gun/pistol/plasma_pistol = -1,
 			/obj/item/ammo_magazine/pistol/plasma_pistol = -1,
-			/obj/item/weapon/gun/shotgun/double/derringer = -1,
-			/obj/item/ammo_magazine/pistol/derringer = -1,
+			/obj/item/weapon/gun/shotgun/double/derringer = 10,
+			/obj/item/ammo_magazine/pistol/derringer = 15,
 			/obj/item/ammo_magazine/revolver/standard_magnum = -1,
 		),
 		"Grenades" = list(
@@ -327,8 +327,8 @@
 			/obj/item/ammo_magazine/pistol/vp70 = -1,
 			/obj/item/weapon/gun/pistol/plasma_pistol = -1,
 			/obj/item/ammo_magazine/pistol/plasma_pistol = -1,
-			/obj/item/weapon/gun/shotgun/double/derringer = -1,
-			/obj/item/ammo_magazine/pistol/derringer = -1,
+			/obj/item/weapon/gun/shotgun/double/derringer = 10,
+			/obj/item/ammo_magazine/pistol/derringer = 15,
 		),
 		"Grenades" = list(
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
