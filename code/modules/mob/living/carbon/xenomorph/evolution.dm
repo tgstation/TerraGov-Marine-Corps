@@ -307,7 +307,7 @@
 
 	var/min_xenos = new_caste.evolve_min_xenos
 	if(min_xenos && (hive.total_xenos_for_evolving() < min_xenos))
-		balloon_alert(src, "[min_xenos] xenos needed to become a [initial(new_caste.display_name)]")
+		balloon_alert(src, "[min_xenos - hive.total_xenos_for_evolving()] more xenos needed to become a [initial(new_caste.display_name)]")
 		return FALSE
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_CANNOT_EVOLVE_IN_CAPTIVITY) && isxenoresearcharea(get_area(src)))
 		to_chat(src, "Something in this place is isolating us from Queen Mother's psychic presence. We should leave before it's too late!")
