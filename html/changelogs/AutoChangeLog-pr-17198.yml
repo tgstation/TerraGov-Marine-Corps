@@ -1,0 +1,4 @@
+author: "Sun-Soaked, Comissioned by Elsa"
+delete-after: True
+changes:
+  - balance: "Gorger's drain and carnage attacks now steal greenblood from the target, if they have a vali harness."
