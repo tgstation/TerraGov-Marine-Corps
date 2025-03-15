@@ -9,7 +9,6 @@
 	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/smg_cocked.ogg'
 	type_of_casings = "bullet"
-	muzzleflash_iconstate = "muzzle_flash_light"
 	load_method = MAGAZINE //codex
 	force = 8
 	w_class = WEIGHT_CLASS_BULKY

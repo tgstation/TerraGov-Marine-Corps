@@ -6,6 +6,7 @@
 
 /datum/ammo/bullet/smartmachinegun
 	name = "smartmachinegun bullet"
+	icon_state = "bullet_red"
 	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
@@ -17,6 +18,7 @@
 
 /datum/ammo/bullet/smart_minigun
 	name = "smartminigun bullet"
+	icon_state = "bullet_red"
 	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
 	hud_state = "smartgun_minigun"
 	hud_state_empty = "smartgun_empty"
@@ -29,6 +31,7 @@
 
 /datum/ammo/bullet/smarttargetrifle
 	name = "smart marksman bullet"
+	icon_state = "bullet_red"
 	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
@@ -44,6 +47,7 @@
 
 /datum/ammo/bullet/cupola
 	name = "cupola bullet"
+	icon_state = "bullet_red"
 	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
@@ -55,6 +59,7 @@
 
 /datum/ammo/bullet/spottingrifle
 	name = "smart spotting bullet"
+	icon_state = "bullet_red"
 	bullet_color = COLOR_SOFT_RED //Red bullets to indicate friendly fire restriction
 	hud_state = "spotrifle"
 	hud_state_empty = "smartgun_empty"
