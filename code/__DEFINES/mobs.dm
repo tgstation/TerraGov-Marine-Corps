@@ -571,40 +571,46 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CAN_HOLD_TWO_HANDS 1
 #define CAN_HOLD_ONE_HAND 2
 
-//TODO a lot of caste and caste_can flags should just be traits using caste_traits instead
-#define CASTE_INNATE_HEALING (1<<0) // Xenomorphs heal outside of weeds. Larvas, for example.
-#define CASTE_FIRE_IMMUNE (1<<1) //Are we immune to fire
-#define CASTE_EVOLUTION_ALLOWED (1<<2) //If we're allowed to evolve (also affects the gain of evo points)
-#define CASTE_IS_INTELLIGENT (1<<3) // A hive leader or able to use more human controls
-#define CASTE_DO_NOT_ALERT_LOW_LIFE (1<<4) //Doesn't alert the hive when at low life, and is quieter when dying
-#define CASTE_HIDE_IN_STATUS (1<<5)
-#define CASTE_QUICK_HEAL_STANDING (1<<6) // Xenomorphs heal standing same if they were resting.
-#define CASTE_INNATE_PLASMA_REGEN (1<<7) // Xenos get full plasma regardless if they are on weeds or not
-#define CASTE_ACID_BLOOD (1<<8) //The acid blood effect which damages humans near xenos that take damage
-#define CASTE_IS_STRONG (1<<9)//can tear open acided walls without being big
-#define CASTE_IS_BUILDER (1<<10) //whether we are classified as a builder caste
-#define CASTE_IS_A_MINION (1<<11) //That's a dumb ai
-#define CASTE_PLASMADRAIN_IMMUNE (1<<12)
-#define CASTE_NOT_IN_BIOSCAN (1<<13) // xenos with this flag aren't registered towards bioscan
-#define CASTE_DO_NOT_ANNOUNCE_DEATH (1<<14) // xenos with this flag wont be announced to hive when dying
-#define CASTE_STAGGER_RESISTANT (1<<15) //Resistant to some forms of stagger, such as projectiles
-#define CASTE_HAS_WOUND_MASK (1<<16) //uses an alpha mask for wounded states
-#define CASTE_EXCLUDE_STRAINS (1<<17) // denotes castes/basetypes that should be excluded from being evoable as a strain
+// Xenomorph caste_flags:
+// TODO: A lot of caste_flags and can_flags should just be traits using caste_traits instead.
+#define CASTE_INNATE_HEALING (1<<0) // Xenomorphs that heal outside of weeds. Larvas, for example.
+#define CASTE_QUICK_HEAL_STANDING (1<<1) // If standing, should we heal as fast as if we're resting?
+#define CASTE_INNATE_PLASMA_REGEN (1<<2) // Xenomorphs that regenerate plasma outside of weeds.
+#define CASTE_PLASMADRAIN_IMMUNE (1<<3) // Are we immune to plasma drain?
 
-// Xeno defines that affect evolution, considering making a new var for these
-#define CASTE_LEADER_TYPE (1<<16) //Whether we are a leader type caste, such as the queen, shrike or ?king?, and is affected by queen ban and playtime restrictions
-#define CASTE_CANNOT_EVOLVE_IN_CAPTIVITY (1<<17) //Whether we cannot evolve in the research lab
-#define CASTE_REQUIRES_FREE_TILE (1<<18) //Whether we require a free tile to evolve
-#define CASTE_INSTANT_EVOLUTION (1<<19) //Whether we require no evolution progress to evolve to this caste
+#define CASTE_IS_INTELLIGENT (1<<4) // Can we use human controls? Typically given to hive leaders for purposes of touching alamo/dropship controls.
+#define CASTE_IS_STRONG (1<<5) // Can tear open acidded walls or reinforced miners without being MOB_SIZE_BIG.
+#define CASTE_IS_BUILDER (1<<6) // Whether we are classified as a builder caste. Allows specific construction options (like removing acid wells).
+#define CASTE_IS_A_MINION (1<<7) // Whether we are classified as a minion caste. Minions are not counted toward silo spawn count ratio.
 
-#define CASTE_CAN_HOLD_FACEHUGGERS (1<<0)
-#define CASTE_CAN_BE_QUEEN_HEALED (1<<1)
-#define CASTE_CAN_BE_GIVEN_PLASMA (1<<2)
-#define CASTE_CAN_BE_LEADER (1<<3)
-#define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<4) // Xenomorphs can heal even without a queen on the same z level
-#define CASTE_CAN_HOLD_JELLY (1<<5)//whether we can hold fireproof jelly in our hands
-#define CASTE_CAN_CORRUPT_GENERATOR (1<<6) //Can corrupt a generator
-#define CASTE_CAN_RIDE_CRUSHER (1<<7) //Can ride a crusher
+#define CASTE_FIRE_IMMUNE (1<<8) // Are we immune to fire? This includes immunity from getting set on fire and effects of it.
+#define CASTE_ACID_BLOOD (1<<9) // Randomly inflicts burn damage to nearby humans when taking damage.
+#define CASTE_STAGGER_RESISTANT (1<<10) // Resistant to getting staggered from projectiles.
+
+#define CASTE_DO_NOT_ALERT_LOW_LIFE (1<<11) // When at low life, does not alerts other Xenomorphs (who opt into these low-life alerts). Decreases the font size for the death announcement message.
+#define CASTE_DO_NOT_ANNOUNCE_DEATH (1<<12) // Do not announce to Hive if this Xenomorph died.
+#define CASTE_HIDE_IN_STATUS (1<<13) // Do not count them in the hive status TGUI.
+#define CASTE_NOT_IN_BIOSCAN (1<<14) // Do not count them toward the xenomorph count for the bioscan. Typically given to summoned minions (puppet/spiderling).
+#define CASTE_HAS_WOUND_MASK (1<<15) // Uses an alpha mask for wounded states.
+
+// Xenomorph caste_flags (for evolution):
+// TODO: Consider making a new variable for these.
+#define CASTE_EVOLUTION_ALLOWED (1<<16) // Are we allowed to evolve & do we gain any evolution points?
+#define CASTE_INSTANT_EVOLUTION (1<<17) // Whether we require no evolution progress to evolve to this caste.
+#define CASTE_CANNOT_EVOLVE_IN_CAPTIVITY (1<<18) // Whether we cannot evolve in the research lab.
+#define CASTE_REQUIRES_FREE_TILE (1<<19) // Whether we require a free tile to evolve.
+#define CASTE_LEADER_TYPE (1<<20) // Whether this is a leader type caste (e.g. Queen/Shrike/King/Dragon). Restricts who can play these castes based on: playtime & if banned from Queen.
+#define CASTE_EXCLUDE_STRAINS (1<<21) // Excludes this caste/basetype from strain selection.
+
+// Xenomorph can_flags:
+#define CASTE_CAN_HOLD_FACEHUGGERS (1<<0) // Are we allowed to carry facehuggers in our hands?
+#define CASTE_CAN_BE_QUEEN_HEALED (1<<1) // Does nothing.
+#define CASTE_CAN_BE_GIVEN_PLASMA (1<<2) // Can we receive plasma / have our plasma be taken away?
+#define CASTE_CAN_BE_LEADER (1<<3) // Can we be selected as a hive leader (not to be confused with hive ruler)?
+#define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<4) // Can we ignore the healing penalty associated with having a hive ruler not being on the same z-level as us? Only matters on gamemodes where hive rulers are optional.
+#define CASTE_CAN_HOLD_JELLY (1<<5) // Can we hold fireproof jelly in our hands?
+#define CASTE_CAN_CORRUPT_GENERATOR (1<<6) // Can we corrupt a generator?
+#define CASTE_CAN_RIDE_CRUSHER (1<<7) // Can we ride a crusher (or behemoth)?
 
 //Charge-Crush
 #define CHARGE_OFF 0
@@ -770,6 +776,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME 6 SECONDS
 #define HIVELORD_TUNNEL_DIG_TIME 10 SECONDS
 #define HIVELORD_TUNNEL_SET_LIMIT 8
+#define HIVELORD_RECOVERY_PYLON_SET_LIMIT 4
 #define HIVELORD_HEAL_RANGE 3
 #define HIVELORD_HEALING_INFUSION_DURATION 60 SECONDS
 #define HIVELORD_HEALING_INFUSION_TICKS 10

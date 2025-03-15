@@ -22,6 +22,9 @@
 	var/list/obj/structure/xeno/psychictower/psychictowers = list()
 	///list of phero towers
 	var/list/obj/structure/xeno/pherotower/pherotowers = list()
+	/// List of recovery pylons.
+	var/list/obj/structure/xeno/recovery_pylon/recovery_pylons = list()
+
 	///list of hivemind cores
 	var/list/obj/structure/xeno/hivemindcore/hivemindcores = list()
 	var/tier3_xeno_limit
@@ -771,7 +774,7 @@
 
 	var/mob/living/carbon/xenomorph/successor
 
-	var/list/candidates = xenos_by_typepath[/datum/xeno_caste/queen] + xenos_by_typepath[/datum/xeno_caste/shrike] + xenos_by_typepath[/datum/xeno_caste/king]
+	var/list/candidates = xenos_by_typepath[/datum/xeno_caste/queen] + xenos_by_typepath[/datum/xeno_caste/shrike] + xenos_by_typepath[/datum/xeno_caste/king] + xenos_by_typepath[/datum/xeno_caste/dragon]
 	if(length(candidates)) //Priority to the queens.
 		successor = candidates[1] //First come, first serve.
 

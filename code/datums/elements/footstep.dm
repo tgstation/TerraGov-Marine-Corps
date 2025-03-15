@@ -86,10 +86,10 @@
 	play_simplestep(source)
 
 ///Wrapper for movement triggered footsteps for human step
-/datum/element/footstep/proc/humanstep_wrapper(mob/living/source)
+/datum/element/footstep/proc/humanstep_wrapper(mob/living/source, old_loc, movement_dir, forced, old_locs)
 	SIGNAL_HANDLER
-
-	play_humanstep(source)
+	if(!forced)
+		play_humanstep(source)
 
 ///Plays footsteps for anything that isn't human
 /datum/element/footstep/proc/play_simplestep(mob/living/source, force_play = FALSE, volume_multiplier = 1, range_adjustment = 0)

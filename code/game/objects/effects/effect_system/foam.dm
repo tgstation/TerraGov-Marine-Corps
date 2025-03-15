@@ -29,10 +29,18 @@
 	START_PROCESSING(SSfastprocess, src)
 	playsound(src, 'sound/effects/bubbles2.ogg', 25, 1, 5)
 	AddComponent(/datum/component/slippery, 0.5 SECONDS, 0.2 SECONDS)
+	AddComponent(/datum/component/submerge_modifier, 10)
+	var/static/list/connections = list(
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/effect/particle_effect/foam/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
+
+/obj/effect/particle_effect/foam/footstep_override(atom/movable/source, list/footstep_overrides)
+	footstep_overrides[FOOTSTEP_WET] = layer
 
 ///Finishes the foam, stopping it from processing and doing whatever it has to do.
 /obj/effect/particle_effect/foam/proc/kill_foam()

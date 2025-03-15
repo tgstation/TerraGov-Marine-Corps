@@ -313,7 +313,7 @@
 				hud_list[HEART_STATUS_HUD].icon_state = "still_heart"
 				status_hud.icon_state = "dead"
 				return TRUE
-			if(!mind)
+			if(!mind && !is_bot)
 				var/mob/dead/observer/ghost = get_ghost(TRUE)
 				if(!ghost) // No ghost detected. DNR player or NPC
 					status_hud.icon_state = "dead_dnr"

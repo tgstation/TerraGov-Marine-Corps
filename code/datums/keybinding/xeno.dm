@@ -576,6 +576,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PLACE_JELLY_POD
 
+/datum/keybinding/xeno/place_recovery_pylon
+	name = "Hivelord: Place Recovery Pylon"
+	full_name = "Hivelord: Recovery Pylon"
+	description = "Plants a recovery pylon that increases the amount of regeneration power restored."
+	keybind_signal = COMSIG_XENOABILITY_PLACE_RECOVERY_PYLON
+
 /datum/keybinding/xeno/create_jelly
 	name = "create_jelly"
 	full_name = "Hivelord: Create Jelly"
@@ -1318,3 +1324,46 @@
 	full_name = "Pyrogen: Infernal Trigger"
 	description = "After a windup, cause a marine who is on fire to explode their flames outward and set on fire those around them."
 	keybind_signal = COMSIG_XENOABILITY_INFERNAL_TRIGGER
+
+/datum/keybinding/xeno/backhand
+	name = "Backhand"
+	full_name = "Dragon: Backhand"
+	description = "Smack a group of marines in front of you away and stun them."
+	keybind_signal = COMSIG_XENOABILITY_BACKHAND
+	hotkey_keys = list("Z")
+
+/datum/keybinding/xeno/fly
+	name = "Fly"
+	full_name = "Dragon: Fly"
+	description = "After a windup, begin to fly away. If you're already flying, land."
+	keybind_signal = COMSIG_XENOABILITY_FLY
+	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/dragon_breath
+	name = "Dragon Breath"
+	full_name = "Dragon: Dragon Breath"
+	description = "After a windup, continuously blast fire in a cardinal direction."
+	keybind_signal = COMSIG_XENOABILITY_DRAGON_BREATH
+	hotkey_keys = list("C")
+
+/datum/keybinding/xeno/wind_current
+	name = "Wind Current"
+	full_name = "Dragon: Wind Current"
+	description = "After a windup, clear gas and knock away marines in a cone in front of you."
+	keybind_signal = COMSIG_XENOABILITY_WIND_CURRENT
+	hotkey_keys = list("V")
+
+/datum/keybinding/xeno/grab
+	name = "Grab"
+	full_name = "Dragon: Grab"
+	description = "After a windup, firmly grab an nearby marine in front of you and prevent them from moving away."
+	keybind_signal = COMSIG_XENOABILITY_GRAB
+	hotkey_keys = list("B")
+
+/datum/keybinding/xeno/scorched_land
+	name = "Scorched Land"
+	full_name = "Dragon: Scorched Land"
+	description = "While flying, blast a line of fire in a direction."
+	keybind_signal = COMSIG_XENOABILITY_SCORCHED_LAND
+	hotkey_keys = list("G")
+
