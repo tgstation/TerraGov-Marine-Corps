@@ -51,3 +51,8 @@
   Meghan-Rossi:
   - bugfix: Fixed some errors with the manifest.
   - bugfix: Fixed a bug causing sentries to not deploy.
+2025-03-15:
+  Meghan-Rossi:
+  - rscadd: Added a spare NTC commander's ID on the NTC ship and a spare SOM commander's
+      ID on the SOM ship
+  - bugfix: Fixed NTC field commander spawning in SOM ship
