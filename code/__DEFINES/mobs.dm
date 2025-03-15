@@ -683,6 +683,10 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define GORGER_CARNAGE_MOVEMENT -0.5
 #define GORGER_FEAST_DURATION -1 // lasts indefinitely, self-cancelled when insufficient plasma left
 
+#define GORGER_GREENBLOOD_STEAL_FLAT 10 //This many units of greenblood are always stolen
+#define GORGER_GREENBLOOD_STEAL_PERCENTAGE 25 //bonus % of current greenblood taken from vali on drain
+#define GORGER_GREENBLOOD_CONVERSION 1.25 //Amount of blood(plasma) gained per unit of greenblood drained from target.
+
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2
 #define CARRIER_HUGGER_THROW_DISTANCE 5
