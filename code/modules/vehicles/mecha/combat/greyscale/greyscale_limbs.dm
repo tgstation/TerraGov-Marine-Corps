@@ -116,12 +116,16 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	SIGNAL_HANDLER
 	if(!(blame_mob.zone_selected in def_zones))
 		return
+	take_damage(damage_amount)
+	return COMPONENT_NO_TAKE_DAMAGE
+
+///handles actually dealing damage to the mech
+/datum/mech_limb/proc/take_damage(damage_amount)
 	if(part_health <= 0)
 		return
 	part_health = max(0, part_health-damage_amount)
 	if(part_health <= 0)
 		disable()
-	return COMPONENT_NO_TAKE_DAMAGE
 
 ///intercepts repair intended for the mech and applies it to this limb when needed
 /datum/mech_limb/proc/intercept_repair(datum/source, repair_amount, mob/user)
