@@ -38,12 +38,14 @@
 		return PROCESS_KILL
 
 	//Handle psy generation for hive
+	var/total_humans_groundside = 0
 	for(var/z_level in SSmapping.levels_by_trait(ZTRAIT_GROUND))
-		if(GLOB.corruptable_generators_groundside && round_stage == INFESTATION_MARINE_DEPLOYMENT && length(GLOB.humans_by_zlevel["[z_level]"]) > (0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
-			for(var/hive in GLOB.gens_corruption_by_hive)
-				var/points_generated = GENERATOR_PSYCH_POINT_OUTPUT * (GLOB.gens_corruption_by_hive[hive]/GLOB.corruptable_generators_groundside)
-				SSpoints.add_strategic_psy_points(hive, points_generated)
-				SSpoints.add_tactical_psy_points(hive, points_generated*0.25)
+		total_humans_groundside += length(GLOB.humans_by_zlevel["[z_level]"])
+	if(GLOB.corruptable_generators_groundside && round_stage == INFESTATION_MARINE_DEPLOYMENT && total_humans_groundside > (0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
+		for(var/hive in GLOB.gens_corruption_by_hive)
+			var/points_generated = GENERATOR_PSYCH_POINT_OUTPUT * (GLOB.gens_corruption_by_hive[hive]/GLOB.corruptable_generators_groundside)
+			SSpoints.add_strategic_psy_points(hive, points_generated)
+			SSpoints.add_tactical_psy_points(hive, points_generated*0.25)
 
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0)
 		return
