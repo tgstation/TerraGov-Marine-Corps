@@ -4631,12 +4631,6 @@
 	},
 /turf/open/shuttle/escapepod/plain,
 /area/space)
-"wV" = (
-/obj/machinery/power/tbg_turbine/cold{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/snow/layer1,
-/area/icy_caves/outpost/outside)
 "wW" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -13531,7 +13525,7 @@ pR
 pR
 XO
 XO
-wV
+XO
 cQ
 UE
 XW
