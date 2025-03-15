@@ -1895,6 +1895,8 @@
 /obj/item/weapon/gun/proc/update_mouse_pointer(reset)
 	if(reset)
 		gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+		if(master_gun && (master_gun.item_flags & WIELDED))
+			gun_user?.client?.mouse_pointer_icon = master_gun.gun_crosshair
 		return
 	gun_user?.client?.mouse_pointer_icon = gun_crosshair
 
