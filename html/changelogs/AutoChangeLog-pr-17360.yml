@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - balance: "Minions sell for 10 points instead of 50 points. The same ratio applies to CAS points."

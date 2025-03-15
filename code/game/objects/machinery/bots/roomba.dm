@@ -88,9 +88,9 @@
 		return
 	tgui_alert(user, "Are you really sure to want to try your luck with the devilish roomba?", "The roomba roulette", list("Yes", "Yes!", "Yes?"))
 	if(prob(50))
-		explosion(user, 1, throw_range = "[user] lost at the roomba roulette")
-		return
-	explosion(src, 1, throw_range = "[user] won at the roomba roulette")
+		explosion(user, 1, throw_range = "[user] lost at the roomba roulette", explosion_cause=user)
+		return // TODO WHO THE FUCK IS PASSING A STRING AS AN ARG DUDE
+	explosion(src, 1, throw_range = "[user] won at the roomba roulette", explosion_cause=user)
 	qdel(src)
 
 /obj/machinery/bot/roomba/attackby(obj/item/I, mob/living/user, def_zone)

@@ -29,6 +29,10 @@
 			return FALSE
 	return TRUE
 
+/obj/item/weapon/gun/ai_should_use(mob/living/target, mob/living/user)
+	if(gun_features_flags & GUN_DEPLOYED_FIRE_ONLY)
+		return FALSE //some day
+
 /obj/item/reagent_containers/food/ai_should_use(mob/living/target, mob/living/user)
 	if(!ishuman(target))
 		return FALSE
@@ -78,6 +82,11 @@
 	if(!active)
 		attack_self(user)
 		return TRUE
+
+/obj/item/weapon/gun/ai_use(mob/living/target, mob/living/user)
+	. = ..()
+	if((GUN_FIREMODE_AUTOBURST in gun_firemode_list) && gun_firemode != GUN_FIREMODE_AUTOBURST)
+		do_toggle_firemode(new_firemode = GUN_FIREMODE_AUTOBURST) //auto is on by default for guns that have it, but autoburst is always the best mode if its available
 
 /obj/item/reagent_containers/food/ai_use(mob/living/target, mob/living/user)
 	target.attackby(src, user)

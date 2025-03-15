@@ -14836,7 +14836,7 @@
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/inside/space_port)
 "mBN" = (
-/obj/item/attachable/bayonetknife,
+/obj/item/attachable/bayonet,
 /turf/open/floor/mainship/emerald{
 	dir = 1
 	},

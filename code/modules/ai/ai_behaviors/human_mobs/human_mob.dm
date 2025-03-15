@@ -432,6 +432,21 @@
 	COOLDOWN_START(src, ai_retreat_cooldown, 8 SECONDS)
 	change_action(MOVING_TO_SAFETY, next_target, list(INFINITY)) //fallback
 
+///Tries to store an item
+/datum/ai_behavior/human/proc/try_store_item(obj/item/item)
+	if(!mob_parent.equip_to_appropriate_slot(item))
+		return FALSE
+	mob_parent.update_inv_l_hand(FALSE)
+	mob_parent.update_inv_r_hand(FALSE)
+	return TRUE
+
+///Tries to store any items in hand
+/datum/ai_behavior/human/proc/store_hands()
+	if(mob_parent.l_hand)
+		try_store_item(mob_parent.l_hand)
+	if(mob_parent.r_hand)
+		try_store_item(mob_parent.r_hand)
+
 ///Reacts to a heard message
 /datum/ai_behavior/human/proc/recieve_message(atom/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	SIGNAL_HANDLER

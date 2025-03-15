@@ -72,7 +72,7 @@
 	return welder_repair_act(user, I, 15, 3 SECONDS, fuel_req = 1)
 
 /obj/vehicle/ridden/hover_bike/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	explosion(src, light_impact_range = 4, flame_range = (rand(33) ? 3 : 0))
+	explosion(src, light_impact_range = 4, flame_range = (rand(33) ? 3 : 0), explosion_cause=blame_mob)
 	return ..()
 
 /obj/vehicle/ridden/hover_bike/lava_act()
