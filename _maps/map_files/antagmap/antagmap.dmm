@@ -6199,7 +6199,7 @@
 /turf/open/floor/plating,
 /area/antag_ship/som/office/commander/field)
 "HE" = (
-/obj/effect/landmark/start/job/fieldcommander,
+/obj/effect/landmark/start/job/som/fieldcommander,
 /turf/open/floor/carpet/side{
 	dir = 10
 	},
@@ -7110,6 +7110,13 @@
 	},
 /turf/open/shuttle/dropship/three,
 /area/shuttle/transport)
+"MG" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/item/card/id/captains_spare/som,
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/hangar)
 "MI" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -11235,7 +11242,7 @@ nm
 RK
 RK
 RK
-RK
+MG
 RK
 RK
 RK

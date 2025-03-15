@@ -7144,6 +7144,7 @@
 "gwf" = (
 /obj/structure/table/mainship,
 /obj/machinery/recharger,
+/obj/item/card/id/captains_spare,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "gwS" = (
