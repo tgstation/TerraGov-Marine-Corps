@@ -19,7 +19,7 @@
 		/obj/item/flashlight,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/holster/blade,
 		/obj/item/tool/hatchet,
 		/obj/item/tool/scythe
@@ -156,7 +156,7 @@
 		/obj/item/detective_scanner,
 		/obj/item/taperecorder,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/holster/blade,
 	)
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 10, ACID = 10)

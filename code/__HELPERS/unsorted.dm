@@ -410,6 +410,23 @@
 
 	return L
 
+///Returns the closest atom of a specific type in a list from a source
+/proc/get_closest_atom(type, list/atom_list, source)
+	var/closest_atom
+	var/closest_distance
+	for(var/atom in atom_list)
+		if(!istype(atom, type))
+			continue
+		var/distance = get_dist(source, atom)
+		if(!closest_atom)
+			closest_distance = distance
+			closest_atom = atom
+		else
+			if(closest_distance > distance)
+				closest_distance = distance
+				closest_atom = atom
+	return closest_atom
+
 // returns the turf located at the map edge in the specified direction relative to A
 // used for mass driver
 /proc/get_edge_target_turf(atom/A, direction)
@@ -1250,3 +1267,40 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 			return TRUE
 
 	return FALSE
+
+/**
+ * Returns a rectangle of turfs in front of the center.
+ *
+ * To find what exact width and height to enter, width is based on west-east and height is north-south as if center is facing north.
+ *
+ * Increments in width increases both sizes by said increment while height is only increased once by the increment.
+*/
+/proc/get_forward_square(atom/center, width, height, requires_openturf = TRUE, requires_lineofsight = TRUE)
+	if(width < 0 || height <= 0) // This is forward square, not backwards square.
+		return list()
+
+	var/turf/lower_left
+	var/turf/upper_right
+	switch(center.dir)
+		if(NORTH)
+			lower_left = locate(center.x - width, center.y + 1, center.z)
+			upper_right = locate(center.x + width, center.y + height, center.z)
+		if(SOUTH)
+			lower_left = locate(center.x - width, center.y - height, center.z)
+			upper_right = locate(center.x + width, center.y - 1, center.z)
+		if(WEST)
+			lower_left = locate(center.x - height, center.y - width, center.z)
+			upper_right = locate(center.x - 1, center.y + width, center.z)
+		if(EAST)
+			lower_left = locate(center.x + height, center.y - width, center.z)
+			upper_right = locate(center.x + 1, center.y + width, center.z)
+
+	var/list/turf/acceptable_turfs = list()
+	var/list/turf/possible_turfs = block(lower_left, upper_right)
+	for(var/turf/possible_turf AS in possible_turfs)
+		if(requires_openturf && isclosedturf(possible_turf))
+			continue
+		if(requires_lineofsight && !line_of_sight(center, possible_turf, max(width, height)))
+			continue
+		acceptable_turfs += possible_turf
+	return acceptable_turfs

@@ -335,19 +335,19 @@
 			if(new_eye != GLOB.ai_camera_room_landmark)
 				end_multicam()
 			client.perspective = EYE_PERSPECTIVE
-			client.eye = new_eye
+			client.set_eye(new_eye)
 		else
 			end_multicam()
 			if(isturf(loc))
 				if(eyeobj)
-					client.eye = eyeobj
+					client.set_eye(eyeobj)
 					client.perspective = EYE_PERSPECTIVE
 				else
-					client.eye = client.mob
+					client.set_eye(client.mob)
 					client.perspective = MOB_PERSPECTIVE
 			else
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = loc
+				client.set_eye(loc)
 		update_sight()
 		if(client.eye != src)
 			var/atom/AT = client.eye

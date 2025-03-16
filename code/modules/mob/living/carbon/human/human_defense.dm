@@ -153,6 +153,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		weapon_edge = FALSE
 
 	user.do_attack_animation(src, used_item = I)
+	if(weapon_sharp)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, Get_Angle(user, src), get_blood_color())
 
 	apply_damage(applied_damage, I.damtype, target_zone, 0, weapon_sharp, weapon_edge, updating_health = TRUE)
 

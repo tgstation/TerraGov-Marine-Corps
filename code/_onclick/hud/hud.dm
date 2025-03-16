@@ -103,11 +103,6 @@
 	RegisterSignal(mymob, COMSIG_MOB_SIGHT_CHANGE, PROC_REF(update_sightflags))
 	update_sightflags(mymob, mymob.sight, NONE)
 
-	//not sure if "hack" or tg having something working by coincidence, but we need to do this so the planes actually attach
-	// if i had to guess their pref code may apply it already but we need this
-	// do fix if you know better
-	//INVOKE_NEXT_TICK(src, PROC_REF(show_hud), hud_version)
-
 /datum/hud/proc/should_use_scale()
 	return should_sight_scale(mymob.sight)
 
