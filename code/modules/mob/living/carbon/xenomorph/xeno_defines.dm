@@ -437,6 +437,8 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	///The unresting cooldown
 	COOLDOWN_DECLARE(xeno_unresting_cooldown)
 
+#DEFINE XENO_LIFE_TRADE_PERCENT 0.06
+
 ///Called whenever a xeno slashes a human
 /mob/living/carbon/xenomorph/proc/onhithuman(attacker, target) //For globadiers lifesteal debuff
 	SIGNAL_HANDLER
@@ -446,5 +448,5 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	if(!victim.has_status_effect(STATUS_EFFECT_LIFEDRAIN))
 		return
 	var/mob/living/carbon/xenomorph/xeno = attacker
-	var/healamount = xeno.maxHealth * 0.04 //4% of the xenos max health
+	var/healamount = xeno.maxHealth * XENO_LIFE_TRADE_PERCENT //% of the xenos max health
 	HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
