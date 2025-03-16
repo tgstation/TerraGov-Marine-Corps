@@ -29,7 +29,7 @@
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	maximum_active_caste = 1
 	evolve_min_xenos = 15
-	death_evolution_delay = 10 MINUTES
+	death_evolution_delay = 20 MINUTES
 
 	// *** Flags *** //
 	caste_flags = CASTE_FIRE_IMMUNE|CASTE_IS_INTELLIGENT|CASTE_INSTANT_EVOLUTION|CASTE_LEADER_TYPE
