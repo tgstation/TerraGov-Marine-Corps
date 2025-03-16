@@ -230,6 +230,12 @@
 		current_type = current_type::parent_type
 	return current_type
 
+///returns the parent caste type for the given caste (e.g. bloodthirster would return base rav)
+/proc/get_parent_caste_type(datum/xeno_caste/root_type)
+    while(initial(root_type.parent_type) != /datum/xeno_caste)
+        root_type = root_type::parent_type
+    return root_type
+
 /// basetype = list(strain1, strain2)
 GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 /proc/init_glob_strain_list()
