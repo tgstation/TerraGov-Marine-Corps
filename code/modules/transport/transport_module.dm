@@ -450,7 +450,7 @@
 				victim_living.throw_at()
 				//if travel_direction EAST, will turn to the NORTHEAST or SOUTHEAST and throw the ran over guy away
 //				var/datum/callback/land_slam = new(victim_living, TYPE_PROC_REF(/mob/living/, tram_slam_land))
-				victim_living.throw_at(throw_target, 200 * collision_lethality, 4 * collision_lethality) //, callback = land_slam)
+				victim_living.throw_at(throw_target, 4 * collision_lethality, 2 * collision_lethality) //, callback = land_slam)
 
 				//increment the hit counters
 				if(ismob(victim_living) && victim_living.client && istype(transport_controller_datum, /datum/transport_controller/linear/tram))
