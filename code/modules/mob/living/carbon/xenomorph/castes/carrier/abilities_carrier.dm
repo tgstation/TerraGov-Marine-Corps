@@ -157,7 +157,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	action_icon = 'icons/Xeno/actions/carrier.dmi'
 	desc = "Spawn a facehugger that is stored on your body."
 	ability_cost = 200
-	cooldown_duration = 10 SECONDS
+	cooldown_duration = 5 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SPAWN_HUGGER,
 	)
