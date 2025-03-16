@@ -332,3 +332,29 @@
   - rscadd: Adds the minisentry and build-a-sentry to the valhalla req vendor
   - spellcheck: Renames the valhalla req vendor's "Mounted" tab to the "Emplaced"
       tab
+2025-03-16:
+  Lumipharon:
+  - balance: Derringer is once again limited in the gun vendor
+  - admin: Replace by AI smite works on humans
+  PibeCantina:
+  - bugfix: fixed disk not spawning
+  Runian:
+  - code_imp: Dragon's abilities use the managed passflag system.
+  - balance: Melter, a strain of Runner, now has +50 more health and +5 armor across
+      the board.
+  - balance: Minions sell for 10 points instead of 50 points. The same ratio applies
+      to CAS points.
+  Sun-Soaked, Comissioned by Elsa:
+  - balance: Gorger's drain and carnage attacks now steal greenblood from the target,
+      if they have a vali harness.
+  TiviPlus:
+  - balance: Crusher charges always target mech legs
+  - bugfix: Fixed tank autocannon not having interior fire sounds or ammo rack sprites
+  - bugfix: Tank autocannon AP and He no longer use the same icons
+  - bugfix: Fixed rendering wonkiness with non-self camera perspectives
+  - balance: Doubled xeno maw impact time from 6 to 12 seconds
+  - bugfix: Fixed acid layering under what its on top of sometimes
+  - bugfix: Fixed silo alerts alerting on friendlies
+  - bugfix: fixed floors layering too high
+  - qol: Mech overload automatically disables on running out of power
+  - bugfix: fixed queen shriek waves being hilariously slow

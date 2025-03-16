@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "Fixed tank autocannon not having interior fire sounds or ammo rack sprites"
-  - bugfix: "Tank autocannon AP and He no longer use the same icons"
