@@ -89,10 +89,15 @@
 			if(!placement_loc.allow_construction || area.area_flags & NO_CONSTRUCTION) // long ass series of checks to prevent things like deployable shields on alamo
 				user.balloon_alert(user, "Can't deploy here")
 				return
-
 		if(LinkBlocked(get_turf(user), location))
 			location.balloon_alert(user, "No room to deploy")
 			return
+		if(istype(item_to_deploy, /obj/item/weapon/gun/sentry))
+			var/sentry_range = orange(TURRET_DEPLOY_RANGE_RESTRICTION, location)
+			if(locate(/obj/machinery/deployable/mounted/sentry) in sentry_range)
+				if(!locate(/obj/structure/dropship_equipment/shuttle/sentry_holder) in sentry_range)
+					location.balloon_alert(user, "Another sentry is too close")
+					return
 		var/newdir = get_dir(user, location)
 		if(deploy_type.atom_flags & ON_BORDER)
 			for(var/obj/object in location)
@@ -114,6 +119,12 @@
 		if(LinkBlocked(get_turf(user), location))
 			location.balloon_alert(user, "No room to deploy")
 			return
+		if(istype(item_to_deploy, /obj/item/weapon/gun/sentry))
+			var/sentry_range = orange(TURRET_DEPLOY_RANGE_RESTRICTION, location)
+			if(locate(/obj/machinery/deployable/mounted/sentry) in sentry_range)
+				if(!locate(/obj/structure/dropship_equipment/shuttle/sentry_holder) in sentry_range)
+					location.balloon_alert(user, "Another sentry is too close")
+					return
 		user.temporarilyRemoveItemFromInventory(item_to_deploy)
 
 		item_to_deploy.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_MUZZLEATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_AUTOEJECT, COMSIG_MOB_CLICK_RIGHT)) //This unregisters Signals related to guns, its for safety
