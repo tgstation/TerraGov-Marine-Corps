@@ -1,0 +1,5 @@
+author: "Runian"
+delete-after: True
+changes:
+  - balance: "Dragon is now slower on average and even slower while using their ability, Dragon Breath."
+  - balance: "Dragon's armor gain while using Dragon Breath has been decreased from 15 to 10."
