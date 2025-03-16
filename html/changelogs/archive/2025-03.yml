@@ -288,3 +288,73 @@
   - code_imp: adjusted blood splatter particles
   witherc6:
   - rscadd: added paramedic labcoat to marine clothing vendor
+2025-03-15:
+  Lumipharon:
+  - rscadd: Various minor improvements to NPC behavior
+  - code_imp: Cleaned up some managed_inventory and snack code
+  - bugfix: fixed bayonets having no hit sound
+  - code_imp: Combat knife bayos are now just subtypes of normal bayonets
+  - rscadd: NPC's store equipped weapons when equipping new ones
+  - bugfix: NPC's no longer show as DNR on minimap/hud
+  - bugfix: NPC's won't try use guns that require deploying
+  - rscadd: NPC's will use autoburst when available
+  - bugfix: NPC's will no longer give chems to corpses
+  Runian:
+  - rscadd: A new tier 4 caste named Dragon. It is a combat-oriented caste.
+  - rscadd: A bunch of Dragon-related abilities.
+  - soundadd: Various sounds involving dragon and its ability.
+  - imageadd: Various sprites involving dragon and its abilities.
+  - imageadd: Attack slash effect unique to Dragon.
+  - code_imp: Ammo now set the icon of projectiles created from it.
+  The_Man:
+  - qol: Added "Interact with other hand" hotkey.
+  TiviPlus:
+  - code_imp: added ability to cache sounds serverside
+  - code_imp: passing invalid playsound() arguments will now cause a runtime
+  - qol: Mech turns are now silent
+  - bugfix: ' you can reattach all mech weapons properly now'
+  - rscadd: Trying to scroll while ctrl click is held will now make you try to look
+      up/down a zlevel
+  - rscadd: Trying to scroll while shift click is held (unless you're a ghost) will
+      try to move you up/down a zlevel
+  - rscadd: Added keybindings and verbs for moving up/down and looking up/down a zlevel.
+  - qol: trying to move up/down when theres a ladder on your turf will try to use
+      the ladder
+  - bugfix: Fixed untoggleable glasses turning themselves off on load with no way
+      to turn them on
+  - code_imp: added backend or directional explosions
+  - admin: admin explosion logs will now try to provide an explosion cause or user
+      to blame
+  - bugfix: ghosts can see mech hud now
+  yyzsong:
+  - rscadd: Adds the shotgun, sniper, flamer, and laser sentries to the valhalla req
+      vendor
+  - rscadd: Adds the minisentry and build-a-sentry to the valhalla req vendor
+  - spellcheck: Renames the valhalla req vendor's "Mounted" tab to the "Emplaced"
+      tab
+2025-03-16:
+  Lumipharon:
+  - balance: Derringer is once again limited in the gun vendor
+  - admin: Replace by AI smite works on humans
+  PibeCantina:
+  - bugfix: fixed disk not spawning
+  Runian:
+  - code_imp: Dragon's abilities use the managed passflag system.
+  - balance: Melter, a strain of Runner, now has +50 more health and +5 armor across
+      the board.
+  - balance: Minions sell for 10 points instead of 50 points. The same ratio applies
+      to CAS points.
+  Sun-Soaked, Comissioned by Elsa:
+  - balance: Gorger's drain and carnage attacks now steal greenblood from the target,
+      if they have a vali harness.
+  TiviPlus:
+  - balance: Crusher charges always target mech legs
+  - bugfix: Fixed tank autocannon not having interior fire sounds or ammo rack sprites
+  - bugfix: Tank autocannon AP and He no longer use the same icons
+  - bugfix: Fixed rendering wonkiness with non-self camera perspectives
+  - balance: Doubled xeno maw impact time from 6 to 12 seconds
+  - bugfix: Fixed acid layering under what its on top of sometimes
+  - bugfix: Fixed silo alerts alerting on friendlies
+  - bugfix: fixed floors layering too high
+  - qol: Mech overload automatically disables on running out of power
+  - bugfix: fixed queen shriek waves being hilariously slow

@@ -78,6 +78,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Register ai behaviours
 /datum/ai_behavior/proc/start_ai()
+	START_PROCESSING(SSprocessing, src)
 	if(escorted_atom)
 		global_set_escorted_atom(null, escorted_atom)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, PROC_REF(set_goal_node))
