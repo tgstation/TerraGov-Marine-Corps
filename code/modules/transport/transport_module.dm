@@ -950,7 +950,7 @@
 		if(prob(mob_throw_chance || 17.5)) // sometimes you go through a window, especially with bad luck
 			passenger.AddElement(/datum/element/window_smashing, duration = 1.5 SECONDS)
 		var/throw_target = get_edge_target_turf(src, throw_direction)
-		passenger.throw_at(throw_target, 30, 7)
+		passenger.throw_at(throw_target, 5, 7)
 
 /obj/structure/transport/linear/tram/slow
 	transport_controller_type = /datum/transport_controller/linear/tram/slow
