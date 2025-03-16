@@ -767,6 +767,8 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CORROSIVE_ACID,
 	)
 	use_state_flags = ABILITY_USE_BUCKLED
+	/// How much to reduce acid delay? Lower is faster. Multiplicative.
+	var/acid_speed_multiplier = 1
 
 /datum/action/ability/activable/xeno/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/obj/effect/xenomorph/acid/current_acid_type = acid_type
@@ -806,7 +808,7 @@
 		A = existing_acid.acid_t // Swap the target to the target of the acid
 
 
-	var/aciddelay = A.get_acid_delay()
+	var/aciddelay = max(0, A.get_acid_delay() * acid_speed_multiplier);
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		current_acid_type = /obj/effect/xenomorph/acid/strong //if it is before shutters open, everyone gets strong acid
 		aciddelay = 0
@@ -1362,6 +1364,11 @@
 		if(!silent)
 			to_chat(X, span_warning("This artificial construct has no life force to drain"))
 		return FALSE
+	if(X.status_flags & INCORPOREAL)
+		if(!silent)
+			to_chat(X, span_warning("You can't do this while flying!"))
+		return FALSE
+
 	X.face_atom(victim) //Face towards the target so we don't look silly
 	X.visible_message(span_xenowarning("\The [X] begins opening its mouth and extending a second jaw towards \the [victim]."), \
 	span_danger("We slowly drain \the [victim]'s life force!"), null, 20)

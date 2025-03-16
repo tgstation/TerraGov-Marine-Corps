@@ -8,6 +8,7 @@ SUBSYSTEM_DEF(shuttle)
 	flags = SS_KEEP_TIMING
 	runlevels = RUNLEVEL_SETUP | RUNLEVEL_GAME
 
+	// todo postfix _docking_ports to all of these
 	var/list/mobile = list()
 	var/list/stationary = list()
 	var/list/transit = list()
@@ -226,12 +227,18 @@ SUBSYSTEM_DEF(shuttle)
 		if(WEST)
 			transit_path = /turf/open/space/transit/west
 
-	var/datum/turf_reservation/proposal = SSmapping.RequestBlockReservation(transit_width, transit_height, null, /datum/turf_reservation/transit, transit_path)
+	var/datum/turf_reservation/proposal = SSmapping.request_turf_block_reservation(
+		transit_width,
+		transit_height,
+		z_size = 1, //if this is changed the turf uncontain code below has to be updated to support multiple zs
+		reservation_type = /datum/turf_reservation/transit,
+		turf_type_override = transit_path,
+	)
 
 	if(!istype(proposal))
 		return FALSE
 
-	var/turf/bottomleft = locate(proposal.bottom_left_coords[1], proposal.bottom_left_coords[2], proposal.bottom_left_coords[3])
+	var/turf/bottomleft = proposal.bottom_left_turfs[1]
 	// Then create a transit docking port in the middle
 	var/coords = M.return_coords(0, 0, dock_dir)
 	/*	0------2
@@ -483,13 +490,19 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/proc/load_template(datum/map_template/shuttle/S)
 	. = FALSE
 	// load shuttle template, centred at shuttle import landmark,
-	preview_reservation = SSmapping.RequestBlockReservation(S.width, S.height, SSmapping.transit.z_value, /datum/turf_reservation/transit)
+	// Load shuttle template to a fresh block reservation.
+	preview_reservation = SSmapping.request_turf_block_reservation(
+		S.width,
+		S.height,
+		1,
+		reservation_type = /datum/turf_reservation/transit,
+	)
 	if(!preview_reservation)
 		CRASH("failed to reserve an area for shuttle template loading")
-	var/turf/BL = TURF_FROM_COORDS_LIST(preview_reservation.bottom_left_coords)
-	S.load(BL, centered = FALSE, register = FALSE)
+	var/turf/bottom_left = preview_reservation.bottom_left_turfs[1]
+	S.load(bottom_left, centered = FALSE, register = FALSE)
 
-	var/affected = S.get_affected_turfs(BL, centered=FALSE)
+	var/affected = S.get_affected_turfs(bottom_left, centered=FALSE)
 
 	var/found = 0
 	// Search the turfs for docking ports

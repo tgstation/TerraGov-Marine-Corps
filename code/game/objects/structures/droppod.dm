@@ -131,10 +131,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		action.give_action(buckling_mob)
 	buckling_mob.pixel_y = 7
 
-/obj/structure/droppod/unbuckle_mob(mob/living/buckled_mob, force)
+/obj/structure/droppod/post_unbuckle_mob(mob/living/buckled_mob)
 	. = ..()
-	if(!.)
-		return
 	for(var/datum/action/innate/action AS in interaction_actions)
 		action.remove_action(buckled_mob)
 	buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
@@ -229,7 +227,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	deadchat_broadcast(" has been launched", src, turf_target = target)
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_notice("[user ? user : "unknown"] has launched [src] towards [target.loc] at X:[target_x] Y:[target_y]"))
-	reserved_area = SSmapping.RequestBlockReservation(3,3)
+	reserved_area = SSmapping.request_turf_block_reservation(3,3)
 
 	drop_state = DROPPOD_ACTIVE
 	GLOB.droppod_list -= src
@@ -296,7 +294,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 ///Do the stuff when it "hits the ground"
 /obj/structure/droppod/proc/dodrop(turf/targetturf, mob/user)
 	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, user ? user : null, targetturf)
-	explosion(targetturf, light_impact_range = 2)
+	explosion(targetturf, light_impact_range = 2, explosion_cause=user)
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
 	QDEL_NULL(reserved_area)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
@@ -539,7 +537,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/droppod/nonmob/mech_pod/dodrop(turf/targetturf, mob/user)
 	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, stored_object ? stored_object : null)
-	explosion(targetturf, 1, 2) //A mech just dropped onto your head from orbit
+	explosion(targetturf, 1, 2, explosion_cause=user) //A mech just dropped onto your head from orbit
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
 	QDEL_NULL(reserved_area)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect

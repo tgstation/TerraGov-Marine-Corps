@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 //------------------------------------------------------------------
 //Setup and Deletion
 
-/obj/machinery/deployable/mounted/sentry/Initialize(mapload, _internal_item, deployer)
+/obj/machinery/deployable/mounted/sentry/Initialize(mapload, obj/item/_internal_item, mob/deployer)
 	. = ..()
 	var/obj/item/weapon/gun/gun = get_internal_item()
 
@@ -48,6 +48,8 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 		var/mob/living/carbon/human/_deployer = deployer
 		var/obj/item/card/id/id = _deployer.get_idcard(TRUE)
 		iff_signal = id?.iff_signal
+	if(deployer)
+		faction = deployer.faction
 
 	knockdown_threshold = gun?.knockdown_threshold ? gun.knockdown_threshold : initial(gun.knockdown_threshold)
 	range = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ?  gun.turret_range - 2 : gun.turret_range
@@ -110,7 +112,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 
 /obj/machinery/deployable/mounted/sentry/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!disassembled)
-		explosion(loc, light_impact_range = 3)
+		explosion(loc, light_impact_range = 3, explosion_cause=blame_mob)
 	return ..()
 
 /obj/machinery/deployable/mounted/sentry/on_deconstruction()
@@ -538,7 +540,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	name = "broken build-a-sentry"
 	desc = "You should not be seeing this unless a mapper, coder or admin screwed up."
 
-/obj/machinery/deployable/mounted/sentry/buildasentry/Initialize(mapload, _internal_item, deployer) //I know the istype spam is a bit much, but I don't think there is a better way.
+/obj/machinery/deployable/mounted/sentry/buildasentry/Initialize(mapload, obj/item/_internal_item, mob/deployer) //I know the istype spam is a bit much, but I don't think there is a better way.
 	. = ..()
 	var/obj/item/internal_sentry = get_internal_item()
 	if(internal_sentry)

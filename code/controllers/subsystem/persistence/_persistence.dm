@@ -48,6 +48,8 @@ SUBSYSTEM_DEF(persistence)
 	var/list/custom_loadouts = list()
 	///When were the last rounds of specific game mode played, in ticks
 	var/list/last_modes_round_date
+	var/tram_hits_this_round = 0
+	var/tram_hits_last_round = 0
 
 ///Loads data at the start of the round
 /datum/controller/subsystem/persistence/Initialize()

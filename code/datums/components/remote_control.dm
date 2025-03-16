@@ -104,7 +104,7 @@
 
 ///Called when a explosive vehicle clicks and tries to explde itself
 /datum/component/remote_control/proc/uv_handle_click_explosive(mob/user, atom/target, params)
-	explosion(get_turf(controlled), 1, 2, 3, 4)
+	explosion(get_turf(controlled), 1, 2, 3, 4, explosion_cause=user)
 	remote_control_off()
 	return TRUE
 

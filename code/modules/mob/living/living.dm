@@ -774,6 +774,122 @@ below 100 is not dizzy
 	update_z(new_turf?.z)
 
 /**
+ * We want to relay the zmovement to the buckled atom when possible
+ * and only run what we can't have on buckled.zMove() or buckled.can_z_move() here.
+ * This way we can avoid esoteric bugs, copypasta and inconsistencies.
+ */
+/mob/living/zMove(dir, turf/target, z_move_flags = ZMOVE_FLIGHT_FLAGS)
+	if(buckled)
+		if(buckled.currently_z_moving)
+			return FALSE
+		if(!(z_move_flags & ZMOVE_ALLOW_BUCKLED))
+			buckled.unbuckle_mob(src, force = TRUE, can_fall = FALSE)
+		else
+			if(!target)
+				target = can_z_move(dir, get_turf(src), null, z_move_flags, src)
+				if(!target)
+					return FALSE
+			return buckled.zMove(dir, target, z_move_flags) // Return value is a loc.
+	return ..()
+
+/mob/living/can_z_move(direction, turf/start, turf/destination, z_move_flags = ZMOVE_FLIGHT_FLAGS, mob/living/rider)
+	if(z_move_flags & ZMOVE_INCAPACITATED_CHECKS && incapacitated())
+		if(z_move_flags & ZMOVE_FEEDBACK)
+			to_chat(rider || src, span_warning("[rider ? src : "You"] can't do that right now!"))
+		return FALSE
+	if(!buckled || !(z_move_flags & ZMOVE_ALLOW_BUCKLED))
+		if(!(z_move_flags & ZMOVE_FALL_CHECKS) && (status_flags & INCORPOREAL) && (!rider || rider.status_flags & INCORPOREAL))
+			//An incorporeal mob will ignore obstacles unless it's a potential fall (it'd suck hard) or is carrying corporeal mobs.
+			//Coupled with flying/floating, this allows the mob to move up and down freely.
+			//By itself, it only allows the mob to move down.
+			z_move_flags |= ZMOVE_IGNORE_OBSTACLES
+		return ..()
+	switch(SEND_SIGNAL(buckled, COMSIG_BUCKLED_CAN_Z_MOVE, direction, start, destination, z_move_flags, src))
+		if(COMPONENT_RIDDEN_ALLOW_Z_MOVE) // Can be ridden.
+			return buckled.can_z_move(direction, start, destination, z_move_flags, src)
+		if(COMPONENT_RIDDEN_STOP_Z_MOVE) // Is a ridable but can't be ridden right now. Feedback messages already done.
+			return FALSE
+		else
+			if(!(z_move_flags & ZMOVE_CAN_FLY_CHECKS) && !buckled.anchored)
+				return buckled.can_z_move(direction, start, destination, z_move_flags, src)
+			if(z_move_flags & ZMOVE_FEEDBACK)
+				to_chat(src, span_warning("Unbuckle from [buckled] first."))
+			return FALSE
+
+/mob/set_currently_z_moving(value)
+	if(buckled)
+		return buckled.set_currently_z_moving(value)
+	return ..()
+
+/mob/living/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+	if(!isgroundlessturf(impacted_turf))
+		impact_flags |= ZImpactDamage(impacted_turf, levels)
+
+	return ..()
+
+/**
+ * Called when this mob is receiving damage from falling
+ *
+ * * impacted_turf - the turf we are falling onto
+ * * levels - the number of levels we are falling
+ */
+/mob/living/proc/ZImpactDamage(turf/impacted_turf, levels)
+	. = SEND_SIGNAL(src, COMSIG_LIVING_Z_IMPACT, levels, impacted_turf)
+	if(. & ZIMPACT_CANCEL_DAMAGE)
+		return .
+	// multiplier for the damage taken from falling
+	var/damage_softening_multiplier = 1
+
+	// If you are incapped, you probably can't brace yourself
+	var/can_help_themselves = !incapacitated(TRUE)
+	if(levels <= 1 && can_help_themselves)
+		if(HAS_TRAIT(src, TRAIT_FREERUNNING)) // the power of parkour or wings allows falling short distances unscathed
+			var/graceful_landing = HAS_TRAIT(src, TRAIT_CATLIKE_GRACE)
+
+			if(!graceful_landing)
+				Knockdown(levels * 4 SECONDS)
+				emote("spin")
+
+			visible_message(
+				span_notice("[src] makes a hard landing on [impacted_turf] but remains unharmed from the fall[graceful_landing ? " and stays on [p_their()] feet" : " by tucking in rolling into the landing"]."),
+				span_notice("You brace for the fall. You make a hard landing on [impacted_turf], but remain unharmed[graceful_landing ? " while landing on your feet" : " by tucking in and rolling into the landing"]."),
+			)
+			return . | ZIMPACT_NO_MESSAGE
+
+	var/incoming_damage = (levels * 5) ** 1.5
+	// Smaller mobs with catlike grace can ignore damage (EG: cats)
+	var/small_surface_area = mob_size <= MOB_SIZE_SMALL
+	var/skip_knockdown = FALSE
+	if(HAS_TRAIT(src, TRAIT_CATLIKE_GRACE) && can_help_themselves && !lying_angle) // todo should check for broken legs?
+		. |= ZIMPACT_NO_MESSAGE|ZIMPACT_NO_SPIN
+		skip_knockdown = TRUE
+		if(small_surface_area)
+			visible_message(
+				span_notice("[src] makes a hard landing on [impacted_turf], but lands safely on [p_their()] feet!"),
+				span_notice("You make a hard landing on [impacted_turf], but land safely on your feet!"),
+			)
+			new /obj/effect/temp_visual/leap_dust/small(impacted_turf)
+			return .
+
+		incoming_damage *= 1.66
+		visible_message(
+			span_danger("[src] makes a hard landing on [impacted_turf], landing on [p_their()] feet painfully!"),
+			span_userdanger("You make a hard landing on [impacted_turf], and instinctively land on your feet - painfully!"),
+		)
+		new /obj/effect/temp_visual/leap_dust(impacted_turf)
+
+	if(!lying_angle)
+		var/damage_for_each_leg = round((incoming_damage / 2) * damage_softening_multiplier)
+		apply_damage(damage_for_each_leg, BRUTE, BODY_ZONE_L_LEG)
+		apply_damage(damage_for_each_leg, BRUTE, BODY_ZONE_R_LEG)
+	else
+		apply_damage(incoming_damage, BRUTE)
+
+	if(!skip_knockdown)
+		Knockdown(levels * 5 SECONDS)
+	return .
+
+/**
  * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.
  *
  * In BYOND-angles 0 is NORTH, 90 is EAST, 180 is SOUTH and 270 is WEST.
@@ -935,6 +1051,140 @@ below 100 is not dizzy
 		height *= gravity * 0.5
 
 	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = cost, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = jump_pass_flags)
+
+///Checks if the user is incapacitated or on cooldown.
+/mob/living/proc/can_look_up()
+	if(next_move > world.time)
+		return FALSE
+	if(incapacitated(TRUE))
+		return FALSE
+	return TRUE
+/**
+ * look_up Changes the perspective of the mob to any openspace turf above the mob
+ *
+ * This also checks if an openspace turf is above the mob before looking up or resets the perspective if already looking up
+ *
+ */
+/mob/living/proc/look_up()
+	if(client.perspective != MOB_PERSPECTIVE) //We are already looking up.
+		stop_look_up()
+	if(!can_look_up())
+		return
+	changeNext_move(CLICK_CD_LOOK_UP)
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_look_up)) //We stop looking up if we move.
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(start_look_up)) //We start looking again after we move.
+	start_look_up()
+
+/mob/living/proc/start_look_up()
+	SIGNAL_HANDLER
+
+	looking_vertically = TRUE
+
+	var/turf/current_turf = get_turf(src)
+	var/turf/above_turf = GET_TURF_ABOVE(current_turf)
+
+	//Check if turf above exists
+	if(!above_turf)
+		to_chat(src, span_warning("There's nothing interesting above."))
+		to_chat(src, "You set your head straight again.")
+		end_look_up()
+		return
+
+	var/turf/ceiling = get_step_multiz(src, UP)
+	if(!ceiling) //We are at the highest z-level.
+		if (prob(0.1))
+			to_chat(src, span_warning("You gaze out into the infinite vastness of deep space, for a moment, you have the impulse to continue travelling, out there, out into the deep beyond, before your consciousness reasserts itself and you decide to stay within the corporeal realm."))
+			return
+		to_chat(src, span_warning("There's nothing interesting up there."))
+		return
+	else if(!istransparentturf(ceiling)) //There is no turf we can look through above us
+		var/turf/front_hole = get_step(ceiling, dir)
+		if(istransparentturf(front_hole))
+			ceiling = front_hole
+		else
+			for(var/turf/checkhole in TURF_NEIGHBORS(ceiling))
+				if(istransparentturf(checkhole))
+					ceiling = checkhole
+					break
+		if(!istransparentturf(ceiling))
+			to_chat(src, span_warning("You can't see through the floor above you."))
+			return
+
+	reset_perspective(ceiling)
+
+/mob/living/proc/stop_look_up()
+	SIGNAL_HANDLER
+	reset_perspective()
+
+/mob/living/proc/end_look_up()
+	stop_look_up()
+	looking_vertically = FALSE
+	UnregisterSignal(src, COMSIG_MOVABLE_PRE_MOVE)
+	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
+
+/**
+ * look_down Changes the perspective of the mob to any openspace turf below the mob
+ *
+ * This also checks if an openspace turf is below the mob before looking down or resets the perspective if already looking up
+ *
+ */
+/mob/living/proc/look_down()
+	if(client.perspective != MOB_PERSPECTIVE) //We are already looking down.
+		stop_look_down()
+	if(!can_look_up()) //if we cant look up, we cant look down.
+		return
+	changeNext_move(CLICK_CD_LOOK_UP)
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_look_down)) //We stop looking down if we move.
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(start_look_down)) //We start looking again after we move.
+	start_look_down()
+
+/mob/living/proc/start_look_down()
+	SIGNAL_HANDLER
+
+	looking_vertically = TRUE
+
+	var/turf/current_turf = get_turf(src)
+	var/turf/below_turf = GET_TURF_BELOW(current_turf)
+
+	//Check if turf below exists
+	if(!below_turf)
+		to_chat(src, span_warning("There's nothing interesting below."))
+		to_chat(src, "You set your head straight again.")
+		end_look_up()
+		return
+
+	var/turf/floor = get_turf(src)
+	var/turf/lower_level = get_step_multiz(floor, DOWN)
+	if(!lower_level) //We are at the lowest z-level.
+		to_chat(src, span_warning("You can't see through the floor below you."))
+		return
+	else if(!istransparentturf(floor)) //There is no turf we can look through below us
+		var/turf/front_hole = get_step(floor, dir)
+		if(istransparentturf(front_hole))
+			floor = front_hole
+			lower_level = get_step_multiz(front_hole, DOWN)
+		else
+			// Try to find a hole near us
+			for(var/turf/checkhole in TURF_NEIGHBORS(floor))
+				if(istransparentturf(checkhole))
+					floor = checkhole
+					lower_level = get_step_multiz(checkhole, DOWN)
+					break
+		if(!istransparentturf(floor))
+			to_chat(src, span_warning("You can't see through the floor below you."))
+			return
+
+	reset_perspective(lower_level)
+
+/mob/living/proc/stop_look_down()
+	SIGNAL_HANDLER
+	reset_perspective()
+
+/mob/living/proc/end_look_down()
+	stop_look_down()
+	looking_vertically = FALSE
+	UnregisterSignal(src, COMSIG_MOVABLE_PRE_MOVE)
+	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
 
 /mob/living/vv_edit_var(var_name, var_value)
 	switch(var_name)

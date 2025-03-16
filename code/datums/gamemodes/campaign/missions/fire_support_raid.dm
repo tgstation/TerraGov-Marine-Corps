@@ -5,7 +5,7 @@
 	mission_flags = MISSION_DISALLOW_DROPPODS
 	map_name = "Jungle Outpost SR-422"
 	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating", ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
 	max_game_time = 10 MINUTES
 	game_timer_delay = 90 SECONDS
@@ -128,7 +128,7 @@
 	mission_icon = "mortar_raid"
 	map_name = "Patrick's Rest"
 	map_file = '_maps/map_files/Campaign maps/patricks_rest/patricks_rest.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE)
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating")
 	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
 	map_light_levels = list(225, 150, 100, 75)
 	map_armor_color = MAP_ARMOR_STYLE_JUNGLE

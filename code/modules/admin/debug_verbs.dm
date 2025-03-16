@@ -487,3 +487,18 @@ ADMIN_VERB(allow_browser_inspect, R_DEBUG, "Allow Browser Inspect", "Allow brows
 
 	to_chat(user, span_notice("You can now right click to use inspect on browsers."))
 	winset(user, null, list("browser-options" = "+devtools"))
+
+#ifdef TESTING
+GLOBAL_LIST_EMPTY(dirty_vars)
+
+ADMIN_VERB_VISIBILITY(see_dirty_varedits, ADMIN_VERB_VISIBLITY_FLAG_MAPPING_DEBUG)
+ADMIN_VERB(see_dirty_varedits, R_DEBUG, "Dirty Varedits", "Shows all dirty varedits.", ADMIN_CATEGORY_DEBUG)
+	var/list/dat = list()
+	dat += "<h3>Abandon all hope ye who enter here</h3><br><br>"
+	for(var/thing in GLOB.dirty_vars)
+		dat += "[thing]<br>"
+		CHECK_TICK
+	var/datum/browser/popup = new(user, "dirty_vars", "Dirty Varedits", 900, 750)
+	popup.set_content(dat.Join())
+	popup.open()
+#endif

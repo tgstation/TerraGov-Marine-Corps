@@ -4,7 +4,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 /proc/generate_greyscale_weapons_data()
 	. = list("weapons" = list(), "ammo" = list(), "armor" = list(), "utility" = list(), "power" = list())
 	for(var/obj/item/mecha_parts/mecha_equipment/weapon/type AS in subtypesof(/obj/item/mecha_parts/mecha_equipment))
-		if(!(initial(type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+		if(!(initial(type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 			continue
 		if(initial(type.mech_flags) == ALL)
 			continue
@@ -310,7 +310,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				return FALSE
 			if(initial(new_type.equipment_slot) != MECHA_WEAPON)
 				return FALSE
-			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 				return FALSE
 			if(params["is_right_weapon"])
 				selected_equipment[MECHA_R_ARM] = new_type
@@ -322,7 +322,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			var/obj/item/mecha_parts/mecha_equipment/new_type = text2path(params["type"])
 			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
 				return FALSE
-			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 				return FALSE
 			if(length(selected_equipment[MECHA_POWER]) >= equipment_max[MECHA_POWER])
 				return FALSE
@@ -339,7 +339,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			var/obj/item/mecha_parts/mecha_equipment/new_type = text2path(params["type"])
 			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
 				return FALSE
-			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 				return FALSE
 			if(length(selected_equipment[MECHA_ARMOR]) >= equipment_max[MECHA_ARMOR])
 				return FALSE
@@ -350,7 +350,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			var/obj/item/mecha_parts/mecha_equipment/new_type = text2path(params["type"])
 			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
 				return FALSE
-			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 				return FALSE
 			if(length(selected_equipment[MECHA_UTILITY]) >= equipment_max[MECHA_UTILITY])
 				return FALSE

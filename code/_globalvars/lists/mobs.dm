@@ -63,6 +63,8 @@ GLOBAL_LIST_INIT_TYPED(xeno_caste_datums, /list/datum/xeno_caste, init_xeno_cast
 GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/runner,
 	/mob/living/carbon/xenomorph/runner/primordial,
+	/mob/living/carbon/xenomorph/runner/melter,
+	/mob/living/carbon/xenomorph/runner/melter/primordial,
 	/mob/living/carbon/xenomorph/drone,
 	/mob/living/carbon/xenomorph/drone/primordial,
 	/mob/living/carbon/xenomorph/sentinel,
@@ -126,12 +128,14 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/pyrogen,
 	/mob/living/carbon/xenomorph/pyrogen/primordial,
 	/mob/living/carbon/xenomorph/baneling,
+	/mob/living/carbon/xenomorph/dragon,
+	/mob/living/carbon/xenomorph/dragon/primordial,
 	))
 
 GLOBAL_LIST_INIT(xeno_types_tier_one, list(/datum/xeno_caste/runner, /datum/xeno_caste/drone, /datum/xeno_caste/sentinel, /datum/xeno_caste/defender))
 GLOBAL_LIST_INIT(xeno_types_tier_two, list(/datum/xeno_caste/hunter, /datum/xeno_caste/warrior, /datum/xeno_caste/spitter, /datum/xeno_caste/hivelord, /datum/xeno_caste/carrier, /datum/xeno_caste/bull, /datum/xeno_caste/puppeteer, /datum/xeno_caste/pyrogen))
 GLOBAL_LIST_INIT(xeno_types_tier_three, list(/datum/xeno_caste/gorger, /datum/xeno_caste/widow, /datum/xeno_caste/ravager, /datum/xeno_caste/praetorian, /datum/xeno_caste/boiler, /datum/xeno_caste/defiler, /datum/xeno_caste/crusher, /datum/xeno_caste/shrike, /datum/xeno_caste/behemoth, /datum/xeno_caste/warlock))
-GLOBAL_LIST_INIT(xeno_types_tier_four, list(/datum/xeno_caste/shrike, /datum/xeno_caste/queen, /datum/xeno_caste/king))
+GLOBAL_LIST_INIT(xeno_types_tier_four, list(/datum/xeno_caste/shrike, /datum/xeno_caste/queen, /datum/xeno_caste/king, /datum/xeno_caste/dragon))
 
 
 GLOBAL_LIST_INIT_TYPED(hive_datums, /datum/hive_status, init_hive_datum_list()) // init by make_datum_references_lists()
