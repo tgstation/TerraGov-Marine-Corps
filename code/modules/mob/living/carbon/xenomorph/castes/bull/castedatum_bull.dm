@@ -32,9 +32,9 @@
 	deevolves_to = /datum/xeno_caste/runner
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_STAGGER_RESISTANT|CASTE_EVOLUTION_ALLOWED
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
-	caste_traits = list(TRAIT_STAGGERIMMUNE)
+	caste_traits = null
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 50, BULLET = 55, LASER = 55, ENERGY = 55, BOMB = 20, BIO = 35, FIRE = 50, ACID = 35)
