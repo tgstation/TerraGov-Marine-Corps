@@ -115,7 +115,7 @@
 
 /// Does a dash in the specified direction.
 /datum/action/ability/xeno_action/conqueror_dash/proc/activate_dash(direction)
-	xeno_owner.pass_flags |= (PASS_LOW_STRUCTURE|PASS_MOB|PASS_FIRE|PASS_XENO|PASS_THROW|PASS_WALKOVER)
+	xeno_owner.add_pass_flags(PASS_LOW_STRUCTURE|PASS_MOB|PASS_FIRE|PASS_XENO|PASS_THROW|PASS_WALKOVER, CONQUEROR_ABILITY_TRAIT)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(end_dash))
 	playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_enhanced_charge.ogg', 8, TRUE)
 	var/turf/turf_target = get_ranged_target_turf(xeno_owner, direction, CONQUEROR_DASH_RANGE)
@@ -134,7 +134,7 @@
 /// Gets rid of dash bonuses, if any.
 /datum/action/ability/xeno_action/conqueror_dash/proc/end_dash()
 	SIGNAL_HANDLER
-	xeno_owner.pass_flags &= ~(PASS_LOW_STRUCTURE|PASS_MOB|PASS_FIRE|PASS_XENO|PASS_THROW|PASS_PROJECTILE|PASS_WALKOVER)
+	xeno_owner.remove_pass_flags(PASS_LOW_STRUCTURE|PASS_MOB|PASS_FIRE|PASS_XENO|PASS_THROW|PASS_PROJECTILE|PASS_WALKOVER, CONQUEROR_ABILITY_TRAIT)
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW)
 
 /// Opens an input window to allow customization of the double tap timing.
@@ -370,7 +370,7 @@
 	var/immobilize_duration = CONQUEROR_WILL_COMBO_DEBUFF * 0.8
 	living_target.Immobilize(immobilize_duration)
 	if(!(living_target.pass_flags & PASS_MOB))
-		living_target.pass_flags |= PASS_MOB
+		living_target.add_pass_flags(PASS_MOB, CONQUEROR_ABILITY_TRAIT)
 	living_target.knockback(xeno_owner, 1, 1)
 	addtimer(CALLBACK(src, PROC_REF(uppercut_landing), living_target, CONQUEROR_WILL_COMBO_DEBUFF * 0.2), immobilize_duration)
 	animate(living_target, pixel_y = living_target.pixel_y + 70, time = immobilize_duration * 0.3, easing = SINE_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
@@ -383,7 +383,7 @@
 	if(!living_target)
 		return
 	if(living_target.pass_flags & PASS_MOB)
-		living_target.pass_flags &= ~PASS_MOB
+		living_target.remove_pass_flags(PASS_MOB, CONQUEROR_ABILITY_TRAIT)
 	playsound(living_target, 'sound/effects/alien/conqueror/will_uppercut_landing.ogg', 30, TRUE)
 	living_target.Knockdown(debuff_duration)
 
@@ -401,7 +401,7 @@
 	playsound(living_target, 'sound/effects/alien/conqueror/will_kick.ogg', 40, TRUE)
 	new /obj/effect/temp_visual/conqueror/hook/kick(living_target.loc)
 	if(!(living_target.pass_flags & PASS_XENO))
-		living_target.pass_flags |= PASS_XENO
+		living_target.add_pass_flags(PASS_XENO, CONQUEROR_ABILITY_TRAIT)
 	RegisterSignal(living_target, COMSIG_MOVABLE_IMPACT, PROC_REF(kicked_into))
 	RegisterSignal(living_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(kicked_end))
 	living_target.knockback(xeno_owner, CONQUEROR_WILL_KICK_PUSH, 1)
@@ -435,7 +435,7 @@
 	var/mob/living/living_target = source
 	living_target.Knockdown(CONQUEROR_WILL_COMBO_DEBUFF)
 	if(living_target.pass_flags & PASS_XENO)
-		living_target.pass_flags &= ~PASS_XENO
+		living_target.remove_pass_flags(PASS_XENO, CONQUEROR_ABILITY_TRAIT)
 
 /particles/conqueror_will
 	icon = 'icons/effects/particles/conqueror.dmi'
@@ -627,6 +627,7 @@
 	adjust_particles()
 	amount_mod += amount * CONQUEROR_ENDURANCE_DAMAGE_REDUCTION
 	xeno_owner.endurance_health = clamp(xeno_owner.endurance_health - amount, 0, xeno_owner.endurance_health_max)
+	xeno_owner.hud_set_plasma()
 	if(!xeno_owner.endurance_health)
 		endurance_broken()
 
@@ -724,7 +725,7 @@
 		xeno_owner.buckled.unbuckle_mob(xeno_owner, TRUE)
 	xeno_owner.set_canmove(FALSE)
 	xeno_owner.status_flags |= (GODMODE|INCORPOREAL)
-	xeno_owner.pass_flags |= (PASS_GLASS|PASS_GRILLE|PASS_XENO|PASS_WALKOVER|PASS_TANK|PASSABLE|HOVERING)
+	xeno_owner.add_pass_flags(PASS_GLASS|PASS_GRILLE|PASS_XENO|PASS_WALKOVER|PASS_TANK|PASSABLE|HOVERING, CONQUEROR_ABILITY_TRAIT)
 	xeno_owner.alpha = 0
 	playsound(xeno_owner.loc, 'sound/effects/alien/conqueror/domination_reappearance.ogg', 25, TRUE)
 	new /obj/effect/temp_visual/conqueror/reappearance(xeno_owner.loc)
@@ -737,7 +738,7 @@
 /datum/action/ability/activable/xeno/conqueror_domination/proc/do_reappearance(list/turf/affected_turfs)
 	xeno_owner.set_canmove(TRUE)
 	xeno_owner.status_flags &= ~(GODMODE|INCORPOREAL)
-	xeno_owner.pass_flags &= ~(PASS_GLASS|PASS_GRILLE|PASS_XENO|PASS_WALKOVER|PASS_TANK|PASSABLE|HOVERING)
+	xeno_owner.remove_pass_flags(PASS_GLASS|PASS_GRILLE|PASS_XENO|PASS_WALKOVER|PASS_TANK|PASSABLE|HOVERING, CONQUEROR_ABILITY_TRAIT)
 	xeno_owner.alpha = initial(xeno_owner.alpha)
 	playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_roar.ogg', 45, TRUE)
 	playsound(xeno_owner.loc, 'sound/effects/alien/conqueror/domination_reappearance.ogg', 10, TRUE)
