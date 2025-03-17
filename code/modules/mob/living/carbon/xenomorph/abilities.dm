@@ -966,9 +966,18 @@
 /datum/action/ability/activable/xeno/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params, can_use_ability_flags)
 	SIGNAL_HANDLER
 	var/list/modifiers = params2list(params)
-	if(((modifiers["right"] || modifiers["middle"]) && (modifiers["shift"] || modifiers["ctrl"] || modifiers["left"])) || \
-	((modifiers["left"] && modifiers["shift"]) && (modifiers["ctrl"] || modifiers["middle"] || modifiers["right"])) || \
-	(modifiers["left"] && !modifiers["shift"]))
+	if	(	(	(modifiers["right"] || modifiers["middle"]) \
+				&& \
+				(modifiers["shift"] || modifiers["ctrl"] || modifiers["left"])\
+			) \
+			|| \
+			(	(modifiers["left"] && modifiers["alt"]) \
+				&& \
+				(modifiers["ctrl"] || modifiers["middle"] || modifiers["right"]) \
+			) \
+			|| \
+			(modifiers["left"] && !modifiers["alt"]) \
+		)
 		return
 	var/mob/living/carbon/xenomorph/xeno = owner
 	if(!can_use_ability(object, TRUE, can_use_ability_flags))
