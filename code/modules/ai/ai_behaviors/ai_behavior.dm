@@ -108,8 +108,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/cleanup_current_action(next_action)
 	if(current_action == MOVING_TO_NODE && next_action != MOVING_TO_NODE)
 		set_current_node(null)
-	//if(current_action == ESCORTING_ATOM && next_action != ESCORTING_ATOM && next_action != MOVING_TO_ATOM)
-	//	clean_escorted_atom() //why do we actually do this?
 	unregister_action_signals(current_action)
 
 ///Clean every signal on the ai_behavior
@@ -397,7 +395,12 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(GLOB.goal_nodes[mob_parent.faction])
 		goal_list[GLOB.goal_nodes[mob_parent.faction]] = AI_ESCORT_RATING_FACTION_GOAL
 	if(ismob(escorted_atom))
-		escorted_atom = AI_ESCORT_RATING_BUDDY
+		goal_list[escorted_atom] = AI_ESCORT_RATING_BUDDY
+	else
+		var/atom/mob_to_follow = get_nearest_target(mob_parent, AI_ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_MOB, mob_parent.faction, need_los = TRUE)
+		if(mob_to_follow)
+			goal_list[escorted_atom] = AI_ESCORT_RATING_CLOSE_FRIENDLY
+
 	SEND_SIGNAL(mob_parent, COMSIG_NPC_FIND_NEW_ESCORT, goal_list)
 	goal_list = sortTim(goal_list, /proc/cmp_numeric_dsc, TRUE)
 	if(!length(goal_list))
