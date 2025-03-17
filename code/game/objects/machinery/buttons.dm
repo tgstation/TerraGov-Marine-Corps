@@ -149,6 +149,14 @@
 		to_chat(user, span_notice("The containment shutters can't open yet!"))
 		return
 	#endif
+	var/obj/docking_port/mobile/marine_dropship/D
+	for(var/k in SSshuttle.dropships)
+		var/obj/docking_port/mobile/M = k
+		if(M.control_flags & SHUTTLE_MARINE_PRIMARY_DROPSHIP)
+			D = M
+	if(is_ground_level(D.z))
+		to_chat(user, span_notice("The containment shutters can't open with the dropship groundside!"))
+		return
 	if(!allowed(user))
 		to_chat(user, span_danger("Access Denied"))
 		flick("[initial(icon_state)]-denied", src)
