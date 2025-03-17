@@ -73,6 +73,7 @@
 /area/mainship/multiz_debug_area/floorone)
 "av" = (
 /obj/structure/stairs/multiz,
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floortwo)
 "ay" = (
@@ -168,6 +169,10 @@
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
+"be" = (
+/obj/structure/lattice,
+/turf/open/floor/plating/dmg1,
+/area/mainship/multiz_debug_area/floorone)
 "bf" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /turf/open/floor/plating,
@@ -252,6 +257,11 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/multiz_debug_area/floortwo)
+"by" = (
+/obj/machinery/light,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/mainship/multiz_debug_area/floorone)
 "bB" = (
 /obj/machinery/air_alarm{
 	pixel_y = 23
@@ -546,6 +556,13 @@
 "dS" = (
 /turf/open/floor/mainship/empty,
 /area/mainship/multiz_debug_area/floorone)
+"dU" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floorthree)
 "dX" = (
 /obj/machinery/door/airlock/glass,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
@@ -647,6 +664,13 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floortwo)
+"eJ" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
 "eL" = (
@@ -785,6 +809,14 @@
 /obj/structure/thermoplastic/light,
 /turf/open/openspace,
 /area/mainship/multiz_debug_area/floortwo)
+"fT" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/machinery/light,
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floortwo)
 "fV" = (
 /obj/structure/table,
 /obj/item/flashlight{
@@ -892,12 +924,8 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
-"gM" = (
-/turf/open/floor/plating/dmg3,
-/area/mainship/multiz_debug_area/floorone)
 "gO" = (
 /obj/machinery/computer/ordercomp,
-/obj/structure/cable,
 /obj/machinery/landinglight/cas{
 	dir = 8
 	},
@@ -997,6 +1025,10 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
+"hI" = (
+/obj/effect/ai_node,
+/turf/open/indestructible/tram/plate,
+/area/mainship/multiz_debug_area/floorone)
 "hK" = (
 /obj/docking_port/stationary/escape_pod/right,
 /turf/open/floor/plating,
@@ -1024,6 +1056,7 @@
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/yellow_cargo/arrow,
 /area/mainship/multiz_debug_area/floortwo)
 "hZ" = (
@@ -1107,11 +1140,8 @@
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floortwo)
 "iG" = (
-/obj/machinery/door/poddoor/railing{
-	id = "supply_elevator_railing"
-	},
 /obj/effect/ai_node,
-/turf/open/floor/mainship,
+/turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
 "iH" = (
 /obj/effect/turf_decal/stripes/white/line,
@@ -1141,6 +1171,10 @@
 /obj/structure/thermoplastic/light,
 /turf/open/openspace,
 /area/mainship/multiz_debug_area/floortwo)
+"jb" = (
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floorone)
 "je" = (
 /obj/structure/closet/crate/science,
 /turf/open/floor/mainship,
@@ -1162,6 +1196,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/mainship/multiz_debug_area/floortwo)
 "jq" = (
@@ -1189,6 +1224,7 @@
 /obj/effect/turf_decal/stripes/asteroid/corner{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
 "jA" = (
@@ -1276,6 +1312,7 @@
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/mainship/multiz_debug_area/floortwo)
 "kp" = (
@@ -1290,14 +1327,11 @@
 	dir = 1
 	},
 /area/mainship/multiz_debug_area/floorthree)
-"kr" = (
-/obj/structure/cable,
+"kt" = (
+/obj/structure/catwalk,
 /obj/effect/ai_node,
-/obj/machinery/landinglight/alamo{
-	dir = 4
-	},
-/turf/open/floor/mainship,
-/area/mainship/multiz_debug_area/floortwo)
+/turf/open/space/basic,
+/area/mainship/multiz_debug_area/floorone)
 "kv" = (
 /obj/machinery/loadout_vendor,
 /turf/open/floor/plating,
@@ -1425,6 +1459,13 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
+"lx" = (
+/obj/machinery/door/airlock/glass{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floorone)
 "lC" = (
 /obj/machinery/air_alarm,
 /turf/open/floor/plating,
@@ -1513,6 +1554,13 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
+"mz" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/mainship/multiz_debug_area/floortwo)
 "mC" = (
 /obj/machinery/door_control{
 	dir = 1;
@@ -1532,6 +1580,7 @@
 	dir = 8
 	},
 /obj/structure/transport/linear/public,
+/obj/effect/ai_node,
 /turf/open/floor/elevatorshaft,
 /area/mainship/multiz_debug_area/floorone)
 "mH" = (
@@ -1581,9 +1630,12 @@
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "mU" = (
+/obj/machinery/gear{
+	id = "supply_elevator_gear"
+	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
-/area/mainship/multiz_debug_area/floortwo)
+/area/mainship/multiz_debug_area/floorone)
 "mV" = (
 /obj/machinery/light{
 	dir = 4
@@ -1700,6 +1752,11 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
+"ob" = (
+/obj/machinery/light,
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floortwo)
 "od" = (
 /obj/effect/turf_decal/stripes/white/line,
 /obj/structure/window/framed/colony/reinforced,
@@ -1709,17 +1766,21 @@
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
-"og" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 10
-	},
-/turf/open/floor/plating/dmg3,
-/area/mainship/multiz_debug_area/floorone)
 "oh" = (
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 5
 	},
 /area/mainship/multiz_debug_area/floorone)
+"ol" = (
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/yellow_cargo/arrow,
+/area/mainship/multiz_debug_area/floortwo)
 "op" = (
 /obj/structure/largecrate/guns,
 /turf/open/floor/mainship,
@@ -1757,7 +1818,6 @@
 "oX" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/fuel_cell/full,
-/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "oZ" = (
@@ -1783,6 +1843,7 @@
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
 "pf" = (
@@ -1801,10 +1862,10 @@
 /turf/open/floor/mainship/research/containment/floor1,
 /area/mainship/multiz_debug_area/floorone)
 "pu" = (
-/obj/structure/cable,
 /obj/machinery/landinglight/cas{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
 "pC" = (
@@ -1822,6 +1883,16 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floortwo)
+"pI" = (
+/obj/effect/landmark/start/job/squadcorpsman,
+/obj/effect/landmark/start/latejoin,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
 /area/mainship/multiz_debug_area/floortwo)
 "pJ" = (
 /obj/machinery/marine_selector/clothes,
@@ -1905,6 +1976,21 @@
 /obj/structure/orbital_cannon,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorthree)
+"qv" = (
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floorone)
+"qw" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floortwo)
 "qy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
@@ -1941,6 +2027,9 @@
 /obj/machinery/light,
 /turf/open/openspace,
 /area/mainship/multiz_debug_area/floorthree)
+"qP" = (
+/turf/open/floor/plating/dmg2,
+/area/mainship/multiz_debug_area/floorone)
 "qR" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 9
@@ -1968,7 +2057,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/warning_stripes/thick/corner,
-/obj/effect/ai_node,
 /turf/open/floor/mainship/yellow_cargo/arrow{
 	dir = 1
 	},
@@ -2079,13 +2167,6 @@
 "so" = (
 /obj/docking_port/stationary/escape_pod,
 /turf/open/floor/plating,
-/area/mainship/multiz_debug_area/floortwo)
-"ss" = (
-/obj/structure/cable,
-/obj/machinery/landinglight/alamo{
-	dir = 1
-	},
-/turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
 "sw" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
@@ -2203,8 +2284,9 @@
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "ue" = (
-/obj/effect/landmark/start/job/shiptech,
-/obj/effect/ai_node,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "uf" = (
@@ -2295,6 +2377,10 @@
 	dir = 8
 	},
 /area/mainship/multiz_debug_area/floorone)
+"vq" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/hexagon,
+/area/mainship/multiz_debug_area/floortwo)
 "vt" = (
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 1
@@ -2362,9 +2448,6 @@
 "wc" = (
 /obj/machinery/vending/cargo_supply,
 /turf/open/floor/mainship,
-/area/mainship/multiz_debug_area/floorone)
-"wh" = (
-/turf/open/floor/plating/dmg2,
 /area/mainship/multiz_debug_area/floorone)
 "wi" = (
 /obj/machinery/light{
@@ -2444,6 +2527,13 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/multiz_debug_area/floorthree)
+"xh" = (
+/obj/machinery/landinglight/alamo{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floortwo)
 "xi" = (
 /obj/structure/drop_pod_launcher,
 /obj/structure/droppod,
@@ -2493,10 +2583,12 @@
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "xJ" = (
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden{
+	dir = 4
+	},
 /obj/effect/ai_node,
-/obj/machinery/landinglight/cas,
 /turf/open/floor/mainship,
-/area/mainship/multiz_debug_area/floortwo)
+/area/mainship/multiz_debug_area/floorone)
 "xK" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 10
@@ -2504,13 +2596,6 @@
 /obj/structure/transport/linear/public,
 /turf/open/floor/elevatorshaft,
 /area/mainship/multiz_debug_area/floorone)
-"xN" = (
-/obj/machinery/landinglight/alamo{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/mainship,
-/area/mainship/multiz_debug_area/floortwo)
 "xO" = (
 /obj/structure/lattice,
 /turf/open/openspace,
@@ -2536,6 +2621,7 @@
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "xW" = (
@@ -2618,10 +2704,13 @@
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "yI" = (
-/obj/machinery/light/mainship,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden{
+	dir = 4
+	},
 /obj/effect/ai_node,
-/turf/open/floor/mainship/floor,
-/area/mainship/multiz_debug_area/floortwo)
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floorone)
 "yM" = (
 /obj/structure/fluff/tram_rail/electric{
 	dir = 1
@@ -2630,6 +2719,13 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
+/area/mainship/multiz_debug_area/floortwo)
+"yN" = (
+/obj/machinery/landinglight/tadpole{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
 "yQ" = (
 /obj/effect/turf_decal/stripes/line,
@@ -2668,6 +2764,11 @@
 /obj/machinery/computer/cryopod,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
+"za" = (
+/obj/structure/lattice,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/multiz_debug_area/floorthree)
 "zd" = (
 /obj/structure/prop/mainship/railing{
 	dir = 4
@@ -2752,8 +2853,6 @@
 /turf/open/floor/mainship/yellow_cargo,
 /area/mainship/multiz_debug_area/floortwo)
 "zF" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
 /obj/machinery/landinglight/alamo{
 	dir = 1
 	},
@@ -2831,6 +2930,9 @@
 "Ai" = (
 /obj/structure/closet/crate/weapon,
 /obj/machinery/light,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden{
+	dir = 4
+	},
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "Am" = (
@@ -2841,6 +2943,13 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/mainship/mono,
 /area/mainship/multiz_debug_area/floortwo)
+"As" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floorone)
 "Au" = (
 /obj/effect/landmark/start,
 /turf/open/floor/mainship,
@@ -2866,6 +2975,7 @@
 /area/mainship/multiz_debug_area/floortwo)
 "AL" = (
 /obj/machinery/gear/vehicle,
+/obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
 "Be" = (
@@ -2904,6 +3014,13 @@
 	dir = 4
 	},
 /area/mainship/multiz_debug_area/floorthree)
+"Bq" = (
+/obj/machinery/landinglight/alamo{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floortwo)
 "Br" = (
 /obj/machinery/loadout_vendor,
 /turf/open/floor/mainship/floor,
@@ -2921,9 +3038,14 @@
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "Bx" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/hexagon,
-/area/mainship/multiz_debug_area/floortwo)
+/obj/machinery/door/airlock/glass{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floorone)
 "Bz" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
@@ -2952,6 +3074,10 @@
 "BN" = (
 /turf/closed/wall/mainship/research/containment/wall/east,
 /area/mainship/multiz_debug_area/floorone)
+"BO" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/mainship/multiz_debug_area/floorthree)
 "BR" = (
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/mainship,
@@ -2975,10 +3101,6 @@
 "Cc" = (
 /turf/open/space/basic,
 /area/space)
-"Cd" = (
-/obj/structure/lattice,
-/turf/open/floor/plating/dmg1,
-/area/mainship/multiz_debug_area/floorone)
 "Ck" = (
 /obj/effect/landmark/start/job/crash/squadleader,
 /turf/open/floor/mainship/floor,
@@ -3118,6 +3240,10 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"Dx" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/mainship/multiz_debug_area/floortwo)
 "Dy" = (
 /obj/structure/closet/toolcloset,
 /obj/machinery/light{
@@ -3202,10 +3328,12 @@
 /area/mainship/multiz_debug_area/floorone)
 "Eh" = (
 /obj/machinery/light,
-/obj/structure/cable,
-/obj/effect/ai_node,
 /obj/effect/turf_decal/stripes/asteroid/corner,
 /turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floortwo)
+"Ej" = (
+/obj/effect/ai_node,
+/turf/open/indestructible/tram/plate,
 /area/mainship/multiz_debug_area/floortwo)
 "Eo" = (
 /obj/structure/table/mainship/nometal,
@@ -3218,6 +3346,12 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorthree)
+"Es" = (
+/obj/structure/transport/linear/tram,
+/obj/structure/thermoplastic/light,
+/obj/effect/ai_node,
+/turf/open/indestructible/tram/plate,
+/area/mainship/multiz_debug_area/floortwo)
 "Ey" = (
 /obj/machinery/landinglight/alamo{
 	dir = 8
@@ -3371,6 +3505,14 @@
 /obj/structure/lattice,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
+"Gc" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "vehicle_elevator_railing"
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floortwo)
 "Gd" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -3394,14 +3536,27 @@
 /obj/structure/thermoplastic/light,
 /turf/open/openspace,
 /area/mainship/multiz_debug_area/floortwo)
+"Gr" = (
+/obj/effect/landmark/start/job/crash/squadleader,
+/obj/effect/landmark/start/latejoin,
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/floor,
+/area/mainship/multiz_debug_area/floortwo)
 "Gx" = (
 /obj/machinery/telecomms/bus/preset_one,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "GB" = (
+/obj/machinery/light{
+	dir = 4
+	},
 /obj/effect/ai_node,
-/turf/open/floor/mech_bay_recharge_floor,
-/area/mainship/multiz_debug_area/floortwo)
+/turf/open/floor/plating,
+/area/mainship/multiz_debug_area/floorone)
 "GE" = (
 /obj/structure/thermoplastic/light,
 /turf/open/floor/plating,
@@ -3428,6 +3583,12 @@
 /obj/structure/window_frame/mainship/white,
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
+"GS" = (
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floorone)
 "GT" = (
 /obj/structure/cable/multilayer/multiz,
 /obj/structure/cable,
@@ -3435,6 +3596,7 @@
 /area/mainship/multiz_debug_area/floorone)
 "GV" = (
 /obj/item/plantable_flag,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "GY" = (
@@ -3452,7 +3614,6 @@
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
 "Hc" = (
-/obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
@@ -3487,8 +3648,6 @@
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "Hv" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
 /obj/effect/turf_decal/stripes/asteroid/corner{
 	dir = 8
 	},
@@ -3588,7 +3747,6 @@
 /area/mainship/multiz_debug_area/floorone)
 "Ir" = (
 /obj/machinery/light,
-/obj/structure/cable,
 /obj/machinery/landinglight/cas{
 	dir = 1
 	},
@@ -3736,6 +3894,11 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorthree)
+"Ki" = (
+/obj/machinery/landinglight/tadpole,
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floortwo)
 "Km" = (
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 4
@@ -3745,6 +3908,11 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorthree)
+"Ks" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floorone)
 "Kw" = (
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 1
@@ -3756,6 +3924,11 @@
 /obj/structure/fluff/tram_rail/electric,
 /obj/structure/thermoplastic/light,
 /obj/effect/spawner/random/misc/structure/girder,
+/turf/open/floor/plating,
+/area/mainship/multiz_debug_area/floorone)
+"KC" = (
+/obj/structure/fluff/tram_rail/electric,
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
 "KD" = (
@@ -3879,6 +4052,12 @@
 /obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/iron/edge,
 /area/mainship/multiz_debug_area/floorthree)
+"LJ" = (
+/obj/structure/fluff/tram_rail/electric,
+/obj/structure/lattice,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/mainship/multiz_debug_area/floorone)
 "LK" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -3921,7 +4100,6 @@
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "Mj" = (
-/obj/structure/cable,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -3931,9 +4109,13 @@
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
 "Mk" = (
-/mob/living/simple_animal/mouse,
-/turf/open/floor/mainship/floor,
-/area/mainship/multiz_debug_area/floortwo)
+/obj/machinery/door/airlock/glass,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floorone)
 "Ml" = (
 /obj/structure/transport/linear/tram,
 /obj/structure/window/framed/mainship/white,
@@ -3954,7 +4136,6 @@
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "Mx" = (
-/obj/structure/cable,
 /obj/machinery/landinglight/cas{
 	dir = 8
 	},
@@ -4025,6 +4206,7 @@
 /area/mainship/multiz_debug_area/floorone)
 "Nb" = (
 /obj/structure/fluff/tram_rail/electric,
+/obj/effect/ai_node,
 /turf/open/indestructible/tram/plate,
 /area/mainship/multiz_debug_area/floorone)
 "Ne" = (
@@ -4079,6 +4261,13 @@
 /obj/effect/landmark/start/job/corporateliaison,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
+"NE" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floorthree)
 "NK" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/item/card/id/captains_spare,
@@ -4211,6 +4400,10 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
+"Pw" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/mainship/multiz_debug_area/floortwo)
 "Py" = (
 /obj/item/storage/box/crate/sentry,
 /obj/structure/rack,
@@ -4349,8 +4542,13 @@
 "QE" = (
 /turf/closed/wall/mainship/research/containment/wall/south,
 /area/mainship/multiz_debug_area/floorone)
+"QF" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floorthree)
 "QN" = (
 /obj/structure/stairs/multiz,
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
 "QS" = (
@@ -4461,15 +4659,9 @@
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "RO" = (
-/obj/effect/ai_node,
-/obj/machinery/landinglight/alamo{
-	dir = 8
-	},
-/obj/machinery/landinglight/cas{
-	dir = 4
-	},
-/turf/open/floor/mainship,
-/area/mainship/multiz_debug_area/floortwo)
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
+/turf/open/floor/plating,
+/area/mainship/multiz_debug_area/floorone)
 "RQ" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/glass{
@@ -4497,6 +4689,22 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorthree)
+"Si" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/lift/preopen{
+	elevator_mode = 1;
+	transport_linked_id = "testvator"
+	},
+/obj/effect/ai_node,
+/turf/open/floor/iron/edge{
+	dir = 4
+	},
+/area/mainship/multiz_debug_area/floorthree)
 "Sk" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -4512,11 +4720,6 @@
 /area/mainship/multiz_debug_area/floorone)
 "Su" = (
 /obj/structure/ship_ammo/cas/rocket/banshee,
-/turf/open/floor/mainship,
-/area/mainship/multiz_debug_area/floortwo)
-"Sx" = (
-/obj/structure/cable,
-/obj/machinery/landinglight/alamo,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
 "SA" = (
@@ -4633,12 +4836,10 @@
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
 "Tu" = (
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
 /obj/effect/ai_node,
-/obj/machinery/landinglight/alamo{
-	dir = 8
-	},
-/turf/open/floor/mainship,
-/area/mainship/multiz_debug_area/floortwo)
+/turf/open/floor/plating,
+/area/mainship/multiz_debug_area/floorone)
 "Tw" = (
 /obj/structure/fluff/tram_rail/electric,
 /obj/structure/transport/linear/tram,
@@ -4651,6 +4852,11 @@
 	},
 /obj/structure/window/framed/mainship/white,
 /turf/open/floor/plating,
+/area/mainship/multiz_debug_area/floorone)
+"TA" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "TE" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -4685,9 +4891,12 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/multiz_debug_area/floortwo)
 "TT" = (
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden{
+	dir = 8
+	},
 /obj/effect/ai_node,
-/turf/open/floor/mainship/floor,
-/area/mainship/multiz_debug_area/floortwo)
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floorone)
 "TU" = (
 /obj/structure/closet/secure_closet/pilot_officer,
 /turf/open/floor/mainship,
@@ -4719,9 +4928,6 @@
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
-/area/mainship/multiz_debug_area/floorone)
-"Ug" = (
-/turf/open/floor/plating/dmg1,
 /area/mainship/multiz_debug_area/floorone)
 "Uh" = (
 /obj/machinery/door/poddoor/railing{
@@ -4853,7 +5059,6 @@
 /obj/machinery/landinglight/alamo{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
 "Vf" = (
@@ -4941,6 +5146,17 @@
 /obj/machinery/faxmachine/cic,
 /turf/open/floor/mainship/mono,
 /area/mainship/multiz_debug_area/floorone)
+"VQ" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "vehicle_elevator_railing"
+	},
+/obj/machinery/landinglight/alamo{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floortwo)
 "VV" = (
 /obj/machinery/marine_selector/clothes/leader,
 /obj/structure/window/reinforced{
@@ -4951,6 +5167,9 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
+"VX" = (
+/turf/open/floor/plating/dmg1,
+/area/mainship/multiz_debug_area/floorone)
 "VY" = (
 /obj/machinery/marine_selector/clothes/commander,
 /obj/machinery/camera/autoname/mainship{
@@ -4973,6 +5192,13 @@
 /area/mainship/multiz_debug_area/floortwo)
 "Wf" = (
 /obj/effect/turf_decal/warning_stripes/thick,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floorone)
+"Wg" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "Wh" = (
@@ -5018,6 +5244,12 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floortwo)
+"WB" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 10
+	},
+/turf/open/floor/plating/dmg3,
+/area/mainship/multiz_debug_area/floorone)
 "WF" = (
 /obj/structure/fluff/tram_rail/electric{
 	dir = 1
@@ -5026,6 +5258,9 @@
 /obj/structure/window/framed/mainship/white,
 /turf/open/openspace,
 /area/mainship/multiz_debug_area/floortwo)
+"WG" = (
+/turf/open/floor/plating/dmg3,
+/area/mainship/multiz_debug_area/floorone)
 "WN" = (
 /obj/structure/droppod,
 /obj/structure/drop_pod_launcher,
@@ -5106,8 +5341,6 @@
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floortwo)
 "Xz" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
 /obj/machinery/landinglight/alamo,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
@@ -5155,8 +5388,6 @@
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floortwo)
 "XX" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
 /obj/machinery/landinglight/cas{
 	dir = 8
 	},
@@ -5168,7 +5399,6 @@
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "Yc" = (
-/obj/structure/cable,
 /obj/machinery/landinglight/cas{
 	dir = 1
 	},
@@ -5277,6 +5507,16 @@
 /obj/structure/transport/linear/public,
 /turf/open/floor/elevatorshaft,
 /area/mainship/multiz_debug_area/floorone)
+"Zv" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	dir = 4
+	},
+/obj/structure/prop/mainship/railing/corner{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship,
+/area/mainship/multiz_debug_area/floorthree)
 "Zy" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /obj/machinery/camera/autoname/mainship{
@@ -5285,7 +5525,6 @@
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "ZA" = (
-/obj/structure/cable,
 /obj/machinery/landinglight/alamo{
 	dir = 4
 	},
@@ -5296,7 +5535,6 @@
 /turf/open/openspace,
 /area/space)
 "ZI" = (
-/obj/structure/cable,
 /obj/machinery/camera/autoname/mainship,
 /obj/machinery/landinglight/alamo,
 /turf/open/floor/mainship,
@@ -5945,6 +6183,12 @@ TY
 FW
 FW
 FW
+iG
+FW
+FW
+FW
+FW
+GB
 FW
 FW
 FW
@@ -5952,26 +6196,20 @@ FW
 FW
 tI
 FW
-FW
-FW
-FW
-FW
-tI
-FW
-FW
+iG
 FW
 FW
 FW
 tI
 FW
-FW
+iG
 FW
 FW
 FW
 FW
 FW
 tI
-FW
+iG
 TY
 Cc
 iy
@@ -5999,7 +6237,7 @@ TY
 FW
 TY
 TY
-TY
+Ym
 TY
 TY
 TY
@@ -6107,7 +6345,7 @@ TY
 Rw
 TY
 am
-FW
+iG
 FW
 ba
 bk
@@ -6116,7 +6354,7 @@ bC
 bN
 bN
 bN
-bC
+TT
 bN
 bN
 XK
@@ -6171,14 +6409,14 @@ OM
 OM
 OM
 gY
-Hp
+Ks
 Hp
 RQ
 wr
 FW
 FW
 FW
-FW
+iG
 FW
 FW
 FW
@@ -6295,7 +6533,7 @@ gA
 Ix
 vU
 TY
-Rw
+by
 TY
 Cc
 iy
@@ -6448,7 +6686,7 @@ ev
 IC
 FW
 FW
-FW
+iG
 FW
 FW
 FW
@@ -6545,10 +6783,10 @@ Vw
 Vw
 Ix
 bJ
-OM
+aY
 OM
 Rl
-gY
+qv
 OM
 OM
 Rl
@@ -6556,7 +6794,7 @@ Ra
 FW
 FW
 FW
-FW
+iG
 FW
 FW
 FW
@@ -6611,7 +6849,7 @@ FW
 FW
 FW
 FW
-FW
+iG
 FW
 FW
 FW
@@ -6673,7 +6911,7 @@ ye
 kB
 EU
 TY
-Rw
+by
 TY
 Cc
 iy
@@ -6864,7 +7102,7 @@ Cc
 TY
 aq
 qy
-WX
+yI
 WX
 WX
 il
@@ -6872,7 +7110,7 @@ WX
 WX
 WX
 WX
-gY
+qv
 OM
 OM
 TY
@@ -7039,11 +7277,11 @@ OM
 OM
 Rl
 OM
-OM
+aY
 Ra
 FW
 Ea
-OM
+aY
 GE
 KH
 Qd
@@ -7051,7 +7289,7 @@ Ss
 GE
 OM
 OM
-OM
+aY
 TY
 Cc
 iy
@@ -7142,7 +7380,7 @@ OM
 OM
 Iy
 PM
-PM
+xJ
 OM
 OM
 Rl
@@ -7195,7 +7433,7 @@ TY
 TY
 TY
 TY
-cx
+Mk
 TY
 TY
 OM
@@ -7465,7 +7703,7 @@ TY
 TY
 TY
 FW
-FW
+RO
 TY
 TY
 TY
@@ -7519,7 +7757,7 @@ FW
 FW
 FW
 FW
-FW
+RO
 TY
 iy
 iy
@@ -7532,12 +7770,12 @@ iy
 Fo
 FW
 LR
-Fz
+hI
 TO
 FW
 BX
 FW
-FW
+iG
 TY
 Cc
 iy
@@ -7560,20 +7798,20 @@ Cc
 Cc
 Cc
 TY
+iG
+FW
+FW
+FW
+FW
+FW
+iG
 FW
 FW
 FW
 FW
 FW
 FW
-FW
-FW
-FW
-FW
-FW
-FW
-FW
-FW
+Tu
 TY
 iy
 Cc
@@ -7585,7 +7823,7 @@ Cc
 iy
 TY
 FW
-KH
+KC
 FW
 Ud
 FW
@@ -7627,7 +7865,7 @@ TY
 TY
 TY
 FW
-FW
+RO
 TY
 iy
 Cc
@@ -7681,7 +7919,7 @@ OM
 zn
 TY
 FW
-FW
+RO
 TY
 Cc
 Cc
@@ -7735,7 +7973,7 @@ OM
 zt
 TY
 FW
-FW
+RO
 TY
 Cc
 Cc
@@ -7746,11 +7984,11 @@ Cc
 Cc
 Cc
 TY
-Ug
+VX
 LR
 Fz
 Ui
-Ug
+VX
 TY
 Cc
 Cc
@@ -7789,7 +8027,7 @@ OM
 zv
 TY
 FW
-FW
+RO
 TY
 Cc
 Cc
@@ -7843,7 +8081,7 @@ OM
 zv
 TY
 FW
-FW
+RO
 TY
 iy
 Cc
@@ -7858,7 +8096,7 @@ HA
 Mv
 Fz
 Ui
-wh
+qP
 TY
 Cc
 Cc
@@ -7884,7 +8122,7 @@ TY
 TY
 TY
 TY
-OM
+aY
 TY
 gI
 OM
@@ -7897,7 +8135,7 @@ OM
 OM
 FW
 FW
-FW
+RO
 TY
 Cc
 iy
@@ -7942,31 +8180,31 @@ fm
 TY
 gW
 js
+aY
 OM
 OM
 OM
 OM
-OM
-OM
+aY
 OM
 FW
 FW
-FW
+Tu
 Rl
 ni
 ni
 ni
 ni
-ni
+kt
 ni
 ni
 ni
 Rl
-Ug
+VX
 Nb
 OM
 TO
-og
+WB
 TY
 Cc
 Cc
@@ -8005,7 +8243,7 @@ OM
 OM
 TY
 FW
-FW
+RO
 TY
 Cc
 iy
@@ -8059,7 +8297,7 @@ OM
 zy
 TY
 FW
-FW
+RO
 TY
 iy
 Cc
@@ -8070,7 +8308,7 @@ Cc
 Cc
 iy
 TY
-gM
+WG
 LX
 Fz
 Ui
@@ -8113,7 +8351,7 @@ OM
 Aa
 TY
 FW
-FW
+RO
 TY
 Cc
 Cc
@@ -8125,10 +8363,10 @@ Cc
 iy
 TY
 FW
-LR
+LJ
 Fz
 TO
-gM
+WG
 TY
 Cc
 Cc
@@ -8167,7 +8405,7 @@ OM
 Am
 TY
 FW
-FW
+RO
 TY
 Cc
 Cc
@@ -8221,7 +8459,7 @@ OM
 Bk
 TY
 FW
-FW
+RO
 TY
 Cc
 Cc
@@ -8232,7 +8470,7 @@ Cc
 Cc
 Cc
 TY
-wh
+qP
 Mv
 Fz
 Ui
@@ -8275,7 +8513,7 @@ OM
 vv
 TY
 FW
-FW
+RO
 TY
 iy
 Cc
@@ -8329,7 +8567,7 @@ OM
 bF
 TY
 FW
-FW
+RO
 TY
 iy
 Cc
@@ -8340,7 +8578,7 @@ Cc
 iy
 iy
 TY
-Ug
+VX
 LR
 FW
 TO
@@ -8375,15 +8613,15 @@ TY
 if
 OM
 OM
+aY
 OM
 OM
 OM
-OM
-OM
+aY
 OM
 TY
 FW
-FW
+RO
 TY
 iy
 iy
@@ -8398,7 +8636,7 @@ FW
 LR
 Fz
 Ui
-Cd
+be
 TY
 iy
 iy
@@ -8437,7 +8675,7 @@ yY
 BE
 TY
 FW
-FW
+RO
 TY
 Ix
 TY
@@ -8491,25 +8729,25 @@ TY
 TY
 TY
 FW
-FW
+Tu
 BX
 FW
 tI
 FW
 FW
-FW
+iG
 FW
 FW
 tI
 BX
 FW
-LR
+LJ
 Fz
 KG
 FW
 BX
 tI
-FW
+iG
 TY
 Cc
 iy
@@ -8545,7 +8783,7 @@ TY
 TY
 TY
 FW
-FW
+RO
 TY
 Be
 TY
@@ -8599,12 +8837,12 @@ TY
 bB
 OM
 OM
-OM
+bN
 OM
 OM
 OM
 TY
-Jk
+jb
 Ii
 Re
 Re
@@ -8658,7 +8896,7 @@ bC
 bN
 bN
 XK
-KX
+As
 FW
 FW
 FW
@@ -8708,18 +8946,18 @@ bD
 OM
 OM
 OM
-gY
-Hp
-Hp
-RQ
-wr
+PM
+OM
+OM
+Rl
+Ra
 FW
-FW
+iG
 FW
 FW
 Fz
 FW
-KH
+KC
 FW
 KG
 FW
@@ -8761,20 +8999,20 @@ TY
 OM
 OM
 OM
-OM
-gY
+aY
+PM
 OM
 OM
 Rl
 Ra
-FW
+iG
 TY
 FW
 FW
 Fz
 FW
 Ns
-FW
+iG
 Cn
 FW
 vU
@@ -8816,7 +9054,7 @@ bF
 OM
 OM
 OM
-gY
+PM
 OM
 OM
 TY
@@ -8833,7 +9071,7 @@ KG
 FW
 vU
 TY
-Rw
+by
 TY
 Cc
 iy
@@ -8870,11 +9108,11 @@ FW
 FW
 OM
 OM
-WX
-Hp
-Hp
-hT
-wr
+PM
+OM
+OM
+Be
+Ra
 FW
 FW
 FW
@@ -8924,7 +9162,7 @@ bG
 OM
 HN
 bN
-cF
+bN
 OM
 OM
 Be
@@ -8961,16 +9199,16 @@ Cc
 Cc
 TY
 bu
-OM
+aY
 Uc
 Iq
 Iq
 Iq
-iG
 Iq
-Uc
+Iq
+mU
 OM
-ue
+yV
 vx
 yV
 TY
@@ -8978,7 +9216,7 @@ xt
 OM
 OM
 FW
-uv
+GS
 bN
 bN
 nb
@@ -9032,7 +9270,7 @@ dN
 OM
 OM
 OM
-gY
+PM
 OM
 OM
 TY
@@ -9077,7 +9315,7 @@ dS
 dS
 dS
 UB
-OM
+ue
 OM
 wc
 OM
@@ -9086,7 +9324,7 @@ dN
 OM
 OM
 OM
-gY
+PM
 OM
 OM
 Rl
@@ -9131,7 +9369,7 @@ fR
 dS
 dS
 UB
-OM
+PM
 OM
 OM
 yW
@@ -9140,19 +9378,19 @@ lP
 OM
 Au
 OM
-gY
-gY
-gY
+xJ
+PM
+xJ
 Rl
 Ra
 FW
 FW
+iG
 FW
 FW
 FW
 FW
-FW
-FW
+iG
 FW
 FW
 Bw
@@ -9193,10 +9431,10 @@ TY
 dN
 OM
 OM
-FW
+iG
 Nu
 Ul
-gY
+PM
 TY
 Pa
 Pc
@@ -9211,7 +9449,7 @@ ye
 kB
 EU
 TY
-Rw
+by
 TY
 Cc
 iy
@@ -9239,7 +9477,7 @@ dS
 dS
 dS
 UB
-OM
+xJ
 uz
 OM
 cr
@@ -9250,7 +9488,7 @@ OM
 FW
 QN
 WQ
-gY
+PM
 TY
 TY
 TY
@@ -9285,15 +9523,15 @@ Cc
 Cc
 TY
 cN
-OM
+aY
 Uc
 vm
 vm
 vm
 vm
 vm
-Uc
-OM
+mU
+PM
 uI
 OM
 OM
@@ -9304,7 +9542,7 @@ TY
 TY
 fG
 GY
-gY
+PM
 TY
 da
 GN
@@ -9347,7 +9585,7 @@ ga
 je
 ln
 OM
-OM
+PM
 OM
 OM
 OM
@@ -9356,9 +9594,9 @@ OM
 OM
 vA
 OM
-cF
-cF
-cF
+bN
+bN
+bN
 XK
 LV
 OM
@@ -9401,18 +9639,18 @@ TY
 TY
 TY
 sS
+xJ
+PM
+PM
+PM
+Bx
+PM
+PM
+PM
+xJ
+PM
 OM
-OM
-OM
-OM
-Rl
-WX
-WX
-WX
-WX
-gY
-OM
-OM
+aY
 TY
 OM
 OM
@@ -9584,12 +9822,12 @@ vU
 OM
 OM
 Ra
-FW
+iG
 vU
 OM
 JP
 OM
-OM
+aY
 TY
 Cc
 iy
@@ -9625,19 +9863,19 @@ OM
 Yw
 TY
 OM
-OM
+aY
 PM
-OM
-OM
-Rl
-OM
-OM
-Ra
-FW
+bN
+bN
+lx
+bN
+bN
+ev
+iG
 vU
+aY
 OM
-OM
-Ra
+TA
 FW
 vU
 OM
@@ -9686,7 +9924,7 @@ OM
 TY
 Dy
 OM
-SV
+Wg
 ye
 Fj
 OM
@@ -9740,17 +9978,17 @@ TY
 TY
 rT
 OM
-OM
-OM
-OM
-OM
-OM
+bN
+bN
+bN
+bN
+bN
 GV
 OM
-aY
 OM
 OM
-aY
+OM
+OM
 Ef
 TY
 Cc
@@ -9799,7 +10037,7 @@ DU
 OM
 OM
 OM
-OM
+bD
 OM
 OM
 VY
@@ -9833,15 +10071,15 @@ iy
 iy
 TY
 cG
-OM
 aY
 OM
 OM
 OM
+aY
 OM
 Rl
 OM
-PM
+xJ
 cM
 wX
 Rw
@@ -10003,7 +10241,7 @@ Be
 TY
 TY
 TY
-FW
+iG
 FW
 FW
 FW
@@ -10013,7 +10251,7 @@ Be
 TY
 OM
 OM
-OM
+aY
 IA
 Ow
 QS
@@ -11356,23 +11594,23 @@ ZP
 Vf
 Gd
 TH
-TH
+Pw
 Dq
 TH
 TH
 TH
 TH
 Dq
-TH
+Pw
 TH
 TH
 TH
 Dq
 TH
 TH
+Pw
 TH
-TH
-TH
+Pw
 ya
 SF
 SF
@@ -11464,7 +11702,7 @@ WN
 WN
 ya
 YX
-YX
+Hc
 ck
 YX
 es
@@ -11511,7 +11749,7 @@ WR
 WR
 ra
 yy
-SU
+ol
 WR
 WR
 WR
@@ -11519,14 +11757,14 @@ yb
 Gd
 YX
 YX
-YX
+Hc
 YX
 IN
 TH
 TH
 TH
 TH
-TH
+Pw
 TH
 TH
 cw
@@ -11797,14 +12035,14 @@ ya
 hm
 TH
 TH
-TH
+Pw
 TH
 wP
 Lu
 TH
-cq
+eJ
 ya
-TH
+Pw
 ya
 SF
 SF
@@ -11843,14 +12081,14 @@ TH
 cw
 YX
 gv
-TH
+Pw
 Oa
 IN
 TH
+Pw
 TH
 TH
-TH
-TH
+Pw
 TH
 TH
 TH
@@ -11892,11 +12130,11 @@ bg
 bg
 XV
 TH
-TH
+Pw
 TH
 Yp
 YX
-gv
+mz
 TH
 Oa
 IN
@@ -11964,7 +12202,7 @@ TH
 XN
 av
 TH
-cq
+eJ
 ya
 TH
 ya
@@ -12182,7 +12420,7 @@ YX
 ck
 YX
 ya
-TH
+Pw
 ya
 SF
 SF
@@ -12261,13 +12499,13 @@ SF
 SF
 SF
 ya
-TH
+Pw
 Gd
 eN
 eN
 eN
 ay
-eN
+Dx
 uT
 eN
 eN
@@ -12375,30 +12613,30 @@ eN
 eN
 Ck
 ay
-eN
+Dx
 uT
 eN
 eN
 eN
-eN
+Dx
 eN
 eN
 YX
 TE
 UD
 Oa
-YX
+Hc
 TH
 TH
-TH
+Pw
 Fv
 My
-Mr
+Es
 Qu
 Fv
 TH
 TH
-TH
+Pw
 ya
 SF
 SF
@@ -12595,10 +12833,10 @@ uW
 ya
 ez
 IB
-GB
+wW
 ez
 eN
-TT
+eN
 ya
 ya
 zS
@@ -12639,7 +12877,7 @@ SF
 SF
 SF
 ya
-TH
+Pw
 ya
 mQ
 sh
@@ -12648,7 +12886,7 @@ pR
 Qf
 ya
 ee
-Bx
+ez
 ez
 ee
 SI
@@ -12701,10 +12939,10 @@ MF
 kP
 MF
 ya
-Bx
+ez
 ez
 ee
-ez
+vq
 Bz
 eN
 ya
@@ -12750,9 +12988,9 @@ ya
 Pz
 ya
 Za
-sh
+pI
 MF
-pR
+Gr
 MF
 ya
 zI
@@ -12776,7 +13014,7 @@ Tp
 Ml
 Wk
 TH
-TH
+Pw
 ya
 SF
 SF
@@ -12814,7 +13052,7 @@ eN
 KE
 eN
 eN
-yI
+Yq
 ya
 EJ
 bg
@@ -12829,7 +13067,7 @@ Rx
 WF
 XF
 ij
-TH
+Pw
 ij
 ya
 SF
@@ -12866,8 +13104,8 @@ ya
 US
 Eo
 Ry
-Mk
-TT
+eN
+eN
 eN
 ya
 ya
@@ -12876,13 +13114,13 @@ ya
 ya
 ya
 ya
-TH
+Pw
 TH
 xy
-QV
+Ej
 nu
 TH
-TH
+Pw
 TH
 TH
 ya
@@ -12909,18 +13147,18 @@ SF
 SF
 SF
 ya
-TH
+Pw
 nc
 TH
 TH
-TH
+Pw
 TH
 nc
 Gd
 TR
 eN
 eN
-eN
+Dx
 eN
 eN
 Gd
@@ -12929,7 +13167,7 @@ TH
 nc
 TH
 TH
-TH
+Pw
 TH
 TH
 xy
@@ -13287,7 +13525,7 @@ ya
 ya
 ya
 ya
-YX
+Hc
 DO
 DO
 CJ
@@ -13296,7 +13534,7 @@ DO
 DO
 DO
 CJ
-DO
+yN
 YX
 YX
 ya
@@ -13311,7 +13549,7 @@ SF
 SF
 TH
 IE
-QV
+Ej
 wG
 TH
 ya
@@ -13503,7 +13741,7 @@ un
 un
 PQ
 TH
-Lm
+Ki
 TH
 TH
 TH
@@ -13555,7 +13793,7 @@ un
 un
 un
 un
-PQ
+Gc
 TH
 Lm
 TH
@@ -13719,7 +13957,7 @@ ya
 ya
 ya
 ya
-YX
+Hc
 en
 en
 Zc
@@ -13743,7 +13981,7 @@ SF
 ZC
 pT
 IE
-QV
+Ej
 iF
 TH
 ya
@@ -13774,7 +14012,7 @@ SF
 SF
 ya
 mV
-YX
+Hc
 WT
 mD
 pc
@@ -13881,13 +14119,13 @@ SF
 SF
 SF
 ya
-Tu
+Xc
 Nm
 Nm
 FK
 Nm
 Nm
-RO
+Nm
 Nm
 Nm
 Nm
@@ -13905,12 +14143,12 @@ Cp
 Qw
 Qw
 Fe
-QV
+Ej
 pD
 Qw
 jz
 Gd
-TH
+Pw
 ya
 SF
 SF
@@ -14072,7 +14310,7 @@ yM
 TH
 cq
 ya
-TH
+Pw
 ya
 SF
 SF
@@ -14098,6 +14336,7 @@ SF
 SF
 ya
 FD
+Pw
 TH
 TH
 TH
@@ -14106,25 +14345,24 @@ TH
 TH
 TH
 TH
-TH
-TH
+Pw
 TH
 TH
 TH
 TH
 TH
 Yc
-TH
+Pw
 TH
 TH
 TH
 TH
 TH
 xy
-QV
+Ej
 nu
 TH
-cq
+eJ
 ya
 TH
 ya
@@ -14151,7 +14389,7 @@ SF
 SF
 SF
 ya
-xJ
+FD
 TH
 TH
 TH
@@ -14450,7 +14688,7 @@ nu
 TH
 cq
 ya
-TH
+Pw
 ya
 SF
 SF
@@ -14502,7 +14740,7 @@ xy
 QV
 nu
 TH
-Kw
+fT
 ya
 TH
 ya
@@ -14529,22 +14767,22 @@ SF
 SF
 SF
 ya
-Hc
+YX
 pu
-pu
-Mx
-pu
-pu
-pu
-pu
-gO
-pu
-pu
-pu
-pu
+XX
 Mx
 XX
+XX
+XX
 pu
+gO
+XX
+XX
+XX
+XX
+Mx
+XX
+XX
 Hv
 Um
 nX
@@ -14591,9 +14829,9 @@ YX
 YX
 YX
 YX
+Hc
 YX
-YX
-YX
+Hc
 wP
 Lu
 TH
@@ -14648,10 +14886,10 @@ CR
 YX
 YX
 YX
-TH
+Pw
 bg
 TH
-YX
+Hc
 ya
 Xp
 CT
@@ -14759,7 +14997,7 @@ YX
 XN
 av
 TH
-YX
+Hc
 gv
 Oa
 CT
@@ -14854,35 +15092,35 @@ SF
 SF
 ya
 YX
-YX
-YX
+Hc
 YX
 YX
 YX
 Hc
+YX
+ZA
+Bq
 ZA
 ZA
 ZA
 ZA
 ZA
-kr
+Bq
 ZA
 ZA
 ZA
-ZA
-xN
 Ve
 Ve
 Ve
 Ve
-Ve
+VQ
 ZA
 ZA
-kr
 ZA
 ZA
-Hc
-Um
+Bq
+YX
+qw
 ya
 SF
 SF
@@ -14913,7 +15151,7 @@ TH
 TH
 TH
 YX
-Sx
+Xz
 TH
 TH
 TH
@@ -14935,7 +15173,7 @@ TH
 TH
 TH
 TH
-ss
+zF
 YX
 ya
 SF
@@ -14967,7 +15205,7 @@ TH
 TH
 TH
 YX
-Sx
+Xz
 TH
 TH
 TH
@@ -14989,7 +15227,7 @@ TH
 TH
 TH
 TH
-ss
+zF
 YX
 ya
 SF
@@ -15021,7 +15259,7 @@ TH
 TH
 TH
 YX
-Sx
+Xz
 TH
 TH
 TH
@@ -15043,7 +15281,7 @@ TH
 TH
 TH
 TH
-ss
+zF
 YX
 ya
 SF
@@ -15075,7 +15313,7 @@ TH
 TH
 TH
 YX
-Sx
+Xz
 TH
 TH
 TH
@@ -15097,7 +15335,7 @@ TH
 TH
 TH
 TH
-ss
+zF
 dw
 ya
 SF
@@ -15128,8 +15366,8 @@ TH
 TH
 TH
 TH
-mU
-Sx
+YX
+Xz
 TH
 TH
 TH
@@ -15151,7 +15389,7 @@ TH
 TH
 TH
 TH
-ss
+zF
 YX
 ya
 SF
@@ -15183,7 +15421,7 @@ hK
 TH
 TH
 YX
-Sx
+Xz
 TH
 TH
 TH
@@ -15205,7 +15443,7 @@ TH
 TH
 TH
 TH
-ss
+zF
 YX
 ya
 SF
@@ -15232,11 +15470,11 @@ SF
 SF
 ya
 YX
-YX
+Hc
 YX
 MX
 YX
-YX
+Hc
 Xz
 TH
 TH
@@ -15291,7 +15529,7 @@ so
 TH
 TH
 YX
-Sx
+Xz
 TH
 TH
 TH
@@ -15313,8 +15551,8 @@ TH
 TH
 TH
 TH
-ss
-YX
+zF
+Hc
 ya
 SF
 SF
@@ -15345,7 +15583,7 @@ TH
 TH
 TH
 YX
-Sx
+Xz
 TH
 TH
 TH
@@ -15367,7 +15605,7 @@ TH
 TH
 TH
 TH
-ss
+zF
 YX
 ya
 SF
@@ -15452,8 +15690,8 @@ TH
 TH
 TH
 TH
-YX
-Sx
+Hc
+Xz
 TH
 TH
 TH
@@ -15475,7 +15713,7 @@ TH
 TH
 TH
 TH
-ss
+zF
 YX
 ya
 SF
@@ -15513,24 +15751,24 @@ Xc
 Xc
 Xc
 Xc
-Tu
+Xc
+xh
+Xc
+YY
+Xc
+Xc
+Xc
+Xc
+Xc
+xh
+Xc
 Xc
 Xc
 YY
 Xc
 Xc
-Tu
-Xc
-Xc
-Xc
-Xc
-Xc
-Xc
-YY
-Xc
-Xc
-Hc
-dw
+YX
+ob
 ya
 SF
 SF
@@ -17089,7 +17327,7 @@ xB
 wD
 Cu
 wD
-wD
+BO
 wD
 wD
 CC
@@ -17346,7 +17584,7 @@ Vz
 Vz
 Vz
 CC
-Jt
+NE
 lV
 DY
 DY
@@ -17354,12 +17592,12 @@ DY
 DY
 lV
 lV
-lV
+QF
 xB
 wD
 wD
 wD
-wD
+BO
 wD
 wD
 wD
@@ -17508,7 +17746,7 @@ Vz
 Vz
 dG
 fo
-lV
+QF
 lV
 DY
 DY
@@ -17570,19 +17808,19 @@ ti
 ti
 ti
 ge
-Km
+Zv
 ti
 Vn
 xO
 xO
+za
 Xl
 Xl
 Xl
 Xl
 Xl
 Xl
-Xl
-Xl
+za
 Xl
 Jg
 SF
@@ -18007,7 +18245,7 @@ fp
 fp
 Jg
 Vz
-Xl
+za
 Vz
 Vz
 Vz
@@ -18056,7 +18294,7 @@ Vz
 Xl
 Jg
 Jg
-qE
+Si
 qE
 qE
 Jg
@@ -18161,7 +18399,7 @@ xO
 xO
 xO
 xO
-Xl
+za
 Jg
 vD
 Vz
@@ -18493,7 +18731,7 @@ Vz
 Vz
 Vz
 Vz
-Xl
+za
 xO
 Vz
 Vz
@@ -18904,6 +19142,7 @@ Vz
 Vz
 Xl
 Xl
+za
 Xl
 Xl
 Xl
@@ -18916,6 +19155,7 @@ Xl
 Xl
 Xl
 Xl
+za
 Xl
 Xl
 Xl
@@ -18923,6 +19163,7 @@ Xl
 Xl
 Xl
 Xl
+za
 Xl
 Xl
 Xl
@@ -18930,10 +19171,7 @@ Xl
 Xl
 Xl
 Xl
-Xl
-Xl
-Xl
-Xl
+za
 Jg
 SF
 SF
@@ -19608,6 +19846,7 @@ SF
 Jg
 Xl
 Xl
+za
 Xl
 Xl
 Xl
@@ -19618,6 +19857,7 @@ Xl
 Xl
 Xl
 Xl
+za
 Xl
 Xl
 Xl
@@ -19625,9 +19865,7 @@ Xl
 Xl
 Xl
 Xl
-Xl
-Xl
-Xl
+za
 xO
 xO
 xO
@@ -20049,9 +20287,9 @@ Jg
 lV
 lV
 lV
+QF
 lV
-lV
-lV
+QF
 lV
 Jg
 Kh
@@ -20106,14 +20344,14 @@ ti
 zM
 iu
 Vc
-ti
+dU
 ge
 Km
 ti
 Vn
 Xl
 Xl
-Xl
+za
 xO
 xO
 xO
@@ -20157,7 +20395,7 @@ Vz
 Vz
 Vz
 Vz
-Jt
+NE
 Vz
 yx
 Vz
@@ -20707,7 +20945,7 @@ Vz
 Vz
 Bo
 wD
-Xl
+za
 Xl
 Xl
 Xl
