@@ -98,8 +98,8 @@
 	icon_state = "flamethrower_tank"
 	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	max_rounds = 500
-	current_rounds = 500
+	max_rounds = 300
+	current_rounds = 300
 	reload_delay = 1 SECONDS
 	caliber = CALIBER_FUEL_THICK
 	magazine_flags = MAGAZINE_WORN

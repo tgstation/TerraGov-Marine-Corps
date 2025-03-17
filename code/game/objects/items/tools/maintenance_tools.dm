@@ -464,7 +464,7 @@
 	equip_slot_flags = ITEM_SLOT_BACK
 	icon_state = "marine_flamerpack"
 	w_class = WEIGHT_CLASS_BULKY
-	max_fuel = 500 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
+	max_fuel = 300 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
 
 /obj/item/tool/handheld_charger
 	name = "handheld charger"
