@@ -145,7 +145,8 @@
 			if(completed_segments == total_segments) //If we're done, there's no need to run a segment again
 				busy = TRUE
 
-				usr.visible_message(span_notice("[usr] inserts a floppy disk into the [src] and begins to type...", "You insert a floppy disk into the [src] and begin to type..."))
+				usr.visible_message(span_notice("[usr] inserts a floppy disk into the [src] and begins to type..."),
+				span_notice("You insert a floppy disk into the [src] and begin to type..."))
 				if(!do_after(usr, printing_time, NONE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 					busy = FALSE
 					return
@@ -158,7 +159,8 @@
 
 			busy = TRUE
 
-			usr.visible_message(span_notice("[usr] begins typing away at the [src]'s keyboard...", "You begin typing away at the [src]'s keyboard..."))
+			usr.visible_message(span_notice("[usr] begins typing away at the [src]'s keyboard..."),
+			span_notice("You begin typing away at the [src]'s keyboard..."))
 			if(!do_after(usr, start_time, NONE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 				busy = FALSE
 				return
