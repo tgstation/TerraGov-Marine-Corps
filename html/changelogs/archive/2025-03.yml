@@ -358,3 +358,9 @@
   - bugfix: fixed floors layering too high
   - qol: Mech overload automatically disables on running out of power
   - bugfix: fixed queen shriek waves being hilariously slow
+2025-03-17:
+  Runian:
+  - balance: Dragon is now slower on average and even slower while using their ability,
+      Dragon Breath.
+  - balance: Dragon's armor gain while using Dragon Breath has been decreased from
+      15 to 10.
