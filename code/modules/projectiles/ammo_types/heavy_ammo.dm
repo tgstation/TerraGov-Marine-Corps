@@ -190,9 +190,9 @@
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 30
-	penetration = 40
-	sundering = 2.5
+	damage = 40
+	penetration = 45
+	sundering = 4
 
 /datum/ammo/rocket/tank_autocannon_he
 	name = "autocannon high explosive"
@@ -202,14 +202,14 @@
 	ammo_behavior_flags = AMMO_BALLISTIC
 	damage = 15
 	penetration = 20
-	sundering = 1.5
+	sundering = 0
 
 /datum/ammo/rocket/tank_autocannon_he/drop_nade(turf/T)
-	explosion(T, weak_impact_range = 3, tiny = TRUE)
+	explosion(T, weak_impact_range = 2, tiny = TRUE)
 
-/datum/ammo/rocket/tank_autocannon_he/on_hit_mob(mob/target_mob, obj/projectile/proj) // This is so it doesn't knock back on hit.
-	var/target_turf = get_turf(target_mob) // skipping staggerstun on parent
-	drop_nade(target_turf)
+/datum/ammo/rocket/tank_autocannon_he/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	//this specifically doesn't knockback. Don't change the explosion above weak.
+	drop_nade(get_turf(target_mob))
 
 // SARDEN
 
