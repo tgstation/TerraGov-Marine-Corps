@@ -394,7 +394,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	var/list/goal_list = list()
 	if(GLOB.goal_nodes[mob_parent.faction])
 		goal_list[GLOB.goal_nodes[mob_parent.faction]] = AI_ESCORT_RATING_FACTION_GOAL
-	if(ismob(escorted_atom))
+	if(ismob(escorted_atom) && (get_dist(mob_parent, escorted_atom) <= (AI_ESCORTING_MAX_DISTANCE * 2)))
 		goal_list[escorted_atom] = AI_ESCORT_RATING_BUDDY
 	else
 		var/atom/mob_to_follow = get_nearest_target(mob_parent, AI_ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_MOB, mob_parent.faction, need_los = TRUE)
