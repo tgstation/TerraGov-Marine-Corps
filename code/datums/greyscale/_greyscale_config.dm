@@ -1,5 +1,7 @@
 
 /datum/greyscale_config
+	/// User friendly name used in the debug menu
+	var/name
 	/// Reference to the json config file
 	var/json_config
 
@@ -139,8 +141,9 @@
 		if(length(colors) < expected_colors)
 			CRASH("[DebugName()] expected [expected_colors] color arguments but only received [length(colors)]")
 		if(islist(layer))
+			var/list/layer_list = layer
 			layer_icon = GenerateLayerGroup(colors, layer, render_steps)
-			layer = layer[1] // When there are multiple layers in a group like this we use the first one's blend mode
+			layer = layer_list[1] // When there are multiple layers in a group like this we use the first one's blend mode
 		else
 			layer_icon = layer.Generate(colors, render_steps, src)
 		if(!new_icon)

@@ -1,10 +1,13 @@
 /obj/effect/decal/cleanable
+	layer = CLEANABLE_FLOOR_OBJECT_LAYER
+	///List of icon states that our cleanable can have. Used to add variety
 	var/list/random_icon_states = list()
-	var/targeted_by = null			// Used so cleanbots can't claim a mess.
+	/// Used so cleanbots can't claim a mess.
+	var/targeted_by = null
 
 /obj/effect/decal/cleanable/Initialize(mapload)
-	if (random_icon_states && length(src.random_icon_states) > 0)
-		src.icon_state = pick(src.random_icon_states)
+	if(random_icon_states && length(random_icon_states) > 0)
+		icon_state = pick(random_icon_states)
 	return ..()
 
 /obj/effect/decal/cleanable/attackby(obj/item/I, mob/user, params)
@@ -14,23 +17,24 @@
 	else
 		return ..()
 
+/obj/effect/decal/cleanable/wash()
+	. = ..()
+	qdel(src)
+	return TRUE
 
 /obj/effect/decal/cleanable/blood/splatter/animated
 	var/turf/target_turf
 	var/loc_last_process
-
 
 /obj/effect/decal/cleanable/blood/splatter/animated/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	loc_last_process = loc
 
-
 /obj/effect/decal/cleanable/blood/splatter/animated/Destroy()
 	animation_destruction_fade(src)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
-
 
 /obj/effect/decal/cleanable/blood/splatter/animated/process()
 	if(!target_turf || loc == target_turf)

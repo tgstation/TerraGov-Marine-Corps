@@ -71,10 +71,10 @@
 	else if(isscrewdriver(I))
 		disable = !disable
 		if(disable)
-			user.visible_message(span_warning(" [user] has disabled the [src]!"), span_warning(" You disable the connection to the [src]."))
+			user.visible_message(span_warning("[user] has disabled the [src]!"), span_warning("You disable the connection to the [src]."))
 			icon_state = "[base_state]-d"
 		else
-			user.visible_message(span_warning(" [user] has reconnected the [src]!"), span_warning(" You fix the connection to the [src]."))
+			user.visible_message(span_warning("[user] has reconnected the [src]!"), span_warning("You fix the connection to the [src]."))
 			if(powered())
 				icon_state = "[base_state]"
 			else
@@ -98,11 +98,10 @@
 	return 1
 
 /obj/machinery/sparker/emp_act(severity)
+	. = ..()
 	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
 		return
 	ignite()
-	..(severity)
 
 /obj/machinery/ignition_switch/attack_ai(mob/user)
 	return attack_hand(user)

@@ -54,9 +54,9 @@
 	return 1
 
 /obj/machinery/computer/emp_act(severity)
-	if(prob(20/severity)) set_broken()
-	..()
-
+	. = ..()
+	if(prob(20/severity))
+		set_broken()
 
 /obj/machinery/computer/ex_act(severity)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
@@ -85,12 +85,12 @@
 				set_broken()
 
 
-/obj/machinery/computer/bullet_act(obj/projectile/Proj)
+/obj/machinery/computer/bullet_act(obj/projectile/proj)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		visible_message("[Proj] ricochets off [src]!")
+		visible_message("[proj] ricochets off [src]!")
 		return 0
 	else
-		if(prob(round(Proj.ammo.damage /2)))
+		if(prob(round(proj.ammo.damage /2)))
 			set_broken()
 		..()
 		return 1
@@ -115,12 +115,18 @@
 		return
 	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
 		return
-	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
+	. += emissive_appearance(icon, screen_overlay, src, alpha = src.alpha)
 	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
 
 /obj/machinery/computer/proc/set_broken()
 	machine_stat |= BROKEN
 	density = FALSE
+	update_icon()
+
+/obj/machinery/computer/proc/repair()
+	machine_stat &= ~BROKEN
+	density = TRUE
+	durability = initial(durability)
 	update_icon()
 
 /obj/machinery/computer/proc/decode(text)
@@ -141,10 +147,10 @@
 	if(!welder.tool_use_check(user, 2))
 		return FALSE
 
-	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to deconstruct [src]."),
 		span_notice("You fumble around figuring out how to deconstruct [src]."))
-		var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_MASTER - user.skills.getRating(SKILL_ENGINEER))
+		var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_EXPERT - user.skills.getRating(SKILL_ENGINEER))
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 			return
 
@@ -172,10 +178,10 @@
 		return
 
 	if(isscrewdriver(I) && circuit)
-		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
+		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to deconstruct [src]."),
 			span_notice("You fumble around figuring out how to deconstruct [src]."))
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_MASTER - user.skills.getRating(SKILL_ENGINEER) )
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_EXPERT - user.skills.getRating(SKILL_ENGINEER) )
 			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 				return
 

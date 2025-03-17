@@ -2,7 +2,7 @@
 	desc = "The world of janitalia wouldn't be complete without a mop."
 	name = "mop"
 	icon = 'icons/obj/janitor.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/janitor_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/janitor_right.dmi',
 	)
@@ -12,7 +12,7 @@
 	throw_speed = 5
 	throw_range = 10
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
+	attack_verb = list("mops", "bashes", "bludgeons", "whacks")
 	var/mopping = 0
 	var/mopcount = 0
 
@@ -23,9 +23,9 @@
 
 /turf/proc/clean(atom/source)
 	if(source.reagents.has_reagent(/datum/reagent/water, 1))
-		clean_blood()
+		wash()
 		for(var/obj/effect/O in src)
-			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+			if(istype(O, /obj/effect/decal/cleanable/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				qdel(O)
 	source.reagents.reaction(src, TOUCH, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
 	source.reagents.remove_any(1)				//reaction() doesn't use up the reagents
@@ -33,7 +33,7 @@
 
 /obj/item/tool/mop/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return
-	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/rune))
+	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/decal/cleanable/rune))
 		if(reagents.total_volume < 1)
 			balloon_alert(user, "Mop is dry")
 			return
@@ -51,7 +51,7 @@
 	desc = "Caution! Wet Floor!"
 	icon_state = "caution"
 	icon = 'icons/obj/janitor.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/janitor_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/janitor_right.dmi',
 	)
@@ -60,20 +60,20 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("warned", "cautioned", "smashed")
+	attack_verb = list("warns", "cautions", "smashes")
 
 /obj/item/clothing/head/warning_cone
 	name = "warning cone"
 	desc = "This cone is trying to warn you of something!"
 	icon_state = "cone"
 	icon = 'icons/obj/janitor.dmi'
-	item_icons = list(slot_head_str = 'icons/mob/clothing/headwear/head_0.dmi')
+	worn_icon_list = list(slot_head_str = 'icons/mob/clothing/headwear/head_0.dmi')
 	force = 1
 	throwforce = 3
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("warned", "cautioned", "smashed")
+	attack_verb = list("warns", "cautions", "smashes")
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
 
 
@@ -102,13 +102,13 @@
 	else if(isturf(target))
 		balloon_alert(user, "Scrubs \the [target.name]")
 		var/turf/target_turf = target
-		target_turf.clean_turf()
+		target_turf.wash()
 	else if(istype(target,/obj/effect/decal/cleanable))
 		balloon_alert(user, "Scrubs \the [target.name] out")
 		qdel(target)
 	else
 		balloon_alert(user, "Cleans \the [target.name]")
-		target.clean_blood()
+		target.wash()
 
 /obj/item/tool/soap/attack(mob/target, mob/user)
 	if(target && user && ishuman(target) && ishuman(user) && !target.stat && !user.stat && user.zone_selected == "mouth" )

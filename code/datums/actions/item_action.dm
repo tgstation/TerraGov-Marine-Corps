@@ -9,7 +9,11 @@
 	/// Defines wheter we overlay the image of the obj we are linked to
 	var/use_obj_appeareance = TRUE
 
-/datum/action/item_action/New(Target, obj/item/holder)
+/datum/action/item_action/New(Target, obj/item/holder, _action_icon, _action_icon_state)
+	if(_action_icon)
+		action_icon = _action_icon
+	if(_action_icon_state)
+		action_icon_state = _action_icon_state
 	. = ..()
 	if(!holder)
 		holder = target
@@ -41,7 +45,7 @@
 	if(use_obj_appeareance)
 		var/obj/item/I = target
 		// -0.5 so its below maptext and above the selected frames
-		var/item_image = mutable_appearance(I.icon, I.icon_state, ACTION_LAYER_IMAGE_ONTOP, FLOAT_PLANE)
+		var/item_image = mutable_appearance(I.icon, I.icon_state, ACTION_LAYER_IMAGE_ONTOP)
 		visual_references[VREF_MUTABLE_LINKED_OBJ] = item_image
 		button.add_overlay(item_image)
 	else
@@ -62,13 +66,17 @@
 		return
 	set_toggle(!toggled)
 
+/datum/action/item_action/toggle/remove_action(mob/M)
+	deselect()
+	return ..()
+
 /datum/action/item_action/toggle/suit_toggle
 	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_KB_SUITLIGHT)
 
 /datum/action/item_action/firemode
 	// just here so players see what key is it bound to
 	keybinding_signals = list(
-		KEYBINDING_ALTERNATE = COMSIG_KB_FIREMODE,
+		KEYBINDING_NORMAL = COMSIG_KB_FIREMODE,
 	)
 	use_obj_appeareance = FALSE
 	var/action_firemode
@@ -78,7 +86,6 @@
 /datum/action/item_action/firemode/New()
 	. = ..()
 	holder_gun = holder_item
-	update_button_icon()
 
 /datum/action/item_action/firemode/action_activate()
 	. = ..()

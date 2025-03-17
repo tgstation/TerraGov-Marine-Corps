@@ -97,6 +97,9 @@
 /datum/greyscale_config/armor_mk1/skirmisher
 	icon_file = 'icons/mob/modular/mark_one/skirmisher.dmi'
 
+/datum/greyscale_config/armor_mk1/mjolnir
+	icon_file = 'icons/mob/modular/mark_one/mjolnir.dmi'
+
 //Hardsuits
 
 /datum/greyscale_config/hardsuit_variant
@@ -149,6 +152,9 @@
 
 /datum/greyscale_config/armor_mk2/trooper
 	icon_file = 'icons/mob/modular/mark_two/trooper.dmi'
+
+/datum/greyscale_config/armor_mk2/mjolnir_open
+	icon_file = 'icons/mob/modular/mark_two/mjolnir_open.dmi'
 
 /datum/greyscale_config/xenonaut
 	icon_file = 'icons/mob/modular/xenonauten.dmi'
@@ -243,7 +249,7 @@
 ///AMMO - for both bullets and magazines
 /datum/greyscale_config/ammo
 	json_config = 'code/datums/greyscale/json_configs/ammo.json'
-	icon_file = 'icons/obj/items/ammo.dmi'
+	icon_file = 'icons/obj/items/ammo/greyscale.dmi'
 
 ///PROJECTILES
 /datum/greyscale_config/projectile
@@ -317,3 +323,35 @@
 /datum/greyscale_config/broken_man
 	icon_file = 'icons/mob/human_face.dmi'
 	json_config = 'code/datums/greyscale/json_configs/broken_man.json'
+
+
+
+
+//
+// BENCHES
+//
+
+/datum/greyscale_config/bench_solo
+	name = "Bench Solo"
+	icon_file = 'icons/obj/chairs_wide.dmi'
+	json_config = 'code/datums/greyscale/json_configs/bench_solo.json'
+
+/datum/greyscale_config/bench_middle
+	name = "Bench Middle"
+	icon_file = 'icons/obj/chairs_wide.dmi'
+	json_config = 'code/datums/greyscale/json_configs/bench_middle.json'
+
+/datum/greyscale_config/bench_left
+	name = "Bench Left"
+	icon_file = 'icons/obj/chairs_wide.dmi'
+	json_config = 'code/datums/greyscale/json_configs/bench_left.json'
+
+/datum/greyscale_config/bench_right
+	name = "Bench Right"
+	icon_file = 'icons/obj/chairs_wide.dmi'
+	json_config = 'code/datums/greyscale/json_configs/bench_right.json'
+
+/datum/greyscale_config/bench_corner
+	name = "Bench Corner"
+	icon_file = 'icons/obj/chairs_wide.dmi'
+	json_config = 'code/datums/greyscale/json_configs/bench_corner.json'

@@ -62,33 +62,21 @@
 	..()
 	return user.equip_to_appropriate_slot(src)
 
-/obj/item/clothing/on_pocket_insertion()
-	. = ..()
-	update_icon()
-
-/obj/item/clothing/on_pocket_removal()
-	. = ..()
-	update_icon()
-
-/obj/item/clothing/do_quick_equip(mob/user)
-	for(var/attachment_slot in attachments_by_slot)
-		if(ismodulararmorstoragemodule(attachments_by_slot[attachment_slot]))
-			var/obj/item/armor_module/storage/storage_attachment = attachments_by_slot[attachment_slot]
-			return storage_attachment.storage.do_quick_equip(user)
-	return src
-
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return
+
+/obj/item/clothing/examine_descriptor(mob/user)
+	return "clothing item"
 
 /obj/item/clothing/update_greyscale()
 	. = ..()
 	if(!greyscale_config)
 		return
-	for(var/key in item_icons)
+	for(var/key in worn_icon_list)
 		if(key == slot_l_hand_str || key == slot_r_hand_str)
 			continue
-		item_icons[key] = icon
+		worn_icon_list[key] = icon
 
 /obj/item/clothing/apply_blood(mutable_appearance/standing)
 	if(blood_overlay && blood_sprite_state)
@@ -115,7 +103,7 @@
 // Ears: headsets, earmuffs and tiny objects
 /obj/item/clothing/ears
 	name = "ears"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/ears_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/ears_right.dmi',
 	)
@@ -133,7 +121,7 @@
 	name = "earmuffs"
 	desc = "Protects your hearing from loud noises, and quiet ones as well."
 	icon_state = "earmuffs"
-	item_state = "earmuffs"
+	worn_icon_state = "earmuffs"
 	equip_slot_flags = ITEM_SLOT_EARS
 
 /obj/item/clothing/ears/earmuffs/green
@@ -146,7 +134,7 @@
 //Suit
 /obj/item/clothing/suit
 	icon = 'icons/obj/clothing/suits/suits.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/suits_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/suits_right.dmi',
 	)
@@ -159,14 +147,11 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attachments_by_slot = list(ATTACHMENT_SLOT_BADGE)
 	attachments_allowed = list(/obj/item/armor_module/armor/badge)
-	var/supporting_limbs = NONE
-	var/blood_overlay_type = "suit"
-	var/shield_state = "shield-blue"
-
-	// Strength of the armor light used by [proc/set_light()]
 	light_power = 3
 	light_range = 4
 	light_system = MOVABLE_LIGHT
+	///Blood overlay icon_state
+	var/blood_overlay_type = "suit"
 
 /obj/item/clothing/suit/Initialize(mapload)
 	. = ..()
@@ -194,15 +179,6 @@
 		var/mob/M = loc
 		M.update_inv_wear_suit()
 
-/obj/item/clothing/suit/MouseDrop(over_object, src_location, over_location)
-	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-		return ..()
-	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
-		return ..()
-	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-	if(armor_storage.storage.handle_mousedrop(usr, over_object))
-		return ..()
-
 /////////////////////////////////////////////////////////
 //Gloves
 /obj/item/clothing/gloves
@@ -210,7 +186,7 @@
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/clothing/gloves.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/gloves_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/gloves_right.dmi',
 	)
@@ -223,22 +199,22 @@
 	blood_sprite_state = "bloodyhands"
 	armor_protection_flags = HANDS
 	equip_slot_flags = ITEM_SLOT_GLOVES
-	attack_verb = list("challenged")
+	attack_verb = list("challenges")
 
 
 /obj/item/clothing/gloves/update_greyscale(list/colors, update)
 	. = ..()
 	if(!greyscale_config)
 		return
-	item_icons = list(slot_gloves_str = icon)
+	worn_icon_list = list(slot_gloves_str = icon)
 
 /obj/item/clothing/gloves/emp_act(severity)
+	. = ..()
 	if(cell)
 		//why is this not part of the powercell code?
 		cell.charge -= 1000 / severity
 		if (cell.charge < 0)
 			cell.charge = 0
-	return ..()
 
 // Called just before an attack_hand(), in mob/UnarmedAttack()
 /obj/item/clothing/gloves/proc/Touch(atom/A, proximity)
@@ -255,7 +231,7 @@
 			return
 
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		user.visible_message(span_warning(" [user] cuts the fingertips off of the [src]."),span_warning(" You cut the fingertips off of the [src]."))
+		user.visible_message(span_warning("[user] cuts the fingertips off of the [src]."),span_warning("You cut the fingertips off of the [src]."))
 
 		clipped = TRUE
 		name = "mangled [name]"
@@ -269,7 +245,7 @@
 /obj/item/clothing/mask
 	name = "mask"
 	icon = 'icons/obj/clothing/masks.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/masks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/masks_right.dmi',
 	)
@@ -289,13 +265,22 @@
 		var/mob/M = src.loc
 		M.update_inv_wear_mask()
 
+/obj/item/clothing/mask/examine_descriptor(mob/user)
+	return "mask"
+
+/obj/item/clothing/mask/examine_tags(mob/user)
+	. = ..()
+	if(anti_hug)
+		.["larval hugger proof"] = "It will protect the wearer from [anti_hug] larval hugger attack\s."
+	else if(initial(anti_hug) > 0 && !anti_hug)
+		.[span_warning("not larval hugger protective")] = "It won't protect the wearer from larval hugger attacks anymore. Replace it as soon as possible."
 
 ////////////////////////////////////////////////////////////////////////
 //Shoes
 /obj/item/clothing/shoes
 	name = "shoes"
 	icon = 'icons/obj/clothing/shoes.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/clothing/shoes_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/clothing/shoes_right.dmi',
 	)
@@ -313,13 +298,3 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_shoes()
-
-
-/obj/item/clothing/shoes/MouseDrop(over_object, src_location, over_location)
-	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
-		return ..()
-	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
-		return ..()
-	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-	if(armor_storage.storage.handle_mousedrop(usr, over_object))
-		return ..()

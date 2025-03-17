@@ -52,6 +52,11 @@
 	desc = "A Ripley APLU right leg. Contains somewhat complex servodrives and balance maintaining systems."
 	icon_state = "ripley_r_leg"
 
+////////// Firefighter
+
+/obj/item/mecha_parts/chassis/firefighter
+	name = "\improper Firefighter Chassis"
+
 ///////// Odysseus
 
 /obj/item/mecha_parts/chassis/odysseus
@@ -64,7 +69,7 @@
 
 /obj/item/mecha_parts/part/odysseus_torso
 	name = "\improper Odysseus torso"
-	desc="A torso part of Odysseus. Contains power unit, processing core and life support systems along with an attachment port for a mounted sleeper."
+	desc = "A torso part of Odysseus. Contains power unit, processing core and life support systems along with an attachment port for a mounted sleeper."
 	icon_state = "odysseus_torso"
 
 /obj/item/mecha_parts/part/odysseus_left_arm
@@ -127,7 +132,6 @@
 	name = "\improper Gygax armor plates"
 	desc = "A set of armor plates designed for the Gygax. Designed to effectively deflect damage with a lightweight construction."
 	icon_state = "gygax_armor"
-
 
 //////////// Durand
 
@@ -230,45 +234,44 @@
 	desc = "A H.O.N.K right leg. The foot appears just large enough to fully accommodate a clown shoe."
 	icon_state = "honker_r_leg"
 
-
 ////////// Phazon
 
 /obj/item/mecha_parts/chassis/phazon
 	name = "\improper Phazon chassis"
 
 /obj/item/mecha_parts/part/phazon_torso
-	name="\improper Phazon torso"
-	desc="A Phazon torso part. The socket for the bluespace core that powers the exosuit's unique phase drives is located in the middle."
+	name = "\improper Phazon torso"
+	desc = "A Phazon torso part. The socket for the bluespace core that powers the exosuit's unique phase drives is located in the middle."
 	icon_state = "phazon_harness"
 
 /obj/item/mecha_parts/part/phazon_head
-	name="\improper Phazon head"
-	desc="A Phazon head. Its sensors are carefully calibrated to provide vision and data even when the exosuit is phasing."
+	name = "\improper Phazon head"
+	desc = "A Phazon head. Its sensors are carefully calibrated to provide vision and data even when the exosuit is phasing."
 	icon_state = "phazon_head"
 
 /obj/item/mecha_parts/part/phazon_left_arm
-	name="\improper Phazon left arm"
-	desc="A Phazon left arm. Several microtool arrays are located under the armor plating, which can be adjusted to the situation at hand."
+	name = "\improper Phazon left arm"
+	desc = "A Phazon left arm. Several microtool arrays are located under the armor plating, which can be adjusted to the situation at hand."
 	icon_state = "phazon_l_arm"
 
 /obj/item/mecha_parts/part/phazon_right_arm
-	name="\improper Phazon right arm"
-	desc="A Phazon right arm. Several microtool arrays are located under the armor plating, which can be adjusted to the situation at hand."
+	name = "\improper Phazon right arm"
+	desc = "A Phazon right arm. Several microtool arrays are located under the armor plating, which can be adjusted to the situation at hand."
 	icon_state = "phazon_r_arm"
 
 /obj/item/mecha_parts/part/phazon_left_leg
-	name="\improper Phazon left leg"
-	desc="A Phazon left leg. It contains the unique phase drives that allow the exosuit to phase through solid matter when engaged."
+	name = "\improper Phazon left leg"
+	desc = "A Phazon left leg. It contains the unique phase drives that allow the exosuit to phase through solid matter when engaged."
 	icon_state = "phazon_l_leg"
 
 /obj/item/mecha_parts/part/phazon_right_leg
-	name="\improper Phazon right leg"
-	desc="A Phazon right leg. It contains the unique phase drives that allow the exosuit to phase through solid matter when engaged."
+	name = "\improper Phazon right leg"
+	desc = "A Phazon right leg. It contains the unique phase drives that allow the exosuit to phase through solid matter when engaged."
 	icon_state = "phazon_r_leg"
 
 /obj/item/mecha_parts/part/phazon_armor
-	name="Phazon armor"
-	desc="Phazon armor plates. They are layered with plasma to protect the pilot from the stress of phasing and have unusual properties."
+	name = "Phazon armor"
+	desc = "Phazon armor plates. They are layered with plasma to protect the pilot from the stress of phasing and have unusual properties."
 	icon_state = "phazon_armor"
 
 // Savannah-Ivanov
@@ -277,38 +280,38 @@
 	name = "\improper Savannah-Ivanov chassis"
 
 /obj/item/mecha_parts/part/savannah_ivanov_torso
-	name="\improper Savannah-Ivanov torso"
-	desc="A Savannah-Ivanov torso part. It's missing a huge chunk of space..."
+	name = "\improper Savannah-Ivanov torso"
+	desc = "A Savannah-Ivanov torso part. It's missing a huge chunk of space..."
 	icon_state = "savannah_ivanov_harness"
 
 /obj/item/mecha_parts/part/savannah_ivanov_head
-	name="\improper Savannah-Ivanov head"
-	desc="A Savannah-Ivanov head. It's sensors have been adjusted to support graceful landings."
+	name = "\improper Savannah-Ivanov head"
+	desc = "A Savannah-Ivanov head. It's sensors have been adjusted to support graceful landings."
 	icon_state = "savannah_ivanov_head"
 
 /obj/item/mecha_parts/part/savannah_ivanov_left_arm
-	name="\improper Savannah-Ivanov left arm"
-	desc="A Savannah-Ivanov left arm. Hidden rocket fabrication included in the wrists."
+	name = "\improper Savannah-Ivanov left arm"
+	desc = "A Savannah-Ivanov left arm. Hidden rocket fabrication included in the wrists."
 	icon_state = "savannah_ivanov_l_arm"
 
 /obj/item/mecha_parts/part/savannah_ivanov_right_arm
-	name="\improper Savannah-Ivanov right arm"
-	desc="A Savannah-Ivanov left arm. Hidden rocket fabrication included in the wrists."
+	name = "\improper Savannah-Ivanov right arm"
+	desc = "A Savannah-Ivanov left arm. Hidden rocket fabrication included in the wrists."
 	icon_state = "savannah_ivanov_r_arm"
 
 /obj/item/mecha_parts/part/savannah_ivanov_left_leg
-	name="\improper Savannah-Ivanov left leg"
-	desc="A Savannah-Ivanov left leg. In production they were designed to carry more than two passengers, so the leaping functionality was added as to not waste potential."
+	name = "\improper Savannah-Ivanov left leg"
+	desc = "A Savannah-Ivanov left leg. In production they were designed to carry more than two passengers, so the leaping functionality was added as to not waste potential."
 	icon_state = "savannah_ivanov_l_leg"
 
 /obj/item/mecha_parts/part/savannah_ivanov_right_leg
-	name="\improper Savannah-Ivanov right leg"
-	desc="A Savannah-Ivanov left leg. In production they were designed to carry more than two passengers, so the leaping functionality was added as to not waste potential."
+	name = "\improper Savannah-Ivanov right leg"
+	desc = "A Savannah-Ivanov left leg. In production they were designed to carry more than two passengers, so the leaping functionality was added as to not waste potential."
 	icon_state = "savannah_ivanov_r_leg"
 
 /obj/item/mecha_parts/part/savannah_ivanov_armor
-	name="Savannah-Ivanov armor"
-	desc="Savannah-Ivanov armor plates. They are uniquely shaped and reinforced to deal with the stresses of two pilots, grandiose leaps, and missiles."
+	name = "Savannah-Ivanov armor"
+	desc = "Savannah-Ivanov armor plates. They are uniquely shaped and reinforced to deal with the stresses of two pilots, grandiose leaps, and missiles."
 	icon_state = "savannah_ivanov_armor"
 
 ///////// Circuitboards
@@ -330,7 +333,6 @@
 /obj/item/circuitboard/mecha/ripley/main
 	name = "Ripley Central Control module (Exosuit Board)"
 	icon_state = "mainboard"
-
 
 /obj/item/circuitboard/mecha/gygax/peripherals
 	name = "Gygax Peripherals Control module (Exosuit Board)"

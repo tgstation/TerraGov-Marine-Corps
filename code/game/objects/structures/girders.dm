@@ -19,7 +19,7 @@
 	base_icon_state = "girder"
 
 /obj/structure/girder/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -40, 8, 1)
 
 #define GIRDER_DECONSTRUCTING (new_state < girder_state)
 
@@ -155,7 +155,7 @@
 			var/turf/T = get_turf(src)
 			if(anchored)
 				return FALSE
-			if(!isfloorturf(T) && !isbasalt(T) && !islavacatwalk(T) && !isopengroundturf(T))
+			if(!isfloorturf(T) && !isbasalt(T) && !isopengroundturf(T))
 				to_chat(usr, span_warning("The girder must be secured on the floor!"))
 				return FALSE
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
@@ -326,7 +326,7 @@
 	change_state(GIRDER_BROKEN)
 
 
-/obj/structure/girder/deconstruct(disassembled = TRUE)
+/obj/structure/girder/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled)
 		if(reinforcement)
 			new reinforcement(loc)

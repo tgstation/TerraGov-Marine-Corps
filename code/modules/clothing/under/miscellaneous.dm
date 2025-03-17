@@ -2,13 +2,13 @@
 	name = "red pj's"
 	desc = "Sleepwear."
 	icon_state = "red_pyjamas"
-	item_state = "w_suit"
+	worn_icon_state = "w_suit"
 
 /obj/item/clothing/under/pj/blue
 	name = "blue pj's"
 	desc = "Sleepwear."
 	icon_state = "blue_pyjamas"
-	item_state = "w_suit"
+	worn_icon_state = "w_suit"
 
 /obj/item/clothing/under/captain_fly
 	name = "rogue captains uniform"
@@ -34,7 +34,7 @@
 	name = "prison jumpsuit"
 	desc = "It's standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "prisoner"
-	item_state = "prisoner"
+	worn_icon_state = "prisoner"
 	has_sensor = LOCKED_SENSORS
 	sensor_mode = SENSOR_COORDS
 
@@ -42,28 +42,28 @@
 	name = "sexy-clown suit"
 	desc = "It makes you look HONKable!"
 	icon_state = "sexyclown"
-	item_state = "sexyclown"
+	worn_icon_state = "sexyclown"
 	armor_protection_flags = CHEST|GROIN
 
 /obj/item/clothing/under/rank/vice
 	name = "vice officer's jumpsuit"
 	desc = "It's the standard issue pretty-boy outfit, as seen on Holo-Vision."
 	icon_state = "vice"
-	item_state = "gy_suit"
+	worn_icon_state = "gy_suit"
 	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/centcom_officer
 	desc = "It's a jumpsuit worn by CentCom Officers."
 	name = "\improper CentCom officer's jumpsuit"
 	icon_state = "officer"
-	item_state = "g_suit"
+	worn_icon_state = "g_suit"
 	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/centcom_commander
 	desc = "It's a jumpsuit worn by CentCom's highest-tier Commanders."
 	name = "\improper CentCom officer's jumpsuit"
 	icon_state = "centcom"
-	item_state = "dg_suit"
+	worn_icon_state = "dg_suit"
 	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/centcom_commander/sa
@@ -77,13 +77,13 @@
 	name = "ERT tactical uniform"
 	desc = "A short-sleeved black uniform, paired with grey digital-camo cargo pants. It looks very tactical."
 	icon_state = "ert_uniform"
-	item_state = "bl_suit"
+	worn_icon_state = "bl_suit"
 
 /obj/item/clothing/under/space
 	name = "\improper NASA jumpsuit"
 	desc = "It has a NASA logo on it and is made of space-proofed materials."
 	icon_state = "black"
-	item_state = "bl_suit"
+	worn_icon_state = "bl_suit"
 	w_class = WEIGHT_CLASS_BULKY//bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
@@ -94,7 +94,7 @@
 /obj/item/clothing/under/acj
 	name = "administrative cybernetic jumpsuit"
 	icon_state = "syndicate"
-	item_state = "bl_suit"
+	worn_icon_state = "bl_suit"
 	desc = "it's a cybernetically enhanced jumpsuit used for administrative duties."
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
@@ -139,7 +139,7 @@
 	name = "black suit"
 	desc = "A black suit and red tie. Very formal."
 	icon_state = "black_suit"
-	item_state = "bl_suit"
+	worn_icon_state = "bl_suit"
 
 /obj/item/clothing/under/suit_jacket/detective
 	icon_state = "detective"
@@ -151,7 +151,7 @@
 	name = "executive suit"
 	desc = "A formal black suit and red tie, intended for the station's finest."
 	icon_state = "really_black_suit"
-	item_state = "bl_suit"
+	worn_icon_state = "bl_suit"
 
 /obj/item/clothing/under/suit_jacket/female
 	name = "executive suit"
@@ -162,13 +162,13 @@
 	name = "red suit"
 	desc = "A red suit and blue tie. Somewhat formal."
 	icon_state = "red_suit"
-	item_state = "r_suit"
+	worn_icon_state = "r_suit"
 
 /obj/item/clothing/under/overalls
 	name = "laborer's overalls"
 	desc = "A set of durable overalls for getting the job done."
 	icon_state = "overalls"
-	item_state = "lb_suit"
+	worn_icon_state = "lb_suit"
 
 /obj/item/clothing/under/pirate
 	name = "pirate outfit"
@@ -317,25 +317,25 @@
 	name = "captain's formal uniform"
 	desc = "A captain's formal-wear, for special occasions."
 	icon_state = "captain_formal"
-	item_state = "by_suit"
+	worn_icon_state = "by_suit"
 
 /obj/item/clothing/under/hosformalmale
 	name = "head of security's formal uniform"
 	desc = "A male head of security's formal-wear, for special occasions."
 	icon_state = "hos_formal_male"
-	item_state = "r_suit"
+	worn_icon_state = "r_suit"
 
 /obj/item/clothing/under/hosformalfem
 	name = "head of security's formal uniform"
 	desc = "A female head of security's formal-wear, for special occasions."
 	icon_state = "hos_formal_fem"
-	item_state = "r_suit"
+	worn_icon_state = "r_suit"
 
 /obj/item/clothing/under/assistantformal
 	name = "assistant's formal uniform"
 	desc = "An assistant's formal-wear. Why an assistant needs formal-wear is still unknown."
 	icon_state = "assistant_formal"
-	item_state = "gy_suit"
+	worn_icon_state = "gy_suit"
 
 /obj/item/clothing/under/suit_jacket/charcoal
 	name = "charcoal suit"
@@ -371,7 +371,7 @@
 	name = "Special Operations Uniform"
 	desc = "Created by an unknown corporation for high risk missions, made with several layers of a unknown nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them."
 	icon_state = "pilot_spec"
-	item_state = "pilot_spec"
+	worn_icon_state = "pilot_spec"
 	resistance_flags = UNACIDABLE
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
 	soft_armor = list(MELEE = 70, BULLET = 70, LASER = 70, ENERGY = 70, BOMB = 70, BIO = 70, FIRE = 70, ACID = 70)
@@ -386,6 +386,6 @@
 	name = "Techpriest Robes"
 	desc = "Praise the omnissiah!"
 	icon_state = "tp_bodyrobes"
-	item_state = "tp_bodyrobes"
+	worn_icon_state = "tp_bodyrobes"
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
 

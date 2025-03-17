@@ -139,6 +139,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
 "F" = (
@@ -150,6 +151,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
 "I" = (
@@ -160,6 +162,10 @@
 	dir = 2
 	},
 /turf/open/shuttle/dropship/floor,
+/area/shuttle/ert/upp)
+"J" = (
+/obj/effect/ai_node,
+/turf/open/shuttle/dropship/three,
 /area/shuttle/ert/upp)
 "K" = (
 /turf/closed/shuttle/dropship_dark/backhatch,
@@ -186,7 +192,7 @@
 /area/shuttle/ert/upp)
 "P" = (
 /obj/effect/mapping_helpers/barricade/closed,
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /turf/open/shuttle/dropship/floor,
@@ -198,7 +204,7 @@
 /area/shuttle/ert/upp)
 "S" = (
 /obj/effect/mapping_helpers/barricade/closed,
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
 "V" = (
@@ -209,9 +215,15 @@
 "W" = (
 /turf/closed/shuttle/dropship_dark/interior_wall,
 /area/shuttle/ert/upp)
+"X" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/distress,
+/obj/effect/ai_node,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert/upp)
 "Y" = (
 /obj/effect/mapping_helpers/barricade/closed,
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 8
 	},
 /turf/open/shuttle/dropship/floor,
@@ -271,13 +283,13 @@ I
 c
 C
 l
+X
 r
 r
 r
-r
-r
+X
 l
-z
+J
 z
 z
 L

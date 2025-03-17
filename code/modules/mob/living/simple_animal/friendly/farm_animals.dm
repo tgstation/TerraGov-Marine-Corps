@@ -10,7 +10,6 @@
 	emote_see = list("shakes its head.", "stamps a foot.", "glares around.")
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 6
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "kicks"
@@ -30,7 +29,7 @@
 	AddComponent(/datum/component/udder)
 
 
-/mob/living/simple_animal/hostile/retaliate/goat/Life()
+/mob/living/simple_animal/hostile/retaliate/goat/Life(seconds_per_tick, times_fired)
 	. = ..()
 	if(!.)
 		return
@@ -63,7 +62,6 @@
 	emote_see = list("shakes its head.")
 	speak_chance = 1
 	turns_per_move = 5
-	see_in_dark = 6
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "kicks"
@@ -136,7 +134,7 @@
 	pixel_y = rand(0, 10)
 
 
-/mob/living/simple_animal/chick/Life()
+/mob/living/simple_animal/chick/Life(seconds_per_tick, times_fired)
 	. =..()
 	if(!.)
 		return
@@ -147,7 +145,7 @@
 			qdel(src)
 
 
-/mob/living/simple_animal/chick/holo/Life()
+/mob/living/simple_animal/chick/holo/Life(seconds_per_tick, times_fired)
 	. = ..()
 	amount_grown = 0
 
@@ -216,7 +214,7 @@
 	else
 		..()
 
-/mob/living/simple_animal/chicken/Life()
+/mob/living/simple_animal/chicken/Life(seconds_per_tick, times_fired)
 	. =..()
 	if(!.)
 		return

@@ -4,8 +4,6 @@
 	desc = "A resin formation that looks like a small pillar. A faint, weird smell can be perceived from it."
 	icon = 'icons/Xeno/1x1building.dmi'
 	icon_state = "recoverytower"
-	bound_width = 32
-	bound_height = 32
 	obj_integrity = 400
 	max_integrity = 400
 	xeno_structure_flags = CRITICAL_STRUCTURE|IGNORE_WEED_REMOVAL
@@ -18,12 +16,12 @@
 
 /obj/structure/xeno/pherotower/Initialize(mapload, _hivenumber)
 	. = ..()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "phero", ABOVE_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "phero", MINIMAP_LABELS_LAYER))
 	GLOB.hive_datums[hivenumber].pherotowers += src
 
 //Pheromone towers start off with recovery.
 	current_aura = SSaura.add_emitter(src, AURA_XENO_RECOVERY, aura_radius, aura_strength, -1, FACTION_XENO, hivenumber)
-	playsound(src, "alien_drool", 25)
+	playsound(src, SFX_ALIEN_DROOL, 25)
 	update_icon()
 
 /obj/structure/xeno/pherotower/ex_act(severity)
@@ -51,7 +49,7 @@
 	QDEL_NULL(current_aura)
 	current_aura = SSaura.add_emitter(src, phero_choice, aura_radius, aura_strength, -1, FACTION_XENO, hivenumber)
 	balloon_alert(xeno_attacker, "[phero_choice]")
-	playsound(src, "alien_drool", 25)
+	playsound(src, SFX_ALIEN_DROOL, 25)
 	update_icon()
 
 /obj/structure/xeno/pherotower/update_icon_state()

@@ -13,7 +13,6 @@
 	speak_emote = list("barks", "woofs")
 	emote_hear = list("barks!", "woofs!", "yaps.","pants.")
 	emote_see = list("shakes its head.", "chases its tail.","shivers.")
-	see_in_dark = 5
 	speak_chance = 1
 	turns_per_move = 10
 
@@ -71,7 +70,7 @@
 /mob/living/simple_animal/corgi/exoticcorgi/Initialize(mapload)
 	. = ..()
 	var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
-	add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
+	add_atom_colour(newcolor, FIXED_COLOR_PRIORITY)
 
 
 /mob/living/simple_animal/corgi/ian
@@ -92,7 +91,7 @@
 	icon_dead = "narsian_dead"
 
 
-/mob/living/simple_animal/corgi/narsie/Life()
+/mob/living/simple_animal/corgi/narsie/Life(seconds_per_tick, times_fired)
 	. = ..()
 	for(var/mob/living/simple_animal/P in range(1, src))
 		if(P == src || !prob(5))

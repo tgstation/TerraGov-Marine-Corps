@@ -7,7 +7,7 @@
 /obj/item/tool/analyzer/plant_analyzer
 	name = "plant analyzer"
 	icon_state = "hydro"
-	item_state = "analyzer"
+	worn_icon_state = "analyzer"
 
 /obj/item/tool/analyzer/plant_analyzer/attack_self(mob/user as mob)
 	return 0
@@ -47,7 +47,7 @@
 		return
 
 	var/dat
-	user.visible_message(span_notice(" [user] runs the scanner over [target]."))
+	user.visible_message(span_notice("[user] runs the scanner over [target]."))
 
 	dat += "<h2>General Data</h2>"
 

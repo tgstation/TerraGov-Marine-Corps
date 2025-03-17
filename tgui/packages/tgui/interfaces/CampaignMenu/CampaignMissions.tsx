@@ -1,6 +1,3 @@
-import { classes } from 'common/react';
-
-import { useBackend, useLocalState } from '../../backend';
 import {
   Box,
   Button,
@@ -9,7 +6,10 @@ import {
   Section,
   Stack,
   Table,
-} from '../../components';
+} from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
+
+import { useBackend, useLocalState } from '../../backend';
 import { CampaignData, MissionData } from './index';
 
 export const CampaignMissions = (props) => {
@@ -34,7 +34,7 @@ export const CampaignMissions = (props) => {
                 onClick={() => setSelectedMission(mission)}
                 color={
                   selectedMission.name === mission.name
-                    ? 'orange'
+                    ? 'green'
                     : mission.mission_critical
                       ? 'red'
                       : 'blue'
@@ -47,7 +47,7 @@ export const CampaignMissions = (props) => {
                     className={classes([
                       'campaign_missions24x24',
                       selectedMission.name === mission.name
-                        ? mission.mission_icon + '_yellow'
+                        ? mission.mission_icon + '_green'
                         : mission.mission_critical
                           ? mission.mission_icon + '_red'
                           : mission.mission_icon + '_blue',
@@ -122,7 +122,7 @@ export const CampaignMissions = (props) => {
             </Table.Row>
             <Table.Row>
               <Table.Cell color="label">Additional Rewards</Table.Cell>
-              <Table.Cell colspan="2">
+              <Table.Cell colSpan={2}>
                 {selectedMission?.mission_rewards}
               </Table.Cell>
             </Table.Row>

@@ -103,8 +103,8 @@ GLOBAL_PROTECT(exp_to_update)
 		else
 			return_text += "<LI>[dep] [get_exp_format(exp_data[dep])] </LI>"
 
-	for(var/mob_type AS in GLOB.xeno_caste_datums)
-		var/datum/xeno_caste/caste_type = GLOB.xeno_caste_datums[mob_type][XENO_UPGRADE_BASETYPE]
+	for(var/caste_typepath AS in GLOB.xeno_caste_datums)
+		var/datum/xeno_caste/caste_type = GLOB.xeno_caste_datums[caste_typepath][XENO_UPGRADE_BASETYPE]
 		return_text += "<LI>[caste_type.caste_name] [get_exp_format(play_records[caste_type.caste_name])] while alive.</LI>"
 
 	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_other_rights(src, R_ADMIN, FALSE))

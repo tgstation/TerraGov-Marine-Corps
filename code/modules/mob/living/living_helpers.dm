@@ -128,3 +128,18 @@
 **/
 /mob/living/proc/enable_throw_parry(duration)
 	SEND_SIGNAL(src, COMSIG_PARRY_TRIGGER, duration)
+
+///Proc to check for a mob's ghost.
+/mob/living/proc/get_ghost(bypass_client_check = FALSE)
+	if(client) //We don't need to get a ghost for someone who's still under player control
+		return null
+	for(var/mob/dead/observer/ghost AS in GLOB.observer_list)
+		if(!ghost) //Observers hard del often so let's just be safe
+			continue
+		if(isnull(ghost.can_reenter_corpse))
+			continue
+		if(ghost.can_reenter_corpse.resolve() != src)
+			continue
+		if(ghost.client || bypass_client_check)
+			return ghost
+	return null

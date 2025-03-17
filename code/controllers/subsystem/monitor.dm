@@ -8,12 +8,8 @@ SUBSYSTEM_DEF(monitor)
 	var/current_state = STATE_BALANCED
 	///The last state
 	var/last_state = STATE_BALANCED
-	///If we consider the state as a stalemate
-	var/stalemate = FALSE
 	///The current state points. Negative means xenos are winning, positive points correspond to marine winning
 	var/current_points = 0
-	///The number of time we had the same state consecutively
-	var/stale_counter = 0
 	///The number of humans on ground
 	var/human_on_ground = 0
 	///The number of humans being in either lz1 or lz2
@@ -46,7 +42,7 @@ SUBSYSTEM_DEF(monitor)
 	var/list/b17_in_use = list()
 
 /datum/controller/subsystem/monitor/Initialize()
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), PROC_REF(set_groundside_calculation))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_CRASH_SHIP_LANDED), PROC_REF(set_groundside_calculation))
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(set_shipside_calculation))
 	is_automatic_balance_on = CONFIG_GET(flag/is_automatic_balance_on)
 	return SS_INIT_SUCCESS
@@ -77,27 +73,15 @@ SUBSYSTEM_DEF(monitor)
 			SSspawning.spawnerdata[spawner].required_increment = max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER) / SSspawning.wait
 			SSspawning.spawnerdata[spawner].max_allowed_mobs = max(2, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count)
 
-
-	//Automatic respawn buff, if a stalemate is detected and a lot of ghosts are waiting to play
-	if(current_state != STATE_BALANCED || !stalemate || length(GLOB.observer_list) <= 0.5 * total_living_players)
-		SSsilo.larva_spawn_rate_temporary_buff = 0
-		return
-	for(var/mob/dead/observer/observer AS in GLOB.observer_list)
-		GLOB.key_to_time_of_role_death[observer.key] -= 5 MINUTES //If we are in a constant stalemate, every 5 minutes we remove 5 minutes of respawn time to become a marine
-	message_admins("Stalemate detected, respawn buff system in action : 5 minutes were removed from the respawn time of everyone, xeno won : [length(GLOB.observer_list) * 0.75] larvas")
-	log_game("5 minutes were removed from the respawn time of everyone, xeno won : [length(GLOB.observer_list) * 0.75] larvas")
-	//This will be in effect for 5 SSsilo runs. For 30 ghosts that makes 1 new larva every 2.5 minutes
-	SSsilo.larva_spawn_rate_temporary_buff = length(GLOB.observer_list) * 0.75
-
-
-
 /datum/controller/subsystem/monitor/proc/set_groundside_calculation()
 	SIGNAL_HANDLER
 	gamestate = GROUNDSIDE
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GAMESTATE_GROUNDSIDE)
 
 /datum/controller/subsystem/monitor/proc/set_shipside_calculation()
 	SIGNAL_HANDLER
 	gamestate = SHIPSIDE
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GAMESTATE_SHIPSIDE)
 
 ///Calculate the points supposedly representating of the situation
 /datum/controller/subsystem/monitor/proc/calculate_state_points()
@@ -166,17 +150,6 @@ SUBSYSTEM_DEF(monitor)
 		current_state = MARINES_LOSING
 	else
 		current_state = MARINES_DELAYING
-
-	if(gamestate != GROUNDSIDE)
-		stalemate = FALSE
-		return
-	//We check for possible stalemate
-	if (current_state == last_state)
-		stale_counter++
-	if (stale_counter >= STALEMATE_THRESHOLD)
-		stalemate = TRUE
-	else
-		stalemate = FALSE
 
 /**
  * Return the proposed xeno buff calculated with the number of burrowed, and the state of the game

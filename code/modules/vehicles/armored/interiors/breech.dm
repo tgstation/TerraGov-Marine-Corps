@@ -38,10 +38,13 @@
 		return
 	if(!do_after(user, 1 SECONDS, NONE, src))
 		return
-	owner.balloon_alert(user, "breech unloaded")
-	user.put_in_hands(weapon.ammo)
-	weapon.ammo.update_appearance()
-	weapon.ammo = null
+	if(!weapon)
+		balloon_alert(user, "no weapon")
+		return
+	if(!weapon.ammo)
+		balloon_alert(user, "breech empty")
+		return
+	do_unload(user, weapon)
 
 /obj/structure/gun_breech/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -67,16 +70,30 @@
 		for(var/mob/crew AS in owner.interior.occupants)
 			crew.stop_sound_channel(channel)
 		return
+	if(!reload_checks(user))
+		return
+
+	do_load(user, weapon, mag)
+
+///loads the weapon attached to the breech
+/obj/structure/gun_breech/proc/do_load(mob/living/user, obj/item/armored_weapon/weapon, obj/item/ammo_magazine/mag)
 	user.temporarilyRemoveItemFromInventory(mag)
 	mag.forceMove(weapon)
-	weapon.ammo = mag
+	weapon.ammo_magazine +=mag
+	if(weapon.ammo)
+		return
+	weapon.reload()
+	update_appearance(UPDATE_ICON)
 	user.say(is_secondary ? "Loaded!" : "Up!")
-	for(var/mob/occupant AS in owner.interior.occupants)
-		occupant.hud_used.update_ammo_hud(weapon, list(
-			mag.default_ammo.hud_state,
-			mag.default_ammo.hud_state_empty),
-			mag.current_rounds
-		)
+
+///Unloads the weapon attached to the breech
+/obj/structure/gun_breech/proc/do_unload(mob/living/user, obj/item/armored_weapon/weapon)
+	owner.balloon_alert(user, "breech unloaded")
+	user.put_in_hands(weapon.ammo)
+	weapon.ammo.update_appearance()
+	weapon.ammo = null
+	weapon.reload()
+	update_appearance(UPDATE_ICON)
 
 ///checks to perform while reloading
 /obj/structure/gun_breech/proc/reload_checks(mob/user)
@@ -84,7 +101,7 @@
 	if(!weapon)
 		balloon_alert(user, "no weapon")
 		return FALSE
-	if(weapon.ammo)
+	if(weapon.ammo && length(weapon.ammo_magazine) >= weapon.maximum_magazines)
 		balloon_alert(user, "already loaded")
 		return FALSE
 	return TRUE
@@ -128,6 +145,14 @@
 	var/obj/effect/abstract/particle_holder/smoke_visuals = new(src, /particles/breech_smoke)
 	QDEL_IN(smoke_visuals, 0.7 SECONDS)
 
+///On attach effects
+/obj/structure/gun_breech/proc/on_weapon_attach(obj/item/armored_weapon/new_weapon)
+	return
+
+///On detach effects
+/obj/structure/gun_breech/proc/on_weapon_detach(obj/item/armored_weapon/old_weapon)
+	return
+
 /particles/breech_smoke
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
@@ -155,3 +180,104 @@
 	old_ammo.forceMove(get_turf(src))
 	old_ammo.pixel_x = rand(-10, 10)
 	old_ammo.pixel_y = rand(-10, 10)
+
+/obj/structure/gun_breech/som
+	icon_state = null
+	icon = 'icons/obj/armored/3x4/som_breech.dmi'
+	density = FALSE
+	layer = ABOVE_OBJ_LAYER
+	var/obj/item/armored_weapon/weapon_type
+	///overlay obj for for the attached gun
+	var/atom/movable/vis_obj/internal_barrel/barrel_overlay
+	///overlay obj for internal firing animation
+	var/atom/movable/vis_obj/som_tank_ammo/ammo_overlay
+
+/obj/structure/gun_breech/som/Initialize(mapload)
+	. = ..()
+	barrel_overlay = new()
+	barrel_overlay.icon = icon
+	barrel_overlay.icon_state = "[icon_state]_barrel"
+	vis_contents += barrel_overlay
+
+	ammo_overlay = new()
+	ammo_overlay.icon = icon
+	vis_contents += ammo_overlay
+
+/obj/structure/gun_breech/som/Destroy()
+	weapon_type = null
+	QDEL_NULL(barrel_overlay)
+	return ..()
+
+/obj/structure/gun_breech/som/update_icon_state()
+	. = ..()
+	icon_state = weapon_type.icon_state
+
+/obj/structure/gun_breech/som/update_overlays()
+	. = ..()
+	. += mutable_appearance(icon, "[icon_state]_overlay", ABOVE_MOB_LAYER)
+
+/obj/structure/gun_breech/som/on_weapon_attach(obj/item/armored_weapon/new_weapon)
+	update_gun_appearance(new_weapon)
+
+/obj/structure/gun_breech/som/on_weapon_detach(obj/item/armored_weapon/old_weapon)
+	update_gun_appearance(old_weapon)
+
+/obj/structure/gun_breech/som/do_load(mob/living/user, obj/item/armored_weapon/weapon, obj/item/ammo_magazine/mag)
+	. = ..()
+	update_gun_appearance(weapon_type)
+
+/obj/structure/gun_breech/som/do_unload(mob/living/user, obj/item/armored_weapon/weapon)
+	. = ..()
+	update_gun_appearance(weapon_type)
+
+/obj/structure/gun_breech/som/on_main_fire(obj/item/ammo_magazine/owner_ammo)
+	update_gun_appearance(weapon_type)
+	if(weapon_type.type == /obj/item/armored_weapon/coilgun)
+		flick("[ammo_overlay.icon_state]_flick", ammo_overlay)
+
+///Updates breech and barrel vis_obj appearance
+/obj/structure/gun_breech/som/proc/update_gun_appearance(obj/item/armored_weapon/current_weapon)
+	weapon_type = current_weapon
+	if(!weapon_type)
+		density = FALSE
+		barrel_overlay.icon_state = null
+		return
+
+	density = TRUE
+	update_appearance(UPDATE_ICON)
+	barrel_overlay.icon_state = "[icon_state]_barrel"
+	if(weapon_type.type == /obj/item/armored_weapon/volkite_carronade)
+		pixel_x = 4
+		pixel_y = -4
+		barrel_overlay.pixel_y = 46
+	else if(weapon_type.type == /obj/item/armored_weapon/coilgun)
+		pixel_x = -12
+		pixel_y = -32
+		barrel_overlay.pixel_y = 76
+		ammo_overlay.icon_state = "[icon_state]_[length(weapon_type?.ammo_magazine) + weapon_type.ammo.current_rounds]"
+	else if(weapon_type.type == /obj/item/armored_weapon/particle_lance)
+		pixel_x = -8
+		pixel_y = -7
+		barrel_overlay.pixel_y = 48
+
+/atom/movable/vis_obj/internal_barrel
+	name = "Tank weapon"
+	mouse_opacity  = MOUSE_OPACITY_TRANSPARENT
+	layer = ABOVE_ALL_MOB_LAYER
+
+/atom/movable/vis_obj/som_tank_ammo
+	name = "Tank weapon"
+	mouse_opacity  = MOUSE_OPACITY_TRANSPARENT
+	layer = ABOVE_MOB_PLATFORM_LAYER
+
+/obj/structure/gun_breech/lvrt
+	name = "gun breech"
+	icon = 'icons/obj/armored/2x2/icc_lvrt.dmi'
+	icon_state = "lvrt_breech"
+
+/obj/structure/gun_breech/secondary/lvrt
+	name = "coaxial loading mechanism"
+	desc = "A feeding mechanism for loading ammo into the vehicle's coaxial feed."
+	icon = 'icons/obj/armored/2x2/icc_lvrt.dmi'
+	icon_state = "lvrt_secondary_breech"
+	is_secondary = TRUE

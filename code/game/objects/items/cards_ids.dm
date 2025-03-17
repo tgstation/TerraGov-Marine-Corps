@@ -15,11 +15,11 @@
 	name = "card"
 	desc = "Does card things."
 	icon = 'icons/obj/items/card.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/id_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/id_right.dmi',
 	)
-	item_state = "card-id"
+	worn_icon_state = "card-id"
 	item_state_worn = TRUE
 	w_class = WEIGHT_CLASS_TINY
 	var/associated_account_number = 0
@@ -36,7 +36,7 @@
 
 /obj/item/card/data/verb/label(t as text)
 	set name = "Label Disk"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	if (t)
@@ -85,7 +85,7 @@
 	///How many points you can use to buy items
 	var/marine_points = list()
 
-	///What category of items can you buy - used for armor and poucehs
+	///What category of items can you buy - used for armor and pouches
 	var/marine_buy_choices = list()
 
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
@@ -121,7 +121,7 @@
 		name = "[(!newname)	? "identification card"	: "[newname]'s ID Card"][(!newjob) ? "" : " ([newjob])"]"
 		return
 
-	name = "[(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
+	name = "[(!paygrade) ? "" : "[get_paygrades(paygrade, TRUE, gender)]. "][(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
 	if(isliving(loc))
 		var/mob/living/L = loc
 		L.name = L.get_visible_name()
@@ -129,7 +129,7 @@
 
 /obj/item/card/id/verb/read()
 	set name = "Read ID Card"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	to_chat(usr, "[icon2html(src, usr)] [name]: The current assignment on the card is [assignment].")
@@ -140,13 +140,13 @@
 	name = "identification card"
 	desc = "A silver card which shows honour and dedication."
 	icon_state = "silver"
-	item_state = "silver_id"
+	worn_icon_state = "silver_id"
 
 /obj/item/card/id/gold
 	name = "identification card"
 	desc = "A golden card which shows power and might."
 	icon_state = "gold"
-	item_state = "gold_id"
+	worn_icon_state = "gold_id"
 
 /obj/item/card/id/syndicate
 	name = "agent card"
@@ -221,7 +221,7 @@
 	name = "captain's spare ID"
 	desc = "The spare ID of the High Lord himself."
 	icon_state = "gold"
-	item_state = "gold_id"
+	worn_icon_state = "gold_id"
 	registered_name = CAPTAIN
 	assignment = CAPTAIN
 	access = ALL_MARINE_ACCESS
@@ -246,7 +246,7 @@
 	name = "dog tag"
 	desc = "A marine dog tag."
 	icon_state = "dogtag"
-	item_state = "dogtag"
+	worn_icon_state = "dogtag"
 	iff_signal = TGMC_LOYALIST_IFF
 	var/dogtag_taken = FALSE
 
@@ -320,7 +320,7 @@
 	name = "\improper Sons of Mars dogtag"
 	desc = "Used by the Sons of Mars."
 	icon_state = "dogtag_som"
-	item_state = "dogtag_som"
+	worn_icon_state = "dogtag_som"
 	iff_signal = SOM_IFF
 
 

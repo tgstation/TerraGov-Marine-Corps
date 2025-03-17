@@ -29,10 +29,18 @@
 	START_PROCESSING(SSfastprocess, src)
 	playsound(src, 'sound/effects/bubbles2.ogg', 25, 1, 5)
 	AddComponent(/datum/component/slippery, 0.5 SECONDS, 0.2 SECONDS)
+	AddComponent(/datum/component/submerge_modifier, 10)
+	var/static/list/connections = list(
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/effect/particle_effect/foam/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
+
+/obj/effect/particle_effect/foam/footstep_override(atom/movable/source, list/footstep_overrides)
+	footstep_overrides[FOOTSTEP_WET] = layer
 
 ///Finishes the foam, stopping it from processing and doing whatever it has to do.
 /obj/effect/particle_effect/foam/proc/kill_foam()
@@ -45,7 +53,8 @@
 			return
 
 		var/turf/open/T = mystery_turf
-		if(T.allow_construction) //No loopholes.
+		var/area/area = get_area(mystery_turf)
+		if(T.allow_construction && !(area.area_flags & NO_CONSTRUCTION)) //No loopholes.
 			new /obj/structure/razorwire(loc)
 	flick("[icon_state]-disolve", src)
 	QDEL_IN(src, 5)
@@ -101,8 +110,8 @@
 
 // foam disolves when heated
 // except metal foams
-/obj/effect/particle_effect/foam/fire_act(exposed_temperature, exposed_volume)
-	if(!(foam_flags & METAL_FOAM|RAZOR_FOAM) && prob(max(0, exposed_temperature - 475)))
+/obj/effect/particle_effect/foam/fire_act(burn_level)
+	if(!(foam_flags & METAL_FOAM|RAZOR_FOAM) && prob(min(burn_level * 3, 100)))
 		kill_foam()
 
 /obj/effect/particle_effect/foam/can_slip()
@@ -146,7 +155,7 @@
 	var/obj/effect/particle_effect/foam/F = new(location.resolve())
 	var/foamcolor = mix_color_from_reagents(carrying_reagents.reagent_list)
 	carrying_reagents.copy_to(F, spread_amount ? carrying_reagents.total_volume/spread_amount : carrying_reagents.total_volume) //this magically duplicates chems
-	F.add_atom_colour(foamcolor, FIXED_COLOUR_PRIORITY)
+	F.add_atom_colour(foamcolor, FIXED_COLOR_PRIORITY)
 	F.spread_amount = spread_amount
 	F.foam_flags = foam_flags
 
@@ -173,6 +182,6 @@
 		SMOOTH_GROUP_FOAM_WALL,
 	)
 
-/obj/structure/foamedmetal/fire_act() //flamerwallhacks go BRRR
-	take_damage(10, BURN, FIRE)
+/obj/structure/foamedmetal/fire_act(burn_level)
+	take_damage(burn_level, BURN, FIRE)
 

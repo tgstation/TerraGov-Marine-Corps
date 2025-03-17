@@ -1,6 +1,8 @@
 
 /area/campaign/som_raiding
 	icon_state = "lv-626"
+	area_flags = ALWAYS_RADIO
+	ambience = list('sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg')
 
 /area/campaign/som_raiding/ground
 	name = "Ground"
@@ -72,7 +74,11 @@
 	minimap_color = MINIMAP_AREA_CAVES
 
 /area/campaign/som_raiding/cave/tunnel
-	name = "\improper Old tunnels"
+	name = "\improper Old tunnels - South"
+	icon_state = "explored"
+
+/area/campaign/som_raiding/cave/tunnel_west
+	name = "\improper Old tunnels - West"
 	icon_state = "explored"
 
 //outpost

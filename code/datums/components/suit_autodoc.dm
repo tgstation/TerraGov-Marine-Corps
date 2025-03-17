@@ -182,8 +182,8 @@
 	UnregisterSignal(wearer, COMSIG_HUMAN_DAMAGE_TAKEN)
 	STOP_PROCESSING(SSobj, src)
 	if(!silent)
-		wearer.balloon_alert(wearer, "The automedical suite deactivates")
-		playsound(parent,'sound/machines/click.ogg', 15, 0, 1)
+		wearer.balloon_alert(wearer, "Automedical suite deactivates")
+		playsound(parent,'sound/voice/b18/deactivate.ogg', 15, 0, 1)
 
 /**
 	Enable processing and calls out to register signals from the user.
@@ -198,8 +198,8 @@
 	RegisterSignal(wearer, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(damage_taken))
 	START_PROCESSING(SSobj, src)
 	if(!silent)
-		wearer.balloon_alert(wearer, "The automedical suite activates")
-		playsound(parent,'sound/voice/b18_activate.ogg', 15, 0, 1)
+		wearer.balloon_alert(wearer, "Automedical suite activates")
+		playsound(parent,'sound/voice/b18/activate.ogg', 15, 0, 1)
 
 
 /**
@@ -339,7 +339,7 @@
 */
 /datum/component/suit_autodoc/interact(mob/user)
 	var/dat = {"
-	<A href='?src=[REF(src)];automed_on=1'>Turn Automed System: [enabled ? "Off" : "On"]</A><BR>
+	<A href='byond://?src=[REF(src)];automed_on=1'>Turn Automed System: [enabled ? "Off" : "On"]</A><BR>
 	<BR>
 	<B>Integrated Health Analyzer:</B><BR>
 	<A href='byond://?src=[REF(src)];analyzer=1'>Scan Wearer</A><BR>

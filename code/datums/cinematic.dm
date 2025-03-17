@@ -24,7 +24,6 @@ GLOBAL_LIST_EMPTY(cinematics)
 	icon = 'icons/effects/station_explosion.dmi'
 	icon_state = "station_intact"
 	plane = SPLASHSCREEN_PLANE
-	layer = SPLASHSCREEN_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	screen_loc = "CENTER-7,CENTER-7"
 
@@ -128,7 +127,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 	flick("intro_nuke", screen)
 	sleep(runtime)
 	flick("station_explode_fade_red", screen)
-	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
+	cinematic_sound(sound('sound/effects/explosion/far.ogg', channel = CHANNEL_CINEMATIC))
 	special()
 	screen.icon_state = "summary_nukewin"
 
@@ -141,7 +140,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 /datum/cinematic/nuke_miss/content()
 	flick("intro_nuke", screen)
 	sleep(runtime)
-	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
+	cinematic_sound(sound('sound/effects/explosion/far.ogg', channel = CHANNEL_CINEMATIC))
 	special()
 	flick("station_intact_fade_red", screen)
 	screen.icon_state = "summary_nukefail"
@@ -156,7 +155,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 	flick("intro_nuke", screen)
 	sleep(runtime)
 	flick("station_explode_fade_red", screen)
-	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
+	cinematic_sound(sound('sound/effects/explosion/far.ogg', channel = CHANNEL_CINEMATIC))
 	special()
 	screen.icon_state = "summary_selfdes"
 
@@ -169,7 +168,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 /datum/cinematic/nuke_selfdestruct_miss/content()
 	flick("intro_nuke", screen)
 	sleep(runtime)
-	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
+	cinematic_sound(sound('sound/effects/explosion/far.ogg', channel = CHANNEL_CINEMATIC))
 	special()
 	screen.icon_state = "station_intact"
 
@@ -183,7 +182,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 	flick("intro_malf", screen)
 	sleep(runtime)
 	flick("station_explode_fade_red", screen)
-	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
+	cinematic_sound(sound('sound/effects/explosion/far.ogg', channel = CHANNEL_CINEMATIC))
 	special()
 	screen.icon_state = "summary_malf"
 
@@ -197,7 +196,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 	flick("intro_nuke", screen)
 	sleep(runtime)
 	flick("station_explode_fade_red", screen)
-	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
+	cinematic_sound(sound('sound/effects/explosion/far.ogg', channel = CHANNEL_CINEMATIC))
 	special()
 	screen.icon_state = "summary_totala"
 
@@ -235,7 +234,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 
 
 /datum/cinematic/nuke_far/content()
-	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
+	cinematic_sound(sound('sound/effects/explosion/far.ogg', channel = CHANNEL_CINEMATIC))
 	special()
 
 
@@ -251,6 +250,6 @@ GLOBAL_LIST_EMPTY(cinematics)
 	flick("intro_nuke", screen) // 3.5 seconds
 	sleep(5.5 SECONDS)
 	flick("planet_nuke", screen) // About 1.5 seconds length
-	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
+	cinematic_sound(sound('sound/effects/explosion/far.ogg', channel = CHANNEL_CINEMATIC))
 	special()
 	screen.icon_state = "planet_end"

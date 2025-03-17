@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	icon_state = "conveyor_map"
 	name = "conveyor belt"
 	desc = "A conveyor belt. It can be rotated with a <b>wrench</b>. It can be reversed with a <b>screwdriver</b>."
-	layer = FIREDOOR_OPEN_LAYER
+	layer = OPEN_DOOR_LAYER
 	max_integrity = 50
 	resistance_flags = XENO_DAMAGEABLE
 	///Conveyor specific flags
@@ -135,6 +135,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 ///Attempts to move a batch of AMs
 /obj/machinery/conveyor/proc/convey(list/affecting)
+	conveyor_flags &= ~CONVEYOR_IS_CONVEYING
 	if(!is_operational())
 		return
 	if(!operating)
@@ -155,8 +156,6 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		if(movable_thing.anchored)
 			continue
 		step(movable_thing, movedir)
-
-	conveyor_flags &= ~CONVEYOR_IS_CONVEYING
 
 ///Sets the correct movement directions based on dir
 /obj/machinery/conveyor/proc/update_move_direction()

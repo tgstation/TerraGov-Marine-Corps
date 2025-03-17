@@ -388,7 +388,7 @@
 /area/bigredv2/caves/secomplex)
 "wO" = (
 /obj/effect/decal/cleanable/cobweb,
-/obj/mecha_wreckage/ripley/lv624,
+/obj/structure/mecha_wreckage/ripley/lv624,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "xa" = (
@@ -610,8 +610,8 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
-"LX" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
+"LY" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "Md" = (
@@ -707,10 +707,6 @@
 /obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
-"Rb" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "Rf" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/bigred,
@@ -746,11 +742,6 @@
 "SG" = (
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
-"SZ" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/patrol_point/tgmc_11,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "Tw" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/limb,
 /turf/open/floor/mainship/mono,
@@ -835,10 +826,6 @@
 /obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
-"Yh" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "Yn" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/tile/dark,
@@ -3599,7 +3586,7 @@ Ro
 Ro
 Ro
 WX
-Ro
+LY
 Ro
 Ro
 Em
@@ -4784,7 +4771,7 @@ Dx
 Dx
 Dx
 Dx
-Yh
+Ro
 Ro
 Ro
 Ro
@@ -5482,7 +5469,7 @@ Ro
 Ro
 My
 Ro
-LX
+Ro
 le
 Ap
 Ap
@@ -5558,7 +5545,7 @@ Ro
 Ro
 Ro
 Ir
-SZ
+My
 Dx
 Dx
 Dx
@@ -5613,7 +5600,7 @@ zI
 Dx
 Dx
 Dx
-Rb
+Ro
 Ro
 Ro
 Ro

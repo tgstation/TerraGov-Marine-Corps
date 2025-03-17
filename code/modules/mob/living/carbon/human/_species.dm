@@ -11,6 +11,8 @@
 	var/species_type = SPECIES_HUMAN
 	///Special effects that are inherent to our species
 	var/species_flags = NONE
+	///used in limb code to find which bodytype files to pull from, yes this code can defenitely be improved
+	var/limb_type = SPECIES_LIMB_GENERIC
 
 	//----Icon stuff here
 	///Normal icon file
@@ -74,7 +76,7 @@
 
 	//----Related to dying in some way
 	///species-specific gibbing animation
-	var/gibbed_anim = "gibbed-h"
+	var/gibbed_anim
 	///species-specific dusting animation
 	var/dusted_anim = "dust-h"
 	///used to determine what item is left behind in /spawn_dust_remains()
@@ -115,10 +117,8 @@
 	///type that gets set as our language_holder on proc/set_species
 	var/default_language_holder = /datum/language_holder
 
-	///Sets mob/var/see_in_dark on [/mob/living/carbon/human/update_sight]
-	var/see_in_dark = 2
 	///Sets our mobs lighting_alpha on [/mob/living/carbon/human/update_sight]
-	var/lighting_alpha
+	var/lighting_cutoff
 
 	///Used for metabolizing reagents
 	var/reagent_tag
@@ -360,11 +360,11 @@
 //Species unarmed attacks
 /datum/unarmed_attack
 	///Empty hand hurt intent verb
-	var/attack_verb = list("attack")
+	var/attack_verb = list("attacks")
 	///Extra empty hand attack damage
 	var/damage = 0
 	///Sound that plays when you land a punch
-	var/attack_sound = "punch"
+	var/attack_sound = SFX_PUNCH
 	///Sound that plays when you miss a punch
 	var/miss_sound = 'sound/weapons/punchmiss.ogg'
 	///Calls the old attack_alien() behavior on objects/mobs when on harm intent
@@ -389,7 +389,7 @@
 	return FALSE
 
 /datum/unarmed_attack/bite
-	attack_verb = list("bite") // 'x has biteed y', needs work
+	attack_verb = list("bites")
 	attack_sound = 'sound/weapons/bite.ogg'
 	shredding = 0
 	damage = 5
@@ -402,15 +402,15 @@
 	return TRUE
 
 /datum/unarmed_attack/punch
-	attack_verb = list("punch")
+	attack_verb = list("punches")
 	damage = 3
 
 /datum/unarmed_attack/punch/strong
-	attack_verb = list("punch","bust","jab")
+	attack_verb = list("punches","busts","jabs")
 	damage = 10
 
 /datum/unarmed_attack/claws
-	attack_verb = list("scratch", "claw")
+	attack_verb = list("scratches", "claws")
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	damage = 5
@@ -418,12 +418,12 @@
 	edge = 1
 
 /datum/unarmed_attack/claws/strong
-	attack_verb = list("slash")
+	attack_verb = list("slashes")
 	damage = 10
 	shredding = 1
 
 /datum/unarmed_attack/bite/strong
-	attack_verb = list("maul")
+	attack_verb = list("mauls")
 	damage = 15
 	shredding = 1
 
@@ -436,12 +436,6 @@
 	var/has_m_intent = TRUE
 	///Set to draw environment warnings
 	var/has_warnings = TRUE
-	///Draw the pressure indicator
-	var/has_pressure = TRUE
-	///Draw the nutrition indicator
-	var/has_nutrition = TRUE
-	///Draw the bodytemp indicator
-	var/has_bodytemp = TRUE
 	///Set to draw shand
 	var/has_hands = TRUE
 	///Set to draw drop button
@@ -503,9 +497,6 @@
 		equip_slots |= SLOT_IN_R_POUCH
 		equip_slots |= SLOT_ACCESSORY
 		equip_slots |= SLOT_IN_ACCESSORY
-
-/datum/hud_data/robotic
-	has_nutrition = FALSE
 
 ///damage override at the species level, called by /mob/living/proc/apply_damage
 /datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim, mob/attacker)
@@ -569,7 +560,7 @@
 			victim.adjustStaminaLoss(damage)
 
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life()
-	SEND_SIGNAL(victim, COMSIG_HUMAN_DAMAGE_TAKEN, damage)
+	SEND_SIGNAL(victim, COMSIG_HUMAN_DAMAGE_TAKEN, damage, attacker) //add attacker arg everywhere needed
 
 	if(updating_health)
 		victim.updatehealth()

@@ -1,8 +1,8 @@
 /obj/item/campaign_beacon
 	name = "default campaign beacon"
 	desc = "what smelly admin spawned this?"
-	icon = 'icons/Marine/marine-navigation.dmi'
-	icon_state = "motion4"
+	icon = 'icons/obj/items/beacon.dmi'
+	icon_state = "motion_4"
 	w_class = WEIGHT_CLASS_SMALL
 	item_flags = IS_DEPLOYABLE
 	///Type path for what this deploys into
@@ -23,8 +23,7 @@
 /obj/item/campaign_beacon/bunker_buster
 	name = "orbital beacon"
 	desc = "A bulky device that is used to provide precision guidance to powerful orbital weapon systems."
-	icon = 'icons/Marine/marine-navigation.dmi'
-	icon_state = "motion4"
+	icon_state = "motion_4"
 	deployable_type = /obj/structure/campaign_objective/destruction_objective/bunker_buster
 	deploy_time = 2 SECONDS
 	undeploy_time = 2 SECONDS
@@ -62,14 +61,20 @@
 		user.balloon_alert(user, "Cannot deploy here")
 	return FALSE
 
+/obj/item/campaign_beacon/bunker_buster/bluespace
+	name = "bluespace beacon"
+	desc = "A bulky device that is used to provide precision guidance for powerful bluespace weapon systems."
+	icon_state = "bluespace"
+	deployable_type = /obj/structure/campaign_objective/destruction_objective/bunker_buster/bluespace
+
 ///Delay between beacon timer finishing and the actual explosion
 #define CAMPAIGN_OB_BEACON_IMPACT_DELAY 10 SECONDS
 
 /obj/structure/campaign_objective/destruction_objective/bunker_buster
 	name = "deployed orbital beacon"
 	desc = "An ominous red beacon, used to provide precision guidance to powerful orbital weapon systems."
-	icon = 'icons/Marine/marine-navigation.dmi'
-	icon_state = "motion1"
+	icon = 'icons/obj/items/beacon.dmi'
+	icon_state = "motion_1"
 	faction = FACTION_TERRAGOV
 	density = FALSE
 	///How long the beacon takes to trigger its effect
@@ -107,12 +112,38 @@
 /obj/structure/campaign_objective/destruction_objective/bunker_buster/proc/beacon_effect()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED)
 	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED, src, CAMPAIGN_OB_BEACON_IMPACT_DELAY)
+	play_trigger_sound()
+
+///Alerts player on the z-level that the beacon has triggered successfully
+/obj/structure/campaign_objective/destruction_objective/bunker_buster/proc/play_trigger_sound()
 	for(var/mob/mob AS in GLOB.player_list)
-		if(mob.z != z)
+		var/turf/mob_turf = get_turf(mob)
+		if(mob_turf.z != z)
 			continue
 		var/play_sound = 'sound/effects/OB_warning_announce_novoiceover.ogg'
 		if(isobserver(mob) || mob.faction == faction)
 			play_sound = 'sound/effects/OB_warning_announce.ogg'
 		mob.playsound_local(loc, play_sound, 125, falloff = 10, distance_multiplier = 0.2)
+
+/obj/structure/campaign_objective/destruction_objective/bunker_buster/bluespace
+	name = "deployed bluespace beacon"
+	desc = "An ominous blue beacon, used to provide precision guidance for powerful bluespace weapon systems."
+	icon_state = "bluespace_deployed"
+	faction = FACTION_SOM
+
+/obj/structure/campaign_objective/destruction_objective/bunker_buster/bluespace/beacon_effect()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(do_visual_effect)), CAMPAIGN_OB_BEACON_IMPACT_DELAY - 1.5 SECONDS)
+
+/obj/structure/campaign_objective/destruction_objective/bunker_buster/bluespace/play_trigger_sound()
+	for(var/mob/mob AS in GLOB.player_list)
+		var/turf/mob_turf = get_turf(mob)
+		if(mob_turf.z != z)
+			continue
+		mob.playsound_local(loc, 'sound/magic/lightning_chargeup.ogg', 125, falloff = 10, distance_multiplier = 0.2)
+
+///Visual effect right before the blast
+/obj/structure/campaign_objective/destruction_objective/bunker_buster/bluespace/proc/do_visual_effect()
+	new /obj/effect/temp_visual/teleporter_array(get_turf(src))
 
 #undef CAMPAIGN_OB_BEACON_IMPACT_DELAY

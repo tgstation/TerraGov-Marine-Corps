@@ -207,6 +207,10 @@
 	var/turf/firedturf = get_turf(src)
 	firedturf.AICtrlShiftClick(user)
 
+/obj/alien/weeds/AICtrlClick(mob/living/silicon/ai/user)
+	var/turf/firedturf = get_turf(src)
+	firedturf.AICtrlClick(user)
+
 /* Xenos */
 /mob/living/carbon/xenomorph/AIMiddleClick(mob/living/silicon/ai/user)
 	user.ai_ping(src, COOLDOWN_AI_PING_NORMAL)
@@ -306,7 +310,7 @@
 	if(HAS_TRAIT(user, TRAIT_IS_FIRING_RAILGUN))
 		to_chat(user, span_warning("The rail guns are already targeting a location, wait for them to finish."))
 		return
-	if(!is_ground_level(user.eyeobj.z) || isdropshiparea(A)) //can't fire the railgun off the ground level, or at the DS
+	if(!is_ground_level(user.eyeobj.z) || isdropshiparea(A) || A.area_flags & MARINE_BASE) //can't fire the railgun off the ground level, at the DS, or in FOB
 		to_chat(user, span_warning("Incompatible target location."))
 		return
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
@@ -315,7 +319,7 @@
 	if(A.ceiling > CEILING_OBSTRUCTED)
 		to_chat(user, span_warning("DEPTH WARNING: Target too deep for ordnance."))
 		return
-	if((GLOB.marine_main_ship?.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE) > world.time)
+	if((GLOB.rail_gun?.last_firing_ai + COOLDOWN_RAILGUN_FIRE) > world.time)
 		to_chat(user, "[icon2html(src, user)] [span_warning("The rail gun hasn't cooled down yet!")]")
 		return
 	else if(!A)
@@ -361,11 +365,11 @@
 				possible_humans += nearby_human
 		if(length(possible_zombies))
 			var/mob/living/carbon/human/nuked_zombie = pick(possible_zombies)
-			GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(nuked_zombie, user, TRUE, TRUE)
+			GLOB.rail_gun?.fire_rail_gun(nuked_zombie, user, TRUE, TRUE)
 			++timesfired
 		else if(length(possible_xenos))
 			var/mob/living/carbon/xenomorph/nuked_xeno = pick(possible_xenos)
-			GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(nuked_xeno, user, TRUE, TRUE)
+			GLOB.rail_gun?.fire_rail_gun(nuked_xeno, user, TRUE, TRUE)
 			++timesfired
 		else if(length(possible_humans))
 			var/turf/targetturf = get_turf(laser)
@@ -377,11 +381,11 @@
 				if(length(possible_humans))
 					targetturf = locate(targetturf.x + rand(AI_RAILGUN_HUMAN_EXCLUSION_NEGATIVE, AI_RAILGUN_HUMAN_EXCLUSION_POSITIVE), targetturf.y + rand(AI_RAILGUN_HUMAN_EXCLUSION_NEGATIVE, AI_RAILGUN_HUMAN_EXCLUSION_POSITIVE), targetturf.z)
 				else
-					GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(targetturf, user, TRUE, TRUE)
+					GLOB.rail_gun?.fire_rail_gun(targetturf, user, TRUE, TRUE)
 					++timesfired
 					break
 		else
-			GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(laser, user, TRUE, TRUE)
+			GLOB.rail_gun?.fire_rail_gun(laser, user, TRUE, TRUE)
 			++timesfired
 
 #undef AI_MAX_RAILGUN_SHOTS_FIRED_UPPER_RANGE

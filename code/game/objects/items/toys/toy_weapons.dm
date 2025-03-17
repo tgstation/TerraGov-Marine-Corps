@@ -13,11 +13,11 @@
 	name = "cap gun"
 	desc = "Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps!"
 	icon_state = "capgun"
-	item_state = "gun"
+	worn_icon_state = "gun"
 	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 
-	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
+	attack_verb = list("strikes", "pistol whips", "hits", "bashes")
 	var/bullets = 7
 
 /obj/item/toy/gun/examine(mob/user)
@@ -50,12 +50,12 @@
 	if (flag)
 		return
 	if (src.bullets < 1)
-		user.show_message(span_warning(" *click* *click*"), 2)
+		user.show_message(span_warning("*click* *click*"), 2)
 		playsound(user, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
 		return
 	playsound(user, 'sound/weapons/guns/fire/gunshot.ogg', 15, 1)
 	src.bullets--
-	visible_message(span_danger("[user] fires a cap gun at [target]!"), null, span_warning(" You hear a gunshot"))
+	visible_message(span_danger("[user] fires a cap gun at [target]!"), null, span_warning("You hear a gunshot"))
 
 /obj/item/toy/gun_ammo
 	name = "ammo-caps"
@@ -81,9 +81,9 @@
 	name = "foam dart crossbow"
 	desc = "A weapon favored by many overactive children. Ages 8 and up."
 	icon_state = "foamcrossbow"
-	item_state = "crossbow"
+	worn_icon_state = "crossbow"
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("attacked", "struck", "hit")
+	attack_verb = list("attacks", "strikes", "hits")
 	var/bullets = 5
 
 /obj/item/toy/crossbow/examine(mob/user)
@@ -188,11 +188,10 @@
 /obj/item/toy/sword
 	name = "toy sword"
 	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up."
-	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "sword0"
-	item_state = "sword0"
+	icon = 'icons/obj/items/weapons/energy.dmi'
+	icon_state = "sword"
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("attacked", "struck", "hit")
+	attack_verb = list("attacks", "strikes", "hits")
 
 /obj/item/toy/sword/attack_self(mob/user as mob)
 	src.active = !( src.active )
@@ -200,13 +199,12 @@
 		to_chat(user, span_notice("You extend the plastic blade with a quick flick of your wrist."))
 		playsound(user, 'sound/weapons/saberon.ogg', 15, 1)
 		src.icon_state = "swordblue"
-		src.item_state = "swordblue"
+		src.worn_icon_state = "swordblue"
 		src.w_class = WEIGHT_CLASS_BULKY
 	else
 		to_chat(user, span_notice("You push the plastic blade back down into the handle."))
 		playsound(user, 'sound/weapons/saberoff.ogg', 15, 1)
-		src.icon_state = "sword0"
-		src.item_state = "sword0"
+		src.icon_state = "sword"
 		src.w_class = WEIGHT_CLASS_SMALL
 
 	if(istype(user,/mob/living/carbon/human))
@@ -219,13 +217,13 @@
 /obj/item/toy/katana
 	name = "replica katana"
 	desc = "Woefully underpowered in D20."
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/weapons/swords.dmi'
 	icon_state = "katana"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 5
 	throwforce = 5
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
+	attack_verb = list("attacks", "slashes", "stabs", "slices")
 
 

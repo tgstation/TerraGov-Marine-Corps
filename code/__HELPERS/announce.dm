@@ -1,10 +1,5 @@
-// the types of priority announcements
-#define ANNOUNCEMENT_REGULAR 1
-#define ANNOUNCEMENT_PRIORITY 2
-#define ANNOUNCEMENT_COMMAND 3
-
-// don't use any of these macros outside of here to keep the appearance of alerts consistent (unless you need to make them global for some reason)
-// if you want to design a faction alert to use in a message or something, use assemble_alert()
+// Do not use these macros outside of here (unless you absolutely have to or something), this is mainly to make sure they appear consistent
+// The best way to use these for to_chats or something would be assemble_alert()
 
 // a style for extra padding on alert titles
 #define span_alert_header(str) ("<span class='alert_header'>" + str + "</span>")
@@ -65,9 +60,20 @@
  * * sound - optional, the sound played accompanying the announcement
  * * channel_override - optional, what channel is this sound going to be played on?
  * * color_override - **recommended,** string, use the passed color instead of the default blue (see defines in `__HELPERS/announce.dm`)
- * * receivers - a list of all players to send the message to. defaults to all players, not including those in lobby
+ * * receivers - a list of all players to send the message to. defaults to all humans, AIs and ghosts
+ * * playing_sound - optional, is this playing sound?
  */
-/proc/priority_announce(message, title = "Announcement", subtitle = "", type = ANNOUNCEMENT_REGULAR, sound = 'sound/misc/notice2.ogg', channel_override = CHANNEL_ANNOUNCEMENTS, color_override, list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list))
+/proc/priority_announce(
+	message,
+	title = "Announcement",
+	subtitle = "",
+	type = ANNOUNCEMENT_REGULAR,
+	sound = 'sound/misc/notice2.ogg',
+	channel_override = CHANNEL_ANNOUNCEMENTS,
+	color_override,
+	list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list),
+	playing_sound = TRUE
+)
 	if(!message)
 		return
 
@@ -110,9 +116,10 @@
 		var/mob/M = i
 		if(!isnewplayer(M))
 			to_chat(M, finalized_announcement)
-			SEND_SOUND(M, s)
+			if(playing_sound)
+				SEND_SOUND(M, s)
 
-
+///Spawns a paper at each communications printer
 /proc/print_command_report(papermessage, papertitle = "paper", announcemessage = "A report has been downloaded and printed out at all communications consoles.", announcetitle = "Incoming Classified Message", announce = TRUE)
 	if(announce)
 		priority_announce(announcemessage, announcetitle, sound = 'sound/AI/commandreport.ogg')
@@ -126,6 +133,34 @@
 		P.info = papermessage
 		P.update_icon()
 
+/// Sends an announcement about the level changing to players. Uses the passed in datum and the subsystem's previous security level to generate the message.
+/proc/level_announce(datum/security_level/selected_level, previous_level_number)
+	var/current_level_number = selected_level.number_level
+	var/current_level_name = selected_level.name
+	var/current_level_color = selected_level.announcement_color
+
+	var/active_subtitle
+	var/active_message
+	var/active_sound
+
+	if(current_level_number > previous_level_number)
+		active_subtitle = "Security level elevated to [uppertext(current_level_name)]:"
+		active_message = selected_level.elevating_body
+		active_sound = selected_level.elevating_sound
+	else
+		active_subtitle = "Security level lowered to [uppertext(current_level_name)]:"
+		active_message = selected_level.lowering_body
+		active_sound = selected_level.lowering_sound
+
+	priority_announce(
+		type = ANNOUNCEMENT_REGULAR,
+		title = "Attention!",
+		subtitle = active_subtitle,
+		message = active_message,
+		sound = active_sound,
+		color_override = current_level_color
+	)
+
 /**
  * Make a minor announcement to a target
  *
@@ -135,7 +170,7 @@
  * * alert - optional, alert or notice?
  * * receivers - a list of all players to send the message to
  */
-/proc/minor_announce(message, title = "Attention:", alert, list/receivers = GLOB.alive_human_list, should_play_sound = TRUE)
+/proc/minor_announce(message, title = "Attention:", alert, list/receivers = GLOB.alive_human_list, should_play_sound = FALSE)
 	if(!message)
 		return
 

@@ -1,4 +1,4 @@
-/mob/living/silicon/ai/Life()
+/mob/living/silicon/ai/Life(seconds_per_tick, times_fired)
 
 	if(notransform) //If we're dead or set to notransform don't bother processing life
 		return

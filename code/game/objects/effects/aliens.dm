@@ -50,6 +50,7 @@
 
 /obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE, mob/living/_xeno_owner) //Self-deletes
 	. = ..()
+	notify_ai_hazard()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
 	acid_damage = damage
@@ -116,7 +117,7 @@
 		var/atom/A = H
 		SEND_SIGNAL(A, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
 
-//Medium-strength acid
+//Medium-strength acid // todo please god make me into an overlay and component already...
 /obj/effect/xenomorph/acid
 	name = "acid"
 	desc = "Burbling corrosive stuff. I wouldn't want to touch it."
@@ -124,6 +125,7 @@
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
+	base_icon_state = null
 	///the target atom for being melted
 	var/atom/acid_t
 	///the current tick on destruction stage, currently used to determine what messages to output
@@ -137,6 +139,103 @@
 	///How much faster or slower acid melts specific objects/turfs.
 	var/acid_melt_multiplier
 
+/obj/effect/xenomorph/acid/Initialize(mapload, atom/target, melting_rate)
+	if(!istype(target))
+		return INITIALIZE_HINT_QDEL
+
+	var/obj/effect/xenomorph/acid/current_acid = target.get_self_acid()
+	if(current_acid)
+		current_acid.acid_strength = acid_strength
+		current_acid.acid_damage = acid_damage
+		current_acid.strength_t = strength_t
+		current_acid.acid_melt_multiplier = melting_rate
+		current_acid.base_icon_state = icon_state
+		current_acid.update_appearance(UPDATE_ICON_STATE)
+		return INITIALIZE_HINT_QDEL
+
+	. = ..()
+	acid_melt_multiplier = melting_rate
+	acid_t = target
+	RegisterSignal(acid_t, COMSIG_ATOM_GET_SELF_ACID, PROC_REF(return_self_acid))
+	RegisterSignal(acid_t, COMSIG_ITEM_ATTEMPT_PICK_UP, PROC_REF(on_attempt_pickup))
+	RegisterSignal(acid_t, COMSIG_QDELETING, PROC_REF(on_target_del))
+	RegisterSignal(acid_t, COMSIG_MOVABLE_MOVED, PROC_REF(on_target_move))
+	layer = acid_t.layer+0.001
+	base_icon_state = icon_state
+	update_appearance(UPDATE_ICON_STATE)
+	START_PROCESSING(SSslowprocess, src)
+
+/obj/effect/xenomorph/acid/Destroy()
+	STOP_PROCESSING(SSslowprocess, src)
+	acid_t = null
+	return ..()
+
+/obj/effect/xenomorph/acid/update_icon_state()
+	icon_state = base_icon_state
+	if(iswallturf(acid_t))
+		icon_state += "_wall"
+
+/obj/effect/xenomorph/acid/process(delta_time)
+	if(!acid_t || !acid_t.loc)
+		qdel(src)
+		return
+	ticks += delta_time * (acid_strength * acid_melt_multiplier)
+	if(ticks >= strength_t)
+		acid_t.do_acid_melt()
+		qdel(src)
+		return
+	switch(strength_t - ticks)
+		if(0 to 1)
+			visible_message(span_xenowarning("\The [acid_t] begins to crumble under the acid!"))
+		if(2)
+			visible_message(span_xenowarning("\The [acid_t] is struggling to withstand the acid!"))
+		if(4)
+			visible_message(span_xenowarning("\The [acid_t]\s structure is being melted by the acid!"))
+		if(6)
+			visible_message(span_xenowarning("\The [acid_t] is barely holding up against the acid!"))
+
+///cleans up if the target is destroyed
+/obj/effect/xenomorph/acid/proc/on_target_del(atom/source)
+	SIGNAL_HANDLER
+	qdel(src)
+
+///Moves with the target
+/obj/effect/xenomorph/acid/proc/on_target_move(atom/source)
+	SIGNAL_HANDLER
+	loc = source.loc
+
+///Sig handler to show this acid is attached to something
+/obj/effect/xenomorph/acid/proc/return_self_acid(atom/source, list/acid_List)
+	SIGNAL_HANDLER
+	acid_List += src
+
+///Sig handler to show this acid is attached to something
+/obj/effect/xenomorph/acid/proc/on_attempt_pickup(obj/item/source, mob/user)
+	SIGNAL_HANDLER
+	if(!ishuman(user))
+		qdel(src)
+		return
+	INVOKE_ASYNC(src, PROC_REF(on_pickup), source, user)
+
+///Sig handler to show this acid is attached to something
+/obj/effect/xenomorph/acid/proc/on_pickup(obj/item/item, mob/living/carbon/human/human_user)
+	human_user.visible_message(span_danger("Corrosive substances seethe all over [human_user] as [human_user.p_they()] retrieves the acid-soaked [item]!"),
+	span_danger("Corrosive substances burn and seethe all over you upon retrieving the acid-soaked [item]!"))
+	playsound(human_user, SFX_ACID_HIT, 25)
+	human_user.emote("pain")
+	var/list/affected_limbs = list("l_hand", "r_hand", "l_arm", "r_arm")
+	var/limb_count = null
+	for(var/datum/limb/limb AS in human_user.limbs)
+		if(limb_count > 4)
+			break
+		if(!affected_limbs.Find(limb.name))
+			continue
+		limb.take_damage_limb(0, human_user.modify_by_armor(acid_damage * 0.25 * randfloat(0.75, 1.25), ACID, def_zone = limb.name))
+		limb_count++
+	human_user.UpdateDamageIcon()
+	UPDATEHEALTH(human_user)
+	qdel(src)
+
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
 	acid_strength = WEAK_ACID_STRENGTH
@@ -148,68 +247,6 @@
 	acid_strength = STRONG_ACID_STRENGTH
 	acid_damage = 175
 	icon_state = "acid_strong"
-
-/obj/effect/xenomorph/acid/Initialize(mapload, target, melting_rate, existing_ticks)
-	. = ..()
-	acid_melt_multiplier = melting_rate
-	acid_t = target
-	ticks += existing_ticks
-	if(!acid_t)
-		return INITIALIZE_HINT_QDEL
-	layer = acid_t.layer
-	if(iswallturf(acid_t))
-		icon_state = icon_state += "_wall"
-	START_PROCESSING(SSslowprocess, src)
-
-/obj/effect/xenomorph/acid/Destroy()
-	STOP_PROCESSING(SSslowprocess, src)
-	acid_t = null
-	return ..()
-
-/obj/effect/xenomorph/acid/process(delta_time)
-	if(!acid_t || !acid_t.loc)
-		qdel(src)
-		return
-	if(loc != acid_t.loc && !isturf(acid_t))
-		loc = acid_t.loc
-	ticks += delta_time * (acid_strength * acid_melt_multiplier)
-	if(ticks >= strength_t)
-		visible_message(span_xenodanger("[acid_t] collapses under its own weight into a puddle of goop and undigested debris!"))
-		playsound(src, "acid_hit", 25)
-
-		if(istype(acid_t, /turf))
-			if(iswallturf(acid_t))
-				var/turf/closed/wall/W = acid_t
-				new /obj/effect/acid_hole (W)
-			else
-				var/turf/T = acid_t
-				T.ChangeTurf(/turf/open/floor/plating)
-		else if (istype(acid_t, /obj/structure/girder))
-			var/obj/structure/girder/G = acid_t
-			G.deconstruct(FALSE)
-		else if(istype(acid_t, /obj/structure/window/framed))
-			var/obj/structure/window/framed/WF = acid_t
-			WF.deconstruct(FALSE)
-
-		else
-			if(length(acid_t.contents)) //Hopefully won't auto-delete mobs inside melted stuff..
-				for(var/mob/M in acid_t.contents)
-					if(acid_t.loc)
-						M.forceMove(get_turf(acid_t))
-			QDEL_NULL(acid_t)
-
-		qdel(src)
-		return
-
-	switch(strength_t - ticks)
-		if(0 to 1)
-			visible_message(span_xenowarning("\The [acid_t] begins to crumble under the acid!"))
-		if(2)
-			visible_message(span_xenowarning("\The [acid_t] is struggling to withstand the acid!"))
-		if(4)
-			visible_message(span_xenowarning("\The [acid_t]\s structure is being melted by the acid!"))
-		if(6)
-			visible_message(span_xenowarning("\The [acid_t] is barely holding up against the acid!"))
 
 /obj/effect/xenomorph/warp_shadow
 	name = "warp shadow"

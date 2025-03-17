@@ -3,6 +3,7 @@
 	display_name = "Puppeteer"
 	upgrade_name = ""
 	caste_desc = "An alien creature of terrifying display, it has a tail adorned with needles that drips a strange chemical and elongated claws."
+	base_strain_type = /mob/living/carbon/xenomorph/puppeteer
 	caste_type_path = /mob/living/carbon/xenomorph/puppeteer
 	primordial_message = "The organics will tremble at our swarm. We are legion."
 
@@ -19,7 +20,7 @@
 	upgrade_threshold = TIER_TWO_THRESHOLD
 	evolution_threshold = 225
 
-	deevolves_to = list(/mob/living/carbon/xenomorph/defender)
+	deevolves_to = /datum/xeno_caste/defender
 	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_PLASMADRAIN_IMMUNE|CASTE_EVOLUTION_ALLOWED
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
 	caste_traits = null
@@ -39,7 +40,8 @@
 		/datum/action/ability/activable/xeno/refurbish_husk,
 		/datum/action/ability/activable/xeno/puppet,
 		/datum/action/ability/activable/xeno/organic_bomb,
-		/datum/action/ability/xeno_action/puppeteer_orders,
+		/datum/action/ability/xeno_action/puppeteer_unleash,
+		/datum/action/ability/xeno_action/puppeteer_recall,
 		/datum/action/ability/activable/xeno/articulate,
 		/datum/action/ability/activable/xeno/puppet_blessings,
 	)
@@ -69,7 +71,8 @@
 		/datum/action/ability/activable/xeno/puppet,
 		/datum/action/ability/activable/xeno/organic_bomb,
 		/datum/action/ability/activable/xeno/tendril_patch,
-		/datum/action/ability/xeno_action/puppeteer_orders,
+		/datum/action/ability/xeno_action/puppeteer_unleash,
+		/datum/action/ability/xeno_action/puppeteer_recall,
 		/datum/action/ability/activable/xeno/articulate,
 		/datum/action/ability/activable/xeno/puppet_blessings,
 	)

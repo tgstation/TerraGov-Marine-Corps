@@ -5,7 +5,7 @@
 	else if(isgrabitem(dropping))
 		var/obj/item/grab/grab_item = dropping
 		if(isliving(grab_item.grabbed_thing))
-		
+
 			. = grab_item.grabbed_thing
 	if(. && user_buckle_mob(., user))
 		return TRUE
@@ -61,6 +61,7 @@
 	if(buckle_lying != -1)
 		ADD_TRAIT(buckling_mob, TRAIT_FLOORED, BUCKLE_TRAIT)
 	buckling_mob.throw_alert("buckled", /atom/movable/screen/alert/restrained/buckled)
+	buckling_mob.set_glide_size(glide_size)
 	post_buckle_mob(buckling_mob, silent)
 
 	RegisterSignal(buckling_mob, COMSIG_LIVING_DO_RESIST, PROC_REF(resisted_against))
@@ -76,7 +77,7 @@
 		buckling_mob.IgniteMob()
 
 
-/atom/movable/proc/unbuckle_mob(mob/living/buckled_mob, force = FALSE)
+/atom/movable/proc/unbuckle_mob(mob/living/buckled_mob, force = FALSE, can_fall = TRUE)
 	if(!isliving(buckled_mob) || buckled_mob.buckled != src || (!(buckle_flags & CAN_BUCKLE) && !force))
 		return
 	. = buckled_mob
@@ -87,12 +88,22 @@
 	if(buckle_lying != -1)
 		REMOVE_TRAIT(buckled_mob, TRAIT_FLOORED, BUCKLE_TRAIT)
 	buckled_mob.clear_alert("buckled")
+	buckled_mob.set_glide_size(DELAY_TO_GLIDE_SIZE(buckled_mob.cached_multiplicative_slowdown))
 	LAZYREMOVE(buckled_mobs, buckled_mob)
 
 	UnregisterSignal(buckled_mob, COMSIG_LIVING_DO_RESIST)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_UNBUCKLE, buckled_mob, force)
+
+	if(can_fall)
+		var/turf/location = buckled_mob.loc
+		if(istype(location) && !buckled_mob.currently_z_moving)
+			location.zFall(buckled_mob)
+
 	post_unbuckle_mob(.)
 
+	if(!QDELETED(buckled_mob) && !buckled_mob.currently_z_moving && isturf(buckled_mob.loc)) // In the case they unbuckled to a flying movable midflight.
+		var/turf/pitfall = buckled_mob.loc
+		pitfall?.zFall(buckled_mob)
 
 /atom/movable/proc/unbuckle_all_mobs(force = FALSE)
 	if(!LAZYLEN(buckled_mobs))

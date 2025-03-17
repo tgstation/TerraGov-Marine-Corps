@@ -5,7 +5,7 @@
 	weight = 10
 	earliest_start = 30 MINUTES
 
-	gamemode_blacklist = list("Combat Patrol","Sensor Capture", "Crash")
+	gamemode_blacklist = list("Crash", "Combat Patrol", "Sensor Capture", "Campaign")
 
 /datum/round_event/hive_threat
 	///The human target for this event
@@ -15,9 +15,8 @@
 	var/list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND))
 	var/list/eligible_targets = list()
 	for(var/z in z_levels)
-		for(var/i in GLOB.humans_by_zlevel["[z]"])
-			var/mob/living/carbon/human/possible_target = i
-			if(!istype(possible_target) || !possible_target.client || issynth(possible_target))
+		for(var/mob/living/carbon/human/possible_target in GLOB.humans_by_zlevel["[z]"])
+			if(!possible_target.client || issynth(possible_target) || possible_target.faction == FACTION_NEUTRAL)
 				continue
 			eligible_targets += possible_target
 	if(!length(eligible_targets))
@@ -32,7 +31,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_HIVE_TARGET_DRAINED, PROC_REF(handle_reward))
 	xeno_message("The Queen Mother senses that [hive_target] is a deadly threat to the hive. Psydrain them for the Queen Mother's blessing!", force = TRUE)
 	for(var/mob/living/carbon/xenomorph/xeno_sound_reciever in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
-		SEND_SOUND(xeno_sound_reciever, sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
+		SEND_SOUND(xeno_sound_reciever, sound(get_sfx(SFX_QUEEN), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
 
 //manages the hive reward and clean up
 /datum/round_event/hive_threat/proc/handle_reward(datum/source, mob/living/carbon/xenomorph/drainer)
@@ -54,7 +53,7 @@
 			receiving_xeno.evolution_stored = receiving_xeno.xeno_caste.evolution_threshold
 			receiving_xeno.upgrade_stored += 1000
 	for(var/mob/living/carbon/xenomorph/xeno_sound_reciever in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
-		SEND_SOUND(xeno_sound_reciever, sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
+		SEND_SOUND(xeno_sound_reciever, sound(get_sfx(SFX_QUEEN), channel = CHANNEL_ANNOUNCEMENTS, volume = 50))
 	addtimer(CALLBACK(src, PROC_REF(remove_blessing)), 2 MINUTES)
 
 ///debuffs the hive when the blessing expires

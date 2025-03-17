@@ -13,11 +13,11 @@
 
 /datum/action/innate/order/give_action(mob/M)
 	. = ..()
-	RegisterSignal(M, COMSIG_ORDER_SENT, PROC_REF(update_button_icon))
+	RegisterSignals(M, list(COMSIG_CIC_ORDER_SENT, COMSIG_CIC_ORDER_OFF_CD), PROC_REF(update_button_icon))
 
 /datum/action/innate/order/remove_action(mob/M)
 	. = ..()
-	UnregisterSignal(M, COMSIG_ORDER_SENT)
+	UnregisterSignal(M, list(COMSIG_CIC_ORDER_SENT, COMSIG_CIC_ORDER_OFF_CD))
 
 /datum/action/innate/order/Activate()
 	active = TRUE
@@ -39,6 +39,8 @@
 	. = ..()
 	if(!.)
 		return
+	if(!should_show())
+		return FALSE
 	if(owner.stat != CONSCIOUS || TIMER_COOLDOWN_CHECK(owner, COOLDOWN_CIC_ORDERS))
 		return FALSE
 
@@ -51,9 +53,9 @@
 	if(visual_type)
 		target = get_turf(target)
 		new visual_type(target, faction)
-	TIMER_COOLDOWN_START(owner, COOLDOWN_CIC_ORDERS, ORDER_COOLDOWN)
-	SEND_SIGNAL(owner, COMSIG_ORDER_SENT)
-	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_all_icons_orders)), ORDER_COOLDOWN)
+	TIMER_COOLDOWN_START(owner, COOLDOWN_CIC_ORDERS, CIC_ORDER_COOLDOWN)
+	SEND_SIGNAL(owner, COMSIG_CIC_ORDER_SENT)
+	addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), CIC_ORDER_COOLDOWN + 1)
 	if(squad)
 		for(var/mob/living/carbon/human/marine AS in squad.marines_list)
 			marine.receive_order(target, arrow_type, verb_name, faction)
@@ -63,11 +65,9 @@
 			human.receive_order(target, arrow_type, verb_name, faction)
 	return TRUE
 
-///Update all icons of orders action of the mob
-/mob/proc/update_all_icons_orders()
-	for(var/datum/action/action AS in actions)
-		if(istype(action, /datum/action/innate/order))
-			action.update_button_icon()
+///Lets any other orders know when we're off CD
+/datum/action/innate/order/proc/on_cooldown_finish()
+	SEND_SIGNAL(owner, COMSIG_CIC_ORDER_OFF_CD, src)
 
 /**
  * Proc to give a marine an order
@@ -114,6 +114,9 @@
 	)
 
 /datum/action/innate/order/attack_order/personal/should_show()
+	. = ..()
+	if(!.)
+		return
 	return owner.skills.getRating(skill_name) >= skill_min
 
 /datum/action/innate/order/attack_order/personal/action_activate()
@@ -135,6 +138,9 @@
 	)
 
 /datum/action/innate/order/defend_order/personal/should_show()
+	. = ..()
+	if(!.)
+		return
 	return owner.skills.getRating(skill_name) >= skill_min
 
 /datum/action/innate/order/defend_order/personal/action_activate()
@@ -155,6 +161,9 @@
 	)
 
 /datum/action/innate/order/retreat_order/personal/should_show()
+	. = ..()
+	if(!.)
+		return
 	return owner.skills.getRating(skill_name) >= skill_min
 
 /datum/action/innate/order/retreat_order/personal/action_activate()
@@ -163,6 +172,9 @@
 		var/message = pick(";RETREAT! RETREAT!", ";GET OUT OF HERE!", ";DON'T DIE HERE! RUN!", ";RUN! RUN FOR YOUR LIFE!", ";DISENGAGE! I REPEAT, DISENGAGE!", ";GIVE UP GROUND! GIVE IT UP!")
 		owner.say(message)
 
+//placeholder, this will end up being split by faction somehow
+GLOBAL_VAR(human_ai_goal)
+
 /datum/action/innate/order/rally_order
 	name = "Send Rally Order"
 	action_icon_state = "rally"
@@ -170,16 +182,26 @@
 	arrow_type = /atom/movable/screen/arrow/rally_order_arrow
 	visual_type = /obj/effect/temp_visual/order/rally_order
 
+/datum/action/innate/order/rally_order/send_order(atom/target, datum/squad/squad, faction = FACTION_TERRAGOV)
+	. = ..()
+	QDEL_IN(new /obj/effect/ai_node/goal(get_turf(target), owner, owner.faction), CIC_ORDER_COOLDOWN * 2)
+
 /datum/action/innate/order/rally_order/personal
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_KB_RALLYORDER,
 	)
 
 /datum/action/innate/order/rally_order/personal/should_show()
+	. = ..()
+	if(!.)
+		return
 	return owner.skills.getRating(skill_name) >= skill_min
 
 /datum/action/innate/order/rally_order/personal/action_activate()
 	var/mob/living/carbon/human/human = owner
-	if(send_order(human, human.assigned_squad, human.faction))
-		var/message = pick(";TO ME MY MEN!", ";REGROUP TO ME!", ";FOLLOW MY LEAD!", ";RALLY ON ME!", ";FORWARD!")
-		owner.say(message)
+	if(!send_order(human, human.assigned_squad, human.faction))
+		return
+	var/message = pick(";TO ME MY MEN!", ";REGROUP TO ME!", ";FOLLOW MY LEAD!", ";RALLY ON ME!", ";FORWARD!")
+	owner.say(message)
+
+	QDEL_IN(new /obj/effect/ai_node/goal(get_turf(owner), owner, owner.faction), CIC_ORDER_COOLDOWN * 2)

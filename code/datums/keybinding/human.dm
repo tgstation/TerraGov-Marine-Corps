@@ -35,8 +35,25 @@
 	full_name = "Quick equip 5"
 	quick_equip_slot = 5
 
+/datum/keybinding/human/interact_other_hand
+	hotkey_keys = list("Unbound")
+	name = "interact_other_hand"
+	full_name = "Interact with other hand"
+	keybind_signal = COMSIG_KB_HUMAN_INTERACT_OTHER_HAND
+
+/datum/keybinding/human/interact_other_hand/down(client/user)
+	. = ..()
+	if(.)
+		return
+
+	if(!ishuman(user.mob))
+		return
+	var/mob/living/carbon/human/human_user = user.mob
+
+	human_user.interact_other_hand()
+
 /datum/keybinding/human/unique_action
-	hotkey_keys = list("C")
+	hotkey_keys = list("Space")
 	name = "unique_action"
 	full_name = "Perform unique action"
 	keybind_signal = COMSIG_KB_UNIQUEACTION
@@ -46,6 +63,11 @@
 	name = "rail_attachment"
 	full_name = "Activate Rail attachment"
 	keybind_signal = COMSIG_KB_RAILATTACHMENT
+
+/datum/keybinding/human/muzzle_attachment
+	name = "muzzle_attachment"
+	full_name = "Activate Barrel attachment"
+	keybind_signal = COMSIG_KB_MUZZLEATTACHMENT
 
 /datum/keybinding/human/underrail_attachment
 	name = "underrail_attachment"
@@ -110,8 +132,15 @@
 	hotkey_keys = list("h")
 	name = "toggle_helmet_module"
 	full_name = "Toggle helmet module"
-	description = "Toggles your helmet module on or off"
+	description = "Toggles your helmet module on or off or activates it"
 	keybind_signal = COMSIG_KB_HELMETMODULE
+
+/datum/keybinding/human/toggle_armor_module
+	hotkey_keys = list("j")
+	name = "toggle_armor_module"
+	full_name = "Toggle armor module"
+	description = "Toggles your armor module or activates it"
+	keybind_signal = COMSIG_KB_ARMORMODULE
 
 /datum/keybinding/human/toggle_suit_light
 	hotkey_keys = list("l")
@@ -126,6 +155,14 @@
 	full_name = "Activate combat robot autorepair"
 	description = "Activate combat robot's autorepair"
 	keybind_signal = COMSIG_KB_ROBOT_AUTOREPAIR
+
+/datum/keybinding/human/stims_menu
+	hotkey_keys = list("g")
+	name = "stims menu"
+	full_name = "Supersoldier Stims"
+	description = "Manage injecting stims as a prototype supersoldier."
+	keybind_signal = COMSIG_KB_STIMS
+
 
 /datum/keybinding/human/move_order
 	name = "move_order"
@@ -174,3 +211,9 @@
 	full_name = "Issue Retreat Order"
 	description = "Order and rally marines to retreat"
 	keybind_signal = COMSIG_KB_RETREATORDER
+
+/datum/keybinding/human/vehicle_honk
+	name = "vehicle_honk"
+	full_name = "Honk Horn"
+	description = "Tell marines to move so that they don't get run over"
+	keybind_signal = COMSIG_KB_VEHICLEHONK

@@ -1,0 +1,315 @@
+2024-05-01:
+  ivanmixo:
+  - balance: Acid wells, acid turrets and heal fruit have opaque acid smoke again
+2024-05-02:
+  Barnet2:
+  - spellcheck: New shipside role rank structure
+  - bugfix: Fixes missing alamo consoles on Lawanka and Daedalus
+  - rscadd: Full ranks show up in command annoucements
+  - rscadd: Instead of faction title, the job of the person sending the command shows
+      up
+  Lumipharon:
+  - imageadd: added some new vehicle props
+  - bugfix: fixed the mob on mob impact sound
+  - imageadd: added more campaign loadout icons for guns
+  - code_imp: cleaned up some misc code
+  - balance: Reduced AOE damage of psyblast/psycrush against multitile vehicles
+  - bugfix: fixed an exploit with closets
+  RipGrayson:
+  - rscadd: Added a new wall type for use in Magmoor
+  - bugfix: Fixed a few mapping errors with Magmoor
+  Wisemonster:
+  - rscadd: Added NO_CONSTRUCTION flag to use for areas and a mapping helper for said
+      flag.
+  - rscdel: Removed cades from current tadpole models
+  - balance: Tadpoles can no longer have cades or razorwire built on them
+  - balance: Transport Crewmen no longer requires a minimum pop.
+  blackdav123:
+  - rscadd: Added a garage in the southwest valley of Ice Colony.
+  - balance: Increased QB points on Gelida to 1900.
+  novaepee:
+  - rscadd: APC has minimap icon; locate APC in minimap
+2024-05-04:
+  Lumipharon:
+  - code_imp: Removed some dead code
+  - bugfix: fixed opening storage by clicking with another item, properly
+  blackdav123:
+  - bugfix: Treaded trucks now use the correct sprites.
+2024-05-05:
+  Lumipharon:
+  - rscadd: Added EMP nades to campaign
+  - balance: Various changes to EMP effects
+  - code_imp: updated EMP code
+  - imageadd: Tweaked the timing on perk unlock animations
+  - code_imp: Fixed various runtimes
+  - qol: 'Campaign: Map variant for colours updates with each mission'
+  TiviPlus:
+  - soundadd: Decreases bullet ping sound range
+  Xander3359:
+  - bugfix: It's no longer possible to cade on alamo
+  - bugfix: Stacks with 1 recipe craft will no longer pull up the crafting menu
+  blackdav123:
+  - bugfix: Fixed a few areas on Gelida IV.
+  tyeagg:
+  - imageadd: new tank module sprites
+  - imageadd: new tank weapon sprites
+  - imageadd: new tank sprite
+2024-05-06:
+  blackdav123:
+  - bugfix: Tad can now land on lavaland tilesets.
+  - rscadd: Added more cover for xenos on the 2nd disks of Magmoor.
+  - bugfix: Fixed a few missing pipes on Magmoor.
+  tyeagg:
+  - balance: significantly less river to orion outpost
+  - balance: vehicles destructible in orion outpost
+  - balance: more cover to orion outpost
+2024-05-07:
+  Xander3359:
+  - code_imp: Implement more uses of PopulateContents()
+  antropod:
+  - rscadd: Stacks of newly crafted items merge to existing stacks in user hands
+2024-05-08:
+  DeltaFire15:
+  - bugfix: Shrike can evolve to other tier fours again.
+  Lumipharon:
+  - bugfix: fixed an exploit with reagents
+2024-05-09:
+  Barnet2:
+  - bugfix: Fixed transport crewman and assault crewman orbit menu icons.
+  Lumipharon:
+  - code_imp: Removed some redundant proc calls in pref UI
+  - bugfix: 'Campaign: Fixed loadout issues'
+  blackdav123:
+  - bugfix: Acid pools and gargoyles now appear on the minimap.
+  - balance: Acid pools no longer break when their weeds are broken
+  tyeagg:
+  - rscadd: new armor for pilot
+  - imageadd: new pilot armor
+  - imageadd: new pilot uniform
+  - imageadd: new pilot helmet
+2024-05-10:
+  Lumipharon:
+  - bugfix: fixed an issue with minimap code and z-levels after entering vehicles
+  Xander3359:
+  - code_imp: adds proc/wash() to clean stuff
+  - code_imp: Playing a sound uses SFX defines
+2024-05-11:
+  Lumipharon:
+  - qol: Improved messaging around end of mission/game for campaign
+  SandPoot:
+  - qol: Observers can now click on their minimap to jump around.
+  Xander3359:
+  - bugfix: Roomba no longer curses your storage if it sends it to cryo
+  chizzy376:
+  - bugfix: Slumbridge's SOM hangar is open again
+  - bugfix: Slumbridge lava prison no longer has a hole in the western reception
+2024-05-12:
+  Xander3359:
+  - code_imp: Adds a couple reagent signals
+  blackdav123:
+  - qol: Xenos can now slash basketball hoops.
+  - qol: Dense plants can now be slashed.
+2024-05-13:
+  Xander3359:
+  - code_imp: removes clean_mob() in favor of clean_blood()
+2024-05-14:
+  Wisemonster:
+  - balance: Reduced the damage multiplier of behemoth's abilities against vehicles
+      from 10 to 1.8
+  Xander3359:
+  - bugfix: fix some broken playsound_local (notably nades and TTS)
+2024-05-15:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed an issue with attrition going into the negatives, allowing
+      for more respawns than intended, and breaking allied spawns'
+  - balance: 'Campaign: SL''s can activate the Rapid Reserves asset'
+  - bugfix: fixed a couple of issues around building resin walls on the alamo
+  - bugfix: 'Campaign: Fixed a couple minior corpsman loadout issues'
+  Neocloudy:
+  - rscadd: Reworked the style of the Limbs Damaged section of the health analyzer.
+  - rscadd: Health analyzers now have a section for relevant information such as treatment
+      advice when scanning people again.
+  - rscadd: Information includes death/revival information, healing information, chemical
+      advice, etc.
+  - rscadd: The theme of a health analyzer will switch to green when working with
+      a synthetic or combat robot.
+  - qol: Robotic/Biotic limbs are shown in Damaged Limbs.
+  - qol: Revivable status now includes information such as too much damage, etc.
+  - qol: Toxin and Oxyloss will be hidden when working with a synthetic or combat
+      robot.
+  Runian:
+  - bugfix: Jerrycans correctly show how much fuel is inside of it when examined.
+  chizzy376:
+  - rscadd: added a new map, Meridian Riptide.
+  - rscadd: Adds a proper room for AC and TC in Sulaco.
+2024-05-16:
+  Lumipharon:
+  - bugfix: fixed xenos being able to ignore queen and king death timers
+  - bugfix: fixed pref UI pill spam
+  - code_imp: Fixed various runtimes
+  - qol: 'Campaign: If attrition is not manually set, it will automatically assign
+      an amount at the start of a mission'
+  - bugfix: fixed the blackscreen click catcher not working under some conditions
+  Notamaniac:
+  - balance: AI can now be dragged when unanchored, but is more vulnerable to getting
+      flung around by explosions than before.
+  - bugfix: AI can now use Ctrl Click on weeded tiles to get coordinates
+  Runian:
+  - bugfix: Xenos whose abilities cannot be used in a closed turf also cannot be used
+      in dense & opaque objects.
+  chizzy376:
+  - balance: changed tank's rocket from 100 sunder to 20
+  - balance: changed tank's minigun ltaap penetration from 10 to 15
+  - spellcheck: Charile removed
+  ivanmixo:
+  - balance: Retired ERT spawns less often, but can now walk (minus the leader)
+  jonash07:
+  - spellcheck: smg-45 description now tells you the right ammo type
+  novaepee:
+  - soundadd: New voicelines for donning and doffing Valkyrie and B18
+  novaepee, Shinji Nomura:
+  - imageadd: new title art made by Shinji Nomura
+  - imagedel: low effort title art
+2024-05-18:
+  Notamaniac:
+  - bugfix: Overwatch can select laser targets to fire OB's again
+  Xander3359:
+  - bugfix: fix a mistaken var edit that made forcefields breakable
+  jonash07:
+  - spellcheck: Added missing descriptions for a few packets
+2024-05-19:
+  Barnet2:
+  - admin: Added logging to LZ Containment Shutters
+  Lumipharon:
+  - bugfix: Stagger dam mod properly applies when a projectile is created instead
+      of when it hits
+  - balance: Stagger dam mod properly applies to nonmobs
+  - bugfix: 'Campaign: Fixed respawns not using attrition'
+  - bugfix: fixed an alamo sentry facing the wrong way
+  - bugfix: Removed various invisible blockers on some maps
+  Xander3359:
+  - rscadd: Ports TG Drinks
+  yyzsong:
+  - rscadd: adds thermal tarps to valhalla (marine weapons vendor, specialist tab)
+2024-05-20:
+  JohnIsNotImpressed:
+  - qol: Changed See Through's sprite alpha from 100 to 170.
+  Notamaniac:
+  - bugfix: Barsigns should no longer show up as errors
+  Xander3359:
+  - code_imp: swap out calls of .clean_blood() for .wash()
+  chizzy376:
+  - qol: clarifies that behemoth roll deals 0 damage in the ability description
+  yyzsong:
+  - balance: Ravager's Rage no longer shakes the screen of the ravager who used the
+      ability
+  - rscdel: Xenos evolution fade-in effect removed
+2024-05-21:
+  Helg2:
+  - rscdel: Removed old unused hostile simple_animals such as spiders, constructs
+      and etc.
+  Lumipharon:
+  - bugfix: fixed some stutter with smooth movement
+  - bugfix: fixed some other movement related bugs
+  - rscadd: Campaign limited loadout quantities scale with pop
+  - balance: 'Campaign: LE RR loadout limit increased to 3 from 2'
+  - rscadd: 'Campaign: Activating the teleporter asset gives access to a teleport
+      COPE air support type'
+  Wisemonster:
+  - rscadd: Added a vehicle spawning area to xeno valhalla
+  - rscadd: Added a vehicle spawner and vehicle spawner landmark (Things used for
+      spawning in Valhalla)
+  blackdav123:
+  - balance: Lava and fire no longer deal damage when jumped over.
+2024-05-22:
+  Lewdcifer:
+  - rscadd: Added a bitfield menu for xeno_flags
+2024-05-23:
+  Lumipharon:
+  - bugfix: fixed vehicles being able to shoot mobs on top of them when they shouldn't
+      have been able to
+  chizzy376:
+  - balance: Added a new shortcut from Slumbridge prison to the south east quadrant.
+  - bugfix: Fixed stairs in Slumbridge.
+  - qol: Replaced every Slumbridge platform with a nondense one.
+2024-05-24:
+  Barnet2:
+  - rscadd: Added harmless rain on desparity and lawanka
+  Notamaniac:
+  - bugfix: After two years - Tangle mortar shells can be ordered again
+  blackdav123:
+  - bugfix: Jumping onto lava now burns you when you land.
+  yyzsong:
+  - balance: removes an extra plat miner from a big red modular variant that was not
+      present on any other variants.
+2024-05-25:
+  Notamaniac:
+  - qol: Boiler globules in reserve are now listed as a number on the create globule
+      ability button. You're also told how many globules of your current acid type
+      are in reserve when making a globule.
+  - qol: Changed several boiler to_chat() messages to balloon alerts.
+  Xander3359:
+  - bugfix: It's no longer possible to perform a bluetooth tactical reload with a
+      magazine that is too far to reach
+2024-05-26:
+  Clay500z:
+  - balance: Gore charge injects 10u Ozelymelon and deals 1 second of stagger
+  - balance: Plow charge deals 0.2 seconds of stun
+  - balance: Headbutt charge max stun reduced to 2 seconds, and displacement increased
+      by 1 tile
+  - bugfix: Bull can no longer multi-ram
+  - spellcheck: Updated Bull ability descriptions.
+  Lumipharon:
+  - rscadd: Catwalks can now be built on any liquid turf, not just lava
+  - code_imp: Fixed some weird code with certain water tiles
+  - rscadd: Added a cloner module for the APC
+  - bugfix: fixed tanks ramming into people mid jump
+  - bugfix: fixed being unable to throw things past tank
+  SomrNetwork:
+  - rscadd: vsd faction
+  - rscadd: New magfed revolvers!
+  - imageadd: campaign portrait and UI
+  - imageadd: VSD armor and weapons
+  - balance: faction balance
+  Wisemonster:
+  - balance: Reduce puppet damage from 15 to 12
+  blackdav123:
+  - rscadd: Added a ton of researcher digsites to Riptide, Magmoor, and Lawanka.
+  - spellcheck: Renamed chestburster preferences.
+2024-05-28:
+  Lumipharon:
+  - balance: SOM breacher ERTs have undergone more advanced training
+  Notamaniac:
+  - rscadd: Adds Tadpole circuits to requsitions for 750 points each, which can be
+      used to repair the Tad after it's been disabled
+  Xander3359:
+  - qol: All the hyposprays in the NTMed are empty by default
+  - rscadd: Adds loadouts to the beginner vendor for robots
+2024-05-29:
+  SPCR/MLGTASTICa:
+  - rscadd: Added in the Pyrogen xenomorph caste , a T2 caste.
+  TiviPlus:
+  - soundadd: Decrease gun fire sound volume from 60 to 50
+2024-05-30:
+  Lumipharon:
+  - bugfix: fixed a bug with the chem cap
+  SomrNetwork:
+  - bugfix: ert spawning naked
+  - imageadd: icons for xmdivider, vsd pistol, mapblips, hudicon, holstered sprites
+      on all weapons
+  Wisemonster:
+  - balance: Crusher can no longer crest toss armored vehicles (such as the apc and
+      tank)
+2024-05-31:
+  Neocloudy:
+  - rscadd: Health analyzers now have tooltips for a variety of things, including
+      organs, limb states, damage types, and more!
+  - bugfix: Synthetics only show as revivable if their health is greater than -100.
+  - bugfix: '[Stabilized] limb state is now green, like the [Splinted] state.'
+  - rscadd: Revivable status will now account for if the patient does not have the
+      required organs to sustain life.
+  - rscadd: Revivable status shows at what threshold the patient will be revivable.
+  - rscadd: 'Advice for Synthetic/Combat Robot quirks:'
+  - rscadd: 'Synthetic advice: no defibrillator healing, overheating threshold, no
+      braindeath.'
+  - rscadd: 'Combat Robot advice: immediate defibrillation, no critical condition.'

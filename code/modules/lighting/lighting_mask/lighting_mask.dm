@@ -11,7 +11,6 @@
 	anchored = TRUE
 	plane = LIGHTING_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	layer = LIGHTING_SECONDARY_LAYER
 	invisibility = INVISIBILITY_LIGHTING
 	blend_mode = BLEND_ADD
 	appearance_flags = KEEP_TOGETHER|RESET_TRANSFORM
@@ -147,7 +146,7 @@
 /atom/movable/lighting_mask/ex_act(severity, target)
 	return
 
-/atom/movable/lighting_mask/fire_act(exposed_temperature, exposed_volume)
+/atom/movable/lighting_mask/fire_act(burn_level)
 	return
 
 #undef LIGHTING_MASK_SPRITE_SIZE

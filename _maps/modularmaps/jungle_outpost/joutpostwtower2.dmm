@@ -96,9 +96,13 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/west)
 "uS" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/toy/dice/d20,
 /turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"uY" = (
+/obj/effect/ai_node,
+/turf/open/floor/grimy,
 /area/campaign/jungle_outpost/outpost/bar)
 "ve" = (
 /obj/machinery/vending/boozeomat,
@@ -115,6 +119,11 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"za" = (
+/obj/structure/bed/chair/wood/normal,
+/obj/effect/ai_node,
+/turf/open/floor/cult/clock,
 /area/campaign/jungle_outpost/outpost/bar)
 "zb" = (
 /turf/open/floor/grimy,
@@ -154,6 +163,10 @@
 	},
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/bar)
+"CG" = (
+/obj/effect/ai_node,
+/turf/open/floor/cult,
+/area/campaign/jungle_outpost/outpost/bar)
 "Ed" = (
 /obj/structure/platform{
 	dir = 1
@@ -184,8 +197,8 @@
 /turf/open/floor/cult/clock,
 /area/campaign/jungle_outpost/outpost/bar)
 "GX" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/structure/table/wood,
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_y = 4
 	},
 /obj/effect/spawner/random/misc/cigar,
@@ -205,7 +218,7 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "HS" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/shaker,
 /turf/open/floor/grimy,
 /area/campaign/jungle_outpost/outpost/bar)
@@ -230,7 +243,7 @@
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/bar)
 "Oe" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /turf/open/floor/cult/clock,
 /area/campaign/jungle_outpost/outpost/bar)
@@ -275,8 +288,8 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle/west)
 "RP" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/structure/table/wood,
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_y = 4
 	},
 /turf/open/floor/grimy,
@@ -304,13 +317,17 @@
 /turf/closed/wall/wood,
 /area/campaign/jungle_outpost/outpost/bar)
 "Ve" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/misc/cigarettes,
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/bar)
 "Wr" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/cult/clock,
+/area/campaign/jungle_outpost/outpost/bar)
+"WH" = (
+/obj/effect/ai_node,
+/turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/bar)
 "Xm" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -324,7 +341,7 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "YX" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/food_or_drink/drink_cans,
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/bar)
@@ -381,15 +398,15 @@ eU
 QX
 Ed
 ji
-zb
+uY
 GX
 Tn
 Jp
-Jv
+za
 Oe
 Gj
 Jp
-Jp
+WH
 Hm
 Ge
 "}
@@ -461,11 +478,11 @@ mp
 dz
 KV
 KV
-fT
+CG
 rp
 fT
 Jp
-fT
+CG
 rp
 fT
 Jp

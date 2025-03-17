@@ -20,20 +20,20 @@
 	name = "black marine combat gloves"
 	desc = "Standard issue marine tactical gloves but black! It reads: 'knit by Marine Widows Association'."
 	icon_state = "gloves_marine_black"
-	item_state = "black"
+	worn_icon_state = "black"
 
 /obj/item/clothing/gloves/marine/fingerless
 	name = "fingerless marine combat gloves"
 	desc = "Standard issue marine tactical gloves but fingerless! It reads: 'knit by Marine Widows Association'."
 	icon_state = "gloves_marine_fingerless"
-	item_state = "fingerless"
+	worn_icon_state = "fingerless"
 
 /obj/item/clothing/gloves/marine/hyperscale
 	name = "8E Chameleon TGMC combat gloves"
 	desc = "Standard issue marine tactical gloves BUT colorable with a facepaint! It reads: 'knit by Marine Widows Association'."
 	icon_state = "hyperscale_glove_inhand"
-	item_state = "hyperscale_glove_mob"
-	item_icons = list(slot_gloves = /datum/greyscale_config/marine_uniform)
+	worn_icon_state = "hyperscale_glove_mob"
+	worn_icon_list = list(slot_gloves = /datum/greyscale_config/marine_uniform)
 	greyscale_colors = ARMOR_PALETTE_BLACK
 	greyscale_config = /datum/greyscale_config/marine_uniform
 	colorable_colors = ARMOR_PALETTES_LIST
@@ -55,8 +55,9 @@
 
 /obj/item/clothing/gloves/marine/officer
 	name = "officer gloves"
-	desc = "Shiny and impressive. They look expensive."
+	desc = "Shiny and impressive while also insulating against electric shocks. They look expensive."
 	icon_state = "black"
+	siemens_coefficient = 0
 
 /obj/item/clothing/gloves/marine/officer/chief
 	name = "chief officer gloves"
@@ -87,6 +88,9 @@
 	item_flags = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 35, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 25, BIO = 15, FIRE = 15, ACID = 20)
 	resistance_flags = UNACIDABLE
+
+/obj/item/clothing/gloves/marine/specialist/tdf
+	icon_state = "armored_tdf"
 
 /obj/item/clothing/gloves/marine/veteran/pmc
 	name = "armored gloves"
@@ -145,3 +149,6 @@
 	desc = "Gloves worn by commissars of the Imperial Army so that they do not soil their hands with the blood of their men."
 	icon_state = "red"
 	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
+
+/obj/item/clothing/gloves/marine/tdf
+	icon_state = "tdf"

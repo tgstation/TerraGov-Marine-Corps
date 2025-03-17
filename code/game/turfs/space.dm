@@ -6,6 +6,7 @@
 	icon_state = "0"
 	can_bloody = FALSE
 	light_power = 0.25
+	allow_construction = FALSE
 	///What type of debuff do we apply when someone walks through this tile?
 	var/debuff_type = /datum/status_effect/spacefreeze
 
@@ -37,6 +38,19 @@
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	ENABLE_BITFIELD(atom_flags, INITIALIZED)
 	icon_state = SPACE_ICON_STATE(x, y, z)
+
+	// We make the assumption that the space plane will never be blacklisted, as an optimization
+	if(SSmapping.max_plane_offset)
+		plane = PLANE_SPACE - (PLANE_RANGE * SSmapping.z_level_to_plane_offset[z])
+
+	if (!mapload)
+		if(SSmapping.max_plane_offset)
+			var/turf/T = GET_TURF_ABOVE(src)
+			if(T)
+				T.multiz_turf_new(src, DOWN)
+			T = GET_TURF_BELOW(src)
+			if(T)
+				T.multiz_turf_new(src, UP)
 
 	return INITIALIZE_HINT_NORMAL
 

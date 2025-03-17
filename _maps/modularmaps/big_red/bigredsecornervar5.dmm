@@ -33,10 +33,6 @@
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
-"o" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "p" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -67,10 +63,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast/garbledradio)
-"E" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "F" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
@@ -92,10 +84,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast/garbledradio)
-"P" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "Q" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -2686,7 +2674,7 @@ h
 h
 h
 h
-P
+h
 u
 u
 u
@@ -2701,7 +2689,7 @@ h
 h
 h
 h
-E
+h
 u
 u
 u
@@ -3177,7 +3165,7 @@ h
 h
 h
 h
-h
+I
 h
 h
 h
@@ -3449,7 +3437,6 @@ u
 u
 u
 u
-I
 h
 h
 h
@@ -3458,7 +3445,8 @@ h
 h
 h
 h
-o
+h
+h
 u
 u
 u

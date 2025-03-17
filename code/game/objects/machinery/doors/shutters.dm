@@ -1,9 +1,10 @@
 /obj/machinery/door/poddoor/shutters
 	name = "\improper Shutters"
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
-	icon_state = "shutter1"
+	icon_state = "shutter"
 	power_channel = ENVIRON
 	resistance_flags = DROPSHIP_IMMUNE
+	base_icon_state = "shutter"
 
 /obj/machinery/door/poddoor/shutters/Initialize(mapload)
 	. = ..()
@@ -12,7 +13,8 @@
 	else if(!density && open_layer)
 		layer = open_layer
 	else
-		layer = PODDOOR_CLOSED_LAYER
+		layer = CLOSED_BLASTDOOR_LAYER
+	update_icon_state()
 
 /obj/machinery/door/poddoor/shutters/open()
 	if(operating)
@@ -22,7 +24,7 @@
 	if(!operating)
 		operating = TRUE
 	do_animate("opening")
-	icon_state = "shutter0"
+	icon_state = "[base_icon_state]0"
 	playsound(loc, 'sound/machines/shutter.ogg', 25)
 	addtimer(CALLBACK(src, PROC_REF(do_open)), 1 SECONDS)
 	return TRUE
@@ -42,7 +44,7 @@
 		return
 	operating = TRUE
 	do_animate("closing")
-	icon_state = "shutter1"
+	icon_state = "[base_icon_state]1"
 	layer = closed_layer
 	density = TRUE
 	if(visible)
@@ -59,15 +61,15 @@
 	. = ..()
 	if(operating)
 		return
-	icon_state = "shutter[density]"
+	icon_state = "[base_icon_state][density]"
 
 
 /obj/machinery/door/poddoor/shutters/do_animate(animation)
 	switch(animation)
 		if("opening")
-			flick("shutterc0", src)
+			flick("[base_icon_state]c0", src)
 		if("closing")
-			flick("shutterc1", src)
+			flick("[base_icon_state]c1", src)
 
 
 /obj/machinery/door/poddoor/shutters/timed_late
@@ -85,6 +87,7 @@
 	icon_state = "shutter0"
 	density = FALSE
 	opacity = FALSE
+	layer = BLASTDOOR_LAYER
 
 /obj/machinery/door/poddoor/shutters/opened/medbay
 	name = "Medbay Lockdown Shutters"
@@ -95,7 +98,7 @@
 
 /obj/machinery/door/poddoor/shutters/mainship
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
-	icon_state = "shutter1"
+	icon_state = "shutter"
 	openspeed = 4 //shorter open animation.
 
 /obj/machinery/door/poddoor/shutters/mainship/thunderdome/one
@@ -122,14 +125,24 @@
 /obj/machinery/door/poddoor/shutters/mainship/open
 	density = FALSE
 	opacity = FALSE
-	layer = PODDOOR_OPEN_LAYER
+	layer = BLASTDOOR_LAYER
 	icon_state = "shutter0"
-
 
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct
 	name = "Self Destruct Lockdown"
 	id = "sd_lockdown"
 	resistance_flags = RESIST_ALL
+
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct/Initialize(mapload)
+	. = ..()
+	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_alert_change))
+
+/// Called when [COMSIG_SECURITY_LEVEL_CHANGED] sends a signal, opens the shutters if the sec level is an "emergency" level
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct/proc/on_alert_change(datum/source, datum/security_level/next_level, datum/security_level/previous_level)
+	SIGNAL_HANDLER
+	if(!(next_level.sec_level_flags & SEC_LEVEL_FLAG_STATE_OF_EMERGENCY))
+		return
+	open()
 
 /obj/machinery/door/poddoor/shutters/mainship/open/hangar
 	name = "\improper Hangar Shutters"
@@ -157,8 +170,7 @@
 /obj/machinery/door/poddoor/shutters/transit/open
 	density = FALSE
 	opacity = FALSE
-	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
-	layer = PODDOOR_OPEN_LAYER
+	layer = BLASTDOOR_LAYER
 	icon_state = "shutter0"
 
 /obj/machinery/door/poddoor/shutters/barren
@@ -169,17 +181,15 @@
 	density = FALSE
 	opacity = FALSE
 	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
-	icon_state = "shutter0"
-	open_layer = PODDOOR_CLOSED_LAYER
-	closed_layer = PODDOOR_CLOSED_LAYER
+	open_layer = CLOSED_BLASTDOOR_LAYER
+	closed_layer = CLOSED_BLASTDOOR_LAYER
 
 /obj/machinery/door/poddoor/shutters/tadpole_cockpit
 	name = "pressure shutters"
 	density = FALSE
 	opacity = FALSE
-	icon_state = "shutter0"
-	open_layer = PODDOOR_CLOSED_LAYER
-	closed_layer = PODDOOR_CLOSED_LAYER
+	open_layer = CLOSED_BLASTDOOR_LAYER
+	closed_layer = CLOSED_BLASTDOOR_LAYER
 
 //mainship shutters
 /obj/machinery/door/poddoor/shutters/mainship/hangar
@@ -192,7 +202,6 @@
 
 /obj/machinery/door/poddoor/shutters/mainship/req
 	name = "\improper Requisitions Shutters"
-	icon_state = "shutter1"
 
 /obj/machinery/door/poddoor/shutters/mainship/req/ro
 	name = "\improper RO Line"
@@ -208,7 +217,6 @@
 /obj/machinery/door/poddoor/shutters/mainship/containment
 	name = "\improper Containment Cell"
 	id = "containmentcell"
-	icon_state = "shutter1"
 
 /obj/machinery/door/poddoor/shutters/mainship/containment/cell1
 	name = "\improper Containment Cell 1"
@@ -221,7 +229,6 @@
 /obj/machinery/door/poddoor/shutters/mainship/brigarmory
 	name = "\improper Brig Armory Shutters"
 	id = "brig_armory"
-	icon_state = "shutter1"
 
 /obj/machinery/door/poddoor/shutters/mainship/cic
 	name = "\improper CIC Shutters"
@@ -229,20 +236,18 @@
 /obj/machinery/door/poddoor/shutters/mainship/cic/armory
 	name = "\improper Armory Shutters"
 	id = "cic_armory"
-	icon_state = "shutter1"
 
 /obj/machinery/door/poddoor/shutters/mainship/engineering/armory
 	name = "\improper Engineering Armory Shutters"
 	id = "engi_armory"
-	icon_state = "shutter1"
 
 /obj/machinery/door/poddoor/shutters/mainship/corporate
 	name = "\improper Privacy Shutters"
 	id = "cl_shutters"
 
-/obj/machinery/door/poddoor/shutters/mainship/corporate
+/obj/machinery/door/poddoor/shutters/mainship/fc_office
 	name = "\improper Privacy Shutters"
-	id = "cl_shutters"
+	id = "fc_shutters"
 
 /obj/machinery/door/poddoor/shutters/mainship/cell
 	name = "\improper Containment Cell"
@@ -255,3 +260,82 @@
 /obj/machinery/door/poddoor/shutters/mainship/cell/cell2
 	name = "\improper Containment Cell 2"
 	id = "Containment Cell 2"
+
+/// urban shutters
+/obj/machinery/door/poddoor/shutters/urban
+	icon = 'icons/obj/structures/prop/urban/urbanshutters.dmi'
+	icon_state = "almayer_pdoor"
+	base_icon_state = "almayer_pdoor"
+	desc = "It's a shutter. You can <B>open</b> it with a <B>crowbar</b>, or with <B>claws</b>"
+	openspeed = 4
+	///how long it takes xenos to open a shutter by hand
+	var/lift_time = 10 SECONDS
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 15, BIO = 50, FIRE = 50, ACID = 50)
+
+/obj/machinery/door/poddoor/shutters/urban/attackby(obj/item/attacking_item, mob/user, params)
+	. = ..()
+	if(iscrowbar(attacking_item))
+		user.balloon_alert(user, "lifting [src]...")
+		if(!do_after(user, 15 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
+			return
+		balloon_alert_to_viewers("lifts [src]")
+		open()
+
+/obj/machinery/door/poddoor/shutters/urban/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.a_intent != INTENT_HELP)
+		xeno_attacker.balloon_alert(xeno_attacker, "lifting [src]...")
+		if(!xeno_attacker.mob_size == MOB_SIZE_BIG)
+			if(!do_after(xeno_attacker, lift_time, NONE, src,  BUSY_ICON_HOSTILE))
+				return
+		else
+			if(!do_after(xeno_attacker, 5 SECONDS, NONE, src, BUSY_ICON_HOSTILE))
+				return
+		open()
+		balloon_alert_to_viewers("lifts [src]")
+
+/obj/machinery/door/poddoor/shutters/urban/open_shutters
+	icon_state = "almayer_pdoor"
+	base_icon_state = "almayer_pdoor"
+	opacity = FALSE
+	layer = ABOVE_WINDOW_LAYER
+	max_integrity = 100
+	lift_time = 5 SECONDS
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 10, BIO = 30, FIRE = 20, ACID = 20)
+
+/obj/machinery/door/poddoor/shutters/urban/open_shutters/opened
+	icon_state = "almayer_pdoor0"
+	density = FALSE
+	opacity = FALSE
+	layer = BLASTDOOR_LAYER
+
+/obj/machinery/door/poddoor/shutters/urban/shutters
+	icon_state = "shutter"
+	layer = ABOVE_WINDOW_LAYER
+
+/obj/machinery/door/poddoor/shutters/urban/shutters/opened
+	icon_state = "shutter0"
+	base_icon_state = "shutter"
+	density = FALSE
+	opacity = FALSE
+	layer = BLASTDOOR_LAYER
+
+/obj/machinery/door/poddoor/shutters/urban/white
+	desc = "That looks like it doesn't open easily."
+	icon_state = "w_almayer_pdoor"
+	base_icon_state = "w_almayer_pdoor"
+
+/obj/machinery/door/poddoor/shutters/urban/secure_red_door
+	desc = "That looks like it doesn't open easily."
+	icon_state = "pdoor"
+	base_icon_state = "pdoor"
+
+/obj/machinery/door/poddoor/shutters/urban/biohazard/white
+	icon_state = "w_almayer_pdoor"
+	icon = 'icons/obj/structures/prop/urban/urbanshutters.dmi'
+	base_icon_state = "w_almayer_pdoor"
+
+/obj/machinery/door/poddoor/shutters/urban/security_lockdown
+	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
+	icon_state = "pdoor"
+	base_icon_state = "pdoor"
+	lift_time = 15 SECONDS

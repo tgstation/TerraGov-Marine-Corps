@@ -46,6 +46,9 @@
 	var/middragtime = 0 //MMB exploit detection
 	var/atom/middragatom //MMB exploit detection
 
+	/// If this client has been fully initialized or not
+	var/fully_created = FALSE
+
 	/// datum wrapper for client view
 	var/datum/view_data/view_size
 
@@ -95,6 +98,8 @@
 	var/keysend_tripped = FALSE
 	///custom movement keys for this client
 	var/list/movement_keys = list()
+	///Are we locking our movement input?
+	var/movement_locked = FALSE
 
 	var/list/parallax_layers
 	var/list/parallax_layers_cached
@@ -120,6 +125,10 @@
 
 	/// Messages currently seen by this client
 	var/list/seen_messages
+
+	/// The direction we WANT to move, based off our keybinds
+	/// Will be udpated to be the actual direction later on
+	var/intended_direction = NONE
 
 	show_popup_menus = TRUE // right click menu no longer shows up
 	control_freak = CONTROL_FREAK_MACROS

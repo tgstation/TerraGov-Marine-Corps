@@ -14,7 +14,7 @@
 	name = "welding helmet"
 	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
 	icon_state = "welding"
-	item_state = "welding"
+	worn_icon_state = "welding"
 	var/up = FALSE
 	soft_armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	atom_flags = CONDUCT
@@ -36,7 +36,7 @@
 	toggle_item_state(user)
 
 /obj/item/clothing/head/welding/verb/verbtoggle()
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Adjust welding mask"
 	set src in usr
 
@@ -122,7 +122,7 @@
 	name = "carved pumpkin"
 	desc = "A jack o' lantern! Believed to ward off evil spirits."
 	icon_state = "hardhat0_pumpkin"//Could stand to be renamed
-	item_state = "hardhat0_pumpkin"
+	worn_icon_state = "hardhat0_pumpkin"
 	inventory_flags = COVEREYES|COVERMOUTH
 	inv_hide_flags = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
 	armor_protection_flags = HEAD|EYES

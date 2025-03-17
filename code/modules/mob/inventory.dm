@@ -55,8 +55,7 @@
 	if(!l_hand)
 		W.forceMove(src)
 		l_hand = W
-		W.layer = ABOVE_HUD_LAYER
-		W.plane = ABOVE_HUD_PLANE
+		SET_PLANE_EXPLICIT(W, ABOVE_HUD_PLANE, src)
 		update_inv_l_hand()
 		W.pixel_x = initial(W.pixel_x)
 		W.pixel_y = initial(W.pixel_y)
@@ -83,8 +82,7 @@
 	if(!r_hand)
 		W.forceMove(src)
 		r_hand = W
-		W.layer = ABOVE_HUD_LAYER
-		W.plane = ABOVE_HUD_PLANE
+		SET_PLANE_EXPLICIT(W, ABOVE_HUD_PLANE, src)
 		update_inv_r_hand()
 		W.pixel_x = initial(W.pixel_x)
 		W.pixel_y = initial(W.pixel_y)
@@ -146,7 +144,7 @@
 		return FALSE
 	W.forceMove(get_turf(src))
 	W.layer = initial(W.layer)
-	W.plane = initial(W.plane)
+	SET_PLANE_EXPLICIT(W, initial(W.plane), src)
 	W.dropped(src)
 	return FALSE
 
@@ -260,6 +258,9 @@
  * If the item can be dropped, it will be forceMove()'d to the ground and the turf's Entered() will be called.
 */
 /mob/proc/dropItemToGround(obj/item/I, force = FALSE)
+	if(!I)
+		return
+	SEND_SIGNAL(src, COMSIG_MOB_DROPPING_ITEM)
 	. = UnEquip(I, force, drop_location())
 	if(.)
 		I.pixel_x = initial(I.pixel_x) + rand(-6,6)
@@ -297,7 +298,7 @@
 	if (client)
 		client.screen -= I
 	I.layer = initial(I.layer)
-	I.plane = initial(I.plane)
+	SET_PLANE_EXPLICIT(I, initial(I.plane), src)
 	if(newloc)
 		I.forceMove(newloc)
 		I.removed_from_inventory(src)
@@ -390,7 +391,7 @@
 
 	return obscured
 
-//proc to get the item in the active hand.
+/// Proc to get the item in the active hand.
 /mob/proc/get_held_item()
 	if(status_flags & INCORPOREAL)
 		return
@@ -399,6 +400,15 @@
 	else
 		return r_hand
 
+/// Get a list of all held items
+/mob/proc/get_held_items()
+	. = list()
+	if(status_flags & INCORPOREAL)
+		return
+	if(r_hand)
+		. += r_hand
+	if(l_hand)
+		. += l_hand
 
 //Checks if we're holding a tool that has given quality
 //Returns the tool that has the best version of this quality
@@ -414,15 +424,15 @@
 	return best_item
 
 
-// The mob is trying to strip an item from someone
+/// The mob is trying to strip an item from someone
 /mob/proc/stripPanelUnequip(obj/item/I, mob/M)
 	return
 
-//returns the item in a given slot
+/// Returns the item in a given slot
 /mob/proc/get_item_by_slot(slot_id)
 	return
 
-//returns the item in a given bit slot
+/// Returns the item in a given bit slot
 /mob/proc/get_item_by_slot_bit(slot_bit)
 	return
 

@@ -1,11 +1,8 @@
 /obj/item/binoculars/fire_support
-	name = "tactical binoculars"
+	name = "pair of tactical binoculars"
 	desc = "A pair of binoculars, used to mark targets for airstrikes and cruise missiles. Unique action to toggle mode. Ctrl+Click when using to target something."
-	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "range_finders"
 	w_class = WEIGHT_CLASS_SMALL
-	///Faction locks this item if specified
-	var/faction = null
 	///lase effect
 	var/image/laser_overlay
 	///lasing time
@@ -47,7 +44,6 @@
 	mode_list = null
 	return ..()
 
-
 /obj/item/binoculars/fire_support/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)
 	if(!pa.Find("ctrl") && pa.Find("shift"))
@@ -78,19 +74,17 @@
 	user.reset_perspective(user)
 	user.update_sight()
 
-
 /obj/item/binoculars/fire_support/update_remote_sight(mob/living/user)
-	user.see_in_dark = 32 // Should include the offset from zoom and client viewport
-	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	user.sync_lighting_plane_alpha()
+	user.lighting_cutoff = LIGHTING_CUTOFF_FULLBRIGHT
+	user.sync_lighting_plane_cutoff()
 	return TRUE
 
 /obj/item/binoculars/fire_support/update_overlays()
 	. = ..()
 	if(mode)
-		. += "binoculars_range"
+		. += "binoculars_cas"
 	else
-		. += "binoculars_laser"
+		. += "binoculars_orbital"
 
 ///Selects a firemode
 /obj/item/binoculars/fire_support/proc/select_radial(mob/user)
@@ -224,6 +218,7 @@
 		FIRESUPPORT_TYPE_INCENDIARY_MORTAR_SOM,
 		FIRESUPPORT_TYPE_SATRAPINE_SMOKE_MORTAR,
 		FIRESUPPORT_TYPE_SMOKE_MORTAR_SOM,
+		FIRESUPPORT_TYPE_TELE_COPE,
 	)
 
 ///Sets a laser overlay for fire support binos

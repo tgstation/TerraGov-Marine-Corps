@@ -2,7 +2,6 @@
 	name = "equip"
 	icon_state = "act_equip"
 	screen_loc = ui_swaphand1
-	layer = ABOVE_HUD_LAYER
 
 /atom/movable/screen/human/equip/Click()
 	SEND_SIGNAL(usr, COMSIG_CLICK_QUICKEQUIP)
@@ -83,7 +82,6 @@
 
 		using = new /atom/movable/screen/human/equip(null, src)
 		using.icon = ui_style
-		using.plane = ABOVE_HUD_PLANE
 		using.color = ui_color
 		using.alpha = ui_alpha
 		static_inventory += using
@@ -139,33 +137,12 @@
 		hotkeybuttons += pull_icon
 
 	if(hud_data.has_warnings)
-		oxygen_icon = new /atom/movable/screen/oxygen(null, src)
-		infodisplay += oxygen_icon
-
-		toxin_icon = new /atom/movable/screen/toxin(null, src)
-		infodisplay += toxin_icon
-
-		fire_icon = new /atom/movable/screen/fire(null, src)
-		infodisplay += fire_icon
 
 		healths = new /atom/movable/screen/healths(null, src)
 		infodisplay += healths
 
 		staminas = new /atom/movable/screen/stamina_hud(null, src)
 		infodisplay += staminas
-
-	if(hud_data.has_pressure)
-		pressure_icon = new /atom/movable/screen/pressure(null, src)
-		infodisplay += pressure_icon
-
-	if(hud_data.has_bodytemp)
-		bodytemp_icon = new /atom/movable/screen/bodytemp(null, src)
-		infodisplay += bodytemp_icon
-
-
-	if(hud_data.has_nutrition)
-		nutrition_icon = new /atom/movable/screen/nutrition(null, src)
-		infodisplay += nutrition_icon
 
 	rest_icon = new /atom/movable/screen/rest(null, src)
 	rest_icon.icon = ui_style

@@ -5,14 +5,15 @@
 	name = "Optical Thermal Scanner"
 	desc = "Thermals in the shape of glasses."
 	icon_state = "thermal"
-	item_state = "glasses"
+	worn_icon_state = "glasses"
 	toggleable = 1
-	vision_flags = SEE_MOBS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	vision_flags = SEE_MOBS // todo replace with tgs TRAIT_THERMAL_VISION
+	lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
 	eye_protection = -1
 	deactive_state = "goggles_off"
 
 /obj/item/clothing/glasses/thermal/emp_act(severity)
+	. = ..()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/M = src.loc
 		to_chat(M, span_warning("The Optical Thermal Scanner overloads and blinds you!"))
@@ -22,8 +23,6 @@
 			M.disabilities |= NEARSIGHTED
 			spawn(100)
 				M.disabilities &= ~NEARSIGHTED
-	..()
-
 
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
 	name = "Optical Meson Scanner"
@@ -44,7 +43,7 @@
 	name = "Optical Thermal Eyepatch"
 	desc = "An eyepatch with built-in thermal optics"
 	icon_state = "eyepatch"
-	item_state = "eyepatch"
+	worn_icon_state = "eyepatch"
 	toggleable = 0
 	armor_protection_flags = NONE
 
@@ -52,11 +51,11 @@
 	name = "Optical Thermal Implants"
 	desc = "A set of implantable lenses designed to augment your vision"
 	icon_state = "thermalimplants"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
 	)
-	item_state = "syringe_kit"
+	worn_icon_state = "syringe_kit"
 	toggleable = 0
 
 /obj/item/clothing/glasses/thermal/m64_thermal_goggles

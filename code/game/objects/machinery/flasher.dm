@@ -44,9 +44,9 @@
 /obj/machinery/flasher/wirecutter_act(mob/living/user, obj/item/W)
 	disable = !disable
 	if (disable)
-		user.visible_message(span_warning(" [user] has disconnected the [src]'s flashbulb!"), span_warning(" You disconnect the [src]'s flashbulb!"))
+		user.visible_message(span_warning("[user] has disconnected the [src]'s flashbulb!"), span_warning("You disconnect the [src]'s flashbulb!"))
 	if (!disable)
-		user.visible_message(span_warning(" [user] has connected the [src]'s flashbulb!"), span_warning(" You connect the [src]'s flashbulb!"))
+		user.visible_message(span_warning("[user] has connected the [src]'s flashbulb!"), span_warning("You connect the [src]'s flashbulb!"))
 
 /obj/machinery/flasher/attack_ai()
 	if (anchored)
@@ -76,7 +76,7 @@
 			var/mob/living/carbon/human/H = L
 			if(H.get_eye_protection() > 0)
 				continue
-			var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+			var/datum/internal_organ/eyes/E = H.get_organ_slot(ORGAN_SLOT_EYES)
 			if(E && (E.damage > E.min_bruised_damage && prob(E.damage + 50)))
 				H.flash_act()
 				E.take_damage(rand(1, 5))
@@ -88,12 +88,11 @@
 
 
 /obj/machinery/flasher/emp_act(severity)
+	. = ..()
 	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
 		return
 	if(prob(75/severity))
 		flash()
-	..(severity)
 
 /obj/machinery/flasher/portable/HasProximity(atom/movable/AM as mob|obj)
 	if ((disable) || (last_flash && world.time < last_flash + 150))
@@ -115,7 +114,7 @@
 			user.show_message(span_warning("[src] is now secured."))
 			overlays += "[base_state]-s"
 		else
-			user.show_message(span_warning(" [src] can now be moved."))
+			user.show_message(span_warning("[src] can now be moved."))
 			overlays.Cut()
 
 /obj/machinery/flasher_button/attack_ai(mob/user as mob)

@@ -129,10 +129,10 @@
 		to_chat(user, span_notice("You place the [WD] on [src]."))
 		WD.update_icon()
 
-/obj/structure/grille/fire_act(exposed_temperature, exposed_volume)
-	if(obj_integrity > integrity_failure && exposed_temperature > T0C + 1500)
-		take_damage(1, BURN, FIRE)
-	return ..()
+/obj/structure/grille/fire_act(burn_level)
+	if(obj_integrity <= integrity_failure)
+		return
+	take_damage(1, BURN, FIRE)
 
 
 

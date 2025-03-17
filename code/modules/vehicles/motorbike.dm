@@ -14,9 +14,11 @@
 	allow_pass_flags = PASSABLE
 	coverage = 30	//It's just a bike, not hard to shoot over
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
-	///Internal motorbick storage object
-	var/obj/item/storage/internal/motorbike_pack/motor_pack = /obj/item/storage/internal/motorbike_pack
-	///Mutable appearance overlay that covers up the mob with th e bike as needed
+	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
+	attachments_allowed = list(/obj/item/vehicle_module/storage/motorbike)
+	starting_attachments = list(/obj/item/vehicle_module/storage/motorbike)
+
+	///Mutable appearance overlay that covers up the mob with the bike as needed
 	var/mutable_appearance/motorbike_cover
 	///Fuel count, fuel usage is one per tile moved
 	var/fuel_count = 0
@@ -29,7 +31,6 @@
 /obj/vehicle/ridden/motorbike/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/motorbike)
-	motor_pack = new motor_pack(src)
 	motorbike_cover = mutable_appearance(icon, "motorbike_cover", MOB_LAYER + 0.1)
 	fuel_count = fuel_max
 
@@ -60,13 +61,6 @@
 		return FALSE
 	return ..()
 
-/obj/vehicle/ridden/motorbike/attack_hand(mob/living/user)
-	return motor_pack.open(user)
-
-/obj/vehicle/ridden/motorbike/MouseDrop(obj/over_object)
-	if(motor_pack.handle_mousedrop(usr, over_object))
-		return ..()
-
 /obj/vehicle/ridden/motorbike/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
 	if(!LAZYLEN(buckled_mobs)) // dont use fuel or make noise unless we're being used
@@ -81,9 +75,6 @@
 		playsound(get_turf(src), 'sound/vehicles/carrev.ogg', 100, TRUE)
 
 /obj/vehicle/ridden/motorbike/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
 	if(istype(I, /obj/item/reagent_containers/jerrycan))
 		var/obj/item/reagent_containers/jerrycan/gascan = I
 		if(gascan.reagents.total_volume == 0)
@@ -124,8 +115,7 @@
 		max_buckled_mobs = 2
 		max_occupants = 2
 		return TRUE
-	if(user.a_intent != INTENT_HARM)
-		return motor_pack.attackby(I, user, params)
+	return ..()
 
 /obj/vehicle/ridden/motorbike/proc/sidecar_dir_change(datum/source, dir, newdir)
 	SIGNAL_HANDLER
@@ -179,30 +169,18 @@
 	smoke.start()
 
 /obj/vehicle/ridden/motorbike/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	explosion(src, light_impact_range = 2, flash_range = 0)
+	explosion(src, light_impact_range = 2, flash_range = 0, explosion_cause=blame_mob)
 	return ..()
 
 /obj/vehicle/ridden/motorbike/Destroy()
 	STOP_PROCESSING(SSobj,src)
 	return ..()
 
-/obj/item/storage/internal/motorbike_pack
-	storage_slots = 4
-	max_w_class = WEIGHT_CLASS_SMALL
-	max_storage_space = 8
-
-
-/obj/item/storage/internal/motorbike_pack/handle_mousedrop(mob/user, obj/over_object)
-	if(!ishuman(user))
-		return FALSE
-
-	if(user.lying_angle || user.incapacitated()) //Can't use your inventory when lying
-		return FALSE
-
-	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
-		open(user)
-		return FALSE
-
+//internal storage
+/obj/item/vehicle_module/storage/motorbike
+	name = "internal storage"
+	desc = "A set of handy compartments to store things in."
+	storage_type = /datum/storage/internal/motorbike_pack
 
 /**
  * Sidecar that when attached lets you put two people on the bike

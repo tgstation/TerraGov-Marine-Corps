@@ -1,6 +1,4 @@
 import { useState } from 'react';
-
-import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -9,7 +7,9 @@ import {
   Section,
   Stack,
   Tabs,
-} from '../../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
 import { NameInputModal } from './NameInputModal';
 import {
@@ -127,6 +127,18 @@ const JobTabs = (props: LoadoutTabData) => {
             >
               Squad Leader
             </Tabs.Tab>
+            <Tabs.Tab
+              selected={job === 'Field Commander'}
+              onClick={() => setJob('Field Commander')}
+            >
+              Field Commander
+            </Tabs.Tab>
+            <Tabs.Tab
+              selected={job === 'Synthetic'}
+              onClick={() => setJob('Synthetic')}
+            >
+              Synthetic
+            </Tabs.Tab>
           </Tabs>
         </Flex.Item>
         <Flex.Item grow={1}>
@@ -146,7 +158,7 @@ export const LoadoutManager = (props) => {
   const [importNewLoadout, setImportNewLoadout] = useState(false);
 
   return (
-    <Window title="Loadout Manager" width={700} height={400}>
+    <Window title="Loadout Manager" width={800} height={400}>
       <Window.Content>
         <Stack vertical>
           <JobTabs job={job} setJob={setJob} />

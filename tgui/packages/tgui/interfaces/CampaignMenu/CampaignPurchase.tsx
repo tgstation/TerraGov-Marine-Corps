@@ -1,6 +1,3 @@
-import { classes } from 'common/react';
-
-import { useBackend, useLocalState } from '../../backend';
 import {
   Box,
   Button,
@@ -8,7 +5,10 @@ import {
   LabeledList,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
+
+import { useBackend, useLocalState } from '../../backend';
 import { CampaignData, FactionReward } from './index';
 
 export const CampaignPurchase = (props) => {
@@ -40,7 +40,7 @@ export const CampaignPurchase = (props) => {
                 onClick={() => setSelectedReward(reward)}
                 color={
                   selectedReward.name === reward.name
-                    ? 'orange'
+                    ? 'green'
                     : reward.uses_remaining > 0
                       ? 'blue'
                       : reward.uses_remaining < 0
@@ -54,7 +54,7 @@ export const CampaignPurchase = (props) => {
                     className={classes([
                       'campaign_assets18x18',
                       selectedReward.name === reward.name
-                        ? reward.icon + '_red'
+                        ? reward.icon + '_green'
                         : reward.icon + '_blue',
                     ])}
                   />

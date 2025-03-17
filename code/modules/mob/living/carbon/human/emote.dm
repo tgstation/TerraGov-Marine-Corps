@@ -364,9 +364,9 @@
 
 /datum/emote/living/carbon/human/laugh/get_sound(mob/living/user)
 	if(user.gender == FEMALE)
-		return 'sound/voice/human_female_laugh_1.ogg'
+		return 'sound/voice/human/female/laugh_1.ogg'
 	else
-		return pick('sound/voice/human_male_laugh_1.ogg', 'sound/voice/human_male_laugh_2.ogg')
+		return pick('sound/voice/human/male/laugh_1.ogg', 'sound/voice/human/male/laugh_2.ogg')
 
 /datum/emote/living/carbon/human/warcry
 	key = "warcry"
@@ -479,11 +479,11 @@
 /datum/emote/living/carbon/human/medic/get_sound(mob/living/carbon/human/user)
 	if(user.gender == MALE)
 		if(prob(95))
-			return 'sound/voice/human_male_medic.ogg'
+			return 'sound/voice/human/male/medic.ogg'
 		else
-			return 'sound/voice/human_male_medic2.ogg'
+			return 'sound/voice/human/male/medic2.ogg'
 	else
-		return 'sound/voice/human_female_medic.ogg'
+		return 'sound/voice/human/female/medic.ogg'
 
 
 /datum/emote/living/carbon/human/medic/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
@@ -492,7 +492,7 @@
 		return
 	var/image/medic = image('icons/mob/talk.dmi', user, icon_state = "medic")
 	user.add_emote_overlay(medic)
-
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_CALL_MEDIC, user)
 
 /datum/emote/living/carbon/human/pain
 	key = "pain"
@@ -564,3 +564,15 @@
 		return
 	var/image/pain = image('icons/mob/talk.dmi', user, icon_state = "pain")
 	user.add_emote_overlay(pain)
+
+/datum/emote/living/carbon/human/trick
+	key = "trick"
+	key_third_person = "tricks"
+	emote_flags = EMOTE_ACTIVE_ITEM|EMOTE_RESTRAINT_CHECK
+
+/datum/emote/living/carbon/human/trick/run_emote(mob/user, params, type_override, intentional, prefix)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/I = user.get_active_held_item()
+	I.do_trick(usr)

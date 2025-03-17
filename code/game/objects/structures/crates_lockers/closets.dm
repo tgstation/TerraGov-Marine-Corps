@@ -77,12 +77,12 @@
 
 	take_contents()
 
-/obj/structure/closet/deconstruct(disassembled = TRUE)
+/obj/structure/closet/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	dump_contents()
 	return ..()
 
 
-//USE THIS TO FILL IT, NOT INITIALIZE OR NEW
+///USE THIS TO FILL IT, NOT INITIALIZE OR NEW
 /obj/structure/closet/proc/PopulateContents()
 	return
 
@@ -311,7 +311,7 @@
 
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in oview(1)
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Toggle Open"
 
 	if(!usr.canmove || usr.stat || usr.restrained())
@@ -413,6 +413,7 @@
 
 
 /obj/structure/closet/contents_explosion(severity)
+	. = ..()
 	for(var/i in contents)
 		var/atom/movable/closet_contents = i
 		closet_contents.ex_act(severity)
@@ -453,6 +454,8 @@
 		return FALSE
 	return TRUE
 
+/obj/structure/closet_insertion_allowed(obj/structure/closet/destination)
+	return FALSE
 
 /obj/item/closet_insertion_allowed(obj/structure/closet/destination)
 	if(anchored)
@@ -467,16 +470,9 @@
 	destination.item_size_counter += item_size
 	return TRUE
 
-/obj/structure/bed/closet_insertion_allowed(obj/structure/closet/destination)
-	if(length(buckled_mobs))
-		return FALSE
-
-/obj/structure/closet/closet_insertion_allowed(obj/structure/closet/destination)
-	return FALSE
-
-
+///Action delay when going out of a closet
 /mob/living/proc/on_closet_dump(obj/structure/closet/origin)
-	SetStun(origin.closet_stun_delay)//Action delay when going out of a closet
+	SetStun(origin.closet_stun_delay)
 	if(!lying_angle && IsStun())
 		balloon_alert_to_viewers("Gets out of [origin]", ignored_mobs = src)
 		balloon_alert(src, "You struggle to get your bearings")

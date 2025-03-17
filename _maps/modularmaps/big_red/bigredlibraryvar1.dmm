@@ -131,7 +131,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "u" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/paper,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -155,7 +155,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "y" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "z" = (
@@ -163,9 +163,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "A" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "B" = (
@@ -188,9 +186,7 @@
 /turf/open/floor/carpet/side,
 /area/bigredv2/outside/library)
 "F" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -211,9 +207,7 @@
 	},
 /area/bigredv2/outside/library)
 "J" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -221,7 +215,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "K" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/toy/dice/d20,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)

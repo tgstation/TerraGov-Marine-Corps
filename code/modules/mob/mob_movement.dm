@@ -62,27 +62,23 @@
 	else
 		mob.control_object.forceMove(get_step(mob.control_object, direct))
 
-#define MOVEMENT_DELAY_BUFFER 0.75
-#define MOVEMENT_DELAY_BUFFER_DELTA 1.25
-
-/client/Move(n, direct)
+/client/Move(atom/newloc, direction, glide_size_override)
 	if(world.time < move_delay) //do not move anything ahead of this check please
 		return FALSE
-	else
-		next_move_dir_add = 0
-		next_move_dir_sub = 0
+	next_move_dir_add = NONE
+	next_move_dir_sub = NONE
 	var/old_move_delay = move_delay
 	move_delay = world.time + world.tick_lag //this is here because Move() can now be called mutiple times per tick
 	if(!mob?.loc)
 		return FALSE
-	if(!n || !direct)
+	if(!newloc || !direction)
 		return FALSE
 	if(mob.notransform)
 		return FALSE	//This is sota the goto stop mobs from moving var
 	if(mob.control_object)
-		return Move_object(direct)
+		return Move_object(direction)
 	if(!isliving(mob))
-		return mob.Move(n, direct)
+		return mob.Move(newloc, direction)
 	if(mob.stat == DEAD && !HAS_TRAIT(mob, TRAIT_IS_RESURRECTING))
 		mob.ghostize()
 		return FALSE
@@ -90,10 +86,10 @@
 	var/mob/living/L = mob  //Already checked for isliving earlier
 
 	if(L.remote_control) //we're controlling something, our movement is relayed to it
-		return L.remote_control.relaymove(L, direct)
+		return L.remote_control.relaymove(L, direction)
 
 	if(isAI(L))
-		return AIMove(n, direct, L)
+		return AIMove(newloc, direction, L)
 
 	//Check if you are being grabbed and if so attemps to break it
 	if(SEND_SIGNAL(L, COMSIG_LIVING_DO_MOVE_RESIST) & COMSIG_LIVING_RESIST_SUCCESSFUL)
@@ -111,18 +107,23 @@
 			return L.do_move_resist_grab()
 
 	if(L.buckled)
-		return L.buckled.relaymove(L, direct)
+		return L.buckled.relaymove(L, direction)
 
 	if(!L.canmove)
 		return
 
 	if(isobj(L.loc) || ismob(L.loc))//Inside an object, tell it we moved
 		var/atom/O = L.loc
-		return O.relaymove(L, direct)
+		return O.relaymove(L, direction)
 
 	var/add_delay = mob.cached_multiplicative_slowdown + mob.next_move_slowdown
 	mob.next_move_slowdown = 0
-	if(old_move_delay + (add_delay * MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
+	mob.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay * ( (NSCOMPONENT(direction) && EWCOMPONENT(direction)) ? DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : 1 ) )) // set it now in case of pulled objects
+	//If the move was recent, count using old_move_delay
+	//We want fractional behavior and all
+	if(old_move_delay + world.tick_lag > world.time)
+		//Yes this makes smooth movement stutter if add_delay is too fractional
+		//Yes this is better then the alternative
 		move_delay = old_move_delay
 	else
 		move_delay = world.time
@@ -134,21 +135,19 @@
 		if(L.AmountConfused() > 40)
 			newdir = pick(GLOB.alldirs)
 		else if(prob(L.AmountConfused() * 1.5))
-			newdir = angle2dir(dir2angle(direct) + pick(90, -90))
+			newdir = angle2dir(dir2angle(direction) + pick(90, -90))
 		else if(prob(L.AmountConfused() * 3))
-			newdir = angle2dir(dir2angle(direct) + pick(45, -45))
+			newdir = angle2dir(dir2angle(direction) + pick(45, -45))
 		if(newdir)
-			direct = newdir
-			n = get_step(L, direct)
+			direction = newdir
+			newloc = get_step(L, direction)
 
 	. = ..()
 
-	if((direct & (direct - 1)) && mob.loc == n) //moved diagonally successfully
+	if((direction & (direction - 1)) && mob.loc == newloc) //moved diagonally successfully
 		add_delay *= DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER
+	mob.set_glide_size(DELAY_TO_GLIDE_SIZE(add_delay))
 	move_delay += add_delay
-
-#undef MOVEMENT_DELAY_BUFFER
-#undef MOVEMENT_DELAY_BUFFER_DELTA
 
 ///Process_Spacemove
 ///Called by /client/Move()
@@ -342,6 +341,63 @@
 	selector.set_selected_zone(next_in_line, mob)
 
 
+///Moves a mob upwards in z level
+/mob/verb/up()
+	set name = "Move Upwards"
+	set category = "IC"
+
+	if(remote_control)
+		return remote_control.relaymove(src, UP)
+
+	var/turf/current_turf = get_turf(src)
+
+	if(ismovable(loc)) //Inside an object, tell it we moved
+		var/atom/loc_atom = loc
+		return loc_atom.relaymove(src, UP)
+
+
+	var/obj/structure/ladder/current_ladder = locate() in current_turf
+	if(current_ladder)
+		current_ladder.use(src, TRUE)
+		return
+
+	if(!can_z_move(UP, current_turf, null, ZMOVE_CAN_FLY_CHECKS|ZMOVE_FEEDBACK))
+		return
+	balloon_alert(src, "moving up...")
+	if(!do_after(src, 1 SECONDS))
+		return
+	if(zMove(UP, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK))
+		to_chat(src, span_notice("You move upwards."))
+
+
+///Moves a mob down a z level
+/mob/verb/down()
+	set name = "Move Down"
+	set category = "IC"
+
+	if(remote_control)
+		return remote_control.relaymove(src, DOWN)
+
+	var/turf/current_turf = get_turf(src)
+
+	if(ismovable(loc)) //Inside an object, tell it we moved
+		var/atom/loc_atom = loc
+		return loc_atom.relaymove(src, DOWN)
+
+	var/obj/structure/ladder/current_ladder = locate() in current_turf
+	if(current_ladder)
+		current_ladder.use(src, FALSE)
+		return
+
+	if(!can_z_move(DOWN, current_turf, null, ZMOVE_CAN_FLY_CHECKS|ZMOVE_FEEDBACK))
+		return
+	balloon_alert(src, "moving down...")
+	if(!do_after(src, 1 SECONDS))
+		return
+	if(zMove(DOWN, z_move_flags = ZMOVE_FLIGHT_FLAGS|ZMOVE_FEEDBACK))
+		to_chat(src, span_notice("You move down."))
+	return FALSE
+
 /mob/proc/toggle_move_intent(new_intent)
 	if(!isnull(new_intent))
 		if(new_intent == m_intent)
@@ -382,9 +438,9 @@
 		return FALSE
 	switch(m_intent)
 		if(MOVE_INTENT_WALK)
-			add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, 4 + CONFIG_GET(number/movedelay/walk_delay))
+			add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, MOB_WALK_MOVE_MOD + CONFIG_GET(number/movedelay/walk_delay))
 		if(MOVE_INTENT_RUN)
-			add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, 3 + CONFIG_GET(number/movedelay/run_delay))
+			add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, MOB_RUN_MOVE_MOD + CONFIG_GET(number/movedelay/run_delay))
 
 /mob/proc/cadecheck()
 	var/list/coords = list(list(x + 1, y, z), list(x, y + 1, z), list(x - 1, y, z), list(x, y - 1, z))

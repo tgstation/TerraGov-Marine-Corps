@@ -4,11 +4,11 @@
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "grenade"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/grenades_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/grenades_right.dmi',
 	)
-	item_state = "grenade"
+	worn_icon_state = "grenade"
 	throw_speed = 3
 	throw_range = 7
 	atom_flags = CONDUCT
@@ -29,7 +29,8 @@
 	var/light_impact_range = 4
 	///Weak impact range when exploding
 	var/weak_impact_range = 0
-
+	///The actual timer for the grenade
+	var/det_timer
 
 /obj/item/explosive/grenade/Initialize(mapload)
 	. = ..()
@@ -51,7 +52,7 @@
 
 	balloon_alert_to_viewers("primes grenade")
 	if(initial(dangerous) && ishumanbasic(user))
-		var/nade_sound = user.gender == FEMALE ? get_sfx("female_fragout") : get_sfx("male_fragout")
+		var/nade_sound = user.gender == FEMALE ? SFX_FEMALE_FRAGOUT : SFX_MALE_FRAGOUT
 
 		for(var/mob/living/carbon/human/H in hearers(6,user))
 			H.playsound_local(user, nade_sound, 35)
@@ -66,11 +67,20 @@
 	if(user.throw_item(target))
 		user.changeNext_move(CLICK_CD_THROWING)
 
+/obj/item/explosive/grenade/update_overlays()
+	. = ..()
+	if(active && dangerous)
+		. += new /obj/effect/overlay/danger
+
+/obj/item/explosive/grenade/fire_act(burn_level)
+	activate()
+
+///Activates the grenade
 /obj/item/explosive/grenade/proc/activate(mob/user)
 	if(active)
 		return
 
-	if(user)
+	if(user?.client)
 		log_bomber(user, "primed", src)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.grenades_primed ++
@@ -83,65 +93,30 @@
 		GLOB.round_statistics.grenades_thrown++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
 		update_icon()
-	addtimer(CALLBACK(src, PROC_REF(prime)), det_time)
+	det_timer = addtimer(CALLBACK(src, PROC_REF(prime)), det_time, TIMER_STOPPABLE)
+	notify_ai_hazard()
 	return TRUE
 
-/obj/item/explosive/grenade/update_overlays()
-	. = ..()
-	if(active && dangerous)
-		. += new /obj/effect/overlay/danger
-
-
+///Detonation effects TODO MAKE THIS PASS THE USER TO EXPLOSION FOR LOGGING
 /obj/item/explosive/grenade/proc/prime()
-	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range)
+	if(ishuman(loc))
+		var/mob/living/carbon/human/idiot = loc
+		var/in_hand = FALSE
+		if(idiot.l_hand == src)
+			idiot.amputate_limb(BODY_ZONE_PRECISE_L_HAND)
+			in_hand = TRUE
+		else if(idiot.r_hand == src)
+			idiot.amputate_limb(BODY_ZONE_PRECISE_R_HAND)
+			in_hand = TRUE
+		if(in_hand)
+			idiot.visible_message(span_danger("[idiot]'s hand is blown into tiny pieces by [src]!"),
+			span_userdanger("You feel incredible pain and stupidity as [src] blows your hand up."))
+			idiot.emote("scream")
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[idiot.ckey]
+			personal_statistics.grenade_hand_delimbs ++
+	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range, explosion_cause=src)
 	qdel(src)
-
-/obj/item/explosive/grenade/flamer_fire_act(burnlevel)
-	activate()
-
-/obj/item/explosive/grenade/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	walk(src, null, null)
-	return
 
 ///Adjusts det time, used for grenade launchers
 /obj/item/explosive/grenade/proc/launched_det_time()
-	det_time = min(10, det_time)
-
-////RAD GRENADE - TOTALLY RAD MAN
-
-/obj/item/explosive/grenade/rad
-	name = "\improper V-40 rad grenade"
-	desc = "Rad grenades release an extremely potent but short lived burst of radiation, debilitating organic life and frying electronics in a moderate radius. After the initial detonation, the radioactive effects linger for a time. Handle with extreme care."
-	icon_state = "grenade_rad" //placeholder
-	item_state = "grenade_rad" //placeholder
-	icon_state_mini = "grenade_red" //placeholder
-	det_time = 40 //default
-	arm_sound = 'sound/weapons/armbomb.ogg' //placeholder
-	hud_state = "grenade_he" //placeholder
-	///The range for the grenade's full effect
-	var/inner_range = 4
-	///The range range for the grenade's weak effect
-	var/outer_range = 7
-	///The potency of the grenade
-	var/rad_strength = 16
-
-/obj/item/explosive/grenade/rad/prime()
-	var/turf/impact_turf = get_turf(src)
-
-	playsound(impact_turf, 'sound/effects/portal_opening.ogg', 50, 1)
-	for(var/mob/living/victim in hearers(outer_range, src))
-		var/strength
-		var/sound_level
-		if(get_dist(victim, impact_turf) <= inner_range)
-			strength = rad_strength
-			sound_level = 3
-		else
-			strength = rad_strength * 0.6
-			sound_level = 2
-
-		strength = victim.modify_by_armor(strength, BIO, 25)
-		victim.apply_radiation(strength, sound_level)
-	qdel(src)
+	det_time = min(1 SECONDS, det_time)

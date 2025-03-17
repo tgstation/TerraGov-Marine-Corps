@@ -1,4 +1,0 @@
-author: "Notamaniac"
-delete-after: True
-changes:
-  - bugfix: "R76 icon no longer shows up as an error icon in holster"

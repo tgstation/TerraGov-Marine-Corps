@@ -2,7 +2,7 @@
 	name = "chemical implant"
 	desc = "A chemical implant containing a single use chemical cocktail which is added via syringe."
 	allow_reagents = TRUE
-	implant_flags = ACTIVATE_ON_HEAR|GRANT_ACTIVATION_ACTION
+	implant_flags = ACTIVATE_ON_HEAR|GRANT_ACTIVATION_ACTION|BENEFICIAL_IMPLANT
 	var/used = FALSE
 	var/activation_phrase = "aaaaaa help i dying help maint"
 
@@ -32,7 +32,7 @@
 	if(malfunction == MALFUNCTION_PERMANENT)
 		return FALSE
 	if(used)
-		to_chat(implant_owner, span_warning(" WARNING. Implant activation failed; Error code 345: Implant exhausted."))
+		to_chat(implant_owner, span_warning("WARNING. Implant activation failed; Error code 345: Implant exhausted."))
 		return FALSE
 	playsound(implant_owner, 'sound/machines/buzz-two.ogg', 60, 1)
 	reagents.trans_to(implant_owner, reagents.total_volume)

@@ -3,6 +3,7 @@
 	display_name = "Gorger"
 	upgrade_name = ""
 	caste_desc = "A frightening looking, bulky alien creature that drips with a familiar red fluid."
+	base_strain_type = /mob/living/carbon/xenomorph/gorger
 	caste_type_path = /mob/living/carbon/xenomorph/gorger
 	primordial_message = "There is nothing we can't withstand."
 
@@ -11,7 +12,7 @@
 	wound_type = "gorger" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 22
 
 	// *** Speed *** //
 	speed = -0.4
@@ -24,12 +25,12 @@
 	plasma_icon_state = "fury"
 
 	// *** Health *** //
-	max_health = 600
+	max_health = 700
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 
-	deevolves_to = list(/mob/living/carbon/xenomorph/warrior, /mob/living/carbon/xenomorph/hivelord)
+	deevolves_to = /datum/xeno_caste/warrior
 
 	// *** Flags *** //
 	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_PLASMADRAIN_IMMUNE|CASTE_EVOLUTION_ALLOWED

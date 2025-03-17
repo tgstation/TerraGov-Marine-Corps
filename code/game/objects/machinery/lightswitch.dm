@@ -35,7 +35,7 @@
 	. = ..()
 	if(machine_stat & NOPOWER)
 		return
-	. += emissive_appearance(icon, "light[on]_emissive")
+	. += emissive_appearance(icon, "light[on]_emissive", src)
 
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()
@@ -64,8 +64,7 @@
 		update_icon()
 
 /obj/machinery/light_switch/emp_act(severity)
+	. = ..()
 	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
 		return
 	power_change()
-	..(severity)

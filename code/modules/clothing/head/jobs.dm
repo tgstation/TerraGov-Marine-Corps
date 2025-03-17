@@ -4,7 +4,7 @@
 	name = "chef's hat"
 	desc = "It's a hat used by chefs to keep hair out of your food. Judging by the food in the mess, they don't work."
 	icon_state = "chefhat"
-	item_state = "chefhat"
+	worn_icon_state = "chefhat"
 	desc = "The commander in chef's head wear."
 	siemens_coefficient = 0.9
 
@@ -13,7 +13,7 @@
 	name = "captain's hat"
 	icon_state = "captain"
 	desc = "It's good being the king."
-	item_state = "caphat"
+	worn_icon_state = "caphat"
 	siemens_coefficient = 0.9
 	anti_hug = 1
 

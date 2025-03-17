@@ -5,7 +5,7 @@
 /obj/effect/turf_overlay/Initialize(mapload)
 	. = ..()
 	var/turf/T = get_turf(src)
-	T.overlays += image(icon, T, icon_state, TURF_LAYER)
+	T.overlays += image(icon, T, icon_state, TURF_DECAL_LAYER)
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/turf_overlay/shuttle
@@ -28,7 +28,7 @@
 /obj/effect/turf_underlay/Initialize(mapload)
 	. = ..()
 	var/turf/T = get_turf(src)
-	T.underlays += image(icon, T, icon_state, TURF_LAYER)
+	T.underlays += image(icon, T, icon_state, LOW_FLOOR_LAYER)
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/turf_underlay/tiles
@@ -45,12 +45,3 @@
 
 /obj/effect/turf_underlay/shuttle/floor6
 	icon_state = "floor6"
-
-/obj/effect/turf_underlay/icefloor
-	icon = 'icons/turf/ice.dmi'
-	icon_state = "ice_floor"
-
-/obj/effect/turf_underlay/icefloor/Initialize(mapload)
-	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
-	. = ..()
-

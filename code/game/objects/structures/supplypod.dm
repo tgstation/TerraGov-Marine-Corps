@@ -144,7 +144,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 
 	var/explosion_sum = B[1] + B[2] + B[3] + B[4]
 	if(explosion_sum != 0)
-		explosion(get_turf(src), B[1], B[2], B[3], 0, B[4])
+		explosion(get_turf(src), B[1], B[2], B[3], 0, B[4], explosion_cause=src)
 	else if(!effectQuiet)
 		playsound(src, "explosion", landingSound ? 15 : 80, 1)
 
@@ -272,7 +272,6 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	desc = "A holographic projection designating the landing zone of something. It's probably best to stand back."
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "sniper_zoom"
-	layer = XENO_HIDING_LAYER
 	var/obj/effect/temp_visual/fallingPod
 	var/obj/structure/closet/supplypod/pod
 

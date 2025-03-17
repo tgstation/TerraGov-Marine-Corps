@@ -49,7 +49,7 @@
 	. = ..()
 
 	if(HAS_TRAIT(src, BENCH_BEING_USED))
-		. += mutable_appearance(icon, "[base_icon_state]_[plates]_anim", plane = GAME_PLANE, layer = ABOVE_MOB_LAYER, alpha = src.alpha)
+		. += mutable_appearance(icon, "[base_icon_state]_[plates]_anim", ABOVE_MOB_LAYER, src, GAME_PLANE, alpha)
 
 /obj/structure/benchpress/attack_hand_alternate(mob/living/user)
 	. = ..()
@@ -123,7 +123,7 @@
 		broken.fracture()
 		return
 	if(!HAS_TRAIT(user, TRAIT_WORKED_OUT))
-		user.set_skills(user.skills.modifyRating(cqc=1))
+		user.set_skills(user.skills.modifyRating(unarmed=1))
 		ADD_TRAIT(user, TRAIT_WORKED_OUT, WEIGHTBENCH_TRAIT)
 		addtimer(CALLBACK(src, PROC_REF(undo_buff), WEAKREF(user)), 15 MINUTES)
 	var/finishmessage = pick("You feel stronger!","You feel like you're the boss of this gym!","You feel robust!","The challenge is real!")
@@ -137,12 +137,12 @@
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.weights_lifted++
 
-///proc to undo the cqc buff granted by the bench
+///proc to undo the unarmed buff granted by the bench
 /obj/structure/benchpress/proc/undo_buff(datum/weakref/user_ref)
 	var/mob/user = user_ref.resolve()
 	if(!user)
 		return
 	REMOVE_TRAIT(user, TRAIT_WORKED_OUT, WEIGHTBENCH_TRAIT)
-	user.set_skills(user.skills.modifyRating(cqc=-1))
+	user.set_skills(user.skills.modifyRating(unarmed=-1))
 	to_chat(user, span_boldnotice("You no longer feel as fit as you used to!"))
 

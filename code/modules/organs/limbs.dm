@@ -141,17 +141,11 @@
 ****************************************************/
 
 /datum/limb/proc/emp_act(severity)
+	for(var/datum/internal_organ/organ AS in internal_organs)
+		organ.emp_act(severity)
 	if(!(limb_status & LIMB_ROBOT))	//meatbags do not care about EMP
 		return
-	var/probability = 30
-	var/damage = 15
-	if(severity == 2)
-		probability = 1
-		damage = 3
-	if(prob(probability))
-		droplimb()
-	else
-		take_damage_limb(damage, 0, TRUE, TRUE)
+	take_damage_limb(0, (5 - severity) * 7, blocked = soft_armor.energy, updating_health = TRUE)
 
 
 /datum/limb/proc/take_damage_limb(brute, burn, sharp, edge, blocked = 0, updating_health = FALSE, list/forbidden_limbs = list())
@@ -718,10 +712,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 				organ = new /obj/item/limb/head/robotic(owner.loc, owner)
 			else
 				organ = new /obj/item/limb/head(owner.loc, owner)
-			owner.dropItemToGround(owner.glasses, force = TRUE)
-			owner.dropItemToGround(owner.head, force = TRUE)
-			owner.dropItemToGround(owner.wear_ear, force = TRUE)
-			owner.dropItemToGround(owner.wear_mask, force = TRUE)
+			owner.dropItemToGround(owner?.glasses, force = TRUE)
+			owner.dropItemToGround(owner?.head, force = TRUE)
+			owner.dropItemToGround(owner?.wear_ear, force = TRUE)
+			owner.dropItemToGround(owner?.wear_mask, force = TRUE)
 			owner.update_hair()
 		if(ARM_RIGHT)
 			if(limb_status & LIMB_ROBOT)
@@ -766,7 +760,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		QDEL_NULL(organ)
 	else
 		owner.visible_message(span_warning("[owner.name]'s [display_name] flies off in an arc!"),
-		span_highdanger("<b>Your [display_name] goes flying off!</b>"),
+		span_userdanger("<b>Your [display_name] goes flying off!</b>"),
 		span_warning("You hear a terrible sound of ripping tendons and flesh!"), 3)
 
 	if(organ)
@@ -850,7 +844,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	owner.visible_message(\
 		span_warning("You hear a loud cracking sound coming from [owner]!"),
-		span_highdanger("Something feels like it shattered in your [display_name]!"),
+		span_userdanger("Something feels like it shattered in your [display_name]!"),
 		"<span class='warning'>You hear a sickening crack!<span>")
 	var/soundeffect = pick('sound/effects/bone_break1.ogg','sound/effects/bone_break2.ogg','sound/effects/bone_break3.ogg','sound/effects/bone_break4.ogg','sound/effects/bone_break5.ogg','sound/effects/bone_break6.ogg','sound/effects/bone_break7.ogg')
 	playsound(owner,soundeffect, 45, 1)
@@ -1146,13 +1140,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (disfigured)
 		return
 	if(type == BRUTE)
-		owner.visible_message(span_warning(" You hear a sickening cracking sound coming from \the [owner]'s face."),	\
+		owner.visible_message(span_warning("You hear a sickening cracking sound coming from \the [owner]'s face."),	\
 		span_danger("Your face becomes an unrecognizible mangled mess!"),	\
-		span_warning(" You hear a sickening crack."))
+		span_warning("You hear a sickening crack."))
 	else
-		owner.visible_message(span_warning(" [owner]'s face melts away, turning into a mangled mess!"),	\
+		owner.visible_message(span_warning("[owner]'s face melts away, turning into a mangled mess!"),	\
 		span_danger("Your face melts off!"),	\
-		span_warning(" You hear a sickening sizzle."))
+		span_warning("You hear a sickening sizzle."))
 	disfigured = 1
 	owner.name = owner.get_visible_name()
 

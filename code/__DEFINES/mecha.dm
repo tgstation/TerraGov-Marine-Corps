@@ -11,21 +11,20 @@
 #define SILICON_PILOT (1<<4)
 #define IS_ENCLOSED (1<<5)
 #define HAS_LIGHTS (1<<6)
-#define QUIET_STEPS (1<<7)
-#define QUIET_TURNS (1<<8)
+#define QUIET_TURNS (1<<7)
 ///blocks using equipment and melee attacking.
 #define CANNOT_INTERACT (1<<9)
 /// Can click from any direction and perform stuff
 #define OMNIDIRECTIONAL_ATTACKS (1<<10)
 ///Do you need mech skill to pilot this mech
 #define MECHA_SKILL_LOCKED (1<<11)
+///Is currently suffering from an EMP
+#define MECHA_EMPED (1<<12)
+///Whether to immeditely spin when we dont have enough angle on the target
+#define MECHA_SPIN_WHEN_NO_ANGLE (1<<12)
 
 #define MECHA_MELEE (1 << 0)
 #define MECHA_RANGED (1 << 1)
-
-#define MECHA_FRONT_ARMOUR "mechafront"
-#define MECHA_SIDE_ARMOUR "mechaside"
-#define MECHA_BACK_ARMOUR "mechaback"
 
 #define MECHA_WEAPON "mecha_weapon" //l and r arm weapon type
 #define MECHA_L_ARM "mecha_l_arm"
@@ -86,6 +85,8 @@
 #define EXOSUIT_MODULE_SAVANNAH (1<<6)
 /// Module is compatible with Greyscale Exosuit models
 #define EXOSUIT_MODULE_GREYSCALE (1<<7)
+/// Module is shown in the greyscale mech menu purchasing screen
+#define EXOSUIT_MODULE_VENDABLE (1<<8)
 
 /// Module is compatible with "Working" Exosuit models - Ripley and Clarke
 #define EXOSUIT_MODULE_WORKING EXOSUIT_MODULE_RIPLEY

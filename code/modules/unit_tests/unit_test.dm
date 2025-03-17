@@ -16,6 +16,18 @@ GLOBAL_VAR_INIT(failed_any_test, FALSE)
 /// When unit testing, all logs sent to log_mapping are stored here.
 GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 
+/// A list of every test that is currently focused.
+/// Use the PERFORM_ALL_TESTS macro instead.
+GLOBAL_VAR_INIT(focused_tests, focused_tests())
+
+/proc/focused_tests()
+	var/list/focused_tests = list()
+	for (var/datum/unit_test/unit_test as anything in subtypesof(/datum/unit_test))
+		if (initial(unit_test.focus))
+			focused_tests += unit_test
+
+	return focused_tests.len > 0 ? focused_tests : null
+
 /datum/unit_test
 	//Bit of metadata for the future maybe
 	var/list/procs_tested
@@ -77,15 +89,34 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 /// Instances allocated through this proc will be destroyed when the test is over
 /datum/unit_test/proc/allocate(type, ...)
 	var/list/arguments = args.Copy(2)
-	if (!length(arguments))
-		arguments = list(run_loc_floor_bottom_left)
-	else if (arguments[1] == null)
-		arguments[1] = run_loc_floor_bottom_left
-	var/instance = new type(arglist(arguments))
+	if(ispath(type, /atom))
+		if (!arguments.len)
+			arguments = list(run_loc_floor_bottom_left)
+		else if (arguments[1] == null)
+			arguments[1] = run_loc_floor_bottom_left
+	var/instance
+	// Byond will throw an index out of bounds if arguments is empty in that arglist call. Sigh
+	if(length(arguments))
+		instance = new type(arglist(arguments))
+	else
+		instance = new type()
 	allocated += instance
 	return instance
 
+/// Logs a test message. Will use GitHub action syntax found at https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
+/datum/unit_test/proc/log_for_test(text, priority, file, line)
+	var/map_name = SSmapping.configs[GROUND_MAP].map_name + "(" + SSmapping.configs[SHIP_MAP].map_name + ")"
+
+	// Need to escape the text to properly support newlines.
+	var/annotation_text = replacetext(text, "%", "%25")
+	annotation_text = replacetext(annotation_text, "\n", "%0A")
+
+	log_world("::[priority] file=[file],line=[line],title=[map_name]: [type]::[annotation_text]")
+
 /proc/RunUnitTest(test_path, list/test_results)
+	if(ispath(test_path, /datum/unit_test/focus_only))
+		return
+
 	var/datum/unit_test/test = new test_path
 
 	GLOB.current_test = test
@@ -102,6 +133,7 @@ GLOBAL_LIST_EMPTY(unit_test_mapping_logs)
 
 	for(var/J in 1 to LAZYLEN(fail_reasons))
 		log_entry += "\tREASON #[J]: [fail_reasons[J]]"
+		//TODO missing tg's logging what map it failed on
 	var/message = log_entry.Join("\n")
 	log_test(message)
 

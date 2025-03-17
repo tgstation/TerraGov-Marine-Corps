@@ -18,6 +18,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/human_bump_attacks = 0
 	var/points_from_research = 0
 	var/points_from_mining = 0
+	var/points_from_xenos = 0
 	var/total_xeno_deaths = 0
 	///All human deaths during the round, listed by faction
 	var/list/total_human_deaths = list()
@@ -78,8 +79,6 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/spitter_acid_sprays = 0
 	var/spitter_scatter_spits = 0
 	var/wraith_phase_shifts = 0
-	var/wraith_blinks = 0
-	var/wraith_banishes = 0
 	var/bull_crush_hit = 0
 	var/bull_gore_hit = 0
 	var/bull_headbutt_hit = 0
@@ -99,3 +98,8 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/psy_lances = 0
 	var/psy_shields = 0
 	var/psy_shield_blasts = 0
+	var/sandevistan_uses = 0
+	var/sandevistan_gibs = 0
+	var/runner_items_stolen = 0
+	var/acid_maw_fires = 0
+	var/acid_jaw_fires = 0

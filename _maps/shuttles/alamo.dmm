@@ -284,7 +284,7 @@
 "bk" = (
 /obj/structure/dropship_piece/one/wing/left/bottom,
 /obj/effect/attach_point/weapon/dropship1{
-	dir = 4
+	dir = 8
 	},
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
@@ -474,6 +474,7 @@
 /area/shuttle/dropship/alamo)
 "di" = (
 /obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense,
+/obj/machinery/holopad,
 /turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
 "dS" = (
@@ -655,6 +656,10 @@
 "VW" = (
 /turf/open/shuttle/dropship/thirtyfive,
 /area/shuttle/dropship/alamo)
+"Wz" = (
+/obj/machinery/holopad,
+/turf/open/shuttle/dropship/five,
+/area/shuttle/dropship/alamo)
 "Yd" = (
 /obj/machinery/vending/cola/alamo,
 /turf/open/shuttle/dropship/thirtynine,
@@ -793,7 +798,7 @@ jS
 li
 bd
 MG
-aK
+Wz
 jI
 aK
 bp

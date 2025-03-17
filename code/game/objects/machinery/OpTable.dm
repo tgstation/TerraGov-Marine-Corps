@@ -25,6 +25,8 @@
 
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -126,12 +128,8 @@
 	var/obj/item/anesthetic_mask = buckled_human.wear_mask
 	buckled_human.dropItemToGround(anesthetic_mask)
 	qdel(anesthetic_mask)
-	addtimer(CALLBACK(src, PROC_REF(remove_knockout), buckled_mob), rand(2 SECONDS, 4 SECONDS))
+	addtimer(TRAIT_CALLBACK_REMOVE(buckled_mob, TRAIT_KNOCKEDOUT, OPTABLE_TRAIT), rand(2 SECONDS, 4 SECONDS))
 	return ..()
-
-///Wakes the buckled mob back up after they're released
-/obj/machinery/optable/proc/remove_knockout(mob/living/buckled_mob)
-	REMOVE_TRAIT(buckled_mob, TRAIT_KNOCKEDOUT, OPTABLE_TRAIT)
 
 /obj/machinery/optable/MouseDrop_T(atom/A, mob/user)
 
@@ -178,7 +176,7 @@
 
 /obj/machinery/optable/verb/climb_on()
 	set name = "Climb On Table"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(usr.stat || !ishuman(usr) || usr.restrained() || !check_table(usr))
@@ -197,6 +195,17 @@
 		user.transferItemToLoc(I, src)
 		anes_tank = I
 		to_chat(user, span_notice("You connect \the [anes_tank] to \the [src]."))
+
+	if(istype(I, /obj/item/riding_offhand))
+		var/obj/item/riding_offhand/carry_obj = I
+		if(carry_obj.is_rider(user))
+			return
+		if(victim)
+			balloon_alert(user, "already has patient!")
+			return
+		if(!take_victim(carry_obj.rider, user))
+			return
+		qdel(carry_obj)
 
 /obj/machinery/optable/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	. = ..()

@@ -100,7 +100,9 @@
 		return
 	if(!(user.job.title in new_perk.jobs_supported))
 		return
+	new_perk.unlock_animation(user)
 	new_perk.apply_perk(user)
+	user.playsound_local(user, 'sound/effects/perk_unlock.ogg', 60)
 
 ///Unlocks a loadout item for use
 /datum/individual_stats/proc/unlock_loadout_item(item_type, job_type_or_types, mob/user, cost_override, job_req_override = FALSE)
@@ -365,6 +367,10 @@
 			if(!istype(user) || user.stat)
 				to_chat(user, span_warning("Must be alive to do this!"))
 				return
+			var/datum/campaign_mission/current_mission = get_current_mission()
+			if(!current_mission || current_mission.mission_state == MISSION_STATE_FINISHED)
+				to_chat(user, span_warning("Wait for the next mission to be selected!"))
+				return
 			var/obj/item/card/id/user_id = user.get_idcard()
 			if(!(user_id.id_flags & CAN_BUY_LOADOUT))
 				to_chat(user, span_warning("You have already selected a loadout for this mission."))
@@ -412,10 +418,11 @@
 		return
 	stats.current_mob = owner //taking over ssd's creates a mismatch
 	//we have to update selected tab/job so we load the correct data for the UI
-	if(!isliving(owner))
+	var/mob/living/living_owner = owner
+
+	if(!isliving(owner) || !(living_owner?.job?.title in stats.valid_jobs))
 		stats.selected_job = stats.valid_jobs[1]
 	else
-		var/mob/living/living_owner = owner
 		stats.selected_job = living_owner.job.title
 	stats.selected_tab = TAB_LOADOUT
 	stats.interact(owner)

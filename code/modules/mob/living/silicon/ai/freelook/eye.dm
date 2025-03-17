@@ -7,11 +7,8 @@
 	icon_state = "ai_camera"
 	icon = 'icons/mob/cameramob.dmi'
 	invisibility = INVISIBILITY_MAXIMUM
-	var/list/visibleCameraChunks = list()
 	var/mob/living/silicon/ai/ai = null
 	var/relay_speech = TRUE
-	var/use_static = TRUE
-	var/static_visibility_range = 16
 	var/ai_detector_visible = TRUE
 	var/ai_detector_color = "#FF0000"
 
@@ -20,6 +17,10 @@
 	. = ..()
 	GLOB.aiEyes += src
 	setLoc(loc, TRUE)
+
+/mob/camera/aiEye/Destroy()
+	ai = null
+	return ..()
 
 //Version the normal aiEye that's added to squad HUDs. Visible to marines, not visible to xenos. CAS does this too.
 //This is the one actually used by AI in ai.dm
@@ -74,7 +75,7 @@
 	if(use_static)
 		ai.camera_visibility(src)
 	if(ai.client && !ai.multicam_on)
-		ai.client.eye = src
+		ai.client.set_eye(src)
 	//Holopad
 	if(istype(ai.current, /obj/machinery/holopad))
 		var/obj/machinery/holopad/H = ai.current
@@ -89,15 +90,16 @@
 	var/turf/old_turf = get_turf(src)
 	var/turf/new_turf = get_turf(new_loc)
 	if(old_turf?.z != new_turf?.z)
-		onTransitZ(old_turf?.z, new_turf?.z)
+		var/same_z_layer = (GET_TURF_PLANE_OFFSET(old_turf) == GET_TURF_PLANE_OFFSET(new_turf))
+		on_changed_z_level(old_turf, new_turf, same_z_layer) // todo these call seems redundant
 	return ..()
 
 
-/mob/camera/aiEye/Move()
+/mob/camera/aiEye/Move(atom/newloc, direction, glide_size_override)
 	return FALSE
 
 
-/mob/camera/aiEye/proc/GetViewerClient()
+/mob/camera/aiEye/GetViewerClient()
 	return ai?.client
 
 
@@ -105,9 +107,6 @@
 	if(ai)
 		ai.all_eyes -= src
 		ai = null
-	for(var/V in visibleCameraChunks)
-		var/datum/camerachunk/c = V
-		c.remove(src)
 	GLOB.aiEyes -= src
 	return ..()
 
@@ -190,16 +189,13 @@
 	if(relay_speech && speaker && ai && !radio_freq && speaker != ai && near_camera(speaker))
 		ai.relay_speech(message, speaker, message_language, raw_message, radio_freq, spans, message_mode)
 
-/mob/camera/aiEye/proc/register_facedir_signals(mob/user)
-	RegisterSignal(user, COMSIG_KB_MOB_FACENORTH_DOWN, VERB_REF(northface))
-	RegisterSignal(user, COMSIG_KB_MOB_FACEEAST_DOWN, VERB_REF(eastface))
-	RegisterSignal(user, COMSIG_KB_MOB_FACESOUTH_DOWN, VERB_REF(southface))
-	RegisterSignal(user, COMSIG_KB_MOB_FACEWEST_DOWN, VERB_REF(westface))
-
-/mob/camera/aiEye/proc/unregister_facedir_signals(mob/user)
-	UnregisterSignal(user, list(COMSIG_KB_MOB_FACENORTH_DOWN, COMSIG_KB_MOB_FACEEAST_DOWN, COMSIG_KB_MOB_FACESOUTH_DOWN, COMSIG_KB_MOB_FACEWEST_DOWN))
-
-/mob/camera/aiEye/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, sound/S, distance_multiplier, mob/sound_reciever)
-	if(istype(parent_cameranet) && !parent_cameranet.checkTurfVis(get_turf(src)))
+/mob/camera/aiEye/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, sound/sound_to_use, distance_multiplier)
+	if((istype(parent_cameranet) && !parent_cameranet.checkTurfVis(get_turf(src))) || !ai)
 		return
-	return ..(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S, distance_multiplier, ai)
+	/*
+	What is happening here is we are looking to find the position of the sound source relative to the camera eye
+	and using it to get a turf in the same relative position to the AI core in order to properly simulate the
+	direction and volume of where the sound is coming from.
+	*/
+	var/turf/playturf = locate(ai.x + (turf_source.x - x), ai.y + (turf_source.y - y), ai.z)
+	ai?.playsound_local(playturf, soundin, vol, vary, frequency, falloff, is_global, channel, sound_to_use, distance_multiplier)

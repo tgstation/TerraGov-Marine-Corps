@@ -20,7 +20,7 @@
 	name = "musty jacket"
 	desc = "A killer fashion statement."
 	icon_state = "jason_jacket"
-	item_state = "jason_jacket"
+	worn_icon_state = "jason_jacket"
 	soft_armor = list(MELEE = 13, BULLET = 13, LASER = 13, ENERGY = 13, BOMB = 13, BIO = 13, FIRE = 13, ACID = 13)
 
 //RAMBO
@@ -75,7 +75,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 	)
@@ -105,7 +105,7 @@
 	name = "polished metal helm"
 	desc = "The impersonal face of the law. Constructed from titanium and laminated with kevlar."
 	icon_state = "robocop_helmet"
-	item_state = "robocop_helmet"
+	worn_icon_state = "robocop_helmet"
 	soft_armor = list(MELEE = 87, BULLET = 87, LASER = 87, ENERGY = 87, BOMB = 87, BIO = 50, FIRE = 87, ACID = 87)
 	inventory_flags = COVEREYES|BLOCKSHARPOBJ
 	inv_hide_flags = HIDEEARS|HIDEEYES|HIDETOPHAIR
@@ -115,7 +115,7 @@
 	name = "polished metal armor"
 	desc = "Clean and well maintained, unlike the ugly streets of Detroit. Constructed from titanium and laminated with kevlar."
 	icon_state = "robocop_armor"
-	item_state = "robocop_armor"
+	worn_icon_state = "robocop_armor"
 	slowdown = 1
 	atom_flags = CONDUCT
 	inventory_flags = BLOCKSHARPOBJ
@@ -148,10 +148,10 @@
 	name = "captain's suit"
 	desc = "A green suit and yellow necktie. Exemplifies authority."
 	icon_state = "green_suit"
-	item_state = "dg_suit"
+	worn_icon_state = "dg_suit"
 
 /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
 	name = "head of personnel's suit"
 	desc = "A teal suit and yellow necktie. An authoritative yet tacky ensemble."
 	icon_state = "teal_suit"
-	item_state = "g_suit"
+	worn_icon_state = "g_suit"

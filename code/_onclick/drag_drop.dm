@@ -14,6 +14,7 @@
 		return // should stop you from dragging through windows
 
 	over.MouseDrop_T(src,usr)
+	return TRUE
 
 
 // recieve a mousedrop
@@ -69,6 +70,9 @@
 	SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEDRAG, src_object, over_object, src_location, over_location, src_control, over_control, params)
 
 /client/MouseDrop(src_object, over_object, src_location, over_location, src_control, over_control, params)
+	if(prefs.toggles_gameplay & TOGGLE_CLICKDRAG)
+		usr.ClickOn(over_object, over_location, params)
+		return
 	if(src_object == over_object)
 		usr.ClickOn(over_object, over_location, params)
 		return

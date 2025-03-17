@@ -26,7 +26,7 @@
 	name = "collectable chef's hat"
 	desc = "A rare Chef's Hat meant for hat collectors!"
 	icon_state = "hats"
-	item_state = "chefhat"
+	worn_icon_state = "chefhat"
 
 /obj/item/clothing/head/collectable/paper
 	name = "collectable paper hat"
@@ -38,14 +38,14 @@
 	name = "collectable top hat"
 	desc = "A top hat worn by only the most prestigious hat collectors."
 	icon_state = "tophat"
-	item_state = "that"
+	worn_icon_state = "that"
 	armor_protection_flags = NONE
 
 /obj/item/clothing/head/collectable/captain
 	name = "collectable captain's hat"
 	desc = "A Collectable Hat that'll make you look just like a real comdom!"
 	icon_state = "captain"
-	item_state = "caphat"
+	worn_icon_state = "caphat"
 	armor_protection_flags = NONE
 
 /obj/item/clothing/head/collectable/police
@@ -64,33 +64,33 @@
 	name = "collectable welding helmet"
 	desc = "A Collectable Welding Helmet. Now with 80% less lead! Not for actual welding. Any welding done while wearing this Helmet is done so at the owner's own risk!"
 	icon_state = "welding"
-	item_state = "welding"
+	worn_icon_state = "welding"
 	armor_protection_flags = HEAD|FACE|EYES
 
 /obj/item/clothing/head/collectable/slime
 	name = "collectable slime hat"
 	desc = "Just like a real Brain Slug!"
 	icon_state = "headslime"
-	item_state = "headslime"
+	worn_icon_state = "headslime"
 
 /obj/item/clothing/head/collectable/flatcap
 	name = "collectable flat cap"
 	desc = "A Collectible farmer's Flat Cap!"
 	icon_state = "flat_cap"
-	item_state = "detective"
+	worn_icon_state = "detective"
 
 /obj/item/clothing/head/collectable/pirate
 	name = "collectable pirate hat"
 	desc = "You'd make a great Dread Syndie Roberts!"
 	icon_state = "pirate"
-	item_state = "pirate"
+	worn_icon_state = "pirate"
 	armor_protection_flags = NONE
 
 /obj/item/clothing/head/collectable/rabbitears
 	name = "collectable rabbit ears"
 	desc = "Not as lucky as the feet!"
 	icon_state = "bunny"
-	item_state = "bunny"
+	worn_icon_state = "bunny"
 	armor_protection_flags = NONE
 
 /obj/item/clothing/head/collectable/wizard
@@ -102,7 +102,7 @@
 	name = "collectable hard hat"
 	desc = "WARNING! Offers no real protection, or luminosity, but it is damn fancy!"
 	icon_state = "hardhat0_yellow"
-	item_state = "hardhat0_yellow"
+	worn_icon_state = "hardhat0_yellow"
 	armor_protection_flags = NONE
 
 /obj/item/clothing/head/collectable/HoS
@@ -115,10 +115,10 @@
 	name = "collectable Thunderdome helmet"
 	desc = "Go Red! I mean Green! I mean Red! No Green!"
 	icon_state = "thunderdome"
-	item_state = "thunderdome"
+	worn_icon_state = "thunderdome"
 
 /obj/item/clothing/head/collectable/swat
 	name = "collectable SWAT helmet"
 	desc = "Now you can be in the Deathsquad too!"
 	icon_state = "swat"
-	item_state = "swat"
+	worn_icon_state = "swat"

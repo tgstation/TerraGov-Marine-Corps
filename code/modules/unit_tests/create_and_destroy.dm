@@ -22,14 +22,14 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 		/mob/living/carbon/xenomorph,
 		///Base type doesn't have any variations in it's variation list
 		/turf/closed/wall/variable,
+		//This is meant to fail extremely loud every single time it occurs in any environment in any context, and it falsely alarms when this unit test iterates it. Let's not spawn it in.
+		/obj/merge_conflict_marker,
 		///Base type with no disk type
 		/obj/machinery/computer/nuke_disk_generator,
 	)
 	//This turf existing is an error in and of itself
 	ignore += typesof(/turf/baseturf_skipover)
 	ignore += typesof(/turf/baseturf_bottom)
-	//Needs special input, let's be nice
-	ignore += typesof(/obj/effect/abstract/proximity_checker)
 	//It wants a lot more context then we have
 	ignore += typesof(/obj/effect/buildmode_line)
 	//Our system doesn't support it without warning spam from unregister calls on things that never registered
@@ -51,6 +51,12 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 	ignore += typesof(/obj/hitbox)
 	//Screen objects don't play nicely when spawned manually.
 	ignore += typesof(/atom/movable/screen)
+	///created by owning tank with necessary arg
+	ignore += typesof(/atom/movable/vis_obj/turret_overlay)
+	// Can't spawn openspace above nothing, it'll get pissy at me
+	ignore += typesof(/turf/open/openspace)
+	//runtimes if not paired with a landmark
+	ignore += typesof(/obj/structure/transport/linear)
 
 	var/list/cached_contents = spawn_at.contents.Copy()
 	var/original_turf_type = spawn_at.type

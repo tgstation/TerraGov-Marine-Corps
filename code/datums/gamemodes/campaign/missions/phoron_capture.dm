@@ -4,7 +4,7 @@
 	mission_icon = "phoron_raid"
 	map_name = "Jungle Outpost SR-422"
 	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating", ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
 	mission_flags = MISSION_DISALLOW_DROPPODS|MISSION_DISALLOW_TELEPORT
 	victory_point_rewards = list(
@@ -34,6 +34,38 @@
 	hostile_faction_additional_rewards = "Additional supplies for every phoron crate captured and local support"
 	objectives_total = 11
 	min_capture_amount = 7
+	outro_message = list(
+		MISSION_OUTCOME_MAJOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Major victory</u><br> How'd you manage to secure all of the phoron? Outstanding marines, drinks are on me!",
+			MISSION_HOSTILE_FACTION = "<u>Major loss</u><br> How'd you let them capture ALL of the phoron? All forces, retreat, retreat!",
+		),
+		MISSION_OUTCOME_MINOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Minor victory</u><br> Confirming successful capture. This is gonna be a costly one for the SOM!",
+			MISSION_HOSTILE_FACTION = "<u>Minor loss</u><br> Majority of phoron lost. This one's a failure, regroup marines.",
+		),
+		MISSION_OUTCOME_DRAW = list(
+			MISSION_STARTING_FACTION = "<u>Draw</u><br> We made it costly for them, but not enough marines. All units, fallback.",
+			MISSION_HOSTILE_FACTION = "<u>Draw</u><br> We've put a stop to those Terran thieves but it hasn't come cheap... All units, prepare for counter attack.",
+		),
+		MISSION_OUTCOME_MINOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Minor loss</u><br> Mission failed. We didn't get nearly enough phoron marines, fallback!",
+			MISSION_HOSTILE_FACTION = "<u>Minor victory</u><br> Confirming phoron requirements met. They bit off more than they could chew, you've done Mars proud marines.",
+		),
+		MISSION_OUTCOME_MAJOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Major loss</u><br> What a disaster, were you marines asleep out there? All forces, pull back!",
+			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> All phoron recovered. Outstanding work marines, that'll teach them to try steal from the SOM!",
+		),
+	)
+
+/datum/campaign_mission/capture_mission/phoron_capture/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
+	if(message)
+		return ..()
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			message = "We've caught the SOM with their pants down marines. Move in and secure all the phoron you can find!"
+		if(FACTION_SOM)
+			message = "TGMC fast movers are closing in! Secure all our phoron stores before those thieves can take it!"
+	return ..()
 
 /datum/campaign_mission/capture_mission/phoron_capture/apply_major_victory()
 	. = ..()

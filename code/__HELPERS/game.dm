@@ -1,10 +1,3 @@
-//supposedly the fastest way to do this according to https://gist.github.com/Giacom/be635398926bb463b42a
-#define RANGE_TURFS(RADIUS, CENTER) \
-	block( \
-		locate(max(CENTER.x-(RADIUS),1),          max(CENTER.y-(RADIUS),1),          CENTER.z), \
-		locate(min(CENTER.x+(RADIUS),world.maxx), min(CENTER.y+(RADIUS),world.maxy), CENTER.z) \
-	)
-
 /proc/get_area_name(atom/X, format_text = FALSE)
 	var/area/A = isarea(X) ? X : get_area(X)
 	if(!A)
@@ -13,7 +6,7 @@
 
 
 /// Checks all conditions if a spot is valid for construction , will return TRUE
-/proc/is_valid_for_resin_structure(turf/target, needs_support = FALSE, mob/builder)
+/proc/is_valid_for_resin_structure(turf/target, needs_support = FALSE, planned_building)
 
 	if(!target || !istype(target))
 		return ERROR_JUST_NO
@@ -29,7 +22,7 @@
 	for(var/mob/living/carbon/xenomorph/blocker in target)
 		if(blocker.stat != DEAD && !CHECK_BITFIELD(blocker.xeno_caste.caste_flags, CASTE_IS_BUILDER))
 			return ERROR_BLOCKER
-	if(!target.check_alien_construction(null, TRUE))
+	if(!target.check_alien_construction(null, TRUE, planned_building))
 		return ERROR_CONSTRUCT
 	if(needs_support)
 		for(var/D in GLOB.cardinals)
@@ -81,10 +74,10 @@
 /proc/remove_image_from_client(image/image, client/remove_from)
 	remove_from?.images -= image
 
-/proc/remove_images_from_clients(image/I, list/show_to)
-	for(var/client/C AS in show_to)
-		C.images -= I
-
+///Removes an image from a list of client's images
+/proc/remove_images_from_clients(image/image, list/show_to)
+	for(var/client/client AS in show_to)
+		client?.images -= image
 
 /proc/flick_overlay(image/I, list/show_to, duration)
 	for(var/client/C AS in show_to)

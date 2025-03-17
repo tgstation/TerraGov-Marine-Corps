@@ -18,3 +18,10 @@
 #define MARINE_BASE (1<<4)
 ///radio works even underground
 #define ALWAYS_RADIO (1<<5)
+///prevents construction in area
+#define NO_CONSTRUCTION (1<<6)
+///Disallows nuke timer to be activated in area
+#define CANNOT_NUKE (1<<7)
+
+#define AREA_FLAVOR_NONE "area_regular"
+#define AREA_FLAVOR_URBAN "area_urban"

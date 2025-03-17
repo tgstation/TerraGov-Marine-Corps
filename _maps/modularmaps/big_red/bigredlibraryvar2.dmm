@@ -4,9 +4,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "ce" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/item/book/manual/engineering_construction,
 /obj/item/book/manual/engineering_guide,
 /turf/open/floor/wood,
@@ -28,14 +26,12 @@
 	},
 /area/bigredv2/outside/library)
 "eF" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/item/book/manual/barman_recipes,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "gS" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/book/manual/nuclear,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -94,7 +90,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/library)
 "pV" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/toy/dice/d20,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -108,16 +104,12 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/library)
 "qr" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/item/book/manual/detective,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "qY" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/item/book/manual/ripley_build_and_repair,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -125,9 +117,7 @@
 /turf/open/floor/carpet/side,
 /area/bigredv2/outside/library)
 "uo" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/item/book/manual/engineering_particle_accelerator,
 /obj/item/book/manual/engineering_singularity_safety,
 /turf/open/floor/wood,
@@ -153,9 +143,7 @@
 	},
 /area/bigredv2/outside/library)
 "yu" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/item/book/manual/evaguide,
 /obj/item/book/manual/marine_law,
 /turf/open/floor/wood,
@@ -185,9 +173,7 @@
 	},
 /area/bigredv2/outside/library)
 "AY" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/item/book/manual/chef_recipes,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -232,15 +218,13 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "Fe" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/item/book/manual/engineering_guide,
 /obj/item/book/manual/nuclear,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "Ft" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "FB" = (
@@ -277,9 +261,7 @@
 /turf/open/floor/carpet/side,
 /area/bigredv2/outside/library)
 "JQ" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -309,9 +291,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "Nh" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/item/book/manual/medical_cloning,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -325,22 +305,18 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "NR" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/paper,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "OB" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/effect/landmark/weed_node,
 /obj/item/book/manual/engineering_guide,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "PW" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/item/book/manual/atmospipes,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -364,9 +340,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "VR" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/item/book/manual/engineering_construction,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -388,9 +362,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "YQ" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/item/book/manual/engineering_construction,
 /obj/item/book/manual/marine_law,
 /turf/open/floor/wood,

@@ -648,13 +648,17 @@
 	eye_blurry = max(amount, 0)
 	update_eye_blur()
 
+// todo replace this shit with tg's style status effect for this
 /mob/living/proc/update_eye_blur()
 	if(!client)
 		return
-	var/atom/movable/screen/plane_master/floor/OT = locate(/atom/movable/screen/plane_master/floor) in client.screen
-	var/atom/movable/screen/plane_master/game_world/GW = locate(/atom/movable/screen/plane_master/game_world) in client.screen
-	GW.backdrop(src)
-	OT.backdrop(src)
+	if(SEND_SIGNAL(src, COMSIG_LIVING_UPDATE_PLANE_BLUR) & COMPONENT_CANCEL_BLUR)
+		return
+	var/atom/movable/plane_master_controller/game_plane_master_controller = hud_used.plane_master_controllers[PLANE_MASTERS_GAME]
+	if(eye_blurry <= 0)
+		game_plane_master_controller.remove_filter("eye_blur")
+	else
+		game_plane_master_controller.add_filter("eye_blur", 1, gauss_blur_filter(clamp(eye_blurry * 0.1, 0.6, 3)))
 
 /mob/living/proc/adjust_ear_damage(damage = 0, deaf = 0)
 	ear_damage = max(0, ear_damage + damage)
@@ -890,7 +894,7 @@
 
 ///How many deciseconds remain in our irradiated status effect
 /mob/living/proc/amount_irradiated()
-	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
+	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated()
 	if(irradiated)
 		return irradiated.duration - world.time
 	return 0
@@ -899,7 +903,7 @@
 /mob/living/proc/irradiate(amount, ignore_canstun = FALSE) //Can't go below remaining duration
 	if(status_flags & GODMODE)
 		return
-	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
+	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated()
 	if(irradiated)
 		irradiated.duration = max(world.time + amount, irradiated.duration)
 	else if(amount > 0)
@@ -910,7 +914,7 @@
 /mob/living/proc/set_radiation(amount, ignore_canstun = FALSE)
 	if(status_flags & GODMODE)
 		return
-	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
+	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated()
 	if(amount <= 0)
 		if(irradiated)
 			qdel(irradiated)
@@ -925,9 +929,13 @@
 /mob/living/proc/adjust_radiation(amount, ignore_canstun = FALSE)
 	if(status_flags & GODMODE)
 		return
-	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
+	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated()
 	if(irradiated)
 		irradiated.duration += amount
 	else if(amount > 0)
 		irradiated = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
 	return irradiated
+
+///Returns whether the mob has been recently hit by a sniper round
+/mob/living/proc/is_recently_sniped()
+	return has_status_effect(STATUS_EFFECT_SNIPED)

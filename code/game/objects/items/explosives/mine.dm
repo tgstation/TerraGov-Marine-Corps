@@ -11,7 +11,7 @@ Stepping directly on the mine will also blow it up
 /obj/item/explosive/mine
 	name = "\improper M20 Claymore anti-personnel mine"
 	desc = "The M20 Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps."
-	icon = 'icons/obj/items/grenade.dmi'
+	icon = 'icons/obj/items/mines.dmi'
 	icon_state = "m20"
 	force = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -58,7 +58,7 @@ Stepping directly on the mine will also blow it up
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
 /// Flamer fire will cause mines to trigger their explosion
-/obj/item/explosive/mine/flamer_fire_act(burnlevel)
+/obj/item/explosive/mine/fire_act(burn_level)
 	. = ..()
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
@@ -140,11 +140,16 @@ Stepping directly on the mine will also blow it up
 	var/mob/living/living_victim
 	if((target_mode & MINE_LIVING_ONLY) && isliving(victim))
 		living_victim = victim
-	else if((target_mode & MINE_VEHICLE_ONLY) && isvehicle(victim))
-		var/obj/vehicle/vehicle_victim = victim
-		if(!length(vehicle_victim.occupants))
-			return FALSE
-		living_victim = vehicle_victim.occupants[1]
+	else if(target_mode & MINE_VEHICLE_ONLY)
+		if(ishitbox(victim))
+			var/obj/hitbox/hitbox = victim
+			victim = hitbox.root
+		if(isvehicle(victim))
+			var/obj/vehicle/vehicle_victim = victim
+			var/list/driver_list = vehicle_victim.return_drivers()
+			if(!length(driver_list))
+				return FALSE
+			living_victim = driver_list[1]
 
 	if(!living_victim)
 		return FALSE
@@ -183,7 +188,7 @@ Stepping directly on the mine will also blow it up
 	if(triggered)
 		return
 	triggered = TRUE
-	explosion(tripwire ? tripwire.loc : loc, light_impact_range = 3)
+	explosion(tripwire ? tripwire.loc : loc, light_impact_range = 3, explosion_cause=src)
 	QDEL_NULL(tripwire)
 	qdel(src)
 
@@ -247,9 +252,12 @@ Stepping directly on the mine will also blow it up
 	if(triggered)
 		return
 	triggered = TRUE
-	explosion(tripwire ? tripwire.loc : loc, 2, 0, 0, 4)
+	explosion(tripwire ? tripwire.loc : loc, 2, 0, 0, 4, explosion_cause=src)
 	QDEL_NULL(tripwire)
 	qdel(src)
+
+/obj/item/explosive/mine/anti_tank/emp_act()
+	return
 
 /obj/item/explosive/mine/anti_tank/ex_act(severity)
 	switch(severity)
@@ -273,5 +281,5 @@ Stepping directly on the mine will also blow it up
 		return
 	INVOKE_ASYNC(src, PROC_REF(trigger_explosion))
 
-/obj/item/explosive/mine/anti_tank/flamer_fire_act(burnlevel)
+/obj/item/explosive/mine/anti_tank/fire_act(burn_level)
 	return //its highly exploitable if fire detonates these

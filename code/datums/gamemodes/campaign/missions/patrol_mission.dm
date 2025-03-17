@@ -5,6 +5,7 @@
 	map_file = '_maps/map_files/desparity/desparity.dmm'
 	map_light_colours = list(COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW)
 	map_light_levels = list(225, 150, 100, 75)
+	map_armor_color = MAP_ARMOR_STYLE_JUNGLE
 	mission_icon = "combat_patrol"
 	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the AO or capture and hold the sensor towers for a points victory. Minor Victory: Eliminate more hostiles than you lose."
 	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the AO or capture and hold the sensor towers for a points victory. Minor Victory: Eliminate more hostiles than you lose."
@@ -34,9 +35,31 @@
 		Eliminate all hostiles you come across while preserving your own forces. Good hunting."
 	starting_faction_additional_rewards = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion."
 	hostile_faction_additional_rewards = "If the enemy force is wiped out entirely, additional supplies can be diverted to your battalion."
+	outro_message = list(
+		MISSION_OUTCOME_MAJOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Major victory</u><br> AO secured, hostile forces are on the run. Outstanding work!",
+			MISSION_HOSTILE_FACTION = "<u>Major loss</u><br> We've lost control of this area. All forces, pull back now!",
+		),
+		MISSION_OUTCOME_MINOR_VICTORY = list(
+			MISSION_STARTING_FACTION = "<u>Minor victory</u><br> We've smashed their forces, regroup and secure the area!",
+			MISSION_HOSTILE_FACTION = "<u>Minor loss</u><br> We don't have the manpower to keep going, all forces retreat and regroup!",
+		),
+		MISSION_OUTCOME_DRAW = list(
+			MISSION_STARTING_FACTION = "<u>Draw</u><br> There's no victory here... Any survivors, get out of the AO.",
+			MISSION_HOSTILE_FACTION = "<u>Draw</u><br> Enemy operation disrupted. It didn't come cheap though. Any survivors, regroup and fallback, we're going on the counter attack.",
+		),
+		MISSION_OUTCOME_MINOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Minor loss</u><br> Casualties are too high, we can't keep this up. All forces, fallback.",
+			MISSION_HOSTILE_FACTION = "<u>Minor victory</u><br> Hostiles forces are falling back. Nice work everyone.",
+		),
+		MISSION_OUTCOME_MAJOR_LOSS = list(
+			MISSION_STARTING_FACTION = "<u>Major loss</u><br> We've lost control here, all survivors retreat, this one is a loss.",
+			MISSION_HOSTILE_FACTION = "<u>Major victory</u><br> Confirming control of AO. Hostile forces destroyed or retreat, outstanding work!",
+		),
+	)
 
 	///Point limit to win the game via objectives
-	var/capture_point_target = 400
+	var/capture_point_target = 375
 	///starting team's point count
 	var/start_team_cap_points = 0
 	///hostile team's point count
@@ -57,6 +80,16 @@
 		MISSION_STARTING_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [hostile_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
 		MISSION_HOSTILE_FACTION = "[map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Eliminate all [starting_faction] resistance in the AO. Reinforcements are limited so preserve your forces as best you can. Good hunting!",
 	)
+	return ..()
+
+/datum/campaign_mission/tdm/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
+	if(message)
+		return ..()
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			message = "SOM patrol confirmed in the AO! Secure those towers and neutralise all hostile forces. Move it marines!"
+		if(FACTION_SOM)
+			message = "TGMC patrol identified in the AO. Secure those towers and eliminate every Terran you see. For Mars!"
 	return ..()
 
 /datum/campaign_mission/tdm/get_status_tab_items(mob/source, list/items)
@@ -188,14 +221,16 @@
 	map_file = '_maps/map_files/Orion_Military_Outpost/orionoutpost.dmm'
 	map_light_colours = list(COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW)
 	map_light_levels = list(225, 150, 100, 75)
+	map_armor_color = MAP_ARMOR_STYLE_JUNGLE
 
 /datum/campaign_mission/tdm/first_mission
 	name = "First Contact"
 	map_name = "Jungle Outpost SR-422"
 	map_file = '_maps/map_files/Campaign maps/jungle_outpost/jungle_outpost.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating", ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
 	map_light_levels = list(200, 100, 75, 50)
+	map_armor_color = MAP_ARMOR_STYLE_JUNGLE
 	mission_start_delay = 3 MINUTES
 
 /datum/campaign_mission/tdm/first_mission/end_mission()

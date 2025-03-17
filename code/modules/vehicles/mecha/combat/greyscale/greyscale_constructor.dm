@@ -4,7 +4,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 /proc/generate_greyscale_weapons_data()
 	. = list("weapons" = list(), "ammo" = list(), "armor" = list(), "utility" = list(), "power" = list())
 	for(var/obj/item/mecha_parts/mecha_equipment/weapon/type AS in subtypesof(/obj/item/mecha_parts/mecha_equipment))
-		if(!(initial(type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+		if(!(initial(type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 			continue
 		if(initial(type.mech_flags) == ALL)
 			continue
@@ -63,32 +63,12 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			"ammo_type" = initial(ammo.ammo_type),
 		))
 
-/atom/movable/screen/mech_builder_view
-	name = "Mech preview"
-	del_on_map_removal = FALSE
-	layer = OBJ_LAYER
-	plane = GAME_PLANE
-	///list of plane masters to apply to owners
-	var/list/plane_masters = list()
-
-/atom/movable/screen/mech_builder_view/Initialize(mapload, datum/hud/hud_owner)
-	. = ..()
-	assigned_map = "mech_preview_[REF(src)]"
-	set_position(1, 1)
-	for(var/plane_master_type in subtypesof(/atom/movable/screen/plane_master) - /atom/movable/screen/plane_master/blackness)
-		var/atom/movable/screen/plane_master/plane_master = new plane_master_type()
-		plane_master.screen_loc = "[assigned_map]:CENTER"
-		plane_masters += plane_master
-
-/atom/movable/screen/mech_builder_view/Destroy()
-	QDEL_LIST(plane_masters)
-	return ..()
-
 /obj/machinery/computer/mech_builder
 	name = "mech computer"
 	screen_overlay = "mech_computer"
 	dir = EAST // determines where the mech will pop out, NOT where the computer faces
 	interaction_flags = INTERACT_OBJ_UI
+	req_access = list(ACCESS_MARINE_MECH)
 
 	///current selected name for the mech
 	var/selected_name = "TGMC Combat Mech"
@@ -129,7 +109,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	///List of max equipment that we're allowed to attach while using this console
 	var/equipment_max = MECH_GREYSCALE_MAX_EQUIP
 	///reference to the mech screen object
-	var/atom/movable/screen/mech_builder_view/mech_view
+	var/atom/movable/screen/map_view/mech_view
 	///list of stat data that will be sent to the UI
 	var/list/current_stats
 
@@ -141,6 +121,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 /obj/machinery/computer/mech_builder/Initialize(mapload)
 	. = ..()
 	mech_view = new
+	mech_view.generate_view("mech_builder_view_[REF(src)]")
 	update_ui_view()
 	current_stats = list()
 	var/list/datum/mech_limb/limbs = list()
@@ -154,9 +135,13 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	current_stats["left_scatter"] = arm_limb.scatter_mod
 	arm_limb = limbs[MECH_GREY_R_ARM]
 	current_stats["right_scatter"] = arm_limb.scatter_mod
-	var/datum/mech_limb/torso/torso_limb = limbs[MECH_GREY_TORSO]
-	var/obj/item/cell/cell_type = torso_limb.cell_type
-	current_stats["power_max"] = initial(cell_type.maxcharge)
+
+	var/power_calc = 0
+	for(var/obj/item/mecha_parts/mecha_equipment/generator/greyscale/gen AS in selected_equipment[MECHA_POWER])
+		if(ispath(gen, /obj/item/mecha_parts/mecha_equipment/generator/greyscale))
+			var/obj/item/cell/cell_type = initial(gen.cell_type)
+			power_calc += initial(cell_type.maxcharge)
+	current_stats["power_max"] = power_calc
 
 	var/health = 0
 	var/slowdown = 0
@@ -175,7 +160,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	. = ..()
 	if(!.)
 		return
-	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_VETERAN)
+	if(user.skills.getRating(SKILL_MECH) < SKILL_MECH_TRAINED)
 		return FALSE
 
 /obj/machinery/computer/mech_builder/ui_interact(mob/user, datum/tgui/ui)
@@ -184,13 +169,11 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		return
 	ui = new(user, src, "MechVendor", name)
 	ui.open()
-	user.client?.screen |= mech_view.plane_masters
-	user.client?.register_map_obj(mech_view)
+	mech_view.display_to(user)
 
 /obj/machinery/computer/mech_builder/ui_close(mob/user)
 	. = ..()
-	user.client?.screen -= mech_view.plane_masters
-	user.client?.clear_map(mech_view.assigned_map)
+	mech_view.hide_from(user)
 
 /obj/machinery/computer/mech_builder/ui_assets(mob/user)
 	. = ..()
@@ -216,15 +199,31 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	data["selected_equipment"] = selected_equipment
 	data["current_stats"] = current_stats
 	data["cooldown_left"] = S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA)
+	data["weight"] = get_current_weight()
+	var/datum/mech_limb/legs/legs_type = get_mech_limb(MECH_GREY_LEGS, selected_variants[MECH_GREY_LEGS])
+	data["max_weight"] = initial(legs_type.max_weight)
 	return data
+
+// todo do all this shit in js side
+/obj/machinery/computer/mech_builder/proc/get_current_weight()
+	. = 0
+	for(var/limbname AS in selected_variants)
+		var/datum/mech_limb/limbtype = get_mech_limb(limbname, selected_variants[limbname])
+		. += initial(limbtype.weight)
+	for(var/key AS in selected_equipment)
+		var/value = selected_equipment[key]
+		if(!islist(value))
+			var/datum/mech_limb/limbtype = value
+			. += initial(limbtype.weight)
+			continue
+		for(var/datum/mech_limb/limbtype AS in value)
+			. += initial(limbtype.weight)
 
 /obj/machinery/computer/mech_builder/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
 
-	if(S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA))
-		return FALSE
 	var/selected_part = params["bodypart"]
 	if(selected_part && !(selected_part in selected_primary))
 		return FALSE // non valid body parts
@@ -280,6 +279,12 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			selected_name = new_name
 
 		if("assemble")
+			var/mob/living/user = usr
+			if(HAS_TRAIT(user, TRAIT_HAS_SPAWNED_MECH))
+				tgui_alert(user, "You have already deployed a mech!")
+				return FALSE
+			if(S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA))
+				return FALSE
 			for(var/key in selected_primary)
 				if(isnull(selected_primary[key]))
 					return FALSE
@@ -288,9 +293,15 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 					return FALSE
 			if(isnull(selected_visor))
 				return FALSE
+			var/datum/mech_limb/legs/legs_type = get_mech_limb(MECH_GREY_LEGS, selected_variants[MECH_GREY_LEGS])
+			if(initial(legs_type.max_weight) < get_current_weight())
+				tgui_alert(user, "Your mech is too heavy to deploy!")
+				return FALSE
 			addtimer(CALLBACK(src, PROC_REF(deploy_mech)), 1 SECONDS)
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, 0)
-			S_TIMER_COOLDOWN_START(src, COOLDOWN_MECHA, 5 MINUTES)
+			if(!isspatialagentjob(user.job))
+				S_TIMER_COOLDOWN_START(src, COOLDOWN_MECHA, 5 MINUTES)
+				ADD_TRAIT(usr, TRAIT_HAS_SPAWNED_MECH, MECH_VENDOR_TRAIT)
 			return TRUE
 
 		if("add_weapon")
@@ -299,7 +310,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				return FALSE
 			if(initial(new_type.equipment_slot) != MECHA_WEAPON)
 				return FALSE
-			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 				return FALSE
 			if(params["is_right_weapon"])
 				selected_equipment[MECHA_R_ARM] = new_type
@@ -311,18 +322,24 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			var/obj/item/mecha_parts/mecha_equipment/new_type = text2path(params["type"])
 			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
 				return FALSE
-			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 				return FALSE
 			if(length(selected_equipment[MECHA_POWER]) >= equipment_max[MECHA_POWER])
 				return FALSE
 			selected_equipment[MECHA_POWER] += new_type
+			var/power_calc = 0
+			for(var/obj/item/mecha_parts/mecha_equipment/generator/greyscale/gen AS in selected_equipment[MECHA_POWER])
+				if(ispath(gen, /obj/item/mecha_parts/mecha_equipment/generator/greyscale))
+					var/obj/item/cell/cell_type = initial(gen.cell_type)
+					power_calc += initial(cell_type.maxcharge)
+			current_stats["power_max"] = power_calc
 			return TRUE
 
 		if("add_armor")
 			var/obj/item/mecha_parts/mecha_equipment/new_type = text2path(params["type"])
 			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
 				return FALSE
-			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 				return FALSE
 			if(length(selected_equipment[MECHA_ARMOR]) >= equipment_max[MECHA_ARMOR])
 				return FALSE
@@ -333,7 +350,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			var/obj/item/mecha_parts/mecha_equipment/new_type = text2path(params["type"])
 			if(!ispath(new_type, /obj/item/mecha_parts/mecha_equipment))
 				return FALSE
-			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_GREYSCALE))
+			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 				return FALSE
 			if(length(selected_equipment[MECHA_UTILITY]) >= equipment_max[MECHA_UTILITY])
 				return FALSE
@@ -413,10 +430,6 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		if(MECH_GREY_R_ARM)
 			var/datum/mech_limb/arm/arm_limb = new_limb
 			current_stats["right_scatter"] = arm_limb.scatter_mod
-		if(MECH_GREY_TORSO)
-			var/datum/mech_limb/torso/torso_limb = new_limb
-			var/obj/item/cell/cell_type = torso_limb.cell_type
-			current_stats["power_max"] = initial(cell_type.maxcharge)
 
 	current_stats["health"] = current_stats["health"] - old_limb.health_mod + new_limb.health_mod
 	current_stats["slowdown"] = current_stats["slowdown"] - old_limb.slowdown_mod + new_limb.slowdown_mod

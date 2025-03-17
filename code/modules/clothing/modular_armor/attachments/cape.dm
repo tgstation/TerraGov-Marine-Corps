@@ -171,10 +171,10 @@
 	var/obj/item/armor_module/highlight = attachments_by_slot[ATTACHMENT_SLOT_CAPE_HIGHLIGHT]
 	if(hood)
 		icon_state = initial(icon_state) + "_[current_variant]_h"
-		item_state = initial(item_state) + "_[current_variant]_h"
+		worn_icon_state = initial(worn_icon_state) + "_[current_variant]_h"
 	else
 		icon_state = initial(icon_state) + "_[current_variant]"
-		item_state = initial(item_state) + "_[current_variant]"
+		worn_icon_state = initial(worn_icon_state) + "_[current_variant]"
 	highlight?.update_icon()
 	if(parent)
 		parent.update_clothing_icon()

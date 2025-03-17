@@ -68,6 +68,11 @@
 	icon = 'icons/obj/items/candle.dmi'
 	icon_state = "candle4"
 
+/obj/item/trash/can
+	name = "crushed can"
+	icon_state = "cola"
+	resistance_flags = NONE
+
 /obj/item/trash/liquidfood
 	name = "\improper \"LiquidFood\" ration"
 	icon_state = "liquidfood"
@@ -168,3 +173,199 @@
 	name = "\improper crumbled SOM MFR"
 	desc = "It has done its part for the SOM. Have you?"
 	icon_state = "som_mealpackempty"
+
+/obj/item/trash/nt_chips
+	name = "\improper Nanotrasen Pepper Chips"
+	icon_state = "nt_chips_pepper"
+	desc = "An oily empty bag that once held Nanotrasen Chips."
+
+/obj/item/trash/nt_chips/pepper
+	name = "\improper Nanotrasen Pepper Chips"
+	icon_state = "nt_chips_pepper"
+	desc = "An oily empty bag that once held Nanotrasen Pepper Chips."
+
+/obj/item/trash/crushed_cup
+	name = "crushed cup"
+	desc = "A sad crushed and destroyed cup. It's now useless trash. What a waste."
+	icon_state = "crushed_solocup"
+	throwforce = 0
+	w_class = WEIGHT_CLASS_TINY
+	attack_verb = list("bludgeons", "whacks", "slaps")
+
+/obj/item/trash/trashbag
+	name = "trash bag"
+	desc = "It's the heavy-duty black polymer kind. Time to take out the trash!"
+	icon_state = "ztrashbag"
+	w_class = WEIGHT_CLASS_TINY
+	throwforce = 1
+
+/obj/item/trash/crushed_wbottle
+	name = "crushed waterbottle"
+	desc = "Overpriced 'Spring' water. Bottled by the Nanotrasen Corporation."
+	icon_state = "waterbottle_crushed"
+	w_class = WEIGHT_CLASS_TINY
+	throwforce = 1
+
+/obj/item/trash/crushed_bottle
+	name = "crushed bottle"
+	desc = "A crushed bottle, it's hard to see the label."
+	icon_state = "blank_can_crushed"
+	w_class = WEIGHT_CLASS_TINY
+	throwforce = 1
+
+/obj/item/trash/crushed_bottle/beer
+	icon_state = "beer_crushed"
+
+/obj/item/trash/crushed_bottle/ale
+	icon_state = "ale_crushed"
+
+/obj/item/trash/crushed_bottle/fruitbeer
+	icon_state = "fruit_beer_crushed"
+
+/obj/item/trash/crushed_bottle/sodawater
+	icon_state = "soda_water_crushed"
+
+/obj/item/trash/crushed_bottle/tonic
+	icon_state = "tonic_crushed"
+
+/obj/item/trash/crushed_bottle/purple_can
+	icon_state = "purple_can_crushed"
+
+/obj/item/trash/crushed_bottle/cola
+	icon_state = "cola_crushed"
+
+/obj/item/trash/crushed_bottle/grapesoda
+	icon_state = "grapesoda_crushed"
+
+/obj/item/trash/crushed_bottle/icetea
+	icon_state = "ice_tea_can_crushed"
+
+/obj/item/trash/crushed_bottle/thirteenloko
+	icon_state = "thirteen_loko_crushed"
+
+/obj/item/trash/crushed_bottle/spacemount
+	icon_state = "space_mountain_wind_crushed"
+
+/obj/item/trash/crushed_bottle/drgibb
+	icon_state = "dr_gibb_crushed"
+
+/obj/item/trash/crushed_bottle/starkist
+	icon_state = "starkist_crushed"
+
+/obj/item/trash/crushed_bottle/spaceup
+	icon_state = "space-up_crushed"
+
+/obj/item/trash/crushed_bottle/lemonlime
+	icon_state = "lemon-lime_crushed"
+
+/obj/item/trash/crushed_bottle/boda
+	icon_state = "boda_crushed"
+
+/obj/item/trash/crushed_bottle/energydrink
+	icon_state = "energy_drink_crushed"
+
+/obj/item/trash/crushed_bottle/sixpackcrushed_1
+	icon_state = "6_pack_1_crushed"
+
+/obj/item/trash/crushed_bottle/soutoclassic
+	icon_state = "souto_classic_crushed"
+
+/obj/item/trash/crushed_bottle/soutocherry
+	icon_state = "souto_cherry_crushed"
+
+/obj/item/trash/crushed_bottle/soutolime
+	icon_state = "souto_lime_crushed"
+
+/obj/item/trash/crushed_bottle/soutogrape
+	icon_state = "souto_grape_crushed"
+
+/obj/item/trash/crushed_bottle/soutoblueraspberry
+	icon_state = "souto_blueraspberry_crushed"
+
+/obj/item/trash/crushed_bottle/soutopeach
+	icon_state = "souto_peach_crushed"
+
+/obj/item/trash/crushed_bottle/soutocranberry
+	icon_state = "souto_cranberry_crushed"
+
+/obj/item/trash/crushed_bottle/soutovanilla
+	icon_state = "souto_vanilla_crushed"
+
+/obj/item/trash/crushed_bottle/soutopineapple
+	icon_state = "souto_pineapple_crushed"
+
+/obj/item/trash/crushed_bottle/soutodietclassic
+	icon_state = "souto_diet_classic_crushed"
+
+/obj/item/trash/crushed_bottle/soutodietcherry
+	icon_state = "souto_diet_cherry_crushed"
+
+/obj/item/trash/crushed_bottle/soutodietlime
+	icon_state = "souto_diet_lime_crushed"
+
+/obj/item/trash/crushed_bottle/soutodietgrape
+	icon_state = "souto_diet_grape_crushed"
+
+/obj/item/trash/crushed_bottle/soutodietblueraspberry
+	icon_state = "souto_diet_blueraspberry_crushed"
+
+/obj/item/trash/crushed_bottle/soutodietpeach
+	icon_state = "souto_diet_peach_crushed"
+
+/obj/item/trash/crushed_bottle/soutodietcranberry
+	icon_state = "souto_diet_cranberry_crushed"
+
+/obj/item/trash/crushed_bottle/soutodietvanilla
+	icon_state = "souto_diet_vanilla_crushed"
+
+/obj/item/trash/crushed_bottle/soutodietpineapple
+	icon_state = "souto_diet_pineapple_crushed"
+
+// Cuppa Joe's Trash
+/obj/item/trash/cuppa_joes/lid
+	name = "Cuppa Joe's coffee cup lid"
+	desc = "Have you got the CuppaJoe Smile? Stay perky! Freeze-dried CuppaJoe's Coffee."
+	icon_state = "coffeecuppajoelid"
+	w_class = WEIGHT_CLASS_TINY
+	throwforce = 1
+
+/obj/item/trash/cuppa_joes/empty_cup
+	name = "Empty Cuppa Joe's coffee cup"
+	desc = "Have you got the CuppaJoe Smile? Stay perky! Freeze-dried CuppaJoe's Coffee."
+	icon_state = "coffeecuppajoenolid"
+	w_class = WEIGHT_CLASS_TINY
+	throwforce = 1
+
+/obj/item/trash/cuppa_joes/Initialize()
+	. = ..()
+	pixel_x = rand(-10,10)
+	pixel_y = rand(-10,10)
+
+// Cuppa Joes no random axis
+/obj/item/trash/cuppa_joes_static/lid
+	name = "Cuppa Joe's coffee cup lid"
+	desc = "Have you got the CuppaJoe Smile? Stay perky! Freeze-dried CuppaJoe's Coffee."
+	icon_state = "coffeecuppajoelid"
+	w_class = WEIGHT_CLASS_TINY
+	throwforce = 1
+
+/obj/item/trash/cuppa_joes_static/empty_cup
+	name = "Empty Cuppa Joe's coffee cup"
+	desc = "Have you got the CuppaJoe Smile? Stay perky! Freeze-dried CuppaJoe's Coffee."
+	icon_state = "coffeecuppajoenolid"
+	w_class = WEIGHT_CLASS_TINY
+	throwforce = 1
+
+/obj/item/trash/cuppa_joes_static/empty_cup_stack
+	name = "Empty Cuppa Joe's coffee cup stack"
+	desc = "Have you got the CuppaJoe Smile? Stay perky! Freeze-dried CuppaJoe's Coffee."
+	icon_state = "coffeecuppajoestacknolid"
+	w_class = WEIGHT_CLASS_TINY
+	throwforce = 1
+
+/obj/item/trash/cuppa_joes_static/lid_stack
+	name = "Cuppa Joe's coffee cup lid stack"
+	desc = "Have you got the CuppaJoe Smile? Stay perky! Freeze-dried CuppaJoe's Coffee."
+	icon_state = "coffeecuppajoelidstack"
+	w_class = WEIGHT_CLASS_TINY
+	throwforce = 1

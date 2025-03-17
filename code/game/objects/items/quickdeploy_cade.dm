@@ -29,7 +29,7 @@
 	return TRUE
 
 /obj/item/quikdeploy/cade
-	thing_to_deploy = /obj/structure/barricade/metal
+	thing_to_deploy = /obj/structure/barricade/solid
 	icon_state = "metal"
 	delay = 3 SECONDS
 
@@ -44,7 +44,8 @@
 		return FALSE
 
 	var/turf/open/placement_loc = mystery_turf
-	if(placement_loc.density || !placement_loc.allow_construction) //We shouldn't be building here.
+	var/area/area = get_area(mystery_turf)
+	if(placement_loc.density || !placement_loc.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be building here.
 		balloon_alert(user, "Can't build here")
 		return FALSE
 
@@ -62,5 +63,5 @@
 	return TRUE
 
 /obj/item/quikdeploy/cade/plasteel
-	thing_to_deploy = /obj/structure/barricade/plasteel
+	thing_to_deploy = /obj/structure/barricade/folding
 	icon_state = "plasteel"

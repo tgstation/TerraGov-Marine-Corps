@@ -1,0 +1,12 @@
+{
+    "map_name": "CORSAT Research Station",
+    "map_path": "map_files/corsat",
+    "map_file": "corsat.dmm",
+	"disk_sets": {
+		"basic": 1
+	},
+    "armor": "prison",
+    "quickbuilds": 2300,
+	"announce_text": "A classified distress signal has been picked up by our scanners, which have tracked the source to Nanotrasen's Corporate Orbital Research Station for Advanced Technology research station, known as CORSAT. Through use of bluespace drive tech, the ship has jumped within range of the colony. TGMC, gear up and get ready to respond!",
+	"traits":[{"Baseturf": "/turf/open/floor/plating"}]
+}

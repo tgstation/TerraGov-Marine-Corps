@@ -43,6 +43,9 @@
 	var/list/antag_datums
 	var/datum/job/assigned_role
 
+	///List of learned recipe TYPES.
+	var/list/learned_recipes
+
 /datum/mind/New(key)
 	src.key = key
 
@@ -107,7 +110,7 @@
 	var/output = "<b>[current.real_name]'s Memory</b><hr>"
 	output += memory
 
-	recipient << browse(output, "window=memory")
+	recipient << browse(HTML_SKELETON(output), "window=memory")
 
 
 /mob/proc/mind_initialize()

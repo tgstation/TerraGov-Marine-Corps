@@ -1,0 +1,16 @@
+{
+    "map_name": "LV759",
+    "map_path": "map_files/LV759",
+    "map_file": "LV759.dmm",
+	"disk_sets": {
+		"basic": 1
+	},
+	"quickbuilds": 2700,
+	"armor": "urban",
+	"announce_text": "A routine check of nearby second-generation colonies has identified an anomaly on designation Zeta-Echo-7b, otherwise known as LV759.  The colony beacon has been transmitting a constant, unchanging signal for 7 weeks. Attempts to establish communication via standard protocols have been unsuccessful. TGMC, gear up and get ready to respond!",
+	"traits":[{
+		"weather_rain": true,
+		"No Parallax": true,
+		"Baseturf": "/turf/open/floor/plating"
+	}]
+}

@@ -39,17 +39,17 @@
 	name = "Danger"
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "danger"
-	layer = ABOVE_FLY_LAYER
+	layer = ABOVE_ALL_MOB_LAYER
 
 /obj/effect/overlay/sparks
 	name = "Sparks"
-	layer = ABOVE_FLY_LAYER
+	layer = ABOVE_ALL_MOB_LAYER
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "electricity"
 
 /obj/effect/overlay/temp
 	anchored = TRUE
-	layer = ABOVE_FLY_LAYER //above mobs
+	layer = ABOVE_ALL_MOB_LAYER //above mobs
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT //can't click to examine it
 	var/effect_duration = 10 //in deciseconds
 
@@ -62,7 +62,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon = 'icons/effects/lases.dmi'
 	icon_state = "laser_target3"
-	layer = ABOVE_FLY_LAYER
+	layer = ABOVE_TREE_LAYER
 
 //CAS:
 
@@ -132,6 +132,7 @@
 
 /obj/effect/overlay/blinking_laser/marine/Initialize(mapload)
 	. = ..()
+	notify_ai_hazard()
 	prepare_huds()
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 	squad_hud.add_to_hud(src)
@@ -155,6 +156,21 @@
 	. = ..()
 	dir = pick(CARDINAL_DIRS) //Randomises type, for variation
 
+//Drop pod.
+/obj/effect/overlay/blinking_laser/marine/pod_warning
+	name = "pod warning"
+	icon = 'icons/effects/lases.dmi'
+	icon_state_on = "pod_laser"
+
+/obj/effect/overlay/blinking_laser/marine/pod_warning/set_visuals()
+	var/image/new_hud_list = hud_list[SQUAD_HUD_TERRAGOV]
+	if(!new_hud_list)
+		return
+
+	new_hud_list.icon = 'icons/effects/lases.dmi'
+	new_hud_list.icon_state = icon_state_on
+	hud_list[SQUAD_HUD_TERRAGOV] = new_hud_list
+
 /obj/effect/overlay/temp/Initialize(mapload, effect_duration)
 	. = ..()
 	flick(icon_state, src)
@@ -165,7 +181,7 @@
 	desc = "It's an arrow hanging in mid-air. There may be a wizard about."
 	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "arrow"
-	layer = POINT_LAYER
+	plane = POINT_PLANE
 	anchored = TRUE
 	effect_duration = 25
 
@@ -258,16 +274,16 @@
 	if(ishuman(user))
 		. += span_danger("It's a laser to designate CAS targets, get away from it!")
 
-/obj/effect/overlay/temp/laser_target/OB //This is a subtype of CAS so that CIC gets cameras on the lase
+/obj/effect/overlay/temp/laser_target/ob //This is a subtype of CAS so that CIC gets cameras on the lase
 	icon_state = "laser_target2"
 	lasertype = LASER_TYPE_OB
 
-/obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, effect_duration, named, assigned_squad)
+/obj/effect/overlay/temp/laser_target/ob/Initialize(mapload, effect_duration, named, assigned_squad)
 	. = ..()
 	linked_cam = new(src, name)
 	GLOB.active_laser_targets += src
 
-/obj/effect/overlay/temp/laser_target/OB/Destroy()
+/obj/effect/overlay/temp/laser_target/ob/Destroy()
 	GLOB.active_laser_targets -= src
 	return ..()
 
@@ -315,7 +331,6 @@
 
 
 //gib animation
-
 /obj/effect/overlay/temp/gib_animation
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 14
@@ -323,28 +338,28 @@
 /obj/effect/overlay/temp/gib_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
 	. = ..()
 	if(source_mob)
-		pixel_x = source_mob.pixel_x
-		pixel_y = source_mob.pixel_y
-	icon_state = gib_icon
+		pixel_x += source_mob.pixel_x
+	flick(gib_icon, src)
 
 /obj/effect/overlay/temp/gib_animation/ex_act(severity)
 	return
 
+/obj/effect/overlay/temp/gib_animation/human
+	icon = 'icons/mob/human_gib.dmi'
+	pixel_x = -16
+	pixel_y = -16
 
 /obj/effect/overlay/temp/gib_animation/animal
 	icon = 'icons/mob/animal.dmi'
 	effect_duration = 12
-
 
 /obj/effect/overlay/temp/gib_animation/xeno
 	icon = 'icons/Xeno/64x64_Xeno_overlays.dmi'
 	effect_duration = 10
 
 /obj/effect/overlay/temp/gib_animation/xeno/Initialize(mapload, effect_duration, mob/source_mob, gib_icon, new_icon)
-	. = ..()
 	icon = new_icon
-
-
+	return ..()
 
 //dust animation
 
@@ -357,19 +372,6 @@
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
-
-///Lighting overlay for the Light overlay component
-/obj/effect/overlay/light_visible
-	name = ""
-	icon = 'icons/effects/light_overlays/light_32.dmi'
-	icon_state = "light"
-	layer = O_LIGHTING_VISUAL_LAYER
-	plane = O_LIGHTING_VISUAL_PLANE
-	appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	alpha = 0
-	vis_flags = NONE
-	blocks_emissive = EMISSIVE_BLOCK_NONE
 
 /obj/effect/overlay/temp/timestop_effect
 	icon = 'icons/effects/160x160.dmi'
@@ -398,4 +400,4 @@
 	/// When detected to be unused it gets set to world.time, after a while it gets removed
 	var/unused = 0
 	/// Overlays which go unused for 2 minutes get cleaned up
-	var/cache_expiration = 2 MINUTES 
+	var/cache_expiration = 2 MINUTES

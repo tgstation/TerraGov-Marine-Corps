@@ -11,7 +11,7 @@
 	walltype = "resin-wall"
 	base_icon_state = "resin-wall"
 	max_integrity = 200
-	layer = RESIN_STRUCTURE_LAYER
+	layer = BELOW_OBJ_LAYER
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	canSmoothWith = list(SMOOTH_GROUP_XENO_STRUCTURES)
@@ -23,21 +23,41 @@
 	var/is_normal_resin_wall = TRUE
 
 /turf/closed/wall/resin/add_debris_element()
-	AddElement(/datum/element/debris, null, -15, 8, 0.7)
+	AddElement(/datum/element/debris, null, -40, 8, 0.7)
 
 /turf/closed/wall/resin/Initialize(mapload)
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
 
-/turf/closed/wall/resin/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 1.25, BURN, FIRE)
+/turf/closed/wall/resin/fire_act(burn_level)
+	take_damage(burn_level * 1.25, BURN, FIRE)
 
 
 /turf/closed/wall/resin/proc/thicken()
 	ChangeTurf(/turf/closed/wall/resin/thick)
 	return TRUE
 
+/turf/closed/wall/resin/plasmacutter_act(mob/living/user, obj/item/I)
+	if(!isplasmacutter(I) || user.do_actions)
+		return FALSE
+	if(CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE) || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return FALSE
+	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = I
+	if(!plasmacutter.powered || (plasmacutter.item_flags & NOBLUDGEON))
+		return FALSE
+	var/charge_cost = PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD
+	if(!plasmacutter.start_cut(user, name, src, charge_cost, no_string = TRUE))
+		return FALSE
+
+	user.changeNext_move(plasmacutter.attack_speed)
+	user.do_attack_animation(src, used_item = plasmacutter)
+	plasmacutter.cut_apart(user, name, src, charge_cost)
+	// 301 damage. Enough to kill normal and thick walls.
+	// Only reason why this is not ChangeTurf is to stop special walls from getting one-shot (e.g more health / melee armor).
+	take_damage(max(0, plasmacutter.force * (2 + PLASMACUTTER_RESIN_MULTIPLIER)), plasmacutter.damtype, MELEE)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	return TRUE
 
 /turf/closed/wall/resin/thick
 	name = "thick resin wall"
@@ -107,14 +127,13 @@
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] tears down \the [src]!"), \
 	span_xenonotice("We tear down \the [src]."))
-	playsound(src, "alien_resin_break", 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 	take_damage(max_integrity) // Ensure its destroyed
 
 
 /turf/closed/wall/resin/attack_hand(mob/living/user)
 	to_chat(user, span_warning("You scrape ineffectively at \the [src]."))
 	return TRUE
-
 
 /turf/closed/wall/resin/attackby(obj/item/I, mob/living/user, params)
 	if(I.item_flags & NOBLUDGEON || !isliving(user))
@@ -130,15 +149,9 @@
 	else if(I.damtype == BRUTE)
 		multiplier += 0.75
 
-	if(isplasmacutter(I) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
-			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
-			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
-
 	damage *= max(0, multiplier)
-	take_damage(damage, BRUTE, MELEE)
-	playsound(src, "alien_resin_break", 25)
+	take_damage(damage, I.damtype, MELEE)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
 	ScrapeAway()
@@ -218,18 +231,21 @@
 /turf/closed/wall/resin/regenerating/special/bulletproof
 	name = "bulletproof resin wall"
 	desc = "Weird slime solidified into a wall. Looks shiny."
+	max_upgradable_health = 450
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0) //You aren't damaging this with bullets without alot of AP.
-	color = COLLOR_WALL_BULLETPROOF
+	color = COLOR_WALL_BULLETPROOF
 
 /turf/closed/wall/resin/regenerating/special/fireproof
 	name = "fireproof resin wall"
 	desc = "Weird slime solidified into a wall. Very red."
+	max_upgradable_health = 450
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 75, ENERGY = 75, BOMB = 0, BIO = 0, FIRE = 200, ACID = 0)
 	color = COLOR_WALL_FIREPROOF
 
 /turf/closed/wall/resin/regenerating/special/hardy
 	name = "hardy resin wall"
 	desc = "Weird slime soldified into a wall. Looks very strong."
-	max_upgradable_health = 450
+	max_upgradable_health = 550
 	max_upgrade_per_tick = 12 //Upgrades faster, but if damaged at all it will be put on cooldown still to help against walling in combat.
+	soft_armor = list(MELEE = 50, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, FIRE = 0, ACID = 0)//better bust out the flamer
 	color = COLOR_WALL_HARDY

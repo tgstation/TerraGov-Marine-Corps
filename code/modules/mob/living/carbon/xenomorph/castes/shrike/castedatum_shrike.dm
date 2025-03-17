@@ -4,6 +4,7 @@
 	upgrade_name = ""
 	caste_desc = "A psychically unstable xeno. The Shrike controls the hive when there's no Queen and acts as its successor when there is."
 	job_type = /datum/job/xenomorph/queen
+	base_strain_type = /mob/living/carbon/xenomorph/shrike
 	caste_type_path = /mob/living/carbon/xenomorph/shrike
 
 	tier = XENO_TIER_FOUR
@@ -11,14 +12,14 @@
 	wound_type = "shrike" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 25
 
 	// *** Speed *** //
 	speed = -0.6
 
 	// *** Plasma *** //
 	plasma_max = 925
-	plasma_gain = 45
+	plasma_gain = 60
 
 	// *** Health *** //
 	max_health = 400
@@ -29,7 +30,7 @@
 	maximum_active_caste = 1
 	upgrade_threshold = TIER_TWO_THRESHOLD
 
-	deevolves_to = /mob/living/carbon/xenomorph/drone
+	deevolves_to = /datum/xeno_caste/drone
 
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_STRONG|CASTE_IS_BUILDER|CASTE_INSTANT_EVOLUTION|CASTE_EVOLUTION_ALLOWED|CASTE_LEADER_TYPE

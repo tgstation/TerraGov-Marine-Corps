@@ -6,7 +6,7 @@
 	icon_state = ""
 	max_integrity = 200
 	anchored = TRUE
-	layer = ABOVE_TURF_LAYER
+	layer = ABOVE_NORMAL_TURF_LAYER
 
 /obj/structure/mine_structure/cart
 	name = "mine cart"
@@ -16,11 +16,8 @@
 	coverage = 85
 	density = TRUE
 
-/obj/structure/mine_structure/wooden/flamer_fire_act(burnlevel)
-	take_damage(burnlevel, BURN, FIRE)
-
-/obj/structure/mine_structure/wooden/fire_act()
-	take_damage(25, BURN, FIRE)
+/obj/structure/mine_structure/wooden/fire_act(burn_level)
+	take_damage(burn_level, BURN, FIRE)
 
 /obj/structure/mine_structure/wooden/support_wall
 	name = "wooden support"

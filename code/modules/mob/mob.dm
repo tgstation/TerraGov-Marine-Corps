@@ -11,7 +11,6 @@
 	ghostize()
 	clear_fullscreens()
 	if(mind)
-		stack_trace("Found a reference to an undeleted mind in mob/Destroy(). Mind name: [mind.name]. Mind mob: [mind.current]")
 		mind = null
 	if(hud_used)
 		QDEL_NULL(hud_used)
@@ -22,6 +21,11 @@
 		var/datum/action/action_to_remove = a
 		action_to_remove.remove_action(src)
 	set_focus(null)
+	return ..()
+
+/mob/New()
+	// This needs to happen IMMEDIATELY. I'm sorry :(
+	GenerateTag()
 	return ..()
 
 /mob/Initialize(mapload)
@@ -46,6 +50,15 @@
 	update_movespeed(TRUE)
 	log_mob_tag("\[[tag]\] CREATED: [key_name(src)]")
 	become_hearing_sensitive()
+
+/**
+ * Generate the tag for this mob
+ *
+ * This is simply "mob_"+ a global incrementing counter that goes up for every mob
+ */
+/mob/GenerateTag()
+	. = ..()
+	tag = "mob_[next_mob_id++]"
 
 /mob/proc/show_message(msg, type, alt_msg, alt_type, avoid_highlight)
 	if(!client)
@@ -207,51 +220,70 @@
 		equip_to_slot_if_possible(W, slot, FALSE) // equiphere
 
 
-///Attempts to put an item in either hand
+///Attempts to put an item in either hand, prioritizing the active hand
 /mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = FALSE, warning = FALSE, redraw_mob = TRUE)
-	if(equip_to_slot_if_possible(W, SLOT_L_HAND, TRUE, del_on_fail, warning, redraw_mob))
+	if(equip_to_slot_if_possible(W, (hand ? SLOT_L_HAND : SLOT_R_HAND), TRUE, del_on_fail, warning, redraw_mob))
 		return TRUE
-	else if(equip_to_slot_if_possible(W, SLOT_R_HAND, TRUE, del_on_fail, warning, redraw_mob))
+	else if(equip_to_slot_if_possible(W, (hand ? SLOT_R_HAND : SLOT_L_HAND), TRUE, del_on_fail, warning, redraw_mob))
 		return TRUE
 	return FALSE
 
 /**
- * This is a SAFE proc. Use this instead of equip_to_splot()!
- * set del_on_fail to have it delete W if it fails to equip
+ * This is a SAFE proc. Use this instead of equip_to_slot()!
+ * set del_on_fail to have it delete item_to_equip if it fails to equip
  * unset redraw_mob to prevent the mob from being redrawn at the end.
  */
-/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, override_nodrop = FALSE)
-	if(!istype(W) || QDELETED(W)) //This qdeleted is to prevent stupid behavior with things that qdel during init, like say stacks
+/mob/proc/equip_to_slot_if_possible(obj/item/item_to_equip, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, override_nodrop = FALSE)
+	if(!istype(item_to_equip) || QDELETED(item_to_equip)) //This qdeleted is to prevent stupid behavior with things that qdel during init, like say stacks
 		return FALSE
-	if(!W.mob_can_equip(src, slot, warning, override_nodrop))
+	if(!item_to_equip.mob_can_equip(src, slot, warning, override_nodrop))
 		if(del_on_fail)
-			qdel(W)
+			qdel(item_to_equip)
 			return FALSE
 		if(warning)
 			to_chat(src, span_warning("You are unable to equip that."))
 		return FALSE
-	if(W.equip_delay_self && !ignore_delay)
-		if(!do_after(src, W.equip_delay_self, NONE, W, BUSY_ICON_FRIENDLY))
-			to_chat(src, "You stop putting on \the [W]")
+	if(item_to_equip.equip_delay_self && !ignore_delay)
+		if(!do_after(src, item_to_equip.equip_delay_self, NONE, item_to_equip, BUSY_ICON_FRIENDLY))
+			to_chat(src, "You stop putting on \the [item_to_equip].")
 			return FALSE
-		equip_to_slot(W, slot) //This proc should not ever fail.
-		//This will unwield items -without- triggering lights.
-		if(CHECK_BITFIELD(W.item_flags, TWOHANDED))
-			W.unwield(src)
-		return TRUE
-	else
-		equip_to_slot(W, slot) //This proc should not ever fail.
-		//This will unwield items -without- triggering lights.
-		if(CHECK_BITFIELD(W.item_flags, TWOHANDED))
-			W.unwield(src)
-		return TRUE
+		//calling the proc again with ignore_delay saves a boatload of copypaste
+		return equip_to_slot_if_possible(item_to_equip, slot, TRUE, del_on_fail, warning, redraw_mob, override_nodrop)
+	//This will unwield items -without- triggering lights.
+	if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
+		item_to_equip.unwield(src)
+	equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
+	return TRUE
 
 /**
 *This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
 *In most cases you will want to use equip_to_slot_if_possible()
 */
-/mob/proc/equip_to_slot(obj/item/W as obj, slot, bitslot = FALSE)
-	return
+/mob/proc/equip_to_slot(obj/item/item_to_equip, slot, bitslot = FALSE)
+	if(!slot)
+		return
+	if(!istype(item_to_equip))
+		return
+	if(bitslot)
+		var/oldslot = slot
+		slot = slotbit2slotdefine(oldslot)
+
+	if(item_to_equip == l_hand)
+		l_hand = null
+		item_to_equip.unequipped(src, SLOT_L_HAND)
+		update_inv_l_hand()
+
+	else if(item_to_equip == r_hand)
+		r_hand = null
+		item_to_equip.unequipped(src, SLOT_R_HAND)
+		update_inv_r_hand()
+
+	for(var/datum/action/A AS in item_to_equip.actions)
+		A.remove_action(src)
+
+	item_to_equip.screen_loc = null
+	SET_PLANE_EXPLICIT(item_to_equip, ABOVE_HUD_PLANE, src)
+	item_to_equip.forceMove(src)
 
 ///This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
 /mob/proc/equip_to_slot_or_del(obj/item/W, slot, override_nodrop = FALSE)
@@ -299,7 +331,16 @@
 	if(slot == SLOT_IN_R_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
 		return FALSE
 
+	//Sends quick equip signal, if our signal is not handled/blocked we continue to the normal behaviour
+	var/return_value = SEND_SIGNAL(I, COMSIG_ITEM_QUICK_EQUIP, src)
+	switch(return_value)
+		if(COMSIG_QUICK_EQUIP_HANDLED)
+			return TRUE
+		if(COMSIG_QUICK_EQUIP_BLOCKED)
+			return FALSE
+
 	//calls on the item to return a suitable item to be equipped
+	//Realistically only would get called on an item that has no storage/storage didnt fail signal
 	var/obj/item/found = I.do_quick_equip(src)
 	if(!found)
 		return FALSE
@@ -312,7 +353,18 @@
 /mob/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	.["Player Panel"] = "?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
+	.["Player Panel"] = "byond://?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
+	VV_DROPDOWN_OPTION(VV_HK_VIEW_PLANES, "View/Edit Planes")
+
+/mob/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+	if(href_list[VV_HK_VIEW_PLANES])
+		if(!check_rights(R_DEBUG))
+			return
+		usr.client.edit_plane_masters(src)
 
 /mob/vv_edit_var(var_name, var_value)
 	switch(var_name)
@@ -329,6 +381,8 @@
 		if(NAMEOF(src, stat))
 			set_stat(var_value)
 			. = TRUE
+		if(NAMEOF(src, lighting_cutoff))
+			sync_lighting_plane_cutoff()
 
 	if(!isnull(.))
 		datum_flags |= DF_VAR_EDITED
@@ -357,6 +411,13 @@
 		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
 		winset(src, "infowindow.changelog", "font-style=;")
+
+/client/verb/hotkeys_help()
+	set name = "Hotkeys"
+	set category = "Preferences"
+
+	prefs.tab_index = KEYBIND_SETTINGS
+	prefs.ShowChoices(mob)
 
 /mob/Topic(href, href_list)
 	. = ..()
@@ -487,6 +548,7 @@
 
 
 /mob/GenerateTag()
+	. = ..()
 	tag = "mob_[next_mob_id++]"
 
 /mob/serialize_list(list/options, list/semvers)
@@ -552,16 +614,18 @@
 /mob/proc/get_idcard(hand_first)
 	return
 
-/mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+/mob/proc/slip(slip_source_name, stun_level, paralyze_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
 /mob/forceMove(atom/destination)
 	. = ..()
 	if(!.)
 		return
+	if(currently_z_moving)
+		return
 	stop_pulling()
-	if(buckled)
-		buckled.unbuckle_mob(src)
+	if(buckled && !HAS_TRAIT(src, TRAIT_CANNOT_BE_UNBUCKLED))
+		buckled.unbuckle_mob(src, TRUE)
 
 
 /mob/proc/trainteleport(atom/destination)
@@ -581,7 +645,7 @@
 			conga_line += S.buckled
 	while(!end_of_conga)
 		var/atom/movable/A = S.pulling
-		if(A in conga_line || A.anchored) //No loops, nor moving anchored things.
+		if((A in conga_line) || A.anchored) //No loops, nor moving anchored things.
 			end_of_conga = TRUE
 			break
 		conga_line += A
@@ -636,8 +700,7 @@
 
 /mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
 	emote_overlay.appearance_flags = APPEARANCE_UI_TRANSFORM
-	emote_overlay.plane = ABOVE_LIGHTING_PLANE
-	emote_overlay.layer = ABOVE_HUD_LAYER
+	SET_PLANE(emote_overlay, ABOVE_LIGHTING_PLANE, src)
 	overlays += emote_overlay
 
 	if(remove_delay)
@@ -690,28 +753,30 @@
 			//Set the new eye unless it's us
 			if(new_eye != src)
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = new_eye
+				client.set_eye(new_eye)
 			else
-				client.eye = client.mob
+				client.set_eye(client.mob)
 				client.perspective = MOB_PERSPECTIVE
 		else if(isturf(new_eye))
 			//Set to the turf unless it's our current turf
 			if(new_eye != loc)
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = new_eye
+				client.set_eye(new_eye)
 			else
-				client.eye = client.mob
+				client.set_eye(client.mob)
 				client.perspective = MOB_PERSPECTIVE
 		else
 			return TRUE //no setting eye to stupid things like areas or whatever
 	else
 		//Reset to common defaults: mob if on turf, otherwise current loc
 		if(isturf(loc))
-			client.eye = client.mob
+			client.set_eye(client.mob)
 			client.perspective = MOB_PERSPECTIVE
 		else
 			client.perspective = EYE_PERSPECTIVE
-			client.eye = loc
+			client.set_eye(loc)
+	/// Signal sent after the eye has been successfully updated, with the client existing.
+	SEND_SIGNAL(src, COMSIG_MOB_RESET_PERSPECTIVE)
 	return TRUE
 
 /mob/proc/update_joined_player_list(newname, oldname)
@@ -748,17 +813,18 @@
 	return TRUE
 
 
+///Update the lighting plane and sight of this mob (sends COMSIG_MOB_UPDATE_SIGHT)
 /mob/proc/update_sight()
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_MOB_UPDATE_SIGHT)
-	sync_lighting_plane_alpha()
+	sync_lighting_plane_cutoff()
 
-/mob/proc/sync_lighting_plane_alpha()
+///Set the lighting plane hud filters to the mobs lighting_cutoff var
+/mob/proc/sync_lighting_plane_cutoff()
 	if(!hud_used)
 		return
-
-	var/atom/movable/screen/plane_master/lighting/L = hud_used.plane_masters["[LIGHTING_PLANE]"]
-	if(L)
-		L.alpha = lighting_alpha
+	for(var/atom/movable/screen/plane_master/rendering_plate/lighting/light as anything in hud_used.get_true_plane_masters(RENDER_PLANE_LIGHTING))
+		light.set_light_cutoff(lighting_cutoff, lighting_color_cutoffs)
 
 
 /mob/proc/get_photo_description(obj/item/camera/camera)
@@ -831,16 +897,10 @@
 	clear_important_client_contents()
 	canon_client = null
 
-/mob/onTransitZ(old_z, new_z)
+/mob/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents = TRUE)
 	. = ..()
-	if(!client || !hud_used)
-		return
-	if(old_z == new_z)
-		return
-	if(is_ground_level(new_z))
-		hud_used.remove_parallax(src)
-		return
-	hud_used.create_parallax(src)
+	if(!same_z_layer)
+		relayer_fullscreens()
 
 /mob/proc/point_to_atom(atom/pointed_atom)
 	var/turf/tile = get_turf(pointed_atom)

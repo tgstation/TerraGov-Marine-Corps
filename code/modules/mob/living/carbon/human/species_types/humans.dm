@@ -1,16 +1,17 @@
 /datum/species/human
 	name = "Human"
 	unarmed_type = /datum/unarmed_attack/punch
-	species_flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
+	species_flags = HAS_LIPS|HAS_UNDERWEAR
 	count_human = TRUE
+	limb_type = SPECIES_LIMB_HUMAN
 
-	screams = list(MALE = "male_scream", FEMALE = "female_scream")
-	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
-	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
-	gasps = list(MALE = "male_gasp", FEMALE = "female_gasp")
-	coughs = list(MALE = "male_cough", FEMALE = "female_cough")
-	burstscreams = list(MALE = "male_preburst", FEMALE = "female_preburst")
-	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
+	screams = list(MALE = SFX_MALE_SCREAM, FEMALE = SFX_FEMALE_SCREAM)
+	paincries = list(MALE = SFX_MALE_PAIN, FEMALE = SFX_FEMALE_PAIN)
+	goredcries = list(MALE = SFX_MALE_GORED, FEMALE = SFX_FEMALE_GORED)
+	gasps = list(MALE = SFX_MALE_GASP, FEMALE = SFX_FEMALE_GASP)
+	coughs = list(MALE = SFX_MALE_COUGH, FEMALE = SFX_FEMALE_COUGH)
+	burstscreams = list(MALE = SFX_MALE_PREBURST, FEMALE = SFX_FEMALE_PREBURST)
+	warcries = list(MALE = SFX_MALE_WARCRY, FEMALE = SFX_FEMALE_WARCRY)
 	special_death_message = "<big>You have perished.</big><br><small>But it is not the end of you yet... if you still have your body with your head still attached, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
 

@@ -11,8 +11,6 @@
 
 /obj/structure/lattice/Initialize(mapload)
 	. = ..()
-	if(!isspaceturf(loc))
-		qdel(src)
 	for(var/obj/structure/lattice/LAT in src.loc)
 		if(LAT != src)
 			qdel(LAT)
@@ -70,12 +68,25 @@
 		icon_state = "lattice[dir_sum]"
 		return
 
+/obj/structure/lattice/autosmooth
+	icon = 'icons/obj/smooth_objects/lattice.dmi'
+	icon_state = "lattice-0"
+	layer = ABOVE_ALL_MOB_LAYER
+	plane = GAME_PLANE
+	base_icon_state = "lattice"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_LATTICE_ABOVE)
+	canSmoothWith = list(SMOOTH_GROUP_LATTICE_ABOVE)
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
 /obj/structure/catwalk
+	desc = "You can walk on this, even if you're not a cat."
 	icon = 'icons/obj/smooth_objects/catwalk.dmi'
 	icon_state = "catwalk-icon"
 	base_icon_state = "catwalk"
 	plane = FLOOR_PLANE
 	layer = CATWALK_LAYER
+	resistance_flags = XENO_DAMAGEABLE|DROPSHIP_IMMUNE
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_LATTICE)
 	canSmoothWith = list(SMOOTH_GROUP_LATTICE)
@@ -83,10 +94,44 @@
 /obj/structure/catwalk/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_FIND_FOOTSTEP_SOUND = PROC_REF(footstep_override),
-		COMSIG_TURF_CHECK_COVERED = PROC_REF(turf_cover_check),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/catwalk/footstep_override(atom/movable/source, list/footstep_overrides)
 	footstep_overrides[FOOTSTEP_CATWALK] = layer
+
+/obj/structure/catwalk/lava_act()
+	return FALSE
+
+/obj/structure/catwalk/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
+		return
+	if(xeno_attacker.a_intent != INTENT_HARM)
+		return
+	xeno_attacker.balloon_alert(xeno_attacker, "Destroying")
+	if(!do_after(xeno_attacker, 5 SECONDS, NONE, src, BUSY_ICON_BUILD))
+		return
+	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
+	qdel(src)
+
+/obj/structure/catwalk/ex_act(severity)
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			qdel(src)
+		if(EXPLODE_HEAVY)
+			if(prob(50))
+				qdel(src)
+		if(EXPLODE_LIGHT)
+			if(prob(10))
+				qdel(src)
+
+/obj/structure/catwalk/no_smooth
+	name = "catwalk"
+	icon_state = "catwalk-0"
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null

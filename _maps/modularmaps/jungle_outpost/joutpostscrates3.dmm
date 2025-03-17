@@ -63,6 +63,11 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/containers)
+"p" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
 "q" = (
 /obj/structure/cable,
 /obj/structure/cargo_container/ch_green{
@@ -88,7 +93,13 @@
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/containers)
 "v" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/containers)
+"w" = (
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/jungle_outpost/outpost/req/containers)
 "x" = (
@@ -237,10 +248,10 @@ j
 j
 j
 j
-j
+p
 j
 a
-a
+w
 a
 a
 W
@@ -295,13 +306,13 @@ K
 "}
 (5,1,1) = {"
 Z
-a
+w
 a
 j
 a
 a
 a
-a
+w
 a
 z
 a
@@ -361,7 +372,7 @@ K
 Z
 a
 a
-j
+p
 a
 a
 a
@@ -378,10 +389,10 @@ Z
 a
 a
 j
+w
 a
 a
-a
-a
+w
 a
 a
 a

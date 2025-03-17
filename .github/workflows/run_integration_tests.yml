@@ -1,0 +1,61 @@
+# This is a reusable workflow to run integration tests on a single map.
+# This is run for every single map in ci_suite.yml. You might want to edit that instead.
+name: Run Integration Tests
+on:
+  workflow_call:
+    inputs:
+      map:
+        required: true
+        type: string
+      major:
+        required: false
+        type: string
+      minor:
+        required: false
+        type: string
+      max_required_byond_client:
+        required: true
+        type: string
+jobs:
+  run_integration_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup database
+        run: |
+          sudo systemctl start mysql
+          mysql -u root -proot -e 'CREATE DATABASE tg_ci;'
+          mysql -u root -proot tg_ci < SQL/tgmc-schema.sql
+      - name: Setup Node
+        uses: ./.github/actions/setup_node
+      - name: Install rust-g
+        run: |
+          bash tools/ci/install_rust_g.sh
+      - name: Restore BYOND from Cache
+        uses: ./.github/actions/restore_or_install_byond
+        with:
+          major: ${{ inputs.major }}
+          minor: ${{ inputs.minor }}
+      - name: Compile Tests
+        id: compile_tests
+        run: |
+          bash tools/ci/install_byond.sh
+          source $HOME/BYOND/byond/bin/byondsetup
+          tools/build/build --ci dm -DCIBUILDING -DANSICOLORS -WError -NWTG0001
+      - name: Run Tests
+        run: |
+          source $HOME/BYOND/byond/bin/byondsetup
+          bash tools/ci/run_server.sh ${{ inputs.map }}
+      - name: Upload screenshot tests
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test_artifacts_${{ inputs.map }}_${{ inputs.major }}_${{ inputs.minor }}
+          path: data/screenshots_new/
+          retention-days: 1
+      - name: Check client Compatibility
+        if: always() && steps.compile_tests.outcome == 'success'
+        uses: tgstation/byond-client-compatibility-check@v3
+        with:
+          dmb-location: tgmc.dmb
+          max-required-client-version: ${{inputs.max_required_byond_client}}

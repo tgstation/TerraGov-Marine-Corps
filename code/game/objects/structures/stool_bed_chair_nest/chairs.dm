@@ -17,6 +17,7 @@
 	desc = "A rectangular metallic frame sitting on four legs with a back panel. Designed to fit the sitting position, more or less comfortably."
 	icon_state = "chair"
 	buckle_lying = 0
+	buckling_y = 0
 	max_integrity = 20
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
@@ -31,7 +32,7 @@
 	dir = NORTH
 
 /obj/structure/bed/chair/alt
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "chair_alt"
 
 /obj/structure/bed/chair/nometal
@@ -69,7 +70,7 @@
 
 /obj/structure/bed/chair/verb/rotate()
 	set name = "Rotate Chair"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in view(0)
 
 	var/mob/living/carbon/user = usr
@@ -115,18 +116,12 @@
 
 		user.visible_message(span_notice("[user] begins welding down \the [src]."),
 		span_notice("You begin welding down \the [src]."))
-		add_overlay(GLOB.welding_sparks)
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
-			cut_overlay(GLOB.welding_sparks)
-			to_chat(user, span_warning("You need to stand still!"))
+		if(!I.use_tool(src, user, 5 SECONDS, 1, 25, null, BUSY_ICON_FRIENDLY))
 			return
 		user.visible_message(span_notice("[user] welds down \the [src]."),
 		span_notice("You weld down \the [src]."))
-		cut_overlay(GLOB.welding_sparks)
 		if(buildstacktype && dropmetal)
 			new buildstacktype(loc, buildstackamount)
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		qdel(src)
 
 
@@ -185,20 +180,41 @@
 	desc = "It looks comfy."
 	icon_state = "couch_hori2"
 
+/obj/structure/bed/chair/sofa/corsat/white
+	icon_state = "bench_hor2"
+
+/obj/structure/bed/chair/sofa/corsat/single
+	icon_state = "sofa"
+
 /obj/structure/bed/chair/sofa/corsat/left
 	icon_state = "couch_hori1"
+
+/obj/structure/bed/chair/sofa/corsat/left/white
+	icon_state = "bench_hor1"
 
 /obj/structure/bed/chair/sofa/corsat/right
 	icon_state = "couch_hori3"
 
+/obj/structure/bed/chair/sofa/corsat/right/white
+	icon_state = "bench_hor3"
+
 /obj/structure/bed/chair/sofa/corsat/verticaltop
 	icon_state = "couch_vet3"
+
+/obj/structure/bed/chair/sofa/corsat/verticaltop/white
+	icon_state = "bench_vet3"
 
 /obj/structure/bed/chair/sofa/corsat/verticalmiddle
 	icon_state = "couch_vet2"
 
+/obj/structure/bed/chair/sofa/corsat/verticalmiddle/white
+	icon_state = "bench_vet2"
+
 /obj/structure/bed/chair/sofa/corsat/verticalsouth
 	icon_state = "couch_vet1"
+
+/obj/structure/bed/chair/sofa/corsat/verticalsouth/white
+	icon_state = "bench_vet1"
 
 //cm benches do not have corners
 
@@ -247,9 +263,9 @@
 	var/def_zone = ran_zone()
 	var/armor_modifier = occupant.modify_by_armor(1, MELEE, 0, def_zone)
 	occupant.throw_at(A, 3, propelled)
-	occupant.apply_effect(6 SECONDS * armor_modifier, STUN)
-	occupant.apply_effect(6 SECONDS * armor_modifier, WEAKEN)
-	occupant.apply_effect(6 SECONDS * armor_modifier, STUTTER)
+	occupant.apply_effect(6 SECONDS * armor_modifier, EFFECT_STUN)
+	occupant.apply_effect(6 SECONDS * armor_modifier, EFFECT_PARALYZE)
+	occupant.apply_effect(6 SECONDS * armor_modifier, EFFECT_STUTTER)
 	occupant.apply_damage(10 * armor_modifier, BRUTE, def_zone)
 	UPDATEHEALTH(occupant)
 	playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
@@ -257,9 +273,9 @@
 		var/mob/living/victim = A
 		def_zone = ran_zone()
 		armor_modifier = victim.modify_by_armor(1, MELEE, 0, def_zone)
-		victim.apply_effect(6 SECONDS * armor_modifier, STUN)
-		victim.apply_effect(6 SECONDS * armor_modifier, WEAKEN)
-		victim.apply_effect(6 SECONDS * armor_modifier, STUTTER)
+		victim.apply_effect(6 SECONDS * armor_modifier, EFFECT_STUN)
+		victim.apply_effect(6 SECONDS * armor_modifier, EFFECT_PARALYZE)
+		victim.apply_effect(6 SECONDS * armor_modifier, EFFECT_STUTTER)
 		victim.apply_damage(10 * armor_modifier, BRUTE, def_zone)
 		UPDATEHEALTH(victim)
 	occupant.visible_message(span_danger("[occupant] crashed into \the [A]!"))
@@ -400,12 +416,9 @@
 		if(!C.remove_fuel(0, user))
 			return
 
-		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 		user.visible_message(span_warning("[user] begins repairing \the [src]."),
 		span_warning("You begin repairing \the [src]."))
-		add_overlay(GLOB.welding_sparks)
-		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
-			cut_overlay(GLOB.welding_sparks)
+		if(!I.use_tool(src, user, 2 SECONDS, 1, 25, null, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message(span_warning("[user] repairs \the [src]."),
@@ -420,8 +433,6 @@
 	var/chair_color = NO_CHAIR_COLOR
 	/// If the chair can only be sat in by a leader or not
 	var/leader_chair = FALSE
-	/// pixel x shift to give to the buckled mob
-	var/buckling_x = 0
 
 /obj/structure/bed/chair/dropship/doublewide/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
@@ -465,14 +476,10 @@
 	return ..()
 
 /obj/structure/bed/chair/dropship/doublewide/post_buckle_mob(mob/buckling_mob)
-	buckling_mob.pixel_x = buckling_x
-	buckling_mob.old_x = buckling_x
 	doublewide_mob_density(buckling_mob, TRUE)
 	return ..()
 
 /obj/structure/bed/chair/dropship/doublewide/post_unbuckle_mob(mob/buckled_mob)
-	buckled_mob.pixel_x = initial(buckled_mob.pixel_x)
-	buckled_mob.old_x = initial(buckled_mob.pixel_x)
 	doublewide_mob_density(buckled_mob, FALSE)
 	return ..()
 

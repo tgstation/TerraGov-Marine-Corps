@@ -11,7 +11,7 @@
 	name = "stool"
 	desc = "Uh-hoh, bar is heating up."
 	icon = 'icons/obj/objects.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
 	)
@@ -34,7 +34,7 @@
 	if(user)
 		origin.loc = get_turf(user)
 		user.temporarilyRemoveItemFromInventory(src)
-		user.visible_message(span_notice(" [user] puts [src] down."), span_notice(" You put [src] down."))
+		user.visible_message(span_notice("[user] puts [src] down."), span_notice("You put [src] down."))
 		qdel(src)
 
 /obj/item/stool/attack_self(mob/user as mob)
@@ -43,7 +43,7 @@
 
 /obj/item/stool/attack(mob/M as mob, mob/user as mob)
 	if (prob(25) && istype(M,/mob/living))
-		user.visible_message(span_warning(" [user] breaks [src] over [M]'s back!"))
+		user.visible_message(span_warning("[user] breaks [src] over [M]'s back!"))
 		user.temporarilyRemoveItemFromInventory(src)
 		var/obj/item/stack/sheet/metal/m = new/obj/item/stack/sheet/metal
 		m.loc = get_turf(src)

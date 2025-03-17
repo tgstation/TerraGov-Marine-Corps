@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		.[X] = new X
 
 /obj/machinery/quick_vendor
-	name = "Kwik-E-Quip vendor"
+	name = "\improper Kwik-E-Quip vendor"
 	desc = "An advanced vendor to instantly arm soldiers with specific sets of equipment, allowing for immediate combat deployment. \
 	Mutually exclusive with the GHMME."
 	icon = 'icons/obj/machines/vending.dmi'
@@ -96,8 +96,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
-	///The faction of this quick load vendor
-	var/faction = FACTION_NEUTRAL
+	faction = FACTION_NEUTRAL
 	//the different tabs in the vendor
 	var/list/categories = list(
 		"Squad Marine",
@@ -141,7 +140,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	. = ..()
 	if(!is_operational())
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive")
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 /obj/machinery/quick_vendor/can_interact(mob/user)
 	. = ..()
@@ -178,9 +177,10 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	. = ..()
 	var/list/data = list()
 	var/list/loadouts_data_tgui = list()
-	for(var/loadout_data in global_list_to_use)
+	var/list/loadouts_list = isrobot(user) ? GLOB.robot_loadouts : global_list_to_use
+	for(var/loadout_data in loadouts_list)
 		var/list/next_loadout_data = list() //makes a list item with the below lines, for each loadout entry in the list
-		var/datum/outfit/quick/current_loadout = global_list_to_use[loadout_data]
+		var/datum/outfit/quick/current_loadout = loadouts_list[loadout_data]
 		next_loadout_data["job"] = current_loadout.jobtype
 		next_loadout_data["name"] = current_loadout.name
 		next_loadout_data["desc"] = current_loadout.desc
@@ -198,14 +198,13 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	data["vendor_categories"] = categories
 	return data
 
-
 /obj/machinery/quick_vendor/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
 	switch(action)
 		if("selectLoadout")
-			var/datum/outfit/quick/selected_loadout = global_list_to_use[text2path(params["loadout_outfit"])]
+			var/datum/outfit/quick/selected_loadout = isrobot(ui.user) ? GLOB.robot_loadouts[text2path(params["loadout_outfit"])] : global_list_to_use[text2path(params["loadout_outfit"])]
 			if(!selected_loadout)
 				to_chat(ui.user, span_warning("Error when loading this loadout"))
 				CRASH("Fail to load loadouts")
@@ -215,13 +214,21 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 			var/obj/item/card/id/user_id = usr.get_idcard() //ui.user better?
 			var/user_job = user_id.rank
 			user_job = replacetext(user_job, "Fallen ", "") //So that jobs in valhalla can vend a loadout too
-			if(selected_loadout.jobtype != user_job)
+			if(selected_loadout.jobtype != user_job && selected_loadout.require_job != FALSE)
 				to_chat(usr, span_warning("You are not in the right job for this loadout!"))
 				return
 			if(user_id.id_flags & USED_GHMME) //Same check here, in case they opened the UI before vending a loadout somehow
 				to_chat(ui.user, span_warning("Access denied, continue using the GHHME."))
 				return FALSE
 			if(user_id.id_flags & CAN_BUY_LOADOUT)
+				for(var/points in user_id.marine_points)
+					if(user_id.marine_points[points] != GLOB.default_marine_points[points])
+						to_chat(ui.user, span_warning("Access denied, continue using the GHHME."))
+						return FALSE
+				for(var/option in user_id.marine_buy_choices)
+					if(user_id.marine_buy_choices[option] != GLOB.marine_selector_cats[option])
+						to_chat(ui.user, span_warning("Access denied, continue using the GHHME."))
+						return FALSE
 				user_id.id_flags &= ~CAN_BUY_LOADOUT
 				selected_loadout.quantity --
 				if(drop_worn_items)

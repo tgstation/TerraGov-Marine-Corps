@@ -39,7 +39,9 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/melee_damage = 0
 
 	var/mechs_destroyed = 0
-
+	var/tanks_destroyed = 0
+	var/flags_destroyed = 0
+	var/flags_captured = 0
 	//We are watching
 	var/friendly_fire_damage = 0
 
@@ -54,6 +56,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/delimbs = 0
 	var/internal_injuries = 0
 	var/internal_injuries_inflicted = 0
+
+	var/grenade_hand_delimbs = 0
 
 	//Medical
 	var/self_heals = 0
@@ -94,6 +98,9 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/recycle_points_denied = 0
 	var/huggers_created = 0
 	var/impregnations = 0
+	var/items_snatched = 0
+	var/acid_maw_uses = 0
+	var/acid_jaw_uses = 0
 
 	//Close air support
 	var/cas_cannon_shots = 0
@@ -120,9 +127,14 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/mission_objective_captured = 0
 	var/mission_objective_decaptured = 0
 	var/mission_mechs_destroyed = 0
+	var/mission_tanks_destroyed = 0
 	var/mission_shrapnel_removed = 0
 	var/mission_traps_created = 0
 	var/mission_grenades_primed = 0
+	var/mission_heals = 0
+	var/mission_integrity_repaired = 0
+	var/mission_flags_destroyed = 0
+	var/mission_flags_captured = 0
 
 /datum/personal_statistics/New()
 	. = ..()
@@ -164,6 +176,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 
 	if(grenades_primed)
 		stats += "[grenades_primed] grenade\s thrown."
+	if(grenade_hand_delimbs)
+		stats += "You blew off [grenade_hand_delimbs] hand[grenade_hand_delimbs != 1 ? "s" : ""] while holding grenades like an idiot."
 	if(traps_created)
 		stats += "[traps_created] trap\s/mine\s/hazard\s placed."
 	if(grenades_primed || traps_created)
@@ -226,6 +240,12 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		support_stats += "Performed [miner_repairs_performed] miner repair\s."
 	if(apcs_repaired)
 		support_stats += "Repaired [apcs_repaired] APC\s."
+	if(items_snatched)
+		support_stats += "Snatched [items_snatched] item\s."
+	if(acid_maw_uses)
+		support_stats += "Fired the Acid Maw [acid_maw_uses] time\s"
+	if(acid_jaw_uses)
+		support_stats += "Fired the Acid Jaw [acid_jaw_uses] time\s"
 
 	if(generator_sabotages_performed)
 		support_stats += "Sabotaged [generator_sabotages_performed] generator\s."
@@ -309,9 +329,14 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	mission_objective_captured = 0
 	mission_objective_decaptured = 0
 	mission_mechs_destroyed = 0
+	mission_tanks_destroyed = 0
+	mission_flags_destroyed = 0
+	mission_flags_captured = 0
 	mission_shrapnel_removed = 0
 	mission_traps_created = 0
 	mission_grenades_primed = 0
+	mission_heals = 0
+	mission_integrity_repaired = 0
 
 ///Returns the credit bonus based on stats from the current mission
 /datum/personal_statistics/proc/get_mission_reward()
@@ -327,9 +352,14 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	credit_bonus += mission_objective_captured * 20
 	credit_bonus += mission_objective_decaptured * 20
 	credit_bonus += mission_mechs_destroyed * 20
+	credit_bonus += mission_tanks_destroyed * 50
+	credit_bonus += mission_flags_destroyed * 250
+	credit_bonus += mission_flags_captured * 500
 	credit_bonus += mission_shrapnel_removed * 3
 	credit_bonus += mission_traps_created * 4
 	credit_bonus += mission_grenades_primed * 2
+	credit_bonus += mission_heals * 1
+	credit_bonus += integrity_repaired * 0.1
 
 	return max(floor(credit_bonus), 0)
 
@@ -428,6 +458,7 @@ The alternative is scattering them everywhere under their respective objects whi
 				//If a receiving mob exists, we tally up to the user mob's stats that it performed a heal
 				if(receiver)
 					personal_statistics_user.heals++
+					personal_statistics_user.mission_heals++
 				else
 					personal_statistics_user.self_heals++
 			is_healing = TRUE
@@ -445,6 +476,7 @@ The alternative is scattering them everywhere under their respective objects whi
 	//If a receiving mob exists, we tally up to the user mob's stats that it performed a heal
 	if(receiver)
 		personal_statistics_user.heals++
+		personal_statistics_user.mission_heals++
 	else
 		personal_statistics_user.self_heals++
 	return TRUE
@@ -607,6 +639,13 @@ The alternative is scattering them everywhere under their respective objects whi
 	if(reflected)
 		personal_statistics.projectiles_reflected += amount
 	return TRUE
+
+/// Adds to the personal statistics if the reflected projectile was a rocket.
+/obj/effect/xeno/shield/proc/record_rocket_reflection(mob/user, obj/projectile/projectile)
+	if(!istype(projectile.ammo, /datum/ammo/rocket) || !user.ckey)
+		return
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+	personal_statistics.rockets_reflected++
 
 ///Tally when a structure is constructed
 /mob/proc/record_structures_built()

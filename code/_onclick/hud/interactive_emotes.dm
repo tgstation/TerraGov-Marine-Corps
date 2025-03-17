@@ -10,6 +10,7 @@
 		interactions_list["High Five"] = /atom/movable/screen/interaction
 		interactions_list["Fist Bump"] = /atom/movable/screen/interaction/fist_bump
 
+	//Change src to target if you are using the interaction testing tool
 	var/atom/movable/screen/interaction/interaction = interactions_list[tgui_input_list(src, "Select an interaction type", "Interactive Emotes", interactions_list)]
 
 	if(!interaction)
@@ -96,7 +97,7 @@
 	if(modifiers[SHIFT_CLICK] || modifiers[RIGHT_CLICK])	//These modifiers will deny the interaction
 		return ..()
 
-	if(usr != owner || !can_interact(owner))
+	if(usr != owner || !owner.can_interact(initiator))
 		end_interaction(FALSE)
 		return FALSE
 
@@ -262,7 +263,7 @@
 	viewer.client.screen |= interaction
 	return TRUE
 
-//If anyone wants to add more interactions, here is an easy test item to use, just be sure to comment out any can_interact checks and to use the target tgui input list
+//If anyone wants to add more interactions, here is an easy test item to use, just be sure to edit tgui_input_list() at the top
 /obj/item/interaction_tester
 	name = "interaction tester"
 	icon_state = "coin"

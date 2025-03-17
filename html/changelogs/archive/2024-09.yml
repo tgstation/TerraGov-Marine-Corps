@@ -1,0 +1,180 @@
+2024-09-01:
+  Lumipharon:
+  - bugfix: Fixed some fire bugs, notably fire will now correctly not effect people
+      on tanks
+  - code_imp: Cleaned up some fire code
+2024-09-02:
+  Helg2:
+  - bugfix: fixed stuff like capes and kamas applying it's overlays while inhands.
+  Lumipharon:
+  - imageadd: Improved human gib animations slightly
+  - balance: Energy cell explosions have lower flash range
+2024-09-04:
+  Apple-107:
+  - rscadd: Intelligence Computers now have an active Minimap icon
+  - balance: Intelligence Computers award 1000 REQ points and 100 DS points for completion,
+      they take longer.
+  - bugfix: Intelligence Computers now deactivate when they lose power, and can lose
+      progress.
+  Lumipharon:
+  - bugfix: Mirage nade illusions no longer block bullets
+  - bugfix: Hunter illusions now correctly have the parent hunters wound/fire overlays
+  - code_imp: Cleaned up an consolidated illusion code for mirage nades and hunter
+      mirage
+  - bugfix: fixed some fire bugs
+2024-09-05:
+  ivanmixo:
+  - bugfix: AI eye hearing now respects instrument preferences
+  - code_imp: Improved the way AI eye hears
+2024-09-10:
+  Lumipharon:
+  - bugfix: fixed scout cloak not properly deactivating on energy loss
+  ivanmixo:
+  - rscadd: Added the <:rainbow:> emoji
+2024-09-11:
+  Barnet2:
+  - rscadd: CORSAT, Lava Outpost V1 and Chigusa are in the game files again! Can be
+      used for events, but not in rotation.
+  blackdav123:
+  - bugfix: Tanks can now leave the alamo on LV624.
+  - balance: Increased quickbuild on LV624 to 2000 from 1400.
+2024-09-14:
+  Lewdcifer:
+  - rscadd: Xeno minions can now ride crushers.
+  Lumipharon:
+  - bugfix: fixed a misc runtime
+  - bugfix: fixed a couple drop pod hard dels
+2024-09-15:
+  Isy232:
+  - qol: Various improvements to LV 759 particularly aimed at the caves and roadway
+      clutter.
+2024-09-16:
+  FunkyMonke47:
+  - balance: slightly reduced defilers health
+  - balance: slightly lowers Praetorian's health
+  - balance: slightly lowered crushers health
+  - balance: gave behemoth a sunder multiplier
+  - balance: lowers warriors health
+  - balance: slight queen nerf
+  Lumipharon:
+  - admin: Fixed minimap drawing logging
+  - balance: Tank riders can shoot, and be shot, freely without projectiles hitting
+      the tank
+  Pariah919:
+  - rscadd: Added new ICC heavy shotgun for ICC Leader, replacing the Trench Gun in
+      the ICC Leader loadouts.
+  RipGrayson:
+  - bugfix: Fixed improper rotation of Chigusa platforms
+  - bugfix: Fixed improper area colors for Chigusa
+  Runian:
+  - bugfix: AGLS Flare magazine assemblies now create AGLS Flare magazines instead
+      of HE magazines.
+  - bugfix: AGLS HE magazine assemblies now follows its factory recipe instead of
+      immediately finishing on unboxing.
+  xSlumLord:
+  - rscadd: Keybind for barrel attachments.
+  - balance: Removed pistol lace activation wind-up.
+  yyzsong:
+  - qol: Warlock blast now shakes your sprite if the AOE hits you.
+2024-09-18:
+  Lumipharon:
+  - rscdel: Removed AGLS tanglefoot ammo
+  Runian:
+  - balance: It now costs a single metal to create a barbed wire.
+  - rscadd: If you have any engineering skills, you can use a multitool will help
+      you find the APC of the room you're in.
+  ivanmixo:
+  - bugfix: Both clicking the firemode action and using the keybind should have the
+      same behavior now
+  - rscadd: The compact mode and show empty checkboxes will now be saved as a proper
+      preference and carry over between rounds and characters
+  - bugfix: Caste names no longer overlap eachother, tier limits no longer display
+      nothing if there's no xenos
+  - bugfix: Various improvements and fixes to kitchen trays and forks
+  - admin: Admins can now announce and global narrate infinitely
+2024-09-19:
+  00ze-cyclone:
+  - rscadd: Added 2 more icons for energy weapon firemode ammo huds
+  - qol: each firemode on lasers has its own icon on the ammo counter
+  ivanmixo:
+  - bugfix: Bioscan will no longer say "including one in 0" in place of where it's
+      supposed to tell you where someone is located
+  - bugfix: Friendly xeno nibbles have the attack animation again
+2024-09-20:
+  Lumipharon:
+  - soundadd: Bullet ping sounds changed back to not happening 100% of the time, to
+      reduce sound channel issues
+  - bugfix: The knife belt is the same weight class as other belts
+  - bugfix: 'Campaign: Autobalance will no longer take much longer to appear for players
+      than intended'
+  blackdav123:
+  - balance: GL54 and AR55 Airburst sunder reduced from 3 per pellet to 1.5.
+2024-09-22:
+  ivanmixo:
+  - bugfix: Fixed welding goggles hiding themselves in the strip menu
+  - balance: Deployable shields no longer have a strap
+  - bugfix: Removed restriction to evolving to something besides drone when there
+      is no ruler
+  - bugfix: Fixed a runtime when first spawning in as a xeno with pheros
+  - bugfix: Fix a supply beacon console runtime
+2024-09-23:
+  Xander3359:
+  - qol: You can right click a vendor to refill something that is vendable by it
+2024-09-24:
+  Cheese, Stardust, Cre, with thanks to various helpful people in the discord:
+  - rscadd: Runner saddles. Buy one at req for 120 points, and saddle a runner today!
+  - rscadd: Saddled runners can be ridden by click dragging yourself to them. For
+      the runner to force you on, they have to grab you then click themselves
+  - rscadd: Crusher riding is now the same, click drag to mount, pull click self to
+      force onto self
+  - rscadd: A saddled rouny works as a duffelbag, and can be opened by rclicking the
+      rouny.
+  - rscadd: Marines can now pull friendly xenos
+  - imageadd: Sprites for runner saddles, and for them being worn on the mob; Includes
+      rouny variants
+  - code_imp: This modifies a lot to work, so there's bound to be bugs. scream @Mantlecrawler
+      in the discord, or report them to github.
+2024-09-28:
+  Pariah919:
+  - bugfix: Due to budget cuts, ICC ERT Leaders didn't get their loadout upon spawning.
+      This has been rectified. And they should once again have loadouts.
+  Xander3359:
+  - qol: MarineMed pill bottles are refillable via right click on the vendor
+2024-09-29:
+  00ze-cyclone:
+  - bugfix: fixed TE mag box storage
+  - bugfix: SSMG45 mag box now has markings indicating it hold SMG45 mags
+  - bugfix: fixed the heavy laser ammo counter
+  - rscadd: Added a second flare box in the shocktrooper loadout to replace the TE
+      pouch that can't spawn there anymore
+  - rscadd: Added SoM pistol and burst shotgun, plasma SMG and heavy laser to valhalla
+  - rscdel: Removed SG29 from the seasonal vendor of valhalla alongside the export
+      version of L88
+  Arturlang:
+  - rscadd: Xenomorph life will now adjust the amount of healing/sunder/plasma/evo/maturity
+      based on any extra time that Life has not run for.
+  Lumipharon:
+  - bugfix: fixed some bookshelves on Big Red being nondense
+  - bugfix: fixed a couple density issues on some rocks
+  Mantlecrawler:
+  - bugfix: Runner saddles now correctly unbuckle the mob riding if they are removed
+  blackdav123:
+  - bugfix: Wraiths can no longer cheese into the hull area of Big Red atmos.
+  - bugfix: Barsigns now go on walls again.
+  - bugfix: Fixed a floating mirror on Big Red.
+  breadhunt:
+  - rscadd: Added a "TTS mode" for headsets which reads out any messages sent in your
+      squad channel (if you have one). Can be set as "SL", "SQUAD", "COMMAND" and
+      "ALL (except Squad and Command)" in prefs.
+  ivanmixo:
+  - qol: Stripping magharn'd weapons now disables the magharn for a couple seconds
+  jonash07:
+  - bugfix: fixed the queen overwatch icon
+2024-09-30:
+  Lumipharon:
+  - balance: Aim mode removed from most guns
+  - balance: Added shoulder firing - ALL guns can now shoot past ADJACENT team mates
+      without penalty
+  - rscadd: Tanks leave behind wrecks when destroyed
+  blackdav123:
+  - balance: AR55 is no longer in FC and SL vendors.

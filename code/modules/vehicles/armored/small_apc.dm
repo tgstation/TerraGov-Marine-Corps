@@ -8,8 +8,6 @@
 	armored_flags = NONE
 	move_delay = 0.3 SECONDS
 	armored_flags = NONE
-	pixel_x = -16
-	pixel_y = -8
+	pixel_w = -16
+	pixel_z = -8
 	max_occupants = 3
-	primary_weapon_type = null
-	secondary_weapon_type = null

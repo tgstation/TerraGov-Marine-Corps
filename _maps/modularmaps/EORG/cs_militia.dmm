@@ -22,7 +22,7 @@
 	},
 /area/deathmatch)
 "bQ" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /turf/open/floor/wood,
 /area/deathmatch)
 "bZ" = (
@@ -129,7 +129,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "qU" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "cs_militia_2";
 	pixel_y = 8
@@ -166,7 +166,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "sv" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "cs_militia_1";
 	pixel_y = 8
@@ -195,7 +195,7 @@
 	pixel_x = -16;
 	pixel_y = -16
 	},
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "cs_militia_4";
 	pixel_y = 8
@@ -248,7 +248,7 @@
 	pixel_x = -16;
 	pixel_y = -16
 	},
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "cs_militia_3";
 	pixel_y = 8
@@ -256,7 +256,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "xF" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
@@ -342,7 +342,7 @@
 	},
 /area/deathmatch)
 "GH" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "cs_militia_4";
 	pixel_y = 8
@@ -372,7 +372,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "Kl" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 1;
 	id = "cs_militia_3";
 	pixel_y = 8
@@ -477,7 +477,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "Vu" = (
-/obj/structure/ladder{
+/obj/structure/ladder/id_linked{
 	height = 2;
 	id = "cs_militia_1";
 	pixel_y = 8

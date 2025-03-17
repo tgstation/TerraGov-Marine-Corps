@@ -9,8 +9,7 @@
 	icon_off = "cabinetdetective_broken"
 
 
-/obj/structure/closet/secure_closet/bar/Initialize(mapload)
-	. = ..()
+/obj/structure/closet/secure_closet/bar/PopulateContents()
 	new /obj/item/reagent_containers/food/drinks/cans/beer( src )
 	new /obj/item/reagent_containers/food/drinks/cans/beer( src )
 	new /obj/item/reagent_containers/food/drinks/cans/beer( src )

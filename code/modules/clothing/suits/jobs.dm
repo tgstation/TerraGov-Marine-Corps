@@ -7,7 +7,7 @@
 	name = "apron"
 	desc = "A basic blue apron."
 	icon_state = "apron"
-	item_state = "apron"
+	worn_icon_state = "apron"
 	blood_overlay_type = "armor"
 	armor_protection_flags = NONE
 	allowed = list (
@@ -19,8 +19,10 @@
 		/obj/item/flashlight,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/holster/blade
+		/obj/item/attachable/bayonet,
+		/obj/item/storage/holster/blade,
+		/obj/item/tool/hatchet,
+		/obj/item/tool/scythe
 	)
 
 
@@ -28,7 +30,7 @@
 	name = "surgical apron"
 	desc = "A plastic covering to prevent the passage of bodily fluids during surgery."
 	icon_state = "surgical"
-	item_state = "surgical"
+	worn_icon_state = "surgical"
 	armor_protection_flags = CHEST
 	allowed = list(
 		/obj/item/tank/emergency_oxygen,
@@ -56,7 +58,7 @@
 	name = "captain's parade tunic"
 	desc = "Worn by a Captain to show their class."
 	icon_state = "captunic"
-	item_state = "bio_suit"
+	worn_icon_state = "bio_suit"
 	armor_protection_flags = CHEST|ARMS
 	inv_hide_flags = HIDEJUMPSUIT
 
@@ -64,7 +66,7 @@
 	name = "captain's uniform jacket"
 	desc = "A less formal jacket for everyday captain use."
 	icon_state = "capjacket"
-	item_state = "bio_suit"
+	worn_icon_state = "bio_suit"
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
 	inv_hide_flags = HIDEJUMPSUIT
 
@@ -73,14 +75,14 @@
 	name = "chaplain hoodie"
 	desc = "This suit says to you 'hush'!"
 	icon_state = "chaplain_hoodie"
-	item_state = "chaplain_hoodie"
+	worn_icon_state = "chaplain_hoodie"
 	armor_protection_flags = CHEST|ARMS
 
 /obj/item/clothing/suit/nun
 	name = "nun robe"
 	desc = "Maximum piety in this star system."
 	icon_state = "nun"
-	item_state = "nun"
+	worn_icon_state = "nun"
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
 	inv_hide_flags = HIDESHOES|HIDEJUMPSUIT
 
@@ -89,7 +91,7 @@
 	name = "Chef's apron"
 	desc = "An apron used by a high class chef."
 	icon_state = "chef"
-	item_state = "chef"
+	worn_icon_state = "chef"
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
 	armor_protection_flags = CHEST|GROIN|ARMS
@@ -100,7 +102,7 @@
 	name = "A classic chef's apron."
 	desc = "A basic, dull, white chef's apron."
 	icon_state = "apronchef"
-	item_state = "apronchef"
+	worn_icon_state = "apronchef"
 	blood_overlay_type = "armor"
 	armor_protection_flags = NONE
 
@@ -138,7 +140,7 @@
 	name = "coat"
 	desc = "An 18th-century multi-purpose trenchcoat. Someone who wears this means serious business."
 	icon_state = "detective"
-	item_state = "det_suit"
+	worn_icon_state = "det_suit"
 	blood_overlay_type = "coat"
 	armor_protection_flags = CHEST|ARMS
 	allowed = list(
@@ -154,7 +156,7 @@
 		/obj/item/detective_scanner,
 		/obj/item/taperecorder,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/holster/blade,
 	)
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 25, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 10, ACID = 10)
@@ -166,7 +168,7 @@
 /obj/item/clothing/suit/storage/forensics
 	name = "jacket"
 	desc = "A forensics technician jacket."
-	item_state = "det_suit"
+	worn_icon_state = "det_suit"
 	armor_protection_flags = CHEST|ARMS
 	allowed = list(
 		/obj/item/tank/emergency_oxygen,
@@ -196,7 +198,7 @@
 	name = "orange reflective safety vest"
 	desc = "A high-visibility vest used in work zones."
 	icon_state = "hazard"
-	item_state = "hazard"
+	worn_icon_state = "hazard"
 	blood_overlay_type = "armor"
 	allowed = list(
 		/obj/item/tool/analyzer,
@@ -219,19 +221,19 @@
 /obj/item/clothing/suit/storage/hazardvest/lime
 	name = "lime reflective safety vest"
 	icon_state = "hazard_lime"
-	item_state = "hazard_lime"
+	worn_icon_state = "hazard_lime"
 
 /obj/item/clothing/suit/storage/hazardvest/blue
 	name = "blue reflective safety vest"
 	icon_state = "hazard_blue"
-	item_state = "hazard_blue"
+	worn_icon_state = "hazard_blue"
 
 //Lawyer
 /obj/item/clothing/suit/storage/lawyer/bluejacket
 	name = "Blue Suit Jacket"
 	desc = "A snappy dress jacket."
 	icon_state = "suitjacket_blue_open"
-	item_state = "suitjacket_blue_open"
+	worn_icon_state = "suitjacket_blue_open"
 	blood_overlay_type = "coat"
 	armor_protection_flags = CHEST|ARMS
 
@@ -239,7 +241,7 @@
 	name = "Purple Suit Jacket"
 	desc = "A snappy dress jacket."
 	icon_state = "suitjacket_purp"
-	item_state = "suitjacket_purp"
+	worn_icon_state = "suitjacket_purp"
 	blood_overlay_type = "coat"
 	armor_protection_flags = CHEST|ARMS
 
@@ -248,13 +250,13 @@
 	name = "Internal Affairs Jacket"
 	desc = "A smooth black jacket."
 	icon_state = "ia_jacket_open"
-	item_state = "ia_jacket"
+	worn_icon_state = "ia_jacket"
 	blood_overlay_type = "coat"
 	armor_protection_flags = CHEST|ARMS
 
 /obj/item/clothing/suit/storage/internalaffairs/verb/toggle()
 	set name = "Toggle Coat Buttons"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	if(!usr.canmove || usr.stat || usr.restrained())
@@ -277,7 +279,7 @@
 	name = "first responder jacket"
 	desc = "A high-visibility jacket worn by medical first responders."
 	icon_state = "fr_jacket_open"
-	item_state = "fr_jacket"
+	worn_icon_state = "fr_jacket"
 	blood_overlay_type = "armor"
 	allowed = list(
 		/obj/item/stack/medical,
@@ -293,7 +295,7 @@
 
 /obj/item/clothing/suit/storage/fr_jacket/verb/toggle()
 	set name = "Toggle Jacket Buttons"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	if(!usr.canmove || usr.stat || usr.restrained())

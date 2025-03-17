@@ -32,14 +32,8 @@ GLOBAL_REAL(logger, /datum/log_holder)
 
 GENERAL_PROTECT_DATUM(/datum/log_holder)
 
-/client/proc/log_viewer_new()
-	set name = "View Round Logs"
-	set category = "Admin"
-
-	if(!check_rights(R_LOG))
-		return
-
-	logger.ui_interact(mob)
+ADMIN_VERB(log_viewer_new, R_LOG, "View Round Logs", "View this rounds logs in the TGUI viewer", ADMIN_CATEGORY_MAIN)
+	logger.ui_interact(user.mob)
 
 /datum/log_holder/ui_interact(mob/user, datum/tgui/ui)
 	if(!check_rights_for(user.client, R_ADMIN))
@@ -309,7 +303,7 @@ GENERAL_PROTECT_DATUM(/datum/log_holder)
 		var/datum/data = data_list[key]
 
 		if(isnull(data))
-			// do nothing - nulls are allowed
+			EMPTY_BLOCK_GUARD // todo this is probably a bad way to do it
 
 		else if(islist(data))
 			data = recursive_jsonify(data, semvers)

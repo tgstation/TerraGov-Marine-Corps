@@ -5,7 +5,7 @@
 	return g
 
 /proc/get_limb_icon_name(datum/species/S, gender, limb_name, ethnicity)
-	if(S.name == "Human" || S.name == "Synthetic")
+	if(S.limb_type == SPECIES_LIMB_HUMAN) // todo this section is fucking stupid and can be way more generic easily
 		switch(limb_name)
 			if ("torso", "chest")
 				return "[ethnicity]_torso_[get_gender_name(gender)]"
@@ -42,7 +42,7 @@
 
 			else
 				return null
-	else if(S.name == "Vatborn" || S.name == "Early Vat-Grown Human" || S.name == "Vat-Grown Human")
+	else if(S.limb_type == SPECIES_LIMB_CLONE)
 		switch(limb_name)
 			if ("torso", "chest")
 				return "torso_[get_gender_name(gender)]"
@@ -182,15 +182,15 @@
 
 
 /mob/living/carbon/human/has_brain()
-	if(internal_organs_by_name["brain"])
-		var/datum/internal_organ/brain = internal_organs_by_name["brain"]
+	if(get_organ_slot(ORGAN_SLOT_BRAIN))
+		var/datum/internal_organ/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
 		if(brain && istype(brain))
 			return 1
 	return 0
 
 /mob/living/carbon/human/has_eyes()
-	if(internal_organs_by_name["eyes"])
-		var/datum/internal_organ/eyes = internal_organs_by_name["eyes"]
+	if(get_organ_slot(ORGAN_SLOT_EYES))
+		var/datum/internal_organ/eyes = get_organ_slot(ORGAN_SLOT_EYES)
 		if(eyes && istype(eyes))
 			return 1
 	return 0
@@ -215,24 +215,39 @@
 		.++
 
 /mob/living/carbon/human/get_permeability_protection()
-	var/list/prot = list("hands"=0, "chest"=0, "groin"=0, "legs"=0, "feet"=0, "arms"=0, "head"=0)
+	// hands = 1 | chest = 2 | groin = 3 | legs = 4 | feet = 5 | arms = 6 | head = 7
+	var/list/prot = list(0,0,0,0,0,0,0)
 	for(var/obj/item/I in get_equipped_items())
 		if(I.armor_protection_flags & HANDS)
-			prot["hands"] = max(1 - I.permeability_coefficient, prot["hands"])
+			prot[1] = max(1 - I.permeability_coefficient, prot[1])
 		if(I.armor_protection_flags & CHEST)
-			prot["chest"] = max(1 - I.permeability_coefficient, prot["chest"])
+			prot[2] = max(1 - I.permeability_coefficient, prot[2])
 		if(I.armor_protection_flags & GROIN)
-			prot["groin"] = max(1 - I.permeability_coefficient, prot["groin"])
+			prot[3] = max(1 - I.permeability_coefficient, prot[3])
 		if(I.armor_protection_flags & LEGS)
-			prot["legs"] = max(1 - I.permeability_coefficient, prot["legs"])
+			prot[4] = max(1 - I.permeability_coefficient, prot[4])
 		if(I.armor_protection_flags & FEET)
-			prot["feet"] = max(1 - I.permeability_coefficient, prot["feet"])
+			prot[5] = max(1 - I.permeability_coefficient, prot[5])
 		if(I.armor_protection_flags & ARMS)
-			prot["arms"] = max(1 - I.permeability_coefficient, prot["arms"])
+			prot[6] = max(1 - I.permeability_coefficient, prot[6])
 		if(I.armor_protection_flags & HEAD)
-			prot["head"] = max(1 - I.permeability_coefficient, prot["head"])
-	var/protection = (prot["head"] + prot["arms"] + prot["feet"] + prot["legs"] + prot["groin"] + prot["chest"] + prot["hands"])/7
+			prot[7] = max(1 - I.permeability_coefficient, prot[7])
+	var/protection = (prot[7] + prot[6] + prot[5] + prot[4] + prot[3] + prot[2] + prot[1])/7
 	return protection
+
+/mob/living/carbon/human/get_soft_acid_protection()
+	var/protection = 0
+	for(var/def_zone in GLOB.human_body_parts)
+		protection += get_soft_armor(ACID, def_zone)
+	// adds arms and feet twice since precise.(acid armor goes from 0 to 100)
+	return protection/1100
+
+/mob/living/carbon/human/get_hard_acid_protection()
+	var/protection = 0
+	for(var/def_zone in GLOB.human_body_parts)
+		protection += get_hard_armor(ACID, def_zone)
+	// adds arms and feet twice since precise.
+	return protection/11
 
 /mob/living/carbon/human/get_standard_bodytemperature()
 	return species.body_temperature
@@ -247,3 +262,129 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DEPLOY_TIMELOCK_ENDED)
 	GLOB.squad_selector.interact(src)
+
+/**
+ * Proc to check if a carbon human has the required organs to sustain life.
+ *
+ * Returns false if `has_brain` returns false, this human is missing a heart, or their current heart is broken
+ *
+ * Returns true otherwise
+ */
+/mob/living/carbon/human/proc/has_working_organs()
+	var/datum/internal_organ/heart/heart = get_organ_slot(ORGAN_SLOT_HEART)
+
+	if(species.species_flags & ROBOTIC_LIMBS)
+		return TRUE // combat robots and synthetics don't have any of these for some reason
+	if(!has_brain())
+		return FALSE
+	if(!heart || heart.organ_status == ORGAN_BROKEN)
+		return FALSE
+	return TRUE
+
+/**
+ * Proc that brings a carbon human back to life. Only works if their health is higher than their death threshold and they are dead in the first place.
+ *
+ * Intended to be called by defibrillators or anything that brings a carbon human back to life
+ */
+/mob/living/carbon/human/proc/resuscitate()
+	if(stat != DEAD || health <= get_death_threshold())
+		return
+	set_stat(UNCONSCIOUS)
+	chestburst = CARBON_NO_CHEST_BURST
+	regenerate_icons()
+	reload_fullscreens()
+	handle_regular_hud_updates()
+	updatehealth() //One more time, so it doesn't show the target as dead on HUDs
+	dead_ticks = 0 //We reset the DNR timer
+	REMOVE_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+
+/**
+ * Proc for checking parameters of a human for defibrillation.
+ *
+ * Checks decapitation, DNR status, organ damage and health status (in that order) for defibrillation.
+ *
+ * See defines in `__DEFINES/defibrillator.dm` for bitflags.
+ *
+ * `additional_health_increase` can be used to add additional health when calculating health for situations like grabbing ghost.
+ */
+/mob/living/carbon/human/proc/check_defib(additional_health_increase = 0)
+
+	var/datum/limb/head/head = get_limb("head")
+	if(head.limb_status & LIMB_DESTROYED)
+		return DEFIB_FAIL_DECAPITATED
+
+	if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
+		return DEFIB_FAIL_BRAINDEAD
+
+	if(!has_working_organs())
+		return DEFIB_FAIL_BAD_ORGANS
+
+	if(health + getOxyLoss() + additional_health_increase <= get_death_threshold())
+		return DEFIB_FAIL_TOO_MUCH_DAMAGE
+
+	return DEFIB_POSSIBLE
+
+/**
+ * Setter for mob height
+ *
+ * Exists so that the update is done immediately
+ *
+ * Returns TRUE if changed, FALSE otherwise
+ */
+/mob/living/carbon/human/proc/set_mob_height(new_height)
+	if(mob_height == new_height)
+		return FALSE
+	if(new_height == HUMAN_HEIGHT_DWARF || new_height == MONKEY_HEIGHT_DWARF)
+		CRASH("Don't set height to dwarf height directly, use dwarf trait instead.")
+	if(new_height == MONKEY_HEIGHT_MEDIUM)
+		CRASH("Don't set height to monkey height directly, use monkified gene/species instead.")
+
+	mob_height = new_height
+	regenerate_icons()
+	return TRUE
+
+/**
+ * Getter for mob height
+ *
+ * Mainly so that dwarfism can adjust height without needing to override existing height
+ *
+ * Returns a mob height num
+ */
+/mob/living/carbon/human/proc/get_mob_height()
+	if(HAS_TRAIT(src, TRAIT_DWARF))
+		if(ismonkey(src))
+			return MONKEY_HEIGHT_DWARF
+		else
+			return HUMAN_HEIGHT_DWARF
+	if(HAS_TRAIT(src, TRAIT_TOO_TALL))
+		if(ismonkey(src))
+			return MONKEY_HEIGHT_TALL
+		else
+			return HUMAN_HEIGHT_TALLEST
+
+	else if(ismonkey(src))
+		return MONKEY_HEIGHT_MEDIUM
+
+	return mob_height
+
+///Gets organ by name
+/mob/living/carbon/human/proc/get_organ_slot(string)
+	return internal_organs_by_name[string]
+
+///Removes organ by name
+/mob/living/carbon/human/proc/remove_organ_slot(string)
+	var/datum/internal_organ/organ = get_organ_slot(string)
+	internal_organs_by_name -= string
+	internal_organs -= organ
+
+/// Current active hand will interact with the other hand. Uses attackby and attack_hand.
+/mob/living/carbon/human/proc/interact_other_hand()
+	var/atom/active_hand = get_active_held_item()
+	var/atom/inactive_hand = get_inactive_held_item()
+
+	if(!inactive_hand)
+		return
+	if(!active_hand)
+		inactive_hand.attack_hand(src)
+		return
+	inactive_hand.attackby(active_hand, src)

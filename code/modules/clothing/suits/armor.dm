@@ -32,16 +32,17 @@
 	name = "armored vest"
 	desc = "An armored vest that protects against some damage."
 	icon_state = "armor"
-	item_state = "armor"
+	worn_icon_state = "armor"
 	blood_overlay_type = "armor"
 	permeability_coefficient = 0.8
 	armor_protection_flags = CHEST
 	soft_armor = list(MELEE = 20, BULLET = 30, LASER = 25, ENERGY = 10, BOMB = 15, BIO = 0, FIRE = 10, ACID = 10)
 	allowed = list (
+		/obj/item/weapon/gun,
 		/obj/item/flashlight,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/holster/blade
 	)
 
@@ -49,7 +50,7 @@
 	name = "admiral's jacket"
 	desc = "An armoured jacket with gold regalia"
 	icon_state = "admiral_jacket"
-	item_state = "admiral_jacket"
+	worn_icon_state = "admiral_jacket"
 	armor_protection_flags = CHEST|GROIN|ARMS
 	w_class = WEIGHT_CLASS_NORMAL
 
@@ -57,24 +58,24 @@
 	name = "security armor"
 	desc = "An armored vest that protects against some damage."
 	icon_state = "armorsec"
-	item_state = "armorsec"
+	worn_icon_state = "armorsec"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM //prevents powergaming marine by swapping armor.
 
 /obj/item/clothing/suit/armor/vest/warden
 	name = "Warden's jacket"
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_jacket"
-	item_state = "warden_jacket"
+	worn_icon_state = "warden_jacket"
 	armor_protection_flags = CHEST|GROIN|ARMS
 
 /obj/item/clothing/suit/armor/bulletproof
 	name = "bulletproof vest"
 	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "bulletproof"
-	item_state = "bulletproof"
+	worn_icon_state = "bulletproof"
 	blood_overlay_type = "armor"
 	armor_protection_flags = CHEST
-	soft_armor = list(MELEE = 30, BULLET = 55, LASER = 0, ENERGY = 0, BOMB = 30, BIO = 0, FIRE = 0, ACID = 15)
+	soft_armor = list(MELEE = 30, BULLET = 75, LASER = 15, ENERGY = 15, BOMB = 30, BIO = 0, FIRE = 0, ACID = 15)
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 5)
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.9
@@ -92,8 +93,8 @@
 	name = "riot suit"
 	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot"
-	item_state = "swat"
-	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
+	worn_icon_state = "swat"
+	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	slowdown = 1.2
 	soft_armor = list(MELEE = 65, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 10, ACID = 10)
 	inventory_flags = BLOCKSHARPOBJ
@@ -108,7 +109,7 @@
 	name = "swat suit"
 	desc = "A heavily armored suit that protects against moderate damage. Used in special operations."
 	icon_state = "deathsquad"
-	item_state = "swat"
+	worn_icon_state = "swat"
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS
@@ -127,7 +128,7 @@
 	name = "officer jacket"
 	desc = "An armored jacket used in special operations."
 	icon_state = "detective"
-	item_state = "det_suit"
+	worn_icon_state = "det_suit"
 	blood_overlay_type = "coat"
 	inventory_flags = NONE
 	inv_hide_flags = NONE
@@ -138,7 +139,7 @@
 	name = "armor"
 	desc = "An armored vest with a detective's badge on it."
 	icon_state = "detective-armor"
-	item_state = "detective-armor"
+	worn_icon_state = "detective-armor"
 	blood_overlay_type = "armor"
 	armor_protection_flags = CHEST|GROIN
 	item_flags = SYNTH_RESTRICTED
@@ -148,7 +149,7 @@
 	name = "rugged armor"
 	desc = "A suit of armor used by workers in dangerous environments."
 	icon_state = "swatarmor"
-	item_state = "swatarmor"
+	worn_icon_state = "swatarmor"
 	var/obj/item/weapon/gun/holstered = null
 	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	item_flags = SYNTH_RESTRICTED
@@ -156,6 +157,20 @@
 	soft_armor = list(MELEE = 50, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 40, FIRE = 50, ACID = 50)
 	siemens_coefficient = 0.7
 
+/obj/item/clothing/suit/armor/patrol
+	name = "Security Patrol Armor"
+	desc = "A lightweight suit of armor used by security officers on patrol. While it is more advanced than kevlar, it is heavier and will slightly slow the wearer down."
+	icon_state = "security_patrol"
+	worn_icon_state = "security_patrol"
+	blood_overlay_type = "coat"
+	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	item_flags = SYNTH_RESTRICTED
+	slowdown = 0.2
+	soft_armor = list(MELEE = 20, BULLET = 40, LASER = 30, ENERGY = 30, BOMB = 30, BIO = 15, FIRE = 25, ACID = 15)
+	siemens_coefficient = 0.9
+	permeability_coefficient = 0.7
+	equip_delay_self = 20
+	unequip_delay_self = 20
 
 /obj/item/clothing/suit/armor/sectoid
 	name = "psionic field"
@@ -188,7 +203,7 @@
 	name = "Cent. Com. armor"
 	desc = "A suit that protects against some damage."
 	icon_state = "centcom"
-	item_state = "centcom"
+	worn_icon_state = "centcom"
 	w_class = WEIGHT_CLASS_BULKY//bulky item
 	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/baton,/obj/item/restraints/handcuffs,/obj/item/tank/emergency_oxygen)
@@ -202,7 +217,7 @@
 	name = "heavy armor"
 	desc = "A heavily armored suit that protects against moderate damage."
 	icon_state = "heavy"
-	item_state = "swat_suit"
+	worn_icon_state = "swat_suit"
 	w_class = WEIGHT_CLASS_BULKY//bulky item
 	gas_transfer_coefficient = 0.90
 	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -218,21 +233,21 @@
 	name = "Thunderdome suit (red)"
 	desc = "Reddish armor."
 	icon_state = "tdred"
-	item_state = "tdred"
+	worn_icon_state = "tdred"
 	siemens_coefficient = 1
 
 /obj/item/clothing/suit/armor/tdome/green
 	name = "Thunderdome suit (green)"
 	desc = "Pukish armor."
 	icon_state = "tdgreen"
-	item_state = "tdgreen"
+	worn_icon_state = "tdgreen"
 	siemens_coefficient = 1
 
 /obj/item/clothing/suit/armor/hos
 	name = "armored coat"
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."
 	icon_state = "hos"
-	item_state = "hos"
+	worn_icon_state = "hos"
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS
 	item_flags = SYNTH_RESTRICTED
 	soft_armor = list(MELEE = 65, BULLET = 30, LASER = 50, ENERGY = 10, BOMB = 25, BIO = 0, FIRE = 10, ACID = 10)
@@ -244,7 +259,7 @@
 	name = "armored trenchcoat"
 	desc = "A trenchcoat augmented with a special alloy for some protection and style."
 	icon_state = "jensencoat"
-	item_state = "jensencoat"
+	worn_icon_state = "jensencoat"
 	inv_hide_flags = NONE
 	siemens_coefficient = 0.6
 	armor_protection_flags = CHEST|ARMS

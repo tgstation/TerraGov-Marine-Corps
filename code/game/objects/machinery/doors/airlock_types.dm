@@ -394,6 +394,9 @@
 	name = "\improper Engineering Glass Airlock"
 	icon = 'icons/obj/doors/mainship/engidoor_glass.dmi'
 
+/obj/machinery/door/airlock/mainship/engineering/glass/free_access
+	req_one_access = null
+
 /obj/machinery/door/airlock/mainship/engineering/free_access
 	req_one_access = null
 
@@ -467,7 +470,6 @@
 
 /obj/machinery/door/airlock/mainship/medical/glass/chemistry
 	name = "\improper Chemistry Laboratory"
-	req_access = list(ACCESS_MARINE_CHEMISTRY)
 
 /obj/machinery/door/airlock/mainship/medical/glass/research
 	req_access = list(ACCESS_MARINE_RESEARCH)
@@ -551,20 +553,26 @@
 
 /obj/machinery/door/airlock/mainship/generic/pilot
 	name = "\improper Pilot's Office"
-	req_access = list(ACCESS_MARINE_PILOT)
+	req_one_access = list(ACCESS_MARINE_PILOT)
 
 /obj/machinery/door/airlock/mainship/generic/pilot/bunk
 	name = "\improper Pilot's Bunks"
 
 /obj/machinery/door/airlock/mainship/generic/pilot/quarters
 	name = "\improper Pilot's Quarters"
+	req_one_access = list(ACCESS_MARINE_MECH, ACCESS_MARINE_ARMORED)
 
-/obj/machinery/door/airlock/mainship/generic/mech_pilot
+/obj/machinery/door/airlock/mainship/generic/mech_bay
+	name = "\improper Mech Bay"
+	req_one_access = list(ACCESS_MARINE_MECH, ACCESS_MARINE_ARMORED)
+
+/obj/machinery/door/airlock/mainship/generic/mech_pilot/office
 	name = "\improper Mech Pilot's Office"
 	req_access = list(ACCESS_MARINE_MECH)
 
 /obj/machinery/door/airlock/mainship/generic/mech_pilot/bunk
 	name = "\improper Mech Pilot's Bunks"
+	req_one_access = list(ACCESS_MARINE_MECH, ACCESS_MARINE_ARMORED)
 
 /obj/machinery/door/airlock/mainship/generic/ert
 	name = "\improper Airlock"
@@ -581,17 +589,10 @@
 	opacity = FALSE
 	glass = TRUE
 
-/obj/machinery/door/airlock/mainship/marine/handle_weldingtool_overlay(removing = FALSE)
-	if(!removing)
-		if(dir & NORTH|SOUTH)
-			add_overlay(GLOB.welding_sparks_prepdoor)
-		else
-			add_overlay(GLOB.welding_sparks)
-	else
-		if(dir & NORTH|SOUTH)
-			cut_overlay(GLOB.welding_sparks_prepdoor)
-		else
-			cut_overlay(GLOB.welding_sparks)
+/obj/machinery/door/airlock/mainship/marine/get_weld_spark_icon_and_state()
+	if(dir & NORTH|SOUTH)
+		return list('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_marinedoor")
+	return ..()
 
 /obj/machinery/door/airlock/mainship/marine/canterbury //For wallsmoothing
 
@@ -817,7 +818,6 @@
 /obj/machinery/door/airlock/prison
 	name = "\improper Cell Door"
 	icon = 'icons/obj/doors/prison/celldoor.dmi'
-	glass = FALSE
 
 /obj/machinery/door/airlock/prison/open
 	icon_state = "door_open"
@@ -836,7 +836,6 @@
 //Colony Mapped Doors
 /obj/machinery/door/airlock/colony
 
-
 /obj/machinery/door/airlock/colony/engineering
 	icon = 'icons/obj/doors/mainship/engidoor.dmi'
 	opacity = FALSE
@@ -853,7 +852,6 @@
 	icon_state = "door_open"
 	density = FALSE
 	opacity = FALSE
-
 
 /obj/machinery/door/airlock/colony/medical
 	icon = 'icons/obj/doors/mainship/medidoor_glass.dmi'
@@ -883,3 +881,55 @@
 	name = "\improper Research Dome"
 	icon_state = "door_locked"
 	locked = TRUE
+
+// urban doors
+
+/obj/machinery/door/airlock/urban
+	openspeed = 4
+	icon_state = "door_closed"
+	req_access = null
+
+/obj/machinery/door/airlock/urban/generic
+	name = "\improper Airlock"
+	icon = 'icons/obj/doors/hybrisa/hybrisa_generic_glass.dmi'
+	opacity = FALSE
+	glass = TRUE
+
+/obj/machinery/door/airlock/urban/generic_solid
+	name = "\improper Airlock"
+	icon = 'icons/obj/doors/hybrisa/hybrisa_generic.dmi'
+
+// Medical
+
+/obj/machinery/door/airlock/urban/medical
+	name = "\improper Airlock"
+	icon = 'icons/obj/doors/hybrisa/hybrisa_medidoor_glass.dmi'
+	opacity = FALSE
+	glass = TRUE
+
+/obj/machinery/door/airlock/urban/medical_solid
+	name = "\improper Airlock"
+	icon = 'icons/obj/doors/hybrisa/hybrisa_medidoor.dmi'
+
+// Personal
+/obj/machinery/door/airlock/urban/personal
+	name = "\improper Airlock"
+	icon = 'icons/obj/doors/hybrisa/hybrisa_personaldoor_glass.dmi'
+	opacity = FALSE
+	glass = TRUE
+
+/obj/machinery/door/airlock/urban/personal_solid
+	name = "\improper Airlock"
+	icon = 'icons/obj/doors/hybrisa/hybrisa_personaldoor.dmi'
+
+// Personal White
+/obj/machinery/door/airlock/urban/personal_white
+	name = "\improper Airlock"
+	icon = 'icons/obj/doors/hybrisa/hybrisa_personaldoor_glass_white.dmi'
+	opacity = FALSE
+	glass = TRUE
+
+/obj/machinery/door/airlock/urban/personal_solid_white
+	name = "\improper Airlock"
+	icon = 'icons/obj/doors/hybrisa/hybrisa_personaldoor_white.dmi'
+

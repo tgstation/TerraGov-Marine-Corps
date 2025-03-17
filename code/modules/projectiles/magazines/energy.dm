@@ -3,13 +3,13 @@
 /obj/item/cell/lasgun
 	name = "\improper lasgun Battery"
 	desc = "A specialized high density battery used to power lasguns."
-	icon = 'icons/obj/items/ammo.dmi'
-	item_icons = list(
+	icon = 'icons/obj/items/ammo/energy.dmi'
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
 		)
 	icon_state = "m43"
-	item_state = null
+	worn_icon_state = null
 	maxcharge = 600 ///Changed due to the fact some maps and ERTs spawn with the child, the lasrifle. Charges on guns changed accordingly.
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_cell"
@@ -105,15 +105,19 @@
 	charge_amount = 24
 	charge_delay = 2 SECONDS
 
+/obj/item/cell/lasgun/volkite/turret/hover_bike
+	maxcharge = 1500
+	charge_amount = 100
+
 /obj/item/cell/lasgun/volkite/powerpack
 	name = "\improper M-70 powerpack"
 	desc = "A heavy reinforced backpack with an array of ultradensity energy cells, linked to a miniature radioisotope thermoelectric generator for continuous power generation. Used to power the largest man portable volkite weaponry. Click drag cells to the powerpack to recharge."
-	icon = 'icons/obj/items/storage/storage.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
 	)
 	icon_state = "volkite_powerpack"
+	icon = 'icons/obj/items/ammo/powerpack.dmi'
 	charge_overlay = null
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BACK
@@ -142,7 +146,7 @@
 
 /obj/item/cell/lasgun/volkite/powerpack/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
-	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive", src)
 	standing.overlays.Add(emissive_overlay)
 
 ///Handles draining power from the powerpack, returns the value of the charge drained to MouseDrop where it's added to the cell.
@@ -191,9 +195,8 @@
 /obj/item/cell/lasgun/volkite/powerpack/marine
 	name = "\improper TE powerpack"
 	desc = "A recently developed mass produced side pouch which charges any TE technological achievement."
-	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "lasgun_pouch"
-	charge_overlay = "lasgun_cell"
+	charge_overlay = "lasgun_pouch"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_POCKET
 	magazine_features_flags = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
@@ -202,3 +205,12 @@
 	maxcharge = 2400
 	cell_type = /obj/item/cell/lasgun/lasrifle
 	self_recharge = FALSE
+
+/obj/item/cell/lasgun/volkite/powerpack/marine/backpack
+	name = "\improper TE powerbackpack"
+	desc = "A recently developed mass produced backpack which charges any TE technological achievement."
+	icon_state = "lasgun_backpack"
+	charge_overlay = "lasgun_backpack"
+	equip_slot_flags = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_HUGE
+	maxcharge = 12000

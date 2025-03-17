@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 /obj/structure/bigDelivery
 	desc = "A big wrapped package."
 	name = "large parcel"
-	icon = 'icons/obj/items/storage/storage.dmi'
+	icon = 'icons/obj/items/storage/misc.dmi'
 	icon_state = "deliverycloset"
 	var/obj/wrapped = null
 	density = TRUE
@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 /obj/structure/bigDelivery/update_overlays()
 	. = ..()
 	if(nameset || examtext)
-		var/image/I = new/image('icons/obj/items/storage/storage.dmi',"delivery_label")
+		var/image/I = new/image('icons/obj/items/storage/misc.dmi', "delivery_label")
 		if(icon_state == "deliverycloset")
 			I.pixel_x = 2
 			if(label_y == null)
@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 			I.pixel_y = -3
 		. += I
 	if(src.sortTag)
-		var/image/I = new/image('icons/obj/items/storage/storage.dmi',"delivery_tag")
+		var/image/I = new/image('icons/obj/items/storage/misc.dmi', "delivery_tag")
 		if(icon_state == "deliverycloset")
 			if(tag_x == null)
 				tag_x = rand(-2, 3)
@@ -122,7 +122,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 /obj/item/smallDelivery
 	desc = "A small wrapped package."
 	name = "small parcel"
-	icon = 'icons/obj/items/storage/storage.dmi'
+	icon = 'icons/obj/items/storage/misc.dmi'
 	icon_state = "deliverycrate3"
 	var/obj/item/wrapped = null
 	var/sortTag = null
@@ -144,12 +144,12 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 /obj/item/smallDelivery/update_overlays()
 	. = ..()
 	if((nameset || examtext) && icon_state != "deliverycrate1")
-		var/image/I = new/image('icons/obj/items/storage/storage.dmi',"delivery_label")
+		var/image/I = new/image('icons/obj/items/storage/misc.dmi', "delivery_label")
 		if(icon_state == "deliverycrate5")
 			I.pixel_y = -1
 		. += I
 	if(src.sortTag)
-		var/image/I = new/image('icons/obj/items/storage/storage.dmi',"delivery_tag")
+		var/image/I = new/image('icons/obj/items/storage/misc.dmi', "delivery_tag")
 		switch(icon_state)
 			if("deliverycrate1")
 				I.pixel_y = -5
@@ -328,11 +328,11 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	var/currTag = 0
 
 	w_class = WEIGHT_CLASS_SMALL
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
 	)
-	item_state = "electronic"
+	worn_icon_state = "electronic"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT
 
@@ -341,7 +341,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 	dat += "<table style='width:100%; padding:4px;'><tr>"
 	for(var/i in 1 to length(GLOB.tagger_locations))
-		dat += "<td><a href='?src=[text_ref(src)];nextTag=[GLOB.tagger_locations[i]]'>[GLOB.tagger_locations[i]]</a></td>"
+		dat += "<td><a href='byond://?src=[text_ref(src)];nextTag=[GLOB.tagger_locations[i]]'>[GLOB.tagger_locations[i]]</a></td>"
 
 		if (i%4==0)
 			dat += "</tr><tr>"

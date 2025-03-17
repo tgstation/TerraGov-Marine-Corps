@@ -8,13 +8,13 @@
 	density = TRUE
 	allow_pass_flags = NONE
 	move_resist = MOVE_FORCE_VERY_STRONG
-	layer = DOOR_OPEN_LAYER
+	layer = OPEN_DOOR_LAYER
 	explosion_block = 2
 	resistance_flags = DROPSHIP_IMMUNE
 	minimap_color = MINIMAP_DOOR
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 100, FIRE = 80, ACID = 70)
-	var/open_layer = DOOR_OPEN_LAYER
-	var/closed_layer = DOOR_CLOSED_LAYER
+	var/open_layer = OPEN_DOOR_LAYER
+	var/closed_layer = CLOSED_DOOR_LAYER
 	var/id
 	var/secondsElectrified = 0
 	var/visible = TRUE
@@ -36,6 +36,13 @@
 	///what airlock we are linked with
 	var/obj/machinery/door/airlock/cycle_linked_airlock
 
+	/// Special operating mode for elevator doors
+	var/elevator_mode = FALSE
+	/// Current elevator status for processing
+	var/elevator_status
+	/// What specific lift ID do we link with?
+	var/transport_linked_id
+
 	//Multi-tile doors
 	dir = EAST
 	var/width = 1
@@ -53,12 +60,21 @@
 	var/turf/current_turf = get_turf(src)
 	current_turf.atom_flags &= ~ AI_BLOCKED
 
+	if(elevator_mode)
+		if(transport_linked_id)
+			elevator_status = LIFT_PLATFORM_LOCKED
+			GLOB.elevator_doors += src
+		else
+			stack_trace("Elevator door [src] ([x],[y],[z]) has no linked elevator ID!")
+
 	if(glass)
 		allow_pass_flags |= PASS_GLASS
 
 /obj/machinery/door/Destroy()
 	for(var/o in fillers)
 		qdel(o)
+	if(elevator_mode)
+		GLOB.elevator_doors -= src
 	return ..()
 
 /obj/machinery/door/proc/handle_multidoor()
@@ -102,11 +118,13 @@
 	if(operating)
 		return
 
-	if(!src.requiresID())
+	if(!requiresID())
 		user = null
 
 	if(density)
-		if(allowed(user) || emergency || unrestricted_side(user))
+		if(elevator_mode && elevator_status == LIFT_PLATFORM_UNLOCKED)
+			open()
+		else if(allowed(user) || emergency || unrestricted_side(user))
 			if(cycle_linked_airlock)
 				if(!emergency && !cycle_linked_airlock.emergency && allowed(user))
 					cycle_linked_airlock.close()
@@ -143,18 +161,6 @@
 			close()
 	else if(density)
 		flick("door_deny", src)
-
-
-/obj/machinery/door/emp_act(severity)
-	if(prob(20/severity) && (istype(src,/obj/machinery/door/airlock) || istype(src,/obj/machinery/door/window)) )
-		open()
-	if(prob(40/severity))
-		if(secondsElectrified == 0)
-			secondsElectrified = -1
-			spawn(300)
-				secondsElectrified = 0
-	..()
-
 
 /obj/machinery/door/ex_act(severity)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
@@ -201,7 +207,6 @@
 		return FALSE
 	operating = TRUE
 	do_animate("opening")
-	icon_state = "door0"
 	set_opacity(FALSE)
 	for(var/t in fillers)
 		var/obj/effect/opacifier/O = t
@@ -212,7 +217,7 @@
 /obj/machinery/door/proc/finish_open()
 	layer = open_layer
 	density = FALSE
-	update_icon()
+	update_appearance(UPDATE_ICON_STATE)
 
 	if(operating)
 		operating = FALSE
@@ -227,14 +232,13 @@
 	if(operating)
 		return FALSE
 	operating = TRUE
-
 	density = TRUE
 	layer = closed_layer
 	do_animate("closing")
 	addtimer(CALLBACK(src, PROC_REF(finish_close)), openspeed)
 
 /obj/machinery/door/proc/finish_close()
-	update_icon()
+	update_appearance(UPDATE_ICON_STATE)
 	if(visible && !glass)
 		set_opacity(TRUE)	//caaaaarn!
 		for(var/t in fillers)

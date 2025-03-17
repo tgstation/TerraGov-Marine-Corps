@@ -40,7 +40,7 @@
 	. = ..()
 	if(machine_stat & (BROKEN|DISABLED|NOPOWER))
 		return
-	. += emissive_appearance(icon, screen_overlay, alpha = src.alpha)
+	. += emissive_appearance(icon, screen_overlay, src, alpha = src.alpha)
 	. += mutable_appearance(icon, screen_overlay, alpha = src.alpha)
 
 /obj/machinery/cic_maptable/interact(mob/user)
@@ -173,7 +173,7 @@
 		tool.set_zlevel(new_z, tool.minimap_flag)
 
 /obj/machinery/cic_maptable/drawable/big
-	icon = 'icons/Marine/mainship_props96.dmi'
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	layer = ABOVE_OBJ_LAYER
 	pixel_x = -16
 	pixel_y = -14

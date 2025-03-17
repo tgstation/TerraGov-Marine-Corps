@@ -3,29 +3,33 @@
 	display_name = "Warrior"
 	upgrade_name = ""
 	caste_desc = "A powerful front line combatant."
+	base_strain_type = /mob/living/carbon/xenomorph/warrior
 	caste_type_path = /mob/living/carbon/xenomorph/warrior
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "warrior" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 22
+	melee_damage = 25
 
 	// *** Speed *** //
-	speed = -0.5
+	speed = -0.4
 
 	// *** Plasma *** //
-	plasma_max = 100
-	plasma_gain = 10
+	plasma_max = 150
+	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 400
+
+	// *** Sunder *** //
+	sunder_multiplier = 0.9
 
 	// *** Evolution *** //
 	evolution_threshold = 225
 	upgrade_threshold = TIER_TWO_THRESHOLD
 
-	deevolves_to = /mob/living/carbon/xenomorph/defender
+	deevolves_to = /datum/xeno_caste/defender
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_STRONG
@@ -33,7 +37,7 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 55, LASER = 55, ENERGY = 40, BOMB = 20, BIO = 50, FIRE = 55, ACID = 50)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 30, BIO = 50, FIRE = 55, ACID = 50)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "warrior"

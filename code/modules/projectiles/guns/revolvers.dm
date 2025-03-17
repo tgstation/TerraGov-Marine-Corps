@@ -4,7 +4,7 @@
 /obj/item/weapon/gun/revolver
 	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/pistols_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/pistols_right_1.dmi',
 	)
@@ -42,23 +42,6 @@
 	///Whether the chamber can be spun for Russian Roulette. If False the chamber can be spun.
 	var/catchworking = TRUE
 
-
-/obj/item/weapon/gun/revolver/verb/revolvertrick()
-	set category = "Weapons"
-	set name = "Do a revolver trick"
-	set desc = "Show off to all your friends!"
-	var/obj/item/weapon/gun/revolver/gun = get_active_firearm(usr)
-	if(!gun)
-		return
-	if(!istype(gun))
-		return
-	if(usr.do_actions)
-		return
-	if(zoom)
-		to_chat(usr, span_warning("You cannot conceviably do that while looking down \the [src]'s scope!"))
-		return
-	do_trick(usr)
-
 //-------------------------------------------------------
 //R-44 COMBAT REVOLVER
 
@@ -66,7 +49,7 @@
 	name = "\improper R-44 combat revolver"
 	desc = "The R-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to an error in the cylinder rotation system the fire rate of the gun is much faster than intended, it ended up being billed as a feature of the system."
 	icon_state = "tp44"
-	item_state = "tp44"
+	worn_icon_state = "tp44"
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_r44.ogg'
 	caliber = CALIBER_44 //codex
 	max_chamber_items = 7 //codex
@@ -74,7 +57,7 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/standard_revolver)
 	force = 8
 	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/heavy_barrel,
@@ -107,7 +90,7 @@
 	name = "\improper N-Y 7.62mm revolver"
 	desc = "The Nagant-Yamasaki 7.62 is an effective killing machine designed by a consortion of shady Not-Americans. It is frequently found in the hands of criminals or mercenaries."
 	icon_state = "ny762"
-	item_state = "ny762"
+	worn_icon_state = "ny762"
 	caliber = CALIBER_762X38 //codex
 	max_chamber_items = 7 //codex
 	fire_sound = 'sound/weapons/guns/fire/ny.ogg'
@@ -135,7 +118,7 @@
 	name = "\improper FFA 'Rebota' revolver"
 	desc = "A lean .357 made by Falffearmeria. A timeless design, from antiquity to the future. This one is well known for it's strange ammo, which ricochets off walls constantly. Which went from being a defect to a feature."
 	icon_state = "rebota"
-	item_state = "sw357"
+	worn_icon_state = "sw357"
 	caliber = CALIBER_357 //codex
 	max_chamber_items = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/revolver.ogg'
@@ -164,7 +147,7 @@
 	name = "\improper R-24 'Mateba' autorevolver"
 	desc = "The R-24 is the rather rare autorevolver used by the TGMC issued in rather small numbers to backline personnel and officers it uses recoil to spin the cylinder. Uses heavy .454 rounds."
 	icon_state = "mateba"
-	item_state = "mateba"
+	worn_icon_state = "mateba"
 	fire_animation = "mateba_fire"
 	muzzleflash_iconstate = "muzzle_flash"
 	caliber = CALIBER_454 //codex
@@ -203,7 +186,7 @@
 	name = "\improper R-24 autorevolver special"
 	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. This one appears to have had more love and care put into it. Uses .454 rounds."
 	icon_state = "mateba"
-	item_state = "mateba"
+	worn_icon_state = "mateba"
 
 //-------------------------------------------------------
 //MARSHALS REVOLVER
@@ -212,7 +195,7 @@
 	name = "\improper CMB autorevolver"
 	desc = "An automatic revolver chambered in .357 magnum. Commonly issued to Nanotrasen security. It has a burst mode. Currently in trial with other revolvers across Terra and other colonies."
 	icon_state = "cmb"
-	item_state = "cmb"
+	worn_icon_state = "cmb"
 	caliber = CALIBER_357 //codex
 	max_chamber_items = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/revolver_light.ogg'
@@ -243,7 +226,7 @@
 	name = "\improper 'Judge' revolver"
 	desc = "An incredibly uncommon revolver utilizing a oversized chamber to be able to both fire 45 Long at the cost of firing speed. Normal rounds have no falloff, and next to no scatter. Due to the short barrel, buckshot out of it has high spread."
 	icon_state = "judge"
-	item_state = "m44"
+	worn_icon_state = "m44"
 	fire_animation = "judge_fire"
 	caliber = CALIBER_45L //codex
 	max_chamber_items = 5 //codex
@@ -254,7 +237,7 @@
 	)
 	force = 8
 	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/heavy_barrel,
@@ -280,7 +263,7 @@
 	desc = "The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
 	icon = 'icons/obj/items/guns/pistols64.dmi'
 	icon_state = "t76"
-	item_state = "t76"
+	worn_icon_state = "t76"
 	fire_animation = "t76_fire"
 	caliber = CALIBER_12x7 //codex
 	max_chamber_items = 5 //codex
@@ -289,7 +272,7 @@
 	force = 8
 	actions_types = null
 	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/heavy_barrel,
@@ -318,7 +301,7 @@
 /obj/item/weapon/gun/revolver/standard_magnum/fancy
 	starting_attachment_types = list()
 	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/heavy_barrel,
@@ -333,19 +316,19 @@
 /obj/item/weapon/gun/revolver/standard_magnum/fancy/gold
 	desc = "A gold plated R-76 magnum, to ensure it's incredibly expensive as well as incredibly impractical. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
 	icon_state = "g_t76"
-	item_state = "g_t76"
+	worn_icon_state = "g_t76"
 	fire_animation = "g_t76_fire"
 
 /obj/item/weapon/gun/revolver/standard_magnum/fancy/silver
 	desc = "A silver plated R-76 magnum, to ensure it's incredibly expensive as well as incredibly impractical. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
 	icon_state = "s_t76"
-	item_state = "s_t76"
+	worn_icon_state = "s_t76"
 	fire_animation = "s_t76_fire"
 
 /obj/item/weapon/gun/revolver/standard_magnum/fancy/nickle
 	desc = "A nickle plated R-76 magnum, for a more tasteful finish. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
 	icon_state = "n_t76"
-	item_state = "n_t76"
+	worn_icon_state = "n_t76"
 	fire_animation = "n_t76_fire"
 
 //Single action revolvers below
@@ -371,14 +354,14 @@
 	name = "\improper R-44 SAA revolver"
 	desc = "A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Has to be manully primed with each shot. Uses .44 Magnum rounds."
 	icon_state = "m44"
-	item_state = "m44"
+	worn_icon_state = "m44"
 	caliber = CALIBER_44 //codex
 	max_chamber_items = 6
 	default_ammo_type = /obj/item/ammo_magazine/revolver
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver, /obj/item/ammo_magazine/revolver/marksman, /obj/item/ammo_magazine/revolver/heavy)
 	force = 8
 	attachable_allowed = list(
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/heavy_barrel,

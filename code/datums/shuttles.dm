@@ -126,6 +126,11 @@
 	var/display_name = "Tadpole Standard Model"
 	var/admin_enable = TRUE
 
+/datum/map_template/shuttle/minidropship/urbantower
+	suffix = "_urbantower"
+	description = "With the same great charm as the Standard, here it is! Now this Tadpole is designed for tactical insertions into environments with limiting space. Please Fly and Transport Responsibly"
+	display_name = "Tadpole Urban Tower Model"
+
 /datum/map_template/shuttle/minidropship/old
 	suffix = "_big"
 	description = "Tadpole-01, the old model barely in service for TGMC, replaced by the newer Tadpole-03. Much like an APC, is pretty armored. Very lacking in firing angle."
@@ -153,6 +158,11 @@
 	description = "A high-point orbital shuttle with a tactical umbilical airlock for insertion of ground troops."
 	display_name = "Tadpole Umbilical Model"
 
+/datum/map_template/shuttle/minidropship/outrider
+	suffix = "_outrider"
+	description = "An asymmetric tadpole designed with vehicle transport in mind. Built with a wide umbilical to allow fluid heavy-vehicle movement."
+	display_name = "Tadpole Outrider Model"
+
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = SHUTTLE_ESCAPE_POD
 	name = "Escape Pod"
@@ -169,7 +179,7 @@
 	shuttle_id = SHUTTLE_DISTRESS_UPP
 	name = "Distress UPP"
 
-/datum/map_template/shuttle/small_ert/ufo 
+/datum/map_template/shuttle/small_ert/ufo
 	shuttle_id = SHUTTLE_DISTRESS_UFO
 	name = "Small UFO"
 
@@ -180,6 +190,10 @@
 /datum/map_template/shuttle/supply
 	shuttle_id = SHUTTLE_SUPPLY
 	name = SHUTTLE_SUPPLY
+
+/datum/map_template/shuttle/supply/vehicle
+	shuttle_id = SHUTTLE_VEHICLE_SUPPLY
+	name = SHUTTLE_VEHICLE_SUPPLY
 
 /datum/map_template/shuttle/tgs_canterbury
 	shuttle_id = SHUTTLE_CANTERBURY

@@ -105,9 +105,9 @@
 	name = "Random melee weapons spawner"
 	icon_state = "random_melee"
 	loot = list(
-		/obj/item/weapon/claymore/mercsword/machete,
+		/obj/item/weapon/sword/machete,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/weapon/baseballbat,
 		/obj/item/weapon/baseballbat/metal,
 		/obj/item/weapon/broken_bottle,

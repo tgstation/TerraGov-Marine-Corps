@@ -1,7 +1,7 @@
 /obj/effect/turf_decal/warning_stripes
 	icon = 'icons/turf/decals.dmi'
 	icon_state = "stripe_box_thick"
-	layer = BELOW_ATMOS_PIPE_LAYER
+	layer = TURF_DECAL_LAYER
 
 /obj/effect/turf_decal/warning_stripes/linethick
 	icon_state = "stripe_line_thick"
@@ -85,3 +85,15 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_DECAL_WARNING_STRIPE)
 	canSmoothWith = list(SMOOTH_GROUP_DECAL_WARNING_STRIPE)
+
+/obj/effect/turf_decal/warning_stripes/coagulation
+	icon_state = "coag_decal"
+
+/obj/effect/turf_decal/warning_stripes/coagulation/corner
+	icon_state = "coag_decal_corner"
+
+/obj/effect/turf_decal/warning_stripes/coagulation/rustfree
+	icon_state = "coag_decal_no_rust"
+
+/obj/effect/turf_decal/warning_stripes/coagulation/rustfree/corner
+	icon_state = "coag_decal_corner_no_rust"

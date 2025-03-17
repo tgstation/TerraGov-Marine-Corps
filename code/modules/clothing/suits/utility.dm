@@ -13,7 +13,7 @@
 	name = "firesuit"
 	desc = "A suit that protects against fire and heat."
 	icon_state = "firesuit"
-	item_state = "firesuit"
+	worn_icon_state = "firesuit"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 90, ACID = 0)
 	w_class = WEIGHT_CLASS_BULKY//bulky item
 	gas_transfer_coefficient = 0.90
@@ -32,7 +32,7 @@
 	name = "firesuit"
 	desc = "A suit that protects against extreme fire and heat."
 	icon_state = "atmos_firesuit"
-	item_state = "atmos_firesuit"
+	worn_icon_state = "atmos_firesuit"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 120, ACID = 0)
 	w_class = WEIGHT_CLASS_BULKY
 	slowdown = 1.5
@@ -55,7 +55,7 @@
 	name = "bomb suit"
 	desc = "A suit designed for safety when handling explosives."
 	icon_state = "bombsuit"
-	item_state = "bombsuit"
+	worn_icon_state = "bombsuit"
 	w_class = WEIGHT_CLASS_BULKY//bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
@@ -68,12 +68,12 @@
 
 /obj/item/clothing/head/bomb_hood/security
 	icon_state = "bombsuitsec"
-	item_state = "bombsuitsec"
+	worn_icon_state = "bombsuitsec"
 	armor_protection_flags = HEAD
 
 /obj/item/clothing/suit/bomb_suit/security
 	icon_state = "bombsuitsec"
-	item_state = "bombsuitsec"
+	worn_icon_state = "bombsuitsec"
 	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/baton,/obj/item/restraints/handcuffs)
 	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 
@@ -94,7 +94,7 @@
 	name = "Radiation suit"
 	desc = "A suit that protects against radiation. Label: Made with lead, do not eat insulation."
 	icon_state = "rad"
-	item_state = "rad_suit"
+	worn_icon_state = "rad_suit"
 	w_class = WEIGHT_CLASS_BULKY//bulky item
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50

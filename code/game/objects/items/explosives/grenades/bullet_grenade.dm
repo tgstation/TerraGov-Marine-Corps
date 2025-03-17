@@ -3,7 +3,7 @@
 	name = "\improper M90 leadburster grenade"
 	desc = "Leadburster grenades release a short burst of projectiles after detonation. Keep far away from friendlies. Or don't. I'm just a label."
 	icon_state = "grenade_rad"
-	item_state = "grenade_rad"
+	worn_icon_state = "grenade_rad"
 	icon_state_mini = "grenade_red"
 	det_time = 40
 	arm_sound = 'sound/weapons/armbomb.ogg'
@@ -42,7 +42,7 @@
 	name = "\improper M80 lasburster grenade"
 	desc = "Lasburster grenades are supercharged to scatter a beam around them when detonating. Keep far away from friendlies. Or don't. I'm just a label."
 	icon_state = "grenade_lasburster"
-	item_state = "grenade_lasburster"
+	worn_icon_state = "grenade_lasburster"
 	icon_state_mini = "grenade_lasburster"
 	det_time = 40
 	hud_state = "grenade_lasburster"
@@ -56,7 +56,7 @@
 	name = "\improper M25 HEFA grenade"
 	desc = "High explosive fragmentation grenades cause a powerful yet very small explosion combined with a scattering ring of buckshot shrapnel, please throw very, very, VERY far away."
 	icon_state = "grenade_hefa2"
-	item_state = "grenade_hefa2"
+	worn_icon_state = "grenade_hefa2"
 	icon_state_mini = "grenade_hefa"
 	hud_state = "grenade_hefa2"
 	rotations = -1
@@ -65,5 +65,5 @@
 	ammo_type = /datum/ammo/bullet/hefa_buckshot
 
 /obj/item/explosive/grenade/bullet/hefa/prime()
-	explosion(loc, light_impact_range = 2, heavy_impact_range = 1)
+	explosion(loc, light_impact_range = 2, heavy_impact_range = 1, explosion_cause=src)
 	return ..()

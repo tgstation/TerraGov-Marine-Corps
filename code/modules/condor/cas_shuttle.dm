@@ -30,6 +30,8 @@
 	var/fuel_left = 40
 	///How much fuel we can hold maximum
 	var/fuel_max = 40
+	///whether our engines ar eshowing an overlay
+	var/engines_on = FALSE
 	///Our currently selected weapon we will fire
 	var/obj/structure/dropship_equipment/cas/weapon/active_weapon
 	///Minimap for the pilot to know where the marines have ran off to
@@ -65,7 +67,7 @@
 		SSshuttle.moveShuttle(id, SHUTTLE_CAS_DOCK, TRUE)
 		currently_returning = TRUE
 		end_cas_mission(chair.occupant)
-	if (fuel_left <= 0)
+	if(fuel_left <= 0)
 		fuel_left = 0
 		turn_off_engines()
 	#endif
@@ -76,9 +78,7 @@
 	for(var/i in engines)
 		var/obj/structure/caspart/internalengine/engine = i
 		engine.cut_overlays()
-		var/image/engine_overlay = image('icons/Marine/cas_plane_engines.dmi', engine.loc, "engine_on", 4.2)
-		engine_overlay.pixel_x = engine.x_offset
-		engine_overlay.layer += 0.1
+		var/image/engine_overlay = image('icons/turf/cas.dmi', engine.loc, "engine_on", ABOVE_MOB_LAYER, pixel_x = engine.x_offset)
 		engine.add_overlay(engine_overlay)
 
 /obj/docking_port/mobile/marine_dropship/casplane/on_prearrival()
@@ -89,28 +89,24 @@
 	for(var/i in engines)
 		var/obj/structure/caspart/internalengine/engine = i
 		engine.cut_overlays()
-		var/image/engine_overlay = image('icons/Marine/cas_plane_engines.dmi', engine.loc, "engine_idle", 4.2)
-		engine_overlay.pixel_x = engine.x_offset
-		engine_overlay.layer += 0.1
+		var/image/engine_overlay = image('icons/turf/cas.dmi', engine.loc, "engine_idle", ABOVE_MOB_LAYER, pixel_x = engine.x_offset)
 		engine.add_overlay(engine_overlay)
 
 ///Updates state and overlay to make te engines on
 /obj/docking_port/mobile/marine_dropship/casplane/proc/turn_on_engines()
-	for(var/i in engines)
-		var/obj/structure/caspart/internalengine/engine = i
-		var/image/engine_overlay = image('icons/Marine/cas_plane_engines.dmi', engine.loc, "engine_idle", 4.2)
-		engine_overlay.pixel_x = engine.x_offset
-		engine_overlay.layer += 0.1
+	for(var/obj/structure/caspart/internalengine/engine AS in engines)
+		var/image/engine_overlay = image('icons/turf/cas.dmi', engine.loc, "engine_idle", ABOVE_MOB_LAYER, pixel_x = engine.x_offset)
 		engine.add_overlay(engine_overlay)
-	state = PLANE_STATE_PREPARED
+	engines_on = TRUE
+	update_state()
 	START_PROCESSING(SSslowprocess, src)
 
 ///Updates state and overlay to make te engines off
 /obj/docking_port/mobile/marine_dropship/casplane/proc/turn_off_engines()
-	for(var/i in engines)
-		var/obj/structure/caspart/internalengine/engine = i
+	for(var/obj/structure/caspart/internalengine/engine AS in engines)
 		engine.cut_overlays()
-	state = PLANE_STATE_ACTIVATED
+	engines_on = FALSE
+	update_state()
 	STOP_PROCESSING(SSslowprocess, src)
 
 ///Called to check if a equipment was changed and to unset the active equipment if it got removed
@@ -119,18 +115,17 @@
 		active_weapon = null
 
 ///Updates our state. We use a different var from mode so we can distinguish when engines are turned on/ we are in-flight
-/obj/docking_port/mobile/marine_dropship/casplane/proc/update_state(datum/source, mode)
+/obj/docking_port/mobile/marine_dropship/casplane/proc/update_state(datum/source, newmode)
+	SIGNAL_HANDLER
 	if(state == PLANE_STATE_DEACTIVATED)
 		return
 	if(!is_mainship_level(z) || mode != SHUTTLE_IDLE)
 		state = PLANE_STATE_FLYING
+		return
+	if(engines_on)
+		state = PLANE_STATE_PREPARED
 	else
-		for(var/i in engines)
-			var/obj/structure/caspart/internalengine/engine = i
-			if(length(engine.overlays))
-				state = PLANE_STATE_PREPARED
-			else
-				state = PLANE_STATE_ACTIVATED
+		state = PLANE_STATE_ACTIVATED
 
 ///Runs checks and creates a new eye/hands over control to the eye
 /obj/docking_port/mobile/marine_dropship/casplane/proc/begin_cas_mission(mob/living/user)
@@ -170,7 +165,9 @@
 		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(2, MINIMAP_FLAG_MARINE)
 		user.client.screen += map
 		var/list/polled_coords = map.get_coords_from_click(user)
-		user.client.screen -= map
+		user?.client?.screen -= map
+		if(!polled_coords)
+			return
 		starting_point = locate(polled_coords[1], polled_coords[2], 2)
 
 	if(GLOB.minidropship_start_loc && !starting_point) //and if this somehow fails (it shouldn't) we just go to the default point
@@ -219,7 +216,6 @@
 	RegisterSignal(user, COMSIG_MOB_CLICKON, PROC_REF(fire_weapons_at))
 	RegisterSignal(user, COMSIG_TOPIC, PROC_REF(handle_topic))
 
-	user.client.mouse_pointer_icon = 'icons/effects/supplypod_down_target.dmi'
 
 ///Ends the CAS mission
 /obj/docking_port/mobile/marine_dropship/casplane/proc/end_cas_mission(mob/living/user)

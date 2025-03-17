@@ -3,7 +3,7 @@
 	icon = 'icons/turf/shuttle.dmi'
 
 /obj/structure/shuttle/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -40, 8, 1)
 
 /obj/structure/shuttle/window
 	name = "shuttle window"
@@ -13,10 +13,7 @@
 	opacity = FALSE
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
-	layer = WINDOW_LAYER
-
-/obj/structure/shuttle/window/fire_act(exposed_temperature, exposed_volume)
-	return
+	layer = ABOVE_WINDOW_LAYER
 
 /obj/structure/shuttle/engine
 	name = "engine"

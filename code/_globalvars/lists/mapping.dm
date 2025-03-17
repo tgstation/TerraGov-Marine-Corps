@@ -2,6 +2,80 @@ GLOBAL_LIST_INIT(cardinals, list(NORTH, SOUTH, EAST, WEST))
 GLOBAL_LIST_INIT(alldirs, list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 GLOBAL_LIST_INIT(diagonals, list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 
+GLOBAL_LIST_INIT(cardinals_multiz, list(
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+	UP,
+	DOWN,
+))
+GLOBAL_LIST_INIT(corners_multiz, list(
+	UP|NORTHEAST,
+	UP|NORTHWEST,
+	UP|SOUTHEAST,
+	UP|SOUTHWEST,
+	DOWN|NORTHEAST,
+	DOWN|NORTHWEST,
+	DOWN|SOUTHEAST,
+	DOWN|SOUTHWEST,
+))
+
+GLOBAL_LIST_INIT(diagonals_multiz, list(
+	NORTHEAST,
+	NORTHWEST,
+	SOUTHEAST,
+	SOUTHWEST,
+
+	UP|NORTH,
+	UP|SOUTH,
+	UP|EAST,
+	UP|WEST,
+	UP|NORTHEAST,
+	UP|NORTHWEST,
+	UP|SOUTHEAST,
+	UP|SOUTHWEST,
+
+	DOWN|NORTH,
+	DOWN|SOUTH,
+	DOWN|EAST,
+	DOWN|WEST,
+	DOWN|NORTHEAST,
+	DOWN|NORTHWEST,
+	DOWN|SOUTHEAST,
+	DOWN|SOUTHWEST,
+))
+GLOBAL_LIST_INIT(alldirs_multiz, list(
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+	NORTHEAST,
+	NORTHWEST,
+	SOUTHEAST,
+	SOUTHWEST,
+
+	UP,
+	UP|NORTH,
+	UP|SOUTH,
+	UP|EAST,
+	UP|WEST,
+	UP|NORTHEAST,
+	UP|NORTHWEST,
+	UP|SOUTHEAST,
+	UP|SOUTHWEST,
+
+	DOWN,
+	DOWN|NORTH,
+	DOWN|SOUTH,
+	DOWN|EAST,
+	DOWN|WEST,
+	DOWN|NORTHEAST,
+	DOWN|NORTHWEST,
+	DOWN|SOUTHEAST,
+	DOWN|SOUTHWEST,
+))
+
 //Spawnpoints.
 GLOBAL_LIST_EMPTY(latejoin)
 GLOBAL_LIST_EMPTY(latejoinsom)
@@ -33,8 +107,17 @@ GLOBAL_LIST_EMPTY(deathmatch)
 
 GLOBAL_VAR_INIT(minidropship_start_loc, null)
 
-//used by jump-to-area etc. Updated by area/updateName()
+
+/// List of all the maps that have been cached for /proc/load_map
+GLOBAL_LIST_EMPTY(cached_maps)
+
+/// Just a list of all the area objects in the game
+/// Note, areas can have duplicate types
+GLOBAL_LIST_EMPTY(areas)
+/// Used by jump-to-area etc. Updated by area/updateName()
+/// If this is null, it needs to be recalculated. Use get_sorted_areas() as a getter please
 GLOBAL_LIST_EMPTY(sorted_areas)
+
 /// An association from typepath to area instance. Only includes areas with `unique` set.
 GLOBAL_LIST_EMPTY_TYPED(areas_by_type, /area)
 

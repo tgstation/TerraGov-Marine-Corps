@@ -11,8 +11,8 @@ TUNNEL
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|BANISH_IMMUNE
-	layer = RESIN_STRUCTURE_LAYER
+	resistance_flags = UNACIDABLE
+	layer = BELOW_TABLE_LAYER
 
 	max_integrity = 140
 
@@ -29,8 +29,10 @@ TUNNEL
 	prepare_huds()
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
 		xeno_tac_hud.add_to_hud(src)
-	hud_set_xeno_tunnel()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xenotunnel", VERY_HIGH_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xenotunnel", MINIMAP_LABELS_LAYER))
+	var/area/tunnel_area = get_area(src)
+	if(tunnel_area.area_flavor == AREA_FLAVOR_URBAN && !SSticker.HasRoundStarted())
+		icon_state = "manhole_open[rand(1,3)]"
 
 /obj/structure/xeno/tunnel/Destroy()
 	var/turf/drop_loc = get_turf(src)
@@ -65,7 +67,7 @@ TUNNEL
 	if(tunnel_desc)
 		. += span_info("The Hivelord scent reads: \'[tunnel_desc]\'")
 
-/obj/structure/xeno/tunnel/deconstruct(disassembled = TRUE)
+/obj/structure/xeno/tunnel/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	visible_message(span_danger("[src] suddenly collapses!") )
 	return ..()
 
@@ -131,7 +133,9 @@ TUNNEL
 	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(z, MINIMAP_FLAG_XENO)
 	M.client.screen += map
 	var/list/polled_coords = map.get_coords_from_click(M)
-	M.client.screen -= map
+	M?.client?.screen -= map
+	if(!polled_coords)
+		return
 	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], z)
 
 	///We find the tunnel, looking within 10 tiles of where the user clicked, excluding src
@@ -185,12 +189,3 @@ TUNNEL
 	M.forceMove(targettunnel.loc)
 	M.visible_message(span_xenonotice("\The [M] pops out of \the [src].") , \
 	span_xenonotice("We pop out through the other side!") )
-
-///Makes sure the tunnel is visible to other xenos even through obscuration.
-/obj/structure/xeno/tunnel/proc/hud_set_xeno_tunnel()
-	var/image/holder = hud_list[XENO_TACTICAL_HUD]
-	if(!holder)
-		return
-	holder.icon = 'icons/mob/hud.dmi'
-	holder.icon_state = "hudtraitor"
-	hud_list[XENO_TACTICAL_HUD] = holder

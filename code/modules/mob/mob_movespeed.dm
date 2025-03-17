@@ -121,13 +121,6 @@ Key procs
 			return FALSE
 	return TRUE
 
-///Calculate the total slowdown of all movespeed modifiers
-/mob/proc/total_multiplicative_slowdown()
-	. = 0
-	for(var/id in get_movespeed_modifiers())
-		var/list/data = movespeed_modification[id]
-		. += data[MOVESPEED_DATA_INDEX_MULTIPLICATIVE_SLOWDOWN]
-
 ///Checks if a move speed modifier is valid and not missing any data
 /proc/movespeed_data_null_check(list/data)		//Determines if a data list is not meaningful and should be discarded.
 	. = TRUE

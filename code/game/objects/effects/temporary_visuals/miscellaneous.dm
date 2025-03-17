@@ -3,22 +3,28 @@
 	icon_state = "empdisable"
 	duration = 0.5 SECONDS
 
+/// Used for globadiers heal grenades
+/obj/effect/temp_visual/heal
+	name = "healing splatter"
+	icon_state = "mech_toxin"
+
 GLOBAL_LIST_EMPTY(blood_particles)
 /particles/splatter
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "smoke"
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "smoke5"
 	width = 500
 	height = 500
-	count = 20
-	spawning = 20
+	count = 5
+	spawning = 15
 	lifespan = 0.5 SECONDS
-	fade = 0.7 SECONDS
-	grow = 0.1
+	fade = 0.4 SECONDS
+	grow = 0.065
+	drift = generator(GEN_CIRCLE, 5, 5)
 	scale = 0.2
 	spin = generator(GEN_NUM, -20, 20)
 	velocity = list(50, 0)
-	friction = generator(GEN_NUM, 0.1, 0.5)
-	position = generator(GEN_CIRCLE, 6, 6)
+	friction = generator(GEN_NUM, 0.1, 0.3)
+	position = generator(GEN_CIRCLE, 4, 4)
 
 /particles/splatter/New(set_color)
 	..()
@@ -30,8 +36,8 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	icon = 'icons/effects/blood.dmi'
 	duration = 0.5 SECONDS
 	randomdir = FALSE
-	layer = ABOVE_MOB_LAYER
-	alpha = 175
+	layer = ABOVE_ALL_MOB_LAYER
+	alpha = 200
 	var/splatter_type = "splatter"
 
 /obj/effect/temp_visual/dir_setting/bloodsplatter/Initialize(mapload, angle, blood_color)
@@ -105,30 +111,33 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	duration = 0.5 SECONDS
 
 
-/obj/effect/temp_visual/xenomorph/afterimage
+/obj/effect/temp_visual/after_image
 	name = "afterimage"
-	layer = MOB_LAYER
+	layer = BELOW_MOB_LAYER
 	alpha = 64 //Translucent
-	duration = 0.5 SECONDS
 	density = FALSE
 	opacity = FALSE
 	anchored = FALSE
 	animate_movement = SLIDE_STEPS
 	randomdir = FALSE
-	vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
+	vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/effect/temp_visual/xenomorph/afterimage/Initialize(mapload, atom/owner)
+/obj/effect/temp_visual/after_image/Initialize(mapload, atom/owner, _duration = 0.5 SECONDS)
 	. = ..()
-	var/mutable_appearance/xeno_afterimage = new()
-	xeno_afterimage.appearance = owner.appearance
-	xeno_afterimage.render_target = null
-	xeno_afterimage.density = initial(density)
-	xeno_afterimage.alpha = initial(alpha)
-	xeno_afterimage.appearance_flags = RESET_COLOR|RESET_ALPHA|PASS_MOUSE
-	xeno_afterimage.setDir(owner.dir)
-	xeno_afterimage.pixel_x = owner.pixel_x
-	xeno_afterimage.pixel_y = owner.pixel_y
-	appearance = xeno_afterimage
+	var/mutable_appearance/after_image = new()
+	after_image.appearance = owner.appearance
+	after_image.render_target = null
+	after_image.density = initial(density)
+	after_image.alpha = initial(alpha)
+	after_image.appearance_flags = RESET_COLOR|RESET_ALPHA|PASS_MOUSE
+	after_image.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	after_image.layer = BELOW_MOB_LAYER
+	after_image.setDir(owner.dir)
+	after_image.pixel_x = owner.pixel_x
+	after_image.pixel_y = owner.pixel_y
+	appearance = after_image
+	duration = _duration
 	animate(src, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/ob_impact
@@ -159,11 +168,10 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	flick("heavyimpact", src)
 
 /obj/effect/temp_visual/order
-	icon = 'icons/Marine/marine-items.dmi'
+	icon = 'icons/effects/orders.dmi'
 	var/icon_state_on
 	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM)
-	duration = ORDER_DURATION
-	layer = TURF_LAYER
+	duration = CIC_ORDER_DURATION
 
 /obj/effect/temp_visual/order/Initialize(mapload, faction)
 	. = ..()
@@ -175,7 +183,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 
 	var/marker_flags = GLOB.faction_to_minimap_flag[faction]
 	if(marker_flags)
-		SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips_large.dmi', null, icon_state_on, VERY_HIGH_FLOAT_LAYER))
+		SSminimaps.add_marker(src, marker_flags, image('icons/UI_icons/map_blips_large.dmi', null, icon_state_on, MINIMAP_BLIPS_LAYER))
 	set_visuals(faction)
 
 /obj/effect/temp_visual/order/attack_order
@@ -193,7 +201,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 /obj/effect/temp_visual/order/rally_order
 	name = "rally order"
 	icon_state_on = "rally"
-	duration = RALLY_ORDER_DURATION
+	duration = CIC_ORDER_DURATION
 
 ///Set visuals for the hud
 /obj/effect/temp_visual/order/proc/set_visuals(faction)
@@ -203,7 +211,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	var/image/holder = hud_list[hud_type]
 	if(!holder)
 		return
-	holder.icon = 'icons/Marine/marine-items.dmi'
+	holder.icon = 'icons/effects/orders.dmi'
 	holder.icon_state = icon_state_on
 	hud_list[hud_type] = holder
 
@@ -224,20 +232,6 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	icon = 'icons/obj/items/jetpack.dmi'
 	icon_state = "smoke"
 	duration = 1.2 SECONDS
-
-/obj/effect/temp_visual/blink_portal
-	name = "blink portal"
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "anom"
-	layer = ABOVE_LYING_MOB_LAYER
-	duration = 0.5 SECONDS
-
-/obj/effect/temp_visual/banishment_portal
-	name = "banishment portal"
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "bhole3"
-	layer = ABOVE_LYING_MOB_LAYER
-	duration = WRAITH_BANISH_BASE_DURATION+1 //So we don't delete our contents early
 
 /obj/effect/temp_visual/acid_splatter
 	name = "acid_splatter"
@@ -291,6 +285,16 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	animate(src, time=duration, transform=matrix().Scale(0.1,0.1))
 	set_light(9, 9, LIGHT_COLOR_DARK_BLUE)
 
+
+/**
+ * Visual shockwave effect using a displacement filter applied to the game world plate
+ * Args:
+ * * radius: visual max radius of the effect
+ * * speed_rate: propagation rate of the effect as a ratio (0.5 is twice as fast)
+ * * easing_type: easing type to use in the anim
+ * * y_offset: additional pixel_y offsets
+ * * x_offset: additional pixel_x offsets
+ */
 /obj/effect/temp_visual/shockwave
 	icon = 'icons/effects/light_overlays/shockwave.dmi'
 	icon_state = "shockwave"
@@ -298,12 +302,14 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	pixel_x = -496
 	pixel_y = -496
 
-/obj/effect/temp_visual/shockwave/Initialize(mapload, radius)
+/obj/effect/temp_visual/shockwave/Initialize(mapload, radius, direction, speed_rate=1, easing_type = LINEAR_EASING, y_offset=0, x_offset=0)
 	. = ..()
+	pixel_x += x_offset
+	pixel_y += y_offset
 	deltimer(timerid)
-	timerid = QDEL_IN_STOPPABLE(src, 0.5 * radius)
+	timerid = QDEL_IN_STOPPABLE(src, 0.5 * radius * speed_rate)
 	transform = matrix().Scale(32 / 1024, 32 / 1024)
-	animate(src, time = 1/2 * radius, transform=matrix().Scale((32 / 1024) * radius * 1.5, (32 / 1024) * radius * 1.5))
+	animate(src, time = 1/2 * radius * speed_rate, transform=matrix().Scale((32 / 1024) * radius * 1.5, (32 / 1024) * radius * 1.5), easing=easing_type)
 
 /obj/effect/temp_visual/dir_setting/water_splash
 	icon = 'icons/effects/effects.dmi'

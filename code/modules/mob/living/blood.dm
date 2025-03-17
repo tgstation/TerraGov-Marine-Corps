@@ -69,7 +69,7 @@
 		if(!(temp.limb_status & LIMB_BLEEDING) || temp.limb_status & LIMB_ROBOT)
 			continue
 		blood_max += temp.brute_dam / 60
-		if(temp.surgery_open_stage)
+		if(temp.surgery_open_stage && !(temp.limb_wound_status & LIMB_WOUND_CLAMPED))
 			blood_max += 0.6  //Yer stomach is cut open
 
 	if(blood_max)

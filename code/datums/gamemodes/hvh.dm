@@ -1,7 +1,7 @@
 //The base setup for HvH gamemodes, not for actual use
 /datum/game_mode/hvh
 	name = "HvH base mode"
-	round_type_flags = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_TWO_HUMAN_FACTIONS
+	round_type_flags = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
 	shutters_drop_time = 3 MINUTES
 	xeno_abilities_flags = ABILITY_CRASH
 	factions = list(FACTION_TERRAGOV, FACTION_SOM)
@@ -24,9 +24,13 @@
 	/// Time between two bioscan
 	var/bioscan_interval = 3 MINUTES
 
+/datum/game_mode/hvh/setup()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED, PROC_REF(deploy_point_activated))
+
 /datum/game_mode/hvh/post_setup()
 	. = ..()
-	for(var/z_num in SSmapping.areas_in_z)
+	for(var/z_num in SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND)))
 		set_z_lighting(z_num)
 
 //sets TGMC and SOM squads
@@ -166,11 +170,31 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
-		to_chat(M, "<span class='announce_header'>Detailed Information</span>")
-		to_chat(M, {"<span class='announce_body'>[num_som] SOM alive.
-[num_tgmc] Marine\s alive."})
+		to_chat(M, assemble_alert(
+			title = "Detailed Bioscan",
+			message = {"[num_som] SOM alive.
+[num_tgmc] Marine\s alive."},
+			color_override = "orange"
+		))
 
 	message_admins("Bioscan - Marines: [num_tgmc] active TGMC personnel[tgmc_location ? " .Location:[tgmc_location]":""]")
 	message_admins("Bioscan - SOM: [num_som] active SOM personnel[som_location ? " .Location:[som_location]":""]")
+
+///Messages a mob when they deploy groundside. only called if the specific gamemode register for the signal
+/datum/game_mode/hvh/proc/deploy_point_activated(datum/source, mob/living/user)
+	SIGNAL_HANDLER
+	var/message = get_deploy_point_message(user)
+	if(!message)
+		return
+	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
+	user.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", message, LEFT_ALIGN_TEXT), GLOB.faction_to_portrait[user.faction])
+
+///Returns a message to play to a mob when they deploy into the AO
+/datum/game_mode/hvh/proc/get_deploy_point_message(mob/living/user)
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			. = "Stick together and achieve those objectives marines. Good luck."
+		if(FACTION_SOM)
+			. = "Remember your training marines, show those Terrans the strength of the SOM, glory to Mars!"
 
 #undef BIOSCAN_DELTA

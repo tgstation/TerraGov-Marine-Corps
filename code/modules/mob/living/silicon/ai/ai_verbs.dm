@@ -112,7 +112,7 @@
 				"floating face" = 'icons/mob/ai.dmi',
 				"xeno_queen" = 'icons/mob/ai.dmi',
 				"void_horror" = 'icons/mob/ai.dmi',
-				"holo4" = 'icons/mob/ai.dmi'
+				"carp" = 'icons/mob/ai.dmi'
 				)
 
 			hologram = tgui_input_list(src, "Please select a hologram:", null, icon_list)
@@ -321,3 +321,17 @@
 	priority_announce("[src] has suffered an unexpected NTOS failure over its Logarithmic silicon backhaul functions and has been taken offline. An attempt to load a backup personality core will proceed shortly.", "AI NT-OS Critical Failure")
 	ghostize(FALSE)
 	offer_mob()
+
+/mob/living/silicon/ai/up()
+	set name = "Move Upwards"
+	set category = "IC"
+
+	if(eyeobj.zMove(UP, z_move_flags = ZMOVE_FEEDBACK))
+		to_chat(src, span_notice("You move upwards."))
+
+/mob/living/silicon/ai/down()
+	set name = "Move Down"
+	set category = "IC"
+
+	if(eyeobj.zMove(DOWN, z_move_flags = ZMOVE_FEEDBACK))
+		to_chat(src, span_notice("You move down."))

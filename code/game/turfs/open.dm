@@ -1,6 +1,7 @@
 //turfs with density = FALSE
 /turf/open
 	plane = FLOOR_PLANE
+	layer = LOW_FLOOR_LAYER
 	minimap_color = MINIMAP_AREA_COLONY
 	resistance_flags = PROJECTILE_IMMUNE|UNACIDABLE
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
@@ -46,6 +47,28 @@
 /turf/open/examine(mob/user)
 	. = ..()
 	. += ceiling_desc()
+
+/turf/open/do_acid_melt()
+	. = ..()
+	ScrapeAway()
+
+//direction is direction of travel of A
+/turf/open/zPassIn(direction)
+	if(direction != DOWN)
+		return FALSE
+	for(var/obj/on_us in contents)
+		if(on_us.obj_flags & BLOCK_Z_IN_DOWN)
+			return FALSE
+	return TRUE
+
+//direction is direction of travel of an atom
+/turf/open/zPassOut(direction)
+	if(direction != UP)
+		return FALSE
+	for(var/obj/on_us in contents)
+		if(on_us.obj_flags & BLOCK_Z_OUT_UP)
+			return FALSE
+	return TRUE
 
 ///Checks if anything should override the turf's normal footstep sounds
 /turf/open/proc/get_footstep_override(footstep_type)
@@ -248,6 +271,9 @@
 /turf/open/shuttle/escapepod/plain
 	icon_state = "floor1"
 
+/turf/open/shuttle/escapepod/plain/buildable
+	allow_construction = TRUE
+
 /turf/open/shuttle/escapepod/zero
 	icon_state = "floor0"
 
@@ -259,6 +285,9 @@
 
 /turf/open/shuttle/escapepod/five
 	icon_state = "floor5"
+
+/turf/open/shuttle/escapepod/five/buildable
+	allow_construction = TRUE
 
 /turf/open/shuttle/escapepod/six
 	icon_state = "floor6"
@@ -325,6 +354,7 @@
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 		SMOOTH_GROUP_AIRLOCK,
 		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_SAND,
 	)
 
 /turf/open/lavaland/basalt/dirt
@@ -358,35 +388,3 @@
 	light_range = 4
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
-
-/turf/open/lavaland/catwalk
-	name = "catwalk"
-	icon_state = "lavacatwalk"
-	light_system = STATIC_LIGHT
-	light_range = 1.4
-	light_power = 2
-	light_color = LIGHT_COLOR_LAVA
-	shoefootstep = FOOTSTEP_CATWALK
-	barefootstep = FOOTSTEP_CATWALK
-	mediumxenofootstep = FOOTSTEP_CATWALK
-
-/turf/open/lavaland/catwalk/built
-	var/deconstructing = FALSE
-
-/turf/open/lavaland/catwalk/built/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.status_flags & INCORPOREAL)
-		return
-	if(xeno_attacker.a_intent != INTENT_HARM)
-		return
-	if(deconstructing)
-		return
-	deconstructing = TRUE
-	if(!do_after(xeno_attacker, 10 SECONDS, NONE, src, BUSY_ICON_BUILD))
-		deconstructing = FALSE
-		return
-	deconstructing = FALSE
-	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
-	var/turf/current_turf = get_turf(src)
-	if(current_turf)
-		current_turf.atom_flags |= AI_BLOCKED
-	ChangeTurf(/turf/open/liquid/lava)

@@ -126,27 +126,37 @@
 
 	///Auras we can create, used for the order choice UI.
 	var/static/list/command_aura_allowed = list(AURA_HUMAN_MOVE, AURA_HUMAN_HOLD, AURA_HUMAN_FOCUS)
-	///Whether we can use another command order yet. Either null or a timer ID.
-	var/command_aura_cooldown
-
 	///Strength of the move order aura affecting us
 	var/mobility_aura = 0
 	///Strength of the hold order aura affecting us
 	var/protection_aura = 0
 	///Strength of the focus order aura affecting us
 	var/marksman_aura = 0
+	///Strength of the flag aura affecting us
+	var/flag_aura = 0
 
 	///The squad this human is assigned to
 	var/datum/squad/assigned_squad
 	///Used to help determine the severity icon state for our damage hud overlays
 	var/damageoverlaytemp = 0
+	///chestburst state
+	var/chestburst = CARBON_NO_CHEST_BURST
 	///The cooldown for being pushed by xenos on harm intent
 	COOLDOWN_DECLARE(xeno_push_delay)
 
 	/// This is the cooldown on suffering additional effects for when shock gets high
 	COOLDOWN_DECLARE(last_shock_effect)
 
+	/// Height of the mob
+	VAR_PROTECTED/mob_height = HUMAN_HEIGHT_MEDIUM
+
 ///copies over clothing preferences like underwear to another human
 /mob/living/carbon/human/proc/copy_clothing_prefs(mob/living/carbon/human/destination)
 	destination.underwear = underwear
 	destination.undershirt = undershirt
+
+/mob/living/carbon/human/replace_by_ai()
+	to_chat(src, span_warning("Sorry, your skill level was deemed too low by our automatic skill check system. Your body has as such been given to a more capable brain, our state of the art AI technology piece. Do not hesitate to take back your body after you've improved!"))
+	ghostize(TRUE)//Can take back its body
+	GLOB.offered_mob_list -= src
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)

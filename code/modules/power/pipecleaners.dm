@@ -106,7 +106,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		QDEL_NULL(stored)
 	return ..()									// then go ahead and delete the pipe_cleaner
 
-/obj/structure/pipe_cleaner/deconstruct(disassembled = TRUE)
+/obj/structure/pipe_cleaner/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!(atom_flags & NODECONSTRUCT))
 		var/turf/T = get_turf(loc)
 		if(T)
@@ -126,7 +126,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/structure/pipe_cleaner/update_icon()
 	color = null
-	add_atom_colour(pipe_cleaner_color, FIXED_COLOUR_PRIORITY)
+	add_atom_colour(pipe_cleaner_color, FIXED_COLOR_PRIORITY)
 	return ..()
 
 // Items usable on a pipe_cleaner :
@@ -179,7 +179,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	gender = NEUTER //That's a pipe_cleaner coil sounds better than that's some pipe_cleaner coils
 	icon = 'icons/obj/power.dmi'
 	icon_state = "pipecleaner"
-	item_state = "coil"
+	worn_icon_state = "coil"
 	max_amount = MAXCOIL
 	amount = MAXCOIL
 	merge_type = /obj/item/stack/pipe_cleaner_coil // This is here to let its children merge between themselves
@@ -189,7 +189,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	throw_range = 5
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT
-	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
+	attack_verb = list("whips", "lashes", "disciplines", "flogs")
 	singular_name = "pipe cleaner piece"
 	usesound = 'sound/items/deconstruct.ogg'
 
@@ -212,7 +212,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/item/stack/pipe_cleaner_coil/update_icon_state()
 	. = ..()
-	icon_state = "[initial(item_state)][amount < 3 ? amount : ""]"
+	icon_state = "[initial(worn_icon_state)][amount < 3 ? amount : ""]"
 
 /obj/item/stack/pipe_cleaner_coil/update_name(updates)
 	. = ..()
@@ -220,7 +220,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/item/stack/pipe_cleaner_coil/update_icon()
 	color = null
-	add_atom_colour(pipe_cleaner_color, FIXED_COLOUR_PRIORITY)
+	add_atom_colour(pipe_cleaner_color, FIXED_COLOR_PRIORITY)
 	return ..()
 
 /obj/item/stack/pipe_cleaner_coil/attack_hand(mob/user)

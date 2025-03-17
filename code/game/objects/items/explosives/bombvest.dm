@@ -6,10 +6,11 @@
 	slowdown = 0
 	item_map_variant_flags = NONE
 	armor_features_flags = NONE
+	actions_types = list(/datum/action/item_action/toggle/suit_toggle/boom)
 	///Warcry to yell upon detonation
 	var/bomb_message
-	///List of warcries that are not allowed.
-	var/bad_warcries_regex = "allahu ackbar|allah|ackbar"
+	///Time it takes to detonate
+	var/detonate_time = 2 SECONDS
 
 /obj/item/clothing/suit/storage/marine/boomvest/equipped(mob/user, slot)
 	. = ..()
@@ -46,7 +47,7 @@
 		return
 	if(bomb_message)
 		activator.say("[bomb_message]!!")
-	if(!do_after(user, 2 SECONDS, IGNORE_USER_LOC_CHANGE, src, BUSY_ICON_DANGER))
+	if(!do_after(user, detonate_time, IGNORE_USER_LOC_CHANGE, src, BUSY_ICON_DANGER))
 		return FALSE
 	var/turf/target = get_turf(loc)
 	if(bomb_message) //Checks for a non null bomb message.
@@ -62,7 +63,7 @@
 		if(istype(appendage, /datum/limb/chest) || istype(appendage, /datum/limb/groin) || istype(appendage, /datum/limb/head))
 			continue
 		appendage.droplimb()
-	explosion(target, 2, 2, 6, 7, 5, 5)
+	explosion(target, 2, 2, 6, 7, 5, 5, explosion_cause=activator)
 	qdel(src)
 
 /obj/item/clothing/suit/storage/marine/boomvest/attack_hand_alternate(mob/living/user)
@@ -91,6 +92,7 @@
 /obj/item/clothing/suit/storage/marine/boomvest/ob_vest
 	name = "orbital bombardment vest"
 	desc = "This is your lieutenant speaking, I know exactly what those coordinates are for."
+	detonate_time = 1 SECONDS
 
 /obj/item/clothing/suit/storage/marine/boomvest/ob_vest/attack_self(mob/user)
 	var/mob/living/carbon/human/activator = user
@@ -99,7 +101,7 @@
 		return FALSE
 	if(LAZYACCESS(user.do_actions, src))
 		return
-	if(!do_after(user, 1 SECONDS, IGNORE_USER_LOC_CHANGE, src, BUSY_ICON_DANGER))
+	if(!do_after(user, detonate_time, IGNORE_USER_LOC_CHANGE, src, BUSY_ICON_DANGER))
 		return FALSE
 	var/turf/target = get_turf(loc)
 	activator.say("I'M FIRING IT AS AN OB!!")
@@ -110,5 +112,28 @@
 		if(istype(appendage, /datum/limb/chest) || istype(appendage, /datum/limb/groin) || istype(appendage, /datum/limb/head))
 			continue
 		appendage.droplimb()
-	explosion(target, 15, 0, 0, 0, 15, 15)
+	explosion(target, 15, 0, 0, 0, 15, 15, explosion_cause=activator)
 	qdel(src)
+
+/obj/item/clothing/suit/storage/marine/boomvest/fast
+	detonate_time = 0.5 SECONDS
+
+//AI logic
+/datum/action/item_action/toggle/suit_toggle/boom/ai_should_start_consider()
+	return TRUE
+
+/datum/action/item_action/toggle/suit_toggle/boom/ai_should_use(atom/target)
+	if(!target)
+		return FALSE
+	if(isainode(target))
+		return FALSE
+	if(!isliving(target) && !isarmoredvehicle(target) && !ismecha(target))
+		return FALSE
+	if(get_dist(owner, target) > 2)
+		return FALSE
+	var/atom/movable/movable_target = target
+	if(movable_target.faction == owner.faction)
+		return FALSE
+	if(!can_use_action())
+		return FALSE
+	return TRUE

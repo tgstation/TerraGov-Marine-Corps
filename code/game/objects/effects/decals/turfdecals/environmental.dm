@@ -82,6 +82,15 @@
 		SMOOTH_GROUP_GRILLE,
 	)
 
+/obj/effect/turf_decal/riverdecal/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/effect/turf_decal/footstep_override(atom/movable/source, list/footstep_overrides)
+	footstep_overrides[FOOTSTEP_WET] = layer
 
 /obj/effect/turf_decal/riverdecal/edge
 	icon_state = "riverdecal_edge"

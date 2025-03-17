@@ -174,51 +174,43 @@
 	var/angle = abs(degree_one - degree_two) % 360
 	return angle > 180 ? 360 - angle : angle
 
-/**
- *	Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
- *	Variables:
- *	bypass_window - check for PASS_GLASS - laser like behavior
- *	projectile - check for PASS_PROJECTILE - bullet like behavior
- *	bypass_xeno - whether to bypass dense xeno structures like flamers
- *	air_pass - whether to bypass non airtight atoms
- */
-/proc/LinkBlocked(turf/A, turf/B, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
+
+///Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
+/proc/LinkBlocked(turf/A, turf/B, pass_flags_checked = NONE)
 	if(isnull(A) || isnull(B))
 		return TRUE
 	var/adir = get_dir(A, B)
 	var/rdir = get_dir(B, A)
-	if(B.density && (!istype(B, /turf/closed/wall/resin) || !bypass_xeno))
+	if(A.density && (!istype(A, /turf/closed/wall/resin) || !(pass_flags_checked & PASS_XENO)))
+		return TRUE
+	if(B.density && (!istype(B, /turf/closed/wall/resin) || !(pass_flags_checked & PASS_XENO))) //TODO: Unsnowflake this check here and in DirBlocked()
 		return TRUE
 	if(adir & (adir - 1))//is diagonal direction
 		var/turf/iStep = get_step(A, adir & (NORTH|SOUTH))
-		if((!iStep.density || (istype(iStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, iStep, bypass_window, projectile, bypass_xeno, air_pass) && !LinkBlocked(iStep, B, bypass_window, projectile, bypass_xeno, air_pass))
+		if((!iStep.density || (istype(iStep, /turf/closed/wall/resin) && (pass_flags_checked & PASS_XENO))) && !LinkBlocked(A, iStep, pass_flags_checked) && !LinkBlocked(iStep, B, pass_flags_checked))
 			return FALSE
 
 		var/turf/pStep = get_step(A,adir & (EAST|WEST))
-		if((!pStep.density || (istype(pStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, pStep, bypass_window, projectile, bypass_xeno, air_pass) && !LinkBlocked(pStep, B, bypass_window, projectile, bypass_xeno, air_pass))
+		if((!pStep.density || (istype(pStep, /turf/closed/wall/resin) && (pass_flags_checked & PASS_XENO))) && !LinkBlocked(A, pStep, pass_flags_checked) && !LinkBlocked(pStep, B, pass_flags_checked))
 			return FALSE
 		return TRUE
 
-	if(DirBlocked(A, adir, bypass_window, projectile, bypass_xeno, air_pass))
+	if(DirBlocked(A, adir, pass_flags_checked))
 		return TRUE
-	if(DirBlocked(B, rdir, bypass_window, projectile, bypass_xeno, air_pass))
+	if(DirBlocked(B, rdir, pass_flags_checked))
 		return TRUE
 	return FALSE
 
 ///Checks if moving in a direction is blocked
-/proc/DirBlocked(turf/loc, direction, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
+/proc/DirBlocked(turf/loc, direction, pass_flags_checked = NONE)
 	for(var/obj/object in loc)
 		if(!object.density)
 			continue
-		if((object.allow_pass_flags & PASS_PROJECTILE) && projectile)
-			continue
-		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
-			continue
-		if((object.allow_pass_flags & PASS_GLASS) && bypass_window)
-			continue
-		if((object.allow_pass_flags & PASS_AIR) && air_pass)
-			continue
 		if(object.atom_flags & ON_BORDER && object.dir != direction)
+			continue
+		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && (pass_flags_checked & PASS_XENO)) //xeno objects are bypassed by flamers
+			continue
+		if(pass_flags_checked & object.allow_pass_flags)
 			continue
 		return TRUE
 	return FALSE
@@ -418,6 +410,23 @@
 
 	return L
 
+///Returns the closest atom of a specific type in a list from a source
+/proc/get_closest_atom(type, list/atom_list, source)
+	var/closest_atom
+	var/closest_distance
+	for(var/atom in atom_list)
+		if(!istype(atom, type))
+			continue
+		var/distance = get_dist(source, atom)
+		if(!closest_atom)
+			closest_distance = distance
+			closest_atom = atom
+		else
+			if(closest_distance > distance)
+				closest_distance = distance
+				closest_atom = atom
+	return closest_atom
+
 // returns the turf located at the map edge in the specified direction relative to A
 // used for mass driver
 /proc/get_edge_target_turf(atom/A, direction)
@@ -543,25 +552,36 @@
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all turfs in areas of that type of that type in the world.
-/proc/get_area_turfs(areatype)
-	if(!areatype)
-		return
-
+/proc/get_area_turfs(areatype, target_z = 0, subtypes=FALSE)
 	if(istext(areatype))
 		areatype = text2path(areatype)
-
-	if(isarea(areatype))
+	else if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
+	else if(!ispath(areatype))
+		return null
+	// Pull out the areas
+	var/list/areas_to_pull = list()
+	if(subtypes)
+		var/list/cache = typecacheof(areatype)
+		for(var/area/area_to_check as anything in GLOB.areas)
+			if(!cache[area_to_check.type])
+				continue
+			areas_to_pull += area_to_check
+	else
+		for(var/area/area_to_check as anything in GLOB.areas)
+			if(area_to_check.type != areatype)
+				continue
+			areas_to_pull += area_to_check
 
+	// Now their turfs
 	var/list/turfs = list()
-	for(var/i in GLOB.sorted_areas)
-		var/area/A = i
-		if(!istype(A, areatype))
-			continue
-		for(var/turf/T in A)
-			turfs += T
-
+	for(var/area/pull_from as anything in areas_to_pull)
+		if (target_z == 0)
+			for (var/list/zlevel_turfs as anything in pull_from.get_zlevel_turf_lists())
+				turfs += zlevel_turfs
+		else
+			turfs += pull_from.get_turfs_by_zlevel(target_z)
 	return turfs
 
 
@@ -794,7 +814,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 /proc/format_text(text)
 	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
 
-///Returns a string based on the weight class define used as argument
+///Returns a string based on the weight class define used as argument.
 /proc/weight_class_to_text(w_class)
 	switch(w_class)
 		if(WEIGHT_CLASS_TINY)
@@ -809,8 +829,27 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 			. = "huge"
 		if(WEIGHT_CLASS_GIGANTIC)
 			. = "gigantic"
+		if(WEIGHT_CLASS_GIGANTIC + 1 to INFINITY)
+			. = "titanic"
 		else
-			. = ""
+			. = "unknown size"
+
+///Returns an assoc list of WEIGHT CLASS TEXT = DESCRIPTION based on the arg you provide.
+///Used by examine tags for giving each weight class a special description.
+/proc/weight_class_data(w_class)
+	. = list()
+	.[WEIGHT_CLASS_TEXT] = weight_class_to_text(w_class)
+	switch(w_class)
+		if(WEIGHT_CLASS_TINY, WEIGHT_CLASS_SMALL)
+			.[WEIGHT_CLASS_TOOLTIP] = "Fits virtually anywhere; in pockets, backpacks/satchels, and most other containers. Takes up little space in containers."
+		if(WEIGHT_CLASS_NORMAL)
+			.[WEIGHT_CLASS_TOOLTIP] = "Fits in some standard containers and backpacks/satchels. Takes up some space."
+		if(WEIGHT_CLASS_BULKY)
+			.[WEIGHT_CLASS_TOOLTIP] = "Does not fit in standard containers."
+		if(WEIGHT_CLASS_HUGE to INFINITY)
+			.[WEIGHT_CLASS_TOOLTIP] = "Often can't be stored at all, except in uncommon specialized containers, like holsters for weapons."
+		else
+			.[WEIGHT_CLASS_TOOLTIP] = "Yell at a coder, this item is a weight class that doesn't exist."
 
 /// Converts a semver string into a list of numbers
 /proc/semver_to_list(semver_string)
@@ -823,62 +862,6 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 		text2num(semver_regex.group[2]),
 		text2num(semver_regex.group[3]),
 	)
-
-//Reasonably Optimized Bresenham's Line Drawing
-/proc/getline(atom/start, atom/end)
-	var/x = start.x
-	var/y = start.y
-	var/z = start.z
-
-	//horizontal and vertical lines special case
-	if(y == end.y)
-		return x <= end.x ? block(locate(x,y,z), locate(end.x,y,z)) : reverseRange(block(locate(end.x,y,z), locate(x,y,z)))
-	if(x == end.x)
-		return y <= end.y ? block(locate(x,y,z), locate(x,end.y,z)) : reverseRange(block(locate(x,end.y,z), locate(x,y,z)))
-
-	//let's compute these only once
-	var/abs_dx = abs(end.x - x)
-	var/abs_dy = abs(end.y - y)
-	var/sign_dx = SIGN(end.x - x)
-	var/sign_dy = SIGN(end.y - y)
-
-	var/list/turfs = list(locate(x,y,z))
-
-	//diagonal special case
-	if(abs_dx == abs_dy)
-		for(var/j = 1 to abs_dx)
-			x += sign_dx
-			y += sign_dy
-			turfs += locate(x,y,z)
-		return turfs
-
-	/*x_error and y_error represents how far we are from the ideal line.
-	Initialized so that we will check these errors against 0, instead of 0.5 * abs_(dx/dy)*/
-
-	//We multiply every check by the line slope denominator so that we only handles integers
-	if(abs_dx > abs_dy)
-		var/y_error = -(abs_dx >> 1)
-		var/steps = abs_dx
-		while(steps--)
-			y_error += abs_dy
-			if(y_error > 0)
-				y_error -= abs_dx
-				y += sign_dy
-			x += sign_dx
-			turfs += locate(x,y,z)
-	else
-		var/x_error = -(abs_dy >> 1)
-		var/steps = abs_dy
-		while(steps--)
-			x_error += abs_dx
-			if(x_error > 0)
-				x_error -= abs_dy
-				x += sign_dx
-			y += sign_dy
-			turfs += locate(x,y,z)
-
-	. = turfs
-
 
 // Makes a call in the context of a different usr
 // Use sparingly
@@ -940,14 +923,15 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 			break
 	return turf_to_check
 
-//Repopulates sortedAreas list
-/proc/repopulate_sorted_areas()
-	GLOB.sorted_areas = list()
 
-	for(var/area/A in world)
-		GLOB.sorted_areas.Add(A)
+/proc/require_area_resort()
+	GLOB.sorted_areas = null
 
-	sortTim(GLOB.sorted_areas, GLOBAL_PROC_REF(cmp_name_asc))
+/// Returns a sorted version of GLOB.areas, by name
+/proc/get_sorted_areas()
+	if(!GLOB.sorted_areas)
+		GLOB.sorted_areas = sortTim(GLOB.areas.Copy(), /proc/cmp_name_asc)
+	return GLOB.sorted_areas
 
 
 // Format a power value in W, kW, MW, or GW.
@@ -1010,7 +994,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 	GLOB.dview_mob.loc = center
 
-	GLOB.dview_mob.see_invisible = invis_flags
+	GLOB.dview_mob.set_invis_see(invis_flags)
 
 	. = view(range, GLOB.dview_mob)
 	GLOB.dview_mob.loc = null
@@ -1019,7 +1003,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	name = "INTERNAL DVIEW MOB"
 	invisibility = 101
 	density = FALSE
-	see_in_dark = 1e6
 	move_resist = INFINITY
 	var/ready_to_die = FALSE
 
@@ -1044,7 +1027,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 #define FOR_DVIEW(type, range, center, invis_flags) \
 	GLOB.dview_mob.loc = center;           \
-	GLOB.dview_mob.see_invisible = invis_flags; \
+	GLOB.dview_mob.set_invis_see(invis_flags); \
 	for(type in view(range, GLOB.dview_mob))
 
 #define FOR_DVIEW_END GLOB.dview_mob.loc = null
@@ -1157,9 +1140,6 @@ will handle it, but:
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
 
-#define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))
-
-
 ///Takes: Area type as text string or as typepath OR an instance of the area. Returns: A list of all areas of that type in the world.
 /proc/get_areas(areatype, subtypes=TRUE)
 	if(istext(areatype))
@@ -1184,55 +1164,6 @@ will handle it, but:
 				areas += V
 	return areas
 
-/**
- *	Generates a cone shape. Any other checks should be handled with the resulting list. Can work with up to 359 degrees
- *	Variables:
- *	center - where the cone begins, or center of a circle drawn with this
- *	max_row_count - how many rows are checked
- *	starting_row - from how far should the turfs start getting included in the cone
- *	cone_width - big the angle of the cone is
- *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
- *	blocked - whether the cone should take into consideration solid walls
- */
-/proc/generate_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE)
-	var/right_angle = cone_direction + cone_width/2
-	var/left_angle = cone_direction - cone_width/2
-
-	//These are needed because degrees need to be from 0 to 359 for the checks to function
-	if(right_angle >= 360)
-		right_angle -= 360
-
-	if(left_angle < 0)
-		left_angle += 360
-
-	///the 3 directions in the direction on the cone that will be checked
-	var/cardinals = GLOB.cardinals - REVERSE_DIR(cone_direction)
-	///turfs that are checked whether the cone can continue further from them
-	var/list/turfs_to_check = list(get_turf(center))
-	var/list/cone_turfs = list()
-
-	for(var/r in 1 to max_row_count)
-		for(var/X in turfs_to_check)
-			var/turf/trf = X
-			for(var/direction in cardinals)
-				var/turf/T = get_step(trf, direction)
-				if(cone_turfs.Find(T))
-					continue
-				if(get_dist(center, T) < starting_row)
-					continue
-				var/turf_angle = Get_Angle(center, T)
-				if(right_angle > left_angle && (turf_angle > right_angle || turf_angle < left_angle))
-					continue
-				if(turf_angle > right_angle && turf_angle < left_angle)
-					continue
-				if(blocked)
-					if(T.density || LinkBlocked(trf, T) || TurfBlockedNonWindow(T))
-						continue
-				cone_turfs += T
-				turfs_to_check += T
-			turfs_to_check -= trf
-	return	cone_turfs
-
 ///Returns a list of all locations (except the area) the movable is within.
 /proc/get_nested_locs(atom/movable/atom_on_location, include_turf = FALSE)
 	. = list()
@@ -1252,13 +1183,9 @@ will handle it, but:
  *	starting_row - from how far should the turfs start getting included in the cone. -1 required to include center turf due to byond
  *	cone_width - big the angle of the cone is
  *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
- *	blocked - whether the cone should take into consideration solid walls
- *	bypass_window - whether it will go through transparent windows like lasers
- *	projectile - whether PASS_PROJECTILE will be checked to ignore dense objects like projectiles
- *	bypass_xeno - whether to bypass dense xeno structures like flamers
- *	air_pass - whether to bypass non airtight atoms
+ *	blocked - whether the cone should take into consideration obstacles
  */
-/proc/generate_true_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
+/proc/generate_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, pass_flags_checked = NONE)
 	var/right_angle = cone_direction + cone_width/2
 	var/left_angle = cone_direction - cone_width/2
 
@@ -1286,7 +1213,7 @@ will handle it, but:
 					continue
 				if(turf_angle > right_angle && turf_angle < left_angle)
 					continue
-				if(blocked && LinkBlocked(old_turf, turf_to_check, bypass_window, projectile, bypass_xeno, air_pass))
+				if(blocked && LinkBlocked(old_turf, turf_to_check, pass_flags_checked))
 					continue
 				cone_turfs += turf_to_check
 				turfs_to_check += turf_to_check
@@ -1299,20 +1226,81 @@ will handle it, but:
 GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 
 /**
- *	Draws a line between two atoms, then checks if the path is blocked.
- *	Variables:
- *	start -start point of the path
- *	end - end point of the path
- *	bypass_window - whether it will go through transparent windows in the same way as lasers
- *	projectile - whether PASS_PROJECTILE will be checked to ignore dense objects in the same way as projectiles
- *	bypass_xeno - whether to bypass dense xeno structures in the same way as flamers
- *	air_pass - whether to bypass non airtight atoms
- */
-/proc/check_path(atom/start, atom/end, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
-	var/list/path_to_target = getline(start, end)
+ * Draws a line between two atoms, then checks if the path is blocked
+ * Returns the last turf in the list it can successfully path to
+*/
+/proc/check_path(atom/start, atom/end, pass_flags_checked = NONE)
+	var/list/path_to_target = get_line(start, end) //we don't use traversal because link blocked checks both diags as needed
 	var/line_count = 1
 	while(line_count < length(path_to_target))
-		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], bypass_window, projectile, bypass_xeno, air_pass))
-			return FALSE
+		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], pass_flags_checked))
+			break
 		line_count ++
-	return TRUE
+	return path_to_target[line_count]
+
+///Return TRUE if we have a block, return FALSE otherwise
+/proc/turf_block_check(atom/subject, atom/target, ignore_can_pass = FALSE, ignore_density = FALSE, ignore_closed_turf = FALSE, ignore_invulnerable = FALSE, ignore_objects = FALSE, ignore_mobs = FALSE, ignore_space = FALSE)
+	var/turf/T = get_turf(target)
+	if(isspaceturf(T) && !ignore_space)
+		return TRUE
+	if(isclosedturf(T) && !ignore_closed_turf) //If we care about closed turfs
+		return TRUE
+	for(var/atom/blocker AS in T)
+		if((blocker.atom_flags & ON_BORDER) || blocker == subject) //If they're a border entity or our subject, we don't care
+			continue
+		if(!blocker.CanPass(subject, T) && !ignore_can_pass) //If the subject atom can't pass and we care about that, we have a block
+			return TRUE
+		if(!blocker.density) //Check if we're dense
+			continue
+		if(!ignore_density) //If we care about all dense atoms or only certain types of dense atoms
+			return TRUE
+		if((blocker.resistance_flags & INDESTRUCTIBLE) && !ignore_invulnerable) //If we care about dense invulnerable objects
+			return TRUE
+		if(isobj(blocker) && !ignore_objects) //If we care about dense objects
+			var/obj/obj_blocker = blocker
+			if(!isstructure(obj_blocker)) //If it's not a structure and we care about objects, we have a block
+				return TRUE
+			var/obj/structure/blocker_structure = obj_blocker
+			if(!blocker_structure.climbable) //If it's a structure and can't be climbed, we have a block
+				return TRUE
+		if(ismob(blocker) && !ignore_mobs) //If we care about mobs
+			return TRUE
+
+	return FALSE
+
+/**
+ * Returns a rectangle of turfs in front of the center.
+ *
+ * To find what exact width and height to enter, width is based on west-east and height is north-south as if center is facing north.
+ *
+ * Increments in width increases both sizes by said increment while height is only increased once by the increment.
+*/
+/proc/get_forward_square(atom/center, width, height, requires_openturf = TRUE, requires_lineofsight = TRUE)
+	if(width < 0 || height <= 0) // This is forward square, not backwards square.
+		return list()
+
+	var/turf/lower_left
+	var/turf/upper_right
+	switch(center.dir)
+		if(NORTH)
+			lower_left = locate(center.x - width, center.y + 1, center.z)
+			upper_right = locate(center.x + width, center.y + height, center.z)
+		if(SOUTH)
+			lower_left = locate(center.x - width, center.y - height, center.z)
+			upper_right = locate(center.x + width, center.y - 1, center.z)
+		if(WEST)
+			lower_left = locate(center.x - height, center.y - width, center.z)
+			upper_right = locate(center.x - 1, center.y + width, center.z)
+		if(EAST)
+			lower_left = locate(center.x + height, center.y - width, center.z)
+			upper_right = locate(center.x + 1, center.y + width, center.z)
+
+	var/list/turf/acceptable_turfs = list()
+	var/list/turf/possible_turfs = block(lower_left, upper_right)
+	for(var/turf/possible_turf AS in possible_turfs)
+		if(requires_openturf && isclosedturf(possible_turf))
+			continue
+		if(requires_lineofsight && !line_of_sight(center, possible_turf, max(width, height)))
+			continue
+		acceptable_turfs += possible_turf
+	return acceptable_turfs

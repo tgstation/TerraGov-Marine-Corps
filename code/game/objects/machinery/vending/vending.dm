@@ -73,6 +73,7 @@
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
+	explosion_block = 1
 
 	///Whether this vendor is active or not.
 	var/active = TRUE
@@ -168,10 +169,6 @@
 
 	/// How much damage we can take before tipping over.
 	var/knockdown_threshold = 100
-
-	///Faction of the vendor. Can be null
-	var/faction
-
 
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
@@ -334,6 +331,7 @@
 	tipped_level = 0
 	allow_pass_flags &= ~(PASS_LOW_STRUCTURE|PASS_MOB)
 	coverage = initial(coverage)
+	density = initial(density)
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -389,6 +387,31 @@
 	else if(isitem(I))
 		var/obj/item/to_stock = I
 		stock(to_stock, user)
+
+/obj/machinery/vending/attackby_alternate(obj/item/item_to_refill, mob/user, params)
+	. = ..()
+	/// The found record matching the item_to_refill in the vending_records lists
+	var/datum/vending_product/record = FALSE
+
+	if(tipped_level)
+		return to_chat(user, "Tip it back upright first!")
+	if(!isitem(item_to_refill))
+		return FALSE
+
+	for(var/datum/vending_product/R AS in product_records + hidden_records + coin_records)
+		if(item_to_refill.type != R.product_path)
+			continue
+		record = R
+
+	if(!record) //Item isn't listed in the vending records.
+		display_message_and_visuals(user, TRUE, "[item_to_refill] can't be refilled here!", VENDING_RESTOCK_DENY)
+		return FALSE
+
+	if(!(record.amount <= -1) && !(item_to_refill.item_flags & CAN_REFILL))
+		user.balloon_alert(user, "Can't refill this")
+		return FALSE
+
+	item_to_refill.refill(user)
 
 /obj/machinery/vending/proc/scan_card(obj/item/card/I)
 	if(!currently_vending)
@@ -446,11 +469,11 @@
 		return FALSE
 
 	if(tipped_level == 2)
-		user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
+		user.visible_message(span_notice("[user] begins to heave the vending machine back into place!"),span_notice("You start heaving the vending machine back into place.."))
 		if(!do_after(user, 80, IGNORE_HELD_ITEM, src, BUSY_ICON_FRIENDLY))
 			return FALSE
 
-		user.visible_message(span_notice(" [user] rights the [src]!"),span_notice(" You right the [src]!"))
+		user.visible_message(span_notice("[user] rights the [src]!"),span_notice("You right the [src]!"))
 		flip_back()
 		return TRUE
 
@@ -468,10 +491,10 @@
 		return
 	if(!iscarbon(user)) // AI can't heave remotely
 		return
-	user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
+	user.visible_message(span_notice("[user] begins to heave the vending machine back into place!"),span_notice("You start heaving the vending machine back into place.."))
 	if(!do_after(user, 80, IGNORE_HELD_ITEM, src, BUSY_ICON_FRIENDLY))
 		return FALSE
-	user.visible_message(span_notice(" [user] rights the [src]!"),span_notice(" You right the [src]!"))
+	user.visible_message(span_notice("[user] rights the [src]!"),span_notice("You right the [src]!"))
 	flip_back()
 	return TRUE
 
@@ -568,55 +591,59 @@
 			scan_card(H.wear_id)
 			. = TRUE
 
-/obj/machinery/vending/proc/vend(datum/vending_product/R, mob/user)
+/obj/machinery/vending/proc/vend(datum/vending_product/product, mob/user)
+	if(!vend_ready)
+		return
 	if(!allowed(user) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
 		to_chat(user, span_warning("Access denied."))
 		flick(icon_deny, src)
 		return
 
-	if(R.category == CAT_HIDDEN && !extended_inventory)
+	if(product.category == CAT_HIDDEN && !extended_inventory)
 		return
 
-	vend_ready = 0 //One thing at a time!!
-	R.amount--
+	vend_ready = FALSE //One thing at a time!!
 
 	if(((src.last_reply + (src.vend_delay + 200)) <= world.time) && src.vend_reply)
 		spawn(0)
 			src.speak(src.vend_reply)
 			src.last_reply = world.time
 
-	var/obj/item/new_item = release_item(R, vend_delay)
+	start_release_item(product, vend_delay, user)
 
-	if(istype(new_item))
-		new_item.on_vend(user, faction, fill_container = TRUE)
-	vend_ready = 1
-
-/obj/machinery/vending/proc/release_item(datum/vending_product/R, delay_vending = 0, dump_product = 0)
+///Tries to vend the item
+/obj/machinery/vending/proc/start_release_item(datum/vending_product/product, delay_vending = 0, mob/user)
+	if(powered(power_channel))
+		use_power(active_power_usage)
+	else if(machine_current_charge > active_power_usage) //if no power, use the machine's battery
+		machine_current_charge -= min(machine_current_charge, active_power_usage)
+	else
+		return
+	if(icon_vend)
+		flick(icon_vend, src)
 	if(delay_vending)
-		if(powered(power_channel))
-			use_power(active_power_usage)	//actuators and stuff
-			if (icon_vend)
-				flick(icon_vend, src) //Show the vending animation if needed
-			sleep(delay_vending)
-		else if(machine_current_charge > active_power_usage) //if no power, use the machine's battery.
-			machine_current_charge -= min(machine_current_charge, active_power_usage) //Sterilize with min; no negatives allowed.
-			//to_chat(world, span_warning("DEBUG: Machine Auto_Use_Power: Vend Power Usage: [active_power_usage] Machine Current Charge: [machine_current_charge]."))
-			if (icon_vend)
-				flick(icon_vend,src) //Show the vending animation if needed
-			sleep(delay_vending)
-		else
-			return
-	SSblackbox.record_feedback("tally", "vendored", 1, R.product_name)
-	addtimer(CALLBACK(src, PROC_REF(stock_vacuum)), 2.5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE) // We clean up some time after the last item has been vended.
-	if(vending_sound)
-		playsound(src, vending_sound, 25, 0)
-	else
-		playsound(src, "vending", 25, 0)
-	if(ispath(R.product_path,/obj/item/weapon/gun))
-		return new R.product_path(get_turf(src), 1)
-	else
-		return new R.product_path(get_turf(src))
+		addtimer(CALLBACK(src, PROC_REF(release_item), product, user), delay_vending)
+		return
+	return release_item(product, user)
 
+///Vends the item
+/obj/machinery/vending/proc/release_item(datum/vending_product/product, mob/user)
+	SSblackbox.record_feedback("tally", "vendored", 1, product.product_name)
+	addtimer(CALLBACK(src, PROC_REF(stock_vacuum)), 2.5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE) // We clean up some time after the last item has been vended.
+	playsound(src, vending_sound ? vending_sound : SFX_VENDING, 25, 0)
+	var/obj/item/new_item
+	if(ispath(product.product_path,/obj/item/weapon/gun))
+		new_item = new product.product_path(get_turf(src), 1)
+	else
+		new_item = new product.product_path(get_turf(src))
+
+	. = new_item
+	product.amount--
+	vend_ready = TRUE
+
+	if(!user || !istype(new_item))
+		return
+	new_item.on_vend(user, faction, fill_container = TRUE)
 
 /obj/machinery/vending/MouseDrop_T(atom/movable/A, mob/user)
 	. = ..()
@@ -699,8 +726,8 @@
  */
 /datum/vending_product/proc/attempt_restock(obj/item/item_to_stock, mob/user, show_feedback = TRUE)
 	//More accurate comparison between absolute paths.
-	if(isstorage(item_to_stock)) //Nice try, specialists/engis
-		var/obj/item/storage/storage_to_stock = item_to_stock
+	if(item_to_stock.storage_datum) //Nice try, specialists/engis
+		var/datum/storage/storage_to_stock = item_to_stock.storage_datum
 		if(!(storage_to_stock.storage_flags & BYPASS_VENDOR_CHECK)) //If your storage has this flag, it can be restocked
 			user?.balloon_alert(user, "Can't restock containers!")
 			return FALSE
@@ -733,7 +760,7 @@
 
 		if(isreagentcontainer(item_to_stock))
 			var/obj/item/reagent_containers/reagent_container = item_to_stock
-			if(!reagent_container.free_refills && !reagent_container.has_initial_reagents())
+			if(!(reagent_container.item_flags & CAN_REFILL) && !reagent_container.has_initial_reagents())
 				user?.balloon_alert(user, "\The [reagent_container] is missing some of its reagents!")
 				return FALSE
 
@@ -744,9 +771,11 @@
 				item_to_stock.unwield(user)
 			user.temporarilyRemoveItemFromInventory(item_to_stock)
 
-		else if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
+		// Hey I don't think this code does anything, it looks like it wants to restock things that are inside a storage?
+		// Probably should be running a loop over every item inside the storage, but whatever that's not for this PR
+		else if(item_to_stock.item_flags & IN_STORAGE) //inside a storage item
 			var/obj/item/storage/S = item_to_stock.loc
-			S.remove_from_storage(item_to_stock, user.loc, user)
+			S.storage_datum.remove_from_storage(item_to_stock, user.loc, user)
 
 	qdel(item_to_stock)
 
@@ -840,7 +869,7 @@
 	. = ..()
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive")
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 //Oh no we're malfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()
@@ -852,8 +881,8 @@
 			continue
 
 		while(R.amount>0)
-			release_item(R, 0)
-			R.amount--
+			if(!start_release_item(R, 0))
+				break
 		break
 
 	machine_stat |= BROKEN
@@ -873,8 +902,7 @@
 		if (!dump_path)
 			continue
 
-		R.amount--
-		throw_item = release_item(R, 0)
+		throw_item = start_release_item(R, 0)
 		break
 	if (!throw_item)
 		return FALSE

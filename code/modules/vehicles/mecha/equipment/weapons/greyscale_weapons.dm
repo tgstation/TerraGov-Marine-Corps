@@ -70,7 +70,7 @@
 	muzzle_iconstate = "muzzle_flash_light"
 	icon_state = "smg"
 	fire_sound = 'sound/mecha/weapons/mech_smg.ogg'
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,12), "E" = list(54,14), "W" = list(-20,34)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,12), "E" = list(52,34), "W" = list(-22,14)),
@@ -80,10 +80,11 @@
 	projectiles = 60
 	projectiles_cache = 900
 	projectiles_cache_max = 900
-	variance = 20
+	variance = 15
 	projectile_delay = 0.15 SECONDS
-	slowdown = 0.15
+	slowdown = 0
 	harmful = TRUE
+	weight = 65
 	ammo_type = MECHA_AMMO_SMG
 	hud_icons = list("smg", "smg_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -108,7 +109,7 @@
 	projectile_delay = 0.6 SECONDS
 	burst_amount = 3
 	projectile_burst_delay = 0.2 SECONDS
-	slowdown = 0.25
+	slowdown = 0
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_BURSTRIFLE
 	hud_icons = list("hivelo", "hivelo_empty")
@@ -120,20 +121,21 @@
 	desc = "The stock-and-standard extra-sized multipurpose rifle for TGMC mech units."
 	icon_state = "assaultrifle"
 	fire_sound = 'sound/mecha/weapons/mech_rifle.ogg'
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-6), "E" = list(64,17), "W" = list(-34,37)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(64,37), "W" = list(-34,17)),
 	)
 	ammotype = /datum/ammo/bullet/rifle/mech
 	max_integrity = 400
-	projectiles = 80
-	projectiles_cache = 960
-	projectiles_cache_max = 960
-	variance = 15
-	projectile_delay = 0.2 SECONDS
-	slowdown = 0.2
+	projectiles = 30
+	projectiles_cache = 390
+	projectiles_cache_max = 390
+	variance = 10
+	projectile_delay = 0.25 SECONDS
+	slowdown = 0
 	harmful = TRUE
+	weight = 65
 	ammo_type = MECHA_AMMO_RIFLE
 	hud_icons = list("rifle", "rifle_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -144,20 +146,21 @@
 	desc = "The TGMC classic weapon, but bigger and better! Fires plus-sized buckshot for high damage in close combat."
 	icon_state = "shotgun"
 	fire_sound = 'sound/mecha/weapons/mech_shotgun.ogg'
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-4), "E" = list(61,16), "W" = list(-31,36)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-4), "E" = list(61,36), "W" = list(-31,16)),
 	)
 	ammotype = /datum/ammo/bullet/shotgun/mech
 	max_integrity = 350
-	projectiles = 10
-	projectiles_cache = 120
-	projectiles_cache_max = 120
-	variance = 6
-	projectile_delay = 2.0 SECONDS
-	slowdown = 0.3
+	projectiles = 9
+	projectiles_cache = 90
+	projectiles_cache_max = 90
+	variance = 30
+	projectile_delay = 2.5 SECONDS
+	slowdown = 0
 	harmful = TRUE
+	weight = 90
 	ammo_type = MECHA_AMMO_SHOTGUN
 	hud_icons = list("shotgun_buckshot", "shotgun_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
@@ -384,19 +387,20 @@
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-11), "E" = list(77,3), "W" = list(-47,23)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-11), "E" = list(77,23), "W" = list(-47,3)),
 	)
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ammotype = /datum/ammo/flamethrower/mech_flamer
 	max_integrity = 250
-	projectiles = 20
-	projectiles_cache = 20 // low ammo counts so player cant just spam fire while rushing infinitely
-	projectiles_cache_max = 20
-	variance = 0
-	projectile_delay = 2 SECONDS
-	slowdown = 0.4
+	projectiles = 50
+	projectiles_cache = 300
+	projectiles_cache_max = 300
+	variance = 10
+	projectile_delay = 0.2 SECONDS
+	slowdown = 0
 	harmful = TRUE
+	weight = 100
 	ammo_type = MECHA_AMMO_FLAMER
 	hud_icons = list("flame", "flame_empty")
-	fire_mode = GUN_FIREMODE_SEMIAUTO
+	fire_mode = GUN_FIREMODE_AUTOMATIC
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rpg
 	name = "\improper Iapetus missile pod"
@@ -434,14 +438,14 @@
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. It is a top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
 	icon_state = "moonlight"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	max_integrity = 400
 	slowdown = 0
 	harmful = TRUE
 	equip_cooldown = 3 SECONDS
-	energy_drain = 100
+	energy_drain = 10
 	range = MECHA_MELEE|MECHA_RANGED
-	force = 150
+	force = 130
 	/// holder var for the mob that is attacking right now
 	var/mob/cutter
 
@@ -470,23 +474,36 @@
 	chassis.add_filter("dash_blur", 1, radial_blur_filter(0.3))
 	icon_state += "_on"
 	chassis.update_icon()
-	new /obj/effect/temp_visual/xenomorph/afterimage(chassis.loc, chassis)
+	new /obj/effect/temp_visual/after_image(chassis.loc, chassis)
 	RegisterSignal(chassis, COMSIG_MOVABLE_POST_THROW, PROC_REF(end_dash))
 	cutter = source
 	chassis.atom_flags |= DIRLOCK
 	RegisterSignal(chassis, COMSIG_MOVABLE_MOVED, PROC_REF(drop_afterimage))
-	chassis.throw_at(target, laser_dash_range, 1, flying = TRUE)
+	RegisterSignal(chassis, COMSIG_MOVABLE_BUMP, PROC_REF(on_bump))
+	chassis.throw_at(target, laser_dash_range, 1)
 	return ..()
 
 ///signal handler, drops afterimage every move executed while dashing
 /obj/item/mecha_parts/mecha_equipment/laser_sword/proc/drop_afterimage(datum/source)
 	SIGNAL_HANDLER
-	new /obj/effect/temp_visual/xenomorph/afterimage(chassis.loc, chassis)
+	new /obj/effect/temp_visual/after_image(chassis.loc, chassis)
+
+///Wrapper for mob bump attacks mid lunge
+/obj/item/mecha_parts/mecha_equipment/laser_sword/proc/on_bump(datum/source, atom/bumped)
+	SIGNAL_HANDLER
+	if(!ismob(bumped))
+		return
+	INVOKE_ASYNC(src, PROC_REF(do_bump_attack), bumped)
+	return COMPONENT_BUMP_RESOLVED
+
+///Hits a mob in the way
+/obj/item/mecha_parts/mecha_equipment/laser_sword/proc/do_bump_attack(mob/living/bumped_mob)
+	bumped_mob.attackby(src, cutter)
 
 ///Ends dash and executes attack
 /obj/item/mecha_parts/mecha_equipment/laser_sword/proc/end_dash(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
+	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_BUMP))
 	chassis.remove_filter("dash_blur")
 	icon_state = initial(icon_state)
 	chassis.update_icon()

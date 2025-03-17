@@ -32,7 +32,7 @@
 	icon_state = "rwindow"
 	desc = "A window."
 	density = TRUE
-	layer = WINDOW_LAYER
+	layer = ABOVE_WINDOW_LAYER
 	anchored = TRUE
 	atom_flags = ON_BORDER
 
@@ -44,7 +44,7 @@
 /obj/item/toy/beach_ball/holoball
 	name = "basketball"
 	icon_state = "basketball"
-	item_state = "basketball"
+	worn_icon_state = "basketball"
 	desc = "Here's your chance, do your dance at the Space Jam."
 	w_class = WEIGHT_CLASS_BULKY //Stops people from hiding it in their bags/pockets
 

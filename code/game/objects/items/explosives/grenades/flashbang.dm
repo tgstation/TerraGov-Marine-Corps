@@ -2,7 +2,7 @@
 	name = "flashbang"
 	desc = "A grenade sometimes used by police, civilian or military, to stun targets with a flash, then a bang. May cause hearing loss, and induce feelings of overwhelming rage in victims."
 	icon_state = "flashbang2"
-	item_state = "flashbang2"
+	worn_icon_state = "flashbang2"
 	hud_state = "flashbang"
 	arm_sound = 'sound/weapons/armbombpin_2.ogg'
 	///This is a cluster weapon, or part of one
@@ -25,7 +25,7 @@
 
 /obj/item/explosive/grenade/flashbang/prime()
 	var/turf/target_turf = get_turf(src)
-	playsound(target_turf, "flashbang", 65)
+	playsound(target_turf, SFX_FLASHBANG, 65)
 	for(var/mob/living/carbon/victim in hearers(max_range, target_turf))
 		if(!HAS_TRAIT(victim, TRAIT_FLASHBANGIMMUNE))
 			bang(target_turf, victim)
@@ -89,13 +89,13 @@
 ///The effects applied to mobs in the outer_range
 /obj/item/explosive/grenade/flashbang/proc/outer_effect(turf/T , mob/living/carbon/M, ear_safety)
 	if(!ear_safety)
-		M.apply_effect(16 SECONDS, STUN)
+		M.apply_effect(16 SECONDS, EFFECT_STUN)
 		M.adjust_ear_damage(rand(0, 3),8)
 
 ///The effects applied to mobs outside of outer_range
 /obj/item/explosive/grenade/flashbang/proc/max_range_effect(turf/T , mob/living/carbon/M, ear_safety)
 	if(!ear_safety)
-		M.apply_effect(8 SECONDS, STUN)
+		M.apply_effect(8 SECONDS, EFFECT_STUN)
 		M.adjust_ear_damage(rand(0, 1),6)
 
 //Slows and staggers instead of hardstunning, balanced for HvH
@@ -103,7 +103,7 @@
 	name = "stun grenade"
 	desc = "A grenade designed to disorientate the senses of anyone caught in the blast radius with a blinding flash of light and viciously loud noise. Repeated use can cause deafness."
 	icon_state = "flashbang2"
-	item_state = "flashbang2"
+	worn_icon_state = "flashbang2"
 	inner_range = 3
 	det_time = 2 SECONDS
 	mp_only = FALSE

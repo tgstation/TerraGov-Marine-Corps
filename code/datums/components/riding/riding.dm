@@ -49,6 +49,8 @@
 		return COMPONENT_INCOMPATIBLE
 
 	handle_specials()
+	var/atom/movable/movable_parent = parent
+	riding_mob.set_glide_size(movable_parent.glide_size)
 	riding_mob.updating_glide_size = FALSE
 	ride_check_flags |= args_to_flags(check_loc, lying_buckle, hands_needed, target_hands_needed)//buckle_mob_flags
 	vehicle_moved()
@@ -70,6 +72,7 @@
 	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, PROC_REF(vehicle_mob_unbuckle))
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(vehicle_moved))
 	RegisterSignal(parent, COMSIG_MOVABLE_BUMP, PROC_REF(vehicle_bump))
+	RegisterSignal(parent, COMSIG_BUCKLED_CAN_Z_MOVE, PROC_REF(riding_can_z_move))
 
 /**
  * This proc handles all of the proc calls to things like set_vehicle_dir_layer() that a type of riding datum needs to call on creation
@@ -115,8 +118,7 @@
 	var/atom/movable/movable_parent = parent
 	if (isnull(dir))
 		dir = movable_parent.dir
-	for (var/m in movable_parent.buckled_mobs)
-		var/mob/buckled_mob = m
+	for(var/mob/buckled_mob AS in movable_parent.buckled_mobs)
 		ride_check(buckled_mob)
 	if(QDELETED(src))
 		return // runtimed with piggy's without this, look into this more
@@ -203,9 +205,10 @@
 	return TRUE
 
 /// Every time the driver tries to move, this is called to see if they can actually drive and move the vehicle (via relaymove)
-/datum/component/riding/proc/driver_move(atom/movable/movable_parent, mob/living/user, direction)
+/datum/component/riding/proc/driver_move(atom/movable/movable_parent, mob/living/user, direction, glide_size_override)
 	SIGNAL_HANDLER
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	movable_parent.set_glide_size(glide_size_override ? glide_size_override : DELAY_TO_GLIDE_SIZE(vehicle_move_delay))
 
 /// Calculates the additional delay to moving
 /datum/component/riding/proc/calculate_additional_delay(mob/living/user)
@@ -221,6 +224,11 @@
 
 /datum/component/riding/proc/Unbuckle(atom/movable/M)
 	addtimer(CALLBACK(parent, TYPE_PROC_REF(/atom/movable, unbuckle_mob), M), 0, TIMER_UNIQUE)
+
+/// Extra checks before buckled.can_z_move can be called in mob/living/can_z_move()
+/datum/component/riding/proc/riding_can_z_move(atom/movable/movable_parent, direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	SIGNAL_HANDLER
+	return COMPONENT_RIDDEN_ALLOW_Z_MOVE
 
 /// currently replicated from ridable because we need this behavior here too, see if we can deal with that
 /datum/component/riding/proc/unequip_buckle_inhands(mob/living/carbon/user)

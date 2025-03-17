@@ -51,7 +51,7 @@
 	icon_state = "monorail"
 	density = FALSE
 	anchored = TRUE
-	layer = ATMOS_PIPE_LAYER + 0.01
+	layer = LOW_OBJ_LAYER
 
 /obj/structure/mopbucket
 	name = "mop bucket"
@@ -133,14 +133,14 @@
 	max_integrity = 100
 	resistance_flags = UNACIDABLE
 	hit_sound = 'sound/effects/Glasshit.ogg'
-	destroy_sound = "shatter"
+	destroy_sound = SFX_SHATTER
 	///Whatever is contained in the tank
 	var/obj/occupant
 	///What this tank is replaced by when broken
 	var/obj/structure/broken_state = /obj/structure/xenoautopsy/tank/escaped
 
 
-/obj/structure/xenoautopsy/tank/deconstruct(disassembled = TRUE)
+/obj/structure/xenoautopsy/tank/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!broken_state)
 		return ..()
 
@@ -223,7 +223,8 @@
 	icon = 'icons/obj/structures/stairs.dmi'
 	desc = "Stairs.  You walk up and down them."
 	icon_state = "rampbottom"
-	layer = TURF_LAYER
+	plane = FLOOR_PLANE // we want this to render below walls if we place them on top
+	layer = ABOVE_OPEN_TURF_LAYER
 	density = FALSE
 	opacity = FALSE
 
@@ -232,8 +233,8 @@
 	update_icon()
 
 	var/static/list/connections = list(
-		COMSIG_FIND_FOOTSTEP_SOUND = PROC_REF(footstep_override),
-		COMSIG_TURF_CHECK_COVERED = PROC_REF(turf_cover_check),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 

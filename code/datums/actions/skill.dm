@@ -3,7 +3,10 @@
 	var/skill_min
 
 /datum/action/skill/should_show()
-	return can_use_action()
+	. = ..()
+	if(!.)
+		return
+	return owner.skills.getRating(skill_name) >= skill_min
 
 /datum/action/skill/can_use_action()
 	return owner.skills.getRating(skill_name) >= skill_min

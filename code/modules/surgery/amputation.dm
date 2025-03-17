@@ -6,7 +6,7 @@
 	allowed_tools = list(
 		/obj/item/tool/surgery/circular_saw = 100,
 		/obj/item/tool/hatchet = 75,
-		/obj/item/weapon/claymore = 75,
+		/obj/item/weapon/sword = 75,
 	)
 
 	min_duration = 90

@@ -3,7 +3,6 @@
 	//Liquid fuel is used for things that used to rely on volatile fuels or phoron being contained to a couple tiles.
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "fuel"
-	layer = ABOVE_TURF_LAYER
 	anchored = TRUE
 	dir = NORTHEAST //Spawns with a diagonal direction, for spread optimization.
 	var/amount = 1 //Basically moles.
@@ -87,7 +86,7 @@
 		ignite_fuel(I)
 		log_attack("[key_name(user)] ignites [src] in fuel in [AREACOORD(user)]")
 
-/obj/effect/decal/cleanable/liquid_fuel/flamer_fire_act(burnlevel)
+/obj/effect/decal/cleanable/liquid_fuel/fire_act(burn_level)
 	. = ..()
 	ignite_fuel()
 

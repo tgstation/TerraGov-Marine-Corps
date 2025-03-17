@@ -6,7 +6,7 @@
 	name = "alien thing"
 	desc = "theres something alien about this"
 	icon = 'icons/Xeno/Effects.dmi'
-	hit_sound = "alien_resin_break"
+	hit_sound = SFX_ALIEN_RESIN_BREAK
 	anchored = TRUE
 	max_integrity = 1
 	resistance_flags = UNACIDABLE
@@ -36,8 +36,8 @@
 	if(obj_flags & CAN_BE_HIT)
 		return I.attack_obj(src, user)
 
-/obj/alien/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 2, BURN, FIRE)
+/obj/alien/fire_act(burn_level)
+	take_damage(burn_level * 2, BURN, FIRE)
 
 /obj/alien/ex_act(severity)
 	switch(severity)
@@ -80,8 +80,8 @@
 	density = FALSE
 	opacity = FALSE
 	max_integrity = 36
-	layer = RESIN_STRUCTURE_LAYER
-	hit_sound = "alien_resin_move"
+	layer = BELOW_OBJ_LAYER
+	hit_sound = SFX_ALIEN_RESIN_MOVE
 	var/slow_amt = 8
 	/// Does this refund build points when destoryed?
 	var/refundable = TRUE
@@ -108,6 +108,9 @@
 	if(!ishuman(crosser))
 		return
 
+	if(HAS_TRAIT(crosser, TRAIT_TANK_DESANT))
+		return
+
 	if(CHECK_MULTIPLE_BITFIELDS(crosser.allow_pass_flags, HOVERING))
 		return
 
@@ -126,13 +129,13 @@
 		if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active && refundable)
 			SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
-		playsound(src, "alien_resin_break", 25) //SFX
+		playsound(src, SFX_ALIEN_RESIN_BREAK, 25) //SFX
 		deconstruct(TRUE)
 		return
 
 	return ..()
 
-// Praetorian Sticky Resin spit uses this.
+// Hivelord Sticky Resin spit uses this.
 /obj/alien/resin/sticky/thin
 	name = "thin sticky resin"
 	desc = "A thin layer of disgusting sticky slime."
@@ -148,7 +151,8 @@
 	icon = 'icons/obj/smooth_objects/resin-door.dmi'
 	icon_state = "resin-door-1"
 	base_icon_state = "resin-door"
-	layer = RESIN_STRUCTURE_LAYER
+	resistance_flags = NONE
+	layer = BELOW_OBJ_LAYER
 	max_integrity = 100
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
@@ -158,9 +162,9 @@
 		SMOOTH_GROUP_MINERAL_STRUCTURES,
 	)
 	soft_armor = list(MELEE = 33, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 15, BIO = 0, FIRE = 0, ACID = 0)
-	trigger_sound = "alien_resin_move"
-	hit_sound = "alien_resin_move"
-	destroy_sound = "alien_resin_move"
+	trigger_sound = SFX_ALIEN_RESIN_MOVE
+	hit_sound = SFX_ALIEN_RESIN_MOVE
+	destroy_sound = SFX_ALIEN_RESIN_MOVE
 
 	///The delay before the door closes automatically after being open
 	var/close_delay = 10 SECONDS
@@ -183,7 +187,6 @@
 		toggle_state()
 		return TRUE
 
-
 /obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc))
@@ -205,13 +208,13 @@
 		return TRUE
 
 	src.balloon_alert(xeno_attacker, "Destroying...")
-	playsound(src, "alien_resin_break", 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 	if(do_after(xeno_attacker, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
 		src.balloon_alert(xeno_attacker, "Destroyed")
 		qdel(src)
 
-/obj/structure/mineral_door/resin/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 2, BURN, FIRE)
+/obj/structure/mineral_door/resin/fire_act(burn_level)
+	take_damage(burn_level * 2, BURN, FIRE)
 
 /obj/structure/mineral_door/resin/ex_act(severity)
 	switch(severity)
@@ -223,9 +226,6 @@
 			take_damage((rand(50, 60)), BRUTE, BOMB)
 		if(EXPLODE_WEAK)
 			take_damage(30, BRUTE, BOMB)
-
-/turf/closed/wall/resin/fire_act()
-	take_damage(50, BURN, FIRE)
 
 /obj/structure/mineral_door/resin/try_toggle_state(atom/user)
 	if(isxeno(user))
@@ -359,3 +359,58 @@
 		return
 	X.visible_message(span_notice("[X] is splattered with jelly!"))
 	INVOKE_ASYNC(src, PROC_REF(activate_jelly), X)
+
+/obj/structure/xeno/acid_mine
+	name = "acid mine"
+	desc = "A weird bulb, filled with acid."
+	icon = 'icons/obj/items/mines.dmi'
+	icon_state = "acid_mine"
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	max_integrity = 5
+	hit_sound = SFX_ALIEN_RESIN_BREAK
+	/// The damage dealt to mobs nearby the detonation point of the mine
+	var/acid_damage = 30
+
+/obj/structure/xeno/acid_mine/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(oncrossed),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/structure/xeno/acid_mine/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
+	detonate()
+	return ..()
+
+/// Checks if the mob walking over the mine is human, and calls detonate if so
+/obj/structure/xeno/acid_mine/proc/oncrossed(datum/source, atom/movable/A, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(!ishuman(A))
+		return
+	if(CHECK_MULTIPLE_BITFIELDS(A.allow_pass_flags, HOVERING))
+		return
+	INVOKE_ASYNC(src, PROC_REF(detonate))
+
+///Handles detonating the mine, and dealing damage to those nearby
+/obj/structure/xeno/acid_mine/proc/detonate()
+	for(var/spatter_effect in filled_turfs(get_turf(src), 1, "square", pass_flags_checked = PASS_AIR))
+		new /obj/effect/temp_visual/acid_splatter(spatter_effect)
+	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(src,1))
+		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_L_LEG, ACID,  penetration = 30)
+		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_R_LEG, ACID,  penetration = 30)
+		playsound(src, "sound/bullets/acid_impact1.ogg", 10)
+	qdel(src)
+
+/obj/structure/xeno/acid_mine/gas_mine
+	name = "gas mine"
+	desc = "A weird bulb, overflowing with acid. Small wisps of gas escape every so often."
+	icon_state = "gas_mine"
+	acid_damage = 40
+
+/obj/structure/xeno/acid_mine/gas_mine/detonate()
+	var/datum/effect_system/smoke_spread/xeno/acid/opaque/A = new(get_turf(src))
+	A.set_up(1,src)
+	A.start()
+	return ..()

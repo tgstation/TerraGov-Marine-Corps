@@ -8,9 +8,9 @@
 
 	/* Health and life related vars */
 	/// Maximum health that should be possible.
-	var/maxHealth = 100
+	var/maxHealth = LIVING_DEFAULT_MAX_HEALTH
 	/// Mob's current health
-	var/health = 100
+	var/health = LIVING_DEFAULT_MAX_HEALTH
 	/// Health at which a mob dies
 	var/health_threshold_dead = -100
 	/// Health at which a mob goes into crit
@@ -82,12 +82,18 @@
 	var/on_fire
 	///Tracks how many stacks of fire we have on, max is
 	var/fire_stacks = 0
-	///0: normal, 1: bursting, 2: bursted.
-	var/chestburst = 0
 	///more or less efficiency to metabolize helpful/harmful reagents and (TODO) regulate body temperature..
 	var/metabolism_efficiency = 1
 
 	var/tinttotal = TINT_NONE
+
+	/// FOV view that is applied from either nativeness or traits
+	var/fov_view
+	/// Lazy list of FOV traits that will apply a FOV view when handled.
+	var/list/fov_traits
+
+	/// Is the mob looking vertically
+	var/looking_vertically = FALSE
 
 	///a list of all status effects the mob has
 	var/list/status_effects
@@ -125,7 +131,7 @@
 	var/datum/job/job
 	var/comm_title = ""
 	/**
-	 * How much blood the mob has. 
+	 * How much blood the mob has.
 	 * !!! Use the adjust_blood_volume() and set_blood_volume() to set this variable instead of directly modifying it!!!
 	 */
 	var/blood_volume = 0
@@ -155,3 +161,5 @@
 	var/time_entered_stasis = 0
 	///The world.time of when this mob entered a cryo tube
 	var/time_entered_cryo = 0
+	///The z level this mob is currently registered in
+	var/registered_z = null

@@ -43,6 +43,7 @@
 
 /area/shuttle/minidropship
 	name = "Tadpole Drop Shuttle"
+	area_flags = NO_CONSTRUCTION
 
 /area/shuttle/minidropship/Initialize(mapload, ...)
 	. = ..()
@@ -95,15 +96,16 @@
 
 /area/shuttle/mining
 	name = "Mining Shuttle"
-//	blob_allowed = FALSE
 
 /area/shuttle/labor
 	name = "Labor Camp Shuttle"
-//	blob_allowed = FALSE
 
 /area/shuttle/supply
 	name = "Supply Shuttle"
-//	blob_allowed = FALSE
+
+/area/shuttle/vehicle_supply
+	name = "Vehicle Supply Shuttle"
+
 /*
 /area/shuttle/escape
 	name = "Emergency Shuttle"

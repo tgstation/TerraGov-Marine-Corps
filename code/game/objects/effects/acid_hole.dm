@@ -14,7 +14,7 @@
 	base_icon_state = "acid-hole"
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
-	layer = LOWER_ITEM_LAYER
+	layer = LOW_ITEM_LAYER
 	var/turf/closed/wall/holed_wall
 
 /obj/effect/acid_hole/Initialize(mapload)
@@ -36,11 +36,6 @@
 		holed_wall.acided_hole = null
 		holed_wall = null
 	return ..()
-
-
-/obj/effect/acid_hole/fire_act()
-	return
-
 
 /obj/effect/acid_hole/MouseDrop_T(mob/M, mob/user)
 	. = ..()
