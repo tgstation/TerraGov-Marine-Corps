@@ -892,6 +892,9 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
+"gM" = (
+/turf/open/floor/plating/dmg3,
+/area/mainship/multiz_debug_area/floorone)
 "gO" = (
 /obj/machinery/computer/ordercomp,
 /obj/structure/cable,
@@ -1706,6 +1709,12 @@
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
+"og" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 10
+	},
+/turf/open/floor/plating/dmg3,
+/area/mainship/multiz_debug_area/floorone)
 "oh" = (
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 5
@@ -2354,6 +2363,9 @@
 /obj/machinery/vending/cargo_supply,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
+"wh" = (
+/turf/open/floor/plating/dmg2,
+/area/mainship/multiz_debug_area/floorone)
 "wi" = (
 /obj/machinery/light{
 	dir = 1
@@ -2963,6 +2975,10 @@
 "Cc" = (
 /turf/open/space/basic,
 /area/space)
+"Cd" = (
+/obj/structure/lattice,
+/turf/open/floor/plating/dmg1,
+/area/mainship/multiz_debug_area/floorone)
 "Ck" = (
 /obj/effect/landmark/start/job/crash/squadleader,
 /turf/open/floor/mainship/floor,
@@ -4654,9 +4670,8 @@
 /area/mainship/multiz_debug_area/floortwo)
 "TM" = (
 /obj/structure/transport/linear/tram,
-/obj/structure/tram,
 /obj/machinery/transport/tram_controller,
-/turf/open/openspace,
+/turf/closed/wall/mainship/white,
 /area/mainship/multiz_debug_area/floortwo)
 "TO" = (
 /obj/structure/fluff/tram_rail/electric{
@@ -4704,6 +4719,9 @@
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
+/area/mainship/multiz_debug_area/floorone)
+"Ug" = (
+/turf/open/floor/plating/dmg1,
 /area/mainship/multiz_debug_area/floorone)
 "Uh" = (
 /obj/machinery/door/poddoor/railing{
@@ -7728,11 +7746,11 @@ Cc
 Cc
 Cc
 TY
-OM
+Ug
 LR
 Fz
 Ui
-FW
+Ug
 TY
 Cc
 Cc
@@ -7840,7 +7858,7 @@ HA
 Mv
 Fz
 Ui
-OM
+wh
 TY
 Cc
 Cc
@@ -7944,11 +7962,11 @@ ni
 ni
 ni
 Rl
-OM
+Ug
 Nb
 OM
 TO
-Vg
+og
 TY
 Cc
 Cc
@@ -8052,7 +8070,7 @@ Cc
 Cc
 iy
 TY
-OM
+gM
 LX
 Fz
 Ui
@@ -8110,7 +8128,7 @@ FW
 LR
 Fz
 TO
-OM
+gM
 TY
 Cc
 Cc
@@ -8214,7 +8232,7 @@ Cc
 Cc
 Cc
 TY
-OM
+wh
 Mv
 Fz
 Ui
@@ -8322,7 +8340,7 @@ Cc
 iy
 iy
 TY
-OM
+Ug
 LR
 FW
 TO
@@ -8380,7 +8398,7 @@ FW
 LR
 Fz
 Ui
-HA
+Cd
 TY
 iy
 iy
