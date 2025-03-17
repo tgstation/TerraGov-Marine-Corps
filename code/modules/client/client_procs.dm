@@ -267,6 +267,12 @@
 		to_chat(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
 		addtimer(CALLBACK(src, qdel(src), 2 SECONDS))
 		return
+		
+	if(byond_version > 515)
+		to_chat(src, span_userdanger("Your byond version may be incompatible with this server."))
+		to_chat(src, span_danger("If you notice many menus showing up only as white boxes, please downgrade to the latest build of byond 515."))
+		to_chat(src, span_danger("You can find byond builds at <a href=\"https://secure.byond.com/download/build\">BYOND's website</a>. Builds of byond 515 specifically can be found at <a href=\"https://secure.byond.com/download/build/515/\">https://secure.byond.com/download/build/515/</a>."))
+		to_chat(src, span_danger("It is possible to have multiple versions of byond installed, in case you use other servers that require different versions of byond."))
 
 	if(GLOB.custom_info)
 		custom_info()
