@@ -621,6 +621,9 @@
  * Return TRUE if allowed, FALSE otherwise
  */
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
+	if(ispath(planned_building, /turf/closed/wall/resin) && istype(src, /turf/closed/wall/resin))
+		if(planned_building != type)
+			return TRUE
 	var/has_obstacle
 	for(var/obj/O in contents)
 		if(istype(O, /obj/item/clothing/mask/facehugger))
