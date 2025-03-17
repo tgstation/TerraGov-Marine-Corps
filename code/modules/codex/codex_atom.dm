@@ -13,7 +13,6 @@
 	return entry
 
 /atom/proc/get_mechanics_info()
-	SHOULD_CALL_PARENT(TRUE)
 	var/list/mechanics_text = list()
 	if(SEND_SIGNAL(src, COMSIG_ATOM_GET_MECHANICS_INFO, mechanics_text) & COMPONENT_MECHANICS_CHANGE)
 		. = mechanics_text.Join("")
