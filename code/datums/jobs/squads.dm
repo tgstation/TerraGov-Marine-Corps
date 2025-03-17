@@ -175,6 +175,10 @@
 /datum/squad/proc/get_total_members()
 	return length(marines_list)
 
+/datum/squad/proc/give_npc_goal(mob/living/carbon/human/source, list/goal_list)
+	SIGNAL_HANDLER
+	if(squad_leader)
+		goal_list[squad_leader] = AI_GOAL_RATING_SQUAD_LEAD
 
 /datum/squad/proc/insert_into_squad(mob/living/carbon/human/new_squaddie, give_radio = FALSE)
 	if(!(new_squaddie.job in SSjob.active_occupations))
@@ -189,6 +193,8 @@
 
 	if(!(new_squaddie.job.title in current_positions))
 		return FALSE
+
+	RegisterSignal(new_squaddie, COMSIG_NPC_FIND_NEW_ESCORT, PROC_REF(give_npc_goal))
 
 	current_positions[new_squaddie.job.title]++
 
@@ -239,9 +245,7 @@
 	if(leaving_squaddie.assigned_squad != src)
 		CRASH("attempted to remove marine [leaving_squaddie] from squad [name] while being a member of squad [leaving_squaddie.assigned_squad.name]")
 
-	var/obj/item/card/id/id_card = leaving_squaddie.get_idcard()
-	if(!istype(id_card))
-		return FALSE
+	UnregisterSignal(leaving_squaddie, COMSIG_NPC_FIND_NEW_ESCORT)
 
 	if(leaving_squaddie == squad_leader)
 		demote_leader()
@@ -263,9 +267,11 @@
 			sheet.fields["squad"] = null
 			break
 
-	id_card.access -= access
-	id_card.assignment = leaving_squaddie.job.title
-	id_card.update_label()
+	var/obj/item/card/id/id_card = leaving_squaddie.get_idcard()
+	if(istype(id_card))
+		id_card.access -= access
+		id_card.assignment = leaving_squaddie.job.title
+		id_card.update_label()
 
 	marines_list -= leaving_squaddie
 

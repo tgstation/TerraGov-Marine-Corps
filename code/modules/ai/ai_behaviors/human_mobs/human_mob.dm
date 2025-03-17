@@ -143,11 +143,6 @@
 			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 	return ..()
 
-/datum/ai_behavior/human/cleanup_current_action(next_action)
-	. = ..()
-	if(next_action == MOVING_TO_NODE)
-		return
-
 /datum/ai_behavior/human/change_action(next_action, atom/next_target, list/special_distance_to_maintain)
 	. = ..()
 	if(!.)
@@ -182,15 +177,14 @@
 				return
 			change_action(MOVING_TO_ATOM, next_target)
 		if(MOVING_TO_ATOM)
-			if(atom_to_walk_to == interact_target)
-				if(get_dist(atom_to_walk_to, mob_parent) <= target_distance)
-					return
 			if(!weak_escort && escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
 				change_action(ESCORTING_ATOM, escorted_atom)
 				return
+			if(atom_to_walk_to == interact_target && (get_dist(atom_to_walk_to, mob_parent) <= target_distance))
+				return
 			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
 			if(!next_target)//We didn't find a target
-				cleanup_current_action()
+				cleanup_current_action() //do we actually need these?
 				late_initialize()
 				return
 			set_combat_target(next_target)

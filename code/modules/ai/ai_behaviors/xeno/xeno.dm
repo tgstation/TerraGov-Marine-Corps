@@ -22,7 +22,7 @@
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom))
 	return ..()
 
-/datum/ai_behavior/xeno/clean_escorted_atom()
+/datum/ai_behavior/xeno/clean_escorted_atom(find_new_escort = FALSE)
 	if(!escorted_atom)
 		return
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom))
@@ -32,6 +32,11 @@
 	. = ..()
 	if(!new_escort_is_weak)
 		UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
+
+/datum/ai_behavior/xeno/global_set_escorted_atom(datum/source, atom/atom_to_escort)
+	if(!atom_to_escort || atom_to_escort.get_xeno_hivenumber() != mob_parent.get_xeno_hivenumber() || mob_parent.ckey)
+		return
+	return ..()
 
 ///Refresh abilities-to-consider list
 /datum/ai_behavior/xeno/proc/refresh_abilities()

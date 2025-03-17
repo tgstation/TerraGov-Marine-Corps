@@ -59,6 +59,10 @@
 //AI will escort an ATOM up to this distance away from them
 #define AI_ESCORTING_MAX_DISTANCE 10
 
+#define AI_ESCORT_RATING_FACTION_GOAL 10
+#define AI_GOAL_RATING_SQUAD_LEAD 15
+#define AI_ESCORT_RATING_BUDDY 16
+
 GLOBAL_LIST_EMPTY(all_nodes)
 
 ///A GLOB of all /datum/component/ai_controller that currently exist
