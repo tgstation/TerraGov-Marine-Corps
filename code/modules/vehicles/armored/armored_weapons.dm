@@ -101,7 +101,7 @@
 		reset_fire()
 		return
 	SEND_SIGNAL(src, COMSIG_ARMORED_FIRE)
-	source?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	source?.client?.mouse_pointer_icon = 'icons/UI_Icons/gun_crosshairs/rifle.dmi'
 
 /// do after checks for the mecha equipment do afters
 /obj/item/armored_weapon/proc/do_after_checks(atom/target)
