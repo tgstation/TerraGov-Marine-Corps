@@ -1,0 +1,4 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - rscadd: " Xenos with their spit abilities selected no longer spit on shift-left click.  Instead alt-left click now works.  Also right click and middle click continue to work."
