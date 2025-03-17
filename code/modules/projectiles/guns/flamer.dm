@@ -59,7 +59,7 @@
 	light_power = 0.1
 	light_color = LIGHT_COLOR_ORANGE
 	///Max range of the flamer in tiles.
-	var/flame_max_range = 6
+	var/flame_max_range = 3
 	///Max resin wall penetration in tiles.
 	var/flame_max_wall_pen = 3
 	///After how many total resin walls the flame wont proceed further
