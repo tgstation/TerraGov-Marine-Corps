@@ -177,7 +177,7 @@
 
 /datum/squad/proc/give_npc_goal(mob/living/carbon/human/source, list/goal_list)
 	SIGNAL_HANDLER
-	if(squad_leader)
+	if(squad_leader && squad_leader.stat != DEAD)
 		goal_list[squad_leader] = AI_GOAL_RATING_SQUAD_LEAD
 
 /datum/squad/proc/insert_into_squad(mob/living/carbon/human/new_squaddie, give_radio = FALSE)

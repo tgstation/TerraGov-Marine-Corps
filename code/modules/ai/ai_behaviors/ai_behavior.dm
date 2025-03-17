@@ -402,7 +402,10 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	goal_list = sortTim(goal_list, /proc/cmp_numeric_dsc, TRUE)
 	if(!length(goal_list))
 		return
-	return goal_list[1]
+	for(var/atom/candidate AS in goal_list)
+		if(candidate.z != mob_parent.z)
+			continue
+		return candidate
 
 ///Set the escorted atom.
 /datum/ai_behavior/proc/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
