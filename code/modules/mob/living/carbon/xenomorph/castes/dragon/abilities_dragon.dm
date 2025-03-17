@@ -671,16 +671,20 @@
 /// Try to grab the thrown human.
 /datum/action/ability/activable/xeno/grab/proc/try_grabbing(mob/living/carbon/human/thrown_human)
 	if(QDELETED(thrown_human) || thrown_human.stat == DEAD || !xeno_owner.Adjacent(thrown_human))
+		failed_to_grab()
 		return
 	if(!xeno_owner.start_pulling(thrown_human) || !xeno_owner.get_active_held_item())
+		failed_to_grab()
 		return
 
 	grabbing_item = xeno_owner.get_active_held_item()
 	if(!grabbing_item)
+		failed_to_grab()
 		return
 	grabbed_human = thrown_human
 	damage_taken_so_far = 0
 
+	ADD_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
 	RegisterSignal(grabbing_item, COMSIG_QDELETING, PROC_REF(end_grabbing))
 	RegisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED, PROC_REF(human_stat_changed))
 	RegisterSignal(grabbed_human, COMSIG_LIVING_DO_MOVE_RESIST, PROC_REF(on_resist_attempt))
@@ -689,7 +693,15 @@
 	new /obj/effect/temp_visual/dragon/grab(get_turf(grabbed_human))
 	playsound(get_turf(xeno_owner), 'sound/voice/alien/pounce.ogg', 25, TRUE)
 
-/// Cleans up everything associated with the grabbing and ends the ability.
+/// Cleans up everything associated with a failed grab and ends the ability.
+/datum/action/ability/activable/xeno/grab/proc/failed_to_grab()
+	if(grabbed_human)
+		REMOVE_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
+	grabbed_human = null
+	succeed_activate()
+	add_cooldown()
+
+/// Cleans up everything associated with a (successful) grab and ends the ability.
 /datum/action/ability/activable/xeno/grab/proc/end_grabbing()
 	SIGNAL_HANDLER
 	REMOVE_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
