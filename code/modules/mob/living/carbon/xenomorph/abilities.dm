@@ -976,7 +976,7 @@
 		return
 
 	SEND_SIGNAL(owner, COMSIG_XENO_FIRE)
-	xeno?.client?.mouse_pointer_icon = 'icons/UI_Icons/gun_crosshairs/rifle.dmi'
+	xeno?.client?.mouse_pointer_icon = 'icons/effects/xeno_target.dmi'
 
 ///Fires the spit projectile.
 /datum/action/ability/activable/xeno/xeno_spit/proc/fire()
