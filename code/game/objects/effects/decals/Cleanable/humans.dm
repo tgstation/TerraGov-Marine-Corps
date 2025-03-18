@@ -48,6 +48,11 @@
 /obj/effect/decal/cleanable/blood/update_icon_state()
 	. = ..()
 	color = basecolor
+	pixel_x = rand(-16, 16)
+	pixel_y = rand(-16, 16)
+	var/matrix/rotate = matrix()
+	rotate.Turn(rand(0, 359))
+	transform = rotate
 
 /obj/effect/decal/cleanable/blood/proc/on_cross(datum/source, mob/living/carbon/human/perp, oldloc, oldlocs)
 	SIGNAL_HANDLER
