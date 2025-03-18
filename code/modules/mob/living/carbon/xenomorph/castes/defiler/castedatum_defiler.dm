@@ -17,7 +17,7 @@
 	speed = -1
 
 	// *** Plasma *** //
-	plasma_max = 575
+	plasma_max = 650
 	plasma_gain = 35
 
 	// *** Health *** //

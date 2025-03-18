@@ -277,7 +277,7 @@
 	action_icon_state = "inject_egg"
 	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Inject an egg with toxins, killing the larva, but filling it full with gas ready to explode."
-	ability_cost = 100
+	ability_cost = 70
 	cooldown_duration = 5 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
@@ -410,7 +410,7 @@
 	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "For a short duration the next 3 slashes made will inject a small amount of selected toxin."
 	cooldown_duration = 6 SECONDS
-	ability_cost = 100
+	ability_cost = 70
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_REAGENT_SLASH,
 	)
