@@ -19,7 +19,7 @@
 /obj/item/explosive/grenade/flare/dissolvability(acid_strength)
 	return 2
 
-/obj/item/explosive/grenade/flare/proc/get_acid_delay()
+/obj/item/explosive/grenade/flare/get_acid_delay()
 	return 0.5 SECONDS
 
 /obj/item/explosive/grenade/flare/Initialize(mapload)
