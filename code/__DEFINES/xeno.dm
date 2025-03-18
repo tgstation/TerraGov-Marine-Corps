@@ -51,9 +51,9 @@
 #define TRAP_ACID_STRONG "strong acid"
 
 //Xeno acid strength defines
-#define WEAK_ACID_STRENGTH 0.016
-#define REGULAR_ACID_STRENGTH 0.04
-#define STRONG_ACID_STRENGTH 0.1
+#define WEAK_ACID_STRENGTH 0.04
+#define REGULAR_ACID_STRENGTH 0.1
+#define STRONG_ACID_STRENGTH 0.25
 
 #define PUPPET_RECALL "recall puppet"
 #define PUPPET_SEEK_CLOSEST "seeking closest and attack order" //not xeno-usable
