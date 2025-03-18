@@ -6,7 +6,7 @@
 			"color_ids": [1, 2, 3, 4, 5]
 		},
 		{
-			"type": "icon_state",
+			"type": "hyperscale",
 			"icon_state": "rightarmsecondary",
 			"blend_mode": "overlay",
 			"color_ids": [6, 7, 8, 9, 10]
@@ -24,7 +24,7 @@
 			"color_ids": [1, 2, 3, 4, 5]
 		},
 		{
-			"type": "icon_state",
+			"type": "hyperscale",
 			"icon_state": "b_rightarmsecondary",
 			"blend_mode": "overlay",
 			"color_ids": [6, 7, 8, 9, 10]
@@ -42,7 +42,7 @@
 			"color_ids": [1, 2, 3, 4, 5]
 		},
 		{
-			"type": "icon_state",
+			"type": "hyperscale",
 			"icon_state": "firerightarmsecondary",
 			"blend_mode": "overlay",
 			"color_ids": [6, 7, 8, 9, 10]
@@ -60,7 +60,7 @@
 			"color_ids": [1, 2, 3, 4, 5]
 		},
 		{
-			"type": "icon_state",
+			"type": "hyperscale",
 			"icon_state": "armsecondary",
 			"blend_mode": "overlay",
 			"color_ids": [6, 7, 8, 9, 10]
@@ -78,7 +78,7 @@
 			"color_ids": [1, 2, 3, 4, 5]
 		},
 		{
-			"type": "icon_state",
+			"type": "hyperscale",
 			"icon_state": "d_rightarmsecondary",
 			"blend_mode": "overlay",
 			"color_ids": [6, 7, 8, 9, 10]
@@ -96,7 +96,7 @@
 			"color_ids": [1, 2, 3, 4, 5]
 		},
 		{
-			"type": "icon_state",
+			"type": "hyperscale",
 			"icon_state": "leftarmsecondary",
 			"blend_mode": "overlay",
 			"color_ids": [6, 7, 8, 9, 10]
@@ -114,7 +114,7 @@
 			"color_ids": [1, 2, 3, 4, 5]
 		},
 		{
-			"type": "icon_state",
+			"type": "hyperscale",
 			"icon_state": "b_leftarmsecondary",
 			"blend_mode": "overlay",
 			"color_ids": [6, 7, 8, 9, 10]
@@ -132,7 +132,7 @@
 			"color_ids": [1, 2, 3, 4, 5]
 		},
 		{
-			"type": "icon_state",
+			"type": "hyperscale",
 			"icon_state": "fireleftarmsecondary",
 			"blend_mode": "overlay",
 			"color_ids": [6, 7, 8, 9, 10]
@@ -150,7 +150,7 @@
 			"color_ids": [1, 2, 3, 4, 5]
 		},
 		{
-			"type": "icon_state",
+			"type": "hyperscale",
 			"icon_state": "b_fireleftarmsecondary",
 			"blend_mode": "overlay",
 			"color_ids": [6, 7, 8, 9, 10]
@@ -168,7 +168,7 @@
 			"color_ids": [1, 2, 3, 4, 5]
 		},
 		{
-			"type": "icon_state",
+			"type": "hyperscale",
 			"icon_state": "d_leftarmsecondary",
 			"blend_mode": "overlay",
 			"color_ids": [6, 7, 8, 9, 10]
