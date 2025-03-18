@@ -205,6 +205,10 @@
 	open(TRUE)
 	return AI_OBSTACLE_RESOLVED
 
+///Whether an NPC mob should stay buckled to this atom or not
+/atom/movable/proc/ai_should_stay_buckled(mob/living/carbon/npc)
+	return FALSE
+
 //test stuff
 /mob/living/proc/add_test_ai()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)

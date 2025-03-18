@@ -376,6 +376,9 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(LAZYLEN(buckled_mobs) || buckled_bodybag)
 		. += image("icon_state"="stretcher_box","layer"=LYING_MOB_LAYER + 0.1)
 
+/obj/structure/bed/medevac_stretcher/ai_should_stay_buckled(mob/living/carbon/npc)
+	return TRUE
+
 /obj/structure/bed/medevac_stretcher/attack_hand_alternate(mob/living/user)
 	activate_medevac_teleport(user)
 
