@@ -355,7 +355,8 @@
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	icon_state = "grenadelauncher"
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	equipment_slot = MECHA_BACK
 	ammotype = /obj/item/explosive/grenade
 	max_integrity = 350
 	projectiles = 10

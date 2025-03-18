@@ -60,6 +60,10 @@
 		to_chat(chassis.occupants, span_warning("Error -- Melee Core active."))
 		return FALSE
 
+/obj/item/mecha_parts/mecha_equipment/weapon/detach(atom/moveto)
+	reset_fire()
+	return ..()
+
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
 		return FALSE
