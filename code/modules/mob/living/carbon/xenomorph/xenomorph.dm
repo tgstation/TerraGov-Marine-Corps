@@ -536,6 +536,10 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 			wear_mask = item_to_equip
 			item_to_equip.equipped(src, slot)
 			wear_mask_update(item_to_equip, TRUE)
+		if(SLOT_HEAD)
+			head = item_to_equip
+			item_to_equip.equipped(src, slot)
+			update_inv_head()
 
 /mob/living/carbon/xenomorph/grabbed_self_attack(mob/living/user)
 	. = ..()

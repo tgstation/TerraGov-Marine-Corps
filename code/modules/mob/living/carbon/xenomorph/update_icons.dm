@@ -245,4 +245,11 @@
 		set_light_range_power_color(intensity, 0.5, LIGHT_COLOR_FIRE)
 		set_light_on(TRUE)
 
+/mob/living/carbon/xenomorph/update_inv_head()
+	remove_overlay(HEAD_LAYER)
+	if(!head)
+		return
 
+	overlays_standing[HEAD_LAYER] = head.make_worn_icon(null, slot_name = slot_head_str, default_icon = 'icons/mob/clothing/headwear/head_0.dmi', default_layer = HEAD_LAYER)
+
+	apply_overlay(HEAD_LAYER)

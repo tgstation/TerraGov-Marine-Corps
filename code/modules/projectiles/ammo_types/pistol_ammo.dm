@@ -118,3 +118,11 @@
 	if(!target_mob.stat && !ismonkey(target_mob))
 		proj.visible_message(span_danger("The [src] chimpers furiously!"))
 		new /mob/living/carbon/human/species/monkey(proj.loc)
+
+/datum/ammo/bullet/pistol/xlock
+	name = "xlock bullet"
+	damage = 10
+	penetration = 0
+	accurate_range = 3
+	sundering = 0
+	shrapnel_chance = 0

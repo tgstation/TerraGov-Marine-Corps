@@ -867,3 +867,26 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	scatter = 0
 	scatter_unwielded = 8
 	recoil_unwielded = 2
+
+/obj/item/weapon/gun/pistol/xlock
+	name = "\improper Xlock-17"
+	desc = "Mass produced sidearm from Queen Armories."
+	icon_state = "highpower"
+	worn_icon_state = null
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/pistols_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/pistols_right_64.dmi',
+	)
+	caliber = CALIBER_9X19
+	max_shells = INFINITY
+	fire_sound = 'sound/weapons/guns/fire/colt.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/xlock
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/xlock)
+	reciever_flags = AMMO_RECIEVER_MAGAZINES
+	gun_features_flags = GUN_UNUSUAL_DESIGN|GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	fire_delay = 0.3 SECONDS
+	recoil_unwielded = 1
+	actions_types = null
+
+/obj/item/weapon/gun/pistol/xlock/wield(mob/user)
+	to_chat(user, span_warning("Cool Drones only need one hand."))

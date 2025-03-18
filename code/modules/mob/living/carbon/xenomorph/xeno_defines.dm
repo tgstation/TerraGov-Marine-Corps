@@ -285,6 +285,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	gib_chance = 5
 	light_system = MOVABLE_LIGHT
 
+	///Reference to item that is being worn as a hat
+	var/obj/item/head
+
 	///Hive name define
 	var/hivenumber = XENO_HIVE_NORMAL
 	///Hive datum we belong to
