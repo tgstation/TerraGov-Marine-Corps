@@ -404,7 +404,7 @@
 			return
 		if(TRUE)
 			return
-	if(!line_of_sight(owner, T))
+	if(!line_of_sight(owner, T, ignore_target_opacity = istype(T, /turf/closed/wall/resin)))
 		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
 		return fail_activate()
 	if(!do_after(X, get_wait(), NONE, T, BUSY_ICON_BUILD))
@@ -440,9 +440,10 @@
 	var/atom/new_resin
 	if(ispath(X.selected_resin, /turf)) // We should change turfs, not spawn them in directly
 		var/list/baseturfs = islist(T.baseturfs) ? T.baseturfs : list(T.baseturfs)
-		baseturfs |= T.type
-		T.ChangeTurf(X.selected_resin, baseturfs)
+		if(!istype(T, /turf/closed/wall/resin))
+			baseturfs |= T.type
 		new_resin = T
+		T.ChangeTurf(X.selected_resin, baseturfs)
 	else
 		new_resin = new X.selected_resin(T)
 	switch(X.selected_resin)

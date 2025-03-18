@@ -31,14 +31,18 @@
 
 /turf/closed/wall/resin/get_mechanics_info()
 	. += ..()
-	. += list("Resin slime that Xenomorphs build to protect their hives")
-	. += list("Has the following armor values:")
-	var/list/armor_in_list = soft_armor.getList()
-	for(var/armor_type in armor_in_list)
-		. += "Soft [armor_type] armor: [armor_in_list[armor_type]]"
-		armor_in_list = hard_armor.getList()
-	for(var/armor_type in armor_in_list)
-		. += "Hard [armor_type] armor: [armor_in_list[armor_type]]"
+	var/list/list = list()
+	list += list("<br>Resin slime that Xenomorphs build to protect their hives")
+	list += list("Has the following armor values:")
+	var/list/soft_armor_in_list = soft_armor.getList()
+	for(var/armor_type in soft_armor_in_list)
+		list += "Soft [armor_type] armor: [soft_armor_in_list[armor_type]]"
+
+	var/list/hard_armor_in_list = hard_armor.getList()
+	for(var/armor_type in hard_armor_in_list)
+		list += "Hard [armor_type] armor: [hard_armor_in_list[armor_type]]"
+
+	. += jointext(list, "<br>")
 
 /turf/closed/wall/resin/fire_act(burn_level)
 	take_damage(burn_level * 1.25, BURN, FIRE)
@@ -201,8 +205,10 @@
 
 /turf/closed/wall/resin/regenerating/get_mechanics_info()
 	. = ..()
-	. += list("Starts out at [max_integrity] health, gaining [max_upgrade_per_tick] every 2 seconds, up to [max_upgradable_health]")
-	. += list("If damaged, after [DisplayTimeText(cooldown_on_taking_dmg)], starts regenerating [heal_per_tick] damage every 2 seconds.")
+	var/list/list = list()
+	list += list("<br>Starts out at [max_integrity] health, gaining [max_upgrade_per_tick] every 2 seconds, up to [max_upgradable_health]")
+	list += list("If damaged, after [DisplayTimeText(cooldown_on_taking_dmg)], starts regenerating [heal_per_tick] damage every 2 seconds.")
+	. += jointext(list, "<br>")
 
 /**
  * Try to start processing on the wall.
