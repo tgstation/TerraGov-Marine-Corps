@@ -756,9 +756,10 @@
 	return ..()
 
 /obj/machinery/door/poddoor/lift/preopen
-	icon_state = "open"
+	icon_state = "pdoor0"
 	density = FALSE
 	opacity = FALSE
+	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 
 // A subtype intended for "public use"
 /obj/structure/transport/linear/public
