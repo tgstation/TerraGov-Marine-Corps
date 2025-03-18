@@ -992,7 +992,7 @@
 /obj/machinery/lift_indicator/directional/north{
 	linked_elevator_id = "testvator"
 	},
-/obj/machinery/button/elevator/directional/north{
+/obj/machinery/button/elevator/directional/south{
 	id = "testvator"
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -2912,7 +2912,7 @@
 /obj/machinery/lift_indicator/directional/north{
 	linked_elevator_id = "testvator"
 	},
-/obj/machinery/button/elevator/directional/north{
+/obj/machinery/button/elevator/directional/south{
 	id = "testvator"
 	},
 /turf/open/floor/mainship,
@@ -3185,7 +3185,7 @@
 /obj/machinery/lift_indicator/directional/north{
 	linked_elevator_id = "testvator"
 	},
-/obj/machinery/button/elevator/directional/north{
+/obj/machinery/button/elevator/directional/south{
 	id = "testvator"
 	},
 /turf/open/floor/mainship,
