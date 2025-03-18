@@ -6,7 +6,7 @@
 	///Chat lines for avoiding a live nade
 	var/list/nade_avoid_chat = list("Watch out!", "Watch out, grenade!", "Grenade!", "Run!", "Get out of the way!", "Grenade, move!")
 	///Chat lines for avoiding fire
-	var/list/fire_avoid_chat = list("Watch out!", "Watch out, fire!", "fire!", "Keep away from the fire!")
+	var/list/fire_avoid_chat = list("Watch out!", "Watch out, fire!", "fire!", "Keep away from the fire!", "Someone put out that fire!", "Clear that fire!", "Keep clear of the flames!", "It's only a bit of fire!")
 	///Chat lines for avoiding acid
 	var/list/acid_avoid_chat = list("Watch out!", "Watch out, acid!", "acid!", "Keep away from the acid!", "Don't step in that acid.", "They're spraying acid!")
 	///Chat lines for avoiding shuttles
