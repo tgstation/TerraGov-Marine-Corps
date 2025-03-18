@@ -1,5 +1,0 @@
-author: "tyeagg"
-delete-after: True
-changes:
-  - rscadd: "different crosshairs for some guns"
-  - imageadd: "new crosshair sprites for guns"
