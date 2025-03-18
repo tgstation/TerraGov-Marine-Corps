@@ -508,13 +508,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
-"dC" = (
-/obj/structure/fluff/tram_rail/electric,
-/obj/structure/thermoplastic,
-/obj/machinery/computer/tram_controls/split/directional/north,
-/obj/structure/thermoplastic/light,
-/turf/open/floor/plating,
-/area/mainship/multiz_debug_area/floorone)
 "dD" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -1958,7 +1951,8 @@
 /area/mainship/multiz_debug_area/floorone)
 "qa" = (
 /obj/structure/transport/linear/tram/corner/southwest,
-/turf/closed/wall/mainship/white,
+/obj/effect/spawner/random/misc/structure/girder,
+/turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floortwo)
 "qb" = (
 /obj/effect/turf_decal/stripes/line{
@@ -2279,7 +2273,8 @@
 /area/mainship/multiz_debug_area/floorthree)
 "tz" = (
 /obj/structure/transport/linear/tram/corner/northeast,
-/turf/closed/wall/mainship/white,
+/obj/effect/spawner/random/misc/structure/girder,
+/turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floortwo)
 "tG" = (
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -2321,7 +2316,8 @@
 /area/mainship/multiz_debug_area/floortwo)
 "us" = (
 /obj/structure/transport/linear/tram/corner/northwest,
-/turf/closed/wall/mainship/white,
+/obj/effect/spawner/random/misc/structure/girder,
+/turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floortwo)
 "uv" = (
 /obj/structure/cable,
@@ -3575,10 +3571,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
-"GE" = (
-/obj/structure/thermoplastic/light,
-/turf/open/floor/plating,
-/area/mainship/multiz_debug_area/floorone)
 "GF" = (
 /obj/structure/fluff/tram_rail/electric,
 /obj/effect/ai_node,
@@ -3597,14 +3589,6 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/mainship/multiz_debug_area/floorone)
-"GP" = (
-/obj/structure/window/framed/mainship/white,
-/turf/open/floor/plating,
-/area/mainship/multiz_debug_area/floorone)
-"GR" = (
-/obj/structure/window_frame/mainship/white,
-/turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
 "GT" = (
 /obj/structure/cable/multilayer/multiz,
@@ -3636,7 +3620,6 @@
 /area/mainship/multiz_debug_area/floortwo)
 "Hh" = (
 /obj/machinery/transport/destination_sign/split/north,
-/obj/structure/window/framed/mainship/white,
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
 "Hj" = (
@@ -3913,20 +3896,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
-"Kb" = (
-/obj/structure/fluff/tram_rail/electric,
-/obj/structure/window/framed/mainship/white,
-/turf/open/floor/plating,
-/area/mainship/multiz_debug_area/floorone)
 "Kc" = (
 /obj/structure/lattice,
 /obj/structure/grille,
 /turf/open/space/basic,
-/area/mainship/multiz_debug_area/floorone)
-"Kd" = (
-/obj/structure/fluff/tram_rail/electric,
-/obj/structure/thermoplastic,
-/turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
 "Kh" = (
 /obj/machinery/camera/autoname/mainship,
@@ -3992,12 +3965,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
-"KM" = (
-/obj/structure/fluff/tram_rail/electric,
-/obj/structure/thermoplastic,
-/obj/structure/thermoplastic/light,
-/turf/open/floor/plating,
-/area/mainship/multiz_debug_area/floorone)
 "KN" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -4010,7 +3977,6 @@
 /area/mainship/multiz_debug_area/floorone)
 "KO" = (
 /obj/structure/thermoplastic,
-/obj/structure/thermoplastic/light,
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
@@ -4026,19 +3992,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
-"Lc" = (
-/obj/structure/fluff/tram_rail/electric,
-/obj/structure/thermoplastic/light,
-/turf/open/floor/plating,
-/area/mainship/multiz_debug_area/floorone)
 "Lk" = (
 /obj/effect/ai_node,
 /turf/open/indestructible/tram/plate,
 /area/mainship/multiz_debug_area/floortwo)
 "Ll" = (
 /obj/structure/fluff/tram_rail/electric,
-/obj/structure/thermoplastic,
-/obj/structure/thermoplastic/light,
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
@@ -4046,11 +4005,6 @@
 /obj/machinery/landinglight/tadpole,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
-"Lt" = (
-/obj/structure/fluff/tram_rail/electric,
-/obj/structure/window_frame/mainship/white,
-/turf/open/floor/plating,
-/area/mainship/multiz_debug_area/floorone)
 "Lu" = (
 /obj/structure/prop/mainship/railing{
 	dir = 4
@@ -4415,11 +4369,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
-"Pd" = (
-/obj/structure/thermoplastic/light,
-/obj/structure/window_frame/mainship/white,
-/turf/open/indestructible/tram/plate,
-/area/mainship/multiz_debug_area/floorone)
 "Pj" = (
 /obj/machinery/light,
 /obj/machinery/camera/autoname/mainship{
@@ -4428,8 +4377,6 @@
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
 "Pm" = (
-/obj/structure/thermoplastic,
-/obj/structure/thermoplastic/light,
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/indestructible/tram/plate,
 /area/mainship/multiz_debug_area/floorone)
@@ -4511,21 +4458,12 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
-"Qd" = (
-/obj/structure/thermoplastic/light,
-/turf/open/indestructible/tram/plate,
-/area/mainship/multiz_debug_area/floorone)
 "Qf" = (
 /obj/effect/landmark/start/job/squadcorpsman,
 /obj/effect/landmark/start/latejoin,
 /obj/machinery/light,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floortwo)
-"Qi" = (
-/obj/structure/thermoplastic,
-/obj/structure/thermoplastic/light,
-/turf/open/indestructible/tram/plate,
-/area/mainship/multiz_debug_area/floorone)
 "Qj" = (
 /obj/structure/ob_ammo/warhead/explosive,
 /obj/structure/ob_ammo/warhead/explosive,
@@ -4533,10 +4471,6 @@
 /obj/structure/rack,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorthree)
-"Qn" = (
-/obj/structure/window/framed/mainship/white,
-/turf/open/indestructible/tram/plate,
-/area/mainship/multiz_debug_area/floorone)
 "Qq" = (
 /obj/item/flashlight/lamp,
 /obj/structure/table/mainship,
@@ -4661,13 +4595,6 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
-"Rk" = (
-/obj/structure/fluff/tram_rail/electric{
-	dir = 1
-	},
-/obj/structure/window_frame/mainship/white,
-/turf/open/floor/plating,
-/area/mainship/multiz_debug_area/floorone)
 "Rl" = (
 /obj/machinery/door/airlock/glass{
 	dir = 2
@@ -4680,14 +4607,6 @@
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/mainship/multiz_debug_area/floorone)
-"Rp" = (
-/obj/structure/fluff/tram_rail/electric{
-	dir = 1
-	},
-/obj/structure/thermoplastic,
-/obj/structure/thermoplastic/light,
-/turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
 "Rv" = (
 /obj/machinery/door/poddoor/railing{
@@ -4771,13 +4690,6 @@
 	},
 /turf/open/openspace,
 /area/mainship/multiz_debug_area/floorthree)
-"Ss" = (
-/obj/structure/fluff/tram_rail/electric{
-	dir = 1
-	},
-/obj/structure/thermoplastic/light,
-/turf/open/floor/plating,
-/area/mainship/multiz_debug_area/floorone)
 "Su" = (
 /obj/structure/ship_ammo/cas/rocket/banshee,
 /turf/open/floor/mainship,
@@ -4821,11 +4733,6 @@
 "SK" = (
 /obj/machinery/telecomms/server/presets/delta,
 /turf/open/floor/mainship,
-/area/mainship/multiz_debug_area/floorone)
-"SL" = (
-/obj/structure/thermoplastic,
-/obj/structure/thermoplastic/light,
-/turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
 "SN" = (
 /obj/structure/table/mainship/nometal,
@@ -4876,7 +4783,6 @@
 /obj/structure/fluff/tram_rail/electric{
 	dir = 1
 	},
-/obj/structure/thermoplastic/light,
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
@@ -4888,13 +4794,6 @@
 /obj/structure/thermoplastic,
 /turf/open/openspace,
 /area/mainship/multiz_debug_area/floortwo)
-"Tr" = (
-/obj/structure/fluff/tram_rail/electric{
-	dir = 1
-	},
-/obj/structure/thermoplastic,
-/turf/open/floor/plating,
-/area/mainship/multiz_debug_area/floorone)
 "Tu" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/light{
@@ -4908,13 +4807,6 @@
 /obj/structure/thermoplastic,
 /turf/open/openspace,
 /area/mainship/multiz_debug_area/floortwo)
-"Tx" = (
-/obj/structure/fluff/tram_rail/electric{
-	dir = 1
-	},
-/obj/structure/window/framed/mainship/white,
-/turf/open/floor/plating,
-/area/mainship/multiz_debug_area/floorone)
 "TE" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 5
@@ -4942,7 +4834,8 @@
 "TM" = (
 /obj/structure/transport/linear/tram,
 /obj/machinery/transport/tram_controller,
-/turf/closed/wall/mainship/white,
+/obj/effect/spawner/random/misc/structure/girder,
+/turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floortwo)
 "TO" = (
 /obj/structure/fluff/tram_rail/electric{
@@ -5059,7 +4952,6 @@
 /area/mainship/multiz_debug_area/floorone)
 "UC" = (
 /obj/machinery/transport/destination_sign/split/south,
-/obj/structure/window/framed/mainship/white,
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)
 "UD" = (
@@ -5112,11 +5004,6 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floortwo)
-"Vb" = (
-/obj/structure/thermoplastic/light,
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor/plating,
-/area/mainship/multiz_debug_area/floorone)
 "Vc" = (
 /obj/structure/prop/mainship/railing/corner{
 	dir = 4
@@ -5439,7 +5326,8 @@
 /area/mainship/multiz_debug_area/floorthree)
 "XF" = (
 /obj/structure/transport/linear/tram/corner/southeast,
-/turf/closed/wall/mainship/white,
+/obj/effect/spawner/random/misc/structure/girder,
+/turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floortwo)
 "XG" = (
 /obj/structure/bed/chair/office/dark,
@@ -7201,9 +7089,9 @@ FW
 dD
 ye
 FR
-Kb
-Pd
-Rk
+KH
+Fz
+KG
 FR
 FW
 TY
@@ -7255,10 +7143,10 @@ FW
 vU
 OM
 FR
-Kd
+KH
 Pm
-Rp
-GP
+KG
+FW
 FW
 TY
 Ym
@@ -7308,10 +7196,10 @@ Ra
 FW
 vU
 OM
-GE
+FW
 Ky
 Po
-Ss
+KG
 FW
 ye
 ye
@@ -7362,11 +7250,11 @@ Ra
 FW
 Ea
 aY
-GE
+FW
 KH
-Qd
-Ss
-GE
+Fz
+KG
+FW
 OM
 OM
 aY
@@ -7416,9 +7304,9 @@ Ra
 FW
 vU
 OM
-GP
-KM
-Qd
+FW
+KH
+FW
 SJ
 UC
 dI
@@ -7470,11 +7358,11 @@ NK
 FW
 vU
 OM
-GR
+FW
 KO
-Qd
-SL
-GR
+FW
+FW
+FW
 OM
 OM
 Vg
@@ -7525,10 +7413,10 @@ TY
 dF
 Re
 Hh
-dC
+KH
 Hw
-Rp
-GR
+KG
+FW
 OM
 dI
 cr
@@ -7581,8 +7469,8 @@ FW
 Hw
 KW
 FW
-Ss
-Vb
+KG
+Po
 OM
 OM
 OM
@@ -7632,11 +7520,11 @@ xK
 YV
 TY
 FW
-GE
-Lc
+FW
+KH
 FW
 Tl
-GE
+FW
 Re
 Xe
 Re
@@ -7686,11 +7574,11 @@ nS
 YV
 TY
 FW
-GP
+FW
 Ll
-Qi
-Tr
-GP
+Fz
+KG
+FW
 FW
 TY
 Ym
@@ -7741,9 +7629,9 @@ YV
 TY
 tI
 FR
-Lt
-Qn
-Tx
+KH
+Fz
+KG
 FR
 tI
 TY
