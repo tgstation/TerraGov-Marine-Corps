@@ -175,7 +175,8 @@
 /datum/squad/proc/get_total_members()
 	return length(marines_list)
 
-/datum/squad/proc/give_npc_goal(mob/living/carbon/human/source, list/goal_list)
+///Offers the squad lead as an NPC escort option
+/datum/squad/proc/get_escort_target(mob/living/carbon/human/source, list/goal_list)
 	SIGNAL_HANDLER
 	if(squad_leader && squad_leader.stat != DEAD)
 		goal_list[squad_leader] = AI_ESCORT_RATING_SQUAD_LEAD
@@ -194,7 +195,7 @@
 	if(!(new_squaddie.job.title in current_positions))
 		return FALSE
 
-	RegisterSignal(new_squaddie, COMSIG_NPC_FIND_NEW_ESCORT, PROC_REF(give_npc_goal))
+	RegisterSignal(new_squaddie, COMSIG_NPC_FIND_NEW_ESCORT, PROC_REF(get_escort_target))
 
 	current_positions[new_squaddie.job.title]++
 

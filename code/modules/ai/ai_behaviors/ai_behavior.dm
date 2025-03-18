@@ -28,6 +28,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/obj/effect/ai_node/current_node
 	///The node goal of this ai
 	var/obj/effect/ai_node/goal_node
+	///Whether the goal node is specifically for an escort target
+	var/escort_goal = FALSE
 	///A list of nodes the ai should go to in order to go to goal_node
 	var/list/obj/effect/ai_node/goal_nodes
 	///A list of turfs the ai should go in order to get to atom_to_walk_to
@@ -86,10 +88,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Set behaviour to base behavior
 /datum/ai_behavior/proc/late_initialize()
-	var/new_escort = get_atom_to_escort()
-	if(new_escort)
-		set_escorted_atom(null, new_escort)
-
 	switch(base_action)
 		if(MOVING_TO_NODE)
 			look_for_next_node()
@@ -177,7 +175,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(escorted_atom)
 		var/target_node = find_closest_node(escorted_atom)
 		if(target_node)
-			goal_node = target_node
+			set_goal_node(new_goal_node = target_node)
 	if(goal_node && goal_node != current_node)
 		if(!length(goal_nodes))
 			if(!registered_for_node_pathfinding)
@@ -194,7 +192,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	current_node.set_weight(identifier, NODE_LAST_VISITED, world.time)
 	change_action(MOVING_TO_NODE, current_node)
 
-/datum/ai_behavior/proc/find_closest_node(atom/source, avoid_node)
+///Finds the closest node to an atom
+/datum/ai_behavior/proc/find_closest_node(atom/target, avoid_node)
 	var/closest_distance = MAX_NODE_RANGE //squared because we are using the cheap get dist
 	var/current_closest
 	for(var/obj/effect/ai_node/ai_node AS in GLOB.all_nodes)
@@ -202,10 +201,10 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 			continue
 		if(ai_node == avoid_node)
 			continue
-		if(ai_node.z != source.z || get_dist(ai_node, source) >= closest_distance)
+		if(ai_node.z != target.z || get_dist(ai_node, target) >= closest_distance)
 			continue
 		current_closest = ai_node
-		closest_distance = get_dist(ai_node, source)
+		closest_distance = get_dist(ai_node, target)
 	return current_closest
 
 ///Set the current node to next_node
@@ -261,7 +260,11 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 //Generic process(), this is used for mainly looking at the world around the AI and determining if a new action must be considered and executed
 /datum/ai_behavior/process()
-	look_for_new_state()
+	if(!escorted_atom || (get_dist(mob_parent, escorted_atom) > (AI_ESCORTING_BREAK_DISTANCE)) || mob_parent.z != escorted_atom.z)
+		set_escort()
+	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
+	look_for_new_state(next_target)
+	state_process(next_target)
 	return
 
 ///Check if we need to adopt a new state
@@ -269,8 +272,12 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	SIGNAL_HANDLER
 	return
 
+///Any state specific process behavior
+/datum/ai_behavior/proc/state_process()
+	return
+
 ///Set the goal node
-/datum/ai_behavior/proc/set_goal_node(datum/source, obj/effect/ai_node/new_goal_node)
+/datum/ai_behavior/proc/set_goal_node(datum/source, obj/effect/ai_node/new_goal_node, is_escort_goal = FALSE)
 	SIGNAL_HANDLER
 	if(!new_goal_node)
 		return
@@ -282,15 +289,17 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	goal_node = new_goal_node
 	goal_nodes = null
 	RegisterSignal(goal_node, COMSIG_QDELETING, PROC_REF(clean_goal_node))
+	escort_goal = is_escort_goal
 	return TRUE
 
 ///Clean the goal node
 /datum/ai_behavior/proc/clean_goal_node()
 	SIGNAL_HANDLER
-	if(atom_to_walk_to == goal_node)
-		unset_target(atom_to_walk_to)
 	goal_node = null
 	goal_nodes = null
+	escort_goal = FALSE
+	if(atom_to_walk_to == goal_node)
+		unset_target(atom_to_walk_to)
 	if(current_action == MOVING_TO_NODE)
 		look_for_next_node(should_reset_goal_nodes = TRUE)
 
@@ -389,17 +398,23 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
 	mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown + mob_parent.next_move_slowdown * ( ISDIAGONALDIR(move_dir) ? DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : 1 ) )) //todo: probs dont even need this
 
+///Finds and sets the most suitable escort candidate, if possible
+/datum/ai_behavior/proc/set_escort()
+	var/new_escort = get_atom_to_escort()
+	if(new_escort)
+		set_escorted_atom(null, new_escort)
+
 ///Finds the most suitable thing to escort
 /datum/ai_behavior/proc/get_atom_to_escort()
 	var/list/goal_list = list()
 	if(GLOB.goal_nodes[mob_parent.faction])
 		goal_list[GLOB.goal_nodes[mob_parent.faction]] = AI_ESCORT_RATING_FACTION_GOAL
-	if(ismob(escorted_atom) && (get_dist(mob_parent, escorted_atom) <= (AI_ESCORTING_MAX_DISTANCE * 2)))
+	if(ismob(escorted_atom) && (get_dist(mob_parent, escorted_atom) <= (AI_ESCORTING_BREAK_DISTANCE)))
 		goal_list[escorted_atom] = AI_ESCORT_RATING_BUDDY
 	else
 		var/atom/mob_to_follow = get_nearest_target(mob_parent, AI_ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_MOB, mob_parent.faction, need_los = TRUE)
 		if(mob_to_follow)
-			goal_list[escorted_atom] = AI_ESCORT_RATING_CLOSE_FRIENDLY
+			goal_list[mob_to_follow] = AI_ESCORT_RATING_CLOSE_FRIENDLY
 
 	SEND_SIGNAL(mob_parent, COMSIG_NPC_FIND_NEW_ESCORT, goal_list)
 	goal_list = sortTim(goal_list, /proc/cmp_numeric_dsc, TRUE)
@@ -436,18 +451,14 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	set_escorted_atom(source, atom_to_escort)
 
 ///clean the escorted atom var to avoid harddels
-/datum/ai_behavior/proc/clean_escorted_atom(find_new_escort = FALSE)
+/datum/ai_behavior/proc/clean_escorted_atom()
 	if(!escorted_atom)
 		return
 	UnregisterSignal(escorted_atom, list(COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED))
 	escorted_atom = null
 	base_action = initial(base_action)
-	if(!find_new_escort)
-		return
-	var/new_escort = get_atom_to_escort()
-	if(!new_escort)
-		return
-	set_escorted_atom(null, new_escort)
+	if(escort_goal)
+		clean_goal_node()
 
 ///Set the target distance to be normal (initial) or very low (almost passive)
 /datum/ai_behavior/proc/set_agressivity(datum/source, should_be_agressive = TRUE)
@@ -496,7 +507,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 /datum/ai_behavior/proc/do_unset_target(atom/old_target, need_new_state = TRUE)
 	UnregisterSignal(old_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_MOVED, COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_Z_CHANGED))
 	if(escorted_atom == old_target)
-		clean_escorted_atom(TRUE)
+		set_escort() //we always want an escort target if possible
 	if(combat_target == old_target)
 		combat_target = null
 	if(interact_target == old_target)

@@ -32,6 +32,7 @@
 /obj/item/weapon/gun/ai_should_use(mob/living/target, mob/living/user)
 	if(gun_features_flags & GUN_DEPLOYED_FIRE_ONLY)
 		return FALSE //some day
+	return TRUE
 
 /obj/item/reagent_containers/food/ai_should_use(mob/living/target, mob/living/user)
 	if(!ishuman(target))

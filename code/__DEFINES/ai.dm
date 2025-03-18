@@ -58,6 +58,7 @@
 
 //AI will escort an ATOM up to this distance away from them
 #define AI_ESCORTING_MAX_DISTANCE 10
+#define AI_ESCORTING_BREAK_DISTANCE 20
 
 #define AI_ESCORT_RATING_FACTION_GOAL 10
 #define AI_ESCORT_RATING_SQUAD_LEAD 13
