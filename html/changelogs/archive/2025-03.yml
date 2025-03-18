@@ -51,3 +51,8 @@
   Meghan-Rossi:
   - bugfix: Fixed some errors with the manifest.
   - bugfix: Fixed a bug causing sentries to not deploy.
+2025-03-18:
+  Meghan-Rossi:
+  - rscadd: ' Xenos with their spit abilities selected no longer spit on shift-left
+      click.  Instead alt-left click now works.  Also right click and middle click
+      continue to work.'
