@@ -826,7 +826,7 @@
 		return fail_activate()
 
 	new current_acid_type(get_turf(A), A, A.dissolvability(current_acid_type::acid_strength))
-	succeed_activate(ability_cost / A.dissolvability(current_acid_type::acid_strength))
+	succeed_activate(ability_cost - (ability_cost * A.dissolvability(current_acid_type::acid_strength) - 1))
 
 	if(!isturf(A))
 		log_combat(X, A, "spat on", addition="with corrosive acid")
