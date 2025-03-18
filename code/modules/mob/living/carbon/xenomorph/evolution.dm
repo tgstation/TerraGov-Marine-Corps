@@ -65,11 +65,13 @@
 				return GLOB.xeno_types_tier_three
 	if(HAS_TRAIT(src, TRAIT_REGRESSING))
 		switch(tier)
-			if(XENO_TIER_ZERO, XENO_TIER_FOUR)
-				if(isxenoshrike(src))
-					return GLOB.xeno_types_tier_one
-				else
+			if(XENO_TIER_ZERO)
+				return
+			if(XENO_TIER_FOUR)
+				if(xeno_caste.caste_flags & CASTE_REGRESSION_DISSALLOWED)
 					return
+				else
+					return GLOB.xeno_types_tier_one
 			if(XENO_TIER_ONE)
 				return list(/datum/xeno_caste/larva)
 			if(XENO_TIER_TWO)

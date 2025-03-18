@@ -601,6 +601,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_REQUIRES_FREE_TILE (1<<19) // Whether we require a free tile to evolve.
 #define CASTE_LEADER_TYPE (1<<20) // Whether this is a leader type caste (e.g. Queen/Shrike/King/Dragon). Restricts who can play these castes based on: playtime & if banned from Queen.
 #define CASTE_EXCLUDE_STRAINS (1<<21) // Excludes this caste/basetype from strain selection.
+#define CASTE_REGRESSION_DISSALLOWED (1<<22) // Excludes this caste from regression.
 
 // Xenomorph can_flags:
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0) // Are we allowed to carry facehuggers in our hands?
