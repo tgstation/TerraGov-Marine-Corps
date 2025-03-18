@@ -769,7 +769,8 @@ below 100 is not dizzy
 	return D == src || D.Adjacent(src)
 
 /mob/living/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents = TRUE)
-	set_jump_component()
+	if(!same_z_layer && new_turf?.z) // we moved to null z
+		set_jump_component()
 	. = ..()
 	update_z(new_turf?.z)
 

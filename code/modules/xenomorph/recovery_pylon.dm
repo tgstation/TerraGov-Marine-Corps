@@ -74,6 +74,8 @@
 /// Creates what this structure is suppose to do.
 /obj/structure/xeno/recovery_pylon/proc/create_effects()
 	var/list/turf/affected_turfs = RANGE_TURFS(1, src) // There should be no issue as long these buildings don't overlap.
+	if(!length(affected_turfs)) // nullspace
+		return
 	for(var/turf/affected_turf AS in affected_turfs)
 		RegisterSignal(affected_turf, COMSIG_ATOM_EXITED, PROC_REF(remove_buff))
 		RegisterSignal(affected_turf, COMSIG_ATOM_ENTERED, PROC_REF(apply_buff))
