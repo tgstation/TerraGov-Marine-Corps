@@ -61,6 +61,14 @@
 		TOOL_MULTITOOL = list(SCREENTIP_CONTEXT_LMB = "Reset Panel"),
 	)
 
+	maploaded = mapload
+	// Maploaded panels link in post_machine_initialize...
+	if(mapload)
+		return
+
+	// And non-mapload panels link in Initialize
+	link_with_lift(log_error = FALSE)
+
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/elevator_control_panel/LateInitialize()
