@@ -24,10 +24,15 @@
 	var/list/new_target_chat = list("Get some!!", "Engaging!", "You're mine!", "Bring it on!", "Hostiles!", "Take them out!", "Kill 'em!", "Lets rock!", "Go go go!!", "Waste 'em!", "Intercepting.", "Weapons free!", "Fuck you!!", "Moving in!")
 	///Chat lines for retreating on low health
 	var/list/retreating_chat = list("Falling back!", "Cover me, I'm hit!", "I'm hit!", "Cover me!", "Disengaging!", "Help me!", "Need a little help here!", "Tactical withdrawal.", "Repositioning.", "Taking fire!", "Taking heavy fire!", "Run for it!")
+	///Cooldown on chat lines, to reduce spam
 	COOLDOWN_DECLARE(ai_chat_cooldown)
+	///Cooldown on running, so we can recover stam and make the most of it
 	COOLDOWN_DECLARE(ai_run_cooldown)
+	///Cooldown on taking any damage (this could include DOT etc)
 	COOLDOWN_DECLARE(ai_damage_cooldown)
+	///Cooldown on being attacked by something with a source, so we don't try heal right next to enemies
 	COOLDOWN_DECLARE(ai_heal_after_dam_cooldown)
+	///Cooldown on retreating, so we don't get stuck running forever if pursued
 	COOLDOWN_DECLARE(ai_retreat_cooldown)
 
 /datum/ai_behavior/human/New(loc, mob/parent_to_assign, atom/escorted_atom)
@@ -82,7 +87,6 @@
 	return ..()
 
 /datum/ai_behavior/human/process()
-	. = ..()
 	if(mob_parent.notransform)
 		return
 	if(mob_parent.do_actions)
@@ -105,6 +109,8 @@
 
 	if(mob_parent.buckled && !istype(mob_parent.buckled, /obj/structure/droppod)) //unbuckling from your pod midflight is not ideal
 		mob_parent.buckled.unbuckle_mob(mob_parent)
+
+	. = ..()
 
 	for(var/datum/action/action in ability_list)
 		if(!action.ai_should_use(atom_to_walk_to)) //todo: some of these probably should be aimmed at combat_target somehow...
@@ -153,7 +159,7 @@
 /datum/ai_behavior/human/look_for_new_state(atom/next_target)
 	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
 		return
-	if((!combat_target || !line_of_sight(mob_parent, combat_target, target_distance)))
+	if(!combat_target || ((get_dist(mob_parent, combat_target) > AI_COMBAT_TARGET_BLIND_DISTANCE) && !line_of_sight(mob_parent, combat_target, target_distance)))
 		if(combat_target)
 			do_unset_target(combat_target, need_new_state = FALSE)
 		if(next_target) //standing orders, kill hostiles on sight.
@@ -182,7 +188,7 @@
 	if((current_action == MOVING_TO_ATOM) && (atom_to_walk_to == combat_target))
 		return //we generally want to keep fighting
 	var/mob/living/living_parent = mob_parent
-	if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
+	if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && (living_parent.health <= minimum_health * 2 * living_parent.maxHealth) && check_hazards())
 		INVOKE_ASYNC(src, PROC_REF(try_heal))
 
 /datum/ai_behavior/human/deal_with_obstacle(datum/source, direction)
@@ -353,12 +359,11 @@
 	SIGNAL_HANDLER
 	if(damage < 5) //Don't want chip damage causing a retreat
 		return
-	if(!COOLDOWN_CHECK(src, ai_damage_cooldown))
+	if(!COOLDOWN_CHECK(src, ai_damage_cooldown)) //sanity check since damage can occur very frequently, and makes the NPC less likely to instantly run when they get low
 		return
 	COOLDOWN_START(src, ai_damage_cooldown, 1 SECONDS)
-	if(human_ai_state_flags & HUMAN_AI_FIRING)
-		return
-	if(attacker)
+
+	if(attacker) //if there is an attacker, our main priority is to react to it
 		COOLDOWN_START(src, ai_heal_after_dam_cooldown, 4 SECONDS)
 		if((human_ai_state_flags & HUMAN_AI_ANY_HEALING)) //dont just stand there
 			human_ai_state_flags &= ~(HUMAN_AI_ANY_HEALING)
@@ -366,6 +371,8 @@
 		if(((current_action == MOVING_TO_SAFETY) || !combat_target) && (attacker.faction != mob_parent.faction))
 			set_combat_target(attacker)
 			return
+
+	//if we are fighting, but at low health and with no other urgent priorities, we run for it.
 
 	if(!(human_ai_behavior_flags & HUMAN_AI_SELF_HEAL))
 		return
@@ -380,10 +387,10 @@
 	if(!check_hazards())
 		return
 
-	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
+	var/atom/next_target = combat_target ? combat_target : get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
 	if(!next_target)
-		INVOKE_ASYNC(src, PROC_REF(try_heal)) //its safe to heal
 		return
+
 	if(prob(50))
 		try_speak(pick(retreating_chat))
 	set_run(TRUE)

@@ -260,7 +260,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 //Generic process(), this is used for mainly looking at the world around the AI and determining if a new action must be considered and executed
 /datum/ai_behavior/process()
-	if(!escorted_atom || (get_dist(mob_parent, escorted_atom) > (AI_ESCORTING_BREAK_DISTANCE)) || mob_parent.z != escorted_atom.z)
+	if(!escorted_atom || (get_dist(mob_parent, escorted_atom) > AI_ESCORTING_BREAK_DISTANCE) || mob_parent.z != escorted_atom.z)
 		set_escort()
 	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
 	look_for_new_state(next_target)
