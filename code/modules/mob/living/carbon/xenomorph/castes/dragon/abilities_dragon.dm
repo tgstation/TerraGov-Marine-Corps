@@ -606,6 +606,13 @@
 	/// Damage taken so far while actively grabbing.
 	var/damage_taken_so_far = 0
 
+/datum/action/ability/activable/xeno/grab/remove_action(mob/living/ability_owner)
+	if(grabbing_item)
+		end_grabbing()
+	else if(grabbed_human)
+		failed_to_grab()
+	return ..()
+
 /datum/action/ability/activable/xeno/grab/can_use_ability(atom/target, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
 		if(!silent)
