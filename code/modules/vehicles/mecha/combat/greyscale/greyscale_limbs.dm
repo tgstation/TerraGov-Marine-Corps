@@ -123,8 +123,12 @@
 		prefix = "b_"
 
 	. += iconstate2appearance(overlay_icon, prefix+icon_state)
-	if(has_damage_overlays && initial(part_health))
-		var/percent = (part_health / initial(part_health))
+	if(has_damage_overlays)
+		var/percent
+		if(initial(part_health))
+			percent = (part_health / initial(part_health))
+		else
+			percent = owner.obj_integrity / owner.max_integrity
 		if(percent > 0.75)
 			return
 		var/dmg_percent = CEILING(percent, 0.25)*100
