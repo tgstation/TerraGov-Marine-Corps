@@ -410,7 +410,7 @@
 /datum/action/ability/activable/xeno/backhand/dragon_breath/handle_regular_ability(atom/target, list/turf/affected_turfs)
 	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_BREATH, TRUE, 0, NONE, TRUE, 8)
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
-	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(10)
+	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(15)
 	ADD_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, DRAGON_ABILITY_TRAIT)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	starting_direction = get_cardinal_dir(xeno_owner, target)
@@ -485,7 +485,7 @@
 /datum/action/ability/activable/xeno/backhand/dragon_breath/proc/end_ability()
 	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_BREATH)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
-	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-10)
+	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-15)
 	REMOVE_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, DRAGON_ABILITY_TRAIT)
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
 	starting_direction = null
