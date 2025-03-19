@@ -219,6 +219,7 @@
 	pixel_y = 12
 	},
 /obj/item/bedsheet/rainbow{
+	
 	},
 /obj/structure/sign/poster,
 /turf/open/floor/mainship/sterile/dark,
@@ -674,6 +675,7 @@
 	pixel_y = 12
 	},
 /obj/item/bedsheet/rainbow{
+	
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/abandonedbase)
@@ -886,6 +888,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "sZ" = (
 /obj/structure/flora/pottedplant{
+	
 	},
 /obj/structure/platform{
 	dir = 4
@@ -1070,6 +1073,7 @@
 /area/oscar_outpost/village/abandonedbase)
 "yJ" = (
 /obj/structure/flora/pottedplant{
+	
 	},
 /obj/structure/platform{
 	dir = 8
@@ -1122,6 +1126,7 @@
 	pixel_y = 12
 	},
 /obj/item/bedsheet/rainbow{
+	
 	},
 /obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/grayscale/black,
@@ -1265,6 +1270,7 @@
 	pixel_y = 12
 	},
 /obj/item/bedsheet/rainbow{
+	
 	},
 /turf/open/floor/plating,
 /area/oscar_outpost/village/abandonedbase)
@@ -1604,6 +1610,7 @@
 	pixel_y = 12
 	},
 /obj/item/bedsheet/rainbow{
+	
 	},
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
@@ -1653,6 +1660,7 @@
 	pixel_y = 12
 	},
 /obj/item/bedsheet/rainbow{
+	
 	},
 /obj/machinery/light{
 	dir = 1
