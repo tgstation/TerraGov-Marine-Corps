@@ -57,7 +57,7 @@
 	desc = "A 100 round box for an autocannon. Loaded with Armor Piercing rounds."
 	caliber = CALIBER_30X17MM
 	icon_state = "tank_autocannon_ap"
-	max_rounds = 100
+	max_rounds = 50
 	default_ammo = /datum/ammo/bullet/tank_autocannon_ap
 	loading_sound = 'sound/vehicles/weapons/tank_autocannon_reload.ogg'
 
