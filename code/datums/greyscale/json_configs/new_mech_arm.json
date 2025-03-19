@@ -31,7 +31,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "b_rightarmnocolor",
+			"icon_state": "b_rightnocolor",
 			"blend_mode": "overlay"
 		}
 	],
@@ -53,21 +53,21 @@
 			"blend_mode": "overlay"
 		}
 	],
-	"": [
+	"b_fireright": [
 		{
 			"type": "hyperscale",
-			"icon_state": "armprimary",
+			"icon_state": "b_firerightarmprimary",
 			"color_ids": [1, 2, 3, 4, 5]
 		},
 		{
 			"type": "hyperscale",
-			"icon_state": "armsecondary",
+			"icon_state": "b_firerightarmsecondary",
 			"blend_mode": "overlay",
 			"color_ids": [6, 7, 8, 9, 10]
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "armnocolor",
+			"icon_state": "b_firerightarmnocolor",
 			"blend_mode": "overlay"
 		}
 	],
@@ -85,7 +85,7 @@
 		},
 		{
 			"type": "icon_state",
-			"icon_state": "d_rightarmnocolor",
+			"icon_state": "d_rightnocolor",
 			"blend_mode": "overlay"
 		}
 	],
