@@ -434,10 +434,11 @@
 
 ///Tries to store an item
 /datum/ai_behavior/human/proc/try_store_item(obj/item/item)
+	if(istype(item, /obj/item/weapon/twohanded/offhand))
+		qdel(item)
+		return FALSE
 	if(!mob_parent.equip_to_appropriate_slot(item))
 		return FALSE
-	mob_parent.update_inv_l_hand(FALSE)
-	mob_parent.update_inv_r_hand(FALSE)
 	return TRUE
 
 ///Tries to store any items in hand
