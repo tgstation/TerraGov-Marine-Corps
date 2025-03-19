@@ -401,8 +401,10 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 ///Finds and sets the most suitable escort candidate, if possible
 /datum/ai_behavior/proc/set_escort()
 	var/new_escort = get_atom_to_escort()
-	if(new_escort)
-		set_escorted_atom(null, new_escort)
+	if(!new_escort)
+		return FALSE
+	set_escorted_atom(null, new_escort)
+	return TRUE
 
 ///Finds the most suitable thing to escort
 /datum/ai_behavior/proc/get_atom_to_escort()
@@ -410,7 +412,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(GLOB.goal_nodes[mob_parent.faction])
 		goal_list[GLOB.goal_nodes[mob_parent.faction]] = AI_ESCORT_RATING_FACTION_GOAL
 	var/mob/living/escorted_mob = escorted_atom
-	if(ismob(escorted_mob) && (escorted_mob.stat != DEAD) && (get_dist(mob_parent, escorted_mob) <= (AI_ESCORTING_BREAK_DISTANCE)))
+	if(ismob(escorted_mob) && !QDELETED(escorted_mob) && (escorted_mob.stat != DEAD) && (escorted_mob.z == mob_parent.z) && (get_dist(mob_parent, escorted_mob) <= (AI_ESCORTING_BREAK_DISTANCE)))
 		goal_list[escorted_atom] = AI_ESCORT_RATING_BUDDY
 	else
 		var/atom/mob_to_follow = get_nearest_target(mob_parent, AI_ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_MOB, mob_parent.faction, need_los = TRUE)
@@ -507,10 +509,8 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 ///Unsets a target from any target vars its in
 /datum/ai_behavior/proc/do_unset_target(atom/old_target, need_new_state = TRUE, need_new_escort = TRUE)
 	UnregisterSignal(old_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_MOVED, COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_Z_CHANGED))
-	if(escorted_atom == old_target) //does this need to go down the list?
-		if(need_new_escort)
-			set_escort()
-		else
+	if(escorted_atom == old_target)
+		if(!need_new_escort || !set_escort())
 			clean_escorted_atom()
 	if(combat_target == old_target)
 		combat_target = null
