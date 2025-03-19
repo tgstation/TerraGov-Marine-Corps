@@ -325,7 +325,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 
 ///Tries to move the ai toward its atom_to_walk_to
 /datum/ai_behavior/proc/ai_do_move()
-	if(!mob_parent?.canmove || mob_parent.do_actions) //todo: some do_actions allow movement, unsure if there is a way to trace this though
+	if(!mob_parent?.canmove) //todo: some do_actions allow movement, unsure if there is a way to trace this though
 		return
 	//This allows minions to be buckled to their atom_to_escort without disrupting the movement of atom_to_escort
 	if(current_action == ESCORTING_ATOM && (get_dist(mob_parent, atom_to_walk_to) <= 0)) //todo: Entirely remove this shitcode snowflake check for one specific interaction that doesn't specifically relate to ai_behavior

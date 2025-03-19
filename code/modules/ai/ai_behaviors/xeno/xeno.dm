@@ -58,6 +58,11 @@
 			action.action_activate()
 	return ..()
 
+/datum/ai_behavior/xeno/ai_do_move()
+	if(mob_parent.do_actions)
+		return
+	return ..()
+
 /datum/ai_behavior/xeno/look_for_new_state()
 	var/mob/living/living_parent = mob_parent
 	switch(current_action)

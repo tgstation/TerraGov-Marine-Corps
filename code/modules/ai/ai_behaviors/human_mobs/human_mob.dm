@@ -82,9 +82,9 @@
 	return ..()
 
 /datum/ai_behavior/human/process()
+	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING) //only do_afters we could interrupt currently are healing ones
+		return
 	if(mob_parent.notransform)
-		return ..()
-	if(mob_parent.do_actions)
 		return ..()
 
 	var/mob/living/carbon/human/human_parent = mob_parent
@@ -127,6 +127,8 @@
 	return ..()
 
 /datum/ai_behavior/human/ai_do_move()
+	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+		return
 	if(mob_parent.pulledby?.faction == mob_parent.faction)
 		return //lets players wrangle NPC's
 	return ..()
