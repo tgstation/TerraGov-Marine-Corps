@@ -64,7 +64,7 @@
 	maploaded = mapload
 	// Maploaded panels link in post_machine_initialize...
 	if(mapload)
-		return
+		return INITIALIZE_HINT_LATELOAD
 
 	// And non-mapload panels link in Initialize
 	link_with_lift(log_error = FALSE)
@@ -74,7 +74,7 @@
 /obj/machinery/elevator_control_panel/LateInitialize()
 	. = ..()
 	// If we weren't maploaded, we probably already linked (or tried to link) in Initialize().
-	if(maploaded)
+	if(!maploaded)
 		return
 
 	// This is exclusively for linking in mapload, just to ensure all elevator parts are created,
