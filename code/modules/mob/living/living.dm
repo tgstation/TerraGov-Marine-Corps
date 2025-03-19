@@ -1066,8 +1066,11 @@ below 100 is not dizzy
  *
  */
 /mob/living/proc/look_up()
-	if(client.perspective != MOB_PERSPECTIVE) //We are already looking up.
-		stop_look_up()
+	if(looking_vertically == UP)
+		return
+	else if(looking_vertically == DOWN)
+		end_look_down()
+		return
 	if(!can_look_up())
 		return
 	changeNext_move(CLICK_CD_LOOK_UP)
@@ -1078,7 +1081,7 @@ below 100 is not dizzy
 /mob/living/proc/start_look_up()
 	SIGNAL_HANDLER
 
-	looking_vertically = TRUE
+	looking_vertically = UP
 
 	var/turf/current_turf = get_turf(src)
 	var/turf/above_turf = GET_TURF_ABOVE(current_turf)
@@ -1129,8 +1132,11 @@ below 100 is not dizzy
  *
  */
 /mob/living/proc/look_down()
-	if(client.perspective != MOB_PERSPECTIVE) //We are already looking down.
-		stop_look_down()
+	if(looking_vertically == UP)
+		end_look_up()
+		return
+	else if(looking_vertically == DOWN)
+		return
 	if(!can_look_up()) //if we cant look up, we cant look down.
 		return
 	changeNext_move(CLICK_CD_LOOK_UP)
@@ -1141,7 +1147,7 @@ below 100 is not dizzy
 /mob/living/proc/start_look_down()
 	SIGNAL_HANDLER
 
-	looking_vertically = TRUE
+	looking_vertically = DOWN
 
 	var/turf/current_turf = get_turf(src)
 	var/turf/below_turf = GET_TURF_BELOW(current_turf)
