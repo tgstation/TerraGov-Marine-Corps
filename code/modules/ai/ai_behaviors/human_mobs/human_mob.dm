@@ -101,7 +101,7 @@
 			food.ai_use(human_parent, human_parent)
 			break
 
-	if(mob_parent.buckled && !istype(mob_parent.buckled, /obj/structure/droppod)) //unbuckling from your pod midflight is not ideal
+	if(mob_parent.buckled && !mob_parent.buckled.ai_should_stay_buckled(mob_parent))
 		mob_parent.buckled.unbuckle_mob(mob_parent)
 
 	for(var/datum/action/action in ability_list)

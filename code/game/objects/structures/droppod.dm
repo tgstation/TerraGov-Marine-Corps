@@ -26,6 +26,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
+	faction = FACTION_TERRAGOV
 	//todo make these just use a turf?
 	///X target coordinate
 	var/target_x = 1
@@ -76,6 +77,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	for(var/atom/movable/ejectee AS in buckled_mobs) // dump them out, just in case no mobs get deleted
 		ejectee.forceMove(loc)
 	return ..()
+
+/obj/structure/droppod/ai_should_stay_buckled(mob/living/carbon/npc)
+	return TRUE
 
 ///Disables launching
 /obj/structure/droppod/proc/disable_launching()
