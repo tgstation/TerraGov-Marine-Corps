@@ -361,7 +361,7 @@
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/autocannon, /obj/item/ammo_magazine/tank/autocannon/high_explosive)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	variance = 2
-	projectile_delay = 0.35 SECONDS
+	projectile_delay = 0.45 SECONDS
 	rearm_time = 9 SECONDS
 	hud_state_empty = "hivelo_empty"
 
