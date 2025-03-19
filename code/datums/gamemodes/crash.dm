@@ -45,7 +45,7 @@
 	evo_requirements = list(
 		/datum/xeno_caste/king = 14,
 		/datum/xeno_caste/queen = 10,
-		/datum/xeno_caste/carrier = 10,
+		/datum/xeno_caste/carrier = 8,
 		/datum/xeno_caste/hivelord = 8,
 	)
 
