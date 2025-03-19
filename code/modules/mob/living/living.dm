@@ -886,7 +886,7 @@ below 100 is not dizzy
 		apply_damage(incoming_damage, BRUTE)
 
 	if(!skip_knockdown)
-		Knockdown(levels * 5 SECONDS)
+		Knockdown(levels * 2 SECONDS)
 	return .
 
 /**
