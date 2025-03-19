@@ -21,6 +21,13 @@
 		MECHA_R_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
 		MECHA_L_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
 	)
+	///identical to [flash_offsets], but for use with the snowflake mecha core sprites
+	var/list/flash_offsets_core = list(
+		MECHA_R_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+		MECHA_L_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+		MECHA_R_BACK = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+		MECHA_L_BACK = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+	)
 	///Icon state of the muzzle flash effect.
 	var/muzzle_iconstate
 	///color of the muzzle flash while shooting
@@ -205,8 +212,19 @@
 		addtimer(CALLBACK(src, PROC_REF(reset_light_range), prev_light), 1 SECONDS)
 
 	var/mech_slot = chassis.equip_by_category[MECHA_R_ARM] == src ? MECHA_R_ARM : MECHA_L_ARM
-	muzzle_flash.pixel_x = flash_offsets[mech_slot][dir2text_short(chassis.dir)][1]
-	muzzle_flash.pixel_y = flash_offsets[mech_slot][dir2text_short(chassis.dir)][2]
+	if(istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale/core))
+		//snowflake sprites mean snowflake offsets, wheeeeeeeeeeeeeeeeeeeeee
+		var/obj/vehicle/sealed/mecha/combat/greyscale/core/core = chassis
+		if(core.swapped_to_backweapons)
+			mech_slot = mech_slot == MECHA_R_ARM ? MECHA_R_BACK : MECHA_L_BACK
+		muzzle_flash.pixel_x = flash_offsets_core[mech_slot][dir2text_short(chassis.dir)][1]
+		muzzle_flash.pixel_y = flash_offsets_core[mech_slot][dir2text_short(chassis.dir)][2]
+		// more or less all the same changes cus arm icons. feel free to make it more accurate or make boosting use pixel offsets
+		if(core.leg_overload_mode)
+			muzzle_flash.pixel_y -= 2
+	else
+		muzzle_flash.pixel_x = flash_offsets[mech_slot][dir2text_short(chassis.dir)][1]
+		muzzle_flash.pixel_y = flash_offsets[mech_slot][dir2text_short(chassis.dir)][2]
 	switch(chassis.dir)
 		if(NORTH)
 			muzzle_flash.layer = initial(muzzle_flash.layer)

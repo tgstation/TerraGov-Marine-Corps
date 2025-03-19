@@ -24,7 +24,7 @@
 	///whether the greyscale config supports boosting sprites
 	var/has_boosting_state = FALSE
 	///whether the greyscale config supports destroyed sprites
-	var/has_destroyed_iconstate = FALSE // tivi todo kill and replace with is_wreck, make this dark grey the image when destroyed
+	var/has_destroyed_iconstate = FALSE
 	/// 2 or 3 entry list of primary, secondary, visor color to use
 	var/list/colors = list(MECH_GREY_PRIMARY_DEFAULT, MECH_GREY_SECONDARY_DEFAULT, MECH_GREY_VISOR_DEFAULT)
 	///overlay icon to generate
@@ -400,7 +400,7 @@
 	arm_slot = null
 	return ..()
 
-/datum/mech_limb/arm/get_overlays() // tivi todo add fire gun up and shoulder down here
+/datum/mech_limb/arm/get_overlays()
 	. = list()
 	var/prefix = ""
 	if(owner.is_wreck)
@@ -410,7 +410,7 @@
 			return null
 	else if (owner.leg_overload_mode && has_boosting_state)
 		prefix = "b_"
-	if(!owner.swapped_to_backweapons) // tivi todo check if has back slots
+	if(!owner.is_wreck && !owner.swapped_to_backweapons && (MECHA_R_BACK in owner.equip_by_category))
 		prefix += "fire"
 	. += iconstate2appearance(overlay_icon, prefix+icon_state)
 	if(has_damage_overlays && initial(part_health))

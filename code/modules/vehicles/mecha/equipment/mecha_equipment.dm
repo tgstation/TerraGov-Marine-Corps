@@ -147,7 +147,6 @@
 				return FALSE
 		return TRUE
 	///tgmc start
-	// tivi todo support for old mechs
 	if(equipment_slot == MECHA_BACK)
 		if(attach_right)
 			if(mech.equip_by_category[MECHA_R_BACK])

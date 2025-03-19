@@ -251,7 +251,7 @@
 			if(!holding || holding?.disabled)
 				continue
 			var/obj/item/mecha_parts/mecha_equipment/right_gun = equip_by_category[MECHA_R_ARM]
-			if(uses_back_icons)
+			if(!is_wreck && uses_back_icons)
 				prefix += "fire"
 			if(right_gun)
 				var/mutable_appearance/r_gun = mutable_appearance(holding.gun_icon, prefix+right_gun.icon_state + "_right", appearance_flags = KEEP_APART)
@@ -263,7 +263,7 @@
 			if(!holding || holding.disabled)
 				continue
 			var/obj/item/mecha_parts/mecha_equipment/left_gun = equip_by_category[MECHA_L_ARM]
-			if(uses_back_icons)
+			if(!is_wreck && uses_back_icons)
 				prefix += "fire"
 			if(left_gun)
 				var/mutable_appearance/l_gun = mutable_appearance(holding.gun_icon, prefix+left_gun.icon_state + "_left", appearance_flags = KEEP_APART)

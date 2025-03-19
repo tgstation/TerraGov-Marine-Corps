@@ -20,6 +20,7 @@
  */
 /obj/vehicle/sealed/mecha/combat/greyscale/core
 	pixel_x = -32
+	pixel_y = -5
 	use_builtin_boost_overlay = FALSE
 	use_damage_particles = FALSE
 	equip_by_category = list(
