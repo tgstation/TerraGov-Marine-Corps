@@ -4270,6 +4270,10 @@
 /area/mainship/medical/upper_medical{
 	name = "Shipside Medbay"
 	})
+"dOu" = (
+/obj/effect/landmark/start/job/vanguard,
+/turf/open/floor/prison/kitchen,
+/area/mainship/living/officer_study)
 "dOD" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6
@@ -20366,6 +20370,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
+/obj/effect/landmark/start/job/vanguard,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -24614,6 +24619,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/tankerbunks)
+"wLn" = (
+/obj/structure/bed,
+/obj/item/bedsheet/captain,
+/obj/effect/landmark/start/job/vanguard,
+/turf/open/floor/mainship/mono,
+/area/mainship/living/officer_study)
 "wLJ" = (
 /turf/open/floor/mainship/ntlogo,
 /area/mainship/squads/general)
@@ -25278,6 +25289,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/landmark/start/job/vanguard,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "xlX" = (
@@ -38109,7 +38121,7 @@ uTe
 uzE
 gYA
 tZG
-sdV
+wLn
 cMb
 nAP
 rSe
@@ -39796,7 +39808,7 @@ nwr
 nwr
 uiM
 sBX
-hHn
+dOu
 quQ
 hHn
 hHn

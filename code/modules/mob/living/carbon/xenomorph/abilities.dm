@@ -1316,8 +1316,8 @@
 /datum/action/ability/activable/xeno/devour/action_activate()
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	var/mob/living/carbon/human/victim = target
-	if(!owner_xeno.eaten_mob)
+	var/mob/living/carbon/human/victim = owner_xeno.eaten_mob
+	if(!victim)
 		return
 
 	var/channel = SSsounds.random_available_channel()
@@ -1327,6 +1327,7 @@
 		owner_xeno.stop_sound_channel(channel)
 		return
 	owner_xeno.eject_victim()
+	log_combat(owner_xeno, victim, "released", addition="from being devoured")
 	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 
 /datum/action/ability/activable/xeno/devour/use_ability(atom/target)
@@ -1334,6 +1335,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.face_atom(victim)
 	owner_xeno.visible_message(span_danger("[owner_xeno] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
+	log_combat(owner_xeno, victim, "started to devour")
 	var/channel = SSsounds.random_available_channel()
 	var/devour_delay = GORGER_DEVOUR_DELAY
 	if((HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE) || !victim.client) && !isxeno(victim))
@@ -1345,6 +1347,7 @@
 		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		owner_xeno.stop_sound_channel(channel)
 		return
+	log_combat(owner_xeno, victim, "devoured")
 	owner.visible_message(span_warning("[owner_xeno] devours [victim]!"), span_warning("We devour [victim]!"), null, 5)
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	victim.forceMove(owner_xeno)
@@ -1668,6 +1671,7 @@
 		if(!silent)
 			to_chat(X, span_warning("We're too busy being on fire to do this!"))
 		return FALSE
+	log_combat(X, victim, "started to use their impregnate ability on")
 	X.visible_message(span_danger("[X] starts to fuck [victim]!"), \
 	span_danger("We start to fuck [victim]!"), null, 5)
 
@@ -1689,6 +1693,7 @@
 		if(victim.stat == CONSCIOUS)
 			to_chat(victim, span_warning("[X] fucks you!"))
 		X.impregify(victim, X, damagemult = 3)
+		log_combat(X, victim, "impregnated", addition="with their impregnate ability")
 		add_cooldown()
 		succeed_activate()
 	if(isxeno(A))
@@ -1771,6 +1776,7 @@
 	var/mob/living/carbon/human/victim = A
 	var/channel = SSsounds.random_available_channel()
 	playsound(X, 'sound/vore/struggle.ogg', 40, channel = channel)
+	log_combat(X, victim, "started to cocoon")
 	if(!do_after(X, 7 SECONDS, IGNORE_HELD_ITEM, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		X.stop_sound_channel(channel)
@@ -1796,6 +1802,7 @@
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	X.eject_victim(TRUE, starting_turf)
+	log_combat(X, victim, "cocooned")
 	if(owner.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.cocooned++

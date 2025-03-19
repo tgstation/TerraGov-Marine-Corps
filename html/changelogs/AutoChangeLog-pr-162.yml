@@ -1,0 +1,4 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - rscadd: "CAS weapons no longer fire on right-click, shift-left click, or alt-left click.  Middle click and unmodified left-click continue to work."

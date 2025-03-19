@@ -248,7 +248,18 @@
 	user.unset_interaction()
 
 ///Handles clicking on a target while in CAS mode
-/obj/docking_port/mobile/marine_dropship/casplane/proc/fire_weapons_at(datum/source, atom/target, turf/location, control, params)
+/obj/docking_port/mobile/marine_dropship/casplane/proc/fire_weapons_at(datum/source, atom/target, params)
+	SIGNAL_HANDLER
+	var/list/modifiers = params2list(params)
+	if	(	(	modifiers["right"] \
+			) \
+			|| \
+			(	(modifiers["left"]) \
+				&& \
+				(modifiers["shift"] || modifiers["alt"]) \
+			) \
+		)
+		return
 	if(state != PLANE_STATE_FLYING || is_mainship_level(z))
 		end_cas_mission(source)
 		return
