@@ -16,8 +16,8 @@
 	buckle_lying = 90
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	resistance_flags = XENO_DAMAGEABLE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	max_integrity = 40
-	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
 	var/dropmetal = TRUE
