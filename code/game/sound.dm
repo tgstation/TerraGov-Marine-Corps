@@ -49,14 +49,14 @@
 A good representation is: 'byond applies a volume reduction to the sound every X tiles', where X is falloff.
  */
 /proc/playsound(atom/source, soundin, vol, vary, sound_range, falloff, is_global, frequency, channel = 0, ambient_sound = FALSE)
+	if(!soundin)
+		return
+
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
 
 	if(islist(soundin))
 		CRASH("playsound(): soundin attempted to pass a list! Consider using pick()")
-
-	if(!soundin)
-		CRASH("playsound(): no soundin passed")
 
 	if(vol < SOUND_AUDIBLE_VOLUME_MIN) // never let sound go below SOUND_AUDIBLE_VOLUME_MIN or bad things will happen
 		CRASH("playsound(): volume below SOUND_AUDIBLE_VOLUME_MIN. [vol] < [SOUND_AUDIBLE_VOLUME_MIN]")
