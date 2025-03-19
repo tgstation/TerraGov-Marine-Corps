@@ -5,7 +5,7 @@
 	magazine_flags = NONE
 	///loading sound to play when
 	var/loading_sound
-	///callout name for when user loads ("HE, Up!")
+	///callout name for when user loads ("HE, Up!") Grammar is included to make code simple and failsafe visually if there is no set callout_name
 	var/callout_name
 
 /obj/item/ammo_magazine/tank/ltb_cannon
