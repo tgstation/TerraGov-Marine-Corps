@@ -174,7 +174,8 @@
 /obj/effect/overlay/temp/Initialize(mapload, effect_duration)
 	. = ..()
 	flick(icon_state, src)
-	QDEL_IN(src, effect_duration ? effect_duration : src.effect_duration)
+	if(!(effect_duration < 0))
+		QDEL_IN(src, effect_duration ? effect_duration : src.effect_duration)
 
 /obj/effect/overlay/temp/point
 	name = "arrow"
