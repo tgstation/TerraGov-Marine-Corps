@@ -116,7 +116,7 @@
 				AI.last_paper_seen = "<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>"
 			else if(O.client && O.client.eye == src)
 				to_chat(O, "[U] holds \a [itemname] up to one of the cameras ...")
-				O << browse("<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>", "window=[itemname]")
+				O << browse(HTML_SKELETON_TITLE(itemname, info), "window=[itemname]")
 
 
 /obj/machinery/camera/screwdriver_act(mob/living/user, obj/item/I)
@@ -201,7 +201,8 @@
 	parent_cameranet.removeCamera(src)
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
-	parent_cameranet.updateChunk(x, y, z)
+	var/turf/camnet_turf = get_turf(src)
+	parent_cameranet.updateChunk(camnet_turf.x, camnet_turf.y, camnet_turf.z)
 	update_icon()
 
 	for(var/i in GLOB.player_list)
@@ -236,12 +237,13 @@
 			set_light(initial(light_range), initial(light_power))
 		else
 			myarea = null
+		var/turf/our_turf = get_turf(src)
+		parent_cameranet.updateChunk(our_turf.x, our_turf.y, our_turf.z)
 	else
 		parent_cameranet.removeCamera(src)
 		if(isarea(myarea))
 			LAZYREMOVE(myarea.cameras, src)
 		deactivate()
-	parent_cameranet.updateChunk(x, y, z)
 
 	var/change_msg = "deactivates"
 	if(status)
