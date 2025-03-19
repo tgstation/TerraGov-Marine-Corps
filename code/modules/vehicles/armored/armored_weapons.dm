@@ -96,6 +96,7 @@
 		var/fire_return // todo fix: code expecting return values from async
 		ASYNC
 			fire_return = fire()
+			current_firer.say("On the way!")
 		if(!fire_return || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
 		reset_fire()
