@@ -39,9 +39,9 @@
 		MECH_GREY_R_ARM = /datum/mech_limb/arm/medium,
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/medium,
 	)
-	///left particle smoke holder
+	///left boosting particles holder
 	var/obj/effect/abstract/particle_holder/booster_left
-	///right particle smoke holder
+	///right boosting particles holder
 	var/obj/effect/abstract/particle_holder/booster_right
 
 /obj/vehicle/sealed/mecha/combat/greyscale/core/Initialize(mapload)

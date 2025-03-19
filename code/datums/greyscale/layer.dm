@@ -93,6 +93,7 @@
 	var/list/processed_colors = list()
 	if(!length(color_ids))
 		processed_colors = colors
+		// todo we REALLY should not be doing this. pls set these everywhere as needed!!!
 	else
 		for(var/i in color_ids)
 			processed_colors += colors[i]
