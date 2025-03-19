@@ -218,9 +218,7 @@
 /obj/item/bedsheet/rainbow{
 	pixel_y = 12
 	},
-/obj/item/bedsheet/rainbow{
-	
-	},
+/obj/item/bedsheet/rainbow,
 /obj/structure/sign/poster,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/abandonedbase)
