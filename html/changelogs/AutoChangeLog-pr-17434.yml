@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "NPC's will stay buckled to medivac's and vehicles when not the driver"
+  - qol: "NPC's will no longer smash drop pods as obstacles"

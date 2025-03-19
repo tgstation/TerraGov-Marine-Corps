@@ -1,0 +1,4 @@
+author: "Cheese"
+delete-after: True
+changes:
+  - balance: "Non-folding Plasteel cades can now be upgraded with metal, like metal cades."
