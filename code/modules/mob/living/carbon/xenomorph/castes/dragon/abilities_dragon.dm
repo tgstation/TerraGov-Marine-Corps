@@ -408,11 +408,11 @@
 	return TRUE
 
 /datum/action/ability/activable/xeno/backhand/dragon_breath/handle_regular_ability(atom/target, list/turf/affected_turfs)
-	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_BREATH, TRUE, 0, NONE, TRUE, 2)
+	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_BREATH, TRUE, 0, NONE, TRUE, 8)
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(10)
-	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	ADD_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, DRAGON_ABILITY_TRAIT)
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	starting_direction = get_cardinal_dir(xeno_owner, target)
 	visual_effect = new /obj/effect/temp_visual/dragon/fire_breath(get_step(xeno_owner, target), starting_direction)
 	ability_timer = addtimer(CALLBACK(src, PROC_REF(end_ability)), 10 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
@@ -424,6 +424,19 @@
 	if(!ability_timer)
 		return
 	end_ability()
+
+/// Rotates the owner back to the starting direction.
+/datum/action/ability/activable/xeno/backhand/dragon_breath/proc/on_move(datum/source)
+	SIGNAL_HANDLER
+	xeno_owner.setDir(starting_direction)
+	visual_effect.forceMove(get_turf(xeno_owner))
+	affected_turfs_in_order.Cut()
+	var/turf/maximum_distance_turf = get_turf(xeno_owner)
+	for(var/i in 1 to height)
+		maximum_distance_turf = get_step(maximum_distance_turf, xeno_owner.dir)
+		affected_turfs_in_order += maximum_distance_turf
+		affected_turfs_in_order += get_step(maximum_distance_turf, turn(xeno_owner.dir, 90))
+		affected_turfs_in_order += get_step(maximum_distance_turf, turn(xeno_owner.dir, -90))
 
 /// Performs the ability at a pace similar of CAS which is one width length at a length.
 /datum/action/ability/activable/xeno/backhand/dragon_breath/proc/tick_effects()
@@ -473,7 +486,7 @@
 	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_BREATH)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-10)
-	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+	REMOVE_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, DRAGON_ABILITY_TRAIT)
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
 	starting_direction = null
 	affected_turfs_in_order.Cut()

@@ -17,7 +17,7 @@
 	speed = -0.1
 
 	// *** Plasma *** //
-	plasma_max = 500
+	plasma_max = 750
 	plasma_gain = 0
 	plasma_regen_limit = 0
 	plasma_icon_state = "armor"
@@ -29,7 +29,7 @@
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	maximum_active_caste = 1
 	evolve_min_xenos = 13
-	death_evolution_delay = 20 MINUTES
+	death_evolution_delay = 15 MINUTES
 
 	// *** Flags *** //
 	caste_flags = CASTE_FIRE_IMMUNE|CASTE_IS_INTELLIGENT|CASTE_INSTANT_EVOLUTION|CASTE_LEADER_TYPE
@@ -37,7 +37,7 @@
 	caste_traits = list(TRAIT_STAGGERIMMUNE, TRAIT_SLOWDOWNIMMUNE, TRAIT_STUNIMMUNE)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 45, BIO = 60, FIRE = 200, ACID = 60)
+	soft_armor = list(MELEE = 65, BULLET = 65, LASER = 65, ENERGY = 65, BOMB = 50, BIO = 65, FIRE = 200, ACID = 65)
 
 	// *** Sunder *** //
 	sunder_recover = 1
