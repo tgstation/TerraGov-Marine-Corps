@@ -874,8 +874,8 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	icon_state = "highpower"
 	worn_icon_state = null
 	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/pistols_left_64.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/pistols_right_64.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/xeno_guns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/xeno_guns_right_64.dmi',
 	)
 	caliber = CALIBER_9X19
 	max_shells = INFINITY

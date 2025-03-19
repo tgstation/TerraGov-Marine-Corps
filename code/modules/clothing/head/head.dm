@@ -477,3 +477,11 @@
 	worn_icon_list = list(
 		slot_head_str = 'icons/mob/clothing/headwear/xeno.dmi',
 	)
+
+/obj/item/clothing/head/xeno_cigarette
+	name = "xigarette"
+	desc = "Minty."
+	icon_state = "cigarette"
+	worn_icon_list = list(
+		slot_head_str = 'icons/mob/clothing/headwear/xeno.dmi',
+	)

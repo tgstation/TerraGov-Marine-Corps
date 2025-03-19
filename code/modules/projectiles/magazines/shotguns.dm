@@ -142,3 +142,11 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "heavy_shotgun_barrikada"
 	default_ammo = /datum/ammo/bullet/shotgun/barrikada_slug
 	icon_state_mini = "buckshot"
+
+/obj/item/ammo_magazine/shotgun/bullstick
+	name = "xuckshot resin shells"
+	desc = "You shouldn't be seeing this."
+	icon_state = "buckshot"
+	default_ammo = /datum/ammo/bullet/shotgun/xuckshot
+	icon_state_mini = "buckshot"
+	max_rounds = 2

@@ -1004,3 +1004,73 @@
 
 /obj/item/weapon/gun/shotgun/pump/ksg/support
 	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/flashlight/under, /obj/item/attachable/compensator,)
+
+/obj/item/weapon/gun/shotgun/bullstick
+	name = "\improper Bullstick"
+	desc = "A hivemade weapon cobbled together by clever Bulls."
+	icon_state = "sshotgun"
+	worn_icon_state = null
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/xeno_guns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/xeno_guns_right_64.dmi',
+	)
+	default_ammo_type = /obj/item/ammo_magazine/shotgun/bullstick
+	allowed_ammo_types = list(/obj/item/ammo_magazine/shotgun/bullstick)
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh34.ogg'
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
+	interaction_flags = INTERACT_CHECK_INCAPACITATED
+
+	fire_delay = 0.2 SECONDS
+	recoil_unwielded = 1
+	scatter_unwielded = 0
+	accuracy_mult_unwielded = 0
+
+	var/is_reloading = FALSE
+
+/obj/item/weapon/gun/shotgun/bullstick/examine(mob/user)
+	. = ..()
+	. += span_information("Reload by activating it with your active hand. (Default: Z)")
+
+/obj/item/weapon/gun/shotgun/bullstick/do_fire(obj/object_to_fire)
+	. = ..()
+	if(!.)
+		return .
+
+	//Generate casings when firing; are ejected on reloading
+	var/obj/item/ammo_magazine/mag = current_chamber_position <= length(chamber_items) ? chamber_items[current_chamber_position] : null
+	mag?.used_casings++
+
+	return .
+
+/obj/item/weapon/gun/shotgun/bullstick/able_to_fire(mob/user)
+	if(is_reloading)	//Prevent spamming reloads to fire as if it was full auto
+		balloon_alert(user, "Busy reloading!")
+		return FALSE
+	return ..()
+
+//Put reload code on attack self instead of unique action because xenos cant use that keybind
+/obj/item/weapon/gun/shotgun/bullstick/attack_self(mob/user)
+	if(!can_interact(user) || is_reloading)
+		return
+
+	playsound(src, opened_sound, 25, 1)
+
+	//If something very bad has happened and there is no magazine, just create a new one for the gun
+	var/obj/item/ammo_magazine/mag = current_chamber_position <= length(chamber_items) ? chamber_items[current_chamber_position] : null
+	if(!mag)
+		reload(new /obj/item/ammo_magazine/shotgun/bullstick, null, TRUE)
+		mag = chamber_items[current_chamber_position]
+
+	make_casing(null, FALSE)
+	mag.used_casings = 0
+	is_reloading = TRUE
+
+	if(!do_after(user, 1 SECONDS, IGNORE_LOC_CHANGE, user))
+		balloon_alert(user, "Reload interrupted!")
+		is_reloading = FALSE
+		return
+
+	mag.current_rounds = 2
+	playsound(src, cocked_sound, 25, 1)
+	is_reloading = FALSE

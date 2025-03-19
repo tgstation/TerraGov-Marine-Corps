@@ -611,8 +611,15 @@
 	revive(TRUE)
 
 ///Equip April Fool's gear
-/mob/living/carbon/xenomorph/proc/equip_pistol()
-	var/obj/item/weapon/gun/gun = new /obj/item/weapon/gun/pistol/xlock()
-	put_in_active_hand(gun)
-	ADD_TRAIT(gun, TRAIT_NODROP, "xeno_pistol_no_drop")
-	equip_to_slot(new /obj/item/clothing/head/xeno_bandana, SLOT_HEAD)
+/mob/living/carbon/xenomorph/proc/equip_gear()
+	if(isxenodrone(src))
+		var/obj/item/weapon/gun/gun = new /obj/item/weapon/gun/pistol/xlock()
+		put_in_active_hand(gun)
+		ADD_TRAIT(gun, TRAIT_NODROP, "xeno_gun_no_drop")
+		equip_to_slot(new /obj/item/clothing/head/xeno_bandana, SLOT_HEAD)
+
+	if(isxenobull(src))
+		var/obj/item/weapon/gun/gun = new /obj/item/weapon/gun/shotgun/bullstick
+		put_in_active_hand(gun)
+		ADD_TRAIT(gun, TRAIT_NODROP, "xeno_gun_no_drop")
+		equip_to_slot(new /obj/item/clothing/head/xeno_cigarette, SLOT_HEAD)

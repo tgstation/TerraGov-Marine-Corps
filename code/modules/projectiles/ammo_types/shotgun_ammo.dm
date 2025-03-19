@@ -340,3 +340,23 @@
 	shell_speed = 0
 	max_range = -1
 	damage = 0
+
+/datum/ammo/bullet/shotgun/xuckshot
+	name = "xuckshot resin pellet"
+	icon_state = "buckshot"
+	hud_state = "shotgun_buckshot"
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/xuckshot_bonus_projectiles
+	bonus_projectiles_amount = 6
+	bonus_projectiles_scatter = 4
+	accurate_range = 2
+	max_range = 10
+	shrapnel_chance = 0
+	shell_speed = 1
+
+/datum/ammo/bullet/shotgun/xuckshot_bonus_projectiles
+	name = "xuckshot resin pellet"
+	icon_state = "buckshot"
+	accurate_range = 2
+	max_range = 10
+	shrapnel_chance = 0
+	shell_speed = 1
