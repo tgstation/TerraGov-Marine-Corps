@@ -73,7 +73,7 @@
 /mob/living/carbon/xenomorph/proc/create_shriekwave()
 	overlays_standing[SUIT_LAYER] = image("icon"='icons/Xeno/64x64_Xeno_overlays.dmi', "icon_state" = "shriek_waves") //Ehh, suit layer's not being used.
 	apply_temp_overlay(SUIT_LAYER, 3 SECONDS)
-	shriek_burst()
+	INVOKE_ASYNC(src, PROC_REF(shriek_burst))
 	//decrease range cus they'll be probably mvoing around
 	addtimer(CALLBACK(src, PROC_REF(shriek_burst), -2), 8)
 	addtimer(CALLBACK(src, PROC_REF(shriek_burst), -4), 16)
@@ -183,7 +183,7 @@
 	var/mob/living/carbon/xenomorph/owner
 
 /atom/movable/vis_obj/xeno_wounds
-	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_ID
+	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_ID|VIS_INHERIT_PLANE
 
 /atom/movable/vis_obj/xeno_wounds/backpack_overlay/Initialize(mapload, new_owner)
 	owner = new_owner

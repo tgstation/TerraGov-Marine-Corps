@@ -373,3 +373,10 @@
   - rscadd: more seamless looking blood decals
   - rscadd: different crosshairs for some guns
   - imageadd: new crosshair sprites for guns
+2025-03-19:
+  Lumipharon:
+  - balance: Nerfed tank autocannon and HE ammo, AP ammo slightly buffed
+  - bugfix: NPC's will no longer try to revive undefibbable patients
+  - bugfix: fixed NPC's not using guns
+  RipGrayson:
+  - rscadd: Added a multi-z test map.
