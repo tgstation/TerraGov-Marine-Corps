@@ -3,7 +3,7 @@
 	mission_icon = "raiding_base"
 	map_name = "Raiding base Zulu"
 	map_file = '_maps/map_files/Campaign maps/som_raid_base/som_raiding_base.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating", ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, COLOR_MISSION_RED, COLOR_MISSION_RED)
 	starting_faction_objective_description = "Major Victory: Set and defend an orbital beacon inside the facility until a precision orbital strike can be called in."
 	hostile_faction_objective_description = "Major Victory: Prevent the enemy from activating an orbital beacon inside the facility."
@@ -216,7 +216,7 @@
 	ob_called = TRUE
 	resume_mission_timer(src, TRUE)
 	//We handle this here instead of the beacon structure because it could be destroyed before this triggers
-	explosion(location, 45, flame_range = 20)
+	explosion(location, 45, flame_range = 20, explosion_cause="beacon explosion")
 	if(QDELETED(beacon))
 		return
 	qdel(beacon)
@@ -225,7 +225,7 @@
 	name = "TGMC Raiding Base"
 	map_name = "Jeneora Valley"
 	map_file = '_maps/map_files/Campaign maps/tgmc_raid_base/tgmc_raiding_base.dmm'
-	map_traits = list(ZTRAIT_AWAY = TRUE)
+	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating")
 	map_light_colours = list(COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_RED, COLOR_MISSION_RED)
 	starting_faction_objective_description = "Major Victory: Set and defend a bluespace beacon inside the facility until a bluespace strike can be called in."
 	hostile_faction_objective_description = "Major Victory: Prevent the enemy from activating a bluespace beacon inside the facility."

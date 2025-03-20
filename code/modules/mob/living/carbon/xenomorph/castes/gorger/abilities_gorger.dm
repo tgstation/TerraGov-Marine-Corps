@@ -133,6 +133,7 @@
 	var/drain_healing = GORGER_DRAIN_HEAL;\
 	HEAL_XENO_DAMAGE(xeno_owner, drain_healing, TRUE);\
 	adjustOverheal(xeno_owner, drain_healing);\
+	SEND_SIGNAL(target_human, COMSIG_XENO_DRAIN_HIT, xeno_owner.xeno_caste.drain_plasma_gain, xeno_owner);\
 	xeno_owner.gain_plasma(xeno_owner.xeno_caste.drain_plasma_gain)
 
 /datum/action/ability/activable/xeno/drain/use_ability(mob/living/carbon/human/target_human)
@@ -262,7 +263,7 @@
 	name = "Oppose"
 	action_icon_state = "rejuvenation"
 	action_icon = 'icons/Xeno/actions/gorger.dmi'
-	desc = "Violently suffuse the ground with stored blood. A marine on your tile is staggered and injured, ajacent marines are staggered, and any nearby xenos are healed, including you."
+	desc = "Violently suffuse the ground with stored blood. A marine on your tile is staggered and injured, adjacent marines are staggered, and any nearby xenos are healed, including you."
 	cooldown_duration = 30 SECONDS
 	ability_cost = GORGER_OPPOSE_COST
 	keybinding_signals = list(

@@ -219,6 +219,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/recast = FALSE
 	///The last tile we dashed through, used when swapping with a human
 	var/turf/last_turf
+	/// If we should do acid_spray_act on those we pass over.
+	var/do_acid_spray_act = TRUE
+	///List of pass_flags given by this action
+	var/charge_pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 
 /datum/action/ability/activable/xeno/charge/acid_dash/use_ability(atom/A)
 	if(!A)
@@ -235,7 +239,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	succeed_activate()
 
 	last_turf = get_turf(owner)
-	owner.pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
+	xeno_owner.add_pass_flags(charge_pass_flags, type)
 	owner.throw_at(A, charge_range, 2, owner)
 
 /datum/action/ability/activable/xeno/charge/acid_dash/mob_hit(datum/source, mob/living/living_target)
@@ -259,7 +263,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		recast = FALSE
 		add_cooldown()
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-	xeno_owner.pass_flags = initial(xeno_owner.pass_flags)
+	xeno_owner.remove_pass_flags(charge_pass_flags, type)
 	recast_available = FALSE
 
 ///Drops an acid puddle on the current owner's tile, will do 0 damage if the owner has no acid_spray_damage
@@ -267,6 +271,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	SIGNAL_HANDLER
 	last_turf = OldLoc
 	new /obj/effect/xenomorph/spray(get_turf(xeno_owner), 5 SECONDS, xeno_owner.xeno_caste.acid_spray_damage) //Add a modifier here to buff the damage if needed
+	if(!do_acid_spray_act)
+		return
 	for(var/obj/O in get_turf(xeno_owner))
 		O.acid_spray_act(xeno_owner)
 
@@ -293,6 +299,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/duration = 8 SECONDS
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
+	///List of pass_flags given by this action
+	var/dodge_pass_flags = PASS_MOB|PASS_XENO
 
 /datum/action/ability/xeno_action/dodge/action_activate(atom/A)
 	owner.balloon_alert(owner, "Dodge ready!")
@@ -300,7 +308,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	owner.add_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_DODGE_SPEED, TRUE, 0, NONE, TRUE, speed_buff)
 	owner.allow_pass_flags |= (PASS_MOB|PASS_XENO)
-	owner.pass_flags |= (PASS_MOB|PASS_XENO)
+	xeno_owner.add_pass_flags(dodge_pass_flags, type)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	addtimer(CALLBACK(src, PROC_REF(remove_effects)), duration)
 
@@ -335,7 +343,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	owner.remove_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_DODGE_SPEED)
 	owner.allow_pass_flags &= ~(PASS_MOB|PASS_XENO)
-	owner.pass_flags &= ~(PASS_MOB|PASS_XENO)
+	xeno_owner.remove_pass_flags(dodge_pass_flags, type)
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
 /// Toggles particles on or off, adjusting their positioning to fit the buff's owner.
@@ -417,11 +425,17 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		adjusted_mult += 0.25
 	if(living_target.IsSlowed())
 		adjusted_mult += 0.25
-	if(living_target.has_status_effect(STATUS_EFFECT_INTOXICATED))
-		adjusted_mult += 0.25
 	if(living_target.IsConfused())
 		adjusted_mult += 0.25
 	if(living_target.IsImmobilized())
+		adjusted_mult += 0.25
+	if(living_target.has_status_effect(STATUS_EFFECT_INTOXICATED))
+		adjusted_mult += 0.25
+	if(living_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE))
+		adjusted_mult += 0.25
+	if(living_target.has_status_effect(STATUS_EFFECT_SHATTER))
+		adjusted_mult += 0.25
+	if(living_target.has_status_effect(STATUS_EFFECT_MELTING))
 		adjusted_mult += 0.25
 	if(living_target.has_status_effect(STATUS_EFFECT_LIFEDRAIN))
 		adjusted_mult += 0.25
@@ -724,6 +738,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /obj/effect/xeno/abduct_warning
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "abduct_hook"
+
+/obj/effect/xeno/abduct_warning/Initialize(mapload)
+	. = ..()
+	notify_ai_hazard()
 
 // ***************************************
 // *********** Dislocate

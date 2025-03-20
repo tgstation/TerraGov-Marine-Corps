@@ -5,7 +5,7 @@
 /obj/effect/temp_visual/behemoth/stomp
 	icon_state = "behemoth_stomp"
 	duration = 0.5 SECONDS
-	layer = ABOVE_LYING_MOB_LAYER
+	layer = MOB_BELOW_PIGGYBACK_LAYER
 
 /obj/effect/temp_visual/behemoth/stomp/Initialize(mapload)
 	. = ..()
@@ -49,7 +49,7 @@
 /obj/effect/temp_visual/behemoth/crack
 	icon_state = "behemoth_crack"
 	duration = 5.5 SECONDS
-	layer = CONVEYOR_LAYER
+	layer = BELOW_OBJ_LAYER
 
 /obj/effect/temp_visual/behemoth/crack/Initialize(mapload)
 	. = ..()
@@ -65,6 +65,7 @@
 
 /obj/effect/temp_visual/behemoth/warning/Initialize(mapload, warning_duration)
 	. = ..()
+	notify_ai_hazard()
 	if(warning_duration)
 		duration = warning_duration
 	animate(src, time = duration - 0.5 SECONDS)
@@ -154,7 +155,7 @@
 /obj/effect/temp_visual/behemoth/landslide/dust
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "landslide_dust"
-	layer = ABOVE_LYING_MOB_LAYER
+	layer = MOB_BELOW_PIGGYBACK_LAYER
 	duration = 1.1 SECONDS
 
 /obj/effect/temp_visual/behemoth/landslide/dust/Initialize(mapload, direction, which_step)
@@ -738,7 +739,7 @@
 			pixel_x += 19
 			pixel_y -= 12
 
-/obj/effect/temp_visual/shockwave/enhanced/Initialize(mapload, radius, direction)
+/obj/effect/temp_visual/shockwave/enhanced/Initialize(mapload, radius, direction, speed_rate=1, easing_type = LINEAR_EASING, y_offset=0, x_offset=0)
 	. = ..()
 	switch(direction)
 		if(NORTH)
@@ -881,7 +882,7 @@
 	rotation = 0
 	spin = generator(GEN_NUM, 5, 20)
 
-/obj/effect/temp_visual/shockwave/primal_wrath/Initialize(mapload, radius, direction)
+/obj/effect/temp_visual/shockwave/primal_wrath/Initialize(mapload, radius, direction, speed_rate=1, easing_type = LINEAR_EASING, y_offset=0, x_offset=0)
 	. = ..()
 	switch(direction)
 		if(NORTH)
@@ -985,15 +986,11 @@
 	for(var/mob/living/affected_living in cheap_get_humans_near(owner, PRIMAL_WRATH_RANGE) + owner)
 		if(!affected_living.hud_used)
 			continue
-		var/atom/movable/screen/plane_master/floor/floor_plane = affected_living.hud_used.plane_masters["[FLOOR_PLANE]"]
-		var/atom/movable/screen/plane_master/game_world/world_plane = affected_living.hud_used.plane_masters["[GAME_PLANE]"]
-		if(floor_plane.get_filter("primal_wrath") || world_plane.get_filter("primal_wrath"))
-			continue
+		var/atom/movable/plane_master_controller/game_plane_master_controller = affected_living.hud_used.plane_master_controllers[PLANE_MASTERS_GAME]
 		var/filter_size = 0.01
-		world_plane.add_filter("primal_wrath", 2, radial_blur_filter(filter_size))
-		animate(world_plane.get_filter("primal_wrath"), size = filter_size * 2, time = 0.5 SECONDS, loop = -1)
-		floor_plane.add_filter("primal_wrath", 2, radial_blur_filter(filter_size))
-		animate(floor_plane.get_filter("primal_wrath"), size = filter_size * 2, time = 0.5 SECONDS, loop = -1)
+		game_plane_master_controller.add_filter("primal_wrath", 2, radial_blur_filter(filter_size))
+		for(var/dm_filter/filt AS in game_plane_master_controller.get_filters("primal_wrath"))
+			animate(filt, size = filter_size * 2, time = 0.5 SECONDS, loop = -1)
 		ability_check(affected_living, owner)
 	addtimer(CALLBACK(src, PROC_REF(do_ability)), 0.1 SECONDS)
 
@@ -1012,16 +1009,14 @@
 /datum/action/ability/xeno_action/primal_wrath/proc/ability_check(mob/living/affected_living, mob/living/carbon/xenomorph/xeno_source)
 	if(!affected_living || !xeno_source)
 		return
-	var/atom/movable/screen/plane_master/floor/floor_plane = affected_living.hud_used.plane_masters["[FLOOR_PLANE]"]
-	var/atom/movable/screen/plane_master/game_world/world_plane = affected_living.hud_used.plane_masters["[GAME_PLANE]"]
-	if(!floor_plane.get_filter("primal_wrath") || !world_plane.get_filter("primal_wrath"))
+	var/atom/movable/plane_master_controller/game_plane_master_controller = affected_living.hud_used.plane_master_controllers[PLANE_MASTERS_GAME]
+	if(!game_plane_master_controller.get_filter("primal_wrath"))
 		return
 	if(!currently_roaring || get_dist(affected_living, xeno_source) > PRIMAL_WRATH_RANGE)
 		var/resolve_time = 0.2 SECONDS
-		animate(floor_plane.get_filter("primal_wrath"), size = 0, time = resolve_time, flags = ANIMATION_PARALLEL)
-		animate(world_plane.get_filter("primal_wrath"), size = 0, time = resolve_time, flags = ANIMATION_PARALLEL)
-		addtimer(CALLBACK(floor_plane, TYPE_PROC_REF(/datum, remove_filter), "primal_wrath"), resolve_time)
-		addtimer(CALLBACK(world_plane, TYPE_PROC_REF(/datum, remove_filter), "primal_wrath"), resolve_time)
+		for(var/dm_filter/filt AS in game_plane_master_controller.get_filters("primal_wrath"))
+			animate(filt, size = 0, time = resolve_time, flags = ANIMATION_PARALLEL)
+		addtimer(CALLBACK(game_plane_master_controller, TYPE_PROC_REF(/datum, remove_filter), "primal_wrath"), resolve_time)
 		return
 	addtimer(CALLBACK(src, PROC_REF(ability_check), affected_living, xeno_source), 0.1 SECONDS)
 
@@ -1172,7 +1167,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "earth_pillar_0"
 	base_icon_state = "earth_pillar_0"
-	layer = ABOVE_LYING_MOB_LAYER
+	layer = MOB_BELOW_PIGGYBACK_LAYER
 	climbable = TRUE
 	climb_delay = 1.5 SECONDS
 	interaction_flags = INTERACT_CHECK_INCAPACITATED

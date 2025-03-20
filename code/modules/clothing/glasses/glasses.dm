@@ -15,10 +15,13 @@
 	armor_protection_flags = EYES
 	var/deactive_state = "degoggles"
 	var/vision_flags = NONE
-	var/darkness_view = 2 //Base human is 2
 	var/invis_view = SEE_INVISIBLE_LIVING
 	var/invis_override = 0 //Override to allow glasses to set higher than normal see_invis
-	var/lighting_alpha
+	/// A percentage of how much rgb to "max" on the lighting plane
+	/// This lets us brighten darkness without washing out bright color
+	var/lighting_cutoff = null
+	/// Similar to lighting_cutoff, except it has individual r g and b components in the same 0-100 scale
+	var/list/color_cutoffs = null
 	var/goggles = FALSE
 	///Sound played on activate() when turning on
 	var/activation_sound = 'sound/items/googles_on.ogg'
@@ -37,7 +40,7 @@
 
 /obj/item/clothing/glasses/Initialize(mapload)
 	. = ..()
-	if(active)	//For glasses that spawn active
+	if(active && toggleable)	//For glasses that spawn active
 		active = FALSE
 		activate()
 
@@ -432,6 +435,7 @@
 	icon_state = "aviator_yellow"
 	worn_icon_state = "aviator_yellow"
 
+//todo rename this typepath so its not confused with glasses/night
 /obj/item/clothing/glasses/night_vision
 	name = "\improper BE-47 night vision goggles"
 	desc = "Goggles for seeing clearer in low light conditions and maintaining sight of the surrounding environment."
@@ -439,9 +443,8 @@
 	deactive_state = "night_vision_off"
 	worn_layer = COLLAR_LAYER	//The sprites are designed to render over helmets
 	worn_item_state_slots = list()
-	tint = COLOR_RED
-	darkness_view = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	// Red with a tint of green
+	color_cutoffs = list(40, 15, 10)
 	vision_flags = SEE_TURFS
 	toggleable = TRUE
 	goggles = TRUE
@@ -569,7 +572,6 @@
 	icon_state = "night_vision_mounted"
 	tint = COLOR_BLUE
 	vision_flags = NONE
-	darkness_view = 9	//The standalone version cannot see the edges
 	active_energy_cost = 2	//A little over 7 minutes of use
 	looping_sound_volume = 50
 

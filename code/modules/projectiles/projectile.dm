@@ -37,8 +37,9 @@
 	animate_movement = NO_STEPS
 	light_system = MOVABLE_LIGHT
 	light_range = 1.5
-	light_power = 2
+	light_power = 1
 	light_color = COLOR_VERY_SOFT_YELLOW
+	appearance_flags = KEEP_TOGETHER
 
 	///greyscale support
 	greyscale_config
@@ -166,6 +167,7 @@
 		set_greyscale_config(ammo.projectile_greyscale_config)
 		set_greyscale_colors(ammo.projectile_greyscale_colors)
 
+	icon = ammo.icon
 	icon_state = ammo.icon_state
 	damage = ammo.damage + bonus_damage //Mainly for emitters.
 	penetration = ammo.penetration
@@ -354,11 +356,15 @@
 		if(ammo.bullet_color)
 			set_light_color(ammo.bullet_color)
 			set_light_on(TRUE)
+			update_appearance(UPDATE_OVERLAYS)
 	else
 		alpha = 64
 
 	START_PROCESSING(SSprojectiles, src) //If no hits on the first moves, enter the processing queue for next.
 
+/obj/projectile/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, icon_state, src, layer, reset_transform = FALSE)
 
 /obj/projectile/process()
 	if(QDELETED(src))

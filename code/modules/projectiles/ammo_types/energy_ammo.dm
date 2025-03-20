@@ -110,7 +110,7 @@
 	proj.proj_max_range -= 2
 
 /datum/ammo/energy/bfg/drop_nade(turf/T)
-	explosion(T, 0, 0, 4, 0, 0)
+	explosion(T, 0, 0, 4, 0, 0, explosion_cause=src)
 
 /datum/ammo/energy/bfg/do_at_max_range(turf/target_turf, obj/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
@@ -609,7 +609,7 @@
 	max_range = 12
 
 /datum/ammo/energy/plasma/blast/drop_nade(turf/T)
-	explosion(T, weak_impact_range = 3, color = COLOR_DISABLER_BLUE)
+	explosion(T, weak_impact_range = 3, color = COLOR_DISABLER_BLUE, explosion_cause=src)
 
 /datum/ammo/energy/plasma/blast/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
@@ -632,7 +632,7 @@
 	var/melting_stacks = 2
 
 /datum/ammo/energy/plasma/blast/melting/drop_nade(turf/T)
-	explosion(T, weak_impact_range = 4, color = COLOR_DISABLER_BLUE)
+	explosion(T, weak_impact_range = 4, color = COLOR_DISABLER_BLUE, explosion_cause=src)
 	for(var/mob/living/living_victim in viewers(3, T)) //normally using viewers wouldn't work due to darkness and smoke both blocking vision. However explosions clear both temporarily so we avoid this issue.
 		var/datum/status_effect/stacking/melting/debuff = living_victim.has_status_effect(STATUS_EFFECT_MELTING)
 		if(debuff)
@@ -648,7 +648,7 @@
 	ammo_behavior_flags = AMMO_ENERGY
 
 /datum/ammo/energy/plasma/blast/shatter/drop_nade(turf/T)
-	explosion(T, light_impact_range = 2, weak_impact_range = 5, throw_range = 0, color = COLOR_DISABLER_BLUE)
+	explosion(T, light_impact_range = 2, weak_impact_range = 5, throw_range = 0, color = COLOR_DISABLER_BLUE, explosion_cause=src)
 	for(var/mob/living/living_victim in viewers(3, T))
 		living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, 5 SECONDS)
 
@@ -757,7 +757,7 @@
 
 /datum/ammo/energy/plasma_pistol
 	name = "ionized plasma bolt"
-	icon_state = "overchargedlaser"
+	icon_state = "overchargedlaser_green"
 	hud_state = "electrothermal"
 	hud_state_empty = "electrothermal_empty"
 	damage = 40

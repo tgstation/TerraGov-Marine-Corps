@@ -17,12 +17,12 @@
 	desc = "The smallest weapon available to mechs. It packs a small punch, but allows the mech to achieve higher mobility."
 	icon_state = "pistol"
 	fire_sound = 'sound/mecha/weapons/mech_pistol.ogg'
-	muzzle_iconstate = "muzzle_flash_light"
+	muzzle_iconstate = "muzzle_flash"
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,16), "E" = list(44,16), "W" = list(-13,36)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,16), "E" = list(44,36), "W" = list(-13,16)),
 	)
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/pistol/mech
 	max_integrity = 500
 	projectiles = 20
@@ -42,8 +42,8 @@
 	desc = "A burstfiring weapon fitted for mechs. Offers higher mobility and accuracy than larger weapons, but reduced damage."
 	icon_state = "burstpistol"
 	fire_sound = 'sound/mecha/weapons/mech_pistol.ogg'
-	muzzle_iconstate = "muzzle_flash_light"
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	muzzle_iconstate = "muzzle_flash"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,8), "E" = list(52,8), "W" = list(-21,28)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,8), "E" = list(52,28), "W" = list(-20,8)),
@@ -67,13 +67,17 @@
 	name = "\improper Coeus submachine gun"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "As the smallest autofiring weapon, it offers improved mobility but less firepower than most of it's larger cousins."
-	muzzle_iconstate = "muzzle_flash_light"
 	icon_state = "smg"
+	muzzle_iconstate = "muzzle_flash"
 	fire_sound = 'sound/mecha/weapons/mech_smg.ogg'
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,12), "E" = list(54,14), "W" = list(-20,34)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,12), "E" = list(52,34), "W" = list(-22,14)),
+	)
+	flash_offsets_core = list(
+		MECHA_R_ARM = list("N" = list(52,46), "S" = list(14,29), "E" = list(70,32), "W" = list(-13,34)),
+		MECHA_L_ARM = list("N" = list(12,46), "S" = list(50,29), "E" = list(77,33), "W" = list(-8,32)),
 	)
 	ammotype = /datum/ammo/bullet/smg/mech
 	max_integrity = 400
@@ -95,7 +99,7 @@
 	desc = "Medium-sized mech assault weapon. Similar to the Cronus assault rifle, but fires in bursts."
 	icon_state = "burstrifle"
 	fire_sound = 'sound/mecha/weapons/mech_rifle.ogg'
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-6), "E" = list(64,17), "W" = list(-33,37)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(63,37), "W" = list(-34,17)),
@@ -121,10 +125,14 @@
 	desc = "The stock-and-standard extra-sized multipurpose rifle for TGMC mech units."
 	icon_state = "assaultrifle"
 	fire_sound = 'sound/mecha/weapons/mech_rifle.ogg'
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-6), "E" = list(64,17), "W" = list(-34,37)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(64,37), "W" = list(-34,17)),
+	)
+	flash_offsets_core = list(
+		MECHA_R_ARM = list("N" = list(52,46), "S" = list(14,29), "E" = list(70,29), "W" = list(-19,34)),
+		MECHA_L_ARM = list("N" = list(12,46), "S" = list(50,29), "E" = list(70,34), "W" = list(-19,29)),
 	)
 	ammotype = /datum/ammo/bullet/rifle/mech
 	max_integrity = 400
@@ -171,7 +179,7 @@
 	desc = "A massive hulk of metal that fires base-bleed LMG rounds. Like the standard LMG, but bigger, better and heavier."
 	icon_state = "lmg"
 	fire_sound = 'sound/mecha/weapons/mech_lmg.ogg'
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-6), "E" = list(64,17), "W" = list(-34,37)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(64,37), "W" = list(-34,17)),
@@ -195,7 +203,7 @@
 	desc = "A drum-fed autocannon that fires fragmentation rounds that burst in a frontal cone when the bullet impacts. Extra effective against clusters of enemies."
 	icon_state = "lightcannon"
 	fire_sound = 'sound/mecha/weapons/mech_light_cannon.ogg'
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-15), "E" = list(80,4), "W" = list(-50,24)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-15), "E" = list(80,24), "W" = list(-50,4)),
@@ -219,7 +227,7 @@
 	desc = "Standard mech laser rifle. Does not require amnmo refills and shoots highly accurate lasers that immediately hit, but deals slightly less damage compared to similar weapons."
 	icon_state = "lasermg"
 	fire_sound = 'sound/mecha/weapons/mech_laser_heavy.ogg'
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(33,68), "S" = list(-2,-6), "E" = list(80,13), "W" = list(-50,33)),
 		MECHA_L_ARM = list("N" = list(0,68), "S" = list(32,-6), "E" = list(80,33), "W" = list(-50,13)),
@@ -239,7 +247,7 @@
 	desc = "A laser projector, capable of burstfiring. Does not require amnmo refills and shoots highly accurate lasers that immediately hit, but deals slightly less damage compared to similar weapons."
 	icon_state = "laserrifle"
 	fire_sound = 'sound/mecha/weapons/mech_laser_heavy.ogg'
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(33,52), "S" = list(-2,-6), "E" = list(75,11), "W" = list(-45,31)),
 		MECHA_L_ARM = list("N" = list(0,52), "S" = list(32,-6), "E" = list(75,31), "W" = list(-45,11)),
@@ -265,7 +273,7 @@
 		MECHA_R_ARM = list("N" = list(33,48), "S" = list(-2,6), "E" = list(67,11), "W" = list(-37,31)),
 		MECHA_L_ARM = list("N" = list(0,48), "S" = list(32,6), "E" = list(67,31), "W" = list(-37,11)),
 	)
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/smg
 	max_integrity = 400
 	energy_drain = 5
@@ -285,7 +293,7 @@
 		MECHA_R_ARM = list("N" = list(36,48), "S" = list(-1,1), "E" = list(72,32), "W" = list(-42,48)),
 		MECHA_L_ARM = list("N" = list(-4,48), "S" = list(33,1), "E" = list(72,48), "W" = list(-42,32)),
 	)
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/apfsds
 	max_integrity = 400
 	projectiles = 1
@@ -310,7 +318,7 @@
 		MECHA_R_ARM = list("N" = list(35,60), "S" = list(-2,-11), "E" = list(64,0), "W" = list(-34,20)),
 		MECHA_L_ARM = list("N" = list(-2,60), "S" = list(32,-11), "E" = list(64,20), "W" = list(-34,0)),
 	)
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/minigun/mech
 	max_integrity = 400
 	projectiles = 200
@@ -335,7 +343,7 @@
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-14), "E" = list(80,0), "W" = list(-50,22)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-14), "E" = list(80,22), "W" = list(-50,0)),
 	)
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/sniper/mech
 	max_integrity = 200
 	projectiles = 15
@@ -355,7 +363,8 @@
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	icon_state = "grenadelauncher"
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	equipment_slot = MECHA_BACK
 	ammotype = /obj/item/explosive/grenade
 	max_integrity = 350
 	projectiles = 10
@@ -412,7 +421,7 @@
 		MECHA_R_ARM = list("N" = list(36,48), "S" = list(-1,1), "E" = list(56,20), "W" = list(-26,36)),
 		MECHA_L_ARM = list("N" = list(-4,48), "S" = list(33,1), "E" = list(56,36), "W" = list(-26,20)),
 	)
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/rocket/mech
 	max_integrity = 400
 	projectiles = 1
@@ -537,7 +546,7 @@
 	icon_state = "lance"
 	fire_sound = 'sound/mecha/weapons/laser_sword.ogg'
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.OGG'
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/lance_strike
 	max_integrity = 400
 	slowdown = 0.15

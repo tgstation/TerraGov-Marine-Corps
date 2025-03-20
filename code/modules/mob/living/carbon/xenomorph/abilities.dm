@@ -767,6 +767,8 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CORROSIVE_ACID,
 	)
 	use_state_flags = ABILITY_USE_BUCKLED
+	/// How much to reduce acid delay? Lower is faster. Multiplicative.
+	var/acid_speed_multiplier = 1
 
 /datum/action/ability/activable/xeno/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/obj/effect/xenomorph/acid/current_acid_type = acid_type
@@ -806,7 +808,7 @@
 		A = existing_acid.acid_t // Swap the target to the target of the acid
 
 
-	var/aciddelay = A.get_acid_delay()
+	var/aciddelay = max(0, A.get_acid_delay() * acid_speed_multiplier);
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		current_acid_type = /obj/effect/xenomorph/acid/strong //if it is before shutters open, everyone gets strong acid
 		aciddelay = 0
@@ -974,7 +976,7 @@
 		return
 
 	SEND_SIGNAL(owner, COMSIG_XENO_FIRE)
-	xeno?.client?.mouse_pointer_icon = 'icons/effects/xeno_target.dmi'
+	xeno?.client?.mouse_pointer_icon = 'icons/UI_Icons/gun_crosshairs/rifle.dmi'
 
 ///Fires the spit projectile.
 /datum/action/ability/activable/xeno/xeno_spit/proc/fire()
@@ -1066,16 +1068,16 @@
 
 /datum/action/ability/xeno_action/xenohide/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(X.layer != XENO_HIDING_LAYER)
+	if(X.layer != BELOW_TABLE_LAYER)
 		RegisterSignal(owner, COMSIG_XENOMORPH_POUNCE, PROC_REF(action_activate))
-		X.layer = XENO_HIDING_LAYER
+		X.layer = BELOW_TABLE_LAYER
 		to_chat(X, span_notice("We are now hiding."))
-		button.add_overlay(mutable_appearance('icons/Xeno/actions/general.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE))
+		button.add_overlay(mutable_appearance('icons/Xeno/actions/general.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, null, FLOAT_PLANE))
 	else
 		UnregisterSignal(owner, COMSIG_XENOMORPH_POUNCE)
 		X.layer = MOB_LAYER
 		to_chat(X, span_notice("We have stopped hiding."))
-		button.cut_overlay(mutable_appearance('icons/Xeno/actions/general.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE))
+		button.cut_overlay(mutable_appearance('icons/Xeno/actions/general.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, null, FLOAT_PLANE))
 
 
 //Neurotox Sting
@@ -1362,6 +1364,11 @@
 		if(!silent)
 			to_chat(X, span_warning("This artificial construct has no life force to drain"))
 		return FALSE
+	if(X.status_flags & INCORPOREAL)
+		if(!silent)
+			to_chat(X, span_warning("You can't do this while flying!"))
+		return FALSE
+
 	X.face_atom(victim) //Face towards the target so we don't look silly
 	X.visible_message(span_xenowarning("\The [X] begins opening its mouth and extending a second jaw towards \the [victim]."), \
 	span_danger("We slowly drain \the [victim]'s life force!"), null, 20)

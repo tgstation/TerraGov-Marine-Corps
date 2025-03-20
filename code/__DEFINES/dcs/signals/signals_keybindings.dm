@@ -4,6 +4,7 @@
 
 #define COMSIG_KB_ACTIVATED (1<<0)
 #define COMSIG_KB_NOT_ACTIVATED (1<<1) //used in unique action
+//carbon
 #define COMSIG_KB_CARBON_HOLDRUNMOVEINTENT_DOWN "keybinding_carbon_holdrunmoveintent_down"
 #define COMSIG_KB_CARBON_TOGGLETHROWMODE_DOWN "keybinding_carbon_togglethrowmode_down"
 #define COMSIG_KB_CARBON_TOGGLEREST_DOWN "kebinding_carbon_togglerest_down"
@@ -11,6 +12,8 @@
 #define COMSIG_KB_CARBON_SELECTDISARMINTENT_DOWN "keybinding_carbon_selectdisarmintent_down"
 #define COMSIG_KB_CARBON_SELECTGRABINTENT_DOWN "keybinding_carbon_selectgrabintent_down"
 #define COMSIG_KB_CARBON_SELECTHARMINTENT_DOWN "keybinding_carbon_selectharmintent_down"
+
+//client
 #define COMSIG_KB_CLIENT_GETHELP_DOWN "keybinding_client_gethelp_down"
 #define COMSIG_KB_CLIENT_SCREENSHOT_DOWN "keybinding_client_screenshot_down"
 #define COMSIG_KB_CLIENT_MINIMALHUD_DOWN "keybinding_client_minimalhud_down"
@@ -22,9 +25,15 @@
 #define COMSIG_KB_CLIENT_XOOC_DOWN "keybinding_client_xooc_down"
 #define COMSIG_KB_CLIENT_MOOC_DOWN "keybinding_client_mooc_down"
 #define COMSIG_KB_CLIENT_LOOC_DOWN "keybinding_client_looc_down"
+
+//living
 #define COMSIG_KB_LIVING_RESIST_DOWN "keybinding_living_resist_down"
 #define COMSIG_KB_LIVING_JUMP_DOWN "keybind_living_jump_down"
 #define COMSIG_KB_LIVING_JUMP_UP "keybind_living_jump_up"
+#define COMSIG_KB_LIVING_LOOKUP_DOWN "keybinding_living_lookup_down"
+#define COMSIG_KB_LIVING_LOOKDOWN_DOWN "keybinding_living_lookdown_down"
+
+//mob
 #define COMSIG_KB_MOB_STOPPULLING_DOWN "keybinding_mob_stoppulling_down"
 #define COMSIG_KB_MOB_CYCLEINTENTRIGHT_DOWN "keybinding_mob_cycleintentright_down"
 #define COMSIG_KB_MOB_CYCLEINTENTLEFT_DOWN "keybinding_mob_cycleintentleft_down"
@@ -40,11 +49,15 @@
 #define COMSIG_KB_MOB_TARGETRIGHTLEG_DOWN "keybinding_mob_targetrightleg_down"
 #define COMSIG_KB_MOB_TARGETBODYGROIN_DOWN "keybinding_mob_targetbodygroin_down"
 #define COMSIG_KB_MOB_TARGETLEFTLEG_DOWN "keybinding_mob_targetleftleg_down"
+
+//movement
 #define COMSIG_KB_MOVEMENT_NORTH_DOWN "keybinding_movement_north_down"
 #define COMSIG_KB_MOVEMENT_SOUTH_DOWN "keybinding_movement_south_down"
 #define COMSIG_KB_MOVEMENT_WEST_DOWN "keybinding_movement_west_down"
 #define COMSIG_KB_MOVEMENT_EAST_DOWN "keybinding_movement_east_down"
 #define COMSIG_KB_MOB_BLOCKMOVEMENT_DOWN "keybinding_mob_blockmovement_down"
+#define COMSIG_KB_MOVEMENT_ZLEVEL_MOVEUP_DOWN "keybinding_mob_zlevel_moveup_down"
+#define COMSIG_KB_MOVEMENT_ZLEVEL_MOVEDOWN_DOWN "keybinding_mob_zlevel_movedown_down"
 
 //Admin
 #define COMSIG_KB_ADMIN_ASAY_DOWN "keybinding_admin_asay_down"
@@ -73,6 +86,7 @@
 #define COMSIG_KB_AIMMODE "keybinding_aimmode"
 #define COMSIG_KB_FIREMODE "keybind_firemode"
 #define COMSIG_KB_AUTOEJECT "keybind_autoeject"
+#define COMSIG_KB_HUMAN_INTERACT_OTHER_HAND "keybinding_human_interact_other_hand"
 #define COMSIG_KB_GIVE "keybind_give"
 #define COMSIG_KB_HELMETMODULE "keybinding_helmetmodule"
 #define COMSIG_KB_ARMORMODULE "keybinding_armormodule"
@@ -121,6 +135,7 @@
 #define COMSIG_MECHABILITY_STRIKE "mechability_strike"
 #define COMSIG_MECHABILITY_RELOAD "mechability_reload"
 #define COMSIG_MECHABILITY_REPAIRPACK "mechability_repairpack"
+#define COMSIG_MECHABILITY_SWAPWEAPONS "mechability_swapweapons"
 #define COMSIG_MECHABILITY_TOGGLE_ACTUATORS "mechability_toggle_actuators"
 
 #define COMSIG_ACTION_EXCLUSIVE_TOGGLE "action_exclusive_toggle"
@@ -145,6 +160,8 @@
 #define COMSIG_XENOABILITY_CORROSIVE_ACID "xenoability_corrosive_acid"
 #define COMSIG_XENOABILITY_SPRAY_ACID "xenoability_spray_acid"
 #define COMSIG_XENOABILITY_ACID_DASH "xenoability_acid_dash"
+#define COMSIG_XENOABILITY_ACID_DASH_MELTER "xenoability_acid_dash_melter"
+#define COMSIG_XENOABILITY_ACIDIC_MISSILE "xenoability_acidic_missile"
 #define COMSIG_XENOABILITY_DODGE "xenoability_dodge"
 #define COMSIG_XENOABILITY_IMPALE "xenoability_impale"
 #define COMSIG_XENOABILITY_TAIL_TRIP "xenoability_tail_trip"
@@ -176,6 +193,7 @@
 #define COMSIG_XENOABILITY_CREATE_BOMB "xenoability_create_bomb"
 #define COMSIG_XENOABILITY_BOMBARD "xenoability_bombard"
 #define COMSIG_XENOABILITY_ACID_SHROUD "xenoability_acid_shroud"
+#define COMSIG_XENOABILITY_ACID_SHROUD_MELTER "xenoability_acid_shroud_melter"
 #define COMSIG_XENOABILITY_ACID_SHROUD_SELECT "xenoability_acid_shroud_select"
 #define COMSIG_XENOABILITY_SMOKESCREEN_SPIT "xenoability_smokescreen_spit"
 #define COMSIG_XENOABILITY_STEAM_RUSH "xenoability_steam_rush"
@@ -224,6 +242,7 @@
 #define COMSIG_XENOABILITY_RESIN_WALKER "xenoability_resin_walker"
 #define COMSIG_XENOABILITY_BUILD_TUNNEL "xenoability_build_tunnel"
 #define COMSIG_XENOABILITY_PLACE_JELLY_POD "xenoability_place_jelly_pod"
+#define COMSIG_XENOABILITY_PLACE_RECOVERY_PYLON "xenoability_place_recovery_pylon"
 #define COMSIG_XENOABILITY_CREATE_JELLY "xenoability_create_jelly"
 #define COMSIG_XENOABILITY_HEALING_INFUSION "xenoability_healing_infusion"
 #define COMSIG_XENOABILITY_RECYCLE "xenoability_recycle"
@@ -348,3 +367,10 @@
 #define COMSIG_XENOABILITY_TAIL_LASH "xenoability_tail_lash"
 #define COMSIG_XENOABILITY_TAIL_LASH_SELECT "xenoability_tail_lash_select"
 #define COMSIG_XENOABILITY_ADVANCE_OPPRESSOR "xenoability_advance_oppressor"
+
+#define COMSIG_XENOABILITY_BACKHAND "xenoability_backhand"
+#define COMSIG_XENOABILITY_FLY "xenoability_fly"
+#define COMSIG_XENOABILITY_DRAGON_BREATH "xenoability_dragon_breath"
+#define COMSIG_XENOABILITY_WIND_CURRENT "xenoability_wind_current"
+#define COMSIG_XENOABILITY_GRAB "xenoability_grab"
+#define COMSIG_XENOABILITY_SCORCHED_LAND "xenoability_scorched_land"

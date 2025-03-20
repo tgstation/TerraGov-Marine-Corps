@@ -100,6 +100,19 @@
 	LAZYINITLIST(lazy_list[key]); \
 	lazy_list[key] |= value;
 
+///Ensures the length of a list is at least I, prefilling it with V if needed. if V is a proc call, it is repeated for each new index so that list() can just make a new list for each item.
+#define LISTASSERTLEN(L, I, V...) \
+	if (length(L) < I) { \
+		var/_OLD_LENGTH = length(L); \
+		L.len = I; \
+		/* Convert the optional argument to a if check */ \
+		for (var/_USELESS_VAR in list(V)) { \
+			for (var/_INDEX_TO_ASSIGN_TO in _OLD_LENGTH+1 to I) { \
+				L[_INDEX_TO_ASSIGN_TO] = V; \
+			} \
+		} \
+	}
+
 #define reverseList(L) reverseRange(L.Copy())
 
 //Checks for specific types in specifically structured (Assoc "type" = TRUE) lists ('typecaches')
@@ -299,6 +312,11 @@
 		. = L[1]
 		L.Cut(1,2)
 
+/// Returns the top (last) element from the list, does not remove it from the list. Stack functionality.
+/proc/peek(list/target_list)
+	var/list_length = length(target_list)
+	if(list_length != 0)
+		return target_list[list_length]
 
 //Returns the next element in parameter list after first appearance of parameter element. If it is the last element of the list or not present in list, returns first element.
 /proc/next_in_list(element, list/L)

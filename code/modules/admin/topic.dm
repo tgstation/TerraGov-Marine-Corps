@@ -92,7 +92,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/list/dat = list("Related accounts by [uppertext(href_list["showrelatedacc"])]:")
 		dat += thing_to_check
 
-		usr << browse(dat.Join("<br>"), "window=related_[C];size=420x300")
+		var/datum/browser/browser = new(usr, "related_[C]", "[C.ckey] Related Accounts", 420, 300)
+		browser.set_content(dat.Join("<br>"))
+		browser.open()
 
 	else if(href_list["centcomlookup"])
 		if(!check_rights(R_ADMIN))
@@ -442,6 +444,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/queen, location, null, delmob)
 			if("king")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/king, location, null, delmob)
+			if("dragon")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/dragon, location, null, delmob)
 			if("wraith")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/wraith, location, null, delmob)
 			if("puppeteer")
@@ -821,7 +825,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key", "Coords"))
 			if("Area")
-				var/area/A = input("Pick an area.", "Pick an area") as null|anything in GLOB.sorted_areas
+				var/area/A = input("Pick an area.", "Pick an area") as null|anything in get_sorted_areas()
 				if(!A || !M)
 					return
 				target = pick(get_area_turfs(A))
@@ -863,8 +867,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/dat = "<html><head><title>Fax Message: [F.title]</title></head>"
 		dat += "<body>[F.message]</body></html>"
 
-		usr << browse(dat, "window=fax")
-
+		var/datum/browser/browser = new(usr, "fax", "Fax")
+		browser.set_content(dat)
+		browser.open()
 
 	else if(href_list["faxmark"])
 		if(!check_rights(R_ADMIN|R_MENTOR))
@@ -990,10 +995,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				if(!fax_message)
 					return
 
-		usr << browse(fax_message, "window=faxpreview;size=600x600")
+		var/datum/browser/browser = new(usr, "faxpreview", "New Fax", 600, 600)
+		browser.set_content(fax_message)
+		browser.open()
 
 		if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
-			usr << browse(null, "window=faxpreview")
+			browser.close()
 			return
 
 		send_fax(usr, null, dep, subject, fax_message, TRUE)

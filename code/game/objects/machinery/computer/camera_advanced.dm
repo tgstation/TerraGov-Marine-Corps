@@ -243,9 +243,8 @@
 	var/image/user_image = null
 
 /mob/camera/aiEye/remote/update_remote_sight(mob/living/user)
-	user.see_invisible = SEE_INVISIBLE_LIVING
-	user.sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS|SEE_BLACKNESS
-	user.see_in_dark = 2
+	user.set_invis_see(SEE_INVISIBLE_LIVING)
+	user.set_sight(SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS)
 	return TRUE
 
 /mob/camera/aiEye/remote/reset_glide_size() //because this mob only moves via relay move which has a hardcoded move delay var, we set for that specifically
@@ -293,7 +292,6 @@
 				top = A
 		user_image = image(icon, top, icon_state, FLY_LAYER)
 		eye_user.client.images += user_image
-
 
 /mob/camera/aiEye/remote/relaymove(mob/user, direct)
 	if(istype(origin, /obj/machinery/computer/camera_advanced))

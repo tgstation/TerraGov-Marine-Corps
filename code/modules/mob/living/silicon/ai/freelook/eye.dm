@@ -7,11 +7,8 @@
 	icon_state = "ai_camera"
 	icon = 'icons/mob/cameramob.dmi'
 	invisibility = INVISIBILITY_MAXIMUM
-	var/list/visibleCameraChunks = list()
 	var/mob/living/silicon/ai/ai = null
 	var/relay_speech = TRUE
-	var/use_static = TRUE
-	var/static_visibility_range = 16
 	var/ai_detector_visible = TRUE
 	var/ai_detector_color = "#FF0000"
 
@@ -20,6 +17,10 @@
 	. = ..()
 	GLOB.aiEyes += src
 	setLoc(loc, TRUE)
+
+/mob/camera/aiEye/Destroy()
+	ai = null
+	return ..()
 
 //Version the normal aiEye that's added to squad HUDs. Visible to marines, not visible to xenos. CAS does this too.
 //This is the one actually used by AI in ai.dm
@@ -74,7 +75,7 @@
 	if(use_static)
 		ai.camera_visibility(src)
 	if(ai.client && !ai.multicam_on)
-		ai.client.eye = src
+		ai.client.set_eye(src)
 	//Holopad
 	if(istype(ai.current, /obj/machinery/holopad))
 		var/obj/machinery/holopad/H = ai.current
@@ -89,7 +90,8 @@
 	var/turf/old_turf = get_turf(src)
 	var/turf/new_turf = get_turf(new_loc)
 	if(old_turf?.z != new_turf?.z)
-		on_changed_z_level(old_turf, new_turf)
+		var/same_z_layer = (GET_TURF_PLANE_OFFSET(old_turf) == GET_TURF_PLANE_OFFSET(new_turf))
+		on_changed_z_level(old_turf, new_turf, same_z_layer) // todo these call seems redundant
 	return ..()
 
 
@@ -97,7 +99,7 @@
 	return FALSE
 
 
-/mob/camera/aiEye/proc/GetViewerClient()
+/mob/camera/aiEye/GetViewerClient()
 	return ai?.client
 
 
@@ -105,9 +107,6 @@
 	if(ai)
 		ai.all_eyes -= src
 		ai = null
-	for(var/V in visibleCameraChunks)
-		var/datum/camerachunk/c = V
-		c.remove(src)
 	GLOB.aiEyes -= src
 	return ..()
 

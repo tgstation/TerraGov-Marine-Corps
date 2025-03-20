@@ -153,9 +153,9 @@
 	ammo_datum_type = /datum/ammo/energy/lasgun/M43
 	rounds_per_shot = ENERGY_STANDARD_AMMO_COST
 	attachable_allowed = list(
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
@@ -257,9 +257,9 @@
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/angledgrip,
@@ -439,9 +439,9 @@
 	turret_flags = TURRET_INACCURATE
 	ammo_level_icon = "te"
 	attachable_allowed = list(
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
@@ -477,10 +477,10 @@
 	)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
-	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/reddot, /obj/item/weapon/gun/flamer/mini_flamer)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/reddot, /obj/item/weapon/gun/flamer/mini_flamer)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/medic
-	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/flamer/mini_flamer)
+	starting_attachment_types = list(/obj/item/attachable/bayonet/converted, /obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/flamer/mini_flamer)
 
 /datum/lasrifle/energy_rifle_mode/standard
 	rounds_per_shot = 10
@@ -546,9 +546,9 @@
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
@@ -627,9 +627,9 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOBURST)
 	ammo_level_icon = "te"
 	attachable_allowed = list(
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
@@ -679,7 +679,7 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 	)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/gyro
@@ -692,7 +692,7 @@
 	starting_attachment_types = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 	)
 
 /datum/lasrifle/energy_carbine_mode/auto_burst
@@ -763,9 +763,9 @@
 	icon_overlay_x_offset = -1
 	icon_overlay_y_offset = -3
 	attachable_allowed = list(
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/unremovable/laser_sniper_scope,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
@@ -861,9 +861,9 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	ammo_level_icon = "te"
 	attachable_allowed = list(
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
@@ -907,7 +907,7 @@
 		projectile_to_fire.damage *= (1 + shots_fired)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser/patrol
-	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/grenade_launcher/underslung, /obj/item/attachable/bayonet)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/grenade_launcher/underslung, /obj/item/attachable/bayonet/converted)
 
 /datum/lasrifle/energy_mg_mode/standard
 	rounds_per_shot = 4
@@ -965,9 +965,9 @@
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/xray
 	rounds_per_shot = 15
 	attachable_allowed = list(
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
@@ -1054,27 +1054,13 @@
 	damage_falloff_mult = 0.9
 	fire_delay = 0.2 SECONDS
 	mode_list = list()
-	light_range = 0.1
-	light_power = 0.1
 	light_color = LIGHT_COLOR_ORANGE
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/update_icon()
-	. = ..()
-	if(rounds)
-		turn_light(null, TRUE)
-	else
-		turn_light(null, FALSE)
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/turn_light(mob/user, toggle_on)
-	. = ..()
-	if(. != CHECKS_PASSED)
-		return
-	set_light_on(toggle_on)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
-	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[worn_icon_state]_emissive")
-	standing.overlays.Add(emissive_overlay)
+	if(rounds)
+		var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[worn_icon_state]_emissive", src)
+		standing.overlays.Add(emissive_overlay)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta
 	name = "\improper VX-12 Serpenta"

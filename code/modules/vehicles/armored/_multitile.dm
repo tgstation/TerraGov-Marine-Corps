@@ -12,8 +12,8 @@
 	atom_flags = DIRLOCK|BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION|CRITICAL_ATOM
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_HEADLIGHTS|ARMORED_PURCHASABLE_ASSAULT|ARMORED_WRECKABLE
 	appearance_flags = PIXEL_SCALE
-	pixel_x = -56
-	pixel_y = -48
+	pixel_w = -56
+	pixel_z = -48
 	max_integrity = 900
 	soft_armor = list(MELEE = 50, BULLET = 100 , LASER = 90, ENERGY = 60, BOMB = 60, BIO = 100, FIRE = 50, ACID = 50)
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 20, FIRE = 0, ACID = 0)
@@ -26,6 +26,7 @@
 		/obj/item/armored_weapon,
 		/obj/item/armored_weapon/ltaap,
 		/obj/item/armored_weapon/bfg,
+		/obj/item/armored_weapon/tank_autocannon,
 
 		/obj/item/armored_weapon/secondary_weapon,
 		/obj/item/armored_weapon/secondary_flamer,
@@ -92,10 +93,10 @@
 	return (loc_override || (entering_mob.loc in enter_locations(entering_mob)))
 
 /obj/vehicle/sealed/armored/multitile/add_desant(mob/living/new_desant)
-	new_desant.pass_flags |= (desant_pass_flags|pass_flags)
+	new_desant.add_pass_flags(desant_pass_flags|pass_flags, VEHICLE_TRAIT)
 
 /obj/vehicle/sealed/armored/multitile/remove_desant(mob/living/old_desant)
-	old_desant.pass_flags &= ~(desant_pass_flags|pass_flags)
+	old_desant.remove_pass_flags(desant_pass_flags|pass_flags, VEHICLE_TRAIT)
 
 /obj/vehicle/sealed/armored/multitile/ex_act(severity)
 	if(QDELETED(src))

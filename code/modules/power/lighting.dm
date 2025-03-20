@@ -412,7 +412,7 @@
 	addtimer(CALLBACK(src, PROC_REF(delayed_explosion)), 0.5 SECONDS)
 
 /obj/machinery/light/proc/delayed_explosion()
-	explosion(loc, 0, 1, 3, 0, 2)
+	explosion(loc, 0, 1, 3, 0, 2, explosion_cause=src)
 	qdel(src)
 
 //types
@@ -528,7 +528,7 @@
 	desc = "A tube light fixture set into the floor. Rated for foot traffic."
 	icon_state = "floortube_empty"
 	base_icon_state = "floortube"
-	layer = HOLOPAD_LAYER
+	layer = MAP_SWITCH(ABOVE_OPEN_TURF_LAYER, LOW_OBJ_LAYER)
 	fitting = "large tube"
 	light_type = /obj/item/light_bulb/tube/large
 	brightness = 12

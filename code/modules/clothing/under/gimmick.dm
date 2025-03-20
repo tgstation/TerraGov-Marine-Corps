@@ -75,7 +75,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 	)

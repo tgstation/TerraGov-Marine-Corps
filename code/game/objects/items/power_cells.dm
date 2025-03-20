@@ -222,13 +222,12 @@
 
 ///Explodes, scaling with cell charge
 /obj/item/cell/proc/explode()
-	var/turf/epicenter = get_turf(src)
 
 	var/heavy_impact_range = clamp(round(sqrt(charge) * 0.01), 0, 3)
 	var/light_impact_range = clamp(round(sqrt(charge) * 0.15), 0, 4)
 	var/flash_range = clamp(round(sqrt(charge) * 0.05), -1, 4)
 
-	explosion(epicenter, 0, heavy_impact_range, light_impact_range, 0, flash_range)
+	explosion(src, 0, heavy_impact_range, light_impact_range, 0, flash_range)
 
 	QDEL_IN(src, 1)
 
@@ -320,6 +319,9 @@
 	maxcharge = 300
 	minor_fault = 1
 
+/obj/item/cell/rtg // todo should kill this subtype
+	charge_overlay = null
+
 /obj/item/cell/rtg/small
 	name = "recharger cell"
 	desc = "This is a miniature radioisotope generator that can fit into APC's, but not laser-based weapory. The needed shielding lowers the maximum capacity significantly."
@@ -358,6 +360,7 @@
 	icon_state = "trashmelt"
 	worn_icon_state = "trashmelt"
 	w_class = WEIGHT_CLASS_HUGE
+	charge_overlay = null
 	self_recharge = TRUE
 	maxcharge = 1000
 	charge_amount = 150

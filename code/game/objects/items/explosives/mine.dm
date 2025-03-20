@@ -188,7 +188,7 @@ Stepping directly on the mine will also blow it up
 	if(triggered)
 		return
 	triggered = TRUE
-	explosion(tripwire ? tripwire.loc : loc, light_impact_range = 3)
+	explosion(tripwire ? tripwire.loc : loc, light_impact_range = 3, explosion_cause=src)
 	QDEL_NULL(tripwire)
 	qdel(src)
 
@@ -252,7 +252,7 @@ Stepping directly on the mine will also blow it up
 	if(triggered)
 		return
 	triggered = TRUE
-	explosion(tripwire ? tripwire.loc : loc, 2, 0, 0, 4)
+	explosion(tripwire ? tripwire.loc : loc, 2, 0, 0, 4, explosion_cause=src)
 	QDEL_NULL(tripwire)
 	qdel(src)
 

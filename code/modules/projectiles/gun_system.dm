@@ -311,6 +311,8 @@
 	var/icon_overlay_x_offset = 0
 	///Whether the icon_state overlay is offset in the Y axis
 	var/icon_overlay_y_offset = 0
+	///Crosshair icon of the gun
+	var/gun_crosshair = 'icons/UI_Icons/gun_crosshairs/rifle.dmi'
 
 
 /*
@@ -482,7 +484,7 @@
 		COMSIG_MOB_SKILLS_CHANGED,
 		COMSIG_MOB_SHOCK_STAGE_CHANGED,
 		COMSIG_HUMAN_MARKSMAN_AURA_CHANGED))
-		gun_user.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+		update_mouse_pointer(TRUE)
 		SEND_SIGNAL(gun_user, COMSIG_GUN_USER_UNSET, src)
 		gun_user.hud_used?.remove_ammo_hud(src)
 		if(heat_meter && gun_user.client)
@@ -686,8 +688,10 @@
 /obj/item/weapon/gun/toggle_wielded(user, wielded)
 	if(wielded)
 		item_flags |= WIELDED
+		update_mouse_pointer()
 	else
 		item_flags &= ~(WIELDED|FULLY_WIELDED)
+		update_mouse_pointer(TRUE)
 
 //----------------------------------------------------------
 			//							    \\
@@ -748,7 +752,7 @@
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE)
 	if(master_gun)
 		SEND_SIGNAL(gun_user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, master_gun)
-	gun_user?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	update_mouse_pointer()
 	return TRUE
 
 ///Set the target and take care of hard delete
@@ -777,7 +781,8 @@
 /obj/item/weapon/gun/proc/stop_fire()
 	SIGNAL_HANDLER
 	active_attachable?.stop_fire()
-	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+	if(!(item_flags & WIELDED))
+		update_mouse_pointer(TRUE)
 	if(!HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		reset_fire()
 	SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
@@ -787,12 +792,13 @@
 	shots_fired = 0//Let's clean everything
 	set_target(null)
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
+	if(!(item_flags & WIELDED))
+		update_mouse_pointer(TRUE)
 	if(dual_wield)
 		modify_fire_delay(-fire_delay + fire_delay/(1 + akimbo_additional_delay)) // Removes the additional delay from auto_fire
 		modify_auto_burst_delay(-autoburst_delay + autoburst_delay/(1 + akimbo_additional_delay))
 		dual_wield = FALSE
 		setup_bullet_accuracy()
-	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 
 ///Inform the gun if he is currently bursting, to prevent reloading
 /obj/item/weapon/gun/proc/set_bursting(bursting)
@@ -953,72 +959,72 @@
 			set_light_range(muzzle_flash_lum)
 			set_light_color(muzzle_flash_color)
 			set_light_on(TRUE)
-			addtimer(CALLBACK(src, PROC_REF(reset_light_range), prev_light), 1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(reset_light_range), prev_light), 0.1 SECONDS)
 		//Offset the pixels.
 		switch(firing_angle)
 			if(0, 360)
 				muzzle_flash.pixel_x = 0
-				muzzle_flash.pixel_y = 8
+				muzzle_flash.pixel_y = 13
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(1 to 44)
-				muzzle_flash.pixel_x = round(4 * ((firing_angle) / 45))
-				muzzle_flash.pixel_y = 8
+				muzzle_flash.pixel_x = round(6 * ((firing_angle) / 45))
+				muzzle_flash.pixel_y = 13
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(45)
-				muzzle_flash.pixel_x = 8
-				muzzle_flash.pixel_y = 8
+				muzzle_flash.pixel_x = 13
+				muzzle_flash.pixel_y = 13
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(46 to 89)
-				muzzle_flash.pixel_x = 8
-				muzzle_flash.pixel_y = round(4 * ((90 - firing_angle) / 45))
+				muzzle_flash.pixel_x = 13
+				muzzle_flash.pixel_y = round(6 * ((90 - firing_angle) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(90)
-				muzzle_flash.pixel_x = 8
+				muzzle_flash.pixel_x = 13
 				muzzle_flash.pixel_y = 0
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(91 to 134)
-				muzzle_flash.pixel_x = 8
-				muzzle_flash.pixel_y = round(-3 * ((firing_angle - 90) / 45))
+				muzzle_flash.pixel_x = 13
+				muzzle_flash.pixel_y = round(-4 * ((firing_angle - 90) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(135)
-				muzzle_flash.pixel_x = 8
-				muzzle_flash.pixel_y = -6
+				muzzle_flash.pixel_x = 13
+				muzzle_flash.pixel_y = -10
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(136 to 179)
 				muzzle_flash.pixel_x = round(4 * ((180 - firing_angle) / 45))
-				muzzle_flash.pixel_y = -6
+				muzzle_flash.pixel_y = -12
 				muzzle_flash.layer = ABOVE_MOB_LAYER
 			if(180)
 				muzzle_flash.pixel_x = 0
-				muzzle_flash.pixel_y = -6
+				muzzle_flash.pixel_y = -12
 				muzzle_flash.layer = ABOVE_MOB_LAYER
 			if(181 to 224)
 				muzzle_flash.pixel_x = round(-6 * ((firing_angle - 180) / 45))
-				muzzle_flash.pixel_y = -6
+				muzzle_flash.pixel_y = -12
 				muzzle_flash.layer = ABOVE_MOB_LAYER
 			if(225)
-				muzzle_flash.pixel_x = -6
-				muzzle_flash.pixel_y = -6
+				muzzle_flash.pixel_x = -12
+				muzzle_flash.pixel_y = -12
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(226 to 269)
-				muzzle_flash.pixel_x = -6
-				muzzle_flash.pixel_y = round(-6 * ((270 - firing_angle) / 45))
+				muzzle_flash.pixel_x = -12
+				muzzle_flash.pixel_y = round(-12 * ((270 - firing_angle) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(270)
-				muzzle_flash.pixel_x = -6
+				muzzle_flash.pixel_x = -12
 				muzzle_flash.pixel_y = 0
 				muzzle_flash.layer = initial(muzzle_flash.layer)
-			if(271 to 314)
-				muzzle_flash.pixel_x = -6
+			if(271 to 313)
+				muzzle_flash.pixel_x = -12
 				muzzle_flash.pixel_y = round(8 * ((firing_angle - 270) / 45))
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(315)
-				muzzle_flash.pixel_x = -6
-				muzzle_flash.pixel_y = 8
+				muzzle_flash.pixel_x = -12
+				muzzle_flash.pixel_y = 13
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 			if(316 to 359)
-				muzzle_flash.pixel_x = round(-6 * ((360 - firing_angle) / 45))
-				muzzle_flash.pixel_y = 8
+				muzzle_flash.pixel_x = round(-12 * ((360 - firing_angle) / 45))
+				muzzle_flash.pixel_y = 13
 				muzzle_flash.layer = initial(muzzle_flash.layer)
 
 		muzzle_flash.transform = null
@@ -1884,6 +1890,15 @@
 	if(!QDELETED(flash_loc))
 		flash_loc.vis_contents -= muzzle_flash
 	muzzle_flash.applied = FALSE
+
+///Updates the current mouse pointer to use the gun crosshair or not
+/obj/item/weapon/gun/proc/update_mouse_pointer(reset)
+	if(reset)
+		gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
+		if(master_gun && (master_gun.item_flags & WIELDED))
+			gun_user?.client?.mouse_pointer_icon = master_gun.gun_crosshair
+		return
+	gun_user?.client?.mouse_pointer_icon = gun_crosshair
 
 //For letting xenos turn off the flashlights on any guns left lying around.
 /obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)

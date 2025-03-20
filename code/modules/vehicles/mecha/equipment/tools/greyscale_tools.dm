@@ -4,7 +4,7 @@
 	icon_state = "armor_melee"
 	iconstate_name = "armor_melee"
 	protect_name = "Medium Booster"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	armor_mod = list()
 	slowdown = 0
 	weight = 65
@@ -55,7 +55,7 @@
 	name = "phoron engine"
 	desc = "An advanced Nanotrasen phoron engine core prototype designed for TGMC advanced mech exosuits. Optimimized for energy storage."
 	icon_state = "phoron_engine"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	rechargerate = 0
 	slowdown = 0
 	max_fuel = 0
@@ -130,7 +130,7 @@
 	name = "enhanced zoom"
 	desc = "A magnifying module that allows the pilot to see much further than with the standard optics. Night vision not included."
 	icon_state = "zoom"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_zoom
 
 /obj/item/mecha_parts/mecha_equipment/ability/smoke
@@ -162,7 +162,7 @@
 	name = "tanglefoot generator"
 	desc = "A tanglefoot smoke generator capable of dispensing large amounts of non-lethal gas that saps the energy from any xenoform creatures it touches."
 	icon_state = "tfoot_gas"
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_smoke
 	smoke_type = /datum/effect_system/smoke_spread/plasmaloss
 

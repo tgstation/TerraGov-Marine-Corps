@@ -22,6 +22,9 @@
 	var/list/obj/structure/xeno/psychictower/psychictowers = list()
 	///list of phero towers
 	var/list/obj/structure/xeno/pherotower/pherotowers = list()
+	/// List of recovery pylons.
+	var/list/obj/structure/xeno/recovery_pylon/recovery_pylons = list()
+
 	///list of hivemind cores
 	var/list/obj/structure/xeno/hivemindcore/hivemindcores = list()
 	var/tier3_xeno_limit
@@ -302,6 +305,16 @@
 			continue
 		. += length(xenos_by_tier[t])
 
+///returns a list of all caste members, including other strains of this xeno caste
+/datum/hive_status/proc/get_all_caste_members(caste_type)
+	RETURN_TYPE(/list)
+
+	ASSERT(ispath(caste_type, /datum/xeno_caste))
+	. = list()
+	var/list/all_strain_types = get_strain_options(caste_type)
+	for(var/strain_type in all_strain_types)
+		. += xenos_by_typepath[strain_type]
+
 /datum/hive_status/proc/post_add(mob/living/carbon/xenomorph/X)
 	X.color = color
 
@@ -412,11 +425,11 @@
 		LAZYADD(xenos_by_zlevel["[X.z]"], X)
 	RegisterSignal(X, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(xeno_z_changed))
 
-	if(!xenos_by_typepath[X.xeno_caste.get_base_caste_type()])
+	if(!xenos_by_typepath[get_base_caste_type(X.xeno_caste.type)])
 		stack_trace("trying to add an invalid typepath into hivestatus list [X.caste_base_type]")
 		return FALSE
 
-	xenos_by_typepath[X.xeno_caste.get_base_caste_type()] += X
+	xenos_by_typepath[get_base_caste_type(X.xeno_caste.type)] += X
 	update_tier_limits() //Update our tier limits.
 
 	return TRUE
@@ -530,11 +543,11 @@
 		stack_trace("trying to remove a xeno from hivestatus upgrade list, nothing was removed!?")
 		return FALSE
 
-	if(!xenos_by_typepath[X.xeno_caste.get_base_caste_type()])
+	if(!xenos_by_typepath[get_base_caste_type(X.xeno_caste.type)])
 		stack_trace("trying to remove an invalid typepath from hivestatus list")
 		return FALSE
 
-	if(!xenos_by_typepath[X.xeno_caste.get_base_caste_type()].Remove(X))
+	if(!xenos_by_typepath[get_base_caste_type(X.xeno_caste.type)].Remove(X))
 		stack_trace("failed to remove a xeno from hive status typepath list, nothing was removed!?")
 		return FALSE
 
@@ -713,7 +726,7 @@
 
 	if(dead_xeno == living_xeno_ruler)
 		on_ruler_death(dead_xeno)
-	var/datum/xeno_caste/base_caste = GLOB.xeno_caste_datums[dead_xeno.caste_base_type][XENO_UPGRADE_BASETYPE]
+	var/datum/xeno_caste/base_caste = GLOB.xeno_caste_datums[get_parent_caste_type(dead_xeno.xeno_caste)][XENO_UPGRADE_BASETYPE]
 	if(base_caste.death_evolution_delay <= 0)
 		return
 	if(!caste_death_timers[base_caste])
@@ -761,7 +774,7 @@
 
 	var/mob/living/carbon/xenomorph/successor
 
-	var/list/candidates = xenos_by_typepath[/datum/xeno_caste/queen] + xenos_by_typepath[/datum/xeno_caste/shrike] + xenos_by_typepath[/datum/xeno_caste/king]
+	var/list/candidates = xenos_by_typepath[/datum/xeno_caste/queen] + xenos_by_typepath[/datum/xeno_caste/shrike] + xenos_by_typepath[/datum/xeno_caste/king] + xenos_by_typepath[/datum/xeno_caste/dragon]
 	if(length(candidates)) //Priority to the queens.
 		successor = candidates[1] //First come, first serve.
 

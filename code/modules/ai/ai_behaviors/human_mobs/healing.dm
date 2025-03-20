@@ -6,6 +6,8 @@
 	var/list/healing_chat = list("Healing you.", "Healing you, hold still.", "Stop moving!", "Fixing you up.", "Healing.", "Treating wounds.", "I'll have you patched up in no time.", "Quit your complaining, it's just a fleshwound.", "Cover me!", "Give me some room!")
 	///Chat lines for trying to heal
 	var/list/self_heal_chat = list("Healing, cover me!", "Healing over here.", "Where's the damn medic?", "Medic!", "Treating wounds.", "It's just a flesh wound.", "Need a little help here!", "Cover me!.")
+	///Chat lines for someone being perma
+	var/list/unrevivable_chat = list("We lost them!", "I lost them!", "Damn it, they're gone!", "Perma!", "No longer revivable.", "I can't help this one.", "I'm sorry.")
 
 /datum/ai_behavior/human/late_initialize()
 	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
@@ -77,7 +79,7 @@
 	SIGNAL_HANDLER
 	if(new_stat == current_stat)
 		return
-	if((medical_rating < AI_MED_MEDIC) || (new_stat == DEAD)) //todo: change when adding defib
+	if((medical_rating < AI_MED_MEDIC))
 		unset_target(source) //only medics will still try heal
 	UnregisterSignal(source, COMSIG_MOB_STAT_CHANGED)
 
@@ -125,7 +127,7 @@
 		living_parent.do_resist()
 		return
 
-	if(!COOLDOWN_CHECK(src, ai_damage_cooldown))
+	if(!COOLDOWN_CHECK(src, ai_heal_after_dam_cooldown))
 		return
 
 	if(prob(75))
@@ -141,7 +143,7 @@
 	late_initialize()
 
 ///Tries to heal another mob
-/datum/ai_behavior/human/proc/try_heal_other(mob/living/carbon/human/patient)
+/datum/ai_behavior/human/proc/try_heal_other(mob/living/carbon/human/patient, ignore_defib = FALSE)
 	if(patient.InCritical()) //crit heal is always priority
 		heal_by_type(patient, OXY)
 
@@ -149,14 +151,25 @@
 		return
 
 	do_unset_target(patient, FALSE)
+	if(HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE))
+		remove_from_heal_list(patient)
+		try_speak(pick(unrevivable_chat))
+		return
 
 	try_speak(pick(healing_chat))
+
+	var/did_revive = FALSE
+	if(!ignore_defib && patient.stat == DEAD) //we specifically don't want the sig sent out if we fail to defib
+		if(!do_defib(patient))
+			return
+		did_revive = TRUE
 
 	human_ai_state_flags |= HUMAN_AI_HEALING
 	SEND_SIGNAL(patient, COMSIG_AI_HEALING_MOB, mob_parent)
 	RegisterSignal(patient, COMSIG_MOVABLE_MOVED, PROC_REF(do_unset_target))
 
 	var/did_heal = FALSE
+
 	if(heal_damage(patient))
 		did_heal = TRUE
 
@@ -166,7 +179,7 @@
 	if(heal_organs(patient))
 		did_heal = TRUE
 
-	if(!did_heal || prob(30)) //heal interupted or nothing left to heal, or to stop overload
+	if(!did_revive && (!did_heal || prob(30))) //heal interupted or nothing left to heal, or to stop overload
 		do_unset_target(patient)
 	UnregisterSignal(patient, COMSIG_MOVABLE_MOVED)
 	on_heal_end(mob_parent)

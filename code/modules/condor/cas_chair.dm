@@ -226,6 +226,7 @@
 		if("change_weapon")
 			var/selection = text2num(params["selection"])
 			owner.active_weapon = owner.equipments[selection]
+			occupant.client.mouse_pointer_icon = owner.active_weapon.ammo_equipped.crosshair
 		if("cycle_attackdir")
 			if(params["newdir"] == null)
 				owner.attackdir = turn(owner.attackdir, 90)
@@ -236,3 +237,4 @@
 /obj/structure/caspart/caschair/on_unset_interaction(mob/M)
 	if(M == occupant)
 		owner.end_cas_mission(M)
+		M.client.mouse_pointer_icon = initial(M.client.mouse_pointer_icon)

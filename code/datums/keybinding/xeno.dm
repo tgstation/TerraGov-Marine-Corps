@@ -259,6 +259,12 @@
 	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD
 	hotkey_keys = list("Q")
 
+/datum/keybinding/xeno/acid_shroud_melter
+	name = "Melter: Acid Shroud"
+	full_name = "Melter: Acid Shroud"
+	description = "Create a smokescreen for a getaway."
+	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD_MELTER
+
 /datum/keybinding/xeno/acid_shroud_select
 	name = "select_acid_shroud"
 	full_name = "Boiler: Select Acid Shroud"
@@ -570,6 +576,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PLACE_JELLY_POD
 
+/datum/keybinding/xeno/place_recovery_pylon
+	name = "Hivelord: Place Recovery Pylon"
+	full_name = "Hivelord: Recovery Pylon"
+	description = "Plants a recovery pylon that increases the amount of regeneration power restored."
+	keybind_signal = COMSIG_XENOABILITY_PLACE_RECOVERY_PYLON
+
 /datum/keybinding/xeno/create_jelly
 	name = "create_jelly"
 	full_name = "Hivelord: Create Jelly"
@@ -707,6 +719,18 @@
 	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Has reset potential."
 	keybind_signal = COMSIG_XENOABILITY_ACID_DASH
 	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/acid_dash_melter
+	name = "Melter: Acid Dash"
+	full_name = "Melter: Acid Dash"
+	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Has reset potential."
+	keybind_signal = COMSIG_XENOABILITY_ACID_DASH_MELTER
+
+/datum/keybinding/xeno/acidic_missile
+	name = "Melter: Acidic Missile"
+	full_name = "Melter: Acid Missile"
+	description = "Begin building up acid. If you're already building up acid, launch yourself at a target and splash acid all around you."
+	keybind_signal = COMSIG_XENOABILITY_ACIDIC_MISSILE
 
 /datum/keybinding/xeno/dodge
 	name = "Dodge"
@@ -1300,3 +1324,46 @@
 	full_name = "Pyrogen: Infernal Trigger"
 	description = "After a windup, cause a marine who is on fire to explode their flames outward and set on fire those around them."
 	keybind_signal = COMSIG_XENOABILITY_INFERNAL_TRIGGER
+
+/datum/keybinding/xeno/backhand
+	name = "Backhand"
+	full_name = "Dragon: Backhand"
+	description = "Smack a group of marines in front of you away and stun them."
+	keybind_signal = COMSIG_XENOABILITY_BACKHAND
+	hotkey_keys = list("Z")
+
+/datum/keybinding/xeno/fly
+	name = "Fly"
+	full_name = "Dragon: Fly"
+	description = "After a windup, begin to fly away. If you're already flying, land."
+	keybind_signal = COMSIG_XENOABILITY_FLY
+	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/dragon_breath
+	name = "Dragon Breath"
+	full_name = "Dragon: Dragon Breath"
+	description = "After a windup, continuously blast fire in a cardinal direction."
+	keybind_signal = COMSIG_XENOABILITY_DRAGON_BREATH
+	hotkey_keys = list("C")
+
+/datum/keybinding/xeno/wind_current
+	name = "Wind Current"
+	full_name = "Dragon: Wind Current"
+	description = "After a windup, clear gas and knock away marines in a cone in front of you."
+	keybind_signal = COMSIG_XENOABILITY_WIND_CURRENT
+	hotkey_keys = list("V")
+
+/datum/keybinding/xeno/grab
+	name = "Grab"
+	full_name = "Dragon: Grab"
+	description = "After a windup, firmly grab an nearby marine in front of you and prevent them from moving away."
+	keybind_signal = COMSIG_XENOABILITY_GRAB
+	hotkey_keys = list("B")
+
+/datum/keybinding/xeno/scorched_land
+	name = "Scorched Land"
+	full_name = "Dragon: Scorched Land"
+	description = "While flying, blast a line of fire in a direction."
+	keybind_signal = COMSIG_XENOABILITY_SCORCHED_LAND
+	hotkey_keys = list("G")
+

@@ -34,7 +34,7 @@
 		return
 	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 	for(var/atom/item_in_pocket AS in armor_storage.contents)
-		if(istype(item_in_pocket, /obj/item/weapon/combat_knife) || istype(item_in_pocket, /obj/item/attachable/bayonetknife) || istype(item_in_pocket, /obj/item/stack/throwing_knife))
+		if(istype(item_in_pocket, /obj/item/weapon/combat_knife) || istype(item_in_pocket, /obj/item/attachable/bayonet) || istype(item_in_pocket, /obj/item/stack/throwing_knife))
 			icon_state += "-knife"
 
 /obj/item/clothing/shoes/marine/full

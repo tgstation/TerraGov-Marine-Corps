@@ -3614,7 +3614,7 @@
 "cul" = (
 /obj/structure/cable,
 /obj/structure/stairs{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/cryostasis)
@@ -8205,9 +8205,7 @@
 /turf/open/floor/prison/kitchen,
 /area/magmoor/mining)
 "fDl" = (
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/magmoor/command/lobby)
 "fDw" = (
@@ -14749,9 +14747,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/magmoor/civilian/rnr)
 "klO" = (
@@ -17395,7 +17391,7 @@
 	dir = 4
 	},
 /obj/structure/stairs{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/mosque)
@@ -17453,9 +17449,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/tile/dark,
 /area/magmoor/civilian/jani)
 "mgE" = (
@@ -17682,9 +17676,7 @@
 /obj/effect/turf_decal/siding{
 	dir = 8
 	},
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/magmoor/civilian/mosque)
 "mqK" = (
@@ -18067,7 +18059,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/stairs{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/rnr)
@@ -18815,7 +18807,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/stairs{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/rnr)
@@ -19963,7 +19955,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/rnr)
 "ohB" = (
@@ -23788,9 +23782,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/magmoor/command/lobby)
 "qLP" = (
@@ -24307,9 +24299,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/plating,
 /area/magmoor/command/lobby)
 "rhd" = (
@@ -25997,7 +25987,7 @@
 /area/magmoor/civilian/dorms)
 "srz" = (
 /obj/structure/stairs{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/magmoor/civilian/cryostasis)
@@ -31657,7 +31647,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/magmoor/command/lobby/east)
 "wuH" = (
@@ -32259,7 +32251,9 @@
 	},
 /area/magmoor/compound/east)
 "wOv" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/magmoor/command/lobby/east)
 "wOU" = (
@@ -45027,7 +45021,7 @@ lCK
 lCK
 lCK
 mGZ
-ezm
+tBz
 lCK
 lCK
 lCK
@@ -46187,7 +46181,7 @@ wCU
 wIH
 wCU
 hvR
-hyz
+uqV
 xOp
 xOp
 nkZ
@@ -46196,7 +46190,7 @@ beH
 ciK
 xOp
 mkw
-uqV
+hyz
 lCK
 ssf
 roE
@@ -47124,7 +47118,7 @@ lCK
 lCK
 lCK
 nka
-tBz
+ezm
 lCK
 lCK
 lCK

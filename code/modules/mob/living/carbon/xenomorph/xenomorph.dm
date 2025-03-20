@@ -30,13 +30,9 @@
 		if(CONSCIOUS)
 			GLOB.alive_xeno_list += src
 			LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
-			see_in_dark = xeno_caste.conscious_see_in_dark
 		if(UNCONSCIOUS)
 			GLOB.alive_xeno_list += src
 			LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
-			see_in_dark = xeno_caste.unconscious_see_in_dark
-		if(DEAD)
-			see_in_dark = xeno_caste.unconscious_see_in_dark
 
 	GLOB.xeno_mob_list += src
 	GLOB.round_statistics.total_xenos_created++
@@ -74,7 +70,7 @@
 	if(CONFIG_GET(flag/xenos_on_strike))
 		replace_by_ai()
 	if(z) //Larva are initiated in null space
-		SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER))
 	handle_weeds_on_movement()
 
 	AddElement(/datum/element/footstep, footstep_type, mob_size >= MOB_SIZE_BIG ? 0.8 : 0.5)
@@ -436,19 +432,7 @@
 		return TRUE
 	return ..()
 
-/mob/living/carbon/xenomorph/set_stat(new_stat)
-	. = ..()
-	if(isnull(.))
-		return
-	switch(stat)
-		if(UNCONSCIOUS)
-			see_in_dark = xeno_caste.unconscious_see_in_dark
-		if(DEAD, CONSCIOUS)
-			if(. == UNCONSCIOUS)
-				see_in_dark = xeno_caste.conscious_see_in_dark
-
-///Kick the player from this mob, replace it by a more competent ai
-/mob/living/carbon/xenomorph/proc/replace_by_ai()
+/mob/living/carbon/xenomorph/replace_by_ai()
 	to_chat(src, span_warning("Sorry, your skill level was deemed too low by our automatic skill check system. Your body has as such been given to a more capable brain, our state of the art AI technology piece. Do not hesitate to take back your body after you've improved!"))
 	ghostize(TRUE)//Can take back its body
 	GLOB.offered_mob_list -= src

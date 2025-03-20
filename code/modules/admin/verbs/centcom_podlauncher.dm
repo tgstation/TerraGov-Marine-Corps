@@ -43,8 +43,8 @@ ADMIN_VERB(centcom_podlauncher, R_FUN, "Config/Launch Supplypod", "Configure and
 	else
 		var/mob/M = H
 		holder = M.client //if its a mob, assign the mob's client to holder
-	bay = locate(/area/centcom/supplypod/loading/one) in GLOB.sorted_areas //Locate the default bay (one) from the centcom map
-	temp_pod = new(locate(/area/centcom/supplypod/podStorage) in GLOB.sorted_areas) //Create a new temp_pod in the podStorage area on centcom (so users are free to look at it and change other variables if needed)
+	bay = locate(/area/centcom/supplypod/loading/one) in GLOB.areas //Locate the default bay (one) from the centcom map
+	temp_pod = new(locate(/area/centcom/supplypod/podStorage) in GLOB.areas) //Create a new temp_pod in the podStorage area on centcom (so users are free to look at it and change other variables if needed)
 	orderedArea = createOrderedArea(bay) //Order all the turfs in the selected bay (top left to bottom right) to a single list. Used for the "ordered" mode (launchChoice = 1)
 
 /datum/centcom_podlauncher/ui_state(mob/user)
@@ -102,29 +102,29 @@ ADMIN_VERB(centcom_podlauncher, R_FUN, "Config/Launch Supplypod", "Configure and
 	switch(action)
 		////////////////////////////UTILITIES//////////////////
 		if("bay1")
-			bay = locate(/area/centcom/supplypod/loading/one) in GLOB.sorted_areas //set the "bay" variable to the corresponding room in centcom
+			bay = locate(/area/centcom/supplypod/loading/one) in GLOB.areas //set the "bay" variable to the corresponding room in centcom
 			refreshBay() //calls refreshBay() which "recounts" the bay to see what items we can launch (among other things).
 			. = TRUE
 		if("bay2")
-			bay = locate(/area/centcom/supplypod/loading/two) in GLOB.sorted_areas
+			bay = locate(/area/centcom/supplypod/loading/two) in GLOB.areas
 			refreshBay()
 			. = TRUE
 		if("bay3")
-			bay = locate(/area/centcom/supplypod/loading/three) in GLOB.sorted_areas
+			bay = locate(/area/centcom/supplypod/loading/three) in GLOB.areas
 			refreshBay()
 			. = TRUE
 		if("bay4")
-			bay = locate(/area/centcom/supplypod/loading/four) in GLOB.sorted_areas
+			bay = locate(/area/centcom/supplypod/loading/four) in GLOB.areas
 			refreshBay()
 			. = TRUE
 		if("bay5")
-			bay = locate(/area/centcom/supplypod/loading/ert) in GLOB.sorted_areas
+			bay = locate(/area/centcom/supplypod/loading/ert) in GLOB.areas
 			refreshBay()
 			. = TRUE
 		if("teleportCentcom") //Teleports the user to the centcom supply loading facility.
 			var/mob/M = holder.mob //We teleport whatever mob the client is attached to at the point of clicking
 			oldTurf = get_turf(M) //Used for the "teleportBack" action
-			var/area/A = locate(bay) in GLOB.sorted_areas
+			var/area/A = locate(bay) in GLOB.areas
 			var/list/turfs = list()
 			for(var/turf/T in A)
 				turfs.Add(T) //Fill a list with turfs in the area
@@ -472,7 +472,7 @@ ADMIN_VERB(centcom_podlauncher, R_FUN, "Config/Launch Supplypod", "Configure and
 		to_chat(holder.mob, "No /area/centcom/supplypod/loading/one (or /two or /three or /four) in the world! You can make one yourself (then refresh) for now, but yell at a mapper to fix this, today!")
 		CRASH("No /area/centcom/supplypod/loading/one (or /two or /three or /four) has been mapped into the centcom z-level!")
 	orderedArea = list()
-	if (!isemptylist(A.contents)) //Go through the area passed into the proc, and figure out the top left and bottom right corners by calculating max and min values
+	if (A.has_contained_turfs()) //Go through the area passed into the proc, and figure out the top left and bottom right corners by calculating max and min values
 		var/startX = A.contents[1].x //Create the four values (we do it off a.contents[1] so they have some sort of arbitrary initial value. They should be overwritten in a few moments)
 		var/endX = A.contents[1].x
 		var/startY = A.contents[1].y

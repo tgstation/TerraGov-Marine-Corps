@@ -181,6 +181,8 @@
 		return TRUE
 	var/adir = get_dir(A, B)
 	var/rdir = get_dir(B, A)
+	if(A.density && (!istype(A, /turf/closed/wall/resin) || !(pass_flags_checked & PASS_XENO)))
+		return TRUE
 	if(B.density && (!istype(B, /turf/closed/wall/resin) || !(pass_flags_checked & PASS_XENO))) //TODO: Unsnowflake this check here and in DirBlocked()
 		return TRUE
 	if(adir & (adir - 1))//is diagonal direction
@@ -408,6 +410,23 @@
 
 	return L
 
+///Returns the closest atom of a specific type in a list from a source
+/proc/get_closest_atom(type, list/atom_list, source)
+	var/closest_atom
+	var/closest_distance
+	for(var/atom in atom_list)
+		if(!istype(atom, type))
+			continue
+		var/distance = get_dist(source, atom)
+		if(!closest_atom)
+			closest_distance = distance
+			closest_atom = atom
+		else
+			if(closest_distance > distance)
+				closest_distance = distance
+				closest_atom = atom
+	return closest_atom
+
 // returns the turf located at the map edge in the specified direction relative to A
 // used for mass driver
 /proc/get_edge_target_turf(atom/A, direction)
@@ -533,25 +552,36 @@
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all turfs in areas of that type of that type in the world.
-/proc/get_area_turfs(areatype)
-	if(!areatype)
-		return
-
+/proc/get_area_turfs(areatype, target_z = 0, subtypes=FALSE)
 	if(istext(areatype))
 		areatype = text2path(areatype)
-
-	if(isarea(areatype))
+	else if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
+	else if(!ispath(areatype))
+		return null
+	// Pull out the areas
+	var/list/areas_to_pull = list()
+	if(subtypes)
+		var/list/cache = typecacheof(areatype)
+		for(var/area/area_to_check as anything in GLOB.areas)
+			if(!cache[area_to_check.type])
+				continue
+			areas_to_pull += area_to_check
+	else
+		for(var/area/area_to_check as anything in GLOB.areas)
+			if(area_to_check.type != areatype)
+				continue
+			areas_to_pull += area_to_check
 
+	// Now their turfs
 	var/list/turfs = list()
-	for(var/i in GLOB.sorted_areas)
-		var/area/A = i
-		if(!istype(A, areatype))
-			continue
-		for(var/turf/T in A)
-			turfs += T
-
+	for(var/area/pull_from as anything in areas_to_pull)
+		if (target_z == 0)
+			for (var/list/zlevel_turfs as anything in pull_from.get_zlevel_turf_lists())
+				turfs += zlevel_turfs
+		else
+			turfs += pull_from.get_turfs_by_zlevel(target_z)
 	return turfs
 
 
@@ -893,14 +923,15 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 			break
 	return turf_to_check
 
-//Repopulates sortedAreas list
-/proc/repopulate_sorted_areas()
-	GLOB.sorted_areas = list()
 
-	for(var/area/A in world)
-		GLOB.sorted_areas.Add(A)
+/proc/require_area_resort()
+	GLOB.sorted_areas = null
 
-	sortTim(GLOB.sorted_areas, GLOBAL_PROC_REF(cmp_name_asc))
+/// Returns a sorted version of GLOB.areas, by name
+/proc/get_sorted_areas()
+	if(!GLOB.sorted_areas)
+		GLOB.sorted_areas = sortTim(GLOB.areas.Copy(), /proc/cmp_name_asc)
+	return GLOB.sorted_areas
 
 
 // Format a power value in W, kW, MW, or GW.
@@ -963,7 +994,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 	GLOB.dview_mob.loc = center
 
-	GLOB.dview_mob.see_invisible = invis_flags
+	GLOB.dview_mob.set_invis_see(invis_flags)
 
 	. = view(range, GLOB.dview_mob)
 	GLOB.dview_mob.loc = null
@@ -972,7 +1003,6 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	name = "INTERNAL DVIEW MOB"
 	invisibility = 101
 	density = FALSE
-	see_in_dark = 1e6
 	move_resist = INFINITY
 	var/ready_to_die = FALSE
 
@@ -997,7 +1027,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 #define FOR_DVIEW(type, range, center, invis_flags) \
 	GLOB.dview_mob.loc = center;           \
-	GLOB.dview_mob.see_invisible = invis_flags; \
+	GLOB.dview_mob.set_invis_see(invis_flags); \
 	for(type in view(range, GLOB.dview_mob))
 
 #define FOR_DVIEW_END GLOB.dview_mob.loc = null
@@ -1109,9 +1139,6 @@ will handle it, but:
 /proc/CallAsync(datum/source, proctype, list/arguments)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
-
-#define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))
-
 
 ///Takes: Area type as text string or as typepath OR an instance of the area. Returns: A list of all areas of that type in the world.
 /proc/get_areas(areatype, subtypes=TRUE)
@@ -1240,3 +1267,40 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 			return TRUE
 
 	return FALSE
+
+/**
+ * Returns a rectangle of turfs in front of the center.
+ *
+ * To find what exact width and height to enter, width is based on west-east and height is north-south as if center is facing north.
+ *
+ * Increments in width increases both sizes by said increment while height is only increased once by the increment.
+*/
+/proc/get_forward_square(atom/center, width, height, requires_openturf = TRUE, requires_lineofsight = TRUE)
+	if(width < 0 || height <= 0) // This is forward square, not backwards square.
+		return list()
+
+	var/turf/lower_left
+	var/turf/upper_right
+	switch(center.dir)
+		if(NORTH)
+			lower_left = locate(center.x - width, center.y + 1, center.z)
+			upper_right = locate(center.x + width, center.y + height, center.z)
+		if(SOUTH)
+			lower_left = locate(center.x - width, center.y - height, center.z)
+			upper_right = locate(center.x + width, center.y - 1, center.z)
+		if(WEST)
+			lower_left = locate(center.x - height, center.y - width, center.z)
+			upper_right = locate(center.x - 1, center.y + width, center.z)
+		if(EAST)
+			lower_left = locate(center.x + height, center.y - width, center.z)
+			upper_right = locate(center.x + 1, center.y + width, center.z)
+
+	var/list/turf/acceptable_turfs = list()
+	var/list/turf/possible_turfs = block(lower_left, upper_right)
+	for(var/turf/possible_turf AS in possible_turfs)
+		if(requires_openturf && isclosedturf(possible_turf))
+			continue
+		if(requires_lineofsight && !line_of_sight(center, possible_turf, max(width, height)))
+			continue
+		acceptable_turfs += possible_turf
+	return acceptable_turfs

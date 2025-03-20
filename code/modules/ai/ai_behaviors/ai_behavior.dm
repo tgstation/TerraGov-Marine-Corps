@@ -64,7 +64,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	mob_parent = parent_to_assign
 	set_escorted_atom(null, escorted_atom)
 	//We always use the escorted atom as our reference point for looking for target. So if we don't have any escorted atom, we take ourselve as the reference
-	START_PROCESSING(SSprocessing, src)
 	if(is_offered_on_creation)
 		LAZYOR(GLOB.ssd_living_mobs, mob_parent)
 
@@ -79,10 +78,12 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 ///Register ai behaviours
 /datum/ai_behavior/proc/start_ai()
+	START_PROCESSING(SSprocessing, src)
 	if(escorted_atom)
 		global_set_escorted_atom(null, escorted_atom)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, PROC_REF(set_goal_node))
 	set_goal_node(null, GLOB.goal_nodes[mob_parent.faction])
+	START_PROCESSING(SSprocessing, src)
 	late_initialize()
 
 ///Set behaviour to base behavior
@@ -350,8 +351,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		if((SEND_SIGNAL(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE) & COMSIG_MAINTAIN_POSITION))
 			return
 		if(!get_dir(mob_parent, atom_to_walk_to)) //We're right on top, move out of it
-			ai_complete_move(pick(CARDINAL_ALL_DIRS))
-			return
+			return CARDINAL_ALL_DIRS
 		if(prob(50)) //placeholder number, will probs be a var like sidestep prob, so they're not just constantly wiggling about
 			return
 		if(prob(sidestep_prob)) //shuffle about
