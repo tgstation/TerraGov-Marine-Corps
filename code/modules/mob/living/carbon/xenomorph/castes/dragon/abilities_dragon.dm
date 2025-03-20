@@ -606,6 +606,10 @@
 	/// Damage taken so far while actively grabbing.
 	var/damage_taken_so_far = 0
 
+/datum/action/ability/activable/xeno/grab/remove_action(mob/living/ability_owner)
+	end_grabbing(enforce_cooldown = FALSE)
+	return ..()
+
 /datum/action/ability/activable/xeno/grab/can_use_ability(atom/target, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
 		if(!silent)
@@ -671,16 +675,20 @@
 /// Try to grab the thrown human.
 /datum/action/ability/activable/xeno/grab/proc/try_grabbing(mob/living/carbon/human/thrown_human)
 	if(QDELETED(thrown_human) || thrown_human.stat == DEAD || !xeno_owner.Adjacent(thrown_human))
+		end_grabbing()
 		return
 	if(!xeno_owner.start_pulling(thrown_human) || !xeno_owner.get_active_held_item())
+		end_grabbing()
 		return
 
 	grabbing_item = xeno_owner.get_active_held_item()
 	if(!grabbing_item)
+		end_grabbing()
 		return
 	grabbed_human = thrown_human
 	damage_taken_so_far = 0
 
+	ADD_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
 	RegisterSignal(grabbing_item, COMSIG_QDELETING, PROC_REF(end_grabbing))
 	RegisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED, PROC_REF(human_stat_changed))
 	RegisterSignal(grabbed_human, COMSIG_LIVING_DO_MOVE_RESIST, PROC_REF(on_resist_attempt))
@@ -690,14 +698,19 @@
 	playsound(get_turf(xeno_owner), 'sound/voice/alien/pounce.ogg', 25, TRUE)
 
 /// Cleans up everything associated with the grabbing and ends the ability.
-/datum/action/ability/activable/xeno/grab/proc/end_grabbing()
+/datum/action/ability/activable/xeno/grab/proc/end_grabbing(datum/source, enforce_cooldown = TRUE)
 	SIGNAL_HANDLER
-	REMOVE_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
-	UnregisterSignal(grabbing_item, COMSIG_QDELETING)
-	UnregisterSignal(grabbed_human, list(COMSIG_MOB_STAT_CHANGED, COMSIG_LIVING_DO_MOVE_RESIST))
-	UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+	if(grabbed_human)
+		REMOVE_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
+	if(grabbing_item) // Removing signals that are added only due to successful grab.
+		UnregisterSignal(grabbing_item, COMSIG_QDELETING)
+		UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+		if(grabbed_human)
+			UnregisterSignal(grabbed_human, list(COMSIG_MOB_STAT_CHANGED, COMSIG_LIVING_DO_MOVE_RESIST))
 	grabbed_human = null
 	grabbing_item = null
+	if(!enforce_cooldown)
+		return
 	succeed_activate()
 	add_cooldown()
 
