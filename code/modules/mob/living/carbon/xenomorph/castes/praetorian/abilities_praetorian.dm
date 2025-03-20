@@ -535,7 +535,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			continue
 		if(living_target.stat == DEAD)
 			continue
-		to_chat(living_target, span_xenowarning("\The [xeno_owner] hooks into our flesh and yanks us towards them!"))
+		to_chat(living_target, span_xenowarning("\The [xeno_owner] hooks into your flesh and yanks you towards it!"))
 		var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
 		living_target.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
 		living_target.Shake(duration = 0.1 SECONDS)
