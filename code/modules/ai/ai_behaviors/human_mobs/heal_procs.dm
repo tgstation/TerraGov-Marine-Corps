@@ -147,7 +147,7 @@
 		return
 	if(!defib.ready)
 		defib.attack_self(mob_parent) //do it early so the cooldown can happen while we do other shit
-	if(patient.health + patient.getOxyLoss() + (2 * DEFIBRILLATOR_HEALING_TIMES_SKILL(mob_parent.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) <= patient.get_death_threshold())
+	if(!HAS_TRAIT(patient, TRAIT_IMMEDIATE_DEFIB) && patient.health + patient.getOxyLoss() + (2 * DEFIBRILLATOR_HEALING_TIMES_SKILL(mob_parent.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) <= patient.get_death_threshold())
 		try_heal_other(patient, TRUE)
 	if(patient.wear_suit)
 		if(!do_after(mob_parent, patient.wear_suit.strip_delay, NONE, patient, BUSY_ICON_FRIENDLY))

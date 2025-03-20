@@ -52,6 +52,8 @@
 	light_color = LIGHT_COLOR_DARK_BLUE
 	var/light_mask = "elev-light-mask"
 
+	interaction_flags = INTERACT_MACHINE_TGUI
+
 /obj/machinery/elevator_control_panel/Initialize(mapload)
 	. = ..()
 
@@ -59,18 +61,12 @@
 		TOOL_MULTITOOL = list(SCREENTIP_CONTEXT_LMB = "Reset Panel"),
 	)
 
-	maploaded = mapload
-	// Maploaded panels link in post_machine_initialize...
-	if(mapload)
-		return
-
-	// And non-mapload panels link in Initialize
-	link_with_lift(log_error = FALSE)
+	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/elevator_control_panel/LateInitialize()
 	. = ..()
 	// If we weren't maploaded, we probably already linked (or tried to link) in Initialize().
-	if(!maploaded)
+	if(maploaded)
 		return
 
 	// This is exclusively for linking in mapload, just to ensure all elevator parts are created,
@@ -99,7 +95,7 @@
 
 	balloon_alert(user, "resetting panel...")
 	playsound(src, 'sound/machines/locktoggle.ogg', 50, TRUE)
-	if(!do_after(user, 6 SECONDS, src))
+	if(!do_after(user, 6 SECONDS, NONE, src))
 		balloon_alert(user, "interrupted!")
 		return TRUE
 
