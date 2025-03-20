@@ -173,3 +173,11 @@
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_smoke
 	smoke_type = /datum/effect_system/smoke_spread/tactical
+
+/obj/item/mecha_parts/mecha_equipment/ability/cloak
+	name = "Cloak"
+	desc = "A mech stealth cloaking device. Cannot fire while cloaked, and cloaking drains energy."
+	weight = 70
+	icon_state = "zoom"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	ability_to_grant = /datum/action/vehicle/sealed/mecha/cloak
