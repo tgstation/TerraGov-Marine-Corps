@@ -29,7 +29,7 @@
 	internal_damage_threshold = 15
 	internal_damage_probability = 5
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
-	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED | MECHA_SPIN_WHEN_NO_ANGLE | OMNIDIRECTIONAL_ATTACKS
+	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED | MECHA_SPIN_WHEN_NO_ANGLE | OMNIDIRECTIONAL_ATTACKS | QUIET_TURNS
 	explosion_block = 2
 	pivot_step = TRUE
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
@@ -310,8 +310,8 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
-	max_integrity = 1020
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 75, FIRE = 100, ACID = 0)
+	max_integrity = 300
+	soft_armor = list(MELEE = 25, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 75, FIRE = 100, ACID = 30)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/assault
@@ -327,8 +327,8 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
-	max_integrity = 1390
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 75, FIRE = 100, ACID = 0)
+	max_integrity = 450
+	soft_armor = list(MELEE = 35, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 75, FIRE = 100, ACID = 30)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard
@@ -344,8 +344,8 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
-	max_integrity = 1760
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 75, FIRE = 100, ACID = 0)
+	max_integrity = 700
+	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 70, BIO = 75, FIRE = 100, ACID = 30)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/item/repairpack

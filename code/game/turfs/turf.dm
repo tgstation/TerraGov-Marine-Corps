@@ -527,6 +527,9 @@
 /turf/open/space/is_weedable()
 	return FALSE
 
+/turf/open/openspace/is_weedable()
+	return FALSE
+
 /turf/open/ground/grass/is_weedable()
 	return FALSE
 

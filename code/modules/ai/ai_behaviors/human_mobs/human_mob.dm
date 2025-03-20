@@ -87,8 +87,22 @@
 	if(mob_parent.do_actions)
 		return ..()
 
+	var/mob/living/carbon/human/human_parent = mob_parent
+	if(human_parent.lying_angle)
+		INVOKE_ASYNC(human_parent, TYPE_PROC_REF(/mob/living/carbon/human, get_up))
+
 	if((medical_rating >= AI_MED_MEDIC) && medic_process())
 		return
+
+	if((human_parent.nutrition <= NUTRITION_HUNGRY) && length(mob_inventory.food_list) && (human_parent.nutrition + (37.5 * human_parent.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)) < NUTRITION_WELLFED))
+		for(var/obj/item/reagent_containers/food/food AS in mob_inventory.food_list)
+			if(!food.ai_should_use(human_parent))
+				continue
+			food.ai_use(human_parent, human_parent)
+			break
+
+	if(mob_parent.buckled && !mob_parent.buckled.ai_should_stay_buckled(mob_parent))
+		mob_parent.buckled.unbuckle_mob(mob_parent)
 
 	for(var/datum/action/action in ability_list)
 		if(!action.ai_should_use(atom_to_walk_to)) //todo: some of these probably should be aimmed at combat_target somehow...
@@ -390,10 +404,8 @@
 		if((human_ai_state_flags & HUMAN_AI_ANY_HEALING)) //dont just stand there
 			human_ai_state_flags &= ~(HUMAN_AI_ANY_HEALING)
 			late_initialize()
-			return
-		if(current_action == MOVING_TO_SAFETY)
-			if(attacker && attacker.faction != mob_parent.faction)
-				set_combat_target(attacker)
+		if(((current_action == MOVING_TO_SAFETY) || !combat_target) && (attacker.faction != mob_parent.faction))
+			set_combat_target(attacker)
 			return
 
 	if(!(human_ai_behavior_flags & HUMAN_AI_SELF_HEAL))
@@ -419,6 +431,22 @@
 	target_distance = 12
 	COOLDOWN_START(src, ai_retreat_cooldown, 8 SECONDS)
 	change_action(MOVING_TO_SAFETY, next_target, list(INFINITY)) //fallback
+
+///Tries to store an item
+/datum/ai_behavior/human/proc/try_store_item(obj/item/item)
+	if(istype(item, /obj/item/weapon/twohanded/offhand))
+		qdel(item)
+		return FALSE
+	if(!mob_parent.equip_to_appropriate_slot(item))
+		return FALSE
+	return TRUE
+
+///Tries to store any items in hand
+/datum/ai_behavior/human/proc/store_hands()
+	if(mob_parent.l_hand)
+		try_store_item(mob_parent.l_hand)
+	if(mob_parent.r_hand)
+		try_store_item(mob_parent.r_hand)
 
 ///Reacts to a heard message
 /datum/ai_behavior/human/proc/recieve_message(atom/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)

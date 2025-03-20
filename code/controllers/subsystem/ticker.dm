@@ -220,7 +220,7 @@ SUBSYSTEM_DEF(ticker)
 		var/turf/epi = bomb.loc
 		qdel(bomb)
 		if(epi)
-			explosion(epi, 0, 256, 512, 0, silent = TRUE)
+			explosion(epi, 0, 256, 512, 0, silent = TRUE, explosion_cause="station_explosion_detonation")
 
 /datum/controller/subsystem/ticker/proc/HasRoundStarted()
 	return current_state >= GAME_STATE_PLAYING

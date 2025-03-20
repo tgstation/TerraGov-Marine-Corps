@@ -139,8 +139,7 @@
 	update_icon_state()
 	flick("rappel_hatch_opening", src)
 
-	user.client.perspective = EYE_PERSPECTIVE
-	user.client.eye = target_turf
+	user.reset_perspective(target_turf)
 
 	var/passed_skillcheck = TRUE
 	if(user.skills.getRating(SKILL_COMBAT) < SKILL_COMBAT_DEFAULT)
@@ -162,8 +161,7 @@
 	update_icon_state()
 	rope.update_icon_state()
 
-	user.client.perspective = MOB_PERSPECTIVE
-	user.client.eye = user
+	user.reset_perspective()
 
 /obj/structure/dropship_equipment/shuttle/rappel_system/attackby(obj/item/I, mob/user, params)
 	. = ..()

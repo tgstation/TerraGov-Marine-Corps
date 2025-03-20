@@ -288,3 +288,142 @@
   - code_imp: adjusted blood splatter particles
   witherc6:
   - rscadd: added paramedic labcoat to marine clothing vendor
+2025-03-15:
+  Lumipharon:
+  - rscadd: Various minor improvements to NPC behavior
+  - code_imp: Cleaned up some managed_inventory and snack code
+  - bugfix: fixed bayonets having no hit sound
+  - code_imp: Combat knife bayos are now just subtypes of normal bayonets
+  - rscadd: NPC's store equipped weapons when equipping new ones
+  - bugfix: NPC's no longer show as DNR on minimap/hud
+  - bugfix: NPC's won't try use guns that require deploying
+  - rscadd: NPC's will use autoburst when available
+  - bugfix: NPC's will no longer give chems to corpses
+  Runian:
+  - rscadd: A new tier 4 caste named Dragon. It is a combat-oriented caste.
+  - rscadd: A bunch of Dragon-related abilities.
+  - soundadd: Various sounds involving dragon and its ability.
+  - imageadd: Various sprites involving dragon and its abilities.
+  - imageadd: Attack slash effect unique to Dragon.
+  - code_imp: Ammo now set the icon of projectiles created from it.
+  The_Man:
+  - qol: Added "Interact with other hand" hotkey.
+  TiviPlus:
+  - code_imp: added ability to cache sounds serverside
+  - code_imp: passing invalid playsound() arguments will now cause a runtime
+  - qol: Mech turns are now silent
+  - bugfix: ' you can reattach all mech weapons properly now'
+  - rscadd: Trying to scroll while ctrl click is held will now make you try to look
+      up/down a zlevel
+  - rscadd: Trying to scroll while shift click is held (unless you're a ghost) will
+      try to move you up/down a zlevel
+  - rscadd: Added keybindings and verbs for moving up/down and looking up/down a zlevel.
+  - qol: trying to move up/down when theres a ladder on your turf will try to use
+      the ladder
+  - bugfix: Fixed untoggleable glasses turning themselves off on load with no way
+      to turn them on
+  - code_imp: added backend or directional explosions
+  - admin: admin explosion logs will now try to provide an explosion cause or user
+      to blame
+  - bugfix: ghosts can see mech hud now
+  yyzsong:
+  - rscadd: Adds the shotgun, sniper, flamer, and laser sentries to the valhalla req
+      vendor
+  - rscadd: Adds the minisentry and build-a-sentry to the valhalla req vendor
+  - spellcheck: Renames the valhalla req vendor's "Mounted" tab to the "Emplaced"
+      tab
+2025-03-16:
+  Lumipharon:
+  - balance: Derringer is once again limited in the gun vendor
+  - admin: Replace by AI smite works on humans
+  PibeCantina:
+  - bugfix: fixed disk not spawning
+  Runian:
+  - code_imp: Dragon's abilities use the managed passflag system.
+  - balance: Melter, a strain of Runner, now has +50 more health and +5 armor across
+      the board.
+  - balance: Minions sell for 10 points instead of 50 points. The same ratio applies
+      to CAS points.
+  Sun-Soaked, Comissioned by Elsa:
+  - balance: Gorger's drain and carnage attacks now steal greenblood from the target,
+      if they have a vali harness.
+  TiviPlus:
+  - balance: Crusher charges always target mech legs
+  - bugfix: Fixed tank autocannon not having interior fire sounds or ammo rack sprites
+  - bugfix: Tank autocannon AP and He no longer use the same icons
+  - bugfix: Fixed rendering wonkiness with non-self camera perspectives
+  - balance: Doubled xeno maw impact time from 6 to 12 seconds
+  - bugfix: Fixed acid layering under what its on top of sometimes
+  - bugfix: Fixed silo alerts alerting on friendlies
+  - bugfix: fixed floors layering too high
+  - qol: Mech overload automatically disables on running out of power
+  - bugfix: fixed queen shriek waves being hilariously slow
+2025-03-17:
+  Runian:
+  - balance: Dragon is now slower on average and even slower while using their ability,
+      Dragon Breath.
+  - balance: Dragon's armor gain while using Dragon Breath has been decreased from
+      15 to 10.
+2025-03-18:
+  Lumipharon:
+  - balance: Significantly nerfed mechs in campaign
+  TiviPlus:
+  - bugfix: fixed some UI and 516 issues
+  tyeagg:
+  - rscadd: more seamless looking blood decals
+  - rscadd: different crosshairs for some guns
+  - imageadd: new crosshair sprites for guns
+2025-03-19:
+  Lumipharon:
+  - balance: Nerfed tank autocannon and HE ammo, AP ammo slightly buffed
+  - bugfix: NPC's will no longer try to revive undefibbable patients
+  - bugfix: fixed NPC's not using guns
+  RipGrayson:
+  - rscadd: Added a multi-z test map.
+2025-03-20:
+  Apple-107:
+  - balance: Xenos now pick up jelly by default, and can activate it anytime (with
+      a channel) with use key or by clicking on themselves
+  Arturlang:
+  - rscadd: Cameras can now categorize people by role and the search input will now
+      also filter by role
+  Cheese:
+  - balance: Non-folding Plasteel cades can now be upgraded with metal, like metal
+      cades.
+  - rscadd: Only the actual hive leader can jack or capture alamo now, rather than
+      every T4. (The xeno at the top of the list in hive status is hive leader)
+  - balance: Dancer debuff scaling now also respects Shatter, Pyrofire, and Melting
+      debuffs.
+  Lewdcifer:
+  - bugfix: Fixes death timers for T4 strains.
+  Lumipharon:
+  - balance: Maw and Jaw structures now have a build limit of one each at any given
+      time
+  - qol: NPC's will stay buckled to medivac's and vehicles when not the driver
+  - qol: NPC's will no longer smash drop pods as obstacles
+  - balance: Weak explosions no longer damage weeds
+  - bugfix: fixed NPC's sometimes storing offhand placeholders
+  - qol: Added some more NPC hazard chat lines
+  Neocloudy:
+  - bugfix: Toggling round end sounds actually applies to round end sounds and not
+      just world rebooting sounds.
+  Runian:
+  - bugfix: You can no longer zap living beings that are incorporeal or have godmode.
+      (e.g. de-manifested Hivemind / flying Dragon).
+  TiviPlus:
+  - bugfix: fixed vents layering under the floor
+  - bugfix: Traps will now layer lower again
+  - bugfix: fixed screech being delayed by half a second
+  - bugfix: Openspace on multiz is unweedable
+  - bugfix: fixed some things like elevators screwing up rendering when changing z
+  - bugfix: The tram launches you through the windshield at mach 1 instead of mach
+      3
+  - bugfix: Probably fixed xeno wounds not layering properly in multiz
+  - balance: Falling down a zlevel will stun for 2 instead of 5 seconds per Z
+  breadhunt:
+  - rscdel: Removes flare launcher module
+  - rscadd: Adds grenade launcher module
+  - rscadd: Adds tanglefoot emitter module
+  - rscadd: Adds a tadpole-specific dropship fabricator for ease of use.
+  yyzsong:
+  - imageadd: glorp emoji

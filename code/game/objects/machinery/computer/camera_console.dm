@@ -114,7 +114,7 @@
 		if(isAI(user))
 			var/mob/living/silicon/ai/A = user
 			A.eyeobj.setLoc(get_turf(C))
-			A.client.eye = A.eyeobj
+			A.client.set_eye(A.eyeobj)
 		else
 			user.reset_perspective(C)
 			user.overlay_fullscreen("flash", /atom/movable/screen/fullscreen/flash/noise)

@@ -25352,7 +25352,7 @@
 /area/slumbridge/outside/southwest)
 "sAX" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/attachable/bayonetknife/som,
+/obj/item/attachable/bayonet/som,
 /obj/item/weapon/gun/smg/som/basic,
 /turf/open/floor/plating,
 /area/slumbridge/inside/sombase/east)

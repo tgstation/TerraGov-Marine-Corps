@@ -57,14 +57,15 @@
 	desc = "A 100 round box for an autocannon. Loaded with Armor Piercing rounds."
 	caliber = CALIBER_30X17MM
 	icon_state = "tank_autocannon_ap"
-	max_rounds = 100
-	default_ammo = /datum/ammo/bullet/tank_autocannon
+	max_rounds = 50
+	default_ammo = /datum/ammo/bullet/tank_autocannon_ap
+	loading_sound = 'sound/vehicles/weapons/tank_autocannon_reload.ogg'
 
 /obj/item/ammo_magazine/tank/autocannon/high_explosive
 	name = "Bushwhacker Autocannon High Explosive Box (30mm)"
 	desc = "A 100 round box for an autocannon. Loaded with High Explosive rounds."
 	icon_state = "tank_autocannon_he"
-	default_ammo = /datum/ammo/rocket/tank_autocannon
+	default_ammo = /datum/ammo/rocket/tank_autocannon_he
 
 /obj/item/ammo_magazine/tank/flamer
 	name = "Flamer Magazine"

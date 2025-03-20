@@ -193,34 +193,31 @@
 
 // Tank Autocannon
 
-/datum/ammo/bullet/tank_autocannon
+/datum/ammo/bullet/tank_autocannon_ap
 	name = "autocannon armor piercing"
-	hud_state = "alloy_spike"
-	hud_state_empty = "smartgun_empty"
+	hud_state = "hivelo"
+	hud_state_empty = "hivelo_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 30
-	penetration = 40
-	sundering = 2.5
+	damage = 40
+	penetration = 45
+	sundering = 4
 
-/datum/ammo/rocket/tank_autocannon
+/datum/ammo/rocket/tank_autocannon_he
 	name = "autocannon high explosive"
 	icon_state = "bullet"
-	hud_state = "alloy_spike"
-	hud_state_empty = "railgun_hvap"
+	hud_state = "hivelo_fire"
+	hud_state_empty = "hivelo_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	damage = 15
 	penetration = 20
-	sundering = 1.5
+	sundering = 0
 
-/datum/ammo/rocket/tank_autocannon/on_hit_mob(mob/target_mob, obj/projectile/proj) // This is so it doesn't knock back on hit.
-	var/target_turf = get_turf(target_mob)
-	drop_nade(target_turf)
+/datum/ammo/rocket/tank_autocannon_he/drop_nade(turf/T)
+	explosion(T, weak_impact_range = 2, tiny = TRUE)
 
-/datum/ammo/rocket/tank_autocannon/drop_nade(turf/T)
-	explosion(T, weak_impact_range = 3, tiny = TRUE)
-
-
-
+/datum/ammo/rocket/tank_autocannon_he/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	//this specifically doesn't knockback. Don't change the explosion above weak.
+	drop_nade(get_turf(target_mob))
 
 // SARDEN
 
@@ -244,7 +241,7 @@
 	max_range = 21
 
 /datum/ammo/bullet/sarden/high_explosive/drop_nade(turf/T)
-	explosion(T, light_impact_range = 2, weak_impact_range = 4)
+	explosion(T, light_impact_range = 2, weak_impact_range = 4, explosion_cause=src)
 
 /datum/ammo/bullet/sarden/high_explosive/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	var/target_turf = get_turf(target_mob)

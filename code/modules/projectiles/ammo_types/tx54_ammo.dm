@@ -111,7 +111,7 @@
 	projectile_greyscale_colors = COLOR_AMMO_HIGH_EXPLOSIVE
 
 /datum/ammo/tx54/he/drop_nade(turf/T)
-	explosion(T, 0, 0, 1, 3, 1)
+	explosion(T, 0, 0, 1, 3, 1, explosion_cause=src)
 
 /datum/ammo/tx54/he/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	drop_nade(get_turf(target_mob))

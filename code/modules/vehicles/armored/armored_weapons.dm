@@ -101,7 +101,7 @@
 		reset_fire()
 		return
 	SEND_SIGNAL(src, COMSIG_ARMORED_FIRE)
-	source?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	source?.client?.mouse_pointer_icon = 'icons/UI_Icons/gun_crosshairs/rifle.dmi'
 
 /// do after checks for the mecha equipment do afters
 /obj/item/armored_weapon/proc/do_after_checks(atom/target)
@@ -356,13 +356,14 @@
 	desc = "A Bushwhacker 30mm Autocannon for vehicular use."
 	icon_state = "tank_autocannon"
 	fire_sound = SFX_AC_FIRE
+	interior_fire_sound = list('sound/vehicles/weapons/tank_autocannon_interior_fire_1.ogg', 'sound/vehicles/weapons/tank_autocannon_interior_fire_2.ogg')
 	ammo = /obj/item/ammo_magazine/tank/autocannon
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/autocannon, /obj/item/ammo_magazine/tank/autocannon/high_explosive)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	variance = 2
-	projectile_delay = 0.35 SECONDS
-	rearm_time = 10 SECONDS
-	hud_state_empty = "rifle_empty"
+	projectile_delay = 0.45 SECONDS
+	rearm_time = 9 SECONDS
+	hud_state_empty = "hivelo_empty"
 
 /obj/item/armored_weapon/apc_cannon
 	name = "\improper MKV-7 utility payload launcher"

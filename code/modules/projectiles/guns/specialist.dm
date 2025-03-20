@@ -341,9 +341,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet/converted,
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
@@ -625,6 +625,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter = -100
 	placed_overlay_iconstate = "sadar"
 	windup_delay = 0.4 SECONDS
+	gun_crosshair = 'icons/UI_Icons/gun_crosshairs/explosive.dmi'
 	///removes backblast damage if false
 	var/backblastdamage = TRUE
 

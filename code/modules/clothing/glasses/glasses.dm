@@ -40,7 +40,7 @@
 
 /obj/item/clothing/glasses/Initialize(mapload)
 	. = ..()
-	if(active)	//For glasses that spawn active
+	if(active && toggleable)	//For glasses that spawn active
 		active = FALSE
 		activate()
 

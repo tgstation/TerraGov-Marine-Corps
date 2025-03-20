@@ -32,7 +32,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER|CASTE_CAN_HOLD_JELLY
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
@@ -86,6 +86,12 @@
 	// Gain acid blood for less speed (0.2).
 	speed = -1.2
 	caste_flags = CASTE_ACID_BLOOD|CASTE_EVOLUTION_ALLOWED
+
+	// +50 health
+	max_health = 350
+
+	// +5 armor across the board
+	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 5, BIO = 10, FIRE = 25, ACID = 10)
 
 	// Loses pounce and evasion for acid-themed abilities.
 	actions = list(
