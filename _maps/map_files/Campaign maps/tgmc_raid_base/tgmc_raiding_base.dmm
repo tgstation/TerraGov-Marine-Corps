@@ -1683,9 +1683,7 @@
 /turf/open/floor/mainship/sterile/corner,
 /area/campaign/tgmc_raiding/underground/medbay)
 "gd" = (
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
 "ge" = (
@@ -11492,9 +11490,7 @@
 	},
 /area/campaign/tgmc_raiding/colony/indoor/hydroponics)
 "PK" = (
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/tunnel/central)
