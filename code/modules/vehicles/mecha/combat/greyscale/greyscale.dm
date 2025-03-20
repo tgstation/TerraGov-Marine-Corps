@@ -254,7 +254,7 @@
 			if(!is_wreck && uses_back_icons)
 				prefix += "fire"
 			if(right_gun)
-				var/mutable_appearance/r_gun = mutable_appearance(holding.gun_icon, prefix+right_gun.icon_state + "_right", appearance_flags = KEEP_APART)
+				var/mutable_appearance/r_gun = mutable_appearance(holding.gun_icon, prefix+right_gun.icon_state + "_right")
 				r_gun.pixel_x = holding.pixel_x_offset
 				. += r_gun
 			continue
@@ -266,7 +266,7 @@
 			if(!is_wreck && uses_back_icons)
 				prefix += "fire"
 			if(left_gun)
-				var/mutable_appearance/l_gun = mutable_appearance(holding.gun_icon, prefix+left_gun.icon_state + "_left", appearance_flags = KEEP_APART)
+				var/mutable_appearance/l_gun = mutable_appearance(holding.gun_icon, prefix+left_gun.icon_state + "_left")
 				l_gun.pixel_x = holding.pixel_x_offset
 				. += l_gun
 			continue
