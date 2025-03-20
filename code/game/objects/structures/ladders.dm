@@ -236,7 +236,7 @@
 		INVOKE_ASYNC(src, PROC_REF(start_travelling), user, going_up)
 	else
 		travel(user, going_up)
-	add_fingerprint(user)
+	add_fingerprint(user, "climb ladder")
 
 /obj/structure/ladder/proc/start_travelling(mob/user, going_up)
 	show_initial_fluff_message(user, going_up)

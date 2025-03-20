@@ -1,0 +1,4 @@
+author: "Apple-107"
+delete-after: True
+changes:
+  - balance: "Xenos now pick up jelly by default, and can activate it anytime (with a channel) with use key or by clicking on themselves"

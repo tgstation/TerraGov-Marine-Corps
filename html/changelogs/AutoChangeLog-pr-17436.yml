@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - balance: "Falling down a zlevel will stun for 2 instead of 5 seconds per Z"

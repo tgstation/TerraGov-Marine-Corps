@@ -85,6 +85,11 @@
 			if(W)
 				W.update_icon()
 
+/obj/alien/weeds/ex_act(severity)
+	if(severity == EXPLODE_WEAK)
+		return
+	return ..()
+
 ///Check if we have a parent node, if not, qdel ourselve
 /obj/alien/weeds/proc/check_for_parent_node()
 	if(parent_node)

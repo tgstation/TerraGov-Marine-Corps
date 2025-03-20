@@ -493,6 +493,9 @@
 	var/datum/game_mode/infestation/infestation_mode = SSticker.mode //Minor QOL, any xeno can check the console after a leader hijacks
 	if(!(xeno_attacker.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT) && (infestation_mode.round_stage != INFESTATION_MARINE_CRASHING))
 		return
+	if(xeno_attacker.hive.living_xeno_ruler != xeno_attacker) //If we aren't the actual hive leader, prevent us from controling alamo
+		to_chat(xeno_attacker, span_xenowarning("We must be the hive leader!"))
+		return
 	#ifndef TESTING
 	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
 		to_chat(xeno_attacker, span_xenowarning("It's too early to do this!"))

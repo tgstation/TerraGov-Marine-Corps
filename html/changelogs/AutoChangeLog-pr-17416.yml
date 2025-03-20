@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "You can no longer zap living beings that are incorporeal or have godmode. (e.g. de-manifested Hivemind / flying Dragon)."

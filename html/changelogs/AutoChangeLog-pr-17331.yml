@@ -1,0 +1,4 @@
+author: "Arturlang"
+delete-after: True
+changes:
+  - rscadd: "Cameras can now categorize people by role and the search input will now also filter by role"
