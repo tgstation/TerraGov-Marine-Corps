@@ -237,6 +237,18 @@ GLOBAL_LIST_INIT(ai_infection_heal_items, list(
 
 ///List of squads that can be spawned, and the roles in them, sorted in spawn order
 GLOBAL_LIST_INIT(ai_squad_presets, list(
+	"TGMC squad" = list(
+		"NPC Squad Marine",
+		"NPC Squad Marine",
+		"NPC Squad Leader",
+		"NPC Squad Corpsman",
+		"NPC Squad Smartgunner",
+		"NPC Squad Marine",
+		"NPC Squad Marine",
+		"NPC Squad Smartgunner",
+		"NPC Squad Marine",
+		"NPC Squad Marine",
+	),
 	"SOM breachers" = list(
 		"SOM Breacher",
 		"SOM Breacher",
