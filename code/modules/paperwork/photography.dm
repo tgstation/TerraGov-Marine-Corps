@@ -145,11 +145,11 @@
 		to_chat(user, span_warning("[src] seems to be blank..."))
 		return
 	user << browse_rsc(picture.picture_image, "tmp_photo.png")
-	user << browse("<html><head><title>[name]</title></head>" \
-		+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
+	user << browse(HTML_SKELETON_TITLE(name, \
+		"<body style='overflow:hidden;margin:0;text-align:center'>" \
 		+ "<img src='tmp_photo.png' width='480' style='-ms-interpolation-mode:nearest-neighbor' />" \
-		+ "[scribble ? "<br>Written on the back:<br><i>[scribble]</i>" : ""]"\
-		+ "</body></html>", "window=photo_showing;size=480x608")
+		+ "[scribble ? "<br>Written on the back:<br><i>[scribble]</i>" : ""]")
+		, "window=photo_showing;size=480x608")
 	onclose(user, "[name]")
 
 

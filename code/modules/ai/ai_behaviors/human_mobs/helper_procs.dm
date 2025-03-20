@@ -32,6 +32,7 @@
 /obj/item/weapon/gun/ai_should_use(mob/living/target, mob/living/user)
 	if(gun_features_flags & GUN_DEPLOYED_FIRE_ONLY)
 		return FALSE //some day
+	return TRUE
 
 /obj/item/reagent_containers/food/ai_should_use(mob/living/target, mob/living/user)
 	if(!ishuman(target))
@@ -204,6 +205,10 @@
 		return
 	open(TRUE)
 	return AI_OBSTACLE_RESOLVED
+
+///Whether an NPC mob should stay buckled to this atom or not
+/atom/movable/proc/ai_should_stay_buckled(mob/living/carbon/npc)
+	return FALSE
 
 //test stuff
 /mob/living/proc/add_test_ai()

@@ -450,7 +450,7 @@
 				victim_living.throw_at()
 				//if travel_direction EAST, will turn to the NORTHEAST or SOUTHEAST and throw the ran over guy away
 //				var/datum/callback/land_slam = new(victim_living, TYPE_PROC_REF(/mob/living/, tram_slam_land))
-				victim_living.throw_at(throw_target, 200 * collision_lethality, 4 * collision_lethality) //, callback = land_slam)
+				victim_living.throw_at(throw_target, 4 * collision_lethality, 2 * collision_lethality) //, callback = land_slam)
 
 				//increment the hit counters
 				if(ismob(victim_living) && victim_living.client && istype(transport_controller_datum, /datum/transport_controller/linear/tram))
@@ -756,9 +756,10 @@
 	return ..()
 
 /obj/machinery/door/poddoor/lift/preopen
-	icon_state = "open"
+	icon_state = "pdoor0"
 	density = FALSE
 	opacity = FALSE
+	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 
 // A subtype intended for "public use"
 /obj/structure/transport/linear/public
@@ -950,7 +951,7 @@
 		if(prob(mob_throw_chance || 17.5)) // sometimes you go through a window, especially with bad luck
 			passenger.AddElement(/datum/element/window_smashing, duration = 1.5 SECONDS)
 		var/throw_target = get_edge_target_turf(src, throw_direction)
-		passenger.throw_at(throw_target, 30, 7)
+		passenger.throw_at(throw_target, 5, 2)
 
 /obj/structure/transport/linear/tram/slow
 	transport_controller_type = /datum/transport_controller/linear/tram/slow

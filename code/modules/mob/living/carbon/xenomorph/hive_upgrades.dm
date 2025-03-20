@@ -273,6 +273,11 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!.)
 		return
 
+	if(locate(building_type) in GLOB.xeno_acid_jaws_by_hive[buyer.hivenumber])
+		if(!silent)
+			to_chat(buyer, span_xenowarning("We already have one!"))
+		return FALSE
+
 	var/turf/buildloc = get_turf(buyer)
 	if(!buildloc)
 		return FALSE
@@ -299,6 +304,11 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	. = ..()
 	if(!.)
 		return
+
+	if(locate(building_type) in GLOB.xeno_acid_jaws_by_hive[buyer.hivenumber])
+		if(!silent)
+			to_chat(buyer, span_xenowarning("We already have one!"))
+		return FALSE
 
 	var/turf/buildloc = get_turf(buyer)
 	if(!buildloc)
