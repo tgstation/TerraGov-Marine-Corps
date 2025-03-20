@@ -2901,8 +2901,7 @@
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/compensator,
@@ -2943,8 +2942,7 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/vsd_carbine)
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/bayonet/som,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/compensator,
