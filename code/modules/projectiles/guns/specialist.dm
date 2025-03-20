@@ -1119,7 +1119,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	cocked_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/rifle/vsd_autocannon
 	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/rifle/vsd_autocannon
+		/obj/item/ammo_magazine/rifle/vsd_autocannon,
+		/obj/item/ammo_magazine/rifle/vsd_autocannon/explosive,
+		/obj/item/ammo_magazine/rifle/vsd_autocannon/at,
 		)
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)

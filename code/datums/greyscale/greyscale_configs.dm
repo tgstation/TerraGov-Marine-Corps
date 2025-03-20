@@ -129,9 +129,7 @@
 /datum/greyscale_config/vsd_hardsuit/alt_two
 	prefix = "superheavy_alt_two_"
 
-/datum/greyscale_config/exoskeleton/vsd
-	icon_file = 'icons/mob/modular/vsd_hardsuit.dmi'
-	json_config = 'code/datums/greyscale/json_configs/vsd_hardsuit.json'
+/datum/greyscale_config/vsd_hardsuit/exoskeleton
 
 //Mark 2
 

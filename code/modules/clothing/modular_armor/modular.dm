@@ -307,7 +307,7 @@
 	desc = "CrashCore Industries modular hardsuit exoskeleton, made to lift up the 'Super-Heavy' armor system and designed for full compatiability with jaeger modules. Comes with pre-installed light armour-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
 	icon_state = "exoskeleton"
 	worn_icon_state = "exoskeleton"
-	greyscale_config = /datum/greyscale_config/exoskeleton/vsd
+	greyscale_config = /datum/greyscale_config/vsd_hardsuit/exoskeleton
 	colorable_allowed = PRESET_COLORS_ALLOWED
 	colorable_colors = ARMOR_PALETTES_LIST
 	greyscale_colors = ARMOR_PALETTE_BLACK

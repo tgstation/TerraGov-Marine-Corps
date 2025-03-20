@@ -507,3 +507,23 @@
 	max_rounds = 100
 	reload_delay = 10
 	icon_state_mini = "mag_dmr"
+
+/obj/item/ammo_magazine/rifle/vsd_autocannon/explosive
+	name = "CC/AT32 Autocannon High Explosive canister"
+	desc = "A canister holding 40mm rounds for the CC/AT32. Better not get infront of one of its shots."
+	caliber = CALIBER_20
+	icon_state = "at32_he"
+	default_ammo = /datum/ammo/bullet/auto_cannon/flak
+	max_rounds = 100
+	reload_delay = 10
+	icon_state_mini = "mag_dmr"
+
+/obj/item/ammo_magazine/rifle/vsd_autocannon/at
+	name = "CC/AT32 Autocannon Solid Shot canister"
+	desc = "A canister holding a couple rounds of special 20mm rounds for the CC/AT32. Better not get infront of one of its shots."
+	caliber = CALIBER_20
+	icon_state = "at32_at"
+	default_ammo = /datum/ammo/bullet/auto_cannon/anti_tank
+	max_rounds = 30
+	reload_delay = 10
+	icon_state_mini = "mag_dmr"
