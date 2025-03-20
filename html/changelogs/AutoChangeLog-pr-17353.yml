@@ -1,4 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - bugfix: "Toggling round end sounds actually applies to round end sounds and not just world rebooting sounds."

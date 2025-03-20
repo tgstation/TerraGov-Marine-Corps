@@ -1,7 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes:
-  - rscdel: "Removes flare launcher module"
-  - rscadd: "Adds grenade launcher module"
-  - rscadd: "Adds tanglefoot emitter module"
-  - rscadd: "Adds a tadpole-specific dropship fabricator for ease of use."
