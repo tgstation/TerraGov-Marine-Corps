@@ -5,8 +5,10 @@
 		occupant.setDir(newdir)
 
 ///Plays the mech step sound effect. Split from movement procs so that other mechs (HONK) can override this one specific part.
-/obj/vehicle/sealed/mecha/proc/play_stepsound()
+/obj/vehicle/sealed/mecha/proc/play_stepsound(atom/movable/source, old_loc, movement_dir, forced, old_locs)
 	SIGNAL_HANDLER
+	if(forced)
+		return
 	if(HAS_TRAIT(src, TRAIT_SILENT_FOOTSTEPS))
 		return
 	playsound(src, stepsound, 40, TRUE)
