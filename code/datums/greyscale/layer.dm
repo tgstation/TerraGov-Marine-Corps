@@ -90,7 +90,14 @@
 	var/icon/icon
 
 /datum/greyscale_layer/hyperscale/Generate(list/colors, list/render_steps, datum/greyscale_config/parent)
-	return InternalGenerate(colors, render_steps, parent)
+	var/list/processed_colors = list()
+	if(!length(color_ids))
+		processed_colors = colors
+		// todo we REALLY should not be doing this. pls set these everywhere as needed!!!
+	else
+		for(var/i in color_ids)
+			processed_colors += colors[i]
+	return InternalGenerate(processed_colors, render_steps, parent)
 
 
 /datum/greyscale_layer/hyperscale/New(icon_file, list/json_data, prefix)
