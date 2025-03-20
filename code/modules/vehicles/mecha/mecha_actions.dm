@@ -197,7 +197,7 @@
 
 /datum/action/vehicle/sealed/mecha/cloak
 	name = "Cloak"
-	action_icon_state = "mech_zoom_off"
+	action_icon_state = "cloak_off"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_CLOAK,
 	)
@@ -214,6 +214,8 @@
 		return
 
 	cloaked = TRUE
+	action_icon_state = "cloak_on"
+	update_button_icon()
 	ADD_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	playsound(chassis, 'sound/effects/pred_cloakon.ogg', 60, TRUE)
 	become_warped_invisible(chassis, 50)
@@ -235,6 +237,8 @@
 ///cleanup from stoping cloaking
 /datum/action/vehicle/sealed/mecha/cloak/proc/stop_cloaking()
 	cloaked = FALSE
+	action_icon_state = "cloak_off"
+	update_button_icon()
 	chassis.mecha_flags &= ~CANNOT_INTERACT
 	STOP_PROCESSING(SSobj, src)
 	stop_warped_invisible(chassis)
