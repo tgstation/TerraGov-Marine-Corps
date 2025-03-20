@@ -373,3 +373,57 @@
   - rscadd: more seamless looking blood decals
   - rscadd: different crosshairs for some guns
   - imageadd: new crosshair sprites for guns
+2025-03-19:
+  Lumipharon:
+  - balance: Nerfed tank autocannon and HE ammo, AP ammo slightly buffed
+  - bugfix: NPC's will no longer try to revive undefibbable patients
+  - bugfix: fixed NPC's not using guns
+  RipGrayson:
+  - rscadd: Added a multi-z test map.
+2025-03-20:
+  Apple-107:
+  - balance: Xenos now pick up jelly by default, and can activate it anytime (with
+      a channel) with use key or by clicking on themselves
+  Arturlang:
+  - rscadd: Cameras can now categorize people by role and the search input will now
+      also filter by role
+  Cheese:
+  - balance: Non-folding Plasteel cades can now be upgraded with metal, like metal
+      cades.
+  - rscadd: Only the actual hive leader can jack or capture alamo now, rather than
+      every T4. (The xeno at the top of the list in hive status is hive leader)
+  - balance: Dancer debuff scaling now also respects Shatter, Pyrofire, and Melting
+      debuffs.
+  Lewdcifer:
+  - bugfix: Fixes death timers for T4 strains.
+  Lumipharon:
+  - balance: Maw and Jaw structures now have a build limit of one each at any given
+      time
+  - qol: NPC's will stay buckled to medivac's and vehicles when not the driver
+  - qol: NPC's will no longer smash drop pods as obstacles
+  - balance: Weak explosions no longer damage weeds
+  - bugfix: fixed NPC's sometimes storing offhand placeholders
+  - qol: Added some more NPC hazard chat lines
+  Neocloudy:
+  - bugfix: Toggling round end sounds actually applies to round end sounds and not
+      just world rebooting sounds.
+  Runian:
+  - bugfix: You can no longer zap living beings that are incorporeal or have godmode.
+      (e.g. de-manifested Hivemind / flying Dragon).
+  TiviPlus:
+  - bugfix: fixed vents layering under the floor
+  - bugfix: Traps will now layer lower again
+  - bugfix: fixed screech being delayed by half a second
+  - bugfix: Openspace on multiz is unweedable
+  - bugfix: fixed some things like elevators screwing up rendering when changing z
+  - bugfix: The tram launches you through the windshield at mach 1 instead of mach
+      3
+  - bugfix: Probably fixed xeno wounds not layering properly in multiz
+  - balance: Falling down a zlevel will stun for 2 instead of 5 seconds per Z
+  breadhunt:
+  - rscdel: Removes flare launcher module
+  - rscadd: Adds grenade launcher module
+  - rscadd: Adds tanglefoot emitter module
+  - rscadd: Adds a tadpole-specific dropship fabricator for ease of use.
+  yyzsong:
+  - imageadd: glorp emoji

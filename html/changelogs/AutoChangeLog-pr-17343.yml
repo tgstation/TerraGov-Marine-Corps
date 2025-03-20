@@ -1,0 +1,5 @@
+author: "tyeagg"
+delete-after: True
+changes:
+  - rscadd: "emissives to projectiles and muzzle flashes"
+  - imageadd: "new muzzle flash and projectile sprites"

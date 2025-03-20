@@ -12312,13 +12312,17 @@
 	},
 /area/desert_dam/interior/dam_interior/engine_east_wing)
 "bAO" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 8
 	},
 /area/desert_dam/exterior/valley/valley_wilderness)
 "bAP" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 4
 	},
@@ -22507,7 +22511,9 @@
 	},
 /area/desert_dam/building/medical/virology_wing)
 "cKO" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/desert_dam/exterior/valley/valley_cargo)
 "cKX" = (
@@ -65208,7 +65214,7 @@ bKf
 bgz
 bgz
 bNN
-bNK
+bOz
 aTZ
 ceA
 ceA
@@ -65910,7 +65916,7 @@ bKf
 sQb
 bgz
 bNN
-bOz
+bNK
 aTZ
 ceA
 ceA

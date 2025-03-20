@@ -5795,7 +5795,9 @@
 /turf/open/floor/grayscale,
 /area/slumbridge/outside/northeast/bridges)
 "esM" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -9869,9 +9871,7 @@
 /turf/open/floor/rcircuit,
 /area/slumbridge/inside/pmcdome/nukevault)
 "hxz" = (
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/tile/dark,
 /area/slumbridge/landingzonetwo)
 "hxB" = (
@@ -12076,7 +12076,9 @@
 	},
 /area/slumbridge/inside/colony/northerndome)
 "iVN" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/structure/sign/safety/medical_supplies{
 	dir = 4
 	},
@@ -14692,7 +14694,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/stairs{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
@@ -19724,7 +19726,9 @@
 /turf/open/floor/plating/ground/snow,
 /area/slumbridge/outside/southwest/nearlz)
 "oyw" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/slumbridge/inside/medical/foyer)
 "oyD" = (
@@ -24138,7 +24142,7 @@
 /area/slumbridge/inside/engi/west)
 "rHx" = (
 /obj/structure/stairs{
-	dir = 8
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -28527,7 +28531,9 @@
 	},
 /area/slumbridge/inside/sombase/west)
 "uXU" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -29138,7 +29144,9 @@
 /turf/closed/wall,
 /area/slumbridge/inside/colony/northerndome)
 "vth" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -32012,7 +32020,9 @@
 	},
 /area/slumbridge/inside/pmcdome)
 "xrN" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow,
 /area/slumbridge/outside/southwest)
@@ -32950,7 +32960,9 @@
 	},
 /area/shuttle/drop1/lz1)
 "ycz" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -33121,7 +33133,9 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/slumbridge/inside/engi/west)
 "yht" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
@@ -36415,10 +36429,10 @@ cmA
 cmA
 cmA
 cmA
-iaC
+mox
 tJm
 qnB
-mox
+iaC
 cmA
 cmA
 cmA
@@ -36596,10 +36610,10 @@ wRP
 wRP
 iaB
 wRP
-dEk
+gju
 kEc
 lJJ
-gju
+dEk
 wRP
 iaB
 wRP
@@ -36777,10 +36791,10 @@ bGJ
 mdd
 bGJ
 bGJ
-cUn
-kdF
-kdF
 rIm
+kdF
+kdF
+cUn
 bGJ
 mdd
 bGJ

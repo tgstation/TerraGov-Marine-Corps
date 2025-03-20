@@ -316,7 +316,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		slot_r_hand_str = 'icons/mob/inhands/guns/marksman_right_1.dmi',
 	)
 	max_shells = 25 //codex
-	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = CALIBER_10X28_CASELESS //codex
 	fire_sound = 'sound/weapons/guns/fire/t64.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'

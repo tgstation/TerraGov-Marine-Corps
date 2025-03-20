@@ -17,7 +17,7 @@
 	desc = "The smallest weapon available to mechs. It packs a small punch, but allows the mech to achieve higher mobility."
 	icon_state = "pistol"
 	fire_sound = 'sound/mecha/weapons/mech_pistol.ogg'
-	muzzle_iconstate = "muzzle_flash_light"
+	muzzle_iconstate = "muzzle_flash"
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,16), "E" = list(44,16), "W" = list(-13,36)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,16), "E" = list(44,36), "W" = list(-13,16)),
@@ -42,7 +42,7 @@
 	desc = "A burstfiring weapon fitted for mechs. Offers higher mobility and accuracy than larger weapons, but reduced damage."
 	icon_state = "burstpistol"
 	fire_sound = 'sound/mecha/weapons/mech_pistol.ogg'
-	muzzle_iconstate = "muzzle_flash_light"
+	muzzle_iconstate = "muzzle_flash"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,8), "E" = list(52,8), "W" = list(-21,28)),
@@ -67,8 +67,8 @@
 	name = "\improper Coeus submachine gun"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "As the smallest autofiring weapon, it offers improved mobility but less firepower than most of it's larger cousins."
-	muzzle_iconstate = "muzzle_flash_light"
 	icon_state = "smg"
+	muzzle_iconstate = "muzzle_flash"
 	fire_sound = 'sound/mecha/weapons/mech_smg.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	flash_offsets = list(

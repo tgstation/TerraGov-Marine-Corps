@@ -8488,6 +8488,7 @@
 /obj/machinery/power/geothermal/tbg{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/shuttle/escapepod/plain,
 /area/bigredv2/outside/engineering)
 "ech" = (
@@ -40186,10 +40187,10 @@ wdZ
 ajj
 acp
 luR
-amz
+aol
 anh
 anF
-aol
+amz
 toK
 acr
 gzM

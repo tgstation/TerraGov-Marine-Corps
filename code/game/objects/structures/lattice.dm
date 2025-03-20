@@ -7,7 +7,7 @@
 	anchored = TRUE
 	layer = LATTICE_LAYER
 	plane = FLOOR_PLANE
-	//	flags = CONDUCT
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 
 /obj/structure/lattice/Initialize(mapload)
 	. = ..()
@@ -86,6 +86,7 @@
 	base_icon_state = "catwalk"
 	plane = FLOOR_PLANE
 	layer = CATWALK_LAYER
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	resistance_flags = XENO_DAMAGEABLE|DROPSHIP_IMMUNE
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_LATTICE)
