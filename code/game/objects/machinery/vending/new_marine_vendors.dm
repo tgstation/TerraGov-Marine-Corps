@@ -345,7 +345,7 @@
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/specialist
-	name = "GHMME Automated Commander Closet"
+	name = "GHMME Automated Specialist Closet"
 	req_access = list(ACCESS_MARINE_SPECPREP)
 	vendor_role = /datum/job/terragov/squad/specialist
 	lock_flags = JOB_LOCK
