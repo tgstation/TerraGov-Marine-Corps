@@ -14390,6 +14390,7 @@
 /area/mainship/squads/general)
 "lJZ" = (
 /obj/structure/bed/chair/sofa/left,
+/obj/effect/landmark/start/job/corporateliaison,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/corporateliaison)
 "lKr" = (

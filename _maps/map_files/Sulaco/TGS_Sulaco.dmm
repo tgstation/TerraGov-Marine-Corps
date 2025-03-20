@@ -7645,6 +7645,7 @@
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
 	},
+/obj/effect/landmark/start/job/corporateliaison,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "aQY" = (
