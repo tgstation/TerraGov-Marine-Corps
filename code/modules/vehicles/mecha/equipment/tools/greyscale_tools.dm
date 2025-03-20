@@ -173,3 +173,11 @@
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_smoke
 	smoke_type = /datum/effect_system/smoke_spread/tactical
+
+/obj/item/mecha_parts/mecha_equipment/ability/assault_armor
+	name = "assault_armor"
+	desc = "A laser core that allows a core purge to emit a burst of lasers around the mecha. Slows mecha while charging."
+	weight = 80
+	icon_state = "zoom"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	ability_to_grant = /datum/action/vehicle/sealed/mecha/assault_armor

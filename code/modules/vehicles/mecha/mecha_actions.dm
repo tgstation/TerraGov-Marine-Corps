@@ -194,3 +194,39 @@
 		chassis.balloon_alert(owner, "No repairpacks")
 		return FALSE
 	return TRUE
+
+/datum/action/vehicle/sealed/mecha/assault_armor
+	name = "Assault Armor"
+	action_icon_state = "mech_zoom_off"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_ASSAULT_ARMOR,
+	)
+	///power cost of activation
+	var/power_cost = 300
+	///num of projectiles we burst
+	var/projectile_count = 20
+	///sound we play when the ability activates
+	var/burst_sound
+	///ammo type used by the projectiles
+	var/datum/ammo/ammo_type = /datum/ammo/energy/assault_armor
+
+/datum/action/vehicle/sealed/mecha/assault_armor/action_activate(trigger_flags)
+	if(!owner?.client || !chassis || !(owner in chassis.occupants))
+		return
+	var/added_movetime = chassis.move_delay
+	chassis.move_delay += added_movetime
+	if(!chassis.use_power(power_cost))
+		chassis.balloon_alert(owner, "No power")
+		return
+	if(!do_after(owner, 0.5 SECONDS, IGNORE_LOC_CHANGE, chassis))
+		return
+	chassis.move_delay -= added_movetime
+	var/list/bullets = list()
+	var/proj_type = /obj/projectile
+	if(initial(ammo_type.ammo_behavior_flags) & AMMO_HITSCAN)
+		proj_type = /obj/projectile/hitscan
+	for(var/i=1 to projectile_count)
+		var/obj/projectile/proj = new proj_type(src, initial(ammo_type.hitscan_effect_icon))
+		proj.generate_bullet(ammo_type)
+		bullets += proj
+	bullet_burst(chassis, bullets, owner, burst_sound, 7, 2)
