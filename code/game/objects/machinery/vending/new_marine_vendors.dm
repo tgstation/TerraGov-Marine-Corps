@@ -408,7 +408,7 @@
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/commander
-	name = "GHMME Automated Commander Closet"
+	name = "GHMME Automated Field Commander Closet"
 	req_access = list(ACCESS_MARINE_COMMANDER)
 	vendor_role = /datum/job/terragov/command/fieldcommander
 	lock_flags = JOB_LOCK
