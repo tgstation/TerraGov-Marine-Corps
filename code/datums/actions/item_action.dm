@@ -74,7 +74,7 @@
 	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_KB_SUITLIGHT)
 
 /datum/action/item_action/toggle/suit_toggle/light/ai_should_start_consider()
-	if(SSticker.?mode.?round_type_flags & MODE_TWO_HUMAN_FACTIONS)
+	if(SSticker?.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS)
 		return FALSE //HvH doesn't have full dark so its just a detriment
 	return TRUE
 
