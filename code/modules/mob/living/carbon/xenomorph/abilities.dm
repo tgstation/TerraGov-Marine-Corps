@@ -1567,6 +1567,11 @@
 		if(!silent)
 			to_chat(X, span_warning("This artificial construct has no life force to drain"))
 		return FALSE
+	if(X.status_flags & INCORPOREAL)
+		if(!silent)
+			to_chat(X, span_warning("You can't do this while flying!"))
+		return FALSE
+
 	X.face_atom(victim) //Face towards the target so we don't look silly
 	X.visible_message(span_xenowarning("\The [X] begins opening its mouth and extending a second jaw towards \the [victim]."), \
 	span_danger("We slowly drain \the [victim]'s life force!"), null, 20)

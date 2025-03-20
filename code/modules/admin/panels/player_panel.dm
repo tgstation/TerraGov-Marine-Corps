@@ -502,6 +502,7 @@
 		<a href='?src=[ref];transform=shrike;mob=[REF(M)]'>Shrike</a> |
 		<a href='?src=[ref];transform=hivemind;mob=[REF(M)]'>Hivemind</a> |
 		<a href='?src=[ref];transform=king;mob=[REF(M)]'>King</a> |
+		<a href='byond://?src=[ref];transform=dragon;mob=[REF(M)]'>Dragon</a> |
 		<br>
 	"}
 

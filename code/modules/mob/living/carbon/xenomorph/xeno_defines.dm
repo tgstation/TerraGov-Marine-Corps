@@ -4,7 +4,9 @@
 	var/upgrade_name = "Young"
 	var/caste_desc = null
 	var/job_type = /datum/job/xenomorph
-
+	///The parent strain of this caste
+	var/base_strain_type
+	///The base caste typepath
 	var/caste_type_path = null
 
 	///primordial message that is shown when a caste becomes primordial
@@ -387,6 +389,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 
 	///Multiplicative melee damage modifier; referenced by attack_alien.dm, most notably attack_alien_harm
 	var/xeno_melee_damage_modifier = 1
+
+	/// Visual effect that appears when doing a normal attack.
+	var/attack_effect = ATTACK_EFFECT_REDSLASH
 
 	//Charge vars
 	///Will the mob charge when moving ? You need the charge verb to change this

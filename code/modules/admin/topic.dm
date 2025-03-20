@@ -444,6 +444,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/queen, location, null, delmob)
 			if("king")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/king, location, null, delmob)
+			if("dragon")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/dragon, location, null, delmob)
 			if("wraith")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/wraith, location, null, delmob)
 			if("puppeteer")
@@ -739,7 +741,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		if(!M.key)
 			to_chat(usr, span_warning("[M] doesn't seem to have a key."))
-			return	
+			return
 
 		log_admin("[key_name(usr)] has sent [key_name(M)] back to the lobby.")
 		message_admins("[ADMIN_TPMONTY(usr)] has sent [key_name_admin(M)] back to the lobby.")
