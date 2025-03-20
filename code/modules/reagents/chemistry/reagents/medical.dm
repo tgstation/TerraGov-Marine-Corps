@@ -1369,13 +1369,13 @@
 				L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 				L.adjustToxLoss(-0.15 * effect_str)
 
-			if(volume > 5 && (L.getBruteLoss(organic_only = TRUE) >= (3 * effect_str))) // only heal if we can derive the full value from it. slows down IB causing super blood loss from limb damage ticks we can't ignore (because we purge bicaridine)
+			if(volume > 5 && (L.getBruteLoss(organic_only = TRUE) >= 3)) // so we don't waste nanites healing miniscule damage
 				L.heal_overall_damage(3 * effect_str, 0)
 				holder.remove_reagent(/datum/reagent/medicalnanites, 0.5)
 				if(prob(10))
 					to_chat(L, span_notice("Your cuts and bruises begin to scab over rapidly!"))
 
-			if(volume > 5 && (L.getFireLoss(organic_only = TRUE) >= (3 * effect_str))) // as above, only heal if we get full value healing. slows down chip mitigated fire damage from super-killing fire-resistant users with nanite regen blood loss
+			if(volume > 5 && (L.getFireLoss(organic_only = TRUE) >= 3)) // same but for burn
 				L.heal_overall_damage(0, 3 * effect_str)
 				holder.remove_reagent(/datum/reagent/medicalnanites, 0.5)
 				if(prob(10))
