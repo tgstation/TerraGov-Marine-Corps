@@ -60,7 +60,7 @@
 /mob/living/carbon/xenomorph/king/conqueror
 	caste_base_type = /datum/xeno_caste/king/conqueror
 	name = "Conqueror"
-	//desc = "Perfected by eons, it wears evolution's crown. A predator of time, sculpted to dominate."
+	desc = "A primordial beast, sculpted by countless fights, intent on conquering the battlefield."
 	icon = 'icons/Xeno/castes/king/conqueror.dmi'
 	icon_state = "Conqueror Walking"
 

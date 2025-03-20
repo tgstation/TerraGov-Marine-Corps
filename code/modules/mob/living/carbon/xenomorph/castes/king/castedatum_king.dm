@@ -111,7 +111,7 @@
 	display_name = "Conqueror"
 	caste_type_path = /mob/living/carbon/xenomorph/king/conqueror
 	wound_type = "conqueror"
-	//caste_desc = "Perfected by eons, it wears evolution's crown. A predator of time, sculpted to dominate."
+	caste_desc = "A primordial beast, sculpted by countless fights, intent on conquering the battlefield."
 
 	// *** Melee Attacks *** //
 	melee_damage = 25
@@ -140,7 +140,7 @@
 	caste_traits = list(TRAIT_STAGGERIMMUNE, TRAIT_STOPS_TANK_COLLISION)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 60, BIO = 60, FIRE = 60, ACID = 60)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 60, BIO = 60, FIRE = 60, ACID = 60)
 
 	// *** Pheromones *** //
 	aura_strength = 3.0
@@ -170,7 +170,7 @@
 
 /datum/xeno_caste/king/conqueror/primordial
 	upgrade_name = "Primordial"
-	primordial_message = "Veni. Vidi. Vici."
+	primordial_message = "We will conquer all that dares stand in our path."
 	upgrade = XENO_UPGRADE_PRIMO
 
 	// *** Abilities *** //

@@ -501,7 +501,7 @@
 // ***************************************
 // *********** Conqueror's Endurance
 // ***************************************
-#define CONQUEROR_ENDURANCE_SPEED_MODIFIER 2.5 // Speed modifier applied while this ability is active.
+#define CONQUEROR_ENDURANCE_SPEED_MODIFIER 2.0 // Speed modifier applied while this ability is active.
 #define CONQUEROR_ENDURANCE_SUNDER_MULTIPLIER 0 // Amount of sunder reduction applied while this ability is active (as a percentage; 0 is 100%).
 #define CONQUEROR_ENDURANCE_DAMAGE_REDUCTION 0.5 // Amount of damage reduction applied while this ability is active (as a percentage).
 #define CONQUEROR_ENDURANCE_BROKEN_KNOCKDOWN 1.5 SECONDS // Duration of the debuff inflicted when this ability loses all of its resource.
@@ -778,7 +778,7 @@
 // ***************************************
 // *********** Conqueror's Obliteration
 // ***************************************
-#define CONQUEROR_OBLITERATION_SPEED_MODIFIER 2.5 // The speed modifier applied while the ability is channeling.
+#define CONQUEROR_OBLITERATION_SPEED_MODIFIER 2.0 // The speed modifier applied while the ability is channeling.
 #define CONQUEROR_OBLITERATION_MAX_RANGE 3 // The maximum range for the initial AoE (and the warning). This is NOT a range limiter for the attacks themselves.
 #define CONQUEROR_OBLITERATION_DAMAGE_MULTIPLIER 1.2 // Damage multiplier applied to this ability's attacks.
 #define CONQUEROR_OBLITERATION_DEBUFF 1.2 // Amount of stacks applied on any given debuff.
