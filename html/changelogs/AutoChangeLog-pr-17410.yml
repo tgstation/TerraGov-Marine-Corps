@@ -1,0 +1,4 @@
+author: "Cheese"
+delete-after: True
+changes:
+  - rscadd: "Only the actual hive leader can jack or capture alamo now, rather than every T4. (The xeno at the top of the list in hive status is hive leader)"

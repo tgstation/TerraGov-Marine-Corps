@@ -1,0 +1,4 @@
+author: "Cheese"
+delete-after: True
+changes:
+  - balance: "Dancer debuff scaling now also respects Shatter, Pyrofire, and Melting debuffs."
