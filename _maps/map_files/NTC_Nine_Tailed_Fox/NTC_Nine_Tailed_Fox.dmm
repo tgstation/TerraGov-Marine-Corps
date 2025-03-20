@@ -2335,9 +2335,7 @@
 /obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/box/monkeycubes,
-/obj/machinery/door_display/research_cell/cell{
-	id = "Shipside Containment Cell"
-	},
+/obj/machinery/door_display/research_cell/cell/cell1,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -8314,12 +8312,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
 "hzx" = (
-/obj/machinery/door/airlock/mainship/research/glass/cell/cell1{
-	id = "Shipside Containment Cell"
-	},
-/obj/machinery/door/poddoor/shutters/mainship/containment/cell1{
-	id = "Shipside Containment Cell"
-	},
+/obj/machinery/door/airlock/mainship/research/glass/cell/cell1,
+/obj/machinery/door/poddoor/shutters/mainship/containment/cell1,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -23455,8 +23449,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
 "vzE" = (
-/obj/machinery/flasher{
-	id = "Containment Cell 3";
+/obj/machinery/flasher/cell1{
 	pixel_y = 30
 	},
 /turf/open/floor/mainship/research/containment/floor2{
