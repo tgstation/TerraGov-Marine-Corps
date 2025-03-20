@@ -230,7 +230,7 @@
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/m10x/hod
 	back = /obj/item/storage/backpack/marine/standard
-	belt = /obj/item/storage/belt/marine
+	belt = /obj/item/storage/belt/shotgun
 	gloves = /obj/item/clothing/gloves/marine/black
 	l_pocket = /obj/item/storage/pouch/medkit/firstaid
 	r_pocket = /obj/item/storage/pouch/shotgun
