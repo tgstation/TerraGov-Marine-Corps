@@ -61,3 +61,7 @@
   - rscadd: ' Xenos with their spit abilities selected no longer spit on shift-left
       click.  Instead alt-left click now works.  Also right click and middle click
       continue to work.'
+2025-03-20:
+  Meghan-Rossi:
+  - rscadd: CAS weapons no longer fire on right-click, shift-left click, or alt-left
+      click.  Middle click and unmodified left-click continue to work.
