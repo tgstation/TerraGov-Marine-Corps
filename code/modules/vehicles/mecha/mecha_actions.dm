@@ -197,7 +197,7 @@
 
 /datum/action/vehicle/sealed/mecha/assault_armor
 	name = "Assault Armor"
-	action_icon_state = "mech_zoom_off"
+	action_icon_state = "assaultarmor"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_ASSAULT_ARMOR,
 	)
@@ -205,8 +205,6 @@
 	var/power_cost = 300
 	///num of projectiles we burst
 	var/projectile_count = 20
-	///sound we play when the ability activates
-	var/burst_sound
 	///ammo type used by the projectiles
 	var/datum/ammo/ammo_type = /datum/ammo/energy/assault_armor
 
@@ -218,8 +216,15 @@
 	if(!chassis.use_power(power_cost))
 		chassis.balloon_alert(owner, "No power")
 		return
+	var/obj/effect/overlay/lightning_charge/charge = new(chassis)
+	charge.pixel_x -= chassis.pixel_x
+	charge.pixel_y -= chassis.pixel_y
+	chassis.vis_contents += charge
 	if(!do_after(owner, 0.5 SECONDS, IGNORE_LOC_CHANGE, chassis))
 		return
+	chassis.vis_contents -= charge
+	qdel(charge)
+	new /obj/effect/temp_visual/lightning_discharge(get_turf(chassis))
 	chassis.move_delay -= added_movetime
 	var/list/bullets = list()
 	var/proj_type = /obj/projectile
@@ -229,4 +234,4 @@
 		var/obj/projectile/proj = new proj_type(src, initial(ammo_type.hitscan_effect_icon))
 		proj.generate_bullet(ammo_type)
 		bullets += proj
-	bullet_burst(chassis, bullets, owner, burst_sound, 7, 2)
+	bullet_burst(chassis, bullets, owner, 'sound/weapons/burst_phaser2.ogg', 7, 2)
