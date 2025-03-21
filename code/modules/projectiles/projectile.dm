@@ -46,8 +46,6 @@
 	greyscale_colors
 	///Any special effects applied to this projectile
 	var/projectile_behavior_flags = NONE
-	///Hit impact sound
-	var/hitsound
 	///The ammo data which holds most of the actual info
 	var/datum/ammo/ammo
 	///The bodypart you're trying to hit
