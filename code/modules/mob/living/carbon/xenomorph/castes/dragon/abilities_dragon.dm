@@ -673,10 +673,10 @@
 	if(QDELETED(thrown_human) || thrown_human.stat == DEAD || !xeno_owner.Adjacent(thrown_human))
 		failed_to_grab()
 		return
+	thrown_human.set_throwing(FALSE) //ENSURE to stop the throw state here so grabs succeed
 	if(!xeno_owner.start_pulling(thrown_human) || !xeno_owner.get_active_held_item())
 		failed_to_grab()
 		return
-
 	grabbing_item = xeno_owner.get_active_held_item()
 	if(!grabbing_item)
 		failed_to_grab()
