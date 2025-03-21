@@ -326,12 +326,12 @@
 	set name = "Move Upwards"
 	set category = "IC"
 
-	if(eyeobj.zMove(UP, z_move_flags = ZMOVE_FEEDBACK))
+	if(eyeobj.zMove(UP, z_move_flags = ZMOVE_IGNORE_OBSTACLES|ZMOVE_FEEDBACK))
 		to_chat(src, span_notice("You move upwards."))
 
 /mob/living/silicon/ai/down()
 	set name = "Move Down"
 	set category = "IC"
 
-	if(eyeobj.zMove(DOWN, z_move_flags = ZMOVE_FEEDBACK))
+	if(eyeobj.zMove(DOWN, z_move_flags = ZMOVE_IGNORE_OBSTACLES|ZMOVE_FEEDBACK))
 		to_chat(src, span_notice("You move down."))
