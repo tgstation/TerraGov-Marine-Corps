@@ -164,7 +164,7 @@
 
 /datum/action/vehicle/sealed/mecha/repairpack
 	name = "Use Repairpack"
-	action_icon_state = "mech_damtype_toxin" // todo kuro needs to make an icon for this
+	action_icon_state = "repair" // todo kuro needs to make an icon for this
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_REPAIRPACK,
 	)
