@@ -31,6 +31,8 @@
 	var/jump_start_time = null
 	///A 3rd party that controls the jumping of parent. Probably a vehicle driver
 	var/external_user
+	///Is the jumper currently in the air
+	var/jumping = FALSE
 
 /datum/component/jump/Initialize(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
 	. = ..()
@@ -162,6 +164,7 @@
 	if(jump_flags & JUMP_SHADOW)
 		animate(shadow_filter, y = -effective_jump_height, size = 4, time = effective_jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 		animate(y = 0, size = 0.9, time = effective_jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
+	jumping = TRUE
 
 	addtimer(CALLBACK(src, PROC_REF(end_jump), jumper, effective_jumper_allow_pass_flags), effective_jump_duration)
 
@@ -172,6 +175,7 @@
 	jumper.remove_filter(JUMP_COMPONENT)
 	jumper.remove_pass_flags(old_pass_flags, JUMP_COMPONENT)
 	jumper.remove_traits(list(TRAIT_SILENT_FOOTSTEPS, TRAIT_NOSUBMERGE), JUMP_COMPONENT)
+	jumping = FALSE
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_ENDED, TRUE, 1.5, 2)
 	SEND_SIGNAL(jumper.loc, COMSIG_TURF_JUMP_ENDED_HERE, jumper)
 	UnregisterSignal(jumper, COMSIG_MOB_THROW)

@@ -14,6 +14,38 @@
 	gravity = list(0, 0.95)
 	grow = 0.05
 
+/particles/mech_footstep
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "smoke3"
+	width = 750
+	height = 750
+	count = 25
+	spawning = 25
+	lifespan = 5
+	fade = 12
+	gradient = list("#BA9F6D", "#808080", "#FFFFFF")
+	color = generator(GEN_NUM, 0, 0.25)
+	color_change = generator(GEN_NUM, 0.08, 0.07)
+	velocity = generator(GEN_CIRCLE, 7, 8)
+	rotation = generator(GEN_NUM, -45, 45)
+	scale = 0.015
+	grow = 0.05
+	friction = 0.4
+
+/particles/dash_sparks
+	icon = 'icons/effects/64x64.dmi'
+	icon_state = "flare"
+	width = 750
+	height = 750
+	count = 40
+	spawning = 0
+	lifespan = 5
+	fade = 2
+	velocity = list(-12, 0)
+	scale = 0.1
+	grow = -0.01
+	drift = generator(GEN_CIRCLE, 3, 3, NORMAL_RAND)
+	gravity = list(0, 1)
 
 /obj/vehicle/sealed/mecha/combat/greyscale
 	name = "Should not be visible"
@@ -36,6 +68,10 @@
 	var/swapped_to_backweapons = FALSE
 	///whether we use an included builtin boost overlay to show we are boosting
 	var/use_builtin_boost_overlay = TRUE
+	///boost overlay icon file
+	var/boost_icon = 'icons/mecha/mecha_ability_overlays.dmi'
+	///boost overlay icon state
+	var/boost_icon_state = "booster"
 	///whetehr we use the damage particles
 	var/use_damage_particles = TRUE
 	///whether this is an unusable wreck
@@ -48,6 +84,15 @@
 		MECH_GREY_R_ARM = null,
 		MECH_GREY_L_ARM = null,
 	)
+	/// list of where the foots are for mechs visually, used for particles
+	var/foot_offsets = list(
+		"left_foot" = list("N" = list(22,-8), "S" = list(22,-8), "E" = list(44,-8), "W" = list(22,-4)),
+		"right_foot" = list("N" = list(44,-8), "S" = list(44,-8), "E" = list(22,-8), "W" = list(44,-4)),
+	)
+	///left dash foot sparks holder
+	var/obj/effect/abstract/particle_holder/dash_sparks_left
+	///right dash foot sparks holder
+	var/obj/effect/abstract/particle_holder/dash_sparks_right
 	///left particle smoke holder
 	var/obj/effect/abstract/particle_holder/holder_left
 	///right particle smoke holder
@@ -60,6 +105,8 @@
 	var/double_tap_timing = 0.18 SECONDS
 	/// total wight our limbs and equipment contribute. max determined by MECH_GREY_LEGS limb
 	var/weight = 0
+	/// Determines which foot the footstep particles go
+	var/next_footstep_left = FALSE
 
 /obj/vehicle/sealed/mecha/combat/greyscale/Initialize(mapload)
 	if(use_damage_particles)
@@ -67,6 +114,10 @@
 		holder_left.layer = layer+0.001
 		holder_right = new(src, /particles/mecha_smoke)
 		holder_right.layer = layer+0.001
+	dash_sparks_left = new(src, /particles/dash_sparks)
+	dash_sparks_left.layer = layer-0.001
+	dash_sparks_right = new(src, /particles/dash_sparks)
+	dash_sparks_right.layer = layer-0.001
 	. = ..()
 
 	set_jump_component()
@@ -149,6 +200,24 @@
 	if(. && (flag & VEHICLE_CONTROL_DRIVE))
 		UnregisterSignal(M, list(COMSIG_KB_MOVEMENT_EAST_DOWN, COMSIG_KB_MOVEMENT_NORTH_DOWN, COMSIG_KB_MOVEMENT_SOUTH_DOWN, COMSIG_KB_MOVEMENT_WEST_DOWN))
 
+/obj/vehicle/sealed/mecha/combat/greyscale/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
+	. = ..()
+	var/datum/component/jump/jumper = GetComponent(/datum/component/jump)
+	if(!jumper.jumping)
+		var/obj/effect/abstract/particle_holder/footstep_particles
+		var/turf/current_turf = get_turf(src)
+		footstep_particles = new(current_turf, /particles/mech_footstep)
+		var/current_foot
+		if(next_footstep_left)
+			current_foot = "left_foot"
+			next_footstep_left = FALSE
+		else
+			current_foot = "right_foot"
+			next_footstep_left = TRUE
+		footstep_particles.particles.position = list(foot_offsets[current_foot][dir2text_short(dir)][1] - 30, foot_offsets[current_foot][dir2text_short(dir)][2]-4)
+		footstep_particles.layer = layer - 0.01
+		QDEL_IN(footstep_particles, 5)
+
 /// Checks if we can dash to the east.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/dash_east()
 	SIGNAL_HANDLER
@@ -188,10 +257,40 @@
 
 /// Does a dash in the specified direction.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/activate_dash(direction)
+	var/datum/component/jump/jumper = GetComponent(/datum/component/jump)
+	if(!jumper.jumping)
+		dash_sparks_left.particles.spawning = 5
+		dash_sparks_right.particles.spawning = 5
+		dash_sparks_left.particles.position = list(foot_offsets["left_foot"][dir2text_short(direction)][1], foot_offsets["left_foot"][dir2text_short(direction)][2])
+		dash_sparks_right.particles.position = list(foot_offsets["right_foot"][dir2text_short(direction)][1], foot_offsets["right_foot"][dir2text_short(direction)][2])
+		switch(direction)
+			if(EAST)
+				dash_sparks_left.particles.velocity = list(-12, 0)
+				dash_sparks_right.particles.velocity = list(-12, 0)
+				dash_sparks_right.particles.gravity = list(0, 1)
+			if(WEST)
+				dash_sparks_left.particles.velocity = list(12, 0)
+				dash_sparks_right.particles.velocity = list(12, 0)
+				dash_sparks_right.particles.gravity = list(0, 1)
+			if(NORTH)
+				dash_sparks_left.particles.velocity = list(0, -12)
+				dash_sparks_right.particles.velocity = list(0, -12)
+				dash_sparks_right.particles.gravity = list(0, 0)
+			else
+				dash_sparks_left.particles.velocity = list(0, 12)
+				dash_sparks_right.particles.velocity = list(0, 12)
+				dash_sparks_right.particles.gravity = list(0, 0)
+		addtimer(CALLBACK(src, PROC_REF(remove_sparks)), 0.4 SECONDS)
 	var/turf/target_turf = get_step(src, direction)
 	for(var/i in 1 to dash_range)
 		target_turf = get_step(target_turf, direction)
 	throw_at(target_turf, dash_range, 1, src, FALSE, TRUE, TRUE)
+	playsound(get_turf(src), 'sound/mecha/weapons/laser_sword.ogg', 100)
+
+/// Turns off dash sparks particles.
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/remove_sparks()
+	dash_sparks_left.particles.spawning = 0
+	dash_sparks_right.particles.spawning = 0
 
 /obj/vehicle/sealed/mecha/combat/greyscale/update_icon()
 	. = ..()
@@ -296,8 +395,9 @@
 		. += limb.get_overlays()
 
 	if(use_builtin_boost_overlay)
-		var/state = leg_overload_mode ? "booster_active" : "booster"
-		. += image('icons/mecha/mecha_ability_overlays.dmi', icon_state = state, layer=layer+0.001)
+		var/state = leg_overload_mode ? "[boost_icon_state]_active" : boost_icon_state
+		. += image(boost_icon, icon_state = state, layer=layer+0.002)
+		. += emissive_appearance(boost_icon, state, src)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/setDir(newdir)
 	. = ..()
