@@ -60,7 +60,6 @@
 #include "code\game\objects\effects\landmarks\marine_spawns.dm"
 #include "code\game\objects\structures\dancing_pole.dm"
 #include "code\game\objects\structures\lewd_construction.dm"
-#include "code\game\objects\structures\lewd_construction.dm"
 #include "code\game\objects\structures\lewd_structures.dm"
 #include "code\modules\client\preferences.dm"
 #include "code\modules\clothing\head\head.dm"
