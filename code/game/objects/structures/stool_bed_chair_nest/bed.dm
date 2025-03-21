@@ -217,6 +217,12 @@
 	grabbed_mob.forceMove(loc)
 	return TRUE
 
+/obj/structure/bed/pull_response(mob/puller)
+	if(isxeno(puller))
+		puller.stop_pulling()
+		return FALSE
+	return ..()
+
 /obj/structure/bed/alien
 	icon_state = "abed"
 
