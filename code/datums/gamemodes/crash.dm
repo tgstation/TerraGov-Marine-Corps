@@ -41,7 +41,6 @@
 	var/last_larva_check
 	bioscan_interval = 0
 
-	// Crash Xeno Player Requirements to Evolve, applied with loop in post_setup().
 	evo_requirements = list(
 		/datum/xeno_caste/king = 14,
 		/datum/xeno_caste/queen = 10,
