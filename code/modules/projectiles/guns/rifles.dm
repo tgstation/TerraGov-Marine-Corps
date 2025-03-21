@@ -2886,7 +2886,6 @@
 		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
 	)
 	caliber = CALIBER_762X39 //codex
-	muzzleflash_iconstate = "muzzle_flash_medium"
 	max_shells = 150  //codex
 	wield_delay = 1.4 SECONDS
 	aim_slowdown = 0.95

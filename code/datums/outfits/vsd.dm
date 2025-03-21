@@ -588,7 +588,8 @@
 	head = /obj/item/clothing/head/helmet/marine/vsd/juggernaut
 
 	backpack_contents = list(
-		/obj/item/ammo_magazine/rifle/vsd_autocannon = 5,
+		/obj/item/ammo_magazine/rifle/vsd_autocannon = 3,
+		/obj/item/ammo_magazine/rifle/vsd_autocannon/at = 2,
 		/obj/item/storage/box/m94 = 1,
 		/obj/item/storage/box/MRE = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/combat = 2,
@@ -596,7 +597,7 @@
 	)
 
 	suit_contents = list(
-		/obj/item/explosive/grenade/vsd = 2,
+		/obj/item/ammo_magazine/rifle/vsd_autocannon/explosive = 2,
 	)
 
 	head_contents = list(
