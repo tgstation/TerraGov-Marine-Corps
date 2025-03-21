@@ -8631,7 +8631,7 @@
 	dir = 4
 	},
 /obj/structure/stairs/edge{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/mainship/engineering/lower_engine_monitoring)
@@ -9376,6 +9376,7 @@
 /obj/machinery/door_control/mainship/corporate{
 	dir = 4
 	},
+/obj/effect/landmark/start/job/corporateliaison,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "fCa" = (
@@ -10888,7 +10889,7 @@
 	dir = 4
 	},
 /obj/structure/stairs/edge{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/mainship/engineering/lower_engine_monitoring)

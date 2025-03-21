@@ -135,6 +135,7 @@
 #define COMSIG_MECHABILITY_STRIKE "mechability_strike"
 #define COMSIG_MECHABILITY_RELOAD "mechability_reload"
 #define COMSIG_MECHABILITY_REPAIRPACK "mechability_repairpack"
+#define COMSIG_MECHABILITY_SWAPWEAPONS "mechability_swapweapons"
 #define COMSIG_MECHABILITY_TOGGLE_ACTUATORS "mechability_toggle_actuators"
 #define COMSIG_MECHABILITY_CLOAK "mechability_cloak"
 

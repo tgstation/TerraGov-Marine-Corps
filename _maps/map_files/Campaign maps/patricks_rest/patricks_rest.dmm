@@ -6341,7 +6341,7 @@
 /area/patricks_rest/ground/colonyse)
 "DO" = (
 /obj/structure/stairs/edge{
-	dir = 8
+	dir = 4
 	},
 /turf/open/liquid/water/river,
 /area/patricks_rest/surface/building/residential_w)
