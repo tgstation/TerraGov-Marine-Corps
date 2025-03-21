@@ -147,6 +147,14 @@
 				return FALSE
 		return TRUE
 	///tgmc start
+	if(equipment_slot == MECHA_BACK)
+		if(attach_right)
+			if(mech.equip_by_category[MECHA_R_BACK])
+				return FALSE
+		else
+			if(mech.equip_by_category[MECHA_L_BACK])
+				return FALSE
+		return TRUE
 	if(mech.mech_type & EXOSUIT_MODULE_GREYSCALE)
 		var/obj/vehicle/sealed/mecha/combat/greyscale/greyscale = mech
 		var/datum/mech_limb/legs/legs = greyscale.limbs[MECH_GREY_LEGS]
@@ -165,6 +173,11 @@
 			to_equip_slot = MECHA_R_ARM
 		else
 			to_equip_slot = MECHA_L_ARM
+	else if(equipment_slot == MECHA_BACK)
+		if(attach_right)
+			to_equip_slot = MECHA_R_BACK
+		else
+			to_equip_slot = MECHA_L_BACK
 	if(islist(M.equip_by_category[to_equip_slot]))
 		M.equip_by_category[to_equip_slot] += src
 	else
@@ -187,6 +200,7 @@
 	forceMove(moveto)
 	LAZYREMOVE(chassis.flat_equipment, src)
 	var/to_unequip_slot = equipment_slot
+	equipment_slot = initial(equipment_slot) // resets in case we were fucking with it earlier like with weapon swaps
 	if(equipment_slot == MECHA_WEAPON)
 		if(chassis.equip_by_category[MECHA_R_ARM] == src)
 			to_unequip_slot = MECHA_R_ARM

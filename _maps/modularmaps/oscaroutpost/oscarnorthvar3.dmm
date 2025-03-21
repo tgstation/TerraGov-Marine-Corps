@@ -1879,7 +1879,9 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "mk" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "mq" = (
@@ -1930,7 +1932,9 @@
 	},
 /area/oscar_outpost/outside/east)
 "mO" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "mP" = (

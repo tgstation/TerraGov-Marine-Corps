@@ -97,11 +97,11 @@
 		if(!(islist(C.network)))
 			stack_trace("Camera in a cameranet has a non-list camera network")
 			continue
-		if(C.c_tag == "Unknown")
+		if(!C.c_tag || C.c_tag == "Unknown")
 			continue // dropped headsets havee an unknown tag
 		var/list/tempnetwork = C.network & network
 		if(length(tempnetwork))
-			valid_cams["[C.c_tag]"] = C
+			valid_cams[ref(C)] += C
 	return valid_cams
 
 /obj/item/hud_tablet/proc/show_camera_static()
@@ -143,6 +143,7 @@
 		.["activeCamera"] = list(
 			name = active_camera.c_tag,
 			status = active_camera.status,
+			ref = ref(active_camera)
 		)
 
 /obj/item/hud_tablet/ui_static_data()
@@ -150,11 +151,9 @@
 	data["mapRef"] = cam_screen.assigned_map
 	var/list/cameras = get_available_cameras()
 	data["cameras"] = list()
-	for(var/i in cameras)
-		var/obj/machinery/camera/C = cameras[i]
-		data["cameras"] += list(list(
-			name = C.c_tag,
-		))
+	for(var/obj/machinery/camera/camera_reference as anything in cameras)
+		var/obj/machinery/camera/camera = cameras[camera_reference]
+		data["cameras"] += list(camera.camera_ui_data())
 	return data
 
 /obj/item/hud_tablet/ui_act(action, params)
@@ -163,10 +162,11 @@
 		return
 
 	if(action == "switch_camera")
-		var/c_tag = params["name"]
+		var/camera_reference = params["ref"]
 		var/list/cameras = get_available_cameras()
-		var/obj/machinery/camera/selected_camera = cameras[c_tag]
-		active_camera = selected_camera
+		var/obj/machinery/camera/selected_camera
+
+		active_camera = cameras[camera_reference]
 		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
 
 		if(!selected_camera)

@@ -107,7 +107,7 @@
 			food.ai_use(human_parent, human_parent)
 			break
 
-	if(mob_parent.buckled && !istype(mob_parent.buckled, /obj/structure/droppod)) //unbuckling from your pod midflight is not ideal
+	if(mob_parent.buckled && !mob_parent.buckled.ai_should_stay_buckled(mob_parent))
 		mob_parent.buckled.unbuckle_mob(mob_parent)
 
 	. = ..()
@@ -400,10 +400,11 @@
 
 ///Tries to store an item
 /datum/ai_behavior/human/proc/try_store_item(obj/item/item)
+	if(istype(item, /obj/item/weapon/twohanded/offhand))
+		qdel(item)
+		return FALSE
 	if(!mob_parent.equip_to_appropriate_slot(item))
 		return FALSE
-	mob_parent.update_inv_l_hand(FALSE)
-	mob_parent.update_inv_r_hand(FALSE)
 	return TRUE
 
 ///Tries to store any items in hand
