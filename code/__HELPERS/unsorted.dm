@@ -1211,7 +1211,7 @@ will handle it, but:
  *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
  *	blocked - whether the cone should take into consideration solid walls
  */
-/proc/generate_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE)
+/proc/generate_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, pass_flags_checked = NONE)
 	var/right_angle = cone_direction + cone_width/2
 	var/left_angle = cone_direction - cone_width/2
 
@@ -1221,33 +1221,32 @@ will handle it, but:
 
 	if(left_angle < 0)
 		left_angle += 360
+	center = get_turf(center)
+	var/list/cardinals = GLOB.alldirs
+	var/list/turfs_to_check = list(center)
+	var/list/cone_turfs = list(center)
 
-	///the 3 directions in the direction on the cone that will be checked
-	var/cardinals = GLOB.cardinals - REVERSE_DIR(cone_direction)
-	///turfs that are checked whether the cone can continue further from them
-	var/list/turfs_to_check = list(get_turf(center))
-	var/list/cone_turfs = list()
-
-	for(var/r in 1 to max_row_count)
-		for(var/X in turfs_to_check)
-			var/turf/trf = X
-			for(var/direction in cardinals)
-				var/turf/T = get_step(trf, direction)
-				if(cone_turfs.Find(T))
+	for(var/row in 1 to max_row_count)
+		if(row > 2)
+			cardinals = GLOB.cardinals
+		for(var/turf/old_turf AS in turfs_to_check) //checks the inital turf, then afterwards checks every turf that is added to cone_turfs
+			for(var/direction AS in cardinals)
+				var/turf/turf_to_check = get_step(old_turf, direction) //checks all turfs around X
+				if(cone_turfs.Find(turf_to_check))
 					continue
-				if(get_dist(center, T) < starting_row)
-					continue
-				var/turf_angle = Get_Angle(center, T)
+				var/turf_angle = Get_Angle(center, turf_to_check)
 				if(right_angle > left_angle && (turf_angle > right_angle || turf_angle < left_angle))
 					continue
 				if(turf_angle > right_angle && turf_angle < left_angle)
 					continue
-				if(blocked)
-					if(T.density || LinkBlocked(trf, T) || TurfBlockedNonWindow(T))
-						continue
-				cone_turfs += T
-				turfs_to_check += T
-			turfs_to_check -= trf
+				if(blocked && LinkBlocked(old_turf, turf_to_check, pass_flags_checked))
+					continue
+				cone_turfs += turf_to_check
+				turfs_to_check += turf_to_check
+			turfs_to_check -= old_turf
+		for(var/turf/checked_turf AS in cone_turfs)
+			if(get_dist(center, checked_turf) < starting_row) //if its before the starting row, ignore it.
+				cone_turfs -= checked_turf
 	return	cone_turfs
 
 ///Returns a list of all locations (except the area) the movable is within.
@@ -1333,3 +1332,40 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 			return FALSE
 		line_count ++
 	return TRUE
+
+/**
+ * Returns a rectangle of turfs in front of the center.
+ *
+ * To find what exact width and height to enter, width is based on west-east and height is north-south as if center is facing north.
+ *
+ * Increments in width increases both sizes by said increment while height is only increased once by the increment.
+*/
+/proc/get_forward_square(atom/center, width, height, requires_openturf = TRUE, requires_lineofsight = TRUE)
+	if(width < 0 || height <= 0) // This is forward square, not backwards square.
+		return list()
+
+	var/turf/lower_left
+	var/turf/upper_right
+	switch(center.dir)
+		if(NORTH)
+			lower_left = locate(center.x - width, center.y + 1, center.z)
+			upper_right = locate(center.x + width, center.y + height, center.z)
+		if(SOUTH)
+			lower_left = locate(center.x - width, center.y - height, center.z)
+			upper_right = locate(center.x + width, center.y - 1, center.z)
+		if(WEST)
+			lower_left = locate(center.x - height, center.y - width, center.z)
+			upper_right = locate(center.x - 1, center.y + width, center.z)
+		if(EAST)
+			lower_left = locate(center.x + height, center.y - width, center.z)
+			upper_right = locate(center.x + 1, center.y + width, center.z)
+
+	var/list/turf/acceptable_turfs = list()
+	var/list/turf/possible_turfs = block(lower_left, upper_right)
+	for(var/turf/possible_turf AS in possible_turfs)
+		if(requires_openturf && isclosedturf(possible_turf))
+			continue
+		if(requires_lineofsight && !line_of_sight(center, possible_turf, max(width, height)))
+			continue
+		acceptable_turfs += possible_turf
+	return acceptable_turfs

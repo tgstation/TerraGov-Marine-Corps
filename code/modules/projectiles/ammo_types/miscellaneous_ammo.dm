@@ -53,11 +53,11 @@
 	accurate_range = 15
 	damage_type = STAMINA
 	armor_type = BIO
-	damage = 60
+	damage = 25 //60 was way too high.
 	penetration = 0
 	shrapnel_chance = 0
 	///percentage of xenos total plasma to drain when hit by a pepperball
-	var/drain_multiplier = 0.05
+	var/drain_multiplier = 0.025
 	///Flat plasma to drain, unaffected by caste plasma amount.
 	var/plasma_drain = 20
 

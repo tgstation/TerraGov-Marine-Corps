@@ -111,6 +111,7 @@
 #define SHATTERING_ROAR_ABILITY_TRAIT "shattering_roar_ability_trait"
 #define ZERO_FORM_BEAM_ABILITY_TRAIT "zero_form_beam_ability_trait"
 #define HEATRAY_BEAM_ABILITY_TRAIT "heatray_ability_trait"
+#define DRAGON_ABILITY_TRAIT "dragon_ability_trait"
 #define VALHALLA_TRAIT "valhalla"
 #define WEIGHTBENCH_TRAIT "weightbench"
 #define BOILER_ROOTED_TRAIT "boiler_rooted"

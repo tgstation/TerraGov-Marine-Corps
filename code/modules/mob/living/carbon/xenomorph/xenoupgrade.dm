@@ -285,6 +285,16 @@
 
 //----KING END----//
 //============//
+//---DRAGON START---//
+
+/mob/living/carbon/xenomorph/dragon/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
+//----DRAGON END----//
+
+
+//============//
 //---CRUSHER START---//
 
 /mob/living/carbon/xenomorph/crusher
