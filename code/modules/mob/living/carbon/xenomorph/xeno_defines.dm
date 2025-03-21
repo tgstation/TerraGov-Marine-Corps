@@ -404,6 +404,14 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	///When true the boiler gains speed and resets the duration on attack
 	var/steam_rush = FALSE
 
+	// *** Conqueror vars *** //
+	/// The amount of remaining health that Endurance has.
+	var/endurance_health = 1
+	/// The maximum amount of health that Endurance can have.
+	var/endurance_health_max = 1
+	/// Whether our Endurance has been broken, due to losing all of its health.
+	var/endurance_broken = FALSE
+
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices

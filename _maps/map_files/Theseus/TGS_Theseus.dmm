@@ -9376,6 +9376,7 @@
 /obj/machinery/door_control/mainship/corporate{
 	dir = 4
 	},
+/obj/effect/landmark/start/job/corporateliaison,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "fCa" = (

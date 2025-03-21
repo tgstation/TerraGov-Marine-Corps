@@ -24,10 +24,15 @@
 	var/list/new_target_chat = list("Get some!!", "Engaging!", "You're mine!", "Bring it on!", "Hostiles!", "Take them out!", "Kill 'em!", "Lets rock!", "Go go go!!", "Waste 'em!", "Intercepting.", "Weapons free!", "Fuck you!!", "Moving in!")
 	///Chat lines for retreating on low health
 	var/list/retreating_chat = list("Falling back!", "Cover me, I'm hit!", "I'm hit!", "Cover me!", "Disengaging!", "Help me!", "Need a little help here!", "Tactical withdrawal.", "Repositioning.", "Taking fire!", "Taking heavy fire!", "Run for it!")
+	///Cooldown on chat lines, to reduce spam
 	COOLDOWN_DECLARE(ai_chat_cooldown)
+	///Cooldown on running, so we can recover stam and make the most of it
 	COOLDOWN_DECLARE(ai_run_cooldown)
+	///Cooldown on taking any damage (this could include DOT etc)
 	COOLDOWN_DECLARE(ai_damage_cooldown)
+	///Cooldown on being attacked by something with a source, so we don't try heal right next to enemies
 	COOLDOWN_DECLARE(ai_heal_after_dam_cooldown)
+	///Cooldown on retreating, so we don't get stuck running forever if pursued
 	COOLDOWN_DECLARE(ai_retreat_cooldown)
 
 /datum/ai_behavior/human/New(loc, mob/parent_to_assign, atom/escorted_atom)
@@ -83,13 +88,14 @@
 
 /datum/ai_behavior/human/process()
 	if(mob_parent.notransform)
-		return ..()
+		return
 	if(mob_parent.do_actions)
-		return ..()
+		return
 
 	var/mob/living/carbon/human/human_parent = mob_parent
 	if(human_parent.lying_angle)
 		INVOKE_ASYNC(human_parent, TYPE_PROC_REF(/mob/living/carbon/human, get_up))
+		return
 
 	if((medical_rating >= AI_MED_MEDIC) && medic_process())
 		return
@@ -104,6 +110,8 @@
 	if(mob_parent.buckled && !mob_parent.buckled.ai_should_stay_buckled(mob_parent))
 		mob_parent.buckled.unbuckle_mob(mob_parent)
 
+	. = ..()
+
 	for(var/datum/action/action in ability_list)
 		if(!action.ai_should_use(atom_to_walk_to)) //todo: some of these probably should be aimmed at combat_target somehow...
 			continue
@@ -115,10 +123,8 @@
 
 	if(human_ai_behavior_flags & HUMAN_AI_USE_WEAPONS)
 		if(grenade_process())
-			return ..()
+			return
 		weapon_process()
-
-	return ..()
 
 /datum/ai_behavior/human/scheduled_move()
 	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
@@ -143,11 +149,6 @@
 			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 	return ..()
 
-/datum/ai_behavior/human/cleanup_current_action(next_action)
-	. = ..()
-	if(next_action == MOVING_TO_NODE)
-		return
-
 /datum/ai_behavior/human/change_action(next_action, atom/next_target, list/special_distance_to_maintain)
 	. = ..()
 	if(!.)
@@ -155,76 +156,40 @@
 	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
 		mob_parent.a_intent = INTENT_HELP
 
-/datum/ai_behavior/human/look_for_new_state()
+/datum/ai_behavior/human/look_for_new_state(atom/next_target)
 	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
 		return
-	var/mob/living/living_parent = mob_parent
+	if(!combat_target || ((get_dist(mob_parent, combat_target) > AI_COMBAT_TARGET_BLIND_DISTANCE) && !line_of_sight(mob_parent, combat_target, target_distance)))
+		if(combat_target)
+			do_unset_target(combat_target, need_new_state = FALSE)
+		if(next_target) //standing orders, kill hostiles on sight.
+			set_combat_target(next_target)
+			if(current_action != MOVING_TO_SAFETY)
+				change_action(MOVING_TO_ATOM, next_target)
+			return
+
 	switch(current_action)
+		if(MOVING_TO_ATOM)
+			if(!atom_to_walk_to)
+				change_action(ESCORTING_ATOM, escorted_atom)
+			if(escorted_atom && (atom_to_walk_to != escorted_atom) && get_dist(mob_parent, escorted_atom) > AI_ESCORTING_MAX_DISTANCE)
+				change_action(ESCORTING_ATOM, escorted_atom)
 		if(ESCORTING_ATOM)
 			if(get_dist(escorted_atom, mob_parent) > AI_ESCORTING_MAX_DISTANCE)
-				look_for_next_node()
-				return
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
-			if(!next_target)
-				return
-			change_action(MOVING_TO_ATOM, next_target)
-		if(MOVING_TO_NODE, FOLLOWING_PATH)
-			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
-			if(!next_target)
-				if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
-					INVOKE_ASYNC(src, PROC_REF(try_heal))
-					return
-				if(!goal_node) // We are randomly moving
-					var/atom/mob_to_follow = get_nearest_target(mob_parent, AI_ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_MOB, mob_parent.faction, need_los = TRUE)
-					if(mob_to_follow)
-						set_escorted_atom(null, mob_to_follow, TRUE)
-						return
-				return
-			change_action(MOVING_TO_ATOM, next_target)
-		if(MOVING_TO_ATOM)
-			if(atom_to_walk_to == interact_target)
-				if(get_dist(atom_to_walk_to, mob_parent) <= target_distance)
-					return
-			if(!weak_escort && escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
-				change_action(ESCORTING_ATOM, escorted_atom)
-				return
-			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
-			if(!next_target)//We didn't find a target
-				cleanup_current_action()
-				late_initialize()
-				return
-			set_combat_target(next_target)
-			if(next_target == atom_to_walk_to)//We didn't find a better target
-				return
-			change_action(null, next_target)//We found a better target, change course!
+				look_for_next_node(FALSE)
 		if(MOVING_TO_SAFETY)
-			if(COOLDOWN_CHECK(src, ai_retreat_cooldown))
+			if((COOLDOWN_CHECK(src, ai_retreat_cooldown) || !combat_target)) //we retreat until we cant see hostiles or we max out the timer
 				target_distance = initial(target_distance)
-				cleanup_current_action()
-				late_initialize()
-				if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && living_parent.health <= minimum_health * 3 * living_parent.maxHealth)
-					INVOKE_ASYNC(src, PROC_REF(try_heal))
-				return
-			if(combat_target) //keep fighting as you retreat
-				return
-			var/atom/next_target = get_nearest_target(escorted_atom, initial(target_distance), TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
-			if(next_target)
-				set_combat_target(next_target)
-				if(next_target != atom_to_walk_to)
-					set_atom_to_walk_to(next_target)
-				return
-			target_distance = initial(target_distance)
-			cleanup_current_action()
-			late_initialize()
-			if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && living_parent.health <= minimum_health * 3 * living_parent.maxHealth)
-				INVOKE_ASYNC(src, PROC_REF(try_heal))
-		if(IDLE)
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
-			if(!next_target)
-				if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && living_parent.health <= minimum_health * 3 * living_parent.maxHealth)
-					INVOKE_ASYNC(src, PROC_REF(try_heal))
-				return
-			change_action(MOVING_TO_ATOM, next_target)
+				change_action(ESCORTING_ATOM, escorted_atom)
+
+/datum/ai_behavior/human/state_process(atom/next_target)
+	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+		return
+	if((current_action == MOVING_TO_ATOM) && (atom_to_walk_to == combat_target))
+		return //we generally want to keep fighting
+	var/mob/living/living_parent = mob_parent
+	if((human_ai_behavior_flags & HUMAN_AI_SELF_HEAL) && (living_parent.health <= minimum_health * 2 * living_parent.maxHealth) && check_hazards())
+		INVOKE_ASYNC(src, PROC_REF(try_heal))
 
 /datum/ai_behavior/human/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
@@ -394,12 +359,11 @@
 	SIGNAL_HANDLER
 	if(damage < 5) //Don't want chip damage causing a retreat
 		return
-	if(!COOLDOWN_CHECK(src, ai_damage_cooldown))
+	if(!COOLDOWN_CHECK(src, ai_damage_cooldown)) //sanity check since damage can occur very frequently, and makes the NPC less likely to instantly run when they get low
 		return
 	COOLDOWN_START(src, ai_damage_cooldown, 1 SECONDS)
-	if(human_ai_state_flags & HUMAN_AI_FIRING)
-		return
-	if(attacker)
+
+	if(attacker) //if there is an attacker, our main priority is to react to it
 		COOLDOWN_START(src, ai_heal_after_dam_cooldown, 4 SECONDS)
 		if((human_ai_state_flags & HUMAN_AI_ANY_HEALING)) //dont just stand there
 			human_ai_state_flags &= ~(HUMAN_AI_ANY_HEALING)
@@ -407,6 +371,8 @@
 		if(((current_action == MOVING_TO_SAFETY) || !combat_target) && (attacker.faction != mob_parent.faction))
 			set_combat_target(attacker)
 			return
+
+	//if we are fighting, but at low health and with no other urgent priorities, we run for it.
 
 	if(!(human_ai_behavior_flags & HUMAN_AI_SELF_HEAL))
 		return
@@ -421,10 +387,10 @@
 	if(!check_hazards())
 		return
 
-	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
+	var/atom/next_target = combat_target ? combat_target : get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
 	if(!next_target)
-		INVOKE_ASYNC(src, PROC_REF(try_heal)) //its safe to heal
 		return
+
 	if(prob(50))
 		try_speak(pick(retreating_chat))
 	set_run(TRUE)

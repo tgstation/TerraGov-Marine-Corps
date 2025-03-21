@@ -427,3 +427,28 @@
   - rscadd: Adds a tadpole-specific dropship fabricator for ease of use.
   yyzsong:
   - imageadd: glorp emoji
+2025-03-21:
+  Apple-107:
+  - rscadd: Tank Loaders now shout the ammo type when loaded ("HE, Up!")
+  - rscadd: Tank Gunners now shout when they are firing LTB ("On the way!")
+  Lumipharon:
+  - bugfix: Fixed some issues with NPC inventory management
+  Runian:
+  - bugfix: Dragon's Grab no longer permanently immobilizes marines that were failed
+      to be grabbed.
+  - admin: Player Panel now has Dragon as one of the Transformations.
+  TiviPlus:
+  - bugfix: mech no longer spams steps on tram movement
+  - bugfix: Mechs will no longer sparkle on spawn
+  - bugfix: partially fixed stairs being very cursed
+  - bugfix: fixed tank turret turning black on multiz maps
+  Tiviplus, Kuro, GregorMN:
+  - rscadd: Completely resprited mechs for xvh
+  - rscadd: Mechs now leave a wreck behidn when destroyed
+  - rscadd: Mechs can now mount "back weapons"
+  - bugfix: fixed hyperscale completely ignoring some color configs
+  - qol: New mecha boosting visual effects
+  - qol: Revamped the mech builder UI and made it much smaller
+  tyeagg:
+  - rscadd: emissives to projectiles and muzzle flashes
+  - imageadd: new muzzle flash and projectile sprites

@@ -835,7 +835,8 @@
 		return NONE
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
-		playsound(loc, windup_sound, 30, TRUE)
+		if(windup_sound)
+			playsound(loc, windup_sound, 30, TRUE)
 		if(!gun_user)
 			addtimer(CALLBACK(src, PROC_REF(fire_after_autonomous_windup)), windup_delay)
 			return NONE
