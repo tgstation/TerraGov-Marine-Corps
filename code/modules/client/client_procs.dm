@@ -2,9 +2,9 @@
 #define UPLOAD_LIMIT_ADMIN 10000000	//Restricts admin uploads to the server to 10MB
 
 
-#define MIN_RECOMMENDED_CLIENT 1575
-#define REQUIRED_CLIENT_MAJOR 514
-#define REQUIRED_CLIENT_MINOR 1493
+#define MIN_RECOMMENDED_CLIENT 1635
+#define REQUIRED_CLIENT_MAJOR 515
+#define REQUIRED_CLIENT_MINOR 1590
 
 #define LIMITER_SIZE 5
 #define CURRENT_SECOND 1
@@ -253,12 +253,8 @@
 		return
 
 	if(byond_build < MIN_RECOMMENDED_CLIENT)
-		to_chat(src, span_userdanger("Your version of byond has known client crash issues, it's recommended you update your version."))
-		to_chat(src, span_danger("Please download a new version of byond. You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download 514.[MIN_RECOMMENDED_CLIENT]."))
-
-	if(byond_build < 1555)
-		to_chat(src, span_userdanger("Your version of byond might have rendering lag issues, it is recommended you update your version to above Byond version 1555 if you encounter them."))
-		to_chat(src, span_danger("You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
+		to_chat(src, span_userdanger("Your version of byond is getting out of date, it's recommended you update your version."))
+		to_chat(src, span_danger("Please download a new version of byond. You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download 515.[MIN_RECOMMENDED_CLIENT]."))
 
 	if(num2text(byond_build) in GLOB.blacklisted_builds)
 		log_access("Failed login: [key] - blacklisted byond version")
@@ -267,6 +263,12 @@
 		to_chat(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
 		addtimer(CALLBACK(src, qdel(src), 2 SECONDS))
 		return
+		
+	if(byond_version > 515)
+		to_chat(src, span_userdanger("Your byond version may be incompatible with this server."))
+		to_chat(src, span_danger("If you notice many menus showing up only as white boxes, please downgrade to the latest build of byond 515."))
+		to_chat(src, span_danger("You can find byond builds at <a href=\"https://secure.byond.com/download/build\">BYOND's website</a>. Builds of byond 515 specifically can be found at <a href=\"https://secure.byond.com/download/build/515/\">https://secure.byond.com/download/build/515/</a>."))
+		to_chat(src, span_danger("It is possible to have multiple versions of byond installed, in case you use other servers that require different versions of byond."))
 
 	if(GLOB.custom_info)
 		custom_info()

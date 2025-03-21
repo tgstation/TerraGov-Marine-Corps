@@ -825,6 +825,18 @@
 /obj/machinery/door/airlock/prison
 	name = "\improper Cell Door"
 	icon = 'icons/obj/doors/prison/celldoor.dmi'
+	
+/obj/machinery/door/airlock/prison/cell1
+	name = "\improper Brig Cell 1 Door"
+	id = "Brig Cell 1"
+	
+/obj/machinery/door/airlock/prison/cell2
+	name = "\improper Brig Cell 2 Door"
+	id = "Brig Cell 2"
+	
+/obj/machinery/door/airlock/prison/cell3
+	name = "\improper Brig Cell 3 Door"
+	id = "Brig Cell 3"
 
 /obj/machinery/door/airlock/prison/open
 	icon_state = "door_open"

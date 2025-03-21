@@ -152,7 +152,7 @@
 	. = ..()
 	var/turf/TU = get_turf(src)
 	if(is_ground_level(TU.z))
-		if(!target && active)
+		if((!target || QDELING(target)) && active)
 			target = new(src, null, name, user_squad)
 
 /obj/item/explosive/grenade/flare/cas/turn_off()

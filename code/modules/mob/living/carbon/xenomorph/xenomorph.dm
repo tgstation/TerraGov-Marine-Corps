@@ -260,8 +260,6 @@
 
 	if(xeno_desc)
 		. += "\n<span class='info'>[span_collapsible("Flavor Text", "[xeno_desc]")]</span>"
-		if(ooc_notes||ooc_notes_likes||ooc_notes_dislikes||ooc_notes_favs||ooc_notes_maybes)
-			. += "<span class='info'>OOC Notes: <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[src];print_ooc_notes_to_chat=1'>\[Print\]</a></span>"
 
 	if(xenoprofile_pic)
 		. += "<span class='info'><img src=[xenoprofile_pic] width=250 height=250/></span>"

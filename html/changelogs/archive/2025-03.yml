@@ -56,3 +56,12 @@
   - rscadd: Added a spare NTC commander's ID on the NTC ship and a spare SOM commander's
       ID on the SOM ship
   - bugfix: Fixed NTC field commander spawning in SOM ship
+2025-03-18:
+  Meghan-Rossi:
+  - rscadd: ' Xenos with their spit abilities selected no longer spit on shift-left
+      click.  Instead alt-left click now works.  Also right click and middle click
+      continue to work.'
+2025-03-20:
+  Meghan-Rossi:
+  - rscadd: CAS weapons no longer fire on right-click, shift-left click, or alt-left
+      click.  Middle click and unmodified left-click continue to work.

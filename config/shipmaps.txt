@@ -20,6 +20,10 @@ map theseus
 	minplayers 600
 endmap
 
+map Container
+        minplayers 0
+endmap
+
 map ntc_nine_tailed_fox
 	minplayers 0
 	default
