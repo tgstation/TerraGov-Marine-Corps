@@ -80,6 +80,7 @@
 		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain/free,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/call_of_the_burrowed/free,
 		/datum/action/ability/activable/xeno/backhand,
 		/datum/action/ability/activable/xeno/backhand/dragon_breath,
