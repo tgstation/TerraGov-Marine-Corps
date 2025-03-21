@@ -120,7 +120,7 @@
 /obj/item/mecha_parts/mecha_equipment/ability/zoom
 	name = "enhanced zoom"
 	desc = "A magnifying module that allows the pilot to see much further than with the standard optics. Night vision not included."
-	icon_state = "tele"
+	icon_state = "zoom"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_zoom
 
