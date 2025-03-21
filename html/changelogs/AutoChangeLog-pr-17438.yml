@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "The tram launches you through the windshield at mach 1 instead of mach 3"

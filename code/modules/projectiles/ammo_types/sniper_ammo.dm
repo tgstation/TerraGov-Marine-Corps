@@ -6,6 +6,7 @@
 
 /datum/ammo/bullet/sniper
 	name = "sniper bullet"
+	icon_state = "bullet_large"
 	hud_state = "sniper"
 	hud_state_empty = "sniper_empty"
 	damage_falloff = 0

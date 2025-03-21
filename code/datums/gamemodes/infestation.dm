@@ -112,12 +112,11 @@
 	var/hosts_transit = BIOSCAN_DELTA(numHostsTransit, delta)
 	var/xenos_transit = BIOSCAN_DELTA(numXenosTransit, delta)
 
-	var/sound/S = sound(get_sfx(SFX_QUEEN), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
+	var/sound/sound = sound(get_sfx(SFX_QUEEN), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	if(announce_xenos)
-		for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
-			var/mob/M = i
-			SEND_SOUND(M, S)
-			to_chat(M, assemble_alert(
+		for(var/mob/hearer in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
+			SEND_SOUND(hearer, sound)
+			to_chat(hearer, assemble_alert(
 				title = "Queen Mother Report",
 				subtitle = "The Queen Mother reaches into your mind...",
 
@@ -166,9 +165,8 @@
 
 	log_game("Bioscan. Humans: [numHostsPlanet] on the planet[host_location_planetside ? " Location:[host_location_planetside]":""] and [numHostsShip] on the ship.[host_location_shipside ? " Location: [host_location_shipside].":""] Xenos: [xenos_planetside] on the planet and [numXenosShip] on the ship[xeno_location_planetside ? " Location:[xeno_location_planetside]":""] and [numXenosTransit] in transit.")
 
-	for(var/i in GLOB.observer_list)
-		var/mob/M = i
-		to_chat(M, assemble_alert(
+	for(var/mob/hearer in GLOB.observer_list)
+		to_chat(hearer, assemble_alert(
 			title = "Detailed Bioscan",
 			message = {"[numXenosPlanet] xeno\s on the planet.
 [numXenosShip] xeno\s on the ship.
@@ -281,25 +279,28 @@
 	ghost_track = sound(ghost_track)
 	ghost_track.channel = CHANNEL_CINEMATIC
 
-	for(var/i in GLOB.xeno_mob_list)
-		var/mob/M = i
-		SEND_SOUND(M, xeno_track)
+	for(var/mob/hearer in GLOB.xeno_mob_list)
+		if(hearer.client?.prefs?.toggles_sound & SOUND_NOENDOFROUND)
+			continue
+		SEND_SOUND(hearer, xeno_track)
 
-	for(var/i in GLOB.human_mob_list)
-		var/mob/M = i
-		SEND_SOUND(M, human_track)
+	for(var/mob/hearer in GLOB.human_mob_list)
+		if(hearer.client?.prefs?.toggles_sound & SOUND_NOENDOFROUND)
+			continue
+		SEND_SOUND(hearer, human_track)
 
-	for(var/i in GLOB.observer_list)
-		var/mob/M = i
-		if(ishuman(M.mind.current))
-			SEND_SOUND(M, human_track)
+	for(var/mob/hearer in GLOB.observer_list)
+		if(hearer.client?.prefs?.toggles_sound & SOUND_NOENDOFROUND)
+			continue
+		if(ishuman(hearer.mind.current))
+			SEND_SOUND(hearer, human_track)
 			continue
 
-		if(isxeno(M.mind.current))
-			SEND_SOUND(M, xeno_track)
+		if(isxeno(hearer.mind.current))
+			SEND_SOUND(hearer, xeno_track)
 			continue
 
-		SEND_SOUND(M, ghost_track)
+		SEND_SOUND(hearer, ghost_track)
 
 /datum/game_mode/infestation/can_start(bypass_checks = FALSE)
 	. = ..()
@@ -371,15 +372,14 @@
 	var/sound/S = sound(pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'), channel = CHANNEL_CINEMATIC)
 	SEND_SOUND(world, S)
 
-	for(var/x in GLOB.player_list)
-		var/mob/M = x
-		if(isobserver(M) || isnewplayer(M))
+	for(var/mob/seer in GLOB.player_list)
+		if(isobserver(seer) || isnewplayer(seer))
 			continue
-		if(M.z == z_level)
-			shake_camera(M, 110, 4)
+		if(seer.z == z_level)
+			shake_camera(seer, 110, 4)
 
-	var/datum/cinematic/crash_nuke/C = /datum/cinematic/crash_nuke
-	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
+	var/datum/cinematic/crash_nuke/nuke = /datum/cinematic/crash_nuke
+	var/nuketime = initial(nuke.runtime) + initial(nuke.cleanup_time)
 	addtimer(CALLBACK(src, PROC_REF(do_nuke_z_level), z_level), nuketime * 0.5)
 
 	Cinematic(CINEMATIC_CRASH_NUKE, world)
@@ -395,8 +395,7 @@
 	else
 		planet_nuked = INFESTATION_NUKE_COMPLETED_OTHER
 
-	for(var/i in GLOB.alive_living_list)
-		var/mob/living/victim = i
+	for(var/mob/living/victim in GLOB.alive_living_list)
 		var/turf/victim_turf = get_turf(victim) //Sneaky people on lockers.
 		if(QDELETED(victim_turf) || victim_turf.z != z_level)
 			continue

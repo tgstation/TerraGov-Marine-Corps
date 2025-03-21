@@ -1,0 +1,20 @@
+{
+	"visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "visor"
+		}
+	],
+	"d_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "d_visor"
+		}
+	],
+	"b_visor": [
+		{
+			"type": "hyperscale",
+			"icon_state": "b_visor"
+		}
+	]
+}
