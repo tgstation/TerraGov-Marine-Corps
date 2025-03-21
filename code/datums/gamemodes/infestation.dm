@@ -13,9 +13,10 @@
 	var/bioscan_interval = 15 MINUTES
 	/// State of the nuke
 	var/planet_nuked = INFESTATION_NUKE_NONE
-
-	// Base Infestation HvX Xeno Player Requirements to Evolve, applied with loop in post_setup().
-	// Redefined in nuclear_war.dm and crash.dm
+	/**
+	 * Assoc list showing how many xenos are needed by caste.
+	 * [caste datum] = [amount of xenos needed]
+	 */
 	var/list/evo_requirements = list(
 		/datum/xeno_caste/king = 12,
 		/datum/xeno_caste/queen = 8,
