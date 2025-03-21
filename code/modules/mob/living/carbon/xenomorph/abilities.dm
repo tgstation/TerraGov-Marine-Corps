@@ -1538,8 +1538,8 @@
 GLOBAL_LIST_INIT(pattern_images_list, list(
 	CROSS_3X3 = image('icons/Xeno/patterns.dmi', icon_state = "cross3x3"),
 	SQUARE_2X2 = image('icons/Xeno/patterns.dmi', icon_state = "square2x2"),
-	SQUARE_3X3 = image('icons/Xeno/patterns.dmi', icon_state = "square3x3")
-	HOLLOW_CROSS = image('icons/Xeno/patterns.dmi', icon_state = "hollowcross3x3")
+	SQUARE_3X3 = image('icons/Xeno/patterns.dmi', icon_state = "square3x3"),
+	HOLLOW_CROSS = image('icons/Xeno/patterns.dmi', icon_state = "hollowcross3x3"),
 ))
 
 
