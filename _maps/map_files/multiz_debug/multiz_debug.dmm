@@ -72,7 +72,9 @@
 /turf/open/floor/mainship,
 /area/mainship/multiz_debug_area/floorone)
 "av" = (
-/obj/structure/stairs/multiz,
+/obj/structure/stairs/multiz{
+	dir = 1
+	},
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floortwo)
@@ -4515,7 +4517,9 @@
 /turf/closed/wall/mainship/research/containment/wall/south,
 /area/mainship/multiz_debug_area/floorone)
 "QN" = (
-/obj/structure/stairs/multiz,
+/obj/structure/stairs/multiz{
+	dir = 1
+	},
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/mainship/multiz_debug_area/floorone)

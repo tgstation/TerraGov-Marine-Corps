@@ -958,9 +958,7 @@
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /obj/structure/platform_decoration,
 /obj/item/clothing/tie/armband/cargo,
 /turf/open/floor/prison/red,
@@ -29563,9 +29561,7 @@
 "uhU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /obj/structure/platform_decoration,
 /turf/open/floor/prison/red,
 /area/riptide/inside/warehouse)
@@ -30055,7 +30051,9 @@
 	},
 /area/riptide/inside/syndicatestarboard)
 "uAZ" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/cult/clock,
 /area/riptide/inside/chapel)
 "uBd" = (

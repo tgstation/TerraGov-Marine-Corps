@@ -1,0 +1,9 @@
+author: "Tiviplus, Kuro, GregorMN"
+delete-after: True
+changes:
+  - rscadd: "Completely resprited mechs for xvh"
+  - rscadd: "Mechs now leave a wreck behidn when destroyed"
+  - rscadd: "Mechs can now mount \"back weapons\""
+  - bugfix: "fixed hyperscale completely ignoring some color configs"
+  - qol: "New mecha boosting visual effects"
+  - qol: "Revamped the mech builder UI and made it much smaller"
