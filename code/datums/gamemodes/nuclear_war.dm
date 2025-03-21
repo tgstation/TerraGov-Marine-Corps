@@ -37,7 +37,6 @@
 		/datum/job/xenomorph = NUCLEAR_WAR_LARVA_POINTS_NEEDED,
 	)
 
-	// Nuclear War Xeno Player Requirements to Evolve, applied with loop in post_setup().
 	evo_requirements = list(
 		/datum/xeno_caste/king = 12,
 		/datum/xeno_caste/queen = 4,
