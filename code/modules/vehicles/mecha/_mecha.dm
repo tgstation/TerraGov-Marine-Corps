@@ -245,12 +245,12 @@
 
 	become_hearing_sensitive(trait_source = ROUNDSTART_TRAIT)
 	for(var/key in equip_by_category)
-		if(key == MECHA_L_ARM || key == MECHA_R_ARM)
+		if(key == MECHA_L_ARM || key == MECHA_R_ARM || key == MECHA_L_BACK || key == MECHA_R_BACK)
 			var/path = equip_by_category[key]
 			if(!path)
 				continue
 			var/obj/item/mecha_parts/mecha_equipment/thing = new path
-			thing.attach(src, key == MECHA_R_ARM)
+			thing.attach(src, (key == MECHA_R_ARM || key == MECHA_R_BACK))
 			continue
 		for(var/path in equip_by_category[key])
 			var/obj/item/mecha_parts/mecha_equipment/thing = new path

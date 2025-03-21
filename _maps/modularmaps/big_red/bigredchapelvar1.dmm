@@ -17,9 +17,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "d" = (
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/chapel)
 "e" = (
@@ -61,7 +59,9 @@
 /area/bigredv2/outside/chapel)
 "l" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/chapel)
 "m" = (

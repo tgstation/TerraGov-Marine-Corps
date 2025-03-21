@@ -744,7 +744,7 @@
 	icon = 'icons/obj/armored/3x3/tank_gun.dmi' //set by owner
 	icon_state = "turret"
 	layer = ABOVE_ALL_MOB_LAYER
-	vis_flags = VIS_INHERIT_ID
+	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE
 	///overlay obj for for the attached gun
 	var/atom/movable/vis_obj/tank_gun/primary_overlay
 	///icon state for the secondary

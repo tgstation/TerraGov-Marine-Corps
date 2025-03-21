@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - bugfix: "partially fixed stairs being very cursed"
