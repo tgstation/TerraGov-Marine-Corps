@@ -95,6 +95,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 			change_action(ESCORTING_ATOM, escorted_atom)
 		if(IDLE)
 			change_action(IDLE)
+	if(!registered_for_move)
+		scheduled_move()
 
 ///We finished moving to a node, let's pick a random nearby one to travel to
 /datum/ai_behavior/proc/finished_node_move()
@@ -312,6 +314,9 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 /// Move the ai and schedule the next move
 /datum/ai_behavior/proc/scheduled_move()
 	if(QDELETED(mob_parent))
+		return
+	if(mob_parent.client)
+		registered_for_move = FALSE
 		return
 	if(!atom_to_walk_to)
 		registered_for_move = FALSE

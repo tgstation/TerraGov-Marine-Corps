@@ -12,9 +12,7 @@
 /datum/ai_behavior/human/late_initialize()
 	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
 		return
-	. = ..()
-	if(!registered_for_move)
-		scheduled_move()
+	return ..()
 
 ///Checks if we should be healing somebody
 /datum/ai_behavior/human/proc/medic_process()
