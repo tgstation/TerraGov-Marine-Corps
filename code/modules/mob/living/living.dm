@@ -1068,7 +1068,7 @@ below 100 is not dizzy
 /mob/living/proc/look_up()
 	if(looking_vertically == UP)
 		return
-	else if(looking_vertically == DOWN)
+	if(looking_vertically == DOWN)
 		end_look_down()
 		return
 	if(!can_look_up())
