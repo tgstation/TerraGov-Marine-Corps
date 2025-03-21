@@ -533,6 +533,14 @@
 	new /obj/item/cell/lasgun/volkite(src)
 	new /obj/item/cell/lasgun/volkite(src)
 
+/obj/item/storage/belt/marine/som/big/PopulateContents()
+	new /obj/item/ammo_magazine/rifle/som_big(src)
+	new /obj/item/ammo_magazine/rifle/som_big(src)
+	new /obj/item/ammo_magazine/rifle/som_big(src)
+	new /obj/item/ammo_magazine/rifle/som_big(src)
+	new /obj/item/ammo_magazine/rifle/som_big(src)
+	new /obj/item/ammo_magazine/rifle/som_big(src)
+
 /obj/item/storage/belt/marine/som/mpi_plum/PopulateContents()
 	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
 	new /obj/item/ammo_magazine/rifle/mpi_km/plum(src)
