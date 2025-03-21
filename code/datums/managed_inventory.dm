@@ -107,6 +107,7 @@
 	if(equipped_item in equipped_list)
 		return
 	equipped_list += equipped_item
+	RegisterSignal(equipped_item, COMSIG_ITEM_REMOVED_INVENTORY, PROC_REF(item_unequipped))
 
 	var/list/sort_list = list(equipped_item)
 	sort_list += get_stored(equipped_item) //NOTE TO SELF:internal storage stuff isnt populated if the mob has ai BEFORE the outfit
@@ -126,13 +127,14 @@
 ///Handles the removal of an item
 /datum/managed_inventory/proc/item_unequipped(obj/item/unequipped_item, mob/user)
 	SIGNAL_HANDLER
-	if(unequipped_item.loc == owner)
+	if(owner in get_nested_locs(unequipped_item))
 		return //still equipped
-	UnregisterSignal(unequipped_item, list(COMSIG_ATOM_ENTERED, COMSIG_ITEM_REMOVED_INVENTORY))
+	UnregisterSignal(unequipped_item, COMSIG_ITEM_REMOVED_INVENTORY)
 	equipped_list -= unequipped_item
 
-	var/list/sort_list = list(unequipped_item)
-	sort_list += get_stored(unequipped_item)
+	//generally we only care about items in actual storage, but some things (like gun mags) get 'stored' in things without storage datums - i.e. the gun on reload
+	var/list/sort_list = unequipped_item.contents + unequipped_item
+	sort_list |= get_stored(unequipped_item)
 
 	for(var/obj/item/thing AS in sort_list)
 		SEND_SIGNAL(thing, COMSIG_INVENTORY_STORED_REMOVAL)
@@ -151,7 +153,6 @@
 		return //moved around on our mob
 
 	RegisterSignal(new_item, COMSIG_ATOM_ENTERED, PROC_REF(item_stored))
-	RegisterSignal(new_item, COMSIG_ITEM_REMOVED_INVENTORY, PROC_REF(item_unequipped))
 
 	if(chosen_list == gun_list)
 		gun_list_add(new_item)
@@ -283,23 +284,23 @@
 ///Removes an item from this list
 /datum/managed_inventory/proc/gun_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
-	if(!QDELETED(moving_item) && moving_item.loc == owner)
+	if(!QDELETED(moving_item) && (owner in get_nested_locs(moving_item)))
 		return //still in inventory
 	gun_list -= moving_item
-	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
+	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL, COMSIG_ATOM_ENTERED))
 
 ///Removes an item from this list
 /datum/managed_inventory/proc/melee_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
-	if(!QDELETED(moving_item) && moving_item.loc == owner)
+	if(!QDELETED(moving_item) && (owner in get_nested_locs(moving_item)))
 		return //still in inventory
 	melee_list -= moving_item
-	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
+	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL, COMSIG_ATOM_ENTERED))
 
 ///Removes an item from this list
 /datum/managed_inventory/proc/medical_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
-	if(!QDELETED(moving_item) && moving_item.loc == owner)
+	if(!QDELETED(moving_item) && (owner in get_nested_locs(moving_item)))
 		return //still in inventory
 	medical_list -= moving_item
 	brute_list -= moving_item
@@ -313,36 +314,36 @@
 	ib_list -= moving_item
 	organ_list -= moving_item
 	infection_list -= moving_item
-	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
+	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL, COMSIG_ATOM_ENTERED))
 
 ///Removes an item from this list
 /datum/managed_inventory/proc/ammo_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
-	if(!QDELETED(moving_item) && moving_item.loc == owner)
+	if(!QDELETED(moving_item) && (owner in get_nested_locs(moving_item)))
 		return //still in inventory
 	ammo_list -= moving_item
-	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
+	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL, COMSIG_ATOM_ENTERED))
 
 ///Removes an item from this list
 /datum/managed_inventory/proc/grenade_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
-	if(!QDELETED(moving_item) && moving_item.loc == owner)
+	if(!QDELETED(moving_item) && (owner in get_nested_locs(moving_item)))
 		return //still in inventory
 	grenade_list -= moving_item
-	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
+	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL, COMSIG_ATOM_ENTERED))
 
 ///Removes an item from this list
 /datum/managed_inventory/proc/engineering_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
-	if(!QDELETED(moving_item) && moving_item.loc == owner)
+	if(!QDELETED(moving_item) && (owner in get_nested_locs(moving_item)))
 		return //still in inventory
 	engineering_list -= moving_item
-	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
+	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL, COMSIG_ATOM_ENTERED))
 
 ///Removes an item from this list
 /datum/managed_inventory/proc/food_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
-	if(!QDELETED(moving_item) && moving_item.loc == owner)
+	if(!QDELETED(moving_item) && (owner in get_nested_locs(moving_item)))
 		return //still in inventory
 	food_list -= moving_item
-	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
+	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL, COMSIG_ATOM_ENTERED))

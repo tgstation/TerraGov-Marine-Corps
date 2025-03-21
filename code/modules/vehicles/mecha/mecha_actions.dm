@@ -195,6 +195,18 @@
 		return FALSE
 	return TRUE
 
+
+/datum/action/vehicle/sealed/mecha/swap_controlled_weapons
+	name = "Swap Weapon set"
+	action_icon_state = "weapon_swap" // todo kuro needs to make an icon for this
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_SWAPWEAPONS,
+	)
+
+/datum/action/vehicle/sealed/mecha/swap_controlled_weapons/action_activate(trigger_flags)
+	var/obj/vehicle/sealed/mecha/combat/greyscale/core/greyscale = chassis
+	greyscale.swap_weapons()
+
 /datum/action/vehicle/sealed/mecha/assault_armor
 	name = "Assault Armor"
 	action_icon_state = "assaultarmor"

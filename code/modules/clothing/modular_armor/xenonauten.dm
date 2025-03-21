@@ -391,3 +391,6 @@
 	name = "\improper M11X pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
 	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 65, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+
+/obj/item/clothing/head/modular/m10x/leader/antenna
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/antenna)

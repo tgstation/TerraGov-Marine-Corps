@@ -21,47 +21,26 @@
 /datum/ai_behavior/human/proc/weapon_process()
 	if(human_ai_state_flags & HUMAN_AI_NEED_WEAPONS)
 		equip_weaponry()
-
 	if(!gun)
 		return
+
 	var/fire_result = can_shoot_target(combat_target)
-	if(!(human_ai_state_flags & HUMAN_AI_FIRING))
-		if(fire_result == AI_FIRE_NO_AMMO)
-			INVOKE_ASYNC(src, PROC_REF(reload_gun))
-			return
+	if(human_ai_state_flags & HUMAN_AI_FIRING)
 		if(fire_result != AI_FIRE_CAN_HIT)
-			return
-		if(prob(90))
-			try_speak(pick(start_fire_chat))
-		if(gun.reciever_flags & AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION)
-			gun.unique_action(mob_parent)
-		if(gun.start_fire(mob_parent, combat_target, get_turf(combat_target)) && gun.gun_firemode != GUN_FIREMODE_SEMIAUTO && gun.gun_firemode != GUN_FIREMODE_BURSTFIRE)
-			human_ai_state_flags |= HUMAN_AI_FIRING
+			stop_fire(fire_result)
 		return
 
-	if(fire_result == AI_FIRE_CAN_HIT)
+	if(fire_result == AI_FIRE_NO_AMMO)
+		INVOKE_ASYNC(src, PROC_REF(reload_gun))
 		return
-
-	stop_fire()
-
-	//already firing
-	switch(fire_result)
-		if(AI_FIRE_INVALID_TARGET)
-			return //how'd you do this?
-		if(AI_FIRE_TARGET_DEAD)
-			if(prob(75))
-				try_speak(pick(dead_target_chat))
-		if(AI_FIRE_NO_AMMO)
-			INVOKE_ASYNC(src, PROC_REF(reload_gun))
-		if(AI_FIRE_OUT_OF_RANGE)
-			if(prob(50))
-				try_speak(pick(out_range_chat))
-		if(AI_FIRE_NO_LOS)
-			if(prob(50))
-				try_speak(pick(no_los_chat))
-		if(AI_FIRE_FRIENDLY_BLOCKED)
-			if(prob(50))
-				try_speak(pick(friendly_blocked_chat))
+	if(fire_result != AI_FIRE_CAN_HIT)
+		return
+	if(prob(90))
+		try_speak(pick(start_fire_chat))
+	if(gun.reciever_flags & AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION)
+		gun.unique_action(mob_parent)
+	if(gun.start_fire(mob_parent, combat_target, get_turf(combat_target)) && gun.gun_firemode != GUN_FIREMODE_SEMIAUTO && gun.gun_firemode != GUN_FIREMODE_BURSTFIRE)
+		human_ai_state_flags |= HUMAN_AI_FIRING
 
 ///Tries to equip weaponry from inventory, or find some if none are available
 /datum/ai_behavior/human/proc/equip_weaponry(datum/source)
@@ -247,9 +226,28 @@
 	return AI_FIRE_CAN_HIT
 
 ///Stops gunfire
-/datum/ai_behavior/human/proc/stop_fire()
+/datum/ai_behavior/human/proc/stop_fire(stop_reason)
 	human_ai_state_flags &= ~HUMAN_AI_FIRING
 	gun?.stop_fire()
+
+	if(!stop_reason)
+		return
+
+	switch(stop_reason)
+		if(AI_FIRE_TARGET_DEAD, AI_FIRE_INVALID_TARGET)
+			if(prob(75))
+				try_speak(pick(dead_target_chat))
+		if(AI_FIRE_NO_AMMO)
+			INVOKE_ASYNC(src, PROC_REF(reload_gun))
+		if(AI_FIRE_OUT_OF_RANGE)
+			if(prob(50))
+				try_speak(pick(out_range_chat))
+		if(AI_FIRE_NO_LOS)
+			if(prob(50))
+				try_speak(pick(no_los_chat))
+		if(AI_FIRE_FRIENDLY_BLOCKED)
+			if(prob(50))
+				try_speak(pick(friendly_blocked_chat))
 
 ///Tries to reload our gun
 /datum/ai_behavior/human/proc/reload_gun()

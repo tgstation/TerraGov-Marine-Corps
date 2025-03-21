@@ -767,7 +767,7 @@
 
 /datum/ammo/energy/plasma_pistol
 	name = "ionized plasma bolt"
-	icon_state = "overchargedlaser"
+	icon_state = "overchargedlaser_green"
 	hud_state = "electrothermal"
 	hud_state_empty = "electrothermal_empty"
 	damage = 40

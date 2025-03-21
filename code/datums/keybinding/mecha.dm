@@ -14,14 +14,14 @@
 	full_name = "Toggle Strafe"
 	description = "Toggle strafing for your mecha"
 	keybind_signal = COMSIG_MECHABILITY_TOGGLE_STRAFE
-	hotkey_keys = list("E")
+	hotkey_keys = list("V")
 
 /datum/keybinding/mecha/mech_view_stats
 	name = "mech_view_stats"
 	full_name = "View Stats"
 	description = "View the diagnostics of your mecha"
 	keybind_signal = COMSIG_MECHABILITY_VIEW_STATS
-	hotkey_keys = list("V")
+	hotkey_keys = list("Unbound")
 
 /datum/keybinding/mecha/smoke
 	name = "mecha_smoke"
@@ -71,6 +71,13 @@
 	description = "Use a repair pack to repair the mech."
 	keybind_signal = COMSIG_MECHABILITY_REPAIRPACK
 	hotkey_keys = list("C")
+
+/datum/keybinding/mecha/mech_swapweapons
+	name = "mech_swapweapons"
+	full_name = "Mech Swap Weapons"
+	description = "Swap from hand to back weapons or vice versa."
+	keybind_signal = COMSIG_MECHABILITY_SWAPWEAPONS
+	hotkey_keys = list("E")
 
 /datum/keybinding/mecha/mech_toggle_actuators
 	name = "mech_toggle_actuators"
