@@ -32,6 +32,8 @@
 	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED | MECHA_SPIN_WHEN_NO_ANGLE | OMNIDIRECTIONAL_ATTACKS | QUIET_TURNS
 	explosion_block = 2
 	pivot_step = TRUE
+	/// used to lookup ability overlays for this mech
+	var/ability_module_icon = 'icons/mecha/mecha_ability_overlays.dmi'
 	///whether we have currently swapped the back and arm icons
 	var/swapped_to_backweapons = FALSE
 	///whether we use an included builtin boost overlay to show we are boosting
@@ -294,6 +296,12 @@
 			continue
 		var/datum/mech_limb/limb = limbs[key]
 		. += limb.get_overlays()
+
+	for(var/obj/item/mecha_parts/mecha_equipment/ability/module in equip_by_category[MECHA_UTILITY])
+		if(module.icon_state)
+			var/prefix = is_wreck ? "d_" : (leg_overload_mode && !use_builtin_boost_overlay ? "b_" : "")
+			var/image/new_overlay =image(ability_module_icon, icon_state = prefix+module.icon_state)
+			. += new_overlay
 
 	if(use_builtin_boost_overlay)
 		var/state = leg_overload_mode ? "booster_active" : "booster"
