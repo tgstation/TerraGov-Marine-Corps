@@ -40,12 +40,10 @@
 ///gives humans oxy when moved around in certain conditions. called on COMSIG_MOVABLE_MOVED
 /mob/living/carbon/human/proc/on_crit_moved(datum/source, atom/old_loc, movement_dir, forced = FALSE, list/old_locs)
 	SIGNAL_HANDLER
-	if(pulledby || throwing || buckled) // only catch the scenarios we're interested in: pulls, throws, and certain stuff we can be buckled to
+	if(pulledby || throwing) // only catch the scenarios we're interested in: pulls and throws
 		if(pulledby && !isxeno(pulledby)) // only care about xenos pulling us
 			return
 		if(throwing && !isxeno(thrower)) // same here, albeit for throwing
-			return
-		if(buckled && !isxeno(buckled.pulledby)) // some stuff like rollerbeds can be pulled by xenos; catch those too
 			return
 		if(!adjustOxyLoss(HUMAN_CRITDRAG_OXYLOSS)) // take oxy damage per tile moved
 			INVOKE_ASYNC(src, PROC_REF(adjustBruteLoss), HUMAN_CRITDRAG_OXYLOSS) // if we can't take oxy damage (for some reason), take it as brute instead
