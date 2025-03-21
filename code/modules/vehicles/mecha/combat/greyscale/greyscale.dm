@@ -26,11 +26,11 @@
 	gradient = list("#BA9F6D", "#808080", "#FFFFFF")
 	color = generator(GEN_NUM, 0, 0.25)
 	color_change = generator(GEN_NUM, 0.08, 0.07)
-	velocity = generator(GEN_CIRCLE, 7, 8)
+	velocity = generator(GEN_CIRCLE, 6, 7)
 	rotation = generator(GEN_NUM, -45, 45)
 	scale = 0.015
 	grow = 0.05
-	friction = 0.4
+	friction = 0.25
 
 /particles/dash_sparks
 	icon = 'icons/effects/64x64.dmi'
