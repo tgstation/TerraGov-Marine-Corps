@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - bugfix: "fixed lift indicators not showing anything"
+  - bugfix: "fixed elevator control panels erroring sometimes when they shouldnt"
