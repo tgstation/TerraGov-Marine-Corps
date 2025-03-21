@@ -85,18 +85,20 @@
 	. = ..()
 	update_icon()
 	//tgmc addition start
-	if(istype(equip_by_category[MECHA_R_ARM], /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
-		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = equip_by_category[MECHA_R_ARM]
-		M.hud_used.add_ammo_hud(gun, gun.hud_icons, gun.projectiles)
-	if(istype(equip_by_category[MECHA_L_ARM], /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
-		var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = equip_by_category[MECHA_L_ARM]
-		M.hud_used.add_ammo_hud(gun, gun.hud_icons, gun.projectiles)
+	//bottom to top order
+	var/list/ammo_huds = list(MECHA_R_BACK, MECHA_L_BACK, MECHA_R_ARM, MECHA_L_ARM, )
+	for(var/cat in ammo_huds)
+		if(istype(equip_by_category[cat], /obj/item/mecha_parts/mecha_equipment/weapon/ballistic))
+			var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = equip_by_category[cat]
+			M.hud_used.add_ammo_hud(gun, gun.hud_icons, gun.projectiles)
 	//tgmc addition end
 
 /obj/vehicle/sealed/mecha/remove_occupant(mob/M)
 	//tgmc addition start
 	M?.hud_used?.remove_ammo_hud(equip_by_category[MECHA_R_ARM])
 	M?.hud_used?.remove_ammo_hud(equip_by_category[MECHA_L_ARM])
+	M?.hud_used?.remove_ammo_hud(equip_by_category[MECHA_R_BACK])
+	M?.hud_used?.remove_ammo_hud(equip_by_category[MECHA_L_BACK])
 	//tgmc addition end
 	UnregisterSignal(M, list(COMSIG_MOB_DEATH, COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_SAY, COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_KEYBIND_FACE_DIR))
 	M.clear_alert(ALERT_CHARGE)
