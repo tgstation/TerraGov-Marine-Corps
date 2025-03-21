@@ -1,10 +1,6 @@
-/datum/job/terragov/squad/leader/npc
-	title = "NPC Squad Leader"
-	outfit = /datum/outfit/job/npc/tgmc/squad_leader
-
 /datum/outfit/job/npc/tgmc/squad_leader
 	name = "NPC TGMC squad leader"
-	jobtype = /datum/job/terragov/squad/leader/npc
+	jobtype = /datum/job/terragov/squad/leader
 
 	id = /obj/item/card/id/dogtag
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/leader
@@ -45,13 +41,9 @@
 		/obj/item/explosive/grenade/smokebomb/antigas = 2,
 	)
 
-/datum/job/terragov/squad/smartgunner/npc
-	title = "NPC Squad Smartgunner"
-	outfit = /datum/outfit/job/npc/tgmc/smartgunner
-
 /datum/outfit/job/npc/tgmc/smartgunner
 	name = "NPC TGMC smartgunner"
-	jobtype = /datum/job/terragov/squad/smartgunner/npc
+	jobtype = /datum/job/terragov/squad/smartgunner
 
 	id = /obj/item/card/id/dogtag
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_one
@@ -98,13 +90,9 @@
 		/obj/item/explosive/grenade/smokebomb/antigas = 1,
 	)
 
-/datum/job/terragov/squad/corpsman/npc
-	title = "NPC Squad Corpsman"
-	outfit = /datum/outfit/job/npc/tgmc/squad_leader
-
 /datum/outfit/job/npc/tgmc/corpsman
 	name = "NPC TGMC Corpsman"
-	jobtype = /datum/job/terragov/squad/corpsman/npc
+	jobtype = /datum/job/terragov/squad/corpsman
 
 	id = /obj/item/card/id/dogtag
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/npc_medic
@@ -164,18 +152,9 @@
 		/obj/item/stack/medical/splint = 2,
 	)
 
-/datum/job/terragov/squad/standard/npc
-	title = "NPC Squad Marine"
-	outfit = /datum/outfit/job/npc/tgmc/standard
-	multiple_outfits = TRUE
-	outfits = list(
-		/datum/outfit/job/npc/tgmc/standard,
-		/datum/outfit/job/npc/tgmc/standard/shotgunner,
-	)
-
 /datum/outfit/job/npc/tgmc/standard
 	name = "NPC TGMC standard"
-	jobtype = /datum/job/terragov/squad/standard/npc
+	jobtype = /datum/job/terragov/squad/standard
 
 	id = /obj/item/card/id/dogtag
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_one
