@@ -104,6 +104,33 @@
 		change_action(MOVING_TO_ATOM, next_target)
 		return
 
+/*
+/datum/ai_behavior/human/look_for_new_state(atom/next_target)
+	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+		return
+	if(!combat_target || ((get_dist(mob_parent, combat_target) > AI_COMBAT_TARGET_BLIND_DISTANCE) && !line_of_sight(mob_parent, combat_target, target_distance)))
+		if(combat_target)
+			do_unset_target(combat_target, need_new_state = FALSE)
+		if(next_target) //standing orders, kill hostiles on sight.
+			set_combat_target(next_target)
+			if(current_action != MOVING_TO_SAFETY)
+				change_action(MOVING_TO_ATOM, next_target)
+			return
+
+	switch(current_action)
+		if(MOVING_TO_ATOM)
+			if(!atom_to_walk_to)
+				change_action(ESCORTING_ATOM, escorted_atom)
+			if(escorted_atom && (atom_to_walk_to != escorted_atom) && get_dist(mob_parent, escorted_atom) > AI_ESCORTING_MAX_DISTANCE)
+				change_action(ESCORTING_ATOM, escorted_atom)
+		if(ESCORTING_ATOM)
+			if(get_dist(escorted_atom, mob_parent) > AI_ESCORTING_MAX_DISTANCE)
+				look_for_next_node(FALSE)
+		if(MOVING_TO_SAFETY)
+			if((COOLDOWN_CHECK(src, ai_retreat_cooldown) || !combat_target)) //we retreat until we cant see hostiles or we max out the timer
+				target_distance = initial(target_distance)
+				change_action(ESCORTING_ATOM, escorted_atom)
+*/
 /datum/ai_behavior/xeno/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
 	if(obstacle_turf.atom_flags & AI_BLOCKED)
@@ -180,26 +207,13 @@
 	switch(action_type)
 		if(MOVING_TO_ATOM)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(attack_target))
-			if(ishuman(atom_to_walk_to))
-				RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
-				return
-			if(ismachinery(atom_to_walk_to))
-				RegisterSignal(atom_to_walk_to, COMSIG_PREQDELETED, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
-				return
-
+			return
 	return ..()
 
 /datum/ai_behavior/xeno/unregister_action_signals(action_type)
 	switch(action_type)
 		if(MOVING_TO_ATOM)
 			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
-			if(ishuman(atom_to_walk_to))
-				UnregisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH)
-				return
-			if(ismachinery(atom_to_walk_to))
-				UnregisterSignal(atom_to_walk_to, COMSIG_PREQDELETED)
-				return
-
 	return ..()
 
 ///Will try finding and resting on weeds
