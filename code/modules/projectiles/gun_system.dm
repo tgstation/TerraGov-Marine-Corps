@@ -1565,7 +1565,7 @@
 	if(!new_ammo)
 		return
 	var/projectile_type = CHECK_BITFIELD(initial(new_ammo.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
-	var/obj/projectile/projectile = new projectile_type(null, initial(new_ammo.hitscan_effect_icon))
+	var/obj/projectile/projectile = new projectile_type(src, initial(new_ammo.hitscan_effect_icon))
 	projectile.generate_bullet(new_ammo)
 	return projectile
 
