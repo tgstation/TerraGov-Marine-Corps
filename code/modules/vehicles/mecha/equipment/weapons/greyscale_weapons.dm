@@ -75,6 +75,10 @@
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,12), "E" = list(54,14), "W" = list(-20,34)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,12), "E" = list(52,34), "W" = list(-22,14)),
 	)
+	flash_offsets_core = list(
+		MECHA_R_ARM = list("N" = list(52,46), "S" = list(14,29), "E" = list(70,32), "W" = list(-13,34)),
+		MECHA_L_ARM = list("N" = list(12,46), "S" = list(50,29), "E" = list(77,33), "W" = list(-8,32)),
+	)
 	ammotype = /datum/ammo/bullet/smg/mech
 	max_integrity = 400
 	projectiles = 60
@@ -126,6 +130,10 @@
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-6), "E" = list(64,17), "W" = list(-34,37)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(64,37), "W" = list(-34,17)),
 	)
+	flash_offsets_core = list(
+		MECHA_R_ARM = list("N" = list(52,46), "S" = list(14,29), "E" = list(70,29), "W" = list(-19,34)),
+		MECHA_L_ARM = list("N" = list(12,46), "S" = list(50,29), "E" = list(70,34), "W" = list(-19,29)),
+	)
 	ammotype = /datum/ammo/bullet/rifle/mech
 	max_integrity = 400
 	projectiles = 30
@@ -146,7 +154,7 @@
 	desc = "The TGMC classic weapon, but bigger and better! Fires plus-sized buckshot for high damage in close combat."
 	icon_state = "shotgun"
 	fire_sound = 'sound/mecha/weapons/mech_shotgun.ogg'
-	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-4), "E" = list(61,16), "W" = list(-31,36)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-4), "E" = list(61,36), "W" = list(-31,16)),
@@ -355,7 +363,8 @@
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	icon_state = "grenadelauncher"
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	equipment_slot = MECHA_BACK
 	ammotype = /obj/item/explosive/grenade
 	max_integrity = 350
 	projectiles = 10
@@ -387,7 +396,7 @@
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-11), "E" = list(77,3), "W" = list(-47,23)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-11), "E" = list(77,23), "W" = list(-47,3)),
 	)
-	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/flamethrower/mech_flamer
 	max_integrity = 250
 	projectiles = 50
@@ -438,7 +447,7 @@
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
 	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. It is a top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
 	icon_state = "moonlight"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	max_integrity = 400
 	slowdown = 0
 	harmful = TRUE

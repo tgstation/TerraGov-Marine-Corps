@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - bugfix: "Fixed an exploit with metal rods."
