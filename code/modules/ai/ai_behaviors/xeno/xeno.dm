@@ -46,6 +46,8 @@
 		return ..()
 	if(mob_parent.do_actions) //No activating more abilities if they're already in the progress of doing one
 		return ..()
+	if(should_hold())
+		return ..()
 
 	for(var/datum/action/action in ability_list)
 		if(!action.ai_should_use(atom_to_walk_to))
@@ -56,11 +58,6 @@
 			xeno_action.use_ability(atom_to_walk_to)
 		else
 			action.action_activate()
-	return ..()
-
-/datum/ai_behavior/xeno/ai_do_move()
-	if(mob_parent.do_actions)
-		return
 	return ..()
 
 /datum/ai_behavior/xeno/look_for_new_state()

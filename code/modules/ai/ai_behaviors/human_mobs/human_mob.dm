@@ -82,7 +82,7 @@
 	return ..()
 
 /datum/ai_behavior/human/process()
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING) //only do_afters we could interrupt currently are healing ones
+	if(should_hold())
 		return
 	if(mob_parent.notransform)
 		return ..()
@@ -120,17 +120,21 @@
 
 	return ..()
 
+/datum/ai_behavior/human/should_hold()
+	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+		return TRUE
+	if(HAS_TRAIT(mob_parent, TRAIT_IS_RELOADING))
+		return TRUE
+	if(HAS_TRAIT(mob_parent, TRAIT_IS_CLIMBING))
+		return TRUE
+	if(mob_parent.pulledby?.faction == mob_parent.faction)
+		return TRUE //lets players wrangle NPC's
+	return FALSE
+
 /datum/ai_behavior/human/scheduled_move()
 	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
 		registered_for_move = FALSE
 		return
-	return ..()
-
-/datum/ai_behavior/human/ai_do_move()
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
-		return
-	if(mob_parent.pulledby?.faction == mob_parent.faction)
-		return //lets players wrangle NPC's
 	return ..()
 
 /datum/ai_behavior/human/register_action_signals(action_type)
@@ -359,9 +363,9 @@
 	mob_parent.face_atom(interactee)
 
 	if(interactee == interact_target)
+		unset_target(interactee)
 		if(isturf(interactee.loc)) //no pickpocketing
 			. = try_interact(interactee)
-		unset_target(interactee)
 		return
 
 	if(melee_weapon)
