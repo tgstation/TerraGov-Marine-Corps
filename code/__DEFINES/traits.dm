@@ -283,6 +283,12 @@
 #define TRAIT_CANT_RIDE "cant_ride"
 ///Prevents humans from gaining oxyloss in their handle_breath()
 #define TRAIT_IGNORE_SUFFOCATION "ignore_suffocation"
+
+///climbing a structure
+#define TRAIT_IS_CLIMBING "is_climbing"
+///reloading a gun
+#define TRAIT_IS_RELOADING "is_reloading"
+
 //All the traits for guns
 #define TRAIT_GUN_SAFETY "safety"
 #define TRAIT_GUN_FLASHLIGHT_ON "light_on"

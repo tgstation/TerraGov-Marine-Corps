@@ -51,6 +51,8 @@
 		return ..()
 	if(mob_parent.do_actions) //No activating more abilities if they're already in the progress of doing one
 		return ..()
+	if(should_hold())
+		return ..()
 
 	for(var/datum/action/action in ability_list)
 		if(!action.ai_should_use(atom_to_walk_to))
