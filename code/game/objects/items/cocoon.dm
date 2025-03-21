@@ -125,6 +125,12 @@
 		return
 	icon_state = "xeno_cocoon_open"
 
+/obj/structure/cocoon/pull_response(mob/puller)
+	if(isxeno(puller))
+		puller.stop_pulling()
+		return FALSE
+	return ..()
+
 /obj/structure/cocoon/opened_cocoon
 	icon_state = "xeno_cocoon_open"
 	anchored = FALSE
