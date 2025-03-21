@@ -1135,7 +1135,7 @@ below 100 is not dizzy
 	if(looking_vertically == UP)
 		end_look_up()
 		return
-	else if(looking_vertically == DOWN)
+	if(looking_vertically == DOWN)
 		return
 	if(!can_look_up()) //if we cant look up, we cant look down.
 		return
