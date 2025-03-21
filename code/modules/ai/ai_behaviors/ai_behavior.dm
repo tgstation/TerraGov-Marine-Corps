@@ -334,9 +334,6 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 /datum/ai_behavior/proc/scheduled_move()
 	if(QDELETED(mob_parent))
 		return
-	if(mob_parent.client)
-		registered_for_move = FALSE
-		return
 	if(!atom_to_walk_to)
 		registered_for_move = FALSE
 		return
