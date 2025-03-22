@@ -69,6 +69,8 @@
 #include "code\modules\factory\howtopaper.dm"
 #include "code\modules\factory\parts.dm"
 #include "code\modules\factory\unboxer.dm"
+#include "code\modules\language\language_holder.dm"
+#include "code\modules\language\telepathy.dm"
 #include "code\modules\mob\living\carbon\abstract_handcuffs.dm"
 #include "code\modules\mob\living\carbon\human\genital_selection.dm"
 #include "code\modules\mob\living\carbon\human\human_defines.dm"
