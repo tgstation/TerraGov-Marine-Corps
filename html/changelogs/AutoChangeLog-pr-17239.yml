@@ -1,0 +1,8 @@
+author: "Mantlecrawler"
+delete-after: True
+changes:
+  - rscadd: "Xadar has SFX and VFX now"
+  - rscadd: "Globadier now has mine types for each of their 5 grenades"
+  - rscadd: "Selecting a grenade as globadier will put a short description of its effects in chat"
+  - balance: "Resin grenades from globadier now only fling marines and the owner globadier"
+  - bugfix: "Xadar now detonates properly when hitting a solid object"
