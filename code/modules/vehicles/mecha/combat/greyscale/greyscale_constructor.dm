@@ -354,16 +354,16 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				return FALSE
 			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 				return FALSE
+			var/slot
 			if(initial(new_type.equipment_slot) == MECHA_BACK)
-				if(params["is_right_weapon"])
-					selected_equipment[MECHA_R_BACK] = new_type
-					return TRUE
-				selected_equipment[MECHA_L_BACK] = new_type
-				return TRUE
-			if(params["is_right_weapon"])
-				selected_equipment[MECHA_R_ARM] = new_type
-				return TRUE
-			selected_equipment[MECHA_L_ARM] = new_type
+				slot = params["is_right_weapon"] ? MECHA_R_BACK : MECHA_L_BACK
+			else
+				slot = params["is_right_weapon"] ? MECHA_R_ARM : MECHA_L_ARM
+
+			if(selected_equipment[slot] == new_type)
+				selected_equipment[slot] = null
+			else
+				selected_equipment[slot] = new_type
 			return TRUE
 
 		if("add_power")
