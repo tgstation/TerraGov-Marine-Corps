@@ -373,13 +373,13 @@
 	icon = 'icons/obj/items/mines.dmi'
 	///Icon state of the mine
 	icon_state = "acid_mine"
-	///The amount of acid damage this deals
-	var/acid_damage = 30
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 5
 	hit_sound = SFX_ALIEN_RESIN_BREAK
+	///The amount of acid damage this deals
+	var/acid_damage = 30
 
 /obj/structure/xeno/acid_mine/Initialize(mapload)
 	. = ..()
