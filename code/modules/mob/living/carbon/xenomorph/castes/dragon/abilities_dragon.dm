@@ -10,7 +10,7 @@
 	/// The sound that is played before the do_after, if any.
 	var/do_after_sound
 	/// The length of the do_after.
-	var/do_after_length = 0 SECONDS
+	var/do_after_length = 0.5 SECONDS
 	/// The width inputted into `get_forward_square` used to telegraph and to get targets.
 	var/width = 2
 	/// The height inputted into `get_forward_square` used to telegraph and to get targets.
@@ -274,7 +274,7 @@
 // Performs various landing effects.
 /datum/action/ability/activable/xeno/fly/proc/perform_landing_effects(list/turf/affected_turfs)
 	new /obj/effect/temp_visual/dragon/land(get_turf(xeno_owner))
-	var/damage = 100 * xeno_owner.xeno_melee_damage_modifier
+	var/damage = 99 * xeno_owner.xeno_melee_damage_modifier // One damage below the knockdown threshold for default sentries.
 	var/list/obj/vehicle/hit_vehicles = list()
 	for(var/turf/affected_turf AS in affected_turfs)
 		affected_turf.Shake(duration = 0.2 SECONDS)
@@ -408,9 +408,9 @@
 	return TRUE
 
 /datum/action/ability/activable/xeno/backhand/dragon_breath/handle_regular_ability(atom/target, list/turf/affected_turfs)
-	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_BREATH, TRUE, 0, NONE, TRUE, 2)
+	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_DRAGON_BREATH, TRUE, 0, NONE, TRUE, 8)
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
-	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(10)
+	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(15)
 	ADD_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, DRAGON_ABILITY_TRAIT)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	starting_direction = get_cardinal_dir(xeno_owner, target)
@@ -440,7 +440,7 @@
 
 /// Performs the ability at a pace similar of CAS which is one width length at a length.
 /datum/action/ability/activable/xeno/backhand/dragon_breath/proc/tick_effects()
-	xeno_owner.setDir(starting_direction)
+	xeno_owner.setDir(starting_direction) // To prevent them from spinning and looking funky while using this ability.
 	playsound(xeno_owner, SFX_GUN_FLAMETHROWER, 50, 1)
 	xeno_owner.gain_plasma(3)
 
@@ -485,7 +485,7 @@
 /datum/action/ability/activable/xeno/backhand/dragon_breath/proc/end_ability()
 	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_DRAGON_BREATH)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
-	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-10)
+	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-15)
 	REMOVE_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, DRAGON_ABILITY_TRAIT)
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
 	starting_direction = null
@@ -606,6 +606,10 @@
 	/// Damage taken so far while actively grabbing.
 	var/damage_taken_so_far = 0
 
+/datum/action/ability/activable/xeno/grab/remove_action(mob/living/ability_owner)
+	end_grabbing(enforce_cooldown = FALSE)
+	return ..()
+
 /datum/action/ability/activable/xeno/grab/can_use_ability(atom/target, silent, override_flags)
 	if(xeno_owner.status_flags & INCORPOREAL)
 		if(!silent)
@@ -671,16 +675,20 @@
 /// Try to grab the thrown human.
 /datum/action/ability/activable/xeno/grab/proc/try_grabbing(mob/living/carbon/human/thrown_human)
 	if(QDELETED(thrown_human) || thrown_human.stat == DEAD || !xeno_owner.Adjacent(thrown_human))
+		end_grabbing()
 		return
 	if(!xeno_owner.start_pulling(thrown_human) || !xeno_owner.get_active_held_item())
+		end_grabbing()
 		return
 
 	grabbing_item = xeno_owner.get_active_held_item()
 	if(!grabbing_item)
+		end_grabbing()
 		return
 	grabbed_human = thrown_human
 	damage_taken_so_far = 0
 
+	ADD_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
 	RegisterSignal(grabbing_item, COMSIG_QDELETING, PROC_REF(end_grabbing))
 	RegisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED, PROC_REF(human_stat_changed))
 	RegisterSignal(grabbed_human, COMSIG_LIVING_DO_MOVE_RESIST, PROC_REF(on_resist_attempt))
@@ -690,14 +698,19 @@
 	playsound(get_turf(xeno_owner), 'sound/voice/alien/pounce.ogg', 25, TRUE)
 
 /// Cleans up everything associated with the grabbing and ends the ability.
-/datum/action/ability/activable/xeno/grab/proc/end_grabbing()
+/datum/action/ability/activable/xeno/grab/proc/end_grabbing(datum/source, enforce_cooldown = TRUE)
 	SIGNAL_HANDLER
-	REMOVE_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
-	UnregisterSignal(grabbing_item, COMSIG_QDELETING)
-	UnregisterSignal(grabbed_human, list(COMSIG_MOB_STAT_CHANGED, COMSIG_LIVING_DO_MOVE_RESIST))
-	UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+	if(grabbed_human)
+		REMOVE_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
+	if(grabbing_item) // Removing signals that are added only due to successful grab.
+		UnregisterSignal(grabbing_item, COMSIG_QDELETING)
+		UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+		if(grabbed_human)
+			UnregisterSignal(grabbed_human, list(COMSIG_MOB_STAT_CHANGED, COMSIG_LIVING_DO_MOVE_RESIST))
 	grabbed_human = null
 	grabbing_item = null
+	if(!enforce_cooldown)
+		return
 	succeed_activate()
 	add_cooldown()
 
@@ -713,13 +726,13 @@
 	SIGNAL_HANDLER
 	return COMSIG_LIVING_RESIST_SUCCESSFUL
 
-/// Stops grabbing if owner has taken 300 or more damage since beginning the grab. Damage is calculated after soft armor and plasma reduction.
+/// Stops grabbing if owner has taken 200 or more damage since beginning the grab. Damage is calculated after soft armor and plasma reduction.
 /datum/action/ability/activable/xeno/grab/proc/taken_damage(datum/source, amount, list/amount_mod)
 	SIGNAL_HANDLER
 	if(amount <= 0)
 		return
 	damage_taken_so_far += amount
-	if(damage_taken_so_far >= 300)
+	if(damage_taken_so_far >= 200)
 		xeno_owner.stop_pulling()
 
 /datum/action/ability/activable/xeno/scorched_land

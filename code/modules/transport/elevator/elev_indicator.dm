@@ -34,6 +34,10 @@
 	/// The elevator's current floor relative to its lowest floor being 1
 	var/current_lift_floor = 1
 
+/obj/machinery/lift_indicator/Initialize(mapload)
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
 /obj/machinery/lift_indicator/LateInitialize()
 	. = ..()
 
@@ -43,6 +47,7 @@
 
 		lift_ref = WEAKREF(possible_match)
 		RegisterSignal(possible_match, COMSIG_LIFT_SET_DIRECTION, PROC_REF(on_lift_direction))
+		update_appearance()
 
 /obj/machinery/lift_indicator/examine(mob/user)
 	. = ..()

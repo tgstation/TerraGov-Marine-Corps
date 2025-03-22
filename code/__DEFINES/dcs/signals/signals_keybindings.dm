@@ -135,6 +135,7 @@
 #define COMSIG_MECHABILITY_STRIKE "mechability_strike"
 #define COMSIG_MECHABILITY_RELOAD "mechability_reload"
 #define COMSIG_MECHABILITY_REPAIRPACK "mechability_repairpack"
+#define COMSIG_MECHABILITY_SWAPWEAPONS "mechability_swapweapons"
 #define COMSIG_MECHABILITY_TOGGLE_ACTUATORS "mechability_toggle_actuators"
 
 #define COMSIG_ACTION_EXCLUSIVE_TOGGLE "action_exclusive_toggle"
@@ -308,6 +309,16 @@
 #define COMSIG_XENOABILITY_SHATTERING_ROAR "xenoability_shattering_roar"
 #define COMSIG_XENOABILITY_ZEROFORMBEAM "xenoability_zeroformbeam"
 #define COMSIG_XENOABILITY_HIVE_SUMMON "xenoability_hive_summon"
+
+#define COMSIG_XENOABILITY_CONQUEROR_DASH "xenoability_conqueror_dash"
+#define COMSIG_XENOABILITY_CONQUEROR_WILL "xenoability_conqueror_will"
+#define COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_HOLD "xenoability_conqueror_endurance_hold"
+	#define COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_UP "xenoability_conqueror_endurance_up"
+#define COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_TOGGLE "xenoability_conqueror_endurance_toggle"
+#define COMSIG_XENOABILITY_CONQUEROR_DOMINATION "xenoability_conqueror_domination"
+#define COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_HOLD "xenoability_conqueror_obliteration_hold"
+	#define COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_UP "xenoability_conqueror_obliteration_up"
+#define COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_TOGGLE "xenoability_conqueror_obliteration_toggle"
 
 #define COMSIG_XENOABILITY_SCATTER_SPIT "xenoability_scatter_spit"
 #define COMSIG_XENOABILITY_TOSS_GRENADE "xenoability_toss_grenade"

@@ -112,6 +112,9 @@
 #define PETRIFY_ABILITY_TRAIT "petrify_ability_trait"
 #define SHATTERING_ROAR_ABILITY_TRAIT "shattering_roar_ability_trait"
 #define ZERO_FORM_BEAM_ABILITY_TRAIT "zero_form_beam_ability_trait"
+#define CONQUEROR_ABILITY_TRAIT "conqueror_ability_trait"
+#define CONQUEROR_ENDURANCE_TRAIT "conqueror_endurance_trait"
+#define CONQUEROR_OBLITERATION_TRAIT "conqueror_obliteration_trait"
 #define HEATRAY_BEAM_ABILITY_TRAIT "heatray_ability_trait"
 #define DRAGON_ABILITY_TRAIT "dragon_ability_trait"
 #define VALHALLA_TRAIT "valhalla"
@@ -280,6 +283,12 @@
 #define TRAIT_CANT_RIDE "cant_ride"
 ///Prevents humans from gaining oxyloss in their handle_breath()
 #define TRAIT_IGNORE_SUFFOCATION "ignore_suffocation"
+
+///climbing a structure
+#define TRAIT_IS_CLIMBING "is_climbing"
+///reloading a gun
+#define TRAIT_IS_RELOADING "is_reloading"
+
 //All the traits for guns
 #define TRAIT_GUN_SAFETY "safety"
 #define TRAIT_GUN_FLASHLIGHT_ON "light_on"

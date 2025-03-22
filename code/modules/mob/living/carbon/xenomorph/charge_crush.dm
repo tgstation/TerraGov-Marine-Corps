@@ -270,6 +270,12 @@
 
 	if(charge_type & (CHARGE_BULL|CHARGE_BULL_HEADBUTT|CHARGE_BULL_GORE|CHARGE_BEHEMOTH) && !isliving(crushed))
 		do_stop_momentum()
+		if(charge_type & CHARGE_BEHEMOTH)
+			return COMPONENT_MOVABLE_PREBUMP_STOPPED
+		if(istype(crushed, /obj/structure/razorwire))
+			var/obj/structure/razorwire/crushed_wire = crushed
+			INVOKE_ASYNC(crushed_wire, TYPE_PROC_REF(/atom, post_crush_act), charger, src)
+			return COMPONENT_MOVABLE_PREBUMP_ENTANGLED
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
 	var/precrush = crushed.pre_crush_act(charger, src) //Negative values are codes. Positive ones are damage to deal.

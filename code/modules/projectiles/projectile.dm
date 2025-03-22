@@ -37,16 +37,15 @@
 	animate_movement = NO_STEPS
 	light_system = MOVABLE_LIGHT
 	light_range = 1.5
-	light_power = 2
+	light_power = 1
 	light_color = COLOR_VERY_SOFT_YELLOW
+	appearance_flags = KEEP_TOGETHER
 
 	///greyscale support
 	greyscale_config
 	greyscale_colors
 	///Any special effects applied to this projectile
 	var/projectile_behavior_flags = NONE
-	///Hit impact sound
-	var/hitsound
 	///The ammo data which holds most of the actual info
 	var/datum/ammo/ammo
 	///The bodypart you're trying to hit
@@ -355,11 +354,15 @@
 		if(ammo.bullet_color)
 			set_light_color(ammo.bullet_color)
 			set_light_on(TRUE)
+			update_appearance(UPDATE_OVERLAYS)
 	else
 		alpha = 64
 
 	START_PROCESSING(SSprojectiles, src) //If no hits on the first moves, enter the processing queue for next.
 
+/obj/projectile/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, icon_state, src, layer, reset_transform = FALSE)
 
 /obj/projectile/process()
 	if(QDELETED(src))

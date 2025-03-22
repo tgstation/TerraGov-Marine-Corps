@@ -230,6 +230,12 @@
 		current_type = current_type::parent_type
 	return current_type
 
+///returns the parent caste type for the given caste (e.g. bloodthirster would return base rav)
+/proc/get_parent_caste_type(datum/xeno_caste/root_type)
+	while(initial(root_type.parent_type) != /datum/xeno_caste)
+		root_type = root_type::parent_type
+	return root_type
+
 /// basetype = list(strain1, strain2)
 GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 /proc/init_glob_strain_list()
@@ -397,6 +403,14 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	// *** Boiler vars *** //
 	///When true the boiler gains speed and resets the duration on attack
 	var/steam_rush = FALSE
+
+	// *** Conqueror vars *** //
+	/// The amount of remaining health that Endurance has.
+	var/endurance_health = 1
+	/// The maximum amount of health that Endurance can have.
+	var/endurance_health_max = 1
+	/// Whether our Endurance has been broken, due to losing all of its health.
+	var/endurance_broken = FALSE
 
 	//Notification spam controls
 	var/recent_notice = 0

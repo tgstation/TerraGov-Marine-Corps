@@ -364,3 +364,124 @@
       Dragon Breath.
   - balance: Dragon's armor gain while using Dragon Breath has been decreased from
       15 to 10.
+2025-03-18:
+  Lumipharon:
+  - balance: Significantly nerfed mechs in campaign
+  TiviPlus:
+  - bugfix: fixed some UI and 516 issues
+  tyeagg:
+  - rscadd: more seamless looking blood decals
+  - rscadd: different crosshairs for some guns
+  - imageadd: new crosshair sprites for guns
+2025-03-19:
+  Lumipharon:
+  - balance: Nerfed tank autocannon and HE ammo, AP ammo slightly buffed
+  - bugfix: NPC's will no longer try to revive undefibbable patients
+  - bugfix: fixed NPC's not using guns
+  RipGrayson:
+  - rscadd: Added a multi-z test map.
+2025-03-20:
+  Apple-107:
+  - balance: Xenos now pick up jelly by default, and can activate it anytime (with
+      a channel) with use key or by clicking on themselves
+  Arturlang:
+  - rscadd: Cameras can now categorize people by role and the search input will now
+      also filter by role
+  Cheese:
+  - balance: Non-folding Plasteel cades can now be upgraded with metal, like metal
+      cades.
+  - rscadd: Only the actual hive leader can jack or capture alamo now, rather than
+      every T4. (The xeno at the top of the list in hive status is hive leader)
+  - balance: Dancer debuff scaling now also respects Shatter, Pyrofire, and Melting
+      debuffs.
+  Lewdcifer:
+  - bugfix: Fixes death timers for T4 strains.
+  Lumipharon:
+  - balance: Maw and Jaw structures now have a build limit of one each at any given
+      time
+  - qol: NPC's will stay buckled to medivac's and vehicles when not the driver
+  - qol: NPC's will no longer smash drop pods as obstacles
+  - balance: Weak explosions no longer damage weeds
+  - bugfix: fixed NPC's sometimes storing offhand placeholders
+  - qol: Added some more NPC hazard chat lines
+  Neocloudy:
+  - bugfix: Toggling round end sounds actually applies to round end sounds and not
+      just world rebooting sounds.
+  Runian:
+  - bugfix: You can no longer zap living beings that are incorporeal or have godmode.
+      (e.g. de-manifested Hivemind / flying Dragon).
+  TiviPlus:
+  - bugfix: fixed vents layering under the floor
+  - bugfix: Traps will now layer lower again
+  - bugfix: fixed screech being delayed by half a second
+  - bugfix: Openspace on multiz is unweedable
+  - bugfix: fixed some things like elevators screwing up rendering when changing z
+  - bugfix: The tram launches you through the windshield at mach 1 instead of mach
+      3
+  - bugfix: Probably fixed xeno wounds not layering properly in multiz
+  - balance: Falling down a zlevel will stun for 2 instead of 5 seconds per Z
+  breadhunt:
+  - rscdel: Removes flare launcher module
+  - rscadd: Adds grenade launcher module
+  - rscadd: Adds tanglefoot emitter module
+  - rscadd: Adds a tadpole-specific dropship fabricator for ease of use.
+  yyzsong:
+  - imageadd: glorp emoji
+2025-03-21:
+  Apple-107:
+  - rscadd: Tank Loaders now shout the ammo type when loaded ("HE, Up!")
+  - rscadd: Tank Gunners now shout when they are firing LTB ("On the way!")
+  Lumipharon:
+  - bugfix: Fixed some issues with NPC inventory management
+  Runian:
+  - bugfix: Dragon's Grab no longer permanently immobilizes marines that were failed
+      to be grabbed.
+  - admin: Player Panel now has Dragon as one of the Transformations.
+  TiviPlus:
+  - bugfix: mech no longer spams steps on tram movement
+  - bugfix: Mechs will no longer sparkle on spawn
+  - bugfix: partially fixed stairs being very cursed
+  - bugfix: fixed tank turret turning black on multiz maps
+  Tiviplus, Kuro, GregorMN:
+  - rscadd: Completely resprited mechs for xvh
+  - rscadd: Mechs now leave a wreck behidn when destroyed
+  - rscadd: Mechs can now mount "back weapons"
+  - bugfix: fixed hyperscale completely ignoring some color configs
+  - qol: New mecha boosting visual effects
+  - qol: Revamped the mech builder UI and made it much smaller
+  tyeagg:
+  - rscadd: emissives to projectiles and muzzle flashes
+  - imageadd: new muzzle flash and projectile sprites
+2025-03-22:
+  Lewdcifer:
+  - rscadd: Adds the Conqueror, a strain of the tier 4 caste, King.
+  - soundadd: Added various sound effects for the Conqueror.
+  - imageadd: Added various visuals for the Conqueror.
+  - balance: Bull is now immune to stuns, such as those of slugs, buckshot, and similar
+      sources.
+  - balance: As a tradeoff, the Bull can now be entangled in razorwire.
+  Lumipharon:
+  - rscadd: NPC's actually use their suit lights now
+  - rscadd: NPCs operate normally when doing suitable channeled actions
+  - rscadd: Added some more TGMC NPC presets
+  - rscadd: Improved the way NPC's escort things
+  RipGrayson:
+  - bugfix: Fixed an exploit with metal rods.
+  TiviPlus:
+  - qol: Attaching non-gun things now plays sounds
+  - bugfix: Fixed revolvers not playing their open sound
+  - bugfix: fixed projectiles trying to play a nonexistent sound constantly when they
+      hit an object
+  - bugfix: fixed a runtime with RR windup
+  - bugfix: fixed some issues with xenos when not using their own mob as eyes
+  - bugfix: fixed lift indicators not showing anything
+  - bugfix: fixed elevator control panels erroring sometimes when they shouldnt
+  - qol: AI can now hop between Z floors with a button
+  - bugfix: Standing on tank no longer lets you fly
+  - bugfix: Runners can no longer fly
+  - qol: look up/down should feel better to use
+  blackdav123:
+  - rscadd: Added a second Corporate Liaison slot to Nuclear War.
+  ivanmixo:
+  - spellcheck: You will no longer believe the lie that only drones can evolve into
+      Shrikes
