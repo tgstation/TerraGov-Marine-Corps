@@ -232,7 +232,25 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	desc = "This roll of cloth is made from only the finest chemicals and bunny rabbits."
 	singular_name = "cloth roll"
 	icon_state = "sheet-cloth"
+	
+/obj/item/stack/sheet/cloth/attack_self(mob/user)
+	. = ..()
+	if(LAZYLEN(recipes)==1)
+		create_object(user, recipes[1], 1)
 
+GLOBAL_LIST_INIT(cloth_recipes, list ( \
+	new/datum/stack_recipe("fabric curtains", /obj/structure/curtain/temple, 4, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF, skill_req = SKILL_CONSTRUCTION_METAL), \
+	))
+
+/obj/item/stack/sheet/cloth/get_main_recipes()
+	. = ..()
+	. += GLOB.cloth_recipes
+
+/obj/item/stack/sheet/cloth/five
+	amount = 5
+
+/obj/item/stack/sheet/cloth/large_stack
+	amount = 50
 
 /*
 * Cardboard

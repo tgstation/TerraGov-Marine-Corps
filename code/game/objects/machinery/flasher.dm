@@ -18,10 +18,24 @@
 	var/base_state = "mflash"
 
 /obj/machinery/flasher/cell1
-	name = "Cell 1 Flash"
+	name = "Containment Cell 1 Flash"
+	id = "Containment Cell 1"
 
 /obj/machinery/flasher/cell2
-	name = "Cell 2 Flash"
+	name = "Containment Cell 2 Flash"
+	id = "Containment Cell 2"
+
+/obj/machinery/flasher/brig/cell1
+	name = "Brig Cell 1 Flash"
+	id = "Brig Cell 1"
+
+/obj/machinery/flasher/brig/cell2
+	name = "Brig Cell 2 Flash"
+	id = "Brig Cell 2"
+
+/obj/machinery/flasher/brig/cell3
+	name = "Brig Cell 3 Flash"
+	id = "Brig Cell 3"
 
 /obj/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
 	name = "portable flasher"

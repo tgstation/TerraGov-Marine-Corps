@@ -1,6 +1,8 @@
 // points per minute
 #define DROPSHIP_POINT_RATE 5 * (GLOB.current_orbit/3)
 #define SUPPLY_POINT_RATE 5 * (GLOB.current_orbit/3)
+#define HUMAN_FACTION_MAX_POINTS 7500
+#define XENO_FACTION_MAX_POINTS 2500
 
 SUBSYSTEM_DEF(points)
 	name = "Points"

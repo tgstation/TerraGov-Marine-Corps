@@ -86,7 +86,7 @@
 		if(XENO_TIER_THREE)
 			return GLOB.xeno_types_tier_four + /datum/xeno_caste/hivemind
 		if(XENO_TIER_FOUR)
-			return list(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/king, /mob/living/carbon/xenomorph/shrike)
+			return list(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/king, /mob/living/carbon/xenomorph/shrike, /mob/living/carbon/xenomorph/dragon)
 
 
 ///Handles the evolution or devolution of the xenomorph

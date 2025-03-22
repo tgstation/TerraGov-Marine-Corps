@@ -14,6 +14,14 @@
 		'sound/effects/medcurtain1.ogg',
 		'sound/effects/medcurtain2.ogg',
 	)
+	var/stack_type = /obj/item/stack/sheet/mineral/plastic
+	var/destroyed_stack_amount = 4
+
+/obj/structure/curtain/deconstruct(disassembled = TRUE, mob/living/blame_mob)
+	if(stack_type)
+		if(destroyed_stack_amount)
+			new stack_type (loc, destroyed_stack_amount)
+	return ..()
 
 /obj/structure/curtain/open
 	icon_state = "medicalcurtain_open"
@@ -34,7 +42,7 @@
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	xeno_attacker.visible_message(span_danger("\The [xeno_attacker] pulls [src] down and slices it apart!"), \
 	span_danger("You pull the [src] down and rip it to shreds!"), null, 5)
-	qdel(src)
+	deconstruct(src)
 
 /obj/structure/curtain/proc/toggle()
 	opacity = !opacity
@@ -68,6 +76,7 @@
 	possiblesounds = list(
 		'sound/effects/clothcurtain.ogg',
 	)
+	stack_type = /obj/item/stack/sheet/cloth
 
 /obj/structure/curtain/open/shower
 	name = "shower curtain"
@@ -83,6 +92,7 @@
 	color = "#690000"
 	icon_state = "fabric_curtain_open"
 	alpha = 230
+	stack_type = /obj/item/stack/sheet/cloth
 
 /obj/structure/curtain/open/medical
 	name = "plastic curtain"

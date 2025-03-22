@@ -2335,9 +2335,7 @@
 /obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/box/monkeycubes,
-/obj/machinery/door_display/research_cell/cell{
-	id = "Shipside Containment Cell"
-	},
+/obj/machinery/door_display/research_cell/cell/cell1,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -7149,6 +7147,9 @@
 /obj/structure/table/mainship,
 /obj/machinery/recharger,
 /obj/item/card/id/captains_spare,
+/obj/machinery/door/window/secure/bridge{
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "gwS" = (
@@ -8043,6 +8044,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"hia" = (
+/obj/structure/largecrate/supply/supplies/plastic,
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
+	})
 "hid" = (
 /obj/machinery/light/mainship/small{
 	dir = 8
@@ -8311,12 +8318,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
 "hzx" = (
-/obj/machinery/door/airlock/mainship/research/glass/cell/cell1{
-	id = "Shipside Containment Cell"
-	},
-/obj/machinery/door/poddoor/shutters/mainship/containment/cell1{
-	id = "Shipside Containment Cell"
-	},
+/obj/machinery/door/airlock/mainship/research/glass/cell/cell1,
+/obj/machinery/door/poddoor/shutters/mainship/containment/cell1,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
@@ -19450,6 +19453,12 @@
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
 	})
+"rNf" = (
+/obj/structure/largecrate/supply/supplies/cloth,
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
+	})
 "rNt" = (
 /obj/machinery/door/poddoor/mainship/mech,
 /obj/structure/cable,
@@ -23452,8 +23461,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
 "vzE" = (
-/obj/machinery/flasher{
-	id = "Containment Cell 3";
+/obj/machinery/flasher/cell1{
 	pixel_y = 30
 	},
 /turf/open/floor/mainship/research/containment/floor2{
@@ -42557,7 +42565,7 @@ fmE
 urx
 urx
 qpP
-izo
+rNf
 blT
 qjj
 tAl
@@ -42799,7 +42807,7 @@ iAm
 urx
 urx
 izo
-izo
+hia
 blT
 bQE
 rCZ

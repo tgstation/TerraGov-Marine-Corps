@@ -250,6 +250,18 @@
 	name = "\improper Containment Cell 2"
 	id = "Containment Cell 2"
 
+/obj/machinery/door/poddoor/shutters/mainship/cell/brig/cell1
+	name = "\improper Brig Cell 1"
+	id = "Brig Cell 1"
+
+/obj/machinery/door/poddoor/shutters/mainship/cell/brig/cell2
+	name = "\improper Brig Cell 2"
+	id = "Brig Cell 2"
+
+/obj/machinery/door/poddoor/shutters/mainship/cell/brig/cell3
+	name = "\improper Brig Cell 3"
+	id = "Brig Cell 3"
+
 /// urban shutters
 /obj/machinery/door/poddoor/shutters/urban
 	icon = 'icons/obj/structures/prop/urban/urbanshutters.dmi'

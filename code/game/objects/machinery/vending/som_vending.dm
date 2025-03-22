@@ -32,6 +32,9 @@
 			/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag = 10,
 			/obj/item/weapon/gun/rifle/icc_assaultcarbine = -1,
 			/obj/item/ammo_magazine/rifle/icc_battlecarbine = -1,
+			/obj/item/ammo_magazine/rifle/som_big = -1,
+			/obj/item/ammo_magazine/rifle/som_big/incendiary = 5,
+			/obj/item/ammo_magazine/rifle/som_big/anti_armour = 5,
 		),
 		"Energy Weapons" = list(
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger = -1,

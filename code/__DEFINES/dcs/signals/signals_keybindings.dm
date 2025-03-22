@@ -346,3 +346,10 @@
 #define COMSIG_XENOABILITY_BANELING_SPAWN_POD "xenoability_baneling_spawn_pod"
 #define COMSIG_XENOABILITY_RESIN_SALVE "xenoability_resin_salve"
 #define COMSIG_XENOABILITY_PSYCHIC_INFLUENCE "xenoability_psychic_influence"
+
+#define COMSIG_XENOABILITY_BACKHAND "xenoability_backhand"
+#define COMSIG_XENOABILITY_FLY "xenoability_fly"
+#define COMSIG_XENOABILITY_DRAGON_BREATH "xenoability_dragon_breath"
+#define COMSIG_XENOABILITY_WIND_CURRENT "xenoability_wind_current"
+#define COMSIG_XENOABILITY_GRAB "xenoability_grab"
+#define COMSIG_XENOABILITY_SCORCHED_LAND "xenoability_scorched_land"
