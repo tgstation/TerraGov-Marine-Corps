@@ -19,9 +19,9 @@
  * Fast mechs. like from armored core
  */
 /obj/vehicle/sealed/mecha/combat/greyscale/core
+	boost_icon = 'icons/mecha/mecha_core_ability_overlays.dmi'
 	pixel_x = -32
 	pixel_y = -5
-	use_builtin_boost_overlay = FALSE
 	use_damage_particles = FALSE
 	equip_by_category = list(
 		MECHA_L_ARM = null,

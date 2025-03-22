@@ -1,3 +1,21 @@
+/particles/mech_land
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "smoke3"
+	width = 750
+	height = 750
+	count = 25
+	spawning = 25
+	lifespan = 10
+	fade = 25
+	gradient = list("#BA9F6D", "#808080", "#FFFFFF")
+	color = generator(GEN_NUM, 0, 0.25)
+	color_change = generator(GEN_NUM, 0.08, 0.07)
+	velocity = generator(GEN_CIRCLE, 5, 15)
+	rotation = generator(GEN_NUM, -45, 45)
+	scale = 0.1
+	grow = 0.02
+	friction = 0.25
+
 /***************** WELCOME TO MECHA.DM, ENJOY YOUR STAY *****************/
 
 /**
@@ -24,7 +42,7 @@
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_EXCEPTIONALLY_STRONG
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE|PORTAL_IMMUNE|PLASMACUTTER_IMMUNE
-	atom_flags = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION|CRITICAL_ATOM
+	atom_flags = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION|CRITICAL_ATOM|DIRLOCK
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	max_integrity = 300
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 100, ACID = 100)
@@ -631,6 +649,11 @@
 /obj/vehicle/sealed/mecha/proc/on_jump_land()
 	SIGNAL_HANDLER
 	playsound(loc, 'sound/effects/alien/behemoth/stomp.ogg', 30, TRUE)
+	var/obj/effect/abstract/particle_holder/landing_particles
+	var/turf/current_turf = get_turf(src)
+	landing_particles = new(current_turf, /particles/mech_land)
+	landing_particles.layer = layer - 0.01
+	QDEL_IN(landing_particles, 1 SECONDS)
 
 /////////////////////////
 ////// Access stuff /////
