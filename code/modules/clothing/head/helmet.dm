@@ -209,6 +209,11 @@
 		M = mutable_appearance('icons/mob/modular/modular_helmet_storage.dmi', M.icon_state)
 		standing.overlays += M
 
+/obj/item/clothing/head/helmet/marine/stolen
+	name = "\improper stolen M10 pattern helmet"
+	desc = "A stolen M10 pattern marine helmet, likely from fallen colony-based marines or old battles. It has been painted black & repurposed for use by the Sons of Mars."
+	icon_state = "k_helmet"
+
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
