@@ -96,7 +96,7 @@
 // ***************************************
 // *********** Parent Ability
 // ***************************************
-#define WARRIOR_IMPACT_DAMAGE_MULTIPLIER 0.5
+#define WARRIOR_IMPACT_DAMAGE_MULTIPLIER 1.25
 #define WARRIOR_DISPLACE_KNOCKDOWN 0.4 SECONDS
 
 /datum/action/ability/activable/xeno/warrior/use_ability(atom/A)
@@ -458,6 +458,8 @@
 #define WARRIOR_PUNCH_GRAPPLED_PARALYZE 0.5 SECONDS
 #define WARRIOR_PUNCH_KNOCKBACK_DISTANCE 1 // in tiles
 #define WARRIOR_PUNCH_KNOCKBACK_SPEED 1
+// Define a new constant for the punch damage multiplier
+#define WARRIOR_PUNCH_DAMAGE_MULTIPLIER 1.5 // Adjust this value to increase the damage
 
 /datum/action/ability/activable/xeno/warrior/punch
 	name = "Punch"
@@ -509,15 +511,16 @@
 	do_ability(A)
 
 /// Does the ability. Exists because Punch is the parent of another ability, so this lets us separate functionality and avoid repeating a few lines of code.
-/datum/action/ability/activable/xeno/warrior/punch/proc/do_ability(atom/A)
-	var/punch_damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier
-	var/datum/action/ability/xeno_action/empower/empower_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/empower]
-	if(empower_action?.check_empower(A))
-		punch_damage *= WARRIOR_PUNCH_EMPOWER_MULTIPLIER
-	if(!A.punch_act(xeno_owner, punch_damage))
-		return fail_activate()
-	succeed_activate()
-	add_cooldown()
+	/datum/action/ability/activable/xeno/warrior/punch/proc/do_ability(atom/A)
+    // Apply the punch damage multiplier
+    var/punch_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * WARRIOR_PUNCH_DAMAGE_MULTIPLIER
+    var/datum/action/ability/xeno_action/empower/empower_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/empower]
+    if(empower_action?.check_empower(A))
+        punch_damage *= WARRIOR_PUNCH_EMPOWER_MULTIPLIER
+    if(!A.punch_act(xeno_owner, punch_damage))
+        return fail_activate()
+    succeed_activate()
+    add_cooldown()
 
 /datum/action/ability/activable/xeno/warrior/punch/ai_should_start_consider()
 	return TRUE
