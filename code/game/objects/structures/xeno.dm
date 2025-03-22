@@ -365,13 +365,9 @@
 ///////////////////////
 
 /obj/structure/xeno/acid_mine
-	///The name of the mine, when its created
 	name = "acid mine"
-	///Desc of the mine
 	desc = "A weird bulb, filled with acid."
-	///Icon file of the mine
 	icon = 'icons/obj/items/mines.dmi'
-	///Icon state of the mine
 	icon_state = "acid_mine"
 	density = FALSE
 	opacity = FALSE
