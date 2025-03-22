@@ -309,9 +309,7 @@
 		return FALSE
 	if(!projectiles_cache)
 		return FALSE
-	if(user.do_actions)
-		return FALSE
-	if(user && !do_after(user, rearm_time, IGNORE_HELD_ITEM|IGNORE_TARGET_LOC_CHANGE, chassis, BUSY_ICON_GENERIC, extra_checks=CALLBACK(src, PROC_REF(can_keep_reloading), projectiles)))
+	if(!do_after(user, rearm_time, IGNORE_HELD_ITEM|IGNORE_TARGET_LOC_CHANGE, chassis, BUSY_ICON_GENERIC, extra_checks=CALLBACK(src, PROC_REF(can_keep_reloading), projectiles)))
 		return FALSE
 	return rearm()
 
