@@ -137,6 +137,12 @@ GLOBAL_LIST_INIT(plastic_recipes, list ( \
 /obj/item/stack/sheet/mineral/plastic/get_main_recipes()
 	. = ..()
 	. += GLOB.plastic_recipes
+	
+/obj/item/stack/sheet/mineral/plastic/five
+	amount = 5
+
+/obj/item/stack/sheet/mineral/plastic/large_stack
+	amount = 50
 
 /obj/item/stack/sheet/mineral/plastic/cyborg
 	name = "plastic sheets"

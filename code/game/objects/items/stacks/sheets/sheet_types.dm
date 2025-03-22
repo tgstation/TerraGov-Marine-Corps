@@ -241,6 +241,12 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	. = ..()
 	. += GLOB.cloth_recipes
 
+/obj/item/stack/sheet/cloth/five
+	amount = 5
+
+/obj/item/stack/sheet/cloth/large_stack
+	amount = 50
+
 /*
 * Cardboard
 */
