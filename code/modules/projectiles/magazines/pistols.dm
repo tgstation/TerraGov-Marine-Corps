@@ -293,3 +293,10 @@
 	icon_state = "c96"
 	icon_state_mini = "mag_pistol_normal"
 	max_rounds = 15
+
+/obj/item/ammo_magazine/pistol/xlock
+	name = "\improper Xlock magazine"
+	desc = "You shoulnd't be seeing this."
+	default_ammo = /datum/ammo/bullet/pistol/xlock
+	caliber = CALIBER_9X19
+	max_rounds = INFINITY
