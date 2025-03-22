@@ -64,7 +64,10 @@
 		"Shotgun" = list(
 			/obj/item/ammo_magazine/shotgun/buckshot = -1,
 			/obj/item/ammo_magazine/shotgun = -1,
-			/obj/item/ammo_magazine/shotgun/flechette = -1,
+			/obj/item/ammo_magazine/shotgun/heavy_buckshot = -1,
+			/obj/item/ammo_magazine/shotgun/heavy_flechette = -1,
+			/obj/item/ammo_magazine/shotgun/barrikada = -1,
+			/obj/item/weapon/gun/shotgun/pump/sh23/som = -1,
 			/obj/item/weapon/gun/shotgun/som = -1,
 			/obj/item/weapon/gun/shotgun/som/burst = 1,
 			/obj/item/weapon/gun/shotgun/double/sawn = 5,
