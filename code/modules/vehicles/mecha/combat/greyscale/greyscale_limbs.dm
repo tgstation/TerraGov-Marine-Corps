@@ -131,7 +131,7 @@
 			percent = owner.obj_integrity / owner.max_integrity
 		if(percent > 0.75)
 			return
-		var/dmg_percent = CEILING(percent, 0.25)*100
+		var/dmg_percent = max(CEILING(percent, 0.25)*100, 25)
 		. += iconstate2appearance(greyscale_type::icon_file, prefix+icon_state+"[dmg_percent]")
 
 ///intercepts damage intended for the mech and applies it to this limb when needed
@@ -232,8 +232,14 @@
 		emissive_appearance(visor_icon, prefix+visor_icon_state, owner)
 	)
 	if(has_damage_overlays)
-		var/percent = (part_health / initial(part_health))
-		var/dmg_percent = FLOOR(percent, 0.25)*100
+		var/percent
+		if(initial(part_health))
+			percent = (part_health / initial(part_health))
+		else
+			percent = owner.obj_integrity / owner.max_integrity
+		if(percent > 0.75)
+			return
+		var/dmg_percent = max(CEILING(percent, 0.25)*100, 25)
 		. += iconstate2appearance(greyscale_type::icon_file, prefix+icon_state+"[dmg_percent]")
 
 /datum/mech_limb/head/disable()
@@ -417,12 +423,16 @@
 	if(!owner.is_wreck && !owner.swapped_to_backweapons && (MECHA_R_BACK in owner.equip_by_category))
 		prefix += "fire"
 	. += iconstate2appearance(overlay_icon, prefix+icon_state)
-	if(has_damage_overlays && initial(part_health))
-		var/percent = (part_health / initial(part_health))
+	if(has_damage_overlays)
+		var/percent
+		if(initial(part_health))
+			percent = (part_health / initial(part_health))
+		else
+			percent = owner.obj_integrity / owner.max_integrity
 		if(percent > 0.75)
 			return
-		var/dmg_percent = CEILING(percent, 0.25)*100
-		. += iconstate2appearance(greyscale_type::icon_file, prefix+icon_state+"[dmg_percent]")
+		var/dmg_percent = max(CEILING(percent, 0.25)*100, 25)
+		. += iconstate2appearance(greyscale_type::icon_file, prefix+icon_state+"arm"+"[dmg_percent]")
 
 /datum/mech_limb/arm/recon
 	part_health = 100
