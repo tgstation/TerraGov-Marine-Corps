@@ -562,6 +562,7 @@
 			/obj/item/storage/belt/knifepouch = -1,
 			/obj/item/storage/holster/blade/machete/full = -1,
 			/obj/item/storage/holster/belt/pistol/m4a3/som = -1,
+			/obj/item/belt_harness = -1,
 			/obj/item/storage/belt/shotgun/som = -1,
 			/obj/item/storage/belt/sparepouch/som = -1,
 			/obj/item/storage/belt/marine/som = -1,
