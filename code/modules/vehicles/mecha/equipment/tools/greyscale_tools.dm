@@ -59,7 +59,7 @@
 	rechargerate = 0
 	slowdown = 0
 	max_fuel = 0
-	weight = 150
+	weight = 180
 	/// cell type to attach. this does the actual passive energy regen, if we have it
 	var/cell_type = /obj/item/cell/mecha
 
@@ -75,7 +75,7 @@
 	name = "fusion engine"
 	desc = "A highly experimental phoron fusion core. Optimized for energy generation."
 	icon_state = "phoron_engine_adv"
-	weight = 180
+	weight = 150
 	cell_type = /obj/item/cell/mecha/medium
 
 /obj/item/mecha_parts/mecha_equipment/melee_core
