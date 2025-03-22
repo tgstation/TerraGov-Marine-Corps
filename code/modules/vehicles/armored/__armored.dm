@@ -809,10 +809,10 @@
 	desc = "ow."
 	icon = 'icons/obj/armored/3x3/tank_damage.dmi' //set by owner
 	icon_state = "null" // set on demand
-	vis_flags = VIS_INHERIT_DIR
+	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_LAYER|VIS_INHERIT_ID|VIS_INHERIT_PLANE
 
 /atom/movable/vis_obj/tank_gun
 	name = "Tank weapon"
-	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_LAYER|VIS_INHERIT_ID
+	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_LAYER|VIS_INHERIT_ID|VIS_INHERIT_PLANE
 	pixel_x = -70
 	pixel_y = -69
