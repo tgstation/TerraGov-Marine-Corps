@@ -14,7 +14,7 @@
 	melee_damage = 30
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = 0
 
 	// *** Plasma *** //
 	plasma_max = 1000
@@ -31,7 +31,7 @@
 	death_evolution_delay = 15 MINUTES
 
 	// *** Flags *** //
-	caste_flags = CASTE_FIRE_IMMUNE|CASTE_IS_INTELLIGENT|CASTE_INSTANT_EVOLUTION|CASTE_LEADER_TYPE
+	caste_flags = CASTE_FIRE_IMMUNE|CASTE_IS_INTELLIGENT|CASTE_INSTANT_EVOLUTION|CASTE_LEADER_TYPE|CASTE_STAGGER_RESISTANT
 	can_flags = CASTE_CAN_BE_LEADER|CASTE_CAN_CORRUPT_GENERATOR
 	caste_traits = list(TRAIT_STAGGERIMMUNE, TRAIT_SLOWDOWNIMMUNE, TRAIT_STUNIMMUNE)
 
@@ -49,6 +49,7 @@
 		/datum/action/ability/xeno_action/psychic_whisper,
 		/datum/action/ability/xeno_action/psychic_influence,
 		/datum/action/ability/activable/xeno/impregnate,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain/free,
 		/datum/action/ability/xeno_action/call_of_the_burrowed/free,

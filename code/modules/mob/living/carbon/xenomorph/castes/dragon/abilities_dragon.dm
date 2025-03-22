@@ -258,7 +258,7 @@
 // Performs various landing effects.
 /datum/action/ability/activable/xeno/fly/proc/perform_landing_effects(list/turf/affected_turfs)
 	new /obj/effect/temp_visual/dragon/land(get_turf(xeno_owner))
-	var/damage = 100 * xeno_owner.xeno_melee_damage_modifier
+	var/damage = 75 * xeno_owner.xeno_melee_damage_modifier
 	var/list/obj/vehicle/hit_vehicles = list()
 	for(var/turf/affected_turf AS in affected_turfs)
 		affected_turf.Shake(duration = 0.2 SECONDS)
