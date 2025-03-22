@@ -1,0 +1,4 @@
+author: "Apple-107"
+delete-after: True
+changes:
+  - rscadd: "Tank and APC armaments that weren't available in valhalla vendors are now available."
