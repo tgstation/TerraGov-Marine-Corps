@@ -14,7 +14,7 @@
 	melee_damage = 30
 
 	// *** Speed *** //
-	speed = -0.1
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 1000
@@ -36,7 +36,7 @@
 	caste_traits = list(TRAIT_STAGGERIMMUNE, TRAIT_SLOWDOWNIMMUNE, TRAIT_STUNIMMUNE)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 60, BIO = 75, FIRE = 200, ACID = 75)
+	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 60, BOMB = 50, BIO = 75, FIRE = 200, ACID = 75)
 
 	// *** Sunder *** //
 	sunder_recover = 1
@@ -51,7 +51,6 @@
 		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain/free,
-		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/xeno_action/call_of_the_burrowed/free,
 		/datum/action/ability/activable/xeno/backhand,
 		/datum/action/ability/activable/xeno/backhand/dragon_breath,
