@@ -117,6 +117,20 @@
 	icon_file = 'icons/mob/modular/syndicate_hardsuits.dmi'
 	json_config = 'code/datums/greyscale/json_configs/exoskeleton.json'
 
+//VSD variant for hardsuits! Very fat hardsuits!
+/datum/greyscale_config/vsd_hardsuit
+	prefix = "superheavy_"
+	icon_file = 'icons/mob/modular/vsd_hardsuit.dmi'
+	json_config = 'code/datums/greyscale/json_configs/vsd_hardsuit.json'
+
+/datum/greyscale_config/vsd_hardsuit/alt
+	prefix = "superheavy_alt_"
+
+/datum/greyscale_config/vsd_hardsuit/alt_two
+	prefix = "superheavy_alt_two_"
+
+/datum/greyscale_config/vsd_hardsuit/exoskeleton
+
 //Mark 2
 
 /datum/greyscale_config/armor_mk2
