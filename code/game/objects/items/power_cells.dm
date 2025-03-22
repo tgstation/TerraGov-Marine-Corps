@@ -363,11 +363,11 @@
 	charge_overlay = null
 	self_recharge = TRUE
 	maxcharge = 1000
-	charge_amount = 150
+	charge_amount = 200
 
 /obj/item/cell/mecha/medium
 	name = "medium radiotope cell"
-	maxcharge = 650
+	maxcharge = 1400
 	charge_amount = 175
 
 /obj/item/cell/night_vision_battery

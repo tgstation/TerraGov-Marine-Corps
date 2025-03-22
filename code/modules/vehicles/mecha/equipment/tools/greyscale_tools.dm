@@ -17,7 +17,7 @@
 	/// how much energy we use per step when boosting
 	var/boost_consumption = 55
 	///cooldown between dash activations
-	var/dash_cooldown = 5 SECONDS
+	var/dash_cooldown = 4 SECONDS
 
 /obj/item/mecha_parts/mecha_equipment/armor/booster/attach(obj/vehicle/sealed/mecha/M, attach_right)
 	. = ..()
@@ -46,7 +46,7 @@
 	protect_name = "Lightweight Booster"
 	weight = 45
 	dash_consumption = 300
-	speed_mod = 0.7
+	speed_mod = 0.5
 	dash_range = 5
 	boost_consumption = 35
 	dash_cooldown = 7 SECONDS
@@ -75,7 +75,7 @@
 	name = "fusion engine"
 	desc = "A highly experimental phoron fusion core. Optimized for energy generation."
 	icon_state = "phoron_engine_adv"
-	weight = 150
+	weight = 180
 	cell_type = /obj/item/cell/mecha/medium
 
 /obj/item/mecha_parts/mecha_equipment/melee_core
