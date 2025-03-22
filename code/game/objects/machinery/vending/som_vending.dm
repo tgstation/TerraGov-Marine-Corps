@@ -479,6 +479,7 @@
 			/obj/item/clothing/head/helmet/marine/icc = -1,
 			/obj/item/clothing/head/helmet/marine/icc/guard = -1,
 			/obj/item/clothing/head/helmet/marine/icc/guard/heavy = -1,
+			/obj/item/clothing/head/helmet/marine/stolen = -1,
 		),
 		"Combat Drone" = list(
 			/obj/item/clothing/suit/modular/robot/light = -1,
