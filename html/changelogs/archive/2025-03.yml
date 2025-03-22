@@ -452,3 +452,36 @@
   tyeagg:
   - rscadd: emissives to projectiles and muzzle flashes
   - imageadd: new muzzle flash and projectile sprites
+2025-03-22:
+  Lewdcifer:
+  - rscadd: Adds the Conqueror, a strain of the tier 4 caste, King.
+  - soundadd: Added various sound effects for the Conqueror.
+  - imageadd: Added various visuals for the Conqueror.
+  - balance: Bull is now immune to stuns, such as those of slugs, buckshot, and similar
+      sources.
+  - balance: As a tradeoff, the Bull can now be entangled in razorwire.
+  Lumipharon:
+  - rscadd: NPC's actually use their suit lights now
+  - rscadd: NPCs operate normally when doing suitable channeled actions
+  - rscadd: Added some more TGMC NPC presets
+  - rscadd: Improved the way NPC's escort things
+  RipGrayson:
+  - bugfix: Fixed an exploit with metal rods.
+  TiviPlus:
+  - qol: Attaching non-gun things now plays sounds
+  - bugfix: Fixed revolvers not playing their open sound
+  - bugfix: fixed projectiles trying to play a nonexistent sound constantly when they
+      hit an object
+  - bugfix: fixed a runtime with RR windup
+  - bugfix: fixed some issues with xenos when not using their own mob as eyes
+  - bugfix: fixed lift indicators not showing anything
+  - bugfix: fixed elevator control panels erroring sometimes when they shouldnt
+  - qol: AI can now hop between Z floors with a button
+  - bugfix: Standing on tank no longer lets you fly
+  - bugfix: Runners can no longer fly
+  - qol: look up/down should feel better to use
+  blackdav123:
+  - rscadd: Added a second Corporate Liaison slot to Nuclear War.
+  ivanmixo:
+  - spellcheck: You will no longer believe the lie that only drones can evolve into
+      Shrikes
