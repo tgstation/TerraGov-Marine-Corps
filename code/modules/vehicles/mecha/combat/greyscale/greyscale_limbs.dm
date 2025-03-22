@@ -112,13 +112,12 @@
 
 /// Returns an overlay or list of overlays to use on the mech
 /datum/mech_limb/proc/get_overlays()
+	if(disabled && !has_destroyed_iconstate)
+		return null
 	. = list()
 	var/prefix = ""
 	if(owner.is_wreck)
 		prefix = "d_"
-	else if(disabled)
-		if(!has_destroyed_iconstate)
-			return null
 	else if (owner.leg_overload_mode && has_boosting_state)
 		prefix = "b_"
 
@@ -216,13 +215,12 @@
 	visor_icon = SSgreyscale.GetColoredIconByType(visor_config, visor_color)
 
 /datum/mech_limb/head/get_overlays()
+	if(disabled && !has_destroyed_iconstate)
+		return null
 	. = list()
 	var/prefix = ""
 	if(owner.is_wreck)
 		prefix = "d_"
-	else if(disabled)
-		if(!has_damage_overlays)
-			return null
 	else if(owner.leg_overload_mode && has_boosting_state)
 		prefix = "b_"
 
@@ -411,13 +409,12 @@
 	return ..()
 
 /datum/mech_limb/arm/get_overlays()
+	if(disabled && !has_destroyed_iconstate)
+		return null
 	. = list()
 	var/prefix = ""
 	if(owner.is_wreck)
 		prefix = "d_"
-	else if(disabled)
-		if(!has_destroyed_iconstate)
-			return null
 	else if (owner.leg_overload_mode && has_boosting_state)
 		prefix = "b_"
 	if(!owner.is_wreck && !owner.swapped_to_backweapons && (MECHA_R_BACK in owner.equip_by_category))
