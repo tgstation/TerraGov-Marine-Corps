@@ -37,6 +37,13 @@
 	keybind_signal = COMSIG_MECHABILITY_TOGGLE_ZOOM
 	hotkey_keys = list("Q")
 
+/datum/keybinding/mecha/mech_assault_armor
+	name = "mech_assault_armor"
+	full_name = "Mecha Assault Armor"
+	description = "Activate Mecha Assault armor"
+	keybind_signal = COMSIG_MECHABILITY_ASSAULT_ARMOR
+	hotkey_keys = list("Q")
+
 /datum/keybinding/mecha/skyfall
 	name = "mech_skyfall"
 	full_name = "Mecha Skyfall"
