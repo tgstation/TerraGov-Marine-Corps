@@ -1268,6 +1268,10 @@
 	dir = 4
 	},
 /area/antag_ship/clf_base/hallways/inside)
+"hT" = (
+/obj/structure/largecrate/supply/supplies/cloth,
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/warehouse)
 "hZ" = (
 /obj/structure/table/black,
 /obj/machinery/computer/security/som_mainship,
@@ -3284,6 +3288,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/preparation)
+"rC" = (
+/obj/structure/largecrate/supply/supplies/cloth,
+/turf/open/floor/plating,
+/area/antag_ship/som/hangar)
 "rD" = (
 /obj/machinery/door/poddoor/mainship/mech{
 	id = "mech_shutterssom"
@@ -3484,6 +3492,10 @@
 /obj/effect/landmark/start/latejoinmoff,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/transport)
+"sJ" = (
+/obj/structure/largecrate/supply/supplies/cloth,
+/turf/open/floor/plating/ground/dirt,
+/area/antag_ship/clf_base/hallways/inside)
 "sN" = (
 /obj/structure/table/mainship,
 /obj/item/flashlight/lamp/green,
@@ -3817,6 +3829,10 @@
 	dir = 10
 	},
 /area/antag_ship/clf_base/hallways/outside)
+"uz" = (
+/obj/structure/largecrate/supply/supplies/plastic,
+/turf/open/floor/plating/ground/dirt,
+/area/antag_ship/clf_base/hallways/inside)
 "uA" = (
 /obj/machinery/computer/camera_advanced/overwatch/som/xray{
 	req_access = list(204)
@@ -3880,6 +3896,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
+"uT" = (
+/obj/structure/largecrate/supply/supplies/plastic,
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/warehouse)
 "uU" = (
 /obj/effect/turf_decal/trimline/dark_blue/line,
 /obj/structure/cable,
@@ -5381,6 +5401,10 @@
 	equipment_offset_y = 25
 	},
 /turf/closed/wall/mainship/outer/canterbury,
+/area/antag_ship/som/hangar)
+"De" = (
+/obj/structure/largecrate/supply/supplies/plastic,
+/turf/open/floor/plating,
 /area/antag_ship/som/hangar)
 "Df" = (
 /obj/structure/bed/chair{
@@ -11903,8 +11927,8 @@ zU
 zU
 rS
 bZ
-YD
-YD
+De
+rC
 CZ
 uW
 YD
@@ -18172,7 +18196,7 @@ lH
 aj
 Ml
 Aa
-GN
+sJ
 uj
 GN
 aF
@@ -18267,7 +18291,7 @@ Cd
 Ml
 Ml
 Aa
-GN
+uz
 GN
 GN
 aF
@@ -20112,8 +20136,8 @@ qE
 IH
 bb
 Oo
-LO
-LO
+uT
+hT
 LO
 yn
 eh

@@ -8044,6 +8044,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"hia" = (
+/obj/structure/largecrate/supply/supplies/plastic,
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
+	})
 "hid" = (
 /obj/machinery/light/mainship/small{
 	dir = 8
@@ -19446,6 +19452,12 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
+	})
+"rNf" = (
+/obj/structure/largecrate/supply/supplies/cloth,
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
 	})
 "rNt" = (
 /obj/machinery/door/poddoor/mainship/mech,
@@ -42553,7 +42565,7 @@ fmE
 urx
 urx
 qpP
-izo
+rNf
 blT
 qjj
 tAl
@@ -42795,7 +42807,7 @@ iAm
 urx
 urx
 izo
-izo
+hia
 blT
 bQE
 rCZ
