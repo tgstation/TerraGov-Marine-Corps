@@ -233,6 +233,13 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	singular_name = "cloth roll"
 	icon_state = "sheet-cloth"
 
+GLOBAL_LIST_INIT(cloth_recipes, list ( \
+	new/datum/stack_recipe("fabric curtains", /obj/structure/curtain/temple, 4, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF, skill_req = SKILL_CONSTRUCTION_METAL), \
+	))
+
+/obj/item/stack/sheet/cloth/get_main_recipes()
+	. = ..()
+	. += GLOB.cloth_recipes
 
 /*
 * Cardboard
