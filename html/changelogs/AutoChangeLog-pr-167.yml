@@ -1,0 +1,6 @@
+author: "W0LF-101"
+delete-after: True
+changes:
+  - rscadd: "SH-23 to SOM Vendor"
+  - rscadd: "Belt Harness to SOM Vendor"
+  - bugfix: "Fixed misc sprites, we were missing some back sprites for some reason."
