@@ -24,6 +24,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/stairs/multiz, 0)
 		force_open_above()
 		build_signal_listener()
 	update_surrounding()
+	var/turf/open/openspace/T = get_step_multiz(get_turf(src), UP)
+	if(T && istype(T, /turf/open/openspace))
+		SSminimaps.add_marker(T, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "stairs_down", MINIMAP_LABELS_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "stairs_up", MINIMAP_LABELS_LAYER))
 
 	var/static/list/loc_connections = list(
 		COMSIG_ATOM_EXIT = PROC_REF(on_exit),
