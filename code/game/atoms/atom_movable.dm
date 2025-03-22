@@ -576,10 +576,6 @@
 	var/turf/old_turf = get_turf(old_loc)
 	var/turf/new_turf = get_turf(src)
 
-	if(old_turf?.z != new_turf?.z)
-		var/same_z_layer = (GET_TURF_PLANE_OFFSET(old_turf) == GET_TURF_PLANE_OFFSET(new_turf))
-		on_changed_z_level(old_turf, new_turf, same_z_layer)
-
 	if(HAS_SPATIAL_GRID_CONTENTS(src))
 		if(old_turf && new_turf && (old_turf.z != new_turf.z \
 			|| ROUND_UP(old_turf.x / SPATIAL_GRID_CELLSIZE) != ROUND_UP(new_turf.x / SPATIAL_GRID_CELLSIZE) \
@@ -638,6 +634,11 @@
 				oldloc.Exited(src, movement_dir)
 				if(old_area && old_area != destarea)
 					old_area.Exited(src, movement_dir)
+			var/turf/oldturf = get_turf(oldloc)
+			var/turf/destturf = get_turf(destination)
+			if(oldturf?.z != destturf?.z)
+				var/same_z_layer = (GET_TURF_PLANE_OFFSET(oldturf) == GET_TURF_PLANE_OFFSET(destturf))
+				on_changed_z_level(oldturf, destturf, same_z_layer)
 			destination.Entered(src, oldloc)
 			if(destarea && old_area != destarea)
 				destarea.Entered(src, oldloc)
