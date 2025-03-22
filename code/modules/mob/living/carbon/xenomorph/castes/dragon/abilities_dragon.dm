@@ -175,6 +175,10 @@
 			if(!silent)
 				xeno_owner.balloon_alert(xeno_owner, "already landing")
 			return FALSE
+	if(xeno_owner.eaten_mob)
+		if(!silent)
+			to_chat(xeno_owner, span_warning("Can't take off with someone inside!"))
+			return FALSE
 	if(COOLDOWN_TIMELEFT(src, animation_cooldown))
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "already lifting")
