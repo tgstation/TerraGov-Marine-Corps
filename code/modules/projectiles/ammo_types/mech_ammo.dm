@@ -29,12 +29,12 @@
 */
 /datum/ammo/rocket/mech
 	name = "large high-explosive rocket"
-	damage = 75
-	penetration = 50
+	damage = 10
+	penetration = 30
 	max_range = 30
 
 /datum/ammo/rocket/mech/drop_nade(turf/T)
-	explosion(T, 0, 0, 5, 0, 5, explosion_cause=src)
+	explosion(T, 0, 2, 4, 0, 0, explosion_cause=src)
 
 /*
 //================================================
@@ -72,7 +72,7 @@
 
 /datum/ammo/bullet/rifle/mech
 	name = "super-heavy rifle bullet"
-	damage = 30
+	damage = 35
 	penetration = 10
 	sundering = 1
 	damage_falloff = 0.2
@@ -88,9 +88,10 @@
 
 /datum/ammo/bullet/smg/mech
 	name = "super-heavy submachinegun bullet"
-	damage = 20
+	damage = 25
 	sundering = 0.5
 	penetration = 5
+	damage_falloff = 0.4
 
 /datum/ammo/bullet/shotgun/mech
 	name = "super-heavy shotgun buckshot shell"
@@ -104,14 +105,14 @@
 	max_range = 10
 	sundering = 0
 	penetration = 15
-	damage = 50
+	damage = 75
 	damage_falloff = 10
 
 /datum/ammo/bullet/shotgun/mech/spread
 	name = "super-heavy additional buckshot"
 	icon_state = "buckshot"
 	max_range = 10
-	damage = 50
+	damage = 60
 	sundering = 0
 	penetration = 15
 	damage_falloff = 10

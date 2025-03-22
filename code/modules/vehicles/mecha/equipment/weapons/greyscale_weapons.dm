@@ -82,11 +82,12 @@
 	ammotype = /datum/ammo/bullet/smg/mech
 	max_integrity = 400
 	projectiles = 60
-	projectiles_cache = 900
-	projectiles_cache_max = 900
+	projectiles_cache = 780
+	projectiles_cache_max = 780
 	variance = 15
 	projectile_delay = 0.15 SECONDS
 	slowdown = 0
+	rearm_time = 1.5 SECONDS
 	harmful = TRUE
 	weight = 65
 	ammo_type = MECHA_AMMO_SMG
@@ -143,6 +144,7 @@
 	projectile_delay = 0.25 SECONDS
 	slowdown = 0
 	harmful = TRUE
+	rearm_time = 3 SECONDS
 	weight = 65
 	ammo_type = MECHA_AMMO_RIFLE
 	hud_icons = list("rifle", "rifle_empty")
@@ -154,10 +156,14 @@
 	desc = "The TGMC classic weapon, but bigger and better! Fires plus-sized buckshot for high damage in close combat."
 	icon_state = "shotgun"
 	fire_sound = 'sound/mecha/weapons/mech_shotgun.ogg'
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	flash_offsets = list(
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-4), "E" = list(61,16), "W" = list(-31,36)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-4), "E" = list(61,36), "W" = list(-31,16)),
+	)
+	flash_offsets_core = list(
+		MECHA_R_ARM = list("N" = list(52,46), "S" = list(12,25), "E" = list(84,29), "W" = list(-19,29)),
+		MECHA_L_ARM = list("N" = list(12,46), "S" = list(52,25), "E" = list(84,32), "W" = list(-19,34)),
 	)
 	ammotype = /datum/ammo/bullet/shotgun/mech
 	max_integrity = 350
@@ -168,6 +174,7 @@
 	projectile_delay = 2.5 SECONDS
 	slowdown = 0
 	harmful = TRUE
+	rearm_time = 4 SECONDS
 	weight = 90
 	ammo_type = MECHA_AMMO_SHOTGUN
 	hud_icons = list("shotgun_buckshot", "shotgun_empty")
@@ -370,10 +377,13 @@
 	projectiles = 10
 	projectiles_cache = 40
 	projectiles_cache_max = 40
-	projectile_delay = 1.5 SECONDS
+	projectile_delay = 1 SECONDS
+	variance = 10
 	missile_speed = 1.5
 	equip_cooldown = 2 SECONDS
-	slowdown = 0.4
+	weight = 130
+	slowdown = 0
+	rearm_time = 4 SECONDS
 	ammo_type = MECHA_AMMO_GRENADE
 	hud_icons = list("grenade_he", "grenade_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
@@ -396,14 +406,18 @@
 		MECHA_R_ARM = list("N" = list(36,30), "S" = list(-2,-11), "E" = list(77,3), "W" = list(-47,23)),
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-11), "E" = list(77,23), "W" = list(-47,3)),
 	)
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	flash_offsets_core = list(
+		MECHA_R_ARM = list("N" = list(52,46), "S" = list(11,25), "E" = list(84,29), "W" = list(-19,29)),
+		MECHA_L_ARM = list("N" = list(12,46), "S" = list(51,25), "E" = list(84,32), "W" = list(-19,34)),
+	)
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ammotype = /datum/ammo/flamethrower/mech_flamer
 	max_integrity = 250
 	projectiles = 50
 	projectiles_cache = 300
 	projectiles_cache_max = 300
 	variance = 10
-	projectile_delay = 0.2 SECONDS
+	projectile_delay = 2 SECONDS
 	slowdown = 0
 	harmful = TRUE
 	weight = 100
@@ -421,19 +435,55 @@
 		MECHA_R_ARM = list("N" = list(36,48), "S" = list(-1,1), "E" = list(56,20), "W" = list(-26,36)),
 		MECHA_L_ARM = list("N" = list(-4,48), "S" = list(33,1), "E" = list(56,36), "W" = list(-26,20)),
 	)
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	flash_offsets_core = list(
+		MECHA_R_ARM = list("N" = list(52,46), "S" = list(12,25), "E" = list(84,29), "W" = list(-19,29)),
+		MECHA_L_ARM = list("N" = list(12,46), "S" = list(52,25), "E" = list(84,32), "W" = list(-19,34)),
+	)
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ammotype = /datum/ammo/rocket/mech
 	max_integrity = 400
-	projectiles = 1
-	projectiles_cache = 1
-	projectiles_cache_max = 1
-	variance = 0
-	projectile_delay = 2 SECONDS
-	slowdown = 0.7
+	projectiles = 3
+	projectiles_cache = 30
+	projectiles_cache_max = 30
+	variance = 20
+	projectile_delay = 4 SECONDS
+	slowdown = 0
+	weight = 130
+	rearm_time = 5 SECONDS
+	windup_delay = 1 SECONDS
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_RPG
 	hud_icons = list("rocket_he", "rocket_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/microrocket
+	name = "\improper Asteria microrocket pod"
+	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
+	desc = "A mech micromissile pod. Launches a barrage of microrockets that home on the target."
+	icon_state = "tow"
+	fire_sound = 'sound/mecha/weapons/mech_rpg.ogg'
+	flash_offsets_core = list(
+		MECHA_R_BACK = list("N" = list(40,60), "S" = list(22,55), "E" = list(26,55), "W" = list(32,62)),
+		MECHA_L_BACK = list("N" = list(22,60), "S" = list(40,55), "E" = list(35,62), "W" = list(39,55)),
+	)
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	equipment_slot = MECHA_BACK
+	ammotype = /datum/ammo/rocket/homing/microrocket/mech
+	max_integrity = 400
+	projectiles = 6
+	projectiles_cache = 48
+	projectiles_cache_max = 48
+	variance = 20
+	projectile_delay = 6 SECONDS
+	burst_amount = 3
+	projectile_burst_delay = 0.2 SECONDS
+	slowdown = 0
+	weight = 75
+	rearm_time = 8 SECONDS
+	harmful = TRUE
+	ammo_type = MECHA_AMMO_RPG
+	hud_icons = list("rocket_he", "rocket_empty")
+	fire_mode = GUN_FIREMODE_BURSTFIRE
 
 //////////////////////////
 //NON GUNS BEYOND HERE

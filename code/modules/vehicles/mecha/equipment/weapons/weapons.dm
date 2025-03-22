@@ -217,14 +217,14 @@
 		var/obj/vehicle/sealed/mecha/combat/greyscale/core/core = chassis
 		if(core.swapped_to_backweapons)
 			mech_slot = mech_slot == MECHA_R_ARM ? MECHA_R_BACK : MECHA_L_BACK
-		muzzle_flash.pixel_x = flash_offsets_core[mech_slot][dir2text_short(chassis.dir)][1]
-		muzzle_flash.pixel_y = flash_offsets_core[mech_slot][dir2text_short(chassis.dir)][2]
+		muzzle_flash.pixel_w = flash_offsets_core[mech_slot][dir2text_short(chassis.dir)][1]
+		muzzle_flash.pixel_z = flash_offsets_core[mech_slot][dir2text_short(chassis.dir)][2]
 		// more or less all the same changes cus arm icons. feel free to make it more accurate or make boosting use pixel offsets
 		if(core.leg_overload_mode)
-			muzzle_flash.pixel_y -= 2
+			muzzle_flash.z -= 2
 	else
-		muzzle_flash.pixel_x = flash_offsets[mech_slot][dir2text_short(chassis.dir)][1]
-		muzzle_flash.pixel_y = flash_offsets[mech_slot][dir2text_short(chassis.dir)][2]
+		muzzle_flash.pixel_w = flash_offsets[mech_slot][dir2text_short(chassis.dir)][1]
+		muzzle_flash.pixel_z = flash_offsets[mech_slot][dir2text_short(chassis.dir)][2]
 	switch(chassis.dir)
 		if(NORTH)
 			muzzle_flash.layer = initial(muzzle_flash.layer)
@@ -241,7 +241,7 @@
 		var/y_component = cos(firing_angle) * 40
 		var/obj/effect/abstract/particle_holder/gun_smoke = new(get_turf(src), /particles/firing_smoke)
 		gun_smoke.particles.velocity = list(x_component, y_component)
-		gun_smoke.particles.position = list(flash_offsets[mech_slot][dir2text_short(chassis.dir)][1] - 16, flash_offsets[mech_slot][dir2text_short(chassis.dir)][2])
+		gun_smoke.particles.position = list(muzzle_flash.pixel_w - 16, muzzle_flash.pixel_z)
 		addtimer(VARSET_CALLBACK(gun_smoke.particles, count, 0), 5)
 		addtimer(VARSET_CALLBACK(gun_smoke.particles, drift, 0), 3)
 		QDEL_IN(gun_smoke, 0.6 SECONDS)
