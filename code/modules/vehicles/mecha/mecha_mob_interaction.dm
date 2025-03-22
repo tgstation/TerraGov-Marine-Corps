@@ -97,6 +97,14 @@
 	//tgmc addition start
 	M?.hud_used?.remove_ammo_hud(equip_by_category[MECHA_R_ARM])
 	M?.hud_used?.remove_ammo_hud(equip_by_category[MECHA_L_ARM])
+	if(leg_overload_mode)
+		for(var/mob/booster AS in occupant_actions)
+			var/action_type = /datum/action/vehicle/sealed/mecha/mech_overload_mode
+			var/datum/action/vehicle/sealed/mecha/mech_overload_mode/overload = occupant_actions[booster][action_type]
+			if(!overload)
+				continue
+			overload.action_activate(NONE, FALSE)
+			break
 	//tgmc addition end
 	UnregisterSignal(M, list(COMSIG_MOB_DEATH, COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_SAY, COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_KEYBIND_FACE_DIR))
 	M.clear_alert(ALERT_CHARGE)
