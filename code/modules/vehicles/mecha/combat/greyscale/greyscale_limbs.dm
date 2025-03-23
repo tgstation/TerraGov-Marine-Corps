@@ -113,7 +113,7 @@
 /// Returns an overlay or list of overlays to use on the mech
 /datum/mech_limb/proc/get_overlays()
 	if(disabled && !has_destroyed_iconstate)
-		return null
+		return
 	. = list()
 	var/prefix = ""
 	if(owner.is_wreck)
@@ -216,7 +216,7 @@
 
 /datum/mech_limb/head/get_overlays()
 	if(disabled && !has_destroyed_iconstate)
-		return null
+		return
 	. = list()
 	var/prefix = ""
 	if(owner.is_wreck)
@@ -410,7 +410,7 @@
 
 /datum/mech_limb/arm/get_overlays()
 	if(disabled && !has_destroyed_iconstate)
-		return null
+		return
 	. = list()
 	var/prefix = ""
 	if(owner.is_wreck)
