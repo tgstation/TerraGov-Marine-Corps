@@ -121,7 +121,7 @@
 
 /// Maximum timeout for http calls
 /datum/config_entry/number/tts_http_timeout_seconds
-	default = 30
+	config_entry_value = 30
 	min_val = 0
 
 /datum/config_entry/flag/give_tutorials_without_db
