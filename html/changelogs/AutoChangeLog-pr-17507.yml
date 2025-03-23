@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - qol: "strain and caste swap cooldowns now say have much time you have left when you click them"
+  - bugfix: "fixed strain swap cooldown not working"
