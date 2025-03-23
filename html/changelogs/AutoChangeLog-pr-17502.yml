@@ -1,0 +1,6 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - bugfix: "fixed mechs not showing damage overlays for arms"
+  - bugfix: "fixed mech not showing damage overlays for destroyed limbs"
+  - bugfix: "fixed destroyed limbs not updating when boosting/firing"
