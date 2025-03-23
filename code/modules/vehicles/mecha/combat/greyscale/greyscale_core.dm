@@ -22,6 +22,7 @@
 	pixel_x = -32
 	pixel_y = -5
 	light_pixel_x = 32
+	ability_module_icon = 'icons/mecha/mech_core_overlays.dmi'
 	use_builtin_boost_overlay = FALSE
 	use_damage_particles = FALSE
 	equip_by_category = list(
