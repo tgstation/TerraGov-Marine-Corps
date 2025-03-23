@@ -1,0 +1,4 @@
+author: "DrCrawler"
+delete-after: True
+changes:
+  - bugfix: "Added more muscle mass to dragons, they are now too heavy to take off while there's someone inside their stomach."
