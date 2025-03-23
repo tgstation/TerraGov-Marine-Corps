@@ -223,16 +223,21 @@
 /datum/action/vehicle/sealed/mecha/assault_armor/action_activate(trigger_flags)
 	if(!owner?.client || !chassis || !(owner in chassis.occupants))
 		return
-	var/added_movetime = chassis.move_delay
-	chassis.move_delay += added_movetime
 	if(!chassis.use_power(power_cost))
 		chassis.balloon_alert(owner, "No power")
 		return
+	if(owner.do_actions)
+		return
+	var/added_movetime = chassis.move_delay
+	chassis.move_delay += added_movetime
 	var/obj/effect/overlay/lightning_charge/charge = new(chassis)
 	charge.pixel_x -= chassis.pixel_x
 	charge.pixel_y -= chassis.pixel_y
 	chassis.vis_contents += charge
 	if(!do_after(owner, 0.5 SECONDS, IGNORE_LOC_CHANGE, chassis))
+		chassis.vis_contents -= charge
+		chassis.move_delay -= added_movetime
+		qdel(charge)
 		return
 	chassis.vis_contents -= charge
 	qdel(charge)
