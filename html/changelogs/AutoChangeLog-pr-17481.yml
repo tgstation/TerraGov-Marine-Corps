@@ -1,0 +1,4 @@
+author: "GregorMN"
+delete-after: True
+changes:
+  - qol: "the pallettes for hyperscale (e.g armor and mechs) have been redone. All existing palettes will automatically update to the new ones"
