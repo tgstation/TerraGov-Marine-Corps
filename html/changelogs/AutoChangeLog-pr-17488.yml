@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - bugfix: "Mech overload will now disable when a mob leaves"

@@ -95,6 +95,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 			change_action(ESCORTING_ATOM, escorted_atom)
 		if(IDLE)
 			change_action(IDLE)
+	if(!registered_for_move)
+		scheduled_move()
 
 ///We finished moving to a node, let's pick a random nearby one to travel to
 /datum/ai_behavior/proc/finished_node_move()

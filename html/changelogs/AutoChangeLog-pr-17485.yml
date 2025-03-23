@@ -1,7 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - qol: "Attaching non-gun things now plays sounds"
-  - bugfix: "Fixed revolvers not playing their open sound"
-  - bugfix: "fixed projectiles trying to play a nonexistent sound constantly when they hit an object"
-  - bugfix: "fixed a runtime with RR windup"

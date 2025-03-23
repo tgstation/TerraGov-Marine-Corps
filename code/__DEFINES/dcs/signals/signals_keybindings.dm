@@ -131,6 +131,7 @@
 #define COMSIG_MECHABILITY_VIEW_STATS "mechability_view_stats"
 #define COMSIG_MECHABILITY_SMOKE "mechability_smoke"
 #define COMSIG_MECHABILITY_TOGGLE_ZOOM "mechability_toggle_zoom"
+#define COMSIG_MECHABILITY_ASSAULT_ARMOR "mechability_assault_armor"
 #define COMSIG_MECHABILITY_SKYFALL "mechability_skyfall"
 #define COMSIG_MECHABILITY_STRIKE "mechability_strike"
 #define COMSIG_MECHABILITY_RELOAD "mechability_reload"
