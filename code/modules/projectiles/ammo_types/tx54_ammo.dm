@@ -257,11 +257,11 @@
 /datum/ammo/bullet/tx54_spread/tank_cannister/ricochet
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/tank_cannister
 	bonus_projectiles_scatter = 0
-	damage = 40
+	damage = 35
 
 /datum/ammo/bullet/tx54_spread/tank_cannister/ricochet/one
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/tank_cannister/ricochet
-	damage = 50
+	damage = 40
 
 /datum/ammo/bullet/tx54_spread/tank_cannister/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, max_range = 4, stagger = 2 SECONDS, slowdown = 0.2)
