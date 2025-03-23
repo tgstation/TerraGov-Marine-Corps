@@ -526,7 +526,7 @@
 
 	M.visible_message(span_danger("[src] tries to remove [M]'s [I.name]."), \
 					span_userdanger("[src] tries to remove [M]'s [I.name]."), null, 5)
-	if(do_after(src, HUMAN_STRIP_DELAY, NONE, M, BUSY_ICON_HOSTILE))
+	if(do_after(src, I.getstripdelay(), NONE, M, BUSY_ICON_HOSTILE))
 		if(Adjacent(M) && I && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
 			log_combat(src, M, "removed [key_name(I)] ([slot_to_process])")
