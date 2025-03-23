@@ -16,7 +16,7 @@
 //Rappel target selection action
 /datum/action/innate/rappel_designate
 	name = "Designate rappel point"
-	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon = 'icons/mob/actions/actions_mecha.dmi'
 	action_icon_state = "mech_zoom_on"
 	var/obj/structure/dropship_equipment/shuttle/rappel_system/origin
 
