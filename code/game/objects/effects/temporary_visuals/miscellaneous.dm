@@ -239,6 +239,12 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	icon_state = "splatter"
 	duration = 0.8 SECONDS
 
+/obj/effect/temp_visual/xadar_blast
+	name = "acid cascade"
+	icon = 'icons/Xeno/96x96.dmi'
+	icon_state = "xadar_splash"
+	duration = 0.4 SECONDS
+
 /obj/effect/temp_visual/acid_bath
 	name = "acid bath"
 	icon = 'icons/obj/items/projectiles.dmi'
@@ -315,3 +321,23 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
 	duration = 0.5 SECONDS
+
+/// looping lightning effect useful for showing chargeup of [/obj/effect/temp_visual/lightning_discharge]
+/obj/effect/overlay/lightning_charge
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "lightning_charge"
+	layer = ABOVE_TREE_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	vis_flags = VIS_INHERIT_ID
+	color = COLOR_RED_LIGHT
+	pixel_x = -32
+	pixel_y = -32
+
+/obj/effect/temp_visual/lightning_discharge
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "lightning_discharge"
+	layer = ABOVE_TREE_LAYER
+	color = COLOR_RED_LIGHT
+	duration = 3
+	pixel_x = -32
+	pixel_y = -32

@@ -22,6 +22,7 @@
 	boost_icon = 'icons/mecha/mecha_core_ability_overlays.dmi'
 	pixel_x = -32
 	pixel_y = -5
+	ability_module_icon = 'icons/mecha/mech_core_overlays.dmi'
 	use_damage_particles = FALSE
 	equip_by_category = list(
 		MECHA_L_ARM = null,

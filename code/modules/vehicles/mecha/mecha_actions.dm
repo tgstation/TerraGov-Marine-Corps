@@ -164,7 +164,7 @@
 
 /datum/action/vehicle/sealed/mecha/repairpack
 	name = "Use Repairpack"
-	action_icon_state = "mech_damtype_toxin" // todo kuro needs to make an icon for this
+	action_icon_state = "repair" // todo kuro needs to make an icon for this
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_REPAIRPACK,
 	)
@@ -198,7 +198,7 @@
 
 /datum/action/vehicle/sealed/mecha/swap_controlled_weapons
 	name = "Swap Weapon set"
-	action_icon_state = "mech_damtype_toxin" // todo kuro needs to make an icon for this
+	action_icon_state = "weapon_swap" // todo kuro needs to make an icon for this
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_SWAPWEAPONS,
 	)
@@ -206,3 +206,44 @@
 /datum/action/vehicle/sealed/mecha/swap_controlled_weapons/action_activate(trigger_flags)
 	var/obj/vehicle/sealed/mecha/combat/greyscale/core/greyscale = chassis
 	greyscale.swap_weapons()
+
+/datum/action/vehicle/sealed/mecha/assault_armor
+	name = "Assault Armor"
+	action_icon_state = "assaultarmor"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_ASSAULT_ARMOR,
+	)
+	///power cost of activation
+	var/power_cost = 300
+	///num of projectiles we burst
+	var/projectile_count = 20
+	///ammo type used by the projectiles
+	var/datum/ammo/ammo_type = /datum/ammo/energy/assault_armor
+
+/datum/action/vehicle/sealed/mecha/assault_armor/action_activate(trigger_flags)
+	if(!owner?.client || !chassis || !(owner in chassis.occupants))
+		return
+	var/added_movetime = chassis.move_delay
+	chassis.move_delay += added_movetime
+	if(!chassis.use_power(power_cost))
+		chassis.balloon_alert(owner, "No power")
+		return
+	var/obj/effect/overlay/lightning_charge/charge = new(chassis)
+	charge.pixel_x -= chassis.pixel_x
+	charge.pixel_y -= chassis.pixel_y
+	chassis.vis_contents += charge
+	if(!do_after(owner, 0.5 SECONDS, IGNORE_LOC_CHANGE, chassis))
+		return
+	chassis.vis_contents -= charge
+	qdel(charge)
+	new /obj/effect/temp_visual/lightning_discharge(get_turf(chassis))
+	chassis.move_delay -= added_movetime
+	var/list/bullets = list()
+	var/proj_type = /obj/projectile
+	if(initial(ammo_type.ammo_behavior_flags) & AMMO_HITSCAN)
+		proj_type = /obj/projectile/hitscan
+	for(var/i=1 to projectile_count)
+		var/obj/projectile/proj = new proj_type(src, initial(ammo_type.hitscan_effect_icon))
+		proj.generate_bullet(ammo_type)
+		bullets += proj
+	bullet_burst(chassis, bullets, owner, 'sound/weapons/burst_phaser2.ogg', 7, 2)
