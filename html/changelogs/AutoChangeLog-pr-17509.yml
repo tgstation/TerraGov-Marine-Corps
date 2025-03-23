@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - bugfix: "Tank gun and damage overlays are no longer black on multiz"
