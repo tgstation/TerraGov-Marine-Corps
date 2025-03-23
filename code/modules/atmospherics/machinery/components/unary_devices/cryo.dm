@@ -153,7 +153,7 @@
 	if(!( occupant ))
 		return
 	if (occupant.client)
-		occupant.client.eye = occupant.client.mob
+		occupant.client.set_eye(occupant.client.mob)
 		occupant.client.perspective = MOB_PERSPECTIVE
 	if(occupant in contents)
 		occupant.forceMove(get_step(loc, dir))

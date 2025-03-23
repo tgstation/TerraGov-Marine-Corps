@@ -48,6 +48,9 @@
 	var/atom/movable/screen/gun_move_icon
 	var/atom/movable/screen/gun_run_icon
 
+	/// Displays a HUD element that indicates the current combo, as well as what has been inputted so far.
+	var/atom/movable/screen/combo/combo_display
+
 	var/list/atom/movable/screen/ammo_hud_list = list()
 
 	var/list/static_inventory = list() //the screen objects which are static
@@ -99,11 +102,6 @@
 	RegisterSignal(mymob, COMSIG_MOB_LOGOUT, PROC_REF(clear_client))
 	RegisterSignal(mymob, COMSIG_MOB_SIGHT_CHANGE, PROC_REF(update_sightflags))
 	update_sightflags(mymob, mymob.sight, NONE)
-
-	//not sure if "hack" or tg having something working by coincidence, but we need to do this so the planes actually attach
-	// if i had to guess their pref code may apply it already but we need this
-	// do fix if you know better
-	//INVOKE_NEXT_TICK(src, PROC_REF(show_hud), hud_version)
 
 /datum/hud/proc/should_use_scale()
 	return should_sight_scale(mymob.sight)
@@ -161,6 +159,8 @@
 	gun_item_use_icon = null
 	gun_move_icon = null
 	gun_run_icon = null
+
+	QDEL_NULL(combo_display)
 
 	QDEL_LIST_ASSOC_VAL(master_groups)
 	QDEL_LIST_ASSOC_VAL(plane_master_controllers)

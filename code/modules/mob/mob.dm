@@ -624,8 +624,8 @@
 	if(currently_z_moving)
 		return
 	stop_pulling()
-	if(buckled)
-		buckled.unbuckle_mob(src)
+	if(buckled && !HAS_TRAIT(src, TRAIT_CANNOT_BE_UNBUCKLED))
+		buckled.unbuckle_mob(src, TRUE)
 
 
 /mob/proc/trainteleport(atom/destination)
@@ -753,28 +753,28 @@
 			//Set the new eye unless it's us
 			if(new_eye != src)
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = new_eye
+				client.set_eye(new_eye)
 			else
-				client.eye = client.mob
+				client.set_eye(client.mob)
 				client.perspective = MOB_PERSPECTIVE
 		else if(isturf(new_eye))
 			//Set to the turf unless it's our current turf
 			if(new_eye != loc)
 				client.perspective = EYE_PERSPECTIVE
-				client.eye = new_eye
+				client.set_eye(new_eye)
 			else
-				client.eye = client.mob
+				client.set_eye(client.mob)
 				client.perspective = MOB_PERSPECTIVE
 		else
 			return TRUE //no setting eye to stupid things like areas or whatever
 	else
 		//Reset to common defaults: mob if on turf, otherwise current loc
 		if(isturf(loc))
-			client.eye = client.mob
+			client.set_eye(client.mob)
 			client.perspective = MOB_PERSPECTIVE
 		else
 			client.perspective = EYE_PERSPECTIVE
-			client.eye = loc
+			client.set_eye(loc)
 	/// Signal sent after the eye has been successfully updated, with the client existing.
 	SEND_SIGNAL(src, COMSIG_MOB_RESET_PERSPECTIVE)
 	return TRUE
@@ -896,11 +896,6 @@
 
 	clear_important_client_contents()
 	canon_client = null
-
-/mob/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents = TRUE)
-	. = ..()
-	if(!same_z_layer)
-		relayer_fullscreens()
 
 /mob/proc/point_to_atom(atom/pointed_atom)
 	var/turf/tile = get_turf(pointed_atom)

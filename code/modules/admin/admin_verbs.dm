@@ -151,7 +151,7 @@ ADMIN_VERB(logs_folder, R_LOG, "Get Server Logs Folder", "Please use responsibly
 
 	switch(input("View (in game), Open (in your system's text editor), Download", path) as null|anything in list("View", "Open", "Download"))
 		if("View")
-			usr << browse("<pre style='word-wrap: break-word;'>[html_encode(file2text(file(path)))]</pre>", list2params(list("window" = "viewfile.[path]")))
+			usr << browse(HTML_SKELETON("<pre style='word-wrap: break-word;'>[html_encode(file2text(file(path)))]</pre>"), list2params(list("window" = "viewfile.[path]")))
 		if("Open")
 			usr << run(file(path))
 		if("Download")

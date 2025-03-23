@@ -95,6 +95,8 @@
 #define RAGE_TRAIT "rage" //Ravager Rage ability.
 #define UNMANNED_VEHICLE "unmanned"
 #define MECH_VENDOR_TRAIT "mechvendor"
+/// Trait applied to tram passengers
+#define TRAM_PASSENGER_TRAIT "tram-passenger"
 #define STEALTH_TRAIT "stealth" //From hunter stealth
 #define REVIVE_TO_CRIT_TRAIT "revive_to_crit"
 #define GUN_TRAIT "gun" //Traits related to guns
@@ -110,7 +112,11 @@
 #define PETRIFY_ABILITY_TRAIT "petrify_ability_trait"
 #define SHATTERING_ROAR_ABILITY_TRAIT "shattering_roar_ability_trait"
 #define ZERO_FORM_BEAM_ABILITY_TRAIT "zero_form_beam_ability_trait"
+#define CONQUEROR_ABILITY_TRAIT "conqueror_ability_trait"
+#define CONQUEROR_ENDURANCE_TRAIT "conqueror_endurance_trait"
+#define CONQUEROR_OBLITERATION_TRAIT "conqueror_obliteration_trait"
 #define HEATRAY_BEAM_ABILITY_TRAIT "heatray_ability_trait"
+#define DRAGON_ABILITY_TRAIT "dragon_ability_trait"
 #define VALHALLA_TRAIT "valhalla"
 #define WEIGHTBENCH_TRAIT "weightbench"
 #define BOILER_ROOTED_TRAIT "boiler_rooted"
@@ -134,6 +140,9 @@
 #define TRAIT_FREERUNNING "freerunning"
 /// This mob always lands on their feet when they fall, for better or for worse.
 #define TRAIT_CATLIKE_GRACE "catlike_grace"
+
+///Used for managing KEEP_TOGETHER in [/atom/var/appearance_flags]
+#define TRAIT_KEEP_TOGETHER "keep-together"
 
 #define ABSTRACT_ITEM_TRAIT "abstract_item"
 /// A trait given by any status effect
@@ -179,6 +188,8 @@
 #define TRAIT_WORKED_OUT "worked_out" //user has a unarmed buff from working out
 ///Makes no footsteps at all
 #define TRAIT_SILENT_FOOTSTEPS "silent_footsteps"
+/// Prevents a mob from being unbuckled, currently only used to prevent people from falling over on the tram
+#define TRAIT_CANNOT_BE_UNBUCKLED "cannot_be_unbuckled"
 ///quieter footsteps
 #define TRAIT_LIGHT_STEP "light_step"
 ///noisier footsteps
@@ -248,6 +259,7 @@
 #define TRAIT_XENOMORPH_INVISIBLE_BLOOD "invisible_blood"
 #define TRAIT_VALHALLA_XENO "valhalla_xeno"
 #define TRAIT_BULWARKED_TURF "bulwarked_turf" // turf is affected by bulwark ability
+#define TRAIT_RECOVERY_PYLON_TURF "recovery_pylon_turf" // Turf is affected by a recovery pylon.
 #define TRAIT_BLOODTHIRSTER "bloodthirster" // xeno has the bloodthirster ability
 
 //important_recursive_contents traits
@@ -271,6 +283,12 @@
 #define TRAIT_CANT_RIDE "cant_ride"
 ///Prevents humans from gaining oxyloss in their handle_breath()
 #define TRAIT_IGNORE_SUFFOCATION "ignore_suffocation"
+
+///climbing a structure
+#define TRAIT_IS_CLIMBING "is_climbing"
+///reloading a gun
+#define TRAIT_IS_RELOADING "is_reloading"
+
 //All the traits for guns
 #define TRAIT_GUN_SAFETY "safety"
 #define TRAIT_GUN_FLASHLIGHT_ON "light_on"

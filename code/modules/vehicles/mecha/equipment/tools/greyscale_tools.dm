@@ -4,7 +4,7 @@
 	icon_state = "armor_melee"
 	iconstate_name = "armor_melee"
 	protect_name = "Medium Booster"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	armor_mod = list()
 	slowdown = 0
 	weight = 65
@@ -55,7 +55,7 @@
 	name = "phoron engine"
 	desc = "An advanced Nanotrasen phoron engine core prototype designed for TGMC advanced mech exosuits. Optimimized for energy storage."
 	icon_state = "phoron_engine"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	rechargerate = 0
 	slowdown = 0
 	max_fuel = 0
@@ -102,24 +102,15 @@
 	var/flag_controller = NONE
 	///typepath of ability we want to grant
 	var/ability_to_grant
-	///reference to image that is used as an overlay
-	var/image/overlay
-
-/obj/item/mecha_parts/mecha_equipment/ability/Initialize(mapload)
-	. = ..()
-	if(icon_state)
-		overlay = image('icons/mecha/mecha_ability_overlays.dmi', icon_state = icon_state, layer = 10)
 
 /obj/item/mecha_parts/mecha_equipment/ability/attach(obj/vehicle/sealed/mecha/M, attach_right)
 	. = ..()
-	M.add_overlay(overlay)
 	if(flag_controller)
 		M.initialize_controller_action_type(ability_to_grant, flag_controller)
 	else
 		M.initialize_passenger_action_type(ability_to_grant)
 
 /obj/item/mecha_parts/mecha_equipment/ability/detach(atom/moveto)
-	chassis.cut_overlay(overlay)
 	if(flag_controller)
 		chassis.destroy_controller_action_type(ability_to_grant, flag_controller)
 	else
@@ -130,7 +121,7 @@
 	name = "enhanced zoom"
 	desc = "A magnifying module that allows the pilot to see much further than with the standard optics. Night vision not included."
 	icon_state = "zoom"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_zoom
 
 /obj/item/mecha_parts/mecha_equipment/ability/smoke
@@ -162,7 +153,7 @@
 	name = "tanglefoot generator"
 	desc = "A tanglefoot smoke generator capable of dispensing large amounts of non-lethal gas that saps the energy from any xenoform creatures it touches."
 	icon_state = "tfoot_gas"
-//	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_smoke
 	smoke_type = /datum/effect_system/smoke_spread/plasmaloss
 
@@ -173,3 +164,11 @@
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_smoke
 	smoke_type = /datum/effect_system/smoke_spread/tactical
+
+/obj/item/mecha_parts/mecha_equipment/ability/assault_armor
+	name = "assault armor"
+	desc = "A laser core that allows a core purge to emit a burst of lasers around the mecha. Slows mecha while charging."
+	weight = 80
+	icon_state = "assaultarmor"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	ability_to_grant = /datum/action/vehicle/sealed/mecha/assault_armor

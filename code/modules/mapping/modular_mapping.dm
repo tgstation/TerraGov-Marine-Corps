@@ -1,6 +1,7 @@
 /datum/map_template/modular
 	name = "Generic modular template"
 	mappath = "_maps/modularmaps"
+	should_place_on_top = FALSE
 	///ID of this map template
 	var/modular_id = "none"
 	///Number for its height, used for sanity

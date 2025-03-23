@@ -1164,9 +1164,7 @@
 /area/deathmatch)
 "va" = (
 /obj/effect/ai_node,
-/obj/structure/stairs/edge{
-	dir = 1
-	},
+/obj/structure/stairs/edge,
 /turf/open/floor/tile/dark,
 /area/deathmatch)
 "wc" = (
@@ -1990,16 +1988,16 @@ fI
 fI
 fI
 fI
-cN
-cS
-cY
-cY
-cY
-cY
-cY
-cY
-cS
 dA
+cS
+cY
+cY
+cY
+cY
+cY
+cY
+cS
+cN
 fI
 fI
 fI
@@ -2047,7 +2045,7 @@ ez
 ez
 ez
 ez
-dA
+cN
 ae
 ce
 fI
@@ -2086,16 +2084,16 @@ fI
 fI
 fI
 fI
-cN
-ez
-cY
-cY
-cY
-cY
-cY
-cY
-ez
 dA
+ez
+cY
+cY
+cY
+cY
+cY
+cY
+ez
+cN
 fI
 fI
 fI
@@ -2150,7 +2148,7 @@ al
 ag
 an
 ee
-eq
+es
 ev
 an
 an
@@ -2486,7 +2484,7 @@ Js
 VE
 bj
 xX
-es
+eq
 ag
 Tu
 Js

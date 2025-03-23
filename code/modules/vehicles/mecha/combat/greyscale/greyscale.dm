@@ -29,10 +29,20 @@
 	internal_damage_threshold = 15
 	internal_damage_probability = 5
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
-	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED | MECHA_SPIN_WHEN_NO_ANGLE | OMNIDIRECTIONAL_ATTACKS
+	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED | MECHA_SPIN_WHEN_NO_ANGLE | OMNIDIRECTIONAL_ATTACKS | QUIET_TURNS
 	explosion_block = 2
 	pivot_step = TRUE
 	allow_diagonal_movement = TRUE
+	/// used to lookup ability overlays for this mech
+	var/ability_module_icon = 'icons/mecha/mecha_ability_overlays.dmi'
+	///whether we have currently swapped the back and arm icons
+	var/swapped_to_backweapons = FALSE
+	///whether we use an included builtin boost overlay to show we are boosting
+	var/use_builtin_boost_overlay = TRUE
+	///whetehr we use the damage particles
+	var/use_damage_particles = TRUE
+	///whether this is an unusable wreck
+	var/is_wreck = FALSE
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
 	var/list/datum/mech_limb/limbs = list(
 		MECH_GREY_TORSO = null,
@@ -55,10 +65,11 @@
 	var/weight = 0
 
 /obj/vehicle/sealed/mecha/combat/greyscale/Initialize(mapload)
-	holder_left = new(src, /particles/mecha_smoke)
-	holder_left.layer = layer+0.001
-	holder_right = new(src, /particles/mecha_smoke)
-	holder_right.layer = layer+0.001
+	if(use_damage_particles)
+		holder_left = new(src, /particles/mecha_smoke)
+		holder_left.layer = layer+0.001
+		holder_right = new(src, /particles/mecha_smoke)
+		holder_right.layer = layer+0.001
 	. = ..()
 
 	set_jump_component()
@@ -88,6 +99,9 @@
 
 /obj/vehicle/sealed/mecha/combat/greyscale/examine(mob/user)
 	. = ..()
+	if(is_wreck)
+		. += "It's a smoking ruin."
+		return
 	for(var/limb_key in limbs)
 		if(limb_key == MECH_GREY_TORSO)
 			continue
@@ -104,6 +118,9 @@
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/repairpack)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
+	if(is_wreck)
+		balloon_alert(entering_mob, "Destroyed")
+		return FALSE
 	if((mecha_flags & MECHA_SKILL_LOCKED) && entering_mob.skills.getRating(SKILL_MECH) < SKILL_MECH_TRAINED)
 		balloon_alert(entering_mob, "You don't know how to pilot this")
 		return FALSE
@@ -181,7 +198,7 @@
 
 /obj/vehicle/sealed/mecha/combat/greyscale/update_icon()
 	. = ..()
-	if(QDELING(src))
+	if(QDELING(src) || !use_damage_particles)
 		return
 	var/broken_percent = obj_integrity/max_integrity
 	var/inverted_percent = 1-broken_percent
@@ -217,31 +234,62 @@
 	//spriter bs requires this code
 	switch(dir)
 		if(EAST)
-			render_order = list(MECH_GREY_TORSO, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_L_ARM, MECHA_L_ARM, MECH_GREY_R_ARM, MECHA_R_ARM)
+			render_order = list(MECH_GREY_L_ARM, MECHA_L_ARM, MECH_GREY_TORSO, MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_HEAD, MECH_GREY_LEGS,MECH_GREY_R_ARM, MECHA_R_ARM)
 		if(WEST)
-			render_order = list(MECH_GREY_TORSO, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_R_ARM, MECHA_R_ARM, MECH_GREY_L_ARM, MECHA_L_ARM)
+			render_order = list(MECH_GREY_R_ARM, MECHA_R_ARM, MECH_GREY_TORSO, MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_L_ARM, MECHA_L_ARM)
+		if(NORTH)
+			render_order = list(MECH_GREY_TORSO, MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_R_ARM, MECH_GREY_L_ARM, MECHA_L_ARM, MECHA_R_ARM)
 		else
-			render_order = list(MECH_GREY_TORSO, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_R_ARM, MECH_GREY_L_ARM, MECHA_L_ARM, MECHA_R_ARM)
+			render_order = list(MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_LEGS, MECH_GREY_TORSO, MECH_GREY_HEAD, MECH_GREY_R_ARM, MECH_GREY_L_ARM, MECHA_L_ARM, MECHA_R_ARM)
+
+	var/uses_back_icons = (MECHA_L_BACK in equip_by_category)
+	if(!uses_back_icons)
+		render_order -= list(MECHA_R_BACK, MECHA_L_BACK)
 
 	for(var/key in render_order)
+		/// only used for weapons
+		var/prefix = is_wreck ? "d_" : (leg_overload_mode && !use_builtin_boost_overlay ? "b_" : "")
 		if(key == MECHA_R_ARM)
-			var/datum/mech_limb/holding = limbs[MECH_GREY_R_ARM]
+			var/datum/mech_limb/arm/holding = limbs[MECH_GREY_R_ARM]
 			if(!holding || holding?.disabled)
 				continue
 			var/obj/item/mecha_parts/mecha_equipment/right_gun = equip_by_category[MECHA_R_ARM]
+			if(!is_wreck && uses_back_icons)
+				prefix += "fire"
 			if(right_gun)
-				var/mutable_appearance/r_gun = mutable_appearance('icons/mecha/mech_gun_overlays.dmi', right_gun.icon_state + "_right", appearance_flags = KEEP_APART)
-				r_gun.pixel_x = -32
+				var/mutable_appearance/r_gun = mutable_appearance(holding.gun_icon, prefix+right_gun.icon_state + "_right")
+				r_gun.pixel_x = holding.pixel_x_offset
 				. += r_gun
 			continue
 		if(key == MECHA_L_ARM)
-			var/datum/mech_limb/holding = limbs[MECH_GREY_L_ARM]
+			var/datum/mech_limb/arm/holding = limbs[MECH_GREY_L_ARM]
 			if(!holding || holding.disabled)
 				continue
 			var/obj/item/mecha_parts/mecha_equipment/left_gun = equip_by_category[MECHA_L_ARM]
+			if(!is_wreck && uses_back_icons)
+				prefix += "fire"
 			if(left_gun)
-				var/mutable_appearance/l_gun = mutable_appearance('icons/mecha/mech_gun_overlays.dmi', left_gun.icon_state + "_left", appearance_flags = KEEP_APART)
-				l_gun.pixel_x = -32
+				var/mutable_appearance/l_gun = mutable_appearance(holding.gun_icon, prefix+left_gun.icon_state + "_left")
+				l_gun.pixel_x = holding.pixel_x_offset
+				. += l_gun
+			continue
+
+		if(key == MECHA_R_BACK)
+			var/datum/mech_limb/arm/holding = limbs[MECH_GREY_R_ARM]
+			if(!holding || holding?.disabled)
+				continue
+			var/obj/item/mecha_parts/mecha_equipment/right_gun = equip_by_category[MECHA_R_BACK]
+			if(right_gun)
+				var/mutable_appearance/r_gun = mutable_appearance(holding.gun_icon, prefix+right_gun.icon_state + "_right")
+				. += r_gun
+			continue
+		if(key == MECHA_L_BACK)
+			var/datum/mech_limb/arm/holding = limbs[MECH_GREY_L_ARM]
+			if(!holding || holding.disabled)
+				continue
+			var/obj/item/mecha_parts/mecha_equipment/left_gun = equip_by_category[MECHA_L_BACK]
+			if(left_gun)
+				var/mutable_appearance/l_gun = mutable_appearance(holding.gun_icon, prefix+left_gun.icon_state + "_left")
 				. += l_gun
 			continue
 
@@ -250,8 +298,15 @@
 		var/datum/mech_limb/limb = limbs[key]
 		. += limb.get_overlays()
 
-	var/state = leg_overload_mode ? "booster_active" : "booster"
-	. += image('icons/mecha/mecha_ability_overlays.dmi', icon_state = state, layer=layer+0.001)
+	for(var/obj/item/mecha_parts/mecha_equipment/ability/module in equip_by_category[MECHA_UTILITY])
+		if(module.icon_state)
+			var/prefix = is_wreck ? "d_" : (leg_overload_mode && !use_builtin_boost_overlay ? "b_" : "")
+			var/image/new_overlay =image(ability_module_icon, icon_state = prefix+module.icon_state)
+			. += new_overlay
+
+	if(use_builtin_boost_overlay)
+		var/state = leg_overload_mode ? "booster_active" : "booster"
+		. += image('icons/mecha/mecha_ability_overlays.dmi', icon_state = state, layer=layer+0.001)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/setDir(newdir)
 	. = ..()
@@ -311,8 +366,8 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
-	max_integrity = 1020
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 75, FIRE = 100, ACID = 0)
+	max_integrity = 300
+	soft_armor = list(MELEE = 25, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 75, FIRE = 100, ACID = 30)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/assault
@@ -328,8 +383,8 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
-	max_integrity = 1390
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 75, FIRE = 100, ACID = 0)
+	max_integrity = 450
+	soft_armor = list(MELEE = 35, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 75, FIRE = 100, ACID = 30)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard
@@ -345,8 +400,8 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
 	pivot_step = FALSE
-	max_integrity = 1760
-	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 75, FIRE = 100, ACID = 0)
+	max_integrity = 700
+	soft_armor = list(MELEE = 45, BULLET = 70, LASER = 60, ENERGY = 60, BOMB = 70, BIO = 75, FIRE = 100, ACID = 30)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/item/repairpack

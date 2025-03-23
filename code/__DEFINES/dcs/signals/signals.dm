@@ -420,6 +420,8 @@
 #define COMSIG_TURF_MULTIZ_DEL "turf_multiz_del"
 ///from base of turf/multiz_turf_new: (turf/source, direction)
 #define COMSIG_TURF_MULTIZ_NEW "turf_multiz_new"
+///called when an elevator enters this turf
+#define COMSIG_TURF_INDUSTRIAL_LIFT_ENTER "turf_industrial_life_enter"
 
 // /obj signals
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"				//called in /obj/structure/setAnchored(): (value)
@@ -434,6 +436,10 @@
 	#define COMPONENT_POWERED (1<<0)
 #define COMSIG_MACHINERY_USE_POWER "machinery_use_power"		/// from /obj/machinery/proc/use_power: (amount, chan, list/power_sources)
 	#define COMPONENT_POWER_USED (1<<0)
+///from base power_change() when power is lost
+#define COMSIG_MACHINERY_POWER_LOST "machinery_power_lost"
+///from base power_change() when power is restored
+#define COMSIG_MACHINERY_POWER_RESTORED "machinery_power_restored"
 
 #define COMSIG_PORTGEN_POWER_TOGGLE "portgen_power_toggle"		/// from /obj/machinery/power/port_gen/proc/TogglePower: ()
 #define COMSIG_PORTGEN_PROCESS "portgen_process"				/// from /obj/machinery/power/port_gen/process: ()
@@ -783,6 +789,7 @@
 #define COMSIG_XENOMORPH_POSTEVOLVING "xenomorph_evolving"
 #define COMSIG_XENOMORPH_ABILITY_ON_UPGRADE "xenomorph_ability_on_upgrade"
 
+#define COMSIG_XENOMORPH_PRE_ATTACK_ALIEN_HARM "xenomorph_pre_attack_alien_harm" // before /mob/living/attack_alien_harm (isrightclick)
 #define COMSIG_XENOMORPH_GRAB "xenomorph_grab"
 #define COMSIG_XENOMORPH_ATTACK_OBJ "xenomorph_attack_obj"
 ///from /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location, random_location, no_head, no_crit, force_intent)
@@ -824,6 +831,9 @@
 
 #define COMSIG_XENOMORPH_LEAP_BUMP "xenomorph_leap_bump" //from /mob/living/carbon/xenomorph/bump
 
+#define COMSIG_XENO_DRAIN_HIT "xeno_drain_hit"
+#define COMSIG_XENO_CARNAGE_HIT "xeno_carnage_hit"
+
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
 
@@ -854,6 +864,8 @@
 #define COMSIG_RELAYED_SPEECH "relayed_speech"
 	#define COMSIG_RELAYED_SPEECH_DEALT (1<<0)
 
+///See if we have any priority escort targets
+#define COMSIG_NPC_FIND_NEW_ESCORT "npc_find_new_escort"
 // Action state signal that's sent whenever the action state has a distance maintained with the target being walked to
 #define COMSIG_STATE_MAINTAINED_DISTANCE "action_state_maintained_dist_with_target"
 	#define COMSIG_MAINTAIN_POSITION (1<<0)

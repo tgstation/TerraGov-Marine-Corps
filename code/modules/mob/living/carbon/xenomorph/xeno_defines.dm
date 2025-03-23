@@ -218,9 +218,11 @@
 	for(var/trait in caste_traits)
 		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
+	xenomorph.RegisterSignal(xenomorph,COMSIG_XENOMORPH_ATTACK_LIVING, TYPE_PROC_REF(/mob/living/carbon/xenomorph, onhithuman))
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
 	xenomorph.remove_component(/datum/component/bump_attack)
+	xenomorph.UnregisterSignal(xenomorph, COMSIG_XENOMORPH_ATTACK_LIVING)
 	for(var/trait in caste_traits)
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
 
@@ -229,6 +231,12 @@
 	while(current_type::upgrade != XENO_UPGRADE_BASETYPE)
 		current_type = current_type::parent_type
 	return current_type
+
+///returns the parent caste type for the given caste (e.g. bloodthirster would return base rav)
+/proc/get_parent_caste_type(datum/xeno_caste/root_type)
+	while(initial(root_type.parent_type) != /datum/xeno_caste)
+		root_type = root_type::parent_type
+	return root_type
 
 /// basetype = list(strain1, strain2)
 GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
@@ -388,6 +396,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
 
+	// *** Globadier vars *** //
+	var/obj/item/explosive/grenade/globadier/selected_grenade = /obj/item/explosive/grenade/globadier
+
 	// *** Behemoth vars *** //
 	/// Whether we are currently charging or not.
 	var/behemoth_charging = FALSE
@@ -397,6 +408,14 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	// *** Boiler vars *** //
 	///When true the boiler gains speed and resets the duration on attack
 	var/steam_rush = FALSE
+
+	// *** Conqueror vars *** //
+	/// The amount of remaining health that Endurance has.
+	var/endurance_health = 1
+	/// The maximum amount of health that Endurance can have.
+	var/endurance_health_max = 1
+	/// Whether our Endurance has been broken, due to losing all of its health.
+	var/endurance_broken = FALSE
 
 	//Notification spam controls
 	var/recent_notice = 0
@@ -425,3 +444,15 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	COOLDOWN_DECLARE(xeno_resting_cooldown)
 	///The unresting cooldown
 	COOLDOWN_DECLARE(xeno_unresting_cooldown)
+
+///Called whenever a xeno slashes a human
+/mob/living/carbon/xenomorph/proc/onhithuman(attacker, target) //For globadiers lifesteal debuff
+	SIGNAL_HANDLER
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/victim = target
+	if(!victim.has_status_effect(STATUS_EFFECT_LIFEDRAIN))
+		return
+	var/mob/living/carbon/xenomorph/xeno = attacker
+	var/healamount = xeno.maxHealth * 0.06 //% of the xenos max health
+	HEAL_XENO_DAMAGE(xeno, healamount, FALSE)

@@ -345,9 +345,9 @@
 			return FALSE
 	if(SEND_SIGNAL(src, COMSIG_CAN_Z_MOVE, start, destination) & COMPONENT_CANT_Z_MOVE)
 		return FALSE
-	if(z_move_flags & ZMOVE_FALL_CHECKS && (throwing || (pass_flags & HOVERING) || !get_gravity()))
+	if(z_move_flags & ZMOVE_FALL_CHECKS && (throwing || ((pass_flags & HOVERING) == HOVERING) || !get_gravity()))
 		return FALSE
-	if(z_move_flags & ZMOVE_CAN_FLY_CHECKS && !(pass_flags & HOVERING) && get_gravity())
+	if(z_move_flags & ZMOVE_CAN_FLY_CHECKS && !((pass_flags & HOVERING) == HOVERING) && get_gravity())
 		if(z_move_flags & ZMOVE_FEEDBACK)
 			if(rider)
 				to_chat(rider, span_warning("[src] [p_are()] incapable of flight."))
@@ -491,6 +491,11 @@
 			set_currently_z_moving(FALSE, TRUE)
 	return TRUE
 
+/// Called when src is being moved to a target turf because another movable (puller) is moving around.
+/atom/movable/proc/move_from_pull(atom/movable/puller, turf/target_turf, glide_size_override)
+	moving_from_pull = puller
+	Move(target_turf, get_dir(src, target_turf), glide_size_override)
+	moving_from_pull = null
 
 /atom/movable/Bump(atom/A)
 	SHOULD_CALL_PARENT(TRUE)
@@ -571,6 +576,10 @@
 	var/turf/old_turf = get_turf(old_loc)
 	var/turf/new_turf = get_turf(src)
 
+	if(old_turf?.z != new_turf?.z)
+		var/same_z_layer = (GET_TURF_PLANE_OFFSET(old_turf) == GET_TURF_PLANE_OFFSET(new_turf))
+		on_changed_z_level(old_turf, new_turf, same_z_layer)
+
 	if(HAS_SPATIAL_GRID_CONTENTS(src))
 		if(old_turf && new_turf && (old_turf.z != new_turf.z \
 			|| ROUND_UP(old_turf.x / SPATIAL_GRID_CELLSIZE) != ROUND_UP(new_turf.x / SPATIAL_GRID_CELLSIZE) \
@@ -629,11 +638,6 @@
 				oldloc.Exited(src, movement_dir)
 				if(old_area && old_area != destarea)
 					old_area.Exited(src, movement_dir)
-			var/turf/oldturf = get_turf(oldloc)
-			var/turf/destturf = get_turf(destination)
-			if(oldturf?.z != destturf?.z)
-				var/same_z_layer = (GET_TURF_PLANE_OFFSET(oldturf) == GET_TURF_PLANE_OFFSET(destturf))
-				on_changed_z_level(oldturf, destturf, same_z_layer)
 			destination.Entered(src, oldloc)
 			if(destarea && old_area != destarea)
 				destarea.Entered(src, oldloc)

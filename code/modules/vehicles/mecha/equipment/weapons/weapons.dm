@@ -21,6 +21,13 @@
 		MECHA_R_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
 		MECHA_L_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
 	)
+	///identical to [flash_offsets], but for use with the snowflake mecha core sprites
+	var/list/flash_offsets_core = list(
+		MECHA_R_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+		MECHA_L_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+		MECHA_R_BACK = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+		MECHA_L_BACK = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+	)
 	///Icon state of the muzzle flash effect.
 	var/muzzle_iconstate
 	///color of the muzzle flash while shooting
@@ -60,6 +67,10 @@
 		to_chat(chassis.occupants, span_warning("Error -- Melee Core active."))
 		return FALSE
 
+/obj/item/mecha_parts/mecha_equipment/weapon/detach(atom/moveto)
+	reset_fire()
+	return ..()
+
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
 		return FALSE
@@ -90,7 +101,7 @@
 	RegisterSignal(source, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
 	RegisterSignal(source, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	SEND_SIGNAL(src, COMSIG_MECH_FIRE)
-	source?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	source?.client?.mouse_pointer_icon = 'icons/UI_Icons/gun_crosshairs/rifle.dmi'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/set_bursting(bursting)
 	if(bursting)
@@ -198,11 +209,22 @@
 		set_light_range(muzzle_flash_lum)
 		set_light_color(muzzle_flash_color)
 		set_light_on(TRUE)
-		addtimer(CALLBACK(src, PROC_REF(reset_light_range), prev_light), 1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(reset_light_range), prev_light), 0.1 SECONDS)
 
 	var/mech_slot = chassis.equip_by_category[MECHA_R_ARM] == src ? MECHA_R_ARM : MECHA_L_ARM
-	muzzle_flash.pixel_x = flash_offsets[mech_slot][dir2text_short(chassis.dir)][1]
-	muzzle_flash.pixel_y = flash_offsets[mech_slot][dir2text_short(chassis.dir)][2]
+	if(istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale/core))
+		//snowflake sprites mean snowflake offsets, wheeeeeeeeeeeeeeeeeeeeee
+		var/obj/vehicle/sealed/mecha/combat/greyscale/core/core = chassis
+		if(core.swapped_to_backweapons)
+			mech_slot = mech_slot == MECHA_R_ARM ? MECHA_R_BACK : MECHA_L_BACK
+		muzzle_flash.pixel_x = flash_offsets_core[mech_slot][dir2text_short(chassis.dir)][1]
+		muzzle_flash.pixel_y = flash_offsets_core[mech_slot][dir2text_short(chassis.dir)][2]
+		// more or less all the same changes cus arm icons. feel free to make it more accurate or make boosting use pixel offsets
+		if(core.leg_overload_mode)
+			muzzle_flash.pixel_y -= 2
+	else
+		muzzle_flash.pixel_x = flash_offsets[mech_slot][dir2text_short(chassis.dir)][1]
+		muzzle_flash.pixel_y = flash_offsets[mech_slot][dir2text_short(chassis.dir)][2]
 	switch(chassis.dir)
 		if(NORTH)
 			muzzle_flash.layer = initial(muzzle_flash.layer)
@@ -287,9 +309,7 @@
 		return FALSE
 	if(!projectiles_cache)
 		return FALSE
-	if(user.do_actions)
-		return FALSE
-	if(user && !do_after(user, rearm_time, IGNORE_HELD_ITEM|IGNORE_TARGET_LOC_CHANGE, chassis, BUSY_ICON_GENERIC, extra_checks=CALLBACK(src, PROC_REF(can_keep_reloading), projectiles)))
+	if(!do_after(user, rearm_time, IGNORE_HELD_ITEM|IGNORE_TARGET_LOC_CHANGE, chassis, BUSY_ICON_GENERIC, extra_checks=CALLBACK(src, PROC_REF(can_keep_reloading), projectiles)))
 		return FALSE
 	return rearm()
 

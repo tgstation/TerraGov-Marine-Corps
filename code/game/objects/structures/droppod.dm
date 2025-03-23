@@ -18,6 +18,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	layer = ABOVE_OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	soft_armor = list(MELEE = 25, BULLET = 80, LASER = 80, ENERGY = 90, BOMB = 70, BIO = 100, FIRE = 0, ACID = 0)
 	max_integrity = 75
 	atom_flags = PREVENT_CONTENTS_EXPLOSION
@@ -26,6 +27,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
+	faction = FACTION_TERRAGOV
 	//todo make these just use a turf?
 	///X target coordinate
 	var/target_x = 1
@@ -76,6 +78,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	for(var/atom/movable/ejectee AS in buckled_mobs) // dump them out, just in case no mobs get deleted
 		ejectee.forceMove(loc)
 	return ..()
+
+/obj/structure/droppod/ai_should_stay_buckled(mob/living/carbon/npc)
+	return TRUE
 
 ///Disables launching
 /obj/structure/droppod/proc/disable_launching()
@@ -294,7 +299,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 ///Do the stuff when it "hits the ground"
 /obj/structure/droppod/proc/dodrop(turf/targetturf, mob/user)
 	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, user ? user : null, targetturf)
-	explosion(targetturf, light_impact_range = 2)
+	explosion(targetturf, light_impact_range = 2, explosion_cause=user)
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
 	QDEL_NULL(reserved_area)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
@@ -537,14 +542,14 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/droppod/nonmob/mech_pod/dodrop(turf/targetturf, mob/user)
 	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, stored_object ? stored_object : null)
-	explosion(targetturf, 1, 2) //A mech just dropped onto your head from orbit
+	explosion(targetturf, 1, 2, explosion_cause=user) //A mech just dropped onto your head from orbit
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
 	QDEL_NULL(reserved_area)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
 
 /datum/action/innate/launch_droppod
 	name = "Begin Launch"
-	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon = 'icons/mob/actions/actions_mecha.dmi'
 	action_icon_state = "land"
 
 /datum/action/innate/launch_droppod/Activate()
@@ -554,7 +559,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /datum/action/innate/set_drop_target
 	name = "Set drop pod target"
-	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon = 'icons/mob/actions/actions_mecha.dmi'
 	action_icon_state = "mech_zoom_on"
 	///Locks activating this action again while choosing to prevent signal shenanigan runtimes.
 	var/choosing = FALSE

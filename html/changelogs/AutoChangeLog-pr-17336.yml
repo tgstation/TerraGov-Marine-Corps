@@ -1,4 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - bugfix: "ignore/unignore actually works now."

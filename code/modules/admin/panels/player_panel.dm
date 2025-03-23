@@ -482,6 +482,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 		<a href='byond://?src=[ref];transform=shrike;mob=[REF(M)]'>Shrike</a> |
 		<a href='byond://?src=[ref];transform=hivemind;mob=[REF(M)]'>Hivemind</a> |
 		<a href='byond://?src=[ref];transform=king;mob=[REF(M)]'>King</a> |
+		<a href='byond://?src=[ref];transform=dragon;mob=[REF(M)]'>Dragon</a> |
 		<br>
 	"}
 
