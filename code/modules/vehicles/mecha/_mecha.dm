@@ -225,6 +225,8 @@
 	var/dash_range = 1
 	///cooldown time between dashes on greyscale mechs
 	var/dash_cooldown = 10 SECONDS
+	///is the mech currently mid air or not determines if it does the footstep particles
+	var/midair = FALSE
 
 /obj/item/radio/mech //this has to go somewhere
 	subspace_transmission = TRUE
@@ -236,6 +238,7 @@
 	if(enclosed)
 		internal_tank = new (src)
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(play_stepsound))
+	RegisterSignal(src, COMSIG_ELEMENT_JUMP_STARTED, PROC_REF(on_jump_start))
 	RegisterSignal(src, COMSIG_ELEMENT_JUMP_ENDED, PROC_REF(on_jump_land))
 
 	spark_system.set_up(2, 0, src)
@@ -646,8 +649,15 @@
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), image('icons/mob/talk.dmi', src, "machine[say_test(speech_args[SPEECH_MESSAGE])]",MOB_LAYER+1), speech_bubble_recipients, 30)
 
 ///Stuff that happens when a mech finishes a jump
+/obj/vehicle/sealed/mecha/proc/on_jump_start()
+	SIGNAL_HANDLER
+	playsound(loc, 'sound/mecha/mechturn.ogg', 30, TRUE)
+	midair = TRUE
+
+///Stuff that happens when a mech finishes a jump
 /obj/vehicle/sealed/mecha/proc/on_jump_land()
 	SIGNAL_HANDLER
+	midair = FALSE
 	playsound(loc, 'sound/effects/alien/behemoth/stomp.ogg', 30, TRUE)
 	var/obj/effect/abstract/particle_holder/landing_particles
 	var/turf/current_turf = get_turf(src)

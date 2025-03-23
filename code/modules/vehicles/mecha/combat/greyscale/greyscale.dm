@@ -200,22 +200,20 @@
 
 /obj/vehicle/sealed/mecha/combat/greyscale/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
-	var/datum/component/jump/jumper = GetComponent(/datum/component/jump)
-	if(jumper)
-		if(!jumper.jumping)
-			var/obj/effect/abstract/particle_holder/footstep_particles
-			var/turf/current_turf = get_turf(src)
-			footstep_particles = new(current_turf, /particles/mech_footstep)
-			var/current_foot
-			if(next_footstep_left)
-				current_foot = "left_foot"
-				next_footstep_left = FALSE
-			else
-				current_foot = "right_foot"
-				next_footstep_left = TRUE
-			footstep_particles.particles.position = list(foot_offsets[current_foot][dir2text_short(dir)][1] - 30, foot_offsets[current_foot][dir2text_short(dir)][2]-4)
-			footstep_particles.layer = layer - 0.01
-			QDEL_IN(footstep_particles, 5)
+	if(!midair)
+		var/obj/effect/abstract/particle_holder/footstep_particles
+		var/turf/current_turf = get_turf(src)
+		footstep_particles = new(current_turf, /particles/mech_footstep)
+		var/current_foot
+		if(next_footstep_left)
+			current_foot = "left_foot"
+			next_footstep_left = FALSE
+		else
+			current_foot = "right_foot"
+			next_footstep_left = TRUE
+		footstep_particles.particles.position = list(foot_offsets[current_foot][dir2text_short(dir)][1] - 30, foot_offsets[current_foot][dir2text_short(dir)][2]-4)
+		footstep_particles.layer = layer - 0.01
+		QDEL_IN(footstep_particles, 5)
 
 /// Checks if we can dash to the east.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/dash_east()
@@ -256,31 +254,29 @@
 
 /// Does a dash in the specified direction.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/activate_dash(direction)
-	var/datum/component/jump/jumper = GetComponent(/datum/component/jump)
-	if(jumper)
-		if(!jumper.jumping)
-			dash_sparks_left.particles.spawning = 5
-			dash_sparks_right.particles.spawning = 5
-			dash_sparks_left.particles.position = list(foot_offsets["left_foot"][dir2text_short(direction)][1], foot_offsets["left_foot"][dir2text_short(direction)][2])
-			dash_sparks_right.particles.position = list(foot_offsets["right_foot"][dir2text_short(direction)][1], foot_offsets["right_foot"][dir2text_short(direction)][2])
-			switch(direction)
-				if(EAST)
-					dash_sparks_left.particles.velocity = list(-12, 0)
-					dash_sparks_right.particles.velocity = list(-12, 0)
-					dash_sparks_right.particles.gravity = list(0, 1)
-				if(WEST)
-					dash_sparks_left.particles.velocity = list(12, 0)
-					dash_sparks_right.particles.velocity = list(12, 0)
-					dash_sparks_right.particles.gravity = list(0, 1)
-				if(NORTH)
-					dash_sparks_left.particles.velocity = list(0, -12)
-					dash_sparks_right.particles.velocity = list(0, -12)
-					dash_sparks_right.particles.gravity = list(0, 0)
-				else
-					dash_sparks_left.particles.velocity = list(0, 12)
-					dash_sparks_right.particles.velocity = list(0, 12)
-					dash_sparks_right.particles.gravity = list(0, 0)
-			addtimer(CALLBACK(src, PROC_REF(remove_sparks)), 0.4 SECONDS)
+	if(!midair)
+		dash_sparks_left.particles.spawning = 5
+		dash_sparks_right.particles.spawning = 5
+		dash_sparks_left.particles.position = list(foot_offsets["left_foot"][dir2text_short(direction)][1], foot_offsets["left_foot"][dir2text_short(direction)][2])
+		dash_sparks_right.particles.position = list(foot_offsets["right_foot"][dir2text_short(direction)][1], foot_offsets["right_foot"][dir2text_short(direction)][2])
+		switch(direction)
+			if(EAST)
+				dash_sparks_left.particles.velocity = list(-12, 0)
+				dash_sparks_right.particles.velocity = list(-12, 0)
+				dash_sparks_right.particles.gravity = list(0, 1)
+			if(WEST)
+				dash_sparks_left.particles.velocity = list(12, 0)
+				dash_sparks_right.particles.velocity = list(12, 0)
+				dash_sparks_right.particles.gravity = list(0, 1)
+			if(NORTH)
+				dash_sparks_left.particles.velocity = list(0, -12)
+				dash_sparks_right.particles.velocity = list(0, -12)
+				dash_sparks_right.particles.gravity = list(0, 0)
+			else
+				dash_sparks_left.particles.velocity = list(0, 12)
+				dash_sparks_right.particles.velocity = list(0, 12)
+				dash_sparks_right.particles.gravity = list(0, 0)
+		addtimer(CALLBACK(src, PROC_REF(remove_sparks)), 0.4 SECONDS)
 	var/turf/target_turf = get_step(src, direction)
 	for(var/i in 1 to dash_range)
 		target_turf = get_step(target_turf, direction)
