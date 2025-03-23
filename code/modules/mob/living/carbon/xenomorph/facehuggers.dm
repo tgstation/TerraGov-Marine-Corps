@@ -169,12 +169,6 @@
 	if(isxenocarrier(user))
 		var/mob/living/carbon/xenomorph/carrier/C = user
 		C.store_hugger(src)
-	if(ishuman(user))
-		if(stat == DEAD)
-			return
-		user.visible_message(span_warning("[user] crushes [src] in [user.p_their()] hand!"), \
-		span_warning("You crush [src] in your hand!"))
-		kill_hugger()
 
 /obj/item/clothing/mask/facehugger/examine(mob/user)
 	. = ..()
@@ -792,6 +786,7 @@
 		target.adjust_stagger(3 SECONDS)
 		target.add_slowdown(15)
 		target.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO, updating_health = TRUE) //This should prevent sprinting
+		target.ExtinguishMob()
 
 	kill_hugger(0.5 SECONDS)
 
