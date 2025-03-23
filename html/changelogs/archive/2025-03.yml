@@ -485,3 +485,17 @@
   ivanmixo:
   - spellcheck: You will no longer believe the lie that only drones can evolve into
       Shrikes
+2025-03-23:
+  Apple-107:
+  - rscadd: Tank and APC armaments that weren't available in valhalla vendors are
+      now available.
+  Lumipharon:
+  - bugfix: NPC movement sometimes not turning off after a player takes control
+  - bugfix: fixed maw stopping xob from being built
+  Mantlecrawler:
+  - rscadd: Xadar has SFX and VFX now
+  - rscadd: Globadier now has mine types for each of their 5 grenades
+  - rscadd: Selecting a grenade as globadier will put a short description of its effects
+      in chat
+  - balance: Resin grenades from globadier now only fling marines and the owner globadier
+  - bugfix: Xadar now detonates properly when hitting a solid object
