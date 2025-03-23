@@ -620,7 +620,7 @@
 	name = "teleport_minimap"
 	full_name = "Hivemind: Open teleportation minimap"
 	description = "Opens up the minimap which, when you click somewhere, tries to teleport you to the selected location"
-	keybind_signal = COMISG_XENOMORPH_HIVEMIND_TELEPORT
+	keybind_signal = COMSIG_XENOMORPH_HIVEMIND_TELEPORT
 	hotkey_keys = list("C")
 
 /datum/keybinding/xeno/hunter_pounce
