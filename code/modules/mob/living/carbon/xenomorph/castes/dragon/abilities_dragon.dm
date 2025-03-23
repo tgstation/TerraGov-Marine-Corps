@@ -175,24 +175,6 @@
 			if(!silent)
 				xeno_owner.balloon_alert(xeno_owner, "already landing")
 			return FALSE
-		var/list/mob/living/carbon/xenomorph/nearby_xenos = cheap_get_xenos_near(xeno_owner, 7)
-		var/found_los_xenos = FALSE
-		for(var/mob/living/carbon/xenomorph/nearby_xeno AS in nearby_xenos)
-			if(nearby_xeno == xeno_owner)
-				continue
-			if(!xeno_owner.issamexenohive(nearby_xeno))
-				continue
-			if(line_of_sight(xeno_owner, nearby_xeno, 7))
-				found_los_xenos = TRUE
-				break
-		var/weeds_found = locate(/obj/alien/weeds) in xeno_owner.loc
-		if(!weeds_found && !found_los_xenos)
-			if(!silent)
-				if(nearby_xenos.len > 1)
-					xeno_owner.balloon_alert(xeno_owner, "no friendlies in sight")
-				else
-					xeno_owner.balloon_alert(xeno_owner, "no weeds")
-			return FALSE
 	if(COOLDOWN_TIMELEFT(src, animation_cooldown))
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "already lifting")
@@ -218,10 +200,10 @@
 
 /// Begins the process of flying.
 /datum/action/ability/activable/xeno/fly/proc/start_flight()
-	COOLDOWN_START(src, animation_cooldown, 0.5 SECONDS)
+	COOLDOWN_START(src, animation_cooldown, 1 SECONDS)
 	new /obj/effect/temp_visual/dragon/fly(get_turf(xeno_owner))
 	animate(xeno_owner, pixel_x = initial(xeno_owner.pixel_x), pixel_y = 500, time = 0.5 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(finalize_flight)), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finalize_flight)), 1 SECONDS)
 
 /// Finalizes the process of flying by granting various flags and so on.
 /datum/action/ability/activable/xeno/fly/proc/finalize_flight()
@@ -231,7 +213,8 @@
 	animate(xeno_owner, pixel_x = 0, pixel_y = 0, time = 0)
 	xeno_owner.status_flags = GODMODE|INCORPOREAL
 	xeno_owner.resistance_flags = RESIST_ALL
-	xeno_owner.pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
+	xeno_owner.pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE
+	xeno_owner.invisibility = INVISIBILITY_MAXIMUM
 	xeno_owner.density = FALSE
 	ADD_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 	xeno_owner.gain_plasma(xeno_owner.xeno_caste.plasma_max)
@@ -241,12 +224,12 @@
 /// Begins the process of landing.
 /datum/action/ability/activable/xeno/fly/proc/start_landing()
 	performing_landing_animation = TRUE
-	COOLDOWN_START(src, animation_cooldown, 3 SECONDS)
+	COOLDOWN_START(src, animation_cooldown, 5 SECONDS)
 	animate(xeno_owner, pixel_x = initial(xeno_owner.pixel_x), pixel_y = 500, time = 0)
 	var/list/turf/future_impacted_turfs = filled_turfs(xeno_owner, 2, "square", FALSE, pass_flags_checked = PASS_AIR)
 	for(var/turf/turf_to_telegraph AS in future_impacted_turfs)
-		new /obj/effect/temp_visual/dragon/warning(turf_to_telegraph, 3 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(continue_landing), future_impacted_turfs), 2.5 SECONDS)
+		new /obj/effect/temp_visual/dragon/warning(turf_to_telegraph, 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(continue_landing), future_impacted_turfs), 4.5 SECONDS)
 
 /// Continues the process of landing (mainly because of animations).
 /datum/action/ability/activable/xeno/fly/proc/continue_landing(list/turf/impacted_turfs)
@@ -263,6 +246,7 @@
 	xeno_owner.status_flags = initial(xeno_owner.status_flags)
 	xeno_owner.resistance_flags = initial(xeno_owner.resistance_flags)
 	xeno_owner.pass_flags = initial(xeno_owner.pass_flags)
+	xeno_owner.invisibility = initial(xeno_owner.invisibility)
 	xeno_owner.density = TRUE
 	REMOVE_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 	xeno_owner.update_icons(TRUE)
@@ -274,7 +258,7 @@
 // Performs various landing effects.
 /datum/action/ability/activable/xeno/fly/proc/perform_landing_effects(list/turf/affected_turfs)
 	new /obj/effect/temp_visual/dragon/land(get_turf(xeno_owner))
-	var/damage = 100 * xeno_owner.xeno_melee_damage_modifier
+	var/damage = 75 * xeno_owner.xeno_melee_damage_modifier
 	var/list/obj/vehicle/hit_vehicles = list()
 	for(var/turf/affected_turf AS in affected_turfs)
 		affected_turf.Shake(duration = 0.2 SECONDS)
@@ -351,7 +335,7 @@
 	action_icon_state = "dragon_breath"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "After a windup, continuously blast fire in a cardinal direction. If you are grabbing a marine, deal an incredible amount of damage and knock them back instead."
-	cooldown_duration = 30 SECONDS
+	cooldown_duration = 60 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DRAGON_BREATH,
 	)
@@ -398,7 +382,7 @@
 			debuff.add_stacks(10)
 		else
 			grabbed_human.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 10)
-		grabbed_human.take_overall_damage(get_damage() * 10, BURN, FIRE, max_limbs = length(grabbed_human.get_damageable_limbs()), updating_health = TRUE)
+		grabbed_human.take_overall_damage(get_damage() * 7.5, BURN, FIRE, max_limbs = length(grabbed_human.get_damageable_limbs()), updating_health = TRUE)
 		grabbed_human.knockback(xeno_owner, 5, 1)
 		xeno_owner.gain_plasma(250)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
