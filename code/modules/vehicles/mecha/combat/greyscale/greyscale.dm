@@ -22,14 +22,14 @@
 	count = 25
 	spawning = 25
 	lifespan = 5
-	fade = 12
+	fade = 15
 	gradient = list("#BA9F6D", "#808080", "#FFFFFF")
 	color = generator(GEN_NUM, 0, 0.25)
 	color_change = generator(GEN_NUM, 0.08, 0.07)
-	velocity = generator(GEN_CIRCLE, 6, 7)
+	velocity = generator(GEN_CIRCLE, 5, 6)
 	rotation = generator(GEN_NUM, -45, 45)
 	scale = 0.015
-	grow = 0.05
+	grow = 0.03
 	friction = 0.25
 
 /particles/dash_sparks
@@ -70,10 +70,6 @@
 	var/swapped_to_backweapons = FALSE
 	///whether we use an included builtin boost overlay to show we are boosting
 	var/use_builtin_boost_overlay = TRUE
-	///boost overlay icon file
-	var/boost_icon = 'icons/mecha/mecha_ability_overlays.dmi'
-	///boost overlay icon state
-	var/boost_icon_state = "booster"
 	///whetehr we use the damage particles
 	var/use_damage_particles = TRUE
 	///whether this is an unusable wreck
@@ -405,9 +401,9 @@
 			. += new_overlay
 
 	if(use_builtin_boost_overlay)
-		var/state = leg_overload_mode ? "[boost_icon_state]_active" : boost_icon_state
-		. += image(boost_icon, icon_state = state, layer=layer+0.002)
-		. += emissive_appearance(boost_icon, state, src)
+		var/state = leg_overload_mode ? "booster_active" : "booster"
+		. += image(ability_module_icon, icon_state = state, layer=layer+0.002)
+		. += emissive_appearance(ability_module_icon, state, src)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/setDir(newdir)
 	. = ..()
