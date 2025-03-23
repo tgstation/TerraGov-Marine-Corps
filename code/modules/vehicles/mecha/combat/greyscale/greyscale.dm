@@ -200,20 +200,21 @@
 
 /obj/vehicle/sealed/mecha/combat/greyscale/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
-	if(!midair)
-		var/obj/effect/abstract/particle_holder/footstep_particles
-		var/turf/current_turf = get_turf(src)
-		footstep_particles = new(current_turf, /particles/mech_footstep)
-		var/current_foot
-		if(next_footstep_left)
-			current_foot = "left_foot"
-			next_footstep_left = FALSE
-		else
-			current_foot = "right_foot"
-			next_footstep_left = TRUE
-		footstep_particles.particles.position = list(foot_offsets[current_foot][dir2text_short(dir)][1] - 30, foot_offsets[current_foot][dir2text_short(dir)][2]-4)
-		footstep_particles.layer = layer - 0.01
-		QDEL_IN(footstep_particles, 5)
+	if(!forced)
+		if(!midair)
+			var/obj/effect/abstract/particle_holder/footstep_particles
+			var/turf/current_turf = get_turf(src)
+			footstep_particles = new(current_turf, /particles/mech_footstep)
+			var/current_foot
+			if(next_footstep_left)
+				current_foot = "left_foot"
+				next_footstep_left = FALSE
+			else
+				current_foot = "right_foot"
+				next_footstep_left = TRUE
+			footstep_particles.particles.position = list(foot_offsets[current_foot][dir2text_short(dir)][1] - 30, foot_offsets[current_foot][dir2text_short(dir)][2]-4)
+			footstep_particles.layer = layer - 0.01
+			QDEL_IN(footstep_particles, 5)
 
 /// Checks if we can dash to the east.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/dash_east()
