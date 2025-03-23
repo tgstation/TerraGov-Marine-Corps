@@ -1616,6 +1616,9 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 						canbuild = FALSE
 					if(TRUE)
 						canbuild = FALSE
+				if(!SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()])
+					canbuild = FALSE
+					owner.balloon_alert(owner, "No more quickbuild points!")
 				if(canbuild)
 					var/list/baseturfs = islist(targetturf.baseturfs) ? targetturf.baseturfs : list(targetturf.baseturfs)
 					baseturfs |= targetturf.type
