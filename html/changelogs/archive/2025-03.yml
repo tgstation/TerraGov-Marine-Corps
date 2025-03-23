@@ -65,3 +65,8 @@
   Meghan-Rossi:
   - rscadd: CAS weapons no longer fire on right-click, shift-left click, or alt-left
       click.  Middle click and unmodified left-click continue to work.
+2025-03-23:
+  W0LF-101:
+  - rscadd: SH-23 to SOM Vendor
+  - rscadd: Belt Harness to SOM Vendor
+  - bugfix: Fixed misc sprites, we were missing some back sprites for some reason.

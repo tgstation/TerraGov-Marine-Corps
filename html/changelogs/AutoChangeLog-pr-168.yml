@@ -1,0 +1,13 @@
+author: "DrCrawler"
+delete-after: True
+changes:
+  - rscadd: "The dragon is now invisible to humans while flying."
+  - rscadd: "You can no longer see a flying dragon's bracket as a human."
+  - rscdel: "Flying dragons can no longer fly over barricades."
+  - rscdel: "Incorporeal xenos can no longer devour people."
+  - balance: "Increased dragon's speed."
+  - balance: "Reduced dragon's bomb armor."
+  - balance: "Doubled dragon breath's cooldown."
+  - balance: "Reduced the damage a grabbed human takes from dragon's breath by 25%."
+  - balance: "Reduced the damage from dragon's landing by 25%."
+  - balance: "The dragon now takes MUCH longer to take off and land, but no longer needs weeds to do so."
