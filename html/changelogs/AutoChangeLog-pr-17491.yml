@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - rscadd: "Added more mech weapons (rocket, micromissiles, shotgun, flamer)"
