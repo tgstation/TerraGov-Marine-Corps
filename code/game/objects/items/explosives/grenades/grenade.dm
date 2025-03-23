@@ -70,7 +70,7 @@
 /obj/item/explosive/grenade/update_overlays()
 	. = ..()
 	if(active && dangerous)
-		. += new /obj/effect/overlay/danger
+		. += mutable_appearance('icons/obj/items/grenade.dmi', "danger", ABOVE_ALL_MOB_LAYER, src)
 
 /obj/item/explosive/grenade/fire_act(burn_level)
 	activate()
