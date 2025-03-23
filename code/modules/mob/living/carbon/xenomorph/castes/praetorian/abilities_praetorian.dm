@@ -422,23 +422,23 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/adjusted_mult = 1.20
 	//tier 1 debuffs
 	if(living_target.IsStaggered())
-		adjusted_mult += 0.25
+		adjusted_mult += 0.15
 	if(living_target.IsSlowed())
-		adjusted_mult += 0.25
+		adjusted_mult += 0.15
 	if(living_target.IsConfused())
-		adjusted_mult += 0.25
+		adjusted_mult += 0.15
 	if(living_target.IsImmobilized())
-		adjusted_mult += 0.25
+		adjusted_mult += 0.15
 	if(living_target.has_status_effect(STATUS_EFFECT_INTOXICATED))
-		adjusted_mult += 0.25
+		adjusted_mult += 0.15
 	if(living_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE))
-		adjusted_mult += 0.25
+		adjusted_mult += 0.15
 	if(living_target.has_status_effect(STATUS_EFFECT_SHATTER))
-		adjusted_mult += 0.25
+		adjusted_mult += 0.15
 	if(living_target.has_status_effect(STATUS_EFFECT_MELTING))
-		adjusted_mult += 0.25
+		adjusted_mult += 0.15
 	if(living_target.has_status_effect(STATUS_EFFECT_LIFEDRAIN))
-		adjusted_mult += 0.25
+		adjusted_mult += 0.15
 	//big bonus if target has a "helpless" debuff
 	if(living_target.IsParalyzed() || living_target.IsStun() || living_target.IsKnockdown())
 		adjusted_mult += 0.5
@@ -543,7 +543,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			continue
 		if(living_target.stat == DEAD)
 			continue
-		to_chat(living_target, span_xenowarning("\The [xeno_owner] hooks into our flesh and yanks us towards them!"))
+		to_chat(living_target, span_xenowarning("\The [xeno_owner] hooks into your flesh and yanks you towards it!"))
 		var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
 		living_target.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
 		living_target.Shake(duration = 0.1 SECONDS)

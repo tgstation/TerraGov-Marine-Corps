@@ -607,7 +607,7 @@
 	var/damage_taken_so_far = 0
 
 /datum/action/ability/activable/xeno/grab/remove_action(mob/living/ability_owner)
-	end_grabbing(enforce_cooldown = FALSE)
+	end_grabbing(no_cooldown = TRUE)
 	return ..()
 
 /datum/action/ability/activable/xeno/grab/can_use_ability(atom/target, silent, override_flags)
@@ -698,7 +698,7 @@
 	playsound(get_turf(xeno_owner), 'sound/voice/alien/pounce.ogg', 25, TRUE)
 
 /// Cleans up everything associated with the grabbing and ends the ability.
-/datum/action/ability/activable/xeno/grab/proc/end_grabbing(datum/source, enforce_cooldown = TRUE)
+/datum/action/ability/activable/xeno/grab/proc/end_grabbing(datum/source, no_cooldown = FALSE)
 	SIGNAL_HANDLER
 	if(grabbed_human)
 		REMOVE_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
@@ -709,7 +709,7 @@
 			UnregisterSignal(grabbed_human, list(COMSIG_MOB_STAT_CHANGED, COMSIG_LIVING_DO_MOVE_RESIST))
 	grabbed_human = null
 	grabbing_item = null
-	if(!enforce_cooldown)
+	if(no_cooldown)
 		return
 	succeed_activate()
 	add_cooldown()

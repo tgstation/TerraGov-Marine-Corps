@@ -248,6 +248,7 @@
 		return
 	if(old_xeno)
 		stop_overwatch(FALSE)
+	watcher.observed_xeno = target
 	if(isxenoqueen(watcher)) // Only queen needs the eye shown.
 		target.hud_set_queen_overwatch()
 	watcher.reset_perspective(target)
@@ -261,6 +262,7 @@
 /datum/action/ability/xeno_action/watch_xeno/proc/stop_overwatch(do_reset_perspective = TRUE)
 	var/mob/living/carbon/xenomorph/watcher = owner
 	var/mob/living/carbon/xenomorph/observed = watcher.observed_xeno
+	watcher.observed_xeno = null
 	watcher.reset_perspective()
 	if(!QDELETED(observed))
 		UnregisterSignal(observed, list(COMSIG_HIVE_XENO_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))

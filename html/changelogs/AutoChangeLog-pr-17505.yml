@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - bugfix: "fixed the UI button to follow a xeno being clicked again not stoppping you from watching the currently watched xeno"

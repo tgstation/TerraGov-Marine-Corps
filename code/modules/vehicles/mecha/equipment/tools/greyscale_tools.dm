@@ -17,7 +17,7 @@
 	/// how much energy we use per step when boosting
 	var/boost_consumption = 55
 	///cooldown between dash activations
-	var/dash_cooldown = 5 SECONDS
+	var/dash_cooldown = 4 SECONDS
 
 /obj/item/mecha_parts/mecha_equipment/armor/booster/attach(obj/vehicle/sealed/mecha/M, attach_right)
 	. = ..()
@@ -46,7 +46,7 @@
 	protect_name = "Lightweight Booster"
 	weight = 45
 	dash_consumption = 300
-	speed_mod = 0.7
+	speed_mod = 0.5
 	dash_range = 5
 	boost_consumption = 35
 	dash_cooldown = 7 SECONDS
@@ -59,7 +59,7 @@
 	rechargerate = 0
 	slowdown = 0
 	max_fuel = 0
-	weight = 150
+	weight = 180
 	/// cell type to attach. this does the actual passive energy regen, if we have it
 	var/cell_type = /obj/item/cell/mecha
 
@@ -172,3 +172,11 @@
 	icon_state = "assaultarmor"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/assault_armor
+
+/obj/item/mecha_parts/mecha_equipment/ability/cloak
+	name = "cloak module"
+	desc = "A mech stealth cloaking device. Cannot fire while cloaked, and cloaking drains energy."
+	weight = 70
+	icon_state = "cloak"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	ability_to_grant = /datum/action/vehicle/sealed/mecha/cloak

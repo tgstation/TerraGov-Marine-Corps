@@ -39,7 +39,7 @@
 		return FALSE
 	if(xeno_owner.eaten_mob)
 		if(!silent)
-			to_chat(xeno_owner, span_warning("You have already swallowed one."))
+			to_chat(xeno_owner, span_warning("We have already swallowed one."))
 		return FALSE
 	if(xeno_owner.on_fire)
 		if(!silent)
@@ -88,7 +88,7 @@
 	name = "Drain"
 	action_icon_state = "drain"
 	action_icon = 'icons/Xeno/actions/gorger.dmi'
-	desc = "Hold a marine for some time and drain their blood, while healing. You can't attack during this time and can be shot by the marine. When used on a dead human, you heal, or gain overheal, gradually and don't gain blood."
+	desc = "Root a marine and attack them twice after a windup, gaining blood and healing yourself. You cannot attack while doing this. When used on a human corpse, instead enter a channeled heal that grants overheal once health is full."
 	use_state_flags = ABILITY_KEYBIND_USE_ABILITY
 	cooldown_duration = 15 SECONDS
 	ability_cost = 0

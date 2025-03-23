@@ -21,6 +21,7 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/core
 	pixel_x = -32
 	pixel_y = -5
+	light_pixel_x = 32
 	ability_module_icon = 'icons/mecha/mech_core_overlays.dmi'
 	use_builtin_boost_overlay = FALSE
 	use_damage_particles = FALSE
@@ -120,7 +121,7 @@
 	old_l_hand?.attach(src, FALSE)
 	old_r_back?.attach(src, TRUE)
 	old_l_back?.attach(src, FALSE)
-
+	swapped_to_backweapons = !swapped_to_backweapons
 	update_appearance(UPDATE_OVERLAYS)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/core/medium

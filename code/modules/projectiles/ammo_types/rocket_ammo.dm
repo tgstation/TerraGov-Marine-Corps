@@ -572,6 +572,17 @@
 
 /datum/ammo/rocket/homing/microrocket /// this is basically a tgmc version of the above
 	name = "homing HE microrocket"
+	shell_speed = 0.4
+	damage = 75
+	penetration = 40
+	sundering = 10
+	turn_rate = 10
+
+/datum/ammo/rocket/homing/microrocket/drop_nade(turf/T)
+	explosion(T, 0, 0, 0, 4, 1, explosion_cause=src)
+
+/datum/ammo/rocket/homing/microrocket/mech
+	name = "homing mech HE microrocket"
 	shell_speed = 0.3
 	damage = 75
 	penetration = 40
