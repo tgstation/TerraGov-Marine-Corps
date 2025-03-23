@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - bugfix: "Mech ammo huds will now add and remove on 2.0 mech enter/leave properly"
