@@ -172,3 +172,11 @@
 	icon_state = "assaultarmor"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/assault_armor
+
+/obj/item/mecha_parts/mecha_equipment/ability/cloak
+	name = "cloak module"
+	desc = "A mech stealth cloaking device. Cannot fire while cloaked, and cloaking drains energy."
+	weight = 70
+	icon_state = "cloak"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	ability_to_grant = /datum/action/vehicle/sealed/mecha/cloak
