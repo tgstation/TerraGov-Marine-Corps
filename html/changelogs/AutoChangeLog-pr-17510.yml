@@ -1,0 +1,11 @@
+author: "yyzsong"
+delete-after: True
+changes:
+  - spellcheck: "fixes tense in unbuckling text"
+  - spellcheck: "standardizes sentry and ammunition names for the sniper sentry, and the magazine names for both the sniper and shotgun sentry"
+  - spellcheck: "updates nuke disk generator text"
+  - spellcheck: "COMISG -> COMSIG"
+  - spellcheck: "rewords TO job spawnin description"
+  - spellcheck: "adds a missing period to the body scanner's chat log message"
+  - spellcheck: "corrects breath -> breathe in the \"fresh air fills your lungs\" message"
+  - spellcheck: "adjusts wording for boiler, praetorian, and gorger abilities"
