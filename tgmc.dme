@@ -854,7 +854,6 @@ F// DM Environment file for baystation12.dme.
 #include "code\game\objects\structures.dm"
 #include "code\game\objects\effects\acid_hole.dm"
 #include "code\game\objects\effects\aliens.dm"
-#include "code\game\objects\effects\bump_teleporter.dm"
 #include "code\game\objects\effects\countdown.dm"
 #include "code\game\objects\effects\effect.dm"
 #include "code\game\objects\effects\elevator.dm"
