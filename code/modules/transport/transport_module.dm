@@ -428,10 +428,7 @@
 
 					if(FALSE)
 						log_combat(src, victim_living, "collided with")
-						if(prob(15)) //sorry buddy, luck wasn't on your side
-							damage = 29 * collision_lethality * damage_multiplier
-						else
-							damage = rand(7, 21) * collision_lethality * damage_multiplier
+						damage = rand(7, 10) * collision_lethality * damage_multiplier
 						victim_living.apply_damage(2 * damage, BRUTE, BODY_ZONE_HEAD)
 						victim_living.apply_damage(3 * damage, BRUTE, BODY_ZONE_CHEST)
 						victim_living.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_L_LEG)
