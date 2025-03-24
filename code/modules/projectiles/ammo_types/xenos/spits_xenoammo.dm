@@ -137,6 +137,7 @@
 
 /datum/ammo/xeno/toxin/aphrotoxin
 	name = "aphrotoxin spit"
+	icon_state = "aphrotoxin"
 	spit_cost = 65
 	added_spit_delay = 0.1 SECONDS
 	damage_type = STAMINA
