@@ -63,6 +63,24 @@
 	cold_protection_flags = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
+/obj/item/clothing/mask/rebreather/scarf/verb/toggle()
+	set category = "Object"
+	set name = "Adjust coif"
+	set src in usr
+
+	if(usr.incapacitated())
+		return
+
+	active = !active
+	icon_state = "[initial(icon_state)][!active ? "_down" : ""]"
+	armor_protection_flags ^= initial(armor_protection_flags)
+	inventory_flags ^= initial(inventory_flags)
+	to_chat(usr, "You [active ? "pull [src] up to cover your face" : "pull [src] off your face"].")
+
+	update_clothing_icon()
+
+	update_action_button_icons()
+
 /obj/item/clothing/mask/rebreather/scarf/freelancer
 	worn_icon_state = "coif_fl"
 
