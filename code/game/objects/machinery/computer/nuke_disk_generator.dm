@@ -177,6 +177,15 @@
 	deltimer(current_timer)
 	current_timer = null
 	completed_segments = min(completed_segments + 1, total_segments)
+
+	// Add 5 Vendor points to all marines.
+	for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
+		if(!H.job)
+			continue
+		var/obj/item/card/id/user_id =  H.get_idcard()
+		for(var/i in user_id.marine_points)
+			user_id.marine_points[i] += 5
+
 	update_minimap_icon()
 	running = FALSE
 
