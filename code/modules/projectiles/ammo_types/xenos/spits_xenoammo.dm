@@ -50,10 +50,12 @@
 	smoke_strength = 0.5
 	smoke_range = 0
 	reagent_transfer_amount = 4
+	var/smoke_type = /datum/effect_system/smoke_spread/xeno/neuro/light
+	var/reagent_type = /datum/reagent/toxin/xeno_neurotoxin
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/toxin/proc/set_reagents()
-	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
+	spit_reagents = list(reagent_type = reagent_transfer_amount)
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	drop_neuro_smoke(get_turf(target_mob))
@@ -92,7 +94,7 @@
 	drop_neuro_smoke(target_turf.density ? proj.loc : target_turf)
 
 /datum/ammo/xeno/toxin/set_smoke()
-	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro/light()
+	smoke_system = new smoke_type()
 
 /datum/ammo/xeno/toxin/proc/drop_neuro_smoke(turf/T)
 	if(T.density)
@@ -132,6 +134,53 @@
 	added_spit_delay = 0 SECONDS
 	smoke_strength = 0.25
 	reagent_transfer_amount = 2.5
+
+/datum/ammo/xeno/toxin/aphrotoxin
+	name = "aphrotoxin spit"
+	spit_cost = 65
+	added_spit_delay = 0.1 SECONDS
+	damage_type = STAMINA
+	accurate_range = 5
+	max_range = 10
+	accuracy_var_low = 3
+	accuracy_var_high = 3
+	bullet_color = COLOR_TOXIN_APHROTOXIN
+	damage = 25
+	stagger_stacks = 0.5 SECONDS
+	slowdown_stacks = 0.5
+	smoke_strength = 0.4
+	smoke_range = 0
+	reagent_transfer_amount = 3
+	smoke_type = /datum/effect_system/smoke_spread/xeno/aphrotoxin
+	reagent_type = /datum/reagent/toxin/xeno_aphrotoxin
+
+/datum/ammo/xeno/toxin/aphrotoxin/upgrade1
+	smoke_strength = 0.5
+	reagent_transfer_amount = 4
+
+/datum/ammo/xeno/toxin/aphrotoxin/upgrade2
+	smoke_strength = 0.55
+	reagent_transfer_amount = 5
+
+/datum/ammo/xeno/toxin/aphrotoxin/upgrade3
+	smoke_strength = 0.6
+	reagent_transfer_amount = 6.5
+
+/datum/ammo/xeno/toxin/aphrotoxin/heavy //Praetorian
+	name = "aphrotoxin splash"
+	spit_cost = 120
+	added_spit_delay = 0 SECONDS
+	damage = 35
+	smoke_strength = 1
+	reagent_transfer_amount = 8
+
+/datum/ammo/xeno/toxin/aphrotoxin/auto
+	damage = 12
+	damage_falloff = 0.2
+	spit_cost = 25
+	added_spit_delay = 0 SECONDS
+	smoke_strength = 0.25
+	reagent_transfer_amount = 1.5	
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
