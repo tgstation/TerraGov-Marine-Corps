@@ -54,12 +54,22 @@
 
 	id = /obj/item/card/id/dogtag
 	ears = /obj/item/radio/headset/mainship/marine/icc
-	w_uniform = /obj/item/clothing/under/icc
+	w_uniform = /obj/item/clothing/under/icc/medic
+	r_hand = /obj/item/medevac_beacon
 	gloves = /obj/item/clothing/gloves/marine/icc
 	shoes = /obj/item/clothing/shoes/marine/icc/knife
 	back = /obj/item/storage/backpack/lightpack/icc
 	belt = /obj/item/storage/belt/lifesaver/icc/ert
 	glasses = /obj/item/clothing/glasses/hud/health
+
+/datum/outfit/job/icc_squad/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/oxycodone, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/nanoblood, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/roller/medevac, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_ACCESSORY)
 
 //VSD Spec
 /datum/job/icc_squad/spec
