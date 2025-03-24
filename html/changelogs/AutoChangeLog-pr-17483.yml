@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscadd: "Added mech cloaking module"
-  - code_imp: "added new warped_invisibile method of making things invisible, which warps the air where the invisible thing is instead of just making them partially translucent"

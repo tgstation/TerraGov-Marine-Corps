@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscadd: "Added an assault core module to the mech that emits a laser burst after a windup when triggered"

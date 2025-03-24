@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Dragon's Grab ability now correctly gains a cooldown upon ending a grab early."

@@ -1,5 +1,0 @@
-author: "Kuro020"
-delete-after: True
-changes:
-  - balance: "Dancer's damage debuff damage scaling reduced from 0.25 to 0.15"
-  - balance: "Dancer loses the ability to acid and build acid wells"
