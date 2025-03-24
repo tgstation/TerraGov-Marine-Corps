@@ -244,6 +244,10 @@
 	},
 /turf/open/floor/iron/grimy,
 /area/antag_ship/som/office/commander/field)
+"bQ" = (
+/obj/structure/largecrate/supply/supplies/plastic,
+/turf/open/floor/plating/ground/dirt,
+/area/antag_ship/clf_base/hallways/outside)
 "bS" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -1494,29 +1498,7 @@
 /area/antag_ship/vsd/med)
 "jb" = (
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
+/obj/structure/droppod/respawning,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/icc/hangar/west)
 "jd" = (
@@ -7767,7 +7749,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/preparation)
 "PE" = (
-/obj/item/stack/sheet/cloth,
+/obj/structure/largecrate/supply/supplies/cloth,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/hallways/outside)
 "PI" = (
@@ -8911,29 +8893,7 @@
 /area/antag_ship/vsd/port)
 "Vk" = (
 /obj/structure/drop_pod_launcher,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
-/obj/structure/droppod,
+/obj/structure/droppod/respawning/earlylaunch,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/hallways/outside)
 "Vl" = (
@@ -18214,7 +18174,7 @@ tY
 tT
 fh
 PE
-gW
+bQ
 Go
 "}
 (89,1,1) = {"
