@@ -444,6 +444,13 @@
 //------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
 
+
+
+
+
+
+
+
 /obj/item/weapon/gun/shotgun/pump/bolt
 	name = "\improper Mosin Nagant rifle"
 	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already. Commonly known by its slang, \"Moist Nugget\", by downbrained colonists and outlaws."
@@ -820,6 +827,66 @@
 
 /obj/item/weapon/gun/shotgun/pump/t35/vgrip
 	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/verticalgrip, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet)
+
+//------------------------------------------------------
+//SH-41 Bolt action shotgun
+/obj/item/weapon/gun/shotgun/pump/bolt/dijitar
+	name = "\improper SH41 Dijitar Expirimental shotgun"
+	desc = "Uses 12 gauge shells for now.\n<b>Requires a racking of the bolt, which is the Unique Action key.</b>"
+	equip_slot_flags = ITEM_SLOT_BACK
+	icon = 'icons/obj/items/guns/shotguns64.dmi'
+	icon_state = "t35"
+	worn_icon_state = "t35"
+	cock_animation = "t35_pump"
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh41.ogg'
+
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
+
+	cocked_sound = 'sound/weapons/guns/interact/working_the_shotgun_bolt.ogg'
+	cocked_message = "You work the bolt with eminence."
+
+default_ammo_type = /obj/item/ammo_magazine/shotgun/Dijitar
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/shotgun/Dijitar)  //Do I need this? Test with and without. Note: I'm pretty sure I don't but then again there will be buckshot and slug and etcetera.
+
+	max_chamber_items = 5
+
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet/converted,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/som,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/foldable/t35stock,  //35 stock
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+	)
+	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock)
+
+	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES   //I don't know if I want "GUN_WIELDED_FIRING_ONLY" and I'm not sure what the others do.
+	reciever_flags = AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION|AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_UNIQUE_ACTION_LOCKS|AMMO_RECIEVER_AUTO_EJECT  //Is "AMMO_RECIEVER_UNIQUE_ACTION_LOCKS" what makes it so you have to shoot the ammo?
+
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 9, "rail_y" = 21, "under_x" = 18, "under_y" = 12, "stock_x" = -3, "stock_y" = 16)
+	item_map_variant_flags = NONE
+
+	fire_delay = 1.3 SECONDS
+	scatter_unwielded = 10
+	recoil = 2
+	recoil_unwielded = 4
+	aim_slowdown = 0.45
+	cock_delay = 0.9 SECONDS //This is gonna need tons of testing I think
+
+	placed_overlay_iconstate = "t35"
 
 //-------------------------------------------------------
 //THE MYTH, THE GUN, THE LEGEND, THE DEATH, THE ZX
