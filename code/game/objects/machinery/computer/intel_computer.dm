@@ -64,7 +64,7 @@
 	SSpoints.supply_points[faction] = clamp((SSpoints.supply_points[faction]+=supply_reward),0,HUMAN_FACTION_MAX_POINTS) //NTF edit. Forcibly caps req points.
 
 	SSpoints.dropship_points += dropship_reward
-	minor_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "NTC Intel Division")
+	minor_announce("Classified transmission recieved from [get_area(src)]. Bonus awarded to [faction] as [supply_reward] supply points and [dropship_reward] dropship points.", title = "Intel Division")
 	SSminimaps.remove_marker(src)
 	SStgui.close_uis(src)
 	active = FALSE
