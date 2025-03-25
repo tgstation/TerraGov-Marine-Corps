@@ -203,39 +203,29 @@
 		user.visible_message(span_notice("[user] adjusts the shower with \the [I]."), span_notice("You adjust the shower with \the [I]."))
 
 /obj/machinery/shower/update_icon()
-//this is terribly unreadable, but basically it makes the shower mist up once it's been on for a while
+	. = ..()
 	overlays.Cut()
-	if(mymist)
-		qdel(mymist)
-		mymist = null
-
+	handle_mist()
 	if(on)
 		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
-		if(watertemp == WATER_TEMP_FREEZING)
-			return
-		if(!ismist)
-			spawn(50)
-				if(src && on)
-					ismist = TRUE
-					mymist = new /obj/effect/mist(loc)
-		else
-			ismist = TRUE
-			mymist = new /obj/effect/mist(loc)
-	else if(ismist)
-		ismist = TRUE
-		mymist = new /obj/effect/mist(loc)
-		spawn(250)
-			if(src && !on)
-				qdel(mymist)
-				mymist = null
-				ismist = FALSE
 
-/obj/machinery/shower/update_overlays()
-	. = ..()
-	if(on)
-		. += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
-	else
-		. -= image('icons/obj/watercloset.dmi', src, "water")
+/obj/machinery/shower/proc/handle_mist()
+	var/obj/effect/mist/mymist = locate() in loc
+	if(!mymist && on && watertemp != "freezing")
+		addtimer(CALLBACK(src, PROC_REF(make_mist)), 5 SECONDS)
+
+	if(mymist && !(on && watertemp != "freezing"))
+		addtimer(CALLBACK(src, PROC_REF(clear_mist)), 25 SECONDS)
+
+/obj/machinery/shower/proc/make_mist()
+	var/obj/effect/mist/mymist = locate() in loc
+	if(!mymist && on && !watertemp != "freezing")
+		mymist = new /obj/effect/mist(loc)
+
+/obj/machinery/shower/proc/clear_mist()
+	var/obj/effect/mist/mymist = locate() in loc
+	if(mymist && !(on && !watertemp != "freezing"))
+		qdel(mymist)
 
 /obj/machinery/shower/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
 	SIGNAL_HANDLER
