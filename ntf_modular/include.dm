@@ -60,6 +60,7 @@
 #include "code\game\objects\effects\landmarks\marine_spawns.dm"
 #include "code\game\objects\structures\crates_lockers\largecrate_supplies.dm"
 #include "code\game\objects\structures\dancing_pole.dm"
+#include "code\game\objects\structures\droppod.dm"
 #include "code\game\objects\structures\lewd_construction.dm"
 #include "code\game\objects\structures\lewd_structures.dm"
 #include "code\game\objects\structures\teleporter.dm"
