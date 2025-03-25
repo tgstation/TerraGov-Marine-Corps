@@ -1,0 +1,6 @@
+author: "Kuro020"
+delete-after: True
+changes:
+  - balance: "Mech rocket no longer completely deletes armor"
+  - balance: "Mech shotgun does sunder and has less falloff"
+  - balance: "Removed zoom module"
