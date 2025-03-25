@@ -475,7 +475,7 @@ SUBSYSTEM_DEF(minimaps)
 	var/list/linked_zs = SSmapping.get_connected_levels(newz)
 	if(!length(linked_zs))
 		return
-	linked_zs= sort_list(linked_zs, /proc/cmp_numeric_asc)
+	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
 	var/relativez = linked_zs.Find(newz)
 	var/text = "Floor<br/>[relativez]"
 	maptext = MAPTEXT_TINY_UNICODE("<div align='center' valign='middle' style='position:relative; top:0px; left:0px'>[text]</div>")
@@ -596,7 +596,7 @@ SUBSYSTEM_DEF(minimaps)
 			return FALSE
 		owner.client.screen += map
 		owner.client.screen += locator
-		if(length(SSmapping.get_connected_levels(tracking.z)))
+		if(length(SSmapping.get_connected_levels(tracking.z)) > 1)
 			owner.client.screen += z_indicator
 			owner.client.screen += z_up
 			owner.client.screen += z_down
