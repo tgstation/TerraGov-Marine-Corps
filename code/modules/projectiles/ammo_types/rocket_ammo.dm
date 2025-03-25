@@ -589,7 +589,7 @@
 	sundering = 3
 	turn_rate = 10
 
-/datum/ammo/rocket/homing/microrocket/drop_nade(turf/T)
+/datum/ammo/rocket/homing/microrocket/mech/drop_nade(turf/T)
 	explosion(T, 0, 0, 0, 2, 1, explosion_cause=src)
 
 /datum/ammo/rocket/homing/tow
