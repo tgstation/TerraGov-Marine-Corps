@@ -32,6 +32,7 @@
 	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED | MECHA_SPIN_WHEN_NO_ANGLE | OMNIDIRECTIONAL_ATTACKS | QUIET_TURNS
 	explosion_block = 2
 	pivot_step = TRUE
+	allow_diagonal_movement = TRUE
 	/// used to lookup ability overlays for this mech
 	var/ability_module_icon = 'icons/mecha/mecha_ability_overlays.dmi'
 	///whether we have currently swapped the back and arm icons
