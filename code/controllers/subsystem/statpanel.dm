@@ -28,6 +28,7 @@ SUBSYSTEM_DEF(statpanels)
 			"Game Mode: [GLOB.master_mode]",
 			"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
 			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
+			"Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]",
 			"Operation Time: [stationTimestamp("hh:mm")]",
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)"
 		)

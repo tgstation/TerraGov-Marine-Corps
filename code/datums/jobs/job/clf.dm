@@ -231,7 +231,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_SUIT)
-
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)

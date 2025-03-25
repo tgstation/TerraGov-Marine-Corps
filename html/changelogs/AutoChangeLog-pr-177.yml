@@ -1,0 +1,4 @@
+author: "ddotmint"
+delete-after: True
+changes:
+  - bugfix: "crowbarred floor tiles now preserve their look"
