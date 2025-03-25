@@ -426,7 +426,7 @@
 	var/dir_target_diff = get_between_angles(Get_Angle(chassis, target), dir2angle(chassis.dir))
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
 		if(chassis.mecha_flags & MECHA_SPIN_WHEN_NO_ANGLE)
-			chassis.face_atom(current_target)
+			chassis.face_atom(target)
 		else
 			return TRUE
 	var/obj/O = new ammotype(chassis.loc)
