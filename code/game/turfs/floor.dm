@@ -164,7 +164,7 @@
 /turf/open/floor/proc/spawn_tile()
 	if(!has_tile())
 		return null
-	return new floor_tile(src)
+	return new floor_tile(src, 1, type)
 
 //todo: maybe redo this wet/dry stuff
 /turf/open/floor/wet_floor(wet_level = FLOOR_WET_WATER)
