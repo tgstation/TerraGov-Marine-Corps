@@ -72,6 +72,8 @@
   - bugfix: Fixed misc sprites, we were missing some back sprites for some reason.
 2025-03-24:
   DrCrawler:
+  - bugfix: Added more muscle mass to dragons, they are now too heavy to take off
+      while there's someone inside their stomach.
   - rscadd: The dragon is now invisible to humans while flying.
   - rscadd: You can no longer see a flying dragon's bracket as a human.
   - rscdel: Flying dragons can no longer fly over barricades.
@@ -83,3 +85,8 @@
   - balance: Reduced the damage from dragon's landing by 25%.
   - balance: The dragon now takes MUCH longer to take off and land, but no longer
       needs weeds to do so.
+2025-03-25:
+  dottymint:
+  - rscadd: heat absorbent coifs can now be adjusted to cover less of your face
+  - rscadd: added aphrotoxin spit to queen, prae and spitter
+  - refactor: slightly refactored toxin spit

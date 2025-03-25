@@ -1292,7 +1292,8 @@
 		return FALSE
 	var/mob/living/carbon/human/victim = target
 	if(owner.status_flags & INCORPOREAL)
-		to_chat(owner, span_warning("Can't do while in flight!"))
+		if(!silent)
+			to_chat(owner, span_warning("Can't do while in flight!"))
 		return FALSE
 	if(owner.do_actions) //can't use if busy
 		return FALSE
