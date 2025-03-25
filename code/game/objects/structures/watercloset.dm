@@ -200,6 +200,7 @@
 				watertemp = "boiling"
 			if(WATER_TEMP_BOILING)
 				watertemp = "normal"
+		handle_mist()
 		user.visible_message(span_notice("[user] adjusts the shower with \the [I]."), span_notice("You adjust the shower with \the [I]."))
 
 /obj/machinery/shower/update_icon()
@@ -210,18 +211,27 @@
 		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
 
 /obj/machinery/shower/proc/handle_mist()
+    // check if there's no mist, if the shower is on and if it's not freezing
+	// if so, add a 5 second timer to make mist
 	if(!mymist && on && watertemp != "freezing")
 		addtimer(CALLBACK(src, PROC_REF(make_mist)), 5 SECONDS)
-
+	// check if there's mist, and if the shower is off, freezing or both
+	// if so, add a 25 second timer to clear mist
 	if(mymist && !(on && watertemp != "freezing"))
 		addtimer(CALLBACK(src, PROC_REF(clear_mist)), 25 SECONDS)
 
 /obj/machinery/shower/proc/make_mist()
-	if(!mymist && on && !watertemp != "freezing")
+	// timer elapsed
+	// check again to make sure there's still no mist, the shower is still on and it's still not freezing
+	// if so, create a new mist effect
+	if(!mymist && on && watertemp != "freezing")
 		mymist = new /obj/effect/mist(loc)
 
 /obj/machinery/shower/proc/clear_mist()
-	if(mymist && !(on && !watertemp != "freezing"))
+	// timer elapsed
+	// check again to make sure there's still mist, and the shower is still off, freezing or both
+	// if so, delete mist
+	if(mymist && !(on && watertemp != "freezing"))
 		qdel(mymist)
 		mymist = null
 
