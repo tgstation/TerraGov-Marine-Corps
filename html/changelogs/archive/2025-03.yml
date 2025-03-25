@@ -548,3 +548,6 @@
   - spellcheck: adds a missing period to the body scanner's chat log message
   - spellcheck: corrects breath -> breathe in the "fresh air fills your lungs" message
   - spellcheck: adjusts wording for boiler, praetorian, and gorger abilities
+2025-03-25:
+  Lumipharon:
+  - bugfix: The pacifist movement amongminions has been stamped out
