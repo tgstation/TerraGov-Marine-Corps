@@ -175,7 +175,7 @@
 	slowdown = 0
 	harmful = TRUE
 	rearm_time = 4 SECONDS
-	weight = 90
+	weight = 80
 	ammo_type = MECHA_AMMO_SHOTGUN
 	hud_icons = list("shotgun_buckshot", "shotgun_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
@@ -374,14 +374,14 @@
 	equipment_slot = MECHA_BACK
 	ammotype = /obj/item/explosive/grenade
 	max_integrity = 350
-	projectiles = 10
-	projectiles_cache = 40
-	projectiles_cache_max = 40
+	projectiles = 5
+	projectiles_cache = 25
+	projectiles_cache_max = 25
 	projectile_delay = 1 SECONDS
 	variance = 10
 	missile_speed = 1.5
 	equip_cooldown = 2 SECONDS
-	weight = 130
+	weight = 110
 	slowdown = 0
 	rearm_time = 4 SECONDS
 	ammo_type = MECHA_AMMO_GRENADE
@@ -420,7 +420,7 @@
 	projectile_delay = 2 SECONDS
 	slowdown = 0
 	harmful = TRUE
-	weight = 100
+	weight = 90
 	ammo_type = MECHA_AMMO_FLAMER
 	hud_icons = list("flame", "flame_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
@@ -448,7 +448,7 @@
 	variance = 20
 	projectile_delay = 4 SECONDS
 	slowdown = 0
-	weight = 130
+	weight = 120
 	rearm_time = 5 SECONDS
 	windup_delay = 1 SECONDS
 	harmful = TRUE
@@ -478,7 +478,7 @@
 	burst_amount = 3
 	projectile_burst_delay = 0.2 SECONDS
 	slowdown = 0
-	weight = 75
+	weight = 90
 	rearm_time = 8 SECONDS
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_RPG
