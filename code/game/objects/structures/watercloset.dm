@@ -167,7 +167,8 @@
 	if(.)
 		return
 	on = !on
-	update_mist()
+	user.visible_message(span_notice("[user] [on ? "turns [src] on" : "turns [src] off"]."), span_notice("You [on ? "turn [src] on" : "turn [src] off"]."))
+	update_icon()
 	if(on)
 		start_processing()
 		if (user.loc == loc)
@@ -201,9 +202,9 @@
 				watertemp = "normal"
 		user.visible_message(span_notice("[user] adjusts the shower with \the [I]."), span_notice("You adjust the shower with \the [I]."))
 
-/obj/machinery/shower/proc/update_mist()
+/obj/machinery/shower/update_icon()
 //this is terribly unreadable, but basically it makes the shower mist up once it's been on for a while
-	update_icon()
+	overlays.Cut()
 	if(mymist)
 		qdel(mymist)
 		mymist = null
@@ -359,7 +360,6 @@
 	if(busy)
 		to_chat(user, span_warning("Someone's already washing here."))
 		return
-
 	var/obj/item/reagent_containers/RG = I
 	if(istype(RG) && RG.is_open_container() && RG.reagents.total_volume < RG.reagents.maximum_volume)
 		RG.reagents.add_reagent(/datum/reagent/water, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
