@@ -210,7 +210,6 @@
 		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
 
 /obj/machinery/shower/proc/handle_mist()
-	var/obj/effect/mist/mymist = locate() in loc
 	if(!mymist && on && watertemp != "freezing")
 		addtimer(CALLBACK(src, PROC_REF(make_mist)), 5 SECONDS)
 
@@ -218,14 +217,13 @@
 		addtimer(CALLBACK(src, PROC_REF(clear_mist)), 25 SECONDS)
 
 /obj/machinery/shower/proc/make_mist()
-	var/obj/effect/mist/mymist = locate() in loc
 	if(!mymist && on && !watertemp != "freezing")
 		mymist = new /obj/effect/mist(loc)
 
 /obj/machinery/shower/proc/clear_mist()
-	var/obj/effect/mist/mymist = locate() in loc
 	if(mymist && !(on && !watertemp != "freezing"))
 		qdel(mymist)
+		mymist = null
 
 /obj/machinery/shower/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
 	SIGNAL_HANDLER
