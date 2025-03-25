@@ -483,7 +483,7 @@
 "dly" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 5},/obj/structure/cable,/turf/open/floor/mainship/floor,/area/mainship/command/fcroom)
 "dlG" = (/obj/structure/cable,/obj/structure/disposalpipe/segment,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/plating/plating_catwalk,/area/mainship/squads/req)
 "dmc" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/plating/plating_catwalk,/area/mainship/hallways/port_hallway)
-"dmQ" = (/obj/machinery/vending/weapon,/turf/open/floor/mainship/mono,/area/mainship/living/bridgebunks)
+"dmQ" = (/obj/machinery/loadout_vendor,/turf/open/floor/mainship/mono,/area/mainship/living/bridgebunks)
 "dnc" = (/obj/machinery/camera/autoname/mainship{dir = 8},/turf/open/floor/mainship/floor,/area/mainship/shipboard/starboard_point_defense)
 "dng" = (/turf/open/floor/mainship/sterile/dark,/area/mainship/medical/chemistry)
 "dni" = (/obj/structure/window/framed/mainship,/obj/machinery/door/poddoor/shutters/mainship/open{id = ceoffice},/turf/open/floor/plating,/area/mainship/groundhq/ntf/engineering/ce_room)
