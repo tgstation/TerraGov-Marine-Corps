@@ -221,7 +221,7 @@
 		muzzle_flash.pixel_z = flash_offsets_core[mech_slot][dir2text_short(chassis.dir)][2]
 		// more or less all the same changes cus arm icons. feel free to make it more accurate or make boosting use pixel offsets
 		if(core.leg_overload_mode)
-			muzzle_flash.z -= 2
+			muzzle_flash.pixel_z -= 2
 	else
 		muzzle_flash.pixel_w = flash_offsets[mech_slot][dir2text_short(chassis.dir)][1]
 		muzzle_flash.pixel_z = flash_offsets[mech_slot][dir2text_short(chassis.dir)][2]
