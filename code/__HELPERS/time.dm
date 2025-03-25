@@ -21,31 +21,40 @@ GLOBAL_VAR_INIT(rollovercheck_last_timeofday, 0)
 //Takes a value of time in deciseconds.
 //Returns a text value of that number in hours, minutes, or seconds.
 /proc/DisplayTimeText(time_value, round_seconds_to = 0.1)
+	if(time_value < 0)
+		time_value = -time_value
+		. = "negative "
+	else
+		. = ""
 	var/second = FLOOR(time_value * 0.1, round_seconds_to)
 	if(!second)
 		return "right now"
 	if(second < 60)
-		return "[second] second[(second != 1)? "s":""]"
+		. += "[second] second[(second != 1)? "s":""]"
+		return
 	var/minute = FLOOR(second / 60, 1)
 	second = FLOOR(MODULUS(second, 60), round_seconds_to)
 	var/secondT
 	if(second)
 		secondT = " and [second] second[(second != 1)? "s":""]"
 	if(minute < 60)
-		return "[minute] minute[(minute != 1)? "s":""][secondT]"
+		. += "[minute] minute[(minute != 1)? "s":""][secondT]"
+		return
 	var/hour = FLOOR(minute / 60, 1)
 	minute = MODULUS(minute, 60)
 	var/minuteT
 	if(minute)
 		minuteT = " and [minute] minute[(minute != 1)? "s":""]"
 	if(hour < 24)
-		return "[hour] hour[(hour != 1)? "s":""][minuteT][secondT]"
+		. += "[hour] hour[(hour != 1)? "s":""][minuteT][secondT]"
+		return
 	var/day = FLOOR(hour / 24, 1)
 	hour = MODULUS(hour, 24)
 	var/hourT
 	if(hour)
 		hourT = " and [hour] hour[(hour != 1)? "s":""]"
-	return "[day] day[(day != 1)? "s":""][hourT][minuteT][secondT]"
+	. += "[day] day[(day != 1)? "s":""][hourT][minuteT][secondT]"
+	return
 
 
 /proc/gameTimestamp(format = "hh:mm:ss", wtime = world.time)
