@@ -126,7 +126,10 @@
 		authenticated = FALSE
 
 	if(href_list["dept"])
-		var/choice = tgui_input_list(usr, "Who do you want to message?", "Fax", list("Ninetails Human Resources", "NTC Intel Division", "NTC Misc", "NTC Misc", "Combat Information Center", "Corpsec Commander", "Corpsec Brig", "NTC Research", "SOM", "CLF"))
+		var/list/fax_machine_departments = list("Ninetails Human Resources", "NTC Intel Division", "NTC Misc")
+		for(var/obj/machinery/faxmachine/machine in GLOB.faxmachines)
+			fax_machine_departments |= machine.department
+		var/choice = tgui_input_list(usr, "Who do you want to message?", "Fax", fax_machine_departments)
 		if(!choice)
 			return
 		selected = choice

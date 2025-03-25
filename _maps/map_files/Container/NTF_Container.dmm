@@ -2947,7 +2947,7 @@
 "tYR" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 8},/obj/structure/disposalpipe/segment{dir = 4},/turf/open/floor/mainship/floor,/area/mainship/hallways/hangar)
 "tZa" = (/obj/structure/table/mainship/nometal,/obj/machinery/computer/atmos_alert,/obj/structure/cable,/turf/open/floor/mainship,/area/mainship/command/airoom)
 "tZi" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 9},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{dir = 4},/obj/effect/urban/decal/dirt,/turf/open/floor/mainship/floor,/area/mainship/hull/port_hull)
-"tZQ" = (/obj/structure/table/mainship/nometal,/obj/machinery/faxmachine,/obj/machinery/light/mainship{dir = 8},/turf/open/floor/mainship/sterile/dark,/area/mainship/medical/lounge)
+"tZQ" = (/obj/structure/table/mainship/nometal,/obj/machinery/light/mainship{dir = 8},/obj/machinery/faxmachine/research,/turf/open/floor/mainship/sterile/dark,/area/mainship/medical/lounge)
 "uaI" = (/obj/effect/turf_decal/warning_stripes/thick{dir = 1},/obj/effect/turf_decal/warning_stripes/thick,/obj/effect/turf_decal/warning_stripes/thick{dir = 4},/obj/effect/urban/decal/dirt,/turf/open/floor/plating,/area/mainship/hallways/hangar)
 "uba" = (/turf/open/floor/mainship/orange/corner{dir = 1},/area/mainship/engineering/lower_engineering)
 "ubk" = (/obj/machinery/door/airlock/mainship/engineering,/turf/open/floor/mainship/mono,/area/mainship/engineering/lower_engine_monitoring)

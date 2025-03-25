@@ -1279,6 +1279,9 @@
 "hZ" = (
 /obj/structure/table/black,
 /obj/machinery/computer/security/som_mainship,
+/obj/machinery/faxmachine{
+	department = "VSD Ship"
+	},
 /turf/open/floor/prison/blackfloor,
 /area/antag_ship/vsd/bridge)
 "ia" = (
@@ -4323,6 +4326,13 @@
 /obj/item/paper/arachneresearch1,
 /turf/open/floor/prison/blackfloor,
 /area/antag_ship/vsd/bridge)
+"xk" = (
+/obj/machinery/faxmachine{
+	department = "PMC Ship"
+	},
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/mainship/black/full,
+/area/antag_ship/pmc_ntf/center/armory)
 "xl" = (
 /obj/effect/turf_decal/trimline/brown/warning{
 	dir = 1
@@ -7117,11 +7127,10 @@
 /turf/open/shuttle/dropship/three,
 /area/shuttle/transport)
 "MG" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/item/card/id/captains_spare/som,
-/turf/open/floor/mainship/mono,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/vending/cigarette,
+/turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/hangar)
 "MI" = (
 /obj/effect/ai_node,
@@ -7313,6 +7322,14 @@
 /obj/effect/landmark/start/job/pmc_sniper,
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/fore/restroom)
+"NA" = (
+/obj/structure/table/mainship,
+/obj/item/newspaper,
+/obj/machinery/faxmachine{
+	department = "ICC Base"
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/hangar/east)
 "NB" = (
 /obj/structure/sign/prop3,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -7332,12 +7349,19 @@
 /turf/open/floor/mainship/office,
 /area/antag_ship/som/bridge)
 "NG" = (
-/obj/machinery/vending/cigarette,
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/item/card/id/captains_spare/som,
+/obj/machinery/door/window/secure{
+	req_access = list(204)
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/hangar)
 "NJ" = (
@@ -10785,7 +10809,7 @@ Zz
 xU
 av
 GX
-GX
+xk
 rE
 Xz
 GX
@@ -11134,7 +11158,7 @@ ED
 NG
 Eh
 Tt
-zP
+MG
 zP
 nP
 rn
@@ -11226,7 +11250,7 @@ nm
 RK
 RK
 RK
-MG
+RK
 RK
 RK
 RK
@@ -19131,7 +19155,7 @@ tT
 VK
 la
 la
-sN
+NA
 Fw
 nd
 nd
