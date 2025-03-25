@@ -167,7 +167,8 @@
 	if(.)
 		return
 	on = !on
-	update_mist()
+	user.visible_message(span_notice("[user] [on ? "turns [src] on" : "turns [src] off"]."), span_notice("You [on ? "turn [src] on" : "turn [src] off"]."))
+	update_icon()
 	if(on)
 		start_processing()
 		if (user.loc == loc)
@@ -199,42 +200,40 @@
 				watertemp = "boiling"
 			if(WATER_TEMP_BOILING)
 				watertemp = "normal"
+		handle_mist()
 		user.visible_message(span_notice("[user] adjusts the shower with \the [I]."), span_notice("You adjust the shower with \the [I]."))
 
-/obj/machinery/shower/proc/update_mist()
-//this is terribly unreadable, but basically it makes the shower mist up once it's been on for a while
-	update_icon()
-	if(mymist)
-		qdel(mymist)
-		mymist = null
-
+/obj/machinery/shower/update_icon()
+	. = ..()
+	overlays.Cut()
+	handle_mist()
 	if(on)
 		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
-		if(watertemp == WATER_TEMP_FREEZING)
-			return
-		if(!ismist)
-			spawn(50)
-				if(src && on)
-					ismist = TRUE
-					mymist = new /obj/effect/mist(loc)
-		else
-			ismist = TRUE
-			mymist = new /obj/effect/mist(loc)
-	else if(ismist)
-		ismist = TRUE
-		mymist = new /obj/effect/mist(loc)
-		spawn(250)
-			if(src && !on)
-				qdel(mymist)
-				mymist = null
-				ismist = FALSE
 
-/obj/machinery/shower/update_overlays()
-	. = ..()
-	if(on)
-		. += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
-	else
-		. -= image('icons/obj/watercloset.dmi', src, "water")
+/obj/machinery/shower/proc/handle_mist()
+    // check if there's no mist, if the shower is on and if it's not freezing
+	// if so, add a 5 second timer to make mist
+	if(!mymist && on && watertemp != "freezing")
+		addtimer(CALLBACK(src, PROC_REF(make_mist)), 5 SECONDS)
+	// check if there's mist, and if the shower is off, freezing or both
+	// if so, add a 25 second timer to clear mist
+	if(mymist && (!on || watertemp == "freezing"))
+		addtimer(CALLBACK(src, PROC_REF(clear_mist)), 25 SECONDS)
+
+/obj/machinery/shower/proc/make_mist()
+	// timer elapsed
+	// check again to make sure there's still no mist, the shower is still on and it's still not freezing
+	// if so, create a new mist effect
+	if(!mymist && on && watertemp != "freezing")
+		mymist = new /obj/effect/mist(loc)
+
+/obj/machinery/shower/proc/clear_mist()
+	// timer elapsed
+	// check again to make sure there's still mist, and if the shower is still off, freezing or both
+	// if so, delete mist
+	if(mymist && (!on || watertemp == "freezing"))
+		qdel(mymist)
+		mymist = null
 
 /obj/machinery/shower/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
 	SIGNAL_HANDLER
@@ -359,7 +358,6 @@
 	if(busy)
 		to_chat(user, span_warning("Someone's already washing here."))
 		return
-
 	var/obj/item/reagent_containers/RG = I
 	if(istype(RG) && RG.is_open_container() && RG.reagents.total_volume < RG.reagents.maximum_volume)
 		RG.reagents.add_reagent(/datum/reagent/water, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
