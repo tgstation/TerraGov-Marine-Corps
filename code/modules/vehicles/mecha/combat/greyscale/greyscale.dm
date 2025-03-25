@@ -14,6 +14,17 @@
 	gravity = list(0, 0.95)
 	grow = 0.05
 
+///sprite stuff with layering requires we make a specific order for each dir
+/proc/get_greyscale_render_order(dir)
+	switch(dir)
+		if(EAST)
+			return list(MECH_GREY_L_ARM, MECHA_L_ARM, MECH_GREY_TORSO, MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_HEAD, MECH_GREY_LEGS,MECH_GREY_R_ARM, MECHA_R_ARM)
+		if(WEST)
+			return list(MECH_GREY_R_ARM, MECHA_R_ARM, MECH_GREY_TORSO, MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_L_ARM, MECHA_L_ARM)
+		if(NORTH)
+			return list(MECH_GREY_TORSO, MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_R_ARM, MECH_GREY_L_ARM, MECHA_L_ARM, MECHA_R_ARM)
+		else
+			return list(MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_LEGS, MECH_GREY_TORSO, MECH_GREY_HEAD, MECH_GREY_R_ARM, MECH_GREY_L_ARM, MECHA_L_ARM, MECHA_R_ARM)
 
 /obj/vehicle/sealed/mecha/combat/greyscale
 	name = "Should not be visible"
@@ -229,18 +240,7 @@
 
 /obj/vehicle/sealed/mecha/combat/greyscale/update_overlays()
 	. = ..()
-	var/list/render_order
-	//spriter bs requires this code
-	switch(dir)
-		if(EAST)
-			render_order = list(MECH_GREY_L_ARM, MECHA_L_ARM, MECH_GREY_TORSO, MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_HEAD, MECH_GREY_LEGS,MECH_GREY_R_ARM, MECHA_R_ARM)
-		if(WEST)
-			render_order = list(MECH_GREY_R_ARM, MECHA_R_ARM, MECH_GREY_TORSO, MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_L_ARM, MECHA_L_ARM)
-		if(NORTH)
-			render_order = list(MECH_GREY_TORSO, MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_R_ARM, MECH_GREY_L_ARM, MECHA_L_ARM, MECHA_R_ARM)
-		else
-			render_order = list(MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_LEGS, MECH_GREY_TORSO, MECH_GREY_HEAD, MECH_GREY_R_ARM, MECH_GREY_L_ARM, MECHA_L_ARM, MECHA_R_ARM)
-
+	var/list/render_order = get_greyscale_render_order(dir)
 	var/uses_back_icons = (MECHA_L_BACK in equip_by_category)
 	if(!uses_back_icons)
 		render_order -= list(MECHA_R_BACK, MECHA_L_BACK)
