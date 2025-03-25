@@ -223,30 +223,35 @@
 /datum/action/vehicle/sealed/mecha/assault_armor/action_activate(trigger_flags)
 	if(!owner?.client || !chassis || !(owner in chassis.occupants))
 		return
-	var/added_movetime = chassis.move_delay
-	chassis.move_delay += added_movetime
 	if(!chassis.use_power(power_cost))
 		chassis.balloon_alert(owner, "No power")
 		return
+	if(owner.do_actions)
+		return
+	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_ASSAULT_ARMOR))
+		var/time = S_TIMER_COOLDOWN_TIMELEFT(chassis, COOLDOWN_MECHA_ASSAULT_ARMOR)/10
+		chassis.balloon_alert(owner, "[time] seconds")
+		return
+	S_TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_ASSAULT_ARMOR, 2 MINUTES)
+	var/added_movetime = chassis.move_delay
+	chassis.move_delay += added_movetime
 	var/obj/effect/overlay/lightning_charge/charge = new(chassis)
 	charge.pixel_x -= chassis.pixel_x
 	charge.pixel_y -= chassis.pixel_y
 	chassis.vis_contents += charge
 	if(!do_after(owner, 0.5 SECONDS, IGNORE_LOC_CHANGE, chassis))
+		chassis.vis_contents -= charge
+		chassis.move_delay -= added_movetime
+		qdel(charge)
 		return
 	chassis.vis_contents -= charge
 	qdel(charge)
 	new /obj/effect/temp_visual/lightning_discharge(get_turf(chassis))
 	chassis.move_delay -= added_movetime
-	var/list/bullets = list()
-	var/proj_type = /obj/projectile
-	if(initial(ammo_type.ammo_behavior_flags) & AMMO_HITSCAN)
-		proj_type = /obj/projectile/hitscan
-	for(var/i=1 to projectile_count)
-		var/obj/projectile/proj = new proj_type(src, initial(ammo_type.hitscan_effect_icon))
-		proj.generate_bullet(ammo_type)
-		bullets += proj
-	bullet_burst(chassis, bullets, owner, 'sound/weapons/burst_phaser2.ogg', 7, 2)
+	for(var/turf/location in RANGE_TURFS(1, chassis))
+		for(var/mob/living/target in location)
+			target.take_overall_damage(200, BURN, LASER, updating_health=TRUE, penetration=30, max_limbs=6)
+	playsound(chassis, 'sound/weapons/burst_phaser2.ogg', GUN_FIRE_SOUND_VOLUME, TRUE)
 
 /datum/action/vehicle/sealed/mecha/cloak
 	name = "Cloak"
