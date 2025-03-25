@@ -36,7 +36,7 @@
 	)
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/list/armor_overlays = list()
-	actions_types = list(/datum/action/item_action/toggle/suit_toggle)
+	actions_types = list(/datum/action/item_action/toggle/suit_toggle/light)
 	armor_features_flags = ARMOR_LAMP_OVERLAY
 	item_flags = SYNTH_RESTRICTED|IMPEDE_JETPACK
 	w_class = WEIGHT_CLASS_HUGE

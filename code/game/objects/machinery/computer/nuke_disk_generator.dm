@@ -9,7 +9,7 @@
 
 /obj/machinery/computer/nuke_disk_generator
 	name = "nuke disk generator"
-	desc = "Used to generate the correct auth discs for the nuke."
+	desc = "A secure terminal used to retrieve nuclear authentication codes and print them onto disks."
 	icon_state = "computer"
 	screen_overlay = "nuke_red"
 	broken_icon = "computer_red_broken"
@@ -145,20 +145,22 @@
 			if(completed_segments == total_segments) //If we're done, there's no need to run a segment again
 				busy = TRUE
 
-				usr.visible_message("[usr] started a program to generate a new copy of the program.", "You started a program to generate a new copy of the program.")
+				usr.visible_message(span_notice("[usr] inserts a floppy disk into the [src] and begins to type..."),
+				span_notice("You insert a floppy disk into the [src] and begin to type..."))
 				if(!do_after(usr, printing_time, NONE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 					busy = FALSE
 					return
 
 				new disk_type(get_turf(src))
-				visible_message(span_notice("[src] beeps as it finishes printing the disc."))
+				visible_message(span_notice("[src] beeps, and spits out a [disk_color] floppy disk!"))
 				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DISK_GENERATED, src)
 				busy = FALSE
 				return
 
 			busy = TRUE
 
-			usr.visible_message("[usr] started a program to generate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
+			usr.visible_message(span_notice("[usr] begins typing away at the [src]'s keyboard..."),
+			span_notice("You begin typing away at the [src]'s keyboard..."))
 			if(!do_after(usr, start_time, NONE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, TYPE_PROC_REF(/datum, process))))
 				busy = FALSE
 				return
@@ -181,10 +183,10 @@
 	running = FALSE
 
 	if(completed_segments == total_segments)
-		visible_message(span_notice("[src] beeps as it ready to print."))
+		say("Program retrieval successful. Standing by to print...")
 		return
 
-	visible_message(span_notice("[src] beeps as it's program requires attention."))
+	say("Program run has concluded! Standing by...")
 
 ///Change minimap icon if its on or off
 /obj/machinery/computer/nuke_disk_generator/proc/update_minimap_icon()

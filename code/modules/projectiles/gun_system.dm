@@ -835,7 +835,8 @@
 		return NONE
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
-		playsound(loc, windup_sound, 30, TRUE)
+		if(windup_sound)
+			playsound(loc, windup_sound, 30, TRUE)
 		if(!gun_user)
 			addtimer(CALLBACK(src, PROC_REF(fire_after_autonomous_windup)), windup_delay)
 			return NONE
@@ -1323,9 +1324,12 @@
 		if(reload_delay > 0 && user && !force)
 			reload_delay -= reload_delay * 0.25 * min(user.skills.getRating(gun_skill_category), 2)
 			to_chat(user, span_notice("You begin reloading [src] with [new_mag]."))
+			ADD_TRAIT(user, TRAIT_IS_RELOADING, REF(src))
 			if(!do_after(user, reload_delay, NONE, user))
+				REMOVE_TRAIT(user, TRAIT_IS_RELOADING, REF(src))
 				to_chat(user, span_warning("Your reload was interupted!"))
 				return FALSE
+			REMOVE_TRAIT(user, TRAIT_IS_RELOADING, REF(src))
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_ROTATES_CHAMBER))
 			for(var/i = 1, i <= length(chamber_items), i++)
 				if(chamber_items[i])
@@ -1565,7 +1569,7 @@
 	if(!new_ammo)
 		return
 	var/projectile_type = CHECK_BITFIELD(initial(new_ammo.ammo_behavior_flags), AMMO_HITSCAN) ? /obj/projectile/hitscan : /obj/projectile
-	var/obj/projectile/projectile = new projectile_type(null, initial(new_ammo.hitscan_effect_icon))
+	var/obj/projectile/projectile = new projectile_type(src, initial(new_ammo.hitscan_effect_icon))
 	projectile.generate_bullet(new_ammo)
 	return projectile
 

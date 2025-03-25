@@ -16,8 +16,9 @@
 	set desc = "Change into another caste in the same tier."
 	set category = "Alien"
 
-	if(world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY) < (15 MINUTES))
-		to_chat(src, span_warning("Your caste swap timer is not done yet."))
+	var/time_since = world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY)
+	if(time_since < (15 MINUTES))
+		to_chat(src, span_warning("Your caste swap timer has [(5 MINUTES - time_since)/10] seconds remaining."))
 		return
 
 	SStgui.close_user_uis(src, GLOB.evo_panel)
@@ -29,8 +30,9 @@
 	set desc = "Change into a strain of your current caste."
 	set category = "Alien"
 
-	if(world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY) < (5 MINUTES)) // yes this is shared
-		to_chat(src, span_warning("Your caste swap timer is not done yet."))
+	var/time_since = world.time - (GLOB.key_to_time_of_strain_swap[key] ? GLOB.key_to_time_of_strain_swap[key] : -INFINITY)
+	if(time_since < (5 MINUTES))
+		to_chat(src, span_warning("Your strain swap timer has [(5 MINUTES - time_since)/10] seconds remaining."))
 		return
 
 	SStgui.close_user_uis(src, GLOB.evo_panel)
@@ -134,6 +136,8 @@
 
 	if(HAS_TRAIT(src, TRAIT_CASTE_SWAP))
 		GLOB.key_to_time_of_caste_swap[key] = world.time
+	else if(HAS_TRAIT(src, TRAIT_STRAIN_SWAP))
+		GLOB.key_to_time_of_strain_swap[key] = world.time
 
 	if(xeno_flags & XENO_ZOOMED)
 		zoom_out()

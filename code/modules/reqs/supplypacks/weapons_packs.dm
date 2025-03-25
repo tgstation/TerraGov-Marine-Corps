@@ -42,7 +42,7 @@ WEAPONS
 	cost = 600
 
 /datum/supply_packs/weapons/sentry_sniper_ammo
-	name = "SST-571 sniper sentry ammunition"
+	name = "SST-574 sniper sentry ammunition"
 	contains = list(/obj/item/ammo_magazine/sentry/sniper)
 	cost = 100
 

@@ -427,3 +427,127 @@
   - rscadd: Adds a tadpole-specific dropship fabricator for ease of use.
   yyzsong:
   - imageadd: glorp emoji
+2025-03-21:
+  Apple-107:
+  - rscadd: Tank Loaders now shout the ammo type when loaded ("HE, Up!")
+  - rscadd: Tank Gunners now shout when they are firing LTB ("On the way!")
+  Lumipharon:
+  - bugfix: Fixed some issues with NPC inventory management
+  Runian:
+  - bugfix: Dragon's Grab no longer permanently immobilizes marines that were failed
+      to be grabbed.
+  - admin: Player Panel now has Dragon as one of the Transformations.
+  TiviPlus:
+  - bugfix: mech no longer spams steps on tram movement
+  - bugfix: Mechs will no longer sparkle on spawn
+  - bugfix: partially fixed stairs being very cursed
+  - bugfix: fixed tank turret turning black on multiz maps
+  Tiviplus, Kuro, GregorMN:
+  - rscadd: Completely resprited mechs for xvh
+  - rscadd: Mechs now leave a wreck behidn when destroyed
+  - rscadd: Mechs can now mount "back weapons"
+  - bugfix: fixed hyperscale completely ignoring some color configs
+  - qol: New mecha boosting visual effects
+  - qol: Revamped the mech builder UI and made it much smaller
+  tyeagg:
+  - rscadd: emissives to projectiles and muzzle flashes
+  - imageadd: new muzzle flash and projectile sprites
+2025-03-22:
+  Lewdcifer:
+  - rscadd: Adds the Conqueror, a strain of the tier 4 caste, King.
+  - soundadd: Added various sound effects for the Conqueror.
+  - imageadd: Added various visuals for the Conqueror.
+  - balance: Bull is now immune to stuns, such as those of slugs, buckshot, and similar
+      sources.
+  - balance: As a tradeoff, the Bull can now be entangled in razorwire.
+  Lumipharon:
+  - rscadd: NPC's actually use their suit lights now
+  - rscadd: NPCs operate normally when doing suitable channeled actions
+  - rscadd: Added some more TGMC NPC presets
+  - rscadd: Improved the way NPC's escort things
+  RipGrayson:
+  - bugfix: Fixed an exploit with metal rods.
+  TiviPlus:
+  - qol: Attaching non-gun things now plays sounds
+  - bugfix: Fixed revolvers not playing their open sound
+  - bugfix: fixed projectiles trying to play a nonexistent sound constantly when they
+      hit an object
+  - bugfix: fixed a runtime with RR windup
+  - bugfix: fixed some issues with xenos when not using their own mob as eyes
+  - bugfix: fixed lift indicators not showing anything
+  - bugfix: fixed elevator control panels erroring sometimes when they shouldnt
+  - qol: AI can now hop between Z floors with a button
+  - bugfix: Standing on tank no longer lets you fly
+  - bugfix: Runners can no longer fly
+  - qol: look up/down should feel better to use
+  blackdav123:
+  - rscadd: Added a second Corporate Liaison slot to Nuclear War.
+  ivanmixo:
+  - spellcheck: You will no longer believe the lie that only drones can evolve into
+      Shrikes
+2025-03-23:
+  Apple-107:
+  - rscadd: Tank and APC armaments that weren't available in valhalla vendors are
+      now available.
+  Lumipharon:
+  - bugfix: NPC movement sometimes not turning off after a player takes control
+  - bugfix: fixed maw stopping xob from being built
+  Mantlecrawler:
+  - rscadd: Xadar has SFX and VFX now
+  - rscadd: Globadier now has mine types for each of their 5 grenades
+  - rscadd: Selecting a grenade as globadier will put a short description of its effects
+      in chat
+  - balance: Resin grenades from globadier now only fling marines and the owner globadier
+  - bugfix: Xadar now detonates properly when hitting a solid object
+2025-03-24:
+  GregorMN:
+  - qol: the pallettes for hyperscale (e.g armor and mechs) have been redone. All
+      existing palettes will automatically update to the new ones
+  Kuro020:
+  - balance: Dancer's damage debuff damage scaling reduced from 0.25 to 0.15
+  - balance: Dancer loses the ability to acid and build acid wells
+  Runian:
+  - bugfix: Dragon's Grab ability now correctly gains a cooldown upon ending a grab
+      early.
+  TiviPlus:
+  - bugfix: transparency should try to show space again
+  - rscadd: Added more mech weapons (rocket, micromissiles, shotgun, flamer)
+  - rscadd: Added an assault core module to the mech that emits a laser burst after
+      a windup when triggered
+  - bugfix: Allows reloading multiple mech weapons again
+  - qol: strain and caste swap cooldowns now say have much time you have left when
+      you click them
+  - bugfix: fixed strain swap cooldown not working
+  - bugfix: Mech ammo huds will now add and remove on 2.0 mech enter/leave properly
+  - code_imp: tweaked how mech overlays for abiltiies are added
+  - bugfix: Fixed projectiles being black on multiz
+  - qol: Selecting a mech weapon in the builder UI again will unselect it
+  - bugfix: fixed mech light being offset
+  - bugfix: Mech overload will now disable when a mob leaves
+  - bugfix: fixed the UI button to follow a xeno being clicked again not stoppping
+      you from watching the currently watched xeno
+  - bugfix: Fix grenades warning icon being black on multiz
+  - rscadd: Added mech cloaking module
+  - code_imp: added new warped_invisibile method of making things invisible, which
+      warps the air where the invisible thing is instead of just making them partially
+      translucent
+  - bugfix: fixed zlevel changes being called multiple times in some cases
+  - bugfix: Cut mech overload stop sound to not have part of the loop
+  - bugfix: Fixed mech arm layering on side directions
+  - bugfix: Tank gun and damage overlays are no longer black on multiz
+  - bugfix: fixed mechs not showing damage overlays for arms
+  - bugfix: fixed mech not showing damage overlays for destroyed limbs
+  - bugfix: fixed destroyed limbs not updating when boosting/firing
+  yyzsong:
+  - spellcheck: fixes tense in unbuckling text
+  - spellcheck: standardizes sentry and ammunition names for the sniper sentry, and
+      the magazine names for both the sniper and shotgun sentry
+  - spellcheck: updates nuke disk generator text
+  - spellcheck: COMISG -> COMSIG
+  - spellcheck: rewords TO job spawnin description
+  - spellcheck: adds a missing period to the body scanner's chat log message
+  - spellcheck: corrects breath -> breathe in the "fresh air fills your lungs" message
+  - spellcheck: adjusts wording for boiler, praetorian, and gorger abilities
+2025-03-25:
+  Lumipharon:
+  - bugfix: The pacifist movement amongminions has been stamped out

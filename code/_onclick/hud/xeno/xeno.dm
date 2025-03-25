@@ -136,6 +136,9 @@
 	zone_sel.update_icon()
 	static_inventory += zone_sel
 
+	combo_display = new /atom/movable/screen/combo(null, src)
+	infodisplay += combo_display
+
 /datum/hud/alien/persistent_inventory_update()
 	if(!mymob)
 		return

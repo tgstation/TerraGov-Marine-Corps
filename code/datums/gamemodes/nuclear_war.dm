@@ -16,7 +16,7 @@
 		/datum/job/terragov/medical/professor = 1,
 		/datum/job/terragov/medical/medicalofficer = 4,
 		/datum/job/terragov/medical/researcher = 2,
-		/datum/job/terragov/civilian/liaison = 1,
+		/datum/job/terragov/civilian/liaison = 2,
 		/datum/job/terragov/silicon/synthetic = 1,
 		/datum/job/terragov/command/mech_pilot = 0,
 		/datum/job/terragov/command/assault_crewman = 0,

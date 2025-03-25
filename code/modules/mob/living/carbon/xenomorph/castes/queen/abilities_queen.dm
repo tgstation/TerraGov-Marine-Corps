@@ -251,7 +251,7 @@
 	watcher.observed_xeno = target
 	if(isxenoqueen(watcher)) // Only queen needs the eye shown.
 		target.hud_set_queen_overwatch()
-	watcher.reset_perspective()
+	watcher.reset_perspective(target)
 	RegisterSignal(target, COMSIG_HIVE_XENO_DEATH, PROC_REF(on_xeno_death))
 	RegisterSignals(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(on_xeno_evolution))
 	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
@@ -263,6 +263,7 @@
 	var/mob/living/carbon/xenomorph/watcher = owner
 	var/mob/living/carbon/xenomorph/observed = watcher.observed_xeno
 	watcher.observed_xeno = null
+	watcher.reset_perspective()
 	if(!QDELETED(observed))
 		UnregisterSignal(observed, list(COMSIG_HIVE_XENO_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
 		if(isxenoqueen(watcher)) // Only queen has to reset the eye overlay.
