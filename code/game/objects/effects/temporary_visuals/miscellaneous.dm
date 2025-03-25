@@ -16,12 +16,12 @@
 	count = 10
 	spawning = 10
 	lifespan = 0.5 SECONDS
-	fade = 0.15 SECONDS
-	drift = generator(GEN_CIRCLE, 5, 5)
+	fade = 0.2 SECONDS
+	drift = generator(GEN_CIRCLE, 3, 3)
 	scale = 0.25
 	spin = generator(GEN_NUM, -20, 20)
 	velocity = list(50, 0)
-	friction = generator(GEN_NUM, 0.2, 0.4)
+	friction = generator(GEN_NUM, 0.3, 0.6)
 	position = generator(GEN_CIRCLE, 4, 4)
 
 //unsorted miscellaneous temporary visuals
@@ -36,8 +36,8 @@
 /obj/effect/temp_visual/dir_setting/bloodsplatter/Initialize(mapload, angle, blood_color)
 	if(!blood_color)
 		CRASH("Tried to create a blood splatter without a blood_color")
-	var/x_component = sin(angle) * -25
-	var/y_component = cos(angle) * -25
+	var/x_component = sin(angle) * -20
+	var/y_component = cos(angle) * -20
 	var/obj/effect/abstract/particle_holder/reset_transform/splatter_visuals
 	splatter_visuals = new(src, /particles/splatter)
 	splatter_visuals.particles.velocity = list(x_component, y_component)
@@ -97,7 +97,8 @@
 			target_pixel_x = round(6 * ((360 - angle) / 45))
 			target_pixel_y = -8
 	transform = matrix().Turn(angle)
-	animate(src, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = 0.25 SECONDS)
+	animate(src, pixel_x = target_pixel_x, pixel_y = target_pixel_y, time = 0.25 SECONDS)
+	animate(src, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/transfer_plasma
 	name = "transfer plasma"
