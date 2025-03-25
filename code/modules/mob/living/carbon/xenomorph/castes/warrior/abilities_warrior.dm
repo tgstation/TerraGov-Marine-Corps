@@ -512,14 +512,14 @@
 
 /// Does the ability. Exists because Punch is the parent of another ability, so this lets us separate functionality and avoid repeating a few lines of code.
 /datum/action/ability/activable/xeno/warrior/punch/proc/do_ability(atom/A)
-    // Apply the punch damage multiplier
-    var/punch_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * WARRIOR_PUNCH_DAMAGE_MULTIPLIER
-    var/datum/action/ability/xeno_action/empower/empower_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/empower]
-    if(empower_action?.check_empower(A))
-        punch_damage *= WARRIOR_PUNCH_EMPOWER_MULTIPLIER
-    if(!A.punch_act(xeno_owner, punch_damage))
-        return fail_activate()
-    succeed_activate()
+	// Apply the punch damage multiplier
+	var/punch_damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * WARRIOR_PUNCH_DAMAGE_MULTIPLIER
+	var/datum/action/ability/xeno_action/empower/empower_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/empower]
+	if(empower_action?.check_empower(A))
+	    punch_damage *= WARRIOR_PUNCH_EMPOWER_MULTIPLIER
+	if(!A.punch_act(xeno_owner, punch_damage))
+	    return fail_activate()
+	succeed_activate()
     add_cooldown()
 
 /datum/action/ability/activable/xeno/warrior/punch/ai_should_start_consider()
