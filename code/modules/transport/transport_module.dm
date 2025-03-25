@@ -434,7 +434,7 @@
 						victim_living.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_L_LEG)
 						victim_living.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_R_LEG)
 						victim_living.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_L_ARM)
-						victim_living.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_R_ARM)
+						victim_living.apply_damage(0.5 * damage, BRUTE, BODY_ZONE_R_ARM, updating_health=TRUE)
 
 				if(QDELETED(victim_living)) //in case it was a mob that dels on death
 					continue
