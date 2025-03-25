@@ -217,7 +217,7 @@
 		addtimer(CALLBACK(src, PROC_REF(make_mist)), 5 SECONDS)
 	// check if there's mist, and if the shower is off, freezing or both
 	// if so, add a 25 second timer to clear mist
-	if(mymist && !(on && watertemp != "freezing"))
+	if(mymist && (!on || watertemp == "freezing"))
 		addtimer(CALLBACK(src, PROC_REF(clear_mist)), 25 SECONDS)
 
 /obj/machinery/shower/proc/make_mist()
@@ -229,9 +229,9 @@
 
 /obj/machinery/shower/proc/clear_mist()
 	// timer elapsed
-	// check again to make sure there's still mist, and the shower is still off, freezing or both
+	// check again to make sure there's still mist, and if the shower is still off, freezing or both
 	// if so, delete mist
-	if(mymist && !(on && watertemp != "freezing"))
+	if(mymist && (!on || watertemp == "freezing"))
 		qdel(mymist)
 		mymist = null
 
