@@ -560,7 +560,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /datum/action/innate/set_drop_target
 	name = "Set drop pod target"
 	action_icon = 'icons/mob/actions/actions_mecha.dmi'
-	action_icon_state = "mech_zoom_on"
+	action_icon_state = "mech_zoom_off"
 	///Locks activating this action again while choosing to prevent signal shenanigan runtimes.
 	var/choosing = FALSE
 
