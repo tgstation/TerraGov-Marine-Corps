@@ -634,6 +634,9 @@
 /obj/item/clothing/under/icc/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
 
+/obj/item/clothing/under/icc/medic
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
+
 /obj/item/clothing/under/sectoid
 	name = "psionic field"
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
