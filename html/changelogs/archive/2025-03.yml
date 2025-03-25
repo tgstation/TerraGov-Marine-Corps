@@ -85,3 +85,8 @@
   - balance: Reduced the damage from dragon's landing by 25%.
   - balance: The dragon now takes MUCH longer to take off and land, but no longer
       needs weeds to do so.
+2025-03-25:
+  dottymint:
+  - rscadd: heat absorbent coifs can now be adjusted to cover less of your face
+  - rscadd: added aphrotoxin spit to queen, prae and spitter
+  - refactor: slightly refactored toxin spit
