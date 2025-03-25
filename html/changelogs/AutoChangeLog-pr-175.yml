@@ -1,0 +1,6 @@
+author: "ddotmint"
+delete-after: True
+changes:
+  - rscadd: "ICC and CLF medics now spawn with tweezers"
+  - rscadd: "ICC medics now spawn with a white webbing, medevac and misc medical equipment"
+  - rscadd: "SOM MDs now spawn with appropriate pouches"
