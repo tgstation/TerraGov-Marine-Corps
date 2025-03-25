@@ -382,9 +382,12 @@ SUBSYSTEM_DEF(minimaps)
 	var/list/mob/choices_by_mob
 	///assoc list to determine if get_coords_from_click should stop waiting for an input for that specific mob
 	var/list/mob/stop_polling
+	///z this minimap is displaying
+	var/tracked_z
 
 /atom/movable/screen/minimap/Initialize(mapload, datum/hud/hud_owner, target, flags)
 	. = ..()
+	tracked_z = target
 	if(!SSminimaps.minimaps_by_z["[target]"])
 		return
 	choices_by_mob = list()
@@ -458,6 +461,64 @@ SUBSYSTEM_DEF(minimaps)
 	var/y_pixel = y_coord % 32 - 3
 	screen_loc = "[x_tile]:[x_pixel],[y_tile]:[y_pixel]"
 
+/atom/movable/screen/minimap_extras
+	/// minimap action this extra button is owned by
+	var/datum/action/minimap/minimap_action
+
+/atom/movable/screen/minimap_extras/minimap_z_indicator
+	icon = 'icons/mob/screen_ai.dmi'
+	icon_state = "zindicator"
+	screen_loc = ui_ai_floor_indicator
+
+///sets the currently indicated relative floor
+/atom/movable/screen/minimap_extras/minimap_z_indicator/proc/set_indicated_z(newz)
+	var/list/linked_zs = SSmapping.get_connected_levels(newz)
+	if(!length(linked_zs))
+		return
+	linked_zs= sort_list(linked_zs, /proc/cmp_numeric_asc)
+	var/relativez = linked_zs.Find(newz)
+	var/text = "Floor<br/>[relativez]"
+	maptext = MAPTEXT_TINY_UNICODE("<div align='center' valign='middle' style='position:relative; top:0px; left:0px'>[text]</div>")
+
+/atom/movable/screen/minimap_extras/minimap_z_up
+	name = "go up"
+	icon = 'icons/mob/screen_ai.dmi'
+	icon_state = "up"
+	mouse_over_pointer = MOUSE_HAND_POINTER
+	screen_loc = ui_ai_godownup
+
+/atom/movable/screen/minimap_extras/minimap_z_up/Click(location,control,params)
+	flick("uppressed",src)
+	var/currentz = minimap_action.map.tracked_z
+	var/list/linked_zs = SSmapping.get_connected_levels(currentz)
+	if(!length(linked_zs))
+		return
+	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
+	var/relativez = linked_zs.Find(currentz)
+	if(relativez == length(linked_zs))
+		return //topmost z with nothing above. we still play effects just dont do anything
+	minimap_action.change_z_shown(++currentz)
+
+
+/atom/movable/screen/minimap_extras/minimap_z_down
+	name = "go down"
+	icon = 'icons/mob/screen_ai.dmi'
+	icon_state = "down"
+	mouse_over_pointer = MOUSE_HAND_POINTER
+	screen_loc = ui_ai_godownup
+
+/atom/movable/screen/minimap_extras/minimap_z_down/Click(location,control,params)
+	flick("downpressed",src)
+	var/currentz = minimap_action.map.tracked_z
+	var/list/linked_zs = SSmapping.get_connected_levels(currentz)
+	if(!length(linked_zs))
+		return
+	linked_zs = sort_list(linked_zs, /proc/cmp_numeric_asc)
+	var/relativez = linked_zs.Find(currentz)
+	if(relativez == 1)
+		return //bottommost z with nothing below. we still play effects just dont do anything
+	minimap_action.change_z_shown(--currentz)
+
 /**
  * Action that gives the owner access to the minimap pool
  */
@@ -479,12 +540,25 @@ SUBSYSTEM_DEF(minimaps)
 	var/atom/movable/locator_override
 	///Minimap "You are here" indicator for when it's up
 	var/atom/movable/screen/minimap_locator/locator
+	///button granted when you're on a multiz level that lets you check above and below you
+	var/atom/movable/screen/minimap_extras/minimap_z_indicator/z_indicator
+	///button granted when you're on a multiz level that lets you check above and below you
+	var/atom/movable/screen/minimap_extras/minimap_z_up/z_up
+	///button granted when you're on a multiz level that lets you check above and below you
+	var/atom/movable/screen/minimap_extras/minimap_z_down/z_down
 	///Sets a fixed z level to be tracked by this minimap action instead of being influenced by the owner's / locator override's z level.
 	var/default_overwatch_level = 0
 
 /datum/action/minimap/New(Target, new_minimap_flags, new_marker_flags)
 	. = ..()
 	locator = new
+	z_indicator = new
+	z_indicator.minimap_action = src
+	z_up = new
+	z_up.minimap_action = src
+	z_down = new
+	z_down.minimap_action = src
+
 	if(new_minimap_flags)
 		minimap_flags = new_minimap_flags
 	if(new_marker_flags)
@@ -494,6 +568,9 @@ SUBSYSTEM_DEF(minimaps)
 	map = null
 	locator_override = null
 	QDEL_NULL(locator)
+	QDEL_NULL(z_indicator)
+	QDEL_NULL(z_up)
+	QDEL_NULL(z_down)
 	return ..()
 
 /datum/action/minimap/action_activate()
@@ -519,11 +596,19 @@ SUBSYSTEM_DEF(minimaps)
 			return FALSE
 		owner.client.screen += map
 		owner.client.screen += locator
+		if(length(SSmapping.get_connected_levels(tracking.z)))
+			owner.client.screen += z_indicator
+			owner.client.screen += z_up
+			owner.client.screen += z_down
 		locator.update(tracking)
 		locator.RegisterSignal(tracking, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/atom/movable/screen/minimap_locator, update))
 	else
-		owner.client.screen -= map
-		owner.client.screen -= locator
+		if(owner.client)
+			owner.client.screen -= map
+			owner.client.screen -= locator
+			owner.client.screen -= z_indicator
+			owner.client.screen -= z_up
+			owner.client.screen -= z_down
 		map.stop_polling -= owner
 		locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 	minimap_displayed = force_state
@@ -591,6 +676,7 @@ SUBSYSTEM_DEF(minimaps)
 	. = ..()
 	var/atom/movable/tracking = locator_override ? locator_override : M
 	RegisterSignal(tracking, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_owner_z_change))
+	z_indicator.set_indicated_z(default_overwatch_level ? default_overwatch_level : tracking.z)
 	if(default_overwatch_level)
 		if(!SSminimaps.minimaps_by_z["[default_overwatch_level]"] || !SSminimaps.minimaps_by_z["[default_overwatch_level]"].hud_image)
 			return
@@ -610,88 +696,41 @@ SUBSYSTEM_DEF(minimaps)
  */
 /datum/action/minimap/proc/on_owner_z_change(atom/movable/source, oldz, newz)
 	SIGNAL_HANDLER
+	change_z_shown(newz)
+
+/// changes the currently to be displayed z. takes the new z as an arg
+/datum/action/minimap/proc/change_z_shown(newz)
 	var/atom/movable/tracking = locator_override ? locator_override : owner
 	if(minimap_displayed)
 		owner.client?.screen -= map
+	var/old_map_z = map.tracked_z
 	map = null
-	if(default_overwatch_level)
-		if(!SSminimaps.minimaps_by_z["[default_overwatch_level]"] || !SSminimaps.minimaps_by_z["[default_overwatch_level]"].hud_image)
-			if(minimap_displayed)
-				owner.client?.screen -= locator
-				locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
-				minimap_displayed = FALSE
-			return
-		map = SSminimaps.fetch_minimap_object(default_overwatch_level, minimap_flags)
-		if(minimap_displayed)
-			if(owner.client)
-				owner.client.screen += map
+
+	var/new_z_shown = default_overwatch_level ? default_overwatch_level : newz
+	if(minimap_displayed)
+		var/new_z_is_multiz = length(SSmapping.get_connected_levels(new_z_shown)) > 1
+		var/old_z_is_multiz = length(SSmapping.get_connected_levels(old_map_z)) > 1
+		if(old_z_is_multiz != new_z_is_multiz)
+			if(new_z_is_multiz)
+				owner.client.screen += z_indicator
+				owner.client.screen += z_up
+				owner.client.screen += z_down
 			else
-				minimap_displayed = FALSE
-		return
-	if(!SSminimaps.minimaps_by_z["[newz]"] || !SSminimaps.minimaps_by_z["[newz]"].hud_image)
+				owner.client.screen -= z_indicator
+				owner.client.screen -= z_up
+				owner.client.screen -= z_down
+
+	z_indicator.set_indicated_z(new_z_shown)
+	if(!SSminimaps.minimaps_by_z["[new_z_shown]"] || !SSminimaps.minimaps_by_z["[new_z_shown]"].hud_image)
 		if(minimap_displayed)
 			owner.client?.screen -= locator
 			locator.UnregisterSignal(tracking, COMSIG_MOVABLE_MOVED)
 			minimap_displayed = FALSE
 		return
-	map = SSminimaps.fetch_minimap_object(newz, minimap_flags)
+	map = SSminimaps.fetch_minimap_object(new_z_shown, minimap_flags)
 	if(minimap_displayed)
 		if(owner.client)
 			owner.client.screen += map
 		else
 			minimap_displayed = FALSE
 
-
-
-/datum/action/minimap/xeno
-	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_EXCAVATION_ZONE
-
-/datum/action/minimap/researcher
-	minimap_flags = MINIMAP_FLAG_MARINE|MINIMAP_FLAG_EXCAVATION_ZONE
-	marker_flags = MINIMAP_FLAG_MARINE
-
-/datum/action/minimap/marine
-	minimap_flags = MINIMAP_FLAG_MARINE
-	marker_flags = MINIMAP_FLAG_MARINE
-
-/datum/action/minimap/marine/external //Avoids keybind conflicts between inherent mob minimap and bonus minimap from consoles, CAS or similar.
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_KB_TOGGLE_EXTERNAL_MINIMAP,
-	)
-
-/datum/action/minimap/marine/external/som
-	minimap_flags = MINIMAP_FLAG_MARINE_SOM
-	marker_flags = MINIMAP_FLAG_MARINE_SOM
-
-/datum/action/minimap/ai	//I'll keep this as seperate type despite being identical so it's easier if people want to make different aspects different.
-	minimap_flags = MINIMAP_FLAG_MARINE
-	marker_flags = MINIMAP_FLAG_MARINE
-
-/datum/action/minimap/som
-	minimap_flags = MINIMAP_FLAG_MARINE_SOM
-	marker_flags = MINIMAP_FLAG_MARINE_SOM
-
-/datum/action/minimap/observer
-	minimap_flags = MINIMAP_FLAG_XENO|MINIMAP_FLAG_MARINE|MINIMAP_FLAG_MARINE_SOM|MINIMAP_FLAG_EXCAVATION_ZONE
-	marker_flags = NONE
-
-/datum/action/minimap/observer/action_activate()
-	. = ..()
-	if(!.)
-		return
-	if(!minimap_displayed)
-		map.stop_polling[owner] = TRUE
-		return
-	var/list/clicked_coords = map.get_coords_from_click(owner)
-	if(!clicked_coords)
-		toggle_minimap(FALSE)
-		return
-	var/turf/clicked_turf = locate(clicked_coords[1], clicked_coords[2], owner.z)
-	if(!clicked_turf)
-		toggle_minimap(FALSE)
-		return
-	// Taken directly from observer/DblClickOn
-	owner.abstract_move(clicked_turf)
-	owner.update_parallax_contents()
-	// Close minimap
-	toggle_minimap(FALSE)
