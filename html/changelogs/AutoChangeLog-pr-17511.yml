@@ -1,0 +1,5 @@
+author: "breadhunt"
+delete-after: True
+changes:
+  - rscadd: "Tangle emitter starts disabled to prevent a bug"
+  - qol: "Tangle emitter now gives feedback on whether it's enabled/disabled when attached"
