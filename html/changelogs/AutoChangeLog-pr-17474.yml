@@ -1,0 +1,4 @@
+author: "Lewdcifer"
+delete-after: True
+changes:
+  - balance: "Being thrown while in crit will now apply oxyloss and update health. This prevents xenos from dragging people for insane distances."
