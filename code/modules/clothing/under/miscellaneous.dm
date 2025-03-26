@@ -378,7 +378,7 @@
 	cold_protection_flags = CHEST|GROIN|LEGS|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
-	slowdown= -1
+	slowdown = -1
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 
