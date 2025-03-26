@@ -90,3 +90,11 @@
   - rscadd: heat absorbent coifs can now be adjusted to cover less of your face
   - rscadd: added aphrotoxin spit to queen, prae and spitter
   - refactor: slightly refactored toxin spit
+2025-03-26:
+  ddotmint:
+  - rscadd: ICC and CLF medics now spawn with tweezers
+  - rscadd: ICC medics now spawn with a white webbing, medevac and misc medical equipment
+  - rscadd: SOM MDs now spawn with appropriate pouches
+  - bugfix: crowbarred floor tiles now preserve their look
+  dottymint:
+  - bugfix: readded bunny ears mob sprite, no longer invisible when worn
