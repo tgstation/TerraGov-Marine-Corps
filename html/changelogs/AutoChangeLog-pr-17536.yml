@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - qol: "improved the mech builder ui and gave it a rotate button"
