@@ -221,6 +221,9 @@
 	var/datum/ammo/ammo_type = /datum/ammo/energy/assault_armor
 
 /datum/action/vehicle/sealed/mecha/assault_armor/action_activate(trigger_flags)
+	. = ..()
+	if(!.)
+		return
 	if(!owner?.client || !chassis || !(owner in chassis.occupants))
 		return
 	if(!chassis.use_power(power_cost))
@@ -265,12 +268,18 @@
 	var/power_cost = 40
 
 /datum/action/vehicle/sealed/mecha/cloak/action_activate(trigger_flags)
+	. = ..()
+	if(!.)
+		return
 	if(!owner?.client || !chassis || !(owner in chassis.occupants))
 		return
 	if(cloaked)
 		stop_cloaking()
 		return
-
+	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
+		chassis.balloon_alert(owner, "Cooldown")
+		return
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), 1 SECONDS) // anti sound spammers
 	cloaked = TRUE
 	action_icon_state = "cloak_on"
 	update_button_icon()
@@ -302,3 +311,5 @@
 	stop_warped_invisible(chassis)
 	REMOVE_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	playsound(chassis, 'sound/effects/pred_cloakoff.ogg', 60, TRUE)
+	for(var/obj/item/mecha_parts/mecha_equipment/weapon/gun in chassis.flat_equipment)
+		TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(gun.type), gun.equip_cooldown)
