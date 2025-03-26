@@ -24,6 +24,8 @@
 	. = ..()
 	if(!isliving(loc))
 		return
+	if(istype(loc, /mob/living/carbon/xenomorph/puppet))
+		return INITIALIZE_HINT_QDEL //letting puppets be larva farms makes it too easy to get larva.
 	affected_mob = loc
 	affected_mob.status_flags |= XENO_HOST
 	log_combat(affected_mob, null, "been infected with an embryo")
