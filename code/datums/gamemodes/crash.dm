@@ -128,8 +128,8 @@
 	. = ..()
 
 	if(world.time > last_larva_check + larva_check_interval)
-		balance_scales()
 		last_larva_check = world.time
+		balance_scales()
 
 /datum/game_mode/infestation/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CRASH_SHIP_LANDED)
@@ -192,6 +192,7 @@
 
 /// Adds more xeno job slots if needed.
 /datum/game_mode/infestation/crash/proc/balance_scales()
+	SHOULD_NOT_SLEEP(TRUE)
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	// Spawn more xenos to help maintain the ratio.
