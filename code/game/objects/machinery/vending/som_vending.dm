@@ -1,5 +1,5 @@
 /obj/machinery/vending/weapon/som
-	name = "\improper SOM weapon rack"
+	name = "\improper SOM automated weapons rack"
 	faction = FACTION_SOM
 	desc = "An automated weapon rack hooked up to a colossal storage of standard-issue weapons."
 	icon_state = "marinearmory"
