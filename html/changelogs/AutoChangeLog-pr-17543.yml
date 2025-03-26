@@ -1,0 +1,9 @@
+author: "Kuro020"
+delete-after: True
+changes:
+  - balance: "Mech light booster/gen is lighter now to allow for better weight control"
+  - balance: "Mech GL has halved ammo capacity to curb spam, has lower weight to compensate"
+  - balance: "Mech micro rockets have been properly nerfed, their weight has been increased"
+  - balance: "Mech shotgun has the same falloff as marine shotgun now as opposed to double, as well as lower weight"
+  - balance: "Mech flamer has lower weight"
+  - balance: "Mech rocket launcher has lower weight"
