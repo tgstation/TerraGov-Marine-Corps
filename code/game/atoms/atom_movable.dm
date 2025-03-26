@@ -345,9 +345,9 @@
 			return FALSE
 	if(SEND_SIGNAL(src, COMSIG_CAN_Z_MOVE, start, destination) & COMPONENT_CANT_Z_MOVE)
 		return FALSE
-	if(z_move_flags & ZMOVE_FALL_CHECKS && (throwing || ((pass_flags & HOVERING) == HOVERING) || !get_gravity()))
+	if(z_move_flags & ZMOVE_FALL_CHECKS && (throwing || ((pass_flags & Z_FLYING) == Z_FLYING) || !get_gravity()))
 		return FALSE
-	if(z_move_flags & ZMOVE_CAN_FLY_CHECKS && !((pass_flags & HOVERING) == HOVERING) && get_gravity())
+	if(z_move_flags & ZMOVE_CAN_FLY_CHECKS && !((pass_flags & Z_FLYING) == Z_FLYING) && get_gravity())
 		if(z_move_flags & ZMOVE_FEEDBACK)
 			if(rider)
 				to_chat(rider, span_warning("[src] [p_are()] incapable of flight."))
