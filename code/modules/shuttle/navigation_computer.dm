@@ -202,14 +202,13 @@
 	if(current_user.client)
 		current_user.client.images -= the_eye.placed_images
 
-	QDEL_LIST(the_eye.placed_images)
+	LAZYCLEARLIST(the_eye.placed_images)
 
-	for(var/V in the_eye.placement_images)
-		var/image/I = V
+	for(var/image/place_spots as anything in the_eye.placement_images)
 		var/image/newI = image('icons/effects/alphacolors.dmi', the_eye.loc, "blue")
-		newI.loc = I.loc //It is highly unlikely that any landing spot including a null tile will get this far, but better safe than sorry.
-		newI.layer = ABOVE_OPEN_TURF_LAYER
-		newI.plane = 0
+		newI.loc = place_spots.loc //It is highly unlikely that any landing spot including a null tile will get this far, but better safe than sorry.
+		newI.layer = NAVIGATION_EYE_LAYER
+		SET_PLANE_EXPLICIT(newI, ABOVE_GAME_PLANE, place_spots)
 		newI.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 		the_eye.placed_images += newI
 
@@ -357,7 +356,7 @@
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/console = origin
 	if(console.check_hovering_spot(T) != nvg_vision_possible) //Cannot see in caves
 		nvg_vision_possible = !nvg_vision_possible
-		update_remote_sight(user)
+		user.update_sight()
 	if(T)
 		setLoc(T)
 
@@ -369,13 +368,13 @@
 /mob/camera/aiEye/remote/shuttle_docker/update_remote_sight(mob/living/user)
 	var/obj/machinery/computer/camera_advanced/shuttle_docker/console = origin
 	if(nvg_vision_possible && console.nvg_vision_mode)
-		user.set_sight(NONE)
-		user.lighting_cutoff = LIGHTING_CUTOFF_HIGH
+		user.set_sight(BLIND|SEE_TURFS)
+		// Pale blue, should look nice I think
+		user.lighting_color_cutoffs = list(30, 40, 50)
 		user.sync_lighting_plane_cutoff()
 		return TRUE
-	user.set_sight(BLIND|SEE_TURFS)
-	// Pale blue, should look nice I think
-	user.lighting_color_cutoffs = list(30, 40, 50)
+	user.set_sight(NONE)
+	user.lighting_color_cutoffs = null
 	user.sync_lighting_plane_cutoff()
 	return TRUE
 
