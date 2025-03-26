@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "Fixed config defaults being inverted for 6 years"

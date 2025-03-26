@@ -551,3 +551,17 @@
 2025-03-25:
   Lumipharon:
   - bugfix: The pacifist movement amongminions has been stamped out
+2025-03-26:
+  Kuro020:
+  - balance: Mech rocket no longer completely deletes armor
+  - balance: Mech shotgun does sunder and has less falloff
+  - balance: Removed zoom module
+  TiviPlus:
+  - bugfix: Fixed assault armor speed and canceling
+  - bugfix: Assault armor does intended damage now and has its cooldown
+  - rscadd: Mechs can move diagonally now
+  - bugfix: Fixed config defaults being inverted for 6 years
+  - bugfix: fixed static lighting piercing multiz
+  breadhunt:
+  - rscadd: Tangle emitter starts disabled to prevent a bug
+  - qol: Tangle emitter now gives feedback on whether it's enabled/disabled when attached

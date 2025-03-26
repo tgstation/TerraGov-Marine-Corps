@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "Fixed assault armor speed and canceling"
-  - bugfix: "Assault armor does intended damage now and has its cooldown"
