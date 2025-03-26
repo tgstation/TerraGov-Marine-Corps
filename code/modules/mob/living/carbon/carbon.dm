@@ -338,6 +338,7 @@
 
 	var/new_sight = initial(sight)
 	lighting_cutoff = initial(lighting_cutoff)
+	lighting_color_cutoffs = list(lighting_cutoff_red, lighting_cutoff_green, lighting_cutoff_blue)
 	set_invis_see(initial(see_invisible))
 
 	if(species)
