@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - bugfix: "Fixed non-singlefire weapons not sharing a fire cooldown"
