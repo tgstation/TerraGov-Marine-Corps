@@ -245,6 +245,7 @@
 	attack_speed = 3 // should make reloading less painful
 	icon_state_mini = "bullets"
 
+
 /obj/item/ammo_magazine/handful/repeater
 	name = "handful of heavy impact rifle bullet (.45-70 Government)"
 	icon_state = "bullet"
@@ -252,6 +253,7 @@
 	max_rounds = 8
 	default_ammo = /datum/ammo/bullet/rifle/repeater
 	caliber = CALIBER_4570
+
 
 /obj/item/ammo_magazine/handful/slug
 	name = "handful of shotgun slug (12 gauge)"
@@ -281,6 +283,40 @@
 	default_ammo = /datum/ammo/bullet/shotgun/incendiary
 	caliber = CALIBER_12G
 
+
+/obj/item/ammo_magazine/handful/dijitar_slug
+	name = "handful of metal shotgun slugs (10 gauge)"
+	icon_state = "shotgun_slug"
+	current_rounds = 4
+	max_rounds = 4
+	default_ammo = /datum/ammo/bullet/shotgun/dijitar_slug
+	caliber = CALIBER_10G
+
+/obj/item/ammo_magazine/handful/dijitar_buckshot
+	name = "handful of shotgun buckshot shells (10 gauge)"
+	icon_state = "shotgun_buckshot"
+	current_rounds = 4
+	max_rounds = 4
+	default_ammo = /datum/ammo/bullet/shotgun/dijitar_buckshot
+	caliber = CALIBER_10G
+
+/obj/item/ammo_magazine/handful/dijitar_flechette
+	name = "handful of shotgun flechette shells (10 gauge)"
+	icon_state = "shotgun_flechette"
+	current_rounds = 4
+	max_rounds = 4
+	default_ammo = /datum/ammo/bullet/shotgun/dijitar_flechette
+	caliber = CALIBER_10G
+
+/obj/item/ammo_magazine/handful/dijitar_incendiary
+	name = "handful of shotgun incendiary shells (10 gauge)"
+	icon_state = "incendiary_slug"
+	current_rounds = 4
+	max_rounds = 4
+	default_ammo = /datum/ammo/bullet/shotgun/dijitar_incendiary
+	caliber = CALIBER_10G
+
+
 /obj/item/ammo_magazine/handful/heavy_buckshot
 	name = "handful of shotgun buckshot shells (6g)"
 	icon_state = "heavy_shotgun_buckshot"
@@ -302,6 +338,7 @@
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/sniper/martini
 	caliber = CALIBER_557
+
 
 /obj/item/ammo_magazine/handful/micro_grenade
 	name = "handful of airburst micro grenades (10g)"
@@ -329,6 +366,7 @@
 	icon_state = "micro_grenade_smoke"
 	icon_state_mini = "40mm_blue"
 	default_ammo = /datum/ammo/bullet/micro_rail/smoke_burst
+
 
 //----------------------------------------------------------------//
 

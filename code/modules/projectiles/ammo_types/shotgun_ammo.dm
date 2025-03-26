@@ -154,6 +154,108 @@
 	name = "additional frag shell"
 	damage = 5
 
+/datum/ammo/bullet/shotgun/dijitar_slug
+	name = "shotgun slug"
+	handful_icon_state = "shotgun_slug"
+	hud_state = "shotgun_slug"
+	ammo_behavior_flags = AMMO_BALLISTIC
+	shell_speed = 2.5
+	handful_amount = 4
+	max_range = 18
+	damage = 110
+	penetration = 21
+	sundering = 6
+
+/datum/ammo/bullet/shotgun/dijitar_slug/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 1, slowdown = 2)
+
+/datum/ammo/bullet/shotgun/dijitar_incendiary
+	name = "incendiary slug"
+	handful_icon_state = "incendiary_slug"
+	hud_state = "shotgun_fire"
+	damage_type = BRUTE
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
+	shell_speed = 2.5
+	handful_amount = 4
+	max_range = 18
+	damage = 65
+	penetration = 13
+	sundering = 3
+	bullet_color = COLOR_TAN_ORANGE
+
+/datum/ammo/bullet/shotgun/dijitar_incendiary/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, knockback = 2, slowdown = 1)
+
+/datum/ammo/bullet/shotgun/dijitar_flechette
+	name = "shotgun flechette shell"
+	handful_icon_state = "shotgun_flechette"
+	icon_state = "flechette"
+	hud_state = "shotgun_flechette"
+	ammo_behavior_flags = AMMO_BALLISTIC
+	shell_speed = 2.5
+	handful_amount = 4
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/dijitar_flechette/flechette_spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 3
+	accuracy_var_low = 8
+	accuracy_var_high = 8
+	max_range = 15
+	damage = 45
+	damage_falloff = 0.5
+	penetration = 15
+	sundering = 8
+
+/datum/ammo/bullet/shotgun/dijitar_flechette/flechette_spread
+	name = "additional flechette"
+	damage = 40
+	sundering = 6
+
+/datum/ammo/bullet/shotgun/dijitar_buckshot
+	name = "shotgun buckshot shell"
+	handful_icon_state = "shotgun_buckshot"
+	icon_state = "buckshot"
+	hud_state = "shotgun_buckshot"
+	shell_speed = 2.5
+	handful_amount = 4
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/dijitar_spread
+	bonus_projectiles_amount = 5
+	bonus_projectiles_scatter = 3
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 5
+	max_range = 14
+	damage = 50
+	damage_falloff = 3
+
+/datum/ammo/bullet/shotgun/dijitar_buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
+
+/datum/ammo/bullet/dijitar_hefa_buckshot
+	name = "hefa fragment"
+	handful_icon_state = "shotgun_buckshot"
+	icon_state = "buckshot"
+	hud_state = "shotgun_buckshot"
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 3
+	max_range = 10
+	shrapnel_chance = 15
+	damage = 30
+	damage_falloff = 3
+
+/datum/ammo/bullet/dijitar_hefa_buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, knockback = 2, max_range = 4)
+
+/datum/ammo/bullet/shotgun/dijitar_spread
+	name = "additional buckshot"
+	icon_state = "buckshot"
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 3
+	max_range = 10
+	damage = 45
+	damage_falloff = 4
+
 /datum/ammo/bullet/shotgun/sx16_buckshot
 	name = "shotgun buckshot shell" //16 gauge is between 12 and 410 bore.
 	handful_icon_state = "shotgun_buckshot"

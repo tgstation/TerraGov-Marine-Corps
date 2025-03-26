@@ -48,6 +48,7 @@
 
 // --- Shotguns ---
 #define CALIBER_12G "12 gauge"
+#define CALIBER_10G "10 gauge"
 #define CALIBER_6G "6 gauge"
 #define CALIBER_410 ".410 bore"
 
