@@ -84,6 +84,7 @@ const BodypartPicker = (props: BodypartPickerData) => {
         ' ' +
         partdefinetofluff[displayingpart]
       }
+      textAlign="center"
     >
       <Stack vertical>
         <Stack.Item mt={0}>
@@ -102,18 +103,36 @@ const BodypartPicker = (props: BodypartPickerData) => {
             shown_colors={selected_primary[displayingpart]}
             name={primaryKey}
           />
+          {displayingpart === 'HEAD' && (
+            <>
+              <Tooltip content="Visor color" position="left">
+                <Icon size={2} name="glasses" />
+              </Tooltip>
+              <ColorDisplayRow shown_colors={selected_visor} name={visorKey} />
+            </>
+          )}
         </Stack.Item>
         <Stack.Item mt={0}>
           <ColorDisplayRow
             shown_colors={selected_secondary[displayingpart]}
             name={secondaryKey}
           />
+          {displayingpart === 'HEAD' && (
+            <Button
+              icon="rotate"
+              width="105px"
+              height="26px"
+              fontSize="120%"
+              mr={1}
+              style={{
+                transform: 'translateY(-15%)', // mt doesnt work
+              }}
+              onClick={() => act('rotate_doll')}
+            >
+              Rotate
+            </Button>
+          )}
         </Stack.Item>
-        {displayingpart === 'HEAD' && (
-          <Stack.Item mt={0}>
-            <ColorDisplayRow shown_colors={selected_visor} name={visorKey} />
-          </Stack.Item>
-        )}
       </Stack>
     </Section>
   );
@@ -314,7 +333,7 @@ export const MechAssembly = (props) => {
               >
                 <Box maxWidth={'160px'} mt={1}>
                   <Icon name="battery" />
-                  Power capacity: {current_stats.power_max}
+                  Power cap: {current_stats.power_max}
                 </Box>
               </Tooltip>
               <Tooltip
@@ -323,7 +342,7 @@ export const MechAssembly = (props) => {
               >
                 <Box maxWidth={'160px'} mt={1}>
                   <Icon name="charging-station" />
-                  Power generation: {current_stats.power_gen}
+                  Power gen: {current_stats.power_gen}
                 </Box>
               </Tooltip>
               <Tooltip content="Light strength." position="right">
