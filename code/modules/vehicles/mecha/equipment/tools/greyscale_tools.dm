@@ -121,7 +121,7 @@
 	name = "enhanced zoom"
 	desc = "A magnifying module that allows the pilot to see much further than with the standard optics. Night vision not included."
 	icon_state = "zoom"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_zoom
 
 /obj/item/mecha_parts/mecha_equipment/ability/smoke
@@ -172,3 +172,11 @@
 	icon_state = "assaultarmor"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/assault_armor
+
+/obj/item/mecha_parts/mecha_equipment/ability/cloak
+	name = "cloak module"
+	desc = "A mech stealth cloaking device. Cannot fire while cloaked, and cloaking drains energy."
+	weight = 70
+	icon_state = "cloak"
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	ability_to_grant = /datum/action/vehicle/sealed/mecha/cloak

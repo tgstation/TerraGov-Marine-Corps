@@ -223,27 +223,82 @@
 /datum/action/vehicle/sealed/mecha/assault_armor/action_activate(trigger_flags)
 	if(!owner?.client || !chassis || !(owner in chassis.occupants))
 		return
-	var/added_movetime = chassis.move_delay
-	chassis.move_delay += added_movetime
 	if(!chassis.use_power(power_cost))
 		chassis.balloon_alert(owner, "No power")
 		return
+	if(owner.do_actions)
+		return
+	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_ASSAULT_ARMOR))
+		var/time = S_TIMER_COOLDOWN_TIMELEFT(chassis, COOLDOWN_MECHA_ASSAULT_ARMOR)/10
+		chassis.balloon_alert(owner, "[time] seconds")
+		return
+	S_TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_ASSAULT_ARMOR, 2 MINUTES)
+	var/added_movetime = chassis.move_delay
+	chassis.move_delay += added_movetime
 	var/obj/effect/overlay/lightning_charge/charge = new(chassis)
 	charge.pixel_x -= chassis.pixel_x
 	charge.pixel_y -= chassis.pixel_y
 	chassis.vis_contents += charge
 	if(!do_after(owner, 0.5 SECONDS, IGNORE_LOC_CHANGE, chassis))
+		chassis.vis_contents -= charge
+		chassis.move_delay -= added_movetime
+		qdel(charge)
 		return
 	chassis.vis_contents -= charge
 	qdel(charge)
 	new /obj/effect/temp_visual/lightning_discharge(get_turf(chassis))
 	chassis.move_delay -= added_movetime
-	var/list/bullets = list()
-	var/proj_type = /obj/projectile
-	if(initial(ammo_type.ammo_behavior_flags) & AMMO_HITSCAN)
-		proj_type = /obj/projectile/hitscan
-	for(var/i=1 to projectile_count)
-		var/obj/projectile/proj = new proj_type(src, initial(ammo_type.hitscan_effect_icon))
-		proj.generate_bullet(ammo_type)
-		bullets += proj
-	bullet_burst(chassis, bullets, owner, 'sound/weapons/burst_phaser2.ogg', 7, 2)
+	for(var/turf/location in RANGE_TURFS(1, chassis))
+		for(var/mob/living/target in location)
+			target.take_overall_damage(200, BURN, LASER, updating_health=TRUE, penetration=30, max_limbs=6)
+	playsound(chassis, 'sound/weapons/burst_phaser2.ogg', GUN_FIRE_SOUND_VOLUME, TRUE)
+
+/datum/action/vehicle/sealed/mecha/cloak
+	name = "Cloak"
+	action_icon_state = "cloak_off"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_CLOAK,
+	)
+	/// Whether mech is currently cloaked
+	var/cloaked = FALSE
+	///power cost of maintaining cloak per second
+	var/power_cost = 40
+
+/datum/action/vehicle/sealed/mecha/cloak/action_activate(trigger_flags)
+	if(!owner?.client || !chassis || !(owner in chassis.occupants))
+		return
+	if(cloaked)
+		stop_cloaking()
+		return
+
+	cloaked = TRUE
+	action_icon_state = "cloak_on"
+	update_button_icon()
+	ADD_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
+	playsound(chassis, 'sound/effects/pred_cloakon.ogg', 60, TRUE)
+	become_warped_invisible(chassis, 50)
+	START_PROCESSING(SSobj, src)
+	chassis.mecha_flags |= CANNOT_INTERACT
+
+/datum/action/vehicle/sealed/mecha/cloak/process(seconds_per_tick)
+	if(!owner || !(owner in chassis.occupants))
+		stop_cloaking()
+		return
+	if(!chassis.use_power(seconds_per_tick*power_cost))
+		stop_cloaking()
+
+/datum/action/vehicle/sealed/mecha/cloak/remove_action(mob/M)
+	if(cloaked)
+		stop_cloaking()
+	return ..()
+
+///cleanup from stoping cloaking
+/datum/action/vehicle/sealed/mecha/cloak/proc/stop_cloaking()
+	cloaked = FALSE
+	action_icon_state = "cloak_off"
+	update_button_icon()
+	chassis.mecha_flags &= ~CANNOT_INTERACT
+	STOP_PROCESSING(SSobj, src)
+	stop_warped_invisible(chassis)
+	REMOVE_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
+	playsound(chassis, 'sound/effects/pred_cloakoff.ogg', 60, TRUE)

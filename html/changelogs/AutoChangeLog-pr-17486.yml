@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - code_imp: "tweaked how mech overlays for abiltiies are added"

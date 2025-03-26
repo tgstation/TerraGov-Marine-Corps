@@ -392,7 +392,7 @@
 	point_cost = 150
 	dropship_equipment_flags = IS_INTERACTABLE
 	/// Whether the system is currently enabled to activate on landing or not
-	var/enabled = TRUE
+	var/enabled = FALSE
 	/// What type of smoke to use
 	var/obj/item/explosive/grenade/smokebomb/drain/pellet/pellet_type
 	/// Cooldown for emitting smoke
@@ -417,8 +417,9 @@
 	if(ship_base)
 		setDir(ship_base.dir)
 		if(enabled)
-			update_appearance()
-			RegisterSignal(linked_shuttle, COMSIG_SHUTTLE_SETMODE, PROC_REF(drop_pellet_to_location))
+			balloon_alert_to_viewers("Enabled")
+		else
+			balloon_alert_to_viewers("Disabled")
 	else
 		setDir(initial(dir))
 	update_appearance()

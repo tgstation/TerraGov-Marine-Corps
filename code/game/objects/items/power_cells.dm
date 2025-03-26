@@ -71,7 +71,7 @@
 		if(get_dist(user,src) < 3) //Have to be close to make out the *DANGEROUS* details
 			. += span_danger("This power cell looks jury rigged to explode!")
 
-/obj/item/cell/attack_self(mob/user as mob)
+/obj/item/cell/attack_self(mob/user as mob) // todo shitcode fixme
 	if(!rigged)
 		return ..()
 
@@ -89,7 +89,7 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		C.throw_mode_on()
-	overlays += new/obj/effect/overlay/danger
+	overlays += mutable_appearance('icons/obj/items/grenade.dmi', "danger", ABOVE_ALL_MOB_LAYER, src)
 	spawn(rand(3,50))
 		spark_system.start(src)
 		explode()

@@ -499,3 +499,69 @@
       in chat
   - balance: Resin grenades from globadier now only fling marines and the owner globadier
   - bugfix: Xadar now detonates properly when hitting a solid object
+2025-03-24:
+  GregorMN:
+  - qol: the pallettes for hyperscale (e.g armor and mechs) have been redone. All
+      existing palettes will automatically update to the new ones
+  Kuro020:
+  - balance: Dancer's damage debuff damage scaling reduced from 0.25 to 0.15
+  - balance: Dancer loses the ability to acid and build acid wells
+  Runian:
+  - bugfix: Dragon's Grab ability now correctly gains a cooldown upon ending a grab
+      early.
+  TiviPlus:
+  - bugfix: transparency should try to show space again
+  - rscadd: Added more mech weapons (rocket, micromissiles, shotgun, flamer)
+  - rscadd: Added an assault core module to the mech that emits a laser burst after
+      a windup when triggered
+  - bugfix: Allows reloading multiple mech weapons again
+  - qol: strain and caste swap cooldowns now say have much time you have left when
+      you click them
+  - bugfix: fixed strain swap cooldown not working
+  - bugfix: Mech ammo huds will now add and remove on 2.0 mech enter/leave properly
+  - code_imp: tweaked how mech overlays for abiltiies are added
+  - bugfix: Fixed projectiles being black on multiz
+  - qol: Selecting a mech weapon in the builder UI again will unselect it
+  - bugfix: fixed mech light being offset
+  - bugfix: Mech overload will now disable when a mob leaves
+  - bugfix: fixed the UI button to follow a xeno being clicked again not stoppping
+      you from watching the currently watched xeno
+  - bugfix: Fix grenades warning icon being black on multiz
+  - rscadd: Added mech cloaking module
+  - code_imp: added new warped_invisibile method of making things invisible, which
+      warps the air where the invisible thing is instead of just making them partially
+      translucent
+  - bugfix: fixed zlevel changes being called multiple times in some cases
+  - bugfix: Cut mech overload stop sound to not have part of the loop
+  - bugfix: Fixed mech arm layering on side directions
+  - bugfix: Tank gun and damage overlays are no longer black on multiz
+  - bugfix: fixed mechs not showing damage overlays for arms
+  - bugfix: fixed mech not showing damage overlays for destroyed limbs
+  - bugfix: fixed destroyed limbs not updating when boosting/firing
+  yyzsong:
+  - spellcheck: fixes tense in unbuckling text
+  - spellcheck: standardizes sentry and ammunition names for the sniper sentry, and
+      the magazine names for both the sniper and shotgun sentry
+  - spellcheck: updates nuke disk generator text
+  - spellcheck: COMISG -> COMSIG
+  - spellcheck: rewords TO job spawnin description
+  - spellcheck: adds a missing period to the body scanner's chat log message
+  - spellcheck: corrects breath -> breathe in the "fresh air fills your lungs" message
+  - spellcheck: adjusts wording for boiler, praetorian, and gorger abilities
+2025-03-25:
+  Lumipharon:
+  - bugfix: The pacifist movement amongminions has been stamped out
+2025-03-26:
+  Kuro020:
+  - balance: Mech rocket no longer completely deletes armor
+  - balance: Mech shotgun does sunder and has less falloff
+  - balance: Removed zoom module
+  TiviPlus:
+  - bugfix: Fixed assault armor speed and canceling
+  - bugfix: Assault armor does intended damage now and has its cooldown
+  - rscadd: Mechs can move diagonally now
+  - bugfix: Fixed config defaults being inverted for 6 years
+  - bugfix: fixed static lighting piercing multiz
+  breadhunt:
+  - rscadd: Tangle emitter starts disabled to prevent a bug
+  - qol: Tangle emitter now gives feedback on whether it's enabled/disabled when attached
