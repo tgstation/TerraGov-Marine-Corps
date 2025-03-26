@@ -16,6 +16,21 @@
 	grow = 0.02
 	friction = 0.25
 
+/particles/mech_land_water
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "smoke4"
+	width = 750
+	height = 750
+	count = 25
+	spawning = 25
+	lifespan = 10
+	fade = 25
+	velocity = generator(GEN_CIRCLE, 5, 15)
+	rotation = generator(GEN_NUM, -45, 45)
+	scale = 0.1
+	grow = 0.02
+	friction = 0.25
+
 /***************** WELCOME TO MECHA.DM, ENJOY YOUR STAY *****************/
 
 /**
@@ -225,8 +240,8 @@
 	var/dash_range = 1
 	///cooldown time between dashes on greyscale mechs
 	var/dash_cooldown = 10 SECONDS
-	///is the mech currently mid air or not determines if it does the footstep particles
-	var/midair = FALSE
+	///determines if the mech does the footstep particles
+	var/no_footstep_particle = FALSE
 
 /obj/item/radio/mech //this has to go somewhere
 	subspace_transmission = TRUE
@@ -652,16 +667,19 @@
 /obj/vehicle/sealed/mecha/proc/on_jump_start()
 	SIGNAL_HANDLER
 	playsound(loc, 'sound/mecha/mechturn.ogg', 30, TRUE)
-	midair = TRUE
+	no_footstep_particle = TRUE
 
 ///Stuff that happens when a mech finishes a jump
 /obj/vehicle/sealed/mecha/proc/on_jump_land()
 	SIGNAL_HANDLER
-	midair = FALSE
+	no_footstep_particle = FALSE
 	playsound(loc, 'sound/effects/alien/behemoth/stomp.ogg', 30, TRUE)
 	var/obj/effect/abstract/particle_holder/landing_particles
 	var/turf/current_turf = get_turf(src)
-	landing_particles = new(current_turf, /particles/mech_land)
+	if(iswater(current_turf))
+		landing_particles = new(current_turf, /particles/mech_land_water)
+	else
+		landing_particles = new(current_turf, /particles/mech_land)
 	landing_particles.layer = layer - 0.01
 	QDEL_IN(landing_particles, 1 SECONDS)
 

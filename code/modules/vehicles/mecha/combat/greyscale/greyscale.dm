@@ -32,6 +32,21 @@
 	grow = 0.03
 	friction = 0.25
 
+/particles/mech_footstep_water
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "smoke4"
+	width = 750
+	height = 750
+	count = 25
+	spawning = 25
+	lifespan = 5
+	fade = 15
+	velocity = generator(GEN_CIRCLE, 5, 6)
+	rotation = generator(GEN_NUM, -45, 45)
+	scale = 0.015
+	grow = 0.03
+	friction = 0.25
+
 /particles/dash_sparks
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "flare"
@@ -202,10 +217,15 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
 	if(!forced)
-		if(!midair)
+		if(HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
+			return
+		if(!no_footstep_particle)
 			var/obj/effect/abstract/particle_holder/footstep_particles
 			var/turf/current_turf = get_turf(src)
-			footstep_particles = new(current_turf, /particles/mech_footstep)
+			if(iswater(current_turf))
+				footstep_particles = new(current_turf, /particles/mech_footstep_water)
+			else
+				footstep_particles = new(current_turf, /particles/mech_footstep)
 			var/current_foot
 			if(next_footstep_left)
 				current_foot = "left_foot"
@@ -256,7 +276,7 @@
 
 /// Does a dash in the specified direction.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/activate_dash(direction)
-	if(!midair)
+	if(!no_footstep_particle)
 		dash_sparks_left.particles.spawning = 5
 		dash_sparks_right.particles.spawning = 5
 		dash_sparks_left.particles.position = list(foot_offsets["left_foot"][dir2text_short(direction)][1], foot_offsets["left_foot"][dir2text_short(direction)][2])
@@ -283,7 +303,7 @@
 	for(var/i in 1 to dash_range)
 		target_turf = get_step(target_turf, direction)
 	throw_at(target_turf, dash_range, 1, src, FALSE, TRUE, TRUE)
-	playsound(get_turf(src), 'sound/mecha/weapons/laser_sword.ogg', 100)
+	playsound(get_turf(src), 'sound/mecha/weapons/laser_sword.ogg', 70)
 
 /// Turns off dash sparks particles.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/remove_sparks()
