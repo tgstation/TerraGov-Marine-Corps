@@ -369,9 +369,12 @@
 
 /obj/structure/dropship_equipment/shuttle/sentry_holder/Initialize(mapload)
 	. = ..()
-	if(!deployed_turret)
+	if(!istype(deployed_turret))
 		var/obj/new_gun = new sentry_type(src)
 		deployed_turret = new_gun.loc
+		if(!istype(deployed_turret))
+			deployed_turret = null
+			return
 		RegisterSignal(deployed_turret, COMSIG_OBJ_DECONSTRUCT, PROC_REF(clean_refs))
 	deployed_turret.set_on(FALSE)
 
