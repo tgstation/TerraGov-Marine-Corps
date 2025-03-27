@@ -293,3 +293,11 @@
 
 	client.prefs.harmful_sex_allowed = !client.prefs.harmful_sex_allowed
 	to_chat(src, span_notice("Harmful sex is now [client.prefs.harmful_sex_allowed ? "Allowed" : "Disallowed"]"))
+
+/mob/living/carbon/verb/toggle_burst_scream()
+	set name = "Toggle Burst Screams"
+	set desc = "Toggle screaming from bursts."
+	set category = "IC"
+
+	client.prefs.burst_screams_enabled = !client.prefs.burst_screams_enabled
+	to_chat(src, span_notice("Screams from larva bursting are now [client.prefs.burst_screams_enabled ? "enabled" : "disabled"]"))
