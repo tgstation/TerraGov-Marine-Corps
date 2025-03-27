@@ -1279,9 +1279,6 @@
 "hZ" = (
 /obj/structure/table/black,
 /obj/machinery/computer/security/som_mainship,
-/obj/machinery/faxmachine{
-	department = "VSD Ship"
-	},
 /turf/open/floor/prison/blackfloor,
 /area/antag_ship/vsd/bridge)
 "ia" = (
@@ -1290,6 +1287,9 @@
 /area/antag_ship/som/bathroom)
 "id" = (
 /obj/structure/table/black,
+/obj/machinery/faxmachine{
+	department = "VSD Ship"
+	},
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 1
 	},
