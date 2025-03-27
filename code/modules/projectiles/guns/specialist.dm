@@ -573,6 +573,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/rifle/pepperball/pepperball_mini
 	name = "mini pepperball gun"
 	desc = "An attachable version of the PB-12 pepperball gun. It has a smaller magazine size and has a slower rate of fire."
+	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "pepperball_mini"
 	slot = ATTACHMENT_SLOT_UNDER
 	max_shells = 20
