@@ -2131,7 +2131,7 @@ VEHICLES
 	name = "Tiny unmanned vehicle - Skink"
 	contains = list(/obj/item/deployable_vehicle/tiny)
 	cost = 50
-
+/*
 /datum/supply_packs/vehicles/light_uv
 	name = "Light unmanned vehicle - Iguana"
 	contains = list(/obj/vehicle/unmanned)
@@ -2146,7 +2146,7 @@ VEHICLES
 	name = "Heavy unmanned vehicle - Komodo"
 	contains = list(/obj/vehicle/unmanned/heavy)
 	cost = 700
-
+*/
 /datum/supply_packs/vehicles/uv_light_weapon
 	name = "Light UV weapon"
 	contains = list(/obj/item/uav_turret)
