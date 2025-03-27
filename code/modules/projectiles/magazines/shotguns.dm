@@ -146,31 +146,31 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 /obj/item/ammo_magazine/dijitar_base_slug
 	name = "magazine of 10 gauge shotgun slugs"
 	desc = "A magazine filled with heavy solid shotgun shells in 10 Gauge."
-	icon_state = "slugs"
+	icon_state = "SH41"
 	icon = 'icons/obj/items/ammo/shotgun.dmi'
 	default_ammo = /datum/ammo/bullet/shotgun/dijitar_slug
 	caliber = CALIBER_10G
 	max_rounds = 7
 	w_class = WEIGHT_CLASS_NORMAL
-	icon_state_mini = "slugs"
+	icon_state_mini = "SH41"
 
 /obj/item/ammo_magazine/dijitar_base_slug/dijitar_incendiary
 	name = "magazine of 10 gauge incendiary slugs"
 	desc = "A magazine filled with self-detonating incendiary shotgun rounds. 10 Gauge flaming brick."
-	icon_state = "incendiary"
+	icon_state = "SH41"
 	default_ammo = /datum/ammo/bullet/shotgun/dijitar_incendiary
-	icon_state_mini = "incendiary"
+	icon_state_mini = "SH41"
 
 /obj/item/ammo_magazine/dijitar_base_slug/dijitar_buckshot
 	name = "magazine of 10 gauge buckshot shells"
 	desc = "A magazine filled with 10 gauge buckshot shotgun shells. Some say the lead or steel balls keep getting replaced with sugar."
-	icon_state = "buckshot"
+	icon_state = "SH41"
 	default_ammo = /datum/ammo/bullet/shotgun/dijitar_buckshot
-	icon_state_mini = "buckshot"
+	icon_state_mini = "SH41"
 
 /obj/item/ammo_magazine/dijitar_base_slug/dijitar_flechette
 	name = "magazine of 10 gauge flechette shells"
 	desc = "A magazine filled with flechette shotgun shells. 10 Gauge."
-	icon_state = "flechette"
+	icon_state = "SH41"
 	default_ammo = /datum/ammo/bullet/shotgun/dijitar_flechette
-	icon_state_mini = "flechette"
+	icon_state_mini = "SH41"

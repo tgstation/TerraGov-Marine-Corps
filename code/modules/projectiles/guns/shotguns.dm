@@ -832,9 +832,9 @@
 	load_method = MAGAZINE
 	equip_slot_flags = ITEM_SLOT_BACK
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
-	icon_state = "t35"
-	worn_icon_state = "t35"
-	cock_animation = "t35_pump"
+	icon_state = "SH41"
+	worn_icon_state = "SH41"
+	cock_animation = "SH41_work"
 	gun_skill_category = SKILL_SHOTGUNS
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh41.ogg'
 
