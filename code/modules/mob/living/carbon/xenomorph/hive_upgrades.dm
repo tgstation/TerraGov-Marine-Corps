@@ -423,22 +423,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	xeno_message("[buyer] has built \a [built] at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
 	return ..()
 
-/datum/hive_upgrade/defence/special_walls
-	name = "Special Resin Walls"
-	desc = "Gives your hive 50 special resin walls to build."
-	psypoint_cost = 125
-	icon = "specialresin"
-	gamemode_flags = ABILITY_NUCLEARWAR
-	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
-
-/datum/hive_upgrade/defence/special_walls/on_buy(mob/living/carbon/xenomorph/buyer)
-	GLOB.hive_datums[buyer.get_xeno_hivenumber()].special_build_points += 50
-	to_chat(buyer, span_notice("We buy 50 special resin points for [psypoint_cost] psy points."))
-	log_game("[buyer] has purchased 50 special resin points, spending [psypoint_cost] psy points in the process.")
-	xeno_message("[buyer] has purchased 50 special resin points!", "xenoannounce", 5, buyer.hivenumber)
-
-	return ..()
-
 /datum/hive_upgrade/xenos
 	category = "Xenos"
 

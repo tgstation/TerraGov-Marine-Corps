@@ -203,6 +203,11 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 /// Failed to other blockers such as egg, power plant , coocon , traps
 #define ERROR_CONSTRUCT 8
 
+#define WEED_REQUIRES_LOS (1<<0)
+#define WEED_TAKES_TIME (1<<1)
+#define WEED_COSTS_QB_POINTS (1<<2)
+#define WEED_USES_PLASMA (1<<3)
+
 #define PUPPET_WITHER_RANGE 15
 
 ///Number of icon states to show health and plasma on the side UI buttons

@@ -219,7 +219,7 @@
 	var/list/modifiers = params2list(params)
 	if(toggled && !(modifiers[BUTTON] == LEFT_CLICK))
 		dragging = TRUE
-		preshutter_build_resin(get_turf(object))
+		call_async(src, list(PROC_REF(build_resin), get_turf(object), WEED_COSTS_QB_POINTS, null))
 
 /// Helper for ending drag-building , activated on mose-up
 /datum/action/ability/activable/xeno/secrete_resin/proc/stop_resin_drag()
@@ -306,7 +306,7 @@
 /datum/action/ability/activable/xeno/secrete_resin/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xowner = owner
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
-		preshutter_build_resin(A)
+		build_resin(A, FALSE, FALSE, TRUE, FALSE)
 	else if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
 		build_resin(get_turf(owner))
 	else
@@ -325,60 +325,13 @@
 
 	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
 
-/// A version of build_resin with the plasma drain and distance checks removed.
-/datum/action/ability/activable/xeno/secrete_resin/proc/preshutter_build_resin(turf/T)
-	if(!SSresinshaping.active)
-		stack_trace("[owner] ([key_name(owner)]) didn't have their quickbuild signals unregistered properly and tried using quickbuild after the subsystem was off!")
-		end_resin_drag()
-		return
-
-	if(!SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()])
-		owner.balloon_alert(owner, "The hive has ran out of quickbuilding points! Wait until more sisters awaken or the marines land!")
-		return
-
-	var/mob/living/carbon/xenomorph/X = owner
-	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin, X.selected_resin))
-		if(ERROR_CANT_WEED)
-			owner.balloon_alert(owner, span_notice("This spot cannot support a garden!"))
-			return
-		if(ERROR_NO_WEED)
-			owner.balloon_alert(owner, span_notice("This spot has no weeds to serve as support!"))
-			return
-		if(ERROR_NO_SUPPORT)
-			owner.balloon_alert(owner, span_notice("This spot has no adjaecent support for the structure!"))
-			return
-		if(ERROR_NOT_ALLOWED)
-			owner.balloon_alert(owner, span_notice("The queen mother prohibits us from building here."))
-			return
-		if(ERROR_BLOCKER)
-			owner.balloon_alert(owner, span_notice("There's another xenomorph blocking the spot!"))
-			return
-		if(ERROR_FOG)
-			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
-			return
-		// it fails a lot here when dragging , so its to prevent spam
-		if(ERROR_CONSTRUCT)
-			return
-		if(ERROR_JUST_NO)
-			return
-	var/atom/new_resin
-	if(ispath(X.selected_resin, /turf)) // We should change turfs, not spawn them in directly
-		var/list/baseturfs = islist(T.baseturfs) ? T.baseturfs : list(T.baseturfs)
-		baseturfs |= T.type
-		T.ChangeTurf(X.selected_resin, baseturfs)
-		new_resin = T
-	else
-		new_resin = new X.selected_resin(T)
-	if(new_resin)
-		SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()]--
-
-
 /datum/action/ability/activable/xeno/secrete_resin/proc/preshutter_resin_drag(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
 	if(dragging)
-		preshutter_build_resin(get_turf(over_object))
+		call_async(src, PROC_REF(build_resin), list(get_turf(over_object), WEED_COSTS_QB_POINTS, null))
 
-/datum/action/ability/activable/xeno/secrete_resin/proc/build_resin(turf/T)
+
+/datum/action/ability/activable/xeno/secrete_resin/proc/build_resin(turf/T, weed_flags = WEED_REQUIRES_LOS | WEED_TAKES_TIME | WEED_USES_PLASMA, sound = SFX_ALIEN_RESIN_BUILD)
 	var/mob/living/carbon/xenomorph/X = owner
 	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin, X.selected_resin))
 		if(ERROR_CANT_WEED)
@@ -404,10 +357,10 @@
 			return
 		if(TRUE)
 			return
-	if(!line_of_sight(owner, T, ignore_target_opacity = istype(T, /turf/closed/wall/resin)))
+	if(CHECK_BITFIELD(weed_flags, WEED_REQUIRES_LOS) && !line_of_sight(owner, T, ignore_target_opacity = istype(T, /turf/closed/wall/resin)))
 		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
 		return fail_activate()
-	if(!do_after(X, get_wait(), NONE, T, BUSY_ICON_BUILD))
+	if(CHECK_BITFIELD(weed_flags, WEED_TAKES_TIME) && !do_after(X, get_wait(), NONE, T, BUSY_ICON_BUILD))
 		return fail_activate()
 	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin, X.selected_resin))
 		if(ERROR_CANT_WEED)
@@ -436,11 +389,16 @@
 	var/atom/AM = X.selected_resin
 	X.visible_message(span_xenowarning("\The [X] regurgitates a thick substance and shapes it into \a [initial(AM.name)]!"), \
 	span_xenonotice("We regurgitate some resin and shape it into \a [initial(AM.name)]."), null, 5)
-	playsound(owner.loc, SFX_ALIEN_RESIN_BUILD, 25)
+	if(sound)
+		playsound(get_turf(owner), sound, 25)
 	var/atom/new_resin
+	var/cost_points = TRUE
 	if(ispath(X.selected_resin, /turf)) // We should change turfs, not spawn them in directly
 		var/list/baseturfs = islist(T.baseturfs) ? T.baseturfs : list(T.baseturfs)
-		if(!istype(T, /turf/closed/wall/resin))
+		if(istype(T, /turf/closed/wall/resin))
+			// if it's a resin typepath that means we're replacing the turf, don't pay the cost
+			cost_points = FALSE
+		else
 			baseturfs |= T.type
 		new_resin = T
 		T.ChangeTurf(X.selected_resin, baseturfs)
@@ -450,8 +408,11 @@
 		if(/obj/alien/resin/sticky)
 			ability_cost = initial(ability_cost) / 3
 	if(new_resin)
-		add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
-		succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? ability_cost/2 : ability_cost)
+		if(CHECK_BITFIELD(weed_flags, WEED_USES_PLASMA))
+			add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
+			succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? ability_cost/2 : ability_cost)
+		if(CHECK_BITFIELD(weed_flags, WEED_COSTS_QB_POINTS) && cost_points)
+			SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()]--
 	ability_cost = initial(ability_cost) //Reset the plasma cost
 	owner.record_structures_built()
 

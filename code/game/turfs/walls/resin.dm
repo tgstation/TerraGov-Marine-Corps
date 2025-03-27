@@ -128,10 +128,9 @@
 	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
 	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
-		if(is_normal_resin_wall)
-			SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
-			take_damage(max_integrity) // Ensure its destroyed
-			return
+		SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
+		take_damage(max_integrity) // Ensure its destroyed
+		return
 	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
 	if(!do_after(xeno_attacker, 1 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC))
