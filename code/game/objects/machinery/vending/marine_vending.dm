@@ -2884,7 +2884,7 @@
 			/obj/item/ammo_magazine/rifle/icc_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/icc_autoshotgun/frag = 10,
 			/obj/item/weapon/gun/rifle/icc_assaultcarbine = -1,
-			/obj/item/ammo_magazine/rifle/icc_battlecarbine = -1,
+			/obj/item/ammo_magazine/rifle/icc_assaultcarbine = -1,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/som = -1,

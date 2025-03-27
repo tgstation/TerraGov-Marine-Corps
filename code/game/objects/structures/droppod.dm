@@ -45,6 +45,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	var/list/datum/action/innate/interaction_actions
 	///after the pod finishes it's travelhow long it spends falling
 	var/falltime = 0.6 SECONDS
+	var/respawns = FALSE
 
 /obj/structure/droppod/Initialize(mapload)
 	. = ..()
@@ -193,9 +194,11 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	if(!(LAZYLEN(buckled_mobs) || LAZYLEN(contents)))
 		return
 	#ifndef TESTING
-	if(!operation_started && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock + DROPPOD_DEPLOY_DELAY)
-		if(user)
-			to_chat(user, span_notice("Unable to launch, the ship has not yet reached the combat area."))
+	if(!operation_started)
+		var/time_until_ready = SSticker.round_start_time + SSticker.mode.deploy_time_lock + DROPPOD_DEPLOY_DELAY - world.time
+		if(time_until_ready > 0)
+			if(user)
+				to_chat(user, span_notice("Unable to launch, the ship has not yet reached the combat area.  Deployment possible in [DisplayTimeText(time_until_ready)]"))
 		return
 	#endif
 
@@ -268,6 +271,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	playsound(src, 'sound/effects/escape_pod_launch.ogg', 70)
 	playsound(src, 'sound/effects/droppod_launch.ogg', 70)
 	addtimer(CALLBACK(src, PROC_REF(finish_drop), user), ROUND_UP(DROPPOD_TRANSIT_TIME * ((GLOB.current_orbit + 3) / 6)))
+	if(respawns)
+		var/obj/structure/droppod/respawned = new type(loc)
+		respawned.respawns = TRUE
 	forceMove(pick(reserved_area.reserved_turfs))
 	new /area/arrival(loc)	//adds a safezone so we dont suffocate on the way down, cleaned up with reserved turfs
 

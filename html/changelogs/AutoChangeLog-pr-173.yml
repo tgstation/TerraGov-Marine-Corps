@@ -1,0 +1,6 @@
+author: "DrCrawler"
+delete-after: True
+changes:
+  - balance: "Specialists and Vanguards can no longer completely ignore req with their vendor kits."
+  - balance: "NTC Specialist suits/leotards no longer speed up. I have no clue how anyone thought this would be a good idea."
+  - bugfix: "The ICC has finally found their supply of assault carbine magazines. AUG fanbottoms rejoice."

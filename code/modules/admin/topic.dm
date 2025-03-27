@@ -923,11 +923,17 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			sender = F.sender
 			subject = "re: [F.title]"
 
-		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", "Brig", "Research", "Warden")
+		var/list/fax_machine_departments = list()
+		for(var/obj/machinery/faxmachine/machine in GLOB.faxmachines)
+			fax_machine_departments |= machine.department
+
+		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in fax_machine_departments
 		if(!dep)
 			return
 
-		var/department = input("Which department do you want to reply AS?", "Fax Message") as null|anything in list("NTC Human Resources", "NTC Management", "NTC Secretary")
+		var/department = input("Which department do you want to reply AS?", "Fax Message") as null|anything in list("NTC Human Resources", "NTC Management", "NTC Secretary", "Custom")
+		if(department == "Custom")
+			department = input("Enter a custom sender", "Fax Message", "NTC Secretary") as text|null
 		if(!department)
 			return
 

@@ -10659,12 +10659,12 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/faxmachine,
 /obj/machinery/door_control/mainship/corporate{
 	id = "wyoffice2";
 	name = "Window Shutters"
 	},
 /obj/structure/table/wood/fancy,
+/obj/machinery/faxmachine/cmp,
 /turf/open/floor/carpet{
 	dir = 9;
 	icon_state = "carpetside"

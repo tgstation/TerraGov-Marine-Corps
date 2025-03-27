@@ -1,0 +1,4 @@
+author: "dottymint"
+delete-after: True
+changes:
+  - bugfix: "fixed showers not updating properly"
