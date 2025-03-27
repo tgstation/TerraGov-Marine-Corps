@@ -565,3 +565,36 @@
   breadhunt:
   - rscadd: Tangle emitter starts disabled to prevent a bug
   - qol: Tangle emitter now gives feedback on whether it's enabled/disabled when attached
+2025-03-27:
+  Atropos:
+  - bugfix: Sulaco now has working squad overwatch consoles
+  Cheese:
+  - rscadd: Resin huggers now extinguish their target
+  - balance: You can no longer crush huggers in hand, as a human
+  Kuro020:
+  - balance: Mech light booster/gen is lighter now to allow for better weight control
+  - balance: Mech GL has halved ammo capacity to curb spam, has lower weight to compensate
+  - balance: Mech micro rockets have been properly nerfed, their weight has been increased
+  - balance: Mech shotgun has the same falloff as marine shotgun now as opposed to
+      double, as well as lower weight
+  - balance: Mech flamer has lower weight
+  - balance: Mech rocket launcher has lower weight
+  Lewdcifer:
+  - balance: Being thrown while in crit will now apply oxyloss and update health.
+      This prevents xenos from dragging people for insane distances.
+  TiviPlus:
+  - bugfix: fixed an error icon in drop pod actions
+  - bugfix: fixed drop pods using the highlited targetting icon
+  - bugfix: Fixed supply beacons missing if the beacon moves
+  - rscadd: Added multiz camera support
+  - bugfix: Fixed colored NV goggles
+  - qol: Tad toggling NV toggles instantly now
+  - bugfix: fixed tad nv being invirted
+  - bugfix: fixed tad landing icons not showing a lot of the time
+  - bugfix: Fixed openspace jumping
+  - bugfix: Fixed non-singlefire weapons not sharing a fire cooldown
+  - balance: Drastically reduced damage on being hit by a tram
+  - admin: Mech projectiles now log who shot them when they hit mech
+  - qol: improved the mech builder ui and gave it a rotate button
+  tyeagg:
+  - rscadd: blood splatter turns towards angle

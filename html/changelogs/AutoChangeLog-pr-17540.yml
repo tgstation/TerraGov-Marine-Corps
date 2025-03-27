@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - admin: "Mech projectiles now log who shot them when they hit mech"
