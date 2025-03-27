@@ -1,0 +1,4 @@
+author: "dottymint"
+delete-after: True
+changes:
+  - rscadd: "added a preference for toggling your own burst screams"
