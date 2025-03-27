@@ -1,5 +1,5 @@
 /datum/xeno_caste/puppeteer
-	caste_name = "Puppeteer"
+	caste_name = "Jester"
 	display_name = "Puppeteer"
 	upgrade_name = ""
 	caste_desc = "An alien creature of terrifying display, it has a tail adorned with needles that drips a strange chemical and elongated claws."
@@ -9,7 +9,7 @@
 
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
-	wound_type = "puppeteer"
+	wound_type = "jester" //So that the mob isnt invisible, if its spawned in
 	speed = -0.8
 	melee_damage = 18
 	plasma_max = 750

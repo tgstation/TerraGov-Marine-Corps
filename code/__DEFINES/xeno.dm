@@ -144,9 +144,9 @@ GLOBAL_LIST_INIT(resin_special_images_list, list(
 
 //List of puppeteer pheromone images
 GLOBAL_LIST_INIT(puppeteer_phero_images_list, list(
-	AURA_XENO_BLESSFURY = image('icons/Xeno/actions/puppeteer.dmi', icon_state = "Fury"),
-	AURA_XENO_BLESSWARDING = image('icons/Xeno/actions/puppeteer.dmi', icon_state = "Warding"),
-	AURA_XENO_BLESSFRENZY = image('icons/Xeno/actions/puppeteer.dmi', icon_state = "Frenzy"),
+	AURA_XENO_BLESSFURY = image('icons/Xeno/actions/jester.dmi', icon_state = "Fury"),
+	AURA_XENO_BLESSWARDING = image('icons/Xeno/actions/jester.dmi', icon_state = "Warding"),
+	AURA_XENO_BLESSFRENZY = image('icons/Xeno/actions/jester.dmi', icon_state = "Frenzy"),
 ))
 
 //xeno upgrade flags

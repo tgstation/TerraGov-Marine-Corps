@@ -8,9 +8,9 @@
 
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
-	wound_type = "puppeteer" //used to match appropriate wound overlays
-	gib_anim = "Puppeteer Gibs"
-	gib_flick = "Puppeteer Gibbed"
+	wound_type = "jester" //used to match appropriate wound overlays
+	gib_anim = "Jester Gibs"
+	gib_flick = "Jester Gibbed"
 
 	// *** Melee Attacks *** //
 	melee_damage = 25
@@ -45,7 +45,7 @@
 /datum/xeno_caste/jester/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "A unfathonably strange xeno that appears to be in seperate timelines at the same time."
-	primordial_message = "The house always wins. Let us let them know this."
+	primordial_message = "The house always wins."
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(

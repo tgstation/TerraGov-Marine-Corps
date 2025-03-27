@@ -3,7 +3,7 @@
 	caste_base_type = /datum/xeno_caste/jester
 	name = "Jester"
 	desc = "A beefy, fast alien with sharp claws."
-	icon = 'icons/Xeno/castes/puppeteer.dmi'
+	icon = 'icons/Xeno/castes/jester.dmi'
 	icon_state = "Puppeteer Running"
 	bubble_icon = "alien"
 	health = 150

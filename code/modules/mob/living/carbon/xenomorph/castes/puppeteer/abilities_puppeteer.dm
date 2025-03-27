@@ -4,7 +4,7 @@
 /datum/action/ability/activable/xeno/flay
 	name = "Flay"
 	action_icon_state = "flay"
-	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
+	action_icon = 'icons/Xeno/actions/jester.dmi'
 	desc = "Takes a chunk of flesh from the victim marine through a quick swiping motion, adding 100 biomass to your biomass collection."
 	ability_cost = 0
 	cooldown_duration = 20 SECONDS
@@ -54,7 +54,7 @@
 /datum/action/ability/activable/xeno/pincushion
 	name = "Pincushion"
 	action_icon_state = "pincushion"
-	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
+	action_icon = 'icons/Xeno/actions/jester.dmi'
 	desc = "Launch a spine from your tail. This attack will help deter any organic as well as support your puppets and teammates in direct combat."
 	cooldown_duration = 5 SECONDS
 	keybinding_signals = list(
@@ -90,7 +90,7 @@
 /datum/action/ability/xeno_action/dreadful_presence
 	name = "Dreadful Presence"
 	action_icon_state = "dreadful_presence"
-	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
+	action_icon = 'icons/Xeno/actions/jester.dmi'
 	desc = "Emit a menacing presence, striking fear into the organics and slowing them for a short duration."
 	ability_cost = 50
 	cooldown_duration = 20 SECONDS
@@ -120,7 +120,7 @@
 /datum/action/ability/activable/xeno/refurbish_husk
 	name = "Refurbish Husk"
 	action_icon_state = "refurbish_husk"
-	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
+	action_icon = 'icons/Xeno/actions/jester.dmi'
 	desc = "Harvest the biomass and organs of a body in order to create a meat puppet to do your bidding."
 	cooldown_duration = 25 SECONDS
 	target_flags = ABILITY_MOB_TARGET
@@ -199,7 +199,7 @@
 /datum/action/ability/activable/xeno/puppet
 	name = "Stitch Puppet"
 	action_icon_state = "stitch_puppet"
-	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
+	action_icon = 'icons/Xeno/actions/jester.dmi'
 	desc = "Uses 125 biomass to create a flesh homunculus to do your bidding, at an adjacent target location."
 	ability_cost = 125
 	cooldown_duration = 25 SECONDS
@@ -250,7 +250,7 @@
 /datum/action/ability/activable/xeno/organic_bomb
 	name = "Organic Bomb"
 	action_icon_state = "organic_bomb"
-	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
+	action_icon = 'icons/Xeno/actions/jester.dmi'
 	desc = "Causes one of our puppets to detonate on selection, spewing acid out of the puppet's body in all directions, gibbing the puppet."
 	cooldown_duration = 30 SECONDS
 	ability_cost = 100
@@ -309,7 +309,7 @@
 /datum/action/ability/activable/xeno/articulate
 	name = "Articulate"
 	action_icon_state = "mimicry"
-	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
+	action_icon = 'icons/Xeno/actions/jester.dmi'
 	desc = "Takes direct control of a Puppet’s vocal chords. Allows you to speak directly through your puppet to the talls."
 	cooldown_duration = 10 SECONDS
 	target_flags = ABILITY_MOB_TARGET
@@ -355,7 +355,7 @@
 /datum/action/ability/activable/xeno/tendril_patch
 	name = "Tendrils"
 	action_icon_state = "living_construct"
-	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
+	action_icon = 'icons/Xeno/actions/jester.dmi'
 	desc = "Burrow freshly created tendrils to tangle organics in a 3x3 patch."
 	ability_cost = 175
 	cooldown_duration = 40 SECONDS
@@ -462,7 +462,7 @@
 /datum/action/ability/xeno_action/puppeteer_unleash
 	name = "Unleash Puppets"
 	action_icon_state = "enrage"
-	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
+	action_icon = 'icons/Xeno/actions/jester.dmi'
 	desc = "Send out your puppets to attack nearby humans"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNLEASHPUPPETS,
