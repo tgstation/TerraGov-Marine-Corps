@@ -636,15 +636,6 @@
 	dir = 8
 	},
 /area/shuttle/dropship/alamo)
-"Cd" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/autodoc,
-/turf/open/shuttle/dropship/floor/out{
-	dir = 1
-	},
-/area/shuttle/dropship/alamo)
 "Dp" = (
 /turf/open/shuttle/dropship/ten,
 /area/shuttle/dropship/alamo)
@@ -712,10 +703,6 @@
 "YM" = (
 /obj/machinery/vending/lasgun,
 /turf/open/shuttle/dropship/floor/out,
-/area/shuttle/dropship/alamo)
-"Zi" = (
-/obj/machinery/computer/autodoc_console,
-/turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/alamo)
 "Zx" = (
 /turf/closed/shuttle/dropship1/wall{
@@ -785,7 +772,7 @@ hm
 ez
 Dp
 bw
-Cd
+bD
 YM
 br
 bu
@@ -808,7 +795,7 @@ Nj
 aS
 Aq
 tf
-Zi
+aS
 bo
 nt
 oO
