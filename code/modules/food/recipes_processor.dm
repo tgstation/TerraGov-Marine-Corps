@@ -21,3 +21,7 @@
 /datum/food_processor_process/chocolatebar
 	input = /obj/item/reagent_containers/food/snacks/grown/cocoapod
 	output = /obj/item/reagent_containers/food/snacks/chocolatebar
+
+/datum/food_processor_process/meat
+	input = /obj/item/reagent_containers/food/snacks/meat
+	output = /obj/item/reagent_containers/food/snacks/rawmeatball
