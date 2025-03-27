@@ -1,0 +1,4 @@
+author: "ddotmint"
+delete-after: True
+changes:
+  - bugfix: "fixed SOM weapons rack formatting, name and description"
