@@ -122,7 +122,7 @@
 	max_integrity = 5
 	var/list/helmet_overlays
 	inventory_flags = BLOCKSHARPOBJ
-	inv_hide_flags = HIDEEARS
+	inv_hide_flags = HIDEEARS|HIDEEYES|HIDETOPHAIR
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_STORAGE,
 	)
@@ -501,6 +501,7 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
 	)
 	worn_icon_state = "icc"
+	inv_hide_flags = HIDEEARS|HIDEEYES|HIDETOPHAIR
 	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 50, ENERGY = 60, BOMB = 70, BIO = 10, FIRE = 60, ACID = 50)
 
 /obj/item/clothing/head/helmet/marine/icc/guard
@@ -508,6 +509,7 @@
 	desc = "A high-quality ICCGF helmet, mostly seen worn by the ICC's highest quality troops, better well known as 'Guardsmen'. Like most helmets of the ICC it is made to fit a utility and combat role with noticeably high resistance to explosions and bullets."
 	icon_state = "icc_guard"
 	worn_icon_state = "icc_guard"
+	inv_hide_flags = HIDEEARS|HIDEEYES|HIDETOPHAIR
 	soft_armor = list(MELEE = 60, BULLET = 65, LASER = 40, ENERGY = 60, BOMB = 80, BIO = 10, FIRE = 55, ACID = 40)
 
 /obj/item/clothing/head/helmet/marine/icc/guard/heavy
@@ -515,6 +517,7 @@
 	desc = "A high-quality ICCGF helmet, mostly seen worn by the ICC's highest quality troops, better well known as 'Guardsmen'. Like most helmets of the ICC it is made to fit a utility and combat role with noticeably high resistance to explosions and bullets, this one is heavily reinforced."
 	icon_state = "icc_guard_heavy"
 	worn_icon_state = "icc_guard_heavy"
+	inv_hide_flags = HIDEEARS|HIDEEYES|HIDETOPHAIR
 	soft_armor = list(MELEE = 65, BULLET = 70, LASER = 40, ENERGY = 60, BOMB = 85, BIO = 10, FIRE = 55, ACID = 40)
 
 /obj/item/clothing/head/helmet/marine/vsd
