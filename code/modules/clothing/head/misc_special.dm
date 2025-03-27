@@ -69,6 +69,9 @@
 	if(user)
 		to_chat(usr, "You [up ? "push [src] up out of your face" : "flip [src] down to protect your eyes"].")
 
+	user.update_inv_l_hand() //update inhand sprites
+	user.update_inv_r_hand()
+
 	update_clothing_icon()	//so our mob-overlays update
 
 	update_action_button_icons()
