@@ -199,7 +199,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		if(time_until_ready > 0)
 			if(user)
 				to_chat(user, span_notice("Unable to launch, the ship has not yet reached the combat area.  Deployment possible in [DisplayTimeText(time_until_ready)]"))
-		return
+			return
 	#endif
 
 	if(!locate(/obj/structure/drop_pod_launcher) in get_turf(src))
