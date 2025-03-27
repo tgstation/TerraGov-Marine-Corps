@@ -122,7 +122,7 @@
 	max_integrity = 5
 	var/list/helmet_overlays
 	inventory_flags = BLOCKSHARPOBJ
-	inv_hide_flags = HIDEEARS|HIDEEYES|HIDETOPHAIR
+	inv_hide_flags = HIDEEARS
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_STORAGE,
 	)
