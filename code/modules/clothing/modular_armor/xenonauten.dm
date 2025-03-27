@@ -484,6 +484,10 @@
 		/obj/item/armor_module/armor/visor/marine/xenonaut,
 	)
 
+/obj/item/clothing/head/modular/m10x/stolen
+	name = "\improper Stolen M10X pattern helmet"
+	desc = "A stolen modular M10X pattern marine helmet, adapted for use by the Sons of Mars."
+
 /obj/item/clothing/head/modular/m10x/leader
 	name = "\improper M11X pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
