@@ -25,3 +25,7 @@
 /datum/food_processor_process/meat
 	input = /obj/item/reagent_containers/food/snacks/meat
 	output = /obj/item/reagent_containers/food/snacks/rawmeatball
+
+/datum/food_processor_process/tortilla
+	input = /obj/item/reagent_containers/food/snacks/grown/corn
+	output = /obj/item/reagent_containers/food/snacks/tortilla
