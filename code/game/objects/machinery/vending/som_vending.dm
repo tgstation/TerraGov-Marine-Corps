@@ -1,7 +1,7 @@
 /obj/machinery/vending/weapon/som
-	name = "/improper SOC weapon rack"
+	name = "\improper SOM automated weapons rack"
 	faction = FACTION_SOM
-	desc = "Syndicate Official Contraband weapon rack, here you get your guns."
+	desc = "An automated weapon rack hooked up to a colossal storage of standard-issue weapons."
 	icon_state = "marinearmory"
 	icon_vend = "marinearmory-vend"
 	icon_deny = "marinearmory"
