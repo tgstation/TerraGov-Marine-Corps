@@ -74,7 +74,6 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
 		return FALSE
-	. = ..()
 
 	set_target(get_turf_on_clickcatcher(target, source, list2params(modifiers)))
 	if(!current_target)
@@ -91,6 +90,7 @@
 		return
 	current_firer = source
 	if(fire_mode == GUN_FIREMODE_SEMIAUTO)
+		. = ..()
 		var/fire_return // todo fix: code expecting return values from async
 		ASYNC
 			fire_return = fire()
@@ -98,6 +98,13 @@
 			return
 		reset_fire()
 		return
+
+	//not an explicit timer (unwrapped timer start), but I dont think having a mirror timer is a better idea
+	//feel free to improve if think of a better way to make sure cooldowns are shared
+	LAZYSET(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(type), src)
+	// dont wanna call parent because it would override this timer
+	chassis.use_power(energy_drain)
+
 	RegisterSignal(source, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
 	RegisterSignal(source, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	SEND_SIGNAL(src, COMSIG_MECH_FIRE)
@@ -130,6 +137,9 @@
 	var/list/modifiers = params2list(params)
 	if(!((modifiers[BUTTON] == RIGHT_CLICK) && chassis.equip_by_category[MECHA_R_ARM] == src) && !((modifiers[BUTTON] == LEFT_CLICK) && chassis.equip_by_category[MECHA_L_ARM] == src))
 		return
+	//not an explicit timer (unwrapped timer start), but I dont think having a mirror timer is a better idea
+	//feel free to improve if think of a better way to make sure cooldowns are shared
+	LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(type))
 	SEND_SIGNAL(src, COMSIG_MECH_STOP_FIRE)
 	if(!HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		reset_fire()
@@ -221,7 +231,7 @@
 		muzzle_flash.pixel_z = flash_offsets_core[mech_slot][dir2text_short(chassis.dir)][2]
 		// more or less all the same changes cus arm icons. feel free to make it more accurate or make boosting use pixel offsets
 		if(core.leg_overload_mode)
-			muzzle_flash.z -= 2
+			muzzle_flash.pixel_z -= 2
 	else
 		muzzle_flash.pixel_w = flash_offsets[mech_slot][dir2text_short(chassis.dir)][1]
 		muzzle_flash.pixel_z = flash_offsets[mech_slot][dir2text_short(chassis.dir)][2]

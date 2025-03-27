@@ -107,7 +107,7 @@
 	sundering = 5
 	penetration = 15
 	damage = 75
-	damage_falloff = 8
+	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/mech/spread
 	name = "super-heavy additional buckshot"
