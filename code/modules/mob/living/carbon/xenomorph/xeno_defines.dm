@@ -72,11 +72,6 @@
 	///Singular type path for the caste to deevolve to when forced to by the queen.
 	var/deevolves_to
 
-	///see_in_dark value while consicious
-	var/conscious_see_in_dark = 8
-	///see_in_dark value while unconscious
-	var/unconscious_see_in_dark = 5
-
 	// *** Flags *** //
 	///Bitwise flags denoting things a caste is or is not. Uses defines.
 	var/caste_flags = CASTE_EVOLUTION_ALLOWED
@@ -223,18 +218,25 @@
 	for(var/trait in caste_traits)
 		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
+	xenomorph.RegisterSignal(xenomorph,COMSIG_XENOMORPH_ATTACK_LIVING, TYPE_PROC_REF(/mob/living/carbon/xenomorph, onhithuman))
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
 	xenomorph.remove_component(/datum/component/bump_attack)
+	xenomorph.UnregisterSignal(xenomorph, COMSIG_XENOMORPH_ATTACK_LIVING)
 	for(var/trait in caste_traits)
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
 
-///returns the basetype caste to get what the base caste is (e.g base rav not primo or strain rav)
-/datum/xeno_caste/proc/get_base_caste_type()
-	var/datum/xeno_caste/current_type = type
-	while(initial(current_type.upgrade) != XENO_UPGRADE_BASETYPE)
-		current_type = initial(current_type.parent_type)
+///returns the basetype caste from this caste or typepath to get what the base caste is (e.g base rav not primo or strain rav)
+/proc/get_base_caste_type(datum/xeno_caste/current_type)
+	while(current_type::upgrade != XENO_UPGRADE_BASETYPE)
+		current_type = current_type::parent_type
 	return current_type
+
+///returns the parent caste type for the given caste (e.g. bloodthirster would return base rav)
+/proc/get_parent_caste_type(datum/xeno_caste/root_type)
+	while(initial(root_type.parent_type) != /datum/xeno_caste)
+		root_type = root_type::parent_type
+	return root_type
 
 /// basetype = list(strain1, strain2)
 GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
@@ -253,12 +255,13 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	return strain_list
 
 ///returns a list of strains(xeno castedatum paths) that this caste can currently evolve to
-/datum/xeno_caste/proc/get_strain_options()
-	var/datum/xeno_caste/root_type = type
+/proc/get_strain_options(datum/xeno_caste/root_type)
+	RETURN_TYPE(/list)
+
+	ASSERT(ispath(root_type), "Bad root type passed to get_strain_options")
 	while(initial(root_type.parent_type) != /datum/xeno_caste)
 		root_type = root_type::parent_type
-	var/list/options = GLOB.strain_list[root_type]
-	return options?.Copy()
+	return GLOB.strain_list[root_type] + root_type
 
 /mob/living/carbon/xenomorph
 	name = "Drone"
@@ -277,8 +280,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	move_resist = MOVE_FORCE_VERY_STRONG
 	mob_size = MOB_SIZE_XENO
 	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	lighting_cutoff =  LIGHTING_CUTOFF_HIGH
 	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER|LONG_GLIDE
 	see_infrared = TRUE
@@ -394,6 +396,9 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
 
+	// *** Globadier vars *** //
+	var/obj/item/explosive/grenade/globadier/selected_grenade = /obj/item/explosive/grenade/globadier
+
 	// *** Behemoth vars *** //
 	/// Whether we are currently charging or not.
 	var/behemoth_charging = FALSE
@@ -403,6 +408,14 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	// *** Boiler vars *** //
 	///When true the boiler gains speed and resets the duration on attack
 	var/steam_rush = FALSE
+
+	// *** Conqueror vars *** //
+	/// The amount of remaining health that Endurance has.
+	var/endurance_health = 1
+	/// The maximum amount of health that Endurance can have.
+	var/endurance_health_max = 1
+	/// Whether our Endurance has been broken, due to losing all of its health.
+	var/endurance_broken = FALSE
 
 	//Notification spam controls
 	var/recent_notice = 0
@@ -431,3 +444,15 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	COOLDOWN_DECLARE(xeno_resting_cooldown)
 	///The unresting cooldown
 	COOLDOWN_DECLARE(xeno_unresting_cooldown)
+
+///Called whenever a xeno slashes a human
+/mob/living/carbon/xenomorph/proc/onhithuman(attacker, target) //For globadiers lifesteal debuff
+	SIGNAL_HANDLER
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/victim = target
+	if(!victim.has_status_effect(STATUS_EFFECT_LIFEDRAIN))
+		return
+	var/mob/living/carbon/xenomorph/xeno = attacker
+	var/healamount = xeno.maxHealth * 0.06 //% of the xenos max health
+	HEAL_XENO_DAMAGE(xeno, healamount, FALSE)

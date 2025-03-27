@@ -5,9 +5,11 @@ import {
   ByondUi,
   Collapsible,
   ColorBox,
+  Icon,
   Input,
   Section,
   Stack,
+  Tooltip,
 } from 'tgui-core/components';
 import { formatTime } from 'tgui-core/format';
 import { capitalize } from 'tgui-core/string';
@@ -21,17 +23,23 @@ import {
 } from './data';
 
 const ColorDisplayRow = (props: ColorDisplayData) => {
-  const { shown_colors } = props;
+  const { shown_colors, name, action } = props;
   let splitted = shown_colors.split('#').map((item) => '#' + item);
   splitted.shift();
   return (
-    <Stack>
+    <Button color="transparent" tooltip={name} onClick={action}>
       {splitted.map((color, i) => (
-        <Stack.Item key={i}>
-          <ColorBox mr={0.5} mb={0.5} color={color} width={2} height={2} />
-        </Stack.Item>
+        <ColorBox
+          mt={0.5}
+          mb={-0.5}
+          mx={0}
+          key={i}
+          color={color}
+          width={2}
+          height={2}
+        />
       ))}
-    </Stack>
+    </Button>
   );
 };
 
@@ -43,7 +51,30 @@ const BodypartPicker = (props: BodypartPickerData) => {
     selected_secondary,
     selected_visor,
     selected_variants,
+    colors,
+    visor_colors,
   } = data;
+
+  const primaryKey = Object.keys(colors).reduce((acc, type) => {
+    const key = Object.keys(colors[type]).find(
+      (key) => colors[type][key] === selected_primary[displayingpart],
+    );
+    return key || acc;
+  }, '');
+
+  const secondaryKey = Object.keys(colors).reduce((acc, type) => {
+    const key = Object.keys(colors[type]).find(
+      (key) => colors[type][key] === selected_secondary[displayingpart],
+    );
+    return key || acc;
+  }, '');
+
+  const visorKey = Object.keys(visor_colors).reduce((acc, type) => {
+    const key = Object.keys(visor_colors[type]).find(
+      (key) => visor_colors[type][key] === selected_visor,
+    );
+    return key || acc;
+  }, '');
 
   return (
     <Section
@@ -53,21 +84,56 @@ const BodypartPicker = (props: BodypartPickerData) => {
         ' ' +
         partdefinetofluff[displayingpart]
       }
+      textAlign="center"
     >
-      <Button
-        content="Select"
-        fluid
-        textAlign={'center'}
-        mb={1}
-        fontSize="110%"
-        selected={displayingpart === selectedBodypart}
-        onClick={() => setSelectedBodypart(displayingpart)}
-      />
-      <ColorDisplayRow shown_colors={selected_primary[displayingpart]} />
-      <ColorDisplayRow shown_colors={selected_secondary[displayingpart]} />
-      {displayingpart === 'HEAD' ? (
-        <ColorDisplayRow shown_colors={selected_visor} />
-      ) : null}
+      <Stack vertical>
+        <Stack.Item mt={0}>
+          <Button
+            content="Select"
+            fluid
+            textAlign={'center'}
+            mb={1}
+            fontSize="110%"
+            selected={displayingpart === selectedBodypart}
+            onClick={() => setSelectedBodypart(displayingpart)}
+          />
+        </Stack.Item>
+        <Stack.Item mt={0}>
+          <ColorDisplayRow
+            shown_colors={selected_primary[displayingpart]}
+            name={primaryKey}
+          />
+          {displayingpart === 'HEAD' && (
+            <>
+              <Tooltip content="Visor color" position="left">
+                <Icon size={2} name="glasses" />
+              </Tooltip>
+              <ColorDisplayRow shown_colors={selected_visor} name={visorKey} />
+            </>
+          )}
+        </Stack.Item>
+        <Stack.Item mt={0}>
+          <ColorDisplayRow
+            shown_colors={selected_secondary[displayingpart]}
+            name={secondaryKey}
+          />
+          {displayingpart === 'HEAD' && (
+            <Button
+              icon="rotate"
+              width="105px"
+              height="26px"
+              fontSize="120%"
+              mr={1}
+              style={{
+                transform: 'translateY(-15%)', // mt doesnt work
+              }}
+              onClick={() => act('rotate_doll')}
+            >
+              Rotate
+            </Button>
+          )}
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };
@@ -82,6 +148,9 @@ export const MechAssembly = (props) => {
     all_equipment,
     selected_equipment,
     cooldown_left,
+    selected_primary,
+    selected_secondary,
+    colors,
   } = data;
   const [selectedBodypart, setSelectedBodypart] = useState('HEAD');
 
@@ -91,11 +160,22 @@ export const MechAssembly = (props) => {
   const right_weapon = all_equipment.weapons.find(
     (o) => o.type === selected_equipment.mecha_r_arm,
   );
+  const primaryKey = Object.keys(colors).reduce((acc, type) => {
+    const key = Object.keys(colors[type]).find(
+      (key) => colors[type][key] === selected_primary[selectedBodypart],
+    );
+    return key || acc;
+  }, '');
+
+  const secondaryKey = Object.keys(colors).reduce((acc, type) => {
+    const key = Object.keys(colors[type]).find(
+      (key) => colors[type][key] === selected_secondary[selectedBodypart],
+    );
+    return key || acc;
+  }, '');
 
   const left_weapon_scatter = left_weapon ? left_weapon.scatter : 0;
   const right_weapon_scatter = right_weapon ? right_weapon.scatter : 0;
-
-  // /TODO: replace collapsibles with tooltips instead (see any tg ui with underlined text)
   return (
     <Stack>
       <Stack.Item>
@@ -123,64 +203,17 @@ export const MechAssembly = (props) => {
             />
           </Stack.Item>
           <Stack.Item>
-            <Section title={'Mech parameters'}>
-              <Collapsible
-                color={'transparent'}
-                title={'Integrity: ' + current_stats.health}
-              >
-                <Box maxWidth={'160px'}>
-                  Determines maximum integrity of mecha.
-                </Box>
-              </Collapsible>
-              <Collapsible
-                color={'transparent'}
-                title={
-                  'L scatter angle: ' +
-                  (current_stats.left_scatter + left_weapon_scatter) +
-                  '°'
-                }
-              >
-                <Box maxWidth={'160px'}>Scatter angle for left arm.</Box>
-              </Collapsible>
-              <Collapsible
-                color={'transparent'}
-                title={
-                  'R scatter angle: ' +
-                  (current_stats.right_scatter + right_weapon_scatter) +
-                  '°'
-                }
-              >
-                <Box maxWidth={'160px'}>Scatter angle for right arm.</Box>
-              </Collapsible>
-              <Collapsible
-                color={'transparent'}
-                title={'Slowdown: ' + current_stats.slowdown}
-              >
-                <Box maxWidth={'160px'}>
-                  Determines how fast mecha is compared to base.
-                </Box>
-              </Collapsible>
-              <Collapsible
-                color={'transparent'}
-                title={'Extra Accuracy: ' + current_stats.accuracy * 100 + '%'}
-              >
-                <Box maxWidth={'160px'}>
-                  Determines likeliness of mecha to hit at long ranges.
-                </Box>
-              </Collapsible>
-              <Collapsible
-                color={'transparent'}
-                title={'Power capacity: ' + current_stats.power_max}
-              >
-                <Box maxWidth={'160px'}>Determines maximum mecha power.</Box>
-              </Collapsible>
-              <Collapsible
-                color={'transparent'}
-                title={'Light range: ' + current_stats.light_mod}
-              >
-                <Box maxWidth={'160px'}>Light strength.</Box>
-              </Collapsible>
-            </Section>
+            <Button.Confirm
+              fluid
+              onClick={() =>
+                act('set_all', {
+                  new_primary: primaryKey,
+                  new_secondary: secondaryKey,
+                })
+              }
+            >
+              Apply this pallette to all
+            </Button.Confirm>
           </Stack.Item>
         </Stack>
       </Stack.Item>
@@ -199,54 +232,27 @@ export const MechAssembly = (props) => {
               width="250px"
               params={{
                 id: mech_view,
-                zoom: 5,
+                zoom: 3,
                 type: 'map',
               }}
             />
           </Stack.Item>
           <Stack.Item>
             <Button
-              content="Recon"
-              fluid
-              icon={'khanda'}
-              textAlign={'center'}
-              fontSize="120%"
-              selected={selected_variants[selectedBodypart] === 'Recon'}
-              onClick={() =>
-                act('set_bodypart', {
-                  bodypart: selectedBodypart,
-                  new_bodytype: 'Recon',
-                })
-              }
-            />
-            <Button
-              content="Assault"
               fluid
               icon={'fist-raised'}
               textAlign={'center'}
               fontSize="120%"
-              selected={selected_variants[selectedBodypart] === 'Assault'}
+              selected={selected_variants[selectedBodypart] === 'Medium'}
               onClick={() =>
                 act('set_bodypart', {
                   bodypart: selectedBodypart,
-                  new_bodytype: 'Assault',
+                  new_bodytype: 'Medium',
                 })
               }
-            />
-            <Button
-              content="Vanguard"
-              fluid
-              icon={'shield-alt'}
-              textAlign={'center'}
-              fontSize="120%"
-              selected={selected_variants[selectedBodypart] === 'Vanguard'}
-              onClick={() =>
-                act('set_bodypart', {
-                  bodypart: selectedBodypart,
-                  new_bodytype: 'Vanguard',
-                })
-              }
-            />
+            >
+              Medium
+            </Button>
             <Button
               content={
                 cooldown_left
@@ -281,61 +287,70 @@ export const MechAssembly = (props) => {
             />
           </Stack.Item>
           <Stack.Item>
-            <Section title={'Mech armor'}>
-              <Collapsible
-                color={'transparent'}
-                title={'Melee Armor: ' + current_stats.armor['melee'] + '%'}
+            <Section title={'Mech parameters'}>
+              <Tooltip
+                content="Determines maximum integrity of the chest."
+                position="right"
               >
-                <Box maxWidth={'160px'}>
-                  Determines maximum integrity of mecha.
+                <Box maxWidth={'160px'} mt={0}>
+                  <Icon name="shield" />
+                  Integrity: {current_stats.health}
                 </Box>
-              </Collapsible>
-              <Collapsible
-                color={'transparent'}
-                title={'Bullet Armor: ' + current_stats.armor['melee'] + '%'}
-              >
-                <Box maxWidth={'160px'}>Bullet protection.</Box>
-              </Collapsible>
-              <Collapsible
-                color={'transparent'}
-                title={'Laser Armor: ' + current_stats.armor['laser'] + '%'}
-              >
-                <Box maxWidth={'160px'}>Laser protection.</Box>
-              </Collapsible>
-              <Collapsible
-                color={'transparent'}
-                title={'Energy Armor: ' + current_stats.armor['energy'] + '%'}
-              >
-                <Box maxWidth={'160px'}>Protection against SOM weapons.</Box>
-              </Collapsible>
-              <Collapsible
-                color={'transparent'}
-                title={'Bomb Armor: ' + current_stats.armor['bomb'] + '%'}
-              >
-                <Box maxWidth={'160px'}>Explosion protection.</Box>
-              </Collapsible>
-              <Collapsible
-                color={'transparent'}
-                title={'Bio Armor: ' + current_stats.armor['bio'] + '%'}
-              >
-                <Box maxWidth={'160px'}>
-                  Protection against chemical attacks.
+              </Tooltip>
+              <Tooltip content="Scatter angle for left arm." position="right">
+                <Box maxWidth={'160px'} mt={1}>
+                  <Icon name="angle-double-right" />L scatter:{' '}
+                  {current_stats.left_scatter + left_weapon_scatter}°
                 </Box>
-              </Collapsible>
-              <Collapsible
-                color={'transparent'}
-                title={'Fire Armor: ' + current_stats.armor['fire'] + '%'}
-              >
-                <Box maxWidth={'160px'}>
-                  Protection against incendiary weapons.
+              </Tooltip>
+              <Tooltip content="Scatter angle for right arm." position="right">
+                <Box maxWidth={'160px'} mt={1}>
+                  <Icon name="angle-double-left" />R scatter:{' '}
+                  {current_stats.right_scatter + right_weapon_scatter}°
                 </Box>
-              </Collapsible>
-              <Collapsible
-                color={'transparent'}
-                title={'Acid Armor: ' + current_stats.armor['acid'] + '%'}
+              </Tooltip>
+              <Tooltip
+                content="Determines how fast mecha is compared to base."
+                position="right"
               >
-                <Box maxWidth={'160px'}>Xeno acid protection.</Box>
-              </Collapsible>
+                <Box maxWidth={'160px'} mt={1}>
+                  <Icon name="running" />
+                  Slowdown: {current_stats.slowdown}
+                </Box>
+              </Tooltip>
+              <Tooltip
+                content="Determines likeliness of mecha to hit at long ranges."
+                position="right"
+              >
+                <Box maxWidth={'160px'} mt={1}>
+                  <Icon name="bullseye" />
+                  Accuracy: {Math.floor(current_stats.accuracy * 100)}%
+                </Box>
+              </Tooltip>
+              <Tooltip
+                content="Determines maximum mecha power."
+                position="right"
+              >
+                <Box maxWidth={'160px'} mt={1}>
+                  <Icon name="battery" />
+                  Power cap: {current_stats.power_max}
+                </Box>
+              </Tooltip>
+              <Tooltip
+                content="Determines passive mech power generation."
+                position="right"
+              >
+                <Box maxWidth={'160px'} mt={1}>
+                  <Icon name="charging-station" />
+                  Power gen: {current_stats.power_gen}
+                </Box>
+              </Tooltip>
+              <Tooltip content="Light strength." position="right">
+                <Box maxWidth={'160px'} mt={1}>
+                  <Icon name="lightbulb" />
+                  Light range: {current_stats.light_mod}
+                </Box>
+              </Tooltip>
             </Section>
           </Stack.Item>
         </Stack>
@@ -374,29 +389,18 @@ export const MechAssembly = (props) => {
 
 const ColorSelector = (props) => {
   const { act, data } = useBackend<MechVendData>();
-  const { selected_primary, selected_secondary, selected_visor } = data;
   const { type, listtoshow, selectedBodypart } = props;
   return (
     <Section title={capitalize(type) + ' colors'}>
       {Object.keys(listtoshow).map((title) => (
-        <Collapsible ml={1} minWidth={21} key={title} title={title}>
-          {Object.keys(listtoshow[title]).map((palette) => (
-            <Stack justify="space-between" key={palette} fill>
-              <Stack.Item>
-                <Button
-                  content={palette}
-                  textAlign={'center'}
-                  mt={0.5}
-                  selected={
-                    listtoshow[title][palette] === selected_visor ||
-                    (listtoshow[title][palette] ===
-                      selected_primary[selectedBodypart] &&
-                      type === 'primary') ||
-                    (listtoshow[title][palette] ===
-                      selected_secondary[selectedBodypart] &&
-                      type === 'secondary')
-                  }
-                  onClick={() =>
+        <Collapsible ml={1} minWidth={11} key={title} title={title}>
+          <Stack justify="space-between" vertical fill>
+            {Object.keys(listtoshow[title]).map((palette) => (
+              <Stack.Item key={palette} my={0}>
+                <ColorDisplayRow
+                  shown_colors={listtoshow[title][palette]}
+                  name={palette}
+                  action={() =>
                     act('set_' + type, {
                       bodypart: selectedBodypart,
                       new_color: palette,
@@ -404,11 +408,8 @@ const ColorSelector = (props) => {
                   }
                 />
               </Stack.Item>
-              <Stack.Item>
-                <ColorDisplayRow shown_colors={listtoshow[title][palette]} />
-              </Stack.Item>
-            </Stack>
-          ))}
+            ))}
+          </Stack>
         </Collapsible>
       ))}
     </Section>

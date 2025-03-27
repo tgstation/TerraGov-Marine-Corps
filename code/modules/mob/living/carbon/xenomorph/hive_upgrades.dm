@@ -273,6 +273,13 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!.)
 		return
 
+	for(var/atom/thing in GLOB.xeno_acid_jaws_by_hive[buyer.hivenumber])
+		if(thing.type != building_type)
+			continue
+		if(!silent)
+			to_chat(buyer, span_xenowarning("We already have one!"))
+		return FALSE
+
 	var/turf/buildloc = get_turf(buyer)
 	if(!buildloc)
 		return FALSE
@@ -300,6 +307,13 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!.)
 		return
 
+	for(var/atom/thing in GLOB.xeno_acid_jaws_by_hive[buyer.hivenumber])
+		if(thing.type != building_type)
+			continue
+		if(!silent)
+			to_chat(buyer, span_xenowarning("We already have one!"))
+		return FALSE
+
 	var/turf/buildloc = get_turf(buyer)
 	if(!buildloc)
 		return FALSE
@@ -308,7 +322,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		if(!silent)
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
 		return FALSE
-
 
 /datum/hive_upgrade/defence
 	category = "Defences"

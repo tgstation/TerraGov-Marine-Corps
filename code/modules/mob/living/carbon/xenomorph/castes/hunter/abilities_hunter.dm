@@ -129,7 +129,6 @@
 ///Handles moving while in stealth
 /datum/action/ability/xeno_action/stealth/proc/handle_stealth_move()
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(owner.m_intent == MOVE_INTENT_WALK)
 		xeno_owner.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN)
 		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
@@ -148,7 +147,6 @@
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY)
 		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(owner.last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY)
 		owner.alpha = HUNTER_STEALTH_STILL_ALPHA * stealth_alpha_multiplier
 	if(!xeno_owner.plasma_stored)
@@ -261,7 +259,6 @@
 	xenoowner.update_wounds()
 
 /datum/action/ability/xeno_action/stealth/disguise/handle_stealth()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(!xeno_owner.plasma_stored)
 		to_chat(xeno_owner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
 		cancel_stealth()
@@ -288,6 +285,8 @@
 	use_state_flags = ABILITY_USE_BUCKLED
 	/// The range of this ability.
 	var/pounce_range = HUNTER_POUNCE_RANGE
+	///pass_flags given when leaping
+	var/leap_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
 
 /datum/action/ability/activable/xeno/pounce/on_cooldown_finish()
 	owner.balloon_alert(owner, "Pounce ready")
@@ -307,11 +306,9 @@
 	RegisterSignal(owner, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
 	RegisterSignal(owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(pounce_complete))
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_POUNCE)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.xeno_flags |= XENO_LEAPING
-	xeno_owner.pass_flags |= PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
+	xeno_owner.add_pass_flags(leap_pass_flags, type)
 	xeno_owner.throw_at(A, pounce_range, XENO_POUNCE_SPEED, xeno_owner)
-	addtimer(CALLBACK(src, PROC_REF(reset_pass_flags)), 0.6 SECONDS)
 	succeed_activate()
 	add_cooldown()
 
@@ -330,7 +327,6 @@
 	if(living_target.stat || isxeno(living_target)) //we leap past xenos
 		return
 
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(ishuman(living_target) && (angle_to_dir(Get_Angle(xeno_owner.throw_source, living_target)) in reverse_nearby_direction(living_target.dir)))
 		var/mob/living/carbon/human/human_target = living_target
 		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
@@ -343,7 +339,6 @@
 ///Triggers the effect of a successful pounce on the target.
 /datum/action/ability/activable/xeno/pounce/proc/trigger_pounce_effect(mob/living/living_target)
 	playsound(get_turf(living_target), 'sound/voice/alien/pounce.ogg', 25, TRUE)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.Immobilize(XENO_POUNCE_STANDBY_DURATION)
 	xeno_owner.forceMove(get_turf(living_target))
 	living_target.Knockdown(XENO_POUNCE_STUN_DURATION)
@@ -352,12 +347,8 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENOMORPH_LEAP_BUMP, COMSIG_MOVABLE_POST_THROW))
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_POUNCE_END)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.xeno_flags &= ~XENO_LEAPING
-
-/datum/action/ability/activable/xeno/pounce/proc/reset_pass_flags()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	xeno_owner.pass_flags = initial(xeno_owner.pass_flags)
+	xeno_owner.remove_pass_flags(leap_pass_flags, type)
 
 /datum/action/ability/activable/xeno/pounce/ai_should_start_consider()
 	return TRUE

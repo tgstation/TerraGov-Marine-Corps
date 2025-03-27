@@ -565,7 +565,7 @@
 /area/deathmatch)
 "YO" = (
 /obj/structure/stairs/edge{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/deathmatch)

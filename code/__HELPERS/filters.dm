@@ -317,3 +317,49 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 		filter = in_atom.get_filter("wibbly-[i]")
 		animate(filter)
 		in_atom.remove_filter("wibbly-[i]")
+
+/obj/effect/abstract/normalmap_bumpy
+	icon = 'icons/effects/128x128.dmi'
+	icon_state = "normalmap_bumpy"
+	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	plane = GRAVITY_PULSE_PLANE
+
+/**
+ * Adds a warping effect to the provided atom, while making it invisible
+ * Note: alpha on the target decreases the strength of the effect
+ * Also overrides any render target on the target atom temporarily while active
+ * do we want to consider a managed render target thing for this?
+ * @param invis_atom The atom to apply the effect to
+ * @param strength The strength of the effect, 100 is highest, 0 means no effect
+ */
+/proc/become_warped_invisible(atom/movable/invis_atom, strength=100)
+	ASSERT(!isarea(invis_atom))
+	if(HAS_TRAIT(invis_atom, TRAIT_WARPED_INVISIBLE))
+		CRASH("already warped invis, fix your code")
+	var/obj/effect/abstract/normalmap_bumpy/normal_bumpy = new(invis_atom)
+	var/render_tgt = "*warped_invis_[REF(normal_bumpy)]"
+	if(invis_atom.render_target)
+		render_tgt += "_oldtgt_" + invis_atom.render_target
+	normal_bumpy.alpha = (255/100) * strength
+	invis_atom.render_target = render_tgt
+	apply_wibbly_filters(normal_bumpy)
+	normal_bumpy.add_filter("mask", 1, alpha_mask_filter(-48, -48, render_source = invis_atom.render_target))
+	invis_atom.vis_contents += normal_bumpy
+	ADD_TRAIT(invis_atom, TRAIT_WARPED_INVISIBLE, TRAIT_GENERIC)
+
+/proc/stop_warped_invisible(atom/movable/invis_atom)
+	if(!HAS_TRAIT(invis_atom, TRAIT_WARPED_INVISIBLE))
+		return
+	var/list/split_result = splittext(invis_atom.render_target, "_oldtgt_")
+	var/ref_part = split_result[1]
+	if(length(split_result) > 1)
+		var/old_part = split_result[2]
+		invis_atom.render_target = old_part
+	else
+		invis_atom.render_target = null
+	ref_part = copytext(ref_part, 15)
+	remove_wibbly_filters(invis_atom)
+	var/obj/effect/abstract/normalmap_bumpy/normal_bumpy = locate(ref_part) in invis_atom.vis_contents
+	invis_atom.vis_contents -= normal_bumpy
+	qdel(normal_bumpy)
+	REMOVE_TRAIT(invis_atom, TRAIT_WARPED_INVISIBLE, TRAIT_GENERIC)

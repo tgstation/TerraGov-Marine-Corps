@@ -243,9 +243,8 @@
 	var/image/user_image = null
 
 /mob/camera/aiEye/remote/update_remote_sight(mob/living/user)
-	user.see_invisible = SEE_INVISIBLE_LIVING
-	user.sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS|SEE_BLACKNESS
-	user.see_in_dark = 2
+	user.set_invis_see(SEE_INVISIBLE_LIVING)
+	user.set_sight(SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS)
 	return TRUE
 
 /mob/camera/aiEye/remote/reset_glide_size() //because this mob only moves via relay move which has a hardcoded move delay var, we set for that specifically
@@ -294,8 +293,7 @@
 		user_image = image(icon, top, icon_state, FLY_LAYER)
 		eye_user.client.images += user_image
 
-
-/mob/camera/aiEye/remote/relaymove(mob/user, direct)
+/mob/camera/aiEye/remote/relaymove(mob/user, direction)
 	if(istype(origin, /obj/machinery/computer/camera_advanced))
 		var/obj/machinery/computer/camera_advanced/CA = origin
 		CA.tracking_target = null
@@ -303,7 +301,7 @@
 		return
 	tiles_moved = ((cooldown + move_delay * 5) > world.time) ? 0 : tiles_moved
 	cooldown = world.time + move_delay * (1 - acceleration * tiles_moved / 10)
-	var/turf/T = get_turf(get_step(src, direct))
+	var/turf/T = get_step_multiz(src, direction)
 	// check for dir change , if we changed then remove all acceleration
 	if(get_dir(src, T) != direction_moved)
 		tiles_moved = 0

@@ -21,6 +21,13 @@
 		MECHA_R_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
 		MECHA_L_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
 	)
+	///identical to [flash_offsets], but for use with the snowflake mecha core sprites
+	var/list/flash_offsets_core = list(
+		MECHA_R_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+		MECHA_L_ARM = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+		MECHA_R_BACK = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+		MECHA_L_BACK = list("N" = list(0,0), "S" = list(0,0), "E" = list(0,0), "W" = list(0,0)),
+	)
 	///Icon state of the muzzle flash effect.
 	var/muzzle_iconstate
 	///color of the muzzle flash while shooting
@@ -60,10 +67,13 @@
 		to_chat(chassis.occupants, span_warning("Error -- Melee Core active."))
 		return FALSE
 
+/obj/item/mecha_parts/mecha_equipment/weapon/detach(atom/moveto)
+	reset_fire()
+	return ..()
+
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
 		return FALSE
-	. = ..()
 
 	set_target(get_turf_on_clickcatcher(target, source, list2params(modifiers)))
 	if(!current_target)
@@ -80,6 +90,7 @@
 		return
 	current_firer = source
 	if(fire_mode == GUN_FIREMODE_SEMIAUTO)
+		. = ..()
 		var/fire_return // todo fix: code expecting return values from async
 		ASYNC
 			fire_return = fire()
@@ -87,10 +98,17 @@
 			return
 		reset_fire()
 		return
+
+	//not an explicit timer (unwrapped timer start), but I dont think having a mirror timer is a better idea
+	//feel free to improve if think of a better way to make sure cooldowns are shared
+	LAZYSET(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(type), src)
+	// dont wanna call parent because it would override this timer
+	chassis.use_power(energy_drain)
+
 	RegisterSignal(source, COMSIG_MOB_MOUSEUP, PROC_REF(stop_fire))
 	RegisterSignal(source, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	SEND_SIGNAL(src, COMSIG_MECH_FIRE)
-	source?.client?.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
+	source?.client?.mouse_pointer_icon = 'icons/UI_Icons/gun_crosshairs/rifle.dmi'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/set_bursting(bursting)
 	if(bursting)
@@ -119,6 +137,9 @@
 	var/list/modifiers = params2list(params)
 	if(!((modifiers[BUTTON] == RIGHT_CLICK) && chassis.equip_by_category[MECHA_R_ARM] == src) && !((modifiers[BUTTON] == LEFT_CLICK) && chassis.equip_by_category[MECHA_L_ARM] == src))
 		return
+	//not an explicit timer (unwrapped timer start), but I dont think having a mirror timer is a better idea
+	//feel free to improve if think of a better way to make sure cooldowns are shared
+	LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(type))
 	SEND_SIGNAL(src, COMSIG_MECH_STOP_FIRE)
 	if(!HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		reset_fire()
@@ -198,11 +219,22 @@
 		set_light_range(muzzle_flash_lum)
 		set_light_color(muzzle_flash_color)
 		set_light_on(TRUE)
-		addtimer(CALLBACK(src, PROC_REF(reset_light_range), prev_light), 1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(reset_light_range), prev_light), 0.1 SECONDS)
 
 	var/mech_slot = chassis.equip_by_category[MECHA_R_ARM] == src ? MECHA_R_ARM : MECHA_L_ARM
-	muzzle_flash.pixel_x = flash_offsets[mech_slot][dir2text_short(chassis.dir)][1]
-	muzzle_flash.pixel_y = flash_offsets[mech_slot][dir2text_short(chassis.dir)][2]
+	if(istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale/core))
+		//snowflake sprites mean snowflake offsets, wheeeeeeeeeeeeeeeeeeeeee
+		var/obj/vehicle/sealed/mecha/combat/greyscale/core/core = chassis
+		if(core.swapped_to_backweapons)
+			mech_slot = mech_slot == MECHA_R_ARM ? MECHA_R_BACK : MECHA_L_BACK
+		muzzle_flash.pixel_w = flash_offsets_core[mech_slot][dir2text_short(chassis.dir)][1]
+		muzzle_flash.pixel_z = flash_offsets_core[mech_slot][dir2text_short(chassis.dir)][2]
+		// more or less all the same changes cus arm icons. feel free to make it more accurate or make boosting use pixel offsets
+		if(core.leg_overload_mode)
+			muzzle_flash.pixel_z -= 2
+	else
+		muzzle_flash.pixel_w = flash_offsets[mech_slot][dir2text_short(chassis.dir)][1]
+		muzzle_flash.pixel_z = flash_offsets[mech_slot][dir2text_short(chassis.dir)][2]
 	switch(chassis.dir)
 		if(NORTH)
 			muzzle_flash.layer = initial(muzzle_flash.layer)
@@ -219,7 +251,7 @@
 		var/y_component = cos(firing_angle) * 40
 		var/obj/effect/abstract/particle_holder/gun_smoke = new(get_turf(src), /particles/firing_smoke)
 		gun_smoke.particles.velocity = list(x_component, y_component)
-		gun_smoke.particles.position = list(flash_offsets[mech_slot][dir2text_short(chassis.dir)][1] - 16, flash_offsets[mech_slot][dir2text_short(chassis.dir)][2])
+		gun_smoke.particles.position = list(muzzle_flash.pixel_w - 16, muzzle_flash.pixel_z)
 		addtimer(VARSET_CALLBACK(gun_smoke.particles, count, 0), 5)
 		addtimer(VARSET_CALLBACK(gun_smoke.particles, drift, 0), 3)
 		QDEL_IN(gun_smoke, 0.6 SECONDS)
@@ -287,9 +319,12 @@
 		return FALSE
 	if(!projectiles_cache)
 		return FALSE
-	if(user && !do_after(user, rearm_time, IGNORE_HELD_ITEM|IGNORE_TARGET_LOC_CHANGE, chassis, BUSY_ICON_GENERIC))
+	if(!do_after(user, rearm_time, IGNORE_HELD_ITEM|IGNORE_TARGET_LOC_CHANGE, chassis, BUSY_ICON_GENERIC, extra_checks=CALLBACK(src, PROC_REF(can_keep_reloading), projectiles)))
 		return FALSE
 	return rearm()
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/proc/can_keep_reloading(old_ammo)
+	return projectiles == old_ammo
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rearm()
 	if(projectiles >= initial(projectiles))

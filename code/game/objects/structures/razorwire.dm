@@ -11,6 +11,7 @@
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASS_GRILLE|PASSABLE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	var/list/entangled_list
 	var/sheet_type = /obj/item/stack/barbed_wire
 	var/sheet_type2 = /obj/item/stack/rods

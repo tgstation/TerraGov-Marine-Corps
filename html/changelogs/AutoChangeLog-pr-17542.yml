@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - bugfix: "Fixed supply beacons missing if the beacon moves"

@@ -270,6 +270,12 @@
 
 	if(charge_type & (CHARGE_BULL|CHARGE_BULL_HEADBUTT|CHARGE_BULL_GORE|CHARGE_BEHEMOTH) && !isliving(crushed))
 		do_stop_momentum()
+		if(charge_type & CHARGE_BEHEMOTH)
+			return COMPONENT_MOVABLE_PREBUMP_STOPPED
+		if(istype(crushed, /obj/structure/razorwire))
+			var/obj/structure/razorwire/crushed_wire = crushed
+			INVOKE_ASYNC(crushed_wire, TYPE_PROC_REF(/atom, post_crush_act), charger, src)
+			return COMPONENT_MOVABLE_PREBUMP_ENTANGLED
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
 	var/precrush = crushed.pre_crush_act(charger, src) //Negative values are codes. Positive ones are damage to deal.
@@ -312,6 +318,12 @@
 		var/obj_damage_mult = 1
 		if(isarmoredvehicle(crushed) || ishitbox(crushed))
 			obj_damage_mult = 5
+		else if(isgreyscalemecha(crushed)) // dont oneshot mechs... thats bad. should be punishing though
+			var/obj/vehicle/sealed/mecha/combat/greyscale/mech = crushed
+			var/datum/mech_limb/legs/legs = mech.limbs[MECH_GREY_LEGS]
+			legs?.take_damage(precrush)
+			do_stop_momentum()
+			return COMPONENT_MOVABLE_PREBUMP_STOPPED
 		crushed_obj.take_damage(precrush * obj_damage_mult, BRUTE, MELEE)
 		if(QDELETED(crushed_obj))
 			charger.visible_message(span_danger("[charger] crushes [preserved_name]!"),

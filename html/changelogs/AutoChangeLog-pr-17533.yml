@@ -1,0 +1,6 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - qol: "Tad toggling NV toggles instantly now"
+  - bugfix: "fixed tad nv being invirted"
+  - bugfix: "fixed tad landing icons not showing a lot of the time"

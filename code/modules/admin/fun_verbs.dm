@@ -434,11 +434,11 @@ ADMIN_VERB(drop_bomb, R_FUN, "Drop Bomb", "Cause an explosion of varying strengt
 			new /obj/effect/overlay/temp/blinking_laser (user.mob.loc)
 			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb_napalm), get_turf(user.mob.loc)), 1 SECONDS)
 		if("Small Bomb")
-			explosion(user.mob.loc, 1, 2, 3, 0, 3)
+			explosion(user.mob.loc, 1, 2, 3, 0, 3, explosion_cause=key_name_admin(user))
 		if("Medium Bomb")
-			explosion(user.mob.loc, 2, 3, 4, 0, 4)
+			explosion(user.mob.loc, 2, 3, 4, 0, 4, explosion_cause=key_name_admin(user))
 		if("Big Bomb")
-			explosion(user.mob.loc, 3, 5, 7, 0, 5)
+			explosion(user.mob.loc, 3, 5, 7, 0, 5, explosion_cause=key_name_admin(user))
 		if("Maxcap")
 			explosion(user.mob.loc, GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, 0, GLOB.MAX_EX_FLASH_RANGE)
 		if("Custom Bomb")
@@ -458,7 +458,7 @@ ADMIN_VERB(drop_bomb, R_FUN, "Drop Bomb", "Cause an explosion of varying strengt
 			input_flame_range = clamp(input_flame_range, 0, world_max)
 			switch(tgui_alert(user, "Deploy payload?", "DIR: [input_devastation_range] | HIR: [input_heavy_impact_range] | LIR: [input_light_impact_range] | FshR: [input_flash_range] | FlmR: [input_flame_range] | ThR: [input_throw_range]", list("Launch!", "Cancel")))
 				if("Launch!")
-					explosion(user.mob.loc, input_devastation_range, input_heavy_impact_range, input_light_impact_range, 0, input_flash_range, input_flame_range, input_throw_range)
+					explosion(user.mob.loc, input_devastation_range, input_heavy_impact_range, input_light_impact_range, 0, input_flash_range, input_flame_range, input_throw_range, explosion_cause=key_name_admin(user))
 				else
 					return
 			choice = "[choice] ([input_devastation_range], [input_heavy_impact_range], [input_light_impact_range], 0, [input_flash_range], [input_flame_range])" //For better logging.
@@ -471,11 +471,11 @@ ADMIN_VERB(drop_bomb, R_FUN, "Drop Bomb", "Cause an explosion of varying strengt
 /proc/delayed_detonate_bomb(turf/impact, input_devastation_range, input_heavy_impact_range, input_light_impact_range, input_flash_range, input_flame_range, input_throw_range, ceiling_debris)
 	if(ceiling_debris)
 		impact.ceiling_debris_check(ceiling_debris)
-	explosion(impact, input_devastation_range, input_heavy_impact_range, input_light_impact_range, 0, input_flash_range, input_flame_range, input_throw_range)
+	explosion(impact, input_devastation_range, input_heavy_impact_range, input_light_impact_range, 0, input_flash_range, input_flame_range, input_throw_range, explosion_cause="delayed admin explosion")
 
 /proc/delayed_detonate_bomb_fatty(turf/impact)
 	impact.ceiling_debris_check(2)
-	explosion(impact, 2, 3, 4)
+	explosion(impact, 2, 3, 4, explosion_cause="delayed admin fatty")
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(delayed_detonate_bomb_fatty_final), impact), 3 SECONDS)
 
 /proc/delayed_detonate_bomb_fatty_final(turf/impact)
@@ -484,11 +484,11 @@ ADMIN_VERB(drop_bomb, R_FUN, "Drop Bomb", "Cause an explosion of varying strengt
 		var/list/coords = impact_coords[i]
 		var/turf/detonation_target = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
 		detonation_target.ceiling_debris_check(2)
-		explosion(detonation_target, 2, 3, 4, adminlog = FALSE)
+		explosion(detonation_target, 2, 3, 4, adminlog = FALSE, explosion_cause="delayed admin decondary bombs")
 
 /proc/delayed_detonate_bomb_napalm(turf/impact)
 	impact.ceiling_debris_check(3)
-	explosion(impact, 2, 3, 4, 0, 6)
+	explosion(impact, 2, 3, 4, 0, 6, explosion_cause="delayed admin napalm")
 	flame_radius(5, impact, 30, 60)
 
 ADMIN_VERB(drop_dynex_bomb, R_FUN, "Drop DynEx Bomb", "Cause an explosion of varying strength at your location.", ADMIN_CATEGORY_FUN)
@@ -856,3 +856,34 @@ ADMIN_VERB(ai_squad, R_FUN, "Spawn AI squad", "Spawns a AI squad of your choice"
 
 	message_admins("[key_name_admin(user)] spawned a [quantity] man [squad_choice] of AI humans on the z-level [spawn_loc.z].")
 	log_admin("[key_name(user)] spawned a [quantity] man [squad_choice] of AI humans on the z-level [spawn_loc.z]")
+
+
+ADMIN_VERB(load_lazy_template, R_FUN, "Load/Jump Lazy Template", "Loads a lazy template and/or jumps to it.", ADMIN_CATEGORY_FUN)
+	var/list/choices = LAZY_TEMPLATE_KEY_LIST_ALL()
+	var/choice = tgui_input_list(user, "Key?", "Lazy Loader", choices)
+	var/teleport_to_template = tgui_input_list(user, "Jump to template after loading?", "Where to?", list("Yes", "No"))
+	if(!choice)
+		return
+
+	choice = choices[choice]
+	if(!choice)
+		to_chat(user, span_warning("No template with that key found, report this!"))
+		return
+
+	var/already_loaded = LAZYACCESS(SSmapping.loaded_lazy_templates, choice)
+	var/force_load = FALSE
+	if(already_loaded && (tgui_alert(user, "Template already loaded.", "", list("Jump", "Load Again")) == "Load Again"))
+		force_load = TRUE
+
+	var/datum/turf_reservation/reservation = SSmapping.lazy_load_template(choice, force = force_load)
+	if(!reservation)
+		to_chat(user, span_boldwarning("Failed to load template!"))
+		return
+
+	if(teleport_to_template == "Yes")
+		if(!isobserver(user.mob))
+			SSadmin_verbs.dynamic_invoke_verb(user, /datum/admin_verb/aghost)
+		user.mob.forceMove(reservation.bottom_left_turfs[1])
+		to_chat(user, span_notice("Template loaded, you have been moved to the bottom left of the reservation."))
+
+	message_admins("[key_name_admin(user)] has loaded lazy template '[choice]'")

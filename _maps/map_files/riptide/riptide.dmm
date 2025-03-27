@@ -958,9 +958,7 @@
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /obj/structure/platform_decoration,
 /obj/item/clothing/tie/armband/cargo,
 /turf/open/floor/prison/red,
@@ -6390,7 +6388,8 @@
 /area/riptide/outside/westbeach)
 "evp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/riptide/outside/northislands)
 "evq" = (
 /obj/structure/window_frame/wood,
@@ -10586,7 +10585,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/riptide/outside/northislands)
 "htE" = (
 /turf/open/floor/plating/ground/drought/alt,
@@ -11420,7 +11420,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/riptide/outside/northislands)
 "icb" = (
 /obj/effect/decal/cleanable/dirt,
@@ -11432,7 +11433,8 @@
 /turf/open/floor/tile/bar,
 /area/riptide/inside/medical/offices)
 "icd" = (
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/riptide/outside/westislands)
 "icl" = (
 /obj/structure/flora/desert/grass,
@@ -16152,7 +16154,8 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/riptide/outside/northislands)
 "lph" = (
 /obj/structure/rock/basalt/alt2,
@@ -29558,9 +29561,7 @@
 "uhU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /obj/structure/platform_decoration,
 /turf/open/floor/prison/red,
 /area/riptide/inside/warehouse)
@@ -30050,7 +30051,9 @@
 	},
 /area/riptide/inside/syndicatestarboard)
 "uAZ" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/cult/clock,
 /area/riptide/inside/chapel)
 "uBd" = (
@@ -31344,7 +31347,8 @@
 /turf/open/floor/wood/darker,
 /area/riptide/inside/beachshop)
 "vwF" = (
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/riptide/inside/landingzoneone)
 "vwG" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -34142,7 +34146,8 @@
 /turf/open/floor/tile/brown,
 /area/riptide/inside/engineering)
 "xuN" = (
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/riptide/outside/northislands)
 "xuO" = (
 /obj/structure/bed/chair/dropship/passenger{

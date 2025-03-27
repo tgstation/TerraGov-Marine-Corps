@@ -48,7 +48,7 @@
 		switch(xeno_owner.caste_base_type) // TODO MAKE DYING SOUND A CASTE VAR????
 			if(/datum/xeno_caste/queen, /datum/xeno_caste/shrike)
 				SEND_SOUND(xeno, queen_sound)
-			if(/datum/xeno_caste/king)
+			if(/datum/xeno_caste/king, /datum/xeno_caste/dragon)
 				SEND_SOUND(xeno, king_sound)
 		//Display the ruler's hive message at the top of the game screen.
 		xeno.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
@@ -60,6 +60,9 @@
 
 	succeed_activate()
 	add_cooldown()
+
+/datum/action/ability/xeno_action/hive_message/free
+	ability_cost = 0
 
 
 // ***************************************
@@ -248,7 +251,7 @@
 	watcher.observed_xeno = target
 	if(isxenoqueen(watcher)) // Only queen needs the eye shown.
 		target.hud_set_queen_overwatch()
-	watcher.reset_perspective()
+	watcher.reset_perspective(target)
 	RegisterSignal(target, COMSIG_HIVE_XENO_DEATH, PROC_REF(on_xeno_death))
 	RegisterSignals(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(on_xeno_evolution))
 	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
@@ -260,6 +263,7 @@
 	var/mob/living/carbon/xenomorph/watcher = owner
 	var/mob/living/carbon/xenomorph/observed = watcher.observed_xeno
 	watcher.observed_xeno = null
+	watcher.reset_perspective()
 	if(!QDELETED(observed))
 		UnregisterSignal(observed, list(COMSIG_HIVE_XENO_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
 		if(isxenoqueen(watcher)) // Only queen has to reset the eye overlay.

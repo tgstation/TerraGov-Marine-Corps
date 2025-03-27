@@ -4,8 +4,14 @@
 #define GENERATOR_HEAVY_DAMAGE 3
 #define GENERATOR_EXPLODING 4
 
-//Count of all generators on the ground
-GLOBAL_VAR_INIT(generators_on_ground, 0)
+#define PSYCHIC_MIST_COLOR "#7f16c5"
+
+//Counter of how many TBGs there are active, for disks
+GLOBAL_VAR_INIT(active_bluespace_generators, 0)
+//Count of all generators on the ground, including exploded generators (they still produce points)
+GLOBAL_VAR_INIT(corruptable_generators_groundside, 0)
+//Counter of how many TBGs there are corrupted, for psy gen
+GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 
 /obj/machinery/power/geothermal
 	name = "\improper G-11 geothermal generator"
@@ -20,38 +26,11 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	var/buildstate = GENERATOR_HEAVY_DAMAGE //What state of building it are we on, 0-3, 1 is "broken", the default
 	var/is_on = FALSE  //Is this damn thing on or what?
 	var/time_to_break = 1.5 SECONDS //How long it takes to break each stage of the generator
-	///Hive it should be powering and whether it should be generating hive psycic points instead of power on process()
-	var/corrupted = XENO_HIVE_NORMAL
-	///whether we wil allow these to be corrupted
-	var/is_corruptible = TRUE
-	///whether they should generate corruption if corrupted
-	var/corruption_on = FALSE
 
 /obj/machinery/power/geothermal/Initialize(mapload)
 	. = ..()
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ, COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ), PROC_REF(activate_corruption))
 	update_icon()
 	update_minimap_icon()
-
-	if(is_ground_level(z))
-		GLOB.generators_on_ground++
-
-	if(corrupted)
-		corrupt(corrupted)
-
-/obj/machinery/power/geothermal/Destroy() //just in case
-	if(is_ground_level(z))
-		GLOB.generators_on_ground--
-		if(is_on)
-			GLOB.active_bluespace_generators--
-	return ..()
-
-/obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
-	. = ..()
-	if(corrupted)
-		. += "It is covered in writhing tendrils [!isxeno(user) ? "that could be cut away with a welder" : ""]."
-	if(!isxeno(user) && !is_corruptible)
-		. += "It is reinforced, making us not able to corrupt it."
 
 /obj/machinery/power/geothermal/should_have_node()
 	return TRUE
@@ -93,37 +72,20 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 		if(GENERATOR_LIGHT_DAMAGE)
 			. += "This one is lightly damaged. Use a wrench to repair it."
 
-/obj/machinery/power/geothermal/update_overlays()
-	. = ..()
-	if(corrupted)
-		. += image(icon, src, "overlay_corrupted", layer)
-
 /// Updates the minimap icon to whether the generator is running or not
 /obj/machinery/power/geothermal/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator[is_on ? "_on" : "_off"]", ABOVE_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator[is_on ? "_on" : "_off"]", MINIMAP_BLIPS_LAYER))
 
 /obj/machinery/power/geothermal/power_change()
 	return
 
-///Allow generators to generate psych points
-/obj/machinery/power/geothermal/proc/activate_corruption(datum/source)
-	SIGNAL_HANDLER
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ, COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ))
-	corruption_on = TRUE
-	start_processing()
-
 /obj/machinery/power/geothermal/process()
-	if(corrupted && corruption_on)
-		if(!GLOB.generators_on_ground) //Prevent division by 0
-			return PROCESS_KILL
-		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
-			//You get points proportional to the % of generators corrupted (for example, if 66% of generators are corrupted the hive gets 0.66 points per second)
-			var/points_generated = GENERATOR_PSYCH_POINT_OUTPUT / GLOB.generators_on_ground
-			SSpoints.add_strategic_psy_points(corrupted, points_generated)
-			SSpoints.add_tactical_psy_points(corrupted, points_generated*0.25)
-		return
-	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
+	//Default logic checking
+	if(!is_on)
+		return PROCESS_KILL
+	if(buildstate || !anchored)
+		turn_off()
 		return PROCESS_KILL
 
 	if(power_gen_percent < 100)
@@ -137,19 +99,17 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 				balloon_alert_to_viewers("hums loudly as it reaches half capacity.")
 			if(100)
 				balloon_alert_to_viewers("rumbles loudly as the generator reaches full strength.")
-		add_avail(power_generation_max * (power_gen_percent / 100) ) //Nope, all good, just add the power
+	add_avail(power_generation_max * (power_gen_percent / 100) ) //Nope, all good, just add the power
 
 /obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
-	if(corrupted) //you have no reason to interact with it if its already corrupted
-		return
 	if(xeno_attacker.status_flags & INCORPOREAL || HAS_TRAIT_FROM(xeno_attacker, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))
 		return
 
 	while(buildstate < GENERATOR_HEAVY_DAMAGE)
 		if(xeno_attacker.do_actions)
 			return balloon_alert(xeno_attacker, "busy")
-		if(!do_after(xeno_attacker, time_to_break, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+		if(!do_after(xeno_attacker, time_to_break, NONE, src, BUSY_ICON_DANGER))
 			return
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		xeno_attacker.visible_message(span_danger("[xeno_attacker] slashes \the [src]!"), \
@@ -157,14 +117,6 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 		play_attack_sound(1)
 		playsound(src, 'sound/effects/grillehit.ogg', 50, TRUE)
 		damage_generator()
-		record_generator_sabotages(xeno_attacker)
-
-	if(buildstate == GENERATOR_HEAVY_DAMAGE && CHECK_BITFIELD(xeno_attacker.xeno_caste.can_flags, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
-		to_chat(xeno_attacker, span_notice("You start to corrupt [src]"))
-		if(!do_after(xeno_attacker, 10 SECONDS, NONE, src, BUSY_ICON_HOSTILE))
-			return
-		corrupt(xeno_attacker.hivenumber)
-		to_chat(xeno_attacker, span_notice("You have corrupted [src]"))
 		record_generator_sabotages(xeno_attacker)
 
 
@@ -195,10 +147,6 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	if(!ishuman(user) && !issilicon(user))
 		to_chat(user, span_warning("You have no idea how to use that."))
 		return FALSE
-	if(corrupted)
-		to_chat(user, span_warning("You have to clean that generator before it can be used!"))
-		return FALSE
-
 	if(buildstate == GENERATOR_HEAVY_DAMAGE)
 		to_chat(usr, "<span class='info'>Use a blowtorch, then wirecutters, then a wrench to repair it.")
 		return FALSE
@@ -208,6 +156,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	else if (buildstate == GENERATOR_LIGHT_DAMAGE)
 		to_chat(usr, "<span class='info'>Use a wrench to repair it.")
 		return FALSE
+
 	if(is_on)
 		turn_off()
 		return TRUE
@@ -216,53 +165,27 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 
 /// Handle turning on the generator and updating power
 /obj/machinery/power/geothermal/proc/turn_on()
+	if(buildstate != GENERATOR_NO_DAMAGE)
+		return FALSE
 	is_on = TRUE
 	update_icon()
 	update_desc()
 	start_processing()
-
+	return TRUE
 
 /// Handle turning off the generator and updating power
 /obj/machinery/power/geothermal/proc/turn_off()
 	is_on = FALSE
-	power_gen_percent = 0
+	power_gen_percent = 5
 	update_icon()
 	update_desc()
 	stop_processing()
 
 /obj/machinery/power/geothermal/welder_act(mob/living/user, obj/item/I)
-	var/obj/item/tool/weldingtool/WT = I
-	if(corrupted)
-		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-			user.visible_message(span_notice("[user] fumbles around figuring out the resin tendrils on [src]."),
-			span_notice("You fumble around trying to burn off the resin tendrils."))
-			user.balloon_alert(user, "You fumble around trying to burn off the resin tendrils.")
-			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
-			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
-				return
-
-		if(!WT.remove_fuel(1, user))
-			to_chat(user, span_warning("You need more welding fuel to complete this task."))
-			return
-		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-		user.visible_message(span_notice("[user] carefully starts burning [src]'s resin off."),
-		span_notice("You start carefully burning the resin off."))
-		user.balloon_alert(user, "You start carefully burning the resin off.")
-		add_overlay(GLOB.welding_sparks)
-
-		if(!do_after(user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20) SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
-			cut_overlay(GLOB.welding_sparks)
-			return FALSE
-
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		cut_overlay(GLOB.welding_sparks)
-		corrupted = 0
-		stop_processing()
-		update_icon()
-
 	if(buildstate != GENERATOR_HEAVY_DAMAGE) //Already repaired!
 		return
 
+	var/obj/item/tool/weldingtool/WT = I
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		user.balloon_alert(user, "You fumble around figuring out how the internals work.")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
@@ -272,18 +195,13 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	if(!WT.remove_fuel(1, user))
 		to_chat(user, span_warning("You need more welding fuel to complete this task."))
 		return
-	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-	user.balloon_alert(user, "You start welding the internals back together.")
-	add_overlay(GLOB.welding_sparks)
 
-	if(!do_after(user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20) SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || buildstate != GENERATOR_HEAVY_DAMAGE || is_on)
-		cut_overlay(GLOB.welding_sparks)
+	user.balloon_alert(user, "You start welding the internals back together.")
+	if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
 		return FALSE
 
-	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 	buildstate = GENERATOR_MEDIUM_DAMAGE
 	user.balloon_alert(user, "You weld the internals back together.")
-	cut_overlay(GLOB.welding_sparks)
 	update_icon()
 	record_generator_repairs(user)
 	return TRUE
@@ -330,21 +248,12 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	record_generator_repairs(user)
 	return TRUE
 
-/obj/machinery/power/geothermal/proc/corrupt(hivenumber)
-	corrupted = hivenumber
-	update_icon()
-	start_processing()
-
 /obj/machinery/power/geothermal/bigred //used on big red
 	name = "\improper Reactor Turbine"
 	power_generation_max = 1e+6
 
 /obj/machinery/power/geothermal/reinforced
 	name = "\improper Reinforced Reactor Turbine"
-	is_corruptible = FALSE
-
-//Counter of how many TBGs there are active, for disks
-GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 
 /**
  * Thermo-bluespace generator
@@ -358,8 +267,8 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	name = "\improper Thermo-Bluespace Generator"
 	desc = "A marvel of modern engineering and a shining example of pioneering bluespace technology, able to power entire colonies with very little material consumption - perfectly suited for isolated areas on the outer rim.\nHighly volatile, but that shouldn't matter on some quiet backwater colony, right..?"
 	icon = 'icons/obj/machines/tbg.dmi'
-	power_generation_max = 5000000 //Powers an entire colony
-	time_to_break = 10 SECONDS
+	power_generation_max = 10000000 //Powers an entire colony
+	time_to_break = 20 SECONDS
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 	//Stores whether we're in the turning off animation
 	var/winding_down = FALSE
@@ -369,6 +278,13 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	var/datum/looping_sound/generator/tbg/ambient_soundloop
 	//Explosion alarm soundloop
 	var/datum/looping_sound/alarm_loop/generator/alarm_soundloop
+
+	///Hive it should be powering and whether it should be generating hive psycic points instead of power on process()
+	var/corrupted = XENO_HIVE_NORMAL
+	//Last hive to corrupt the generator
+	var/last_corrupted = XENO_HIVE_NORMAL
+	///whether we wil allow these to be corrupted
+	var/is_corruptible = FALSE
 
 	COOLDOWN_DECLARE(toggle_power)
 
@@ -383,11 +299,22 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 		connected_turbines += potential_turbine
 		potential_turbine.connected = src
 
+	if(is_ground_level(z))
+		GLOB.corruptable_generators_groundside++
+	if(corrupted)
+		corrupt(corrupted)
+
 /obj/machinery/power/geothermal/tbg/Destroy()
+	if(is_on)
+		GLOB.active_bluespace_generators-- //corruptable_generators_groundside & gens_corruption_by_hive are not decremented because they are still used in psychic mist calculations
+	GLOB.gens_corruption_by_hive["[corrupted]"]--
 	QDEL_NULL(ambient_soundloop)
 	QDEL_NULL(alarm_soundloop)
 	for(var/obj/machinery/power/tbg_turbine/turbine AS in connected_turbines)
 		QDEL_NULL(turbine)
+
+	//After generators get destroyed, psychic mist is emitted
+	new /obj/effect/mist_origin(get_turf(src), last_corrupted)
 	return ..()
 
 /obj/machinery/power/geothermal/tbg/update_icon_state()
@@ -406,11 +333,14 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	return ..()
 
 /obj/machinery/power/geothermal/tbg/turn_on()
+	. = ..()
+	if(!.)
+		return FALSE
 	COOLDOWN_START(src, toggle_power, 10 SECONDS)
 	ambient_soundloop.start()
 	GLOB.active_bluespace_generators++
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_BLUESPACE_GEN_ACTIVATED, TRUE)
-	return ..()
+	return TRUE
 
 /obj/machinery/power/geothermal/tbg/turn_off()
 	COOLDOWN_START(src, toggle_power, 10 SECONDS)
@@ -422,11 +352,6 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	GLOB.active_bluespace_generators--
 	if(!GLOB.active_bluespace_generators)
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ALL_BLUESPACE_GEN_DEACTIVATED, FALSE)
-
-/// Updates the turbine animation after the winding down sound effect has finished
-/obj/machinery/power/geothermal/tbg/proc/finish_winding_down()
-	winding_down = FALSE
-	update_icon()
 
 /obj/machinery/power/geothermal/tbg/damage_generator()
 	if(buildstate >= GENERATOR_EXPLODING) //Already exploding; can't be damaged more than that!
@@ -441,10 +366,77 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	sparks.attach(sparks_target)
 	sparks.start()
 
-	if(buildstate == GENERATOR_HEAVY_DAMAGE)
+	buildstate = GENERATOR_HEAVY_DAMAGE //Long windup breaks the generator in one hit
+	if(power_gen_percent >= 5) //Must be actually producing power to blow up
 		initiate_meltdown()
 
 	return TRUE
+
+/obj/machinery/power/geothermal/tbg/welder_act(mob/living/user, obj/item/I)
+	if(corrupted)
+		var/obj/item/tool/weldingtool/WT = I
+		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
+			user.visible_message(span_notice("[user] fumbles around figuring out the resin tendrils on [src]."),
+			span_notice("You fumble around trying to burn off the resin tendrils."))
+			user.balloon_alert(user, "You fumble around trying to burn off the resin tendrils.")
+			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
+			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
+				return
+
+		if(!WT.remove_fuel(1, user))
+			to_chat(user, span_warning("You need more welding fuel to complete this task."))
+			return
+		user.visible_message(span_notice("[user] carefully starts burning [src]'s resin off."),
+		span_notice("You start carefully burning the resin off."))
+		user.balloon_alert(user, "You start carefully burning the resin off.")
+
+		if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
+			return FALSE
+
+		GLOB.gens_corruption_by_hive["[corrupted]"]--
+		last_corrupted = corrupted
+		corrupted = 0
+		update_icon()
+	return ..()
+
+/obj/machinery/power/geothermal/tbg/interact_hand(mob/living/user)
+	if(corrupted)
+		to_chat(user, span_warning("You have to clean that generator before it can be used!"))
+		return FALSE
+	return ..()
+
+/obj/machinery/power/geothermal/tbg/update_overlays()
+	. = ..()
+	if(corrupted)
+		. += image(icon, src, "overlay_corrupted", layer)
+
+/obj/machinery/power/geothermal/tbg/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(corrupted)
+		. += "It is covered in writhing tendrils [!isxeno(user) ? "that could be cut away with a welder" : ""]."
+	if(!isxeno(user) && !is_corruptible)
+		. += "It is reinforced, making us not able to corrupt it."
+
+/obj/machinery/power/geothermal/tbg/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(corrupted) //you have no reason to interact with it if its already corrupted
+		return
+	if(xeno_attacker.status_flags & INCORPOREAL || HAS_TRAIT_FROM(xeno_attacker, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))
+		return
+
+	. = ..()
+	if(xeno_attacker.do_actions && buildstate == GENERATOR_HEAVY_DAMAGE && CHECK_BITFIELD(xeno_attacker.xeno_caste.can_flags, CASTE_CAN_CORRUPT_GENERATOR)  && is_corruptible)
+		balloon_alert(xeno_attacker, "You begin corrupting the generator...")
+		if(!do_after(xeno_attacker, 10 SECONDS, NONE, src, BUSY_ICON_HOSTILE))
+			return
+		corrupt(xeno_attacker.hivenumber)
+		balloon_alert(xeno_attacker, "You have corrupted the generator!")
+		record_generator_sabotages(xeno_attacker)
+
+/// Updates the turbine animation after the winding down sound effect has finished
+/obj/machinery/power/geothermal/tbg/proc/finish_winding_down()
+	power_gen_percent = 0
+	winding_down = FALSE
+	update_icon()
 
 /// Triggers generator meltdown process
 /obj/machinery/power/geothermal/tbg/proc/initiate_meltdown()
@@ -455,7 +447,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	current_apc.emp_act(2)
 
 	addtimer(CALLBACK(src, PROC_REF(trigger_alarms)), 3 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(finish_meltdown)), 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finish_meltdown)), 56 SECONDS)
 
 	//Devastate range -- Heavy range -- Light range -- Fire range -- Time until explosion
 	var/list/list_of_explosions = list(
@@ -472,8 +464,6 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	for(var/explosion_data in list_of_explosions)
 		var/turf/epicenter = locate(loc.x + rand(-2,2), loc.y + rand(-2,2), loc.z)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(explosion), epicenter, explosion_data[1], explosion_data[2], explosion_data[3], explosion_data[4], explosion_data[4]), explosion_data[5])
-	//Destroy generator after big explosion happens
-	QDEL_IN(src, 56 SECONDS)
 
 /// Triggers alarm visual effects and queues alarm warnings for ongoing TBG meltdown
 /obj/machinery/power/geothermal/tbg/proc/trigger_alarms()
@@ -502,7 +492,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	for(var/warning_data in warning_messages)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), warning_data[1]), warning_data[2])
 
-/// Finalises TBG meltdown and resets it back to its initial state
+/// Finalises TBG meltdown and disables alarms before the big explosion
 /obj/machinery/power/geothermal/tbg/proc/finish_meltdown()
 	buildstate = GENERATOR_HEAVY_DAMAGE
 	update_icon()
@@ -510,7 +500,14 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	//Disable alarmlights
 	for(var/obj/machinery/floor_warn_light/toggleable/generator/light AS in GLOB.generator_alarm_lights)
 		light.disable()
-	say("Bluespace restabilisation successful. Planetary assets protected.")
+	qdel(src) //Destroy generator after big explosion happens
+
+/// Corrupts the generator, making it start producing psy gen
+/obj/machinery/power/geothermal/tbg/proc/corrupt(hivenumber)
+	corrupted = hivenumber
+	last_corrupted = corrupted
+	GLOB.gens_corruption_by_hive["[corrupted]"]++
+	update_icon()
 
 /// TBG turbine attached to the TBG; purely visual
 /obj/machinery/power/tbg_turbine
@@ -589,6 +586,56 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	icon_state = "circ-on75-cold"
 
 
+/// Psychic mist -- Spawns on generator if it explodes; provides point gen as the generator would have
+/obj/effect/mist_origin
+	name = ""
+	//Lists all visual mist effects
+	var/list/mist_list = list()
+	//What hive we should add psy points to
+	var/hivenumber
+
+/obj/effect/mist_origin/Initialize(mapload, last_corrupted_hivenumber)
+	. = ..()
+	hivenumber = last_corrupted_hivenumber
+	GLOB.gens_corruption_by_hive["[hivenumber]"]++
+	for(var/turf/tile in filled_circle_turfs(src, 10))
+		var/obj/effect/psychic_mist/new_mist = new(tile)
+		mist_list += new_mist
+
+/obj/effect/mist_origin/Destroy()
+	//Remove bluespace generator from psy-gen equation, since we're no longer producing points
+	GLOB.gens_corruption_by_hive["[hivenumber]"]--
+	GLOB.corruptable_generators_groundside--
+	for(var/obj/effect/psychic_mist/mist AS in mist_list)
+		QDEL_NULL(mist)
+	return ..()
+
+
+/obj/effect/psychic_mist
+	name = "psychic mist"
+	desc = "Condensed droplets of raw psychic energy swirl around you."
+	resistance_flags = RESIST_ALL|PROJECTILE_IMMUNE|DROPSHIP_IMMUNE
+	icon = 'icons/effects/weather_effects.dmi'
+	icon_state = "light_ash"
+	color = PSYCHIC_MIST_COLOR
+
+/obj/effect/psychic_mist/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/// Psychic mist is difficult to breathe in, even with a mask on
+/obj/effect/psychic_mist/proc/on_cross(datum/source, atom/movable/crosser)
+	SIGNAL_HANDLER
+	if(!iscarbon(crosser) || prob(85))
+		return
+	var/mob/living/carbon/target = crosser
+	if(target.stat == DEAD || target.species?.species_flags & NO_BREATHE)
+		return
+	target.adjustStaminaLoss(10)
+	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "cough")
 
 #undef GENERATOR_NO_DAMAGE
 #undef GENERATOR_LIGHT_DAMAGE

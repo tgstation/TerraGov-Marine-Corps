@@ -70,7 +70,7 @@
 /obj/item/explosive/grenade/update_overlays()
 	. = ..()
 	if(active && dangerous)
-		. += new /obj/effect/overlay/danger
+		. += mutable_appearance('icons/obj/items/grenade.dmi', "danger", ABOVE_ALL_MOB_LAYER, src)
 
 /obj/item/explosive/grenade/fire_act(burn_level)
 	activate()
@@ -97,7 +97,7 @@
 	notify_ai_hazard()
 	return TRUE
 
-///Detonation effects
+///Detonation effects TODO MAKE THIS PASS THE USER TO EXPLOSION FOR LOGGING
 /obj/item/explosive/grenade/proc/prime()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/idiot = loc
@@ -114,7 +114,7 @@
 			idiot.emote("scream")
 			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[idiot.ckey]
 			personal_statistics.grenade_hand_delimbs ++
-	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range)
+	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range, explosion_cause=src)
 	qdel(src)
 
 ///Adjusts det time, used for grenade launchers

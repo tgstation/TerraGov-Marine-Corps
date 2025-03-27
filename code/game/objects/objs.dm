@@ -3,6 +3,7 @@
 	speech_span = SPAN_ROBOT
 	interaction_flags = INTERACT_OBJ_DEFAULT
 	resistance_flags = NONE
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 	/// Icon to use as a 32x32 preview in crafting menus and such
 	var/icon_preview
@@ -39,6 +40,9 @@
 	var/list/req_one_access = null
 	///Odds of a projectile hitting the object, if the object is dense
 	var/coverage = 50
+	/// Map tag for something.  Tired of it being used on snowflake items.  Moved here for some semblance of a standard.
+	/// Next pr after the network fix will have me refactor door interactions, so help me god.
+	var/id_tag = null
 
 /obj/Initialize(mapload)
 	. = ..()
@@ -73,6 +77,7 @@
 			GLOB.all_req_one_access[txt_access] = req_one_access
 		else
 			req_one_access = GLOB.all_req_one_access[txt_access]
+
 	add_debris_element()
 
 /obj/Destroy()
@@ -356,31 +361,19 @@
 
 	repair_time *= welder.toolspeed
 	balloon_alert_to_viewers("starting repair...")
-	handle_weldingtool_overlay()
 	while(needs_welder_repair(user))
-		playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-		welder.eyecheck(user)
-		if(!do_after(user, repair_time, NONE, src, BUSY_ICON_FRIENDLY))
-			cut_overlay(GLOB.welding_sparks)
-			balloon_alert(user, "interrupted!")
-			return TRUE
-
-		if(obj_integrity <= max_integrity * repair_threshold || !needs_welder_repair(user))
-			handle_weldingtool_overlay(TRUE)
-			return TRUE
-
-		if(!welder.remove_fuel(fuel_req))
-			balloon_alert(user, "not enough fuel")
-			handle_weldingtool_overlay(TRUE)
+		if(!I.use_tool(src, user, repair_time, fuel_req, 25, CALLBACK(src, PROC_REF(is_repaired_enough), user, repair_threshold), BUSY_ICON_FRIENDLY))
 			return TRUE
 
 		repair_damage(repair_amount, user)
 		update_icon()
 
 	balloon_alert_to_viewers("repaired")
-	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-	handle_weldingtool_overlay(TRUE)
 	return TRUE
+
+///callback check to see if we're done repairing
+/obj/proc/is_repaired_enough(mob/user, repair_threshold)
+	return !needs_welder_repair(user) || (obj_integrity >= max_integrity * repair_threshold)
 
 //Returns true if we want to try to repair this object with welder_repair_act, false otherwise
 /obj/proc/needs_welder_repair(mob/user)

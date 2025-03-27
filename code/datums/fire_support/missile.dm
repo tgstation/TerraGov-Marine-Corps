@@ -11,7 +11,7 @@
 	start_sound = null
 
 /datum/fire_support/cruise_missile/select_target(turf/target_turf)
-	explosion(target_turf, 4, 5, 6)
+	explosion(target_turf, 4, 5, 6, explosion_cause="cruise missile")
 
 /datum/fire_support/cruise_missile/unlimited
 	fire_support_type = FIRESUPPORT_TYPE_CRUISE_MISSILE_UNLIMITED
@@ -56,4 +56,4 @@
 		strength = victim.modify_by_armor(strength, BIO, 25)
 		victim.apply_radiation(strength, sound_level)
 
-	explosion(target_turf, 0, 1, 0, 4)
+	explosion(target_turf, 0, 1, 0, 4, explosion_cause=name)

@@ -120,6 +120,7 @@
 
 	record_melee_damage(X, damage)
 	var/damage_done = apply_damage(damage, X.xeno_caste.melee_damage_type, affecting, armor_block, TRUE, TRUE, TRUE, armor_pen) //This should slicey dicey
+	new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, Get_Angle(X, src), get_blood_color())
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_POSTATTACK_LIVING, src, damage_done, damage_mod)
 
 	return TRUE
@@ -211,6 +212,7 @@
 			return attack_alien_grab(xeno_attacker)
 
 		if(INTENT_HARM, INTENT_DISARM)
+			SEND_SIGNAL(xeno_attacker, COMSIG_XENOMORPH_PRE_ATTACK_ALIEN_HARM, src, isrightclick)
 			return attack_alien_harm(xeno_attacker)
 	return FALSE
 

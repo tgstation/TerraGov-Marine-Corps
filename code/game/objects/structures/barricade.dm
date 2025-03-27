@@ -30,7 +30,7 @@
 	///is this barriade wired?
 	var/is_wired = FALSE
 
-/obj/structure/barricade/Initialize(mapload)
+/obj/structure/barricade/Initialize(mapload, mob/user)
 	. = ..()
 	update_icon()
 	var/static/list/connections = list(
@@ -38,6 +38,8 @@
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	if(user)
+		faction = user.faction
 
 /obj/structure/barricade/handle_barrier_chance(mob/living/M)
 	return prob(max(30,(100.0*obj_integrity)/max_integrity))
@@ -436,11 +438,11 @@
 			damage_state = 0
 	switch(barricade_upgrade_type)
 		if(CADE_TYPE_BOMB)
-			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "+explosive_upgrade_[damage_state]")
+			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "[barricade_type]+explosive_upgrade_[damage_state]")
 		if(CADE_TYPE_MELEE)
-			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "+brute_upgrade_[damage_state]")
+			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "[barricade_type]+brute_upgrade_[damage_state]")
 		if(CADE_TYPE_ACID)
-			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "+burn_upgrade_[damage_state]")
+			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "[barricade_type]+burn_upgrade_[damage_state]")
 
 /obj/structure/barricade/solid/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -1157,9 +1159,6 @@
 	destroyed_stack_amount = 2
 	barricade_type = "new_plasteel"
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 50)
-
-/obj/structure/barricade/solid/plasteel/attempt_barricade_upgrade()
-	return //not upgradable
 
 /*----------------------*/
 // FOLDING METAL

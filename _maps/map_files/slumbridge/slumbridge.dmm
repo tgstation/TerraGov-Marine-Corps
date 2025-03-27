@@ -1290,7 +1290,8 @@
 "baQ" = (
 /obj/structure/cable,
 /obj/effect/landmark/corpsespawner/engineer/regular,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "baV" = (
 /obj/item/trash/pillpacket,
@@ -3968,7 +3969,8 @@
 /area/slumbridge/outside/southeast)
 "cWh" = (
 /obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "cWA" = (
 /obj/effect/landmark/corpsespawner/pmc,
@@ -4537,7 +4539,8 @@
 /area/slumbridge/inside/hydrotreatment)
 "dsK" = (
 /obj/structure/cable,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "dsV" = (
 /turf/open/floor/stairs/rampbottom{
@@ -5426,7 +5429,8 @@
 "ebg" = (
 /obj/effect/landmark/corpsespawner/engineer/regular,
 /obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "ebh" = (
 /obj/effect/decal/cleanable/dirt,
@@ -5791,7 +5795,9 @@
 /turf/open/floor/grayscale,
 /area/slumbridge/outside/northeast/bridges)
 "esM" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -6480,7 +6486,8 @@
 "eXk" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "eXv" = (
 /obj/machinery/power/apc/drained{
@@ -7046,7 +7053,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "fux" = (
 /obj/structure/barricade/snow{
@@ -9863,9 +9871,7 @@
 /turf/open/floor/rcircuit,
 /area/slumbridge/inside/pmcdome/nukevault)
 "hxz" = (
-/obj/structure/stairs{
-	dir = 1
-	},
+/obj/structure/stairs,
 /turf/open/floor/tile/dark,
 /area/slumbridge/landingzonetwo)
 "hxB" = (
@@ -11511,7 +11517,8 @@
 "iAf" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "iAA" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -12069,7 +12076,9 @@
 	},
 /area/slumbridge/inside/colony/northerndome)
 "iVN" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/structure/sign/safety/medical_supplies{
 	dir = 4
 	},
@@ -14685,7 +14694,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/stairs{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
@@ -19717,7 +19726,9 @@
 /turf/open/floor/plating/ground/snow,
 /area/slumbridge/outside/southwest/nearlz)
 "oyw" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/slumbridge/inside/medical/foyer)
 "oyD" = (
@@ -22177,7 +22188,8 @@
 /obj/structure/prop/mainship/gelida/planterboxsoil/nondense,
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid/nondense,
 /obj/structure/cable,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/caves/mining)
 "qoC" = (
 /obj/item/clothing/suit/modular/som/light,
@@ -24130,7 +24142,7 @@
 /area/slumbridge/inside/engi/west)
 "rHx" = (
 /obj/structure/stairs{
-	dir = 8
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -24828,7 +24840,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "seG" = (
 /obj/item/stack/rods,
@@ -25343,7 +25356,7 @@
 /area/slumbridge/outside/southwest)
 "sAX" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/attachable/bayonetknife/som,
+/obj/item/attachable/bayonet/som,
 /obj/item/weapon/gun/smg/som/basic,
 /turf/open/floor/plating,
 /area/slumbridge/inside/sombase/east)
@@ -27125,7 +27138,8 @@
 /area/slumbridge/inside/colony/kitchen)
 "tTW" = (
 /obj/effect/landmark/corpsespawner/engineer/regular,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "tUa" = (
 /obj/structure/table,
@@ -28517,7 +28531,9 @@
 	},
 /area/slumbridge/inside/sombase/west)
 "uXU" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -29128,7 +29144,9 @@
 /turf/closed/wall,
 /area/slumbridge/inside/colony/northerndome)
 "vth" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -29307,7 +29325,8 @@
 "vAg" = (
 /obj/structure/cable,
 /obj/machinery/floor_warn_light/toggleable/generator,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "vAq" = (
 /turf/open/liquid/lava/single/middle{
@@ -30298,7 +30317,8 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "whB" = (
 /obj/effect/decal/cleanable/blood,
@@ -30670,7 +30690,8 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "wtR" = (
 /obj/machinery/light{
@@ -31999,7 +32020,9 @@
 	},
 /area/slumbridge/inside/pmcdome)
 "xrN" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow,
 /area/slumbridge/outside/southwest)
@@ -32060,7 +32083,8 @@
 	dir = 8
 	},
 /obj/effect/ai_node,
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "xuV" = (
 /obj/item/trash/used_stasis_bag,
@@ -32815,7 +32839,8 @@
 /turf/open/floor/mainship/floor,
 /area/slumbridge/inside/colony/northerndome)
 "xXL" = (
-/turf/open/floor/plating/catwalk,
+/obj/structure/catwalk,
+/turf/open/floor/plating,
 /area/slumbridge/inside/engi/engine)
 "xXZ" = (
 /obj/structure/window/reinforced{
@@ -32935,7 +32960,9 @@
 	},
 /area/shuttle/drop1/lz1)
 "ycz" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -33106,7 +33133,9 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/slumbridge/inside/engi/west)
 "yht" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
@@ -36400,10 +36429,10 @@ cmA
 cmA
 cmA
 cmA
-iaC
+mox
 tJm
 qnB
-mox
+iaC
 cmA
 cmA
 cmA
@@ -36581,10 +36610,10 @@ wRP
 wRP
 iaB
 wRP
-dEk
+gju
 kEc
 lJJ
-gju
+dEk
 wRP
 iaB
 wRP
@@ -36762,10 +36791,10 @@ bGJ
 mdd
 bGJ
 bGJ
-cUn
-kdF
-kdF
 rIm
+kdF
+kdF
+cUn
 bGJ
 mdd
 bGJ

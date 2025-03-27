@@ -45,7 +45,7 @@
 	if(use_obj_appeareance)
 		var/obj/item/I = target
 		// -0.5 so its below maptext and above the selected frames
-		var/item_image = mutable_appearance(I.icon, I.icon_state, ACTION_LAYER_IMAGE_ONTOP, FLOAT_PLANE)
+		var/item_image = mutable_appearance(I.icon, I.icon_state, ACTION_LAYER_IMAGE_ONTOP)
 		visual_references[VREF_MUTABLE_LINKED_OBJ] = item_image
 		button.add_overlay(item_image)
 	else
@@ -72,6 +72,18 @@
 
 /datum/action/item_action/toggle/suit_toggle
 	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_KB_SUITLIGHT)
+
+/datum/action/item_action/toggle/suit_toggle/light/ai_should_start_consider()
+	if(SSticker?.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS)
+		return FALSE //HvH doesn't have full dark so its just a detriment
+	return TRUE
+
+/datum/action/item_action/toggle/suit_toggle/light/ai_should_use(atom/target)
+	if(!holder_item)
+		return FALSE
+	if(holder_item.light_on)
+		return FALSE
+	return TRUE
 
 /datum/action/item_action/firemode
 	// just here so players see what key is it bound to

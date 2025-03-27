@@ -56,8 +56,18 @@
 #define MAX_NODE_RANGE 15
 #define PATHFINDER_MAX_TRIES 200
 
+///The AI will maintain a combat target within this range, even without LOS
+#define AI_COMBAT_TARGET_BLIND_DISTANCE 4 //required since byond LOS is not the same as true LOS, but also since either can be easily broken by stepping behind a corner etc
+
 //AI will escort an ATOM up to this distance away from them
 #define AI_ESCORTING_MAX_DISTANCE 10
+///AI will give up escorting something beyond this distance
+#define AI_ESCORTING_BREAK_DISTANCE 20
+
+#define AI_ESCORT_RATING_FACTION_GOAL 10
+#define AI_ESCORT_RATING_SQUAD_LEAD 13
+#define AI_ESCORT_RATING_CLOSE_FRIENDLY 15
+#define AI_ESCORT_RATING_BUDDY 16
 
 GLOBAL_LIST_EMPTY(all_nodes)
 
@@ -68,6 +78,13 @@ GLOBAL_LIST_EMPTY(ai_instances_active)
 GLOBAL_LIST_EMPTY(nodes_with_enemies)
 GLOBAL_LIST_EMPTY(nodes_with_construction)
 #define can_cross_lava_turf(turf_to_check) (!islava(turf_to_check) || locate(/obj/structure/catwalk) in turf_to_check) //todo: this needs work
+
+///Obstacle needs attacking
+#define AI_OBSTACLE_ATTACK "ai_obstacle_attack"
+///Obstacle can be jumped
+#define AI_OBSTACLE_JUMP "ai_obstacle_jump"
+///Obstacle has already been handled
+#define AI_OBSTACLE_RESOLVED "ai_obstacle_resolved"
 
 ///If the mob parent can heal itself and so should flee
 #define HUMAN_AI_SELF_HEAL (1<<0)

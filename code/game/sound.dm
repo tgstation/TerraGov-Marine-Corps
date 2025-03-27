@@ -49,9 +49,21 @@
 A good representation is: 'byond applies a volume reduction to the sound every X tiles', where X is falloff.
  */
 /proc/playsound(atom/source, soundin, vol, vary, sound_range, falloff, is_global, frequency, channel = 0, ambient_sound = FALSE)
+	if(isarea(source))
+		CRASH("playsound(): source is an area")
+
+	if(islist(soundin))
+		CRASH("playsound(): soundin attempted to pass a list! Consider using pick()")
+
+	if(!soundin)
+		CRASH("playsound(): no soundin passed")
+
+	if(vol < SOUND_AUDIBLE_VOLUME_MIN) // never let sound go below SOUND_AUDIBLE_VOLUME_MIN or bad things will happen
+		CRASH("playsound(): volume below SOUND_AUDIBLE_VOLUME_MIN. [vol] < [SOUND_AUDIBLE_VOLUME_MIN]")
+
 	var/turf/turf_source = get_turf(source)
 
-	if (!turf_source || !soundin || !vol)
+	if (!turf_source)
 		return
 
 	//allocate a channel if necessary now so its the same for everyone
@@ -345,6 +357,10 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			soundin = 'sound/effects/alien/behemoth/roll.ogg'
 		if(SFX_BEHEMOTH_EARTH_PILLAR_HIT)
 			soundin = pick('sound/effects/alien/behemoth/earth_pillar_hit_1.ogg', 'sound/effects/alien/behemoth/earth_pillar_hit_2.ogg', 'sound/effects/alien/behemoth/earth_pillar_hit_3.ogg', 'sound/effects/alien/behemoth/earth_pillar_hit_4.ogg', 'sound/effects/alien/behemoth/earth_pillar_hit_5.ogg', 'sound/effects/alien/behemoth/earth_pillar_hit_6.ogg')
+		if(SFX_CONQUEROR_WILL_HOOK)
+			soundin = pick('sound/effects/alien/conqueror/will_hook_1.ogg', 'sound/effects/alien/conqueror/will_hook_2.ogg', 'sound/effects/alien/conqueror/will_hook_3.ogg')
+		if(SFX_CONQUEROR_WILL_EXTRA)
+			soundin = pick('sound/effects/alien/conqueror/will_extra_1.ogg', 'sound/effects/alien/conqueror/will_extra_2.ogg')
 
 		// Human
 		if(SFX_MALE_SCREAM)

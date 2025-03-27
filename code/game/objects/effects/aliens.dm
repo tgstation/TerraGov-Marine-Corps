@@ -50,6 +50,7 @@
 
 /obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE, mob/living/_xeno_owner) //Self-deletes
 	. = ..()
+	notify_ai_hazard()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
 	acid_damage = damage
@@ -116,7 +117,7 @@
 		var/atom/A = H
 		SEND_SIGNAL(A, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
 
-//Medium-strength acid
+//Medium-strength acid // todo please god make me into an overlay and component already...
 /obj/effect/xenomorph/acid
 	name = "acid"
 	desc = "Burbling corrosive stuff. I wouldn't want to touch it."
@@ -159,7 +160,7 @@
 	RegisterSignal(acid_t, COMSIG_ITEM_ATTEMPT_PICK_UP, PROC_REF(on_attempt_pickup))
 	RegisterSignal(acid_t, COMSIG_QDELETING, PROC_REF(on_target_del))
 	RegisterSignal(acid_t, COMSIG_MOVABLE_MOVED, PROC_REF(on_target_move))
-	layer = acid_t.layer
+	layer = acid_t.layer+0.001
 	base_icon_state = icon_state
 	update_appearance(UPDATE_ICON_STATE)
 	START_PROCESSING(SSslowprocess, src)

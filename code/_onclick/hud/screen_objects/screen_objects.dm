@@ -9,7 +9,6 @@
 /atom/movable/screen
 	name = ""
 	icon = 'icons/mob/screen/generic.dmi'
-	layer = HUD_LAYER
 	// NOTE: screen objects do NOT change their plane to match the z layer of their owner
 	// You shouldn't need this, but if you ever do and it's widespread, reconsider what you're doing.
 	plane = HUD_PLANE
@@ -165,7 +164,6 @@
 
 /atom/movable/screen/close
 	name = "close"
-	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 	icon_state = "backpack_close"
 	mouse_over_pointer = MOUSE_HAND_POINTER
@@ -410,7 +408,6 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 128
 	anchored = TRUE
-	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
@@ -597,9 +594,7 @@
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "act_drop"
 	screen_loc = ui_drop_throw
-	layer = HUD_LAYER
 	mouse_over_pointer = MOUSE_HAND_POINTER
-
 
 /atom/movable/screen/drop/Click()
 	usr.drop_item_v()
@@ -646,7 +641,7 @@
 	flash_holder = new
 	flash_holder.icon_state = "frame"
 	flash_holder.icon = icon
-	flash_holder.plane = plane
+	flash_holder.vis_flags = VIS_INHERIT_PLANE
 	flash_holder.layer = layer+0.001
 	flash_holder.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	vis_contents += flash_holder
@@ -793,3 +788,36 @@
 	icon_state = "Red_arrow"
 	duration = HUNTER_PSYCHIC_TRACE_COOLDOWN
 	color = COLOR_ORANGE
+
+/atom/movable/screen/combo
+	icon_state = ""
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	screen_loc = ui_combo
+	plane = ABOVE_HUD_PLANE
+	/// Timer ID. After a set duration, the tracked combo streak will reset.
+	var/reset_timer
+
+/atom/movable/screen/combo/proc/clear_streak()
+	animate(src, alpha = 0, 2 SECONDS, SINE_EASING)
+	reset_timer = addtimer(CALLBACK(src, PROC_REF(reset_icons)), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+
+/atom/movable/screen/combo/proc/reset_icons()
+	cut_overlays()
+	icon_state = initial(icon_state)
+
+/atom/movable/screen/combo/update_icon_state(combo_streak = "", time = 2 SECONDS)
+	reset_icons()
+	if(reset_timer)
+		deltimer(reset_timer)
+	alpha = 255
+	if(!combo_streak)
+		return ..()
+	reset_timer = addtimer(CALLBACK(src, PROC_REF(clear_streak)), time, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+	icon_state = "combo"
+	for(var/i = 1; i <= length(combo_streak); ++i)
+		var/click_text = copytext(combo_streak, i, i + 1)
+		var/image/click_icon = image(icon, src, "combo_[click_text]")
+		click_icon.pixel_x = 16 * (i - 1) - 8 * length(combo_streak)
+		click_icon.pixel_y = -16
+		add_overlay(click_icon)
+	return ..()

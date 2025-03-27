@@ -16,8 +16,8 @@
 	buckle_lying = 90
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
 	resistance_flags = XENO_DAMAGEABLE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	max_integrity = 40
-	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
 	var/dropmetal = TRUE
@@ -375,6 +375,9 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 	if(LAZYLEN(buckled_mobs) || buckled_bodybag)
 		. += image("icon_state"="stretcher_box","layer"=LYING_MOB_LAYER + 0.1)
+
+/obj/structure/bed/medevac_stretcher/ai_should_stay_buckled(mob/living/carbon/npc)
+	return TRUE
 
 /obj/structure/bed/medevac_stretcher/attack_hand_alternate(mob/living/user)
 	activate_medevac_teleport(user)

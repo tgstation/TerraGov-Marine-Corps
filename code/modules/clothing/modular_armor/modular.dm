@@ -45,7 +45,7 @@
 	permeability_coefficient = 1
 	gas_transfer_coefficient = 1
 
-	actions_types = list(/datum/action/item_action/toggle/suit_toggle)
+	actions_types = list(/datum/action/item_action/toggle/suit_toggle/light)
 
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_CHESTPLATE,

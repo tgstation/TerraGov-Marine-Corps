@@ -1,0 +1,5 @@
+author: "Cheese"
+delete-after: True
+changes:
+  - rscadd: "Resin huggers now extinguish their target"
+  - balance: "You can no longer crush huggers in hand, as a human"

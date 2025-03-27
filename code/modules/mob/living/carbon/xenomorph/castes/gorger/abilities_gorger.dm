@@ -39,7 +39,7 @@
 		return FALSE
 	if(xeno_owner.eaten_mob)
 		if(!silent)
-			to_chat(xeno_owner, span_warning("You have already swallowed one."))
+			to_chat(xeno_owner, span_warning("We have already swallowed one."))
 		return FALSE
 	if(xeno_owner.on_fire)
 		if(!silent)
@@ -88,7 +88,7 @@
 	name = "Drain"
 	action_icon_state = "drain"
 	action_icon = 'icons/Xeno/actions/gorger.dmi'
-	desc = "Hold a marine for some time and drain their blood, while healing. You can't attack during this time and can be shot by the marine. When used on a dead human, you heal, or gain overheal, gradually and don't gain blood."
+	desc = "Root a marine and attack them twice after a windup, gaining blood and healing yourself. You cannot attack while doing this. When used on a human corpse, instead enter a channeled heal that grants overheal once health is full."
 	use_state_flags = ABILITY_KEYBIND_USE_ABILITY
 	cooldown_duration = 15 SECONDS
 	ability_cost = 0
@@ -133,6 +133,7 @@
 	var/drain_healing = GORGER_DRAIN_HEAL;\
 	HEAL_XENO_DAMAGE(xeno_owner, drain_healing, TRUE);\
 	adjustOverheal(xeno_owner, drain_healing);\
+	SEND_SIGNAL(target_human, COMSIG_XENO_DRAIN_HIT, xeno_owner.xeno_caste.drain_plasma_gain, xeno_owner);\
 	xeno_owner.gain_plasma(xeno_owner.xeno_caste.drain_plasma_gain)
 
 /datum/action/ability/activable/xeno/drain/use_ability(mob/living/carbon/human/target_human)
@@ -262,7 +263,7 @@
 	name = "Oppose"
 	action_icon_state = "rejuvenation"
 	action_icon = 'icons/Xeno/actions/gorger.dmi'
-	desc = "Violently suffuse the ground with stored blood. A marine on your tile is staggered and injured, ajacent marines are staggered, and any nearby xenos are healed, including you."
+	desc = "Violently suffuse the ground with stored blood. A marine on your tile is staggered and injured, adjacent marines are staggered, and any nearby xenos are healed, including you."
 	cooldown_duration = 30 SECONDS
 	ability_cost = GORGER_OPPOSE_COST
 	keybinding_signals = list(

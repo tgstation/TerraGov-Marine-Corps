@@ -8,7 +8,7 @@
 	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 5
-	layer = RESIN_STRUCTURE_LAYER
+	layer = BELOW_TABLE_LAYER
 	destroy_sound = SFX_ALIEN_RESIN_BREAK
 	///defines for trap type to trigger on activation
 	var/trap_type

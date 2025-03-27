@@ -16,7 +16,7 @@
 //Rappel target selection action
 /datum/action/innate/rappel_designate
 	name = "Designate rappel point"
-	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon = 'icons/mob/actions/actions_mecha.dmi'
 	action_icon_state = "mech_zoom_on"
 	var/obj/structure/dropship_equipment/shuttle/rappel_system/origin
 
@@ -139,8 +139,7 @@
 	update_icon_state()
 	flick("rappel_hatch_opening", src)
 
-	user.client.perspective = EYE_PERSPECTIVE
-	user.client.eye = target_turf
+	user.reset_perspective(target_turf)
 
 	var/passed_skillcheck = TRUE
 	if(user.skills.getRating(SKILL_COMBAT) < SKILL_COMBAT_DEFAULT)
@@ -162,8 +161,7 @@
 	update_icon_state()
 	rope.update_icon_state()
 
-	user.client.perspective = MOB_PERSPECTIVE
-	user.client.eye = user
+	user.reset_perspective()
 
 /obj/structure/dropship_equipment/shuttle/rappel_system/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -229,7 +227,7 @@
 	update_icon_state()
 	rope.update_icon_state()
 	flick("rope_deploy", rope)
-	SSminimaps.add_marker(rope, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "rappel"))
+	SSminimaps.add_marker(rope, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "rappel", MINIMAP_BLIPS_LAYER))
 	var/area/rappel_area = get_area(target)
 	if(!(rappel_area.area_flags & MARINE_BASE))
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ)

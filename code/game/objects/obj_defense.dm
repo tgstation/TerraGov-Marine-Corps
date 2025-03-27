@@ -103,7 +103,6 @@
 	. = ..()
 	if(proj.damage < 1)
 		return
-	playsound(loc, proj.hitsound, 50, 1)
 	if(proj.damage > 30)
 		visible_message(span_warning("\The [src] is damaged by \the [proj]!"), visible_message_flags = COMBAT_MESSAGE)
 	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, REVERSE_DIR(proj.dir), proj.ammo.penetration, isliving(proj.firer) ? proj.firer : null)
