@@ -118,14 +118,14 @@ const PatientBasics = () => {
       buttons={
         <Button
           icon="info"
-          tooltip="Most elements of this window have a tooltip for additional information. Hover your mouse over something for clarification!"
+          tooltip="For information on something, hover over it - most elements have tooltips. Additionally, situational advice will appear under Treatment Advice when available to guide you."
           color="transparent"
           mt={
             /* with the "hackerman" theme, the buttons have this ugly outline that messes with the section titlebar, let's fix that */
             accessible_theme ? (species === 'robot' ? '-5px' : '0px') : '0px'
           }
         >
-          Tooltips - hover for info
+          Information
         </Button>
       }
     >
@@ -136,40 +136,39 @@ const PatientBasics = () => {
       ) : null}
       {ssd ? <NoticeBox warning>{ssd}</NoticeBox> : null}
       <LabeledList>
-        <LabeledList.Item label="Health">
-          <Tooltip
-            content={
-              'How healthy the patient is.' +
-              (species === 'robot'
-                ? ''
-                : " If the patient's health dips below " +
-                  crit_threshold +
-                  '%, they enter critical condition and suffocate rapidly.') +
-              " If the patient's health hits " +
-              (dead_threshold / max_health) * 100 +
-              '%, they die.'
-            }
-          >
-            {health >= 0 ? (
-              <ProgressBar
-                value={health / max_health}
-                ranges={{
-                  good: [0.4, Infinity],
-                  average: [0.2, 0.4],
-                  bad: [-Infinity, 0.2],
-                }}
-              />
-            ) : (
-              <ProgressBar
-                value={1 + health / max_health}
-                ranges={{
-                  bad: [-Infinity, Infinity],
-                }}
-              >
-                {Math.trunc((health / max_health) * 100)}%
-              </ProgressBar>
-            )}
-          </Tooltip>
+        <LabeledList.Item
+          label="Health"
+          tooltip={
+            'How healthy the patient is.' +
+            (species === 'robot'
+              ? ''
+              : " If the patient's health dips below " +
+                crit_threshold +
+                '%, they enter critical condition and suffocate rapidly.') +
+            " If the patient's health hits " +
+            (dead_threshold / max_health) * 100 +
+            '%, they die.'
+          }
+        >
+          {health >= 0 ? (
+            <ProgressBar
+              value={health / max_health}
+              ranges={{
+                good: [0.4, Infinity],
+                average: [0.2, 0.4],
+                bad: [-Infinity, 0.2],
+              }}
+            />
+          ) : (
+            <ProgressBar
+              value={1 + health / max_health}
+              ranges={{
+                bad: [-Infinity, Infinity],
+              }}
+            >
+              {Math.trunc((health / max_health) * 100)}%
+            </ProgressBar>
+          )}
         </LabeledList.Item>
         {dead ? (
           <LabeledList.Item label="Revivable">
@@ -187,7 +186,10 @@ const PatientBasics = () => {
             </Box>
           </LabeledList.Item>
         ) : null}
-        <LabeledList.Item label="Damage">
+        <LabeledList.Item
+          label="Damage"
+          tooltip="Unique damage types. Each one has a tooltip describing how it is sustained, and possible treatments."
+        >
           <Tooltip
             content={
               species === 'robot'
@@ -271,6 +273,8 @@ const PatientBasics = () => {
 };
 
 const PatientChemicals = () => {
+  const row_bg_color = 'rgba(255, 255, 255, .05)';
+  let row_transparency = 0;
   const { data } = useBackend<MedScannerData>();
   const { has_unknown_chemicals, chemicals_lists } = data;
   const chemicals = Object.values(chemicals_lists);
@@ -278,39 +282,197 @@ const PatientChemicals = () => {
     <Section title="Chemical Contents">
       {has_unknown_chemicals ? (
         <Tooltip content="There are unknown reagents detected inside the patient. Proceed with caution.">
-          <NoticeBox warning>Unknown reagents detected.</NoticeBox>
+          <NoticeBox color="orange">Unknown reagents detected.</NoticeBox>
         </Tooltip>
       ) : null}
-      <LabeledList>
+      <Stack vertical>
         {chemicals.map((chemical) => (
-          <LabeledList.Item key={chemical.name}>
-            <Tooltip
-              content={
-                chemical.description +
-                (chemical.od
-                  ? ' (OVERDOSING)'
-                  : chemical.od_threshold > 0 && !chemical.dangerous
-                    ? ' (OD: ' + chemical.od_threshold + 'u)'
-                    : '')
-              }
-            >
-              <Box
-                inline
-                color={chemical.dangerous ? 'red' : 'white'}
-                bold={chemical.dangerous}
-              >
-                {chemical.amount + 'u ' + chemical.name}
-              </Box>
-              <Box inline width={'5px'} />
-              {chemical.od ? (
-                <Box inline color={'red'} bold>
-                  {'OD'}
+          <Stack.Item
+            key={chemical.name}
+            backgroundColor={row_transparency++ % 2 === 0 ? row_bg_color : ''}
+          >
+            <Box inline>
+              <Icon
+                name={'flask'}
+                ml={0.2}
+                pr="5px"
+                color={chemical.dangerous ? 'red' : chemical.color}
+              />
+
+              <Tooltip content={chemical.description}>
+                <Box
+                  inline
+                  color={chemical.dangerous ? 'red' : 'white'}
+                  bold={!!chemical.dangerous}
+                >
+                  <Box
+                    inline
+                    bold
+                    color={chemical.dangerous ? 'red' : 'white'}
+                    mr="5px"
+                  >
+                    {chemical.amount +
+                      ((!chemical.dangerous || chemical.od) &&
+                        '/' + chemical.od_threshold + 'u')}
+                  </Box>
+                  <Box inline italic>
+                    {chemical.name}
+                  </Box>
                 </Box>
-              ) : null}
-            </Tooltip>
-          </LabeledList.Item>
+              </Tooltip>
+              <Box inline width={'5px'} />
+              {chemical.dangerous ? (
+                chemical.od ? (
+                  <Tooltip
+                    content={
+                      'Purge below ' +
+                      chemical.od_threshold +
+                      'u' +
+                      ' to stabilize. ' +
+                      (chemical.amount > chemical.crit_od_threshold
+                        ? 'This is a critical OD, so its effects are worse than normal. '
+                        : '') +
+                      Math.trunc(
+                        (chemical.amount - chemical.od_threshold) /
+                          chemical.metabolism_factor,
+                      ) +
+                      's remaining before this returns to non-OD levels on its own.'
+                    }
+                  >
+                    <Box
+                      inline
+                      color={'white'}
+                      bold
+                      backgroundColor={'red'}
+                      pl="5px"
+                      pr="5px"
+                      style={{
+                        borderRadius: '0.16em',
+                      }}
+                    >
+                      <Icon name="temperature-full" mr="5px" />
+                      {Math.trunc(
+                        (chemical.amount / chemical.od_threshold) * 100,
+                      ) +
+                        '% - OD' +
+                        (chemical.amount > chemical.crit_od_threshold
+                          ? ' CRIT'
+                          : '')}
+                      <Icon name="clock" mx="5px" />
+                      {Math.trunc(
+                        (chemical.amount - chemical.od_threshold) /
+                          chemical.metabolism_factor,
+                      ) + 's'}
+                    </Box>
+                  </Tooltip>
+                ) : (
+                  <Tooltip
+                    content={
+                      'Harmful chemical. Purge immediately. ' +
+                      Math.trunc(
+                        (chemical.amount - chemical.od_threshold) /
+                          chemical.metabolism_factor,
+                      ) +
+                      's remaining before this is cleared on its own.'
+                    }
+                  >
+                    <Box
+                      inline
+                      color="white"
+                      bold
+                      backgroundColor="red"
+                      pl="5px"
+                      pr="5px"
+                      style={{
+                        borderRadius: '0.16em',
+                      }}
+                    >
+                      HARMFUL
+                    </Box>
+                  </Tooltip>
+                )
+              ) : (
+                <Tooltip
+                  content={
+                    (chemical.amount / chemical.od_threshold) * 100 > 92
+                      ? 'This chemical is getting close to overdosing. (>92%)'
+                      : (chemical.amount / chemical.od_threshold) * 100 < 8
+                        ? 'This chemical is getting close to being cleared out. (<8%)'
+                        : 'How close this chemical is to its overdose threshold. This chemical is holding steady.'
+                  }
+                >
+                  <Box
+                    inline
+                    color={
+                      (chemical.amount / chemical.od_threshold) * 100 < 10
+                        ? 'white'
+                        : 'black'
+                    }
+                    bold
+                    backgroundColor={
+                      (chemical.amount / chemical.od_threshold) * 100 > 90
+                        ? 'yellow'
+                        : (chemical.amount / chemical.od_threshold) * 100 < 10
+                          ? 'grey'
+                          : 'white'
+                    }
+                    px="5px"
+                    style={{
+                      borderRadius: '0.16em',
+                    }}
+                  >
+                    <Icon
+                      name={
+                        (chemical.amount / chemical.od_threshold) * 100 > 90
+                          ? 'temperature-three-quarters'
+                          : (chemical.amount / chemical.od_threshold) * 100 < 10
+                            ? 'temperature-empty'
+                            : 'temperature-half'
+                      }
+                      mr="5px"
+                    />
+                    {Math.trunc(
+                      (chemical.amount / chemical.od_threshold) * 100,
+                    ) + '%'}
+                  </Box>
+                </Tooltip>
+              )}
+              <Tooltip content="Estimated time before this chemical is purged. May vary based on time dilation and other chemicals.">
+                <Box
+                  inline
+                  textColor={
+                    chemical.dangerous
+                      ? 'white'
+                      : chemical.amount / chemical.metabolism_factor < 10
+                        ? 'white'
+                        : 'black'
+                  }
+                  backgroundColor={
+                    chemical.dangerous
+                      ? 'red'
+                      : chemical.amount / chemical.metabolism_factor < 10
+                        ? 'grey'
+                        : 'white'
+                  }
+                  bold
+                  px="5px"
+                  ml="5px"
+                  style={{
+                    borderRadius: '0.16em',
+                  }}
+                >
+                  <Icon name="clock" mr="5px" />
+                  {/* Getting the /estimated/ time for when this chemical will wear off. */}
+                  {/* It's mostly accurate, but chemicals with lower metab rates will be slower to update
+                      and chemicals with higher metab rates will be faster to update. */}
+                  {Math.trunc(chemical.amount / chemical.metabolism_factor) +
+                    's'}
+                </Box>
+              </Tooltip>
+            </Box>
+          </Stack.Item>
         ))}
-      </LabeledList>
+      </Stack>
     </Section>
   );
 };
@@ -499,24 +661,74 @@ const PatientOrgans = () => {
   const { damaged_organs } = data;
   return (
     <Section title="Organs Damaged">
-      <LabeledList>
+      <Stack vertical>
         {damaged_organs.map((organ) => (
-          <LabeledList.Item
-            key={organ.name}
-            label={organ.name[0].toUpperCase() + organ.name.slice(1)}
-          >
-            <Tooltip content={organ.effects}>
-              <Box
-                inline
-                color={organ.status === 'Bruised' ? 'orange' : 'red'}
-                bold
+          <Stack.Item key={organ.name}>
+            <Box inline>
+              <Icon
+                name={organ.status === 'Failing' ? 'circle-dot' : 'circle'}
+                ml={0.2}
+                pr="5px"
+                color={
+                  organ.status === 'Damaged'
+                    ? 'orange'
+                    : organ.status === 'Failing'
+                      ? 'red'
+                      : 'grey'
+                }
+              />
+              <Tooltip
+                content={
+                  organ.status === 'Functional'
+                    ? 'This organ is considered fully functional and not damaged or failing. It may still be causing very minor effects like pain.'
+                    : organ.effects
+                }
               >
-                {organ.status + ' with ' + organ.damage + ' damage'}
-              </Box>
-            </Tooltip>
-          </LabeledList.Item>
+                <Box inline>
+                  <Box
+                    inline
+                    color={
+                      organ.status === 'Damaged'
+                        ? 'orange'
+                        : organ.status === 'Failing'
+                          ? 'red'
+                          : 'grey'
+                    }
+                    bold
+                    mr={'5px'}
+                  >
+                    {Math.trunc((organ.damage / organ.broken_damage) * 100)}%
+                  </Box>
+                  <Box inline italic mr={'5px'}>
+                    {organ.name[0].toUpperCase() + organ.name.slice(1)}
+                  </Box>
+                </Box>
+                {organ.status ? (
+                  <Box
+                    inline
+                    color={'white'}
+                    bold
+                    backgroundColor={
+                      organ.status === 'Damaged'
+                        ? 'orange'
+                        : organ.status === 'Failing'
+                          ? 'red'
+                          : 'grey'
+                    }
+                    pl="5px"
+                    pr="5px"
+                    style={{
+                      borderRadius: '0.16em',
+                    }}
+                  >
+                    {organ.status.toUpperCase()}
+                  </Box>
+                ) : null}
+              </Tooltip>
+            </Box>
+          </Stack.Item>
         ))}
-      </LabeledList>
+      </Stack>
     </Section>
   );
 };
@@ -533,16 +745,17 @@ const PatientBlood = () => {
   return (
     <Section>
       <LabeledList>
-        <LabeledList.Item label={'Blood Type: ' + blood_type}>
-          <Tooltip content="Bloodloss causes symptoms that start as suffocation and pain, but get significantly worse as more blood is lost. Blood can be restored by eating and taking Isotonic solution.">
-            <ProgressBar
-              value={blood_amount / 560}
-              ranges={{
-                good: [0.8, Infinity],
-                red: [-Infinity, 0.8],
-              }}
-            />
-          </Tooltip>
+        <LabeledList.Item
+          label={'Blood Type: ' + blood_type}
+          tooltip="Bloodloss causes symptoms that start as suffocation and pain, but get significantly worse as more blood is lost. Blood can be restored by eating and taking Isotonic solution."
+        >
+          <ProgressBar
+            value={blood_amount / 560}
+            ranges={{
+              good: [0.8, Infinity],
+              red: [-Infinity, 0.8],
+            }}
+          />
         </LabeledList.Item>
         <LabeledList.Item label={'Body Temperature'}>
           {body_temperature}

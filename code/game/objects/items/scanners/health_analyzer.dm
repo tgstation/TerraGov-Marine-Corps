@@ -128,6 +128,9 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			"amount" = round(reagent.volume, 0.1),
 			"od" = reagent.overdosed,
 			"od_threshold" = reagent.overdose_threshold,
+			"crit_od_threshold" = reagent.overdose_crit_threshold,
+			"color" = reagent.color,
+			"metabolism_factor" = reagent.custom_metabolism,
 			"dangerous" = reagent.overdosed || istype(reagent, /datum/reagent/toxin)
 		)
 	data["has_chemicals"] = length(patient.reagents.reagent_list)
@@ -211,11 +214,14 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	data["implants"] = unknown_implants
 	var/damaged_organs = list()
 	for(var/datum/internal_organ/organ AS in patient.internal_organs)
-		if(organ.organ_status == ORGAN_HEALTHY)
+		if(organ.damage <= organ.min_bruised_damage * 0.65)
+			// Only show if we're closed to failing
 			continue
 		var/current_organ = list(
 			"name" = organ.name,
-			"status" = organ.organ_status == ORGAN_BRUISED ? "Bruised" : "Broken",
+			"status" = organ.organ_status == ORGAN_BRUISED ? "Damaged" : organ.organ_status == ORGAN_BROKEN ? "Failing" : "Functional",
+			"broken_damage" = organ.min_broken_damage,
+			"bruised_damage" = organ.min_bruised_damage,
 			"damage" = organ.damage,
 			"effects" = organ.damage_description,
 		)
@@ -370,8 +376,8 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				advice += list(list(
 					"advice" = "Alien embryo detected. Immediate surgical intervention advised.", // friend detected :)
 					"tooltip" = "The patient has been implanted with an alien embryo! Left untreated, it will burst out of their chest. Surgical intervention is strongly advised.",
-					"icon" = "exclamation",
-					"color" = "red"
+					"icon" = "worm",
+					"color" = "orange"
 					))
 			if(internal_bleeding)
 				advice += list(list(
