@@ -312,6 +312,8 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ZEROFORMBEAM,
 	)
+	///last attempted move direction. we use this to allow diagonal beaming.
+	var/last_attempted_movedir
 	///list of turfs we are hitting while shooting our beam
 	var/list/turf/targets
 	///ref to beam that is currently active
@@ -330,6 +332,18 @@
 /datum/action/ability/xeno_action/zero_form_beam/New(Target)
 	. = ..()
 	sound_loop = new
+
+/datum/action/ability/xeno_action/zero_form_beam/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(L, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(set_attempted_movedir))
+
+/datum/action/ability/xeno_action/zero_form_beam/remove_action(mob/living/L)
+	UnregisterSignal(L, COMSIG_MOVABLE_PRE_MOVE)
+	return ..()
+
+/datum/action/ability/xeno_action/zero_form_beam/proc/set_attempted_movedir(atom/source, atom/newloc, direction)
+	SIGNAL_HANDLER
+	last_attempted_movedir = direction
 
 /obj/effect/ebeam/zeroform/Initialize(mapload)
 	. = ..()
@@ -350,16 +364,17 @@
 		stop_beaming()
 		return
 
-	var/turf/check_turf = get_step(owner, owner.dir)
+	var/dirtouse = last_attempted_movedir ? last_attempted_movedir : owner.dir
+	var/turf/check_turf = get_step(owner, dirtouse)
 	LAZYINITLIST(targets)
 	while(check_turf && length(targets) < ZEROFORM_BEAM_RANGE)
 		targets += check_turf
-		check_turf = get_step(check_turf, owner.dir)
+		check_turf = get_step(check_turf, dirtouse)
 	if(!LAZYLEN(targets))
 		return
 
 	var/particles_type
-	switch(owner.dir)
+	switch(owner.dir) // todo: missing diagonal particles
 		if(WEST)
 			particles_type = /particles/zero_form/west
 		if(EAST)
