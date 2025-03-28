@@ -827,6 +827,7 @@
 /obj/item/weapon/gun/shotgun/pump/dijitar
 	name = "\improper SH41 Dijitar bolt action"
 	desc = "The newer SH41 for TerraGov. Bolt action and quick to do it's job, as long as you can too. Uses 10 gauge shells.\n<b>Requires a racking of the bolt, which is the Unique Action key.</b>"
+	force = 20
 	caliber = CALIBER_10G
 	max_chamber_items = 1
 	load_method = MAGAZINE
@@ -844,6 +845,8 @@
 	cocked_sound = 'sound/weapons/guns/interact/working_the_shotgun_bolt.ogg'
 	cocked_message = "You work the bolt with eminence."
 
+	//default_ammo_type = /obj/item/ammo_magazine/dijitar_mag
+	//allowed_ammo_types = list(/obj/item/ammo_magazine/dijitar_mag)
 	default_ammo_type = /obj/item/ammo_magazine/dijitar_base_slug/dijitar_buckshot
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/dijitar_base_slug,
@@ -866,27 +869,26 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/foldable/t35stock,
+		///obj/item/attachable/foldable/t35stock,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 	)
-	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock)
+	//starting_attachment_types = list(/obj/item/attachable/foldable/t35stock) //It has a static stock so I dunno
 
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION|AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
 
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 9, "rail_y" = 21, "under_x" = 18, "under_y" = 12, "stock_x" = -3, "stock_y" = 16)
+	attachable_offset = list("muzzle_x" = 55, "muzzle_y" = 19,"rail_x" = 29, "rail_y" = 22, "under_x" = 41, "under_y" = 15, "stock_x" = 11, "stock_y" = 19)
 	item_map_variant_flags = NONE
 
 	fire_delay = 1.2 SECONDS
 	scatter = 3.5
 	scatter_unwielded = 10
-	recoil = 2.5
-	recoil_unwielded = 5
+	recoil = 2
+	//recoil_unwielded = 5  //Since you always need two hands to fire it I don't think this matters hmm
 	aim_slowdown = 0.45
 	cock_delay = 0.8 SECONDS
 
-	placed_overlay_iconstate = "t35"
 
 //-------------------------------------------------------
 //THE MYTH, THE GUN, THE LEGEND, THE DEATH, THE ZX
