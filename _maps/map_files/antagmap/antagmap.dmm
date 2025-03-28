@@ -4782,10 +4782,6 @@
 "zM" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
-/obj/structure/closet/secure_closet/engineering_personal{
-	pixel_x = -8;
-	pixel_y = 6
-	},
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 1
 	},
