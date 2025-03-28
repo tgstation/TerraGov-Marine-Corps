@@ -1113,10 +1113,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/hallways/outside)
 "gX" = (
-/obj/structure/closet/secure_closet/engineering_personal{
-	pixel_y = 6;
-	pixel_x = 10
-	},
+/obj/structure/closet/secure_closet/engineering_personal/clf,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
@@ -4785,6 +4782,10 @@
 "zM" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
+/obj/structure/closet/secure_closet/engineering_personal{
+	pixel_x = -8;
+	pixel_y = 6
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 1
 	},
@@ -5813,8 +5814,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/antag_ship/icc/hangar/west)
 "Ft" = (
-/obj/structure/closet/secure_closet/engineering_chief,
 /obj/item/storage/backpack/marine/engineerpack,
+/obj/structure/closet/secure_closet/engineering_chief/som,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
 "Fu" = (
@@ -8629,8 +8630,8 @@
 	},
 /area/antag_ship/clf_base/techroom)
 "TN" = (
-/obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/storage/backpack/marine/engineerpack,
+/obj/structure/closet/secure_closet/engineering_personal/som,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
 "TQ" = (
@@ -9090,10 +9091,7 @@
 /turf/open/shuttle/dropship/eight,
 /area/shuttle/transport)
 "VY" = (
-/obj/structure/closet/secure_closet/engineering_personal{
-	pixel_x = -8;
-	pixel_y = 6
-	},
+/obj/structure/closet/secure_closet/engineering_personal/clf,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},

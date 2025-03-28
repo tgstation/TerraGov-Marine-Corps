@@ -485,8 +485,9 @@
 	)
 
 /obj/item/clothing/head/modular/m10x/stolen
-	name = "\improper Stolen M10X pattern helmet"
-	desc = "A stolen modular M10X pattern marine helmet, adapted for use by the Sons of Mars."
+	name = "\improper stolen M10X pattern helmet"
+	desc = "A stolen modular M10X pattern marine helmet. It has been painted a dark red & repurposed for use by the Sons of Mars."
+	color = COLOR_PALE_RED_GRAY // dark green * grey-pink = Dark red
 
 /obj/item/clothing/head/modular/m10x/leader
 	name = "\improper M11X pattern leader helmet"
