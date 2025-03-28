@@ -237,7 +237,7 @@
 
 ///Move the ai mob on top of the window_frame
 /datum/ai_behavior/xeno/proc/climb_window_frame(turf/window_turf)
-	mob_parent.loc = window_turf
+	mob_parent.forceMove(window_turf)
 	mob_parent.last_move_time = world.time
 	LAZYDECREMENT(mob_parent.do_actions, window_turf)
 

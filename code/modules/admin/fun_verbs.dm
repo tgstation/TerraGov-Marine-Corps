@@ -634,7 +634,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(release, R_FUN, "Release Obj", obj/OB in world)
 		var/mob/living/carbon/human/H = M
 		H.name = H.get_visible_name()
 
-	M.loc = get_turf(M.control_object)
+	M.abstract_move(get_turf(M.control_object))
 	M.reset_perspective()
 	M.control_object = null
 
