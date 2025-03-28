@@ -4444,6 +4444,15 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
+"xF" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/item/stack/conveyor/thirty,
+/obj/item/conveyor_switch_construct,
+/obj/item/paper/factoryhowto,
+/turf/open/floor/plating/asteroidfloor,
+/area/antag_ship/clf_base/requisition)
 "xH" = (
 /obj/structure/largecrate/supply/supplies/coifs,
 /obj/effect/turf_decal/trimline/brown/filled/warning{
@@ -15425,7 +15434,7 @@ Gy
 ZU
 Gy
 Gy
-ZU
+xF
 Gy
 pA
 aU

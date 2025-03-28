@@ -2263,6 +2263,11 @@ FACTORY
 	contains = list(/obj/machinery/unboxer)
 	cost = 50
 
+/datum/supply_packs/conveyors
+	name = "conveyor refill"
+	contains = list(/obj/item/stack/conveyor/thirty, /obj/item/conveyor_switch_construct)
+	cost = 300
+
 /datum/supply_packs/factory/bignaderefill
 	name = "Rounded M15 plates refill"
 	contains = list(/obj/item/factory_refill/bignade_refill)
