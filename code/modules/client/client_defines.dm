@@ -132,3 +132,6 @@
 
 	show_popup_menus = TRUE // right click menu no longer shows up
 	control_freak = CONTROL_FREAK_MACROS
+
+	///Reference to the Codex object (window and all it's contents)
+	var/datum/codex/codex = /datum/codex
