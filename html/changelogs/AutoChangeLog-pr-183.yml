@@ -1,4 +1,0 @@
-author: "dottymint"
-delete-after: True
-changes:
-  - imageadd: "medical curtain now its own variant, default curtain no longer has cross"

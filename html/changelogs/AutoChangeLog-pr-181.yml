@@ -1,4 +1,0 @@
-author: "dottymint"
-delete-after: True
-changes:
-  - imageadd: "added panel sprites to vendors that were missing them"

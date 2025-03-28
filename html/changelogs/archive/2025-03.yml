@@ -110,3 +110,15 @@
   - rscadd: Added req access for NTC SL, AC & TO. Added req access for SOM PO & MP.
   dottymint:
   - bugfix: fixed showers not updating properly
+2025-03-28:
+  ddotmint:
+  - bugfix: fixed SOM weapons rack formatting, name and description
+  dottymint:
+  - rscadd: added a preference for toggling your own burst screams
+  - imageadd: added panel sprites to vendors that were missing them
+  - bugfix: fixed camera photo sprite and mini pepperball + magazine not having a
+      sprite
+  - imageadd: replaced camera photo sprite
+  - rscadd: some recipes for the food processor (raw potato sticks, tortillas, carrot
+      fries, soydope, flour, spaghetti, chocolate bars and raw meatballs)
+  - imageadd: medical curtain now its own variant, default curtain no longer has cross

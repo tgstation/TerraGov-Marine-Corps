@@ -1,5 +1,0 @@
-author: "dottymint"
-delete-after: True
-changes:
-  - bugfix: "fixed camera photo sprite and mini pepperball + magazine not having a sprite"
-  - imageadd: "replaced camera photo sprite"
