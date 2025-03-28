@@ -1,0 +1,5 @@
+author: "Cheese"
+delete-after: True
+changes:
+  - balance: "Huggers can now be stripped in 2 seconds, rather than 4, when using help intent on another mob"
+  - code_imp: "Stripping items now actually respects its custom strip timer (if any). This may have unintended consequences"
