@@ -1546,3 +1546,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	user.balloon_alert(user, "Refilled") //If all checks passed, it's safe to throw the balloon alert
 	return TRUE
 
+/// Returns the strip delay of the item. 
+/obj/item/proc/getstripdelay()
+	return strip_delay
