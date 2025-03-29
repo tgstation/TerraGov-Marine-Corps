@@ -150,7 +150,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon = 'icons/obj/items/ammo/shotgun.dmi'
 	default_ammo = /datum/ammo/bullet/shotgun/dijitar_slug
 	caliber = CALIBER_10G
-	max_rounds = 7
+	max_rounds = 5
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/ammo_magazine/dijitar_base_slug/dijitar_incendiary

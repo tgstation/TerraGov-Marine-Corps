@@ -827,7 +827,7 @@
 /obj/item/weapon/gun/shotgun/pump/dijitar
 	name = "\improper SH41 Dijitar bolt action"
 	desc = "The newer SH41 for TerraGov. Bolt action and quick to do it's job, as long as you can too. Uses 10 gauge shells.\n<b>Requires a racking of the bolt, which is the Unique Action key.</b>"
-	force = 20
+	force = 25
 	caliber = CALIBER_10G
 	max_chamber_items = 1
 	load_method = MAGAZINE
@@ -878,10 +878,10 @@
 	attachable_offset = list("muzzle_x" = 55, "muzzle_y" = 19,"rail_x" = 29, "rail_y" = 22, "under_x" = 41, "under_y" = 15, "stock_x" = 11, "stock_y" = 19)
 	item_map_variant_flags = NONE
 
-	fire_delay = 1.2 SECONDS
+	fire_delay = 1.5 SECONDS
 	scatter = 3.5
 	scatter_unwielded = 10
-	recoil = 2
+	recoil = 3
 	aim_slowdown = 0.45
 	cock_delay = 0.8 SECONDS
 

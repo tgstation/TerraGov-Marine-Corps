@@ -159,15 +159,16 @@
 	handful_icon_state = "shotgun_slug"
 	hud_state = "shotgun_slug"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	shell_speed = 2.5
+	shell_speed = 2.2
 	handful_amount = 4
 	max_range = 18
 	damage = 110
 	penetration = 21
-	sundering = 6
+	sundering = 4
+	damage_falloff = 2
 
 /datum/ammo/bullet/shotgun/dijitar_slug/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 1, slowdown = 2)
+	staggerstun(target_mob, proj, paralyze = 1 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 1)
 
 /datum/ammo/bullet/shotgun/dijitar_incendiary
 	name = "incendiary slug"
@@ -175,16 +176,17 @@
 	hud_state = "shotgun_fire"
 	damage_type = BRUTE
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
-	shell_speed = 2.5
+	shell_speed = 2.2
 	handful_amount = 4
 	max_range = 18
 	damage = 65
 	penetration = 13
 	sundering = 3
+	damage_falloff = 2
 	bullet_color = COLOR_TAN_ORANGE
 
 /datum/ammo/bullet/shotgun/dijitar_incendiary/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, knockback = 2, slowdown = 1)
+	staggerstun(target_mob, proj, knockback = 2, slowdown = 0.5)
 
 /datum/ammo/bullet/shotgun/dijitar_flechette
 	name = "shotgun flechette shell"
@@ -201,9 +203,9 @@
 	accuracy_var_high = 8
 	max_range = 15
 	damage = 45
-	damage_falloff = 0.5
-	penetration = 15
-	sundering = 8
+	damage_falloff = 1
+	penetration = 12
+	sundering = 9
 
 /datum/ammo/bullet/shotgun/dijitar_flechette/flechette_spread
 	name = "additional flechette"
@@ -228,7 +230,7 @@
 	damage_falloff = 3
 
 /datum/ammo/bullet/shotgun/dijitar_buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
+	staggerstun(target_mob, proj, paralyze = 1.5 SECONDS, stagger = 2 SECONDS, knockback = 1, slowdown = 0.5, max_range = 3)
 
 /datum/ammo/bullet/dijitar_hefa_buckshot
 	name = "hefa fragment"
