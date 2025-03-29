@@ -135,6 +135,14 @@
 
 	return ..()
 
+/obj/alien/resin/sticky/can_z_move(direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	z_move_flags |= ZMOVE_ALLOW_ANCHORED
+	return ..()
+
+/obj/alien/resin/sticky/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+	impact_flags |= ZIMPACT_NO_SPIN
+	return ..()
+
 // Hivelord Sticky Resin spit uses this.
 /obj/alien/resin/sticky/thin
 	name = "thin sticky resin"
