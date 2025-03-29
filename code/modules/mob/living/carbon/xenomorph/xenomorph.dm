@@ -75,6 +75,7 @@
 
 	AddElement(/datum/element/footstep, footstep_type, mob_size >= MOB_SIZE_BIG ? 0.8 : 0.5)
 	set_jump_component()
+	AddComponent(/datum/component/anti_juggling)	//Guns are perpetually "not ready to fire again" without this
 	AddComponent(/datum/component/seethrough_mob)
 
 /mob/living/carbon/xenomorph/register_init_signals()
@@ -535,6 +536,10 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 			wear_mask = item_to_equip
 			item_to_equip.equipped(src, slot)
 			wear_mask_update(item_to_equip, TRUE)
+		if(SLOT_HEAD)
+			head = item_to_equip
+			item_to_equip.equipped(src, slot)
+			update_inv_head()
 
 /mob/living/carbon/xenomorph/grabbed_self_attack(mob/living/user)
 	. = ..()

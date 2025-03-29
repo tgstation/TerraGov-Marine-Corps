@@ -165,6 +165,8 @@
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_EVOLVED, new_xeno)
 	for(var/obj/item/W in contents) //Drop stuff
 		dropItemToGround(W)
+		if(isgun(W) || isclothing(W))	//Delete any infinite ammo guns or clothing
+			qdel(W)
 
 	if(mind)
 		mind.transfer_to(new_xeno)
@@ -230,6 +232,8 @@
 	selector?.set_selected_zone(zone_selected, new_xeno)
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, TYPE_PROC_REF(/atom, do_jitter_animation), 1000)
+
+	new_xeno.equip_gear()
 
 ///Check if the xeno is currently able to evolve
 /mob/living/carbon/xenomorph/proc/generic_evolution_checks()
