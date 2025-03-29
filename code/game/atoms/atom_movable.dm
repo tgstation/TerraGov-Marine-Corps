@@ -392,13 +392,14 @@
 	var/atom/movable/pullee = pulling
 	if(!moving_from_pull)
 		check_pulling(z_allowed = TRUE)
-	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, newloc, direction) & COMPONENT_MOVABLE_BLOCK_PRE_MOVE)
-		return FALSE
 	if(!loc || !newloc || loc == newloc)
 		return FALSE
 
 	if(!direction)
 		direction = get_dir(src, newloc)
+
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, newloc, direction) & COMPONENT_MOVABLE_BLOCK_PRE_MOVE)
+		return FALSE
 
 	var/can_pass_diagonally = NONE
 	if (direction & (direction - 1)) //Check if the first part of the diagonal move is possible
@@ -415,6 +416,7 @@
 			can_pass_diagonally = WEST
 		else
 			moving_diagonally = FALSE
+			setDir(direction &~ (NORTH|SOUTH))
 			return
 		moving_diagonally = FALSE
 		if(!get_step(loc, can_pass_diagonally)?.Exit(src, direction & ~can_pass_diagonally))
