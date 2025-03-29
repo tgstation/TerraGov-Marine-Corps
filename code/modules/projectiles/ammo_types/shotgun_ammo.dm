@@ -166,6 +166,7 @@
 	penetration = 21
 	sundering = 4
 	damage_falloff = 2
+	/obj/item/weapon/gun/shotgun/pump/dijitar/recoil = 5
 
 /datum/ammo/bullet/shotgun/dijitar_slug/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, paralyze = 1 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 1)
@@ -206,6 +207,7 @@
 	damage_falloff = 1
 	penetration = 12
 	sundering = 9
+	/obj/item/weapon/gun/shotgun/pump/dijitar/recoil = 2.5
 
 /datum/ammo/bullet/shotgun/dijitar_flechette/flechette_spread
 	name = "additional flechette"
@@ -228,6 +230,7 @@
 	max_range = 14
 	damage = 50
 	damage_falloff = 3
+	/obj/item/weapon/gun/shotgun/pump/dijitar/recoil = 2.5
 
 /datum/ammo/bullet/shotgun/dijitar_buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, paralyze = 1.5 SECONDS, stagger = 2 SECONDS, knockback = 1, slowdown = 0.5, max_range = 3)
@@ -244,6 +247,7 @@
 	shrapnel_chance = 15
 	damage = 30
 	damage_falloff = 3
+	/obj/item/weapon/gun/shotgun/pump/dijitar/recoil = 2.5
 
 /datum/ammo/bullet/dijitar_hefa_buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, knockback = 2, max_range = 4)
