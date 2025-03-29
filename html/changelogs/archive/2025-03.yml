@@ -122,3 +122,7 @@
   - rscadd: some recipes for the food processor (raw potato sticks, tortillas, carrot
       fries, soydope, flour, spaghetti, chocolate bars and raw meatballs)
   - imageadd: medical curtain now its own variant, default curtain no longer has cross
+2025-03-29:
+  Meghan-Rossi:
+  - rscadd: Dragons can now regress on silos
+  - balance: Xenos now need to be on a silo to become dragons.

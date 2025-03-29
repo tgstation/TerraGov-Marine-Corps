@@ -1,5 +1,0 @@
-author: "Meghan-Rossi"
-delete-after: True
-changes:
-  - rscadd: "Dragons can now regress on silos"
-  - balance: "Xenos now need to be on a silo to become dragons."
