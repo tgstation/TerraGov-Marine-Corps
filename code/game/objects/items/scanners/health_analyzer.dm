@@ -216,7 +216,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	for(var/datum/internal_organ/organ AS in patient.internal_organs)
 		if(organ.damage <= organ.min_bruised_damage * 0.5)
 			// allow organs to pop out when damaged but still 'functional'
-			// only if their damage is close to being damaged
+			// only if their damage is close to being bruised
 			continue
 		var/current_organ = list(
 			"name" = organ.name,
