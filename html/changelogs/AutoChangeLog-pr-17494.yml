@@ -1,7 +1,0 @@
-author: "tyeagg"
-delete-after: True
-changes:
-  - rscadd: "particles for mech walking jumping and dashing"
-  - rscadd: "sound effect while mech dashing"
-  - rscadd: "mech dashing no longer affects direction while strafing"
-  - imageadd: "boost overlay for new mech"
