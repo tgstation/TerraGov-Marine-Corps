@@ -316,6 +316,14 @@
 	for(var/mob/living/living_victim in loc)
 		mob_act(living_victim)
 
+/obj/effect/xenomorph/firenado/can_z_move(direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	z_move_flags |= ZMOVE_ALLOW_ANCHORED
+	return ..()
+
+/obj/effect/xenomorph/firenado/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+	impact_flags |= ZIMPACT_NO_SPIN
+	return ..()
+
 /obj/effect/xenomorph/firenado/Bump(atom/target)
 	. = ..()
 	if(isliving(target))
