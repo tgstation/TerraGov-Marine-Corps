@@ -245,6 +245,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_WOUND_DISINFECTED (1<<2)
 #define LIMB_WOUND_CLAMPED (1<<3)
 
+/// If the limb's total damage percent is higher than this,
+/// it can be severed.
+#define LIMB_MAX_DAMAGE_SEVER_RATIO 0.8
+
 /////////////////MOVE DEFINES//////////////////////
 #define MOVE_INTENT_WALK 0
 #define MOVE_INTENT_RUN 1

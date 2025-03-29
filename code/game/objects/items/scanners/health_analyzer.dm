@@ -111,6 +111,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.blood_volume,
+		"regular_blood_amount" = initial(patient.blood_volume),
 
 		"hugged" = !!(patient.status_flags & XENO_HOST),
 
@@ -146,6 +147,9 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 	var/total_unknown_implants = 0
 	for(var/datum/limb/limb AS in patient.limbs)
+		if((limb.parent?.limb_status & LIMB_DESTROYED) && !(istype(limb.parent, /datum/limb/groin) && istype(limb.parent, /datum/limb/chest) && istype(limb.parent, /datum/limb/head)))
+			// avoid showing right arm and right hand as missing, for example
+			continue
 		var/infected = FALSE
 		var/necrotized = FALSE
 
@@ -187,7 +191,8 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			"open_incision" = limb.surgery_open_stage,
 			"necrotized" = necrotized,
 			"infected" = infected,
-			"implants" = implants
+			"implants" = implants,
+			"max_damage" = limb.max_damage * LIMB_MAX_DAMAGE_SEVER_RATIO,
 		)
 		var/limb_type = ""
 		if(CHECK_BITFIELD(limb.limb_status, LIMB_ROBOT))

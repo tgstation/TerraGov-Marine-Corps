@@ -28,6 +28,7 @@ type LimbData = {
   open_incision: boolean;
   infected: boolean;
   necrotized: boolean;
+  max_damage: number;
 };
 
 type ChemData = {
@@ -82,6 +83,7 @@ type CommonData = {
   ssd: string | null;
   blood_type: string;
   blood_amount: number;
+  regular_blood_amount: number;
   body_temperature: string;
   pulse: string;
   infection: boolean;
@@ -92,9 +94,24 @@ type CommonData = {
   accessible_theme: boolean;
 };
 
-const row_bg_color = 'rgba(255, 255, 255, .05)';
+const row_bg_color = 'hsla(0, 0.00%, 100.00%, 0.05)';
+const robotLimbColor = 'hsl(218, 60%, 74%)';
 
-export const MedScanner = () => {
+/**
+ * @param damage input damage level for returning a color
+ * @param type string limb type for determining if we should return robot colors
+ * @returns a color string
+ */
+function getLimbColor(damage: number, type?: string) {
+  if (type === 'Robotic') return robotLimbColor;
+  if (damage <= 0.3) return 'hsl(44, 100%, 68%)';
+  if (damage <= 0.6) return 'hsl(24, 100%, 68%)';
+  if (damage <= 0.9) return 'hsl(4, 100%, 68%)';
+  if (damage >= 1) return 'grey';
+  else return 'white';
+}
+
+export function MedScanner() {
   const { data } = useBackend<CommonData>();
   const {
     species,
@@ -102,6 +119,7 @@ export const MedScanner = () => {
     limbs_damaged,
     damaged_organs,
     blood_amount,
+    regular_blood_amount,
     internal_bleeding,
     advice,
     accessible_theme,
@@ -125,14 +143,16 @@ export const MedScanner = () => {
         {has_chemicals ? <PatientChemicals /> : null}
         {limbs_damaged ? <PatientLimbs /> : null}
         {damaged_organs?.length ? <PatientOrgans /> : null}
-        {blood_amount < 560 || internal_bleeding ? <PatientBlood /> : null}
+        {blood_amount < regular_blood_amount || internal_bleeding ? (
+          <PatientBlood />
+        ) : null}
         {advice ? <PatientAdvice /> : null}
       </Window.Content>
     </Window>
   );
-};
+}
 
-const PatientBasics = () => {
+function PatientBasics() {
   const { data } = useBackend<CommonData>();
   const {
     patient,
@@ -247,7 +267,7 @@ const PatientBasics = () => {
             <Box inline>
               <ProgressBar value={0}>
                 Brute:{' '}
-                <Box inline bold color={'red'}>
+                <Box inline bold color="red">
                   {total_brute}
                 </Box>
               </ProgressBar>
@@ -264,7 +284,7 @@ const PatientBasics = () => {
             <Box inline>
               <ProgressBar value={0}>
                 Burn:{' '}
-                <Box inline bold color={'#ffb833'}>
+                <Box inline bold color="#ffb833">
                   {total_burn}
                 </Box>
               </ProgressBar>
@@ -277,7 +297,7 @@ const PatientBasics = () => {
                 <Box inline>
                   <ProgressBar value={0}>
                     Tox:{' '}
-                    <Box inline bold color={'green'}>
+                    <Box inline bold color="green">
                       {toxin}
                     </Box>
                   </ProgressBar>
@@ -288,7 +308,7 @@ const PatientBasics = () => {
                 <Box inline>
                   <ProgressBar value={0}>
                     Oxy:{' '}
-                    <Box inline bold color={'blue'}>
+                    <Box inline bold color="blue">
                       {oxy}
                     </Box>
                   </ProgressBar>
@@ -307,7 +327,7 @@ const PatientBasics = () => {
             <Box inline>
               <ProgressBar value={0}>
                 {species === 'robot' ? 'Integrity' : 'Clone'}:{' '}
-                <Box inline bold color={'teal'}>
+                <Box inline bold color="teal">
                   {clone}
                 </Box>
               </ProgressBar>
@@ -317,9 +337,9 @@ const PatientBasics = () => {
       </LabeledList>
     </Section>
   );
-};
+}
 
-const PatientChemicals = () => {
+function PatientChemicals() {
   let row_transparency = 0;
   const { data } = useBackend<CommonData>();
   const { has_unknown_chemicals, chemicals_lists = {} } = data;
@@ -335,8 +355,11 @@ const PatientChemicals = () => {
           <Stack.Item
             key={chemical.name}
             backgroundColor={row_transparency++ % 2 === 0 ? row_bg_color : ''}
+            style={{
+              borderRadius: '0.16em',
+            }}
           >
-            <Box inline p={'5px'}>
+            <Box inline p={'2.5px'}>
               <Icon
                 name={'flask'}
                 ml={0.2}
@@ -367,6 +390,7 @@ const PatientChemicals = () => {
               <Box inline width={'5px'} />
               {chemical.dangerous ? (
                 chemical.od ? (
+                  /* Only show the OD warning if the OD is why this is dangerous */
                   <Tooltip
                     content={
                       'Purge below ' +
@@ -385,7 +409,7 @@ const PatientChemicals = () => {
                   >
                     <Box
                       inline
-                      color={'white'}
+                      color="white"
                       bold
                       backgroundColor={'red'}
                       pl="5px"
@@ -519,9 +543,9 @@ const PatientChemicals = () => {
       </Stack>
     </Section>
   );
-};
+}
 
-const PatientLimbs = () => {
+function PatientLimbs() {
   let row_transparency = 0;
   const { data } = useBackend<CommonData>();
   const { limb_data_lists = {}, species, accessible_theme } = data;
@@ -537,8 +561,8 @@ const PatientLimbs = () => {
             Burn
           </Stack.Item>
           <Stack.Item grow textAlign="right" color="grey" nowrap>
-            <Icon name="tint" inline bold px="5px" />
-            {'= Bleeding, '}
+            <Icon name="droplet" inline bold px="5px" />
+            {'= Bleeding '}
             {'{ } = Untreated'}
           </Stack.Item>
         </Stack>
@@ -548,8 +572,25 @@ const PatientLimbs = () => {
             width="100%"
             py="3px"
             backgroundColor={row_transparency++ % 2 === 0 ? row_bg_color : ''}
+            style={{
+              borderRadius: '0.16em',
+            }}
           >
-            <Stack.Item basis="80px" bold pl="3px">
+            <Stack.Item
+              basis="80px"
+              pl="3px"
+              bold
+              textColor={
+                limb.missing
+                  ? 'grey'
+                  : species === 'robot'
+                    ? 'white'
+                    : getLimbColor(
+                        (limb.brute + limb.burn) / limb.max_damage,
+                        limb.limb_type,
+                      )
+              }
+            >
               {limb.name[0].toUpperCase() + limb.name.slice(1)}
             </Stack.Item>
             {limb.missing ? (
@@ -560,9 +601,7 @@ const PatientLimbs = () => {
                     : 'Missing limbs can only be fixed through surgical intervention. Head reattachment is only possible for combat robots and synthetics. Only printed limbs work as a replacement, except for head reattachment.'
                 }
               >
-                <Stack.Item color={'red'} bold>
-                  MISSING
-                </Stack.Item>
+                <Stack.Item color="grey">Missing</Stack.Item>
               </Tooltip>
             ) : (
               <>
@@ -607,7 +646,7 @@ const PatientLimbs = () => {
                 <Stack.Item>
                   {limb.bleeding ? (
                     <Tooltip content="The patient is losing blood from this limb. Bleeding can be stopped with gauze or an advanced trauma kit.">
-                      <Icon name="tint" inline color={'red'} bold px="5px" />
+                      <Icon name="droplet" inline color="red" bold px="5px" />
                     </Tooltip>
                   ) : null}
                   {limb.limb_status ? (
@@ -648,7 +687,7 @@ const PatientLimbs = () => {
                               ? accessible_theme
                                 ? 'lime'
                                 : 'label'
-                              : 'pink'
+                              : robotLimbColor
                             : 'tan'
                         }
                         bold
@@ -659,28 +698,28 @@ const PatientLimbs = () => {
                   ) : null}
                   {limb.open_incision ? (
                     <Tooltip content="Open surgical incisions can usually be closed by a cautery depending on the stage of the surgery. Risk of infection if left untreated.">
-                      <Box inline color={'red'} bold>
+                      <Box inline color="red" bold>
                         [Open Incision]
                       </Box>
                     </Tooltip>
                   ) : null}
                   {limb.infected ? (
                     <Tooltip content="Infected limbs can be treated with spaceacillin. Risk of necrosis if left untreated.">
-                      <Box inline color={'olive'} bold>
+                      <Box inline color="olive" bold>
                         [Infected]
                       </Box>
                     </Tooltip>
                   ) : null}
                   {limb.necrotized ? (
                     <Tooltip content="Necrotized arms or legs cause random dropping of items or falling over, respectively. Organ damage will occur if on the head, chest or groin. Treated by surgery.">
-                      <Box inline color={'brown'} bold>
+                      <Box inline color="brown" bold>
                         [Necrotizing]
                       </Box>
                     </Tooltip>
                   ) : null}
                   {limb.implants ? (
                     <Tooltip content="Harmful implants are usually shrapnel from firefights. Moving with a harmful implant will inflict Brute damage occasionally. Removed with tweezers.">
-                      <Box inline color={'white'} bold>
+                      <Box inline color="white" bold>
                         [Implant x{limb.implants}]
                       </Box>
                     </Tooltip>
@@ -693,9 +732,9 @@ const PatientLimbs = () => {
       </Stack>
     </Section>
   );
-};
+}
 
-const PatientOrgans = () => {
+function PatientOrgans() {
   let row_transparency = 0;
   const { data } = useBackend<CommonData>();
   const { damaged_organs = {} } = data;
@@ -706,8 +745,11 @@ const PatientOrgans = () => {
           <Stack.Item
             key={organ.name}
             backgroundColor={row_transparency++ % 2 === 0 ? row_bg_color : ''}
+            style={{
+              borderRadius: '0.16em',
+            }}
           >
-            <Box inline p={'5px'}>
+            <Box inline p={'3px'}>
               <Icon
                 name={organ.status === 'Failing' ? 'circle-dot' : 'circle'}
                 ml={0.2}
@@ -749,7 +791,7 @@ const PatientOrgans = () => {
                 {organ.status ? (
                   <Box
                     inline
-                    color={'white'}
+                    color="white"
                     bold
                     backgroundColor={
                       organ.status === 'Damaged'
@@ -774,12 +816,13 @@ const PatientOrgans = () => {
       </Stack>
     </Section>
   );
-};
+}
 
-const PatientBlood = () => {
+function PatientBlood() {
   const { data } = useBackend<CommonData>();
   const {
     blood_amount,
+    regular_blood_amount,
     blood_type,
     body_temperature,
     internal_bleeding,
@@ -787,38 +830,62 @@ const PatientBlood = () => {
     total_unknown_implants,
     infection,
   } = data;
+  let blood_warning =
+    blood_amount / regular_blood_amount < 0.8 || internal_bleeding;
   return (
     <Section>
       <LabeledList>
         <LabeledList.Item
-          label={'Blood Type: ' + blood_type}
+          label={'Blood Volume'}
           tooltip="Bloodloss causes symptoms that start as suffocation and pain, but get significantly worse as more blood is lost. Blood can be restored by eating and taking Isotonic solution."
         >
-          <ProgressBar
-            value={blood_amount / 560}
-            ranges={{
-              good: [0.8, Infinity],
-              red: [-Infinity, 0.8],
+          <Box
+            mr="5px"
+            inline
+            color={blood_warning ? 'red' : 'white'}
+            bold={blood_warning ? true : false}
+          >
+            {Math.trunc(blood_amount)}/{Math.trunc(regular_blood_amount)}cl (
+            {Math.trunc((blood_amount / regular_blood_amount) * 100)}%)
+          </Box>
+          <Box
+            mr="5px"
+            inline
+            bold
+            px="5px"
+            backgroundColor={blood_warning ? 'red' : 'grey'}
+            style={{
+              borderRadius: '0.16em',
             }}
-          />
+          >
+            {blood_type}
+          </Box>
+          {!!internal_bleeding && (
+            <Box
+              inline
+              bold
+              px="5px"
+              backgroundColor="red"
+              style={{
+                borderRadius: '0.16em',
+              }}
+            >
+              INTERNAL BLEEDING
+            </Box>
+          )}
         </LabeledList.Item>
-        <LabeledList.Item label={'Body Temperature'}>
+        <LabeledList.Item label="Body Temperature">
           {body_temperature}
         </LabeledList.Item>
-        <LabeledList.Item label={'Pulse'}>{pulse}</LabeledList.Item>
+        <LabeledList.Item label="Pulse">{pulse}</LabeledList.Item>
       </LabeledList>
-      {internal_bleeding ? (
-        <NoticeBox color="red" mt={'8px'} mb={'0px'}>
-          Internal Bleeding Detected!
-        </NoticeBox>
-      ) : null}
       {infection ? (
-        <NoticeBox color="orange" mt={'8px'} mb={'0px'}>
+        <NoticeBox color="orange" mt="8px" mb="0px">
           {infection}
         </NoticeBox>
       ) : null}
       {total_unknown_implants ? (
-        <NoticeBox color="orange" mt={'8px'} mb={'0px'}>
+        <NoticeBox color="orange" mt="8px" mb="0px">
           There {total_unknown_implants !== 1 ? 'are' : 'is'}{' '}
           {total_unknown_implants} unknown implant
           {total_unknown_implants !== 1 ? 's' : ''} detected within the patient.
@@ -826,9 +893,9 @@ const PatientBlood = () => {
       ) : null}
     </Section>
   );
-};
+}
 
-const PatientAdvice = () => {
+function PatientAdvice() {
   const { data } = useBackend<CommonData>();
   const { advice = {}, species, accessible_theme } = data;
   return (
@@ -864,4 +931,4 @@ const PatientAdvice = () => {
       </Stack>
     </Section>
   );
-};
+}
