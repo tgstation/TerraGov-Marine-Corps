@@ -92,7 +92,6 @@ F// DM Environment file for baystation12.dme.
 #include "code\__DEFINES\language.dm"
 #include "code\__DEFINES\layers.dm"
 #include "code\__DEFINES\lazy_templates.dm"
-#include "code\__DEFINES\legacy_modular_armor.dm"
 #include "code\__DEFINES\lighting.dm"
 #include "code\__DEFINES\loadout.dm"
 #include "code\__DEFINES\loadout_variants.dm"
