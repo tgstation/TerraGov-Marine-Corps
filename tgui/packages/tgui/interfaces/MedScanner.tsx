@@ -94,7 +94,7 @@ type CommonData = {
   accessible_theme: boolean;
 };
 
-const row_bg_color = 'hsla(0, 0.00%, 100.00%, 0.05)';
+const row_bg_color = 'hsla(0, 0%, 100%, 0.05)';
 const robotLimbColor = 'hsl(218, 60%, 74%)';
 
 /**
