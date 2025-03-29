@@ -1265,6 +1265,7 @@
 "hS" = (
 /obj/structure/paper_bin,
 /obj/structure/table/reinforced/prison,
+/obj/item/tool/pen,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside{
 	dir = 4
 	},
@@ -6102,6 +6103,8 @@
 /obj/structure/table/black,
 /obj/item/clothing/head/helmet/space/syndicate,
 /obj/item/clothing/suit/space/syndicate,
+/obj/item/tool/pen,
+/obj/structure/paper_bin,
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 4
 	},
@@ -6711,8 +6714,8 @@
 /area/antag_ship/pmc_ntf/aft/engiroom/port)
 "Ka" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
+/obj/structure/paper_bin,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/east)
 "Kc" = (
@@ -8639,6 +8642,12 @@
 /obj/structure/closet/secure_closet/engineering_personal/som,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
+"TP" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/tool/pen,
+/obj/structure/paper_bin,
+/turf/open/floor/mainship/black/full,
+/area/antag_ship/pmc_ntf/center/armory)
 "TQ" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -10907,8 +10916,8 @@ QJ
 xU
 qr
 GX
+TP
 dE
-GX
 iX
 GX
 kr
