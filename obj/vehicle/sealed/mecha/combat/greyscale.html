@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;vehicle&#x2F;sealed&#x2F;mecha&#x2F;combat&#x2F;greyscale - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var">Var Details</a> - <a href="obj/vehicle/sealed/mecha/combat/greyscale.html#proc">Proc Details</a></header>
+<main>
+<h1>greyscale <aside>/<a href="obj.html">obj</a>/<a href="obj/vehicle.html">vehicle</a>/<a href="obj/vehicle/sealed.html">sealed</a>/<a href="obj/vehicle/sealed/mecha.html">mecha</a>/<a href="obj/vehicle/sealed/mecha/combat/greyscale.html">combat/greyscale</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 76"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var/ability_module_icon">ability_module_icon</a></th><td>used to lookup ability overlays for this mech</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var/dash_sparks_left">dash_sparks_left</a></th><td>left dash foot sparks holder</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var/dash_sparks_right">dash_sparks_right</a></th><td>right dash foot sparks holder</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var/double_tap_timing">double_tap_timing</a></th><td>The timing for activating a dash by double tapping a movement key.</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var/foot_offsets">foot_offsets</a></th><td>list of where the foots are for mechs visually, used for particles</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var/holder_left">holder_left</a></th><td>left particle smoke holder</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var/holder_right">holder_right</a></th><td>right particle smoke holder</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var/is_wreck">is_wreck</a></th><td>whether this is an unusable wreck</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var/last_mousedown_time">last_mousedown_time</a></th><td>Stores the time at which we last moved.</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var/last_move_dir">last_move_dir</a></th><td>Stores the direction of the last movement made.</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var/limbs">limbs</a></th><td>keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var/next_footstep_left">next_footstep_left</a></th><td>Determines which foot the footstep particles go</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var/swapped_to_backweapons">swapped_to_backweapons</a></th><td>whether we have currently swapped the back and arm icons</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var/use_builtin_boost_overlay">use_builtin_boost_overlay</a></th><td>whether we use an included builtin boost overlay to show we are boosting</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var/use_damage_particles">use_damage_particles</a></th><td>whetehr we use the damage particles</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#var/weight">weight</a></th><td>total wight our limbs and equipment contribute. max determined by MECH_GREY_LEGS limb</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#proc/activate_dash">activate_dash</a></th><td>Does a dash in the specified direction.</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#proc/check_dash">check_dash</a></th><td>Checks if we can dash in the specified direction, and activates the ability if so.</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#proc/dash_east">dash_east</a></th><td>Checks if we can dash to the east.</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#proc/dash_north">dash_north</a></th><td>Checks if we can dash to the north.</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#proc/dash_south">dash_south</a></th><td>Checks if we can dash to the south.</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#proc/dash_west">dash_west</a></th><td>Checks if we can dash to the west.</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#proc/remove_sparks">remove_sparks</a></th><td>Turns off dash sparks particles.</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#proc/setDir">setDir</a></th><td>only used for weapons</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/mecha/combat/greyscale.html#proc/set_jump_component">set_jump_component</a></th><td>Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ability_module_icon"><aside class="declaration">var </aside>ability_module_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 95"/></a></h3>
+        <p>used to lookup ability overlays for this mech</p><h3 id="var/dash_sparks_left"><aside class="declaration">var </aside>dash_sparks_left
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/abstract/particle_holder.html">effect/abstract/particle_holder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 118"/></a></h3>
+        <p>left dash foot sparks holder</p><h3 id="var/dash_sparks_right"><aside class="declaration">var </aside>dash_sparks_right
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/abstract/particle_holder.html">effect/abstract/particle_holder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 120"/></a></h3>
+        <p>right dash foot sparks holder</p><h3 id="var/double_tap_timing"><aside class="declaration">var </aside>double_tap_timing
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 130"/></a></h3>
+        <p>The timing for activating a dash by double tapping a movement key.</p><h3 id="var/foot_offsets"><aside class="declaration">var </aside>foot_offsets
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 113"/></a></h3>
+        <p>list of where the foots are for mechs visually, used for particles</p><h3 id="var/holder_left"><aside class="declaration">var </aside>holder_left
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/abstract/particle_holder.html">effect/abstract/particle_holder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 122"/></a></h3>
+        <p>left particle smoke holder</p><h3 id="var/holder_right"><aside class="declaration">var </aside>holder_right
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/abstract/particle_holder.html">effect/abstract/particle_holder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 124"/></a></h3>
+        <p>right particle smoke holder</p><h3 id="var/is_wreck"><aside class="declaration">var </aside>is_wreck
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 103"/></a></h3>
+        <p>whether this is an unusable wreck</p><h3 id="var/last_mousedown_time"><aside class="declaration">var </aside>last_mousedown_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 126"/></a></h3>
+        <p>Stores the time at which we last moved.</p><h3 id="var/last_move_dir"><aside class="declaration">var </aside>last_move_dir
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L128">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 128"/></a></h3>
+        <p>Stores the direction of the last movement made.</p><h3 id="var/limbs"><aside class="declaration">var </aside>limbs
+            <aside>&ndash; /list/datum/mech_limb</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 105"/></a></h3>
+        <p>keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well</p><h3 id="var/next_footstep_left"><aside class="declaration">var </aside>next_footstep_left
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 134"/></a></h3>
+        <p>Determines which foot the footstep particles go</p><h3 id="var/swapped_to_backweapons"><aside class="declaration">var </aside>swapped_to_backweapons
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 97"/></a></h3>
+        <p>whether we have currently swapped the back and arm icons</p><h3 id="var/use_builtin_boost_overlay"><aside class="declaration">var </aside>use_builtin_boost_overlay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L99">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 99"/></a></h3>
+        <p>whether we use an included builtin boost overlay to show we are boosting</p><h3 id="var/use_damage_particles"><aside class="declaration">var </aside>use_damage_particles
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 101"/></a></h3>
+        <p>whetehr we use the damage particles</p><h3 id="var/weight"><aside class="declaration">var </aside>weight
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 132"/></a></h3>
+        <p>total wight our limbs and equipment contribute. max determined by MECH_GREY_LEGS limb</p><h2 id="proc">Proc Details</h2><h3 id="proc/activate_dash"><aside class="declaration">proc </aside>activate_dash<aside>(direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L289">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 289"/></a></aside>
+        </h3>
+        <p>Does a dash in the specified direction.</p><h3 id="proc/check_dash"><aside class="declaration">proc </aside>check_dash<aside>(direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L272">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 272"/></a></aside>
+        </h3>
+        <p>Checks if we can dash in the specified direction, and activates the ability if so.</p><h3 id="proc/dash_east"><aside class="declaration">proc </aside>dash_east<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L252">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 252"/></a></aside>
+        </h3>
+        <p>Checks if we can dash to the east.</p><h3 id="proc/dash_north"><aside class="declaration">proc </aside>dash_north<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L257">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 257"/></a></aside>
+        </h3>
+        <p>Checks if we can dash to the north.</p><h3 id="proc/dash_south"><aside class="declaration">proc </aside>dash_south<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L262">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 262"/></a></aside>
+        </h3>
+        <p>Checks if we can dash to the south.</p><h3 id="proc/dash_west"><aside class="declaration">proc </aside>dash_west<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L267">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 267"/></a></aside>
+        </h3>
+        <p>Checks if we can dash to the west.</p><h3 id="proc/remove_sparks"><aside class="declaration">proc </aside>remove_sparks<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L320">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 320"/></a></aside>
+        </h3>
+        <p>Turns off dash sparks particles.</p><h3 id="proc/setDir"><aside class="parent"><a title="/obj/vehicle/sealed/mecha" href="obj/vehicle/sealed/mecha.html#proc/setDir">&uarr;</a></aside>setDir<aside>(newdir) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L426">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 426"/></a></aside>
+        </h3>
+        <p>only used for weapons</p><h3 id="proc/set_jump_component"><aside class="declaration">proc </aside>set_jump_component<aside>(duration, cooldown, cost, height, sound, flags, jump_pass_flags) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/914d369c111eb523a31f9b0464dd8bc36c1c9c20/code/modules/vehicles/mecha/combat/greyscale/greyscale.dm#L444">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale.dm 444"/></a></aside>
+        </h3>
+        <p>Sets up the jump component for the mob. Proc args can be altered so different mobs have different 'default' jump settings</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/914d369c111eb523a31f9b0464dd8bc36c1c9c20">914d369</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
