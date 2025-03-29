@@ -400,7 +400,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/ship_ammo/cas/rocket/keeper,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "axV" = (
@@ -4045,7 +4044,6 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/squadspecialist,
 /obj/structure/closet/secure_closet/personal/walllocker{
 	dir = 1
 	},
@@ -4245,7 +4243,6 @@
 	name = "Shipside Corpsec Office"
 	})
 "dMb" = (
-/obj/structure/dropship_equipment/cas/weapon/heavygun,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -5399,7 +5396,6 @@
 "eWs" = (
 /obj/structure/bed/bunkbed,
 /obj/machinery/camera/autoname/mainship,
-/obj/effect/landmark/start/job/squadspecialist,
 /obj/structure/closet/secure_closet/personal/walllocker,
 /turf/open/floor/wood,
 /area/mainship/squads/specialist)
@@ -5576,7 +5572,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/structure/ship_ammo/cas/rocket/banshee,
+/obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "fdt" = (
@@ -6707,7 +6703,6 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/squadspecialist,
 /obj/structure/closet/secure_closet/personal/walllocker,
 /turf/open/floor/wood,
 /area/mainship/squads/specialist)
@@ -7530,7 +7525,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "gQH" = (
-/obj/machinery/marine_selector/gear/smartgun,
+/obj/machinery/marine_selector/gear/specialist,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "gQM" = (
@@ -9415,7 +9410,6 @@
 "iCe" = (
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/incendiary,
-/obj/structure/ob_ammo/warhead/incendiary,
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
@@ -9982,7 +9976,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "jak" = (
-/obj/machinery/marine_selector/clothes/smartgun,
+/obj/machinery/marine_selector/clothes/specialist,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "jaF" = (
@@ -10596,7 +10590,6 @@
 /obj/machinery/firealarm{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/squadspecialist,
 /obj/structure/closet/secure_closet/personal/walllocker,
 /turf/open/floor/wood,
 /area/mainship/squads/specialist)
@@ -11730,10 +11723,6 @@
 /area/outpost/cargo{
 	outside = 1
 	})
-"kHD" = (
-/obj/structure/ship_ammo/cas/rocket/widowmaker,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/hangar)
 "kHG" = (
 /obj/machinery/door/airlock/mainship/security{
 	name = "\improper Corpsec Office"
@@ -13864,7 +13853,7 @@
 /area/mainship/medical/operating_room_four)
 "mrI" = (
 /obj/structure/dropship_equipment/cas/weapon/heavygun,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "mrX" = (
 /turf/open/floor/mainship/black{
@@ -14445,10 +14434,6 @@
 /area/mainship/medical/surgery_hallway{
 	name = "Research"
 	})
-"mVi" = (
-/obj/structure/ship_ammo/cas/rocket/banshee,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "mVk" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/pill_bottle/dylovene{
@@ -15907,7 +15892,6 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/structure/ship_ammo/cas/rocket/widowmaker,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "osJ" = (
@@ -18929,10 +18913,6 @@
 	dir = 5
 	},
 /area/mainship/living/basketball)
-"rpm" = (
-/obj/structure/ship_ammo/cas/heavygun,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "rpR" = (
 /obj/machinery/light{
 	dir = 1
@@ -19150,7 +19130,6 @@
 /area/mainship/hallways/workerprep)
 "rAB" = (
 /obj/structure/rack,
-/obj/structure/ob_ammo/warhead/cluster,
 /obj/structure/ob_ammo/warhead/cluster,
 /turf/open/floor/mainship/red/corner{
 	dir = 1
@@ -21452,7 +21431,6 @@
 /area/mainship/groundhq/ntf/shipboard/brig)
 "tJc" = (
 /obj/structure/bed/bunkbed,
-/obj/effect/landmark/start/job/squadspecialist,
 /obj/structure/closet/secure_closet/personal/walllocker{
 	dir = 1
 	},
@@ -24165,7 +24143,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/squadspecialist,
 /obj/structure/closet/secure_closet/personal/walllocker,
 /turf/open/floor/wood,
 /area/mainship/squads/specialist)
@@ -24499,8 +24476,6 @@
 /area/mainship/living/cafeteria_starboard)
 "wIZ" = (
 /obj/structure/rack,
-/obj/structure/ob_ammo/warhead/explosive,
-/obj/structure/ob_ammo/warhead/explosive,
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
@@ -24867,12 +24842,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "wWW" = (
-/obj/machinery/landinglight/cas{
-	dir = 1
-	},
-/obj/structure/ship_ammo/cas/minirocket,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
+/obj/structure/bed/bunkbed,
+/obj/effect/landmark/start/job/squadspecialist,
+/obj/effect/landmark/start/job/squadspecialist,
+/turf/open/floor/wood,
+/area/mainship/living/cryo_cells)
 "wXe" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/cargo,
@@ -40892,8 +40866,8 @@ xEn
 wuJ
 fXK
 tIk
-mVi
-mVi
+tIk
+tIk
 tIk
 avt
 tIk
@@ -41373,11 +41347,11 @@ aMa
 dqn
 aMa
 axM
-vZm
+tIk
 fXK
 tIk
-wWW
-xaI
+gZA
+pin
 xaI
 xaI
 bVA
@@ -41609,7 +41583,7 @@ whE
 gcD
 gcD
 gcD
-mrI
+gcD
 rRP
 aMa
 rRj
@@ -41848,7 +41822,7 @@ mAX
 nSG
 hbg
 gcD
-tIk
+mrI
 tIk
 tIk
 dMb
@@ -41856,8 +41830,8 @@ ewt
 aMa
 ppO
 aMa
-tjw
-rpm
+kEG
+tIk
 fXK
 tIk
 gZA
@@ -42098,8 +42072,8 @@ pwz
 aMa
 rRj
 aMa
-tjw
-rpm
+kEG
+tIk
 fXK
 tIk
 aKJ
@@ -42333,8 +42307,8 @@ pcv
 hbg
 gty
 qzB
-qzB
-qzB
+uwF
+kEG
 bRD
 hbg
 hbg
@@ -43544,7 +43518,7 @@ hbg
 pbh
 uwF
 uwF
-uwF
+kEG
 qmM
 hbg
 hbg
@@ -43799,8 +43773,8 @@ gzF
 rkh
 gsM
 kEG
-kHD
-kHD
+kEG
+kEG
 kEG
 dea
 jgz
@@ -44015,7 +43989,7 @@ dDT
 qtL
 jLh
 jLh
-bNX
+wWW
 dDT
 aMa
 aMa
@@ -44257,7 +44231,7 @@ pTu
 kHI
 jLh
 jLh
-bNX
+wWW
 pTu
 aMa
 rFD

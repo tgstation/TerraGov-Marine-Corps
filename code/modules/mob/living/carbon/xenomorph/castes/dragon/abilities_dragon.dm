@@ -3,7 +3,7 @@
 	action_icon_state = "backhand"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "Deal high damage, a knockback, and stun to marines in front of you. Vehicles and mechas take more damage, but are not knocked back nor stunned. If you are grabbing a marine, deal an incredible amount of damage to that marine after a windup."
-	cooldown_duration = 18 SECONDS
+	cooldown_duration = 12 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BACKHAND,
 	)
@@ -161,7 +161,7 @@
 	action_icon_state = "fly"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = "After a long cast time, fly into the air. If you're already flying, land with a delay. Landing causes nearby marines to take lots of damage with vehicles taking up to 3x as much."
-	cooldown_duration = 120 SECONDS
+	cooldown_duration = 90 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FLY,
 	)
@@ -228,12 +228,12 @@
 /// Begins the process of landing.
 /datum/action/ability/activable/xeno/fly/proc/start_landing()
 	performing_landing_animation = TRUE
-	COOLDOWN_START(src, animation_cooldown, 5 SECONDS)
+	COOLDOWN_START(src, animation_cooldown, 3 SECONDS)
 	animate(xeno_owner, pixel_x = initial(xeno_owner.pixel_x), pixel_y = 500, time = 0)
 	var/list/turf/future_impacted_turfs = filled_turfs(xeno_owner, 2, "square", FALSE, pass_flags_checked = PASS_AIR)
 	for(var/turf/turf_to_telegraph AS in future_impacted_turfs)
-		new /obj/effect/temp_visual/dragon/warning(turf_to_telegraph, 5 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(continue_landing), future_impacted_turfs), 4.5 SECONDS)
+		new /obj/effect/temp_visual/dragon/warning(turf_to_telegraph, 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(continue_landing), future_impacted_turfs), 2.5 SECONDS)
 
 /// Continues the process of landing (mainly because of animations).
 /datum/action/ability/activable/xeno/fly/proc/continue_landing(list/turf/impacted_turfs)
@@ -262,7 +262,7 @@
 // Performs various landing effects.
 /datum/action/ability/activable/xeno/fly/proc/perform_landing_effects(list/turf/affected_turfs)
 	new /obj/effect/temp_visual/dragon/land(get_turf(xeno_owner))
-	var/damage = 75 * xeno_owner.xeno_melee_damage_modifier
+	var/damage = 80 * xeno_owner.xeno_melee_damage_modifier
 	var/list/obj/vehicle/hit_vehicles = list()
 	for(var/turf/affected_turf AS in affected_turfs)
 		affected_turf.Shake(duration = 0.2 SECONDS)
@@ -386,7 +386,7 @@
 			debuff.add_stacks(10)
 		else
 			grabbed_human.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 10)
-		grabbed_human.take_overall_damage(get_damage() * 7.5, BURN, FIRE, max_limbs = length(grabbed_human.get_damageable_limbs()), updating_health = TRUE)
+		grabbed_human.take_overall_damage(get_damage() * 10, BURN, FIRE, max_limbs = length(grabbed_human.get_damageable_limbs()), updating_health = TRUE)
 		grabbed_human.knockback(xeno_owner, 5, 1)
 		xeno_owner.gain_plasma(250)
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)

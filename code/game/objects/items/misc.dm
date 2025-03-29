@@ -102,19 +102,19 @@
 
 /obj/item/minerupgrade/reinforcement
 	name = "reinforced components box"
-	desc = "A very folded box of reinforced components, meant to replace weak components used in normal mining wells."
+	desc = "A very folded box of reinforced components, meant to replace weaker, outdated parts used in normal mining wells. A faded label on the packaging reads 'TRANSco'."
 	icon_state = "mining_drill_reinforceddisplay"
 	uptype = "reinforced components"
 
 /obj/item/minerupgrade/overclock
 	name = "high-efficiency drill"
-	desc = "A box with a few pumps and a big drill, meant to replace the standard drill used in normal mining wells for faster extraction."
+	desc = "A box with a few pumps and an improved, bigger drill, meant to replace the standard drill used in normal mining wells for faster extraction. Produced by NTC."
 	icon_state = "mining_drill_overclockeddisplay"
 	uptype = "high-efficiency drill"
 
 /obj/item/minerupgrade/automatic
 	name = "mining computer"
-	desc = "A small computer that can automate mining wells, reducing the need for oversight."
+	desc = "A small NTC-brand computer that can automate mining wells, reducing the need for oversight."
 	icon_state = "mining_drill_automaticdisplay"
 	uptype = "mining computer"
 

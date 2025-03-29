@@ -117,9 +117,6 @@
 /turf/closed/shuttle/dropship1/cornersalt2,
 /area/shuttle/dropship/alamo)
 "aB" = (
-/obj/machinery/vending/weapon{
-	pixel_y = -5
-	},
 /turf/closed/shuttle/dropship1/interiormisc{
 	dir = 4
 	},
@@ -129,17 +126,11 @@
 /turf/open/shuttle/dropship/floor/out,
 /area/shuttle/dropship/alamo)
 "aD" = (
-/obj/machinery/vending/weapon{
-	pixel_y = -5
-	},
 /turf/closed/shuttle/dropship1/interiormisc{
 	dir = 8
 	},
 /area/shuttle/dropship/alamo)
 "aE" = (
-/obj/machinery/vending/tool{
-	pixel_y = -5
-	},
 /turf/closed/shuttle/dropship1/edge,
 /area/shuttle/dropship/alamo)
 "aF" = (
@@ -162,10 +153,17 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "aJ" = (
-/obj/machinery/vending/nanomed,
+/obj/machinery/vending/uniform_supply{
+	pixel_y = 27;
+	density = 0
+	},
 /turf/open/shuttle/dropship/seven,
 /area/shuttle/dropship/alamo)
 "aK" = (
+/obj/machinery/vending/weapon{
+	pixel_y = 27;
+	density = 0
+	},
 /turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
 "aM" = (
@@ -226,18 +224,15 @@
 	dir = 8
 	},
 /area/shuttle/dropship/alamo)
-"aX" = (
-/obj/machinery/vending/armor_supply{
-	pixel_y = -5
-	},
-/turf/closed/shuttle/dropship1/edge,
-/area/shuttle/dropship/alamo)
 "aY" = (
 /turf/closed/shuttle/dropship1/finleft,
 /area/shuttle/dropship/alamo)
 "aZ" = (
 /obj/machinery/camera/autoname/mainship/dropship_one{
 	pixel_y = 32
+	},
+/obj/machinery/vending/weapon{
+	pixel_y = 27
 	},
 /turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
@@ -472,7 +467,7 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "cL" = (
-/obj/machinery/robotic_cradle,
+/obj/structure/bed/bunkbed,
 /turf/open/shuttle/dropship/floor/out,
 /area/shuttle/dropship/alamo)
 "di" = (
@@ -497,7 +492,7 @@
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	dir = 4
 	},
-/obj/machinery/recharge_station,
+/obj/structure/bed/bunkbed,
 /turf/open/shuttle/dropship/floor/out,
 /area/shuttle/dropship/alamo)
 "gl" = (
@@ -531,12 +526,6 @@
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
-"jS" = (
-/obj/machinery/vending/uniform_supply{
-	pixel_y = -5
-	},
-/turf/closed/shuttle/dropship1/edge,
-/area/shuttle/dropship/alamo)
 "lg" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/backpack/marine/radiopack,
@@ -545,7 +534,10 @@
 /turf/open/shuttle/dropship/four,
 /area/shuttle/dropship/alamo)
 "li" = (
-/obj/machinery/vending/nanomed,
+/obj/machinery/vending/engivend{
+	pixel_y = 27;
+	density = 0
+	},
 /turf/open/shuttle/dropship/six,
 /area/shuttle/dropship/alamo)
 "me" = (
@@ -636,6 +628,15 @@
 	dir = 8
 	},
 /area/shuttle/dropship/alamo)
+"Cd" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/recharge_station,
+/turf/open/shuttle/dropship/floor/out{
+	dir = 1
+	},
+/area/shuttle/dropship/alamo)
 "Dp" = (
 /turf/open/shuttle/dropship/ten,
 /area/shuttle/dropship/alamo)
@@ -677,10 +678,12 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "RK" = (
-/obj/machinery/vending/engivend{
-	pixel_y = -5
+/obj/machinery/vending/armor_supply{
+	pixel_y = 27
 	},
-/turf/closed/shuttle/dropship1/edge,
+/turf/open/shuttle/dropship/floor/out{
+	dir = 1
+	},
 /area/shuttle/dropship/alamo)
 "UI" = (
 /obj/structure/largecrate/supply/medicine/medkits,
@@ -695,7 +698,9 @@
 /turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
 "Yd" = (
-/obj/structure/bed/bunkbed,
+/obj/machinery/vending/tool{
+	pixel_y = 27
+	},
 /turf/open/shuttle/dropship/floor/out{
 	dir = 1
 	},
@@ -772,7 +777,7 @@ hm
 ez
 Dp
 bw
-bD
+Cd
 YM
 br
 bu
@@ -788,7 +793,7 @@ aa
 ae
 aj
 ar
-RK
+aE
 li
 aS
 Nj
@@ -838,12 +843,12 @@ aC
 bn
 ba
 di
-aI
+jI
 bp
 bd
 MG
 Wz
-jI
+bi
 nO
 jI
 nO
@@ -880,7 +885,7 @@ ad
 ai
 an
 av
-jS
+aE
 aJ
 aS
 gl
@@ -903,8 +908,8 @@ ao
 ao
 ao
 aw
-aX
-Yd
+aE
+RK
 aU
 bi
 cL

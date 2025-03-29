@@ -3971,6 +3971,10 @@
 /obj/structure/toilet,
 /turf/open/floor/mainship/sterile/white,
 /area/antag_ship/som/bathroom)
+"vs" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/preparation)
 "vt" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -4277,8 +4281,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/vending/snack,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/vending/engivend,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/requisition)
 "wV" = (
@@ -5864,8 +5868,8 @@
 /area/antag_ship/som/office/commander)
 "FE" = (
 /obj/structure/cable,
-/obj/machinery/vending/cola,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/vending/tool,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/requisition)
 "FG" = (
@@ -8209,6 +8213,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/hangar)
+"RI" = (
+/obj/machinery/vending/cola,
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/preparation)
 "RJ" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -14681,8 +14689,8 @@ jT
 jT
 jT
 bb
-Qi
-Qi
+vs
+RI
 Ef
 DC
 DC

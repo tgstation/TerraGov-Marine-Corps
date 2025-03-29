@@ -36,11 +36,11 @@
 	caste_traits = list(TRAIT_STAGGERIMMUNE, TRAIT_SLOWDOWNIMMUNE, TRAIT_STUNIMMUNE, TRAIT_NEEDS_SILO_TO_EVOLVE_FROM, TRAIT_NEEDS_SILO_TO_EVOLVE_TO)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 60, BOMB = 50, BIO = 75, FIRE = 200, ACID = 75)
+	soft_armor = list(MELEE = 80, BULLET = 75, LASER = 75, ENERGY = 60, BOMB = 50, BIO = 75, FIRE = 200, ACID = 75)
 
 	// *** Sunder *** //
 	sunder_recover = 1
-	sunder_multiplier = 0.8
+	sunder_multiplier = 0.6
 
 	minimap_icon = "xenodragon"
 

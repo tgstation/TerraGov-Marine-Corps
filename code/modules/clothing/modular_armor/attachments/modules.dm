@@ -25,7 +25,7 @@
  */
 /obj/item/armor_module/module/better_shoulder_lamp
 	name = "\improper Baldur Light Amplification System"
-	desc = "Designed for mounting on modular armor. Substantially increases the power output of your modular armor's mounted flashlight. Be the light in the darkness."
+	desc = "Designed for mounting on modular armor. Substantially increases the power output of your modular armor's mounted flashlight. Be the light in the darkness. Made by ArcherCorp."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_lamp"
 	worn_icon_state = "mod_lamp_a"
@@ -40,7 +40,7 @@
 /obj/item/armor_module/module/valkyrie_autodoc
 	name = "\improper Valkyrie Automedical Armor System"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	desc = "Designed for mounting on modular armor. This module has advanced medical systems that inject tricordrazine and tramadol based on the user's needs, as well as automatically securing the bones and body of the wearer, effectively splinting them until professional medical attention can be admistered."
+	desc = "Designed for mounting on modular armor. This module has advanced medical systems that inject tricordrazine and tramadol based on the user's needs, as well as automatically securing the bones and body of the wearer, effectively splinting them until professional medical attention can be admistered. Made by NovaMed in conjunction with ArcherCorp."
 	icon_state = "mod_autodoc"
 	worn_icon_state = "mod_autodoc_a"
 	slowdown = 0
@@ -74,7 +74,7 @@
 /obj/item/armor_module/module/fire_proof
 	name = "\improper Surt Pyrotechnical Insulation System"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	desc = "Designed for mounting on modular armor. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniac's first stop to survival. Will impact mobility."
+	desc = "Designed for mounting on modular armor. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniac's first stop to survival. Will impact mobility. Made by Kaizoku."
 	icon_state = "mod_fire"
 	worn_icon_state = "mod_fire_a"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 45, ACID = 0)
@@ -114,7 +114,7 @@
 */
 /obj/item/armor_module/module/tyr_extra_armor
 	name = "\improper Mark 2 Tyr Armor Reinforcement"
-	desc = "Designed for mounting on modular armor. A substantial amount of additional armor plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This newer version has improved protection. Will definitely impact mobility."
+	desc = "Designed for mounting on modular armor. A substantial amount of additional armor plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This newer version has improved protection. Will definitely impact mobility. Made by ArcherCorp."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_armor"
 	worn_icon_state = "mod_armor_a"
@@ -134,7 +134,7 @@
 
 /obj/item/armor_module/module/tyr_extra_armor/mark1
 	name = "\improper Mark 1 Tyr Armor Reinforcement"
-	desc = "Designed for mounting on modular armor. A substantial amount of additional armor plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This older version has worse protection. Will greatly impact mobility."
+	desc = "Designed for mounting on modular armor. A substantial amount of additional armor plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This older version has worse protection. Will greatly impact mobility. Made by ArcherCorp."
 	icon_state = "mod_armor_lower"
 	worn_icon_state = "mod_armor_lower_a"
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
@@ -191,7 +191,7 @@
 /obj/item/armor_module/module/knight
 	name = "\improper Magni Knight System"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	desc = "Designed for mounting on modular armor. An aftermarket kit that provides substantial armor while not compromising speed, allows access to exclusive sword and axe techniques but restricts the use of guns."
+	desc = "Designed for mounting on modular armor. An aftermarket kit that provides substantial armor while not compromising speed, allows access to exclusive sword and axe techniques but restricts the use of guns. Made by Kaizoku."
 	icon_state = "mod_armor"
 	worn_icon_state = "mod_armor_a"
 	attachment_layer = COLLAR_LAYER
@@ -220,7 +220,7 @@
 */
 /obj/item/armor_module/module/mimir_environment_protection
 	name = "\improper Mark 2 Mimir Environmental Resistance System"
-	desc = "Designed for mounting on modular armor. This newer model provides great resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds."
+	desc = "Designed for mounting on modular armor. This newer model provides great resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds. Made by NovaMed in conjunction with ArcherCorp."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_biohazard"
 	worn_icon_state = "mod_biohazard_a"
@@ -249,7 +249,7 @@
 
 /obj/item/armor_module/module/mimir_environment_protection/mark1
 	name = "\improper Mark 1 Mimir Environmental Resistance System"
-	desc = "Designed for mounting on modular armor. This older model provides minor resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds."
+	desc = "Designed for mounting on modular armor. This older model provides minor resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds. Made by ArcherCorp."
 	icon_state = "mod_biohazard"
 	worn_icon_state = "mod_biohazard_a"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, FIRE = 0, ACID = 15)
@@ -302,7 +302,7 @@
 //Explosive defense armor
 /obj/item/armor_module/module/hlin_explosive_armor
 	name = "Hlin Explosive Compensation Module"
-	desc = "Designed for mounting on modular armor. Uses a complex set of armor plating and compensation to lessen the effect of explosions."
+	desc = "Designed for mounting on modular armor. Uses a complex set of armor plating and compensation to lessen the effect of explosions. Made by ArcherCorp."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_boomimmune"
 	worn_icon_state = "mod_boomimmune_a"
@@ -315,7 +315,7 @@
 */
 /obj/item/armor_module/module/ballistic_armor
 	name = "\improper Hod Accident Prevention Plating"
-	desc = "Designed for mounting on modular armor. A substantial amount of additional reflective ballistic armor plating designed to reduce the impact of friendly fire incidents, will lessen the affects of bullets and lasers. Will impact mobility."
+	desc = "Designed for mounting on modular armor. A substantial amount of additional reflective ballistic armor plating designed to reduce the impact of friendly fire incidents, will lessen the affects of bullets and lasers. Will impact mobility. Made by ArcherCorp."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_ff"
 	worn_icon_state = "mod_ff_a"
@@ -325,7 +325,7 @@
 
 /obj/item/armor_module/module/chemsystem
 	name = "Vali chemical enhancement module"
-	desc = "Designed for mounting on modular armor. This experimental module runs on green blood taken from xenos with harvester class weapons; Green blood heals the user and boosts any chems in the suit injection system. \nUse the suit menu to connect harvester class weapons, control the injection system, find chem boost information, and more."
+	desc = "Designed for mounting on modular armor. This experimental module runs on green blood taken from xenos with harvester class weapons; Green blood heals the user and boosts any chems in the suit injection system. \nUse the suit menu to connect harvester class weapons, control the injection system, find chem boost information, and more. Made by NovaMed in conjunction with NineTails."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_chemsystem"
 	worn_icon_state = "mod_chemsystem_a"
@@ -360,7 +360,7 @@
 
 /obj/item/armor_module/module/eshield
 	name = "Svalinn Energy Shield System"
-	desc = "A brand new innovation in armor systems, this module creates a shield around the user that is capable of negating all damage at the cost of increased vulnerability to melee, biological, and acid attacks. If it sustains too much it will deactivate, and leave the user vulnerable."
+	desc = "A brand new innovation in armor systems, this module creates a shield around the user that is capable of negating all damage at the cost of increased vulnerability to melee, biological, and acid attacks. If it sustains too much it will deactivate, and leave the user vulnerable. Made by NineTails Corporation."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_eshield"
 	worn_icon_state = "mod_eshield_a"
@@ -595,7 +595,7 @@
 */
 /obj/item/armor_module/module/welding
 	name = "Welding Helmet Module"
-	desc = "Designed for mounting on a modular helmet. This module can be toggled on or off to function as welding protection for your delicate eyes."
+	desc = "Designed for mounting on a modular helmet. This module can be toggled on or off to function as welding protection for your delicate eyes. Made by ArcherCorp."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "welding_head"
 	worn_icon_state = "welding_head_a"
@@ -646,7 +646,7 @@
 
 /obj/item/armor_module/module/welding/superior
 	name = "Superior Welding Helmet Module"
-	desc = "Designed for mounting on a modular helmet. This more expensive module can be toggled on or off to function as welding protection for your delicate eyes, strangely smells like potatoes."
+	desc = "Designed for mounting on a modular helmet. This more expensive module can be toggled on or off to function as welding protection for your delicate eyes, strangely smells like potatoes. Made by ArcherCorp in conjunction with TRANSco."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "welding_head"
 	worn_icon_state = "welding_head_a"
@@ -702,7 +702,7 @@
 
 /obj/item/armor_module/module/binoculars/artemis_mark_two // a little cheating with subtypes
 	name = "\improper Mark 2 Freyr Helmet Module"
-	desc = "Designed for mounting on a modular helmet. The Freyr module is designed with an overlay visor that clarifies the user's vision, allowing them to see clearly even in the harshest of circumstances. This version is enhanced and allows the marine to peer through the visor, akin to binoculars."
+	desc = "Designed for mounting on a modular helmet. The Freyr module is designed with an overlay visor that clarifies the user's vision and adjusts to sustained eye damage, allowing them to see clearly even in the harshest of circumstances. This version is enhanced and allows the marine to peer through the visor, akin to binoculars. Made by NineTails Corporation in conjunction with NovaMed."
 	icon_state = "artemis_head"
 	worn_icon_state = "artemis_head_mk2_a"
 
@@ -712,7 +712,7 @@
 
 /obj/item/armor_module/module/artemis
 	name = "\improper Mark 1 Freyr Helmet Module"
-	desc = "Designed for mounting on a modular helmet. The Freyr module is designed with an overlay visor that clarifies the user's vision, allowing them to see clearly even in the harshest of circumstances."
+	desc = "Designed for mounting on a modular helmet. The Freyr module is designed with an overlay visor that clarifies the user's vision and adjusts to sustained eye damage, allowing them to see clearly even in the harshest of circumstances. Made by NovaMed."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "artemis_head"
 	worn_icon_state = "artemis_head_a"
@@ -730,7 +730,7 @@
 
 /obj/item/armor_module/module/antenna
 	name = "Antenna helmet module"
-	desc = "Designed for mounting on a modular Helmet. This module is able to shield against the interference of caves, allowing for normal messaging in shallow caves, and only minor interference when deep."
+	desc = "Designed for mounting on a modular Helmet. This module is able to shield against the interference of caves, allowing for normal messaging in shallow caves, and only minor interference when deep. Made by TRANSco."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "antenna_head"
 	worn_icon_state = "antenna_head_a"
