@@ -13,7 +13,52 @@ import {
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
-type MedScannerData = {
+type LimbData = {
+  name: string;
+  brute: number;
+  burn: number;
+  bandaged: boolean;
+  salved: boolean;
+  missing: boolean;
+  bleeding: boolean;
+  implants: boolean;
+  internal_bleeding: boolean;
+  limb_status?: string;
+  limb_type?: string;
+  open_incision: boolean;
+  infected: boolean;
+  necrotized: boolean;
+};
+
+type ChemData = {
+  name: string;
+  description: string;
+  amount: number;
+  od: string;
+  od_threshold: number;
+  crit_od_threshold: number;
+  color: string;
+  metabolism_factor: number;
+  dangerous: boolean;
+};
+
+type OrganData = {
+  name: string;
+  status: string;
+  broken_damage: number;
+  bruised_damage: number;
+  damage: number;
+  effects: string;
+};
+
+type AdviceData = {
+  advice: string;
+  icon: string;
+  color: string;
+  tooltip: string;
+};
+
+type CommonData = {
   patient: string;
   species: string;
   dead: boolean;
@@ -30,25 +75,27 @@ type MedScannerData = {
   revivable_string: number;
   has_chemicals: boolean;
   has_unknown_chemicals: boolean;
-  chemicals_lists: object;
-  limb_data_lists: object;
-  limbs_damaged: object;
-  damaged_organs: any;
-  ssd: string;
+  chemicals_lists?: Record<string, ChemData>;
+  limb_data_lists?: Record<string, LimbData>;
+  limbs_damaged: number;
+  damaged_organs?: Record<string, OrganData>;
+  ssd: string | null;
   blood_type: string;
   blood_amount: number;
   body_temperature: string;
   pulse: string;
   infection: boolean;
   internal_bleeding: boolean;
-  implants: number;
-  hugged: number;
-  advice: any;
+  total_unknown_implants: number;
+  hugged: boolean;
+  advice?: Record<string, AdviceData>;
   accessible_theme: boolean;
 };
 
+const row_bg_color = 'rgba(255, 255, 255, .05)';
+
 export const MedScanner = () => {
-  const { data } = useBackend<MedScannerData>();
+  const { data } = useBackend<CommonData>();
   const {
     species,
     has_chemicals,
@@ -61,8 +108,8 @@ export const MedScanner = () => {
   } = data;
   return (
     <Window
-      width={515}
-      height={615}
+      width={520}
+      height={620}
       theme={
         accessible_theme
           ? species === 'robot'
@@ -77,7 +124,7 @@ export const MedScanner = () => {
         <PatientBasics />
         {has_chemicals ? <PatientChemicals /> : null}
         {limbs_damaged ? <PatientLimbs /> : null}
-        {damaged_organs.length ? <PatientOrgans /> : null}
+        {damaged_organs?.length ? <PatientOrgans /> : null}
         {blood_amount < 560 || internal_bleeding ? <PatientBlood /> : null}
         {advice ? <PatientAdvice /> : null}
       </Window.Content>
@@ -86,7 +133,7 @@ export const MedScanner = () => {
 };
 
 const PatientBasics = () => {
-  const { data } = useBackend<MedScannerData>();
+  const { data } = useBackend<CommonData>();
   const {
     patient,
     species,
@@ -118,7 +165,7 @@ const PatientBasics = () => {
       buttons={
         <Button
           icon="info"
-          tooltip="For information on something, hover over it - most elements have tooltips. Additionally, situational advice will appear under Treatment Advice when available to guide you."
+          tooltip="For information on something, hover over it - most elements have tooltips. Additionally, situational advice will appear under Treatment Advice."
           color="transparent"
           mt={
             /* with the "hackerman" theme, the buttons have this ugly outline that messes with the section titlebar, let's fix that */
@@ -273,11 +320,9 @@ const PatientBasics = () => {
 };
 
 const PatientChemicals = () => {
-  const row_bg_color = 'rgba(255, 255, 255, .05)';
   let row_transparency = 0;
-  const { data } = useBackend<MedScannerData>();
-  const { has_unknown_chemicals, chemicals_lists } = data;
-  const chemicals = Object.values(chemicals_lists);
+  const { data } = useBackend<CommonData>();
+  const { has_unknown_chemicals, chemicals_lists = {} } = data;
   return (
     <Section title="Chemical Contents">
       {has_unknown_chemicals ? (
@@ -286,19 +331,18 @@ const PatientChemicals = () => {
         </Tooltip>
       ) : null}
       <Stack vertical>
-        {chemicals.map((chemical) => (
+        {Object.values(chemicals_lists).map((chemical) => (
           <Stack.Item
             key={chemical.name}
             backgroundColor={row_transparency++ % 2 === 0 ? row_bg_color : ''}
           >
-            <Box inline>
+            <Box inline p={'5px'}>
               <Icon
                 name={'flask'}
                 ml={0.2}
                 pr="5px"
                 color={chemical.dangerous ? 'red' : chemical.color}
               />
-
               <Tooltip content={chemical.description}>
                 <Box
                   inline
@@ -354,11 +398,11 @@ const PatientChemicals = () => {
                       {Math.trunc(
                         (chemical.amount / chemical.od_threshold) * 100,
                       ) +
-                        '% - OD' +
+                        '% OD' +
                         (chemical.amount > chemical.crit_od_threshold
-                          ? ' CRIT'
+                          ? ', CRIT'
                           : '')}
-                      <Icon name="clock" mx="5px" />
+                      <Icon name="temperature-arrow-down" mx="5px" />
                       {Math.trunc(
                         (chemical.amount - chemical.od_threshold) /
                           chemical.metabolism_factor,
@@ -404,15 +448,15 @@ const PatientChemicals = () => {
                   <Box
                     inline
                     color={
-                      (chemical.amount / chemical.od_threshold) * 100 < 10
+                      (chemical.amount / chemical.od_threshold) * 100 < 8
                         ? 'white'
                         : 'black'
                     }
                     bold
                     backgroundColor={
-                      (chemical.amount / chemical.od_threshold) * 100 > 90
+                      (chemical.amount / chemical.od_threshold) * 100 > 92
                         ? 'yellow'
-                        : (chemical.amount / chemical.od_threshold) * 100 < 10
+                        : (chemical.amount / chemical.od_threshold) * 100 < 8
                           ? 'grey'
                           : 'white'
                     }
@@ -462,8 +506,8 @@ const PatientChemicals = () => {
                   }}
                 >
                   <Icon name="clock" mr="5px" />
-                  {/* Getting the /estimated/ time for when this chemical will wear off. */}
-                  {/* It's mostly accurate, but chemicals with lower metab rates will be slower to update
+                  {/* Getting the /estimated/ time for when this chemical will wear off.
+                      It's mostly accurate, but chemicals with lower metab rates will be slower to update
                       and chemicals with higher metab rates will be faster to update. */}
                   {Math.trunc(chemical.amount / chemical.metabolism_factor) +
                     's'}
@@ -478,11 +522,9 @@ const PatientChemicals = () => {
 };
 
 const PatientLimbs = () => {
-  const row_bg_color = 'rgba(255, 255, 255, .05)';
   let row_transparency = 0;
-  const { data } = useBackend<MedScannerData>();
-  const { limb_data_lists, species, accessible_theme } = data;
-  const limb_data = Object.values(limb_data_lists);
+  const { data } = useBackend<CommonData>();
+  const { limb_data_lists = {}, species, accessible_theme } = data;
   return (
     <Section title="Limbs Damaged">
       <Stack vertical fill>
@@ -494,11 +536,13 @@ const PatientLimbs = () => {
           <Stack.Item bold color="#ffb833">
             Burn
           </Stack.Item>
-          <Stack.Item grow={1} textAlign="right" nowrap>
+          <Stack.Item grow textAlign="right" color="grey" nowrap>
+            <Icon name="tint" inline bold px="5px" />
+            {'= Bleeding, '}
             {'{ } = Untreated'}
           </Stack.Item>
         </Stack>
-        {limb_data.map((limb) => (
+        {Object.values(limb_data_lists).map((limb) => (
           <Stack
             key={limb.name}
             width="100%"
@@ -561,24 +605,26 @@ const PatientLimbs = () => {
                   <Box inline width="5px" />
                 </Stack.Item>
                 <Stack.Item>
+                  {limb.bleeding ? (
+                    <Tooltip content="The patient is losing blood from this limb. Bleeding can be stopped with gauze or an advanced trauma kit.">
+                      <Icon name="tint" inline color={'red'} bold px="5px" />
+                    </Tooltip>
+                  ) : null}
                   {limb.limb_status ? (
                     <Tooltip
                       content={
-                        limb.limb_status === 'Splinted'
-                          ? 'This fracture is stabilized by a splint, suppressing most of its symptoms. If this limb sustains damage, the splint might come off. It can be fully treated with surgery or cryo treatment.'
-                          : limb.limb_status === 'Stabilized'
-                            ? "This fracture is stabilized by the patient's armor, suppressing most of its symptoms. If their armor is removed, it'll stop being stabilized. It can be fully treated with surgery or cryo treatment."
-                            : 'This limb is broken. Use a splint to stabilize it. An unsplinted head, chest or groin will cause organ damage when the patient moves. Unsplinted arms or legs will frequently give out.'
+                        (limb.limb_status !== 'Fracture'
+                          ? limb.limb_status === 'Stable'
+                            ? "This fracture is stabilized by the patient's armor, suppressing most of its symptoms. If their armor is removed, it'll stop being stabilized."
+                            : 'This fracture is stabilized by a splint, suppressing most of its symptoms. If this limb sustains damage, the splint might come off.'
+                          : 'This limb is broken. Use a splint to stabilize it. An unsplinted head, chest or groin will cause organ damage when the patient moves. Unsplinted arms or legs will frequently give out.') +
+                        ' It can be fully treated with surgery or cryo treatment.'
                       }
                     >
                       <Box
                         inline
                         color={
-                          limb.limb_status === 'Splinted'
-                            ? 'lime'
-                            : limb.limb_status === 'Stabilized'
-                              ? 'lime'
-                              : 'white'
+                          limb.limb_status !== 'Fracture' ? 'lime' : 'white'
                         }
                         bold
                       >
@@ -611,13 +657,6 @@ const PatientLimbs = () => {
                       </Box>
                     </Tooltip>
                   ) : null}
-                  {limb.bleeding ? (
-                    <Tooltip content="This limb is bleeding and the patient is losing blood. Can be stopped with gauze or an advanced trauma kit.">
-                      <Box inline color={'red'} bold>
-                        [Bleeding]
-                      </Box>
-                    </Tooltip>
-                  ) : null}
                   {limb.open_incision ? (
                     <Tooltip content="Open surgical incisions can usually be closed by a cautery depending on the stage of the surgery. Risk of infection if left untreated.">
                       <Box inline color={'red'} bold>
@@ -639,10 +678,10 @@ const PatientLimbs = () => {
                       </Box>
                     </Tooltip>
                   ) : null}
-                  {limb.implant ? (
+                  {limb.implants ? (
                     <Tooltip content="Harmful implants are usually shrapnel from firefights. Moving with a harmful implant will inflict Brute damage occasionally. Removed with tweezers.">
                       <Box inline color={'white'} bold>
-                        [Implant]
+                        [Implant x{limb.implants}]
                       </Box>
                     </Tooltip>
                   ) : null}
@@ -657,14 +696,18 @@ const PatientLimbs = () => {
 };
 
 const PatientOrgans = () => {
-  const { data } = useBackend<MedScannerData>();
-  const { damaged_organs } = data;
+  let row_transparency = 0;
+  const { data } = useBackend<CommonData>();
+  const { damaged_organs = {} } = data;
   return (
     <Section title="Organs Damaged">
       <Stack vertical>
-        {damaged_organs.map((organ) => (
-          <Stack.Item key={organ.name}>
-            <Box inline>
+        {Object.values(damaged_organs).map((organ) => (
+          <Stack.Item
+            key={organ.name}
+            backgroundColor={row_transparency++ % 2 === 0 ? row_bg_color : ''}
+          >
+            <Box inline p={'5px'}>
               <Icon
                 name={organ.status === 'Failing' ? 'circle-dot' : 'circle'}
                 ml={0.2}
@@ -734,13 +777,15 @@ const PatientOrgans = () => {
 };
 
 const PatientBlood = () => {
-  const { data } = useBackend<MedScannerData>();
+  const { data } = useBackend<CommonData>();
   const {
     blood_amount,
     blood_type,
     body_temperature,
     internal_bleeding,
     pulse,
+    total_unknown_implants,
+    infection,
   } = data;
   return (
     <Section>
@@ -763,8 +808,20 @@ const PatientBlood = () => {
         <LabeledList.Item label={'Pulse'}>{pulse}</LabeledList.Item>
       </LabeledList>
       {internal_bleeding ? (
-        <NoticeBox color={'red'} mt={'8px'} mb={'0px'} warning>
+        <NoticeBox color="red" mt={'8px'} mb={'0px'}>
           Internal Bleeding Detected!
+        </NoticeBox>
+      ) : null}
+      {infection ? (
+        <NoticeBox color="orange" mt={'8px'} mb={'0px'}>
+          {infection}
+        </NoticeBox>
+      ) : null}
+      {total_unknown_implants ? (
+        <NoticeBox color="orange" mt={'8px'} mb={'0px'}>
+          There {total_unknown_implants !== 1 ? 'are' : 'is'}{' '}
+          {total_unknown_implants} unknown implant
+          {total_unknown_implants !== 1 ? 's' : ''} detected within the patient.
         </NoticeBox>
       ) : null}
     </Section>
@@ -772,12 +829,12 @@ const PatientBlood = () => {
 };
 
 const PatientAdvice = () => {
-  const { data } = useBackend<MedScannerData>();
-  const { advice, species, accessible_theme } = data;
+  const { data } = useBackend<CommonData>();
+  const { advice = {}, species, accessible_theme } = data;
   return (
     <Section title="Treatment Advice">
       <Stack vertical>
-        {advice.map((advice) => (
+        {Object.values(advice).map((advice) => (
           <Stack.Item key={advice.advice}>
             <Tooltip
               content={

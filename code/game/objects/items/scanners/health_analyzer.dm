@@ -144,7 +144,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	var/infection_message
 	var/internal_bleeding
 
-	var/unknown_implants = 0
+	var/total_unknown_implants = 0
 	for(var/datum/limb/limb AS in patient.limbs)
 		var/infected = FALSE
 		var/necrotized = FALSE
@@ -163,16 +163,16 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			necrotized = TRUE
 
 		if(limb.hidden)
-			unknown_implants++
-		var/implant = FALSE
+			total_unknown_implants++
+		var/implants = 0
 		if(length(limb.implants))
 			for(var/obj/item/embedded AS in limb.implants)
 				if(embedded.is_beneficial_implant())
 					continue
-				unknown_implants++
-				implant = TRUE
+				total_unknown_implants++
+				implants++
 
-		if(!limb.brute_dam && !limb.burn_dam && !CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED) && !CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING) && !CHECK_BITFIELD(limb.limb_status, LIMB_NECROTIZED) && !implant && !infected )
+		if(!limb.brute_dam && !limb.burn_dam && !CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED) && !CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING) && !CHECK_BITFIELD(limb.limb_status, LIMB_NECROTIZED) && !implants && !infected )
 			continue
 		var/list/current_list = list(
 			"name" = limb.display_name,
@@ -187,7 +187,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			"open_incision" = limb.surgery_open_stage,
 			"necrotized" = necrotized,
 			"infected" = infected,
-			"implant" = implant
+			"implants" = implants
 		)
 		var/limb_type = ""
 		if(CHECK_BITFIELD(limb.limb_status, LIMB_ROBOT))
@@ -199,9 +199,9 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		if(CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_STABILIZED) && !CHECK_BITFIELD(limb.limb_status, LIMB_SPLINTED))
 			limb_status = "Fracture"
 		else if(CHECK_BITFIELD(limb.limb_status, LIMB_STABILIZED))
-			limb_status = "Stabilized"
+			limb_status = "Stable"
 		else if(CHECK_BITFIELD(limb.limb_status, LIMB_SPLINTED))
-			limb_status = "Splinted"
+			limb_status = "Splint"
 		current_list["limb_type"] = limb_type
 		current_list["limb_status"] = limb_status
 		limb_data_lists["[limb.name]"] = current_list
@@ -211,11 +211,12 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	data["infection"] = infection_message
 	data["body_temperature"] = "[round(patient.bodytemperature*1.8-459.67, 0.1)] degrees F ([round(patient.bodytemperature-T0C, 0.1)] degrees C)"
 	data["pulse"] = "[patient.get_pulse(GETPULSE_TOOL)] bpm"
-	data["implants"] = unknown_implants
+	data["total_unknown_implants"] = total_unknown_implants
 	var/damaged_organs = list()
 	for(var/datum/internal_organ/organ AS in patient.internal_organs)
-		if(organ.damage <= organ.min_bruised_damage * 0.65)
-			// Only show if we're closed to failing
+		if(organ.damage <= organ.min_bruised_damage * 0.5)
+			// allow organs to pop out when damaged but still 'functional'
+			// only if their damage is close to being damaged
 			continue
 		var/current_organ = list(
 			"name" = organ.name,
@@ -261,7 +262,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			advice += list(list(
 				"advice" = "Patient has [patient.maxHealth / LIVING_DEFAULT_MAX_HEALTH * 100]% constitution.",
 				"tooltip" = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? "Patient has less maximum health than most humans." : "Patient has more maximum health than most humans.",
-				"icon" = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? "heart-broken" : "heartbeat",
+				"icon" = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? FA_ICON_HEART_BROKEN : FA_ICON_HEARTBEAT,
 				"color" = patient.maxHealth < LIVING_DEFAULT_MAX_HEALTH ? "grey" : "pink"
 			))
 		//species advice. possible todo: make a system so we can put these in a collapsible tgui element
@@ -269,32 +270,32 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			advice += list(list(
 				"advice" = "Synthetic: Patient does not heal on defibrillation.",
 				"tooltip" = "Synthetics do not heal when being shocked with a defibrillator, meaning they are only revivable over [patient.get_death_threshold() / patient.maxHealth * 100]% health.",
-				"icon" = "robot",
+				"icon" = FA_ICON_ROBOT,
 				"color" = "label"
 			))
 			advice += list(list(
 				"advice" = "Synthetic: Patient overheats while lower than [SYNTHETIC_CRIT_THRESHOLD / patient.maxHealth * 100]% health.",
 				"tooltip" = "Synthetics overheat rapidly while their health is lower than [SYNTHETIC_CRIT_THRESHOLD / patient.maxHealth * 100]%. When defibrillating, the patient should be repaired above this threshold to avoid unnecessary burning.",
-				"icon" = "robot",
+				"icon" = FA_ICON_ROBOT,
 				"color" = "label"
 			))
 			advice += list(list(
 				"advice" = "Synthetic: Patient does not suffer from brain-death.",
 				"tooltip" = "Synthetics don't expire after 5 minutes of death.",
-				"icon" = "robot",
+				"icon" = FA_ICON_ROBOT,
 				"color" = "label"
 			))
 		else if(isrobot(patient))
 			advice += list(list(
 				"advice" = "Combat Robot: Patient can be immediately defibrillated.",
 				"tooltip" = "Combat Robots can be defibrillated regardless of health. It is highly advised to defibrillate them the moment their armor is removed instead of attempting repair.",
-				"icon" = "robot",
+				"icon" = FA_ICON_ROBOT,
 				"color" = "label"
 			))
 			advice += list(list(
 				"advice" = "Combat Robot: Patient does not enter critical condition.",
 				"tooltip" = "Combat Robots do not enter critical condition. They will continue operating until death at [patient.get_death_threshold() / patient.maxHealth * 100]% health.",
-				"icon" = "robot",
+				"icon" = FA_ICON_ROBOT,
 				"color" = "label"
 			))
 		if(patient.stat == DEAD) // death advice
@@ -310,21 +311,21 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				advice += list(list(
 					"advice" = "Time remaining to revive: [DisplayTimeText((TIME_BEFORE_DNR-(patient.dead_ticks))*20)].",
 					"tooltip" = "This is how long until the patient is permanently unrevivable. Stasis bags pause this timer.",
-					"icon" = "clock",
+					"icon" = FA_ICON_CLOCK,
 					"color" = dead_color
 					))
 			if(patient.wear_suit && patient.wear_suit.atom_flags & CONDUCT)
 				advice += list(list(
 					"advice" = "Remove patient's suit or armor.",
 					"tooltip" = "To defibrillate the patient, you need to remove anything conductive obscuring their chest.",
-					"icon" = "shield-alt",
+					"icon" = FA_ICON_SHIELD_ALT,
 					"color" = "blue"
 					))
 			if(revivable_patient)
 				advice += list(list(
 					"advice" = "Administer shock via defibrillator!",
 					"tooltip" = "The patient is ready to be revived, defibrillate them as soon as possible!",
-					"icon" = "bolt",
+					"icon" = FA_ICON_BOLT,
 					"color" = "yellow"
 					))
 		if(patient.getBruteLoss() > 5)
@@ -332,14 +333,14 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				advice += list(list(
 					"advice" = "Use trauma kits or sutures to repair the bruised areas.",
 					"tooltip" = "Advanced trauma kits will heal brute damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own.",
-					"icon" = "band-aid",
+					"icon" = FA_ICON_BAND_AID,
 					"color" = "green"
 					))
 			else
 				advice += list(list(
 					"advice" = "Use a blowtorch or nanopaste to repair the dented areas.",
 					"tooltip" = "Only a blowtorch or nanopaste can repair dented robotic limbs.",
-					"icon" = "tools",
+					"icon" = FA_ICON_TOOLS,
 					"color" = "red"
 				))
 		if(patient.getFireLoss() > 5)
@@ -347,28 +348,28 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				advice += list(list(
 					"advice" = "Use burn kits or sutures to repair the burned areas.",
 					"tooltip" = "Advanced burn kits will heal burn damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own.",
-					"icon" = "band-aid",
+					"icon" = FA_ICON_BAND_AID,
 					"color" = "orange"
 					))
 			else
 				advice += list(list(
 					"advice" = "Use cable coils or nanopaste to repair the scorched areas.",
 					"tooltip" = "Only cable coils or nanopaste can repair scorched robotic limbs.",
-					"icon" = "plug",
+					"icon" = FA_ICON_PLUG,
 					"color" = "orange"
 				))
 		if(patient.getCloneLoss() > 5)
 			advice += list(list(
 				"advice" = organic_patient ? "Patient should sleep or seek cryo treatment - cellular damage." : "Patient should seek a robotic cradle - integrity damage.",
 				"tooltip" = "[organic_patient ? "Cellular damage" : "Integrity damage"] is sustained from psychic draining, special chemicals and special weapons. It can only be healed through the aforementioned methods.",
-				"icon" = organic_patient ? "dna" : "wrench",
+				"icon" = organic_patient ? FA_ICON_DNA : FA_ICON_WRENCH,
 				"color" = "teal"
 				))
-		if(unknown_implants)
+		if(total_unknown_implants)
 			advice += list(list(
 				"advice" = "Remove embedded objects with tweezers.",
 				"tooltip" = "While moving with embedded objects inside, the patient will randomly sustain Brute damage. Make sure to take some time in between removing large amounts of implants to avoid internal damage.",
-				"icon" = "window-close",
+				"icon" = FA_ICON_WINDOW_CLOSE,
 				"color" = "red"
 				))
 		if(organic_patient) // human advice, includes chems
@@ -376,21 +377,21 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				advice += list(list(
 					"advice" = "Alien embryo detected. Immediate surgical intervention advised.", // friend detected :)
 					"tooltip" = "The patient has been implanted with an alien embryo! Left untreated, it will burst out of their chest. Surgical intervention is strongly advised.",
-					"icon" = "worm",
+					"icon" = FA_ICON_WORM,
 					"color" = "orange"
 					))
 			if(internal_bleeding)
 				advice += list(list(
 					"advice" = "Internal bleeding detected. Cryo treatment advised.",
 					"tooltip" = "Alongside cryogenic treatment, Quick Clot Plus can remove internal bleeding, or normal Quick Clot reduces its symptoms.",
-					"icon" = "tint",
+					"icon" = FA_ICON_TINT,
 					"color" = "crimson"
 					))
 			if(infection_message)
 				temp_advice = list(list(
-					"advice" = "Administer a single dose of spaceacillin - infections detected.",
+					"advice" = "Administer a single dose of spaceacillin. Infections detected.",
 					"tooltip" = "There are one or more infections detected. If left untreated, they may worsen into Necrosis and require surgery.",
-					"icon" = "biohazard",
+					"icon" = FA_ICON_BIOHAZARD,
 					"color" = "olive"
 					))
 				if(chemicals_lists["Spaceacillin"])
@@ -403,7 +404,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of alkysine.",
 					"tooltip" = "Significant brain damage detected. Alkysine heals brain damage. If left untreated, patient may be unable to function well.",
-					"icon" = "syringe",
+					"icon" = FA_ICON_SYRINGE,
 					"color" = "blue"
 					))
 				if(chemicals_lists["Alkysine"])
@@ -416,7 +417,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of imidazoline.",
 					"tooltip" = "Eye damage detected. Imidazoline heals eye damage. If left untreated, patient may be unable to see properly.",
-					"icon" = "syringe",
+					"icon" = FA_ICON_SYRINGE,
 					"color" = "yellow"
 					))
 				if(chemicals_lists["Imidazoline"])
@@ -428,7 +429,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of bicaridine to reduce physical trauma.",
 					"tooltip" = "Significant physical trauma detected. Bicaridine reduces brute damage.",
-					"icon" = "syringe",
+					"icon" = FA_ICON_SYRINGE,
 					"color" = "red"
 					))
 				if(chemicals_lists["Bicaridine"])
@@ -440,7 +441,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of kelotane to reduce burns.",
 					"tooltip" = "Significant tissue burns detected. Kelotane reduces burn damage.",
-					"icon" = "syringe",
+					"icon" = FA_ICON_SYRINGE,
 					"color" = "yellow"
 					))
 				if(chemicals_lists["Kelotane"])
@@ -452,7 +453,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of dylovene.",
 					"tooltip" = "Significant blood toxins detected. Dylovene will reduce toxin damage, or their liver will filter it out on its own. Damaged livers will take even more damage while clearing blood toxins.",
-					"icon" = "syringe",
+					"icon" = FA_ICON_SYRINGE,
 					"color" = "green"
 					))
 				if(chemicals_lists["Dylovene"])
@@ -464,7 +465,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of dexalin plus to re-oxygenate patient's blood.",
 					"tooltip" = "If you don't have Dexalin or Dexalin Plus, CPR or treating their other symptoms and waiting for their bloodstream to re-oxygenate will work.",
-					"icon" = "syringe",
+					"icon" = FA_ICON_SYRINGE,
 					"color" = "blue"
 					))
 				if(chemicals_lists["Dexalin Plus"])
@@ -476,14 +477,14 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				advice += list(list(
 					"advice" = "Administer a single dose of Isotonic solution.",
 					"tooltip" = "The patient has lost a significant amount of blood. Isotonic solution speeds up blood regeneration significantly.",
-					"icon" = "syringe",
+					"icon" = FA_ICON_SYRINGE,
 					"color" = "cyan"
 					))
 			if(chemicals_lists["Medical nanites"])
 				temp_advice = list(list(
 					"advice" = "Nanites detected - only administer Peridaxon Plus, Quickclot and Dylovene.",
 					"tooltip" = "Nanites purge all medicines except Peridaxon Plus, Quick Clot/Quick Clot Plus and Dylovene.",
-					"icon" = "window-close",
+					"icon" = FA_ICON_WINDOW_CLOSE,
 					"color" = "blue"
 					))
 				advice += temp_advice
@@ -491,7 +492,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of inaprovaline.",
 					"tooltip" = "When used in hard critical condition, Inaprovaline prevents suffocation and heals the patient, triggering a 5 minute cooldown.",
-					"icon" = "syringe",
+					"icon" = FA_ICON_SYRINGE,
 					"color" = "purple"
 					))
 				if(chemicals_lists["Inaprovaline"])
@@ -507,7 +508,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of tramadol to reduce pain.",
 					"tooltip" = "The patient is experiencing performance impeding pain and may suffer symptoms from sluggishness to collapsing. Tramadol reduces pain.",
-					"icon" = "syringe",
+					"icon" = FA_ICON_SYRINGE,
 					"color" = "grey"
 					))
 				if(chemicals_lists["Tramadol"])
@@ -520,7 +521,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				advice += list(list(
 					"advice" = "Paracetamol detected - do NOT administer tramadol.",
 					"tooltip" = "The patient has Paracetamol in their system. If Tramadol is administered, it will combine with Paracetamol to make Soporific, an anesthetic.",
-					"icon" = "window-close",
+					"icon" = FA_ICON_WINDOW_CLOSE,
 					"color" = "red"
 					))
 	else
