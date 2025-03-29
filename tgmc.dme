@@ -113,6 +113,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\__DEFINES\monitor.dm"
 #include "code\__DEFINES\move_force.dm"
 #include "code\__DEFINES\movement.dm"
+#include "code\__DEFINES\movement_info.dm"
 #include "code\__DEFINES\movespeed_modification.dm"
 #include "code\__DEFINES\multiz.dm"
 #include "code\__DEFINES\obj_flags.dm"

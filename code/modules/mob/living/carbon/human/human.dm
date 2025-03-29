@@ -29,8 +29,10 @@
 	AddComponent(/datum/component/anti_juggling)
 	set_jump_component()
 
-/mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
+/mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z, same_z_layer)
 	SIGNAL_HANDLER
+	if(same_z_layer)
+		return
 	LAZYREMOVE(GLOB.humans_by_zlevel["[old_z]"], src)
 	LAZYADD(GLOB.humans_by_zlevel["[new_z]"], src)
 
