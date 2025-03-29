@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - bugfix: "Fixed failed diag movement making the atom dir diagonal"
+  - qol: "As a side effect of the above, king no longer needs to hug a wall to shoot laser diagonally, and just tracks the last attempted movement"
