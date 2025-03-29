@@ -6,7 +6,7 @@
 	icon_state = "arm"
 	slot = ATTACHMENT_SLOT_SHOULDER
 	greyscale_config = /datum/greyscale_config/armor_mk1/infantry
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 
 /obj/item/armor_module/armor/arms/marine
 	name = "\improper Jaeger Pattern Infantry arm plates"

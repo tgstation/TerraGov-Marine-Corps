@@ -22,7 +22,7 @@
 	mouse_over_pointer = MOUSE_HAND_POINTER
 	power_channel = ENVIRON
 	// Indestructible until someone wants to make these constructible, with all the chaos that implies
-	resistance_flags = ALL
+	resistance_flags = RESIST_ALL
 
 	/// Were we instantiated at mapload? Used to determine when we should link / throw errors
 	var/maploaded = FALSE
