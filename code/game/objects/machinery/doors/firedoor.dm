@@ -15,7 +15,7 @@
 	req_one_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	opacity = FALSE
 	density = FALSE
-	obj_flags = CAN_BE_HIT
+	obj_flags = parent_type::obj_flags|CAN_BE_HIT
 	allow_pass_flags = NONE
 	layer = BELOW_OPEN_DOOR_LAYER
 	open_layer = BELOW_OPEN_DOOR_LAYER // Just below doors when open
