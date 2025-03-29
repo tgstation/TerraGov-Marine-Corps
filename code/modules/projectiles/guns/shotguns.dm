@@ -845,8 +845,6 @@
 	cocked_sound = 'sound/weapons/guns/interact/working_the_shotgun_bolt.ogg'
 	cocked_message = "You work the bolt with eminence."
 
-	//default_ammo_type = /obj/item/ammo_magazine/dijitar_mag
-	//allowed_ammo_types = list(/obj/item/ammo_magazine/dijitar_mag)
 	default_ammo_type = /obj/item/ammo_magazine/dijitar_base_slug/dijitar_buckshot
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/dijitar_base_slug,
@@ -865,17 +863,16 @@
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/lasersight,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		///obj/item/attachable/foldable/t35stock,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 	)
-	//starting_attachment_types = list(/obj/item/attachable/foldable/t35stock) //It has a static stock so I dunno
 
-	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION|AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
 
 	attachable_offset = list("muzzle_x" = 55, "muzzle_y" = 19,"rail_x" = 29, "rail_y" = 22, "under_x" = 41, "under_y" = 15, "stock_x" = 11, "stock_y" = 19)
@@ -885,7 +882,6 @@
 	scatter = 3.5
 	scatter_unwielded = 10
 	recoil = 2
-	//recoil_unwielded = 5  //Since you always need two hands to fire it I don't think this matters hmm
 	aim_slowdown = 0.45
 	cock_delay = 0.8 SECONDS
 

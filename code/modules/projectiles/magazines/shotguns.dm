@@ -143,25 +143,6 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	default_ammo = /datum/ammo/bullet/shotgun/barrikada_slug
 	icon_state_mini = "buckshot"
 
-
-
-/*
-/obj/item/ammo_magazine/dijitar_mag
-	name = "SH41 Dijitar 10 gauge magazine buckshot"
-	desc = "10 gauge magazine for the SH41 Dijitar WIP"
-	caliber = CALIBER_10G
-	icon_state = "SH41_mag"
-	icon = 'icons/obj/items/ammo/shotgun.dmi'
-	//icon_state_mini = "SH41_mag"
-	default_ammo = /datum/ammo/bullet/shotgun/dijitar_buckshot
-	max_rounds = 7
-	//bonus_overlay = "tl127_mag"
-*/
-
-
-
-
-
 /obj/item/ammo_magazine/dijitar_base_slug
 	name = "magazine of 10 gauge shotgun slugs"
 	desc = "A magazine filled with heavy solid shotgun shells in 10 Gauge."
