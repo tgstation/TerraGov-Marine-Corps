@@ -72,7 +72,7 @@
 	)
 	current_variant = "normal"
 	greyscale_colors = ARMOR_PALETTE_BLACK
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
 	starting_attachments = list(/obj/item/armor_module/armor/secondary_color/chest/webbing)
 
