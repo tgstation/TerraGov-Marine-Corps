@@ -979,20 +979,15 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "c153"
 	worn_icon_state = "c153"
-	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_64.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_64.dmi',
-	)
-	inhand_x_dimension = 64
-	inhand_y_dimension = 32
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED|GUN_SMOKE_PARTICLES
 	caliber = CALIBER_84MM //codex
-	load_method = MAGAZINE //codex
+	load_method = SINGLE_CASING //codex
 	default_ammo_type = /obj/item/ammo_magazine/rocket/vsd/he
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rocket/vsd/he,
 		/obj/item/ammo_magazine/rocket/vsd/incendiary,
 		/obj/item/ammo_magazine/rocket/vsd/chemical,
+		/obj/item/ammo_magazine/rocket/vsd/heat,
 	)
 	wield_delay = 1 SECONDS
 	aim_slowdown = 1
@@ -1001,7 +996,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	unload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
 	fire_sound = "rpg_fire"
 
-	attachable_offset = list("muzzle_x" = 53, "muzzle_y" = 20, "rail_x" = 44, "rail_y" = 21, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 53, "muzzle_y" = 20, "rail_x" = 22, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 	windup_delay = 0.6 SECONDS
 	scatter = -1
@@ -1103,3 +1098,33 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 0
 	scatter = 0
 	movement_acc_penalty_mult = 6
+
+/obj/item/weapon/gun/minigun/vsd_autocannon
+	name = "\improper CC/AT32 Handheld Autocannon"
+	desc = "The CC/AT32, a new handheld Autocannon of the Vyacheslav Security Detail. Firing 20mm rounds and 40mm grenades. Its ammo variety goes from Armor Piercing, Anti-Tank, and Explosives."
+	icon = 'icons/obj/items/guns/special64.dmi'
+	icon_state = "at32"
+	worn_icon_state = "at32"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
+	)
+	fire_animation = "at32"
+	max_shells = 100 //codex
+	caliber = CALIBER_20 //codex
+	load_method = MAGAZINE //codex
+	fire_sound = 'sound/weapons/guns/fire/autocannon_1.ogg'
+	unload_sound = 'sound/weapons/guns/interact/sniper_heavy_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/sniper_heavy_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/rifle/vsd_autocannon
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/vsd_autocannon,
+		/obj/item/ammo_magazine/rifle/vsd_autocannon/explosive,
+		/obj/item/ammo_magazine/rifle/vsd_autocannon/at,
+		)
+	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
+
+	fire_delay = 0.40 SECONDS
+	windup_delay = 0 SECONDS
