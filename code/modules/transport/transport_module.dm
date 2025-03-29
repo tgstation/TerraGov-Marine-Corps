@@ -10,7 +10,7 @@
 	base_icon_state = "catwalk"
 	density = FALSE
 	anchored = TRUE
-	resistance_flags = ALL
+	resistance_flags = RESIST_ALL
 
 	max_integrity = 50
 	layer = TRAM_FLOOR_LAYER
