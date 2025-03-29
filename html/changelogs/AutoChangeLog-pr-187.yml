@@ -1,0 +1,8 @@
+author: "W0LF-101"
+delete-after: True
+changes:
+  - balance: "Tweaked the entirety of the SOM weapons vendor, mostly increasing magazine count due to lack of req support."
+  - balance: "Increased number of certain weapons such as the SOM burst shotgun and VSD in their vendor."
+  - rscadd: "Added aphrotoxin pills and injectors to SOM marinemed"
+  - rscadd: "Added Martini Henry, Spear and additional harvester weapons to SOM vendor"
+  - rscadd: "Added a variety of new clothing to the SOM vendor, particularly hyperscale items"
