@@ -57,6 +57,8 @@
 /obj/machinery/elevator_control_panel/Initialize(mapload)
 	. = ..()
 
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "el_panel", MINIMAP_LABELS_LAYER))
+
 	var/static/list/tool_behaviors = list(
 		TOOL_MULTITOOL = list(SCREENTIP_CONTEXT_LMB = "Reset Panel"),
 	)
