@@ -48,7 +48,7 @@
  * * falloff: how the sound's volume decreases with distance, low is fast decrease and high is slow decrease. \
 A good representation is: 'byond applies a volume reduction to the sound every X tiles', where X is falloff.
  */
-/proc/playsound(atom/source, soundin, vol, vary, sound_range, falloff, is_global, frequency, channel = 0, ambient_sound = FALSE)
+/proc/playsound(atom/source, soundin, vol, vary, sound_range, falloff, is_global, frequency, channel = 0, ambient_sound = FALSE, ignore_walls = TRUE)
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
 
@@ -75,25 +75,47 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	if(!frequency)
 		frequency = GET_RANDOM_FREQ
 	var/sound/S = sound(get_sfx(soundin))
+	var/source_z = turf_source.z
 
-	var/list/listeners = SSmobs.clients_by_zlevel[turf_source.z].Copy()
+	var/list/listeners
+
+	var/turf/above_turf = GET_TURF_ABOVE(turf_source)
+	var/turf/below_turf = GET_TURF_BELOW(turf_source)
+
+	// todo replace me with CALCULATE_MAX_SOUND_AUDIBLE_DISTANCE from tg so we dont have massive ass ranges fnr
+	var/audible_distance = sound_range
+
+	if(ignore_walls)
+		listeners = get_hearers_in_range(audible_distance, turf_source, RECURSIVE_CONTENTS_CLIENT_MOBS)
+		if(above_turf && istransparentturf(above_turf))
+			listeners += get_hearers_in_range(audible_distance, above_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
+
+		if(below_turf && istransparentturf(turf_source))
+			listeners += get_hearers_in_range(audible_distance, below_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
+
+	else //these sounds don't carry through walls
+		listeners = get_hearers_in_view(audible_distance, turf_source, RECURSIVE_CONTENTS_CLIENT_MOBS)
+
+		if(above_turf && istransparentturf(above_turf))
+			listeners += get_hearers_in_view(audible_distance, above_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
+
+		if(below_turf && istransparentturf(turf_source))
+			listeners += get_hearers_in_view(audible_distance, below_turf, RECURSIVE_CONTENTS_CLIENT_MOBS)
+		for(var/mob/listening_ghost as anything in SSmobs.dead_players_by_zlevel[source_z])
+			if(get_dist(listening_ghost, turf_source) <= audible_distance)
+				listeners += listening_ghost
+
+	/// snowflake, note this ignores walls cus I cant be assed rn
 	for(var/mob/ai_eye AS in GLOB.aiEyes)
 		var/turf/eye_turf = get_turf(ai_eye)
 		if(!eye_turf || eye_turf.z != turf_source.z)
 			continue
 		listeners += ai_eye
 
-	for(var/mob/listener AS in listeners|SSmobs.dead_players_by_zlevel[turf_source.z])
-		if(get_dist(listener, turf_source) > sound_range)
-			continue
-		if(ambient_sound && !(listener.client?.prefs?.toggles_sound & SOUND_AMBIENCE))
-			continue
-		listener.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S)
-
-
 	//We do tanks separately, since they are not actually on the source z, and we need some other stuff to get accurate directional sound
 	for(var/obj/vehicle/sealed/armored/armor AS in GLOB.tank_list)
-		if(!armor.interior || armor.z != turf_source.z || get_dist(armor.loc, turf_source) > sound_range)
+		var/is_same_z = (armor.z == source_z) || (armor.z == above_turf?.z) || (armor.z == below_turf?.z)
+		if(!armor.interior || !is_same_z || get_dist(armor.loc, turf_source) > sound_range)
 			continue
 		if(armor == source) // sounds vehicles with interiors make must be played inside the tank, see /obj/vehicle/sealed/armored/proc/play_interior_sound(...)
 			continue
@@ -109,6 +131,12 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			if(ambient_sound && !(crew.client.prefs.toggles_sound & SOUND_AMBIENCE))
 				continue
 			crew.playsound_local(origin_point, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S)
+
+	for(var/mob/listener AS in listeners)
+		if(ambient_sound && !(listener.client?.prefs?.toggles_sound & SOUND_AMBIENCE))
+			continue
+		listener.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S)
+
 
 /**
  * Plays a sound locally
