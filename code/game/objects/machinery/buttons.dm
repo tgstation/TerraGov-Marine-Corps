@@ -322,7 +322,7 @@
 	linked = new /mob/living/carbon/human(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
 	if(selected_outfit == "Naked" || !selected_outfit)
 		return
-	linked.equipOutfit(job_outfits[selected_outfit], FALSE)
+	linked.equipOutfit(job_outfits[selected_outfit], TRUE)
 
 /obj/machinery/button/valhalla/marine_spawner/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	spawn_humans(xeno_attacker)
