@@ -110,7 +110,8 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		var/turf/eye_turf = get_turf(ai_eye)
 		if(!eye_turf || eye_turf.z != turf_source.z)
 			continue
-		listeners += ai_eye
+		if(get_dist(eye_turf, turf_source) <= audible_distance)
+			listeners += ai_eye
 
 	//We do tanks separately, since they are not actually on the source z, and we need some other stuff to get accurate directional sound
 	for(var/obj/vehicle/sealed/armored/armor AS in GLOB.tank_list)
