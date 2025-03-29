@@ -394,7 +394,7 @@
 	icon_state = "black_table-0"
 	base_icon_state = "black_table"
 	table_prefix = "black"
-	parts = /obj/item/frame/table
+	parts = /obj/item/frame/table/black
 
 /obj/structure/table/urban/shiny_black
 	name = "shiny black metal table"
