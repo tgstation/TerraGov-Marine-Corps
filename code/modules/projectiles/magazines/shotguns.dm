@@ -170,3 +170,4 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	desc = "A magazine filled with flechette shotgun shells. 10 Gauge."
 	icon_state = "SH41_mag"
 	default_ammo = /datum/ammo/bullet/shotgun/dijitar_flechette
+	
