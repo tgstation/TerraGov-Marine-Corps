@@ -104,11 +104,10 @@ const robotLimbColor = 'hsl(218, 60%, 74%)';
  */
 function getLimbColor(damage: number, type?: string) {
   if (type === 'Robotic') return robotLimbColor;
-  if (damage <= 0.3) return 'hsl(44, 100%, 68%)';
-  if (damage <= 0.6) return 'hsl(24, 100%, 68%)';
-  if (damage <= 0.9) return 'hsl(4, 100%, 68%)';
-  if (damage >= 1) return 'grey';
-  else return 'white';
+  if (damage < 0.3) return 'hsl(44, 100%, 68%)';
+  else if (damage < 0.9) return 'hsl(24, 100%, 68%)';
+  else if (damage <= 1) return 'hsl(4, 100%, 68%)';
+  else return 'grey';
 }
 
 export function MedScanner() {
