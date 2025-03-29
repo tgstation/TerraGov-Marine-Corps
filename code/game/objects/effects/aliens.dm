@@ -202,7 +202,7 @@
 ///Moves with the target
 /obj/effect/xenomorph/acid/proc/on_target_move(atom/source)
 	SIGNAL_HANDLER
-	loc = source.loc
+	abstract_move(source.loc)
 
 ///Sig handler to show this acid is attached to something
 /obj/effect/xenomorph/acid/proc/return_self_acid(atom/source, list/acid_List)

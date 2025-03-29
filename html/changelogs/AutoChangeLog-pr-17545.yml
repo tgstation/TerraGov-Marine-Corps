@@ -1,0 +1,4 @@
+author: "Isy232, ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Attempts to fix crash spawning >1 xeno per larva spawn cycle."

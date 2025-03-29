@@ -488,7 +488,7 @@
 	var/mob/camera/aiEye/hud/eyeobj = ai.eyeobj
 	eyeobj.use_static = FALSE
 	ai.camera_visibility(eyeobj)
-	eyeobj.loc = ai.loc
+	eyeobj.abstract_move(ai.loc)
 
 /// Signal handler to clear vehicle and stop remote control
 /datum/action/control_vehicle/proc/clear_vehicle()
