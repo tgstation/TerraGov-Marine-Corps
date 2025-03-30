@@ -59,7 +59,7 @@ type AdviceData = {
   tooltip: string;
 };
 
-type CommonData = {
+type MedScannerData = {
   patient: string;
   species: string;
   dead: boolean;
@@ -94,25 +94,50 @@ type CommonData = {
   accessible_theme: boolean;
 };
 
-const row_bg_color = 'hsla(0, 0%, 100%, 0.05)';
-const robotLimbColor = 'hsl(218, 60%, 74%)';
+// Sizing
+/** Font size of stuff like the OD limit or organ max health */
+const reserveFontSize = '75%';
+/** What most elements will use for their padding and margin */
+const spacingPixels = '5px';
+
+// Colors
+/** For the multiple elements using zebra stripes, this is the base for each step */
+const row_bg_color = 'hsla(0, 0%, 100%, 0.075)';
+/** Color of the [Robotic] tag, and robotic limb names */
+const robotLimbColor = 'hsl(218, 60%, 72%)';
+/** Custom color for brute damage */
+const colorBrute = 'red';
+/** Custom color for burn damage */
+const colorBurn = 'hsl(39, 100%, 60%)';
+/** Middle ground between grey and light grey color presets */
+const midGrey = 'hsl(0, 0%, 59%)';
+/** Marginally darker version of the red color preset */
+const darkerRed = 'hsl(0, 72%, 42%)';
+/** Marginally darker version of the orange color preset */
+const darkerOrange = 'hsl(24, 89%, 40%)';
+/** Saturation and Luminance for `getLimbColor` */
+const limbDmgColors = {
+  sat: '100%',
+  lum: '62%',
+};
 
 /**
  * @param damage input damage level for returning a color
  * @param type string limb type for determining if we should return robot colors
- * @returns a color string
+ * @returns an hsl color string
  */
-function getLimbColor(damage: number, type?: string) {
+function getLimbColor(damage: number, type?: string): string {
   if (type === 'Robotic') return robotLimbColor;
-  if (damage === 0) return 'hsl(0, 0%, 100%)';
-  if (damage < 0.3) return 'hsl(44, 100%, 68%)';
-  else if (damage < 0.9) return 'hsl(24, 100%, 68%)';
-  else if (damage <= 1) return 'hsl(4, 100%, 68%)';
-  else return 'grey';
+  if (damage <= 0) return 'white';
+  if (damage > 1) return 'grey'; // greater than 100% damage can be safely considered a lost cause
+
+  // scale hue linearly from 44/yellow (low damage) to 4/red (high damage)
+  const hue = 44 - 40 * damage;
+  return `hsl(${hue}, ${limbDmgColors.sat}, ${limbDmgColors.lum})`;
 }
 
 export function MedScanner() {
-  const { data } = useBackend<CommonData>();
+  const { data } = useBackend<MedScannerData>();
   const {
     species,
     has_chemicals,
@@ -153,7 +178,7 @@ export function MedScanner() {
 }
 
 function PatientBasics() {
-  const { data } = useBackend<CommonData>();
+  const { data } = useBackend<MedScannerData>();
   const {
     patient,
     species,
@@ -267,7 +292,7 @@ function PatientBasics() {
             <Box inline>
               <ProgressBar value={0}>
                 Brute:{' '}
-                <Box inline bold color="red">
+                <Box inline bold color={colorBrute}>
                   {total_brute}
                 </Box>
               </ProgressBar>
@@ -284,7 +309,7 @@ function PatientBasics() {
             <Box inline>
               <ProgressBar value={0}>
                 Burn:{' '}
-                <Box inline bold color="#ffb833">
+                <Box inline bold color={colorBurn}>
                   {total_burn}
                 </Box>
               </ProgressBar>
@@ -341,7 +366,7 @@ function PatientBasics() {
 
 function PatientChemicals() {
   let row_transparency = 0;
-  const { data } = useBackend<CommonData>();
+  const { data } = useBackend<MedScannerData>();
   const { has_unknown_chemicals, chemicals_lists = {} } = data;
   return (
     <Section title="Chemical Contents">
@@ -363,30 +388,39 @@ function PatientChemicals() {
               <Icon
                 name={'flask'}
                 ml={0.2}
-                pr="5px"
+                pr={spacingPixels}
                 color={chemical.dangerous ? 'red' : chemical.color}
               />
-              <Tooltip content={chemical.description}>
-                <Box
-                  inline
-                  color={chemical.dangerous ? 'red' : 'white'}
-                  bold={chemical.dangerous}
+              <Box
+                inline
+                color={chemical.dangerous ? 'red' : 'white'}
+                bold={chemical.dangerous}
+              >
+                <Tooltip
+                  content={`The chemical's current units. OD at ${chemical.od_threshold}u. Critical OD at ${chemical.crit_od_threshold}u.`}
                 >
                   <Box
                     inline
                     bold
                     color={chemical.dangerous ? 'red' : 'white'}
-                    mr="5px"
+                    mr={spacingPixels}
                   >
-                    {chemical.amount +
-                      ((!chemical.dangerous || chemical.od) &&
-                        '/' + chemical.od_threshold + 'u')}
+                    {chemical.amount}
+                    <Box
+                      inline
+                      color={chemical.dangerous ? darkerRed : midGrey}
+                      fontSize={reserveFontSize}
+                    >
+                      /{chemical.od_threshold}u
+                    </Box>
                   </Box>
+                </Tooltip>
+                <Tooltip content={chemical.description}>
                   <Box inline italic>
                     {chemical.name}
                   </Box>
-                </Box>
-              </Tooltip>
+                </Tooltip>
+              </Box>
               <Box inline width={'5px'} />
               {chemical.dangerous ? (
                 chemical.od ? (
@@ -412,13 +446,12 @@ function PatientChemicals() {
                       color="white"
                       bold
                       backgroundColor={'red'}
-                      pl="5px"
-                      pr="5px"
+                      px={spacingPixels}
                       style={{
                         borderRadius: '0.16em',
                       }}
                     >
-                      <Icon name="temperature-full" mr="5px" />
+                      <Icon name="temperature-full" mr={spacingPixels} />
                       {Math.trunc(
                         (chemical.amount / chemical.od_threshold) * 100,
                       ) +
@@ -426,7 +459,7 @@ function PatientChemicals() {
                         (chemical.amount > chemical.crit_od_threshold
                           ? ', CRIT'
                           : '')}
-                      <Icon name="temperature-arrow-down" mx="5px" />
+                      <Icon name="temperature-arrow-down" mx={spacingPixels} />
                       {Math.trunc(
                         (chemical.amount - chemical.od_threshold) /
                           chemical.metabolism_factor,
@@ -449,8 +482,7 @@ function PatientChemicals() {
                       color="white"
                       bold
                       backgroundColor="red"
-                      pl="5px"
-                      pr="5px"
+                      px={spacingPixels}
                       style={{
                         borderRadius: '0.16em',
                       }}
@@ -484,7 +516,7 @@ function PatientChemicals() {
                           ? 'grey'
                           : 'white'
                     }
-                    px="5px"
+                    px={spacingPixels}
                     style={{
                       borderRadius: '0.16em',
                     }}
@@ -497,7 +529,7 @@ function PatientChemicals() {
                             ? 'temperature-empty'
                             : 'temperature-half'
                       }
-                      mr="5px"
+                      mr={spacingPixels}
                     />
                     {Math.trunc(
                       (chemical.amount / chemical.od_threshold) * 100,
@@ -523,13 +555,13 @@ function PatientChemicals() {
                         : 'white'
                   }
                   bold
-                  px="5px"
-                  ml="5px"
+                  px={spacingPixels}
+                  ml={spacingPixels}
                   style={{
                     borderRadius: '0.16em',
                   }}
                 >
-                  <Icon name="clock" mr="5px" />
+                  <Icon name="clock" mr={spacingPixels} />
                   {/* Getting the /estimated/ time for when this chemical will wear off.
                       It's mostly accurate, but chemicals with lower metab rates will be slower to update
                       and chemicals with higher metab rates will be faster to update. */}
@@ -547,21 +579,21 @@ function PatientChemicals() {
 
 function PatientLimbs() {
   let row_transparency = 0;
-  const { data } = useBackend<CommonData>();
+  const { data } = useBackend<MedScannerData>();
   const { limb_data_lists = {}, species, accessible_theme } = data;
   return (
     <Section title="Limbs Damaged">
       <Stack vertical fill>
         <Stack height="20px">
           <Stack.Item basis="80px" />
-          <Stack.Item basis="50px" bold color="red">
+          <Stack.Item basis="50px" bold color={colorBrute}>
             Brute
           </Stack.Item>
-          <Stack.Item bold color="#ffb833">
+          <Stack.Item bold color={colorBurn}>
             Burn
           </Stack.Item>
           <Stack.Item grow textAlign="right" color="grey" nowrap>
-            <Icon name="droplet" inline bold px="5px" />
+            <Icon name="droplet" inline bold px={spacingPixels} />
             {'= Bleeding '}
             {'{ } = Untreated'}
           </Stack.Item>
@@ -579,7 +611,7 @@ function PatientLimbs() {
             <Stack.Item
               basis="80px"
               pl="3px"
-              bold
+              bold={limb.brute + limb.burn !== 0 || limb.missing}
               textColor={
                 limb.missing
                   ? 'grey'
@@ -623,7 +655,7 @@ function PatientLimbs() {
                       {limb.bandaged ? `${limb.brute}` : `{${limb.brute}}`}
                     </Box>
                   </Tooltip>
-                  <Box inline width="5px" />
+                  <Box inline width={spacingPixels} />
                   <Tooltip
                     content={
                       limb.limb_type === 'Robotic'
@@ -636,20 +668,26 @@ function PatientLimbs() {
                     <Box
                       inline
                       width="40px"
-                      color={limb.burn > 0 ? '#ffb833' : 'white'}
+                      color={limb.burn > 0 ? colorBurn : 'white'}
                     >
                       {limb.salved ? `${limb.burn}` : `{${limb.burn}}`}
                     </Box>
                   </Tooltip>
-                  <Box inline width="5px" />
+                  <Box inline width={spacingPixels} />
                 </Stack.Item>
                 <Stack.Item>
-                  {limb.bleeding ? (
+                  {!!limb.bleeding && (
                     <Tooltip content="The patient is losing blood from this limb. Bleeding can be stopped with gauze or an advanced trauma kit.">
-                      <Icon name="droplet" inline color="red" bold px="5px" />
+                      <Icon
+                        name="droplet"
+                        inline
+                        color="red"
+                        bold
+                        px={spacingPixels}
+                      />
                     </Tooltip>
-                  ) : null}
-                  {limb.limb_status ? (
+                  )}
+                  {!!limb.limb_status && (
                     <Tooltip
                       content={
                         (limb.limb_status !== 'Fracture'
@@ -670,8 +708,8 @@ function PatientLimbs() {
                         [{limb.limb_status}]
                       </Box>
                     </Tooltip>
-                  ) : null}
-                  {limb.limb_type ? (
+                  )}
+                  {!!limb.limb_type && (
                     <Tooltip
                       content={
                         limb.limb_type === 'Robotic'
@@ -695,35 +733,35 @@ function PatientLimbs() {
                         [{limb.limb_type}]
                       </Box>
                     </Tooltip>
-                  ) : null}
-                  {limb.open_incision ? (
+                  )}
+                  {!!limb.open_incision && (
                     <Tooltip content="Open surgical incisions can usually be closed by a cautery depending on the stage of the surgery. Risk of infection if left untreated.">
                       <Box inline color="red" bold>
                         [Open Incision]
                       </Box>
                     </Tooltip>
-                  ) : null}
-                  {limb.infected ? (
+                  )}
+                  {!!limb.infected && (
                     <Tooltip content="Infected limbs can be treated with spaceacillin. Risk of necrosis if left untreated.">
                       <Box inline color="olive" bold>
                         [Infected]
                       </Box>
                     </Tooltip>
-                  ) : null}
-                  {limb.necrotized ? (
+                  )}
+                  {!!limb.necrotized && (
                     <Tooltip content="Necrotized arms or legs cause random dropping of items or falling over, respectively. Organ damage will occur if on the head, chest or groin. Treated by surgery.">
                       <Box inline color="brown" bold>
                         [Necrotizing]
                       </Box>
                     </Tooltip>
-                  ) : null}
-                  {limb.implants ? (
+                  )}
+                  {!!limb.implants && (
                     <Tooltip content="Harmful implants are usually shrapnel from firefights. Moving with a harmful implant will inflict Brute damage occasionally. Removed with tweezers.">
                       <Box inline color="white" bold>
                         [Implant x{limb.implants}]
                       </Box>
                     </Tooltip>
-                  ) : null}
+                  )}
                 </Stack.Item>
               </>
             )}
@@ -736,7 +774,7 @@ function PatientLimbs() {
 
 function PatientOrgans() {
   let row_transparency = 0;
-  const { data } = useBackend<CommonData>();
+  const { data } = useBackend<MedScannerData>();
   const { damaged_organs = {} } = data;
   return (
     <Section title="Organs Damaged">
@@ -753,7 +791,7 @@ function PatientOrgans() {
               <Icon
                 name={organ.status === 'Failing' ? 'circle-dot' : 'circle'}
                 ml={0.2}
-                pr="5px"
+                pr={spacingPixels}
                 color={
                   organ.status === 'Damaged'
                     ? 'orange'
@@ -762,14 +800,10 @@ function PatientOrgans() {
                       : 'grey'
                 }
               />
-              <Tooltip
-                content={
-                  organ.status === 'Functional'
-                    ? 'This organ is considered fully functional and not damaged or failing. It may still be causing very minor effects like pain.'
-                    : organ.effects
-                }
-              >
-                <Box inline>
+              <Box inline>
+                <Tooltip
+                  content={`Considered damaged at ${organ.bruised_damage}, failing at ${organ.broken_damage}.`}
+                >
                   <Box
                     inline
                     color={
@@ -782,34 +816,54 @@ function PatientOrgans() {
                     bold
                     mr={'5px'}
                   >
-                    {Math.trunc((organ.damage / organ.broken_damage) * 100)}%
+                    {Math.trunc(organ.damage)}
+                    <Box
+                      inline
+                      fontSize={reserveFontSize}
+                      color={
+                        organ.status === 'Failing'
+                          ? darkerRed
+                          : organ.status === 'Damaged'
+                            ? darkerOrange
+                            : 'grey'
+                      }
+                    >
+                      /{organ.broken_damage}
+                    </Box>
                   </Box>
+                </Tooltip>
+                <Tooltip
+                  content={
+                    organ.status === 'Functional'
+                      ? 'This organ is considered fully functional and not damaged or failing. It may still be causing very minor effects like pain.'
+                      : organ.effects
+                  }
+                >
                   <Box inline italic mr={'5px'}>
                     {organ.name[0].toUpperCase() + organ.name.slice(1)}
                   </Box>
+                </Tooltip>
+              </Box>
+              {organ.status ? (
+                <Box
+                  inline
+                  color="white"
+                  bold
+                  backgroundColor={
+                    organ.status === 'Damaged'
+                      ? 'orange'
+                      : organ.status === 'Failing'
+                        ? 'red'
+                        : 'grey'
+                  }
+                  px={spacingPixels}
+                  style={{
+                    borderRadius: '0.16em',
+                  }}
+                >
+                  {organ.status.toUpperCase()}
                 </Box>
-                {organ.status ? (
-                  <Box
-                    inline
-                    color="white"
-                    bold
-                    backgroundColor={
-                      organ.status === 'Damaged'
-                        ? 'orange'
-                        : organ.status === 'Failing'
-                          ? 'red'
-                          : 'grey'
-                    }
-                    pl="5px"
-                    pr="5px"
-                    style={{
-                      borderRadius: '0.16em',
-                    }}
-                  >
-                    {organ.status.toUpperCase()}
-                  </Box>
-                ) : null}
-              </Tooltip>
+              ) : null}
             </Box>
           </Stack.Item>
         ))}
@@ -819,7 +873,7 @@ function PatientOrgans() {
 }
 
 function PatientBlood() {
-  const { data } = useBackend<CommonData>();
+  const { data } = useBackend<MedScannerData>();
   const {
     blood_amount,
     regular_blood_amount,
@@ -840,19 +894,26 @@ function PatientBlood() {
           tooltip="Bloodloss causes symptoms that start as suffocation and pain, but get significantly worse as more blood is lost. Blood can be restored by eating and taking Isotonic solution."
         >
           <Box
-            mr="5px"
+            mr={spacingPixels}
             inline
             color={blood_warning ? 'red' : 'white'}
             bold={blood_warning ? true : false}
           >
-            {Math.trunc(blood_amount)}/{Math.trunc(regular_blood_amount)}cl (
-            {Math.trunc((blood_amount / regular_blood_amount) * 100)}%)
+            {Math.trunc((blood_amount / regular_blood_amount) * 100)}%
+            <Box
+              inline
+              color={blood_warning ? darkerRed : midGrey}
+              pl={spacingPixels}
+              fontSize={reserveFontSize}
+            >
+              ({Math.trunc(blood_amount)}/{Math.trunc(regular_blood_amount)}cl)
+            </Box>
           </Box>
           <Box
-            mr="5px"
+            mr={spacingPixels}
             inline
             bold
-            px="5px"
+            px={spacingPixels}
             backgroundColor={blood_warning ? 'red' : 'grey'}
             style={{
               borderRadius: '0.16em',
@@ -864,7 +925,7 @@ function PatientBlood() {
             <Box
               inline
               bold
-              px="5px"
+              px={spacingPixels}
               backgroundColor="red"
               style={{
                 borderRadius: '0.16em',
@@ -896,7 +957,7 @@ function PatientBlood() {
 }
 
 function PatientAdvice() {
-  const { data } = useBackend<CommonData>();
+  const { data } = useBackend<MedScannerData>();
   const { advice = {}, species, accessible_theme } = data;
   return (
     <Section title="Treatment Advice">
