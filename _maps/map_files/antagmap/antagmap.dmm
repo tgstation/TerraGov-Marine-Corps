@@ -4491,6 +4491,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
 "xO" = (
+/obj/machinery/cryopod/right,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 6
 	},
@@ -8301,6 +8302,10 @@
 /obj/effect/landmark/start/job/som/staff_officer,
 /turf/open/floor/mainship/office,
 /area/antag_ship/som/bridge)
+"Sg" = (
+/obj/machinery/cryopod/right,
+/turf/open/floor/plating/ground/dirt,
+/area/antag_ship/clf_base/hallways/outside)
 "Sj" = (
 /obj/machinery/door/airlock/mainship/security/glass{
 	req_access = list(211)
@@ -18503,7 +18508,7 @@ aF
 tT
 eI
 Uk
-tT
+Sg
 tT
 "}
 (92,1,1) = {"
