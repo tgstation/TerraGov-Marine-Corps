@@ -158,7 +158,7 @@
 	if(!(user.zone_selected in def_zones))
 		return NONE
 	do_repairs(repair_amount)
-	return COMPONENT_NO_TAKE_DAMAGE
+	return COMPONENT_NO_REPAIR
 
 ///does the actual repair of this limb
 /datum/mech_limb/proc/do_repairs(repair_amount)
@@ -173,6 +173,7 @@
 		return FALSE
 	disabled = TRUE
 	owner.update_appearance(UPDATE_OVERLAYS)
+	playsound(owner, 'sound/mecha/internaldmgalarm.ogg', 80, TRUE, falloff = 5)
 	return TRUE
 
 ///makes this limb un-"destroyed"
@@ -502,7 +503,7 @@
 
 /datum/mech_limb/legs/intercept_repair(datum/source, repair_amount, mob/user)
 	. = ..()
-	if(. != COMPONENT_NO_TAKE_DAMAGE) // repaired dmg
+	if(. != COMPONENT_NO_REPAIR) // repaired dmg
 		return
 	update_movespeed()
 

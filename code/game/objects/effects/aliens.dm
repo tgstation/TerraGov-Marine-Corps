@@ -8,30 +8,6 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	layer = FLY_LAYER
 
-/obj/effect/xenomorph/splatter
-	name = "splatter"
-	desc = "It burns! It burns like hygiene!"
-	icon_state = "splatter"
-	density = FALSE
-	opacity = FALSE
-	anchored = TRUE
-
-/obj/effect/xenomorph/splatter/Initialize(mapload) //Self-deletes after creation & animation
-	. = ..()
-	QDEL_IN(src, 8)
-
-/obj/effect/xenomorph/splatterblob
-	name = "splatter"
-	desc = "It burns! It burns like hygiene!"
-	icon_state = "acidblob"
-	density = FALSE
-	opacity = FALSE
-	anchored = TRUE
-
-/obj/effect/xenomorph/splatterblob/Initialize(mapload) //Self-deletes after creation & animation
-	. = ..()
-	QDEL_IN(src, 4 SECONDS)
-
 /obj/effect/xenomorph/spray
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
@@ -62,6 +38,14 @@
 /obj/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	xeno_owner = null
+	return ..()
+
+/obj/effect/xenomorph/spray/can_z_move(direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	z_move_flags |= ZMOVE_ALLOW_ANCHORED
+	return ..()
+
+/obj/effect/xenomorph/spray/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+	impact_flags |= ZIMPACT_NO_SPIN
 	return ..()
 
 /// Signal handler to check if an human is entering the acid spray turf
@@ -202,7 +186,7 @@
 ///Moves with the target
 /obj/effect/xenomorph/acid/proc/on_target_move(atom/source)
 	SIGNAL_HANDLER
-	loc = source.loc
+	abstract_move(source.loc)
 
 ///Sig handler to show this acid is attached to something
 /obj/effect/xenomorph/acid/proc/return_self_acid(atom/source, list/acid_List)

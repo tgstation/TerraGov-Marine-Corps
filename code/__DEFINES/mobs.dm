@@ -86,8 +86,6 @@
 #define LIVING_PERM_COEFF 0
 #define XENO_PERM_COEFF 0.8
 //=================================================
-
-#define HUMAN_STRIP_DELAY 40 //takes 40ds = 4s to strip someone.
 #define POCKET_STRIP_DELAY 20
 
 #define ALIEN_SELECT_AFK_BUFFER 1 // How many minutes that a person can be AFK before not being allowed to be an alien.

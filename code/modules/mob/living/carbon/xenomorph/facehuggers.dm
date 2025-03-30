@@ -26,6 +26,7 @@
 	throw_range = 1
 	worn_layer = FACEHUGGER_LAYER
 	layer = FACEHUGGER_LAYER
+	strip_delay = 2 SECONDS
 
 	///Whether the hugger is dead, active or inactive
 	var/stat = CONSCIOUS

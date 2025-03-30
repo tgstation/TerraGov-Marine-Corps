@@ -80,14 +80,14 @@
 	. = ..()
 	buckled_bodybag?.set_glide_size(target)
 
-//Unsafe proc
+//Unsafe proc // TODO I should be using standard buckle code for this
 /obj/structure/bed/proc/buckle_bodybag(obj/structure/closet/bodybag/B, mob/user)
 	if(buckled_bodybag || buckled)
 		return
 	B.visible_message(span_notice("[user] buckles [B] to [src]!"))
 	B.roller_buckled = src
 	B.glide_modifier_flags |= GLIDE_MOD_BUCKLED
-	B.loc = loc
+	B.forceMove(loc)
 	B.setDir(dir)
 	B.layer = layer + 0.1
 	buckled_bodybag = B
