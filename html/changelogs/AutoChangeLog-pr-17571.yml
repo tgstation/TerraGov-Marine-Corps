@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - bugfix: "fixed wierd teleporting riding interactions on trams with tank riders and the tank hitbox"
