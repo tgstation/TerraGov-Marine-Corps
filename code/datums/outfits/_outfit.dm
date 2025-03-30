@@ -159,13 +159,12 @@
 				for(var/i in 1 to number)
 					if(!equipping_human.equip_to_slot_or_del(new path(equipping_human), GLOB.slot_str_to_slot[slot], TRUE))
 						stack_trace("Failed to place item of type [path] from list in slot [slot] in outfit of type [type]!")
-				CHECK_TICK
-		
-		for(var/implant_type in implants)
-			var/obj/item/implant/implanter = new implant_type(equipping_human)
-			implanter.implant(equipping_human)
 
 	post_equip(equipping_human, visualsOnly)
+
+	for(var/implant_type in implants)
+		var/obj/item/implant/implanter = new implant_type(equipping_human)
+		implanter.implant(equipping_human)
 
 	equipping_human.update_body()
 	return TRUE
