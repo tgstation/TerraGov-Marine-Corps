@@ -195,7 +195,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		return
 	ui = new(user, src, "MechVendor", name)
 	ui.open()
-	mech_view.display_to(user)
+	mech_view.display_to(user, ui.window)
 
 /obj/machinery/computer/mech_builder/ui_close(mob/user)
 	. = ..()

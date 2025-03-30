@@ -1,12 +1,32 @@
+
+/atom/movable/screen/map_view/preference_preview
+	/// All the plane masters that need to be applied.
+	var/atom/movable/screen/background/screen_bg
+
+/atom/movable/screen/map_view/preference_preview/Destroy()
+	QDEL_NULL(screen_bg)
+	return ..()
+
+/atom/movable/screen/map_view/preference_preview/generate_view(map_key)
+	. = ..()
+	screen_bg = new
+	screen_bg.del_on_map_removal = FALSE
+	screen_bg.assigned_map = assigned_map
+	screen_bg.icon_state = "clear"
+	screen_bg.fill_rect(1, 1, 4, 1)
+
+/atom/movable/screen/map_view/preference_preview/display_to_client(client/show_to)
+	show_to.register_map_obj(screen_bg)
+	return ..()
+
 /datum/preferences/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		user.client.register_map_obj(screen_main)
-		user.client.register_map_obj(screen_bg)
 
 		ui = new(user, src, "PlayerPreferences", "Preferences")
 		ui.set_autoupdate(FALSE)
 		ui.open()
+		screen_main.display_to(user, ui.window)
 
 /datum/preferences/ui_close(mob/user)
 	. = ..()
