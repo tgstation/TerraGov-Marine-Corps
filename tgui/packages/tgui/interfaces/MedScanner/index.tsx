@@ -10,131 +10,21 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 
-import { useBackend } from '../backend';
-import { Window } from '../layouts';
-
-type LimbData = {
-  name: string;
-  brute: number;
-  burn: number;
-  bandaged: boolean;
-  salved: boolean;
-  missing: boolean;
-  bleeding: boolean;
-  implants: boolean;
-  internal_bleeding: boolean;
-  limb_status?: string;
-  limb_type?: string;
-  open_incision: boolean;
-  infected: boolean;
-  necrotized: boolean;
-  max_damage: number;
-};
-
-type ChemData = {
-  name: string;
-  description: string;
-  amount: number;
-  od: string;
-  od_threshold: number;
-  crit_od_threshold: number;
-  color: string;
-  metabolism_factor: number;
-  dangerous: boolean;
-};
-
-type OrganData = {
-  name: string;
-  status: string;
-  broken_damage: number;
-  bruised_damage: number;
-  damage: number;
-  effects: string;
-};
-
-type AdviceData = {
-  advice: string;
-  icon: string;
-  color: string;
-  tooltip: string;
-};
-
-type MedScannerData = {
-  patient: string;
-  species: string;
-  dead: boolean;
-  health: number;
-  max_health: number;
-  crit_threshold: number;
-  dead_threshold: number;
-  total_brute: number;
-  total_burn: number;
-  toxin: number;
-  oxy: number;
-  clone: number;
-  revivable_boolean: boolean;
-  revivable_string: number;
-  has_chemicals: boolean;
-  has_unknown_chemicals: boolean;
-  chemicals_lists?: Record<string, ChemData>;
-  limb_data_lists?: Record<string, LimbData>;
-  limbs_damaged: number;
-  damaged_organs?: Record<string, OrganData>;
-  ssd: string | null;
-  blood_type: string;
-  blood_amount: number;
-  regular_blood_amount: number;
-  body_temperature: string;
-  pulse: string;
-  infection: boolean;
-  internal_bleeding: boolean;
-  total_unknown_implants: number;
-  hugged: boolean;
-  advice?: Record<string, AdviceData>;
-  accessible_theme: boolean;
-};
-
-// Sizing
-/** Font size of stuff like the OD limit or organ max health */
-const reserveFontSize = '75%';
-/** What most elements will use for their padding and margin */
-const spacingPixels = '5px';
-
-// Colors
-/** For the multiple elements using zebra stripes, this is the base for each step */
-const row_bg_color = 'hsla(0, 0%, 100%, 0.075)';
-/** Color of the [Robotic] tag, and robotic limb names */
-const robotLimbColor = 'hsl(218, 60%, 72%)';
-/** Custom color for brute damage */
-const colorBrute = 'red';
-/** Custom color for burn damage */
-const colorBurn = 'hsl(39, 100%, 60%)';
-/** Middle ground between grey and light grey color presets */
-const midGrey = 'hsl(0, 0%, 59%)';
-/** Marginally darker version of the red color preset */
-const darkerRed = 'hsl(0, 72%, 42%)';
-/** Marginally darker version of the orange color preset */
-const darkerOrange = 'hsl(24, 89%, 40%)';
-/** Saturation and Luminance for `getLimbColor` */
-const limbDmgColors = {
-  sat: '100%',
-  lum: '62%',
-};
-
-/**
- * @param damage input damage level for returning a color
- * @param type string limb type for determining if we should return robot colors
- * @returns an hsl color string
- */
-function getLimbColor(damage: number, type?: string): string {
-  if (type === 'Robotic') return robotLimbColor;
-  if (damage <= 0) return 'white';
-  if (damage > 1) return 'grey'; // greater than 100% damage can be safely considered a lost cause
-
-  // scale hue linearly from 44/yellow (low damage) to 4/red (high damage)
-  const hue = 44 - 40 * damage;
-  return `hsl(${hue}, ${limbDmgColors.sat}, ${limbDmgColors.lum})`;
-}
+import { useBackend } from '../../backend';
+import { Window } from '../../layouts';
+import {
+  COLOR_BRUTE,
+  COLOR_BURN,
+  DARKER_ORANGE,
+  DARKER_RED,
+  MID_GREY,
+  RESERVE_FONT_SIZE,
+  ROBOT_LIMB_COLOR,
+  SPACING_PIXELS,
+  ZEBRA_BG_COLOR,
+} from './constants';
+import { MedScannerData } from './data';
+import { getLimbColor } from './helpers';
 
 export function MedScanner() {
   const { data } = useBackend<MedScannerData>();
@@ -292,7 +182,7 @@ function PatientBasics() {
             <Box inline>
               <ProgressBar value={0}>
                 Brute:{' '}
-                <Box inline bold color={colorBrute}>
+                <Box inline bold color={COLOR_BRUTE}>
                   {total_brute}
                 </Box>
               </ProgressBar>
@@ -309,7 +199,7 @@ function PatientBasics() {
             <Box inline>
               <ProgressBar value={0}>
                 Burn:{' '}
-                <Box inline bold color={colorBurn}>
+                <Box inline bold color={COLOR_BURN}>
                   {total_burn}
                 </Box>
               </ProgressBar>
@@ -379,7 +269,7 @@ function PatientChemicals() {
         {Object.values(chemicals_lists).map((chemical) => (
           <Stack.Item
             key={chemical.name}
-            backgroundColor={row_transparency++ % 2 === 0 ? row_bg_color : ''}
+            backgroundColor={row_transparency++ % 2 === 0 ? ZEBRA_BG_COLOR : ''}
             style={{
               borderRadius: '0.16em',
             }}
@@ -388,7 +278,7 @@ function PatientChemicals() {
               <Icon
                 name={'flask'}
                 ml={0.2}
-                pr={spacingPixels}
+                pr={SPACING_PIXELS}
                 color={chemical.dangerous ? 'red' : chemical.color}
               />
               <Box
@@ -403,13 +293,13 @@ function PatientChemicals() {
                     inline
                     bold
                     color={chemical.dangerous ? 'red' : 'white'}
-                    mr={spacingPixels}
+                    mr={SPACING_PIXELS}
                   >
                     {chemical.amount}
                     <Box
                       inline
-                      color={chemical.dangerous ? darkerRed : midGrey}
-                      fontSize={reserveFontSize}
+                      color={chemical.dangerous ? DARKER_RED : MID_GREY}
+                      fontSize={RESERVE_FONT_SIZE}
                     >
                       /{chemical.od_threshold}u
                     </Box>
@@ -446,12 +336,12 @@ function PatientChemicals() {
                       color="white"
                       bold
                       backgroundColor={'red'}
-                      px={spacingPixels}
+                      px={SPACING_PIXELS}
                       style={{
                         borderRadius: '0.16em',
                       }}
                     >
-                      <Icon name="temperature-full" mr={spacingPixels} />
+                      <Icon name="temperature-full" mr={SPACING_PIXELS} />
                       {Math.trunc(
                         (chemical.amount / chemical.od_threshold) * 100,
                       ) +
@@ -459,7 +349,7 @@ function PatientChemicals() {
                         (chemical.amount > chemical.crit_od_threshold
                           ? ', CRIT'
                           : '')}
-                      <Icon name="temperature-arrow-down" mx={spacingPixels} />
+                      <Icon name="temperature-arrow-down" mx={SPACING_PIXELS} />
                       {Math.trunc(
                         (chemical.amount - chemical.od_threshold) /
                           chemical.metabolism_factor,
@@ -482,7 +372,7 @@ function PatientChemicals() {
                       color="white"
                       bold
                       backgroundColor="red"
-                      px={spacingPixels}
+                      px={SPACING_PIXELS}
                       style={{
                         borderRadius: '0.16em',
                       }}
@@ -516,7 +406,7 @@ function PatientChemicals() {
                           ? 'grey'
                           : 'white'
                     }
-                    px={spacingPixels}
+                    px={SPACING_PIXELS}
                     style={{
                       borderRadius: '0.16em',
                     }}
@@ -529,7 +419,7 @@ function PatientChemicals() {
                             ? 'temperature-empty'
                             : 'temperature-half'
                       }
-                      mr={spacingPixels}
+                      mr={SPACING_PIXELS}
                     />
                     {Math.trunc(
                       (chemical.amount / chemical.od_threshold) * 100,
@@ -555,13 +445,13 @@ function PatientChemicals() {
                         : 'white'
                   }
                   bold
-                  px={spacingPixels}
-                  ml={spacingPixels}
+                  px={SPACING_PIXELS}
+                  ml={SPACING_PIXELS}
                   style={{
                     borderRadius: '0.16em',
                   }}
                 >
-                  <Icon name="clock" mr={spacingPixels} />
+                  <Icon name="clock" mr={SPACING_PIXELS} />
                   {/* Getting the /estimated/ time for when this chemical will wear off.
                       It's mostly accurate, but chemicals with lower metab rates will be slower to update
                       and chemicals with higher metab rates will be faster to update. */}
@@ -586,14 +476,14 @@ function PatientLimbs() {
       <Stack vertical fill>
         <Stack height="20px">
           <Stack.Item basis="80px" />
-          <Stack.Item basis="50px" bold color={colorBrute}>
+          <Stack.Item basis="50px" bold color={COLOR_BRUTE}>
             Brute
           </Stack.Item>
-          <Stack.Item bold color={colorBurn}>
+          <Stack.Item bold color={COLOR_BURN}>
             Burn
           </Stack.Item>
           <Stack.Item grow textAlign="right" color="grey" nowrap>
-            <Icon name="droplet" inline bold px={spacingPixels} />
+            <Icon name="droplet" inline bold px={SPACING_PIXELS} />
             {'= Bleeding '}
             {'{ } = Untreated'}
           </Stack.Item>
@@ -603,7 +493,7 @@ function PatientLimbs() {
             key={limb.name}
             width="100%"
             py="3px"
-            backgroundColor={row_transparency++ % 2 === 0 ? row_bg_color : ''}
+            backgroundColor={row_transparency++ % 2 === 0 ? ZEBRA_BG_COLOR : ''}
             style={{
               borderRadius: '0.16em',
             }}
@@ -655,7 +545,7 @@ function PatientLimbs() {
                       {limb.bandaged ? `${limb.brute}` : `{${limb.brute}}`}
                     </Box>
                   </Tooltip>
-                  <Box inline width={spacingPixels} />
+                  <Box inline width={SPACING_PIXELS} />
                   <Tooltip
                     content={
                       limb.limb_type === 'Robotic'
@@ -668,12 +558,12 @@ function PatientLimbs() {
                     <Box
                       inline
                       width="40px"
-                      color={limb.burn > 0 ? colorBurn : 'white'}
+                      color={limb.burn > 0 ? COLOR_BURN : 'white'}
                     >
                       {limb.salved ? `${limb.burn}` : `{${limb.burn}}`}
                     </Box>
                   </Tooltip>
-                  <Box inline width={spacingPixels} />
+                  <Box inline width={SPACING_PIXELS} />
                 </Stack.Item>
                 <Stack.Item>
                   {!!limb.bleeding && (
@@ -683,7 +573,7 @@ function PatientLimbs() {
                         inline
                         color="red"
                         bold
-                        px={spacingPixels}
+                        px={SPACING_PIXELS}
                       />
                     </Tooltip>
                   )}
@@ -725,7 +615,7 @@ function PatientLimbs() {
                               ? accessible_theme
                                 ? 'lime'
                                 : 'label'
-                              : robotLimbColor
+                              : ROBOT_LIMB_COLOR
                             : 'tan'
                         }
                         bold
@@ -782,7 +672,7 @@ function PatientOrgans() {
         {Object.values(damaged_organs).map((organ) => (
           <Stack.Item
             key={organ.name}
-            backgroundColor={row_transparency++ % 2 === 0 ? row_bg_color : ''}
+            backgroundColor={row_transparency++ % 2 === 0 ? ZEBRA_BG_COLOR : ''}
             style={{
               borderRadius: '0.16em',
             }}
@@ -791,7 +681,7 @@ function PatientOrgans() {
               <Icon
                 name={organ.status === 'Failing' ? 'circle-dot' : 'circle'}
                 ml={0.2}
-                pr={spacingPixels}
+                pr={SPACING_PIXELS}
                 color={
                   organ.status === 'Damaged'
                     ? 'orange'
@@ -819,12 +709,12 @@ function PatientOrgans() {
                     {Math.trunc(organ.damage)}
                     <Box
                       inline
-                      fontSize={reserveFontSize}
+                      fontSize={RESERVE_FONT_SIZE}
                       color={
                         organ.status === 'Failing'
-                          ? darkerRed
+                          ? DARKER_RED
                           : organ.status === 'Damaged'
-                            ? darkerOrange
+                            ? DARKER_ORANGE
                             : 'grey'
                       }
                     >
@@ -856,7 +746,7 @@ function PatientOrgans() {
                         ? 'red'
                         : 'grey'
                   }
-                  px={spacingPixels}
+                  px={SPACING_PIXELS}
                   style={{
                     borderRadius: '0.16em',
                   }}
@@ -894,7 +784,7 @@ function PatientBlood() {
           tooltip="Bloodloss causes symptoms that start as suffocation and pain, but get significantly worse as more blood is lost. Blood can be restored by eating and taking Isotonic solution."
         >
           <Box
-            mr={spacingPixels}
+            mr={SPACING_PIXELS}
             inline
             color={blood_warning ? 'red' : 'white'}
             bold={blood_warning ? true : false}
@@ -902,18 +792,18 @@ function PatientBlood() {
             {Math.trunc((blood_amount / regular_blood_amount) * 100)}%
             <Box
               inline
-              color={blood_warning ? darkerRed : midGrey}
-              pl={spacingPixels}
-              fontSize={reserveFontSize}
+              color={blood_warning ? DARKER_RED : MID_GREY}
+              pl={SPACING_PIXELS}
+              fontSize={RESERVE_FONT_SIZE}
             >
               ({Math.trunc(blood_amount)}/{Math.trunc(regular_blood_amount)}cl)
             </Box>
           </Box>
           <Box
-            mr={spacingPixels}
+            mr={SPACING_PIXELS}
             inline
             bold
-            px={spacingPixels}
+            px={SPACING_PIXELS}
             backgroundColor={blood_warning ? 'red' : 'grey'}
             style={{
               borderRadius: '0.16em',
@@ -925,7 +815,7 @@ function PatientBlood() {
             <Box
               inline
               bold
-              px={spacingPixels}
+              px={SPACING_PIXELS}
               backgroundColor="red"
               style={{
                 borderRadius: '0.16em',
