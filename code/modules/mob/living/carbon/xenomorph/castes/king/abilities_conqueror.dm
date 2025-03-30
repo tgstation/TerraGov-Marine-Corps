@@ -736,7 +736,6 @@
 
 /// Does various effects upon reappearing.
 /datum/action/ability/activable/xeno/conqueror_domination/proc/do_reappearance(list/turf/affected_turfs)
-	var/damage = xeno_owner.melee_damage
 	xeno_owner.set_canmove(TRUE)
 	xeno_owner.status_flags &= ~(GODMODE|INCORPOREAL)
 	xeno_owner.pass_flags = initial(xeno_owner.pass_flags)
@@ -756,7 +755,7 @@
 				mob_target.knockback(xeno_owner, knockback_dist, 1)
 			var/mob/living/living_target = mob_target
 			living_target.Knockdown(CONQUEROR_DOMINATION_KNOCKDOWN)
-			living_target.take_overall_damage(damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, MELEE, TRUE, TRUE, TRUE, xeno_owner.xeno_caste.melee_ap, 5)
+			living_target.take_overall_damage(xeno_owner.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, MELEE, TRUE, TRUE, TRUE, xeno_owner.xeno_caste.melee_ap, 5)
 
 /obj/effect/temp_visual/conqueror/reappearance
 	icon = 'icons/effects/128x128.dmi'

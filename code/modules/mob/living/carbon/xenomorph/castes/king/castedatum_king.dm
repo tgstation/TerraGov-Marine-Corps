@@ -123,7 +123,7 @@
 	caste_name = "Conqueror"
 	display_name = "Conqueror"
 	caste_type_path = /mob/living/carbon/xenomorph/king/conqueror
-	wound_type = "conqueror"
+	wound_type = "king"
 	caste_desc = "A primordial beast, sculpted by countless fights, intent on conquering the battlefield."
 
 	// *** Melee Attacks *** //
