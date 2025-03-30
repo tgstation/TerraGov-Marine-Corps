@@ -35,3 +35,4 @@
 
 /mob/living/carbon/xenomorph/ravager/bloodthirster
 	caste_base_type = /datum/xeno_caste/ravager/bloodthirster
+	icon_state = "Bloodthirster Walking"
