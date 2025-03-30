@@ -793,6 +793,9 @@
 
 	species = GLOB.all_species[new_species]
 
+	if(!species)
+		CRASH("Failed to set species to [new_species]")
+
 	if(oldspecies)
 		//additional things to change when we're no longer that species
 		oldspecies.post_species_loss(src)
