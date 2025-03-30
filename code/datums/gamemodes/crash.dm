@@ -210,7 +210,7 @@
 	// Make sure there is at least two xenos regardless of ratio.
 	var/total_xenos = xeno_hive.get_total_xeno_number() + (xeno_job.total_positions - xeno_job.current_positions)
 	if(total_xenos < 2)
-		xeno_job.add_job_positions(2 - total_xenos)
+		xeno_job.add_job_positions(1)
 		xeno_hive.update_tier_limits()
 
 /// Gets the difference of job points between humans and xenos. Negative means too many xenos. Positive means too many humans.
