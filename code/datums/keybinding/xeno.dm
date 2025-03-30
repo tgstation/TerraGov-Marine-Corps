@@ -781,6 +781,60 @@
 	description = "Summons all xenos in a hive to the caller's location, uses all plasma to activate."
 	keybind_signal = COMSIG_XENOABILITY_HIVE_SUMMON
 
+/datum/keybinding/xeno/conqueror_dash
+	name = "Conqueror's Dash"
+	full_name = "Conqueror: Dash"
+	description = "Move in a burst of speed. Double tap any movement direction to dash towards it."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_DASH
+
+/datum/keybinding/xeno/conqueror_will
+	name = "Conqueror's Will"
+	full_name = "Conqueror: Conqueror's Will"
+	description = "Imbue your punches with charged plasma. Upgrades attacks, and allows you to execute powerful combos while this ability is selected."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_WILL
+	hotkey_keys = list("C")
+
+/datum/keybinding/xeno/conqueror_endurance_hold
+	name = "Conqueror's Endurance (Hold)"
+	full_name = "Conqueror: Endurance (Hold)"
+	description = "While the button is held, you will block attacks with your forearms, reducing damage received."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_HOLD
+	hotkey_keys = list("Z")
+
+/datum/keybinding/xeno/conqueror_endurance_hold/up(client/user)
+	SEND_SIGNAL(user, COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_UP, TRUE)
+	return ..()
+
+/datum/keybinding/xeno/conqueror_endurance_toggle
+	name = "Conqueror's Endurance (Toggle)"
+	full_name = "Conqueror: Endurance (Toggle)"
+	description = "While toggled, you will block attacks with your forearms, reducing damage received."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_ENDURANCE_TOGGLE
+
+/datum/keybinding/xeno/conqueror_dominance
+	name = "Conqueror's Domination"
+	full_name = "Conqueror: Domination"
+	description = "Teleport towards a target location, distorting reality, and creating powerful shockwaves upon reappearing."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_DOMINATION
+	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/conqueror_obliteration_hold
+	name = "Conqueror's Obliteration (Hold)"
+	full_name = "Conqueror: Obliteration (Hold)"
+	description = "Unleash your latent power. While the button is held, you will create an area of effect that will slowly expand. Releasing the button will attack everyone caught within it."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_HOLD
+	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/conqueror_obliteration_hold/up(client/user)
+	SEND_SIGNAL(user, COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_UP, TRUE)
+	return ..()
+
+/datum/keybinding/xeno/conqueror_obliteration_toggle
+	name = "Conqueror's Obliteration (Toggle)"
+	full_name = "Conqueror: Obliteration (Toggle)"
+	description = "Unleash your latent power. While enabled, you will create an area of effect that will slowly expand. Using the ability again will attack everyone caught within it."
+	keybind_signal = COMSIG_XENOABILITY_CONQUEROR_OBLITERATION_TOGGLE
+
 /datum/keybinding/xeno/acid_dash
 	name = "acid_dash"
 	full_name = "Praetorian: Acid Dash"
