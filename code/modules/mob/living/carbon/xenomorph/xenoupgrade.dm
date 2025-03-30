@@ -435,6 +435,16 @@
 
 //----PUPPETEER END----//
 //============//
+//----JESTER START----//
+/mob/living/carbon/xenomorph/jester
+	upgrade = XENO_UPGRADE_NORMAL
+
+/mob/living/carbon/xenomorph/jester/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_TWO_THRESHOLD
+
+//----PUPPETEER END----//
+//============//
 //----BEHEMOTH START----//
 
 /mob/living/carbon/xenomorph/behemoth
