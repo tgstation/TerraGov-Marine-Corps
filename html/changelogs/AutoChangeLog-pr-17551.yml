@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "Fix trams/elevator stuff being slashable (and doing nothing)"

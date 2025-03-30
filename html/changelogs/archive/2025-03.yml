@@ -611,3 +611,25 @@
   - rscadd: sound effect while mech dashing
   - rscadd: mech dashing no longer affects direction while strafing
   - imageadd: boost overlay for new mech
+2025-03-30:
+  Isy232:
+  - balance: Adjusted how the T3 penalty is handled on crash, removing 1 whole T3
+      slot with a new minimum of 0 slots.
+  Isy232, ivanmixo:
+  - bugfix: Attempts to fix crash spawning >1 xeno per larva spawn cycle.
+  TiviPlus:
+  - bugfix: Fixed failed diag movement making the atom dir diagonal
+  - qol: As a side effect of the above, king no longer needs to hug a wall to shoot
+      laser diagonally, and just tracks the last attempted movement
+  - balance: Tram ignores smashing the nuke
+  - bugfix: Acid spray, sticky, firenados fall on openspace
+  - qol: Mech limb being destroyed now plays a sound
+  - code_imp: Splits hyperscale palettes into legacy (armor) and new (mech) palettes.
+      legacy palettes will eventually be transitioned to the new ones in a few months
+  - bugfix: Fix beams being black on multiz
+  - bugfix: Fixed mech GL not spinning the mech
+  - bugfix: Fix trams/elevator stuff being slashable (and doing nothing)
+  - bugfix: Fixed mech weapons visually duping
+  - bugfix: Fixed mech leg repair not fixing movespeed
+  yyzsong:
+  - balance: Increases resin jelly duration from 15 seconds to 30 seconds.

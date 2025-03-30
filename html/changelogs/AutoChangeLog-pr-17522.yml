@@ -1,4 +1,0 @@
-author: "Isy232"
-delete-after: True
-changes:
-  - balance: "Adjusted how the T3 penalty is handled on crash, removing 1 whole T3 slot with a new minimum of 0 slots."
