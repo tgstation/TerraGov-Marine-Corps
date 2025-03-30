@@ -1,6 +1,0 @@
-author: "ddotmint"
-delete-after: True
-changes:
-  - bugfix: "rustic and fancy table parts now construct their respective tables"
-  - imageadd: "added flipped sprites for fancy wooden tables and black tables"
-  - imageadd: "added table part sprites for black tables and the default tan tables"

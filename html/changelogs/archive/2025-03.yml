@@ -126,3 +126,17 @@
   Meghan-Rossi:
   - rscadd: Dragons can now regress on silos
   - balance: Xenos now need to be on a silo to become dragons.
+2025-03-30:
+  W0LF-101:
+  - balance: Tweaked the entirety of the SOM weapons vendor, mostly increasing magazine
+      count due to lack of req support.
+  - balance: Increased number of certain weapons such as the SOM burst shotgun and
+      VSD in their vendor.
+  - rscadd: Added aphrotoxin pills and injectors to SOM marinemed
+  - rscadd: Added Martini Henry, Spear and additional harvester weapons to SOM vendor
+  - rscadd: Added a variety of new clothing to the SOM vendor, particularly hyperscale
+      items
+  ddotmint:
+  - bugfix: rustic and fancy table parts now construct their respective tables
+  - imageadd: added flipped sprites for fancy wooden tables and black tables
+  - imageadd: added table part sprites for black tables and the default tan tables
