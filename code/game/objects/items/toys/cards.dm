@@ -233,7 +233,7 @@
 	H.update_icon()
 	update_icon()
 	user.visible_message("\The [user] plays \the [discarding].")
-	H.loc = get_step(user, user.dir)
+	H.forceMove(get_step(user, user.dir))
 
 	if(!length(cards))
 		qdel(src)

@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "fixed an error icon in drop pod actions"
-  - bugfix: "fixed drop pods using the highlited targetting icon"
