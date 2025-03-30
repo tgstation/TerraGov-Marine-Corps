@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - rscadd: "Added map icons for multi-z ladders, stairs and elevator panels."
