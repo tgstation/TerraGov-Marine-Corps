@@ -67,7 +67,7 @@
 
 			human_user.visible_message(span_danger("[human_user] is trying perform CPR on [src]!"), null, null, 4)
 
-			if(!do_after(human_user, HUMAN_STRIP_DELAY, NONE, src, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+			if(!do_after(human_user, 4 SECONDS, NONE, src, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 				return TRUE
 
 			if(health > get_death_threshold() && health < get_crit_threshold())

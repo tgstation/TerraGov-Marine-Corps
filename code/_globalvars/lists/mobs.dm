@@ -91,6 +91,8 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/queen/primordial,
 	/mob/living/carbon/xenomorph/king,
 	/mob/living/carbon/xenomorph/king/primordial,
+	/mob/living/carbon/xenomorph/king/conqueror,
+	/mob/living/carbon/xenomorph/king/conqueror/primordial,
 	/mob/living/carbon/xenomorph/wraith,
 	/mob/living/carbon/xenomorph/wraith/primordial,
 	/mob/living/carbon/xenomorph/ravager,

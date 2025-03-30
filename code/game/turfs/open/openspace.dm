@@ -18,13 +18,14 @@
 	if(PERFORM_ALL_TESTS(focus_only/openspace_clear) && !GET_TURF_BELOW(src))
 		stack_trace("[src] was inited as openspace with nothing below it at ([x], [y], [z])")
 	RegisterSignal(src, COMSIG_ATOM_INITIALIZED_ON, PROC_REF(on_atom_created))
+	RegisterSignal(src, COMSIG_TURF_JUMP_ENDED_HERE, PROC_REF(on_jump_land))
 	return INITIALIZE_HINT_LATELOAD
 
 /turf/open/openspace/LateInitialize()
 	ADD_TURF_TRANSPARENCY(src, INNATE_TRAIT)
 
 /turf/open/openspace/ChangeTurf(path, list/new_baseturfs, flags)
-	UnregisterSignal(src, COMSIG_ATOM_INITIALIZED_ON)
+	UnregisterSignal(src, list(COMSIG_ATOM_INITIALIZED_ON, COMSIG_TURF_JUMP_ENDED_HERE))
 	return ..()
 
 /**
@@ -51,6 +52,11 @@
 	SIGNAL_HANDLER
 	if(ismovable(created_atom))
 		zfall_if_on_turf(created_atom)
+
+///Drops movables spawned on this turf after they ended their jump here
+/turf/open/openspace/proc/on_jump_land(datum/source, atom/movable/landing_atom)
+	SIGNAL_HANDLER
+	zfall_if_on_turf(landing_atom)
 
 /turf/open/openspace/proc/zfall_if_on_turf(atom/movable/movable)
 	if(QDELETED(movable) || movable.loc != src)

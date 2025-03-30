@@ -37,6 +37,11 @@
 		/datum/job/xenomorph = NUCLEAR_WAR_LARVA_POINTS_NEEDED,
 	)
 
+	evo_requirements = list(
+		/datum/xeno_caste/king = 12,
+		/datum/xeno_caste/queen = 8,
+	)
+
 /datum/game_mode/infestation/nuclear_war/post_setup()
 	. = ..()
 

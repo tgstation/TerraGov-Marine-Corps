@@ -265,8 +265,8 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 /datum/job/terragov/command/transportofficer/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to support marines mobile dropship support with the Tadpole.
-You are to ensure the Tadpole's survival and to transport marines around, acting as a mobile bunker. In the case of it's death, you may perform the role of Combat Engineer.
+	to_chat(M, {"Your job is to provide mobile dropship support with the Tadpole, which is capable of both mass-transporting marines as well as holding vast amounts of equipment on it.
+Try to ensure the Tadpole's survival. In the case of its destruction, you may request a repair board from requisitions or perform the role of Combat Engineer.
 "})
 
 
@@ -322,7 +322,7 @@ You are to ensure the Tadpole's survival and to transport marines around, acting
 
 /datum/job/terragov/command/pilot/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to support marines with either close air support via the Condor.
+	to_chat(M, {"Your job is to support marines with close air support via the Condor.
 You are expected to use the Condor as the Alamo is able to be ran automatically, though at some points you will be required to take control of the Alamo for the operation's success, though highly unlikey.
 Though you are an officer, your authority is limited to the dropship and the Condor, where you have authority over the enlisted personnel.
 "})

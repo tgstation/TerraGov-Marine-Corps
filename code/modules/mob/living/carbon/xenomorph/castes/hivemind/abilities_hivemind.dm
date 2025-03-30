@@ -102,7 +102,7 @@
 	action_icon_state = "resync" // TODO: i think i missed an icon
 	desc = "Pick a location on the map and instantly manifest there if possible."
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMISG_XENOMORPH_HIVEMIND_TELEPORT,
+		KEYBINDING_NORMAL = COMSIG_XENOMORPH_HIVEMIND_TELEPORT,
 	)
 	use_state_flags = ABILITY_USE_SOLIDOBJECT
 	///Is the map being shown to the player right now?

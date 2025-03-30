@@ -37,6 +37,13 @@
 	keybind_signal = COMSIG_MECHABILITY_TOGGLE_ZOOM
 	hotkey_keys = list("Q")
 
+/datum/keybinding/mecha/mech_assault_armor
+	name = "mech_assault_armor"
+	full_name = "Mecha Assault Armor"
+	description = "Activate Mecha Assault armor"
+	keybind_signal = COMSIG_MECHABILITY_ASSAULT_ARMOR
+	hotkey_keys = list("Q")
+
 /datum/keybinding/mecha/skyfall
 	name = "mech_skyfall"
 	full_name = "Mecha Skyfall"
@@ -78,3 +85,10 @@
 	description = "Toggle leg actuator overload for your mecha"
 	keybind_signal = COMSIG_MECHABILITY_TOGGLE_ACTUATORS
 	hotkey_keys = list("X")
+
+/datum/keybinding/mecha/mech_cloak
+	name = "mech_cloak"
+	full_name = "Mecha Toggle Cloak"
+	description = "Toggle mech cloaking device."
+	keybind_signal = COMSIG_MECHABILITY_CLOAK
+	hotkey_keys = list("Q")

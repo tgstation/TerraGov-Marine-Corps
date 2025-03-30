@@ -254,6 +254,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	if(selected_part && !(selected_part in selected_primary))
 		return FALSE // non valid body parts
 	switch(action)
+		if("rotate_doll")
+			mech_view.setDir(turn(mech_view.dir, 90))
+			return TRUE
 		if("set_primary")
 			var/new_color_name = params["new_color"]
 			for(var/key in available_colors)
@@ -354,16 +357,16 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				return FALSE
 			if(!(initial(new_type.mech_flags) & EXOSUIT_MODULE_VENDABLE))
 				return FALSE
+			var/slot
 			if(initial(new_type.equipment_slot) == MECHA_BACK)
-				if(params["is_right_weapon"])
-					selected_equipment[MECHA_R_BACK] = new_type
-					return TRUE
-				selected_equipment[MECHA_L_BACK] = new_type
-				return TRUE
-			if(params["is_right_weapon"])
-				selected_equipment[MECHA_R_ARM] = new_type
-				return TRUE
-			selected_equipment[MECHA_L_ARM] = new_type
+				slot = params["is_right_weapon"] ? MECHA_R_BACK : MECHA_L_BACK
+			else
+				slot = params["is_right_weapon"] ? MECHA_R_ARM : MECHA_L_ARM
+
+			if(selected_equipment[slot] == new_type)
+				selected_equipment[slot] = null
+			else
+				selected_equipment[slot] = new_type
 			return TRUE
 
 		if("add_power")
@@ -506,7 +509,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 ///Updates the displayed mech preview dummy in the UI
 /obj/machinery/computer/mech_builder/proc/update_ui_view()
 	var/new_overlays = list()
-	for(var/slot in selected_variants)
+	for(var/slot in get_greyscale_render_order(mech_view.dir))
+		if(!(slot in selected_variants))
+			continue
 		var/datum/mech_limb/head/typepath = get_mech_limb(slot, selected_variants[slot])
 		if(slot == MECH_GREY_L_ARM || slot == MECH_GREY_R_ARM)
 			var/iconstate = "left"

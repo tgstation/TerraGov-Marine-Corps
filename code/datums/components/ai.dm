@@ -59,7 +59,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 		STOP_PROCESSING(SSprocessing, ai_behavior)
 		ai_behavior.cleanup_signals()
 		if(ai_behavior.atom_to_walk_to)
-			ai_behavior.unset_target(ai_behavior.atom_to_walk_to)
+			ai_behavior.do_unset_target(ai_behavior.atom_to_walk_to, FALSE, FALSE)
 		if(register_for_logout)
 			RegisterSignal(parent, COMSIG_MOB_LOGOUT, PROC_REF(start_ai))
 
