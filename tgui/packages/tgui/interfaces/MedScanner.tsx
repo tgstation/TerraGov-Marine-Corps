@@ -104,6 +104,7 @@ const robotLimbColor = 'hsl(218, 60%, 74%)';
  */
 function getLimbColor(damage: number, type?: string) {
   if (type === 'Robotic') return robotLimbColor;
+  if (damage === 0) return 'hsl(0, 0%, 100%)';
   if (damage < 0.3) return 'hsl(44, 100%, 68%)';
   else if (damage < 0.9) return 'hsl(24, 100%, 68%)';
   else if (damage <= 1) return 'hsl(4, 100%, 68%)';
@@ -369,7 +370,7 @@ function PatientChemicals() {
                 <Box
                   inline
                   color={chemical.dangerous ? 'red' : 'white'}
-                  bold={!!chemical.dangerous}
+                  bold={chemical.dangerous}
                 >
                   <Box
                     inline
