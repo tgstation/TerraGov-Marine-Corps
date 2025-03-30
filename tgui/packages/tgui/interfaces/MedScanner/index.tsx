@@ -353,7 +353,8 @@ function PatientChemicals() {
                       {Math.trunc(
                         (chemical.amount - chemical.od_threshold) /
                           chemical.metabolism_factor,
-                      ) + 's'}
+                      )}
+                      s
                     </Box>
                   </Tooltip>
                 ) : (
@@ -423,7 +424,8 @@ function PatientChemicals() {
                     />
                     {Math.trunc(
                       (chemical.amount / chemical.od_threshold) * 100,
-                    ) + '%'}
+                    )}
+                    %
                   </Box>
                 </Tooltip>
               )}
@@ -455,8 +457,7 @@ function PatientChemicals() {
                   {/* Getting the /estimated/ time for when this chemical will wear off.
                       It's mostly accurate, but chemicals with lower metab rates will be slower to update
                       and chemicals with higher metab rates will be faster to update. */}
-                  {Math.trunc(chemical.amount / chemical.metabolism_factor) +
-                    's'}
+                  {Math.trunc(chemical.amount / chemical.metabolism_factor)}s
                 </Box>
               </Tooltip>
             </Box>
