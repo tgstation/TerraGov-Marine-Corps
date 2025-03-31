@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "fixed wierd behaviour with things under shuttles showing when they shouldnt. Shuttles will now always try to revert a plating instead"

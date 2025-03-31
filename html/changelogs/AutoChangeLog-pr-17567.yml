@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - qol: "Improved drop pod drops. They now use a permanent area that all drop pod users drop into when dropping instead of creating a tiny one every time"
