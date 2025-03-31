@@ -228,8 +228,9 @@
 	. += list(
 		iconstate2appearance(overlay_icon, prefix+icon_state),
 		iconstate2appearance(visor_icon, prefix+visor_icon_state),
-		emissive_appearance(visor_icon, prefix+visor_icon_state, owner)
 	)
+	if(!HAS_TRAIT(owner, TRAIT_WARPED_INVISIBLE))
+		. += emissive_appearance(visor_icon, prefix+visor_icon_state, owner)
 	if(has_damage_overlays)
 		var/percent
 		if(initial(part_health))
