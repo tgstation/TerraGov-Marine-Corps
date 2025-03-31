@@ -135,11 +135,11 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			"description" = reagent.description,
 			"amount" = round(reagent.volume, 0.1),
 			"od" = reagent.overdosed,
+			"dangerous" = istype(reagent, /datum/reagent/toxin),
 			"od_threshold" = reagent.overdose_threshold,
 			"crit_od_threshold" = reagent.overdose_crit_threshold,
 			"color" = reagent.color,
-			"metabolism_factor" = reagent.custom_metabolism,
-			"dangerous" = reagent.overdosed || istype(reagent, /datum/reagent/toxin)
+			"metabolism_factor" = reagent.custom_metabolism
 		)
 	data["has_chemicals"] = length(patient.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists

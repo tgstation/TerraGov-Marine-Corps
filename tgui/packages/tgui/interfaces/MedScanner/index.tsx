@@ -25,6 +25,7 @@ import {
 } from './constants';
 import { MedScannerData } from './data';
 import { getLimbColor } from './helpers';
+import { MedBoxedTag } from './MedBoxedTag';
 import { MedDamageType } from './MedDamageType';
 import { MedLimbStateIcon, MedLimbStateText } from './MedLimbState';
 
@@ -272,36 +273,45 @@ function PatientChemicals() {
               borderRadius: '0.16em',
             }}
           >
-            <Box inline p={'2.5px'}>
+            <Box inline p="2.5px">
               <Icon
                 name={'flask'}
                 ml={0.2}
                 pr={SPACING_PIXELS}
-                color={chemical.dangerous ? 'red' : chemical.color}
+                color={
+                  chemical.dangerous || chemical.od ? 'red' : chemical.color
+                }
               />
               <Box
                 inline
-                color={chemical.dangerous ? 'red' : 'white'}
-                bold={chemical.dangerous}
+                color={chemical.dangerous || chemical.od ? 'red' : 'white'}
+                bold={(chemical.dangerous || chemical.od) as boolean}
               >
                 <Tooltip
-                  content={`The chemical's current units. OD at ${chemical.od_threshold}u. Critical OD at ${chemical.crit_od_threshold}u.`}
+                  content={
+                    "The chemical's current units." +
+                    (chemical.od_threshold > 0 && !chemical.dangerous
+                      ? ` OD at ${chemical.od_threshold}u. Critical OD at ${chemical.crit_od_threshold}u.`
+                      : '')
+                  }
                 >
                   <Box
                     inline
                     bold
-                    color={chemical.dangerous ? 'red' : 'white'}
+                    color={chemical.dangerous || chemical.od ? 'red' : 'white'}
                     mr={SPACING_PIXELS}
                   >
                     {chemical.amount}
                     <Box
                       inline
                       color={
-                        chemical.dangerous ? COLOR_DARKER_RED : COLOR_MID_GREY
+                        chemical.dangerous || chemical.od
+                          ? COLOR_DARKER_RED
+                          : COLOR_MID_GREY
                       }
                       fontSize={RESERVE_FONT_SIZE}
                     >
-                      /{chemical.od_threshold}u
+                      {chemical.dangerous ? 'u' : `/${chemical.od_threshold}u`}
                     </Box>
                   </Box>
                 </Tooltip>
@@ -312,126 +322,64 @@ function PatientChemicals() {
                 </Tooltip>
               </Box>
               <Box inline width={'5px'} />
-              {chemical.dangerous ? (
-                chemical.od ? (
-                  /* Only show the OD warning if the OD is why this is dangerous */
-                  <Tooltip
-                    content={
-                      'Purge below ' +
-                      chemical.od_threshold +
-                      'u' +
-                      ' to stabilize. ' +
-                      (chemical.amount > chemical.crit_od_threshold
-                        ? 'This is a critical OD, so its effects are worse than normal. '
-                        : '') +
-                      Math.trunc(
-                        (chemical.amount - chemical.od_threshold) /
-                          chemical.metabolism_factor,
-                      ) +
-                      's remaining before this returns to non-OD levels on its own.'
-                    }
-                  >
-                    <Box
-                      inline
-                      color="white"
-                      bold
-                      backgroundColor={'red'}
-                      px={SPACING_PIXELS}
-                      style={{
-                        borderRadius: '0.16em',
-                      }}
-                    >
-                      <Icon name="temperature-full" mr={SPACING_PIXELS} />
-                      {Math.trunc(
-                        (chemical.amount / chemical.od_threshold) * 100,
-                      ) +
-                        '% OD' +
-                        (chemical.amount > chemical.crit_od_threshold
-                          ? ', CRIT'
-                          : '')}
-                      <Icon name="temperature-arrow-down" mx={SPACING_PIXELS} />
-                      {Math.trunc(
-                        (chemical.amount - chemical.od_threshold) /
-                          chemical.metabolism_factor,
-                      )}
-                      s
-                    </Box>
-                  </Tooltip>
-                ) : (
-                  <Tooltip
-                    content={
-                      'Harmful chemical. Purge immediately. ' +
-                      Math.trunc(
-                        (chemical.amount - chemical.od_threshold) /
-                          chemical.metabolism_factor,
-                      ) +
-                      's remaining before this is cleared on its own.'
-                    }
-                  >
-                    <Box
-                      inline
-                      color="white"
-                      bold
-                      backgroundColor="red"
-                      px={SPACING_PIXELS}
-                      style={{
-                        borderRadius: '0.16em',
-                      }}
-                    >
-                      HARMFUL
-                    </Box>
-                  </Tooltip>
-                )
-              ) : (
+              {chemical.dangerous || chemical.od ? (
                 <Tooltip
                   content={
-                    (chemical.amount / chemical.od_threshold) * 100 > 92
-                      ? 'This chemical is getting close to overdosing. (>92%)'
-                      : (chemical.amount / chemical.od_threshold) * 100 < 8
-                        ? 'This chemical is getting close to being cleared out. (<8%)'
-                        : 'How close this chemical is to its overdose threshold. This chemical is holding steady.'
+                    chemical.dangerous
+                      ? 'Harmful chemical. Purge immediately.'
+                      : 'Purge below ' +
+                        chemical.od_threshold +
+                        'u' +
+                        ' to stabilize. ' +
+                        (chemical.amount > chemical.crit_od_threshold
+                          ? 'This is a critical OD, so its effects are worse than normal. '
+                          : '') +
+                        Math.trunc(
+                          (chemical.amount - chemical.od_threshold) /
+                            chemical.metabolism_factor,
+                        ) +
+                        's remaining before this returns to non-OD levels on its own.'
                   }
                 >
-                  <Box
-                    inline
-                    color={
-                      (chemical.amount / chemical.od_threshold) * 100 < 8
-                        ? 'white'
-                        : 'black'
+                  <MedBoxedTag
+                    name={
+                      chemical.od
+                        ? 'OD' +
+                          (chemical.amount > chemical.crit_od_threshold
+                            ? ', CRIT'
+                            : '') +
+                          ' ' +
+                          Math.trunc(
+                            (chemical.amount - chemical.od_threshold) /
+                              chemical.metabolism_factor,
+                          ) +
+                          's'
+                        : 'HARMFUL'
                     }
-                    bold
-                    backgroundColor={
-                      (chemical.amount / chemical.od_threshold) * 100 > 92
-                        ? 'yellow'
-                        : (chemical.amount / chemical.od_threshold) * 100 < 8
-                          ? 'grey'
-                          : 'white'
+                    icon={chemical.od ? 'temperature-full' : 'virus'}
+                    textColor="white"
+                    backgroundColor="red"
+                  />
+                </Tooltip>
+              ) : (
+                <Tooltip content="How close this chemical is to its overdose threshold.">
+                  <MedBoxedTag
+                    name={
+                      Math.trunc(
+                        (chemical.amount / chemical.od_threshold) * 100,
+                      ) + '%'
                     }
-                    px={SPACING_PIXELS}
-                    style={{
-                      borderRadius: '0.16em',
-                    }}
-                  >
-                    <Icon
-                      name={
-                        (chemical.amount / chemical.od_threshold) * 100 > 90
-                          ? 'temperature-three-quarters'
-                          : (chemical.amount / chemical.od_threshold) * 100 < 10
-                            ? 'temperature-empty'
-                            : 'temperature-half'
-                      }
-                      mr={SPACING_PIXELS}
-                    />
-                    {Math.trunc(
-                      (chemical.amount / chemical.od_threshold) * 100,
-                    )}
-                    %
-                  </Box>
+                    icon="temperature-half"
+                  />
                 </Tooltip>
               )}
               <Tooltip content="Estimated time before this chemical is purged. May vary based on time dilation and other chemicals.">
-                <Box
-                  inline
+                <MedBoxedTag
+                  name={
+                    Math.trunc(chemical.amount / chemical.metabolism_factor) +
+                    's'
+                  }
+                  icon="clock"
                   textColor={
                     chemical.dangerous
                       ? 'white'
@@ -446,19 +394,8 @@ function PatientChemicals() {
                         ? 'grey'
                         : 'white'
                   }
-                  bold
-                  px={SPACING_PIXELS}
                   ml={SPACING_PIXELS}
-                  style={{
-                    borderRadius: '0.16em',
-                  }}
-                >
-                  <Icon name="clock" mr={SPACING_PIXELS} />
-                  {/* Getting the /estimated/ time for when this chemical will wear off.
-                      It's mostly accurate, but chemicals with lower metab rates will be slower to update
-                      and chemicals with higher metab rates will be faster to update. */}
-                  {Math.trunc(chemical.amount / chemical.metabolism_factor)}s
-                </Box>
+                />
               </Tooltip>
             </Box>
           </Stack.Item>
@@ -493,7 +430,7 @@ function PatientLimbs() {
           <Stack
             key={limb.name}
             width="100%"
-            py="3px"
+            py="2.5px"
             backgroundColor={row_transparency++ % 2 === 0 ? COLOR_ZEBRA_BG : ''}
             style={{
               borderRadius: '0.16em',
@@ -501,7 +438,7 @@ function PatientLimbs() {
           >
             <Stack.Item
               basis="80px"
-              pl="3px"
+              pl="2.5px"
               bold={limb.brute + limb.burn !== 0 || limb.missing}
               textColor={
                 limb.missing
@@ -705,11 +642,10 @@ function PatientOrgans() {
                   </Box>
                 </Tooltip>
               </Box>
-              {organ.status ? (
-                <Box
-                  inline
-                  color="white"
-                  bold
+              {!!organ.status && (
+                <MedBoxedTag
+                  name={organ.status.toUpperCase()}
+                  textColor="white"
                   backgroundColor={
                     organ.status === 'Damaged'
                       ? 'orange'
@@ -717,14 +653,8 @@ function PatientOrgans() {
                         ? 'red'
                         : 'grey'
                   }
-                  px={SPACING_PIXELS}
-                  style={{
-                    borderRadius: '0.16em',
-                  }}
-                >
-                  {organ.status.toUpperCase()}
-                </Box>
-              ) : null}
+                />
+              )}
             </Box>
           </Stack.Item>
         ))}

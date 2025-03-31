@@ -1,0 +1,40 @@
+import { Box, Icon } from 'tgui-core/components';
+
+import { SPACING_PIXELS } from './constants';
+
+type Props = {
+  name: string;
+  icon?: string;
+  textColor?: string;
+  backgroundColor?: string;
+  ml?: string;
+  mr?: string;
+};
+
+/** Bold box with a background */
+export function MedBoxedTag(props: Props) {
+  const { name, icon, textColor, backgroundColor, ml, mr } = props;
+  return (
+    <Box
+      inline
+      bold
+      ml={ml}
+      mr={mr}
+      px={SPACING_PIXELS}
+      textColor={textColor || 'black'}
+      backgroundColor={backgroundColor || 'white'}
+      style={{
+        borderRadius: '0.16em',
+      }}
+    >
+      {!!icon && (
+        <Icon
+          name={icon || 'warning'}
+          color={textColor || 'black'}
+          pr={SPACING_PIXELS}
+        />
+      )}
+      {name}
+    </Box>
+  );
+}
