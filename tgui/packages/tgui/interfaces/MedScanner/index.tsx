@@ -26,6 +26,7 @@ import {
 import { MedScannerData } from './data';
 import { getLimbColor } from './helpers';
 import { MedBoxedTag } from './MedBoxedTag';
+import { MedCounter } from './MedCounter';
 import { MedDamageType } from './MedDamageType';
 import { MedLimbStateIcon, MedLimbStateText } from './MedLimbState';
 
@@ -274,14 +275,6 @@ function PatientChemicals() {
             }}
           >
             <Box inline p="2.5px">
-              <Icon
-                name={'flask'}
-                ml={0.2}
-                pr={SPACING_PIXELS}
-                color={
-                  chemical.dangerous || chemical.od ? 'red' : chemical.color
-                }
-              />
               <Box
                 inline
                 color={chemical.dangerous || chemical.od ? 'red' : 'white'}
@@ -295,25 +288,24 @@ function PatientChemicals() {
                       : '')
                   }
                 >
-                  <Box
-                    inline
-                    bold
-                    color={chemical.dangerous || chemical.od ? 'red' : 'white'}
+                  <MedCounter
+                    current={chemical.amount}
+                    max={chemical.dangerous ? 0 : chemical.od_threshold}
+                    units="u"
+                    icon="flask"
+                    iconColor={
+                      chemical.dangerous || chemical.od ? 'red' : chemical.color
+                    }
+                    currentColor={
+                      chemical.dangerous || chemical.od ? 'red' : 'white'
+                    }
+                    maxColor={
+                      chemical.dangerous || chemical.od
+                        ? COLOR_DARKER_RED
+                        : COLOR_MID_GREY
+                    }
                     mr={SPACING_PIXELS}
-                  >
-                    {chemical.amount}
-                    <Box
-                      inline
-                      color={
-                        chemical.dangerous || chemical.od
-                          ? COLOR_DARKER_RED
-                          : COLOR_MID_GREY
-                      }
-                      fontSize={COUNTER_MAX_SIZE}
-                    >
-                      {chemical.dangerous ? 'u' : `/${chemical.od_threshold}u`}
-                    </Box>
-                  </Box>
+                  />
                 </Tooltip>
                 <Tooltip content={chemical.description}>
                   <Box inline italic>
@@ -590,49 +582,31 @@ function PatientOrgans() {
             }}
           >
             <Box inline p={'3px'}>
-              <Icon
-                name={organ.status === 'Failing' ? 'circle-dot' : 'circle'}
-                ml={0.2}
-                pr={SPACING_PIXELS}
-                color={
-                  organ.status === 'Damaged'
-                    ? 'orange'
-                    : organ.status === 'Failing'
-                      ? 'red'
-                      : 'grey'
-                }
-              />
               <Box inline>
                 <Tooltip
                   content={`Considered damaged at ${organ.bruised_damage}, failing at ${organ.broken_damage}.`}
                 >
-                  <Box
-                    inline
-                    color={
+                  <MedCounter
+                    current={organ.damage}
+                    max={organ.broken_damage}
+                    units=""
+                    icon={organ.status === 'Failing' ? 'circle-dot' : 'circle'}
+                    mr={SPACING_PIXELS}
+                    currentColor={
                       organ.status === 'Damaged'
                         ? 'orange'
                         : organ.status === 'Failing'
                           ? 'red'
                           : 'grey'
                     }
-                    bold
-                    mr={'5px'}
-                  >
-                    {Math.trunc(organ.damage)}
-                    <Box
-                      inline
-                      fontSize={COUNTER_MAX_SIZE}
-                      color={
-                        organ.status === 'Failing'
-                          ? COLOR_DARKER_RED
-                          : organ.status === 'Damaged'
-                            ? COLOR_DARKER_ORANGE
-                            : 'grey'
-                      }
-                    >
-                      /{organ.broken_damage}
-                    </Box>
-                  </Box>
+                    maxColor={
+                      organ.status === 'Failing'
+                        ? COLOR_DARKER_RED
+                        : organ.status === 'Damaged'
+                          ? COLOR_DARKER_ORANGE
+                          : 'grey'
+                    }
+                  />
                 </Tooltip>
                 <Tooltip
                   content={
@@ -695,15 +669,16 @@ function PatientBlood() {
             bold={blood_warning ? true : false}
           >
             {Math.trunc((blood_amount / regular_blood_amount) * 100)}%
-            <Box
-              inline
-              color={blood_warning ? COLOR_DARKER_RED : COLOR_MID_GREY}
-              pl={SPACING_PIXELS}
-              fontSize={COUNTER_MAX_SIZE}
-            >
-              ({Math.trunc(blood_amount)}/{Math.trunc(regular_blood_amount)}cl)
-            </Box>
           </Box>
+          <MedCounter
+            current={Math.trunc(blood_amount)}
+            max={Math.trunc(regular_blood_amount)}
+            units="cl"
+            currentColor={blood_warning ? COLOR_DARKER_RED : COLOR_MID_GREY}
+            maxColor={blood_warning ? COLOR_DARKER_RED : COLOR_MID_GREY}
+            currentSize={COUNTER_MAX_SIZE}
+            mr={SPACING_PIXELS}
+          />
           <MedBoxedTag
             name={blood_type}
             mr={SPACING_PIXELS}
