@@ -745,7 +745,7 @@ function PatientBlood() {
     total_unknown_implants,
     infection,
   } = data;
-  let blood_warning =
+  const blood_warning =
     blood_amount / regular_blood_amount < 0.8 || internal_bleeding;
   return (
     <Section>
