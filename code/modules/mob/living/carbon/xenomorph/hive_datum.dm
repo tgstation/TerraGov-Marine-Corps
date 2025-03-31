@@ -297,6 +297,15 @@
 			continue
 		. += length(xenos_by_tier[t])
 
+/datum/hive_status/proc/get_all_caste_members(caste_type)
+	RETURN_TYPE(/list)
+
+	ASSERT(ispath(caste_type, /datum/xeno_caste))
+	. = list()
+	var/list/all_strain_types = get_strain_options(caste_type)
+	for(var/strain_type in all_strain_types)
+		. += xenos_by_typepath[strain_type]
+
 /datum/hive_status/proc/post_add(mob/living/carbon/xenomorph/X)
 	X.color = color
 
