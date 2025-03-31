@@ -1,0 +1,4 @@
+author: "Isy232"
+delete-after: True
+changes:
+  - bugfix: "Fixes my crash t3 balance change dividing by 0."
