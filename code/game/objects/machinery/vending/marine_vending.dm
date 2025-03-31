@@ -1500,6 +1500,8 @@
 			/obj/item/clothing/shoes/high_heels = -1,
 			/obj/item/clothing/shoes/high_heels/red = -1,
 			/obj/item/clothing/head/bunny_ears = -1,
+			/obj/item/clothing/shoes/marine/thigh = -1,
+			/obj/item/clothing/shoes/marine/knee = -1,
 		),
 	)
 
@@ -2463,6 +2465,8 @@
 			/obj/item/clothing/shoes/high_heels = -1,
 			/obj/item/clothing/shoes/high_heels/red = -1,
 			/obj/item/clothing/head/bunny_ears = -1,
+			/obj/item/clothing/shoes/marine/thigh = -1,
+			/obj/item/clothing/shoes/marine/knee = -1,
 		),
 	)
 
@@ -2806,6 +2810,8 @@
 			/obj/item/clothing/shoes/high_heels = -1,
 			/obj/item/clothing/shoes/high_heels/red = -1,
 			/obj/item/clothing/head/bunny_ears = -1,
+			/obj/item/clothing/shoes/marine/thigh = -1,
+			/obj/item/clothing/shoes/marine/knee = -1,
 		),
 	)
 
@@ -3181,6 +3187,8 @@
 			/obj/item/clothing/shoes/high_heels = -1,
 			/obj/item/clothing/shoes/high_heels/red = -1,
 			/obj/item/clothing/head/bunny_ears = -1,
+			/obj/item/clothing/shoes/marine/thigh = -1,
+			/obj/item/clothing/shoes/marine/knee = -1,
 		),
 	)
 
