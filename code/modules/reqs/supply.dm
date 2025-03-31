@@ -227,7 +227,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		for(var/atom/movable/AM in shuttle_area)
 			if(AM.anchored)
 				continue
-			var/datum/export_report = AM.supply_export(faction)
+			var/list/datum/export_report = AM.supply_export(faction)
 			if(export_report)
 				SSpoints.export_history += export_report
 			qdel(AM)

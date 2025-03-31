@@ -38,7 +38,7 @@
 	if(!do_checks(spirited_away, user))
 		return
 	do_extract(spirited_away, user)
-	var/datum/export_report/export_report = spirited_away.supply_export(user.faction)
+	var/list/datum/export_report/export_report = spirited_away.supply_export(user.faction)
 	if(export_report)
 		SSpoints.export_history += export_report
 	user.visible_message(span_notice("[user] finishes attaching [src] to [spirited_away] and activates it."),\
