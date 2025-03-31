@@ -589,7 +589,6 @@ function PatientOrgans() {
                   <MedCounter
                     current={organ.damage}
                     max={organ.broken_damage}
-                    units=""
                     icon={organ.status === 'Failing' ? 'circle-dot' : 'circle'}
                     mr={SPACING_PIXELS}
                     currentColor={
