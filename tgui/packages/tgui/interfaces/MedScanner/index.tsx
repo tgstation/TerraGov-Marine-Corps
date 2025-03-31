@@ -344,7 +344,11 @@ function PatientChemicals() {
                   <MedBoxedTag
                     name={
                       chemical.od
-                        ? 'OD' +
+                        ? Math.trunc(
+                            (chemical.amount / chemical.od_threshold) * 100,
+                          ) +
+                          '%' +
+                          ' OD' +
                           (chemical.amount > chemical.crit_od_threshold
                             ? ', CRIT'
                             : '') +
