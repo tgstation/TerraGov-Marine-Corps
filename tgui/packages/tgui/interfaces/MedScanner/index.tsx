@@ -20,7 +20,7 @@ import {
   COLOR_MID_GREY,
   COLOR_ROBOTIC_LIMB,
   COLOR_ZEBRA_BG,
-  RESERVE_FONT_SIZE,
+  COUNTER_MAX_SIZE,
   SPACING_PIXELS,
 } from './constants';
 import { MedScannerData } from './data';
@@ -309,7 +309,7 @@ function PatientChemicals() {
                           ? COLOR_DARKER_RED
                           : COLOR_MID_GREY
                       }
-                      fontSize={RESERVE_FONT_SIZE}
+                      fontSize={COUNTER_MAX_SIZE}
                     >
                       {chemical.dangerous ? 'u' : `/${chemical.od_threshold}u`}
                     </Box>
@@ -621,7 +621,7 @@ function PatientOrgans() {
                     {Math.trunc(organ.damage)}
                     <Box
                       inline
-                      fontSize={RESERVE_FONT_SIZE}
+                      fontSize={COUNTER_MAX_SIZE}
                       color={
                         organ.status === 'Failing'
                           ? COLOR_DARKER_RED
@@ -699,7 +699,7 @@ function PatientBlood() {
               inline
               color={blood_warning ? COLOR_DARKER_RED : COLOR_MID_GREY}
               pl={SPACING_PIXELS}
-              fontSize={RESERVE_FONT_SIZE}
+              fontSize={COUNTER_MAX_SIZE}
             >
               ({Math.trunc(blood_amount)}/{Math.trunc(regular_blood_amount)}cl)
             </Box>

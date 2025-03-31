@@ -1,6 +1,6 @@
 // Sizing
-/** Font size of stuff like the OD limit or organ max health */
-export const RESERVE_FONT_SIZE = '75%';
+/** Font size for the limit of counters like chem units and organ health */
+export const COUNTER_MAX_SIZE = '75%';
 /** What most elements will use for their padding and margin */
 export const SPACING_PIXELS = '5px';
 
