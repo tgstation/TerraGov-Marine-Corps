@@ -15,16 +15,18 @@ import { Window } from '../../layouts';
 import {
   COLOR_BRUTE,
   COLOR_BURN,
-  DARKER_ORANGE,
-  DARKER_RED,
-  MID_GREY,
+  COLOR_DARKER_ORANGE,
+  COLOR_DARKER_RED,
+  COLOR_MID_GREY,
+  COLOR_ROBOTIC_LIMB,
+  COLOR_ZEBRA_BG,
   RESERVE_FONT_SIZE,
-  ROBOT_LIMB_COLOR,
   SPACING_PIXELS,
-  ZEBRA_BG_COLOR,
 } from './constants';
 import { MedScannerData } from './data';
 import { getLimbColor } from './helpers';
+import { MedDamageType } from './MedDamageType';
+import { MedLimbStateIcon, MedLimbStateText } from './MedLimbState';
 
 export function MedScanner() {
   const { data } = useBackend<MedScannerData>();
@@ -45,10 +47,10 @@ export function MedScanner() {
       height={620}
       theme={
         accessible_theme
-          ? species === 'robot'
+          ? species.is_robotic_species
             ? 'hackerman'
             : 'default'
-          : species === 'robot'
+          : species.is_robotic_species
             ? 'ntos_rusty'
             : 'ntos_healthy'
       }
@@ -67,6 +69,7 @@ export function MedScanner() {
   );
 }
 
+/** The most basic info: name, species, health, damage, revivability and hugged state */
 function PatientBasics() {
   const { data } = useBackend<MedScannerData>();
   const {
@@ -96,7 +99,7 @@ function PatientBasics() {
   } = data;
   return (
     <Section
-      title={(species === 'robot' ? 'Robot: ' : 'Patient: ') + patient}
+      title={`${species.is_robotic_species ? 'Robot:' : 'Patient:'} ${patient}`}
       buttons={
         <Button
           icon="info"
@@ -104,7 +107,11 @@ function PatientBasics() {
           color="transparent"
           mt={
             /* with the "hackerman" theme, the buttons have this ugly outline that messes with the section titlebar, let's fix that */
-            accessible_theme ? (species === 'robot' ? '-5px' : '0px') : '0px'
+            accessible_theme
+              ? species.is_robotic_species
+                ? '-5px'
+                : '0px'
+              : '0px'
           }
         >
           Information
@@ -122,11 +129,11 @@ function PatientBasics() {
           label="Health"
           tooltip={
             'How healthy the patient is.' +
-            (species === 'robot'
-              ? ''
-              : " If the patient's health dips below " +
+            ((!species.is_robotic_species &&
+              " If the patient's health dips below " +
                 crit_threshold +
-                '%, they enter critical condition and suffocate rapidly.') +
+                '%, they enter critical condition and suffocate rapidly.') ||
+              '') +
             " If the patient's health hits " +
             (dead_threshold / max_health) * 100 +
             '%, they die.'
@@ -142,12 +149,9 @@ function PatientBasics() {
               }}
             />
           ) : (
-            <ProgressBar
-              value={1 + health / max_health}
-              ranges={{
-                bad: [-Infinity, Infinity],
-              }}
-            >
+            // something fancy: health bar, in crit, will not be empty
+            // instead being filled based on their crit health left
+            <ProgressBar value={1 + health / max_health} color="bad">
               {Math.trunc((health / max_health) * 100)}%
             </ProgressBar>
           )}
@@ -172,82 +176,76 @@ function PatientBasics() {
           label="Damage"
           tooltip="Unique damage types. Each one has a tooltip describing how it is sustained, and possible treatments."
         >
-          <Tooltip
-            content={
-              species === 'robot'
+          <MedDamageType
+            name="Brute"
+            color={COLOR_BRUTE}
+            damage={total_brute}
+            tooltip={
+              species.is_robotic_species
                 ? 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Repaired with a blowtorch or robotic cradle.'
                 : 'Brute. Sustained from sources of physical trauma such as melee combat, firefights, etc. Treated with Bicaridine or advanced trauma kits.'
             }
-          >
-            <Box inline>
-              <ProgressBar value={0}>
-                Brute:{' '}
-                <Box inline bold color={COLOR_BRUTE}>
-                  {total_brute}
-                </Box>
-              </ProgressBar>
-            </Box>
-          </Tooltip>
-          <Box inline width={'5px'} />
-          <Tooltip
-            content={
-              species === 'robot'
+            noPadding
+          />
+          <MedDamageType
+            name="Burn"
+            color={COLOR_BURN}
+            damage={total_burn}
+            tooltip={
+              species.is_robotic_species
                 ? 'Burn. Sustained from sources of burning such as energy weapons, acid, fire, etc. Repaired with cable coils or a robotic cradle.'
                 : 'Burn. Sustained from sources of burning such as overheating, energy weapons, acid, fire, etc. Treated with Kelotane or advanced burn kits.'
             }
-          >
-            <Box inline>
-              <ProgressBar value={0}>
-                Burn:{' '}
-                <Box inline bold color={COLOR_BURN}>
-                  {total_burn}
-                </Box>
-              </ProgressBar>
-            </Box>
-          </Tooltip>
-          {species !== 'robot' ? (
+          />
+          {!species.is_robotic_species && (
             <>
-              <Box inline width={'5px'} />
-              <Tooltip content="Toxin. Sustained from chemicals or organ damage. Treated with Dylovene.">
-                <Box inline>
-                  <ProgressBar value={0}>
-                    Tox:{' '}
-                    <Box inline bold color="green">
-                      {toxin}
-                    </Box>
-                  </ProgressBar>
-                </Box>
-              </Tooltip>
-              <Box inline width={'5px'} />
-              <Tooltip content="Oxyloss. Sustained from being in critical condition, organ damage or extreme exhaustion. Treated with CPR, Dexalin Plus or decreases on its own if the patient isn't in critical condition.">
-                <Box inline>
-                  <ProgressBar value={0}>
-                    Oxy:{' '}
-                    <Box inline bold color="blue">
-                      {oxy}
-                    </Box>
-                  </ProgressBar>
-                </Box>
-              </Tooltip>
+              <MedDamageType
+                name="Tox"
+                color="green"
+                damage={toxin}
+                tooltip="Toxin. Sustained from chemicals or organ damage. Treated with Dylovene."
+              />
+              <MedDamageType
+                name="Oxy"
+                color="blue"
+                damage={oxy}
+                tooltip="Oxyloss. Sustained from being in critical condition, organ damage or extreme exhaustion. Treated with CPR, Dexalin/Dexalin Plus or decreases on its own if the patient isn't in critical condition."
+              />
             </>
-          ) : null}
-          <Box inline width={'5px'} />
-          <Tooltip
-            content={
-              species === 'robot'
-                ? 'Integrity Damage. Sustained from xenomorph psychic draining. Treated with a robotic cradle.'
-                : 'Cloneloss. Sustained from xenomorph psychic draining or special chemicals. Treated with cryogenics or sleep.'
-            }
-          >
-            <Box inline>
-              <ProgressBar value={0}>
-                {species === 'robot' ? 'Integrity' : 'Clone'}:{' '}
-                <Box inline bold color="teal">
-                  {clone}
-                </Box>
-              </ProgressBar>
-            </Box>
-          </Tooltip>
+          )}
+          {!species.is_synthetic && (
+            <MedDamageType
+              name="Clone"
+              color="teal"
+              damage={clone}
+              tooltip={
+                species.is_robotic_species
+                  ? 'Integrity Damage. Sustained from xenomorph psychic draining. Treated with a robotic cradle.'
+                  : 'Cloneloss. Sustained from xenomorph psychic draining or special chemicals. Treated with cryogenics or sleep.'
+              }
+            />
+          )}
+          {!!species.is_robotic_species && (
+            <>
+              <MedDamageType
+                name="Tox"
+                tooltip="Robotic species cannot build up toxins."
+                disabled
+              />
+              <MedDamageType
+                name="Oxy"
+                tooltip="Robotic species do not suffocate."
+                disabled
+              />
+              {!!species.is_synthetic && (
+                <MedDamageType
+                  name="Clone"
+                  tooltip="Synthetics do not suffer cellular damage or long term integrity loss."
+                  disabled
+                />
+              )}
+            </>
+          )}
         </LabeledList.Item>
       </LabeledList>
     </Section>
@@ -269,7 +267,7 @@ function PatientChemicals() {
         {Object.values(chemicals_lists).map((chemical) => (
           <Stack.Item
             key={chemical.name}
-            backgroundColor={row_transparency++ % 2 === 0 ? ZEBRA_BG_COLOR : ''}
+            backgroundColor={row_transparency++ % 2 === 0 ? COLOR_ZEBRA_BG : ''}
             style={{
               borderRadius: '0.16em',
             }}
@@ -298,7 +296,9 @@ function PatientChemicals() {
                     {chemical.amount}
                     <Box
                       inline
-                      color={chemical.dangerous ? DARKER_RED : MID_GREY}
+                      color={
+                        chemical.dangerous ? COLOR_DARKER_RED : COLOR_MID_GREY
+                      }
                       fontSize={RESERVE_FONT_SIZE}
                     >
                       /{chemical.od_threshold}u
@@ -494,7 +494,7 @@ function PatientLimbs() {
             key={limb.name}
             width="100%"
             py="3px"
-            backgroundColor={row_transparency++ % 2 === 0 ? ZEBRA_BG_COLOR : ''}
+            backgroundColor={row_transparency++ % 2 === 0 ? COLOR_ZEBRA_BG : ''}
             style={{
               borderRadius: '0.16em',
             }}
@@ -506,10 +506,12 @@ function PatientLimbs() {
               textColor={
                 limb.missing
                   ? 'grey'
-                  : species === 'robot'
+                  : species.is_robotic_species
                     ? 'white'
                     : getLimbColor(
-                        (limb.brute + limb.burn) / limb.max_damage,
+                        limb.brute,
+                        limb.burn,
+                        limb.max_damage,
                         limb.limb_type,
                       )
               }
@@ -519,7 +521,7 @@ function PatientLimbs() {
             {limb.missing ? (
               <Tooltip
                 content={
-                  species === 'robot'
+                  species.is_robotic_species
                     ? 'Missing limbs on robotic patients can be fixed easily through a robotic cradle. Head reattachment can only be done through surgical intervention.'
                     : 'Missing limbs can only be fixed through surgical intervention. Head reattachment is only possible for combat robots and synthetics. Only printed limbs work as a replacement, except for head reattachment.'
                 }
@@ -564,95 +566,63 @@ function PatientLimbs() {
                       {limb.salved ? `${limb.burn}` : `{${limb.burn}}`}
                     </Box>
                   </Tooltip>
-                  <Box inline width={SPACING_PIXELS} />
                 </Stack.Item>
                 <Stack.Item>
-                  {!!limb.bleeding && (
-                    <Tooltip content="The patient is losing blood from this limb. Bleeding can be stopped with gauze or an advanced trauma kit.">
-                      <Icon
-                        name="droplet"
-                        inline
-                        color="red"
-                        bold
-                        px={SPACING_PIXELS}
-                      />
-                    </Tooltip>
-                  )}
-                  {!!limb.limb_status && (
-                    <Tooltip
-                      content={
-                        (limb.limb_status !== 'Fracture'
-                          ? limb.limb_status === 'Stable'
-                            ? "This fracture is stabilized by the patient's armor, suppressing most of its symptoms. If their armor is removed, it'll stop being stabilized."
-                            : 'This fracture is stabilized by a splint, suppressing most of its symptoms. If this limb sustains damage, the splint might come off.'
-                          : 'This limb is broken. Use a splint to stabilize it. An unsplinted head, chest or groin will cause organ damage when the patient moves. Unsplinted arms or legs will frequently give out.') +
-                        ' It can be fully treated with surgery or cryo treatment.'
-                      }
-                    >
-                      <Box
-                        inline
-                        color={
-                          limb.limb_status !== 'Fracture' ? 'lime' : 'white'
-                        }
-                        bold
-                      >
-                        [{limb.limb_status}]
-                      </Box>
-                    </Tooltip>
-                  )}
-                  {!!limb.limb_type && (
-                    <Tooltip
-                      content={
-                        limb.limb_type === 'Robotic'
-                          ? 'Robotic limbs are only fixed by welding or cable coils.'
-                          : 'Biotic limbs take more damage, but can be fixed through normal methods.'
-                      }
-                    >
-                      <Box
-                        inline
-                        color={
-                          limb.limb_type === 'Robotic'
-                            ? species === 'robot'
-                              ? accessible_theme
-                                ? 'lime'
-                                : 'label'
-                              : ROBOT_LIMB_COLOR
-                            : 'tan'
-                        }
-                        bold
-                      >
-                        [{limb.limb_type}]
-                      </Box>
-                    </Tooltip>
-                  )}
-                  {!!limb.open_incision && (
-                    <Tooltip content="Open surgical incisions can usually be closed by a cautery depending on the stage of the surgery. Risk of infection if left untreated.">
-                      <Box inline color="red" bold>
-                        [Open Incision]
-                      </Box>
-                    </Tooltip>
-                  )}
-                  {!!limb.infected && (
-                    <Tooltip content="Infected limbs can be treated with spaceacillin. Risk of necrosis if left untreated.">
-                      <Box inline color="olive" bold>
-                        [Infected]
-                      </Box>
-                    </Tooltip>
-                  )}
-                  {!!limb.necrotized && (
-                    <Tooltip content="Necrotized arms or legs cause random dropping of items or falling over, respectively. Organ damage will occur if on the head, chest or groin. Treated by surgery.">
-                      <Box inline color="brown" bold>
-                        [Necrotizing]
-                      </Box>
-                    </Tooltip>
-                  )}
-                  {!!limb.implants && (
-                    <Tooltip content="Harmful implants are usually shrapnel from firefights. Moving with a harmful implant will inflict Brute damage occasionally. Removed with tweezers.">
-                      <Box inline color="white" bold>
-                        [Implant x{limb.implants}]
-                      </Box>
-                    </Tooltip>
-                  )}
+                  <MedLimbStateIcon
+                    condition={limb.bleeding}
+                    name="droplet"
+                    color="red"
+                    tooltip="The patient is losing blood from this limb. Bleeding can be stopped with gauze or an advanced trauma kit."
+                  />
+                  <MedLimbStateText
+                    condition={limb.limb_status}
+                    name={limb.limb_status as string}
+                    color={limb.limb_status !== 'Fracture' ? 'lime' : 'white'}
+                    tooltip={
+                      (limb.limb_status !== 'Fracture'
+                        ? limb.limb_status === 'Stable'
+                          ? "This fracture is stabilized by the patient's armor, suppressing most of its symptoms. If their armor is removed, it'll stop being stabilized."
+                          : 'This fracture is stabilized by a splint, suppressing most of its symptoms. If this limb sustains damage, the splint might come off.'
+                        : 'This limb is broken. Use a splint to stabilize it. An unsplinted head, chest or groin will cause organ damage when the patient moves. Unsplinted arms or legs will frequently give out.') +
+                      ' It can be fully treated with surgery or cryo treatment.'
+                    }
+                  />
+                  <MedLimbStateText
+                    condition={limb.limb_type}
+                    name={limb.limb_type as string}
+                    color={
+                      limb.limb_type === 'Robotic'
+                        ? species.is_robotic_species
+                          ? accessible_theme
+                            ? 'lime'
+                            : 'label'
+                          : COLOR_ROBOTIC_LIMB
+                        : 'tan'
+                    }
+                    tooltip={
+                      limb.limb_type === 'Robotic'
+                        ? 'Robotic limbs are only fixed by welding or cable coils.'
+                        : 'Biotic limbs take more damage, but can be fixed through normal methods.'
+                    }
+                  />
+                  <MedLimbStateText
+                    condition={limb.open_incision}
+                    name="Open Incision"
+                    color="red"
+                    tooltip="Open surgical incisions can usually be closed by a cautery depending on the stage of the surgery. Risk of infection if left untreated."
+                  />
+                  <MedLimbStateText
+                    condition={limb.infected}
+                    name="Infected"
+                    color="olive"
+                    tooltip="Infected limbs can be treated with spaceacillin. Risk of necrosis if left untreated."
+                  />
+                  <MedLimbStateText
+                    condition={limb.necrotized}
+                    name="Necrosis"
+                    color="brown"
+                    tooltip="Necrotized arms or legs cause random dropping of items or falling over, respectively. Organ damage will occur if on the head, chest or groin. Treated by surgery."
+                  />
                 </Stack.Item>
               </>
             )}
@@ -673,7 +643,7 @@ function PatientOrgans() {
         {Object.values(damaged_organs).map((organ) => (
           <Stack.Item
             key={organ.name}
-            backgroundColor={row_transparency++ % 2 === 0 ? ZEBRA_BG_COLOR : ''}
+            backgroundColor={row_transparency++ % 2 === 0 ? COLOR_ZEBRA_BG : ''}
             style={{
               borderRadius: '0.16em',
             }}
@@ -713,9 +683,9 @@ function PatientOrgans() {
                       fontSize={RESERVE_FONT_SIZE}
                       color={
                         organ.status === 'Failing'
-                          ? DARKER_RED
+                          ? COLOR_DARKER_RED
                           : organ.status === 'Damaged'
-                            ? DARKER_ORANGE
+                            ? COLOR_DARKER_ORANGE
                             : 'grey'
                       }
                     >
@@ -793,7 +763,7 @@ function PatientBlood() {
             {Math.trunc((blood_amount / regular_blood_amount) * 100)}%
             <Box
               inline
-              color={blood_warning ? DARKER_RED : MID_GREY}
+              color={blood_warning ? COLOR_DARKER_RED : COLOR_MID_GREY}
               pl={SPACING_PIXELS}
               fontSize={RESERVE_FONT_SIZE}
             >
@@ -869,7 +839,7 @@ function PatientAdvice() {
                   color={
                     accessible_theme
                       ? advice.color
-                      : species === 'robot'
+                      : species.is_robotic_species
                         ? 'label'
                         : advice.color
                   }

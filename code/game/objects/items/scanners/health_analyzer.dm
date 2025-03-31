@@ -115,6 +115,13 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 		"hugged" = !!(patient.status_flags & XENO_HOST),
 
+		"species" = list(
+			"is_synthetic" = issynth(patient),
+			"is_combat_robot" = isrobot(patient),
+			// for the Robot Umbrella[tm] which shares a lot of traits
+			"is_robotic_species" = !!(patient.species?.species_flags & ROBOTIC_LIMBS ? TRUE : FALSE)
+		),
+
 		"accessible_theme" = user.client?.prefs?.accessible_tgui_themes
 	)
 	data["has_unknown_chemicals"] = FALSE
@@ -136,7 +143,6 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		)
 	data["has_chemicals"] = length(patient.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists
-	data["species"] = patient.species.species_flags & ROBOTIC_LIMBS ? "robot" : "human"
 
 	var/list/limb_data_lists = list()
 	if(!ishuman(patient)) // how did we get here?

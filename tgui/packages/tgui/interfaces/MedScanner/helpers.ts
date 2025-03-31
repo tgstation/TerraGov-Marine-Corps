@@ -1,12 +1,20 @@
-import { LIMB_DAMAGE_HSL, ROBOT_LIMB_COLOR } from './constants';
+import { COLOR_ROBOTIC_LIMB, LIMB_DAMAGE_HSL } from './constants';
 
 /**
- * @param damage input damage level for returning a color
- * @param type string limb type for determining if we should return robot colors
+ * @param bruteDamage brute damage number
+ * @param burnDamage burn damage number
+ * @param maxHealth maximum health of this limb
+ * @param limbType string limb type for determining if we should return robot colors
  * @returns an hsl color string
  */
-export function getLimbColor(damage: number, type?: string): string {
-  if (type === 'Robotic') return ROBOT_LIMB_COLOR;
+export function getLimbColor(
+  bruteDamage: number,
+  burnDamage: number,
+  maxHealth: number,
+  limbType?: string,
+): string {
+  const damage = (bruteDamage + burnDamage) / maxHealth;
+  if (limbType === 'Robotic') return COLOR_ROBOTIC_LIMB;
   if (damage <= 0) return 'white';
   if (damage > 1) return 'grey'; // greater than 100% damage can be safely considered a lost cause
 

@@ -1,3 +1,8 @@
+type SpeciesData = {
+  is_synthetic: boolean;
+  is_robot: boolean;
+  is_robotic_species: boolean;
+};
 type LimbData = {
   name: string;
   brute: number;
@@ -42,7 +47,7 @@ type AdviceData = {
 };
 export type MedScannerData = {
   patient: string;
-  species: string;
+  species: Record<string, SpeciesData>;
   dead: boolean;
   health: number;
   max_health: number;
