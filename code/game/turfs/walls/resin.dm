@@ -18,7 +18,6 @@
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 75, ENERGY = 75, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	hard_armor = list(MELEE = 0, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	resistance_flags = UNACIDABLE
-	deletes_weeds_on_change = FALSE
 
 	//Used for quickbuild refunding.
 	var/is_normal_resin_wall = TRUE

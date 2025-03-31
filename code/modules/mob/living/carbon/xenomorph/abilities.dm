@@ -403,7 +403,7 @@
 		else
 			baseturfs |= T.type
 		new_resin = T
-		T.ChangeTurf(X.selected_resin, baseturfs)
+		T.ChangeTurf(X.selected_resin, baseturfs, CHANGETURF_KEEP_WEEDS)
 	else
 		new_resin = new X.selected_resin(T)
 	switch(X.selected_resin)

@@ -38,9 +38,6 @@
 	 */
 	var/bullethole_variation = 0
 
-	/// whether or not to delete weeds when we call ChangeTurf
-	var/deletes_weeds_on_change = TRUE
-
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(
 		SMOOTH_GROUP_CLOSED_TURFS,
@@ -74,7 +71,7 @@
 	QDEL_NULL(bullethole_overlay)
 	return ..()
 
-/turf/closed/wall/ChangeTurf(newtype)
+/turf/closed/wall/ChangeTurf(path, list/new_baseturfs, flags)
 	if(acided_hole)
 		qdel(acided_hole)
 		acided_hole = null
@@ -102,7 +99,7 @@
 			if(istype(O, /obj/structure/sign/poster))
 				var/obj/structure/sign/poster/P = O
 				P.roll_and_drop(src)
-			if(deletes_weeds_on_change && istype(O, /obj/alien/weeds))
+			if(!(flags & CHANGETURF_KEEP_WEEDS) && istype(O, /obj/alien/weeds))
 				qdel(O)
 
 
