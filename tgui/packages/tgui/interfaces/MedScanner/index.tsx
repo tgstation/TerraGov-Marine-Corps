@@ -700,30 +700,18 @@ function PatientBlood() {
               ({Math.trunc(blood_amount)}/{Math.trunc(regular_blood_amount)}cl)
             </Box>
           </Box>
-          <Box
+          <MedBoxedTag
+            name={blood_type}
             mr={SPACING_PIXELS}
-            inline
-            bold
-            px={SPACING_PIXELS}
+            textColor="white"
             backgroundColor={blood_warning ? 'red' : 'grey'}
-            style={{
-              borderRadius: '0.16em',
-            }}
-          >
-            {blood_type}
-          </Box>
+          />
           {!!internal_bleeding && (
-            <Box
-              inline
-              bold
-              px={SPACING_PIXELS}
+            <MedBoxedTag
+              name="INTERNAL BLEEDING"
+              textColor="white"
               backgroundColor="red"
-              style={{
-                borderRadius: '0.16em',
-              }}
-            >
-              INTERNAL BLEEDING
-            </Box>
+            />
           )}
         </LabeledList.Item>
         <LabeledList.Item label="Body Temperature">
