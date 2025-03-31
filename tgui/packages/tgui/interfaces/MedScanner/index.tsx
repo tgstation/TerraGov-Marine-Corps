@@ -801,18 +801,18 @@ function PatientBlood() {
         </LabeledList.Item>
         <LabeledList.Item label="Pulse">{pulse}</LabeledList.Item>
       </LabeledList>
-      {infection ? (
+      {!!infection && (
         <NoticeBox color="orange" mt="8px" mb="0px">
           {infection}
         </NoticeBox>
-      ) : null}
-      {total_unknown_implants ? (
+      )}
+      {!!total_unknown_implants && (
         <NoticeBox color="orange" mt="8px" mb="0px">
           There {total_unknown_implants !== 1 ? 'are' : 'is'}{' '}
           {total_unknown_implants} unknown implant
           {total_unknown_implants !== 1 ? 's' : ''} detected within the patient.
         </NoticeBox>
-      ) : null}
+      )}
     </Section>
   );
 }
