@@ -164,7 +164,7 @@
 
 /datum/action/vehicle/sealed/mecha/repairpack
 	name = "Use Repairpack"
-	action_icon_state = "repair" // todo kuro needs to make an icon for this
+	action_icon_state = "repair"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_REPAIRPACK,
 	)
@@ -174,8 +174,17 @@
 		return
 
 	chassis.balloon_alert(owner, "Repairing...")
-	if(!do_after(owner, 10 SECONDS, NONE, chassis, extra_checks=CALLBACK(src, PROC_REF(can_repair))))
+	chassis.canmove = FALSE
+	chassis.equipment_disabled = TRUE
+	chassis.set_mouse_pointer()
+	if(!do_after(owner, 6 SECONDS, NONE, chassis, extra_checks=CALLBACK(src, PROC_REF(can_repair))))
+		chassis.canmove = TRUE
+		chassis.equipment_disabled = FALSE
+		chassis.set_mouse_pointer()
 		return
+	chassis.canmove = TRUE
+	chassis.equipment_disabled = FALSE
+	chassis.set_mouse_pointer()
 	chassis.stored_repairpacks--
 	// does not count as actual repairs for end of round because its annoying to decouple from normal repair and this isnt representative of a real repair
 	chassis.repair_damage(chassis.max_integrity)
@@ -198,7 +207,7 @@
 
 /datum/action/vehicle/sealed/mecha/swap_controlled_weapons
 	name = "Swap Weapon set"
-	action_icon_state = "weapon_swap" // todo kuro needs to make an icon for this
+	action_icon_state = "weapon_swap"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_SWAPWEAPONS,
 	)
