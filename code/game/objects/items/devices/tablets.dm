@@ -14,8 +14,7 @@
 	var/list/network = list("marine")
 	// Stuff needed to render the map
 	var/const/default_map_size = 15
-	var/atom/movable/screen/map_view/cam_screen
-	var/atom/movable/screen/background/cam_background
+	var/atom/movable/screen/map_view/camera/cam_screen
 
 /obj/item/hud_tablet/Initialize(mapload, rank, datum/squad/squad)
 	. = ..()
@@ -75,13 +74,8 @@
 	cam_screen = new
 	cam_screen.generate_view("hud_tablet_[REF(src)]_map")
 
-	cam_background = new
-	cam_background.assigned_map = cam_screen.assigned_map
-	cam_background.del_on_map_removal = FALSE
-
 /obj/item/hud_tablet/Destroy()
 	QDEL_NULL(cam_screen)
-	QDEL_NULL(cam_background)
 	return ..()
 
 /obj/item/hud_tablet/proc/get_available_cameras()
@@ -104,11 +98,6 @@
 			valid_cams[ref(C)] += C
 	return valid_cams
 
-/obj/item/hud_tablet/proc/show_camera_static()
-	cam_screen.vis_contents.Cut()
-	cam_background.icon_state = "scanline2"
-	cam_background.fill_rect(1, 1, default_map_size, default_map_size)
-
 /obj/item/hud_tablet/interact(mob/user)
 	if(!allowed(user))
 		to_chat(user, span_warning("Access denied, unauthorized user."))
@@ -123,12 +112,11 @@
 	update_active_camera_screen()
 
 	if(!ui)
-		// Register map objects
-		cam_screen.display_to(user)
-		user.client.register_map_obj(cam_background)
 		// Open UI
 		ui = new(user, src, "CameraConsole", name)
 		ui.open()
+		// Register map objects
+		cam_screen.display_to(user, ui.window)
 
 /obj/item/hud_tablet/ui_close(mob/user)
 	. = ..()
@@ -179,7 +167,7 @@
 /obj/item/hud_tablet/proc/update_active_camera_screen()
 	// Show static if can't use the camera
 	if(!active_camera?.can_use())
-		show_camera_static()
+		cam_screen.show_camera_static()
 		return
 
 	var/list/visible_turfs = list()
@@ -204,9 +192,7 @@
 	var/size_x = bbox[3] - bbox[1] + 1
 	var/size_y = bbox[4] - bbox[2] + 1
 
-	cam_screen.vis_contents = visible_turfs
-	cam_background.icon_state = "clear"
-	cam_background.fill_rect(1, 1, size_x, size_y)
+	cam_screen.show_camera(visible_turfs, size_x, size_y)
 
 /obj/item/hud_tablet/alpha
 	name = "alpha hud tablet"
