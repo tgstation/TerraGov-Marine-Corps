@@ -140,3 +140,23 @@
   - bugfix: rustic and fancy table parts now construct their respective tables
   - imageadd: added flipped sprites for fancy wooden tables and black tables
   - imageadd: added table part sprites for black tables and the default tan tables
+2025-03-31:
+  DrCrawler:
+  - rscadd: Added one default gamemode - Secrets of Life.
+  - rscdel: Removed smartgunners, left the code in.
+  - rscadd: Specialists are now merged with smartgunners, sharing most equipment and
+      taking up their prep room.
+  - rscdel: No more autodoc and robotic repair cradle on Alamo.
+  - qol: SoM now have engineering vendors.
+  - balance: Dragons were tuned up to make up for the last overcompensating rebalance
+      and make them more capable against over-equipped solo humans.
+  - bugfix: Panties now have worn sprites.
+  - spellcheck: Fixed a few typos on clothing descriptions.
+  - config: HOPEFULLY removed the old gamemodes from rotation.
+  - balance: Many req items were made much more expensive, especially the B18 and
+      Vindicator minigun, putting their costs more in-line with our gameplay.
+  - balance: Vanguards lost access to the CQC kit.
+  - balance: NTF no longer gets a disproportionate amount of free OBs and CAS ammo.
+  - rscadd: A bunch of clothing items and equipment has received small amounts of
+      extra flavor.
+  - balance: Scout cloak no longer grants better invisibility when standing still.
