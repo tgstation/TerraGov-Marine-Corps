@@ -219,7 +219,7 @@
 	var/list/modifiers = params2list(params)
 	if(toggled && !(modifiers[BUTTON] == LEFT_CLICK))
 		dragging = TRUE
-		call_async(src, list(PROC_REF(build_resin), get_turf(object), WEED_COSTS_QB_POINTS, null))
+		call_async(src, PROC_REF(qb_build_resin), list(get_turf(object)))
 
 /// Helper for ending drag-building , activated on mose-up
 /datum/action/ability/activable/xeno/secrete_resin/proc/stop_resin_drag()
@@ -306,7 +306,7 @@
 /datum/action/ability/activable/xeno/secrete_resin/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/xowner = owner
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
-		build_resin(A, FALSE, FALSE, TRUE, FALSE)
+		qb_build_resin(A)
 	else if(get_dist(owner, A) > xowner.xeno_caste.resin_max_range) //Maximum range is defined in the castedatum with resin_max_range, defaults to 0
 		build_resin(get_turf(owner))
 	else
@@ -328,8 +328,10 @@
 /datum/action/ability/activable/xeno/secrete_resin/proc/preshutter_resin_drag(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
 	if(dragging)
-		call_async(src, PROC_REF(build_resin), list(get_turf(over_object), WEED_COSTS_QB_POINTS, null))
+		call_async(src, PROC_REF(qb_build_resin), list(get_turf(over_object)))
 
+/datum/action/ability/activable/xeno/secrete_resin/proc/qb_build_resin(turf/T)
+	build_resin(T, WEED_COSTS_QB_POINTS, FALSE)
 
 /datum/action/ability/activable/xeno/secrete_resin/proc/build_resin(turf/T, weed_flags = WEED_REQUIRES_LOS | WEED_TAKES_TIME | WEED_USES_PLASMA, sound = SFX_ALIEN_RESIN_BUILD)
 	var/mob/living/carbon/xenomorph/X = owner

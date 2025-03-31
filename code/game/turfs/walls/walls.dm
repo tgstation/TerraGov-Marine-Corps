@@ -38,6 +38,9 @@
 	 */
 	var/bullethole_variation = 0
 
+	/// whether or not to delete weeds when we call ChangeTurf
+	var/deletes_weeds_on_change = TRUE
+
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(
 		SMOOTH_GROUP_CLOSED_TURFS,
@@ -99,7 +102,7 @@
 			if(istype(O, /obj/structure/sign/poster))
 				var/obj/structure/sign/poster/P = O
 				P.roll_and_drop(src)
-			if(istype(O, /obj/alien/weeds))
+			if(deletes_weeds_on_change && istype(O, /obj/alien/weeds))
 				qdel(O)
 
 
