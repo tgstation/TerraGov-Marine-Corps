@@ -676,10 +676,10 @@
 	message = "?"
 	emote_icon_state = "dog_question"
 
-/datum/emote/living/carbon/aprilfools/biden
+/datum/emote/living/carbon/aprilfools/blast
 	key = "blast"
 	message = "blasts"
-	emote_icon_state = "biden"
+	emote_icon_state = "blast"
 
 /datum/emote/living/carbon/aprilfools/drake_laptop
 	key = "laptop"
