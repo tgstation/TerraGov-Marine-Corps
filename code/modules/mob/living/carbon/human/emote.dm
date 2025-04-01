@@ -576,3 +576,122 @@
 		return
 	var/obj/item/I = user.get_active_held_item()
 	I.do_trick(usr)
+
+
+
+
+
+
+
+
+/atom/movable/proc/display_image_in_bubble(image/displayed_image)
+	var/mutable_appearance/display_bubble = mutable_appearance(
+		'icons/effects/effects.dmi',
+		"thought_bubble",
+		offset_spokesman = src,
+		plane = BALLOON_CHAT_PLANE,
+		appearance_flags = KEEP_APART,
+	)
+
+	var/mutable_appearance/pointed_atom_appearance = new(displayed_image.appearance)
+	pointed_atom_appearance.blend_mode = BLEND_INSET_OVERLAY
+	pointed_atom_appearance.plane = FLOAT_PLANE
+	pointed_atom_appearance.layer = FLOAT_LAYER
+	pointed_atom_appearance.pixel_x = 0
+	pointed_atom_appearance.pixel_y = 0
+	display_bubble.overlays += pointed_atom_appearance
+
+	display_bubble.pixel_w = 16
+	display_bubble.pixel_z = 32
+	display_bubble.alpha = 200
+
+	add_overlay(display_bubble)
+	LAZYADD(update_overlays_on_z, display_bubble)
+	addtimer(CALLBACK(src, PROC_REF(clear_display_bubble), display_bubble), 3 SECONDS)
+
+/atom/movable/proc/clear_display_bubble(mutable_appearance/display_bubble)
+	LAZYREMOVE(update_overlays_on_z, display_bubble)
+	cut_overlay(display_bubble)
+
+/datum/emote/living/carbon
+	var/emote_icon = 'icons/mob/aprilfools_emotes.dmi'
+	var/emote_icon_state = null
+
+	cooldown = 60 SECONDS
+	emote_type = EMOTE_VISIBLE
+
+/datum/emote/living/carbon/run_emote(mob/user)
+	. = ..()
+	var/image/emote_image = image(emote_icon, user, emote_icon_state)
+	user.display_image_in_bubble(emote_image)
+
+/datum/emote/living/carbon/clueless
+	key = "clueless"
+	message = "looks clueless."
+	emote_icon_state = "clueless"
+
+/datum/emote/living/carbon/hmm
+	key = "hmm"
+	message = "squints their eyes."
+	emote_icon_state = "hmm"
+
+/datum/emote/living/carbon/troll
+	key = "troll"
+	message = "is trolling!"
+	emote_icon_state = "troll"
+
+/datum/emote/living/carbon/reallymad
+	key = "reallymad"
+	message = "looks really mad about something!"
+	emote_icon_state = "reallymad"
+	sound = 'sound/effects/aprilfools/angry.ogg'
+
+/datum/emote/living/carbon/zorp
+	key = "zorp"
+	message = "feels their impending doom approaching."
+	emote_icon_state = "zorp"
+	sound = 'sound/effects/aprilfools/bell.ogg'
+
+/datum/emote/living/carbon/uncanny
+	key = "uncanny"
+	message = "looks really uncanny."
+	emote_icon_state = "uncanny"
+	sound = 'sound/effects/aprilfools/bell.ogg'
+
+/datum/emote/living/carbon/xdd
+	key = "xdd"
+	message = "laughs."
+	emote_icon_state = "xdd"
+
+/datum/emote/living/carbon/xdd/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	playsound(user, pick('sound/effects/aprilfools/goofylaugh.ogg', 'sound/effects/aprilfools/goofylaugh.ogg', 'sound/effects/aprilfools/goofylaugh.ogg', 'sound/effects/aprilfools/goofylaugh.ogg', 'sound/effects/aprilfools/goofylaugh2.ogg'), 50)
+
+/datum/emote/living/carbon/taa
+	key = "taa"
+	message = "smokes an imaginary cigar."
+	emote_icon_state = "taa"
+	sound = 'sound/effects/aprilfools/rizz.ogg'
+
+/datum/emote/living/carbon/noway
+	key = "noway"
+	message = "looks shocked!"
+	emote_icon_state = "noway"
+	sound = 'sound/effects/aprilfools/rizz.ogg'
+
+/datum/emote/living/carbon/tuh
+	key = "tuh"
+	message = "gasps in shock!"
+	emote_icon_state = "tuh"
+	sound = 'sound/effects/aprilfools/vineboom.ogg'
+
+/datum/emote/living/carbon/jokerge
+	key = "jokerge"
+	message = "jokerges."
+	emote_icon_state = "jokerge"
+
+/datum/emote/living/carbon/fuckingdies
+	key = "fuckingdies"
+	message = "fucking dies."
+	emote_icon_state = "die"
+	sound = 'sound/effects/aprilfools/rpdeath.ogg'
