@@ -313,7 +313,7 @@ function PatientChemicals() {
                   </Box>
                 </Tooltip>
               </Box>
-              <Box inline width={'5px'} />
+              <Box inline width={SPACING_PIXELS} />
               {chemical.dangerous || chemical.od ? (
                 <Tooltip
                   content={
@@ -614,7 +614,7 @@ function PatientOrgans() {
                       : organ.effects
                   }
                 >
-                  <Box inline italic mr={'5px'}>
+                  <Box inline italic mr={SPACING_PIXELS}>
                     {organ.name[0].toUpperCase() + organ.name.slice(1)}
                   </Box>
                 </Tooltip>
@@ -740,7 +740,7 @@ function PatientAdvice() {
                         : advice.color
                   }
                 />
-                <Box inline width={'5px'} />
+                <Box inline width={SPACING_PIXELS} />
                 {advice.advice}
               </Box>
             </Tooltip>
