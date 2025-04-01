@@ -336,6 +336,7 @@
 
 /obj/item/card/id/dogtag/full
 	marine_points = list(
+		CAT_STASUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_SPSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
@@ -350,6 +351,31 @@
 	icon_state = "dogtag_som"
 	worn_icon_state = "dogtag_som"
 	iff_signal = SOM_IFF
+
+/obj/item/card/id/dogtag/som/standard
+	marine_points = list(
+		CAT_STASUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/som/veteran
+	marine_points = list(
+		CAT_SPSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/som/engineer
+	marine_points = list(
+		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/som/leader
+	marine_points = list(
+		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/som/medic
+	marine_points = list(
+		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
+	)
 
 /obj/item/card/id/dogtag/clf
 	name = "\improper CLF dogtag"

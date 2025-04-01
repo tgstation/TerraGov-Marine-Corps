@@ -4,7 +4,7 @@
 	selection_color = "#ffeeee"
 	faction = FACTION_TERRAGOV
 
-/datum/job/vsd_squad/radio_help_message(mob/M)
+/datum/job/pmc/squad/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You're a part of hired guns commanded by NTC. Follow orders, no screw ups. Hooah?"})
 

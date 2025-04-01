@@ -365,6 +365,12 @@
 	new /obj/item/clothing/suit/modular/som/heavy/mithridatius(loc)
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/supply_drop/som_big/Initialize(mapload)
+	. = ..()
+	new /obj/item/weapon/gun/rifle/som_big(loc)
+	new /obj/item/storage/belt/marine/som/big(loc)
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/supply_drop/som_flamer/Initialize(mapload)
 	. = ..()
 	new /obj/item/weapon/gun/flamer/som/mag_harness(loc)

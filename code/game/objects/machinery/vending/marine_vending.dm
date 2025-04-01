@@ -1007,6 +1007,19 @@
 		),
 	)
 
+/obj/machinery/vending/MarineMed/pmc
+	name = "\improper MarineMed"
+	desc = "A Medical drug dispenser, just like the NTC use. Provided by Ninetails Pharmaceuticals Division(TM)."
+
+/obj/machinery/vending/MarineMed/icc
+	name = "\improper MarineMed"
+	desc = "An ICCAF Medical drug dispenser. Provided by Ninetails Pharmaceuticals Division(TM)."
+
+/obj/machinery/vending/MarineMed/vsd
+	name = "\improper MarineMed"
+	desc = "A Medical drug dispenser, just like the NTC use. 'Provided' by Ninetails Pharmaceuticals Division(TM)."
+
+
 /obj/machinery/vending/MarineMed/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
@@ -2508,6 +2521,7 @@
 
 /obj/machinery/vending/weapon/vsd
 	name = "Syndicate weapons rack"
+	faction = FACTION_VSD
 	desc = "An automated weapon rack hooked up to a colossal storage of short amount of weapons. Deadly, no-less"
 	icon_state = "syndi"
 	icon_vend = "syndi"
@@ -2658,6 +2672,7 @@
 
 /obj/machinery/vending/uniform_supply/vsd
 	name = "\improper Syndicate Clothing Vendor"
+	faction = FACTION_VSD
 	desc = "An automated equipment rack hooked up to a colossal storage of clothing and accessories. Ninetails designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_clothes"
 	icon_vend = "surplus_clothes_vend"
@@ -2817,6 +2832,7 @@
 
 /obj/machinery/vending/armor_supply/vsd
 	name = "\improper Syndicate Armor Equipment Vendor"
+	faction = FACTION_VSD
 	desc = "An automated equipment rack hooked up to a colossal storage of armor and accessories. Ninetails designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_armor"
 	icon_vend = "surplus_armor_vend"

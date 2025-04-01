@@ -8,7 +8,7 @@
 
 //ICC Standard
 /datum/job/icc/standard
-	title = "ICC Standard"
+	title = ICC_STANDARD
 	paygrade = "ICCH"
 	multiple_outfits = TRUE
 	outfit = /datum/outfit/job/icc/standard/mpi_km
@@ -127,7 +127,7 @@
 
 //ICC Guard
 /datum/job/icc/guard
-	title = "ICC Guardsman"
+	title = ICC_GUARD
 	paygrade = "ICC3"
 	outfit = /datum/outfit/job/icc/guard/coilgun
 	multiple_outfits = TRUE
@@ -237,7 +237,7 @@
 
 //ICC Medic
 /datum/job/icc/medic
-	title = "ICC Medic"
+	title = ICC_MEDIC
 	paygrade = "ICC2"
 	skills_type = /datum/skills/combat_medic/crafty
 	multiple_outfits = TRUE
@@ -316,7 +316,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_sharpshooter, SLOT_IN_L_POUCH)
 
 /datum/job/icc/leader
-	title = "ICC Leader"
+	title = ICC_LEADER
 	paygrade = "ICC2"
 	outfit = /datum/outfit/job/icc/leader/icc_heavyshotgun
 	skills_type = /datum/skills/sl/icc

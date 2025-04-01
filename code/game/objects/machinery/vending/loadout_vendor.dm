@@ -70,3 +70,23 @@
 /obj/machinery/loadout_vendor/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	faction = VENDOR_FACTION_VALHALLA
+
+/obj/machinery/loadout_vendor/pmc
+	desc = "An advanced vendor used by the PMCs to rapidly equip their mercenaries"
+	faction = VENDOR_FACTION_PMC
+
+/obj/machinery/loadout_vendor/icc
+	desc = "An advanced vendor used by the ICC to rapidly equip their troops"
+	faction = VENDOR_FACTION_ICC
+
+/obj/machinery/loadout_vendor/som
+	desc = "An advanced vendor used by the SOM to rapidly equip their soldiers"
+	faction = VENDOR_FACTION_SOM
+
+/obj/machinery/loadout_vendor/vsd
+	desc = "An advanced vendor used by the VSD to rapidly equip their operatives"
+	faction = VENDOR_FACTION_VSD
+
+/obj/machinery/loadout_vendor/clf
+	desc = "An advanced vendor used by the CLF to rapidly equip their devotees"
+	faction = VENDOR_FACTION_CLF

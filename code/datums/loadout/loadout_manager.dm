@@ -8,7 +8,7 @@
 	 */
 	var/list/loadouts_data = list()
 	/// The host of the loadout_manager, aka from which loadout vendor are you managing loadouts
-	var/loadout_vendor
+	var/obj/machinery/loadout_vendor/loadout_vendor
 	/// The version of the loadout manager
 	var/version = CURRENT_LOADOUT_VERSION
 
@@ -56,6 +56,7 @@
 			"job" = loadout_data[1],
 			"name" = loadout_data[2],
 		))
+		data["faction"] = loadout_vendor.faction
 	return data
 
 /datum/loadout_manager/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)

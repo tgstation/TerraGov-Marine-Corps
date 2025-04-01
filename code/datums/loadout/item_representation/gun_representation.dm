@@ -93,7 +93,7 @@
 	max_rounds = handful_to_copy.max_rounds
 
 /datum/item_representation/handful_representation/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
-	if(!is_handful_buyable(ammo))
+	if(!is_handful_buyable(ammo, seller, user))
 		return
 	var/obj/item/ammo_magazine/handful/handful = new item_type(master)
 	handful.generate_handful(ammo, caliber, max_rounds, max_rounds)
