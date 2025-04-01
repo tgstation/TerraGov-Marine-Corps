@@ -1,6 +1,6 @@
 type SpeciesData = {
   is_synthetic: boolean;
-  is_robot: boolean;
+  is_combat_robot: boolean;
   is_robotic_species: boolean;
 };
 type LimbData = {

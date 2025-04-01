@@ -21,14 +21,15 @@ import {
   COLOR_ROBOTIC_LIMB,
   COLOR_ZEBRA_BG,
   COUNTER_MAX_SIZE,
+  ROUNDED_BORDER,
   SPACING_PIXELS,
 } from './constants';
 import { MedScannerData } from './data';
 import { getLimbColor } from './helpers';
 import { MedBoxedTag } from './MedBoxedTag';
+import { MedConditionalBox, MedConditionalIcon } from './MedConditional';
 import { MedCounter } from './MedCounter';
 import { MedDamageType } from './MedDamageType';
-import { MedLimbStateIcon, MedLimbStateText } from './MedLimbState';
 
 export function MedScanner() {
   const { data } = useBackend<MedScannerData>();
@@ -217,7 +218,7 @@ function PatientBasics() {
           )}
           {!species.is_synthetic && (
             <MedDamageType
-              name="Clone"
+              name={species.is_combat_robot ? 'Integrity' : 'Clone'}
               color="teal"
               damage={clone}
               tooltip={
@@ -270,9 +271,7 @@ function PatientChemicals() {
           <Stack.Item
             key={chemical.name}
             backgroundColor={row_transparency++ % 2 === 0 ? COLOR_ZEBRA_BG : ''}
-            style={{
-              borderRadius: '0.16em',
-            }}
+            style={ROUNDED_BORDER}
           >
             <Box inline p="2.5px">
               <Box
@@ -423,9 +422,7 @@ function PatientLimbs() {
             width="100%"
             py="2.5px"
             backgroundColor={row_transparency++ % 2 === 0 ? COLOR_ZEBRA_BG : ''}
-            style={{
-              borderRadius: '0.16em',
-            }}
+            style={ROUNDED_BORDER}
           >
             <Stack.Item
               basis="80px"
@@ -496,15 +493,14 @@ function PatientLimbs() {
                   </Tooltip>
                 </Stack.Item>
                 <Stack.Item>
-                  <MedLimbStateIcon
+                  <MedConditionalIcon
                     condition={limb.bleeding}
                     name="droplet"
                     color="red"
                     tooltip="The patient is losing blood from this limb. Bleeding can be stopped with gauze or an advanced trauma kit."
                   />
-                  <MedLimbStateText
+                  <MedConditionalBox
                     condition={limb.limb_status}
-                    name={limb.limb_status as string}
                     color={limb.limb_status !== 'Fracture' ? 'lime' : 'white'}
                     tooltip={
                       (limb.limb_status !== 'Fracture'
@@ -514,10 +510,11 @@ function PatientLimbs() {
                         : 'This limb is broken. Use a splint to stabilize it. An unsplinted head, chest or groin will cause organ damage when the patient moves. Unsplinted arms or legs will frequently give out.') +
                       ' It can be fully treated with surgery or cryo treatment.'
                     }
-                  />
-                  <MedLimbStateText
+                  >
+                    [{limb.limb_status}]
+                  </MedConditionalBox>
+                  <MedConditionalBox
                     condition={limb.limb_type}
-                    name={limb.limb_type as string}
                     color={
                       limb.limb_type === 'Robotic'
                         ? species.is_robotic_species
@@ -532,25 +529,30 @@ function PatientLimbs() {
                         ? 'Robotic limbs are only fixed by welding or cable coils.'
                         : 'Biotic limbs take more damage, but can be fixed through normal methods.'
                     }
-                  />
-                  <MedLimbStateText
+                  >
+                    [{limb.limb_type}]
+                  </MedConditionalBox>
+                  <MedConditionalBox
                     condition={limb.open_incision}
-                    name="Open Incision"
                     color="red"
                     tooltip="Open surgical incisions can usually be closed by a cautery depending on the stage of the surgery. Risk of infection if left untreated."
-                  />
-                  <MedLimbStateText
+                  >
+                    [Open Incision]
+                  </MedConditionalBox>
+                  <MedConditionalBox
                     condition={limb.infected}
-                    name="Infected"
                     color="olive"
                     tooltip="Infected limbs can be treated with spaceacillin. Risk of necrosis if left untreated."
-                  />
-                  <MedLimbStateText
+                  >
+                    [Infected]
+                  </MedConditionalBox>
+                  <MedConditionalBox
                     condition={limb.necrotized}
-                    name="Necrosis"
                     color="brown"
                     tooltip="Necrotized arms or legs cause random dropping of items or falling over, respectively. Organ damage will occur if on the head, chest or groin. Treated by surgery."
-                  />
+                  >
+                    [Necrosis]
+                  </MedConditionalBox>
                 </Stack.Item>
               </>
             )}
@@ -572,9 +574,7 @@ function PatientOrgans() {
           <Stack.Item
             key={organ.name}
             backgroundColor={row_transparency++ % 2 === 0 ? COLOR_ZEBRA_BG : ''}
-            style={{
-              borderRadius: '0.16em',
-            }}
+            style={ROUNDED_BORDER}
           >
             <Box inline p={'3px'}>
               <Box inline>

@@ -3,6 +3,10 @@
 export const COUNTER_MAX_SIZE = '75%';
 /** What most elements will use for their padding and margin */
 export const SPACING_PIXELS = '5px';
+/** A rounded border like the ProgressBars and Sections */
+export const ROUNDED_BORDER = {
+  borderRadius: '0.16em',
+};
 
 // Colors
 /** For the multiple elements using zebra stripes, this is the base for each step */

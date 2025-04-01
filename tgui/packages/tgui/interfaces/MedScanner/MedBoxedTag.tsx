@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Box, Icon } from 'tgui-core/components';
 
-import { SPACING_PIXELS } from './constants';
+import { ROUNDED_BORDER, SPACING_PIXELS } from './constants';
 
 type Props = {
   children: ReactNode;
@@ -24,9 +24,7 @@ export function MedBoxedTag(props: Props) {
       px={SPACING_PIXELS}
       textColor={textColor || 'black'}
       backgroundColor={backgroundColor || 'white'}
-      style={{
-        borderRadius: '0.16em',
-      }}
+      style={ROUNDED_BORDER}
     >
       {!!icon && (
         <Icon
