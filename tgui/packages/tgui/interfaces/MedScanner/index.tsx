@@ -334,47 +334,39 @@ function PatientChemicals() {
                   }
                 >
                   <MedBoxedTag
-                    name={
-                      chemical.od
-                        ? Math.trunc(
-                            (chemical.amount / chemical.od_threshold) * 100,
-                          ) +
-                          '%' +
-                          ' OD' +
-                          (chemical.amount > chemical.crit_od_threshold
-                            ? ', CRIT'
-                            : '') +
-                          ' ' +
-                          Math.trunc(
-                            (chemical.amount - chemical.od_threshold) /
-                              chemical.metabolism_factor,
-                          ) +
-                          's'
-                        : 'HARMFUL'
-                    }
                     icon={chemical.od ? 'temperature-full' : 'virus'}
                     textColor="white"
                     backgroundColor="red"
-                  />
+                  >
+                    {chemical.od
+                      ? Math.trunc(
+                          (chemical.amount / chemical.od_threshold) * 100,
+                        ) +
+                        '%' +
+                        ' OD' +
+                        (chemical.amount > chemical.crit_od_threshold
+                          ? ', CRIT'
+                          : '') +
+                        ' ' +
+                        Math.trunc(
+                          (chemical.amount - chemical.od_threshold) /
+                            chemical.metabolism_factor,
+                        ) +
+                        's'
+                      : 'HARMFUL'}
+                  </MedBoxedTag>
                 </Tooltip>
               ) : (
                 <Tooltip content="How close this chemical is to its overdose threshold.">
-                  <MedBoxedTag
-                    name={
-                      Math.trunc(
-                        (chemical.amount / chemical.od_threshold) * 100,
-                      ) + '%'
-                    }
-                    icon="temperature-half"
-                  />
+                  <MedBoxedTag icon="temperature-half">
+                    {Math.trunc(
+                      (chemical.amount / chemical.od_threshold) * 100,
+                    ) + '%'}
+                  </MedBoxedTag>
                 </Tooltip>
               )}
               <Tooltip content="Estimated time before this chemical is purged. May vary based on time dilation and other chemicals.">
                 <MedBoxedTag
-                  name={
-                    Math.trunc(chemical.amount / chemical.metabolism_factor) +
-                    's'
-                  }
                   icon="clock"
                   textColor={
                     chemical.dangerous
@@ -391,7 +383,10 @@ function PatientChemicals() {
                         : 'white'
                   }
                   ml={SPACING_PIXELS}
-                />
+                >
+                  {Math.trunc(chemical.amount / chemical.metabolism_factor) +
+                    's'}
+                </MedBoxedTag>
               </Tooltip>
             </Box>
           </Stack.Item>
@@ -621,7 +616,6 @@ function PatientOrgans() {
               </Box>
               {!!organ.status && (
                 <MedBoxedTag
-                  name={organ.status.toUpperCase()}
                   textColor="white"
                   backgroundColor={
                     organ.status === 'Damaged'
@@ -630,7 +624,9 @@ function PatientOrgans() {
                         ? 'red'
                         : 'grey'
                   }
-                />
+                >
+                  {organ.status.toUpperCase()}
+                </MedBoxedTag>
               )}
             </Box>
           </Stack.Item>
@@ -679,17 +675,16 @@ function PatientBlood() {
             mr={SPACING_PIXELS}
           />
           <MedBoxedTag
-            name={blood_type}
             mr={SPACING_PIXELS}
             textColor="white"
             backgroundColor={blood_warning ? 'red' : 'grey'}
-          />
+          >
+            {blood_type}
+          </MedBoxedTag>
           {!!internal_bleeding && (
-            <MedBoxedTag
-              name="INTERNAL BLEEDING"
-              textColor="white"
-              backgroundColor="red"
-            />
+            <MedBoxedTag textColor="white" backgroundColor="red">
+              {'INTERNAL BLEEDING'}
+            </MedBoxedTag>
           )}
         </LabeledList.Item>
         <LabeledList.Item label="Body Temperature">

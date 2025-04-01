@@ -1,9 +1,10 @@
+import { ReactNode } from 'react';
 import { Box, Icon } from 'tgui-core/components';
 
 import { SPACING_PIXELS } from './constants';
 
 type Props = {
-  name: string;
+  children: ReactNode;
   icon?: string;
   textColor?: string;
   backgroundColor?: string;
@@ -13,7 +14,7 @@ type Props = {
 
 /** Bold box with a background */
 export function MedBoxedTag(props: Props) {
-  const { name, icon, textColor, backgroundColor, ml, mr } = props;
+  const { children, icon, textColor, backgroundColor, ml, mr } = props;
   return (
     <Box
       inline
@@ -34,7 +35,7 @@ export function MedBoxedTag(props: Props) {
           pr={SPACING_PIXELS}
         />
       )}
-      {name}
+      {children}
     </Box>
   );
 }
