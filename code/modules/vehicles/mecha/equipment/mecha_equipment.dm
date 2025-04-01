@@ -91,7 +91,7 @@
 	if(obj_integrity <= 1)
 		to_chat(chassis.occupants, span_warning("Error -- Equipment critically damaged."))
 		return FALSE
-	if(!ignore_cooldown && TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
+	if(!ignore_cooldown && TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return FALSE
 	if(!istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
 		return TRUE

@@ -16,7 +16,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	START_PROCESSING(SSmachines, src) // Registered for power usage
 
 /obj/machinery/cloning/relaymove(mob/user)
-	if(COOLDOWN_CHECK(src, relay_cooldown))
+	if(COOLDOWN_FINISHED(src, relay_cooldown))
 		return
 	COOLDOWN_START(src, relay_cooldown, 2 SECONDS)
 	user.visible_message("You hear something bang on the window of \the [src]", "The door won't budge!")

@@ -1049,7 +1049,7 @@
 	if (.)
 		return
 
-	if(!COOLDOWN_CHECK(src, manual_command_cooldown))
+	if(!COOLDOWN_FINISHED(src, manual_command_cooldown))
 		return
 
 	if(machine_stat & NOPOWER)

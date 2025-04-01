@@ -231,7 +231,7 @@
 		return
 	if(owner.do_actions)
 		return
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_ASSAULT_ARMOR))
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_ASSAULT_ARMOR))
 		var/time = S_TIMER_COOLDOWN_TIMELEFT(chassis, COOLDOWN_MECHA_ASSAULT_ARMOR)/10
 		chassis.balloon_alert(owner, "[time] seconds")
 		return
@@ -276,7 +276,7 @@
 	if(cloaked)
 		stop_cloaking()
 		return
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		chassis.balloon_alert(owner, "Cooldown")
 		return
 	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), 1 SECONDS) // anti sound spammers

@@ -91,7 +91,7 @@
 
 	if(!current_mission)
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0 || current_mission.mission_state != MISSION_STATE_ACTIVE)
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0 || current_mission.mission_state != MISSION_STATE_ACTIVE)
 		return
 	announce_bioscans_marine_som(ztrait = ZTRAIT_AWAY) //todo: make this faction neutral
 

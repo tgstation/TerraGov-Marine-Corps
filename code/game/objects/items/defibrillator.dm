@@ -156,7 +156,7 @@
 		balloon_alert(user, "busy")
 		return
 
-	if(!COOLDOWN_CHECK(src, defib_cooldown))
+	if(!COOLDOWN_FINISHED(src, defib_cooldown))
 		balloon_alert(user, "recharging")
 		return
 

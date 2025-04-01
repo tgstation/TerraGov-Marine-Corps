@@ -631,7 +631,7 @@
 	if(!(livinguser in return_controllers_with_flag(VEHICLE_CONTROL_MELEE)))
 		to_chat(livinguser, span_warning("You're in the wrong seat to interact with your hands."))
 		return
-	var/on_cooldown = TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_MELEE_ATTACK)
+	var/on_cooldown = TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MECHA_MELEE_ATTACK)
 	var/adjacent = Adjacent(target)
 	if(SEND_SIGNAL(src, COMSIG_MECHA_MELEE_CLICK, livinguser, target, on_cooldown, adjacent) & COMPONENT_CANCEL_MELEE_CLICK)
 		return

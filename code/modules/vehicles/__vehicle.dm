@@ -21,7 +21,6 @@
 	////Maximum amount of drivers
 	var/max_drivers = 1
 	var/move_delay = 2
-	var/lastmove = 0
 	///multitile hitbox, set to a hitbox type to make this vehicle multitile.
 	var/obj/hitbox/hitbox
 	/**

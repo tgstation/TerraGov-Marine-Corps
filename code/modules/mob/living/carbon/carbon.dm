@@ -59,7 +59,7 @@
 	if(stat == DEAD) //Corpses don't puke
 		return
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_PUKE))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_PUKE))
 		return
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_PUKE, 40 SECONDS) //5 seconds before the actual action plus 35 before the next one.

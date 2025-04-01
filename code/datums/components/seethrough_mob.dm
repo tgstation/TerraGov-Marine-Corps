@@ -132,7 +132,7 @@
 	COOLDOWN_DECLARE(toggle_cooldown)
 
 /datum/action/toggle_seethrough/action_activate(atom/t)
-	if(!COOLDOWN_CHECK(src, toggle_cooldown))
+	if(!COOLDOWN_FINISHED(src, toggle_cooldown))
 		return
 	. = ..()
 	var/datum/component/seethrough_mob/transparency = target

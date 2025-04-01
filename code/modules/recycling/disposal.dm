@@ -551,7 +551,7 @@
 
 	var/mob/living/living_user = user
 
-	if(living_user.stat || TIMER_COOLDOWN_CHECK(living_user, COOLDOWN_DISPOSAL))
+	if(living_user.stat || TIMER_COOLDOWN_RUNNING(living_user, COOLDOWN_DISPOSAL))
 		return
 
 	TIMER_COOLDOWN_START(living_user, COOLDOWN_DISPOSAL, 10 SECONDS)

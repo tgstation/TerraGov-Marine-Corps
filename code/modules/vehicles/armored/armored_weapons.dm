@@ -72,7 +72,7 @@
 	if(!ammo || ammo.current_rounds <= 0)
 		playsound(source, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
 		return
-	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return
 
 	set_target(get_turf_on_clickcatcher(target, source, list2params(modifiers)))
@@ -83,7 +83,7 @@
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
 		playsound(chassis.loc, windup_sound, 30)
-		if(!do_after(source, windup_delay, IGNORE_TARGET_LOC_CHANGE|IGNORE_LOC_CHANGE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)) || TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
+		if(!do_after(source, windup_delay, IGNORE_TARGET_LOC_CHANGE|IGNORE_LOC_CHANGE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)) || TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			return
 		windup_checked = WEAPON_WINDUP_CHECKED

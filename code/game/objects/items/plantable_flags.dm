@@ -110,7 +110,7 @@
 
 ///Waves the flag around heroically
 /obj/item/plantable_flag/proc/lift_flag(mob/user)
-	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_WHISTLE_WARCRY))
+	if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_WHISTLE_WARCRY))
 		user.balloon_alert(user, "On cooldown")
 		return
 
