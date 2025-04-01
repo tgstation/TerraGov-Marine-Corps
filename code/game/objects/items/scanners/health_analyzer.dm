@@ -22,71 +22,92 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	var/upper_skill_threshold = SKILL_MEDICAL_NOVICE
 	///Current mob being tracked by the scanner
 	var/mob/living/carbon/human/patient
-	///Current user of the scanner
-	var/mob/living/carbon/human/current_user
-	///Distance the current_user can be away from the patient and still get health data.
+	///Distance the user can be away from the patient and still get health data.
 	var/track_distance = 3
+	///Lazy list, intended to hold our most recent TGUI data
+	var/list/cached_data
+	///Cooldown for showing a scan to somebody
+	COOLDOWN_DECLARE(show_scan_cooldown)
 
 /obj/item/healthanalyzer/examine(mob/user)
 	. = ..()
 	. += span_notice("You can set \the [src] to use a more accessible theme in your game preferences.")
 
-/obj/item/healthanalyzer/attack(mob/living/carbon/M, mob/living/user)
+/obj/item/healthanalyzer/attack(mob/living/carbon/patient_candidate, mob/living/user)
 	. = ..()
-	analyze_vitals(M, user)
+	analyze_vitals(patient_candidate, user)
 
-/obj/item/healthanalyzer/attack_alternate(mob/living/carbon/M, mob/living/user)
+/obj/item/healthanalyzer/attack_alternate(mob/living/carbon/patient_candidate, mob/living/user)
 	. = ..()
-	analyze_vitals(M, user, TRUE)
+	analyze_vitals(patient_candidate, user, TRUE)
 
-///Health scans a target. M is the thing being scanned, user is the person doing the scanning, show_patient will show the UI to the scanee when TRUE.
-/obj/item/healthanalyzer/proc/analyze_vitals(mob/living/carbon/M, mob/living/user, show_patient)
+/**
+ * Checks skill, the health analyzer still being on the same tile as the user, tracking distance, and self-scanning
+ *
+ * If `user` is too unskilled, not on the same tile as src, `user` is out of tracking range, or it's a self scan,
+ * we return `FALSE` and disable auto updating.
+ *
+ * Otherwise, we return `TRUE` and turn on auto updating.
+ *
+ * This will not apply to a UI that has already stopped updating.
+ * The user will have to analyze vitals to start updates again.
+ */
+/obj/item/healthanalyzer/proc/check_autoupdate(mob/living/user, mob/living/patient)
+	var/datum/tgui/ui = SStgui.get_open_ui(user, src)
+	if(user.skills.getRating(SKILL_MEDICAL) < upper_skill_threshold || get_turf(src) != get_turf(user) || get_dist(get_turf(user), get_turf(patient)) > track_distance || patient == user)
+		ui?.set_autoupdate(FALSE)
+		user = null
+		patient = null
+		return FALSE
+	ui?.set_autoupdate(TRUE)
+	return TRUE
+
+/**
+ * A wrapper proc, so integrated health analyzers can be used by signals/their parents/whatever.
+ *
+ * * `patient_candidate` - Only carbon humans are supported. This is who we will be scanning.
+ * * `user` - Any mob is supported. This is who the scan is shown to, unless `show_patient` is active.
+ * * `show_patient` - If this is TRUE, we'll show the scan to `patient_candidate` instead of `user`.
+ */
+/obj/item/healthanalyzer/proc/analyze_vitals(mob/living/carbon/patient_candidate, mob/living/user, show_patient)
 	if(user.skills.getRating(SKILL_MEDICAL) < skill_threshold)
 		to_chat(user, span_warning("You start fumbling around with [src]..."))
-		if(!do_after(user, max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating(SKILL_MEDICAL)), 0), NONE, M, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating(SKILL_MEDICAL)), 0), NONE, patient_candidate, BUSY_ICON_UNSKILLED))
 			return
-	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
-	if(!iscarbon(M))
+	if(!iscarbon(patient_candidate))
 		balloon_alert(user, "Cannot scan")
 		return
-	if(isxeno(M))
-		balloon_alert(user, "Unknown entity")
+	if(isxeno(patient_candidate) || patient_candidate.species.species_flags & NO_SCAN)
+		balloon_alert(user, "Unknown error")
 		return
-	if(M.species.species_flags & NO_SCAN)
-		balloon_alert(user, "Not Organic")
-		return
-	patient = M
-	current_user = user
+	patient = patient_candidate
 	if(show_patient)
+		if(!COOLDOWN_CHECK(src, show_scan_cooldown))
+			balloon_alert(user, "wait [DisplayTimeText(COOLDOWN_TIMELEFT(src, show_scan_cooldown))]")
+			return
+		if(patient_candidate.faction != user.faction)
+			balloon_alert(user, "incompatible factions")
+			return
+		if(!patient_candidate.client?.prefs?.allow_being_shown_health_scan)
+			balloon_alert(user, "can't show healthscan")
+			return
 		balloon_alert_to_viewers("Showed healthscan", vision_distance = 4)
-		ui_interact(M)
+		ui_interact(patient_candidate)
+		COOLDOWN_START(src, show_scan_cooldown, 3 SECONDS)
 	else
 		ui_interact(user)
-	update_static_data(user)
-	if(user.skills.getRating(SKILL_MEDICAL) < upper_skill_threshold)
-		return
-	START_PROCESSING(SSobj, src)
+	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 45)
 
 /obj/item/healthanalyzer/ui_state(mob/user)
 	if(!isobserver(user))
 		return GLOB.not_incapacitated_state
 	return GLOB.observer_state
 
-/obj/item/healthanalyzer/process()
-	if(get_turf(src) != get_turf(current_user) || get_dist(get_turf(current_user), get_turf(patient)) > track_distance || patient == current_user)
-		STOP_PROCESSING(SSobj, src)
-		patient = null
-		current_user = null
-		return
-	update_static_data(current_user)
-
 /obj/item/healthanalyzer/removed_from_inventory(mob/user)
 	. = ..()
 	if(get_turf(src) == get_turf(user)) //If you drop it or it enters a bag on the user.
 		return
-	STOP_PROCESSING(SSobj, src)
-	patient = null
-	current_user = null
+	check_autoupdate(user, patient)
 
 /obj/item/healthanalyzer/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
@@ -94,8 +115,11 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	if(!ui)
 		ui = new(user, src, "MedScanner", "Medical Scanner")
 		ui.open()
+	check_autoupdate(user, patient)
 
-/obj/item/healthanalyzer/ui_static_data(mob/user)
+/obj/item/healthanalyzer/ui_data(mob/user)
+	if(SStgui.get_open_ui(user, src) && !check_autoupdate(user, patient))
+		return cached_data || SStgui.close_uis(src)
 	var/list/data = list(
 		"patient" = patient.name,
 		"dead" = (patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH)),
@@ -116,9 +140,11 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		"hugged" = !!(patient.status_flags & XENO_HOST),
 
 		"species" = list(
+			"name" = patient.species?.name || "Unknown Species",
+			// species types
 			"is_synthetic" = issynth(patient),
 			"is_combat_robot" = isrobot(patient),
-			// for the Robot Umbrella[tm] which shares a lot of traits
+			// for the robot umbrella which shares a lot of traits
 			"is_robotic_species" = !!(patient.species?.species_flags & ROBOTIC_LIMBS ? TRUE : FALSE)
 		),
 
@@ -555,6 +581,8 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			ssd = "Space Sleep Disorder detected." // SSD
 	data["ssd"] = ssd
 
+	cached_data = data.Copy()
+
 	return data
 
 /obj/item/healthanalyzer/integrated
@@ -611,14 +639,14 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	if(istype(user) && istype(target))
 		analyze_vitals(target, user, TRUE)
 
-/obj/item/healthanalyzer/gloves/attack(mob/living/carbon/M, mob/living/user)
+/obj/item/healthanalyzer/gloves/attack(mob/living/carbon/patient_candidate, mob/living/user)
 	. = ..()
 	if(user.a_intent != INTENT_HELP)
 		return
-	analyze_vitals(M, user)
+	analyze_vitals(patient_candidate, user)
 
-/obj/item/healthanalyzer/gloves/attack_alternate(mob/living/carbon/M, mob/living/user)
+/obj/item/healthanalyzer/gloves/attack_alternate(mob/living/carbon/patient_candidate, mob/living/user)
 	. = ..()
 	if(user.a_intent != INTENT_HELP)
 		return
-	analyze_vitals(M, user, TRUE)
+	analyze_vitals(patient_candidate, user, TRUE)
