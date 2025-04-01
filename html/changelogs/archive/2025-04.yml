@@ -1,0 +1,8 @@
+2025-04-01:
+  Isy232:
+  - bugfix: Fixes my crash t3 balance change dividing by 0.
+  TiviPlus:
+  - bugfix: ' fixed a bunch of tgui stuff'
+  - bugfix: fixed preference preview being tiny
+  - bugfix: fixed tgui byond windows being tiny until they were edited
+  - code_imp: removed warning for being on 516

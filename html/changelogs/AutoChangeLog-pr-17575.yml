@@ -1,7 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: " fixed a bunch of tgui stuff"
-  - bugfix: "fixed preference preview being tiny"
-  - bugfix: "fixed tgui byond windows being tiny until they were edited"
-  - code_imp: "removed warning for being on 516"
