@@ -323,7 +323,7 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	icon_state = "normalmap_bumpy"
 	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	plane = GRAVITY_PULSE_PLANE
-	em_block = EMISSIVE_BLOCK_NONE
+	blocks_emissive = EMISSIVE_BLOCK_NONE
 
 /**
  * Adds a warping effect to the provided atom, while making it invisible
@@ -346,7 +346,7 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	normal_bumpy.add_filter("mask", 1, alpha_mask_filter(-48, -48, render_source = render_target))
 	vis_contents += normal_bumpy
 	ADD_TRAIT(src, TRAIT_WARPED_INVISIBLE, TRAIT_GENERIC)
-	RegisterSignal(src, COMSIG_ATOM_NO_UPDATE_OVERLAYS, PROC_REF(on_warped_overlays))
+	RegisterSignal(src, COMSIG_ATOM_POST_UPDATE_OVERLAYS, PROC_REF(on_warped_overlays))
 	update_appearance(UPDATE_OVERLAYS)
 
 ///signal handler to remove any emissives while we're warped invis
@@ -372,4 +372,4 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	vis_contents -= normal_bumpy
 	qdel(normal_bumpy)
 	REMOVE_TRAIT(src, TRAIT_WARPED_INVISIBLE, TRAIT_GENERIC)
-	UnregisterSignal(src, COMSIG_ATOM_NO_UPDATE_OVERLAYS)
+	UnregisterSignal(src, COMSIG_ATOM_POST_UPDATE_OVERLAYS)
