@@ -175,7 +175,7 @@
 		return FALSE
 	disabled = TRUE
 	owner.update_appearance(UPDATE_OVERLAYS)
-	playsound(owner, 'sound/mecha/internaldmgalarm.ogg', 80, TRUE, falloff = 5)
+	playsound(owner, 'sound/mecha/internaldmgalarm.ogg', 80, TRUE, falloff = 10)
 	return TRUE
 
 ///makes this limb un-"destroyed"
