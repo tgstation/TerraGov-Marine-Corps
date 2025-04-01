@@ -24,8 +24,6 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	var/mob/living/carbon/human/patient
 	///Distance the user can be away from the patient and still get health data.
 	var/track_distance = 3
-	///Lazy list, intended to hold our most recent TGUI data
-	var/list/cached_data
 	///Cooldown for showing a scan to somebody
 	COOLDOWN_DECLARE(show_scan_cooldown)
 
@@ -41,25 +39,25 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	. = ..()
 	analyze_vitals(patient_candidate, user, TRUE)
 
+/obj/item/healthanalyzer/Destroy()
+	patient = null
+	return ..()
+
 /**
- * Checks skill, the health analyzer still being on the same tile as the user, tracking distance, and self-scanning
+ * If `user` is too unskilled, not on the same tile as src, `user` is out of tracking range,
+ * or it's a self scan, we return `FALSE`.
  *
- * If `user` is too unskilled, not on the same tile as src, `user` is out of tracking range, or it's a self scan,
- * we return `FALSE` and disable auto updating.
- *
- * Otherwise, we return `TRUE` and turn on auto updating.
- *
- * This will not apply to a UI that has already stopped updating.
- * The user will have to analyze vitals to start updates again.
+ * Otherwise, we return `TRUE`.
  */
-/obj/item/healthanalyzer/proc/check_autoupdate(mob/living/user, mob/living/patient)
-	var/datum/tgui/ui = SStgui.get_open_ui(user, src)
-	if(user.skills.getRating(SKILL_MEDICAL) < upper_skill_threshold || get_turf(src) != get_turf(user) || get_dist(get_turf(user), get_turf(patient)) > track_distance || patient == user)
-		ui?.set_autoupdate(FALSE)
-		user = null
-		patient = null
+/obj/item/healthanalyzer/proc/can_autoupdate(mob/living/user, mob/living/patient)
+	if(user.skills.getRating(SKILL_MEDICAL) < upper_skill_threshold)
 		return FALSE
-	ui?.set_autoupdate(TRUE)
+	if(get_turf(src) != get_turf(user))
+		return FALSE
+	if(get_dist(get_turf(user), get_turf(patient)) > track_distance)
+		return FALSE
+	if(patient == user)
+		return FALSE
 	return TRUE
 
 /**
@@ -103,23 +101,22 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		return GLOB.not_incapacitated_state
 	return GLOB.observer_state
 
-/obj/item/healthanalyzer/removed_from_inventory(mob/user)
-	. = ..()
-	if(get_turf(src) == get_turf(user)) //If you drop it or it enters a bag on the user.
-		return
-	check_autoupdate(user, patient)
-
 /obj/item/healthanalyzer/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "MedScanner", "Medical Scanner")
 		ui.open()
-	check_autoupdate(user, patient)
+
+/obj/item/healthanalyzer/ui_status(mob/user, datum/ui_state/state)
+	var/datum/tgui/ui = SStgui.get_open_ui(user, src)
+	ui?.set_autoupdate(can_autoupdate(user, patient))
+	// we specifically don't want this dimming or being closed instantly
+	// i know this is kinda bad but there seems to be no better way
+	// of getting this done
+	return UI_INTERACTIVE
 
 /obj/item/healthanalyzer/ui_data(mob/user)
-	if(SStgui.get_open_ui(user, src) && !check_autoupdate(user, patient))
-		return cached_data || SStgui.close_uis(src)
 	var/list/data = list(
 		"patient" = patient.name,
 		"dead" = (patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH)),
@@ -580,8 +577,6 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		else if(!patient.client)
 			ssd = "Space Sleep Disorder detected." // SSD
 	data["ssd"] = ssd
-
-	cached_data = data.Copy()
 
 	return data
 
