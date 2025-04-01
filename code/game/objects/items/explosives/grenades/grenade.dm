@@ -1,6 +1,6 @@
 /obj/item/explosive/grenade
 	name = "\improper M40 Hampter grenade"
-	desc = "A small, but deceptively strong high explosive grenade that has been phasing out the M15 fragmentation grenades. Capable of being loaded in the any grenade launcher, or thrown by hand."
+	desc = "A small, but deceptively strong hampter-explosive grenade that has been phasing out old, conventional grenades. Capable of being loaded in the any grenade launcher, or thrown by hand. Give the hampter a good squeeze to prime."
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "grenade"
