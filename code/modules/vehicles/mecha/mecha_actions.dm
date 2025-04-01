@@ -285,7 +285,7 @@
 	update_button_icon()
 	ADD_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	playsound(chassis, 'sound/effects/pred_cloakon.ogg', 60, TRUE)
-	become_warped_invisible(chassis, 50)
+	chassis.become_warped_invisible(50)
 	START_PROCESSING(SSobj, src)
 	chassis.mecha_flags |= CANNOT_INTERACT
 
@@ -308,7 +308,7 @@
 	update_button_icon()
 	chassis.mecha_flags &= ~CANNOT_INTERACT
 	STOP_PROCESSING(SSobj, src)
-	stop_warped_invisible(chassis)
+	chassis.stop_warped_invisible()
 	REMOVE_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	playsound(chassis, 'sound/effects/pred_cloakoff.ogg', 60, TRUE)
 	for(var/obj/item/mecha_parts/mecha_equipment/weapon/gun in chassis.flat_equipment)
