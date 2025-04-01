@@ -33,7 +33,7 @@
 
 	if(!client)
 		return
-	clear_important_client_contents(client)
+
 	enable_client_mobs_in_contents(client)
 
 	if(key != client.key)
