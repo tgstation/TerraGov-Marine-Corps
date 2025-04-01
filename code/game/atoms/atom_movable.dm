@@ -416,7 +416,8 @@
 			can_pass_diagonally = WEST
 		else
 			moving_diagonally = FALSE
-			setDir(direction &~ (NORTH|SOUTH))
+			if(!(atom_flags & DIRLOCK))
+				setDir(direction &~ (NORTH|SOUTH))
 			return
 		moving_diagonally = FALSE
 		if(!get_step(loc, can_pass_diagonally)?.Exit(src, direction & ~can_pass_diagonally))
