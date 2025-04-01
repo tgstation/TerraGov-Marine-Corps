@@ -755,55 +755,55 @@
 	sound = 'sound/effects/aprilfools/rpdeath.ogg'
 
 /datum/emote/living/carbon/aprilfools/smosh
-    key = "shutup"
-    message = "SHUT UP"
-    emote_icon_state = "smosh"
+	key = "shutup"
+	message = "SHUT UP"
+	emote_icon_state = "smosh"
 	sound = 'sound/effects/aprilfools/smosh.ogg'
 
 /datum/emote/living/carbon/aprilfools/airhorn
-    key = "airhorn"
-    message = "blares"
-    emote_icon_state = "airhorn"
+	key = "airhorn"
+	message = "blares"
+	emote_icon_state = "airhorn"
 	sound = 'sound/effects/aprilfools/airhorn.ogg'
 
 /datum/emote/living/carbon/aprilfools/violin
-    key = "violin"
-    message = "will forever miss"
-    emote_icon_state = "violin"
+	key = "violin"
+	message = "will forever miss"
+	emote_icon_state = "violin"
 	sound = 'sound/effects/aprilfools/sad_violin.ogg'
 
 /datum/emote/living/carbon/aprilfools/wow
-    key = "wow"
-    message = "wows"
-    emote_icon_state = "wow"
+	key = "wow"
+	message = "wows"
+	emote_icon_state = "wow"
 	sound = 'sound/effects/aprilfools/wow.ogg'
 
 /datum/emote/living/carbon/aprilfools/camera
-    key = "camera"
-    message = " "
-    emote_icon_state = "voice"
+	key = "camera"
+	message = " "
+	emote_icon_state = "voice"
 	sound = 'sound/effects/aprilfools/camera.ogg'
 
 /datum/emote/living/carbon/aprilfools/damn_son
-    key = "damn"
-    message = " "
-    emote_icon_state = "voice"
+	key = "damn"
+	message = " "
+	emote_icon_state = "voice"
 	sound = 'sound/effects/aprilfools/damn_son.ogg'
 
 /datum/emote/living/carbon/aprilfools/triple
-    key = "triple"
-    message = " "
-    emote_icon_state = "voice"
+	key = "triple"
+	message = " "
+	emote_icon_state = "voice"
 	sound = 'sound/effects/aprilfools/triple.ogg'
 
 /datum/emote/living/carbon/aprilfools/wombo_combo
-    key = "wombo"
-    message = " "
-    emote_icon_state = "voice"
+	key = "wombo"
+	message = " "
+	emote_icon_state = "voice"
 	sound = 'sound/effects/aprilfools/wombo_combo.ogg'
 
 /datum/emote/living/carbon/aprilfools/xbox
-    key = "british"
-    message = " "
-    emote_icon_state = "voice"
+	key = "british"
+	message = " "
+	emote_icon_state = "voice"
 	sound = 'sound/effects/aprilfools/xbox.ogg'
