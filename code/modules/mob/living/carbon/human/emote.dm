@@ -650,6 +650,47 @@
 	message = "jaw drops!"
 	emote_icon_state = "jawdrop"
 
+/datum/emote/living/carbon/aprilfools/acinema
+	key = "acinema"
+	message = "throws their hands in the air"
+	emote_icon_state = "acinema"
+
+/datum/emote/living/carbon/aprilfools/yap
+	key = "yap"
+	message = "starts running their mouth."
+	emote_icon_state = "yap"
+	sound = 'sound/effects/aprilfools/yap.ogg'
+
+/datum/emote/living/carbon/aprilfools/knows
+	key = "knows"
+	message = "knows what you are"
+	emote_icon_state = "knows"
+
+/datum/emote/living/carbon/aprilfools/biguni
+	key = "biguni"
+	message = "1984's"
+	emote_icon_state = "biguni"
+
+/datum/emote/living/carbon/aprilfools/dog_question
+	key = "question"
+	message = "?"
+	emote_icon_state = "dog_question"
+
+/datum/emote/living/carbon/aprilfools/biden
+	key = "blast"
+	message = "blasts"
+	emote_icon_state = "biden"
+
+/datum/emote/living/carbon/aprilfools/drake_laptop
+	key = "laptop"
+	message = "shows you how stupid you are."
+	emote_icon_state = "drake_laptop"
+
+/datum/emote/living/carbon/aprilfools/soyjak
+	key = "soyjak"
+	message = "depicts you as a soyjack."
+	emote_icon_state = "soyjak"
+
 /datum/emote/living/carbon/aprilfools/reallymad
 	key = "reallymad"
 	message = "looks really mad about something!"
