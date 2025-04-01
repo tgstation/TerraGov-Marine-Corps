@@ -640,6 +640,16 @@
 	message = "is trolling!"
 	emote_icon_state = "troll"
 
+/datum/emote/living/carbon/aprilfools/true
+	key = "true"
+	message = "thinks thats so true..."
+	emote_icon_state = "true"
+
+/datum/emote/living/carbon/aprilfools/jawdrop
+	key = "jawdrop"
+	message = "jaw drops!"
+	emote_icon_state = "jawdrop"
+
 /datum/emote/living/carbon/aprilfools/reallymad
 	key = "reallymad"
 	message = "looks really mad about something!"
