@@ -3,9 +3,9 @@
 /obj/structure/curtain
 	icon = 'icons/obj/structures/curtain.dmi'
 	name = "curtain"
-	icon_state = "medicalcurtain"
+	icon_state = "curtain"
 	///used to reset curtain back to default state when closing
-	var/initial_icon_state = "medicalcurtain"
+	var/initial_icon_state = "curtain"
 	layer = ABOVE_MOB_LAYER
 	opacity = TRUE
 	density = FALSE
@@ -24,7 +24,7 @@
 	return ..()
 
 /obj/structure/curtain/open
-	icon_state = "medicalcurtain_open"
+	icon_state = "curtain_open"
 	layer = OBJ_LAYER
 	opacity = FALSE
 
@@ -64,6 +64,8 @@
 
 /obj/structure/curtain/medical
 	name = "plastic curtain"
+	icon_state = "medicalcurtain"
+	initial_icon_state = "medicalcurtain"
 	color = "#B8F5E3"
 	alpha = 200
 

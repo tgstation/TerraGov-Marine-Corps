@@ -17,17 +17,25 @@ endmode
 
 mode Extended Plus
 	requiredplayers 0
+	votable 0
 endmode
 
 mode Extended Mini
 	requiredplayers 0
+	votable 0
 endmode
 
 mode Survival
 	requiredplayers 4
+	votable 0
 endmode
 
 mode Extended - Survivor-Heavy
+	requiredplayers 0
+	votable 0
+endmode
+
+mode Secrets of Life
 	requiredplayers 0
 endmode
 

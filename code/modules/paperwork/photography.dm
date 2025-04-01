@@ -47,7 +47,7 @@
 	if(!picture_image)
 		return
 	var/icon/small_img = icon(picture_image)
-	var/icon/ic = icon('icons/obj/items/items.dmi', "photo")
+	var/icon/ic = icon('icons/obj/items/paper.dmi', "photo")
 	small_img.Scale(8, 8)
 	ic.Blend(small_img, ICON_OVERLAY, 13, 13)
 	picture_icon = ic
@@ -86,7 +86,7 @@
 
 /obj/item/photo
 	name = "photo"
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "photo"
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',

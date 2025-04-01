@@ -174,7 +174,7 @@
 		to_chat(user, "Waving around a badge before swiping an ID would be pretty pointless.")
 		return
 	if(isliving(user))
-		user.visible_message(span_warning(" [user] displays [user.p_their()] NTC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NTC Security."),span_warning(" You display your NTC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NTC Security."))
+		user.visible_message(span_warning(" [user] displays [user.p_their()] NTC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NTC Corporate Security."),span_warning(" You display your NTC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], NTC Corporate Security."))
 
 /obj/item/clothing/tie/holobadge/attackby(obj/item/I, mob/user, params)
 	. = ..()

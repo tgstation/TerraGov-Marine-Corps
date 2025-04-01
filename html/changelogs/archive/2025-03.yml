@@ -110,3 +110,53 @@
   - rscadd: Added req access for NTC SL, AC & TO. Added req access for SOM PO & MP.
   dottymint:
   - bugfix: fixed showers not updating properly
+2025-03-28:
+  ddotmint:
+  - bugfix: fixed SOM weapons rack formatting, name and description
+  dottymint:
+  - rscadd: added a preference for toggling your own burst screams
+  - imageadd: added panel sprites to vendors that were missing them
+  - bugfix: fixed camera photo sprite and mini pepperball + magazine not having a
+      sprite
+  - imageadd: replaced camera photo sprite
+  - rscadd: some recipes for the food processor (raw potato sticks, tortillas, carrot
+      fries, soydope, flour, spaghetti, chocolate bars and raw meatballs)
+  - imageadd: medical curtain now its own variant, default curtain no longer has cross
+2025-03-29:
+  Meghan-Rossi:
+  - rscadd: Dragons can now regress on silos
+  - balance: Xenos now need to be on a silo to become dragons.
+2025-03-30:
+  W0LF-101:
+  - balance: Tweaked the entirety of the SOM weapons vendor, mostly increasing magazine
+      count due to lack of req support.
+  - balance: Increased number of certain weapons such as the SOM burst shotgun and
+      VSD in their vendor.
+  - rscadd: Added aphrotoxin pills and injectors to SOM marinemed
+  - rscadd: Added Martini Henry, Spear and additional harvester weapons to SOM vendor
+  - rscadd: Added a variety of new clothing to the SOM vendor, particularly hyperscale
+      items
+  ddotmint:
+  - bugfix: rustic and fancy table parts now construct their respective tables
+  - imageadd: added flipped sprites for fancy wooden tables and black tables
+  - imageadd: added table part sprites for black tables and the default tan tables
+2025-03-31:
+  DrCrawler:
+  - rscadd: Added one default gamemode - Secrets of Life.
+  - rscdel: Removed smartgunners, left the code in.
+  - rscadd: Specialists are now merged with smartgunners, sharing most equipment and
+      taking up their prep room.
+  - rscdel: No more autodoc and robotic repair cradle on Alamo.
+  - qol: SoM now have engineering vendors.
+  - balance: Dragons were tuned up to make up for the last overcompensating rebalance
+      and make them more capable against over-equipped solo humans.
+  - bugfix: Panties now have worn sprites.
+  - spellcheck: Fixed a few typos on clothing descriptions.
+  - config: HOPEFULLY removed the old gamemodes from rotation.
+  - balance: Many req items were made much more expensive, especially the B18 and
+      Vindicator minigun, putting their costs more in-line with our gameplay.
+  - balance: Vanguards lost access to the CQC kit.
+  - balance: NTF no longer gets a disproportionate amount of free OBs and CAS ammo.
+  - rscadd: A bunch of clothing items and equipment has received small amounts of
+      extra flavor.
+  - balance: Scout cloak no longer grants better invisibility when standing still.

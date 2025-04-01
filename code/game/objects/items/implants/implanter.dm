@@ -55,6 +55,7 @@
 
 /obj/item/implanter/neurostim
 	name = "neurostim implanter"
+	desc = "The result of a joint project between Kaizoku, NovaMed and NTC. This implant is capable of regulating nociception and sensory function, allowing one to experience pain reduction, improved balance, and improved resistance to overstimulation and disoritentation. To encourage compliance, NTC have implimented a negative stimulus system, activated if the implant hears a (non-radio) spoken codeprhase."
 	imp = /obj/item/implant/neurostim
 
 /obj/item/implanter/chem
@@ -67,11 +68,12 @@
 
 /obj/item/implanter/cloak
 	name = "cloak implant implanter"
+	desc = "A NineTails Corporation-brand cloak implant. Capable of concealing a person in the UV, infrared and visible spectrum of light for a few seconds."
 	imp = /obj/item/implant/cloak
 
 /obj/item/implanter/blade
 	name = "blade implant implanter"
-	desc = "A wicked-looking folding blade capable of being concealed within a human's arm."
+	desc = "A wicked-looking folding blade produced by NineTails in conjunction with NovaMed, capable of being concealed within a human's arm."
 	imp = /obj/item/implant/deployitem/blade
 
 /obj/item/implanter/suicide_dust
@@ -79,8 +81,8 @@
 	imp = /obj/item/implant/suicide_dust
 
 /obj/item/implanter/sandevistan
-	name = "sandevistan implanter"
-	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
+	name = "ChronOS enchansement package implanter"
+	desc = "A NovaMed-brand cybernetic enchansement package. Overloads your central nervous system, muscles and metabolism to push your body to the limits. Careful not to overuse it."
 	icon_state = "imp_spinal"
 	w_class = WEIGHT_CLASS_NORMAL
 	imp = /obj/item/implant/sandevistan
@@ -97,7 +99,7 @@
 
 /obj/item/implanter/jump_mod
 	name = "fortified ankles implant"
-	desc = "This augmentation enhances the users ability to jump with graphene fibre reinforcements and nanogel joint fluid capsules. Hold jump to jump higher."
+	desc = "This augmentation enhances the users ability to jump with graphene fibre reinforcements and nanogel joint fluid capsules. Hold jump to jump higher. Made by NovaMed."
 	imp = /obj/item/implant/jump_mod
 
 /obj/effect/supply_drop/jump_mod/Initialize(mapload)

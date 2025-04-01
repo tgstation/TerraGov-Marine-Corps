@@ -1113,10 +1113,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/hallways/outside)
 "gX" = (
-/obj/structure/closet/secure_closet/engineering_personal{
-	pixel_y = 6;
-	pixel_x = 10
-	},
+/obj/structure/closet/secure_closet/engineering_personal/clf,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
@@ -1268,6 +1265,7 @@
 "hS" = (
 /obj/structure/paper_bin,
 /obj/structure/table/reinforced/prison,
+/obj/item/tool/pen,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside{
 	dir = 4
 	},
@@ -1279,9 +1277,6 @@
 "hZ" = (
 /obj/structure/table/black,
 /obj/machinery/computer/security/som_mainship,
-/obj/machinery/faxmachine{
-	department = "VSD Ship"
-	},
 /turf/open/floor/prison/blackfloor,
 /area/antag_ship/vsd/bridge)
 "ia" = (
@@ -1290,6 +1285,9 @@
 /area/antag_ship/som/bathroom)
 "id" = (
 /obj/structure/table/black,
+/obj/machinery/faxmachine{
+	department = "VSD Ship"
+	},
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 1
 	},
@@ -3973,6 +3971,10 @@
 /obj/structure/toilet,
 /turf/open/floor/mainship/sterile/white,
 /area/antag_ship/som/bathroom)
+"vs" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/preparation)
 "vt" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -4279,8 +4281,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/vending/snack,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/vending/engivend,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/requisition)
 "wV" = (
@@ -4447,6 +4449,15 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
+"xF" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/item/stack/conveyor/thirty,
+/obj/item/conveyor_switch_construct,
+/obj/item/paper/factoryhowto,
+/turf/open/floor/plating/asteroidfloor,
+/area/antag_ship/clf_base/requisition)
 "xH" = (
 /obj/structure/largecrate/supply/supplies/coifs,
 /obj/effect/turf_decal/trimline/brown/filled/warning{
@@ -4480,6 +4491,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
 "xO" = (
+/obj/machinery/cryopod/right,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 6
 	},
@@ -5813,8 +5825,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/antag_ship/icc/hangar/west)
 "Ft" = (
-/obj/structure/closet/secure_closet/engineering_chief,
 /obj/item/storage/backpack/marine/engineerpack,
+/obj/structure/closet/secure_closet/engineering_chief/som,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
 "Fu" = (
@@ -5857,8 +5869,8 @@
 /area/antag_ship/som/office/commander)
 "FE" = (
 /obj/structure/cable,
-/obj/machinery/vending/cola,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/vending/tool,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/requisition)
 "FG" = (
@@ -6096,6 +6108,8 @@
 /obj/structure/table/black,
 /obj/item/clothing/head/helmet/space/syndicate,
 /obj/item/clothing/suit/space/syndicate,
+/obj/item/tool/pen,
+/obj/structure/paper_bin,
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 4
 	},
@@ -6705,8 +6719,8 @@
 /area/antag_ship/pmc_ntf/aft/engiroom/port)
 "Ka" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
+/obj/structure/paper_bin,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/east)
 "Kc" = (
@@ -8200,6 +8214,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/hangar)
+"RI" = (
+/obj/machinery/vending/cola,
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/preparation)
 "RJ" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -8284,6 +8302,10 @@
 /obj/effect/landmark/start/job/som/staff_officer,
 /turf/open/floor/mainship/office,
 /area/antag_ship/som/bridge)
+"Sg" = (
+/obj/machinery/cryopod/right,
+/turf/open/floor/plating/ground/dirt,
+/area/antag_ship/clf_base/hallways/outside)
 "Sj" = (
 /obj/machinery/door/airlock/mainship/security/glass{
 	req_access = list(211)
@@ -8629,10 +8651,16 @@
 	},
 /area/antag_ship/clf_base/techroom)
 "TN" = (
-/obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/storage/backpack/marine/engineerpack,
+/obj/structure/closet/secure_closet/engineering_personal/som,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
+"TP" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/tool/pen,
+/obj/structure/paper_bin,
+/turf/open/floor/mainship/black/full,
+/area/antag_ship/pmc_ntf/center/armory)
 "TQ" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -9090,10 +9118,7 @@
 /turf/open/shuttle/dropship/eight,
 /area/shuttle/transport)
 "VY" = (
-/obj/structure/closet/secure_closet/engineering_personal{
-	pixel_x = -8;
-	pixel_y = 6
-	},
+/obj/structure/closet/secure_closet/engineering_personal/clf,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
@@ -10904,8 +10929,8 @@ QJ
 xU
 qr
 GX
+TP
 dE
-GX
 iX
 GX
 kr
@@ -14669,8 +14694,8 @@ jT
 jT
 jT
 bb
-Qi
-Qi
+vs
+RI
 Ef
 DC
 DC
@@ -15431,7 +15456,7 @@ Gy
 ZU
 Gy
 Gy
-ZU
+xF
 Gy
 pA
 aU
@@ -18483,7 +18508,7 @@ aF
 tT
 eI
 Uk
-tT
+Sg
 tT
 "}
 (92,1,1) = {"

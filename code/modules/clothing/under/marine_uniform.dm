@@ -2,8 +2,8 @@
 
 
 /obj/item/clothing/under/marine
-	name = "\improper NTC uniform"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
+	name = "\improper ArcherCorp-brand combat uniform"
+	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented marine uniform made by ArcherCorp. Used by many factions around the world. You suspect it's not as robust-proof as advertised."
 	siemens_coefficient = 0.9
 	icon = 'icons/obj/clothing/uniforms/marine_uniforms.dmi'
 	icon_state = "marine_jumpsuit"
@@ -29,8 +29,8 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
 /obj/item/clothing/under/marine_skirt
-	name = "\improper NTC jumpskirt"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform- did they fucking make it a skirt?"
+	name = "\improper ArcherCorp-brand combat jumpskirt"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform- Wait, a fucking combat skirt?"
 	siemens_coefficient = 0.9
 	icon = 'icons/obj/clothing/uniforms/marine_uniforms.dmi'
 	icon_state = "marine_jumpskirt"
@@ -50,7 +50,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
 
 /obj/item/clothing/under/marine/hyperscale
-	name = "\improper 8E Chameleon NTC uniform"
+	name = "\improper 8E Chameleon ArcherCorp-Brand uniform"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform BUT colorable with a facepaint! You suspect it's not as robust-proof as advertised."
 	icon_state = "hyperscale_marine_jumpsuit"
 	worn_icon_state = "hyperscale_marine_jumpsuit"
@@ -60,8 +60,8 @@
 	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
 
 /obj/item/clothing/under/marine/hyperscale_skirt
-	name = "\improper 8E Chameleon NTC jumpskirt"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform BUT colorable with facepaint! Comes in skirt's now."
+	name = "\improper 8E Chameleon ArcherCorp-brand jumpskirt"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform BUT colorable with facepaint! Comes in skirts now."
 	icon_state = "hyperscale_marine_jumpskirt"
 	worn_icon_state = "hyperscale_marine_jumpskirt"
 	greyscale_colors = ARMOR_PALETTE_BLACK
@@ -77,36 +77,36 @@
 
 //Squad colored turtlenecks
 /obj/item/clothing/under/marine/squad/neck
-	name = "\improper NTC Delta turtleneck"
-	desc = "A standard issued NTC turtleneck colored blue."
+	name = "\improper NTF Delta turtleneck"
+	desc = "A standard issued NTF turtleneck colored blue."
 	icon_state = "delta_merc"
 	adjustment_variants = list(
 		"Rolled Sleeves" = "_d",
 	)
 
 /obj/item/clothing/under/marine/squad/neck/delta
-	name = "\improper NTC Delta turtleneck"
-	desc = "A standard issued NTC turtleneck colored blue, with a slight hint of bravery."
+	name = "\improper NTF Delta turtleneck"
+	desc = "A standard issued NTF turtleneck colored blue, with a slight hint of bravery."
 	icon_state = "delta_merc"
 
 /obj/item/clothing/under/marine/squad/neck/charlie
-	name = "\improper NTC Charlie turtleneck"
-	desc = "A standard issued NTC turtleneck colored purple, you're reminded of how proper squad cohesion can make or break a mission."
+	name = "\improper NTF Charlie turtleneck"
+	desc = "A standard issued NTF turtleneck colored purple, you're reminded of how proper squad cohesion can make or break a mission."
 	icon_state = "charlie_merc"
 
 /obj/item/clothing/under/marine/squad/neck/bravo
-	name = "\improper NTC Bravo turtleneck"
-	desc = "A standard issued NTC turtleneck colored yellow, you suddenly get thoughts of how to improve the FOB, if slightly."
+	name = "\improper NTF Bravo turtleneck"
+	desc = "A standard issued NTF turtleneck colored yellow, you suddenly get thoughts of how to improve the FOB, if slightly."
 	icon_state = "bravo_merc"
 
 /obj/item/clothing/under/marine/squad/neck/alpha
-	name = "\improper NTC Alpha turtleneck"
-	desc = "A standard issued NTC turtleneck colored red, you feel as if you can face the world and all it has to bring against you."
+	name = "\improper NTF Alpha turtleneck"
+	desc = "A standard issued NTF turtleneck colored red, you feel as if you can face the world and all it has to bring against you."
 	icon_state = "alpha_merc"
 
 /obj/item/clothing/under/marine/squad/neck/alpha_skirt
-	name = "\improper NTC Alpha skirtleneck"
-	desc = "A standard issued NTC turtleneck colored red- OH COME ON"
+	name = "\improper NTF Alpha skirtleneck"
+	desc = "A standard issued NTF turtleneck colored red- OH COME ON"
 	icon_state = "alpha_merc_skirt"
 	worn_icon_list =list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
@@ -115,8 +115,8 @@
 	)
 
 /obj/item/clothing/under/marine/squad/neck/delta_skirt
-	name = "\improper NTC Delta skirtleneck"
-	desc = "A standard issued NTC turtleneck colored blue- OH COME ON"
+	name = "\improper NTF Delta skirtleneck"
+	desc = "A standard issued NTF turtleneck colored blue- OH COME ON"
 	icon_state = "delta_merc_skirt"
 	worn_icon_list =list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
@@ -125,8 +125,8 @@
 	)
 
 /obj/item/clothing/under/marine/squad/neck/charlie_skirt
-	name = "\improper NTC Charlie skirtleneck"
-	desc = "A standard issued NTC turtleneck colored purple- OH COME ON"
+	name = "\improper NTF Charlie skirtleneck"
+	desc = "A standard issued NTF turtleneck colored purple- OH COME ON"
 	icon_state = "charlie_merc_skirt"
 	worn_icon_list =list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
@@ -135,8 +135,8 @@
 	)
 
 /obj/item/clothing/under/marine/squad/neck/bravo_skirt
-	name = "\improper NTC Bravo skirtleneck"
-	desc = "A standard issued NTC turtleneck colored yellow- OH COME ON"
+	name = "\improper NTF Bravo skirtleneck"
+	desc = "A standard issued NTF turtleneck colored yellow- OH COME ON"
 	icon_state = "bravo_merc_skirt"
 	worn_icon_list =list(
 		slot_w_uniform_str = 'icons/mob/clothing/uniforms/marine_uniforms.dmi',
@@ -147,19 +147,19 @@
 // camo things stuff yeah!
 
 /obj/item/clothing/under/marine/camo
-	name = "\improper NTC camo fatigues (jungle)"
+	name = "\improper ArcherCorp-brand camo fatigues (jungle)"
 	icon_state = "m_marine_jumpsuit"
 
 /obj/item/clothing/under/marine/camo/snow
-	name = "\improper NTC camo fatigues (snow)"
+	name = "\improper ArcherCorp-brand camo fatigues (snow)"
 	icon_state = "s_marine_jumpsuit"
 
 /obj/item/clothing/under/marine/camo/desert
-	name = "\improper NTC camo fatigues (desert)"
+	name = "\improper ArcherCorp-brand camo fatigues (desert)"
 	icon_state = "d_marine_jumpsuit"
 
 /obj/item/clothing/under/marine/corpsman
-	name = "\improper NTC corpsman fatigues"
+	name = "\improper ArcherCorp-brand corpsman fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat corpsman fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_medic"
 
@@ -167,7 +167,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
 /obj/item/clothing/under/marine/engineer
-	name = "\improper NTC engineer fatigues"
+	name = "\improper ArcherCorp-brand engineer fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat engineer fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_engineer"
 
@@ -175,7 +175,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/marine/jaeger
-	name = "\improper NTC jaeger undersuit"
+	name = "\improper NTF jaeger undersuit"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
 	siemens_coefficient = 0.9
 	icon_state = "marine_undersuit"
@@ -184,8 +184,8 @@
 	item_map_variant_flags = null
 
 /obj/item/clothing/under/marine/spec_operative
-	name = "NTC Spec-Ops Uniform"
-	desc = "An extremely expensive sneaking suit created by an Ninetails Corporation for high risk missions, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher. This uniform allows you to crawl through vents with ALT-CLICK"
+	name = "NTF Infiltration Uniform"
+	desc = "An extremely expensive sneaking suit created by an Ninetails Corporation for high risk missions, made with several layers of a nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them. Only provided rarely to most successful Senior Operatives or higher. This uniform allows you to crawl through vents with ALT-CLICK. Made by NTC."
 	icon_state = "marine_undersuit"
 	armor_protection_flags = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 15, FIRE = 15, ACID = 15)
@@ -246,7 +246,7 @@
 
 /obj/item/clothing/under/marine/striped
 	name = "\improper Striped fatigues"
-	desc = "A simple set of camo pants and a striped shirt."
+	desc = "A simple set of camo pants and a striped shirt. A tag on the back indicates that this is old VSD surplus."
 	icon_state = "marine_striped"
 	worn_icon_state = "marine_striped"
 	adjustment_variants = list()
@@ -370,16 +370,16 @@
 	icon_state = "research_jumpsuit"
 
 /obj/item/clothing/under/marine/whites
-	name = "\improper NTC white dress uniform"
-	desc = "A standard-issue NTC white dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
+	name = "\improper NTF white dress uniform"
+	desc = "A standard-issue NTF white dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
 	siemens_coefficient = 0.9
 	icon_state = "marine_whites" //with thanks to Manezinho
 	worn_icon_state = "marine_whites" //with thanks to Manezinho
 	adjustment_variants = list()
 
 /obj/item/clothing/under/marine/service
-	name = "\improper NTC service uniform"
-	desc = "A standard-issue NTC dress uniform. Sometimes, you hate wearing this since you remember wearing this to Infantry School and have to wear this when meeting a commissioned officer. This is what you wear when you are not deployed and are working in an office. Doesn't seem to fit perfectly around the waist."
+	name = "\improper NTF service uniform"
+	desc = "A standard-issue NTF dress uniform. Sometimes, you hate wearing this since you remember wearing this to Infantry School and have to wear this when meeting a commissioned officer. This is what you wear when you are not deployed and are working in an office. Doesn't seem to fit perfectly around the waist."
 	siemens_coefficient = 0.9
 	icon_state = "marine_service" //with thanks to Fitz 'Pancake' Sholl
 	worn_icon_state = "marine_service" //with thanks to Fitz 'Pancake' Sholl
@@ -547,7 +547,7 @@
 	icon_state = "liaison_galaxy_red" // Thanks to Manezinho
 
 /obj/item/clothing/under/rank/chef/exec
-	name = "\improper Ninetails suit"
+	name = "\improper NineTails suit"
 	desc = "A formal white undersuit."
 	adjustment_variants = list()
 
@@ -690,7 +690,7 @@
 	has_sensor = 0
 
 /obj/item/clothing/under/vsd
-	name = "V.S.D jumpsuit"
+	name = "V.S.D. jumpsuit"
 	desc = "The standard uniform for Vyacheslav. Both technician use and combat use!"
 	icon = 'icons/mob/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "vsd_uniform_main"
@@ -707,7 +707,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
 /obj/item/clothing/under/vsd/secondary
-	name = "V.S.D 'mixed' jumpsuit"
+	name = "V.S.D. 'mixed' jumpsuit"
 	icon_state = "vsd_uniform_secondary"
 	worn_icon_state = "vsd_uniform_secondary"
 
@@ -715,7 +715,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/vsd/upp
-	name = "V.S.D 'USL' jumpsuit"
+	name = "V.S.D. 'USL' jumpsuit"
 	icon_state = "upp_retired"
 	worn_icon_state = "upp_retired"
 
@@ -723,7 +723,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/vsd/shirt
-	name = "V.S.D shirt"
+	name = "V.S.D. shirt"
 	icon_state = "vsd_shirt"
 	worn_icon_state = "vsd_shirt"
 
@@ -731,7 +731,7 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/vsd/sleeveless
-	name = "V.S.D sleeveless shirt"
+	name = "V.S.D. sleeveless shirt"
 	icon_state = "vsd_shirt_sleeveless"
 	worn_icon_state = "vsd_shirt_sleeveless"
 

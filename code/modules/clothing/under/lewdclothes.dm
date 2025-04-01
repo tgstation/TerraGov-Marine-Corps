@@ -7,9 +7,9 @@
 
 /obj/item/clothing/under/lewd/panties
 	name = "White Panties"
-	desc = "Sniffable i guess? you pervert.."
-	icon_state = "polypantsu"
-	worn_icon_state = "polypantsu"
+	desc = "Some plain white panties. Soft and comfy."
+	icon_state = "pantsu"
+	worn_icon_state = "pantsu"
 	inventory_flags = GROIN
 
 /obj/item/clothing/under/lewd/chaps
@@ -21,13 +21,13 @@
 
 /obj/item/clothing/under/lewd/corset
 	name = "black corset"
-	desc = "ninetails is not resposible for any organ damage."
+	desc = "NineTails is not resposible for any organ damage."
 	icon_state = "corset"
 	inventory_flags = CHEST|GROIN
 
 /obj/item/clothing/under/lewd/stripper
 	name = "pink stripper outfit"
-	desc = "a stripper outfit."
+	desc = "A stripper outfit."
 	icon_state = "stripper_p"
 	worn_icon_state = "stripper_p"
 	inventory_flags = CHEST|GROIN
@@ -39,7 +39,7 @@
 
 /obj/item/clothing/under/lewd/stripper/slutcurity
 	name = "slutcurity stripper outfit"
-	desc = "for when you need extra mobility and ease of access to noncon criminals."
+	desc = "For when you need extra mobility and ease of access to punish criminals."
 	icon_state = "stripper_sec"
 	worn_icon_state = "stripper_sec"
 

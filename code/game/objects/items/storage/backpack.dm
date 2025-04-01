@@ -473,7 +473,7 @@
 // Scout Cloak
 /obj/item/storage/backpack/marine/satchel/scout_cloak
 	name = "\improper NT-CyberGhost Prototype"
-	desc = "NineTails Brand Prototype presence reduction device, it is attached at the back of most plate carriers and other armor, it was made generally for testing before it could be integrated into a smaller case and to be a cybernetic addition to one's body, this one does not perform as well as the real thing, and it's sorta bulky. Unlike the real cyberware, this one lacks the ability to real-time wipe user's image from observation tools."
+	desc = "NineTails Brand Prototype presence reduction device, it is attached at the back of most plate carriers and other armor, it was made generally as a testing platform before the technology could be fit into a smaller package and integrated into cybernetic addition to one's body, this device does not perform as well as the real thing, and it's sorta bulky. Unlike the real cyberware, this lacks the ability to wipe user's image from observation tools in-real-time."
 	icon = 'ntf_modular/icons/obj/storage/storage.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
@@ -488,7 +488,7 @@
 	var/camo_last_shimmer = null
 	var/camo_energy = 100
 	var/mob/living/carbon/human/wearer = null
-	var/shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA
+	var/shimmer_alpha = 128
 	var/stealth_delay = null
 	actions_types = list(/datum/action/item_action/toggle)
 
@@ -521,8 +521,9 @@
 		wearer.alpha = SCOUT_CLOAK_STILL_ALPHA
 		return
 	//Stationary stealth
-	else if( wearer.last_move_intent < stealth_delay ) //If we're standing still and haven't shimmed in the past 3 seconds we become almost completely invisible
-		wearer.alpha = SCOUT_CLOAK_STILL_ALPHA //95% invisible
+	// Note from DrCrawler: No more stationary stealth on an item that is supposed to allow repositioning during stealth. Changed the defines.
+	else if( wearer.last_move_intent < stealth_delay )
+		wearer.alpha = SCOUT_CLOAK_STILL_ALPHA
 		camo_adjust_energy(wearer, SCOUT_CLOAK_ACTIVE_RECOVERY)
 
 ///Handles the wearer moving with the cloak active

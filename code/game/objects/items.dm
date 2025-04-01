@@ -1244,7 +1244,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	//testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[iconfile2use], Worn State:[state2use], Worn Layer:[layer2use]")
 
-	var/mutable_appearance/standing = mutable_appearance(iconfile2use, state2use, layer2use)
+	var/mutable_appearance/standing = mutable_appearance(null, null, layer2use)
+	var/mutable_appearance/standing_colored = mutable_appearance(iconfile2use, state2use, layer2use)
+	standing_colored.color = color
+	standing.overlays += standing_colored
 
 	//Apply any special features
 	apply_custom(standing, inhands, iconfile2use, state2use) //image overrideable proc to customize the onmob icon.
@@ -1258,7 +1261,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	standing.pixel_x += inhands ? inhand_x_offset : worn_x_offset
 	standing.pixel_y += inhands ? inhand_y_offset : worn_y_offset
 	standing.alpha = alpha
-	standing.color = color
 
 	//Return our icon
 	return standing

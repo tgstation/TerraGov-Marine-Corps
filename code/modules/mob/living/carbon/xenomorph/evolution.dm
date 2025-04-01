@@ -277,6 +277,16 @@
 		balloon_alert(src, "We cannot evolve while rooted to the ground")
 		return FALSE
 
+	if(HAS_TRAIT(src,TRAIT_NEEDS_SILO_TO_EVOLVE_FROM))
+		var/good_silo = null
+		for(var/obj/structure/xeno/silo/possible_silo AS in GLOB.xeno_resin_silos_by_hive[hivenumber])
+			if(get_dist(src, possible_silo) < 2 && possible_silo.z == z)
+				good_silo = possible_silo
+				break
+		if(!good_silo)
+			balloon_alert(src, "We must be on a silo to leave this caste")
+			return FALSE
+
 	return TRUE
 
 ///Check if the xeno can currently evolve into a specific caste
@@ -294,6 +304,7 @@
 	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[new_caste_type][XENO_UPGRADE_BASETYPE] // tivi todo make so evo takes the strict caste datums
 	// Initial can access uninitialized vars, which is why it's used here.
 	var/new_caste_flags = new_caste.caste_flags
+	var/new_caste_traits = new_caste.caste_traits
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_LEADER_TYPE))
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
 			balloon_alert(src, "You are jobbanned from xenomorph leader roles")
@@ -316,14 +327,27 @@
 		if(death_timer)
 			to_chat(src, span_warning("The hivemind is still recovering from the last [initial(new_caste.display_name)]'s death. We must wait [DisplayTimeText(timeleft(death_timer))] before we can evolve."))
 			return FALSE
+
 	var/maximum_active_caste = new_caste.maximum_active_caste
-	if(maximum_active_caste != INFINITY && maximum_active_caste <= length(hive.xenos_by_typepath[new_caste_type]))
+	var/list/xenos = hive.get_all_caste_members(new_caste.type) - src // ignores outselves
+	var/active_caste = length(xenos)
+	if(maximum_active_caste != INFINITY && maximum_active_caste <= active_caste)
 		to_chat(src, span_warning("There is already a [initial(new_caste.display_name)] in the hive. We must wait for it to die."))
 		return FALSE
 	var/turf/T = get_turf(src)
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_REQUIRES_FREE_TILE) && T.check_alien_construction(src))
 		balloon_alert(src, "We need a empty tile to evolve")
 		return FALSE
+
+	if(TRAIT_NEEDS_SILO_TO_EVOLVE_TO in new_caste_traits)
+		var/good_silo = null
+		for(var/obj/structure/xeno/silo/possible_silo AS in GLOB.xeno_resin_silos_by_hive[hivenumber])
+			if(get_dist(src, possible_silo) < 2 && possible_silo.z == z)
+				good_silo = possible_silo
+				break
+		if(!good_silo)
+			balloon_alert(src, "We must be on a silo to become that caste")
+			return FALSE
 
 	if(!regression)
 		if(new_caste.tier == XENO_TIER_TWO && no_room_tier_two)

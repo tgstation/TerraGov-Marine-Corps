@@ -181,7 +181,8 @@
 	if(birth_owner.emerge_target == 1)
 		playsound(victim, 'modular_skyrat/sound/weapons/gagging.ogg', 15, TRUE)
 	else
-		victim.emote_burstscream()
+		if(victim.client.prefs.burst_screams_enabled)
+			victim.emote_burstscream()
 	victim.Paralyze(15 SECONDS)
 	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
 								"<span class='danger'>You feel something wiggling in your [birth_owner.emerge_target_flavor]!</span>")

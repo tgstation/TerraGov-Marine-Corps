@@ -634,12 +634,9 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_METAL //to use c4 in scout set.
 	smartgun = SKILL_SMART_TRAINED
 	medical = SKILL_MEDICAL_PRACTICED
-	surgery = SKILL_SURGERY_AMATEUR
 	leadership = SKILL_LEAD_BEGINNER
 	melee_weapons = SKILL_MELEE_TRAINED
-	smartgun = SKILL_SMART_TRAINED
 	stamina = SKILL_STAMINA_TRAINED
-
 
 /datum/skills/specialist/vanguard
 	name = VANGUARD

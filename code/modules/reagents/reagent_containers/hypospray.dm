@@ -276,7 +276,7 @@
 
 /obj/item/reagent_containers/hypospray/advanced
 	name = "Advanced hypospray"
-	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy."
+	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. NovaMed medical technology at it's finest."
 	core_name = "hypospray"
 	icon_state = "hypo"
 	reagent_flags = REFILLABLE|DRAINABLE
@@ -547,7 +547,7 @@
 
 /obj/item/reagent_containers/hypospray/advanced/big
 	name = "big hypospray"
-	desc = "MK2 medical hypospray, which manages to fit even more reagents. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy. This one is a 120 unit version."
+	desc = "MK2 medical hypospray, which manages to fit even more reagents. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. NovaMed medical technologies at their prime. This one is a 120 unit version."
 	worn_icon_state = "hypomed"
 	icon_state = "hypomed"
 	core_name = "hypospray"
