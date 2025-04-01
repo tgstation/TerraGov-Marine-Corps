@@ -613,84 +613,84 @@
 	LAZYREMOVE(update_overlays_on_z, display_bubble)
 	cut_overlay(display_bubble)
 
-/datum/emote/living/carbon
+/datum/emote/living/carbon/aprilfools
 	var/emote_icon = 'icons/mob/aprilfools_emotes.dmi'
 	var/emote_icon_state = null
 
 	cooldown = 60 SECONDS
 	emote_type = EMOTE_VISIBLE
 
-/datum/emote/living/carbon/run_emote(mob/user)
+/datum/emote/living/carbon/aprilfools/run_emote(mob/user)
 	. = ..()
 	var/image/emote_image = image(emote_icon, user, emote_icon_state)
 	user.display_image_in_bubble(emote_image)
 
-/datum/emote/living/carbon/clueless
+/datum/emote/living/carbon/aprilfools/clueless
 	key = "clueless"
 	message = "looks clueless."
 	emote_icon_state = "clueless"
 
-/datum/emote/living/carbon/hmm
+/datum/emote/living/carbon/aprilfools/hmm
 	key = "hmm"
 	message = "squints their eyes."
 	emote_icon_state = "hmm"
 
-/datum/emote/living/carbon/troll
+/datum/emote/living/carbon/aprilfools/troll
 	key = "troll"
 	message = "is trolling!"
 	emote_icon_state = "troll"
 
-/datum/emote/living/carbon/reallymad
+/datum/emote/living/carbon/aprilfools/reallymad
 	key = "reallymad"
 	message = "looks really mad about something!"
 	emote_icon_state = "reallymad"
 	sound = 'sound/effects/aprilfools/angry.ogg'
 
-/datum/emote/living/carbon/zorp
+/datum/emote/living/carbon/aprilfools/zorp
 	key = "zorp"
 	message = "feels their impending doom approaching."
 	emote_icon_state = "zorp"
 	sound = 'sound/effects/aprilfools/bell.ogg'
 
-/datum/emote/living/carbon/uncanny
+/datum/emote/living/carbon/aprilfools/uncanny
 	key = "uncanny"
 	message = "looks really uncanny."
 	emote_icon_state = "uncanny"
 	sound = 'sound/effects/aprilfools/bell.ogg'
 
-/datum/emote/living/carbon/xdd
+/datum/emote/living/carbon/aprilfools/xdd
 	key = "xdd"
 	message = "laughs."
 	emote_icon_state = "xdd"
 
-/datum/emote/living/carbon/xdd/run_emote(mob/user, params, type_override, intentional)
+/datum/emote/living/carbon/aprilfools/xdd/run_emote(mob/user, params, type_override, intentional)
 	. = ..()
 	playsound(user, pick('sound/effects/aprilfools/goofylaugh.ogg', 'sound/effects/aprilfools/goofylaugh.ogg', 'sound/effects/aprilfools/goofylaugh.ogg', 'sound/effects/aprilfools/goofylaugh.ogg', 'sound/effects/aprilfools/goofylaugh2.ogg'), 50)
 
-/datum/emote/living/carbon/taa
+/datum/emote/living/carbon/aprilfools/taa
 	key = "taa"
 	message = "smokes an imaginary cigar."
 	emote_icon_state = "taa"
 	sound = 'sound/effects/aprilfools/rizz.ogg'
 
-/datum/emote/living/carbon/noway
+/datum/emote/living/carbon/aprilfools/noway
 	key = "noway"
 	message = "looks shocked!"
 	emote_icon_state = "noway"
 	sound = 'sound/effects/aprilfools/rizz.ogg'
 
-/datum/emote/living/carbon/tuh
+/datum/emote/living/carbon/aprilfools/tuh
 	key = "tuh"
 	message = "gasps in shock!"
 	emote_icon_state = "tuh"
 	sound = 'sound/effects/aprilfools/vineboom.ogg'
 
-/datum/emote/living/carbon/jokerge
+/datum/emote/living/carbon/aprilfools/jokerge
 	key = "jokerge"
 	message = "jokerges."
 	emote_icon_state = "jokerge"
 
-/datum/emote/living/carbon/fuckingdies
+/datum/emote/living/carbon/aprilfools/fuckingdies
 	key = "fuckingdies"
 	message = "fucking dies."
 	emote_icon_state = "die"
