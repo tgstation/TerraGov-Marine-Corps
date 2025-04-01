@@ -62,13 +62,8 @@
 			continue
 		var/item_info = listed_products[item_type]
 		var/obj/item/stack/item_object = new item_type
-		to_chat(user, "A [listed_products[2]]")
-		to_chat(user, "B[item_type]")
-		to_chat(user, "C [item_object]")
 		var/base_amount = get_item_stack_number(item_object)
-		to_chat(user, "D [get_item_stack_number(item_object)]")
 		var/base_price = item_info[3]
-		to_chat(user, "E [item_info[3]]")
 
 		if(!base_amount)
 			return FALSE
