@@ -46,7 +46,7 @@
 	desc = "an advanced peice of espionage equipment in the shape of a pocket protector. it has a built in 360 degree camera for all your nefarious needs. Microphone not included."
 
 	var/obj/item/clothing/glasses/regular/spy/linked_glasses
-	var/atom/movable/screen/map_view/cam_screen
+	var/atom/movable/screen/map_view/camera/cam_screen
 	// Ranges higher than one can be used to see through walls.
 	var/cam_range = 1
 	var/datum/movement_detector/tracker

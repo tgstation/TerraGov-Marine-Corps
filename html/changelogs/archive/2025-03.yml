@@ -611,3 +611,45 @@
   - rscadd: sound effect while mech dashing
   - rscadd: mech dashing no longer affects direction while strafing
   - imageadd: boost overlay for new mech
+2025-03-30:
+  Isy232:
+  - balance: Adjusted how the T3 penalty is handled on crash, removing 1 whole T3
+      slot with a new minimum of 0 slots.
+  Isy232, ivanmixo:
+  - bugfix: Attempts to fix crash spawning >1 xeno per larva spawn cycle.
+  TiviPlus:
+  - bugfix: Fixed failed diag movement making the atom dir diagonal
+  - qol: As a side effect of the above, king no longer needs to hug a wall to shoot
+      laser diagonally, and just tracks the last attempted movement
+  - balance: Tram ignores smashing the nuke
+  - bugfix: Acid spray, sticky, firenados fall on openspace
+  - qol: Mech limb being destroyed now plays a sound
+  - code_imp: Splits hyperscale palettes into legacy (armor) and new (mech) palettes.
+      legacy palettes will eventually be transitioned to the new ones in a few months
+  - bugfix: Fix beams being black on multiz
+  - bugfix: Fixed mech GL not spinning the mech
+  - bugfix: Fix trams/elevator stuff being slashable (and doing nothing)
+  - bugfix: Fixed mech weapons visually duping
+  - bugfix: Fixed mech leg repair not fixing movespeed
+  yyzsong:
+  - balance: Increases resin jelly duration from 15 seconds to 30 seconds.
+2025-03-31:
+  Isy232, Ivanmixo:
+  - balance: Crash now requires 10 xenos for Queen and 14 for King and 8 for Hivelord.
+  - balance: Nuclear War now requires 4 xenos for Queen and 12 (unchanged) for King.
+  - code_imp: Xeno evolution pop requirement can now depend on game mode.
+  RipGrayson:
+  - rscadd: Added map icons for multi-z ladders, stairs and elevator panels.
+  TiviPlus:
+  - bugfix: Warlock shield no longer falls on multiz
+  - qol: Improved drop pod drops. They now use a permanent area that all drop pod
+      users drop into when dropping instead of creating a tiny one every time
+  - bugfix: fixed wierd teleporting riding interactions on trams with tank riders
+      and the tank hitbox
+  - rscadd: Added multiz sound support
+  - code_imp: added support for non-wallpiercing sounds
+  - bugfix: fixed transit zlevel having a bunch of plating
+  - bugfix: fixed wierd behaviour with things under shuttles showing when they shouldnt.
+      Shuttles will now always try to revert a plating instead
+  ivanmixo:
+  - bugfix: Server should no longer lag for a moment when spawning item heavy outfits

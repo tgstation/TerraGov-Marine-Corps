@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - code_imp: "Splits hyperscale palettes into legacy (armor) and new (mech) palettes. legacy palettes will eventually be transitioned to the new ones in a few months"
