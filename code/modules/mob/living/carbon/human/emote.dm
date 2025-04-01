@@ -724,6 +724,13 @@
 	emote_icon_state = "taa"
 	sound = 'sound/effects/aprilfools/rizz.ogg'
 
+/datum/emote/living/carbon/aprilfools/sure
+	key = "sure"
+	message = "makes sure."
+	emote_icon_state = "sure"
+	sound = 'sound/effects/aprilfools/areyousure.ogg'
+
+
 /datum/emote/living/carbon/aprilfools/noway
 	key = "noway"
 	message = "looks shocked!"
