@@ -10,7 +10,6 @@
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	obj_flags = CAN_BE_HIT
 	atom_flags = CRITICAL_ATOM
-	appearance_flags = TILE_BOUND|PIXEL_SCALE
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_AIR
 	COOLDOWN_DECLARE(cooldown_vehicle_move)
