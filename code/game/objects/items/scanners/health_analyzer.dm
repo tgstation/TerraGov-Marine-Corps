@@ -115,7 +115,8 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	allow_live_autoupdating = TRUE
 
 /obj/item/healthanalyzer/ui_status(mob/user, datum/ui_state/state)
-	// This weird little bit is so the UI won't dim or close when autoupdating isn't allowed.
+	// Returning UI_DISABLED will dim the window and prevent it from being opened in self-scans
+	// so we have this override to avoid that behavior but still stop autoupdates from being sent.
 	// allow_live_autoupdating also enforces not updating old scans, requiring you to scan again.
 	// If tgui gets a better system for this shit in the future please feel free to replace this.
 	var/datum/tgui/ui = SStgui.get_open_ui(user, src)
