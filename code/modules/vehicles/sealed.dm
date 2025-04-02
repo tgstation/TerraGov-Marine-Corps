@@ -6,6 +6,11 @@
 	///Modifiers for directional damage reduction
 	var/list/facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 1, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1)
 
+
+/obj/vehicle/sealed/Initialize(mapload)
+	. = ..()
+	become_hearing_sensitive(ROUNDSTART_TRAIT)
+
 /obj/vehicle/sealed/generate_actions()
 	. = ..()
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/climb_out)
