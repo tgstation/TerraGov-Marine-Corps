@@ -472,6 +472,8 @@ SUBSYSTEM_DEF(minimaps)
 
 ///sets the currently indicated relative floor
 /atom/movable/screen/minimap_extras/minimap_z_indicator/proc/set_indicated_z(newz)
+	if(!newz)
+		return
 	var/list/linked_zs = SSmapping.get_connected_levels(newz)
 	if(!length(linked_zs))
 		return
