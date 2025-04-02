@@ -251,7 +251,7 @@
 /mob/living/proc/do_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RESIST))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_RESIST))
 		return FALSE
 	TIMER_COOLDOWN_START(src, COOLDOWN_RESIST, CLICK_CD_RESIST)
 	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
@@ -262,7 +262,7 @@
 /mob/living/proc/do_move_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RESIST))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_RESIST))
 		return FALSE
 	TIMER_COOLDOWN_START(src, COOLDOWN_RESIST, CLICK_CD_RESIST)
 	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
@@ -394,7 +394,7 @@
 	if(ismovableatom(A))
 		if(isxeno(src) && ishuman(A))
 			var/mob/living/carbon/human/H = A
-			if(!COOLDOWN_CHECK(H,  xeno_push_delay))
+			if(!COOLDOWN_FINISHED(H,  xeno_push_delay))
 				return
 			COOLDOWN_START(H, xeno_push_delay, XENO_HUMAN_PUSHED_DELAY)
 		if(PushAM(A))

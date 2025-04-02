@@ -271,7 +271,7 @@
 /// Checks if we can dash in the specified direction, and activates the ability if so.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/check_dash(direction)
 	if(last_move_dir == direction && last_mousedown_time + double_tap_timing > world.time)
-		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_DASH))
+		if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MECHA_DASH))
 			for(var/mob/occupant AS in return_drivers())
 				balloon_alert(occupant, "Dash cooldown ([(S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA_DASH) / 10)]s)")
 			return

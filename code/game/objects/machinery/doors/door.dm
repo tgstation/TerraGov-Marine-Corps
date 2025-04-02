@@ -98,7 +98,7 @@
 
 	if(ismob(AM))
 		var/mob/M = AM
-		if(TIMER_COOLDOWN_CHECK(M, COOLDOWN_BUMP))
+		if(TIMER_COOLDOWN_RUNNING(M, COOLDOWN_BUMP))
 			return	//This is to prevent shock spam.
 		TIMER_COOLDOWN_START(M, COOLDOWN_BUMP, openspeed)
 		if(!M.restrained() && M.mob_size > MOB_SIZE_SMALL)

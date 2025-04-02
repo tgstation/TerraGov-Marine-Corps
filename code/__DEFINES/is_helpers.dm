@@ -277,6 +277,8 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 
 #define isvehicle(A) (istype(A, /obj/vehicle))
 
+#define issealedvehicle(A) (istype(A, /obj/vehicle/sealed))
+
 #define ismecha(A) (istype(A, /obj/vehicle/sealed/mecha))
 
 #define isgreyscalemecha(A) (istype(A, /obj/vehicle/sealed/mecha/combat/greyscale))

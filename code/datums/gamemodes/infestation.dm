@@ -59,7 +59,7 @@
 			SSpoints.add_strategic_psy_points(hive, points_generated)
 			SSpoints.add_tactical_psy_points(hive, points_generated*0.25)
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0)
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0)
 		return
 	announce_bioscans(GLOB.current_orbit)
 

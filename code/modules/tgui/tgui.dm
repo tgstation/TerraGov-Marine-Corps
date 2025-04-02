@@ -204,7 +204,7 @@
 /datum/tgui/proc/send_full_update(custom_data, force)
 	if(!user.client || !initialized || closing)
 		return
-	if(!COOLDOWN_CHECK(src, refresh_cooldown))
+	if(!COOLDOWN_FINISHED(src, refresh_cooldown))
 		refreshing = TRUE
 		addtimer(CALLBACK(src, PROC_REF(send_full_update), custom_data, force), max(COOLDOWN_TIMELEFT(src, refresh_cooldown), world.tick_lag), TIMER_UNIQUE)
 		return

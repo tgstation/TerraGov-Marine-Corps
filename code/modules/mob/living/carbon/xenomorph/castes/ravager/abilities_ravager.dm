@@ -691,7 +691,7 @@
 	if(!ishuman(attacked) || attacked.stat == DEAD)
 		return
 	damage_dealt += damage
-	if(COOLDOWN_CHECK(src, message_cooldown))
+	if(COOLDOWN_FINISHED(src, message_cooldown))
 		var/percent_dealt = round((damage_dealt/DEATHMARK_DAMAGE_OR_DIE)*100)
 		owner.balloon_alert(owner, "[percent_dealt]%")
 		COOLDOWN_START(src, message_cooldown, DEATHMARK_MESSAGE_COOLDOWN)
