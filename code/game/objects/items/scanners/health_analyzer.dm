@@ -17,8 +17,8 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	throw_speed = 5
 	throw_range = 10
 	/// Var for if we should set autoupdating in [/obj/item/healthanalyzer/ui_status] at all.
-	/// Check the comment in that proc for more, but basically tgui has an almost inexistent system
-	/// for managing auto updates. We have to use a workaround to avoid dimming the UI and closing it.
+	/// Check the comment in that proc for more, but basically tgui's system for managing autoupdating
+	/// is far too vague for what we're doing. We have to use a workaround to avoid dimming the UI and closing it.
 	/// *This var is not for disabling autoupdates in the first place.*
 	var/allow_live_autoupdating = TRUE
 	/// Skill required to bypass the fumble time.
