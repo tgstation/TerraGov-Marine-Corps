@@ -1037,7 +1037,7 @@
 
 	simulate_recoil(dual_wield, firing_angle)
 
-	projectile_to_fire.fire_at(target, gun_user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+	projectile_to_fire.fire_at(target, master_gun ? gun_user : null, src, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 	if(CHECK_BITFIELD(gun_features_flags, GUN_SMOKE_PARTICLES))
 		var/x_component = sin(firing_angle) * 40
 		var/y_component = cos(firing_angle) * 40

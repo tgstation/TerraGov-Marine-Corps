@@ -267,7 +267,7 @@
 	name = "low velocity chemical shell"
 	icon_state = "recoilless_rifle_smoke"
 	hud_state = "shell_le"
-	ammo_behavior_flags = AMMO_BETTER_COVER_RNG
+	ammo_behavior_flags = AMMO_BETTER_COVER_RNG|AMMO_IFF
 	accurate_range = 21
 	max_range = 21
 	damage = 10
