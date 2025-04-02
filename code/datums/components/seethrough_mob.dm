@@ -54,7 +54,6 @@
 	SIGNAL_HANDLER
 
 	var/mob/fool = parent
-	var/icon/current_mob_icon = icon(fool.icon, fool.icon_state)
 	var/datum/hud/our_hud = fool.hud_used
 	for(var/atom/movable/screen/plane_master/seethrough as anything in our_hud.get_true_plane_masters(SEETHROUGH_PLANE))
 		seethrough.unhide_plane(fool)
