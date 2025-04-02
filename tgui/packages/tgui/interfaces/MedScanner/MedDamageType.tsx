@@ -24,15 +24,23 @@ export function MedDamageType(props: Props) {
   return (
     <Tooltip content={tooltip}>
       <Box inline color={disabled && 'grey'} pl={!noPadding && SPACING_PIXELS}>
-        <ProgressBar value={0} color={(disabled && 'grey') || ''}>
-          {(!disabled && name) || <del>{name}</del>}
-          {!disabled && ': '}
-          {!disabled && (
-            <Box inline bold color={(disabled && 'grey') || color}>
-              {damage}
+        {!disabled ? (
+          <ProgressBar value={0} color={color}>
+            <Box inline>
+              {name}
+              {': '}
+              <Box inline bold color={color}>
+                {damage}
+              </Box>
             </Box>
-          )}
-        </ProgressBar>
+          </ProgressBar>
+        ) : (
+          <ProgressBar value={0} color="grey">
+            <Box inline color="grey">
+              <del>{name}</del>
+            </Box>
+          </ProgressBar>
+        )}
       </Box>
     </Tooltip>
   );
