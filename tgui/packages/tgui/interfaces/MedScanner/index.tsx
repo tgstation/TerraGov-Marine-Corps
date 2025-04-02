@@ -468,7 +468,7 @@ function PatientLimbs() {
                     <Box
                       inline
                       width="50px"
-                      color={limb.brute > 0 ? 'red' : 'white'}
+                      color={limb.brute > 0 ? COLOR_BRUTE : 'white'}
                     >
                       {limb.bandaged ? `${limb.brute}` : `{${limb.brute}}`}
                     </Box>
