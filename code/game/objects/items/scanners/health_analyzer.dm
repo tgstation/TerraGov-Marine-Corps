@@ -16,15 +16,20 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 5
 	throw_range = 10
-	///Skill required to bypass the fumble time.
+	/// Var for if we should set autoupdating in [/obj/item/healthanalyzer/ui_status] at all.
+	/// Check the comment in that proc for more, but basically tgui has an almost inexistent system
+	/// for managing auto updates. We have to use a workaround to avoid dimming the UI and closing it.
+	/// *This var is not for disabling autoupdates in the first place.*
+	var/allow_live_autoupdating = TRUE
+	/// Skill required to bypass the fumble time.
 	var/skill_threshold = SKILL_MEDICAL_NOVICE
-	///Skill required to have the scanner auto refresh
+	/// Skill required to have the scanner auto refresh
 	var/upper_skill_threshold = SKILL_MEDICAL_NOVICE
-	///Current mob being tracked by the scanner
+	/// Current mob being tracked by the scanner
 	var/mob/living/carbon/human/patient
-	///Distance the user can be away from the patient and still get health data.
+	/// Distance the user can be away from the patient and still get health data.
 	var/track_distance = 3
-	///Cooldown for showing a scan to somebody
+	/// Cooldown for showing a scan to somebody
 	COOLDOWN_DECLARE(show_scan_cooldown)
 
 /obj/item/healthanalyzer/examine(mob/user)
@@ -49,7 +54,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
  *
  * Otherwise, we return `TRUE`.
  */
-/obj/item/healthanalyzer/proc/can_autoupdate(mob/living/user, mob/living/patient)
+/obj/item/healthanalyzer/proc/autoupdate_checks(mob/living/user, mob/living/patient)
 	if(user.skills.getRating(SKILL_MEDICAL) < upper_skill_threshold)
 		return FALSE
 	if(get_turf(src) != get_turf(user))
@@ -107,13 +112,17 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	if(!ui)
 		ui = new(user, src, "MedScanner", "Medical Scanner")
 		ui.open()
+	allow_live_autoupdating = TRUE
 
 /obj/item/healthanalyzer/ui_status(mob/user, datum/ui_state/state)
+	// This weird little bit is so the UI won't dim or close when autoupdating isn't allowed.
+	// allow_live_autoupdating also enforces not updating old scans, requiring you to scan again.
+	// If tgui gets a better system for this shit in the future please feel free to replace this.
 	var/datum/tgui/ui = SStgui.get_open_ui(user, src)
-	ui?.set_autoupdate(can_autoupdate(user, patient))
-	// we specifically don't want this dimming or being closed instantly
-	// i know this is kinda bad but there seems to be no better way
-	// of getting this done
+	if(!allow_live_autoupdating)
+		return UI_INTERACTIVE
+	ui?.set_autoupdate(autoupdate_checks(user, patient))
+	allow_live_autoupdating = ui.autoupdate
 	return UI_INTERACTIVE
 
 /obj/item/healthanalyzer/ui_data(mob/user)
