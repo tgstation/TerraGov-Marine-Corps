@@ -2264,6 +2264,7 @@
 #include "code\modules\shuttle\shuttle.dm"
 #include "code\modules\shuttle\shuttle_rotate.dm"
 #include "code\modules\shuttle\gamemodes\crash.dm"
+#include "code\modules\spatial_grid\cell_tracker.dm"
 #include "code\modules\surgery\amputation.dm"
 #include "code\modules\surgery\bones.dm"
 #include "code\modules\surgery\brainrepair.dm"
