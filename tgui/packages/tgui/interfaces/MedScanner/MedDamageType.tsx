@@ -23,9 +23,9 @@ export function MedDamageType(props: Props) {
   const { tooltip, name, color, damage, disabled, noPadding } = props;
   return (
     <Tooltip content={tooltip}>
-      <Box inline color={disabled && 'grey'} pl={!noPadding && SPACING_PIXELS}>
+      <Box inline ml={!noPadding && SPACING_PIXELS}>
         {!disabled ? (
-          <ProgressBar value={0} color={color}>
+          <ProgressBar value={0}>
             <Box inline>
               {name}
               {': '}
