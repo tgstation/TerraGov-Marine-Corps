@@ -522,5 +522,5 @@
 /obj/item/repairpack
 	name = "mech repairpack"
 	desc = "A mecha repair pack, consisting of various auto-extinguisher systems, materials and repair nano-scarabs."
-	icon = 'icons/obj/items/assemblies.dmi'
-	icon_state = "posibrain-occupied" // todo kuro needs to make/find an icon for this
+	icon = 'icons/mecha/mecha_equipment.dmi'
+	icon_state = "armor_melee"
