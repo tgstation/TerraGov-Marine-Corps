@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - refactor: "optimised (clientside and serverside) parallax, and made it's movement look nicer"
