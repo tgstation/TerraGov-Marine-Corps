@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - bugfix: "fixed mech and tank not taking sticky weed slowdown as intended"
+  - refactor: "renamed the cooldown ending macros and added some new ones"
