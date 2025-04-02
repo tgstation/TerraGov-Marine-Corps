@@ -1,0 +1,4 @@
+author: "MiniMeatwad"
+delete-after: True
+changes:
+  - balance: "2x faster acid casting on flares, plasma cost affected by dissolvability (0.5x flares, 2x walls)"
