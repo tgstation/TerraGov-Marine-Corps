@@ -154,6 +154,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/reset_fire()
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	current_firer?.client?.mouse_pointer_icon = chassis.mouse_pointer
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), equip_cooldown)
 	set_target(null)
 	current_firer = null
 
