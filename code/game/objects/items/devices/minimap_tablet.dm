@@ -85,7 +85,7 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	/// reference to the icon we are manipulating when drawing, fetched during initialize
 	var/image/drawn_image
 
-/atom/movable/screen/minimap_tool/Initialize(mapload, zlevel, minimap_flag)
+/atom/movable/screen/minimap_tool/Initialize(mapload, datum/hud/hud_owner, zlevel, minimap_flag)
 	. = ..()
 	src.minimap_flag = minimap_flag
 	src.zlevel = zlevel
