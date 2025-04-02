@@ -98,7 +98,9 @@
 	//if we're not facing the way we're going rotate us
 	// if we're not strafing or if we are forced to rotate or if we are holding down the key
 	if(dir != direction && (!strafe || forcerotate || keyheld))
-		setDir(direction)
+		// remove diag dirs so it doesnt fuck up any directional stuff
+		var/dir_to_set = ISDIAGONALDIR(direction) ? (direction & ~(NORTH|SOUTH)) : direction
+		setDir(dir_to_set)
 		if(!(mecha_flags & QUIET_TURNS))
 			playsound(src, turnsound, 40, TRUE)
 		if(keyheld || !pivot_step) //If we pivot step, we don't return here so we don't just come to a stop
@@ -106,7 +108,7 @@
 
 	set_glide_size(DELAY_TO_GLIDE_SIZE(move_delay))
 	//Otherwise just walk normally
-	. = step(src,direction, dir)
+	. = step(src, direction, dir)
 	if(phasing)
 		use_power(phasing_energy_drain)
 	if(strafe)
