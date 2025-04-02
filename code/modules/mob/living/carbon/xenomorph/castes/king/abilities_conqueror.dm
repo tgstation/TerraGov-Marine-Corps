@@ -893,12 +893,18 @@
 		end_ability()
 		return
 	for(var/turf/affected_turf AS in filled_circle_turfs(xeno_owner, ability_range))
-		for(var/mob/mob_target in affected_turf)
-			if(!isliving(mob_target) || mob_target.issamexenohive(xeno_owner) || mob_target.stat == DEAD || !line_of_sight(xeno_owner, mob_target, CONQUEROR_OBLITERATION_MAX_RANGE))
+		for(var/atom/movable/target in affected_turf)
+			if(target.issamexenohive(xeno_owner) || !line_of_sight(xeno_owner, target, CONQUEROR_OBLITERATION_MAX_RANGE))
 				continue
-			var/mob/living/living_target = mob_target
-			targets_to_attack += living_target
-			RegisterSignals(living_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(clear_ref))
+			if(isliving(target))
+				var/mob/living/living_target = target
+				if(living_target.stat == DEAD)
+					continue
+			//only attack mobs and vehicles
+			else if(!isvehicle(target))
+				continue
+			targets_to_attack += target
+			RegisterSignals(target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_MOVABLE_Z_CHANGED), PROC_REF(clear_ref))
 	if(!length(targets_to_attack))
 		end_ability()
 		return
@@ -918,24 +924,30 @@
 
 /// Attacks all eligible targets, inflicting damage and creating visuals.
 /datum/action/ability/xeno_action/conqueror_obliteration/proc/attack_targets()
-	var/mob/living/living_target = targets_to_attack[1]
-	var/turf/new_turf = get_step_rand(living_target.loc)
+	var/atom/movable/target = targets_to_attack[1]
+	var/turf/new_turf = get_step_rand(target.loc)
 	for(var/turf/turf_to_check AS in get_line(xeno_owner.loc, new_turf) - xeno_owner.loc)
 		for(var/atom/atom_to_check AS in turf_to_check)
 			if(atom_to_check.CanPass(xeno_owner, turf_to_check))
-				new /obj/effect/temp_visual/conqueror/dash_trail(turf_to_check, get_dir(xeno_owner, living_target))
+				new /obj/effect/temp_visual/conqueror/dash_trail(turf_to_check, get_dir(xeno_owner, target))
 	playsound(new_turf, 'sound/effects/alien/behemoth/landslide_enhanced_charge.ogg', 8, TRUE)
-	playsound(living_target, 'sound/effects/alien/conqueror/will_kick.ogg', 40, TRUE)
-	new /obj/effect/temp_visual/conqueror/hook/punch(living_target.loc)
+	playsound(target, 'sound/effects/alien/conqueror/will_kick.ogg', 40, TRUE)
+	new /obj/effect/temp_visual/conqueror/hook/punch(target.loc)
 	xeno_owner.forceMove(new_turf)
-	living_target.do_jitter_animation(700, CONQUEROR_OBLITERATION_DEBUFF)
-	living_target.Immobilize(CONQUEROR_OBLITERATION_DEBUFF SECONDS)
-	living_target.adjust_stagger(CONQUEROR_OBLITERATION_DEBUFF)
-	living_target.adjust_slowdown(CONQUEROR_OBLITERATION_DEBUFF)
-	living_target.apply_damage((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * CONQUEROR_OBLITERATION_DAMAGE_MULTIPLIER, BRUTE, 0, MELEE, TRUE, TRUE, TRUE, xeno_owner.xeno_caste.melee_ap)
-	INVOKE_ASYNC(living_target, TYPE_PROC_REF(/mob, emote), "gored")
-	UnregisterSignal(living_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_MOVABLE_Z_CHANGED))
-	targets_to_attack -= living_target
+	target.do_jitter_animation(700, CONQUEROR_OBLITERATION_DEBUFF)
+	if(isliving(target))
+		var/mob/living/living_target = target
+		living_target.Immobilize(CONQUEROR_OBLITERATION_DEBUFF SECONDS)
+		living_target.adjust_stagger(CONQUEROR_OBLITERATION_DEBUFF)
+		living_target.adjust_slowdown(CONQUEROR_OBLITERATION_DEBUFF)
+		living_target.apply_damage((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * CONQUEROR_OBLITERATION_DAMAGE_MULTIPLIER, BRUTE, 0, MELEE, TRUE, TRUE, TRUE, xeno_owner.xeno_caste.melee_ap)
+		INVOKE_ASYNC(living_target, TYPE_PROC_REF(/mob, emote), "gored")
+	else
+		///not a mob so its an obj
+		var/obj/obj_target = target
+		obj_target.take_damage((xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier) * CONQUEROR_OBLITERATION_DAMAGE_MULTIPLIER, BRUTE, MELEE,TRUE, get_dir(xeno_owner, obj_target), xeno_owner.xeno_caste.melee_ap, xeno_owner)
+	UnregisterSignal(target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_MOVABLE_Z_CHANGED))
+	targets_to_attack -= target
 	if(length(targets_to_attack))
 		attack_timer = addtimer(CALLBACK(src, PROC_REF(attack_targets)), CONQUEROR_OBLITERATION_ATTACK_DELAY, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 		return
@@ -964,9 +976,9 @@
 	if(!xeno_owner.canmove)
 		xeno_owner.set_canmove(TRUE)
 	if(length(targets_to_attack))
-		for(var/mob/living/ref_living AS in targets_to_attack)
-			UnregisterSignal(ref_living, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_MOVABLE_Z_CHANGED))
-			targets_to_attack -= ref_living
+		for(var/atom/movable/ref_target AS in targets_to_attack)
+			UnregisterSignal(ref_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_MOVABLE_Z_CHANGED))
+			targets_to_attack -= ref_target
 	targets_to_attack = list()
 	if(attack_timer)
 		deltimer(attack_timer)
@@ -975,6 +987,7 @@
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "obliteration_warning"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	vis_flags = VIS_INHERIT_PLANE|VIS_INHERIT_LAYER
 	appearance_flags = TILE_BOUND
 	alpha = 0
 	layer = ABOVE_NORMAL_TURF_LAYER
