@@ -137,9 +137,6 @@
 	var/list/modifiers = params2list(params)
 	if(!((modifiers[BUTTON] == RIGHT_CLICK) && chassis.equip_by_category[MECHA_R_ARM] == src) && !((modifiers[BUTTON] == LEFT_CLICK) && chassis.equip_by_category[MECHA_L_ARM] == src))
 		return
-	//not an explicit timer (unwrapped timer start), but I dont think having a mirror timer is a better idea
-	//feel free to improve if think of a better way to make sure cooldowns are shared
-	LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(type))
 	SEND_SIGNAL(src, COMSIG_MECH_STOP_FIRE)
 	if(!HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		reset_fire()
@@ -154,6 +151,9 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/reset_fire()
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	current_firer?.client?.mouse_pointer_icon = chassis.mouse_pointer
+	//not an explicit timer (unwrapped timer start), but I dont think having a mirror timer is a better idea
+	//feel free to improve if think of a better way to make sure cooldowns are shared
+	LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(type))
 	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), equip_cooldown)
 	set_target(null)
 	current_firer = null
