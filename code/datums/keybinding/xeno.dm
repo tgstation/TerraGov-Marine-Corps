@@ -34,6 +34,20 @@
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
 	hotkey_keys = list("V")
 
+/datum/keybinding/xeno/place_pattern
+	name = "place_pattern"
+	full_name = "Place Pattern"
+	description = "Place a template of hive walls."
+	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
+	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/select_pattern
+	name = "select_pattern"
+	full_name = "Select Pattern"
+	description = "Select the template to use when using Place Pattern"
+	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
+	hotkey_keys = list("Q")
+
 /datum/keybinding/xeno/choose_weeds
 	name = "choose_weeds"
 	full_name = "Choose Weed"
