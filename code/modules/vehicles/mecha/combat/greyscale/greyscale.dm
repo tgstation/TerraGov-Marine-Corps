@@ -95,8 +95,8 @@
 	var/ability_module_icon = 'icons/mecha/mecha_ability_overlays.dmi'
 	///whether we have currently swapped the back and arm icons
 	var/swapped_to_backweapons = FALSE
-	///whether we use an included builtin boost overlay to show we are boosting
-	var/use_builtin_boost_overlay = TRUE
+	/// whether we should be using the b_ prefix for guns if we're boosting
+	var/use_gun_boost_prefix = FALSE
 	///whetehr we use the damage particles
 	var/use_damage_particles = TRUE
 	///whether this is an unusable wreck
@@ -362,7 +362,7 @@
 
 	for(var/key in render_order)
 		/// only used for weapons
-		var/prefix = is_wreck ? "d_" : (leg_overload_mode && !use_builtin_boost_overlay ? "b_" : "")
+		var/prefix = is_wreck ? "d_" : (leg_overload_mode && use_gun_boost_prefix ? "b_" : "")
 		if(key == MECHA_R_ARM)
 			var/datum/mech_limb/arm/holding = limbs[MECH_GREY_R_ARM]
 			if(!holding || holding?.disabled)
@@ -414,14 +414,13 @@
 
 	for(var/obj/item/mecha_parts/mecha_equipment/ability/module in equip_by_category[MECHA_UTILITY])
 		if(module.icon_state)
-			var/prefix = is_wreck ? "d_" : (leg_overload_mode && !use_builtin_boost_overlay ? "b_" : "")
+			var/prefix = is_wreck ? "d_" : (leg_overload_mode && use_gun_boost_prefix ? "b_" : "")
 			var/image/new_overlay =image(ability_module_icon, icon_state = prefix+module.icon_state)
 			. += new_overlay
 
-	if(use_builtin_boost_overlay)
-		var/state = leg_overload_mode ? "booster_active" : "booster"
-		. += image(ability_module_icon, icon_state = state, layer=layer+0.002)
-		. += emissive_appearance(ability_module_icon, state, src)
+	var/state = leg_overload_mode ? "booster_active" : "booster"
+	. += image(ability_module_icon, icon_state = state, layer=layer+0.002)
+	. += emissive_appearance(ability_module_icon, state, src)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/setDir(newdir)
 	. = ..()
