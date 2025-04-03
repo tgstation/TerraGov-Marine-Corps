@@ -7,6 +7,7 @@
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_IN_DOWN|BLOCK_Z_IN_UP
 	allow_pass_flags = NONE
 	move_resist = MOVE_FORCE_VERY_STRONG
 	layer = OPEN_DOOR_LAYER
@@ -218,6 +219,11 @@
 /obj/machinery/door/proc/finish_open()
 	layer = open_layer
 	density = FALSE
+	obj_flags &= ~(BLOCK_Z_IN_DOWN | BLOCK_Z_IN_UP)
+	for(var/turf/location in locs)
+		var/turf/above = GET_TURF_ABOVE(location)
+		for(var/atom/movable/falling AS in above)
+			above.zFall(falling)
 	update_appearance(UPDATE_ICON_STATE)
 
 	if(operating)
@@ -245,6 +251,7 @@
 		for(var/t in fillers)
 			var/obj/effect/opacifier/O = t
 			O.set_opacity(TRUE)
+	obj_flags |= BLOCK_Z_IN_DOWN | BLOCK_Z_IN_UP
 	operating = FALSE
 
 /obj/machinery/door/proc/requiresID()
