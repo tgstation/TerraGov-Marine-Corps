@@ -42,9 +42,9 @@ GLOBAL_VAR_INIT(glide_size_multiplier, 1)
 #define CURRENTLY_Z_ASCENDING 4
 
 //buffer time before we log someone as spammming z changes
-#define HUMAN_ZCHANGE_BUFFER_TIME 1 SECONDS
+#define LIVING_ZCHANGE_BUFFER_TIME 1 SECONDS
 //max z changes after which we stun them as an anti spam measure
-#define HUMAN_ZCHANGE_MAX_BUFFER_COUNT 5
+#define LIVING_ZCHANGE_MAX_BUFFER_COUNT 5
 
 /// possible bitflag return values of [atom/proc/intercept_zImpact] calls
 /// Stops the movable from falling further and crashing on the ground. Example: stairs.
