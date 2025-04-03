@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - code_imp: "tgui loads faster now"
+  - code_imp: "the tgui title bar should play nicer now with other components like buttons"
