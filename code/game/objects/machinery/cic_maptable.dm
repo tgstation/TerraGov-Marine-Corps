@@ -3,6 +3,10 @@
 	/// minimap action this extra button is owned by
 	var/obj/machinery/cic_maptable/maptable
 
+/atom/movable/screen/maptable_extras/Destroy()
+	maptable = null
+	return ..()
+
 /atom/movable/screen/maptable_extras/minimap_z_indicator
 	icon = 'icons/mob/screen_ai.dmi'
 	icon_state = "zindicator"

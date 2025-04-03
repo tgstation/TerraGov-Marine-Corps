@@ -465,6 +465,10 @@ SUBSYSTEM_DEF(minimaps)
 	/// minimap action this extra button is owned by
 	var/datum/action/minimap/minimap_action
 
+/atom/movable/screen/minimap_extras/Destroy()
+	minimap_action = null
+	return ..()
+
 /atom/movable/screen/minimap_extras/minimap_z_indicator
 	icon = 'icons/mob/screen_ai.dmi'
 	icon_state = "zindicator"
