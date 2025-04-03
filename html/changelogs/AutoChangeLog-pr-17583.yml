@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "fixed sound not always workign immediately on spawn"
-  - refactor: "updated spatial tracking code somewhat"

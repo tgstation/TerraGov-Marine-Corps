@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "Mech relimb slashes will relay to torso when limb is destroyed"

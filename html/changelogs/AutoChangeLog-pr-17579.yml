@@ -1,9 +1,0 @@
-author: "yyzsong"
-delete-after: True
-changes:
-  - spellcheck: "Jaeger and Hardsuit modular pieces are now plural (a chestplates -> some chestplates)"
-  - spellcheck: "Adds \\improper to some armor and clothing pieces"
-  - spellcheck: "Corrects some capitalization on storage modules I missed"
-  - spellcheck: "Renames IS Storage module to bulk storage module"
-  - spellcheck: "Renames helmet storage datum to be more generic (berets will no longer show jaeger-pattern storage module)"
-  - spellcheck: "Chameloen -> chameleon"

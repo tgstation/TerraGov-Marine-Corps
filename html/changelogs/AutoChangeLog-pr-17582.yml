@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - balance: "Mech repairpacks take 6 seconds to apply instead of 10 and disable your weapons & movement while being used"

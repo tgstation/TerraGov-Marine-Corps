@@ -6,3 +6,37 @@
   - bugfix: fixed preference preview being tiny
   - bugfix: fixed tgui byond windows being tiny until they were edited
   - code_imp: removed warning for being on 516
+2025-04-03:
+  Mantlecrawler:
+  - rscadd: Xenos can now place templates of resin walls during prep phase.
+  MiniMeatwad:
+  - balance: 2x faster acid casting on flares, plasma cost affected by dissolvability
+      (0.5x flares, 2x walls)
+  TiviPlus:
+  - bugfix: fixed space tiles again
+  - bugfix: fixed som ammorack layering under the floor
+  - bugfix: fixed som tank exit hatch layering under the floor
+  - bugfix: fixed wierd behavior with mech cloak and emissives
+  - bugfix: Mech relimb slashes will relay to torso when limb is destroyed
+  - balance: Mech repairpacks take 6 seconds to apply instead of 10 and disable your
+      weapons & movement while being used
+  - bugfix: Fixes directiona lbursts (canister,  buckshot) hitting solid objects if
+      it spawns inside them (tank hitbox, walls, etc)
+  - refactor: optimised (clientside and serverside) parallax, and made it's movement
+      look nicer
+  - bugfix: Fixes mech being diagonal sometimes (again)
+  - bugfix: fixed mech and tank not taking sticky weed slowdown as intended
+  - refactor: renamed the cooldown ending macros and added some new ones
+  - bugfix: melting fire no longer emits light and just emissively glows
+  - balance: melting fire now deals damage to vehicles
+  - bugfix: fixed sound not always workign immediately on spawn
+  - refactor: updated spatial tracking code somewhat
+  yyzsong:
+  - spellcheck: Jaeger and Hardsuit modular pieces are now plural (a chestplates ->
+      some chestplates)
+  - spellcheck: Adds \improper to some armor and clothing pieces
+  - spellcheck: Corrects some capitalization on storage modules I missed
+  - spellcheck: Renames IS Storage module to bulk storage module
+  - spellcheck: Renames helmet storage datum to be more generic (berets will no longer
+      show jaeger-pattern storage module)
+  - spellcheck: Chameloen -> chameleon

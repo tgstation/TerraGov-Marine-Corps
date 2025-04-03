@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "melting fire no longer emits light and just emissively glows"
-  - balance: "melting fire now deals damage to vehicles"

@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "fixed som ammorack layering under the floor"
-  - bugfix: "fixed som tank exit hatch layering under the floor"

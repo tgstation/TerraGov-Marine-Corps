@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "Fixes directiona lbursts (canister,  buckshot) hitting solid objects if it spawns inside them (tank hitbox, walls, etc)"
