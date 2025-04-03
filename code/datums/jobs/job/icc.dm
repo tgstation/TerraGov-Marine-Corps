@@ -8,7 +8,7 @@
 
 //ICC Standard
 /datum/job/icc/standard
-	title = ICC_STANDARD
+	title = "ICC Standard"
 	paygrade = "ICCH"
 	multiple_outfits = TRUE
 	outfit = /datum/outfit/job/icc/standard/mpi_km
@@ -127,7 +127,7 @@
 
 //ICC Guard
 /datum/job/icc/guard
-	title = ICC_GUARD
+	title = "ICC Guard"
 	paygrade = "ICC3"
 	outfit = /datum/outfit/job/icc/guard/coilgun
 	multiple_outfits = TRUE
@@ -237,7 +237,7 @@
 
 //ICC Medic
 /datum/job/icc/medic
-	title = ICC_MEDIC
+	title = "ICC Medic"
 	paygrade = "ICC2"
 	skills_type = /datum/skills/combat_medic/crafty
 	multiple_outfits = TRUE
