@@ -15,7 +15,8 @@
 	paygrade = "ICC1"
 	comm_title = "ICC"
 	skills_type = /datum/skills/crafty
-	access = list (ALL_MARINE_ACCESS, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
+	minimal_access =  list (ALL_MARINE_ACCESS, ACCESS_ICC_PREP)
+	access =  list (ALL_MARINE_ACCESS, ACCESS_ICC_PREP)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	total_positions = -1
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_OVERRIDELATEJOINSPAWN
@@ -38,7 +39,8 @@
 	paygrade = "ICC2"
 	comm_title = "ICC"
 	skills_type = /datum/skills/combat_medic/crafty
-	access = list (ALL_MARINE_ACCESS, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
+	minimal_access = list (ALL_MARINE_ACCESS, ACCESS_ICC_MEDPREP)
+	access = list (ALL_MARINE_ACCESS, ACCESS_ICC_MEDPREP)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	total_positions = -1
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_OVERRIDELATEJOINSPAWN
@@ -52,7 +54,7 @@
 	name = "ICC Medic"
 	jobtype = /datum/job/icc_squad/medic
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/corpsman
 	ears = /obj/item/radio/headset/mainship/marine/icc
 
 //ICC Spec
@@ -61,7 +63,8 @@
 	paygrade = "ICC3"
 	comm_title = "ICC"
 	skills_type = /datum/skills/specialist
-	access = list (ALL_MARINE_ACCESS, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
+	minimal_access = list (ALL_MARINE_ACCESS, ACCESS_ICC_GUARDPREP)
+	access = list (ALL_MARINE_ACCESS, ACCESS_ICC_GUARDPREP)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	total_positions = 5
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_OVERRIDELATEJOINSPAWN
@@ -75,7 +78,7 @@
 	name = "ICC Specialist"
 	jobtype = /datum/job/icc_squad/spec
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/specialist
 	ears = /obj/item/radio/headset/mainship/marine/icc
 
 //ICC Squad Leader
@@ -84,7 +87,8 @@
 	paygrade = "ICC4"
 	comm_title = "ICC"
 	skills_type = /datum/skills/sl/icc
-	access = list (ALL_MARINE_ACCESS, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
+	minimal_access = list (ALL_MARINE_ACCESS, ACCESS_ICC_LEADPREP)
+	access = list (ALL_MARINE_ACCESS, ACCESS_ICC_LEADPREP)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	total_positions = 5
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_OVERRIDELATEJOINSPAWN
@@ -98,7 +102,7 @@
 	name = "ICC Squad Leader"
 	jobtype = /datum/job/icc_squad/leader
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/leader
 	ears = /obj/item/radio/headset/mainship/marine/icc
 	glasses = /obj/item/clothing/glasses/hud/health
 

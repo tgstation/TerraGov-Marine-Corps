@@ -142,6 +142,36 @@
 	icon_state = "silver"
 	worn_icon_state = "silver_id"
 
+/obj/item/card/id/silver/standard
+	marine_points = list(
+		CAT_STASUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/silver/smartgun
+	marine_points = list(
+		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/silver/specialist
+	marine_points = list(
+		CAT_SPSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/silver/engineer
+	marine_points = list(
+		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/silver/leader
+	marine_points = list(
+		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/silver/medic
+	marine_points = list(
+		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
+	)
+
 /obj/item/card/id/gold
 	name = "identification card"
 	desc = "A golden card which shows power and might."

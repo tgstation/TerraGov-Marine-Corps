@@ -95,6 +95,7 @@
 #define ICC_GUARD "ICC Guardsman"
 #define ICC_MEDIC "ICC Medic"
 #define ICC_LEADER "ICC Leader"
+#define ICC_SQUAD_LEADER "ICC Squad Leader"
 
 //SOM
 #define SOM_COMMANDER "SOM Commander"
@@ -115,6 +116,13 @@
 #define SOM_SQUAD_VETERAN "SOM Squad Veteran"
 #define SOM_SQUAD_MARINE "SOM Squad Standard"
 #define SOM_SQUAD_SLUT "SOM Squad Slut"
+
+// VSD
+#define VSD_STANDARD "VSD Standard"
+#define VSD_ENGINEER "VSD Engineer"
+#define VSD_MEDIC "VSD Medic"
+#define VSD_SPECIALIST "VSD Specialist"
+#define VSD_LEADER "VSD Squad Leader"
 
 #define JOB_CAT_COMMAND "Command"
 #define JOB_CAT_SILICON "Silicon"

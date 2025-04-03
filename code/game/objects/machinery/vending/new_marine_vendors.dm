@@ -207,15 +207,10 @@
 			if(item_category == CAT_STD && !issynth(usr))
 				var/mob/living/carbon/human/H = usr
 				if(!istype(H.job, /datum/job/terragov/command/fieldcommander))
-					if(H.faction == FACTION_SOM)
-						// spawn SOM headset for SOM
-						vended_items += new /obj/item/radio/headset/mainship/som(loc, H.assigned_squad, vendor_role)
-					else
-						// spawn marine headset for all other factions
-						vended_items += new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad, vendor_role)
-						if(istype(H.job, /datum/job/terragov/squad/leader))
-							vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
-							vended_items += new /obj/item/squad_transfer_tablet(loc)
+					give_free_headset(usr, faction)
+				if(istype(H.job, /datum/job/terragov/squad/leader))
+					vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
+					vended_items += new /obj/item/squad_transfer_tablet(loc)
 
 			for (var/obj/item/vended_item in vended_items)
 				vended_item.on_vend(usr, faction, auto_equip = TRUE)
@@ -595,6 +590,60 @@
 	. = ..()
 	listed_products = GLOB.som_leader_clothes_listed_products
 
+// VSD
+
+/obj/machinery/marine_selector/clothes/vsd
+	name = "GHMME Automated VSD Closet"
+	req_access = list(ACCESS_VSD_PREP)
+	vendor_role = /datum/job/vsd_squad/standard
+	gives_webbing = FALSE
+	faction = FACTION_VSD
+	lock_flags = JOB_LOCK
+
+/obj/machinery/marine_selector/clothes/vsd/standard
+	name = "GHMME Automated VSD Standard Closet"
+	vendor_role = /datum/job/vsd_squad/standard
+
+/obj/machinery/marine_selector/clothes/vsd/standard/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.vsd_standard_clothes_listed_products
+
+/obj/machinery/marine_selector/clothes/vsd/medic
+	name = "GHMME Automated VSD Medic Closet"
+	vendor_role = /datum/job/vsd_squad/medic
+	req_access = list(ACCESS_VSD_MEDPREP)
+
+/obj/machinery/marine_selector/clothes/vsd/medic/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.vsd_medic_clothes_listed_products
+
+/obj/machinery/marine_selector/clothes/vsd/engineer
+	name = "GHMME Automated VSD Engineer Closet"
+	vendor_role = /datum/job/vsd_squad/engineer
+	req_access = list(ACCESS_VSD_ENGPREP)
+
+/obj/machinery/marine_selector/clothes/vsd/engineer/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.vsd_engineer_clothes_listed_products
+
+/obj/machinery/marine_selector/clothes/vsd/specialist
+	name = "GHMME Automated VSD Specialist Closet"
+	vendor_role = /datum/job/vsd_squad/spec
+	req_access = list(ACCESS_VSD_SPECPREP)
+
+/obj/machinery/marine_selector/clothes/vsd/specialist/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.vsd_specialist_clothes_listed_products
+
+/obj/machinery/marine_selector/clothes/vsd/leader
+	name = "GHMME Automated VSD Leader Closet"
+	vendor_role = /datum/job/vsd_squad/leader
+	req_access = list(ACCESS_VSD_LEADPREP)
+
+/obj/machinery/marine_selector/clothes/vsd/leader/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.vsd_leader_clothes_listed_products
+
 // PMC
 
 /obj/machinery/marine_selector/clothes/pmc
@@ -602,6 +651,8 @@
 	req_access = list(ACCESS_NT_PMC_COMMON)
 	vendor_role = /datum/job/pmc/squad/standard
 	gives_webbing = FALSE
+	faction = FACTION_NANOTRASEN
+	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/clothes/pmc/standard
 	name = "GHMME Automated PMC Standard Closet"
@@ -618,6 +669,83 @@
 /obj/machinery/marine_selector/clothes/pmc/medic/Initialize(mapload)
 	. = ..()
 	listed_products = GLOB.pmc_medic_clothes_listed_products
+
+/obj/machinery/marine_selector/clothes/pmc/engineer
+	name = "GHMME Automated PMC Engineer Closet"
+	vendor_role = /datum/job/pmc/squad/engineer
+
+/obj/machinery/marine_selector/clothes/pmc/engineer/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.pmc_engineer_clothes_listed_products
+
+/obj/machinery/marine_selector/clothes/pmc/gunner
+	name = "GHMME Automated PMC Gunner Closet"
+	vendor_role = /datum/job/pmc/squad/gunner
+
+/obj/machinery/marine_selector/clothes/pmc/gunner/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.pmc_gunner_clothes_listed_products
+
+/obj/machinery/marine_selector/clothes/pmc/sniper
+	name = "GHMME Automated PMC Specialist Closet"
+	vendor_role = /datum/job/pmc/squad/sniper
+
+/obj/machinery/marine_selector/clothes/pmc/sniper/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.pmc_sniper_clothes_listed_products
+
+/obj/machinery/marine_selector/clothes/pmc/leader
+	name = "GHMME Automated PMC Leader Closet"
+	vendor_role = /datum/job/pmc/squad/leader
+
+/obj/machinery/marine_selector/clothes/pmc/leader/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.pmc_leader_clothes_listed_products
+
+// ICC
+
+/obj/machinery/marine_selector/clothes/icc
+	name = "GHMME Automated ICC Closet"
+	req_access = list(ACCESS_ICC_PREP)
+	vendor_role = /datum/job/icc_squad/standard
+	gives_webbing = FALSE
+	faction = FACTION_ICC
+	lock_flags = JOB_LOCK
+
+/obj/machinery/marine_selector/clothes/icc/standard
+	name = "GHMME Automated ICC Standard Closet"
+	vendor_role = /datum/job/icc_squad/standard
+
+/obj/machinery/marine_selector/clothes/icc/standard/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.icc_standard_clothes_listed_products
+
+/obj/machinery/marine_selector/clothes/icc/medic
+	name = "GHMME Automated ICC Medic Closet"
+	req_access = list(ACCESS_ICC_MEDPREP)
+	vendor_role = /datum/job/icc_squad/medic
+
+/obj/machinery/marine_selector/clothes/icc/medic/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.icc_medic_clothes_listed_products
+
+/obj/machinery/marine_selector/clothes/icc/guard
+	name = "GHMME Automated ICC Guardsman Closet"
+	req_access = list(ACCESS_ICC_GUARDPREP)
+	vendor_role = /datum/job/icc_squad/spec
+
+/obj/machinery/marine_selector/clothes/icc/guard/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.icc_standard_clothes_listed_products
+
+/obj/machinery/marine_selector/clothes/icc/leader
+	name = "GHMME Automated ICC Squad Leader Closet"
+	req_access = list(ACCESS_ICC_LEADPREP)
+	vendor_role = /datum/job/icc_squad/leader
+
+/obj/machinery/marine_selector/clothes/icc/leader/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.icc_standard_clothes_listed_products
 
 ////////////////////// Gear ////////////////////////////////////////////////////////
 
@@ -645,10 +773,6 @@
 /obj/machinery/marine_selector/gear/medic/valhalla
 	vendor_role = /datum/job/fallen/marine/corpsman
 	resistance_flags = INDESTRUCTIBLE
-	lock_flags = JOB_LOCK
-
-/obj/machinery/marine_selector/gear/medic/pmc
-	vendor_role = /datum/job/pmc/squad/medic
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/specialist
@@ -714,10 +838,6 @@
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
-/obj/machinery/marine_selector/gear/smartgun/pmc
-	vendor_role = /datum/job/pmc/squad/gunner
-	lock_flags = JOB_LOCK
-
 /obj/machinery/marine_selector/gear/leader
 	name = "NEXUS Automated Squad Leader Equipment Rack"
 	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
@@ -734,10 +854,6 @@
 /obj/machinery/marine_selector/gear/leader/valhalla
 	vendor_role = /datum/job/fallen/marine/leader
 	resistance_flags = INDESTRUCTIBLE
-	lock_flags = JOB_LOCK
-
-/obj/machinery/marine_selector/gear/leader/pmc
-	vendor_role = /datum/job/pmc/squad/leader
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/commander
@@ -831,6 +947,179 @@
 /obj/machinery/marine_selector/gear/som/leader/Initialize(mapload)
 	. = ..()
 	listed_products = GLOB.som_leader_gear_listed_products
+
+// VSD
+
+/obj/machinery/marine_selector/gear/vsd
+	name = "Automated Equipment Rack"
+	desc = "An automated equipment rack hooked up to a colossal storage unit."
+	icon_state = "marinearmory"
+	use_points = TRUE
+	req_access = list(ACCESS_VSD_PREP)
+	faction = FACTION_VSD
+	lock_flags = JOB_LOCK
+
+/obj/machinery/marine_selector/gear/vsd/medic
+	name = "Automated Medical Equipment Rack"
+	desc = "An automated medic equipment rack hooked up to a colossal storage unit."
+	icon_state = "medic"
+	icon_vend = "medic-vend"
+	icon_deny = "medic-deny"
+	req_access = list(ACCESS_VSD_MEDPREP)
+	vendor_role = /datum/job/vsd_squad/medic
+
+/obj/machinery/marine_selector/gear/vsd/medic/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.vsd_medic_gear_listed_products
+
+/obj/machinery/marine_selector/gear/vsd/specialist
+	name = "Automated Specialist Equipment Rack"
+	desc = "An automated specialist equipment rack hooked up to a colossal storage unit."
+	icon_state = "squadleader"
+	icon_vend = "squadleader-vend"
+	icon_deny = "squadleader-deny"
+	req_access = list(ACCESS_VSD_SPECPREP)
+	vendor_role = /datum/job/vsd_squad/spec
+
+/obj/machinery/marine_selector/gear/vsd/specialist/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.vsd_specialist_gear_listed_products
+
+/obj/machinery/marine_selector/gear/vsd/engi
+	name = "Automated Engineer Equipment Rack"
+	desc = "An automated engineer equipment rack hooked up to a colossal storage unit."
+	icon_state = "engineer"
+	icon_vend = "engineer-vend"
+	icon_deny = "engineer-deny"
+	req_access = list(ACCESS_VSD_ENGPREP)
+	vendor_role = /datum/job/vsd_squad/engineer
+
+/obj/machinery/marine_selector/gear/vsd/engi/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.vsd_engineer_gear_listed_products
+
+/obj/machinery/marine_selector/gear/vsd/leader
+	name = "Automated Squad Leader Equipment Rack"
+	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
+	icon_state = "squadleader"
+	icon_vend = "squadleader-vend"
+	icon_deny = "squadleader-deny"
+	req_access = list(ACCESS_VSD_LEADPREP)
+	vendor_role = /datum/job/vsd_squad/leader
+
+/obj/machinery/marine_selector/gear/vsd/leader/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.vsd_leader_gear_listed_products
+
+// PMC
+
+/obj/machinery/marine_selector/clothes/pmc
+	name = "Nexus Automated PMC Rack"
+	icon_state = "marinearmory"
+	use_points = TRUE
+	req_access = list(ACCESS_NT_PMC_COMMON)
+	vendor_role = /datum/job/pmc/squad/standard
+	gives_webbing = FALSE
+	faction = FACTION_NANOTRASEN
+	lock_flags = JOB_LOCK
+
+/obj/machinery/marine_selector/gear/pmc/standard
+	name = "Nexus Automated PMC Standard Rack"
+	vendor_role = /datum/job/pmc/squad/standard
+
+/obj/machinery/marine_selector/gear/pmc/standard/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.pmc_standard_gear_listed_products
+
+/obj/machinery/marine_selector/gear/pmc/medic
+	name = "Nexus Automated PMC Medic Rack"
+	vendor_role = /datum/job/pmc/squad/medic
+
+/obj/machinery/marine_selector/gear/pmc/medic/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.pmc_medic_gear_listed_products
+
+/obj/machinery/marine_selector/gear/pmc/engineer
+	name = "Nexus Automated PMC Engineer Rack"
+	vendor_role = /datum/job/pmc/squad/engineer
+
+/obj/machinery/marine_selector/gear/pmc/engineer/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.pmc_engineer_gear_listed_products
+
+/obj/machinery/marine_selector/gear/pmc/gunner
+	name = "Nexus Automated PMC Gunner Rack"
+	vendor_role = /datum/job/pmc/squad/gunner
+
+/obj/machinery/marine_selector/gear/pmc/gunner/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.pmc_gunner_gear_listed_products
+
+/obj/machinery/marine_selector/gear/pmc/sniper
+	name = "Nexus Automated PMC Specialist Rack"
+	vendor_role = /datum/job/pmc/squad/sniper
+
+/obj/machinery/marine_selector/gear/pmc/sniper/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.pmc_sniper_gear_listed_products
+
+/obj/machinery/marine_selector/gear/pmc/leader
+	name = "Nexus Automated PMC Leader Rack"
+	vendor_role = /datum/job/pmc/squad/leader
+
+/obj/machinery/marine_selector/gear/pmc/leader/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.pmc_leader_gear_listed_products
+
+// ICC
+
+/obj/machinery/marine_selector/gear/icc
+	name = "Automated Equipment Rack"
+	desc = "An automated equipment rack hooked up to a colossal storage unit."
+	icon_state = "marinearmory"
+	use_points = TRUE
+	req_access = list(ACCESS_ICC_PREP)
+	faction = FACTION_ICC
+	lock_flags = JOB_LOCK
+
+/obj/machinery/marine_selector/gear/icc/medic
+	name = "Automated Medical Equipment Rack"
+	desc = "An automated medic equipment rack hooked up to a colossal storage unit."
+	icon_state = "medic"
+	icon_vend = "medic-vend"
+	icon_deny = "medic-deny"
+	req_access = list(ACCESS_ICC_MEDPREP)
+	vendor_role = /datum/job/icc_squad/medic
+
+/obj/machinery/marine_selector/gear/icc/medic/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.icc_medic_gear_listed_products
+
+/obj/machinery/marine_selector/gear/icc/guard
+	name = "Automated Guardsman Equipment Rack"
+	desc = "An automated guardsman equipment rack hooked up to a colossal storage unit."
+	icon_state = "squadleader"
+	icon_vend = "squadleader-vend"
+	icon_deny = "squadleader-deny"
+	req_access = list(ACCESS_ICC_GUARDPREP)
+	vendor_role = /datum/job/icc_squad/spec
+
+/obj/machinery/marine_selector/gear/icc/guard/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.icc_guard_gear_listed_products
+
+/obj/machinery/marine_selector/gear/icc/leader
+	name = "Automated Squad Leader Equipment Rack"
+	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
+	icon_state = "squadleader"
+	icon_vend = "squadleader-vend"
+	icon_deny = "squadleader-deny"
+	req_access = list(ACCESS_ICC_LEADPREP)
+	vendor_role = /datum/job/icc_squad/leader
+
+/obj/machinery/marine_selector/gear/icc/leader/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.icc_leader_gear_listed_products
 
 ///Spawns a set of objects from specified typepaths. For vendors to spawn multiple items while only needing one path.
 /obj/effect/vendor_bundle
@@ -1472,7 +1761,154 @@
 		/obj/item/armor_module/module/eshield/som
 	)
 
+// VSD vendor bundles
+
+/obj/effect/vendor_bundle/vsd/leader
+	gear_to_spawn = list(
+		/obj/item/clothing/glasses/night/vsd,
+		/obj/item/explosive/plastique,
+		/obj/item/binoculars/tactical/range,
+		/obj/item/pinpointer,
+	)
+
+/obj/effect/vendor_bundle/vsd/engi
+	gear_to_spawn = list(
+		/obj/item/cell/high,
+		/obj/item/lightreplacer,
+		/obj/item/circuitboard/apc,
+	)
+
+/obj/effect/vendor_bundle/vsd/medic
+	gear_to_spawn = list(
+		/obj/item/bodybag/cryobag,
+		/obj/item/defibrillator,
+		/obj/item/healthanalyzer,
+		/obj/item/roller,
+		/obj/item/tweezers,
+		/obj/item/clothing/glasses/hud/health,
+	)
+
+/obj/effect/vendor_bundle/vsd/specialist
+	gear_to_spawn = list(
+		/obj/item/clothing/glasses/night/vsd,
+		/obj/item/binoculars/tactical/range,
+		/obj/item/explosive/plastique,
+		/obj/item/explosive/plastique,
+	)
+
+/obj/effect/vendor_bundle/vsd/basic
+	gear_to_spawn = list(
+		/obj/item/clothing/under/vsd,
+		/obj/item/clothing/shoes/marine/vsd/full,
+		/obj/item/clothing/gloves/marine/veteran/pmc,
+		/obj/item/storage/box/MRE/som,
+	)
+
+
+/obj/effect/vendor_bundle/vsd/basic_medic
+	gear_to_spawn = list(
+		/obj/item/clothing/under/vsd,
+		/obj/item/clothing/shoes/marine/vsd/full,
+		/obj/item/clothing/gloves/marine/veteran/pmc,
+		/obj/item/storage/box/MRE/som,
+	)
+
+/obj/effect/vendor_bundle/vsd/basic_engineer
+	gear_to_spawn = list(
+		/obj/item/clothing/under/vsd/secondary,
+		/obj/item/clothing/shoes/marine/vsd/full,
+		/obj/item/clothing/gloves/marine/veteran/pmc,
+		/obj/item/storage/box/MRE/som,
+	)
+
+/obj/effect/vendor_bundle/vsd/basic_specialist
+	gear_to_spawn = list(
+		/obj/item/clothing/under/vsd/shirt,
+		/obj/item/clothing/shoes/marine/vsd/full,
+		/obj/item/clothing/gloves/marine/veteran/pmc,
+		/obj/item/storage/box/MRE/som,
+	)
+
+/obj/effect/vendor_bundle/vsd/basic_leader
+	gear_to_spawn = list(
+		/obj/item/clothing/under/vsd,
+		/obj/item/clothing/shoes/marine/vsd/full,
+		/obj/item/clothing/gloves/marine/veteran/pmc,
+		/obj/item/storage/box/MRE/som,
+	)
+
+/obj/effect/vendor_bundle/vsd/light_armor
+	desc = "A set of Crasher multi-threat light ballistic armor, including an armor suit and helmet."
+	gear_to_spawn = list(
+		/obj/item/clothing/suit/storage/marine/vsd_two,
+		/obj/item/clothing/head/helmet/marine/vsd_two,
+	)
+
+/obj/effect/vendor_bundle/vsd/medium_armor
+	desc = "A set of Crasher multi-threat medium-set ballistic armor, including an armor suit and helmet."
+	gear_to_spawn = list(
+		/obj/item/clothing/suit/storage/marine/vsd_two/marmor,
+		/obj/item/clothing/head/helmet/marine/vsd_two,
+	)
+
+/obj/effect/vendor_bundle/vsd/heavy_armor
+	desc = "A set of Crasher multi-threat heavy-set ballistic armor, including an armor suit and helmet."
+	gear_to_spawn = list(
+		/obj/item/clothing/suit/storage/marine/vsd_two/harmor,
+		/obj/item/clothing/head/helmet/marine/vsd_two,
+	)
+
+/obj/effect/vendor_bundle/vsd/juggernaut_armor
+	desc = "A set of Crasher multi-threat 'Juggernaut' ballistic armor, including an armor suit and helmet. Designed for very high protection against ballistic threats."
+	gear_to_spawn = list(
+		/obj/item/clothing/suit/storage/marine/vsd/juggernaut,
+		/obj/item/clothing/head/helmet/marine/vsd/juggernaut,
+	)
+
+/obj/effect/vendor_bundle/vsd/syndicate_armor
+	desc = "A set of Crasher multi-threat 'Syndicate' EOD ballistic armor, including an experimental armor suit and helmet. Designed for extreme explosive resistance."
+	gear_to_spawn = list(
+		/obj/item/clothing/suit/storage/marine/vsd/eod,
+		/obj/item/clothing/head/helmet/marine/vsd/eod,
+	)
+
 // PMC vendor bundles
+
+/obj/effect/vendor_bundle/pmc/medic
+	gear_to_spawn = list(
+		/obj/item/bodybag/cryobag,
+		/obj/item/defibrillator,
+		/obj/item/healthanalyzer,
+		/obj/item/roller,
+		/obj/item/tweezers,
+		/obj/item/explosive/plastique,
+		/obj/item/explosive/plastique,
+		/obj/item/reagent_containers/hypospray/advanced/nanoblood,
+		/obj/item/storage/firstaid/adv,
+		/obj/item/clothing/glasses/hud/health,
+	)
+
+/obj/effect/vendor_bundle/pmc/engi
+	gear_to_spawn = list(
+		/obj/item/explosive/plastique,
+		/obj/item/cell/high,
+		/obj/item/lightreplacer,
+		/obj/item/circuitboard/apc,
+	)
+
+/obj/effect/vendor_bundle/pmc/sniper
+	gear_to_spawn = list(
+		/obj/item/clothing/glasses/night/m42_night_goggles,
+		/obj/item/binoculars/tactical/range,
+	)
+
+/obj/effect/vendor_bundle/pmc/leader
+	gear_to_spawn = list(
+		/obj/item/clothing/glasses/night/m42_night_goggles,
+		/obj/item/binoculars/tactical/range,
+		/obj/item/explosive/plastique,
+		/obj/item/pinpointer,
+	)
 
 /obj/effect/vendor_bundle/pmc/basic
 	gear_to_spawn = list(
@@ -1482,7 +1918,7 @@
 		/obj/item/storage/box/MRE,
 	)
 
-/obj/effect/vendor_bundle/pmc/leader
+/obj/effect/vendor_bundle/pmc/basic_leader
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/veteran/pmc/leader,
 		/obj/item/clothing/shoes/marine/pmc/full,
@@ -1520,6 +1956,23 @@
 	)
 
 // ICC vendor bundles
+
+/obj/effect/vendor_bundle/icc/guard
+	gear_to_spawn = list(
+		/obj/item/binoculars/tactical/range,
+		/obj/item/explosive/plastique,
+		/obj/item/explosive/plastique,
+	)
+
+/obj/effect/vendor_bundle/icc/leader
+	gear_to_spawn = list(
+		/obj/item/explosive/plastique,
+		/obj/item/explosive/plastique,
+		/obj/item/explosive/plastique,
+		/obj/item/binoculars/tactical/range,
+		/obj/item/pinpointer,
+		/obj/item/clothing/glasses/hud/health,
+	)
 
 /obj/effect/vendor_bundle/icc/basic
 	gear_to_spawn = list(

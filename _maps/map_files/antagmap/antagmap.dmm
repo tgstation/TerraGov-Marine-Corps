@@ -935,9 +935,7 @@
 /turf/open/floor/mainship/office,
 /area/antag_ship/som/bridge)
 "fY" = (
-/obj/machinery/vending/MarineMed{
-	isshared = 0
-	},
+/obj/machinery/vending/MarineMed/pmc,
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},

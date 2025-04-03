@@ -85,7 +85,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/vsd/medic/vsd_pdw,
 		/datum/outfit/quick/vsd/spec/flamer,
 		/datum/outfit/quick/vsd/spec/demolitionist,
-		/datum/outfit/quick/vsd/spec/gunslinger,
+		// /datum/outfit/quick/vsd/spec/gunslinger,
 		// /datum/outfit/quick/vsd/spec/uslspec_one,
 		// /datum/outfit/quick/vsd/spec/uslspec_two,
 		/datum/outfit/quick/vsd/juggernaut,
@@ -103,7 +103,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/icc/medic/icc_sharpshooter,
 		/datum/outfit/quick/icc/guard/icc_rocket,
 		/datum/outfit/quick/icc/guard/icc_autoshotgun,
-		/datum/outfit/quick/icc/leader/icc_confrontationrifle
+		/datum/outfit/quick/icc/leader/icc_confrontationrifle,
 	)
 
 	for(var/X in loadout_list)
@@ -322,5 +322,5 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		"ICC Standard",
 		"ICC Medic",
 		"ICC Guardsman",
-		"ICC Leader",
+		"ICC Squad Leader",
 	)

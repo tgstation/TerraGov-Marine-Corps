@@ -535,9 +535,9 @@
 			/obj/item/clothing/suit/storage/marine/som = -1,
 		),
 		"Armor modules" = list(
-			/obj/item/armor_module/storage/general = -1,
-			/obj/item/armor_module/storage/engineering = -1,
-			/obj/item/armor_module/storage/medical = -1,
+			/obj/item/armor_module/storage/general/som = -1,
+			/obj/item/armor_module/storage/engineering/som = -1,
+			/obj/item/armor_module/storage/medical/som = -1,
 			/obj/item/armor_module/storage/injector = -1,
 			/obj/item/armor_module/storage/grenade = -1,
 			/obj/item/armor_module/module/binoculars = -1,

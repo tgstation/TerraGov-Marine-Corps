@@ -52,6 +52,13 @@
 	var/user_job = user.job.title
 	user_job = replacetext(user_job, "Fallen ", "") // Normalize job name for Valhalla jobs
 
+	// Try finding the stack in one of the shared vendors
+	for(var/type in (GLOB.loadout_linked_vendor[seller.faction] + GLOB.loadout_linked_vendor[user_job]))
+		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
+			if(item_datum.product_path == stack_to_buy_type && item_datum.amount != 0)
+				item_datum.amount--
+				return TRUE
+
 	// Check in the job-specific points vendor
 	var/list/listed_products = GLOB.job_specific_points_vendor[user_job]
 	if(!listed_products)
