@@ -77,6 +77,7 @@
 	name = "Should not be visible"
 	icon_state = "greyscale"
 	layer = ABOVE_ALL_MOB_LAYER
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	mech_type = EXOSUIT_MODULE_GREYSCALE
 	pixel_x = -16
 	soft_armor = list(MELEE = 25, BULLET = 75, FIRE = 25, BOMB = 50, LASER = 40, ENERGY = 40, ACID = 30, BIO = 100)

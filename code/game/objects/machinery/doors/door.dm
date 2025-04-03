@@ -3,6 +3,7 @@
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door1"
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
