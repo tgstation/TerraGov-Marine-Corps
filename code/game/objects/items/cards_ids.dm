@@ -329,6 +329,11 @@
 	return TRUE
 
 // Vendor points for job override
+/obj/item/card/id/dogtag/standard
+	marine_points = list(
+		CAT_STASUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
 /obj/item/card/id/dogtag/smartgun
 	marine_points = list(
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,

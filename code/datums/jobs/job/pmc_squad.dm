@@ -62,7 +62,7 @@
 	name = "PMC Medic"
 	jobtype = /datum/outfit/job/pmc/squad/medic
 
-	id = /obj/item/card/id/dogtag/medic
+	id = /obj/item/card/id/dogtag/corpsman
 	ears = /obj/item/radio/headset/mainship/marine/pmc
 	glasses = /obj/item/clothing/glasses/hud/health
 
