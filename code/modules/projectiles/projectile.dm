@@ -293,6 +293,42 @@
 	apx += pixel_x //Update the absolute pixels with the offset.
 	apy += pixel_y
 
+	if(original_target_turf?.z != z)
+		/**
+		 * For gameplays sake we want some inconsistent behaviour here
+		 * Specifically, you have to on an edge or flying to shoot DOWN (so people can see you)
+		 * but, if you're below, you want to only be able to shoot up if people can see you
+		 * We also hand roll some zMove/zFall type code cus yknow, hot & snowflake
+		 */
+		if(original_target_turf.z > z) // means we are aiming up
+			var/turf/z_destination = can_z_move(UP, z_move_flags = ZMOVE_PROJECTILE_UP_CHECKS)
+			var/turf/targetted_z_destination = z_destination
+			// need to keep going higher
+			if(z_destination && (z_destination.z != original_target_turf.z))
+				while((targetted_z_destination.z != original_target_turf.z) && targetted_z_destination)
+					targetted_z_destination = can_z_move(UP, targetted_z_destination, z_move_flags = ZMOVE_PROJECTILE_UP_CHECKS)
+				if(targetted_z_destination)
+					z_destination = targetted_z_destination
+			if(z_destination)
+				forceMove(z_destination)
+		else
+			var/turf/z_destination = can_z_move(DOWN, z_move_flags = ZMOVE_PROJECTILE_DOWN_CHECKS)
+			if(!z_destination)
+				var/turf/same_z_checker = get_step(src, dir)
+				var/turf/below_z_checker = get_dir_multiz(same_z_checker, DOWN)
+				z_destination = can_z_move(DOWN, same_z_checker, below_z_checker, z_move_flags = ZMOVE_PROJECTILE_DOWN_CHECKS)
+
+			var/turf/targetted_z_destination = z_destination
+			// need to keep going lower
+			if(z_destination && (z_destination.z != original_target_turf.z))
+				while((targetted_z_destination.z != original_target_turf.z) && targetted_z_destination)
+					targetted_z_destination = can_z_move(DOWN, targetted_z_destination, z_move_flags = ZMOVE_PROJECTILE_UP_CHECKS)
+				if(targetted_z_destination)
+					z_destination = targetted_z_destination
+			if(z_destination)
+				forceMove(z_destination)
+
+
 	if(firer && !recursivity)
 		record_projectile_fire(firer)
 		GLOB.round_statistics.total_projectiles_fired[firer.faction]++
