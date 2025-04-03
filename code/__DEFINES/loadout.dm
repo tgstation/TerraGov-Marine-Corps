@@ -446,7 +446,7 @@ GLOBAL_LIST_INIT(pmc_leader_gear_listed_products, list(
 
 GLOBAL_LIST_INIT(som_standard_gear_listed_products, list(
 		// for people who want to keep their kwik loadout items
-		/obj/item/weapon/gun/flamer/som/mag_harness = list(CAT_STASUP, "V-62 Incinerator", 30, "orange"),
+		/obj/item/weapon/gun/flamer/som = list(CAT_STASUP, "V-62 Incinerator", 30, "orange"),
 		/obj/item/ammo_magazine/flamer_tank/backtank = list(CAT_STASUP, "V-62 Back Fuel tank", 4, "orange"),
 		/obj/item/weapon/twohanded/fireaxe/som = list(CAT_STASUP, "Boarding Axe", 24, "orange"),
 		/obj/item/weapon/shield/riot/marine/som = list(CAT_STASUP, "S-144 boarding shield", 30, "orange"),
