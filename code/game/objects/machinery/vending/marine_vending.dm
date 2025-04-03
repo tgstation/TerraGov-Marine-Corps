@@ -1017,6 +1017,7 @@
 
 /obj/machinery/vending/MarineMed/vsd
 	name = "\improper MarineMed"
+	faction = FACTION_VSD
 	desc = "A Medical drug dispenser, just like the NTC use. 'Provided' by Ninetails Pharmaceuticals Division(TM)."
 
 
