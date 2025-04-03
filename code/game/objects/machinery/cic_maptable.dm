@@ -105,6 +105,9 @@
 
 /obj/machinery/cic_maptable/Destroy()
 	map = null
+	QDEL_NULL(z_indicator)
+	QDEL_NULL(z_up)
+	QDEL_NULL(z_down)
 	return ..()
 
 /obj/machinery/cic_maptable/update_icon()
