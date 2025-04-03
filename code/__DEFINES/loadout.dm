@@ -726,6 +726,7 @@ GLOBAL_LIST_INIT(job_specific_points_vendor, list(
 	SQUAD_ENGINEER = GLOB.engineer_gear_listed_products,
 	SQUAD_CORPSMAN = GLOB.medic_gear_listed_products,
 	SQUAD_SPECIALIST = GLOB.specialist_gear_listed_products,
+	SQUAD_SMARTGUNNER = GLOB.smartgunner_gear_listed_products,
 	VANGUARD = GLOB.vanguard_gear_listed_products,
 	SQUAD_LEADER = GLOB.leader_gear_listed_products,
 	FIELD_COMMANDER = GLOB.commander_gear_listed_products,
