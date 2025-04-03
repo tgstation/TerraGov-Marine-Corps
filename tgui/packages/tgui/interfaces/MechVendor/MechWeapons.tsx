@@ -427,6 +427,7 @@ const WeaponModuleList = (props) => {
           <Collapsible
             key={module.type}
             title={module.name}
+            icon={useback ? 'person' : 'hand'}
             buttons={
               <>
                 <Button
