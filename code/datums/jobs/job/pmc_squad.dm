@@ -33,7 +33,7 @@
 	name = "PMC Standard"
 	jobtype = /datum/job/pmc/squad/standard
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/standard
 	ears = /obj/item/radio/headset/mainship/marine/pmc
 
 
@@ -62,7 +62,7 @@
 	name = "PMC Medic"
 	jobtype = /datum/outfit/job/pmc/squad/medic
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/medic
 	ears = /obj/item/radio/headset/mainship/marine/pmc
 	glasses = /obj/item/clothing/glasses/hud/health
 
@@ -91,7 +91,7 @@
 	name = "PMC Engineer"
 	jobtype = /datum/outfit/job/pmc/squad/engineer
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/engineer
 	ears = /obj/item/radio/headset/mainship/marine/pmc
 	glasses = /obj/item/clothing/glasses/hud/health
 
@@ -120,7 +120,7 @@
 	name = "PMC Gunner"
 	jobtype = /datum/job/pmc/squad/gunner
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/smartgun
 	ears = /obj/item/radio/headset/mainship/marine/pmc
 
 
@@ -149,7 +149,7 @@
 	name = "PMC Specialist"
 	jobtype = /datum/job/pmc/squad/sniper
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/specialist
 	ears = /obj/item/radio/headset/mainship/marine/pmc
 	glasses = /obj/item/clothing/glasses/hud/health
 
@@ -179,6 +179,6 @@
 	name = "PMC Leader"
 	jobtype = /datum/job/pmc/squad/leader
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/leader
 	ears = /obj/item/radio/headset/mainship/marine/pmc
 	glasses = /obj/item/clothing/glasses/hud/health
