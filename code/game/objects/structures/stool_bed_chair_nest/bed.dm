@@ -218,9 +218,9 @@
 	return TRUE
 
 /obj/structure/bed/can_be_pulled(user, force)
-	. = ..()
-	if(isxeno(puller))
+	if(isxeno(user))
 		return FALSE
+	return ..()
 
 /obj/structure/bed/alien
 	icon_state = "abed"
