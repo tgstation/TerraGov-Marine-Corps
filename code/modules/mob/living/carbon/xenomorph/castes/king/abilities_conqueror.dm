@@ -305,13 +305,13 @@
 	SIGNAL_HANDLER
 	if(!iscarbon(living_target) || living_target.stat == DEAD || !living_target.can_xeno_slash(xeno_owner))
 		return
-	if(action_COOLDOWN_FINISHED() && xeno_owner.selected_ability == src)
+	if(action_cooldown_finished() && xeno_owner.selected_ability == src)
 		combo_streak += isrightclick ? "R" : "L"
 		if(display_combos)
 			xeno_owner.hud_used?.combo_display.update_icon_state(combo_streak)
 	if(length(combo_streak) < CONQUEROR_WILL_MAX_COMBO)
 		no_combo(living_target)
-		if(action_COOLDOWN_FINISHED() && xeno_owner.selected_ability == src)
+		if(action_cooldown_finished() && xeno_owner.selected_ability == src)
 			reset_timer = addtimer(CALLBACK(src, PROC_REF(reset_combo)), CONQUEROR_WILL_RESET_TIME, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 			warning_timer = addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/mob, playsound_local), xeno_owner, 'sound/voice/hiss4.ogg', 25, TRUE), CONQUEROR_WILL_RESET_TIME - 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 		return
