@@ -746,7 +746,7 @@ GLOBAL_LIST_INIT(job_specific_points_vendor, list(
 	VSD_LEADER = GLOB.vsd_leader_gear_listed_products,
 	ICC_MEDIC = GLOB.icc_medic_gear_listed_products,
 	ICC_GUARD = GLOB.icc_guard_gear_listed_products,
-	ICC_LEADER = GLOB.icc_leader_gear_listed_products,
+	ICC_SQUAD_LEADER = GLOB.icc_leader_gear_listed_products,
 ))
 
 
@@ -1950,7 +1950,7 @@ GLOBAL_LIST_INIT(job_specific_clothes_vendor, list(
 	ICC_STANDARD = GLOB.icc_standard_clothes_listed_products,
 	ICC_GUARD = GLOB.icc_standard_clothes_listed_products,
 	ICC_MEDIC = GLOB.icc_medic_clothes_listed_products,
-	ICC_LEADER = GLOB.icc_standard_clothes_listed_products,
+	ICC_SQUAD_LEADER = GLOB.icc_standard_clothes_listed_products,
 	SOM_SQUAD_MARINE = GLOB.som_standard_clothes_listed_products,
 	SOM_SQUAD_VETERAN = GLOB.som_veteran_clothes_listed_products,
 	SOM_SQUAD_ENGINEER = GLOB.som_engineer_clothes_listed_products,

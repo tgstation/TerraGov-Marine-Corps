@@ -316,7 +316,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/icc_sharpshooter, SLOT_IN_L_POUCH)
 
 /datum/job/icc/leader
-	title = ICC_LEADER
+	title = "ICC Leader"
 	paygrade = "ICC2"
 	outfit = /datum/outfit/job/icc/leader/icc_heavyshotgun
 	skills_type = /datum/skills/sl/icc

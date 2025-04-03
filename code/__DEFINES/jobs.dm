@@ -94,7 +94,6 @@
 #define ICC_STANDARD "ICC Standard"
 #define ICC_GUARD "ICC Guardsman"
 #define ICC_MEDIC "ICC Medic"
-#define ICC_LEADER "ICC Leader"
 #define ICC_SQUAD_LEADER "ICC Squad Leader"
 
 //SOM
