@@ -219,6 +219,10 @@
 	layer = open_layer
 	density = FALSE
 	obj_flags &= ~(BLOCK_Z_IN_DOWN | BLOCK_Z_IN_UP)
+	for(var/turf/location in locs)
+		var/turf/above = GET_TURF_ABOVE(location)
+		for(var/atom/movable/falling AS in above)
+			above.zFall(falling)
 	update_appearance(UPDATE_ICON_STATE)
 
 	if(operating)
