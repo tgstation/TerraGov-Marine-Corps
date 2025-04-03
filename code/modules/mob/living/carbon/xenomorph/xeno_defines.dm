@@ -219,10 +219,12 @@
 		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
 	xenomorph.RegisterSignal(xenomorph,COMSIG_XENOMORPH_ATTACK_LIVING, TYPE_PROC_REF(/mob/living/carbon/xenomorph, onhithuman))
+	if(caste_flags & CASTE_SPECIAL_ZIMPACT)
+		RegisterSignal(xenomorph, COMSIG_LIVING_Z_IMPACT, PROC_REF(z_impact_react))
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
 	xenomorph.remove_component(/datum/component/bump_attack)
-	xenomorph.UnregisterSignal(xenomorph, COMSIG_XENOMORPH_ATTACK_LIVING)
+	xenomorph.UnregisterSignal(xenomorph, list(COMSIG_XENOMORPH_ATTACK_LIVING, COMSIG_LIVING_Z_IMPACT))
 	for(var/trait in caste_traits)
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
 
@@ -262,6 +264,12 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	while(initial(root_type.parent_type) != /datum/xeno_caste)
 		root_type = root_type::parent_type
 	return GLOB.strain_list[root_type] + root_type
+
+///intercepts z impact for castes that want to. put any effects for this
+/datum/xeno_caste/proc/z_impact_react(mob/living/carbon/xenomorph/source, levels, turf/fell_on)
+	SIGNAL_HANDLER
+	new /obj/effect/temp_visual/leap_dust(source.loc)
+	return ZIMPACT_CANCEL_DAMAGE|ZIMPACT_NO_MESSAGE|ZIMPACT_NO_SPIN
 
 /mob/living/carbon/xenomorph
 	name = "Drone"
