@@ -210,11 +210,6 @@ GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 GLOBAL_LIST_INIT(specialist_gear_listed_products, list(
 
 	/obj/effect/vendor_bundle/specialist = list(CAT_ESS, "Essential Specialist Set", 0, "white"),
-	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_SPSUP, "SG-29 Smart Machine Gun", 15, "orange"), //If a specialist buys the SG-29, they should have enough points to buy 5 drums for it, or 2 drums with NVGs.
-	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_SPSUP, "SG-29 Ammo Drum", 5, "black"),
-	/obj/item/weapon/gun/minigun/smart_minigun = list(CAT_SPSUP, "SG-85 Smart Handheld Gatling Gun", 20, "orange"), //If a specialist buys the SG-85, they should have enough points to buy 2 powerpacks, or 1 powerpack with NVGs.
-	/obj/item/ammo_magazine/minigun_powerpack/smartgun = list(CAT_SPSUP, "SG-85 Powerpack", 10, "black"),
-	/obj/item/storage/box/crate/loot/targetrifle_pack_spec = list(CAT_SPSUP, "SG-62 Target Rifle + KTLD Sight Kit", 45, "orange"), //If a specialist buys the SG-62, they should NOT have access to thermals or an extra NVG.
 	/obj/item/armor_module/module/hod_head = list(CAT_SPSUP, "HOD Ballistic Helmet Module", 3, "black"),
 	/obj/item/armor_module/module/ballistic_armor = list(CAT_SPSUP, "HOD Ballistic Armor Module", 7, "black"),
 	/obj/effect/supply_drop/grenadier = list(CAT_SPSUP, "Heavy Grenadier Pack", 30, "black"),
