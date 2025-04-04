@@ -232,7 +232,8 @@
 	pixel_y = 32
 	},
 /obj/machinery/vending/weapon{
-	pixel_y = 27
+	pixel_y = 27;
+	density = 0
 	},
 /turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
@@ -612,10 +613,6 @@
 	dir = 1
 	},
 /area/shuttle/dropship/alamo)
-"yH" = (
-/obj/structure/largecrate/supply/explosives/disposable,
-/turf/open/shuttle/dropship/thirtyfour,
-/area/shuttle/dropship/alamo)
 "Aq" = (
 /turf/open/shuttle/dropship/thirtyfour,
 /area/shuttle/dropship/alamo)
@@ -713,10 +710,6 @@
 /turf/closed/shuttle/dropship1/wall{
 	dir = 1
 	},
-/area/shuttle/dropship/alamo)
-"ZY" = (
-/obj/structure/largecrate/supply/explosives/mines,
-/turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/alamo)
 
 (1,1,1) = {"
@@ -872,10 +865,10 @@ aI
 me
 DE
 aS
+Aq
+aS
 sk
 UI
-yH
-ZY
 ie
 ao
 ao
