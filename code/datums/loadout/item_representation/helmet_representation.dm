@@ -19,8 +19,10 @@
 	// as a base helmet can have starting_attachments (think visors and item storage)
 	// comparing the name should be generally a safe solution
 	*/
-	if(helmet_to_copy.starting_attachments && helmet_to_copy.name == (new helmet_to_copy.parent_type).name)
+	var/obj/item/clothing/head/parent = new helmet_to_copy.parent_type
+	if(helmet_to_copy.starting_attachments && helmet_to_copy.name == parent.name)
 		item_type = helmet_to_copy.parent_type
+	qdel(parent)
 	for(var/key in helmet_to_copy.attachments_by_slot)
 		if(!isitem(helmet_to_copy.attachments_by_slot[key]))
 			continue

@@ -19,8 +19,10 @@
 	// as a base armor could technically have starting_attachments
 	// comparing the name should be generally a safe solution
 	*/
-	if(suit_to_copy.starting_attachments && suit_to_copy.name == (new suit_to_copy.parent_type).name)
+	var/obj/item/clothing/suit/parent = new suit_to_copy.parent_type
+	if(suit_to_copy.starting_attachments && suit_to_copy.name == parent.name)
 		item_type = suit_to_copy.parent_type
+	qdel(parent)
 	for(var/key in suit_to_copy.attachments_by_slot)
 		if(!isitem(suit_to_copy.attachments_by_slot[key]))
 			continue

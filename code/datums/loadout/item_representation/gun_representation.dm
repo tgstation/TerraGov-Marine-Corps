@@ -20,8 +20,10 @@
 	// as a base gun can have starting_attachment_types (think stocks)
 	// comparing the name should be generally a safe solution to prevent cases like getting /obj/item/weapon/gun/rifle from /obj/item/weapon/gun/rifle/standard_carbine
 	*/
-	if(gun_to_copy.starting_attachment_types && gun_to_copy.name == (new gun_to_copy.parent_type).name)
+	var/obj/item/weapon/gun/parent = new gun_to_copy.parent_type
+	if(gun_to_copy.starting_attachment_types && gun_to_copy.name == parent.name)
 		item_type = gun_to_copy.parent_type
+	qdel(parent)
 	for(var/key in gun_to_copy.attachments_by_slot)
 		if(!gun_to_copy.attachments_by_slot[key])
 			continue

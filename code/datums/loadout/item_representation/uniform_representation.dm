@@ -23,8 +23,10 @@
 	// as a base uniform could technically have starting_attachments
 	// comparing the name should be generally a safe solution
 	*/
-	if(uniform_to_copy.starting_attachments && uniform_to_copy.name == (new uniform_to_copy.parent_type).name)
+	var/obj/item/clothing/under/parent = new uniform_to_copy.parent_type
+	if(uniform_to_copy.starting_attachments && uniform_to_copy.name == parent.name)
 		item_type = uniform_to_copy.parent_type
+	qdel(parent)
 	current_variant = uniform_to_copy.current_variant
 	for(var/key in uniform_to_copy.attachments_by_slot)
 		if(!isitem(uniform_to_copy.attachments_by_slot[key]))
