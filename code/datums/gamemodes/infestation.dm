@@ -13,6 +13,14 @@
 	var/bioscan_interval = 15 MINUTES
 	/// State of the nuke
 	var/planet_nuked = INFESTATION_NUKE_NONE
+	/**
+	 * Assoc list showing how many xenos are needed by caste.
+	 * [caste datum] = [amount of xenos needed]
+	 */
+	var/list/evo_requirements = list(
+		/datum/xeno_caste/king = 12,
+		/datum/xeno_caste/queen = 8,
+	)
 
 /datum/game_mode/infestation/post_setup()
 	. = ..()
@@ -33,6 +41,10 @@
 	for(var/i in GLOB.xeno_jelly_pod_turfs)
 		new /obj/structure/xeno/resin_jelly_pod(i, XENO_HIVE_NORMAL)
 
+	// Apply Evolution Xeno Population Locks:
+	for(var/datum/xeno_caste/caste AS in evo_requirements)
+		GLOB.xeno_caste_datums[caste][XENO_UPGRADE_BASETYPE].evolve_min_xenos = evo_requirements[caste]
+
 /datum/game_mode/infestation/process()
 	if(round_finished)
 		return PROCESS_KILL
@@ -47,7 +59,7 @@
 			SSpoints.add_strategic_psy_points(hive, points_generated)
 			SSpoints.add_tactical_psy_points(hive, points_generated*0.25)
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0)
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0)
 		return
 	announce_bioscans(GLOB.current_orbit)
 

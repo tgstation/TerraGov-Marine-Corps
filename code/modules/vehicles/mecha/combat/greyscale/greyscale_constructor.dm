@@ -195,7 +195,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		return
 	ui = new(user, src, "MechVendor", name)
 	ui.open()
-	mech_view.display_to(user)
+	mech_view.display_to(user, ui.window)
 
 /obj/machinery/computer/mech_builder/ui_close(mob/user)
 	. = ..()
@@ -254,6 +254,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	if(selected_part && !(selected_part in selected_primary))
 		return FALSE // non valid body parts
 	switch(action)
+		if("rotate_doll")
+			mech_view.setDir(turn(mech_view.dir, 90))
+			return TRUE
 		if("set_primary")
 			var/new_color_name = params["new_color"]
 			for(var/key in available_colors)
@@ -340,7 +343,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				tgui_alert(user, "Your mech is too heavy to deploy!")
 				return FALSE
 			addtimer(CALLBACK(src, PROC_REF(deploy_mech)), 1 SECONDS)
-			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, 0)
+			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, FALSE)
 			if(!isspatialagentjob(user.job))
 				S_TIMER_COOLDOWN_START(src, COOLDOWN_MECHA, 5 MINUTES)
 				ADD_TRAIT(usr, TRAIT_HAS_SPAWNED_MECH, MECH_VENDOR_TRAIT)
@@ -506,7 +509,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 ///Updates the displayed mech preview dummy in the UI
 /obj/machinery/computer/mech_builder/proc/update_ui_view()
 	var/new_overlays = list()
-	for(var/slot in selected_variants)
+	for(var/slot in get_greyscale_render_order(mech_view.dir))
+		if(!(slot in selected_variants))
+			continue
 		var/datum/mech_limb/head/typepath = get_mech_limb(slot, selected_variants[slot])
 		if(slot == MECH_GREY_L_ARM || slot == MECH_GREY_R_ARM)
 			var/iconstate = "left"

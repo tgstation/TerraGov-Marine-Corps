@@ -572,10 +572,10 @@
 
 /datum/ammo/rocket/homing/microrocket /// this is basically a tgmc version of the above
 	name = "homing HE microrocket"
-	shell_speed = 0.4
+	shell_speed = 0.3
 	damage = 75
 	penetration = 40
-	sundering = 10
+	sundering = 5
 	turn_rate = 10
 
 /datum/ammo/rocket/homing/microrocket/drop_nade(turf/T)
@@ -583,14 +583,14 @@
 
 /datum/ammo/rocket/homing/microrocket/mech
 	name = "homing mech HE microrocket"
-	shell_speed = 0.3
-	damage = 75
-	penetration = 40
-	sundering = 10
+	shell_speed = 0.4
+	damage = 5
+	penetration = 20
+	sundering = 3
 	turn_rate = 10
 
-/datum/ammo/rocket/homing/microrocket/drop_nade(turf/T)
-	explosion(T, 0, 0, 0, 4, 1, explosion_cause=src)
+/datum/ammo/rocket/homing/microrocket/mech/drop_nade(turf/T)
+	explosion(T, 0, 0, 0, 2, 1, explosion_cause=src)
 
 /datum/ammo/rocket/homing/tow
 	name = "TOW-III missile"

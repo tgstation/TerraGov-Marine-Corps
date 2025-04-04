@@ -447,7 +447,7 @@
 	if(isnestedhost(src))
 		return
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ACID))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 2 SECONDS)
 

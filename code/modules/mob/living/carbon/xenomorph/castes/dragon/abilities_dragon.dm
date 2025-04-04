@@ -139,11 +139,11 @@
 		return FALSE
 	var/obj/vehicle/affected_vehicle = affected_obj
 	if(ismecha(affected_vehicle))
-		affected_vehicle.take_damage(get_damage() * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = src)
+		affected_vehicle.take_damage(get_damage() * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = xeno_owner)
 	else if(isarmoredvehicle(affected_vehicle)) // Obtained from hitbox.
-		affected_vehicle.take_damage(get_damage() / 3, BRUTE, MELEE, blame_mob = src)
+		affected_vehicle.take_damage(get_damage() / 3, BRUTE, MELEE, blame_mob = xeno_owner)
 	else
-		affected_vehicle.take_damage(get_damage() * 2, BRUTE, MELEE, blame_mob = src)
+		affected_vehicle.take_damage(get_damage() * 2, BRUTE, MELEE, blame_mob = xeno_owner)
 	if(!(affected_vehicle in hit_vehicles) && vehicle_stun_length > 0)
 		for(var/mob/living/carbon/human/human_occupant in affected_vehicle.occupants)
 			human_occupant.apply_effect(vehicle_stun_length, EFFECT_PARALYZE)

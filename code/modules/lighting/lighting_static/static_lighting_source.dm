@@ -298,11 +298,11 @@
 				INSERT_CORNERS(corners, T)
 
 				var/turf/below = GET_TURF_BELOW(T)
-//				var/turf/previous = T
+				var/turf/previous = T
 				while(below)
 					// If we find a non transparent previous, end
-//					if(!istransparentturf(previous))
-//						break
+					if(!istransparentturf(previous))
+						break
 					if(IS_OPAQUE_TURF(below))
 						// If we're opaque but the tile above us is transparent, then we should be counted as part of the potential "space"
 						// Of this corner
@@ -310,14 +310,14 @@
 					// Now we do lighting things to it
 					INSERT_CORNERS(corners, below)
 					// ANNND then we add the one below it
-//					previous = below
+					previous = below
 					below = GET_TURF_BELOW(below)
 
 				var/turf/above = GET_TURF_ABOVE(T)
 				while(above)
 					// If we find a non transparent turf, end
-//					if(!istransparentturf(above) || IS_OPAQUE_TURF(above))
-//						break
+					if(!istransparentturf(above) || IS_OPAQUE_TURF(above))
+						break
 					INSERT_CORNERS(corners, above)
 					above = GET_TURF_ABOVE(above)
 		else // Yes I know this could be acomplished with an if in the for loop, but it's fukin lighting code man

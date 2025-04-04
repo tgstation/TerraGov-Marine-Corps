@@ -135,7 +135,7 @@
 			loadout.ui_interact(ui.user)
 
 		if("selectLoadout")
-			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_VISUALIZATION))
+			if(TIMER_COOLDOWN_RUNNING(ui.user, COOLDOWN_LOADOUT_VISUALIZATION))
 				return
 			TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_VISUALIZATION, 1 SECONDS) //Anti spam cooldown
 			var/job = params["loadout_job"]
@@ -220,11 +220,14 @@
 				var/datum/item_representation/armor_module/armor/new_glyph = new
 				new_glyph.item_type = /obj/item/armor_module/armor/visor_glyph/old
 				module.attachments.Add(new_glyph)
+/*
+//REENABLE WHEN CONVERSION TIME
 		if(version < 16)
 			var/static/list/conversion_list = LEGACY_PALETTES_TO_NEW
 			var/lookup_colors = conversion_list[module.colors]
 			if(lookup_colors)
 				module.colors = lookup_colors
+*/
 
 		update_attachments(module.attachments, version)
 
@@ -327,6 +330,8 @@
 				loadout.item_list[slot_shoes_str] = new /datum/item_representation/boot(new_boots)
 				qdel(new_boots)
 
+/*
+//REENABLE WHEN CONVERSION TIME
 	if(loadout.version < 16)
 		var/static/list/conversion_list = LEGACY_PALETTES_TO_NEW
 		for(var/key in loadout.item_list)
@@ -357,7 +362,7 @@
 			else if(istype(item, /datum/item_representation/uniform_representation))
 				var/datum/item_representation/uniform_representation/mod = item
 				update_attachments(mod.attachments, loadout.version)
-
+*/
 	var/message_to_send = "Please note: The loadout code has been updated and due to that:"
 	if(loadout.version < 7)
 		message_to_send += "<br>any modular helmet/suit has been removed from it due to the transitioning of loadout version 6 to 7."
@@ -371,9 +376,11 @@
 		message_to_send += "<br>Some boots, helmets and armour have had their internal storage refactored and some items may be removed from your loadout. (version 10 to 11)"
 	if(loadout.version < 13)
 		message_to_send += "<br>Due to hyperscaling armor, any colorable armor have had their colors set to default. (Version 11 to 13)"
+/*
+//REENABLE WHEN CONVERSION TIME
 	if(loadout.version < 16)
 		message_to_send += "<br>Armor Palettes have been completely overhauled. Legacy palette colors replaced with corresponding updated palette. (Version 16)"
-
+*/
 	loadout.version = CURRENT_LOADOUT_VERSION
 	message_to_send += "<br>This loadout is now on version [loadout.version]"
 	to_chat(ui.user, span_warning(message_to_send))

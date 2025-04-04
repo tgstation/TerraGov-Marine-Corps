@@ -86,7 +86,7 @@
 	if(!.)
 		return
 
-	if(COOLDOWN_CHECK(src, enginesound_cooldown))
+	if(COOLDOWN_FINISHED(src, enginesound_cooldown))
 		COOLDOWN_START(src, enginesound_cooldown, engine_sound_length)
 		playsound(get_turf(src), engine_sound, 100, TRUE)
 

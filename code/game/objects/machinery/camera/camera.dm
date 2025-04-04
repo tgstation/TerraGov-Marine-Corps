@@ -282,7 +282,31 @@
 
 
 /obj/machinery/camera/proc/can_see()
-	return get_hear(view_range, get_turf(src))
+	var/turf/pos = get_turf(src)
+	var/turf/directly_above = GET_TURF_ABOVE(pos)
+	var/check_lower = pos != get_lowest_turf(pos)
+	var/check_higher = directly_above && istransparentturf(directly_above) && (pos != get_highest_turf(pos))
+
+	var/list/see = get_hear(view_range, pos)
+	if(check_lower || check_higher)
+		// Haha datum var access KILL ME
+		for(var/turf/seen in see)
+			if(check_lower)
+				var/turf/visible = seen
+				while(visible && istransparentturf(visible))
+					var/turf/below = GET_TURF_BELOW(visible)
+					for(var/turf/adjacent in range(1, below))
+						see += adjacent
+						see += adjacent.contents
+					visible = below
+			if(check_higher)
+				var/turf/above = GET_TURF_ABOVE(seen)
+				while(above && istransparentturf(above))
+					for(var/turf/adjacent in range(1, above))
+						see += adjacent
+						see += adjacent.contents
+					above = GET_TURF_ABOVE(above)
+	return see
 
 
 //Return a working camera that can see a given mob

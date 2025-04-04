@@ -32,6 +32,7 @@
 	damage = 10
 	penetration = 30
 	max_range = 30
+	sundering = 15
 
 /datum/ammo/rocket/mech/drop_nade(turf/T)
 	explosion(T, 0, 2, 4, 0, 0, explosion_cause=src)
@@ -103,19 +104,19 @@
 	accuracy_var_low = 10
 	accuracy_var_high = 10
 	max_range = 10
-	sundering = 0
+	sundering = 5
 	penetration = 15
 	damage = 75
-	damage_falloff = 10
+	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/mech/spread
 	name = "super-heavy additional buckshot"
 	icon_state = "buckshot"
 	max_range = 10
 	damage = 60
-	sundering = 0
+	sundering = 2.5
 	penetration = 15
-	damage_falloff = 10
+	damage_falloff = 8
 
 /datum/ammo/bullet/shotgun/mech/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)

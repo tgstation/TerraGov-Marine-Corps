@@ -327,7 +327,7 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 		turbine.update_icon()
 
 /obj/machinery/power/geothermal/tbg/interact_hand(mob/living/user)
-	if(!COOLDOWN_CHECK(src, toggle_power))
+	if(!COOLDOWN_FINISHED(src, toggle_power))
 		balloon_alert(user, "Busy")
 		return
 	return ..()

@@ -44,7 +44,7 @@
 	icon_state = "armor_acid"
 	iconstate_name = "armor_acid"
 	protect_name = "Lightweight Booster"
-	weight = 45
+	weight = 30
 	dash_consumption = 300
 	speed_mod = 0.5
 	dash_range = 5
@@ -75,7 +75,7 @@
 	name = "fusion engine"
 	desc = "A highly experimental phoron fusion core. Optimized for energy generation."
 	icon_state = "phoron_engine_adv"
-	weight = 150
+	weight = 110
 	cell_type = /obj/item/cell/mecha/medium
 
 /obj/item/mecha_parts/mecha_equipment/melee_core
@@ -121,7 +121,7 @@
 	name = "enhanced zoom"
 	desc = "A magnifying module that allows the pilot to see much further than with the standard optics. Night vision not included."
 	icon_state = "zoom"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_zoom
 
 /obj/item/mecha_parts/mecha_equipment/ability/smoke

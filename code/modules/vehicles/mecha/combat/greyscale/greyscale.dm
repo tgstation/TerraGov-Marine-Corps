@@ -14,11 +14,70 @@
 	gravity = list(0, 0.95)
 	grow = 0.05
 
+/particles/mech_footstep
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "smoke3"
+	width = 750
+	height = 750
+	count = 25
+	spawning = 25
+	lifespan = 5
+	fade = 15
+	gradient = list("#BA9F6D", "#808080", "#FFFFFF")
+	color = generator(GEN_NUM, 0, 0.25)
+	color_change = generator(GEN_NUM, 0.08, 0.07)
+	velocity = generator(GEN_CIRCLE, 5, 6)
+	rotation = generator(GEN_NUM, -45, 45)
+	scale = 0.015
+	grow = 0.03
+	friction = 0.25
+
+/particles/mech_footstep_water
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "smoke4"
+	width = 750
+	height = 750
+	count = 25
+	spawning = 25
+	lifespan = 5
+	fade = 15
+	velocity = generator(GEN_CIRCLE, 5, 6)
+	rotation = generator(GEN_NUM, -45, 45)
+	scale = 0.015
+	grow = 0.03
+	friction = 0.25
+
+/particles/dash_sparks
+	icon = 'icons/effects/64x64.dmi'
+	icon_state = "flare"
+	width = 750
+	height = 750
+	count = 40
+	spawning = 0
+	lifespan = 5
+	fade = 2
+	velocity = list(-12, 0)
+	scale = 0.1
+	grow = -0.01
+	drift = generator(GEN_CIRCLE, 3, 3, NORMAL_RAND)
+	gravity = list(0, 1)
+///sprite stuff with layering requires we make a specific order for each dir
+/proc/get_greyscale_render_order(dir)
+	switch(dir)
+		if(EAST)
+			return list(MECH_GREY_L_ARM, MECHA_L_ARM, MECH_GREY_TORSO, MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_HEAD, MECH_GREY_LEGS,MECH_GREY_R_ARM, MECHA_R_ARM)
+		if(WEST)
+			return list(MECH_GREY_R_ARM, MECHA_R_ARM, MECH_GREY_TORSO, MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_L_ARM, MECHA_L_ARM)
+		if(NORTH)
+			return list(MECH_GREY_TORSO, MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_R_ARM, MECH_GREY_L_ARM, MECHA_L_ARM, MECHA_R_ARM)
+		else
+			return list(MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_LEGS, MECH_GREY_TORSO, MECH_GREY_HEAD, MECH_GREY_R_ARM, MECH_GREY_L_ARM, MECHA_L_ARM, MECHA_R_ARM)
 
 /obj/vehicle/sealed/mecha/combat/greyscale
 	name = "Should not be visible"
 	icon_state = "greyscale"
 	layer = ABOVE_ALL_MOB_LAYER
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	mech_type = EXOSUIT_MODULE_GREYSCALE
 	pixel_x = -16
 	soft_armor = list(MELEE = 25, BULLET = 75, FIRE = 25, BOMB = 50, LASER = 40, ENERGY = 40, ACID = 30, BIO = 100)
@@ -32,6 +91,7 @@
 	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED | MECHA_SPIN_WHEN_NO_ANGLE | OMNIDIRECTIONAL_ATTACKS | QUIET_TURNS
 	explosion_block = 2
 	pivot_step = TRUE
+	allow_diagonal_movement = TRUE
 	/// used to lookup ability overlays for this mech
 	var/ability_module_icon = 'icons/mecha/mecha_ability_overlays.dmi'
 	///whether we have currently swapped the back and arm icons
@@ -50,6 +110,15 @@
 		MECH_GREY_R_ARM = null,
 		MECH_GREY_L_ARM = null,
 	)
+	/// list of where the foots are for mechs visually, used for particles
+	var/foot_offsets = list(
+		"left_foot" = list("N" = list(22,-8), "S" = list(22,-8), "E" = list(44,-8), "W" = list(22,-4)),
+		"right_foot" = list("N" = list(44,-8), "S" = list(44,-8), "E" = list(22,-8), "W" = list(44,-4)),
+	)
+	///left dash foot sparks holder
+	var/obj/effect/abstract/particle_holder/dash_sparks_left
+	///right dash foot sparks holder
+	var/obj/effect/abstract/particle_holder/dash_sparks_right
 	///left particle smoke holder
 	var/obj/effect/abstract/particle_holder/holder_left
 	///right particle smoke holder
@@ -62,6 +131,8 @@
 	var/double_tap_timing = 0.18 SECONDS
 	/// total wight our limbs and equipment contribute. max determined by MECH_GREY_LEGS limb
 	var/weight = 0
+	/// Determines which foot the footstep particles go
+	var/next_footstep_left = FALSE
 
 /obj/vehicle/sealed/mecha/combat/greyscale/Initialize(mapload)
 	if(use_damage_particles)
@@ -69,6 +140,10 @@
 		holder_left.layer = layer+0.001
 		holder_right = new(src, /particles/mecha_smoke)
 		holder_right.layer = layer+0.001
+	dash_sparks_left = new(src, /particles/dash_sparks)
+	dash_sparks_left.layer = layer-0.001
+	dash_sparks_right = new(src, /particles/dash_sparks)
+	dash_sparks_right.layer = layer-0.001
 	. = ..()
 
 	set_jump_component()
@@ -151,6 +226,29 @@
 	if(. && (flag & VEHICLE_CONTROL_DRIVE))
 		UnregisterSignal(M, list(COMSIG_KB_MOVEMENT_EAST_DOWN, COMSIG_KB_MOVEMENT_NORTH_DOWN, COMSIG_KB_MOVEMENT_SOUTH_DOWN, COMSIG_KB_MOVEMENT_WEST_DOWN))
 
+/obj/vehicle/sealed/mecha/combat/greyscale/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
+	. = ..()
+	if(!forced)
+		if(HAS_TRAIT(src, TRAIT_WARPED_INVISIBLE))
+			return
+		if(!no_footstep_particle)
+			var/obj/effect/abstract/particle_holder/footstep_particles
+			var/turf/current_turf = get_turf(src)
+			if(iswater(current_turf))
+				footstep_particles = new(current_turf, /particles/mech_footstep_water)
+			else
+				footstep_particles = new(current_turf, /particles/mech_footstep)
+			var/current_foot
+			if(next_footstep_left)
+				current_foot = "left_foot"
+				next_footstep_left = FALSE
+			else
+				current_foot = "right_foot"
+				next_footstep_left = TRUE
+			footstep_particles.particles.position = list(foot_offsets[current_foot][dir2text_short(dir)][1] - 30, foot_offsets[current_foot][dir2text_short(dir)][2]-4)
+			footstep_particles.layer = layer - 0.01
+			QDEL_IN(footstep_particles, 5)
+
 /// Checks if we can dash to the east.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/dash_east()
 	SIGNAL_HANDLER
@@ -174,7 +272,7 @@
 /// Checks if we can dash in the specified direction, and activates the ability if so.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/check_dash(direction)
 	if(last_move_dir == direction && last_mousedown_time + double_tap_timing > world.time)
-		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_DASH))
+		if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MECHA_DASH))
 			for(var/mob/occupant AS in return_drivers())
 				balloon_alert(occupant, "Dash cooldown ([(S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA_DASH) / 10)]s)")
 			return
@@ -190,10 +288,39 @@
 
 /// Does a dash in the specified direction.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/activate_dash(direction)
+	if(!no_footstep_particle)
+		dash_sparks_left.particles.spawning = 5
+		dash_sparks_right.particles.spawning = 5
+		dash_sparks_left.particles.position = list(foot_offsets["left_foot"][dir2text_short(direction)][1], foot_offsets["left_foot"][dir2text_short(direction)][2])
+		dash_sparks_right.particles.position = list(foot_offsets["right_foot"][dir2text_short(direction)][1], foot_offsets["right_foot"][dir2text_short(direction)][2])
+		switch(direction)
+			if(EAST)
+				dash_sparks_left.particles.velocity = list(-12, 0)
+				dash_sparks_right.particles.velocity = list(-12, 0)
+				dash_sparks_right.particles.gravity = list(0, 1)
+			if(WEST)
+				dash_sparks_left.particles.velocity = list(12, 0)
+				dash_sparks_right.particles.velocity = list(12, 0)
+				dash_sparks_right.particles.gravity = list(0, 1)
+			if(NORTH)
+				dash_sparks_left.particles.velocity = list(0, -12)
+				dash_sparks_right.particles.velocity = list(0, -12)
+				dash_sparks_right.particles.gravity = list(0, 0)
+			else
+				dash_sparks_left.particles.velocity = list(0, 12)
+				dash_sparks_right.particles.velocity = list(0, 12)
+				dash_sparks_right.particles.gravity = list(0, 0)
+		addtimer(CALLBACK(src, PROC_REF(remove_sparks)), 0.4 SECONDS)
 	var/turf/target_turf = get_step(src, direction)
 	for(var/i in 1 to dash_range)
 		target_turf = get_step(target_turf, direction)
 	throw_at(target_turf, dash_range, 1, src, FALSE, TRUE, TRUE)
+	playsound(get_turf(src), 'sound/mecha/weapons/laser_sword.ogg', 70)
+
+/// Turns off dash sparks particles.
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/remove_sparks()
+	dash_sparks_left.particles.spawning = 0
+	dash_sparks_right.particles.spawning = 0
 
 /obj/vehicle/sealed/mecha/combat/greyscale/update_icon()
 	. = ..()
@@ -229,18 +356,7 @@
 
 /obj/vehicle/sealed/mecha/combat/greyscale/update_overlays()
 	. = ..()
-	var/list/render_order
-	//spriter bs requires this code
-	switch(dir)
-		if(EAST)
-			render_order = list(MECH_GREY_L_ARM, MECHA_L_ARM, MECH_GREY_TORSO, MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_HEAD, MECH_GREY_LEGS,MECH_GREY_R_ARM, MECHA_R_ARM)
-		if(WEST)
-			render_order = list(MECH_GREY_R_ARM, MECHA_R_ARM, MECH_GREY_TORSO, MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_L_ARM, MECHA_L_ARM)
-		if(NORTH)
-			render_order = list(MECH_GREY_TORSO, MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_HEAD, MECH_GREY_LEGS, MECH_GREY_R_ARM, MECH_GREY_L_ARM, MECHA_L_ARM, MECHA_R_ARM)
-		else
-			render_order = list(MECHA_R_BACK, MECHA_L_BACK, MECH_GREY_LEGS, MECH_GREY_TORSO, MECH_GREY_HEAD, MECH_GREY_R_ARM, MECH_GREY_L_ARM, MECHA_L_ARM, MECHA_R_ARM)
-
+	var/list/render_order = get_greyscale_render_order(dir)
 	var/uses_back_icons = (MECHA_L_BACK in equip_by_category)
 	if(!uses_back_icons)
 		render_order -= list(MECHA_R_BACK, MECHA_L_BACK)
@@ -305,7 +421,8 @@
 
 	if(use_builtin_boost_overlay)
 		var/state = leg_overload_mode ? "booster_active" : "booster"
-		. += image('icons/mecha/mecha_ability_overlays.dmi', icon_state = state, layer=layer+0.001)
+		. += image(ability_module_icon, icon_state = state, layer=layer+0.002)
+		. += emissive_appearance(ability_module_icon, state, src)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/setDir(newdir)
 	. = ..()
@@ -406,5 +523,5 @@
 /obj/item/repairpack
 	name = "mech repairpack"
 	desc = "A mecha repair pack, consisting of various auto-extinguisher systems, materials and repair nano-scarabs."
-	icon = 'icons/obj/items/assemblies.dmi'
-	icon_state = "posibrain-occupied" // todo kuro needs to make/find an icon for this
+	icon = 'icons/mecha/mecha_equipment.dmi'
+	icon_state = "armor_melee"

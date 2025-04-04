@@ -164,7 +164,7 @@
 
 /datum/action/vehicle/sealed/mecha/repairpack
 	name = "Use Repairpack"
-	action_icon_state = "repair" // todo kuro needs to make an icon for this
+	action_icon_state = "repair"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_REPAIRPACK,
 	)
@@ -174,8 +174,17 @@
 		return
 
 	chassis.balloon_alert(owner, "Repairing...")
-	if(!do_after(owner, 10 SECONDS, NONE, chassis, extra_checks=CALLBACK(src, PROC_REF(can_repair))))
+	chassis.canmove = FALSE
+	chassis.equipment_disabled = TRUE
+	chassis.set_mouse_pointer()
+	if(!do_after(owner, 6 SECONDS, NONE, chassis, extra_checks=CALLBACK(src, PROC_REF(can_repair))))
+		chassis.canmove = TRUE
+		chassis.equipment_disabled = FALSE
+		chassis.set_mouse_pointer()
 		return
+	chassis.canmove = TRUE
+	chassis.equipment_disabled = FALSE
+	chassis.set_mouse_pointer()
 	chassis.stored_repairpacks--
 	// does not count as actual repairs for end of round because its annoying to decouple from normal repair and this isnt representative of a real repair
 	chassis.repair_damage(chassis.max_integrity)
@@ -198,7 +207,7 @@
 
 /datum/action/vehicle/sealed/mecha/swap_controlled_weapons
 	name = "Swap Weapon set"
-	action_icon_state = "weapon_swap" // todo kuro needs to make an icon for this
+	action_icon_state = "weapon_swap"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_MECHABILITY_SWAPWEAPONS,
 	)
@@ -221,32 +230,40 @@
 	var/datum/ammo/ammo_type = /datum/ammo/energy/assault_armor
 
 /datum/action/vehicle/sealed/mecha/assault_armor/action_activate(trigger_flags)
+	. = ..()
+	if(!.)
+		return
 	if(!owner?.client || !chassis || !(owner in chassis.occupants))
 		return
-	var/added_movetime = chassis.move_delay
-	chassis.move_delay += added_movetime
 	if(!chassis.use_power(power_cost))
 		chassis.balloon_alert(owner, "No power")
 		return
+	if(owner.do_actions)
+		return
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_ASSAULT_ARMOR))
+		var/time = S_TIMER_COOLDOWN_TIMELEFT(chassis, COOLDOWN_MECHA_ASSAULT_ARMOR)/10
+		chassis.balloon_alert(owner, "[time] seconds")
+		return
+	S_TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_ASSAULT_ARMOR, 2 MINUTES)
+	var/added_movetime = chassis.move_delay
+	chassis.move_delay += added_movetime
 	var/obj/effect/overlay/lightning_charge/charge = new(chassis)
 	charge.pixel_x -= chassis.pixel_x
 	charge.pixel_y -= chassis.pixel_y
 	chassis.vis_contents += charge
 	if(!do_after(owner, 0.5 SECONDS, IGNORE_LOC_CHANGE, chassis))
+		chassis.vis_contents -= charge
+		chassis.move_delay -= added_movetime
+		qdel(charge)
 		return
 	chassis.vis_contents -= charge
 	qdel(charge)
 	new /obj/effect/temp_visual/lightning_discharge(get_turf(chassis))
 	chassis.move_delay -= added_movetime
-	var/list/bullets = list()
-	var/proj_type = /obj/projectile
-	if(initial(ammo_type.ammo_behavior_flags) & AMMO_HITSCAN)
-		proj_type = /obj/projectile/hitscan
-	for(var/i=1 to projectile_count)
-		var/obj/projectile/proj = new proj_type(src, initial(ammo_type.hitscan_effect_icon))
-		proj.generate_bullet(ammo_type)
-		bullets += proj
-	bullet_burst(chassis, bullets, owner, 'sound/weapons/burst_phaser2.ogg', 7, 2)
+	for(var/turf/location in RANGE_TURFS(1, chassis))
+		for(var/mob/living/target in location)
+			target.take_overall_damage(200, BURN, LASER, updating_health=TRUE, penetration=30, max_limbs=6)
+	playsound(chassis, 'sound/weapons/burst_phaser2.ogg', GUN_FIRE_SOUND_VOLUME, TRUE)
 
 /datum/action/vehicle/sealed/mecha/cloak
 	name = "Cloak"
@@ -260,18 +277,24 @@
 	var/power_cost = 40
 
 /datum/action/vehicle/sealed/mecha/cloak/action_activate(trigger_flags)
+	. = ..()
+	if(!.)
+		return
 	if(!owner?.client || !chassis || !(owner in chassis.occupants))
 		return
 	if(cloaked)
 		stop_cloaking()
 		return
-
+	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
+		chassis.balloon_alert(owner, "Cooldown")
+		return
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), 1 SECONDS) // anti sound spammers
 	cloaked = TRUE
 	action_icon_state = "cloak_on"
 	update_button_icon()
 	ADD_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	playsound(chassis, 'sound/effects/pred_cloakon.ogg', 60, TRUE)
-	become_warped_invisible(chassis, 50)
+	chassis.become_warped_invisible(50)
 	START_PROCESSING(SSobj, src)
 	chassis.mecha_flags |= CANNOT_INTERACT
 
@@ -294,6 +317,8 @@
 	update_button_icon()
 	chassis.mecha_flags &= ~CANNOT_INTERACT
 	STOP_PROCESSING(SSobj, src)
-	stop_warped_invisible(chassis)
+	chassis.stop_warped_invisible()
 	REMOVE_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	playsound(chassis, 'sound/effects/pred_cloakoff.ogg', 60, TRUE)
+	for(var/obj/item/mecha_parts/mecha_equipment/weapon/gun in chassis.flat_equipment)
+		TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(gun.type), gun.equip_cooldown)

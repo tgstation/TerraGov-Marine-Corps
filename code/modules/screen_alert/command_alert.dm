@@ -39,7 +39,7 @@
 		return
 	if(!should_show())
 		return FALSE
-	if(owner.stat != CONSCIOUS || TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HUD_ORDER))
+	if(owner.stat != CONSCIOUS || TIMER_COOLDOWN_RUNNING(owner, COOLDOWN_HUD_ORDER))
 		return FALSE
 	if(owner.skills.getRating(skill_name) < skill_min)
 		return FALSE
