@@ -15,12 +15,20 @@
 	var/obj/item/paper/message = null
 	var/sendcooldown = FALSE
 
-	var/department = CORPORATE_LIAISON
+	var/department = ""
 	var/selected = "Ninetails"
 
 
 /obj/machinery/faxmachine/Initialize(mapload)
 	. = ..()
+	if(!department)
+		department = ""
+		if(is_ground_level(z))
+			department += "[SSmapping.configs[GROUND_MAP].map_name] - "
+		if(is_mainship_level(z))
+			department += "[SSmapping.configs[SHIP_MAP].map_name] - "
+		department += "[get_area_name(src, TRUE)]"
+	name += " ([department])"
 	GLOB.faxmachines += src
 
 
@@ -170,6 +178,8 @@
 		anchored = !anchored
 		to_chat(user, span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 
+/obj/machinery/faxmachine/liasion
+	department = CORPORATE_LIAISON
 
 /obj/machinery/faxmachine/cic
 	department = "Combat Information Center"

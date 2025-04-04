@@ -8707,7 +8707,7 @@
 /area/mainship/command/self_destruct)
 "hVm" = (
 /obj/structure/table/mainship,
-/obj/machinery/faxmachine,
+/obj/machinery/faxmachine/liasion,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "hVx" = (
