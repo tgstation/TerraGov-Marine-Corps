@@ -123,6 +123,7 @@
 		if(ismovableatom(plant_target))
 			var/atom/movable/T = plant_target
 			T.vis_contents -= src
+			layer = initial(layer)
 
 		forceMove(get_turf(user))
 		pixel_y = 0
