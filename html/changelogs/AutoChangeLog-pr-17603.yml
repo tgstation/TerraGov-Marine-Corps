@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - balance: "Marine respawn time on crash is now 15 minutes"
