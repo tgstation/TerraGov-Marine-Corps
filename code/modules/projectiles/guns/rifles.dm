@@ -2639,6 +2639,7 @@
 	movement_acc_penalty_mult = 2
 
 /obj/item/weapon/gun/rifle/icc_autoshotgun/guard
+	default_ammo_type = /obj/item/ammo_magazine/rifle/icc_autoshotgun/frag
 	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/magnetic_harness)
 
 //-------------------------------------------------------

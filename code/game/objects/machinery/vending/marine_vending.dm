@@ -1007,6 +1007,20 @@
 		),
 	)
 
+/obj/machinery/vending/MarineMed/pmc
+	name = "\improper MarineMed"
+	desc = "A Medical drug dispenser, just like the NTC use. Provided by Ninetails Pharmaceuticals Division(TM)."
+
+/obj/machinery/vending/MarineMed/icc
+	name = "\improper MarineMed"
+	desc = "An ICCAF Medical drug dispenser. Provided by Ninetails Pharmaceuticals Division(TM)."
+
+/obj/machinery/vending/MarineMed/vsd
+	name = "\improper MarineMed"
+	faction = FACTION_VSD
+	desc = "A Medical drug dispenser, just like the NTC use. 'Provided' by Ninetails Pharmaceuticals Division(TM)."
+
+
 /obj/machinery/vending/MarineMed/valhalla
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
@@ -2508,6 +2522,7 @@
 
 /obj/machinery/vending/weapon/vsd
 	name = "Syndicate weapons rack"
+	faction = FACTION_VSD
 	desc = "An automated weapon rack hooked up to a colossal storage of short amount of weapons. Deadly, no-less"
 	icon_state = "syndi"
 	icon_vend = "syndi"
@@ -2547,6 +2562,7 @@
 		),
 		"Specialized" = list(
 			/obj/item/weapon/gun/flamer/big_flamer = -1,
+			/obj/item/ammo_magazine/flamer_tank/large = -1,
 			/obj/item/ammo_magazine/flamer_tank/backtank = -1,
 			/obj/item/weapon/gun/launcher/rocket/vsd = 2,
 			/obj/item/ammo_magazine/rocket/vsd/he = 10,
@@ -2658,6 +2674,7 @@
 
 /obj/machinery/vending/uniform_supply/vsd
 	name = "\improper Syndicate Clothing Vendor"
+	faction = FACTION_VSD
 	desc = "An automated equipment rack hooked up to a colossal storage of clothing and accessories. Ninetails designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_clothes"
 	icon_vend = "surplus_clothes_vend"
@@ -2674,9 +2691,11 @@
 			/obj/item/clothing/under/vsd/upp = -1,
 			/obj/item/clothing/under/vsd/shirt = -1,
 			/obj/item/clothing/under/vsd/sleeveless = -1,
+			/obj/item/clothing/gloves/marine/veteran/pmc = -1,
 			/obj/item/clothing/gloves/marine/black = -1,
 			/obj/item/clothing/gloves/marine/fingerless = -1,
 			/obj/item/clothing/gloves/marine/hyperscale = -1,
+			/obj/item/clothing/shoes/marine/vsd/full = -1,
 			/obj/item/clothing/shoes/marine/full = -1,
 			/obj/item/clothing/shoes/marine/brown/full = -1,
 			/obj/item/clothing/shoes/cowboy = -1,
@@ -2817,6 +2836,7 @@
 
 /obj/machinery/vending/armor_supply/vsd
 	name = "\improper Syndicate Armor Equipment Vendor"
+	faction = FACTION_VSD
 	desc = "An automated equipment rack hooked up to a colossal storage of armor and accessories. Ninetails designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_armor"
 	icon_vend = "surplus_armor_vend"

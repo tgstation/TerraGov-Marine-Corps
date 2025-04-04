@@ -77,19 +77,17 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/som/squad_leader/charger,
 		/datum/outfit/quick/som/squad_leader/caliver,
 		/datum/outfit/quick/som/squad_leader/mpi,
-		/datum/outfit/quick/vsd/standard,
 		/datum/outfit/quick/vsd/standard/grunt_one,
 		/datum/outfit/quick/vsd/standard/ksg,
-		/datum/outfit/quick/vsd/engineer,
 		/datum/outfit/quick/vsd/engineer/l26,
-		/datum/outfit/quick/vsd/medic,
 		/datum/outfit/quick/vsd/medic/ksg,
 		/datum/outfit/quick/vsd/medic/vsd_rifle,
-		/datum/outfit/quick/vsd/spec,
+		/datum/outfit/quick/vsd/medic/vsd_pdw,
+		/datum/outfit/quick/vsd/spec/flamer,
 		/datum/outfit/quick/vsd/spec/demolitionist,
-		/datum/outfit/quick/vsd/spec/gunslinger,
-		/datum/outfit/quick/vsd/spec/uslspec_one,
-		/datum/outfit/quick/vsd/spec/uslspec_two,
+		// /datum/outfit/quick/vsd/spec/gunslinger,
+		// /datum/outfit/quick/vsd/spec/uslspec_one,
+		// /datum/outfit/quick/vsd/spec/uslspec_two,
 		/datum/outfit/quick/vsd/juggernaut,
 		/datum/outfit/quick/vsd/eod,
 		/datum/outfit/quick/pmc/standard,
@@ -98,7 +96,14 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/pmc/gunner,
 		/datum/outfit/quick/pmc/sniper,
 		/datum/outfit/quick/pmc/squad_leader,
-
+		/datum/outfit/quick/icc/standard/icc_battlecarbine,
+		/datum/outfit/quick/icc/standard/icc_sharpshooter,
+		/datum/outfit/quick/icc/standard/icc_assaultcarbine,
+		/datum/outfit/quick/icc/standard/icc_autoshotgun,
+		/datum/outfit/quick/icc/medic/icc_sharpshooter,
+		/datum/outfit/quick/icc/guard/icc_rocket,
+		/datum/outfit/quick/icc/guard/icc_autoshotgun,
+		/datum/outfit/quick/icc/leader/icc_confrontationrifle,
 	)
 
 	for(var/X in loadout_list)
@@ -216,6 +221,10 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	switch(faction)
 		if(FACTION_SOM)
 			ui_theme = "som"
+		if(FACTION_VSD)
+			ui_theme = "syndicate"
+		if(FACTION_CLF)
+			ui_theme = "xeno"
 		else
 			ui_theme = "ntos"
 	data["ui_theme"] = ui_theme
@@ -270,6 +279,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 				to_chat(usr, span_warning("You can't buy things from this category anymore."))
 
 /obj/machinery/quick_vendor/som
+	icon_state = "loadoutvendor"
 	faction = FACTION_SOM
 	categories = list(
 		"SOM Squad Standard",
@@ -281,6 +291,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 
 /obj/machinery/quick_vendor/vsd
 	name = "VSD Kwik-E-Quip vendor"
+	icon_state = "loadoutvendor"
 	faction = FACTION_SOM
 	categories = list(
 		"VSD Standard",
@@ -292,6 +303,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 
 /obj/machinery/quick_vendor/pmc
 	name = "PMC Kwik-E-Quip Vendor"
+	icon_state = "loadoutvendor"
 	faction = FACTION_NANOTRASEN
 	categories = list(
 		"PMC Standard",
@@ -300,4 +312,15 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		"PMC Gunner",
 		"PMC Specialist",
 		"PMC Squad Leader",
+	)
+
+/obj/machinery/quick_vendor/icc
+	name = "ICC Kwik-E-Quip Vendor"
+	icon_state = "loadoutvendor"
+	faction = FACTION_ICC
+	categories = list(
+		"ICC Standard",
+		"ICC Medic",
+		"ICC Guardsman",
+		"ICC Squad Leader",
 	)

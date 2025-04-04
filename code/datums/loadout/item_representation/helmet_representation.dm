@@ -13,6 +13,14 @@
 		CRASH("/datum/item_representation/hat created from an item that is not an hat")
 	..()
 	var/obj/item/clothing/head/helmet_to_copy = item_to_copy
+	/*
+	// bit of a jank solution but it works
+	// this essentially checks if the helmet is a subtype that exists only to have predefined attachments
+	// as a base helmet can have starting_attachments (think visors and item storage)
+	// comparing the name should be generally a safe solution
+	*/
+	if(helmet_to_copy.starting_attachments && helmet_to_copy.name == (new helmet_to_copy.parent_type).name)
+		item_type = helmet_to_copy.parent_type
 	for(var/key in helmet_to_copy.attachments_by_slot)
 		if(!isitem(helmet_to_copy.attachments_by_slot[key]))
 			continue

@@ -226,6 +226,11 @@
 	)
 	idle_power_usage = 211
 
+/obj/machinery/vending/medical/som
+	name = "Stolen Medicament Vendor"
+	desc = "Medical Pharmaceutical dispenser. 'Provided' by Novamed Pharmaceuticals."
+	req_access = ACCESS_SOM_MEDICAL
+
 /obj/machinery/vending/medical/shipside
 	isshared = TRUE
 	wrenchable = FALSE

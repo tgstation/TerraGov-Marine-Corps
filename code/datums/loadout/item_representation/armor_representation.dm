@@ -13,6 +13,14 @@
 		CRASH("/datum/item_representation/armor_suit created from an item that is not a suit")
 	..()
 	var/obj/item/clothing/suit/suit_to_copy = item_to_copy
+	/*
+	// bit of a jank solution but it works
+	// this essentially checks if the armor is a subtype that exists only to have predefined attachments
+	// as a base armor could technically have starting_attachments
+	// comparing the name should be generally a safe solution
+	*/
+	if(suit_to_copy.starting_attachments && suit_to_copy.name == (new suit_to_copy.parent_type).name)
+		item_type = suit_to_copy.parent_type
 	for(var/key in suit_to_copy.attachments_by_slot)
 		if(!isitem(suit_to_copy.attachments_by_slot[key]))
 			continue
@@ -89,6 +97,14 @@
 		CRASH("/datum/item_representation/modular_armor created from an item that is not a modular suit")
 
 	var/obj/item/clothing/suit/modular/suit_to_copy = item_to_copy
+	/*
+	// bit of a jank solution but it works
+	// this essentially checks if the armor is a subtype that exists only to have predefined attachments
+	// as a base armor could technically have starting_attachments
+	// comparing the name should be generally a safe solution
+	*/
+	if(suit_to_copy.starting_attachments && suit_to_copy.name == (new suit_to_copy.parent_type).name)
+		item_type = suit_to_copy.parent_type
 	if(item_to_copy.greyscale_config)
 		return
 	current_variant = suit_to_copy.current_variant

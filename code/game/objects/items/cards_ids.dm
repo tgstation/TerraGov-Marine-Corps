@@ -142,6 +142,36 @@
 	icon_state = "silver"
 	worn_icon_state = "silver_id"
 
+/obj/item/card/id/silver/standard
+	marine_points = list(
+		CAT_STASUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/silver/smartgun
+	marine_points = list(
+		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/silver/specialist
+	marine_points = list(
+		CAT_SPSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/silver/engineer
+	marine_points = list(
+		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/silver/leader
+	marine_points = list(
+		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/silver/medic
+	marine_points = list(
+		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
+	)
+
 /obj/item/card/id/gold
 	name = "identification card"
 	desc = "A golden card which shows power and might."
@@ -299,6 +329,11 @@
 	return TRUE
 
 // Vendor points for job override
+/obj/item/card/id/dogtag/standard
+	marine_points = list(
+		CAT_STASUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
 /obj/item/card/id/dogtag/smartgun
 	marine_points = list(
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
@@ -336,6 +371,7 @@
 
 /obj/item/card/id/dogtag/full
 	marine_points = list(
+		CAT_STASUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_SPSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
@@ -350,6 +386,31 @@
 	icon_state = "dogtag_som"
 	worn_icon_state = "dogtag_som"
 	iff_signal = SOM_IFF
+
+/obj/item/card/id/dogtag/som/standard
+	marine_points = list(
+		CAT_STASUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/som/veteran
+	marine_points = list(
+		CAT_SPSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/som/engineer
+	marine_points = list(
+		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/som/leader
+	marine_points = list(
+		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/dogtag/som/medic
+	marine_points = list(
+		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
+	)
 
 /obj/item/card/id/dogtag/clf
 	name = "\improper CLF dogtag"

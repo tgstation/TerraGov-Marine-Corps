@@ -661,12 +661,10 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/open,
 /area/antag_ship/icc/hangar/center)
 "et" = (
-/obj/machinery/vending/MarineMed{
-	isshared = 0
-	},
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/machinery/vending/MarineMed/icc,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/medical_room)
 "ew" = (
@@ -937,9 +935,7 @@
 /turf/open/floor/mainship/office,
 /area/antag_ship/som/bridge)
 "fY" = (
-/obj/machinery/vending/MarineMed{
-	isshared = 0
-	},
+/obj/machinery/vending/MarineMed/pmc,
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
@@ -1191,6 +1187,7 @@
 /obj/machinery/power/apc{
 	dir = 4
 	},
+/obj/structure/largecrate/supply/ammo/m41a,
 /turf/open/floor/iron/dark/side{
 	dir = 4
 	},
@@ -1487,10 +1484,7 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/antag_ship/som/security/cell)
 "iZ" = (
-/obj/machinery/vending/medical{
-	name = "Stolen Medicament Vendor";
-	req_access = list(206)
-	},
+/obj/machinery/vending/medical/som,
 /turf/open/floor/mainship/sterile,
 /area/antag_ship/som/medbay)
 "ja" = (
@@ -2735,7 +2729,7 @@
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
-/obj/structure/largecrate/guns/merc,
+/obj/machinery/vending/snack,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
 "oK" = (
@@ -3158,6 +3152,10 @@
 "qO" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/icc/generator_room)
+"qR" = (
+/obj/machinery/loadout_vendor/pmc,
+/turf/open/floor/mainship/sterile/plain,
+/area/antag_ship/pmc_ntf/center/armory)
 "qT" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/som/icc_guard,
@@ -3552,7 +3550,7 @@
 /turf/open/floor/mainship/office,
 /area/antag_ship/pmc_ntf/aft/engiroom/port)
 "tf" = (
-/obj/structure/largecrate/supply/ammo/m41a,
+/obj/machinery/loadout_vendor/vsd,
 /turf/open/floor/iron/dark/corner{
 	dir = 1
 	},
@@ -4377,6 +4375,7 @@
 /area/antag_ship/vsd/med)
 "xs" = (
 /obj/effect/turf_decal/trimline/brown/warning,
+/obj/structure/largecrate/guns/merc,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
 "xt" = (
@@ -5104,6 +5103,10 @@
 	dir = 8
 	},
 /area/antag_ship/clf_base/techroom)
+"BH" = (
+/obj/machinery/quick_vendor/icc,
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/warehouse)
 "BI" = (
 /obj/structure/table/wood/fancy,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -5385,8 +5388,7 @@
 /turf/open/floor/mainship/office,
 /area/antag_ship/pmc_ntf/aft/engiroom/starboard)
 "CX" = (
-/obj/machinery/vending/som/lasgun,
-/obj/machinery/light,
+/obj/machinery/loadout_vendor/som,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
 "CY" = (
@@ -5767,10 +5769,7 @@
 /turf/open/floor/iron/dark/textured_edge,
 /area/antag_ship/vsd/med)
 "Fg" = (
-/obj/machinery/vending/medical{
-	name = "Stolen Medicament Vendor";
-	req_access = list(206)
-	},
+/obj/machinery/vending/medical/som,
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 8
 	},
@@ -6396,12 +6395,10 @@
 /turf/open/floor/grass,
 /area/antag_ship/som/security/cell)
 "Iz" = (
-/obj/machinery/vending/MarineMed{
-	isshared = 0
-	},
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/machinery/vending/MarineMed/vsd,
 /turf/open/floor/iron/dark/smooth_edge{
 	dir = 8
 	},
@@ -7901,7 +7898,7 @@
 /turf/open/floor/mainship/office,
 /area/antag_ship/pmc_ntf/starboard/spaceport)
 "Qi" = (
-/obj/machinery/vending/marineFood/som,
+/obj/machinery/vending/som/lasgun,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
 "Qj" = (
@@ -8072,6 +8069,10 @@
 /turf/open/shuttle/dropship/three,
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/transport)
+"QZ" = (
+/obj/machinery/loadout_vendor/icc,
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/icc/warehouse)
 "Ra" = (
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating/asteroidfloor,
@@ -10931,7 +10932,7 @@ qr
 GX
 TP
 dE
-iX
+qR
 GX
 kr
 VI
@@ -12984,7 +12985,7 @@ ek
 Qu
 bb
 Qi
-bD
+ZQ
 GC
 jq
 jq
@@ -19289,7 +19290,7 @@ fr
 nc
 gO
 Rs
-Oo
+QZ
 AP
 kC
 sj
@@ -19384,7 +19385,7 @@ fr
 qE
 gO
 Rs
-LO
+BH
 EX
 Oo
 Oo

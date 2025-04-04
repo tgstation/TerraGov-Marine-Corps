@@ -18,7 +18,7 @@
 	name = "PMC Standard"
 	jobtype = /datum/job/pmc/standard
 
-	id = /obj/item/card/id/silver
+	id = /obj/item/card/id/silver/standard
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/mainship/marine/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/holster

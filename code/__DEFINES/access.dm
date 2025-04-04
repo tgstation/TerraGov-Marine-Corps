@@ -70,6 +70,21 @@ GLOBAL_LIST_EMPTY(all_req_one_access)
 #define ACCESS_SOM_SECURITY 211
 #define ACCESS_SOM_VETERAN 212
 #define ACCESS_SOM_REQUESITIONS 213
+
+//ICC access defines
+#define ACCESS_ICC_PREP 224
+#define ACCESS_ICC_MEDPREP 225
+#define ACCESS_ICC_GUARDPREP 226
+#define ACCESS_ICC_LEADPREP 227
+
+
+//VSD access defines
+#define ACCESS_VSD_PREP 236
+#define ACCESS_VSD_MEDPREP 237
+#define ACCESS_VSD_ENGPREP 238
+#define ACCESS_VSD_SPECPREP 239
+#define ACCESS_VSD_LEADPREP 240
+
 //=================================================
 
 #define PAYGRADES_MARINE list("C","CMN","E1","E2","E3","E3E","E4","E5","E6","E7","E8","E8E","E9","E9E","O1","O2","O3","O4","O5","O6","WO","CWO","PO3","PO2","PO1","CPO")

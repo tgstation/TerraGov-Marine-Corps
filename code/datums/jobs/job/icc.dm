@@ -127,7 +127,7 @@
 
 //ICC Guard
 /datum/job/icc/guard
-	title = "ICC Guardsman"
+	title = "ICC Guard"
 	paygrade = "ICC3"
 	outfit = /datum/outfit/job/icc/guard/coilgun
 	multiple_outfits = TRUE

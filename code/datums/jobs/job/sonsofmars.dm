@@ -101,7 +101,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	name = "SOM Standard"
 	jobtype = /datum/job/som/squad/standard
 
-	id = /obj/item/card/id/dogtag/som
+	id = /obj/item/card/id/dogtag/som/standard
 
 
 /datum/job/som/squad/slut
@@ -215,7 +215,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	name = "SOM Engineer"
 	jobtype = /datum/job/som/squad/engineer
 
-	id = /obj/item/card/id/dogtag/som
+	id = /obj/item/card/id/dogtag/som/engineer
 
 
 /datum/job/som/squad/medic
@@ -272,7 +272,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	name = "SOM Medic"
 	jobtype = /datum/job/som/squad/medic
 
-	id = /obj/item/card/id/dogtag/som
+	id = /obj/item/card/id/dogtag/som/medic
 
 
 /datum/job/som/squad/veteran
@@ -324,7 +324,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/outfit/job/som/squad/veteran
 	name = "SOM Veteran"
 	jobtype = /datum/job/som/squad/veteran
-	id = /obj/item/card/id/dogtag/som
+	id = /obj/item/card/id/dogtag/som/veteran
 
 /datum/job/som/squad/leader
 	title = SOM_SQUAD_LEADER
@@ -390,4 +390,4 @@ You are also in charge of communicating with command and letting them know about
 	name = "SOM Leader"
 	jobtype = /datum/job/som/squad/leader
 
-	id = /obj/item/card/id/dogtag/som
+	id = /obj/item/card/id/dogtag/som/leader
