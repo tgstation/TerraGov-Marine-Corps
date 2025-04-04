@@ -19,71 +19,6 @@ import {
   LoadoutTabData,
 } from './Types';
 
-const jobListByFaction = {
-  Neutral: [
-    'Squad Marine',
-    'Squad Engineer',
-    'Squad Corpsman',
-    'Squad Smartgunner',
-    'Squad Leader',
-    'Field Commander',
-    'Synthetic',
-  ],
-  Crash: [
-    'Squad Marine',
-    'Squad Engineer',
-    'Squad Corpsman',
-    'Squad Smartgunner',
-    'Squad Leader',
-    'Field Commander',
-    'Synthetic',
-  ],
-  Valhalla: [
-    'Squad Marine',
-    'Squad Engineer',
-    'Squad Corpsman',
-    'Squad Smartgunner',
-    'Squad Leader',
-    'Field Commander',
-    'Synthetic',
-  ],
-  SOM: [
-    'SOM Squad Standard',
-    'SOM Squad Engineer',
-    'SOM Squad Medic',
-    'SOM Squad Veteran',
-    'SOM Squad Leader',
-  ],
-  PMC: [
-    'PMC Standard',
-    'PMC Engineer',
-    'PMC Medic',
-    'PMC Gunner',
-    'PMC Specialist',
-    'PMC Squad Leader',
-  ],
-  ICC: [
-    'ICC Standard',
-    'ICC Medic',
-    'ICC Guardsman',
-    'ICC Squad Leader',
-  ],
-  CLF: [
-    'CLF Standard',
-    'CLF Medic',
-    'CLF Breeder',
-    'CLF Leader',
-  ],
-  VSD: [
-    'VSD Standard',
-    'VSD Engineer',
-    'VSD Medic',
-    'VSD Specialist',
-    'VSD Squad Leader',
-  ],
-  default: ['null'],
-};
-
 const LoadoutItem = (props: LoadoutItemData) => {
   const { act } = useBackend();
   const { loadout } = props;
@@ -154,10 +89,8 @@ const LoadoutList = (props: LoadoutListData) => {
 
 export const JobTabs = (props: LoadoutTabData, context) => {
   const { job, setJob } = props;
-  const { data } = useBackend(context);
-  const { faction } = data;
-
-  const jobList = jobListByFaction[faction] || jobListByFaction['default'];
+  const { data } = useBackend<any>();
+  const vendor_categories = data.vendor_categories;
 
   return (
     <Section>
@@ -167,7 +100,7 @@ export const JobTabs = (props: LoadoutTabData, context) => {
         </Flex.Item>
         <Flex.Item>
           <Tabs>
-            {jobList.map((jobOption) => (
+            {vendor_categories.map((jobOption) => (
               <Tabs.Tab
                 key={jobOption}
                 selected={job === jobOption}
@@ -188,17 +121,11 @@ export const JobTabs = (props: LoadoutTabData, context) => {
 
 export const LoadoutManager = (props) => {
   const { act, data } = useBackend<LoadoutManagerData>();
-  const { loadout_list, faction } = data;
+  const { loadout_list, vendor_categories, ui_theme } = data;
 
-  const [job, setJob] = useState(jobListByFaction[faction][0]);
+  const [job, setJob] = useState(vendor_categories[0]);
   const [saveNewLoadout, setSaveNewLoadout] = useState(false);
   const [importNewLoadout, setImportNewLoadout] = useState(false);
-  const themeMap = {
-    SOM: "som",
-    VSD: "syndicate",
-    CLF: "xeno",
-  };
-  const ui_theme = themeMap[faction] || "ntos";
 
   return (
     <Window title="Loadout Manager" width={800} height={400} theme={ui_theme}>

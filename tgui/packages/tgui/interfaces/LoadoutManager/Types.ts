@@ -18,6 +18,8 @@ export type LoadoutTabData = {
 
 export type LoadoutManagerData = {
   loadout_list: Loadout[];
+  vendor_categories: any;
+  ui_theme: string;
 };
 
 export type NameInputModalData = {
