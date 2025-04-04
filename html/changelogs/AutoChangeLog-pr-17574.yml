@@ -1,4 +1,0 @@
-author: "blackdav123"
-delete-after: True
-changes:
-  - balance: "Crash will always have at least two xenos, instead of one."

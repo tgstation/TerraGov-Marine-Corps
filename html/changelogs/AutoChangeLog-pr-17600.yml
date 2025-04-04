@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - balance: "conquerors obliteration works on vehicles now"
-  - bugfix: "fixed conqueror obliteration effects on multiz"

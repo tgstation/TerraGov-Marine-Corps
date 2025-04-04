@@ -40,3 +40,21 @@
   - spellcheck: Renames helmet storage datum to be more generic (berets will no longer
       show jaeger-pattern storage module)
   - spellcheck: Chameloen -> chameleon
+2025-04-04:
+  TiviPlus:
+  - bugfix: Fixed toggle seethrough offsetting your sprite on 516
+  - bugfix: fixed m4 and m5 left clicking
+  - bugfix: mech/mobs/doors now block emissives correctly
+  - bugfix: fixed 516 tgui say not focusing on open all the time
+  - bugfix: Fixed being able to magdump mech rockets
+  - bugfix: Walking on top of doors on the above z doesnt make you fall
+  - code_imp: tgui loads faster now
+  - code_imp: the tgui title bar should play nicer now with other components like
+      buttons
+  - balance: conquerors obliteration works on vehicles now
+  - bugfix: fixed conqueror obliteration effects on multiz
+  - server: Changed client version warnings to be in config
+  - rscadd: Added Multiz minimap support
+  - bugfix: fixed dragon backhand doing nothing to mech
+  blackdav123:
+  - balance: Crash will always have at least two xenos, instead of one.
