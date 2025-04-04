@@ -22,7 +22,7 @@
 		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom))
 	return ..()
 
-/datum/ai_behavior/xeno/clean_escorted_atom()
+/datum/ai_behavior/xeno/clean_escorted_atom(find_new_escort = FALSE)
 	if(!escorted_atom)
 		return
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom))
@@ -32,6 +32,11 @@
 	. = ..()
 	if(!new_escort_is_weak)
 		UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
+
+/datum/ai_behavior/xeno/global_set_escorted_atom(datum/source, atom/atom_to_escort)
+	if(!atom_to_escort || atom_to_escort.get_xeno_hivenumber() != mob_parent.get_xeno_hivenumber() || mob_parent.ckey)
+		return
+	return ..()
 
 ///Refresh abilities-to-consider list
 /datum/ai_behavior/xeno/proc/refresh_abilities()
@@ -46,6 +51,8 @@
 		return ..()
 	if(mob_parent.do_actions) //No activating more abilities if they're already in the progress of doing one
 		return ..()
+	if(should_hold())
+		return ..()
 
 	for(var/datum/action/action in ability_list)
 		if(!action.ai_should_use(atom_to_walk_to))
@@ -58,58 +65,46 @@
 			action.action_activate()
 	return ..()
 
-/datum/ai_behavior/xeno/look_for_new_state()
+/datum/ai_behavior/xeno/state_process(next_target)
 	var/mob/living/living_parent = mob_parent
-	switch(current_action)
-		if(ESCORTING_ATOM)
-			if(get_dist(escorted_atom, mob_parent) > AI_ESCORTING_MAX_DISTANCE)
-				look_for_next_node()
-				return
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
-			if(!next_target)
-				return
-			change_action(MOVING_TO_ATOM, next_target)
-		if(MOVING_TO_NODE, FOLLOWING_PATH)
-			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
-			if(!next_target)
-				if(can_heal && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
-					try_to_heal() //If we have some damage, look for some healing
-					return
-				if(!goal_node) // We are randomly moving
-					var/atom/xeno_to_follow = get_nearest_target(mob_parent, AI_ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_XENO, mob_parent.faction, mob_parent.get_xeno_hivenumber())
-					if(xeno_to_follow)
-						set_escorted_atom(null, xeno_to_follow, TRUE)
-						return
-				return
-			change_action(MOVING_TO_ATOM, next_target)
-		if(MOVING_TO_ATOM)
-			if(!weak_escort && escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
-				change_action(ESCORTING_ATOM, escorted_atom)
-				return
-			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
-			if(!next_target)//We didn't find a target
-				cleanup_current_action()
-				late_initialize()
-				return
-			if(next_target == atom_to_walk_to)//We didn't find a better target
-				return
-			change_action(null, next_target)//We found a better target, change course!
-		if(MOVING_TO_SAFETY)
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
-			if(!next_target)//We are safe, try to find some weeds
-				target_distance = initial(target_distance)
-				cleanup_current_action()
-				late_initialize()
-				RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(check_for_critical_health))
-				return
-			if(next_target == atom_to_walk_to)
-				return
+	if(current_action != MOVING_TO_NODE && current_action != FOLLOWING_PATH)
+		return
+	if(can_heal && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
+		try_to_heal() //If we have some damage, look for some healing
+		return
+	if(!goal_node) // We are randomly moving
+		var/atom/xeno_to_follow = get_nearest_target(mob_parent, AI_ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_XENO, mob_parent.faction, mob_parent.get_xeno_hivenumber())
+		if(xeno_to_follow)
+			set_escorted_atom(null, xeno_to_follow, TRUE)
+
+/datum/ai_behavior/xeno/look_for_new_state(next_target)
+	if(current_action == ESCORTING_ATOM)
+		if(get_dist(escorted_atom, mob_parent) > AI_ESCORTING_MAX_DISTANCE)
+			look_for_next_node()
+			return
+	if(current_action == MOVING_TO_ATOM)
+		if(!weak_escort && escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
+			change_action(ESCORTING_ATOM, escorted_atom)
+			return
+		if(!next_target)//We didn't find a target
+			cleanup_current_action()
+			late_initialize()
+			return
+		if(next_target == atom_to_walk_to)//We didn't find a better target
+			return
+	if(current_action == MOVING_TO_SAFETY)
+		if(!next_target)
+			target_distance = initial(target_distance)
+			cleanup_current_action()
+			late_initialize()
+			RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(check_for_critical_health))
+			return
+		if(next_target != atom_to_walk_to)
 			change_action(null, next_target, list(INFINITY))
-		if(IDLE)
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber())
-			if(!next_target)
-				return
-			change_action(MOVING_TO_ATOM, next_target)
+
+	if(next_target)
+		change_action(MOVING_TO_ATOM, next_target)
+		return
 
 /datum/ai_behavior/xeno/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
@@ -187,26 +182,13 @@
 	switch(action_type)
 		if(MOVING_TO_ATOM)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(attack_target))
-			if(ishuman(atom_to_walk_to))
-				RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
-				return
-			if(ismachinery(atom_to_walk_to))
-				RegisterSignal(atom_to_walk_to, COMSIG_PREQDELETED, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
-				return
-
+			return
 	return ..()
 
 /datum/ai_behavior/xeno/unregister_action_signals(action_type)
 	switch(action_type)
 		if(MOVING_TO_ATOM)
 			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
-			if(ishuman(atom_to_walk_to))
-				UnregisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH)
-				return
-			if(ismachinery(atom_to_walk_to))
-				UnregisterSignal(atom_to_walk_to, COMSIG_PREQDELETED)
-				return
-
 	return ..()
 
 ///Will try finding and resting on weeds
@@ -255,7 +237,7 @@
 
 ///Move the ai mob on top of the window_frame
 /datum/ai_behavior/xeno/proc/climb_window_frame(turf/window_turf)
-	mob_parent.loc = window_turf
+	mob_parent.forceMove(window_turf)
 	mob_parent.last_move_time = world.time
 	LAZYDECREMENT(mob_parent.do_actions, window_turf)
 

@@ -2,7 +2,7 @@
 	caste_name = "Drone"
 	display_name = "Drone"
 	upgrade_name = ""
-	caste_desc = "A builder of hives. Only drones may evolve into Shrikes."
+	caste_desc = "A builder of hives."
 	base_strain_type = /mob/living/carbon/xenomorph/drone
 	caste_type_path = /mob/living/carbon/xenomorph/drone
 
@@ -65,6 +65,7 @@
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 		/datum/action/ability/activable/xeno/recycle,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
 /datum/xeno_caste/drone/normal
@@ -97,4 +98,5 @@
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 		/datum/action/ability/activable/xeno/recycle,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)

@@ -103,6 +103,11 @@
 
 	var/list/parallax_layers
 	var/list/parallax_layers_cached
+	var/atom/movable/screen/parallax_home/parallax_rock
+	/// Do we want to do parallax animations at all?
+	/// Exists to prevent laptop fires
+	var/do_parallax_animations = TRUE
+
 	var/atom/movable/movingmob
 	var/turf/previous_turf
 	///world.time of when we can state animate()ing parallax again
@@ -113,6 +118,8 @@
 	var/parallax_throttle = 0
 	var/parallax_movedir = 0
 	var/parallax_layers_max = 4
+	/// Timers for the area directional animation, one for each layer
+	var/list/parallax_animate_timers
 	var/parallax_animate_timer
 
 	/**

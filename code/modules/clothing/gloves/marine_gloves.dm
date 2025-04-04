@@ -29,14 +29,14 @@
 	worn_icon_state = "fingerless"
 
 /obj/item/clothing/gloves/marine/hyperscale
-	name = "8E Chameleon TGMC combat gloves"
+	name = "\improper 8E Chameleon TGMC combat gloves"
 	desc = "Standard issue marine tactical gloves BUT colorable with a facepaint! It reads: 'knit by Marine Widows Association'."
 	icon_state = "hyperscale_glove_inhand"
 	worn_icon_state = "hyperscale_glove_mob"
 	worn_icon_list = list(slot_gloves = /datum/greyscale_config/marine_uniform)
 	greyscale_colors = ARMOR_PALETTE_BLACK
 	greyscale_config = /datum/greyscale_config/marine_uniform
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
 
 

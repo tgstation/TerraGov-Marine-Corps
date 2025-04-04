@@ -69,7 +69,7 @@
 	return ..()
 
 /datum/component/riding/creature/driver_move(atom/movable/movable_parent, mob/living/user, direction, glide_size_override)
-	if(!COOLDOWN_CHECK(src, vehicle_move_cooldown))
+	if(!COOLDOWN_FINISHED(src, vehicle_move_cooldown))
 		return COMPONENT_DRIVER_BLOCK_MOVE
 	if(!keycheck(user))
 		if(ispath(keytype, /obj/item))

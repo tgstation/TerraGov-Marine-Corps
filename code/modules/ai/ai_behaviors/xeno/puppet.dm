@@ -168,7 +168,7 @@
 
 ///makes our parent climb over a turf with a window by setting its location to it
 /datum/ai_behavior/puppet/proc/climb_window_frame(turf/window_turf)
-	mob_parent.loc = window_turf
+	mob_parent.forceMove(window_turf)
 	mob_parent.last_move_time = world.time
 	LAZYDECREMENT(mob_parent.do_actions, window_turf)
 

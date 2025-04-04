@@ -2481,13 +2481,13 @@
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aoF" = (
-/obj/machinery/computer/camera_advanced/overwatch,
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
 /obj/structure/window/reinforced/windowstake{
 	dir = 8
 	},
+/obj/machinery/computer/camera_advanced/overwatch/military/charlie,
 /turf/open/floor/prison/red/full{
 	dir = 1
 	},
@@ -2612,13 +2612,13 @@
 	},
 /area/sulaco/bridge)
 "apr" = (
-/obj/machinery/computer/camera_advanced/overwatch,
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
 /obj/structure/window/reinforced/windowstake{
 	dir = 4
 	},
+/obj/machinery/computer/camera_advanced/overwatch/military/delta,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -5261,11 +5261,11 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "aCn" = (
-/obj/machinery/computer/camera_advanced/overwatch,
 /obj/structure/window/reinforced/toughened,
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
+/obj/machinery/computer/camera_advanced/overwatch/military/bravo,
 /turf/open/floor/prison/red/full{
 	dir = 1
 	},
@@ -7645,6 +7645,7 @@
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
 	},
+/obj/effect/landmark/start/job/corporateliaison,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "aQY" = (
@@ -13169,11 +13170,11 @@
 /turf/open/floor/plating/platebotc,
 /area/sulaco/liaison)
 "ggt" = (
-/obj/machinery/computer/camera_advanced/overwatch,
 /obj/structure/window/reinforced/toughened,
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
+/obj/machinery/computer/camera_advanced/overwatch/military/alpha,
 /turf/open/floor/prison/red/full{
 	dir = 1
 	},

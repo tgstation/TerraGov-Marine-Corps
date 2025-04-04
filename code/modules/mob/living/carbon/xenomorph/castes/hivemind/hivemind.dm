@@ -63,12 +63,12 @@
 		remove_status_effect(/datum/status_effect/spacefreeze)
 	health = maxHealth - getFireLoss() - getBruteLoss()
 	med_hud_set_health()
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	update_wounds()
 
 /mob/living/carbon/xenomorph/hivemind/handle_living_health_updates()
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	var/turf/T = loc
 	if(!istype(T))
@@ -110,7 +110,7 @@
 	if(status_flags & INCORPOREAL && health != maxHealth)
 		to_chat(src, span_xenowarning("You do not have the strength to manifest yet!"))
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	wound_overlay.icon_state = "none"
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
@@ -167,7 +167,7 @@
 	return
 
 /mob/living/carbon/xenomorph/hivemind/proc/return_to_core()
-	if(!(status_flags & INCORPOREAL) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(!(status_flags & INCORPOREAL) && TIMER_COOLDOWN_FINISHED(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		do_change_form()
 	for(var/obj/item/explosive/grenade/sticky/sticky_bomb in contents)
 		sticky_bomb.clean_refs()
@@ -194,7 +194,7 @@
 	setDir(SOUTH)
 
 /mob/living/carbon/xenomorph/hivemind/Move(atom/newloc, direction, glide_size_override)
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	if(!(status_flags & INCORPOREAL))
 		return ..()
@@ -217,7 +217,7 @@
 	. = ..()
 	if(.)
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	if(href_list["hivemind_jump"])
 		var/mob/living/carbon/xenomorph/xeno = locate(href_list["hivemind_jump"])
@@ -247,7 +247,7 @@
 	return
 
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return
 	var/list/modifiers = params2list(params)
 	if(modifiers["right"])
@@ -360,7 +360,7 @@
  */
 /obj/structure/xeno/hivemindcore/proc/hivemind_proxy_alert(datum/source, atom/movable/hostile)
 	SIGNAL_HANDLER
-	if(!COOLDOWN_CHECK(src, hivemind_proxy_alert_cooldown)) //Proxy alert triggered too recently; abort
+	if(!COOLDOWN_FINISHED(src, hivemind_proxy_alert_cooldown)) //Proxy alert triggered too recently; abort
 		return
 
 	if(!isliving(hostile))

@@ -154,9 +154,9 @@
 
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	if(isarmoredvehicle(target_obj))
-		var/obj/vehicle/sealed/armored/tank = target_obj
-		COOLDOWN_START(tank, cooldown_vehicle_move, tank.move_delay)
+	if(issealedvehicle(target_obj))
+		var/obj/vehicle/sealed/seal = target_obj
+		COOLDOWN_INCREMENT(seal, cooldown_vehicle_move, seal.move_delay)
 	var/turf/target_turf = get_turf(target_obj)
 	drop_resin(target_turf.density ? proj.loc : target_turf)
 
@@ -427,20 +427,22 @@
 	icon_state = "xadar"
 	damage = 30
 	penetration = 10
+	max_range = 10
 	damage_type = BURN
-	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SKIPS_ALIENS
+	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS
 
 /datum/ammo/rocket/he/xadar/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	if(istype(target_obj,/obj/hitbox))
+	drop_nade(get_turf(target_obj))
+	if(ishitbox(target_obj))
 		var/obj/hitbox/vehiclehitbox = target_obj
 		vehiclehitbox.root.take_damage(XADAR_VEHICLE_DAMAGE)
-		drop_nade(get_turf(target_obj))
 		return
 	if(isvehicle(target_obj))
 		target_obj.take_damage(XADAR_VEHICLE_DAMAGE)
-		drop_nade(get_turf(target_obj))
 
 /datum/ammo/rocket/he/xadar/drop_nade(turf/T)
+	new /obj/effect/temp_visual/xadar_blast(locate((T.x - 1),(T.y - 1),T.z)) // Gets the tile SE of the impact zone to center the effect properly
+	playsound(T, 'sound/effects/xadarblast.ogg', 50, 1)
 	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(T,2))
 		human_victim.adjust_stagger(4 SECONDS)
 		human_victim.apply_damage(90, BURN, BODY_ZONE_CHEST, ACID,  penetration = 10)

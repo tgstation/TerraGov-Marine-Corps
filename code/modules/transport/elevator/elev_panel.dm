@@ -22,7 +22,7 @@
 	mouse_over_pointer = MOUSE_HAND_POINTER
 	power_channel = ENVIRON
 	// Indestructible until someone wants to make these constructible, with all the chaos that implies
-	resistance_flags = ALL
+	resistance_flags = RESIST_ALL
 
 	/// Were we instantiated at mapload? Used to determine when we should link / throw errors
 	var/maploaded = FALSE
@@ -57,16 +57,26 @@
 /obj/machinery/elevator_control_panel/Initialize(mapload)
 	. = ..()
 
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "el_panel", MINIMAP_LABELS_LAYER))
+
 	var/static/list/tool_behaviors = list(
 		TOOL_MULTITOOL = list(SCREENTIP_CONTEXT_LMB = "Reset Panel"),
 	)
+
+	maploaded = mapload
+	// Maploaded panels link in post_machine_initialize...
+	if(mapload)
+		return INITIALIZE_HINT_LATELOAD
+
+	// And non-mapload panels link in Initialize
+	link_with_lift(log_error = FALSE)
 
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/elevator_control_panel/LateInitialize()
 	. = ..()
 	// If we weren't maploaded, we probably already linked (or tried to link) in Initialize().
-	if(maploaded)
+	if(!maploaded)
 		return
 
 	// This is exclusively for linking in mapload, just to ensure all elevator parts are created,

@@ -55,7 +55,7 @@
 
 ///Handles living bump action checks before actually doing the attack checks.
 /datum/component/bump_attack/proc/living_bump_action_checks(atom/target)
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_BUMP_ATTACK))
 		return NONE
 	var/mob/living/bumper = parent
 	if(!(target.atom_flags & BUMP_ATTACKABLE) || bumper.throwing || bumper.incapacitated())

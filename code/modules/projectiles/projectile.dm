@@ -46,8 +46,6 @@
 	greyscale_colors
 	///Any special effects applied to this projectile
 	var/projectile_behavior_flags = NONE
-	///Hit impact sound
-	var/hitsound
 	///The ammo data which holds most of the actual info
 	var/datum/ammo/ammo
 	///The bodypart you're trying to hit
@@ -201,7 +199,7 @@
 	if(source)
 		shot_from = source
 	if(loc_override)
-		loc = loc_override
+		abstract_move(loc_override)
 	if(!isturf(loc))
 		forceMove(get_turf(src))
 	starting_turf = loc

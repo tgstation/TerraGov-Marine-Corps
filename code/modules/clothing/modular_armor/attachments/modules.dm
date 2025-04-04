@@ -504,7 +504,7 @@
 	COOLDOWN_DECLARE(mirage_cooldown)
 
 /obj/item/armor_module/module/mirage/activate(mob/living/user)
-	if(!COOLDOWN_CHECK(src, mirage_cooldown))
+	if(!COOLDOWN_FINISHED(src, mirage_cooldown))
 		balloon_alert(user, "[COOLDOWN_TIMELEFT(src, mirage_cooldown)*0.1] seconds")
 		return
 	var/alpha_mod = user.alpha * 0.95
@@ -547,7 +547,7 @@
 	locked_armor_mod = null
 
 /obj/item/armor_module/module/armorlock/activate(mob/living/user)
-	if(!COOLDOWN_CHECK(src, armorlock_cooldown))
+	if(!COOLDOWN_FINISHED(src, armorlock_cooldown))
 		balloon_alert(user, "[COOLDOWN_TIMELEFT(src, armorlock_cooldown)*0.1] seconds")
 		return
 

@@ -18,7 +18,7 @@
 /datum/reagent/medicine/inaprovaline/on_mob_add(mob/living/L, metabolism)
 	ADD_TRAIT(L, TRAIT_IGNORE_SUFFOCATION, REAGENT_TRAIT(src))
 	var/mob/living/carbon/human/H = L
-	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
+	if(TIMER_COOLDOWN_RUNNING(L, name) || L.stat == DEAD)
 		return
 	if(L.health < H.health_threshold_crit && volume > 14) //If you are in crit, and someone injects at least 15u into you at once, you will heal 30% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
@@ -51,7 +51,7 @@
 /datum/reagent/medicine/inaprovaline/ai_should_use(mob/living/target, inject_vol)
 	if(!target.InCritical())
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(target, name) && (target.getOxyLoss() < 15))
+	if(TIMER_COOLDOWN_RUNNING(target, name) && (target.getOxyLoss() < 15))
 		return FALSE
 	return ..()
 
@@ -144,7 +144,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
 
 /datum/reagent/medicine/oxycodone/on_mob_add(mob/living/L, metabolism)
-	if(TIMER_COOLDOWN_CHECK(L, name))
+	if(TIMER_COOLDOWN_RUNNING(L, name))
 		return
 	L.adjustStaminaLoss(-20*effect_str)
 	to_chat(L, span_userdanger("You feel a burst of energy revitalize you all of a sudden! You can do anything!"))
@@ -455,7 +455,7 @@
 	purge_rate = 5
 
 /datum/reagent/medicine/synaptizine/on_mob_add(mob/living/L, metabolism)
-	if(TIMER_COOLDOWN_CHECK(L, name))
+	if(TIMER_COOLDOWN_RUNNING(L, name))
 		return
 	L.adjustStaminaLoss(-30*effect_str)
 	to_chat(L, span_userdanger("You feel a burst of energy as the stimulants course through you! Time to go!"))
@@ -502,7 +502,7 @@
 
 /datum/reagent/medicine/neuraline/on_mob_add(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
-	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
+	if(TIMER_COOLDOWN_RUNNING(L, name) || L.stat == DEAD)
 		return
 	if(L.health < H.health_threshold_crit && volume > 3) //If you are in crit, and someone injects at least 3u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
@@ -592,7 +592,7 @@
 
 /datum/reagent/medicine/russian_red/on_mob_add(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
-	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
+	if(TIMER_COOLDOWN_RUNNING(L, name) || L.stat == DEAD)
 		return
 	if(L.health < H.health_threshold_crit && volume > 9) //If you are in crit, and someone injects at least 9u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
@@ -1369,13 +1369,13 @@
 				L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 				L.adjustToxLoss(-0.15 * effect_str)
 
-			if(volume > 5 && L.getBruteLoss(organic_only = TRUE))
+			if(volume > 5 && (L.getBruteLoss(organic_only = TRUE) >= 3)) // so we don't waste nanites healing miniscule damage
 				L.heal_overall_damage(3 * effect_str, 0)
 				holder.remove_reagent(/datum/reagent/medicalnanites, 0.5)
 				if(prob(10))
 					to_chat(L, span_notice("Your cuts and bruises begin to scab over rapidly!"))
 
-			if(volume > 5 && L.getFireLoss(organic_only = TRUE))
+			if(volume > 5 && (L.getFireLoss(organic_only = TRUE) >= 3)) // same but for burn
 				L.heal_overall_damage(0, 3 * effect_str)
 				holder.remove_reagent(/datum/reagent/medicalnanites, 0.5)
 				if(prob(10))

@@ -262,12 +262,12 @@ GLOBAL_LIST_EMPTY(pillars_by_z)
 
 ///Called when there is no real turf below this turf
 /datum/element/turf_z_transparency/proc/get_baseturf_underlay(turf/our_turf)
-	var/turf/path = SSmapping.level_trait(our_turf.z, ZTRAIT_BASETURF) || /turf/open/floor/plating
+	var/turf/path = SSmapping.level_trait(our_turf.z, ZTRAIT_BASETURF) || /turf/open/space
 	if(!ispath(path))
 		path = text2path(path)
 		if(!ispath(path))
 			warning("Z-level [our_turf.z] has invalid baseturf '[SSmapping.level_trait(our_turf.z, ZTRAIT_BASETURF)]'")
-			path = /turf/open/floor/plating
+			path = /turf/open/space
 	var/mutable_appearance/underlay_appearance = mutable_appearance(initial(path.icon), initial(path.icon_state), layer = SPACE_LAYER + 0.1, offset_spokesman = our_turf, plane = PLANE_SPACE)
 	underlay_appearance.appearance_flags = RESET_ALPHA | RESET_COLOR
 	return underlay_appearance

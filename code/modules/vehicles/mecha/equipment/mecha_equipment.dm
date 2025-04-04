@@ -91,7 +91,7 @@
 	if(obj_integrity <= 1)
 		to_chat(chassis.occupants, span_warning("Error -- Equipment critically damaged."))
 		return FALSE
-	if(!ignore_cooldown && TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
+	if(!ignore_cooldown && TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return FALSE
 	if(!istype(chassis, /obj/vehicle/sealed/mecha/combat/greyscale))
 		return TRUE
@@ -200,12 +200,16 @@
 	forceMove(moveto)
 	LAZYREMOVE(chassis.flat_equipment, src)
 	var/to_unequip_slot = equipment_slot
-	equipment_slot = initial(equipment_slot) // resets in case we were fucking with it earlier like with weapon swaps
 	if(equipment_slot == MECHA_WEAPON)
 		if(chassis.equip_by_category[MECHA_R_ARM] == src)
 			to_unequip_slot = MECHA_R_ARM
 		else
 			to_unequip_slot = MECHA_L_ARM
+	else if(equipment_slot == MECHA_BACK)
+		if(chassis.equip_by_category[MECHA_R_BACK] == src)
+			to_unequip_slot = MECHA_R_BACK
+		else
+			to_unequip_slot = MECHA_L_BACK
 	if(islist(chassis.equip_by_category[to_unequip_slot]))
 		chassis.equip_by_category[to_unequip_slot] -= src
 	else

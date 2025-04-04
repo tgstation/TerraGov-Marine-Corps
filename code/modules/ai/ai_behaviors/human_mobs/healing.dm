@@ -10,11 +10,9 @@
 	var/list/unrevivable_chat = list("We lost them!", "I lost them!", "Damn it, they're gone!", "Perma!", "No longer revivable.", "I can't help this one.", "I'm sorry.")
 
 /datum/ai_behavior/human/late_initialize()
-	if(human_ai_state_flags & HUMAN_AI_ANY_HEALING)
+	if(should_hold())
 		return
-	. = ..()
-	if(!registered_for_move)
-		scheduled_move()
+	return ..()
 
 ///Checks if we should be healing somebody
 /datum/ai_behavior/human/proc/medic_process()
@@ -127,7 +125,7 @@
 		living_parent.do_resist()
 		return
 
-	if(!COOLDOWN_CHECK(src, ai_heal_after_dam_cooldown))
+	if(!COOLDOWN_FINISHED(src, ai_heal_after_dam_cooldown))
 		return
 
 	if(prob(75))
@@ -157,14 +155,15 @@
 		return
 
 	try_speak(pick(healing_chat))
+	human_ai_state_flags |= HUMAN_AI_HEALING
 
 	var/did_revive = FALSE
 	if(!ignore_defib && patient.stat == DEAD) //we specifically don't want the sig sent out if we fail to defib
 		if(!do_defib(patient))
+			on_heal_end(mob_parent)
 			return
 		did_revive = TRUE
 
-	human_ai_state_flags |= HUMAN_AI_HEALING
 	SEND_SIGNAL(patient, COMSIG_AI_HEALING_MOB, mob_parent)
 	RegisterSignal(patient, COMSIG_MOVABLE_MOVED, PROC_REF(do_unset_target))
 

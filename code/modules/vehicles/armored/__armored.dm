@@ -276,7 +276,7 @@
 /obj/vehicle/sealed/armored/Bump(atom/A)
 	. = ..()
 	if(HAS_TRAIT(A, TRAIT_STOPS_TANK_COLLISION))
-		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_VEHICLE_CRUSHSOUND))
+		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_VEHICLE_CRUSHSOUND))
 			visible_message(span_danger("[src] is stopped by [A]!"))
 			playsound(A, 'sound/effects/metal_crash.ogg', 45)
 			TIMER_COOLDOWN_START(src, COOLDOWN_VEHICLE_CRUSHSOUND, 1 SECONDS)
@@ -670,7 +670,7 @@
 		new_weapon_dir = angle_to_cardinal_dir(Get_Angle(get_turf(src), get_turf(A)))
 	if(turret_overlay.dir == new_weapon_dir)
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam
 		return FALSE
 	playsound(src, 'sound/vehicles/tankswivel.ogg', 80, TRUE)
 	play_interior_sound(null, 'sound/vehicles/turret_swivel_interior.ogg', 60, TRUE)
@@ -809,10 +809,10 @@
 	desc = "ow."
 	icon = 'icons/obj/armored/3x3/tank_damage.dmi' //set by owner
 	icon_state = "null" // set on demand
-	vis_flags = VIS_INHERIT_DIR
+	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_LAYER|VIS_INHERIT_ID|VIS_INHERIT_PLANE
 
 /atom/movable/vis_obj/tank_gun
 	name = "Tank weapon"
-	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_LAYER|VIS_INHERIT_ID
+	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_LAYER|VIS_INHERIT_ID|VIS_INHERIT_PLANE
 	pixel_x = -70
 	pixel_y = -69

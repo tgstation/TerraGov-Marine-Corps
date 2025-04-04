@@ -280,7 +280,7 @@
 		return FALSE
 	if(!pointed_atom.mouse_opacity)
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_POINT))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_POINT))
 		return FALSE
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)

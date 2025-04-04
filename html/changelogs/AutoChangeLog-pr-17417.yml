@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Dragon's Grab no longer permanently immobilizes marines that were failed to be grabbed."
-  - admin: "Player Panel now has Dragon as one of the Transformations."

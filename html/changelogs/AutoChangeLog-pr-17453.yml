@@ -1,5 +1,0 @@
-author: "Apple-107"
-delete-after: True
-changes:
-  - rscadd: "Tank Loaders now shout the ammo type when loaded (\"HE, Up!\")"
-  - rscadd: "Tank Gunners now shout when they are firing LTB (\"On the way!\")"
