@@ -14822,6 +14822,7 @@
 /obj/machinery/power/geothermal/tbg{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/plate,
 /area/daedalusprison/inside/substation)
 "meZ" = (
