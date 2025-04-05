@@ -509,7 +509,7 @@
 		return
 	update_movespeed()
 
-//updates movespeed after integrity changes
+///updates movespeed after integrity changes
 /datum/mech_limb/legs/proc/update_movespeed()
 	owner.move_delay -= slowdown_delay
 	slowdown_delay = (owner.move_delay) * (1-(part_health / initial(part_health)))

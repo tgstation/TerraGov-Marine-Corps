@@ -311,11 +311,11 @@
 				dash_sparks_right.particles.velocity = list(0, 12)
 				dash_sparks_right.particles.gravity = list(0, 0)
 		addtimer(CALLBACK(src, PROC_REF(remove_sparks)), 0.4 SECONDS)
-	var/turf/target_turf = get_step(src, direction)
-	for(var/i in 1 to dash_range)
-		target_turf = get_step(target_turf, direction)
-	throw_at(target_turf, dash_range, 1, src, FALSE, TRUE, TRUE)
 	playsound(get_turf(src), 'sound/mecha/weapons/laser_sword.ogg', 70)
+	ASYNC
+		for(var/i=1 to dash_range)
+			step(src, direction)
+			sleep(1)
 
 /// Turns off dash sparks particles.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/remove_sparks()
