@@ -44,10 +44,6 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	. = ..()
 	analyze_vitals(patient_candidate, user, TRUE)
 
-/obj/item/healthanalyzer/Destroy()
-	patient = null
-	return ..()
-
 /**
  * If `user` is too unskilled, not on the same tile as src, `user` is out of tracking range,
  * or it's a self scan, we return `FALSE`.

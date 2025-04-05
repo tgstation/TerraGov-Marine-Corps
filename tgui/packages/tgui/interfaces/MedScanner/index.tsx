@@ -102,7 +102,7 @@ function PatientBasics() {
   } = data;
   return (
     <Section
-      title={`${species.is_robotic_species ? 'Robot:' : 'Patient:'} ${patient}`}
+      title={`${species.name}: ${patient}`}
       buttons={
         <Button
           icon="info"
@@ -110,23 +110,19 @@ function PatientBasics() {
           color="transparent"
           mt={
             /* with the "hackerman" theme, the buttons have this ugly outline that messes with the section titlebar, let's fix that */
-            accessible_theme
-              ? species.is_robotic_species
-                ? '-5px'
-                : '0px'
-              : '0px'
+            accessible_theme && species.is_robotic_species ? '-5px' : '0px'
           }
         >
           Information
         </Button>
       }
     >
-      {hugged ? (
+      {!!hugged && (
         <NoticeBox danger>
           Patient has been implanted with an alien embryo!
         </NoticeBox>
-      ) : null}
-      {ssd ? <NoticeBox warning>{ssd}</NoticeBox> : null}
+      )}
+      {!!ssd && <NoticeBox warning>{ssd}</NoticeBox>}
       <LabeledList>
         <LabeledList.Item
           label="Health"
@@ -152,8 +148,6 @@ function PatientBasics() {
               }}
             />
           ) : (
-            // something fancy: health bar, in crit, will not be empty
-            // instead being filled based on their crit health left
             <ProgressBar value={1 + health / max_health} color="bad">
               {Math.trunc((health / max_health) * 100)}%
             </ProgressBar>
