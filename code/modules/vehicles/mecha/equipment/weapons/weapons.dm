@@ -80,7 +80,8 @@
 		return
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
-		playsound(chassis.loc, windup_sound, 30, TRUE)
+		if(windup_sound)
+			playsound(chassis.loc, windup_sound, 30, TRUE)
 		if(!do_after(source, windup_delay, NONE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			return
@@ -91,9 +92,7 @@
 	current_firer = source
 	if(fire_mode == GUN_FIREMODE_SEMIAUTO)
 		. = ..()
-		var/fire_return // todo fix: code expecting return values from async
-		ASYNC
-			fire_return = fire()
+		var/fire_return = fire()
 		if(!fire_return || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
 		reset_fire()
@@ -109,6 +108,17 @@
 	RegisterSignal(source, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	SEND_SIGNAL(src, COMSIG_MECH_FIRE)
 	source?.client?.mouse_pointer_icon = 'icons/UI_Icons/gun_crosshairs/rifle.dmi'
+
+/obj/item/mecha_parts/mecha_equipment/weapon/do_after_checks(atom/target)
+	if(!chassis)
+		return FALSE
+	var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.dir))
+	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
+		if(chassis.mecha_flags & MECHA_SPIN_WHEN_NO_ANGLE)
+			chassis.face_atom(current_target)
+		else
+			return FALSE
+	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/set_bursting(bursting)
 	if(bursting)
@@ -181,8 +191,11 @@
 
 ///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/fire()
+	SHOULD_NOT_SLEEP(TRUE) // we need to reset fire after this, so lets like, not let people rapidfire
 	if(!action_checks(current_target, TRUE))
 		return NONE
+	if(windup_checked == WEAPON_WINDUP_CHECKING)
+		return
 	var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.dir))
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
 		if(chassis.mecha_flags & MECHA_SPIN_WHEN_NO_ANGLE)
@@ -357,7 +370,8 @@
 	if(projectiles > 0)
 		return
 	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
-	attempt_rearm(current_firer)
+	ASYNC
+		attempt_rearm(current_firer)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
 	name = "\improper FNX-99 \"Hades\" Carbine"
