@@ -1,4 +1,0 @@
-author: "Apple-107"
-delete-after: True
-changes:
-  - balance: "LTB Canister now ricochets off walls (2 times), has reduced scatter (Was 6, now 4), and increased range (Was 7, now 12)"

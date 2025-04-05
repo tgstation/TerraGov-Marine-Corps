@@ -58,3 +58,11 @@
   - bugfix: fixed dragon backhand doing nothing to mech
   blackdav123:
   - balance: Crash will always have at least two xenos, instead of one.
+2025-04-05:
+  Apple-107:
+  - balance: LTB Canister now ricochets off walls (2 times), has reduced scatter (Was
+      6, now 4), and increased range (Was 7, now 12)
+  Atropos:
+  - balance: Marine respawn time on crash is now 15 minutes
+  TiviPlus:
+  - bugfix: Fixed vent and c4 layering
