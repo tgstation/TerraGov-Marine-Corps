@@ -31,7 +31,7 @@
 	upgrade_threshold = TIER_ONE_THRESHOLD
 
 	// *** Flags *** //
-	caste_flags = CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_SPECIAL_ZIMPACT
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_RIDE_CRUSHER|CASTE_CAN_HOLD_JELLY
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
@@ -85,7 +85,7 @@
 
 	// Gain acid blood for less speed (0.2).
 	speed = -1.2
-	caste_flags = CASTE_ACID_BLOOD|CASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_ACID_BLOOD|CASTE_EVOLUTION_ALLOWED|CASTE_SPECIAL_ZIMPACT
 
 	// +50 health
 	max_health = 350
