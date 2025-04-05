@@ -189,6 +189,8 @@
 /obj/item/armored_weapon/proc/fire()
 	if(!current_target)
 		return
+	if(windup_checked == WEAPON_WINDUP_CHECKING)
+		return
 	var/turf/source_turf = chassis.primary_weapon == src ? chassis.hitbox.get_projectile_loc(src) : get_turf(src)
 	if(armored_weapon_flags & MODULE_FIXED_FIRE_ARC)
 		var/dir_target_diff = get_between_angles(Get_Angle(source_turf, current_target), dir2angle(chassis.turret_overlay.dir))
