@@ -495,6 +495,8 @@ SUBSYSTEM_DEF(minimaps)
 
 /atom/movable/screen/minimap_extras/minimap_z_up/Click(location,control,params)
 	flick("uppressed",src)
+	if(!minimap_action.map)
+		return
 	var/currentz = minimap_action.map.tracked_z
 	var/list/linked_zs = SSmapping.get_connected_levels(currentz)
 	if(!length(linked_zs))
@@ -515,6 +517,8 @@ SUBSYSTEM_DEF(minimaps)
 
 /atom/movable/screen/minimap_extras/minimap_z_down/Click(location,control,params)
 	flick("downpressed",src)
+	if(!minimap_action.map)
+		return
 	var/currentz = minimap_action.map.tracked_z
 	var/list/linked_zs = SSmapping.get_connected_levels(currentz)
 	if(!length(linked_zs))
@@ -709,13 +713,13 @@ SUBSYSTEM_DEF(minimaps)
 	var/atom/movable/tracking = locator_override ? locator_override : owner
 	if(minimap_displayed)
 		owner.client?.screen -= map
-	var/old_map_z = map.tracked_z
+	var/old_map_z = map?.tracked_z
 	map = null
 
 	var/new_z_shown = default_overwatch_level ? default_overwatch_level : newz
 	if(minimap_displayed)
 		var/new_z_is_multiz = length(SSmapping.get_connected_levels(new_z_shown)) > 1
-		var/old_z_is_multiz = length(SSmapping.get_connected_levels(old_map_z)) > 1
+		var/old_z_is_multiz = old_map_z ? length(SSmapping.get_connected_levels(old_map_z)) > 1 : FALSE
 		if(old_z_is_multiz != new_z_is_multiz)
 			if(new_z_is_multiz)
 				owner.client.screen += z_indicator
