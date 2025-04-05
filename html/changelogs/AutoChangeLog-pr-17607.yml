@@ -1,0 +1,9 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - qol: "Mech builder colors are scrollable now"
+  - bugfix: "Mech builder UI looks less scrunched oup on 516"
+  - qol: "Mech builder weapon extra detail is smaller and better formatted now"
+  - qol: "Mech builder UI is less tall"
+  - qol: "Mech Builder UI now shows you more explicitly the Hand and Back weapons with an icon"
+  - qol: "Mech builder UI scales better when being dragged around"
