@@ -81,7 +81,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		return
 	patient = patient_candidate
 	if(show_patient)
-		if(!COOLDOWN_CHECK(src, show_scan_cooldown))
+		if(!COOLDOWN_FINISHED(src, show_scan_cooldown))
 			balloon_alert(user, "wait [DisplayTimeText(COOLDOWN_TIMELEFT(src, show_scan_cooldown))]")
 			return
 		if(patient_candidate.faction != user.faction)
