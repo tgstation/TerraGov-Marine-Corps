@@ -127,7 +127,7 @@
 	if(stat == DEAD)
 		return ..()
 	if(!silent && !gibbing && !del_on_death && !deathmessage && src.deathmessage)
-		emote("deathgasp")
+		emote("fuckingdies")
 		silent = TRUE //No need to for the parent to deathmessage again.
 	return ..()
 
