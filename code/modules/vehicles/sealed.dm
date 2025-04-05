@@ -36,6 +36,10 @@
 		for(var/occupant in occupants)
 			conditionalwall.bumpopen(occupant)
 
+/obj/vehicle/sealed/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+	impact_flags |= ZIMPACT_NO_SPIN
+	return ..()
+
 /obj/vehicle/sealed/after_add_occupant(mob/M)
 	. = ..()
 	ADD_TRAIT(M, TRAIT_HANDS_BLOCKED, VEHICLE_TRAIT)
