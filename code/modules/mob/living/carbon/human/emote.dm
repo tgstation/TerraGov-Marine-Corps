@@ -557,7 +557,7 @@
 /datum/emote/living/carbon/human/burstscream/get_sound(mob/living/carbon/human/user)
 	if(!user.species)
 		return
-	if(!user.client.prefs.burst_screams_enabled)
+	if(user.client?.prefs?.burst_screams_enabled == FALSE)
 		return
 	if(user.species.burstscreams[user.gender])
 		return user.species.burstscreams[user.gender]

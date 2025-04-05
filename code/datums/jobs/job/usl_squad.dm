@@ -7,8 +7,7 @@
 
 /datum/job/usl_squad/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You're a part of an old PMC group which calls themselves the 'Vyacheslav Security Detail'. Your tasking is to follow SoM command, no excuse. Some circumstances may
-	change this. Good luck."})
+	to_chat(M, {"You're a part of an old PMC group which calls themselves the 'Vyacheslav Security Detail'. Your tasking is to follow SoM command, no excuse. Some circumstances may change this. Good luck."})
 
 //USL Standard
 /datum/job/usl_squad/standard

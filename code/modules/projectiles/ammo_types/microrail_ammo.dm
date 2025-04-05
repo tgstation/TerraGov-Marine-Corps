@@ -27,21 +27,21 @@
 
 //piercing scatter shot
 /datum/ammo/bullet/micro_rail/airburst
-	name = "micro grenade"
+	name = "airburst micro grenade"
 	handful_icon_state = "micro_grenade_airburst"
 	hud_state = "grenade_airburst"
 	bonus_projectiles_type = /datum/ammo/bullet/micro_rail_spread
 
 //incendiary piercing scatter shot
 /datum/ammo/bullet/micro_rail/dragonbreath
-	name = "micro grenade"
+	name = "dragon's breath micro grenade"
 	handful_icon_state = "micro_grenade_incendiary"
 	hud_state = "grenade_fire"
 	bonus_projectiles_type = /datum/ammo/bullet/micro_rail_spread/incendiary
 
 //cluster grenade. Bomblets explode in a rough cone pattern
 /datum/ammo/bullet/micro_rail/cluster
-	name = "micro grenade"
+	name = "clustermunition micro grenade"
 	handful_icon_state = "micro_grenade_cluster"
 	hud_state = "grenade_he"
 	bonus_projectiles_type = /datum/ammo/micro_rail_cluster
@@ -49,7 +49,7 @@
 
 //creates a literal smokescreen
 /datum/ammo/bullet/micro_rail/smoke_burst
-	name = "micro grenade"
+	name = "smoke burst micro grenade"
 	handful_icon_state = "micro_grenade_smoke"
 	hud_state = "grenade_smoke"
 	bonus_projectiles_type = /datum/ammo/smoke_burst

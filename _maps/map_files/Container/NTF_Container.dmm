@@ -2060,7 +2060,7 @@
 "nQt" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{dir = 4},/obj/effect/turf_decal/warning_stripes/thin{dir = 4},/turf/open/floor/mainship/floor,/area/mainship/squads/req)
 "nQK" = (/turf/open/floor/mainship/orange{dir = 1},/area/mainship/living/starboard_emb)
 "nQM" = (/turf/open/floor/mainship/mono,/area/mainship/living/starboard_emb)
-"nRA" = (/obj/structure/table/mainship/nometal,/obj/machinery/faxmachine,/turf/open/floor/mainship/floor,/area/mainship/command/corporateliaison)
+"nRA" = (/obj/structure/table/mainship/nometal,/obj/machinery/faxmachine/liasion,/turf/open/floor/mainship/floor,/area/mainship/command/corporateliaison)
 "nSb" = (/obj/structure/window/reinforced/toughened{dir = 1},/obj/machinery/computer/shuttle/shuttle_control/dropship/two,/obj/structure/window/reinforced/toughened{dir = 4},/obj/structure/table/black,/turf/open/floor/mainship/floor,/area/mainship/command/cic)
 "nSp" = (/obj/structure/flora/pottedplant/twentyone,/turf/open/floor/mainship/red,/area/mainship/shipboard/chief_mp_office)
 "nSM" = (/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,/obj/effect/urban/decal/dirt,/turf/open/floor/mainship/black{dir = 4},/area/mainship/living/cafeteria_starboard)

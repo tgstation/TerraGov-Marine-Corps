@@ -70,7 +70,7 @@
 
 	if(affected_mob.stat == DEAD) //Runs after the first proc, which should entirely null the need for the check in initiate_burst, but to be safe...
 		for(var/mob/living/carbon/xenomorph/larva/L in affected_mob.contents)
-			L?.initiate_burst(affected_mob)
+			L?.initiate_burst(affected_mob, src)
 			if(!L)
 				return PROCESS_KILL
 
@@ -134,7 +134,7 @@
 			larva_autoburst_countdown--
 			if(!larva_autoburst_countdown)
 				for(var/mob/living/carbon/xenomorph/larva/L in affected_mob.contents)
-					L?.initiate_burst(affected_mob)
+					L?.initiate_burst(affected_mob, src)
 					if(!L)
 						break
 
@@ -171,26 +171,23 @@
 
 	stage = 6
 
-
-/mob/living/carbon/xenomorph/larva/proc/initiate_burst(mob/living/victim)
+/mob/living/carbon/xenomorph/larva/proc/initiate_burst(mob/living/victim, obj/item/alien_embryo/embryo)
 	if(loc != victim)
 		return
 
 	to_chat(src, span_danger("We start slithering out of [victim]!"))
-	var/obj/item/alien_embryo/birth_owner = locate() in victim
-	if(birth_owner.emerge_target == 1)
+	if(!embryo || embryo.emerge_target == 1)
 		playsound(victim, 'modular_skyrat/sound/weapons/gagging.ogg', 15, TRUE)
 	else
-		if(victim.client.prefs.burst_screams_enabled)
-			victim.emote_burstscream()
+		victim.emote_burstscream()
 	victim.Paralyze(15 SECONDS)
 	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
-								"<span class='danger'>You feel something wiggling in your [birth_owner.emerge_target_flavor]!</span>")
+								"<span class='danger'>You feel something wiggling in your [embryo?.emerge_target_flavor]!</span>")
 	victim.jitter(150)
 
-	addtimer(CALLBACK(src, PROC_REF(burst), victim), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(burst), victim, embryo), 3 SECONDS)
 
-/mob/living/carbon/xenomorph/larva/proc/burst(mob/living/victim)
+/mob/living/carbon/xenomorph/larva/proc/burst(mob/living/victim, obj/item/alien_embryo/embryo)
 	if(QDELETED(victim))
 		return
 
@@ -199,14 +196,13 @@
 		forceMove(veh.exit_location(src))
 	else
 		forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
-	var/obj/item/alien_embryo/AE = locate() in victim
 	playsound(src, pick('sound/voice/alien/chestburst.ogg','sound/voice/alien/chestburst2.ogg'), 10)
-	victim.visible_message("<span class='danger'>The Larva forces its way out of [victim]'s [AE.emerge_target_flavor]!</span>")
+	victim.visible_message("<span class='danger'>The Larva forces its way out of [victim]'s [embryo?.emerge_target_flavor]!</span>")
 	GLOB.round_statistics.total_larva_burst++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_larva_burst")
 
-	if(AE)
-		qdel(AE)
+	if(!QDELETED(embryo))
+		qdel(embryo)
 
 	var/obj/item/alien_embryo/remainingembryo = locate() in victim
 	if(!remainingembryo)

@@ -1,8 +1,9 @@
-/mob/living/brain/death(gibbing, deathmessage = "beeps shrilly as the MMI flatlines!", silent)
+/mob/living/brain/death(gibbing, deathmessage = "", silent)
 	if(stat == DEAD)
 		return ..()
 	if(!gibbing && istype(container, /obj/item/mmi)) //If not gibbing but in a container.
 		container.icon_state = "mmi_dead"
+		deathmessage = "beeps shrilly as the MMI flatlines!"
 	return ..()
 
 

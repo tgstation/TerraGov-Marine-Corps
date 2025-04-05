@@ -74,6 +74,8 @@
 
 	if(input_hivenumber)
 		hivenumber = input_hivenumber
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	name = "[hive.prefix][name]"
 
 	if(input_source)
 		facehugger_register_source(input_source)
@@ -360,7 +362,7 @@
 		go_idle()
 
 /obj/item/clothing/mask/facehugger/on_found(mob/finder)
-	if(isliving(finder) && finder.faction != FACTION_CLF && stat == CONSCIOUS)
+	if(isliving(finder) && !issamexenohive(finder) && stat == CONSCIOUS)
 		finder.visible_message(span_danger("\A [src] leaps out of \the [loc]!") )
 		forceMove(get_turf(src))
 		reset_life_timer()
@@ -448,9 +450,6 @@
 
 /mob/living/carbon/human/can_be_facehugged(obj/item/clothing/mask/facehugger/F, check_death = TRUE, check_mask = TRUE, provoked = FALSE)
 	if(check_death && stat == DEAD)
-		return FALSE
-
-	if(faction == FACTION_XENO)
 		return FALSE
 
 	if(!provoked && F.issamexenohive(src)) //Check for our hive
@@ -652,7 +651,7 @@
 /obj/item/clothing/mask/facehugger/proc/try_impregnate(mob/living/carbon/human/target)
 	ADD_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
 	var/as_planned = target?.wear_mask == src  || target?.wear_suit == src
-	if((target.can_be_facehugged(src, FALSE, FALSE) || target.faction == FACTION_CLF) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
+	if((target.can_be_facehugged(src, FALSE, FALSE, TRUE)) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
 		var/obj/item/alien_embryo/embryo = new(target)
 		embryo.hivenumber = hivenumber
 		embryo.emerge_target = targethole

@@ -139,6 +139,19 @@
 			span_xenonotice("We clear the hatched egg."))
 			playsound(loc, SFX_ALIEN_RESIN_BREAK, 25)
 			qdel(src)
+			
+/obj/alien/egg/hugger/attack_hand(mob/living/user)
+	if(!issamexenohive(user))
+		return ..()
+	switch(maturity_stage)
+		if(1)
+			to_chat(user, span_xenowarning("The child is not developed yet."))
+			return
+		if(2)
+			to_chat(user, span_xenonotice("We retrieve the child."))
+			burst()
+			return
+	return ..()
 
 /obj/alien/egg/hugger/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/clothing/mask/facehugger))
@@ -215,4 +228,9 @@
 		return
 
 	to_chat(xeno_attacker, span_warning("That egg is filled with gas and has no child to retrieve."))
+
+/obj/alien/egg/gas/attack_hand(mob/living/user)
+	if(!issamexenohive(user) || (maturity_stage > stage_ready_to_burst))
+		return ..()
+	to_chat(user, span_warning("That egg is filled with gas and has no child to retrieve."))
 

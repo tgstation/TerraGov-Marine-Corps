@@ -164,7 +164,7 @@
 		"Heavy Weapons" = list(
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
-			/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope = 4,
+			/obj/item/storage/box/crate/volkite/cope = 4,
 			/obj/item/cell/lasgun/volkite/turret = 4,
 			/obj/item/storage/box/hsg_102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
@@ -248,6 +248,7 @@
 
 /obj/machinery/vending/cargo_supply/som
 	name = "\improper SOM Operational Supplies Vendor"
+	faction = FACTION_SOM
 	desc = "A large vendor for dispensing specialty and bulk supplies. Restricted to cargo personnel only."
 	icon_state = "requisitionop"
 	icon_vend = "requisitionop-vend"
@@ -345,7 +346,8 @@
 	)
 
 /obj/machinery/vending/som/lasgun
-	name = "\improper Potable SOM Charging Station"
+	name = "\improper Portable SOM Charging Station"
+	faction = FACTION_SOM
 	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
@@ -390,6 +392,7 @@
 
 /obj/machinery/vending/SyndiMed
 	name = "\improper Syndicate Medicament Deployer"
+	faction = FACTION_SOM
 	desc = "Medical drug dispenser, made for medical purposes."
 	icon_state = "marinemed"
 	icon_vend = "marinemed-vend"
@@ -489,10 +492,11 @@
 	)
 /obj/machinery/vending/som/armor_supply
 	name = "\improper High Quality Mining Equipment"
+	faction = FACTION_SOM
 	desc = "An automated equipment rack hooked up to a colossal storage of armor and accessories. Nanotrasen designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_armor"
-	icon_vend = "surplus-vend"
-	icon_deny = "surplus_armor-deny"
+	icon_vend = "surplus_armor_vend"
+	icon_deny = "surplus_armor_deny"
 	isshared = TRUE
 	product_ads = "You are out of uniform, marine! Where is your armor? Don't have any? You expect me to believe that, maggot?;Why wear heavy armor and unable to chase the enemy when you can go light and zoom by your peers?;Thank your armor later when you didn't die!;I remember PAS, do you remember PAS?;Time to paint the rainbow!;So many selections to choose from!"
 	products = list(
@@ -531,9 +535,9 @@
 			/obj/item/clothing/suit/storage/marine/som = -1,
 		),
 		"Armor modules" = list(
-			/obj/item/armor_module/storage/general = -1,
-			/obj/item/armor_module/storage/engineering = -1,
-			/obj/item/armor_module/storage/medical = -1,
+			/obj/item/armor_module/storage/general/som = -1,
+			/obj/item/armor_module/storage/engineering/som = -1,
+			/obj/item/armor_module/storage/medical/som = -1,
 			/obj/item/armor_module/storage/injector = -1,
 			/obj/item/armor_module/storage/grenade = -1,
 			/obj/item/armor_module/module/binoculars = -1,
@@ -554,10 +558,11 @@
 
 /obj/machinery/vending/som/uniform_supply
 	name = "\improper SOMdrobe"
+	faction = FACTION_SOM
 	desc = "An automated equipment rack hooked up to a colossal storage of clothing and accessories. Nanotrasen designed a new vendor that utilizes bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."
 	icon_state = "surplus_clothes"
-	icon_vend = "surplus-vend"
-	icon_deny = "surplus_clothes-deny"
+	icon_vend = "surplus_clothes_vend"
+	icon_deny = "surplus_clothes_deny"
 	isshared = TRUE
 	products = list(
 		"Standard" = list(

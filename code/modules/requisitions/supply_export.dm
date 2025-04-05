@@ -13,6 +13,9 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/supply_export(faction_selling)
+	var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
+	if(faction_selling in hive.allied_factions)
+		return list(new /datum/export_report(0, name, faction_selling))
 	. = ..()
 	if(!.)
 		return FALSE

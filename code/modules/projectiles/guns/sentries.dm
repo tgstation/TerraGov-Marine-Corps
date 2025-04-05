@@ -168,6 +168,24 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
 
+/obj/item/storage/box/crate/volkite/cope
+	name = "\improper COPE sentry crate"
+	desc = "A large case containing all you need to set up a COPE sentry."
+	icon_state = "sentry_mini_case"
+	w_class = WEIGHT_CLASS_HUGE
+
+/obj/item/storage/box/crate/volkite/cope/Initialize(mapload, ...)
+	. = ..()
+	storage_datum.storage_slots = 6
+	storage_datum.set_holdable(can_hold_list = list(
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope,
+		/obj/item/cell/lasgun/volkite/turret,
+	))
+
+/obj/item/storage/box/crate/volkite/cope/PopulateContents()
+	new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope(src)
+	new /obj/item/cell/lasgun/volkite/turret(src)
+
 /obj/item/weapon/gun/sentry/big_sentry/premade
 	sentry_iff_signal = TGMC_LOYALIST_IFF
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP

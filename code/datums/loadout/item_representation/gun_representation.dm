@@ -14,6 +14,16 @@
 		CRASH("/datum/item_representation/gun created from an item that is not a gun")
 	..()
 	var/obj/item/weapon/gun/gun_to_copy = item_to_copy
+	/*
+	// bit of a jank solution but it works
+	// this essentially checks if the gun is a subtype that exists only to have predefined attachments
+	// as a base gun can have starting_attachment_types (think stocks)
+	// comparing the name should be generally a safe solution to prevent cases like getting /obj/item/weapon/gun/rifle from /obj/item/weapon/gun/rifle/standard_carbine
+	*/
+	var/obj/item/weapon/gun/parent = new gun_to_copy.parent_type
+	if(gun_to_copy.starting_attachment_types && gun_to_copy.name == parent.name)
+		item_type = gun_to_copy.parent_type
+	qdel(parent)
 	for(var/key in gun_to_copy.attachments_by_slot)
 		if(!gun_to_copy.attachments_by_slot[key])
 			continue
@@ -93,7 +103,7 @@
 	max_rounds = handful_to_copy.max_rounds
 
 /datum/item_representation/handful_representation/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
-	if(!is_handful_buyable(ammo))
+	if(!is_handful_buyable(ammo, seller, user))
 		return
 	var/obj/item/ammo_magazine/handful/handful = new item_type(master)
 	handful.generate_handful(ammo, caliber, max_rounds, max_rounds)

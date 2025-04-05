@@ -32,6 +32,7 @@
 		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/specialist = 4,
+		/datum/job/terragov/squad/smartgunner = 4,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/terragov/squad/slut = -1,
 		/datum/job/worker/moraleofficer = -1,
