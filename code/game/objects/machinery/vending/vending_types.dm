@@ -356,7 +356,6 @@
 	)
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
-
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)
 	. = ..()
 	switch(dir)
@@ -407,6 +406,135 @@
 			/obj/item/stack/medical/splint = 1,
 		),
 	)
+
+
+
+/obj/machinery/vending/nanoammo
+	name = "\improper NanoAmmo"
+	desc = "Wall-mounted Ammunition dispenser."
+	product_ads = "Wawawawa, that's what you literally fuckin' sound like. Wawawawa!"
+	icon_state = "wallmed"
+	icon_deny = "wallmed-deny"
+	icon_vend = "wallmed-vend"
+	density = FALSE
+	wrenchable = FALSE
+	products = list(
+		"Rifles" = list(
+			/obj/item/ammo_magazine/rifle/standard_assaultrifle = 6,
+			/obj/item/ammo_magazine/rifle/standard_carbine = 6,
+			/obj/item/ammo_magazine/rifle/standard_skirmishrifle = 6,
+			/obj/item/ammo_magazine/rifle/tx11 = 6,
+			/obj/item/ammo_magazine/packet/p4570 = 6,
+		),
+		"Energy Weapons" = list(
+			/obj/item/cell/lasgun/lasrifle = 6,
+			/obj/item/cell/lasgun/volkite/powerpack/marine = 2,
+			/obj/item/cell/lasgun/volkite/powerpack/marine/backpack = 1,
+		),
+		"SMGs" = list(
+			/obj/item/ammo_magazine/smg/standard_smg = 8,
+			/obj/item/ammo_magazine/smg/standard_machinepistol = 8,
+			/obj/item/ammo_magazine/smg/standard_heavysmg = 8,
+			/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead = 8,
+		),
+		"Marksman" = list(
+			/obj/item/ammo_magazine/rifle/standard_dmr = 6,
+			/obj/item/ammo_magazine/rifle/standard_br = 6,
+			/obj/item/ammo_magazine/rifle/chamberedrifle = 6,
+			/obj/item/ammo_magazine/rifle/boltclip = 6,
+			/obj/item/ammo_magazine/rifle/bolt = 6,
+			/obj/item/ammo_magazine/rifle/martini = 6,
+		),
+		"Shotgun" = list(
+			/obj/item/ammo_magazine/shotgun = 2,
+			/obj/item/ammo_magazine/shotgun/buckshot = 2,
+			/obj/item/ammo_magazine/shotgun/flechette = 2,
+			/obj/item/ammo_magazine/shotgun/tracker = 2,
+			/obj/item/ammo_magazine/rifle/tx15_flechette = 6,
+			/obj/item/ammo_magazine/rifle/tx15_slug = 6,
+		),
+		"Machinegun" = list(
+			/obj/item/ammo_magazine/standard_lmg = 6,
+			/obj/item/ammo_magazine/standard_gpmg = 6,
+			/obj/item/ammo_magazine/standard_mmg = 6,
+		),
+		"Sidearm" = list(
+			/obj/item/ammo_magazine/pistol/standard_pistol = 8,
+			/obj/item/ammo_magazine/pistol/standard_heavypistol = 8,
+			/obj/item/ammo_magazine/revolver/standard_revolver = 8,
+			/obj/item/ammo_magazine/pistol/standard_pocketpistol = 8,
+			/obj/item/ammo_magazine/pistol/vp70 = 8,
+			/obj/item/ammo_magazine/pistol/plasma_pistol = 8,
+		),
+	)
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
+/obj/machinery/vending/nanoammo/Initialize(mapload, ...)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_y = -14
+		if(SOUTH)
+			pixel_y = 26
+		if(EAST)
+			pixel_x = -19
+		if(WEST)
+			pixel_x = 21
+
+/obj/machinery/vending/nanoammo/stock(obj/item/item_to_stock, mob/user, show_feedback = TRUE)
+	for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)	// Loop through vendor records to find a match
+		if(item_to_stock.type == checked_record.product_path)	// Found a match
+			if(checked_record.tab == "SMGs" || checked_record.tab == "Sidearm")
+				if(checked_record.amount >= 80)	// SMGs/sidearms capacity at 80, twice the size of their magbox capacity
+					user?.balloon_alert(user, "There's no more room for the [item_to_stock]!")
+					return FALSE
+			else if(checked_record.tab == "Shotgun" && \
+			!(checked_record.product_path == /obj/item/ammo_magazine/rifle/tx15_flechette || \
+			checked_record.product_path == /obj/item/ammo_magazine/rifle/tx15_slug))
+				if(checked_record.amount >= 16)	// 12 Gauge shells to 16 boxes because that's 400 shells, twice the shotgun ammo box capacity
+					user?.balloon_alert(user, "There's no more room for the [item_to_stock]")
+					return FALSE
+			else
+				if(checked_record.amount >= 60)	// Everything else at 60, twice the capacity of their magbox capacity
+					user?.balloon_alert(user, "There's no more room for the [item_to_stock]!")
+					return FALSE
+	return ..()
+
+/obj/machinery/vending/nanoammo/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/storage/box/visual/magazine/compact))	// If the item is a mag box
+		var/storage_capacity = I.storage_datum.storage_slots
+		if(length(I.contents) == storage_capacity) // If the mag box is full
+			for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)	// Loop through vendor records to find a match
+				if(I.contents[1].type == checked_record.product_path)	// Found a match
+					if(checked_record.amount <= storage_capacity)	// If record is below half capacity
+						checked_record.amount += storage_capacity
+					else	// If record amount is above half capacity
+						checked_record.amount = 2 * storage_capacity
+					user?.balloon_alert(user, "The NanoAmmo eats the [I]...");
+					qdel(I)
+					return
+		else
+			user?.balloon_alert(user, "[I] isn't full!");
+			return
+	else if(istype(I, /obj/item/shotgunbox))
+		if(I.type == /obj/item/shotgunbox/blank || I.type == /obj/item/shotgunbox/clf_heavyrifle)
+			return ..()
+		var/obj/item/shotgunbox/B = I
+		if(B.current_rounds == B.max_rounds) // If shotgun box is full
+			for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)
+				var/obj/item/ammo_magazine/M = checked_record.product_path
+				if(B.ammo_type == M.default_ammo)
+					if(checked_record.amount <= 8)	// If record is below half capacity
+						checked_record.amount += 8
+					else	// If record amount is above half capacity
+						checked_record.amount = 16
+					user?.balloon_alert(user, "The NanoAmmo eats the [B]...");
+					qdel(B)
+					return
+		else
+			user?.balloon_alert(user, "[B] isn't full!");
+			return
+	return ..()
 
 /obj/machinery/vending/security
 	name = "\improper SecTech"
