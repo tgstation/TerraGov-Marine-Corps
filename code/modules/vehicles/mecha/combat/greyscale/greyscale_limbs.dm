@@ -137,18 +137,20 @@
 /datum/mech_limb/proc/intercept_damage(datum/source, damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	SIGNAL_HANDLER
 	if(!(blame_mob?.zone_selected in def_zones))
-		return
-	take_damage(damage_amount)
-	return COMPONENT_NO_TAKE_DAMAGE
+		return NONE
+	if(take_damage(damage_amount))
+		return COMPONENT_NO_TAKE_DAMAGE
+	return NONE
 
 ///handles actually dealing damage to the mech
 /datum/mech_limb/proc/take_damage(damage_amount)
 	if(part_health <= 0)
-		return
+		return FALSE
 	part_health = max(0, part_health-damage_amount)
 	owner.update_appearance(UPDATE_OVERLAYS)
 	if(part_health <= 0)
 		disable()
+	return TRUE
 
 ///intercepts repair intended for the mech and applies it to this limb when needed
 /datum/mech_limb/proc/intercept_repair(datum/source, repair_amount, mob/user)
@@ -173,7 +175,7 @@
 		return FALSE
 	disabled = TRUE
 	owner.update_appearance(UPDATE_OVERLAYS)
-	playsound(owner, 'sound/mecha/internaldmgalarm.ogg', 80, TRUE, falloff = 5)
+	playsound(owner, 'sound/mecha/internaldmgalarm.ogg', 80, TRUE, falloff = 10)
 	return TRUE
 
 ///makes this limb un-"destroyed"

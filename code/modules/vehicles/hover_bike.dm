@@ -64,7 +64,7 @@
 	if(!LAZYLEN(buckled_mobs))
 		return
 
-	if(COOLDOWN_CHECK(src, enginesound_cooldown))
+	if(COOLDOWN_FINISHED(src, enginesound_cooldown))
 		COOLDOWN_START(src, enginesound_cooldown, 1.1 SECONDS)
 		playsound(get_turf(src), SFX_HOVER_TANK, 60, FALSE, 20)
 

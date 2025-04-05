@@ -87,7 +87,7 @@
 	return ..()
 
 /datum/action/ability/xeno_action/watch_xeno/hivemind/can_use_action(silent = FALSE, override_flags)
-	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HIVEMIND_MANIFESTATION))
+	if(TIMER_COOLDOWN_RUNNING(owner, COOLDOWN_HIVEMIND_MANIFESTATION))
 		return FALSE
 	return ..()
 
@@ -161,7 +161,7 @@
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "pick an artillery first!")
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(selected_artillery, COOLDOWN_MAW_GLOB))
+	if(TIMER_COOLDOWN_RUNNING(selected_artillery, COOLDOWN_MAW_GLOB))
 		if(!silent)
 			var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(selected_artillery, COOLDOWN_MAW_GLOB)
 			xeno_owner.balloon_alert(xeno_owner, "cooldown: [timeleft/10] seconds")

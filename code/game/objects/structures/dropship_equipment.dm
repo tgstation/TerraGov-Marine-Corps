@@ -325,7 +325,7 @@
 
 
 /obj/structure/dropship_equipment/shuttle/nade_launcher/equipment_interact(mob/user)
-	if(!COOLDOWN_CHECK(src, deploy_cooldown)) //prevents spamming deployment
+	if(!COOLDOWN_FINISHED(src, deploy_cooldown)) //prevents spamming deployment
 		user.balloon_alert(user, "Busy")
 		return
 	if(length(loaded_grenades) <= 0) //check for inserted flares
@@ -429,7 +429,7 @@
 /obj/structure/dropship_equipment/shuttle/tangle_emitter/update_icon_state()
 	. = ..()
 	if(ship_base)
-		if(COOLDOWN_CHECK(src, use_cooldown))
+		if(COOLDOWN_FINISHED(src, use_cooldown))
 			icon_state = "tfoot_system_installed"
 			if(enabled)
 				icon_state = "tfoot_system_enabled"
@@ -446,7 +446,7 @@
 	var/turf/landing_spot = get_turf(console.eyeobj)
 	if(new_mode != SHUTTLE_PREARRIVAL || console.next_fly_state != SHUTTLE_ON_GROUND || !enabled || !landing_spot)
 		return
-	if(!COOLDOWN_CHECK(src, use_cooldown))
+	if(!COOLDOWN_FINISHED(src, use_cooldown))
 		console.say("Emitter system recharging. Unable to deploy smoke.")
 		playsound(console, 'sound/machines/buzz-sigh.ogg', 25)
 		return

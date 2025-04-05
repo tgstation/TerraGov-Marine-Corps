@@ -1,0 +1,68 @@
+2025-04-01:
+  Isy232:
+  - bugfix: Fixes my crash t3 balance change dividing by 0.
+  TiviPlus:
+  - bugfix: ' fixed a bunch of tgui stuff'
+  - bugfix: fixed preference preview being tiny
+  - bugfix: fixed tgui byond windows being tiny until they were edited
+  - code_imp: removed warning for being on 516
+2025-04-03:
+  Mantlecrawler:
+  - rscadd: Xenos can now place templates of resin walls during prep phase.
+  MiniMeatwad:
+  - balance: 2x faster acid casting on flares, plasma cost affected by dissolvability
+      (0.5x flares, 2x walls)
+  TiviPlus:
+  - bugfix: fixed space tiles again
+  - bugfix: fixed som ammorack layering under the floor
+  - bugfix: fixed som tank exit hatch layering under the floor
+  - bugfix: fixed wierd behavior with mech cloak and emissives
+  - bugfix: Mech relimb slashes will relay to torso when limb is destroyed
+  - balance: Mech repairpacks take 6 seconds to apply instead of 10 and disable your
+      weapons & movement while being used
+  - bugfix: Fixes directiona lbursts (canister,  buckshot) hitting solid objects if
+      it spawns inside them (tank hitbox, walls, etc)
+  - refactor: optimised (clientside and serverside) parallax, and made it's movement
+      look nicer
+  - bugfix: Fixes mech being diagonal sometimes (again)
+  - bugfix: fixed mech and tank not taking sticky weed slowdown as intended
+  - refactor: renamed the cooldown ending macros and added some new ones
+  - bugfix: melting fire no longer emits light and just emissively glows
+  - balance: melting fire now deals damage to vehicles
+  - bugfix: fixed sound not always workign immediately on spawn
+  - refactor: updated spatial tracking code somewhat
+  yyzsong:
+  - spellcheck: Jaeger and Hardsuit modular pieces are now plural (a chestplates ->
+      some chestplates)
+  - spellcheck: Adds \improper to some armor and clothing pieces
+  - spellcheck: Corrects some capitalization on storage modules I missed
+  - spellcheck: Renames IS Storage module to bulk storage module
+  - spellcheck: Renames helmet storage datum to be more generic (berets will no longer
+      show jaeger-pattern storage module)
+  - spellcheck: Chameloen -> chameleon
+2025-04-04:
+  TiviPlus:
+  - bugfix: Fixed toggle seethrough offsetting your sprite on 516
+  - bugfix: fixed m4 and m5 left clicking
+  - bugfix: mech/mobs/doors now block emissives correctly
+  - bugfix: fixed 516 tgui say not focusing on open all the time
+  - bugfix: Fixed being able to magdump mech rockets
+  - bugfix: Walking on top of doors on the above z doesnt make you fall
+  - code_imp: tgui loads faster now
+  - code_imp: the tgui title bar should play nicer now with other components like
+      buttons
+  - balance: conquerors obliteration works on vehicles now
+  - bugfix: fixed conqueror obliteration effects on multiz
+  - server: Changed client version warnings to be in config
+  - rscadd: Added Multiz minimap support
+  - bugfix: fixed dragon backhand doing nothing to mech
+  blackdav123:
+  - balance: Crash will always have at least two xenos, instead of one.
+2025-04-05:
+  Apple-107:
+  - balance: LTB Canister now ricochets off walls (2 times), has reduced scatter (Was
+      6, now 4), and increased range (Was 7, now 12)
+  Atropos:
+  - balance: Marine respawn time on crash is now 15 minutes
+  TiviPlus:
+  - bugfix: Fixed vent and c4 layering

@@ -77,6 +77,7 @@
 	name = "Should not be visible"
 	icon_state = "greyscale"
 	layer = ABOVE_ALL_MOB_LAYER
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	mech_type = EXOSUIT_MODULE_GREYSCALE
 	pixel_x = -16
 	soft_armor = list(MELEE = 25, BULLET = 75, FIRE = 25, BOMB = 50, LASER = 40, ENERGY = 40, ACID = 30, BIO = 100)
@@ -271,7 +272,7 @@
 /// Checks if we can dash in the specified direction, and activates the ability if so.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/check_dash(direction)
 	if(last_move_dir == direction && last_mousedown_time + double_tap_timing > world.time)
-		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_DASH))
+		if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MECHA_DASH))
 			for(var/mob/occupant AS in return_drivers())
 				balloon_alert(occupant, "Dash cooldown ([(S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA_DASH) / 10)]s)")
 			return
@@ -522,5 +523,5 @@
 /obj/item/repairpack
 	name = "mech repairpack"
 	desc = "A mecha repair pack, consisting of various auto-extinguisher systems, materials and repair nano-scarabs."
-	icon = 'icons/obj/items/assemblies.dmi'
-	icon_state = "posibrain-occupied" // todo kuro needs to make/find an icon for this
+	icon = 'icons/mecha/mecha_equipment.dmi'
+	icon_state = "armor_melee"

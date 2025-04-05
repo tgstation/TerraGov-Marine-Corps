@@ -2,6 +2,9 @@
     "map_name": "Combat Patrol Base",
     "map_path": "map_files/combat_patrol_base",
     "map_file": "combat_patrol_base.dmm",
-    "traits": [{"Marine Main Ship": true}],
+    "traits": [{
+		"Marine Main Ship": true,
+		"Baseturf": "/turf/open/floor/plating"
+	}],
     "squads": 2
 }
