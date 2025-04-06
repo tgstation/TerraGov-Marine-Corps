@@ -1,4 +1,0 @@
-author: "dottymint"
-delete-after: True
-changes:
-  - bugfix: "decap death message no longer mentions MMIs"
