@@ -93,6 +93,7 @@
 	ammo_type = MECHA_AMMO_SMG
 	hud_icons = list("smg", "smg_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
+	cooldown_key = MECH_COOLDOWN_KEY_RAPIDFIRE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/burstrifle
 	name = "\improper Tethys burst rifle"
@@ -149,6 +150,7 @@
 	ammo_type = MECHA_AMMO_RIFLE
 	hud_icons = list("rifle", "rifle_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
+	cooldown_key = MECH_COOLDOWN_KEY_RAPIDFIRE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/shotgun
 	name = "\improper Phoebe shotgun"
@@ -179,6 +181,7 @@
 	ammo_type = MECHA_AMMO_SHOTGUN
 	hud_icons = list("shotgun_buckshot", "shotgun_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
+	cooldown_key = MECH_COOLDOWN_KEY_HIGHALPHASTRIKE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/greyscale_lmg
 	name = "\improper Briareus LMG"
@@ -455,6 +458,7 @@
 	ammo_type = MECHA_AMMO_RPG
 	hud_icons = list("rocket_he", "rocket_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
+	cooldown_key = MECH_COOLDOWN_KEY_HIGHALPHASTRIKE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/microrocket
 	name = "\improper Asteria microrocket pod"
