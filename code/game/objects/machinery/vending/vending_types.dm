@@ -411,13 +411,14 @@
 
 /obj/machinery/vending/nanoammo
 	name = "\improper NanoAmmo"
-	desc = "Wall-mounted Ammunition dispenser."
-	product_ads = "Wawawawa, that's what you literally fuckin' sound like. Wawawawa!"
-	icon_state = "wallmed"
-	icon_deny = "wallmed-deny"
-	icon_vend = "wallmed-vend"
+	desc = "Wall-mounted ammunition dispenser.  Can't hold infinite ammo, but it holds more than you need."
+	product_ads = "Get you some!;More ammo than you'll ever need.;I'm small but my firepower isn't!;I dispense ammo, you dispense pain.;Give 'em hell!"
+	icon_state = "nanoammo"
+	icon_deny = "nanoammo-deny"
+	icon_vend = "nanoammo-vend"
 	density = FALSE
 	wrenchable = FALSE
+	layer = ABOVE_OBJ_LAYER
 	products = list(
 		"Rifles" = list(
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle = 6,
