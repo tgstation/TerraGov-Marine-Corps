@@ -58,9 +58,9 @@
 	else
 		for(var/client/C in GLOB.clients)
 			if(C.holder?.fakekey)
-				Lines += "[C.holder.fakekey]([round(avgping, 1)]ms)"
+				Lines += "[C.holder.fakekey] ([round(avgping, 1)]ms)"
 			else
-				Lines += "[C.key]([round(avgping, 1)]ms)"
+				Lines += "[C.key] ([round(avgping, 1)]ms)"
 
 	for(var/line in sortList(Lines))
 		msg += "[line]<br>"
