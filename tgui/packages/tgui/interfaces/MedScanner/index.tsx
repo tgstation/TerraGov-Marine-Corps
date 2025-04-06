@@ -109,7 +109,7 @@ function PatientBasics() {
           tooltip="For information on something, hover over it - most elements have tooltips. Additionally, situational advice will appear under Treatment Advice."
           color="transparent"
           mt={
-            /* with the "hackerman" theme, the buttons have this ugly outline that messes with the section titlebar, let's fix that */
+            // with the "hackerman" theme, the buttons have this ugly outline that messes with the section titlebar, let's fix that
             accessible_theme && species.is_robotic_species ? '-5px' : '0px'
           }
         >

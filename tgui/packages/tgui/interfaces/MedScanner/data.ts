@@ -3,6 +3,7 @@ type SpeciesData = {
   is_combat_robot: boolean;
   is_robotic_species: boolean;
 };
+
 type LimbData = {
   name: string;
   brute: number;
@@ -20,6 +21,7 @@ type LimbData = {
   necrotized: boolean;
   max_damage: number;
 };
+
 type ChemData = {
   name: string;
   description: string;
@@ -31,6 +33,7 @@ type ChemData = {
   metabolism_factor: number;
   dangerous: boolean;
 };
+
 type OrganData = {
   name: string;
   status: string;
@@ -39,12 +42,14 @@ type OrganData = {
   damage: number;
   effects: string;
 };
+
 type AdviceData = {
   advice: string;
   icon: string;
   color: string;
   tooltip: string;
 };
+
 export type MedScannerData = {
   patient: string;
   species: Record<string, SpeciesData>;
