@@ -2113,6 +2113,7 @@ VEHICLES
 	name = "Jerry Can"
 	cost = 100
 	contains = list(/obj/item/reagent_containers/jerrycan)
+	containertype = /obj/structure/closet/crate
 
 /datum/supply_packs/vehicles/droid_combat
 	name = "Combat droid with weapon equipped"
