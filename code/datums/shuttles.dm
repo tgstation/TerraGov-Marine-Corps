@@ -170,7 +170,7 @@
 
 /datum/map_template/shuttle/minidropship/panopticon
 	suffix = "_panopticon"
-	description = "A spherical tadpole model made with the intent to achieve an (almost) total 360 degree view of any field it lands onto. Features a secondary interior attachment point to make up for the lack of weapon system attachmet points."
+	description = "A spherical tadpole model made with the intent to achieve an (almost) total 360 degree view of any field it lands onto. Features a secondary interior attachment point to make up for the lack of weapon system attachment points."
 	display_name = "Tadpole Panoptical Model"
 
 /datum/map_template/shuttle/escape_pod
