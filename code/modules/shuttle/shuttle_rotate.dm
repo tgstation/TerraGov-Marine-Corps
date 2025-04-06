@@ -70,7 +70,7 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 	return ..()
 
 /obj/vehicle/sealed/mecha/combat/greyscale/shuttleRotate(rotation, params)
-	params = NONE
+	params = ROTATE_DIR
 	return ..()
 
 /obj/machinery/atmospherics/shuttleRotate(rotation, params)
