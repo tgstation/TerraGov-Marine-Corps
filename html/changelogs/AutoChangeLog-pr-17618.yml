@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - rscadd: "You can now see people's ping with Who verb!"
