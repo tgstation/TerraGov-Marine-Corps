@@ -19,9 +19,6 @@
 	hard_armor = list(MELEE = 0, BULLET = 15, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	resistance_flags = UNACIDABLE
 
-	//Used for quickbuild refunding.
-	var/is_normal_resin_wall = TRUE
-
 /turf/closed/wall/resin/add_debris_element()
 	AddElement(/datum/element/debris, null, -40, 8, 0.7)
 
@@ -243,10 +240,6 @@
 /* Hivelord walls, they start off stronger */
 /turf/closed/wall/resin/regenerating/thick
 	max_integrity = 125
-
-/turf/closed/wall/resin/regenerating/special
-	name = "you shouldn't see this"
-	is_normal_resin_wall = FALSE
 
 /turf/closed/wall/resin/regenerating/special/bulletproof
 	name = "bulletproof resin wall"
