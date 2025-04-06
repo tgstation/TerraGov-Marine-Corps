@@ -202,8 +202,8 @@
 /turf/closed/wall/resin/regenerating/get_mechanics_info()
 	. = ..()
 	var/list/list = list()
-	list += list("<br>Currently at [max_integrity] health, starts out at [initial(max_integrity)] health, gaining [max_upgrade_per_tick] every 2 seconds, up to [max_upgradable_health]")
-	list += list("If damaged, after [DisplayTimeText(cooldown_on_taking_dmg)], starts regenerating [heal_per_tick] damage every 2 seconds.")
+	list += list("<br>Currently at [max_integrity] health, starts out at [initial(max_integrity)] health, gaining [max_upgrade_per_tick] every 5 seconds, up to [max_upgradable_health]")
+	list += list("If damaged, after [DisplayTimeText(cooldown_on_taking_dmg)], starts regenerating [heal_per_tick] damage every 5 seconds.")
 	. += jointext(list, "<br>")
 
 /**
