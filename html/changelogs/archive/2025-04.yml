@@ -52,3 +52,6 @@
       weapon vendors.
   - refactor: Adjusted item representation logic for Kwik-E-Quip vendors.
   - refactor: Reworked buy_stack to be more flexible and no longer hardcoded.
+2025-04-06:
+  dottymint:
+  - bugfix: decap death message no longer mentions MMIs
