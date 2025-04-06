@@ -92,7 +92,7 @@
 
 		if("announce")
 			if(authenticated == 2)
-				if(TIMER_COOLDOWN_CHECK(usr, COOLDOWN_HUD_ORDER))
+				if(TIMER_COOLDOWN_RUNNING(usr, COOLDOWN_HUD_ORDER))
 					to_chat(usr, span_warning("You've sent an announcement or message too recently!"))
 					return
 				if(world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)

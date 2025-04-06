@@ -154,9 +154,9 @@
 
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	if(isarmoredvehicle(target_obj))
-		var/obj/vehicle/sealed/armored/tank = target_obj
-		COOLDOWN_START(tank, cooldown_vehicle_move, tank.move_delay)
+	if(issealedvehicle(target_obj))
+		var/obj/vehicle/sealed/seal = target_obj
+		COOLDOWN_INCREMENT(seal, cooldown_vehicle_move, seal.move_delay)
 	var/turf/target_turf = get_turf(target_obj)
 	drop_resin(target_turf.density ? proj.loc : target_turf)
 

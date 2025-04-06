@@ -322,7 +322,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/datum/action/bump_attack_toggle/bump_attack_action = owner.actions_by_path[/datum/action/bump_attack_toggle]
 	if(bump_attack_action == null || bump_attack_action.attacking) // Bump attacks are off if attacking is true, apparently.
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK) || owner.next_move > world.time)
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_BUMP_ATTACK) || owner.next_move > world.time)
 		return FALSE
 
 	var/turf/current_turf = get_turf(owner)

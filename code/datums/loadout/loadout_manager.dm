@@ -135,7 +135,7 @@
 			loadout.ui_interact(ui.user)
 
 		if("selectLoadout")
-			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_VISUALIZATION))
+			if(TIMER_COOLDOWN_RUNNING(ui.user, COOLDOWN_LOADOUT_VISUALIZATION))
 				return
 			TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_VISUALIZATION, 1 SECONDS) //Anti spam cooldown
 			var/job = params["loadout_job"]

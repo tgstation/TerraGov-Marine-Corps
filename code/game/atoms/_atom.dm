@@ -1,7 +1,7 @@
 /atom
 	layer = ABOVE_NORMAL_TURF_LAYER
 	plane = GAME_PLANE
-	appearance_flags = TILE_BOUND
+	appearance_flags = TILE_BOUND|LONG_GLIDE
 	var/level = 2
 
 	var/atom_flags = NONE
@@ -311,7 +311,7 @@ directive is properly returned.
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
 /atom/proc/relaymove(mob/living/user, direct)
-	if(COOLDOWN_CHECK(src, buckle_message_cooldown))
+	if(COOLDOWN_FINISHED(src, buckle_message_cooldown))
 		COOLDOWN_START(src, buckle_message_cooldown, 2.5 SECONDS)
 		balloon_alert(user, "Can't move while buckled!")
 	return
@@ -898,7 +898,7 @@ directive is properly returned.
  * distance_max: used to check if originated_turf is close to obj.loc
 */
 /atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE, light_again = FALSE)
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) && !forced)
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_LIGHT) && !forced)
 		return STILL_ON_COOLDOWN
 	if(cooldown <= 0)
 		cooldown = 1 SECONDS

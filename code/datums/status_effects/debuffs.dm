@@ -822,7 +822,7 @@
 
 /datum/status_effect/stacking/microwave/tick(delta_time)
 	. = ..()
-	if(COOLDOWN_CHECK(src, cooldown_microwave_status))
+	if(COOLDOWN_FINISHED(src, cooldown_microwave_status))
 		return qdel(src)
 
 	if(!debuff_owner)

@@ -177,7 +177,7 @@ export const MechAssembly = (props) => {
   const left_weapon_scatter = left_weapon ? left_weapon.scatter : 0;
   const right_weapon_scatter = right_weapon ? right_weapon.scatter : 0;
   return (
-    <Stack>
+    <Stack fill>
       <Stack.Item>
         <Stack vertical maxWidth={'166px'}>
           <Stack.Item>
@@ -355,9 +355,9 @@ export const MechAssembly = (props) => {
           </Stack.Item>
         </Stack>
       </Stack.Item>
-      <Stack.Item>
-        <Stack>
-          <Stack.Item>
+      <Stack.Item grow>
+        <Stack fill>
+          <Stack.Item grow overflowY="auto">
             <ColorSelector
               type={'primary'}
               listtoshow={data.colors}
@@ -365,7 +365,7 @@ export const MechAssembly = (props) => {
               setSelectedBodypart={setSelectedBodypart}
             />
           </Stack.Item>
-          <Stack.Item>
+          <Stack.Item grow overflowY="auto">
             <ColorSelector
               type={'secondary'}
               listtoshow={data.colors}
@@ -373,7 +373,7 @@ export const MechAssembly = (props) => {
             />
           </Stack.Item>
           {selectedBodypart === 'HEAD' && (
-            <Stack.Item>
+            <Stack.Item grow maxWidth={'130px'} overflowY="auto">
               <ColorSelector
                 type={'visor'}
                 listtoshow={data.visor_colors}
@@ -391,9 +391,9 @@ const ColorSelector = (props) => {
   const { act, data } = useBackend<MechVendData>();
   const { type, listtoshow, selectedBodypart } = props;
   return (
-    <Section title={capitalize(type) + ' colors'}>
+    <Section title={capitalize(type)} align="center">
       {Object.keys(listtoshow).map((title) => (
-        <Collapsible ml={1} minWidth={11} key={title} title={title}>
+        <Collapsible align="left" ml={1} key={title} title={title}>
           <Stack justify="space-between" vertical fill>
             {Object.keys(listtoshow[title]).map((palette) => (
               <Stack.Item key={palette} my={0}>

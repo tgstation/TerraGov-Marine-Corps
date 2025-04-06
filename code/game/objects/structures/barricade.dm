@@ -783,7 +783,7 @@
 	if(!isscrewdriver(I))
 		return
 
-	if(busy || !COOLDOWN_CHECK(src, tool_cooldown))
+	if(busy || !COOLDOWN_FINISHED(src, tool_cooldown))
 		return
 
 	if(LAZYACCESS(user.do_actions, src))
@@ -822,7 +822,7 @@
 	if(!iscrowbar(I))
 		return
 
-	if(busy || !COOLDOWN_CHECK(src, tool_cooldown))
+	if(busy || !COOLDOWN_FINISHED(src, tool_cooldown))
 		return
 
 	if(LAZYACCESS(user.do_actions, src))
@@ -862,7 +862,7 @@
 	if(!iswrench(I))
 		return
 
-	if(busy || !COOLDOWN_CHECK(src, tool_cooldown))
+	if(busy || !COOLDOWN_FINISHED(src, tool_cooldown))
 		return
 
 	if(LAZYACCESS(user.do_actions, src))

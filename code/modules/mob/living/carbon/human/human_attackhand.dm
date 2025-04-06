@@ -78,7 +78,7 @@
 					span_boldnotice("You feel a breath of fresh air enter your lungs. It feels good."),
 					vision_distance = 3)
 				to_chat(human_user, span_warning("Repeat at least every 7 seconds."))
-			else if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_CPR))
+			else if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && TIMER_COOLDOWN_FINISHED(src, COOLDOWN_CPR))
 				TIMER_COOLDOWN_START(src, COOLDOWN_CPR, 7 SECONDS)
 				dead_ticks -= 5
 				visible_message(span_warning("[human_user] performs CPR on [src]!"), vision_distance = 3)

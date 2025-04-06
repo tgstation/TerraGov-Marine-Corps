@@ -102,7 +102,7 @@
 	var/instability = 0 //certain factors can make the teleport unreliable
 	if(target_distance > BLINK_DRIVE_RANGE - 2)
 		instability ++
-	if(!COOLDOWN_CHECK(src, blink_stability_cooldown))
+	if(!COOLDOWN_FINISHED(src, blink_stability_cooldown))
 		instability ++
 	if(!line_of_sight(user, target_turf, 9))
 		instability ++

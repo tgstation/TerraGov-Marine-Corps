@@ -153,9 +153,9 @@
 	if(crosser.throwing || crosser.buckled)
 		return
 
-	if(isvehicle(crosser))
-		var/obj/vehicle/vehicle = crosser
-		vehicle.last_move_time += WEED_SLOWDOWN
+	if(issealedvehicle(crosser))
+		var/obj/vehicle/sealed/vehicle = crosser
+		COOLDOWN_INCREMENT(vehicle, cooldown_vehicle_move, WEED_SLOWDOWN)
 		return
 
 	if(isxeno(crosser))

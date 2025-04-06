@@ -192,6 +192,31 @@ Administrative related.
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 	default = "C:\\Program Files (x86)\\TG Station Server\\TGCommandLine.exe"
 
+
+/datum/config_entry/number/client_warn_version
+	default = null
+	min_val = 500
+
+/datum/config_entry/number/client_warn_build
+	default = null
+	min_val = 0
+
+/datum/config_entry/string/client_warn_message
+	default = "Your version of byond may have issues or be blocked from accessing this server in the future."
+
+/datum/config_entry/flag/client_warn_popup
+
+/datum/config_entry/number/client_error_version
+	default = null
+	min_val = 500
+
+/datum/config_entry/string/client_error_message
+	default = "Your version of byond is too old, may have issues, and is blocked from accessing this server."
+
+/datum/config_entry/number/client_error_build
+	default = null
+	min_val = 0
+
 /datum/config_entry/number/minute_topic_limit
 	default = 250
 	min_val = 0
@@ -441,3 +466,10 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 
 /datum/config_entry/flag/save_spritesheets
 	default = FALSE
+
+/**
+ * Tgui ui_act payloads larger than 2kb are split into chunks a maximum of 1kb in size.
+ * This flag represents the maximum chunk count the server is willing to receive.
+ */
+/datum/config_entry/number/tgui_max_chunk_count
+	default = 32

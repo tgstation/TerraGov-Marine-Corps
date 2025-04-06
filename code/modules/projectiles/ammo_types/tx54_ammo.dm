@@ -239,20 +239,32 @@
 	damage_falloff = 0.5
 	max_range = 3
 	projectile_greyscale_colors = "#4f0303"
-	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/tank_cannister
-	bonus_projectiles_scatter = 6
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/tank_cannister/ricochet/one
+	bonus_projectiles_scatter = 4
 	bonus_projectile_quantity = 12
 
 /datum/ammo/bullet/tx54_spread/tank_cannister
 	name = "cannister shot"
 	icon_state = "flechette"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
-	max_range = 7
-	damage = 50
+	max_range = 12
+	damage = 30
 	penetration = 15
 	sundering = 2
 	damage_falloff = 1
 	shrapnel_chance = 15
 
+/datum/ammo/bullet/tx54_spread/tank_cannister/ricochet
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/tank_cannister
+	bonus_projectiles_scatter = 0
+	damage = 35
+
+/datum/ammo/bullet/tx54_spread/tank_cannister/ricochet/one
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/tank_cannister/ricochet
+	damage = 40
+
 /datum/ammo/bullet/tx54_spread/tank_cannister/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, max_range = 4, stagger = 2 SECONDS, slowdown = 0.2)
+
+/datum/ammo/bullet/tx54_spread/tank_cannister/ricochet/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	reflect(target_turf, proj, 5)
