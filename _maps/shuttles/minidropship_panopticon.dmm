@@ -28,7 +28,7 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
+/obj/structure/window/framed/mainship/canterbury/dropship,
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "p" = (
@@ -53,7 +53,7 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
+/obj/structure/window/framed/mainship/canterbury/dropship,
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "y" = (
@@ -64,7 +64,7 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
+/obj/structure/window/framed/mainship/canterbury/dropship,
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "C" = (
@@ -75,7 +75,7 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
+/obj/structure/window/framed/mainship/canterbury/dropship,
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "G" = (
@@ -108,7 +108,7 @@
 	dir = 2;
 	id = "minidropship_podlock"
 	},
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
+/obj/structure/window/framed/mainship/canterbury/dropship,
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "T" = (
@@ -119,12 +119,13 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
+/obj/structure/window/framed/mainship/canterbury/dropship,
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "V" = (
 /obj/machinery/door/airlock/mainship/command{
-	dir = 1
+	dir = 1;
+	opacity = 0
 	},
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
 	dir = 1
