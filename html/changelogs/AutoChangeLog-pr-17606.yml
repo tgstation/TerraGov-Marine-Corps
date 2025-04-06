@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "fixed being able to fire without windup for mech rpg"
-  - qol: "mech will now spin when checking windups"
