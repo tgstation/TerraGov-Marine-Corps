@@ -259,6 +259,12 @@
 		return
 	after_move(direction)
 	forceMove(get_step(src, direction)) // still animates and calls moved() and all that stuff BUT we skip checks
+	//we still need to handroll some parts of moved though since we skipped everything
+	last_move = direction
+	last_move_time = world.time
+	if(currently_z_moving)
+		var/turf/pitfall = get_turf(src)
+		pitfall.zFall(src, falling_from_move = TRUE)
 
 /obj/vehicle/sealed/armored/resisted_against(mob/living/user)
 	balloon_alert(user, "exiting...")
