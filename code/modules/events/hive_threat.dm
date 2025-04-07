@@ -24,7 +24,6 @@
 			eligible_targets += possible_target
 	if(!length(eligible_targets))
 		return //everyone is dead or evac'd
-	to_chat_immediate(world, "Success.")
 	set_target(pick(eligible_targets))
 
 ///sets the target for this event, and notifies the hive
