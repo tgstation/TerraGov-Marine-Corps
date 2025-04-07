@@ -132,11 +132,12 @@
 			become_larva()
 		if(6)
 			larva_autoburst_countdown--
-			if(!larva_autoburst_countdown)
+			if(larva_autoburst_countdown < 1)
 				for(var/mob/living/carbon/xenomorph/larva/L in affected_mob.contents)
 					L?.initiate_burst(affected_mob, src)
 					if(!L)
 						break
+				qdel(src)
 
 
 //We look for a candidate. If found, we spawn the candidate as a larva.
@@ -202,7 +203,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_larva_burst")
 
 	if(!QDELETED(embryo))
-		qdel(embryo)
+		QDEL_NULL(embryo)
 
 	var/obj/item/alien_embryo/remainingembryo = locate() in victim
 	if(!remainingembryo)
