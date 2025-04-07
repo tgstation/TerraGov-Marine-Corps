@@ -75,8 +75,11 @@
 	name = "chaplain hoodie"
 	desc = "This suit says to you 'hush'!"
 	icon_state = "chaplain_hoodie"
-	worn_icon_state = "chaplain_hoodie"
+	worn_icon_state = "wcoat"
 	armor_protection_flags = CHEST|ARMS
+
+/obj/item/clothing/suit/chaplain_hoodie/alt
+	icon_state = "chaplain_hoodie_alt"
 
 /obj/item/clothing/suit/nun
 	name = "nun robe"
