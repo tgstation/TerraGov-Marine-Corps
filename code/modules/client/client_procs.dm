@@ -231,6 +231,8 @@
 	if(SSinput.initialized)
 		set_macros()
 
+	INVOKE_ASYNC(src, PROC_REF(acquire_dpi))
+
 	// Initialize tgui panel
 	tgui_panel.initialize()
 
@@ -329,7 +331,7 @@
 		if(CONFIG_GET(flag/aggressive_changelog))
 			changes()
 		else
-			winset(src, "infowindow.changelog", "font-style=bold")
+			winset(src, "infobuttons.changelog", "font-style=bold")
 
 	if(ckey in GLOB.clientmessages)
 		for(var/message in GLOB.clientmessages[ckey])
@@ -1088,3 +1090,7 @@ GLOBAL_VAR_INIT(automute_on, null)
 		if("Set-Tab")
 			stat_tab = payload["tab"]
 			SSstatpanels.immediate_send_stat_data(src)
+
+/// This grabs the DPI of the user per their skin
+/client/proc/acquire_dpi()
+	window_scaling = text2num(winget(src, null, "dpi"))
