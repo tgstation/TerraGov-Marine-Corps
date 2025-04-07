@@ -84,3 +84,6 @@
   - balance: Mech dash no longer lets you go over things
   - bugfix: fixed being able to fire without windup for mech rpg
   - qol: mech will now spin when checking windups
+2025-04-07:
+  Atropos:
+  - rscadd: You can now see people's ping with Who verb!
