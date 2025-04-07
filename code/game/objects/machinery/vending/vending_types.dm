@@ -443,8 +443,8 @@
 			/obj/item/ammo_magazine/rifle/standard_br = 6,
 			/obj/item/ammo_magazine/rifle/chamberedrifle = 6,
 			/obj/item/ammo_magazine/rifle/boltclip = 6,
-			/obj/item/ammo_magazine/rifle/bolt = 6,
-			/obj/item/ammo_magazine/rifle/martini = 6,
+			/obj/item/ammo_magazine/rifle/bolt = 2,
+			/obj/item/ammo_magazine/rifle/martini = 2,
 		),
 		"Shotgun" = list(
 			/obj/item/ammo_magazine/shotgun = 2,
@@ -467,7 +467,97 @@
 			/obj/item/ammo_magazine/pistol/vp70 = 8,
 			/obj/item/ammo_magazine/pistol/plasma_pistol = 8,
 		),
+		"Seasonal" = list(
+			/obj/item/ammo_magazine/revolver/small = 0,
+			/obj/item/ammo_magazine/revolver = 0,
+			/obj/item/ammo_magazine/revolver/judge = 0,
+			/obj/item/ammo_magazine/revolver/judge/buckshot = 0,
+			/obj/item/ammo_magazine/revolver/upp = 0,
+			/obj/item/ammo_magazine/rifle/mpi_km/plum = 0,
+			/obj/item/ammo_magazine/rifle/m16 = 0,
+			/obj/item/ammo_magazine/rifle/mkh = 0,
+			/obj/item/ammo_magazine/smg/ppsh = 0,
+			/obj/item/ammo_magazine/smg/ppsh/extended = 0,
+			/obj/item/ammo_magazine/rifle/garand = 0,
+			/obj/item/ammo_magazine/pistol/m1911 = 0,
+			/obj/item/ammo_magazine/rifle = 0,
+			/obj/item/ammo_magazine/rifle/m41a = 0,
+			/obj/item/ammo_magazine/rifle/type71 = 0,
+			/obj/item/ammo_magazine/rifle/alf_machinecarbine = 0,
+			/obj/item/ammo_magazine/smg/uzi = 0,
+			/obj/item/ammo_magazine/smg/m25 = 0,
+			/obj/item/ammo_magazine/smg/mp7 = 0,
+			/obj/item/ammo_magazine/smg/skorpion = 0,
+			/obj/item/ammo_magazine/revolver/cmb = 0,
+			/obj/item/ammo_magazine/shotgun/mbx900 = 0,
+			/obj/item/ammo_magazine/shotgun/mbx900/buckshot = 0,
+			/obj/item/ammo_magazine/shotgun/mbx900/tracking = 0,
+		)
 	)
+	var/list/max_capacity = list(
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle = 60,
+		/obj/item/ammo_magazine/rifle/standard_carbine = 60,
+		/obj/item/ammo_magazine/rifle/standard_skirmishrifle = 60,
+		/obj/item/ammo_magazine/rifle/tx11 = 60,
+		/obj/item/ammo_magazine/packet/p4570 = 16,
+		/obj/item/cell/lasgun/lasrifle = 60,
+		/obj/item/cell/lasgun/volkite/powerpack/marine = 16,
+		/obj/item/cell/lasgun/volkite/powerpack/marine/backpack = 3,
+		/obj/item/ammo_magazine/smg/standard_smg = 80,
+		/obj/item/ammo_magazine/smg/standard_machinepistol = 80,
+		/obj/item/ammo_magazine/smg/standard_heavysmg = 80,
+		/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead = 80,
+		/obj/item/ammo_magazine/rifle/standard_dmr = 60,
+		/obj/item/ammo_magazine/rifle/standard_br = 60,
+		/obj/item/ammo_magazine/rifle/chamberedrifle = 60,
+		/obj/item/ammo_magazine/rifle/boltclip = 60,
+		/obj/item/ammo_magazine/rifle/bolt = 16,
+		/obj/item/ammo_magazine/rifle/martini = 16,
+		/obj/item/ammo_magazine/shotgun = 16,
+		/obj/item/ammo_magazine/shotgun/buckshot = 16,
+		/obj/item/ammo_magazine/shotgun/flechette = 16,
+		/obj/item/ammo_magazine/shotgun/tracker = 16,
+		/datum/ammo/bullet/shotgun/slug = 16, 		// Additionally listed these shotgun shells directly for
+		/datum/ammo/bullet/shotgun/buckshot = 16,	// the unique handling of the attackby proc when loading
+		/datum/ammo/bullet/shotgun/flechette = 16,	// the shotgun ammo boxes from RO.
+		/datum/ammo/bullet/shotgun/tracker = 16,	// These should always match the 4 shotgun mags above.
+		/obj/item/ammo_magazine/rifle/tx15_flechette = 60,
+		/obj/item/ammo_magazine/rifle/tx15_slug = 60,
+		/obj/item/ammo_magazine/standard_lmg = 60,
+		/obj/item/ammo_magazine/standard_gpmg = 60,
+		/obj/item/ammo_magazine/standard_mmg = 60,
+		/obj/item/ammo_magazine/pistol/standard_pistol = 80,
+		/obj/item/ammo_magazine/pistol/standard_heavypistol = 80,
+		/obj/item/ammo_magazine/revolver/standard_revolver = 80,
+		/obj/item/ammo_magazine/pistol/standard_pocketpistol = 80,
+		/obj/item/ammo_magazine/pistol/vp70 = 80,
+		/obj/item/ammo_magazine/pistol/plasma_pistol = 80,
+		/obj/item/ammo_magazine/revolver/small = 80,
+		/obj/item/ammo_magazine/revolver = 80,
+		/obj/item/ammo_magazine/revolver/judge = 80,
+		/obj/item/ammo_magazine/revolver/judge/buckshot = 80,
+		/obj/item/ammo_magazine/revolver/upp = 80,
+		/obj/item/ammo_magazine/rifle/mpi_km/plum = 60,
+		/obj/item/ammo_magazine/rifle/m16 = 60,
+		/obj/item/ammo_magazine/rifle/mkh = 60,
+		/obj/item/ammo_magazine/smg/ppsh = 80,
+		/obj/item/ammo_magazine/smg/ppsh/extended = 80,
+		/obj/item/ammo_magazine/rifle/garand = 60,
+		/obj/item/ammo_magazine/pistol/m1911 = 80,
+		/obj/item/ammo_magazine/rifle = 60,
+		/obj/item/ammo_magazine/rifle/m41a = 60,
+		/obj/item/ammo_magazine/rifle/type71 = 60,
+		/obj/item/ammo_magazine/rifle/alf_machinecarbine = 60,
+		/obj/item/ammo_magazine/smg/uzi = 80,
+		/obj/item/ammo_magazine/smg/m25 = 80,
+		/obj/item/ammo_magazine/smg/mp7 = 80,
+		/obj/item/ammo_magazine/smg/skorpion = 80,
+		/obj/item/ammo_magazine/revolver/cmb = 80,
+		/obj/item/ammo_magazine/shotgun/mbx900 = 16,
+		/obj/item/ammo_magazine/shotgun/mbx900/buckshot = 16,
+		/obj/item/ammo_magazine/shotgun/mbx900/tracking = 16,
+	)
+
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /obj/machinery/vending/nanoammo/Initialize(mapload, ...)
@@ -485,56 +575,45 @@
 /obj/machinery/vending/nanoammo/stock(obj/item/item_to_stock, mob/user, show_feedback = TRUE)
 	for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)	// Loop through vendor records to find a match
 		if(item_to_stock.type == checked_record.product_path)	// Found a match
-			if(checked_record.tab == "SMGs" || checked_record.tab == "Sidearm")
-				if(checked_record.amount >= 80)	// SMGs/sidearms capacity at 80, twice the size of their magbox capacity
-					if(show_feedback) user?.balloon_alert(user, "\nThere's no more room for the [item_to_stock]!")
-					return FALSE
-			else if(checked_record.tab == "Shotgun" && \
-			!(checked_record.product_path == /obj/item/ammo_magazine/rifle/tx15_flechette || \
-			checked_record.product_path == /obj/item/ammo_magazine/rifle/tx15_slug))
-				if(checked_record.amount >= 16)	// 12 Gauge shells to 16 boxes because that's 400 shells, twice the shotgun ammo box capacity
-					if(show_feedback)user?.balloon_alert(user, "\nThere's no more room for the [item_to_stock]")
-					return FALSE
-			else
-				if(checked_record.amount >= 60)	// Everything else at 60, twice the capacity of their magbox capacity
-					if(show_feedback)user?.balloon_alert(user, "\nThere's no more room for the [item_to_stock]!")
-					return FALSE
+			if(checked_record.amount >= max_capacity[item_to_stock.type])
+				if(show_feedback) user?.balloon_alert(user, "\nThere's no more room for the [item_to_stock]!")
+				return FALSE
 	return ..()
 
 /obj/machinery/vending/nanoammo/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/storage/box/visual/magazine/compact))	// If the item is a mag box
+	if(istype(I, /obj/item/storage/box/visual/magazine/compact))	// If the item is a compact mag box (the Req ammo boxes)
 		var/storage_capacity = I.storage_datum.storage_slots
-		if(length(I.contents) == storage_capacity) // If the mag box is full
+		if(length(I.contents) < storage_capacity) // If the mag box is not full
+			user?.balloon_alert(user, "[I] isn't full!");
+			return
+		else
 			for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)	// Loop through vendor records to find a match
 				if(I.contents[1].type == checked_record.product_path)	// Found a match
-					if(checked_record.amount <= storage_capacity)	// If record is below half capacity
+					if(checked_record.amount + storage_capacity <= max_capacity[I.contents[1].type]) // If filling the box wouldn't exceed the cap
 						checked_record.amount += storage_capacity
-					else	// If record amount is above half capacity
-						checked_record.amount = 2 * storage_capacity
+					else
+						checked_record.amount = max_capacity[I.contents[1].type]
 					user?.balloon_alert(user, "The NanoAmmo eats the [I]...");
 					qdel(I)
 					return
-		else
-			user?.balloon_alert(user, "[I] isn't full!");
-			return
 	else if(istype(I, /obj/item/shotgunbox))
 		if(I.type == /obj/item/shotgunbox/blank || I.type == /obj/item/shotgunbox/clf_heavyrifle)
 			return ..()
 		var/obj/item/shotgunbox/B = I
-		if(B.current_rounds == B.max_rounds) // If shotgun box is full
-			for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)
+		if(B.current_rounds < B.max_rounds) // If shotgun box is not full
+			user?.balloon_alert(user, "[B] isn't full!");
+			return
+		else
+			for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)	// Loop through vendor records to find a match
 				var/obj/item/ammo_magazine/M = checked_record.product_path
-				if(B.ammo_type == M.default_ammo)
-					if(checked_record.amount <= 8)	// If record is below half capacity
+				if(B.ammo_type == M.default_ammo)	// Found a match
+					if(checked_record.amount + 8 <= max_capacity[M.default_ammo])	// If filling the box wouldn't exceed the cap
 						checked_record.amount += 8
-					else	// If record amount is above half capacity
-						checked_record.amount = 16
+					else
+						checked_record.amount = max_capacity[M.default_ammo]
 					user?.balloon_alert(user, "The NanoAmmo eats the [B]...");
 					qdel(B)
 					return
-		else
-			user?.balloon_alert(user, "[B] isn't full!");
-			return
 	else if(istype(I, /obj/item/storage/box/visual/magazine))
 		var/obj/item/storage/box/visual/magazine/B = I
 		for(var/x = length(B.contents); x > 0; x--)
@@ -544,7 +623,7 @@
 	return ..()
 
 /obj/machinery/vending/nanoammo/get_acid_delay()
-	return 10 SECONDS
+	return 10 SECONDS	// Acid application time is 1 second without this, way too short for a tadpole item
 
 /obj/machinery/vending/security
 	name = "\improper SecTech"
