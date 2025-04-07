@@ -12,9 +12,7 @@
 /datum/ai_behavior/human/late_initialize()
 	if(should_hold())
 		return
-	. = ..()
-	if(!registered_for_move)
-		scheduled_move()
+	return ..()
 
 ///Checks if we should be healing somebody
 /datum/ai_behavior/human/proc/medic_process()
@@ -127,7 +125,7 @@
 		living_parent.do_resist()
 		return
 
-	if(!COOLDOWN_CHECK(src, ai_heal_after_dam_cooldown))
+	if(!COOLDOWN_FINISHED(src, ai_heal_after_dam_cooldown))
 		return
 
 	if(prob(75))

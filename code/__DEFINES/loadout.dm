@@ -774,6 +774,6 @@ GLOBAL_LIST_INIT(loadout_instantiate_default_contents, typecacheof(list(
 #define MAXIMUM_LOADOUT 50
 
 /// The current loadout version
-#define CURRENT_LOADOUT_VERSION 15
+#define CURRENT_LOADOUT_VERSION 16
 
-GLOBAL_LIST_INIT(accepted_loadout_versions, list(5, 6, 7, 8, 9, 10, 11, 13, 14, 15))
+GLOBAL_LIST_INIT(accepted_loadout_versions, list(5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16))

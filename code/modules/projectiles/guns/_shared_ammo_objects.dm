@@ -168,17 +168,27 @@
 	icon_state = "xeno_fire"
 	flame_color = "purple"
 	light_on = FALSE
+	light_range = 0
+	light_power = 0
 	burn_ticks = 36
 	burn_decay = 9
 	/// The creator of this fire. Only really matters for pyrogens.
 	var/mob/living/carbon/xenomorph/creator
 
+/obj/fire/melting_fire/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, icon_state, src)
+
 /obj/fire/melting_fire/affect_atom(atom/affected)
+	if(isvehicle(affected))
+		var/obj/vehicle/ghost_rider = affected
+		ghost_rider.take_damage(burn_level / 2, BURN, ACID)
+		return TRUE
 	if(!ishuman(affected))
-		return
+		return FALSE
 	var/mob/living/carbon/human/human_affected = affected
 	if(human_affected.stat == DEAD)
-		return
+		return FALSE
 	if(human_affected.status_flags & (INCORPOREAL|GODMODE))
 		return FALSE
 	if(human_affected.pass_flags & PASS_FIRE)
@@ -192,3 +202,22 @@
 	else
 		human_affected.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_MELTING_FIRE_EFFECT_STACK, creator)
 	human_affected.take_overall_damage(PYROGEN_MELTING_FIRE_DAMAGE, BURN, FIRE, updating_health = TRUE, max_limbs = 2)
+	return TRUE // For shattering fire
+
+///////////////////////////////
+//        SHATTERING FIRE    //
+///////////////////////////////
+
+/obj/fire/melting_fire/shattering
+	name = "shattering fire"
+	desc = "Cold to the touch, it rapidly spreads cracks through anything it contacts."
+	icon_state = "violet_1"
+	flame_color = "violet"
+
+/obj/fire/melting_fire/shattering/affect_atom(atom/affected)
+	. = ..()
+	if(.) // parent proc only returns true if it applies its effects to a human, so affected must be a human, ergo no type validation needed
+		var/mob/living/carbon/human/victim = affected
+		victim.apply_status_effect(STATUS_EFFECT_SHATTER, 3 SECONDS)
+
+

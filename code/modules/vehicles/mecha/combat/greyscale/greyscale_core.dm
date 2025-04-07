@@ -21,8 +21,10 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/core
 	pixel_x = -32
 	pixel_y = -5
-	use_builtin_boost_overlay = FALSE
+	light_pixel_x = 32
+	ability_module_icon = 'icons/mecha/mech_core_overlays.dmi'
 	use_damage_particles = FALSE
+	use_gun_boost_prefix = TRUE
 	equip_by_category = list(
 		MECHA_L_ARM = null,
 		MECHA_R_ARM = null,
@@ -119,7 +121,7 @@
 	old_l_hand?.attach(src, FALSE)
 	old_r_back?.attach(src, TRUE)
 	old_l_back?.attach(src, FALSE)
-
+	swapped_to_backweapons = !swapped_to_backweapons
 	update_appearance(UPDATE_OVERLAYS)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/core/medium

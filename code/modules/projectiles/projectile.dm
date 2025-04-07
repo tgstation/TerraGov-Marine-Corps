@@ -199,7 +199,7 @@
 	if(source)
 		shot_from = source
 	if(loc_override)
-		loc = loc_override
+		abstract_move(loc_override)
 	if(!isturf(loc))
 		forceMove(get_turf(src))
 	starting_turf = loc

@@ -22,7 +22,7 @@
 	mouse_over_pointer = MOUSE_HAND_POINTER
 	power_channel = ENVIRON
 	// Indestructible until someone wants to make these constructible, with all the chaos that implies
-	resistance_flags = ALL
+	resistance_flags = RESIST_ALL
 
 	/// Were we instantiated at mapload? Used to determine when we should link / throw errors
 	var/maploaded = FALSE
@@ -56,6 +56,8 @@
 
 /obj/machinery/elevator_control_panel/Initialize(mapload)
 	. = ..()
+
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "el_panel", MINIMAP_LABELS_LAYER))
 
 	var/static/list/tool_behaviors = list(
 		TOOL_MULTITOOL = list(SCREENTIP_CONTEXT_LMB = "Reset Panel"),

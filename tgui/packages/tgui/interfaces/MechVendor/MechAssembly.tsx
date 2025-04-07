@@ -84,6 +84,7 @@ const BodypartPicker = (props: BodypartPickerData) => {
         ' ' +
         partdefinetofluff[displayingpart]
       }
+      textAlign="center"
     >
       <Stack vertical>
         <Stack.Item mt={0}>
@@ -102,18 +103,36 @@ const BodypartPicker = (props: BodypartPickerData) => {
             shown_colors={selected_primary[displayingpart]}
             name={primaryKey}
           />
+          {displayingpart === 'HEAD' && (
+            <>
+              <Tooltip content="Visor color" position="left">
+                <Icon size={2} name="glasses" />
+              </Tooltip>
+              <ColorDisplayRow shown_colors={selected_visor} name={visorKey} />
+            </>
+          )}
         </Stack.Item>
         <Stack.Item mt={0}>
           <ColorDisplayRow
             shown_colors={selected_secondary[displayingpart]}
             name={secondaryKey}
           />
+          {displayingpart === 'HEAD' && (
+            <Button
+              icon="rotate"
+              width="105px"
+              height="26px"
+              fontSize="120%"
+              mr={1}
+              style={{
+                transform: 'translateY(-15%)', // mt doesnt work
+              }}
+              onClick={() => act('rotate_doll')}
+            >
+              Rotate
+            </Button>
+          )}
         </Stack.Item>
-        {displayingpart === 'HEAD' && (
-          <Stack.Item mt={0}>
-            <ColorDisplayRow shown_colors={selected_visor} name={visorKey} />
-          </Stack.Item>
-        )}
       </Stack>
     </Section>
   );
@@ -158,7 +177,7 @@ export const MechAssembly = (props) => {
   const left_weapon_scatter = left_weapon ? left_weapon.scatter : 0;
   const right_weapon_scatter = right_weapon ? right_weapon.scatter : 0;
   return (
-    <Stack>
+    <Stack fill>
       <Stack.Item>
         <Stack vertical maxWidth={'166px'}>
           <Stack.Item>
@@ -314,7 +333,7 @@ export const MechAssembly = (props) => {
               >
                 <Box maxWidth={'160px'} mt={1}>
                   <Icon name="battery" />
-                  Power capacity: {current_stats.power_max}
+                  Power cap: {current_stats.power_max}
                 </Box>
               </Tooltip>
               <Tooltip
@@ -323,7 +342,7 @@ export const MechAssembly = (props) => {
               >
                 <Box maxWidth={'160px'} mt={1}>
                   <Icon name="charging-station" />
-                  Power generation: {current_stats.power_gen}
+                  Power gen: {current_stats.power_gen}
                 </Box>
               </Tooltip>
               <Tooltip content="Light strength." position="right">
@@ -336,9 +355,9 @@ export const MechAssembly = (props) => {
           </Stack.Item>
         </Stack>
       </Stack.Item>
-      <Stack.Item>
-        <Stack>
-          <Stack.Item>
+      <Stack.Item grow>
+        <Stack fill>
+          <Stack.Item grow overflowY="auto">
             <ColorSelector
               type={'primary'}
               listtoshow={data.colors}
@@ -346,7 +365,7 @@ export const MechAssembly = (props) => {
               setSelectedBodypart={setSelectedBodypart}
             />
           </Stack.Item>
-          <Stack.Item>
+          <Stack.Item grow overflowY="auto">
             <ColorSelector
               type={'secondary'}
               listtoshow={data.colors}
@@ -354,7 +373,7 @@ export const MechAssembly = (props) => {
             />
           </Stack.Item>
           {selectedBodypart === 'HEAD' && (
-            <Stack.Item>
+            <Stack.Item grow maxWidth={'130px'} overflowY="auto">
               <ColorSelector
                 type={'visor'}
                 listtoshow={data.visor_colors}
@@ -372,9 +391,9 @@ const ColorSelector = (props) => {
   const { act, data } = useBackend<MechVendData>();
   const { type, listtoshow, selectedBodypart } = props;
   return (
-    <Section title={capitalize(type) + ' colors'}>
+    <Section title={capitalize(type)} align="center">
       {Object.keys(listtoshow).map((title) => (
-        <Collapsible ml={1} minWidth={11} key={title} title={title}>
+        <Collapsible align="left" ml={1} key={title} title={title}>
           <Stack justify="space-between" vertical fill>
             {Object.keys(listtoshow[title]).map((palette) => (
               <Stack.Item key={palette} my={0}>

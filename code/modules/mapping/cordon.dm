@@ -5,7 +5,7 @@
 	icon_state = "cordon"
 	invisibility = INVISIBILITY_ABSTRACT
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	resistance_flags = ALL
+	resistance_flags = RESIST_ALL
 	opacity = TRUE
 	density = TRUE
 	baseturfs = /turf/cordon

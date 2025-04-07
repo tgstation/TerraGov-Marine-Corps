@@ -30,14 +30,14 @@
 		whistle_playsound(user)
 
 /obj/item/whistle/proc/whistle_playsound(mob/user as mob)
-	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_WHISTLE_BLOW))
+	if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_WHISTLE_BLOW))
 		user.balloon_alert(user, "Catch your breath!")
 		return
 
 	user.visible_message(span_warning("[user] blows into [src]!"))
 	playsound(get_turf(src), 'sound/items/whistle.ogg', volume, 1)
 
-	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_WHISTLE_WARCRY))
+	if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_WHISTLE_WARCRY))
 		to_chat(user, span_notice("You have to wait a while to rally your troops..."))
 	else
 		TIMER_COOLDOWN_START(user, COOLDOWN_WHISTLE_WARCRY, 1 MINUTES)

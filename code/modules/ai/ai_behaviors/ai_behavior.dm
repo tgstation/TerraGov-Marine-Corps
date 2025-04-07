@@ -95,6 +95,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 			change_action(ESCORTING_ATOM, escorted_atom)
 		if(IDLE)
 			change_action(IDLE)
+	if(!registered_for_move)
+		scheduled_move()
 
 ///We finished moving to a node, let's pick a random nearby one to travel to
 /datum/ai_behavior/proc/finished_node_move()
@@ -262,7 +264,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/process()
 	if(!escorted_atom || (get_dist(mob_parent, escorted_atom) > AI_ESCORTING_BREAK_DISTANCE) || mob_parent.z != escorted_atom.z)
 		set_escort()
-	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
+	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, mob_parent.get_xeno_hivenumber(), TRUE)
 	look_for_new_state(next_target)
 	state_process(next_target)
 	return

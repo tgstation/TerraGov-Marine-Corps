@@ -822,7 +822,7 @@
 
 /datum/status_effect/stacking/microwave/tick(delta_time)
 	. = ..()
-	if(COOLDOWN_CHECK(src, cooldown_microwave_status))
+	if(COOLDOWN_FINISHED(src, cooldown_microwave_status))
 		return qdel(src)
 
 	if(!debuff_owner)
@@ -1021,3 +1021,16 @@
 /datum/status_effect/incapacitating/recently_sniped/on_remove()
 	owner.vis_contents -= visual_sniped
 	QDEL_NULL(visual_sniped)
+
+// ***************************************
+// *********** Lifedrain
+// ***************************************
+/datum/status_effect/incapacitating/lifedrain
+	id = "life_drain"
+	duration = 10 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/lifedrain
+
+/atom/movable/screen/alert/status_effect/lifedrain
+	name = "Lifedrain"
+	desc = "Your life force transfers to xenos when they slash you!"
+	icon_state = "skullemoji"

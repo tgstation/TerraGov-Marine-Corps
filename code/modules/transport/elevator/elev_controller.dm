@@ -60,7 +60,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/button/elevator, 32)
 	obj_flags &= ~EMAGGED
 */
 /obj/machinery/button/elevator/attack_hand(mob/living/user)
-	if(!COOLDOWN_CHECK(src, elevator_cooldown))
+	if(!COOLDOWN_FINISHED(src, elevator_cooldown))
 		return
 
 	// Actually try to call the elevator - this sleeps.

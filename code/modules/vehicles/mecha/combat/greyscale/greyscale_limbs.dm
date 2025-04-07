@@ -112,13 +112,12 @@
 
 /// Returns an overlay or list of overlays to use on the mech
 /datum/mech_limb/proc/get_overlays()
+	if(disabled && !has_destroyed_iconstate)
+		return
 	. = list()
 	var/prefix = ""
 	if(owner.is_wreck)
 		prefix = "d_"
-	else if(disabled)
-		if(!has_destroyed_iconstate)
-			return null
 	else if (owner.leg_overload_mode && has_boosting_state)
 		prefix = "b_"
 
@@ -131,25 +130,27 @@
 			percent = owner.obj_integrity / owner.max_integrity
 		if(percent > 0.75)
 			return
-		var/dmg_percent = CEILING(percent, 0.25)*100
+		var/dmg_percent = max(CEILING(percent, 0.25)*100, 25)
 		. += iconstate2appearance(greyscale_type::icon_file, prefix+icon_state+"[dmg_percent]")
 
 ///intercepts damage intended for the mech and applies it to this limb when needed
 /datum/mech_limb/proc/intercept_damage(datum/source, damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	SIGNAL_HANDLER
 	if(!(blame_mob?.zone_selected in def_zones))
-		return
-	take_damage(damage_amount)
-	return COMPONENT_NO_TAKE_DAMAGE
+		return NONE
+	if(take_damage(damage_amount))
+		return COMPONENT_NO_TAKE_DAMAGE
+	return NONE
 
 ///handles actually dealing damage to the mech
 /datum/mech_limb/proc/take_damage(damage_amount)
 	if(part_health <= 0)
-		return
+		return FALSE
 	part_health = max(0, part_health-damage_amount)
 	owner.update_appearance(UPDATE_OVERLAYS)
 	if(part_health <= 0)
 		disable()
+	return TRUE
 
 ///intercepts repair intended for the mech and applies it to this limb when needed
 /datum/mech_limb/proc/intercept_repair(datum/source, repair_amount, mob/user)
@@ -159,7 +160,7 @@
 	if(!(user.zone_selected in def_zones))
 		return NONE
 	do_repairs(repair_amount)
-	return COMPONENT_NO_TAKE_DAMAGE
+	return COMPONENT_NO_REPAIR
 
 ///does the actual repair of this limb
 /datum/mech_limb/proc/do_repairs(repair_amount)
@@ -174,6 +175,7 @@
 		return FALSE
 	disabled = TRUE
 	owner.update_appearance(UPDATE_OVERLAYS)
+	playsound(owner, 'sound/mecha/internaldmgalarm.ogg', 80, TRUE, falloff = 10)
 	return TRUE
 
 ///makes this limb un-"destroyed"
@@ -216,13 +218,12 @@
 	visor_icon = SSgreyscale.GetColoredIconByType(visor_config, visor_color)
 
 /datum/mech_limb/head/get_overlays()
+	if(disabled && !has_destroyed_iconstate)
+		return
 	. = list()
 	var/prefix = ""
 	if(owner.is_wreck)
 		prefix = "d_"
-	else if(disabled)
-		if(!has_damage_overlays)
-			return null
 	else if(owner.leg_overload_mode && has_boosting_state)
 		prefix = "b_"
 
@@ -232,8 +233,14 @@
 		emissive_appearance(visor_icon, prefix+visor_icon_state, owner)
 	)
 	if(has_damage_overlays)
-		var/percent = (part_health / initial(part_health))
-		var/dmg_percent = FLOOR(percent, 0.25)*100
+		var/percent
+		if(initial(part_health))
+			percent = (part_health / initial(part_health))
+		else
+			percent = owner.obj_integrity / owner.max_integrity
+		if(percent > 0.75)
+			return
+		var/dmg_percent = max(CEILING(percent, 0.25)*100, 25)
 		. += iconstate2appearance(greyscale_type::icon_file, prefix+icon_state+"[dmg_percent]")
 
 /datum/mech_limb/head/disable()
@@ -405,24 +412,27 @@
 	return ..()
 
 /datum/mech_limb/arm/get_overlays()
+	if(disabled && !has_destroyed_iconstate)
+		return
 	. = list()
 	var/prefix = ""
 	if(owner.is_wreck)
 		prefix = "d_"
-	else if(disabled)
-		if(!has_destroyed_iconstate)
-			return null
 	else if (owner.leg_overload_mode && has_boosting_state)
 		prefix = "b_"
 	if(!owner.is_wreck && !owner.swapped_to_backweapons && (MECHA_R_BACK in owner.equip_by_category))
 		prefix += "fire"
 	. += iconstate2appearance(overlay_icon, prefix+icon_state)
-	if(has_damage_overlays && initial(part_health))
-		var/percent = (part_health / initial(part_health))
+	if(has_damage_overlays)
+		var/percent
+		if(initial(part_health))
+			percent = (part_health / initial(part_health))
+		else
+			percent = owner.obj_integrity / owner.max_integrity
 		if(percent > 0.75)
 			return
-		var/dmg_percent = CEILING(percent, 0.25)*100
-		. += iconstate2appearance(greyscale_type::icon_file, prefix+icon_state+"[dmg_percent]")
+		var/dmg_percent = max(CEILING(percent, 0.25)*100, 25)
+		. += iconstate2appearance(greyscale_type::icon_file, prefix+icon_state+"arm"+"[dmg_percent]")
 
 /datum/mech_limb/arm/recon
 	part_health = 100
@@ -495,11 +505,11 @@
 
 /datum/mech_limb/legs/intercept_repair(datum/source, repair_amount, mob/user)
 	. = ..()
-	if(. != COMPONENT_NO_TAKE_DAMAGE) // repaired dmg
+	if(. != COMPONENT_NO_REPAIR) // repaired dmg
 		return
 	update_movespeed()
 
-//updates movespeed after integrity changes
+///updates movespeed after integrity changes
 /datum/mech_limb/legs/proc/update_movespeed()
 	owner.move_delay -= slowdown_delay
 	slowdown_delay = (owner.move_delay) * (1-(part_health / initial(part_health)))

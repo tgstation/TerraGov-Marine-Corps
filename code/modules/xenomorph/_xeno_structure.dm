@@ -57,7 +57,7 @@
 
 ///Alerts the Hive when hostiles get too close to this structure
 /obj/structure/xeno/HasProximity(atom/movable/hostile)
-	if(!COOLDOWN_CHECK(src, proxy_alert_cooldown))
+	if(!COOLDOWN_FINISHED(src, proxy_alert_cooldown))
 		return
 
 	if(issamexenohive(hostile))
@@ -124,7 +124,7 @@
 
 ///Notifies the hive when we take damage
 /obj/structure/xeno/proc/damage_alert()
-	if(!COOLDOWN_CHECK(src, damage_alert_cooldown))
+	if(!COOLDOWN_FINISHED(src, damage_alert_cooldown))
 		return
 	threat_warning = TRUE
 	update_minimap_icon()

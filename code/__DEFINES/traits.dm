@@ -144,6 +144,8 @@
 ///Used for managing KEEP_TOGETHER in [/atom/var/appearance_flags]
 #define TRAIT_KEEP_TOGETHER "keep-together"
 
+#define TRAIT_WARPED_INVISIBLE "warped_invisible"
+
 #define ABSTRACT_ITEM_TRAIT "abstract_item"
 /// A trait given by any status effect
 #define STATUS_EFFECT_TRAIT "status-effect"

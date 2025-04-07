@@ -139,11 +139,11 @@
 		return FALSE
 	var/obj/vehicle/affected_vehicle = affected_obj
 	if(ismecha(affected_vehicle))
-		affected_vehicle.take_damage(get_damage() * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = src)
+		affected_vehicle.take_damage(get_damage() * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = xeno_owner)
 	else if(isarmoredvehicle(affected_vehicle)) // Obtained from hitbox.
-		affected_vehicle.take_damage(get_damage() / 3, BRUTE, MELEE, blame_mob = src)
+		affected_vehicle.take_damage(get_damage() / 3, BRUTE, MELEE, blame_mob = xeno_owner)
 	else
-		affected_vehicle.take_damage(get_damage() * 2, BRUTE, MELEE, blame_mob = src)
+		affected_vehicle.take_damage(get_damage() * 2, BRUTE, MELEE, blame_mob = xeno_owner)
 	if(!(affected_vehicle in hit_vehicles) && vehicle_stun_length > 0)
 		for(var/mob/living/carbon/human/human_occupant in affected_vehicle.occupants)
 			human_occupant.apply_effect(vehicle_stun_length, EFFECT_PARALYZE)
@@ -607,7 +607,7 @@
 	var/damage_taken_so_far = 0
 
 /datum/action/ability/activable/xeno/grab/remove_action(mob/living/ability_owner)
-	end_grabbing(enforce_cooldown = FALSE)
+	end_grabbing(no_cooldown = TRUE)
 	return ..()
 
 /datum/action/ability/activable/xeno/grab/can_use_ability(atom/target, silent, override_flags)
@@ -698,7 +698,7 @@
 	playsound(get_turf(xeno_owner), 'sound/voice/alien/pounce.ogg', 25, TRUE)
 
 /// Cleans up everything associated with the grabbing and ends the ability.
-/datum/action/ability/activable/xeno/grab/proc/end_grabbing(datum/source, enforce_cooldown = TRUE)
+/datum/action/ability/activable/xeno/grab/proc/end_grabbing(datum/source, no_cooldown = FALSE)
 	SIGNAL_HANDLER
 	if(grabbed_human)
 		REMOVE_TRAIT(grabbed_human, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
@@ -709,7 +709,7 @@
 			UnregisterSignal(grabbed_human, list(COMSIG_MOB_STAT_CHANGED, COMSIG_LIVING_DO_MOVE_RESIST))
 	grabbed_human = null
 	grabbing_item = null
-	if(!enforce_cooldown)
+	if(no_cooldown)
 		return
 	succeed_activate()
 	add_cooldown()

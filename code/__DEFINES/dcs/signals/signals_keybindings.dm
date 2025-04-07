@@ -131,12 +131,14 @@
 #define COMSIG_MECHABILITY_VIEW_STATS "mechability_view_stats"
 #define COMSIG_MECHABILITY_SMOKE "mechability_smoke"
 #define COMSIG_MECHABILITY_TOGGLE_ZOOM "mechability_toggle_zoom"
+#define COMSIG_MECHABILITY_ASSAULT_ARMOR "mechability_assault_armor"
 #define COMSIG_MECHABILITY_SKYFALL "mechability_skyfall"
 #define COMSIG_MECHABILITY_STRIKE "mechability_strike"
 #define COMSIG_MECHABILITY_RELOAD "mechability_reload"
 #define COMSIG_MECHABILITY_REPAIRPACK "mechability_repairpack"
 #define COMSIG_MECHABILITY_SWAPWEAPONS "mechability_swapweapons"
 #define COMSIG_MECHABILITY_TOGGLE_ACTUATORS "mechability_toggle_actuators"
+#define COMSIG_MECHABILITY_CLOAK "mechability_cloak"
 
 #define COMSIG_ACTION_EXCLUSIVE_TOGGLE "action_exclusive_toggle"
 
@@ -176,6 +178,8 @@
 #define COMSIG_XENOABILITY_RALLY_MINION "xenoability_rally_minion"
 #define COMSIG_XENOABILITY_MINION_BEHAVIOUR "xenoability_minion_behavior"
 #define COMSIG_XENOABILITY_SILENCE "xenoability_silence"
+#define COMSIG_XENOABILITY_PLACE_PATTERN "xenoability_place_pattern"
+#define COMSIG_XENOABILITY_SELECT_PATTERN "xenoability_select_pattern"
 
 #define COMSIG_XENOABILITY_TOXIC_SPIT "xenoability_toxic_spit"
 #define COMSIG_XENOABILITY_TOXIC_SLASH "xenoability_toxic_slash"

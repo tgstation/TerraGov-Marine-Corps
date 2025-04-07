@@ -6,7 +6,7 @@
 	var/mob/camera/aiEye/pic_in_pic/aiEye
 
 
-/atom/movable/screen/movable/pic_in_pic/ai/Initialize(mapload)
+/atom/movable/screen/movable/pic_in_pic/ai/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	aiEye = new /mob/camera/aiEye/pic_in_pic()
 	aiEye.screen = src

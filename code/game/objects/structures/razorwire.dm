@@ -84,7 +84,7 @@
 
 /obj/structure/razorwire/resisted_against(datum/source)
 	var/mob/living/entangled = source
-	if(TIMER_COOLDOWN_CHECK(entangled, COOLDOWN_ENTANGLE))
+	if(TIMER_COOLDOWN_RUNNING(entangled, COOLDOWN_ENTANGLE))
 		entangled.visible_message(span_danger("[entangled] attempts to disentangle itself from [src] but is unsuccessful!"),
 		span_warning("You fail to disentangle yourself!"))
 		return FALSE
