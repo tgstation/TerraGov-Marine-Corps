@@ -19,6 +19,8 @@
 			var/mob/living/carbon/human/possible_target = i
 			if(!istype(possible_target) || !possible_target.client || issynth(possible_target) || !possible_target.faction == FACTION_CLF)
 				continue
+			if(!(possible_target.client?.prefs?.be_special & BE_HIVE_TARGET))
+				continue
 			eligible_targets += possible_target
 	if(!length(eligible_targets))
 		return //everyone is dead or evac'd

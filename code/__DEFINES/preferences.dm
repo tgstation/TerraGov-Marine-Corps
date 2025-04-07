@@ -28,6 +28,7 @@
 #define BE_DEATHMATCH (1<<3)
 #define BE_SQUAD_STRICT (1<<4)
 #define BE_ALIEN_UNREVIVABLE (1<<5)
+#define BE_HIVE_TARGET (1<<6)
 
 #define BE_SPECIAL_DEFAULT (BE_DEATHMATCH)
 
@@ -197,6 +198,7 @@
 	"Join as Chestburster" = BE_ALIEN,\
 	"Take Own Chestburster" = BE_ALIEN_UNREVIVABLE,\
 	"End of Round Deathmatch" = BE_DEATHMATCH,\
+	"Eligible for Hive Target" = BE_HIVE_TARGET,\
 	"Prefer Squad over Role" = BE_SQUAD_STRICT\
 	)
 
