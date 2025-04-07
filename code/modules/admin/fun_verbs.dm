@@ -344,7 +344,7 @@ ADMIN_VERB(music_stop, R_SOUND, "Stop Playing Music", "Stop currently playing in
 	message_admins("[ADMIN_TPMONTY(user.mob)] stopped the currently playing music.")
 
 ADMIN_VERB(announce, R_FUN, "Admin Announce", "Do an admin announcement to all players.", ADMIN_CATEGORY_FUN)
-	var/message = tgui_input_text(user, "Global message to send:", "Admin Announce", multiline = TRUE, encode = FALSE, max_length = INFINITY)
+	var/message = tgui_input_text(user, "Global message to send:", "Admin Announce", multiline = TRUE, encode = FALSE)
 
 	message = noscript(message)
 
