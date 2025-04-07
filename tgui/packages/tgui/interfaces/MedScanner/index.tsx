@@ -306,7 +306,6 @@ function PatientChemicals() {
                   </Box>
                 </Tooltip>
               </Box>
-              <Box inline width={SPACING_PIXELS} />
               {chemical.dangerous || chemical.od ? (
                 <Tooltip
                   content={
@@ -327,9 +326,10 @@ function PatientChemicals() {
                   }
                 >
                   <MedBoxedTag
-                    icon={chemical.od ? 'temperature-full' : 'virus'}
+                    icon={chemical.od ? 'gauge-high' : 'virus'}
                     textColor="white"
                     backgroundColor="red"
+                    ml={SPACING_PIXELS}
                   >
                     {chemical.od
                       ? Math.trunc(
@@ -350,37 +350,43 @@ function PatientChemicals() {
                   </MedBoxedTag>
                 </Tooltip>
               ) : (
-                <Tooltip content="How close this chemical is to its overdose threshold.">
-                  <MedBoxedTag icon="temperature-half">
-                    {Math.trunc(
-                      (chemical.amount / chemical.od_threshold) * 100,
-                    ) + '%'}
+                !!chemical.od_threshold && (
+                  <Tooltip content="How close this chemical is to its overdose threshold.">
+                    <MedBoxedTag icon="gauge" ml={SPACING_PIXELS}>
+                      {Math.trunc(
+                        (chemical.amount / chemical.od_threshold) * 100,
+                      ) + '%'}
+                    </MedBoxedTag>
+                  </Tooltip>
+                )
+              )}
+              {!!chemical.metabolism_factor && (
+                <Tooltip
+                  content={`Estimated time before this chemical is purged. May vary based on time dilation and other chemicals. Units metabolized per cycle: ${chemical.metabolism_factor}.`}
+                >
+                  <MedBoxedTag
+                    icon="clock"
+                    textColor={
+                      chemical.dangerous
+                        ? 'white'
+                        : chemical.amount / chemical.metabolism_factor < 10
+                          ? 'white'
+                          : 'black'
+                    }
+                    backgroundColor={
+                      chemical.dangerous
+                        ? 'red'
+                        : chemical.amount / chemical.metabolism_factor < 10
+                          ? 'grey'
+                          : 'white'
+                    }
+                    ml={SPACING_PIXELS}
+                  >
+                    {Math.trunc(chemical.amount / chemical.metabolism_factor) +
+                      's'}
                   </MedBoxedTag>
                 </Tooltip>
               )}
-              <Tooltip content="Estimated time before this chemical is purged. May vary based on time dilation and other chemicals.">
-                <MedBoxedTag
-                  icon="clock"
-                  textColor={
-                    chemical.dangerous
-                      ? 'white'
-                      : chemical.amount / chemical.metabolism_factor < 10
-                        ? 'white'
-                        : 'black'
-                  }
-                  backgroundColor={
-                    chemical.dangerous
-                      ? 'red'
-                      : chemical.amount / chemical.metabolism_factor < 10
-                        ? 'grey'
-                        : 'white'
-                  }
-                  ml={SPACING_PIXELS}
-                >
-                  {Math.trunc(chemical.amount / chemical.metabolism_factor) +
-                    's'}
-                </MedBoxedTag>
-              </Tooltip>
             </Box>
           </Stack.Item>
         ))}
@@ -683,7 +689,7 @@ function PatientBlood() {
           </MedBoxedTag>
           {!!internal_bleeding && (
             <MedBoxedTag textColor="white" backgroundColor="red">
-              {'INTERNAL BLEEDING'}
+              INTERNAL BLEEDING
             </MedBoxedTag>
           )}
         </LabeledList.Item>
@@ -717,11 +723,7 @@ function PatientAdvice() {
         {Object.values(advice).map((advice) => (
           <Stack.Item key={advice.advice}>
             <Tooltip
-              content={
-                advice.tooltip
-                  ? advice.tooltip
-                  : 'No tooltip entry for this advice.'
-              }
+              content={advice.tooltip || 'No tooltip entry for this advice.'}
             >
               <Box inline>
                 <Icon
