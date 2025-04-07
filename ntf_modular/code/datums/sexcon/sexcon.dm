@@ -242,7 +242,7 @@
 		xuser.gain_plasma(5, TRUE)
 
 	adjust_arousal(arousal_amt)
-	if(user.client.prefs.harmful_sex_allowed)
+	if(user.client?.prefs?.harmful_sex_allowed || !(user.mind))
 		damage_from_pain(pain_amt)
 	try_do_moan(arousal_amt, pain_amt, applied_force, giving)
 	if(user.client.prefs.harmful_sex_allowed)
