@@ -487,17 +487,17 @@
 		if(item_to_stock.type == checked_record.product_path)	// Found a match
 			if(checked_record.tab == "SMGs" || checked_record.tab == "Sidearm")
 				if(checked_record.amount >= 80)	// SMGs/sidearms capacity at 80, twice the size of their magbox capacity
-					user?.balloon_alert(user, "There's no more room for the [item_to_stock]!")
+					if(show_feedback) user?.balloon_alert(user, "\nThere's no more room for the [item_to_stock]!")
 					return FALSE
 			else if(checked_record.tab == "Shotgun" && \
 			!(checked_record.product_path == /obj/item/ammo_magazine/rifle/tx15_flechette || \
 			checked_record.product_path == /obj/item/ammo_magazine/rifle/tx15_slug))
 				if(checked_record.amount >= 16)	// 12 Gauge shells to 16 boxes because that's 400 shells, twice the shotgun ammo box capacity
-					user?.balloon_alert(user, "There's no more room for the [item_to_stock]")
+					if(show_feedback)user?.balloon_alert(user, "\nThere's no more room for the [item_to_stock]")
 					return FALSE
 			else
 				if(checked_record.amount >= 60)	// Everything else at 60, twice the capacity of their magbox capacity
-					user?.balloon_alert(user, "There's no more room for the [item_to_stock]!")
+					if(show_feedback)user?.balloon_alert(user, "\nThere's no more room for the [item_to_stock]!")
 					return FALSE
 	return ..()
 
@@ -535,7 +535,16 @@
 		else
 			user?.balloon_alert(user, "[B] isn't full!");
 			return
+	else if(istype(I, /obj/item/storage/box/visual/magazine))
+		var/obj/item/storage/box/visual/magazine/B = I
+		for(var/x = length(B.contents); x > 0; x--)
+			stock(B.contents[x], user, FALSE)
+		user?.balloon_alert(user, "\n\nYou dump the contents of the box into the NanoAmmo.");
+		return
 	return ..()
+
+/obj/machinery/vending/nanoammo/get_acid_delay()
+	return 10 SECONDS
 
 /obj/machinery/vending/security
 	name = "\improper SecTech"
