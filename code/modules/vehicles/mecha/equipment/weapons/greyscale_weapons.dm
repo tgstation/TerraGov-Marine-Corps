@@ -489,22 +489,25 @@
 //NON GUNS BEYOND HERE
 //////////////////////////
 
-#define LASER_DASH_RANGE_NORMAL 3
+#define LASER_DASH_RANGE_NORMAL 2
 #define LASER_DASH_RANGE_ENHANCED 5
 
 /obj/item/mecha_parts/mecha_equipment/laser_sword
-	name = "\improper Moonlight particle cutter"
+	name = "\improper Bright laser blade"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. It is a top-of-the-line melee weapon of TGMC's fine line of mecha close-range offensive capability."
+	desc = "A specialized mech laser blade made out of plasma. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with the superheated plasma beam."
 	icon_state = "moonlight"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	max_integrity = 400
 	slowdown = 0
 	harmful = TRUE
-	equip_cooldown = 3 SECONDS
-	energy_drain = 10
+	equip_cooldown = 5 SECONDS
+	energy_drain = 100
 	range = MECHA_MELEE|MECHA_RANGED
-	force = 130
+	force = 200
+	weight = 60
+	///ravager slash VFX but red
+	var/obj/effect/abstract/particle_holder/particle_holder
 	/// holder var for the mob that is attacking right now
 	var/mob/cutter
 
@@ -573,18 +576,32 @@
 ///executes a melee attack in the direction that the mech is facing
 /obj/item/mecha_parts/mecha_equipment/laser_sword/proc/execute_melee(mob/source, list/modifiers)
 	var/list/turf/targets
-	if(HAS_TRAIT(chassis, TRAIT_MELEE_CORE))
-		targets = list(get_step(chassis, chassis.dir), get_step(chassis, turn(chassis.dir, 45)), get_step(chassis, turn(chassis.dir, -45)))
-	else
-		targets = list(get_step(chassis, chassis.dir))
+	targets = list(get_step(chassis, chassis.dir), get_step(chassis, turn(chassis.dir, 45)), get_step(chassis, turn(chassis.dir, -45)))
 	if(!targets[1])
 		return
 	playsound(chassis, 'sound/mecha/weapons/laser_sword.ogg', 30)
 
 	var/old_intent = source.a_intent
 	source.a_intent = INTENT_HARM
-	for(var/turf/target AS in targets)
-		chassis.do_attack_animation(target, ATTACK_EFFECT_LASERSWORD)
+
+	particle_holder = new(get_turf(chassis), /particles/ravager_slash)
+	particle_holder.particles.color = COLOR_RED
+	QDEL_NULL_IN(src, particle_holder, 5)
+	particle_holder.particles.rotation += dir2angle(chassis.dir)
+	switch(chassis.dir) // There's no shared logic here because sprites are magical.
+		if(NORTH) // Gotta define stuff for each angle so it looks good.
+			particle_holder.particles.position = list(8, 4)
+			particle_holder.particles.velocity = list(0, 20)
+		if(EAST)
+			particle_holder.particles.position = list(3, -8)
+			particle_holder.particles.velocity = list(20, 0)
+		if(SOUTH)
+			particle_holder.particles.position = list(-9, -3)
+			particle_holder.particles.velocity = list(0, -20)
+		if(WEST)
+			particle_holder.particles.position = list(-4, 9)
+			particle_holder.particles.velocity = list(-20, 0)
+	for(var/turf/target in targets)
 		for(var/atom/movable/slashed AS in target)
 			slashed.attackby(src, source, list2params(modifiers))
 	source.a_intent = old_intent
