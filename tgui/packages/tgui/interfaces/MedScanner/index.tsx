@@ -530,7 +530,7 @@ function PatientLimbs() {
                     condition={limb.implants}
                     tooltip="Use tweezers to remove the implants. Risk of brute damage and internal bleeding if left untreated."
                   >
-                    Implant x{limb.implants}
+                    [Implant x{limb.implants}]
                   </MedConditionalBox>
                   <MedConditionalBox
                     condition={limb.open_incision}
