@@ -159,6 +159,12 @@ OPERATIONS
 	containertype = null
 	cost = 100
 
+/datum/supply_packs/operations/droppod_mech
+	name = "mech drop pod"
+	contains = list(/obj/structure/droppod/nonmob/mech_pod)
+	containertype = null
+	cost = 200
+
 /datum/supply_packs/operations/researchcomp
 	name = "Research console"
 	contains = list(/obj/machinery/researchcomp)
@@ -2107,6 +2113,7 @@ VEHICLES
 	name = "Jerry Can"
 	cost = 100
 	contains = list(/obj/item/reagent_containers/jerrycan)
+	containertype = /obj/structure/closet/crate
 
 /datum/supply_packs/vehicles/droid_combat
 	name = "Combat droid with weapon equipped"
@@ -2265,7 +2272,7 @@ FACTORY
 	contains = list(/obj/machinery/unboxer)
 	cost = 50
 
-/datum/supply_packs/conveyors
+/datum/supply_packs/factory/conveyors
 	name = "conveyor refill"
 	contains = list(/obj/item/stack/conveyor/thirty, /obj/item/conveyor_switch_construct)
 	cost = 300
