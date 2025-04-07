@@ -217,6 +217,7 @@
 				"Latejoin Xenomorph" = BE_ALIEN,
 				"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,
 				"End of Round Deathmatch" = BE_DEATHMATCH,
+				"Eligible for Hive Target" = BE_HIVE_TARGET,
 				"Prefer Squad over Role" = BE_SQUAD_STRICT
 			)
 		if(KEYBIND_SETTINGS)
