@@ -389,23 +389,25 @@
 		if(TRUE)
 			return
 	var/atom/AM = X.selected_resin
-	X.visible_message(span_xenowarning("\The [X] regurgitates a thick substance and shapes it into \a [initial(AM.name)]!"), \
-	span_xenonotice("We regurgitate some resin and shape it into \a [initial(AM.name)]."), null, 5)
-	if(sound)
-		playsound(get_turf(owner), sound, 25)
 	var/atom/new_resin
-	var/cost_points = TRUE
+	var/costs_points = TRUE
+	if(istype(T, /turf/closed/wall/resin))
+		costs_points = FALSE
+	if(costs_points && CHECK_BITFIELD(weed_flags, WEED_COSTS_QB_POINTS) && SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()] <= 0)
+		owner.balloon_alert(owner, "The hive has ran out of quickbuilding points! Wait until more sisters awaken or the marines land!")
+		return fail_activate()
 	if(ispath(X.selected_resin, /turf)) // We should change turfs, not spawn them in directly
 		var/list/baseturfs = islist(T.baseturfs) ? T.baseturfs : list(T.baseturfs)
-		if(istype(T, /turf/closed/wall/resin))
-			// if it's a resin typepath that means we're replacing the turf, don't pay the cost
-			cost_points = FALSE
-		else
+		if(!istype(T, /turf/closed/wall/resin))
 			baseturfs |= T.type
 		new_resin = T
 		T.ChangeTurf(X.selected_resin, baseturfs, CHANGETURF_KEEP_WEEDS)
 	else
 		new_resin = new X.selected_resin(T)
+	X.visible_message(span_xenowarning("\The [X] regurgitates a thick substance and shapes it into \a [initial(AM.name)]!"), \
+	span_xenonotice("We regurgitate some resin and shape it into \a [initial(AM.name)]."), null, 5)
+	if(sound)
+		playsound(get_turf(owner), sound, 25)
 	switch(X.selected_resin)
 		if(/obj/alien/resin/sticky)
 			ability_cost = initial(ability_cost) / 3
@@ -413,7 +415,7 @@
 		if(CHECK_BITFIELD(weed_flags, WEED_USES_PLASMA))
 			add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
 			succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? ability_cost/2 : ability_cost)
-		if(CHECK_BITFIELD(weed_flags, WEED_COSTS_QB_POINTS) && cost_points)
+		if(costs_points &&CHECK_BITFIELD(weed_flags, WEED_COSTS_QB_POINTS))
 			SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()]--
 	ability_cost = initial(ability_cost) //Reset the plasma cost
 	owner.record_structures_built()
