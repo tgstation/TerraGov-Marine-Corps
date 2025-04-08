@@ -24,6 +24,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ui_style_alpha = 230
 	var/tgui_fancy = TRUE
 	var/tgui_lock = FALSE
+	var/ui_scale = TRUE
 	var/tgui_input = TRUE
 	var/tgui_input_big_buttons = FALSE
 	var/tgui_input_buttons_swap = FALSE
