@@ -79,13 +79,13 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED, TYPE_PROC_REF(/atom/movable/screen/text/lobby, update_text))
 
 /atom/movable/screen/text/lobby/clickable/join_game/update_text()
-	var/mob/new_player/player = hud.mymob
 	if(SSticker?.current_state > GAME_STATE_PREGAME)
 		maptext = "<span class='maptext' style=font-size:8px>JOIN GAME</span>"
 		icon_state = "join"
 		return
-	maptext = "<span class='maptext' style=font-size:8px>YOU ARE: [player.ready ? "" : "NOT "]READY</span>"
-	icon_state = player.ready ? "ready" : "unready"
+	var/mob/new_player/player = hud?.mymob || usr
+	maptext = "<span class='maptext' style=font-size:8px>YOU ARE: [player?.ready ? "" : "NOT "]READY</span>"
+	icon_state = player?.ready ? "ready" : "unready"
 
 /atom/movable/screen/text/lobby/clickable/join_game/Click()
 	. = ..()
