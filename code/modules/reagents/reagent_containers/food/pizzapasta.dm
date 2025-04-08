@@ -203,7 +203,7 @@
 	. = ..()
 	if(open && pizza)
 		var/image/pizzaimg = image("pizzaspaghetti.dmi", icon_state = pizza.icon_state)
-		pizzaimg.pixel_y = -3
+		pizzaimg.pixel_z = -3
 		. += pizzaimg
 		return
 	// Stupid code because byondcode sucks - imagine blaming the engine for you being bad at coding. TODO: clean this up
@@ -218,7 +218,7 @@
 
 	if(doimgtag)
 		var/image/tagimg = image("pizzaspaghetti.dmi", icon_state = "pizzabox_tag")
-		tagimg.pixel_y = boxes.len * 3
+		tagimg.pixel_z = boxes.len * 3
 		. += tagimg
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE

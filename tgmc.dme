@@ -271,6 +271,7 @@
 #include "code\_globalvars\lists\flavor_misc.dm"
 #include "code\_globalvars\lists\game_modes.dm"
 #include "code\_globalvars\lists\hud.dm"
+#include "code\_globalvars\lists\icons.dm"
 #include "code\_globalvars\lists\keybinding.dm"
 #include "code\_globalvars\lists\mapping.dm"
 #include "code\_globalvars\lists\mobs.dm"

@@ -43,7 +43,7 @@
 	if(listindex)
 		var/datum/progressbar/P = bars[listindex]
 		elevation = P.bar.height
-	bar.pixel_y += 32 - elevation + user.progbar_towers[bar.loc]
+	bar.pixel_z += 32 - elevation + user.progbar_towers[bar.loc]
 	user.progbar_towers[bar.loc] += bar.height
 	bars.Add(src)
 	if(frame_tag)
@@ -52,7 +52,7 @@
 	if(bg_tag)
 		bg = new bg_tag
 		bar.underlays += bg_tag
-	animate(bar, pixel_y = bar.pixel_y + elevation, alpha = 255, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
+	animate(bar, pixel_z = bar.pixel_z + elevation, alpha = 255, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
 
 /datum/progressbar/proc/update(progress)
 	if(!bar)
@@ -75,7 +75,7 @@
 
 /datum/progressbar/proc/shiftDown(height)
 	--listindex
-	animate(bar, pixel_y = bar.pixel_y - height, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
+	animate(bar, pixel_z = bar.pixel_z - height, time = PROGRESSBAR_ANIMATION_TIME, easing = SINE_EASING)
 
 /datum/progressbar/Destroy()
 	if(bar)
@@ -229,11 +229,11 @@
 	icon_state = "busy_generic"
 	appearance_flags = APPEARANCE_UI|KEEP_APART|TILE_BOUND
 	alpha = 255
-	pixel_y = 32
+	pixel_z = 32
 
 /image/progdisplay/medical
 	icon_state = "busy_medical"
-	pixel_y = 0
+	pixel_z = 0
 
 /image/progdisplay/construction
 	icon_state = "busy_build"
