@@ -195,9 +195,11 @@
 	var/disk_cycle_reward = DISK_CYCLE_REWARD_MIN + ((DISK_CYCLE_REWARD_MAX - DISK_CYCLE_REWARD_MIN) * (SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP))
 	disk_cycle_reward = clamp(disk_cycle_reward, DISK_CYCLE_REWARD_MIN, DISK_CYCLE_REWARD_MAX)
 
-	SSpoints.supply_points[faction] += disk_cycle_reward
+	SSpoints.supply_points[FACTION_TERRAGOV] += disk_cycle_reward
 	SSpoints.dropship_points += disk_cycle_reward/10
 	GLOB.round_statistics.points_from_objectives += disk_cycle_reward
+
+	say("Program has execution has rewarded "+disk_cycle_reward+" requisitions points!")
 
 ///Change minimap icon if its on or off
 /obj/machinery/computer/nuke_disk_generator/proc/update_minimap_icon()
