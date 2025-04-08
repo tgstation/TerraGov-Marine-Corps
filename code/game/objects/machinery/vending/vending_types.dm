@@ -469,7 +469,7 @@
 		),
 		"Seasonal" = list(
 			/obj/item/ammo_magazine/revolver/small = 0,
-			/obj/item/ammo_magazine/revolver = 0,
+			//obj/item/ammo_magazine/revolver = 0,	commented out because its early type pathing causes all other revolver ammos to break, needs to be addressed with different PR
 			/obj/item/ammo_magazine/revolver/judge = 0,
 			/obj/item/ammo_magazine/revolver/judge/buckshot = 0,
 			/obj/item/ammo_magazine/revolver/upp = 0,
@@ -494,7 +494,7 @@
 			/obj/item/ammo_magazine/shotgun/mbx900/tracking = 0,
 		)
 	)
-	var/list/max_capacity = list(
+	max_capacities = list(
 		/obj/item/ammo_magazine/rifle/standard_assaultrifle = 60,
 		/obj/item/ammo_magazine/rifle/standard_carbine = 60,
 		/obj/item/ammo_magazine/rifle/standard_skirmishrifle = 60,
@@ -517,10 +517,6 @@
 		/obj/item/ammo_magazine/shotgun/buckshot = 16,
 		/obj/item/ammo_magazine/shotgun/flechette = 16,
 		/obj/item/ammo_magazine/shotgun/tracker = 16,
-		/datum/ammo/bullet/shotgun/slug = 16, 		// Additionally listed these shotgun shells directly for
-		/datum/ammo/bullet/shotgun/buckshot = 16,	// the unique handling of the attackby proc when loading
-		/datum/ammo/bullet/shotgun/flechette = 16,	// the shotgun ammo boxes from RO.
-		/datum/ammo/bullet/shotgun/tracker = 16,	// These should always match the 4 shotgun mags above.
 		/obj/item/ammo_magazine/rifle/tx15_flechette = 60,
 		/obj/item/ammo_magazine/rifle/tx15_slug = 60,
 		/obj/item/ammo_magazine/standard_lmg = 60,
@@ -533,7 +529,7 @@
 		/obj/item/ammo_magazine/pistol/vp70 = 80,
 		/obj/item/ammo_magazine/pistol/plasma_pistol = 80,
 		/obj/item/ammo_magazine/revolver/small = 80,
-		/obj/item/ammo_magazine/revolver = 80,
+		//obj/item/ammo_magazine/revolver = 80,	commented out because its early type pathing causes all other revolver ammos to break, needs to be addressed with different PR
 		/obj/item/ammo_magazine/revolver/judge = 80,
 		/obj/item/ammo_magazine/revolver/judge/buckshot = 80,
 		/obj/item/ammo_magazine/revolver/upp = 80,
@@ -557,7 +553,6 @@
 		/obj/item/ammo_magazine/shotgun/mbx900/buckshot = 16,
 		/obj/item/ammo_magazine/shotgun/mbx900/tracking = 16,
 	)
-
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /obj/machinery/vending/nanoammo/Initialize(mapload, ...)
@@ -572,54 +567,25 @@
 		if(WEST)
 			pixel_x = 21
 
-/obj/machinery/vending/nanoammo/stock(obj/item/item_to_stock, mob/user, show_feedback = TRUE)
-	for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)	// Loop through vendor records to find a match
-		if(item_to_stock.type == checked_record.product_path)	// Found a match
-			if(checked_record.amount >= max_capacity[item_to_stock.type])
-				if(show_feedback) user?.balloon_alert(user, "\nThere's no more room for the [item_to_stock]!")
-				return FALSE
-	return ..()
-
 /obj/machinery/vending/nanoammo/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/storage/box/visual/magazine/compact))	// If the item is a compact mag box (the Req ammo boxes)
-		var/storage_capacity = I.storage_datum.storage_slots
-		if(length(I.contents) < storage_capacity) // If the mag box is not full
-			user?.balloon_alert(user, "[I] isn't full!");
-			return
-		else
-			for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)	// Loop through vendor records to find a match
-				if(I.contents[1].type == checked_record.product_path)	// Found a match
-					if(checked_record.amount + storage_capacity <= max_capacity[I.contents[1].type]) // If filling the box wouldn't exceed the cap
-						checked_record.amount += storage_capacity
-					else
-						checked_record.amount = max_capacity[I.contents[1].type]
-					user?.balloon_alert(user, "The NanoAmmo eats the [I]...");
-					qdel(I)
-					return
-	else if(istype(I, /obj/item/shotgunbox))
-		if(I.type == /obj/item/shotgunbox/blank || I.type == /obj/item/shotgunbox/clf_heavyrifle)
-			return ..()
-		var/obj/item/shotgunbox/B = I
-		if(B.current_rounds < B.max_rounds) // If shotgun box is not full
-			user?.balloon_alert(user, "[B] isn't full!");
-			return
-		else
-			for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)	// Loop through vendor records to find a match
-				var/obj/item/ammo_magazine/M = checked_record.product_path
-				if(B.ammo_type == M.default_ammo)	// Found a match
-					if(checked_record.amount + 8 <= max_capacity[M.default_ammo])	// If filling the box wouldn't exceed the cap
-						checked_record.amount += 8
-					else
-						checked_record.amount = max_capacity[M.default_ammo]
-					user?.balloon_alert(user, "The NanoAmmo eats the [B]...");
-					qdel(B)
-					return
-	else if(istype(I, /obj/item/storage/box/visual/magazine))
+	if(istype(I, /obj/item/storage/box/visual/magazine))
 		var/obj/item/storage/box/visual/magazine/B = I
 		for(var/x = length(B.contents); x > 0; x--)
-			stock(B.contents[x], user, FALSE)
+			stock(B.contents[x], user, show_feedback = FALSE)
 		user?.balloon_alert(user, "\n\nYou dump the contents of the box into the NanoAmmo.");
 		return
+
+	else if(istype(I, /obj/item/shotgunbox))
+		var/obj/item/shotgunbox/B = I
+		for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)	// Loop through vendor records to find a match
+			var/obj/item/ammo_magazine/M = checked_record.product_path
+			if(B.ammo_type == M.default_ammo)	// Found a match
+				while(B.current_rounds >= M.max_rounds)
+					if(!stock(M, user, show_feedback = FALSE)) break	// If the stocking process returns false (probably because of max capacity), break
+					B.current_rounds -= M.max_rounds
+				user?.balloon_alert(user, "The NanoAmmo neatly organizes the [B.ammo_type.name]s.");
+				return
+
 	return ..()
 
 /obj/machinery/vending/nanoammo/get_acid_delay()
