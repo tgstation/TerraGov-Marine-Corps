@@ -582,7 +582,7 @@ function PatientOrgans() {
             backgroundColor={row_transparency++ % 2 === 0 ? COLOR_ZEBRA_BG : ''}
             style={ROUNDED_BORDER}
           >
-            <Box inline p={'3px'}>
+            <Box inline p="3px">
               <Box inline>
                 <Tooltip
                   content={`Considered damaged at ${organ.bruised_damage}, failing at ${organ.broken_damage}.`}
@@ -660,7 +660,7 @@ function PatientBlood() {
     <Section>
       <LabeledList>
         <LabeledList.Item
-          label={'Blood Volume'}
+          label="Blood Volume"
           tooltip="Bloodloss causes symptoms that start as suffocation and pain, but get significantly worse as more blood is lost. Blood can be restored by eating and taking Isotonic solution."
         >
           <Box
