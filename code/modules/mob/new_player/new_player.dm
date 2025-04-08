@@ -187,7 +187,7 @@
 	var/datum/hive_status/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(!normal_hive)
 		return
-	if(length(normalhive.candidates) <= 1)
+	if(length(normal_hive.candidates) <= 2)
 		return
 	. += " There are [length(normal_hive.candidates)] people in the larva queue."
 
