@@ -1,5 +1,5 @@
-#define DISK_CYCLE_REWARD_MIN = 150
-#define DISK_CYCLE_REWARD_MAX = 500
+#define DISK_CYCLE_REWARD_MIN 100
+#define DISK_CYCLE_REWARD_MAX 300
 
 ///How much faster disk generators get while the colony power speed boost is active
 #define OVERCLOCK_MULTIPLIER 3
@@ -192,12 +192,12 @@
 	say("Program run has concluded! Standing by...")
 
 	// Requisitions points bonus per cycle.
-	var/disk_cycle_value = DISK_CYCLE_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (DISK_CYCLE_REWARD_MAX - DISK_CYCLE_REWARD_MIN))
-	disk_cycle_value = clamp(disk_cycle_value, DISK_CYCLE_REWARD_MIN, DISK_CYCLE_REWARD_MAX)
+	var/disk_cycle_reward = DISK_CYCLE_REWARD_MIN + ((DISK_CYCLE_REWARD_MAX - DISK_CYCLE_REWARD_MIN) * (SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP))
+	disk_cycle_reward = clamp(disk_cycle_reward, DISK_CYCLE_REWARD_MIN, DISK_CYCLE_REWARD_MAX)
 
-	SSpoints.supply_points[faction] += disk_cycle_value
-	SSpoints.dropship_points += disk_cycle_value/10
-	GLOB.round_statistics.points_from_objectives += disk_cycle_value
+	SSpoints.supply_points[faction] += disk_cycle_reward
+	SSpoints.dropship_points += disk_cycle_reward/10
+	GLOB.round_statistics.points_from_objectives += disk_cycle_reward
 
 ///Change minimap icon if its on or off
 /obj/machinery/computer/nuke_disk_generator/proc/update_minimap_icon()

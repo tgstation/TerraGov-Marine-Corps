@@ -16,6 +16,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	///All projectiles fired during the round, listed by faction
 	var/list/total_projectiles_fired = list()
 	var/human_bump_attacks = 0
+	var/points_from_objectives = 0
 	var/points_from_research = 0
 	var/points_from_mining = 0
 	var/points_from_xenos = 0
