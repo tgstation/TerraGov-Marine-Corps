@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "fixed misc tgui bugs"
-  - bugfix: "fixed chat scroll breaking sometimes"
