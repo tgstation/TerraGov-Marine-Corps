@@ -200,6 +200,7 @@
 	// Tgui options
 	READ_FILE(S["tgui_fancy"], tgui_fancy)
 	READ_FILE(S["tgui_lock"], tgui_lock)
+	READ_FILE(S["ui_scale"], ui_scale)
 	READ_FILE(S["tgui_input"], tgui_input)
 	READ_FILE(S["tgui_input_big_buttons"], tgui_input_big_buttons)
 	READ_FILE(S["tgui_input_buttons_swap"], tgui_input_buttons_swap)
@@ -270,6 +271,7 @@
 
 	tgui_fancy = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_fancy))
 	tgui_lock = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
+	ui_scale = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
 	tgui_input = sanitize_integer(tgui_input, FALSE, TRUE, initial(tgui_input))
 	tgui_input_big_buttons = sanitize_integer(tgui_input_big_buttons, FALSE, TRUE, initial(tgui_input_big_buttons))
 	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, initial(tgui_input_buttons_swap))
@@ -351,6 +353,7 @@
 
 	tgui_fancy = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_fancy))
 	tgui_lock = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
+	ui_scale = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
 	tgui_input = sanitize_integer(tgui_input, FALSE, TRUE, initial(tgui_input))
 	tgui_input_big_buttons = sanitize_integer(tgui_input_big_buttons, FALSE, TRUE, initial(tgui_input_big_buttons))
 	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, initial(tgui_input_buttons_swap))
@@ -415,6 +418,7 @@
 	// Tgui options
 	WRITE_FILE(S["tgui_fancy"], tgui_fancy)
 	WRITE_FILE(S["tgui_lock"], tgui_lock)
+	WRITE_FILE(S["ui_scale"], ui_scale)
 	WRITE_FILE(S["tgui_input"], tgui_input)
 	WRITE_FILE(S["tgui_input_big_buttons"], tgui_input_big_buttons)
 	WRITE_FILE(S["tgui_input_buttons_swap"], tgui_input_buttons_swap)

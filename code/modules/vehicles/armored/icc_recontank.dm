@@ -16,8 +16,8 @@
 	max_integrity = 450
 	soft_armor = list(MELEE = 40, BULLET = 60 , LASER = 60, ENERGY = 60, BOMB = 40, BIO = 60, FIRE = 40, ACID = 40)
 	max_occupants = 5 //Boy is TINY.
-	pixel_w = 0
-	pixel_z = -40
+	pixel_x = 0
+	pixel_y = -40
 	enter_delay = 0.5 SECONDS
 	ram_damage = 25
 	move_delay = 0.25 SECONDS

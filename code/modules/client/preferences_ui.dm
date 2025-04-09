@@ -130,6 +130,7 @@
 			data["accessible_tgui_themes"] = accessible_tgui_themes
 			data["tgui_fancy"] = tgui_fancy
 			data["tgui_lock"] = tgui_lock
+			data["ui_scale"] = ui_scale
 			data["tgui_input"] = tgui_input
 			data["tgui_input_big_buttons"] = tgui_input_big_buttons
 			data["tgui_input_buttons_swap"] = tgui_input_buttons_swap
@@ -698,6 +699,12 @@
 
 		if("tgui_lock")
 			tgui_lock = !tgui_lock
+
+		if("ui_scale")
+			ui_scale = !ui_scale
+
+			INVOKE_ASYNC(usr.client, TYPE_VERB_REF(/client, refresh_tgui))
+			usr.client.tgui_say?.load()
 
 		if("tgui_input")
 			tgui_input = !tgui_input
