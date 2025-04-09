@@ -1,6 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - qol: "You can now change the size of the command bar and info buttons bar (top of the stat panel with changelogs)"
-  - qol: "added a preference to scale window sizes up or not (off by default as before 516)"
-  - bugfix: "improved non-standard monitor scaling on 516"

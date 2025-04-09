@@ -103,3 +103,18 @@
   - bugfix: you can no longer fire the alternate mech gun while winding up a weapon
   - balance: smg and rifle share cooldown and cannot be fired at the same time
   - balance: mech shotgun and rocket pod share cooldown
+2025-04-09:
+  Abopos:
+  - qol: Spatial agents can now speak xeno common
+  TiviPlus:
+  - admin: winget in sdql works
+  - refactor: Overhauled how looking up and looking down function. they should now
+      not jitter, and trying to look up/down while already doing so will cancel the
+      previous look up/down in the opposite direction
+  - bugfix: Fixed tgui-say squad radio radio colors
+  - qol: You can now change the size of the command bar and info buttons bar (top
+      of the stat panel with changelogs)
+  - qol: added a preference to scale window sizes up or not (off by default as before
+      516)
+  - bugfix: improved non-standard monitor scaling on 516
+  - bugfix: Chat wont crash if we fail to play an admin sound
