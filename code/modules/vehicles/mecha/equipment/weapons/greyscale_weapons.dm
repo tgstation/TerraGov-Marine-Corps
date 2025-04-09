@@ -416,9 +416,9 @@
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	ammotype = /datum/ammo/flamethrower/mech_flamer
 	max_integrity = 250
-	projectiles = 50
-	projectiles_cache = 300
-	projectiles_cache_max = 300
+	projectiles = 10
+	projectiles_cache = 60
+	projectiles_cache_max = 60
 	variance = 10
 	projectile_delay = 2 SECONDS
 	slowdown = 0
