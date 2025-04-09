@@ -173,6 +173,7 @@
 	terminal.setDir(get_dir(T,src))
 	terminal.master = src
 	machine_stat &= ~BROKEN
+	start_processing()
 
 /obj/machinery/power/smes/disconnect_terminal()
 	if(terminal)

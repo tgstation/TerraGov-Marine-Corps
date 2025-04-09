@@ -53,6 +53,20 @@
 			return
 		unequipper.remove_language(/datum/language/xenocommon)
 
+/obj/item/tool/research/xeno_analyzer/removed_from_inventory(mob/unequipper)
+	. = ..()
+	if(ishuman(unequipper) && !ismarinecommandjob(unequipper) && on)
+		if(knowsxenolang)
+			return
+		unequipper.remove_language(/datum/language/xenocommon)
+
+/obj/item/tool/research/xeno_analyzer/dropped(mob/unequipper)
+	. = ..()
+	if(ishuman(unequipper) && !ismarinecommandjob(unequipper) && on)
+		if(knowsxenolang)
+			return
+		unequipper.remove_language(/datum/language/xenocommon)
+
 /obj/item/tool/research/xeno_analyzer/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	. = ..()
 	if(message_language != /datum/language/common && on) //translates all languages to common.

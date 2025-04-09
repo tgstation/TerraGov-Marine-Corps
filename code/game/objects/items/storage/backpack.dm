@@ -487,10 +487,33 @@
 	var/camo_last_stealth = null
 	var/camo_last_shimmer = null
 	var/camo_energy = 100
+	var/show_energy = TRUE //enables hud and showing energy on examine.
 	var/mob/living/carbon/human/wearer = null
 	var/shimmer_alpha = 128
 	var/stealth_delay = null
 	actions_types = list(/datum/action/item_action/toggle)
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/equipped(mob/user, slot)
+	. = ..()
+	set_wearer(user)
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/removed_from_inventory(mob/user)
+	. = ..()
+	set_wearer(null)
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/set_wearer(mob/living/new_wearer)
+	if(isliving(wearer))
+		if(wearer == new_wearer)
+			return TRUE
+		if(show_energy)
+			wearer.hud_used?.remove_ammo_hud(src)
+	if(!(isliving(new_wearer)))
+		wearer = null
+		return FALSE
+	wearer = new_wearer
+	if(show_energy)
+		wearer.hud_used?.add_ammo_hud(src, list("taser", "battery_empty"), camo_energy)
+	return TRUE
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/Destroy()
 	camo_off()
@@ -498,7 +521,7 @@
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/dropped(mob/user)
 	camo_off(user)
-	wearer = null
+	set_wearer(null)
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
@@ -572,7 +595,7 @@
 
 	camo_active = TRUE
 	camo_last_stealth = world.time
-	wearer = M
+	set_wearer(M)
 
 	M.visible_message("[M] fades into thin air!", span_notice("You activate your CyberGhost's camouflage."))
 	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1)
@@ -624,7 +647,7 @@
 		UnregisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH)
 	if(!user)
 		camo_active = FALSE
-		wearer = null
+		set_wearer(null)
 		STOP_PROCESSING(SSprocessing, src)
 		return FALSE
 
@@ -678,7 +701,8 @@
 	if(user != wearer) //Only the wearer can see these details.
 		return
 	var/list/details = list()
-	details +=("It has [camo_energy]/[initial(camo_energy)] charge. </br>")
+	if(show_energy)
+		details +=("It has [camo_energy]/[initial(camo_energy)] charge. </br>")
 
 	if(camo_cooldown_timer)
 		details +=("It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds. </br>")
@@ -697,6 +721,8 @@
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_adjust_energy(mob/user, drain = SCOUT_CLOAK_WALK_DRAIN)
 	camo_energy = clamp(camo_energy - drain,0,initial(camo_energy))
+	if(show_energy)
+		wearer?.hud_used?.update_ammo_hud(src, list("taser", "battery_empty"), camo_energy)
 
 	if(!camo_energy) //Turn off the camo if we run out of energy.
 		to_chat(user, span_danger("Your CyberGhost lacks sufficient energy to remain active."))
@@ -724,6 +750,7 @@
 	icon = 'icons/obj/items/storage/backpack.dmi'
 	desc = "The M68-B thermal cloak is a variant custom-purposed for snipers, allowing for faster, superior, stationary concealment at the expense of mobile concealment. It is designed to be paired with the lightweight M3 recon battle armor. Serves as a satchel."
 	shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA * 0.5 //Half the normal shimmer transparency.
+	show_energy = FALSE // since it never gets used up
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/handle_movement(mob/living/carbon/human/source, atom/old_loc, movement_dir, forced, list/old_locs)
 	if(!camo_active)

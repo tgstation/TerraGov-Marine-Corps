@@ -55,3 +55,10 @@
 2025-04-06:
   dottymint:
   - bugfix: decap death message no longer mentions MMIs
+2025-04-08:
+  ddotmint:
+  - bugfix: fixed zipcuffs not having a sprite when cuffed
+  dottymint:
+  - bugfix: chaplain hoodie no longer an animation of the new and old sprite
+  - rscadd: added an occupational choice opt-in preference for being a potential xenomorph
+      hive target, i.e. breeding target
