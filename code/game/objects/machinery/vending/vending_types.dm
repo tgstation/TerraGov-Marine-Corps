@@ -581,7 +581,8 @@
 			var/obj/item/ammo_magazine/M = checked_record.product_path
 			if(B.ammo_type == M.default_ammo)	// Found a match
 				while(B.current_rounds >= M.max_rounds)
-					if(!stock(M, user, show_feedback = FALSE)) break	// If the stocking process returns false (probably because of max capacity), break
+					if(!stock(M, user, show_feedback = FALSE))
+						break	// If the stocking process returns false (probably because of max capacity), break
 					B.current_rounds -= M.max_rounds
 				user?.balloon_alert(user, "The NanoAmmo neatly organizes the [B.ammo_type.name]s.");
 				return
