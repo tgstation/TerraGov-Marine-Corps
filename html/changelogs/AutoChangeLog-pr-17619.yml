@@ -1,0 +1,4 @@
+author: "breadhunt"
+delete-after: True
+changes:
+  - rscdel: "Removes second gen on Daedalus"
