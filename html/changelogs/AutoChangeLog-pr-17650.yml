@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - balance: "mech flamer has much less ammo in the mag and in reserve"
