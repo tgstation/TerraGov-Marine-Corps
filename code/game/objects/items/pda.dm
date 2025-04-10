@@ -1,6 +1,6 @@
 /obj/item/pda
 	name = "PDA"
-	desc = "An AgyeI-12 PDA, a mixed use mobile device that also includes a neural interface module on the top. Given out like candy by the megacorps to corporate employees, it's the most common and reliable PDA in the market."
+	desc = "An AgyeI-12 PDA, a mixed use mobile device that also includes a neural interface module. Given out like candy by the megacorps to corporate employees, it's the most common and reliable PDA in the market."
 	icon = 'icons/obj/items/pda.dmi'
 	icon_state = "pda_white"
 	///Text to say when the pda is interacted with
@@ -56,7 +56,7 @@
 
 /obj/item/pda/large
 	name = "tablet PDA"
-	desc = "An AgyeI-35 TABPDA, a mixed use mobile device that also includes a neural interface module on the top. A much more larger form of the standard PDA for ease of use."
+	desc = "An AgyeI-35 TABPDA, a mixed use mobile device that also includes a neural interface module. A much more larger form of the standard PDA for ease of use."
 	icon_state = "pda_large_white"
 	screen_overlay = "pda_large_on"
 
