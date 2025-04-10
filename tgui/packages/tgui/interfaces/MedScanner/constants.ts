@@ -21,6 +21,8 @@ export const COLOR_BURN = 'hsl(39, 100%, 60%)';
 export const COLOR_MID_GREY = 'hsl(0, 0%, 59%)';
 /** Marginally darker version of the TGUI red color preset */
 export const COLOR_DARKER_RED = 'hsl(0, 72%, 42%)';
+/** Marginally darker version of the TGUI yellow color preset */
+export const COLOR_DARKER_YELLOW = 'hsl(52, 97%, 40%)';
 /** Marginally darker version of the orange TGUI color preset */
 export const COLOR_DARKER_ORANGE = 'hsl(24, 89%, 40%)';
 /** Saturation and Luminance for `getLimbColor` */

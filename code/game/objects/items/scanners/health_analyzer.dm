@@ -153,6 +153,20 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 		"accessible_theme" = user.client?.prefs?.accessible_tgui_themes
 	)
+
+	var/temp_color = "white"
+	if(patient.bodytemperature > patient.species?.heat_level_1)
+		temp_color = "yellow"
+	if(patient.bodytemperature > patient.species?.heat_level_2)
+		temp_color = "orange"
+	if(patient.bodytemperature > patient.species?.heat_level_3)
+		temp_color = "red"
+	data["body_temperature"] = list(
+		"current" = "[round(patient.bodytemperature*1.8-459.67, 0.1)]°F ([round(patient.bodytemperature-T0C, 0.1)]°C)",
+		"color" = temp_color,
+		"warning" = temp_color != "white"
+	)
+
 	data["has_unknown_chemicals"] = FALSE
 	var/list/chemicals_lists = list()
 	for(var/datum/reagent/reagent AS in patient.reagents.reagent_list)
@@ -249,7 +263,6 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	data["limbs_damaged"] = length(limb_data_lists)
 	data["internal_bleeding"] = internal_bleeding
 	data["infection"] = infection_message
-	data["body_temperature"] = "[round(patient.bodytemperature*1.8-459.67, 0.1)] degrees F ([round(patient.bodytemperature-T0C, 0.1)] degrees C)"
 	data["pulse"] = "[patient.get_pulse(GETPULSE_TOOL)] bpm"
 	data["total_unknown_implants"] = total_unknown_implants
 	var/damaged_organs = list()

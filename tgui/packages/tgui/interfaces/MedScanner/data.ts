@@ -1,3 +1,9 @@
+type TemperatureData = {
+  current: string;
+  color: string;
+  warning: boolean;
+};
+
 type SpeciesData = {
   is_synthetic: boolean;
   is_combat_robot: boolean;
@@ -75,7 +81,7 @@ export type MedScannerData = {
   blood_type: string;
   blood_amount: number;
   regular_blood_amount: number;
-  body_temperature: string;
+  body_temperature: TemperatureData;
   pulse: string;
   infection: boolean;
   internal_bleeding: boolean;

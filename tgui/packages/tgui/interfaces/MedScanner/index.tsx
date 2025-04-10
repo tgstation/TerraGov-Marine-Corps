@@ -1,4 +1,5 @@
 import {
+  BlockQuote,
   Box,
   Button,
   Icon,
@@ -17,6 +18,7 @@ import {
   COLOR_BURN,
   COLOR_DARKER_ORANGE,
   COLOR_DARKER_RED,
+  COLOR_DARKER_YELLOW,
   COLOR_MID_GREY,
   COLOR_ROBOTIC_LIMB,
   COLOR_ZEBRA_BG,
@@ -40,6 +42,7 @@ export function MedScanner() {
     damaged_organs,
     blood_amount,
     regular_blood_amount,
+    body_temperature,
     internal_bleeding,
     advice,
     accessible_theme,
@@ -60,13 +63,15 @@ export function MedScanner() {
     >
       <Window.Content scrollable>
         <PatientBasics />
-        {has_chemicals ? <PatientChemicals /> : null}
-        {limbs_damaged ? <PatientLimbs /> : null}
-        {damaged_organs?.length ? <PatientOrgans /> : null}
-        {blood_amount < regular_blood_amount || internal_bleeding ? (
-          <PatientBlood />
-        ) : null}
-        {advice ? <PatientAdvice /> : null}
+        {!!has_chemicals && <PatientChemicals />}
+        {!!limbs_damaged && <PatientLimbs />}
+        {!!damaged_organs?.length && <PatientOrgans />}
+        {!!(
+          blood_amount < regular_blood_amount ||
+          internal_bleeding ||
+          body_temperature.warning
+        ) && <PatientFooter />}
+        {!!advice && <PatientAdvice />}
       </Window.Content>
     </Window>
   );
@@ -106,7 +111,7 @@ function PatientBasics() {
       buttons={
         <Button
           icon="info"
-          tooltip="For information on something, hover over it - most elements have tooltips. Additionally, situational advice will appear under Treatment Advice."
+          tooltip="For information on something, hover over it - nearly every element has a tooltip. Additionally, situational advice will appear under Treatment Advice."
           color="transparent"
           mt={
             // with the "hackerman" theme, the buttons have this ugly outline that messes with the section titlebar, let's fix that
@@ -153,7 +158,7 @@ function PatientBasics() {
             </ProgressBar>
           )}
         </LabeledList.Item>
-        {dead ? (
+        {!!dead && (
           <LabeledList.Item label="Revivable">
             <Box
               color={
@@ -168,7 +173,7 @@ function PatientBasics() {
               {revivable_string}
             </Box>
           </LabeledList.Item>
-        ) : null}
+        )}
         <LabeledList.Item
           label="Damage"
           tooltip="Unique damage types. Each one has a tooltip describing how it is sustained, and possible treatments."
@@ -255,11 +260,11 @@ function PatientChemicals() {
   const { has_unknown_chemicals, chemicals_lists = {} } = data;
   return (
     <Section title="Chemical Contents">
-      {has_unknown_chemicals ? (
-        <Tooltip content="There are unknown reagents detected inside the patient. Proceed with caution.">
-          <NoticeBox color="orange">Unknown reagents detected.</NoticeBox>
-        </Tooltip>
-      ) : null}
+      {!!has_unknown_chemicals && (
+        <NoticeBox color="orange">
+          Unknown reagents detected. Proceed with caution.
+        </NoticeBox>
+      )}
       <Stack vertical>
         {Object.values(chemicals_lists).map((chemical) => (
           <Stack.Item
@@ -268,18 +273,73 @@ function PatientChemicals() {
             style={ROUNDED_BORDER}
           >
             <Box inline p="2.5px">
-              <Box
-                inline
-                color={chemical.dangerous || chemical.od ? 'red' : 'white'}
-                bold={(chemical.dangerous || chemical.od) as boolean}
+              <Tooltip
+                content={
+                  <>
+                    <NoticeBox
+                      danger={!!(chemical.od || chemical.dangerous)}
+                      textAlign="center"
+                    >
+                      <Icon name="flask" italic pr={SPACING_PIXELS} />
+                      {chemical.name}
+                      {!!chemical.od && ' (Overdose)'}
+                      {!!chemical.dangerous && ' (Harmful)'}
+                    </NoticeBox>
+                    <BlockQuote>{chemical.description}</BlockQuote>
+                    <Box mt={SPACING_PIXELS} />
+                    <LabeledList>
+                      {!!chemical.metabolism_factor && (
+                        <LabeledList.Item
+                          label="Metabolism"
+                          labelColor={
+                            chemical.od || chemical.dangerous ? 'red' : 'label'
+                          }
+                        >
+                          {chemical.metabolism_factor}u per tick{' '}
+                          <Box inline textColor="grey">
+                            (~
+                            {Math.trunc(
+                              chemical.amount / chemical.metabolism_factor,
+                            )}
+                            s)
+                          </Box>
+                        </LabeledList.Item>
+                      )}
+                      {!!chemical.od_threshold && (
+                        <LabeledList.Item
+                          label="OD Units"
+                          labelColor={chemical.od ? 'red' : 'label'}
+                        >
+                          <Box
+                            color={chemical.od && 'red'}
+                            bold={!!chemical.od}
+                          >
+                            {chemical.od_threshold}u (normal)
+                          </Box>
+                          {!!chemical.crit_od_threshold && (
+                            <Box
+                              pt={SPACING_PIXELS}
+                              color={
+                                chemical.amount > chemical.crit_od_threshold &&
+                                'red'
+                              }
+                              bold={
+                                chemical.amount > chemical.crit_od_threshold
+                              }
+                            >
+                              {chemical.crit_od_threshold}u (critical)
+                            </Box>
+                          )}
+                        </LabeledList.Item>
+                      )}
+                    </LabeledList>
+                  </>
+                }
               >
-                <Tooltip
-                  content={
-                    "The chemical's current units." +
-                    (chemical.od_threshold > 0 && !chemical.dangerous
-                      ? ` OD at ${chemical.od_threshold}u. Critical OD at ${chemical.crit_od_threshold}u.`
-                      : '')
-                  }
+                <Box
+                  inline
+                  color={chemical.dangerous || chemical.od ? 'red' : 'white'}
+                  bold={(chemical.dangerous || chemical.od) as boolean}
                 >
                   <MedCounter
                     current={chemical.amount}
@@ -299,14 +359,12 @@ function PatientChemicals() {
                     }
                     mr={SPACING_PIXELS}
                   />
-                </Tooltip>
-                <Tooltip content={chemical.description}>
                   <Box inline italic>
                     {chemical.name}
                   </Box>
-                </Tooltip>
-              </Box>
-              {chemical.dangerous || chemical.od ? (
+                </Box>
+              </Tooltip>
+              {!!(chemical.dangerous || chemical.od) && (
                 <Tooltip
                   content={
                     chemical.dangerous
@@ -332,38 +390,16 @@ function PatientChemicals() {
                     ml={SPACING_PIXELS}
                   >
                     {chemical.od
-                      ? Math.trunc(
-                          (chemical.amount / chemical.od_threshold) * 100,
-                        ) +
-                        '%' +
-                        ' OD' +
+                      ? 'OD' +
                         (chemical.amount > chemical.crit_od_threshold
                           ? ', CRIT'
-                          : '') +
-                        ' ' +
-                        Math.trunc(
-                          (chemical.amount - chemical.od_threshold) /
-                            chemical.metabolism_factor,
-                        ) +
-                        's'
+                          : '')
                       : 'HARMFUL'}
                   </MedBoxedTag>
                 </Tooltip>
-              ) : (
-                !!chemical.od_threshold && (
-                  <Tooltip content="How close this chemical is to its overdose threshold.">
-                    <MedBoxedTag icon="gauge" ml={SPACING_PIXELS}>
-                      {Math.trunc(
-                        (chemical.amount / chemical.od_threshold) * 100,
-                      ) + '%'}
-                    </MedBoxedTag>
-                  </Tooltip>
-                )
               )}
               {!!chemical.metabolism_factor && (
-                <Tooltip
-                  content={`Estimated time before this chemical is purged. May vary based on time dilation and other chemicals. Units metabolized per cycle: ${chemical.metabolism_factor}.`}
-                >
+                <Tooltip content="Estimated time before this chemical is purged. May vary based on time dilation and other chemicals.">
                   <MedBoxedTag
                     icon="clock"
                     textColor={
@@ -583,10 +619,66 @@ function PatientOrgans() {
             style={ROUNDED_BORDER}
           >
             <Box inline p="3px">
-              <Box inline>
-                <Tooltip
-                  content={`Considered damaged at ${organ.bruised_damage}, failing at ${organ.broken_damage}.`}
-                >
+              <Tooltip
+                content={
+                  <>
+                    <NoticeBox
+                      color={
+                        organ.status === 'Damaged'
+                          ? 'orange'
+                          : organ.status === 'Failing'
+                            ? 'red'
+                            : null
+                      }
+                      textAlign="center"
+                    >
+                      <Icon
+                        name={
+                          organ.status === 'Failing' ? 'circle-dot' : 'circle'
+                        }
+                        pr={SPACING_PIXELS}
+                      />
+                      {organ.name[0].toUpperCase() + organ.name.slice(1)}
+                      {organ.status !== 'Functional' && ` (${organ.status})`}
+                    </NoticeBox>
+                    <BlockQuote>
+                      {organ.status === 'Functional'
+                        ? 'This organ is considered fully functional and not damaged or failing. It may still be causing very minor effects like pain.'
+                        : organ.effects}
+                    </BlockQuote>
+                    <Box mt={SPACING_PIXELS} />
+                    <LabeledList>
+                      <LabeledList.Item
+                        label="Thresholds"
+                        labelColor={
+                          organ.damage >= organ.bruised_damage
+                            ? organ.damage >= organ.broken_damage
+                              ? 'red'
+                              : 'orange'
+                            : 'label'
+                        }
+                      >
+                        <Box
+                          mb={SPACING_PIXELS}
+                          color={
+                            organ.damage >= organ.bruised_damage && 'orange'
+                          }
+                          bold={organ.damage >= organ.bruised_damage}
+                        >
+                          {organ.bruised_damage} (damaged)
+                        </Box>
+                        <Box
+                          color={organ.damage >= organ.broken_damage && 'red'}
+                          bold={organ.damage >= organ.broken_damage}
+                        >
+                          {organ.broken_damage} (failing)
+                        </Box>
+                      </LabeledList.Item>
+                    </LabeledList>
+                  </>
+                }
+              >
+                <Box inline>
                   <MedCounter
                     current={organ.damage}
                     max={organ.broken_damage}
@@ -607,19 +699,11 @@ function PatientOrgans() {
                           : 'grey'
                     }
                   />
-                </Tooltip>
-                <Tooltip
-                  content={
-                    organ.status === 'Functional'
-                      ? 'This organ is considered fully functional and not damaged or failing. It may still be causing very minor effects like pain.'
-                      : organ.effects
-                  }
-                >
                   <Box inline italic mr={SPACING_PIXELS}>
                     {organ.name[0].toUpperCase() + organ.name.slice(1)}
                   </Box>
-                </Tooltip>
-              </Box>
+                </Box>
+              </Tooltip>
               {!!organ.status && (
                 <MedBoxedTag
                   textColor="white"
@@ -642,7 +726,7 @@ function PatientOrgans() {
   );
 }
 
-function PatientBlood() {
+function PatientFooter() {
   const { data } = useBackend<MedScannerData>();
   const {
     blood_amount,
@@ -654,8 +738,18 @@ function PatientBlood() {
     total_unknown_implants,
     infection,
   } = data;
-  const blood_warning =
-    blood_amount / regular_blood_amount < 0.8 || internal_bleeding;
+  const bloodWarning =
+    blood_amount / regular_blood_amount < 0.6 || internal_bleeding
+      ? 'red'
+      : blood_amount / regular_blood_amount < 0.9
+        ? 'yellow'
+        : 'white';
+  const darkBloodWarning =
+    bloodWarning === 'red'
+      ? COLOR_DARKER_RED
+      : bloodWarning === 'yellow'
+        ? COLOR_DARKER_YELLOW
+        : COLOR_MID_GREY;
   return (
     <Section>
       <LabeledList>
@@ -666,8 +760,8 @@ function PatientBlood() {
           <Box
             mr={SPACING_PIXELS}
             inline
-            color={blood_warning ? 'red' : 'white'}
-            bold={blood_warning ? true : false}
+            color={bloodWarning}
+            bold={bloodWarning !== 'white' ? true : false}
           >
             {Math.trunc((blood_amount / regular_blood_amount) * 100)}%
           </Box>
@@ -675,15 +769,15 @@ function PatientBlood() {
             current={Math.trunc(blood_amount)}
             max={Math.trunc(regular_blood_amount)}
             units="cl"
-            currentColor={blood_warning ? COLOR_DARKER_RED : COLOR_MID_GREY}
-            maxColor={blood_warning ? COLOR_DARKER_RED : COLOR_MID_GREY}
+            currentColor={darkBloodWarning}
+            maxColor={darkBloodWarning}
             currentSize={COUNTER_MAX_SIZE}
             mr={SPACING_PIXELS}
           />
           <MedBoxedTag
             mr={SPACING_PIXELS}
-            textColor="white"
-            backgroundColor={blood_warning ? 'red' : 'grey'}
+            textColor={bloodWarning === 'yellow' ? 'black' : 'white'}
+            backgroundColor={bloodWarning === 'white' ? 'grey' : bloodWarning}
           >
             {blood_type}
           </MedBoxedTag>
@@ -693,8 +787,11 @@ function PatientBlood() {
             </MedBoxedTag>
           )}
         </LabeledList.Item>
-        <LabeledList.Item label="Body Temperature">
-          {body_temperature}
+        <LabeledList.Item
+          label="Body Temperature"
+          color={body_temperature.color}
+        >
+          <Box bold={body_temperature.warning}>{body_temperature.current}</Box>
         </LabeledList.Item>
         <LabeledList.Item label="Pulse">{pulse}</LabeledList.Item>
       </LabeledList>
