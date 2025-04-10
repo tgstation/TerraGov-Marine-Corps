@@ -27,7 +27,7 @@
 /obj/item/pda/proc/play_log(mob/user)
 	if(!audio_log)
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_PDA_PLAY))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_PDA_PLAY))
 		user.balloon_alert(user, "still playing!")
 		return
 
