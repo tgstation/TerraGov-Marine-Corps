@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - refactor: "movement will now execute canonically (ie the expected order, finishing one before starting the next)"
