@@ -963,6 +963,7 @@
 #include "code\game\objects\items\motion_detector.dm"
 #include "code\game\objects\items\multitool.dm"
 #include "code\game\objects\items\pamphlets.dm"
+#include "code\game\objects\items\pda.dm"
 #include "code\game\objects\items\pinpointer.dm"
 #include "code\game\objects\items\pipe_painter.dm"
 #include "code\game\objects\items\plantable_flags.dm"
