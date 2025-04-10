@@ -81,3 +81,7 @@
 #include "code\modules\mob\living\emote.dm"
 #include "code\modules\mob\ooc_notes.dm"
 #include "code\modules\clothing\shoes\marine_shoes.dm"
+#include "code\_DEFINES\signals_keybindings.dm"
+#include "code\datums\keybindings\keybindings.dm"
+#include "code\game\verbs\test.dm"
+#include "code\game\verbs\xmooc.dm"

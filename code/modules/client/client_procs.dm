@@ -857,6 +857,11 @@
 				if(XOOC_CHANNEL)
 					var/xooc = tgui_say_create_open_command(XOOC_CHANNEL)
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[xooc]")
+				///NTF EDIT START
+				if(XMOOC_CHANNEL)
+					var/xmooc = tgui_say_create_open_command(XMOOC_CHANNEL)
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[xmooc]")
+				///NTF EDIT END
 				if(ADMIN_CHANNEL)
 					if(holder)
 						var/asay = tgui_say_create_open_command(ADMIN_CHANNEL)
