@@ -1,4 +1,0 @@
-author: "Cerrik"
-delete-after: True
-changes:
-  - bugfix: "Attempt_restock() proc now values your feedback"

@@ -118,3 +118,12 @@
       516)
   - bugfix: improved non-standard monitor scaling on 516
   - bugfix: Chat wont crash if we fail to play an admin sound
+2025-04-10:
+  Cerrik:
+  - bugfix: Attempt_restock() proc now values your feedback
+  Lewdcifer:
+  - balance: Xenos can no longer pull resin cocoons.
+  TiviPlus:
+  - balance: mech flamer has much less ammo in the mag and in reserve
+  breadhunt:
+  - rscdel: Removes second gen on Daedalus
