@@ -17,9 +17,9 @@
 	if(mob.stat == DEAD && !admin)
 		to_chat(src, span_warning("You must be alive to use XMOOC."))
 		return
-	//if(IsGuestKey(key))
-	//	to_chat(src, "Guests may not use XMOOC.")
-	//	return
+	if(IsGuestKey(key))
+		to_chat(src, "Guests may not use XMOOC.")
+		return
 	if(!((mob in GLOB.xeno_mob_list) || (mob in GLOB.ai_list) || (mob in GLOB.human_mob_list)) && !admin)
 		to_chat(src, span_warning("You must be a xeno to use XMOOC."))
 		return
