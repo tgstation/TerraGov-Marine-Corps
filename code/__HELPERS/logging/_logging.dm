@@ -118,6 +118,8 @@
 			log_mecha(log_text)
 		if(LOG_SPEECH_INDICATORS)
 			log_speech_indicators(log_text)
+		if(LOG_XMOOC)
+			log_xmooc(log_text)
 		else
 			stack_trace("Invalid individual logging type: [message_type]. Defaulting to [LOG_GAME] (LOG_GAME).")
 			log_game(log_text)

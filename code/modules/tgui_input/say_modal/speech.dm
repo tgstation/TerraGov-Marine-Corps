@@ -59,6 +59,11 @@
 		if(MENTOR_CHANNEL)
 			client.msay(entry)
 			return TRUE
+		/// NTF EDIT START
+		if(XMOOC_CHANNEL)
+			client.xmooc(entry)
+			return TRUE
+		/// NTF EDIT END
 	return FALSE
 
 /**
