@@ -86,6 +86,7 @@
 #include "code\game\objects\structures\stool_bed_chair_nest\xeno_nest.dm"
 #include "code\game\objects\structures\teleporter.dm"
 #include "code\modules\client\preferences.dm"
+#include "code\modules\clothing\glasses\hypnogoggles.dm"
 #include "code\modules\clothing\head\head.dm"
 #include "code\modules\clothing\modular_armor\attachments\modules.dm"
 #include "code\modules\clothing\shoes\marine_shoes.dm"

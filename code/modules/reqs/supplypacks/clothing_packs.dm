@@ -105,3 +105,8 @@ CLOTHING
 	name = "KZ Type 9 goggles"
 	contains = list(/obj/item/clothing/glasses/night/m42_night_goggles/upp)
 	cost = 2500
+
+/datum/supply_packs/clothing/hypnogoggles
+	name = "Hypnotic goggles"
+	contains = list(/obj/item/clothing/glasses/hypno)
+	cost = 100
