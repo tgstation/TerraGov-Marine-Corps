@@ -26,6 +26,9 @@
 /proc/log_mooc(text, list/data)
 	logger.Log(LOG_CATEGORY_GAME_MOOC, text, data)
 
+/proc/log_xmooc(text, list/data)
+	logger.Log(LOG_CATEGORY_GAME_XMOOC, text, data)
+
 /// Logging for prayed messages
 /proc/log_prayer(text, list/data)
 	logger.Log(LOG_CATEGORY_GAME_PRAYER, text, data)
