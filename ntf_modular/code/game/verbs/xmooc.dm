@@ -21,7 +21,7 @@
 		to_chat(src, "Guests may not use XMOOC.")
 		return
 	if(!((mob in GLOB.xeno_mob_list) || (mob in GLOB.ai_list) || (mob in GLOB.human_mob_list)) && !admin)
-		to_chat(src, span_warning("You must be a xeno to use XMOOC."))
+		to_chat(src, span_warning("You must be a xeno/living mob to use XMOOC."))
 		return
 
 	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
