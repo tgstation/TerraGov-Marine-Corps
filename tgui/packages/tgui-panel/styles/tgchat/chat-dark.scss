@@ -1282,4 +1282,34 @@ $alert-subheader-header-colors: (
   .faction_alert_#{$color-name} .faction_alert_text {
     background-color: darken(map.get($alert-stripe-colors, $color-name), 5);
   }
+  /// NTF EDIT START
+  .hypnophrase {
+    color: #202020;
+    font-weight: bold;
+    animation: hypnocolor 1500ms infinite;
+    animation-direction: alternate;
+  }
+  @keyframes hypnocolor {
+    0% {
+      color: #202020;
+    }
+
+    25% {
+      color: #4b02ac;
+    }
+
+    50% {
+      color: #9f41f1;
+    }
+
+    75% {
+      color: #541c9c;
+    }
+
+    100% {
+      color: #7adbf3;
+    }
+  }
+  /// NTF EDIT END
+
 }
