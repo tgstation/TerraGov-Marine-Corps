@@ -1,6 +1,6 @@
 /obj/item/clothing/glasses/hypno
 	name = "hypnotic goggles"
-	desc = "Woaa-a-ah... This is lewd."
+	desc = "It could be a discarded secred NovaMed device. Or maybe it's just a pair of kinky goggles with a savy tech inside."
 	icon = 'ntf_modular/icons/obj/clothing/goggles/hypno.dmi'
 	icon_state = "hypnogoggles"
 	item_state_worn = TRUE
