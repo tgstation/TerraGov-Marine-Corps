@@ -127,3 +127,7 @@
   - balance: mech flamer has much less ammo in the mag and in reserve
   breadhunt:
   - rscdel: Removes second gen on Daedalus
+2025-04-11:
+  TiviPlus:
+  - refactor: movement will now execute canonically (ie the expected order, finishing
+      one before starting the next)
