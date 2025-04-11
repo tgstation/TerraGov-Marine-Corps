@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - qol: "If larva queue is more than 2 people it will show how long it is in the tgui \"are you sure\" popup when you try to observe"
