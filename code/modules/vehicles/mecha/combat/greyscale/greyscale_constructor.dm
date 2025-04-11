@@ -475,8 +475,8 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		var/obj/item/mecha_parts/mecha_equipment/new_equip = new equipment
 		new_equip.attach(mech)
 
-	mech.pixel_y = 240
-	animate(mech, time=4 SECONDS, pixel_y=initial(mech.pixel_y), easing=SINE_EASING|EASE_OUT)
+	mech.pixel_z = 240
+	animate(mech, time=4 SECONDS, pixel_z=initial(mech.pixel_z), easing=SINE_EASING|EASE_OUT)
 
 	balloon_alert_to_viewers("Beep. Mecha ready for use.")
 	playsound(src, 'sound/machines/chime.ogg', 30, 1)
