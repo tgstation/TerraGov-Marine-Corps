@@ -87,6 +87,7 @@
 #define span_xenowarning(str) ("<span class='xenowarning'>" + str + "</span>")
 #define span_yell(str) ("<span class='yell'>" + str + "</span>")
 #define span_deptradio(str) ("<span class='deptradio'>" + str + "</span>")
+#define span_hypnophrase(str) ("<span class='hypnophrase'>" + str + "</span>")
 
 // Spans that use embedded tgui components:
 // Sorted alphabetically

@@ -1358,6 +1358,11 @@ CLOTHING
 	contains = list(/obj/item/storage/backpack/marine/duffelbag/xenosaddle)
 	cost = 120
 
+/datum/supply_packs/clothing/hypnogoggles
+	name = "Hypnotic goggles"
+	contains = list(/obj/item/clothing/glasses/hypno)
+	cost = 100
+
 /*******************************************************************************
 MEDICAL
 *******************************************************************************/

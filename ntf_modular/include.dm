@@ -84,3 +84,4 @@
 #include "code\_DEFINES\signals_keybindings.dm"
 #include "code\datums\keybindings\keybindings.dm"
 #include "code\game\verbs\xmooc.dm"
+#include "code\modules\clothing\glasses\hypnogoggles.dm"
