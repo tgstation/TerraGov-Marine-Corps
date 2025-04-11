@@ -83,5 +83,4 @@
 #include "code\modules\clothing\shoes\marine_shoes.dm"
 #include "code\_DEFINES\signals_keybindings.dm"
 #include "code\datums\keybindings\keybindings.dm"
-#include "code\game\verbs\test.dm"
 #include "code\game\verbs\xmooc.dm"
