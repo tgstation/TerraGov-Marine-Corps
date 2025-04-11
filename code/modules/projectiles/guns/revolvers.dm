@@ -357,8 +357,8 @@
 	worn_icon_state = "m44"
 	caliber = CALIBER_44 //codex
 	max_chamber_items = 6
-	default_ammo_type = /obj/item/ammo_magazine/revolver
-	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver, /obj/item/ammo_magazine/revolver/marksman, /obj/item/ammo_magazine/revolver/heavy)
+	default_ammo_type = /obj/item/ammo_magazine/revolver/single_action/m44
+	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver/single_action/m44, /obj/item/ammo_magazine/revolver/marksman, /obj/item/ammo_magazine/revolver/heavy)
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet/converted,
