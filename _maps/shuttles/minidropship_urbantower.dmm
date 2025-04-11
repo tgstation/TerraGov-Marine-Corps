@@ -1,5 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
+/obj/machinery/vending/nanoammo{
+	dir = 8
+	},
 /obj/structure/coatrack,
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired,
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired,

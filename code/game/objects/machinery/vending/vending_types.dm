@@ -356,7 +356,6 @@
 	)
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
-
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)
 	. = ..()
 	switch(dir)
@@ -407,6 +406,191 @@
 			/obj/item/stack/medical/splint = 1,
 		),
 	)
+
+
+
+/obj/machinery/vending/nanoammo
+	name = "\improper NanoAmmo"
+	desc = "Wall-mounted ammunition dispenser.  Can't hold infinite ammo, but it holds more than you need."
+	product_ads = "Get you some!;More ammo than you'll ever need.;I'm small but my firepower isn't!;I dispense ammo, you dispense pain.;Give 'em hell!"
+	icon_state = "nanoammo"
+	icon_deny = "nanoammo-deny"
+	icon_vend = "nanoammo-vend"
+	density = FALSE
+	wrenchable = FALSE
+	layer = ABOVE_OBJ_LAYER
+	products = list(
+		"Rifles" = list(
+			/obj/item/ammo_magazine/rifle/standard_assaultrifle = 6,
+			/obj/item/ammo_magazine/rifle/standard_carbine = 6,
+			/obj/item/ammo_magazine/rifle/standard_skirmishrifle = 6,
+			/obj/item/ammo_magazine/rifle/tx11 = 6,
+			/obj/item/ammo_magazine/packet/p4570 = 6,
+		),
+		"Energy Weapons" = list(
+			/obj/item/cell/lasgun/lasrifle = 6,
+			/obj/item/cell/lasgun/volkite/powerpack/marine = 2,
+			/obj/item/cell/lasgun/volkite/powerpack/marine/backpack = 1,
+		),
+		"SMGs" = list(
+			/obj/item/ammo_magazine/smg/standard_smg = 8,
+			/obj/item/ammo_magazine/smg/standard_machinepistol = 8,
+			/obj/item/ammo_magazine/smg/standard_heavysmg = 8,
+			/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead = 8,
+		),
+		"Marksman" = list(
+			/obj/item/ammo_magazine/rifle/standard_dmr = 6,
+			/obj/item/ammo_magazine/rifle/standard_br = 6,
+			/obj/item/ammo_magazine/rifle/chamberedrifle = 6,
+			/obj/item/ammo_magazine/rifle/boltclip = 6,
+			/obj/item/ammo_magazine/rifle/bolt = 2,
+			/obj/item/ammo_magazine/rifle/martini = 2,
+		),
+		"Shotgun" = list(
+			/obj/item/ammo_magazine/shotgun = 2,
+			/obj/item/ammo_magazine/shotgun/buckshot = 2,
+			/obj/item/ammo_magazine/shotgun/flechette = 2,
+			/obj/item/ammo_magazine/shotgun/tracker = 2,
+			/obj/item/ammo_magazine/rifle/tx15_flechette = 6,
+			/obj/item/ammo_magazine/rifle/tx15_slug = 6,
+		),
+		"Machinegun" = list(
+			/obj/item/ammo_magazine/standard_lmg = 6,
+			/obj/item/ammo_magazine/standard_gpmg = 6,
+			/obj/item/ammo_magazine/standard_mmg = 6,
+		),
+		"Sidearm" = list(
+			/obj/item/ammo_magazine/pistol/standard_pistol = 8,
+			/obj/item/ammo_magazine/pistol/standard_heavypistol = 8,
+			/obj/item/ammo_magazine/revolver/standard_revolver = 8,
+			/obj/item/ammo_magazine/pistol/standard_pocketpistol = 8,
+			/obj/item/ammo_magazine/pistol/vp70 = 8,
+			/obj/item/ammo_magazine/pistol/plasma_pistol = 8,
+		),
+		"Seasonal" = list(
+			/obj/item/ammo_magazine/revolver/small = 0,
+			//obj/item/ammo_magazine/revolver = 0,	commented out because its early type pathing causes all other revolver ammos to break, needs to be addressed with different PR
+			/obj/item/ammo_magazine/revolver/judge = 0,
+			/obj/item/ammo_magazine/revolver/judge/buckshot = 0,
+			/obj/item/ammo_magazine/revolver/upp = 0,
+			/obj/item/ammo_magazine/rifle/mpi_km/plum = 0,
+			/obj/item/ammo_magazine/rifle/m16 = 0,
+			/obj/item/ammo_magazine/rifle/mkh = 0,
+			/obj/item/ammo_magazine/smg/ppsh = 0,
+			/obj/item/ammo_magazine/smg/ppsh/extended = 0,
+			/obj/item/ammo_magazine/rifle/garand = 0,
+			/obj/item/ammo_magazine/pistol/m1911 = 0,
+			/obj/item/ammo_magazine/rifle = 0,
+			/obj/item/ammo_magazine/rifle/m41a = 0,
+			/obj/item/ammo_magazine/rifle/type71 = 0,
+			/obj/item/ammo_magazine/rifle/alf_machinecarbine = 0,
+			/obj/item/ammo_magazine/smg/uzi = 0,
+			/obj/item/ammo_magazine/smg/m25 = 0,
+			/obj/item/ammo_magazine/smg/mp7 = 0,
+			/obj/item/ammo_magazine/smg/skorpion = 0,
+			/obj/item/ammo_magazine/revolver/cmb = 0,
+			/obj/item/ammo_magazine/shotgun/mbx900 = 0,
+			/obj/item/ammo_magazine/shotgun/mbx900/buckshot = 0,
+			/obj/item/ammo_magazine/shotgun/mbx900/tracking = 0,
+		)
+	)
+	max_capacities = list(
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle = 60,
+		/obj/item/ammo_magazine/rifle/standard_carbine = 60,
+		/obj/item/ammo_magazine/rifle/standard_skirmishrifle = 60,
+		/obj/item/ammo_magazine/rifle/tx11 = 60,
+		/obj/item/ammo_magazine/packet/p4570 = 16,
+		/obj/item/cell/lasgun/lasrifle = 60,
+		/obj/item/cell/lasgun/volkite/powerpack/marine = 16,
+		/obj/item/cell/lasgun/volkite/powerpack/marine/backpack = 3,
+		/obj/item/ammo_magazine/smg/standard_smg = 80,
+		/obj/item/ammo_magazine/smg/standard_machinepistol = 80,
+		/obj/item/ammo_magazine/smg/standard_heavysmg = 80,
+		/obj/item/ammo_magazine/smg/standard_heavysmg/squashhead = 80,
+		/obj/item/ammo_magazine/rifle/standard_dmr = 60,
+		/obj/item/ammo_magazine/rifle/standard_br = 60,
+		/obj/item/ammo_magazine/rifle/chamberedrifle = 60,
+		/obj/item/ammo_magazine/rifle/boltclip = 60,
+		/obj/item/ammo_magazine/rifle/bolt = 16,
+		/obj/item/ammo_magazine/rifle/martini = 16,
+		/obj/item/ammo_magazine/shotgun = 16,
+		/obj/item/ammo_magazine/shotgun/buckshot = 16,
+		/obj/item/ammo_magazine/shotgun/flechette = 16,
+		/obj/item/ammo_magazine/shotgun/tracker = 16,
+		/obj/item/ammo_magazine/rifle/tx15_flechette = 60,
+		/obj/item/ammo_magazine/rifle/tx15_slug = 60,
+		/obj/item/ammo_magazine/standard_lmg = 60,
+		/obj/item/ammo_magazine/standard_gpmg = 60,
+		/obj/item/ammo_magazine/standard_mmg = 60,
+		/obj/item/ammo_magazine/pistol/standard_pistol = 80,
+		/obj/item/ammo_magazine/pistol/standard_heavypistol = 80,
+		/obj/item/ammo_magazine/revolver/standard_revolver = 80,
+		/obj/item/ammo_magazine/pistol/standard_pocketpistol = 80,
+		/obj/item/ammo_magazine/pistol/vp70 = 80,
+		/obj/item/ammo_magazine/pistol/plasma_pistol = 80,
+		/obj/item/ammo_magazine/revolver/small = 80,
+		//obj/item/ammo_magazine/revolver = 80,	commented out because its early type pathing causes all other revolver ammos to break, needs to be addressed with different PR
+		/obj/item/ammo_magazine/revolver/judge = 80,
+		/obj/item/ammo_magazine/revolver/judge/buckshot = 80,
+		/obj/item/ammo_magazine/revolver/upp = 80,
+		/obj/item/ammo_magazine/rifle/mpi_km/plum = 60,
+		/obj/item/ammo_magazine/rifle/m16 = 60,
+		/obj/item/ammo_magazine/rifle/mkh = 60,
+		/obj/item/ammo_magazine/smg/ppsh = 80,
+		/obj/item/ammo_magazine/smg/ppsh/extended = 80,
+		/obj/item/ammo_magazine/rifle/garand = 60,
+		/obj/item/ammo_magazine/pistol/m1911 = 80,
+		/obj/item/ammo_magazine/rifle = 60,
+		/obj/item/ammo_magazine/rifle/m41a = 60,
+		/obj/item/ammo_magazine/rifle/type71 = 60,
+		/obj/item/ammo_magazine/rifle/alf_machinecarbine = 60,
+		/obj/item/ammo_magazine/smg/uzi = 80,
+		/obj/item/ammo_magazine/smg/m25 = 80,
+		/obj/item/ammo_magazine/smg/mp7 = 80,
+		/obj/item/ammo_magazine/smg/skorpion = 80,
+		/obj/item/ammo_magazine/revolver/cmb = 80,
+		/obj/item/ammo_magazine/shotgun/mbx900 = 16,
+		/obj/item/ammo_magazine/shotgun/mbx900/buckshot = 16,
+		/obj/item/ammo_magazine/shotgun/mbx900/tracking = 16,
+	)
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
+/obj/machinery/vending/nanoammo/Initialize(mapload, ...)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_y = -14
+		if(SOUTH)
+			pixel_y = 26
+		if(EAST)
+			pixel_x = -19
+		if(WEST)
+			pixel_x = 21
+
+/obj/machinery/vending/nanoammo/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/storage/box/visual/magazine))
+		var/obj/item/storage/box/visual/magazine/B = I
+		for(var/x = length(B.contents); x > 0; x--)
+			stock(B.contents[x], user, show_feedback = FALSE)
+		user?.balloon_alert(user, "\n\nYou dump the contents of the box into the NanoAmmo.");
+		return
+
+	else if(istype(I, /obj/item/shotgunbox))
+		var/obj/item/shotgunbox/B = I
+		for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)	// Loop through vendor records to find a match
+			var/obj/item/ammo_magazine/M = checked_record.product_path
+			if(B.ammo_type == M.default_ammo)	// Found a match
+				while(B.current_rounds >= M.max_rounds)
+					if(!stock(M, user, show_feedback = FALSE))
+						break	// If the stocking process returns false (probably because of max capacity), break
+					B.current_rounds -= M.max_rounds
+				user?.balloon_alert(user, "The NanoAmmo neatly organizes the [B.ammo_type.name]s.");
+				return
+
+	return ..()
+
+/obj/machinery/vending/nanoammo/get_acid_delay()
+	return 10 SECONDS	// Acid application time is 1 second without this, way too short for a tadpole item
 
 /obj/machinery/vending/security
 	name = "\improper SecTech"

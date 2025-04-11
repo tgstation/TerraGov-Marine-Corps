@@ -74,6 +74,9 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "t" = (
+/obj/machinery/vending/nanoammo{
+	dir = 8
+	},
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
