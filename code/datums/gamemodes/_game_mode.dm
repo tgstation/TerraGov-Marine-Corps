@@ -481,6 +481,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.psy_shields] number of times Warlocks used Psychic Shield."
 	if(GLOB.round_statistics.psy_shield_blasts)
 		parts += "[GLOB.round_statistics.psy_shield_blasts] number of times Warlocks detonated a Psychic Shield."
+	if(GLOB.round_statistics.points_from_objectives)
+		parts += "[GLOB.round_statistics.points_from_objectives] requisitions points gained from objectives."
 	if(GLOB.round_statistics.points_from_mining)
 		parts += "[GLOB.round_statistics.points_from_mining] requisitions points gained from mining."
 	if(GLOB.round_statistics.points_from_research)
