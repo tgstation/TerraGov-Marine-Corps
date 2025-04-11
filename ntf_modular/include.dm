@@ -81,3 +81,4 @@
 #include "code\modules\mob\living\emote.dm"
 #include "code\modules\mob\ooc_notes.dm"
 #include "code\modules\clothing\shoes\marine_shoes.dm"
+#include "code\modules\clothing\glasses\hypnogoggles.dm"
