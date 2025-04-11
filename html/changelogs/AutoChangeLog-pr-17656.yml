@@ -1,0 +1,4 @@
+author: "tyeagg"
+delete-after: True
+changes:
+  - rscadd: "pda with audio log support for mappers"
