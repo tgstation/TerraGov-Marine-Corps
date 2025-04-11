@@ -6,3 +6,5 @@
 #define COMSIG_ATOM_CHECKPARTS "atom_checkparts"
 ///from base of atom/CheckParts(): (atom/movable/new_craft) - The atom has just been used in a crafting recipe and has been moved inside new_craft.
 #define COMSIG_ATOM_USED_IN_CRAFT "atom_used_in_craft"
+/// signal sent when a mouse is hovering over us, sent by atom/proc/on_mouse_entered
+#define COMSIG_ATOM_MOUSE_ENTERED "mouse_entered"

@@ -219,7 +219,7 @@
 	var/list/modifiers = params2list(params)
 	if(toggled && !(modifiers[BUTTON] == LEFT_CLICK))
 		dragging = TRUE
-		call_async(src, PROC_REF(qb_build_resin), list(get_turf(object)))
+		INVOKE_ASYNC(src, PROC_REF(qb_build_resin), get_turf(object))
 
 /// Helper for ending drag-building , activated on mose-up
 /datum/action/ability/activable/xeno/secrete_resin/proc/stop_resin_drag()
@@ -328,66 +328,23 @@
 /datum/action/ability/activable/xeno/secrete_resin/proc/preshutter_resin_drag(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
 	if(dragging)
-		call_async(src, PROC_REF(qb_build_resin), list(get_turf(over_object)))
+		INVOKE_ASYNC(src, PROC_REF(qb_build_resin), get_turf(over_object))
 
-/datum/action/ability/activable/xeno/secrete_resin/proc/qb_build_resin(turf/T)
-	build_resin(T, WEED_COSTS_QB_POINTS, FALSE)
+/datum/action/ability/activable/xeno/secrete_resin/proc/qb_build_resin(turf/T, silent = FALSE)
+	return build_resin(T, WEED_COSTS_QB_POINTS, FALSE, silent = silent)
 
-/datum/action/ability/activable/xeno/secrete_resin/proc/build_resin(turf/T, weed_flags = WEED_REQUIRES_LOS | WEED_TAKES_TIME | WEED_USES_PLASMA, sound = SFX_ALIEN_RESIN_BUILD)
+/datum/action/ability/activable/xeno/secrete_resin/proc/build_resin(turf/T, weed_flags = WEED_REQUIRES_LOS | WEED_TAKES_TIME | WEED_USES_PLASMA, sound = SFX_ALIEN_RESIN_BUILD, silent = FALSE)
 	var/mob/living/carbon/xenomorph/X = owner
-	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin, X.selected_resin))
-		if(ERROR_CANT_WEED)
-			owner.balloon_alert(owner, span_notice("This spot cannot support a garden!"))
-			return
-		if(ERROR_NO_WEED)
-			owner.balloon_alert(owner, span_notice("This spot has no weeds to serve as support!"))
-			return
-		if(ERROR_NO_SUPPORT)
-			owner.balloon_alert(owner, span_notice("This spot has no adjaecent support for the structure!"))
-			return
-		if(ERROR_NOT_ALLOWED)
-			owner.balloon_alert(owner, span_notice("The queen mother prohibits us from building here."))
-			return
-		if(ERROR_BLOCKER)
-			owner.balloon_alert(owner, span_notice("There's another xenomorph blocking the spot!"))
-			return
-		if(ERROR_FOG)
-			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
-			return
-		// it fails a lot here when dragging , so its to prevent spam
-		if(ERROR_CONSTRUCT)
-			return
-		if(TRUE)
-			return
+	if(!can_build_here(T, silent))
+		return fail_activate()
 	if(CHECK_BITFIELD(weed_flags, WEED_REQUIRES_LOS) && !line_of_sight(owner, T, ignore_target_opacity = istype(T, /turf/closed/wall/resin)))
 		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
 		return fail_activate()
 	if(CHECK_BITFIELD(weed_flags, WEED_TAKES_TIME) && !do_after(X, get_wait(), NONE, T, BUSY_ICON_BUILD))
 		return fail_activate()
-	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin, X.selected_resin))
-		if(ERROR_CANT_WEED)
-			owner.balloon_alert(owner, span_notice("This spot cannot support a garden!"))
-			return
-		if(ERROR_NO_WEED)
-			owner.balloon_alert(owner, span_notice("This spot has no weeds to serve as support!"))
-			return
-		if(ERROR_NO_SUPPORT)
-			owner.balloon_alert(owner, span_notice("This spot has no adjaecent support for the structure!"))
-			return
-		if(ERROR_NOT_ALLOWED)
-			owner.balloon_alert(owner, span_notice("The queen mother prohibits us from building here."))
-			return
-		if(ERROR_BLOCKER)
-			owner.balloon_alert(owner, span_notice("There's another xenomorph blocking the spot!"))
-			return
-		if(ERROR_FOG)
-			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
-			return
-		// it fails a lot here when dragging , so its to prevent spam
-		if(ERROR_CONSTRUCT)
-			return
-		if(TRUE)
-			return
+	// conditions may change, so we need to check again
+	if(!can_build_here(T, silent))
+		return fail_activate()
 	var/atom/AM = X.selected_resin
 	var/atom/new_resin
 	var/costs_points = TRUE
@@ -419,6 +376,38 @@
 			SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()]--
 	ability_cost = initial(ability_cost) //Reset the plasma cost
 	owner.record_structures_built()
+	return TRUE
+
+/datum/action/ability/activable/xeno/secrete_resin/proc/can_build_here(turf/T, silent = FALSE)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/is_valid = is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin, X.selected_resin)
+	if(is_valid != NO_ERROR && silent)
+		return FALSE
+	switch(is_valid)
+		if(NO_ERROR)
+			return TRUE
+		if(ERROR_CANT_WEED)
+			owner.balloon_alert(owner, span_notice("This spot cannot support a garden!"))
+			return FALSE
+		if(ERROR_NO_WEED)
+			owner.balloon_alert(owner, span_notice("This spot has no weeds to serve as support!"))
+			return FALSE
+		if(ERROR_NO_SUPPORT)
+			owner.balloon_alert(owner, span_notice("This spot has no adjaecent support for the structure!"))
+			return FALSE
+		if(ERROR_NOT_ALLOWED)
+			owner.balloon_alert(owner, span_notice("The queen mother prohibits us from building here."))
+			return FALSE
+		if(ERROR_BLOCKER)
+			owner.balloon_alert(owner, span_notice("There's another xenomorph blocking the spot!"))
+			return FALSE
+		if(ERROR_FOG)
+			owner.balloon_alert(owner, span_notice("The fog will prevent the resin from ever taking shape!"))
+			return FALSE
+		// it fails a lot here when dragging , so its to prevent spam
+		if(ERROR_CONSTRUCT)
+			return FALSE
+	return FALSE
 
 /datum/action/ability/xeno_action/pheromones
 	name = "Emit Pheromones"
@@ -1356,8 +1345,6 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	HOLLOW_CROSS = image('icons/Xeno/patterns.dmi', icon_state = "hollowcross3x3"),
 ))
 
-
-
 /datum/action/ability/activable/xeno/place_pattern
 	name = "Place Pattern"
 	desc = "Place a pattern of hive walls."
@@ -1371,28 +1358,64 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	)
 	use_state_flags = ABILITY_USE_LYING
 	var/datum/buildingpattern/selected_pattern = new /datum/buildingpattern/square2x2
+	/// Holograms are used to show the pattern before placing it
+	var/list/holograms = list()
 
 /datum/action/ability/activable/xeno/place_pattern/alternate_action_activate()
-	INVOKE_ASYNC(src, PROC_REF(selectpattern))
+	INVOKE_ASYNC(src, PROC_REF(select_pattern))
 
 /datum/action/ability/activable/xeno/place_pattern/give_action(mob/living/L)
 	. = ..()
 	//if its not prep, remove the ability instantly
-	if(!(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active))
-		remove_action(xeno_owner)
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED), PROC_REF(toggle_off))
-
-/datum/action/ability/activable/xeno/place_pattern/remove_action(mob/living/L)
-	. = ..()
-	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED))
+	// if(!(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active))
+	// 	remove_action(xeno_owner)
+	// RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED), PROC_REF(toggle_off))
 
 ///Seperate proc that calls remove_action, to block any signal shenanigans.
 /datum/action/ability/activable/xeno/place_pattern/proc/toggle_off()
 	SIGNAL_HANDLER
 	remove_action(xeno_owner)
 
+/datum/action/ability/activable/xeno/place_pattern/remove_action(mob/living/L)
+	. = ..()
+	// UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED))
+
+/datum/action/ability/activable/xeno/place_pattern/on_selection()
+	RegisterSignal(xeno_owner, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(show_hologram))
+
+/datum/action/ability/activable/xeno/place_pattern/on_deselection()
+	UnregisterSignal(xeno_owner, COMSIG_ATOM_MOUSE_ENTERED)
+	cleanup_holograms()
+
+/datum/action/ability/activable/xeno/place_pattern/proc/show_hologram(mob/user, atom/target)
+	SIGNAL_HANDLER
+	var/list/target_turfs = get_target_turfs(target)
+	for(var/turf/target_turf in target_turfs)
+		if(length(holograms) == target_turfs)
+			move_holograms(target_turf)
+		else
+			create_hologram(target)
+
+/datum/action/ability/activable/xeno/place_pattern/proc/create_hologram(atom/target)
+	cleanup_holograms()
+	var/atom/selected = xeno_owner.selected_resin
+	var/obj/effect/temp_visual/dir_setting/hologram = new(get_turf(target))
+	hologram.icon = initial(selected.icon)
+	hologram.icon_state = initial(selected.icon_state)
+	hologram.makeHologram(0.7)
+	hologram.alpha = 0
+	animate(hologram, 0.5 SECONDS, alpha = 255)
+	holograms += hologram
+
+/datum/action/ability/activable/xeno/place_pattern/proc/move_hologram(atom/target)
+	for(var/obj/effect/temp_visual/dir_setting/hologram as anything in holograms)
+		animate(hologram, 0.5 SECONDS, alpha = 255)
+
+/datum/action/ability/activable/xeno/place_pattern/proc/cleanup_holograms()
+	QDEL_LIST(holograms)
+
 ///Selects the pattern from a radial menu
-/datum/action/ability/activable/xeno/place_pattern/proc/selectpattern()
+/datum/action/ability/activable/xeno/place_pattern/proc/select_pattern()
 	var/pattern_choice = show_radial_menu(owner, owner, GLOB.pattern_images_list, radius = 48)
 	if(!pattern_choice)
 		return
@@ -1401,46 +1424,37 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	xeno_owner.balloon_alert(xeno_owner, pattern.overheadmsg)
 
 /datum/action/ability/activable/xeno/place_pattern/use_ability(atom/A)
+	var/datum/action/ability/activable/xeno/secrete_resin/secrete_resin = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/secrete_resin]
+	if(!istype(secrete_resin))
+		to_chat(xeno_owner, span_warning("We need to be able to secrete resin to use [src]!"))
+		return FALSE
+	var/list/target_turfs = get_target_turfs(A)
+	if(!length(target_turfs))
+		to_chat(xeno_owner, span_warning("We can't build here!"))
+		return FALSE
+	// check if one is successful, if none, we output a visible error
+	var/success = FALSE
+	for(var/turf/target_turf as anything in target_turfs)
+		// if last tile without the rest having any successes, we inform the user of a error
+		var/loud = !success && target_turfs.Find(target_turf) == length(target_turfs)
+		if(secrete_resin.qb_build_resin(target_turf, silent = !loud))
+			success = TRUE
+
+/datum/action/ability/activable/xeno/place_pattern/proc/get_target_turfs(atom/A)
 	var/turf/sourceturf = get_turf(A)
 	var/starty = sourceturf.y
 	var/iterx = sourceturf.x
 	var/startz = sourceturf.z
-	var/canbuild = TRUE
 	var/turf/targetturf = locate(sourceturf.x, starty, startz)
+
+	var/list/turfs = list()
 	for(var/layer in selected_pattern.pattern)
 		iterx = sourceturf.x
-		for(var/tile in splittext(layer,""))
-			if(tile == "X")
-				targetturf = locate(iterx, starty, startz)
-				canbuild = TRUE
-				switch(is_valid_for_resin_structure(targetturf, xeno_owner.selected_special_resin == /obj/structure/mineral_door/resin, /turf/closed/wall/resin/regenerating))
-					if(ERROR_CANT_WEED)
-						canbuild = FALSE
-					if(ERROR_NO_WEED)
-						canbuild = FALSE
-					if(ERROR_NO_SUPPORT)
-						canbuild = FALSE
-					if(ERROR_NOT_ALLOWED)
-						canbuild = FALSE
-					if(ERROR_BLOCKER)
-						canbuild = FALSE
-					if(ERROR_FOG)
-						canbuild = FALSE
-					if(ERROR_CONSTRUCT)
-						canbuild = FALSE
-					if(TRUE)
-						canbuild = FALSE
-				if(!SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()])
-					canbuild = FALSE
-					owner.balloon_alert(owner, "No more quickbuild points!")
-				if(canbuild)
-					var/list/baseturfs = islist(targetturf.baseturfs) ? targetturf.baseturfs : list(targetturf.baseturfs)
-					baseturfs |= targetturf.type
-					targetturf.ChangeTurf(/turf/closed/wall/resin/regenerating, baseturfs)
-					SSresinshaping.quickbuild_points_by_hive[owner.get_xeno_hivenumber()]--
+		for(var/tile in splittext(layer, ""))
+			if(tile != "X")
+				continue
+			targetturf = locate(iterx, starty, startz)
+			turfs += targetturf
 			iterx = iterx - 1
 		starty = starty + 1
-
-
-
-
+	return turfs
