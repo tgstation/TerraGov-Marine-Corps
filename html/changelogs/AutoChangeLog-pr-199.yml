@@ -1,0 +1,4 @@
+author: "FriedrichRatzel"
+delete-after: True
+changes:
+  - rscadd: "Ported hypnotic goggles. Contact your local requisitions officer for further details."
