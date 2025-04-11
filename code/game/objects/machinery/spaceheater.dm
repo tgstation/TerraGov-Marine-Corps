@@ -31,7 +31,6 @@
 
 /obj/machinery/space_heater/update_overlays()
 	. = ..()
-	cut_overlays()
 	if(open)
 		. += "sheater-open"
 

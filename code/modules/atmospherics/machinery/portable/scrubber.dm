@@ -19,11 +19,10 @@
 /obj/machinery/portable_atmospherics/scrubber/update_overlays()
 	. = ..()
 
-	cut_overlays()
 	if(holding)
-		add_overlay("scrubber-open")
+		. += "scrubber-open"
 	if(connected_port)
-		add_overlay("scrubber-connector")
+		. += "scrubber-connector"
 
 /obj/machinery/portable_atmospherics/scrubber/emp_act(severity)
 	. = ..()
