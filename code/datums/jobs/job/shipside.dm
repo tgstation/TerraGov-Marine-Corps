@@ -362,6 +362,16 @@ Though you are an officer, your authority is limited to the dropship and the Con
 	to_chat(M, {"\nYou are the operator of a very expensive and valuable Mech, and are trained and expected to use it in the field of combat.
 You can serve your Division in a variety of roles, so choose carefully."})
 
+/datum/job/terragov/command/mech_pilot/on_pre_setup()
+	if(total_positions)
+		return
+	var/client_count = length(GLOB.clients)
+	client_count -= 20
+	client_count = FLOOR(client_count / 20, 1)
+	// effectively, 1 at 40, 2 at 60, 3 at 80, etc
+	if(client_count > 1)
+		add_job_positions(client_count)
+
 /datum/job/terragov/command/mech_pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!ishuman(new_mob))
