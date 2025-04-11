@@ -42,7 +42,7 @@
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		return
 
-	if(!COOLDOWN_CHECK(kit, teleport_cooldown))
+	if(!COOLDOWN_FINISHED(kit, teleport_cooldown))
 		to_chat(user, span_warning("\The [src] is still recharging! It will be ready in [round(COOLDOWN_TIMELEFT(kit, teleport_cooldown) / 10)] seconds."))
 		return
 

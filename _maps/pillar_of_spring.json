@@ -2,5 +2,8 @@
     "map_name": "Pillar of Spring",
     "map_path": "map_files/Pillar_of_Spring",
     "map_file": "TGS_Pillar_of_Spring.dmm",
-    "traits": [{"Marine Main Ship": true}]
+    "traits": [{
+		"Marine Main Ship": true,
+		"Baseturf": "/turf/open/floor/plating"
+	}]
 }

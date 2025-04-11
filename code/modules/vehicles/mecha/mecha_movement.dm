@@ -40,33 +40,33 @@
 	if(!direction)
 		return FALSE
 	if(internal_tank?.connected_port)
-		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_MESSAGE))
+		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_MECHA_MESSAGE))
 			to_chat(occupants, "[icon2html(src, occupants)][span_warning("Unable to move while connected to the air system port!")]")
 			TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_MESSAGE, 2 SECONDS)
 		return FALSE
 	if(construction_state)
-		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_MESSAGE))
+		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_MECHA_MESSAGE))
 			to_chat(occupants, "[icon2html(src, occupants)][span_danger("Maintenance protocols in effect.")]")
 			TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_MESSAGE, 2 SECONDS)
 		return FALSE
 
 	if(zoom_mode)
-		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_MESSAGE))
+		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_MECHA_MESSAGE))
 			to_chat(occupants, "[icon2html(src, occupants)][span_warning("Unable to move while in zoom mode!")]")
 			TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_MESSAGE, 2 SECONDS)
 		return FALSE
 	if(!cell)
-		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_MESSAGE))
+		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_MECHA_MESSAGE))
 			to_chat(occupants, "[icon2html(src, occupants)][span_warning("Missing power cell.")]")
 			TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_MESSAGE, 2 SECONDS)
 		return FALSE
 	if(!scanmod || !capacitor)
-		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_MESSAGE))
+		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_MECHA_MESSAGE))
 			to_chat(occupants, "[icon2html(src, occupants)][span_warning("Missing [scanmod? "capacitor" : "scanning module"].")]")
 			TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_MESSAGE, 2 SECONDS)
 		return FALSE
 	if(step_energy_drain && !use_power(step_energy_drain))
-		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_MESSAGE))
+		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_MECHA_MESSAGE))
 			to_chat(occupants, "[icon2html(src, occupants)][span_warning("Insufficient power to move!")]")
 			TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_MESSAGE, 2 SECONDS)
 		if(leg_overload_mode)
@@ -98,7 +98,9 @@
 	//if we're not facing the way we're going rotate us
 	// if we're not strafing or if we are forced to rotate or if we are holding down the key
 	if(dir != direction && (!strafe || forcerotate || keyheld))
-		setDir(direction)
+		// remove diag dirs so it doesnt fuck up any directional stuff
+		var/dir_to_set = ISDIAGONALDIR(direction) ? (direction & ~(NORTH|SOUTH)) : direction
+		setDir(dir_to_set)
 		if(!(mecha_flags & QUIET_TURNS))
 			playsound(src, turnsound, 40, TRUE)
 		if(keyheld || !pivot_step) //If we pivot step, we don't return here so we don't just come to a stop
@@ -106,7 +108,7 @@
 
 	set_glide_size(DELAY_TO_GLIDE_SIZE(move_delay))
 	//Otherwise just walk normally
-	. = step(src,direction, dir)
+	. = step(src, direction, dir)
 	if(phasing)
 		use_power(phasing_energy_drain)
 	if(strafe)
@@ -121,7 +123,7 @@
 	if(.) //mech was thrown/door/whatever
 		return
 	if(bumpsmash) //Need a pilot to push the PUNCH button.
-		if(COOLDOWN_CHECK(src, mecha_bump_smash))
+		if(COOLDOWN_FINISHED(src, mecha_bump_smash))
 			var/list/mob/mobster = return_drivers()
 			obstacle.mech_melee_attack(src, mobster[1])
 			COOLDOWN_START(src, mecha_bump_smash, smashcooldown)

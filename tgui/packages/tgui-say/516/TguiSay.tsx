@@ -1,6 +1,13 @@
 import './styles/main.scss';
 
-import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
+import {
+  FormEvent,
+  KeyboardEvent,
+  MouseEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { dragStartHandler } from 'tgui/drag';
 import { isEscape, KEY } from 'tgui-core/keys';
 import { BooleanLike, classes } from 'tgui-core/react';
@@ -18,6 +25,7 @@ type ByondOpen = {
 type ByondProps = {
   maxLength: number;
   lightMode: BooleanLike;
+  scale: BooleanLike;
 };
 
 const ROWS: Record<keyof typeof WindowSize, number> = {
@@ -32,6 +40,7 @@ export function TguiSay() {
   const channelIterator = useRef(new ChannelIterator());
   const chatHistory = useRef(new ChatHistory());
   const messages = useRef(byondMessages);
+  const scale = useRef(true);
 
   // I initially wanted to make these an object or a reducer, but it's not really worth it.
   // You lose the granulatity and add a lot of boilerplate.
@@ -43,6 +52,9 @@ export function TguiSay() {
   const [maxLength, setMaxLength] = useState(1024);
   const [lightMode, setLightMode] = useState(false);
   const [value, setValue] = useState('');
+
+  const position = useRef([window.screenX, window.screenY]);
+  const isDragging = useRef(false);
 
   function handleArrowKeys(direction: KEY.Up | KEY.Down): void {
     const chat = chatHistory.current;
@@ -88,9 +100,33 @@ export function TguiSay() {
     }
   }
 
+  function handleButtonClick(event: MouseEvent<HTMLButtonElement>): void {
+    isDragging.current = true;
+
+    setTimeout(() => {
+      // So the button doesn't jump around accidentally
+      if (isDragging.current) {
+        dragStartHandler(event.nativeEvent);
+      }
+    }, 50);
+  }
+
+  // Prevents the button from changing channels if it's dragged
+  function handleButtonRelease(): void {
+    isDragging.current = false;
+    const currentPosition = [window.screenX, window.screenY];
+
+    if (JSON.stringify(position.current) !== JSON.stringify(currentPosition)) {
+      position.current = currentPosition;
+      return;
+    }
+
+    handleIncrementChannel();
+  }
+
   function handleClose(): void {
     innerRef.current?.blur();
-    windowClose();
+    windowClose(scale.current);
 
     setTimeout(() => {
       chatHistory.current.reset();
@@ -137,6 +173,7 @@ export function TguiSay() {
   }
 
   function handleInput(event: FormEvent<HTMLTextAreaElement>): void {
+    const iterator = channelIterator.current;
     let newValue = event.currentTarget.value;
 
     let newPrefix = getPrefix(newValue) || currentPrefix;
@@ -145,6 +182,7 @@ export function TguiSay() {
       setButtonContent(RADIO_PREFIXES[newPrefix]);
       setCurrentPrefix(newPrefix);
       newValue = newValue.slice(3);
+      iterator.set('Say');
 
       if (newPrefix === ':b ') {
         Byond.sendMessage('thinking', { visible: false });
@@ -192,10 +230,6 @@ export function TguiSay() {
   }
 
   function handleOpen(data: ByondOpen): void {
-    setTimeout(() => {
-      innerRef.current?.focus();
-    }, 0);
-
     const { channel } = data;
     const iterator = channelIterator.current;
     // Catches the case where the modal is already open
@@ -204,12 +238,17 @@ export function TguiSay() {
     }
 
     setButtonContent(iterator.current());
-    windowOpen(iterator.current());
+    windowOpen(iterator.current(), scale.current);
+    const input = innerRef.current;
+    setTimeout(() => {
+      innerRef.current?.focus();
+    }, 0);
   }
 
   function handleProps(data: ByondProps): void {
     setMaxLength(data.maxLength);
     setLightMode(!!data.lightMode);
+    scale.current = !!data.scale;
   }
 
   function unloadChat(): void {
@@ -240,7 +279,7 @@ export function TguiSay() {
 
     if (size !== newSize) {
       setSize(newSize);
-      windowSet(newSize);
+      windowSet(newSize, scale.current);
     }
   }, [value]);
 
@@ -257,11 +296,16 @@ export function TguiSay() {
       >
         {!lightMode && <div className={`shine shine-${theme}`} />}
       </div>
-      <div className={classes(['content', lightMode && 'content-lightMode'])}>
+      <div
+        className={classes(['content', lightMode && 'content-lightMode'])}
+        style={{
+          zoom: scale.current ? '' : `${100 / window.devicePixelRatio}%`,
+        }}
+      >
         <button
           className={`button button-${theme}`}
-          onClick={handleIncrementChannel}
-          onMouseDown={dragStartHandler}
+          onMouseDown={handleButtonClick}
+          onMouseUp={handleButtonRelease}
           type="button"
         >
           {buttonContent}

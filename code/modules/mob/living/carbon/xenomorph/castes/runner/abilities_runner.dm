@@ -37,7 +37,7 @@
 	. = ..()
 	if(!savage_activated)
 		return
-	if(!COOLDOWN_CHECK(src, savage_cooldown))
+	if(!COOLDOWN_FINISHED(src, savage_cooldown))
 		owner.balloon_alert(owner, "Savage on cooldown ([COOLDOWN_TIMELEFT(src, savage_cooldown) * 0.1]s)")
 		return
 	var/savage_damage = max(RUNNER_SAVAGE_DAMAGE_MINIMUM, xeno_owner.plasma_stored * 0.15)
@@ -53,7 +53,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_savage_attacks")
 
 /datum/action/ability/activable/xeno/pounce/runner/process()
-	if(COOLDOWN_CHECK(src, savage_cooldown))
+	if(COOLDOWN_FINISHED(src, savage_cooldown))
 		button.cut_overlay(visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN])
 		owner.balloon_alert(owner, "Savage ready")
 		owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
@@ -117,7 +117,7 @@
 	//Since both the button and the evasion extension call this proc directly, check if the cooldown timer exists
 	//The evasion extension removes the cooldown before calling this proc again, so use that to differentiate if it was the player trying to cancel
 	if(evade_active && cooldown_timer)
-		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_EVASION_ACTIVATION))
+		if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_EVASION_ACTIVATION))
 			return
 		evasion_deactivate()
 		return

@@ -58,7 +58,7 @@
 	move_resist = MOVE_FORCE_EXCEPTIONALLY_STRONG
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE|PORTAL_IMMUNE|PLASMACUTTER_IMMUNE
 	atom_flags = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION|CRITICAL_ATOM|DIRLOCK
-	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER|LONG_GLIDE
 	max_integrity = 300
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 100, ACID = 100)
 	force = 5
@@ -279,7 +279,6 @@
 	hud_set_mecha_battery()
 	update_icon()
 
-	become_hearing_sensitive(trait_source = ROUNDSTART_TRAIT)
 	for(var/key in equip_by_category)
 		if(key == MECHA_L_ARM || key == MECHA_R_ARM || key == MECHA_L_BACK || key == MECHA_R_BACK)
 			var/path = equip_by_category[key]
@@ -631,7 +630,7 @@
 	if(!(livinguser in return_controllers_with_flag(VEHICLE_CONTROL_MELEE)))
 		to_chat(livinguser, span_warning("You're in the wrong seat to interact with your hands."))
 		return
-	var/on_cooldown = TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_MELEE_ATTACK)
+	var/on_cooldown = TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MECHA_MELEE_ATTACK)
 	var/adjacent = Adjacent(target)
 	if(SEND_SIGNAL(src, COMSIG_MECHA_MELEE_CLICK, livinguser, target, on_cooldown, adjacent) & COMPONENT_CANCEL_MELEE_CLICK)
 		return

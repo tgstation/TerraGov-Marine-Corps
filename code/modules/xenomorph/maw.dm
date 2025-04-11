@@ -314,7 +314,7 @@
 		if(!slient)
 			balloon_alert(xeno_shooter, "must be leader")
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MAW_GLOB)) // repeat this every time after we have a sleep for quick feedback
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MAW_GLOB)) // repeat this every time after we have a sleep for quick feedback
 		var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MAW_GLOB)
 		if(!slient)
 			balloon_alert(xeno_shooter, "cooldown: [timeleft/10] seconds")
@@ -324,7 +324,7 @@
 	if(!selected_type)
 		return FALSE
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MAW_GLOB))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MAW_GLOB))
 		var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MAW_GLOB)
 		if(!slient)
 			balloon_alert(xeno_shooter, "cooldown: [timeleft/10] seconds")
@@ -340,7 +340,7 @@
 		if(!slient)
 			balloon_alert(xeno_shooter, "moved too far away")
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MAW_GLOB))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_MAW_GLOB))
 		var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MAW_GLOB)
 		if(!slient)
 			balloon_alert(xeno_shooter, "cooldown: [timeleft/10] seconds")

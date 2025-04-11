@@ -10,7 +10,7 @@
 	if (A != src) return ..()
 	var/mob/living/carbon/human/H = A
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEW))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_CHEW))
 		to_chat(H, span_warning("You can't bite your hand again yet..."))
 		return
 

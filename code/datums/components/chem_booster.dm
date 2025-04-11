@@ -250,7 +250,7 @@
 /datum/component/chem_booster/proc/on_off(datum/source)
 	SIGNAL_HANDLER
 	if(!boost_on)
-		if(!COOLDOWN_CHECK(src, chemboost_activation_cooldown))
+		if(!COOLDOWN_FINISHED(src, chemboost_activation_cooldown))
 			wearer.balloon_alert(wearer, "You need to wait another [COOLDOWN_TIMELEFT(src, chemboost_activation_cooldown)/10] seconds")
 			return
 		if(resource_storage_current < resource_drain_amount)

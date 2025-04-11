@@ -10,7 +10,7 @@
 
 */
 /obj/item/clothing/suit/modular
-	name = "Jaeger XM-02 combat exoskeleton"
+	name = "\improper Jaeger XM-02 combat exoskeleton"
 	desc = "Designed to mount a variety of modular armor components and support systems. It comes installed with light-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
 	icon = 'icons/mob/modular/modular_armor.dmi'
 	icon_state = "underarmor"
@@ -157,7 +157,7 @@
 	if(!isturf(user.loc))
 		to_chat(user, span_warning("You cannot turn the light on while in [user.loc]."))
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT) || !ishuman(user))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ARMOR_LIGHT) || !ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src)

@@ -79,21 +79,23 @@
 	if(!current_target)
 		return
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
+		LAZYSET(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key), src)
 		windup_checked = WEAPON_WINDUP_CHECKING
-		playsound(chassis.loc, windup_sound, 30, TRUE)
+		if(windup_sound)
+			playsound(chassis.loc, windup_sound, 30, TRUE)
 		if(!do_after(source, windup_delay, NONE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
+			LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key))
 			return
 		windup_checked = WEAPON_WINDUP_CHECKED
+		LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key))
 	if(QDELETED(current_target))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	current_firer = source
 	if(fire_mode == GUN_FIREMODE_SEMIAUTO)
 		. = ..()
-		var/fire_return // todo fix: code expecting return values from async
-		ASYNC
-			fire_return = fire()
+		var/fire_return = fire()
 		if(!fire_return || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
 		reset_fire()
@@ -101,7 +103,7 @@
 
 	//not an explicit timer (unwrapped timer start), but I dont think having a mirror timer is a better idea
 	//feel free to improve if think of a better way to make sure cooldowns are shared
-	LAZYSET(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(type), src)
+	LAZYSET(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key), src)
 	// dont wanna call parent because it would override this timer
 	chassis.use_power(energy_drain)
 
@@ -109,6 +111,17 @@
 	RegisterSignal(source, COMSIG_MOB_MOUSEDRAG, PROC_REF(change_target))
 	SEND_SIGNAL(src, COMSIG_MECH_FIRE)
 	source?.client?.mouse_pointer_icon = 'icons/UI_Icons/gun_crosshairs/rifle.dmi'
+
+/obj/item/mecha_parts/mecha_equipment/weapon/do_after_checks(atom/target)
+	if(!chassis)
+		return FALSE
+	var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.dir))
+	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
+		if(chassis.mecha_flags & MECHA_SPIN_WHEN_NO_ANGLE)
+			chassis.face_atom(current_target)
+		else
+			return FALSE
+	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/set_bursting(bursting)
 	if(bursting)
@@ -137,9 +150,6 @@
 	var/list/modifiers = params2list(params)
 	if(!((modifiers[BUTTON] == RIGHT_CLICK) && chassis.equip_by_category[MECHA_R_ARM] == src) && !((modifiers[BUTTON] == LEFT_CLICK) && chassis.equip_by_category[MECHA_L_ARM] == src))
 		return
-	//not an explicit timer (unwrapped timer start), but I dont think having a mirror timer is a better idea
-	//feel free to improve if think of a better way to make sure cooldowns are shared
-	LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(type))
 	SEND_SIGNAL(src, COMSIG_MECH_STOP_FIRE)
 	if(!HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		reset_fire()
@@ -154,6 +164,10 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/reset_fire()
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
 	current_firer?.client?.mouse_pointer_icon = chassis.mouse_pointer
+	//not an explicit timer (unwrapped timer start), but I dont think having a mirror timer is a better idea
+	//feel free to improve if think of a better way to make sure cooldowns are shared
+	LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key))
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(cooldown_key), equip_cooldown)
 	set_target(null)
 	current_firer = null
 
@@ -180,8 +194,11 @@
 
 ///actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/fire()
+	SHOULD_NOT_SLEEP(TRUE) // we need to reset fire after this, so lets like, not let people rapidfire
 	if(!action_checks(current_target, TRUE))
 		return NONE
+	if(windup_checked == WEAPON_WINDUP_CHECKING)
+		return
 	var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.dir))
 	if(dir_target_diff > (MECH_FIRE_CONE_ALLOWED / 2))
 		if(chassis.mecha_flags & MECHA_SPIN_WHEN_NO_ANGLE)
@@ -356,7 +373,8 @@
 	if(projectiles > 0)
 		return
 	playsound(src, 'sound/weapons/guns/misc/empty_alarm.ogg', 25, 1)
-	attempt_rearm(current_firer)
+	ASYNC
+		attempt_rearm(current_firer)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine
 	name = "\improper FNX-99 \"Hades\" Carbine"
@@ -445,7 +463,7 @@
 	projectiles--
 	proj_init(O, source)
 	O.throw_at(target, missile_range, missile_speed, source, FALSE)
-	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), equip_cooldown)
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(cooldown_key), equip_cooldown)
 	chassis.use_power(energy_drain)
 	if(smoke_effect)
 		var/firing_angle = Get_Angle(get_turf(src), target)

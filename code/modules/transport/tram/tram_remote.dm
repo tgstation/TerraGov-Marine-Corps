@@ -51,7 +51,7 @@
 		. += "Left-click to link to a tram."
 		return
 	. += "The rapid mode light is [options ? "on" : "off"]."
-	if(!COOLDOWN_CHECK(src, tram_remote))
+	if(!COOLDOWN_FINISHED(src, tram_remote))
 		. += "The number on the display shows [DisplayTimeText(COOLDOWN_TIMELEFT(src, tram_remote), 1)]."
 	else
 		. += "The display indicates ready."
@@ -79,7 +79,7 @@
 		link_tram(user)
 		return
 
-	if(COOLDOWN_CHECK(src, tram_remote))
+	if(COOLDOWN_FINISHED(src, tram_remote))
 		balloon_alert(user, "cooldown: [DisplayTimeText(COOLDOWN_TIMELEFT(src, tram_remote), 1)]")
 		return
 

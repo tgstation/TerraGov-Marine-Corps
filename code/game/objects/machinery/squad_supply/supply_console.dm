@@ -101,7 +101,7 @@
 			refresh_pad()
 
 		if("send_beacon")
-			if(!COOLDOWN_CHECK(src, next_fire))
+			if(!COOLDOWN_FINISHED(src, next_fire))
 				return
 
 			if(!supply_beacon)

@@ -180,7 +180,7 @@
 			selected_target = locate(href_list["selected_target"])
 		if("message")
 			if(current_squad && operator == usr)
-				if(TIMER_COOLDOWN_CHECK(operator, COOLDOWN_HUD_ORDER))
+				if(TIMER_COOLDOWN_RUNNING(operator, COOLDOWN_HUD_ORDER))
 					to_chat(operator, span_warning("You've sent an announcement or message too recently!"))
 					return
 				var/input = tgui_input_text(operator, "Please write a message to announce to the squad:", "Squad Message", max_length = MAX_COMMAND_MESSAGE_LENGTH)
@@ -191,7 +191,7 @@
 					visible_message(span_boldnotice("Message sent to all Marines of squad '[current_squad]'."))
 		if("sl_message")
 			if(current_squad && operator == usr)
-				if(TIMER_COOLDOWN_CHECK(operator, COOLDOWN_HUD_ORDER))
+				if(TIMER_COOLDOWN_RUNNING(operator, COOLDOWN_HUD_ORDER))
 					to_chat(operator, span_warning("You've sent an announcement or message too recently!"))
 					return
 				var/input = tgui_input_text(operator, "Please write a message to announce to the squad leader:", "SL Message", max_length = MAX_COMMAND_MESSAGE_LENGTH)
@@ -346,7 +346,7 @@
 
 	switch(choice)
 		if(MESSAGE_SINGLE)
-			if(TIMER_COOLDOWN_CHECK(operator, COOLDOWN_HUD_ORDER))
+			if(TIMER_COOLDOWN_RUNNING(operator, COOLDOWN_HUD_ORDER))
 				to_chat(operator, span_warning("You've sent an announcement or message too recently!"))
 				return
 			var/input = tgui_input_text(source, "Please write a message to announce to this marine:", "CIC Message", max_length = MAX_COMMAND_MESSAGE_LENGTH)
@@ -372,7 +372,7 @@
 		if(ORBITAL_SPOTLIGHT)
 			attempt_spotlight(source, turf_target, params)
 		if(MESSAGE_NEAR)
-			if(TIMER_COOLDOWN_CHECK(operator, COOLDOWN_HUD_ORDER))
+			if(TIMER_COOLDOWN_RUNNING(operator, COOLDOWN_HUD_ORDER))
 				to_chat(operator, span_warning("You've sent an announcement or message too recently!"))
 				return
 			var/input = tgui_input_text(source, "Please write a message to announce to all marines nearby:", "CIC Proximity Message", max_length = MAX_COMMAND_MESSAGE_LENGTH)
@@ -389,7 +389,7 @@
 			var/datum/squad/chosen_squad = squad_select(source, turf_target)
 			switch(choice)
 				if(MESSAGE_SQUAD)
-					if(TIMER_COOLDOWN_CHECK(operator, COOLDOWN_HUD_ORDER))
+					if(TIMER_COOLDOWN_RUNNING(operator, COOLDOWN_HUD_ORDER))
 						to_chat(operator, span_warning("You've sent an announcement or message too recently!"))
 						return
 					var/input = tgui_input_text(source, "Please write a message to announce to the squad:", "Squad Message", max_length = MAX_COMMAND_MESSAGE_LENGTH)
@@ -421,7 +421,7 @@
 	if(power_amount <= 10000)
 		return
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBITAL_SPOTLIGHT))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ORBITAL_SPOTLIGHT))
 		to_chat(source, span_notice("The Orbital spotlight is still recharging."))
 		return
 	var/area/place = get_area(A)

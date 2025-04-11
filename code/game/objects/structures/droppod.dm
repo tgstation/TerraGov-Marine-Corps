@@ -1,4 +1,5 @@
 GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transit, /turf/open/space, /turf/open/ground/empty, /turf/open/liquid/lava))) // Don't drop at these tiles.
+GLOBAL_DATUM(droppod_reservation, /datum/turf_reservation/transit/droppod)
 
 ///Time drop pod spends in the transit z, mostly for visual flavor
 #define DROPPOD_TRANSIT_TIME 10 SECONDS
@@ -41,8 +42,6 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	var/launch_allowed = TRUE
 	///If true, you can launch the droppod before drop pod delay
 	var/operation_started = FALSE
-	///3x3 transit reservation for immersion as if flying through space
-	var/datum/turf_reservation/reserved_area
 	///Action to actually launch the drop pod
 	var/list/datum/action/innate/interaction_actions
 	///after the pod finishes it's travelhow long it spends falling
@@ -68,7 +67,6 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	//because we get put in the contents at some point, and don't want to get deleted if the pod gets shot out during that time
 	for(var/atom/movable/ejectee AS in contents)
 		ejectee.forceMove(loc)
-	QDEL_NULL(reserved_area)
 	QDEL_LIST(interaction_actions)
 	GLOB.droppod_list -= src
 	return ..()
@@ -232,7 +230,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	deadchat_broadcast(" has been launched", src, turf_target = target)
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_notice("[user ? user : "unknown"] has launched [src] towards [target.loc] at X:[target_x] Y:[target_y]"))
-	reserved_area = SSmapping.request_turf_block_reservation(3,3)
+	if(!GLOB.droppod_reservation)
+		GLOB.droppod_reservation = SSmapping.request_turf_block_reservation(10, 8, 1, reservation_type=/datum/turf_reservation/transit/droppod)
 
 	drop_state = DROPPOD_ACTIVE
 	GLOB.droppod_list -= src
@@ -270,9 +269,13 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 	playsound(src, 'sound/effects/escape_pod_launch.ogg', 70)
 	playsound(src, 'sound/effects/droppod_launch.ogg', 70)
-	addtimer(CALLBACK(src, PROC_REF(finish_drop), user), ROUND_UP(DROPPOD_TRANSIT_TIME * ((GLOB.current_orbit + 3) / 6)))
-	forceMove(pick(reserved_area.reserved_turfs))
-	new /area/arrival(loc)	//adds a safezone so we dont suffocate on the way down, cleaned up with reserved turfs
+	var/list/free_spaces = GLOB.droppod_reservation.reserved_turfs - GLOB.droppod_reservation.taken_turfs
+	var/turf/selectedturf = pick(free_spaces)
+	if(!selectedturf)
+		CRASH("No droppod free turf found")
+	GLOB.droppod_reservation.taken_turfs += selectedturf
+	forceMove(selectedturf)
+	addtimer(CALLBACK(src, PROC_REF(finish_drop), user, selectedturf), ROUND_UP(DROPPOD_TRANSIT_TIME * ((GLOB.current_orbit + 3) / 6)))
 
 	var/turf/target = locate(target_x, target_y, 2)
 	var/obj/effect/overlay/blinking_laser/marine/pod_warning/laserpod = new /obj/effect/overlay/blinking_laser/marine/pod_warning(target)
@@ -280,7 +283,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	QDEL_IN(laserpod, DROPPOD_TRANSIT_TIME + 1)
 
 /// Moves the droppod into its target turf, which it updates if needed
-/obj/structure/droppod/proc/finish_drop(mob/user)
+/obj/structure/droppod/proc/finish_drop(mob/user, turf/reservedturf)
+	GLOB.droppod_reservation.taken_turfs -= reservedturf
 	var/turf/targetturf = locate(target_x, target_y, target_z)
 	for(var/atom/target AS in targetturf.contents)
 		if(!target.density)
@@ -301,7 +305,6 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, user ? user : null, targetturf)
 	explosion(targetturf, light_impact_range = 2, explosion_cause=user)
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
-	QDEL_NULL(reserved_area)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
 
 ///completes landing a little delayed for a dramatic effect
@@ -328,7 +331,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	. = ..()
 	if(!.)
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DROPPOD_TARGETTING))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_DROPPOD_TARGETTING))
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, balloon_alert), buckled_mobs[1], "Target Assignment cooldown"), 7)
 		return
 	// this isnt the cheapest thing in the world so lets not let players spam it
@@ -544,7 +547,6 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, stored_object ? stored_object : null)
 	explosion(targetturf, 1, 2, explosion_cause=user) //A mech just dropped onto your head from orbit
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
-	QDEL_NULL(reserved_area)
 	addtimer(CALLBACK(src, PROC_REF(completedrop), user), 7) //dramatic effect
 
 /datum/action/innate/launch_droppod

@@ -1,12 +1,32 @@
+
+/atom/movable/screen/map_view/preference_preview
+	/// All the plane masters that need to be applied.
+	var/atom/movable/screen/background/screen_bg
+
+/atom/movable/screen/map_view/preference_preview/Destroy()
+	QDEL_NULL(screen_bg)
+	return ..()
+
+/atom/movable/screen/map_view/preference_preview/generate_view(map_key)
+	. = ..()
+	screen_bg = new
+	screen_bg.del_on_map_removal = FALSE
+	screen_bg.assigned_map = assigned_map
+	screen_bg.icon_state = "clear"
+	screen_bg.fill_rect(1, 1, 4, 1)
+
+/atom/movable/screen/map_view/preference_preview/display_to_client(client/show_to)
+	show_to.register_map_obj(screen_bg)
+	return ..()
+
 /datum/preferences/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		user.client.register_map_obj(screen_main)
-		user.client.register_map_obj(screen_bg)
 
 		ui = new(user, src, "PlayerPreferences", "Preferences")
 		ui.set_autoupdate(FALSE)
 		ui.open()
+		screen_main.display_to(user, ui.window)
 
 /datum/preferences/ui_close(mob/user)
 	. = ..()
@@ -110,6 +130,7 @@
 			data["accessible_tgui_themes"] = accessible_tgui_themes
 			data["tgui_fancy"] = tgui_fancy
 			data["tgui_lock"] = tgui_lock
+			data["ui_scale"] = ui_scale
 			data["tgui_input"] = tgui_input
 			data["tgui_input_big_buttons"] = tgui_input_big_buttons
 			data["tgui_input_buttons_swap"] = tgui_input_buttons_swap
@@ -566,14 +587,14 @@
 			if(!choice)
 				return
 			tts_voice = choice
-			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_TRY_TTS))
+			if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_TRY_TTS))
 				return
 			TIMER_COOLDOWN_START(ui.user, COOLDOWN_TRY_TTS, 0.5 SECONDS)
 			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = choice, local = TRUE, special_filters = isrobot(GLOB.all_species[species]) ? TTS_FILTER_SILICON : "", pitch = tts_pitch)
 
 		if("tts_pitch")
 			tts_pitch = clamp(text2num(params["newValue"]), -12, 12)
-			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_TRY_TTS))
+			if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_TRY_TTS))
 				return
 			TIMER_COOLDOWN_START(ui.user, COOLDOWN_TRY_TTS, 0.5 SECONDS)
 			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = tts_voice, local = TRUE, special_filters = isrobot(GLOB.all_species[species]) ? TTS_FILTER_SILICON : "", pitch = tts_pitch)
@@ -678,6 +699,12 @@
 
 		if("tgui_lock")
 			tgui_lock = !tgui_lock
+
+		if("ui_scale")
+			ui_scale = !ui_scale
+
+			INVOKE_ASYNC(usr.client, TYPE_VERB_REF(/client, refresh_tgui))
+			usr.client.tgui_say?.load()
 
 		if("tgui_input")
 			tgui_input = !tgui_input

@@ -1,6 +1,0 @@
-author: "Isy232, Ivanmixo"
-delete-after: True
-changes:
-  - balance: "Crash now requires 10 xenos for Queen and 14 for King and 8 for Hivelord."
-  - balance: "Nuclear War now requires 4 xenos for Queen and 12 (unchanged) for King."
-  - code_imp: "Xeno evolution pop requirement can now depend on game mode."

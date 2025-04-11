@@ -3,8 +3,8 @@
 	desc = "An adorable chunk of metal with an alarming amount of firepower designed to crush, immolate, destroy and maim anything that Nanotrasen wants it to. This model contains advanced Bluespace technology which allows a TARDIS-like amount of room on the inside."
 	icon = 'icons/obj/armored/1x1/tinytank.dmi'
 	icon_state = "tank"
-	pixel_w = -16
-	pixel_z = -8
+	pixel_x = -16
+	pixel_y = -8
 	layer = ABOVE_MOB_LAYER
 	max_drivers = 1
 	move_resist = INFINITY
@@ -259,6 +259,12 @@
 		return
 	after_move(direction)
 	forceMove(get_step(src, direction)) // still animates and calls moved() and all that stuff BUT we skip checks
+	//we still need to handroll some parts of moved though since we skipped everything
+	last_move = direction
+	last_move_time = world.time
+	if(currently_z_moving)
+		var/turf/pitfall = get_turf(src)
+		pitfall.zFall(src, falling_from_move = TRUE)
 
 /obj/vehicle/sealed/armored/resisted_against(mob/living/user)
 	balloon_alert(user, "exiting...")
@@ -276,7 +282,7 @@
 /obj/vehicle/sealed/armored/Bump(atom/A)
 	. = ..()
 	if(HAS_TRAIT(A, TRAIT_STOPS_TANK_COLLISION))
-		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_VEHICLE_CRUSHSOUND))
+		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_VEHICLE_CRUSHSOUND))
 			visible_message(span_danger("[src] is stopped by [A]!"))
 			playsound(A, 'sound/effects/metal_crash.ogg', 45)
 			TIMER_COOLDOWN_START(src, COOLDOWN_VEHICLE_CRUSHSOUND, 1 SECONDS)
@@ -670,7 +676,7 @@
 		new_weapon_dir = angle_to_cardinal_dir(Get_Angle(get_turf(src), get_turf(A)))
 	if(turret_overlay.dir == new_weapon_dir)
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam
 		return FALSE
 	playsound(src, 'sound/vehicles/tankswivel.ogg', 80, TRUE)
 	play_interior_sound(null, 'sound/vehicles/turret_swivel_interior.ogg', 60, TRUE)

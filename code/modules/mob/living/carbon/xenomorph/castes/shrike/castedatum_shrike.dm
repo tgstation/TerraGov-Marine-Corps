@@ -58,7 +58,6 @@
 		/datum/action/ability/activable/xeno/neurotox_sting/ozelomelyn,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/secrete_resin,
-		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/psychic_cure,
@@ -74,6 +73,7 @@
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
 /datum/xeno_caste/shrike/normal
@@ -95,7 +95,6 @@
 		/datum/action/ability/activable/xeno/neurotox_sting/ozelomelyn,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/secrete_resin,
-		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/psychic_cure,
@@ -113,4 +112,5 @@
 		/datum/action/ability/xeno_action/rally_minion,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/activable/xeno/psychic_vortex,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)

@@ -316,29 +316,29 @@
 			bound_width = vehicle_width
 			bound_x = -32
 			bound_y = -32
-			root.pixel_w = -65
-			root.pixel_z = -48
+			root.pixel_x = -65
+			root.pixel_y = -48
 		if(SOUTH)
 			bound_height = vehicle_length
 			bound_width = vehicle_width
 			bound_x = -32
 			bound_y = -64
-			root.pixel_w = -65
-			root.pixel_z = -80
+			root.pixel_x = -65
+			root.pixel_y = -80
 		if(WEST)
 			bound_height = vehicle_width
 			bound_width = vehicle_length
 			bound_x = -64
 			bound_y = -32
-			root.pixel_w = -80
-			root.pixel_z = -56
+			root.pixel_x = -80
+			root.pixel_y = -56
 		if(EAST)
 			bound_height = vehicle_width
 			bound_width = vehicle_length
 			bound_x = -32
 			bound_y = -32
-			root.pixel_w = -48
-			root.pixel_z = -56
+			root.pixel_x = -48
+			root.pixel_y = -56
 
 	var/angle_change = dir2angle(new_dir) - dir2angle(old_dir)
 	//north needing to be considered 0 OR 360 is inconvenient, I'm sure there is a non ungabrain way to do this
