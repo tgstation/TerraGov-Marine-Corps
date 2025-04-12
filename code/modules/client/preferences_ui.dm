@@ -139,6 +139,7 @@
 			data["max_chat_length"] = max_chat_length
 			data["see_chat_non_mob"] = see_chat_non_mob
 			data["see_rc_emotes"] = see_rc_emotes
+			data["toggle_bump_attacking"] = toggle_bump_attacking
 			data["mute_others_combat_messages"] = mute_others_combat_messages
 			data["mute_self_combat_messages"] = mute_self_combat_messages
 			data["show_xeno_rank"] = show_xeno_rank
@@ -736,6 +737,9 @@
 
 		if("see_rc_emotes")
 			see_rc_emotes = !see_rc_emotes
+
+		if("toggle_bump_attacking")
+			toggle_bump_attacking = !toggle_bump_attacking
 
 		if("mute_self_combat_messages")
 			mute_self_combat_messages = !mute_self_combat_messages

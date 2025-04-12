@@ -215,6 +215,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///State tracking of hive status toggles
 	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
 
+	///Bump attacking preference
+	var/toggle_bump_attacking = TRUE
+
 /datum/preferences/New(client/C)
 	if(!istype(C))
 		return

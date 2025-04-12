@@ -185,6 +185,7 @@
 	READ_FILE(S["chem_macros"], chem_macros)
 	READ_FILE(S["status_toggle_flags"], status_toggle_flags)
 
+	READ_FILE(S["toggle_bump_attacking"], toggle_bump_attacking)
 	READ_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
 	READ_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
 	READ_FILE(S["mute_xeno_health_alert_messages"], mute_xeno_health_alert_messages)
@@ -255,6 +256,7 @@
 	slot_draw_order_pref = sanitize_islist(slot_draw_order_pref, SLOT_DRAW_ORDER, length(SLOT_DRAW_ORDER), TRUE, SLOT_DRAW_ORDER)
 	status_toggle_flags = sanitize_integer(status_toggle_flags, NONE, MAX_BITFLAG, initial(status_toggle_flags))
 
+	toggle_bump_attacking = sanitize_integer(toggle_bump_attacking, FALSE, TRUE, initial(toggle_bump_attacking))
 	mute_self_combat_messages = sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages = sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
 	mute_xeno_health_alert_messages = sanitize_integer(mute_xeno_health_alert_messages, FALSE, TRUE, initial(mute_xeno_health_alert_messages))
@@ -334,6 +336,7 @@
 	volume_tts = sanitize_integer(volume_tts, 1, 100, initial(volume_tts))
 	radio_tts_flags = sanitize_bitfield(radio_tts_flags, GLOB.all_radio_tts_options, (RADIO_TTS_SL | RADIO_TTS_SQUAD | RADIO_TTS_COMMAND | RADIO_TTS_HIVEMIND))
 
+	toggle_bump_attacking = sanitize_integer(toggle_bump_attacking, FALSE, TRUE, initial(toggle_bump_attacking))
 	mute_self_combat_messages = sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages = sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
 	mute_xeno_health_alert_messages = sanitize_integer(mute_xeno_health_alert_messages, FALSE, TRUE, initial(mute_xeno_health_alert_messages))
@@ -402,6 +405,7 @@
 	WRITE_FILE(S["slot_draw_order"], slot_draw_order_pref)
 	WRITE_FILE(S["status_toggle_flags"], status_toggle_flags)
 
+	WRITE_FILE(S["toggle_bump_attacking"], toggle_bump_attacking)
 	WRITE_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
 	WRITE_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
 	WRITE_FILE(S["mute_xeno_health_alert_messages"], mute_xeno_health_alert_messages)
