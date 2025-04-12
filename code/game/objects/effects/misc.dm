@@ -245,3 +245,18 @@
 	layer = FLY_LAYER
 	plane = GAME_PLANE
 	alpha = 70
+
+/obj/effect/build_hologram
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	anchored = TRUE
+	layer = ABOVE_ALL_MOB_LAYER
+	pass_flags = ALL
+
+/obj/effect/build_hologram/Initialize(mapload, new_icon, new_icon_state)
+	. = ..()
+	if(isnull(new_icon) || isnull(new_icon_state))
+		stack_trace("Build Hologram called with null icon or icon_state")
+		return INITIALIZE_HINT_QDEL
+	icon = new_icon
+	icon_state = new_icon_state
+	makeHologram(0.7)
