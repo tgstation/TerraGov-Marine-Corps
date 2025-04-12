@@ -185,7 +185,7 @@
 				continue
 			var/obj/item/card/id/user_id =  H.get_idcard()
 			for(var/i in user_id.marine_points)
-				user_id.marine_points[i] += 5
+				user_id.marine_points[i] += 3
 
 	update_minimap_icon()
 	running = FALSE
