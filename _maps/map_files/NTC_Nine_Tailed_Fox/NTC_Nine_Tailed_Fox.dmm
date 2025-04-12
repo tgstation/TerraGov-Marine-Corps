@@ -7525,7 +7525,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "gQH" = (
-/obj/machinery/marine_selector/gear/specialist,
+/obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "gQM" = (
@@ -9976,7 +9976,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "jak" = (
-/obj/machinery/marine_selector/clothes/specialist,
+/obj/machinery/marine_selector/clothes/smartgun,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "jaF" = (
