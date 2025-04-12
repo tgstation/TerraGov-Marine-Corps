@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - balance: "Caps cloak mech gun cooldown CD after uncloaking to 1 second, and treats the fire cooldown as half of it's reality for this purpose"

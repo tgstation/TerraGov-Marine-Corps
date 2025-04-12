@@ -1,6 +1,0 @@
-author: "Arar"
-delete-after: True
-changes:
-  - bugfix: "fixed welding inhand not showing"
-  - code_imp: "changed welding hat code to use balloon alerts when toggling"
-  - refactor: "refactored mentions of welding masks into welding helmets"
