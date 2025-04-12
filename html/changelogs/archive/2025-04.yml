@@ -62,3 +62,8 @@
   - bugfix: chaplain hoodie no longer an animation of the new and old sprite
   - rscadd: added an occupational choice opt-in preference for being a potential xenomorph
       hive target, i.e. breeding target
+2025-04-12:
+  FriedrichRatzel:
+  - rscadd: Ported hypnotic goggles. Contact your local requisitions officer for further
+      details.
+  - rscadd: joint xeno-marine OOC (XMOOC)
