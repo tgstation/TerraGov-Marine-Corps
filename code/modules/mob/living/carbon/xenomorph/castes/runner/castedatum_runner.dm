@@ -70,12 +70,14 @@
 		/datum/action/ability/activable/xeno/snatch,
 	)
 
+
+// ***************************************
+// *********** Melter
+// ***************************************
 /datum/xeno_caste/runner/melter
 	caste_type_path = /mob/living/carbon/xenomorph/runner/melter
-	upgrade_name = ""
 	caste_name = "Melter"
 	display_name = "Melter"
-	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A fast, four-legged terror. It got acid covered all over it."
 
 	acid_spray_damage = 16
@@ -122,4 +124,51 @@
 		/datum/action/ability/activable/xeno/melter_shroud,
 		/datum/action/ability/activable/xeno/acidic_missile,
 		/datum/action/ability/xeno_action/xenohide,
+	)
+
+
+// ***************************************
+// *********** Wraith
+// ***************************************
+/datum/xeno_caste/runner/wraith
+	caste_type_path = /mob/living/carbon/xenomorph/runner/wraith
+	caste_name = "Wraith"
+	display_name = "Wraith"
+	caste_desc = "A strange xeno that utilizes its psychic powers to move out of phase with reality."
+	wound_type = "wraith"
+
+	// *** Speed *** //
+	speed = -1.1
+
+	// *** Plasma *** //
+	plasma_max = 400
+	plasma_gain = 35
+
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/wraith_blink,
+		/datum/action/ability/xeno_action/wraith_rewind,
+		/datum/action/ability/activable/xeno/temporal_strike,
+	)
+
+/datum/xeno_caste/runner/wraith/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/runner/wraith/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "A xenomorph that has perfected the manipulation of space and time. Its movements appear quick and distorted."
+	primordial_message = "Mastery is achieved when \'telling time\' becomes \'telling time what to do\'."
+	upgrade = XENO_UPGRADE_PRIMO
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/wraith_blink,
+		/datum/action/ability/xeno_action/wraith_rewind,
+		/datum/action/ability/activable/xeno/temporal_strike,
+		/datum/action/ability/xeno_action/time_stop,
 	)

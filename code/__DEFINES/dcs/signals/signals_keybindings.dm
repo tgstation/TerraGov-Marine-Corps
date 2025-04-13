@@ -302,10 +302,10 @@
 #define COMSIG_XENOABILITY_GRAPPLE_TOSS "xenoability_grapple_toss"
 #define COMSIG_XENOABILITY_JAB "xenoability_jab"
 
-#define COMSIG_XENOABILITY_PORTAL "xenoablity_portal"
-#define COMSIG_XENOABILITY_PORTAL_ALTERNATE "xenoability_portal_alternate"
-#define COMSIG_XENOABILITY_TIMESTOP "xenoability_timestop"
-#define COMSIG_XENOABILITY_REWIND "xenoability_rewind"
+#define COMSIG_XENOABILITY_WRAITH_BLINK "xenoability_wraith_blink"
+#define COMSIG_XENOABILITY_WRAITH_REWIND "xenoability_rewind"
+#define COMSIG_XENOABILITY_TEMPORAL_STRIKE "xenoability_temporal_strike"
+#define COMSIG_XENOABILITY_TIME_STOP "xenoability_timestop"
 
 #define COMSIG_XENOABILITY_NIGHTFALL "xenoability_nightfall"
 #define COMSIG_XENOABILITY_PETRIFY "xenoability_petrify"

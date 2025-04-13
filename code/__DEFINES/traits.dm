@@ -102,9 +102,8 @@
 #define GUN_TRAIT "gun" //Traits related to guns
 #define ZOMBIE_TRAIT "zombie"
 #define BULLET_ACT_TRAIT "bullet act" //Traits related to projectiles
-#define PORTAL_TRAIT "portal"
 #define OPTABLE_TRAIT "optable"
-#define TIMESHIFT_TRAIT "timeshift"
+#define WRAITH_BLINK_TRAIT "blink_trait"
 #define BRAIN_TRAIT "brain"
 #define WIDOW_ABILITY_TRAIT "widow_ability_trait"
 #define PSYCHIC_CRUSH_ABILITY_TRAIT "psychic_crush_ability_trait"

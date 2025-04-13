@@ -1233,33 +1233,33 @@
 	keybind_signal = COMSIG_XENOABILITY_SPIDERLING_MARK
 	hotkey_keys = list("V")
 
-/datum/keybinding/xeno/rewind
-	name = "rewind"
-	full_name = "Wraith: Time Shift"
-	description = "Save the location and status of the target. When the time is up, the target location and status are restored"
-	keybind_signal = COMSIG_XENOABILITY_REWIND
+/datum/keybinding/xeno/wraith_blink
+	name = "Wraith's Blink"
+	full_name = "Wraith: Blink"
+	description = "Teleport a short distance towards a target location within sight."
+	keybind_signal = COMSIG_XENOABILITY_WRAITH_BLINK
+	hotkey_keys = list("Z")
+
+/datum/keybinding/xeno/wraith_rewind
+	name = "Wraith's Rewind"
+	full_name = "Wraith: Rewind"
+	description = "Return to the location you were in a few seconds ago."
+	keybind_signal = COMSIG_XENOABILITY_WRAITH_REWIND
+	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/temporal_strike
+	name = "Temporal Strike"
+	full_name = "Wraith: Temporal Strike"
+	description = "Strike at a target enemy. After a set amount of time, the attack will repeat itself, disrupting reality."
+	keybind_signal = COMSIG_XENOABILITY_TEMPORAL_STRIKE
 	hotkey_keys = list("C")
 
-/datum/keybinding/xeno/portal
-	name = "portal"
-	full_name = "Wraith: Portal"
-	description = "Place the first portal on your location. You can travel from portal one to portal two and vice versa."
-	keybind_signal =COMSIG_XENOABILITY_PORTAL
+/datum/keybinding/xeno/time_stop
+	name = "Time Stop"
+	full_name = "Wraith: Time Stop"
+	description = "Stops time in an area, freezing bullets. Once this effect expires, bullets will resume their movement."
+	keybind_signal = COMSIG_XENOABILITY_TIME_STOP
 	hotkey_keys = list("E")
-
-/datum/keybinding/xeno/portal_two
-	name = "portal_two"
-	full_name = "Wraith: Portal two"
-	description = "Place the second portal on your location. You can travel from portal one to portal two and vice versa."
-	keybind_signal =COMSIG_XENOABILITY_PORTAL_ALTERNATE
-	hotkey_keys = list("R")
-
-/datum/keybinding/xeno/timestop
-	name = "timestop"
-	full_name = "Wraith: Time stop"
-	description = "Freezes bullets in their course, and they will start to move again only after a certain time"
-	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
-	hotkey_keys = list("V")
 
 /datum/keybinding/xeno/flay
 	name = "Flay"
