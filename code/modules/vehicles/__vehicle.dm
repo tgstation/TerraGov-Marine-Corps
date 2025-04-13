@@ -70,6 +70,11 @@
 /obj/vehicle/ai_should_stay_buckled(mob/living/carbon/npc)
 	return !is_driver(npc) //NPC's can't operate vehicles so we generally only want them buckled as a passenger
 
+/obj/vehicle/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration, isrightclick)
+	if(xeno_attacker.endurance_active)
+		return FALSE
+	return ..()
+
 /obj/vehicle/proc/is_key(obj/item/I)
 	return istype(I, key_type)
 

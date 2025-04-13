@@ -45,6 +45,8 @@
 		return
 	if(!xeno_owner.canmove)
 		return FALSE
+	if(xeno_owner.endurance_active)
+		return FALSE
 	return TRUE
 
 /datum/action/ability/xeno_action/conqueror_dash/action_activate()
@@ -523,7 +525,7 @@
 
 /datum/action/ability/xeno_action/conqueror_endurance/give_action(mob/living/L)
 	. = ..()
-	xeno_owner.endurance_health_max = xeno_owner.xeno_caste.max_health * 2
+	xeno_owner.endurance_health_max = xeno_owner.xeno_caste.max_health * 1.5
 	xeno_owner.endurance_health = xeno_owner.endurance_health_max
 	START_PROCESSING(SSprocessing, src)
 	particle_holder = new(xeno_owner, /particles/conqueror_endurance)
@@ -548,6 +550,8 @@
 	if(!.)
 		return
 	if(xeno_owner.endurance_broken)
+		return FALSE
+	if(xeno_owner.endurance_active)
 		return FALSE
 	return TRUE
 
@@ -598,7 +602,7 @@
 /datum/action/ability/xeno_action/conqueror_endurance/proc/enable_ability(keybind)
 	toggled = TRUE
 	set_toggle(TRUE)
-	xeno_owner.fortify = TRUE
+	xeno_owner.endurance_active = TRUE
 	xeno_owner.add_movespeed_modifier(MOVESPEED_ID_CONQUEROR_ENDURANCE, TRUE, 0, NONE, TRUE, CONQUEROR_ENDURANCE_SPEED_MODIFIER)
 	xeno_owner.xeno_caste.sunder_multiplier = CONQUEROR_ENDURANCE_SUNDER_MULTIPLIER
 	RegisterSignal(xeno_owner, COMSIG_MOB_DEATH, PROC_REF(disable_ability))
@@ -611,7 +615,7 @@
 	SIGNAL_HANDLER
 	toggled = FALSE
 	set_toggle(FALSE)
-	xeno_owner.fortify = FALSE
+	xeno_owner.endurance_active = FALSE
 	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_CONQUEROR_ENDURANCE)
 	xeno_owner.xeno_caste.sunder_multiplier = initial(xeno_owner.xeno_caste.sunder_multiplier)
 	add_cooldown()
@@ -694,6 +698,8 @@
 	if(!.)
 		return
 	if(!xeno_owner.canmove)
+		return FALSE
+	if(xeno_owner.endurance_active)
 		return FALSE
 	return TRUE
 
@@ -821,6 +827,8 @@
 	if(!.)
 		return
 	if(!xeno_owner.canmove)
+		return FALSE
+	if(xeno_owner.endurance_active)
 		return FALSE
 	return TRUE
 
