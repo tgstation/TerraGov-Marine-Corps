@@ -225,21 +225,23 @@
 	animate(indicator_holder, appearance = xeno_owner.appearance, alpha = 128, color = COLOR_BLACK, dir = xeno_owner.dir, time = 0, flags = ANIMATION_END_NOW, loop = -1)
 	animate(alpha = 25, time = WRAITH_REWIND_RESET_TIME)
 	apply_wibbly_filters(indicator_holder)
-	xeno_owner.client.images += indicator_holder
-	RegisterSignal(xeno_owner, COMSIG_MOB_LOGOUT, PROC_REF(client_disconnected))
+	if(xeno_owner.client)
+		xeno_owner.client.images += indicator_holder
+		RegisterSignal(xeno_owner, COMSIG_MOB_LOGOUT, PROC_REF(client_disconnected))
+		return
+	RegisterSignal(xeno_owner, COMSIG_MOB_LOGIN, PROC_REF(client_connected))
 
-/// Gets rid of visual effects whenever a client disconnects.
+/// Adds a signal for when a client connects to this mob.
 /datum/action/ability/xeno_action/wraith_rewind/proc/client_disconnected(datum/source)
 	SIGNAL_HANDLER
-	message_admins("client_disconnected")
-	QDEL_NULL(indicator_holder)
+	UnregisterSignal(xeno_owner, COMSIG_MOB_LOGOUT)
 	RegisterSignal(xeno_owner, COMSIG_MOB_LOGIN, PROC_REF(client_connected))
 
-/// Setups visual effects whenever a client disconnects.
+/// Setups visual effects whenever a client connects to this mob.
 /datum/action/ability/xeno_action/wraith_rewind/proc/client_connected(datum/source)
 	SIGNAL_HANDLER
-	message_admins("client_connected")
-	RegisterSignal(xeno_owner, COMSIG_MOB_LOGIN, PROC_REF(client_connected))
+	UnregisterSignal(xeno_owner, COMSIG_MOB_LOGIN)
+	RegisterSignal(xeno_owner, COMSIG_MOB_LOGOUT, PROC_REF(client_disconnected))
 	if(reset_timer) // Wait for the ability's next reset to setup visuals. Gotta keep them synchronized!
 		addtimer(CALLBACK(src, PROC_REF(visuals_setup), rewind_loc), timeleft(reset_timer))
 		return
