@@ -305,7 +305,7 @@ function PatientChemicals() {
                           </Box>
                         </LabeledList.Item>
                       )}
-                      {!!chemical.od_threshold && (
+                      {!!chemical.od_threshold && !chemical.dangerous && (
                         <LabeledList.Item
                           label="OD Units"
                           labelColor={chemical.od ? 'red' : 'label'}

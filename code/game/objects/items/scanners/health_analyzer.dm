@@ -276,7 +276,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			"status" = organ.organ_status == ORGAN_BRUISED ? "Damaged" : organ.organ_status == ORGAN_BROKEN ? "Failing" : "Functional",
 			"broken_damage" = organ.min_broken_damage,
 			"bruised_damage" = organ.min_bruised_damage,
-			"damage" = organ.damage,
+			"damage" = round(organ.damage, 0.1),
 			"effects" = organ.damage_description,
 		)
 		damaged_organs += list(current_organ)
