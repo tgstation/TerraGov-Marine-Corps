@@ -901,12 +901,55 @@
 	var/turf/tile = get_turf(pointed_atom)
 	if(!tile)
 		return FALSE
+	if (pointed_atom in src)
+		create_point_bubble(pointed_atom)
+		return FALSE
 	var/turf/our_tile = get_turf(src)
 	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, 0)
 	visual.invisibility = invisibility
 	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + pointed_atom.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + pointed_atom.pixel_y, time = 1.7, easing = EASE_OUT)
 	SEND_SIGNAL(src, COMSIG_POINT_TO_ATOM, pointed_atom)
 	return TRUE
+
+/atom/movable/proc/create_point_bubble(atom/pointed_atom)
+	var/mutable_appearance/thought_bubble = mutable_appearance(
+		'icons/effects/effects.dmi',
+		"thought_bubble",
+		offset_spokesman = src,
+		plane = POINT_PLANE,
+		appearance_flags = KEEP_APART,
+	)
+
+	var/mutable_appearance/pointed_atom_appearance = new(pointed_atom.appearance)
+	pointed_atom_appearance.blend_mode = BLEND_INSET_OVERLAY
+	pointed_atom_appearance.plane = FLOAT_PLANE
+	pointed_atom_appearance.layer = FLOAT_LAYER
+	pointed_atom_appearance.pixel_x = 0
+	pointed_atom_appearance.pixel_y = 0
+	thought_bubble.overlays += pointed_atom_appearance
+/* // tg has hover outlines reenable this if we ever port them
+	var/hover_outline_index = pointed_atom.get_filter_index(HOVER_OUTLINE_FILTER)
+	if (!isnull(hover_outline_index))
+		pointed_atom_appearance.filters.Cut(hover_outline_index, hover_outline_index + 1)
+*/
+	thought_bubble.pixel_w = 16
+	thought_bubble.pixel_z = 32
+	thought_bubble.alpha = 200
+
+	var/mutable_appearance/point_visual = mutable_appearance(
+		'icons/mob/screen/generic.dmi',
+		"arrow"
+	)
+
+	thought_bubble.overlays += point_visual
+
+	add_overlay(thought_bubble)
+	LAZYADD(update_overlays_on_z, thought_bubble)
+	addtimer(CALLBACK(src, PROC_REF(clear_point_bubble), thought_bubble), POINT_TIME)
+
+/atom/movable/proc/clear_point_bubble(mutable_appearance/thought_bubble)
+	LAZYREMOVE(update_overlays_on_z, thought_bubble)
+	cut_overlay(thought_bubble)
 
 /// Side effects of being sent to the end of round deathmatch zone
 /mob/proc/on_eord(turf/destination)

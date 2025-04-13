@@ -1009,3 +1009,5 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 	ORGAN_DAMAGE = GLOB.ai_organ_heal_items,
 	INFECTION = GLOB.ai_infection_heal_items,
 ))
+
+#define POINT_TIME 4 SECONDS

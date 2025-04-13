@@ -181,7 +181,7 @@
 
 /obj/effect/overlay/temp/point/big
 	icon_state = "big_arrow"
-	effect_duration = 40
+	effect_duration = POINT_TIME
 
 //Special laser for coordinates, not for CAS
 /obj/effect/overlay/temp/laser_coordinate
