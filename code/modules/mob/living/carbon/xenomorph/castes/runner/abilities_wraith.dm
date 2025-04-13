@@ -53,7 +53,6 @@
 /datum/action/ability/activable/xeno/wraith_blink/on_cooldown_finish()
 	. = ..()
 	xeno_owner.balloon_alert(xeno_owner, "[initial(name)] ready")
-	xeno_owner.playsound_local(xeno_owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 
 /datum/action/ability/activable/xeno/wraith_blink/use_ability(atom/target)
 	. = ..()
@@ -255,7 +254,7 @@
 #define TEMPORAL_STRIKE_STAGGER 5
 #define TEMPORAL_STRIKE_SLOWDOWN 5
 #define TEMPORAL_STRIKE_DAMAGE_MODIFIER 2
-#define TEMPORAL_STRIKE_KNOCKDOWN 2 SECONDS
+#define TEMPORAL_STRIKE_KNOCKDOWN 1.5 SECONDS
 
 /datum/action/ability/activable/xeno/temporal_strike
 	name = "Temporal Strike"
