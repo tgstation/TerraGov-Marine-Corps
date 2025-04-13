@@ -37,11 +37,18 @@
 /obj/item/alien_embryo/Destroy()
 	if(affected_mob)
 		log_combat(affected_mob, null, "had their embryo removed")
-		var/obj/item/alien_embryo/remainingembryo = locate() in affected_mob
-		if(!remainingembryo)
-			var/mob/living/carbon/xenomorph/larva/remaininglarva = locate() in affected_mob
-			if(!remaininglarva)
-				affected_mob.status_flags &= ~(XENO_HOST)
+		var/anyleft = FALSE
+		for(var/obj/item/alien_embryo/remainingembryo in affected_mob)
+			if(!QDELETED(remainingembryo))
+				anyleft = TRUE
+				break
+		if(!anyleft)
+			for(var/mob/living/carbon/xenomorph/larva/remaininglarva in affected_mob)
+				if(!QDELETED(remaininglarva))
+					anyleft = TRUE
+					break
+		if(!anyleft)
+			affected_mob.status_flags &= ~(XENO_HOST)
 		var/mob/living/C = affected_mob
 		C.med_hud_set_status()
 		STOP_PROCESSING(SSobj, src)
@@ -58,11 +65,18 @@
 		return FALSE
 
 	if(loc != affected_mob)
-		var/obj/item/alien_embryo/remainingembryo = locate() in affected_mob
-		if(!remainingembryo)
-			var/mob/living/carbon/xenomorph/larva/remaininglarva = locate() in affected_mob
-			if(!remaininglarva)
-				affected_mob.status_flags &= ~(XENO_HOST)
+		var/anyleft = FALSE
+		for(var/obj/item/alien_embryo/remainingembryo in affected_mob)
+			if(!QDELETED(remainingembryo))
+				anyleft = TRUE
+				break
+		if(!anyleft)
+			for(var/mob/living/carbon/xenomorph/larva/remaininglarva in affected_mob)
+				if(!QDELETED(remaininglarva))
+					anyleft = TRUE
+					break
+		if(!anyleft)
+			affected_mob.status_flags &= ~(XENO_HOST)
 		var/mob/living/C = affected_mob
 		C.med_hud_set_status()
 		affected_mob = null
@@ -133,11 +147,14 @@
 		if(6)
 			larva_autoburst_countdown--
 			if(larva_autoburst_countdown < 1)
+				var/anyleft = FALSE
 				for(var/mob/living/carbon/xenomorph/larva/L in affected_mob.contents)
-					L?.initiate_burst(affected_mob, src)
-					if(!L)
-						break
-				qdel(src)
+					if(!QDELETED(L))
+						if(!timeleft(L.burst_timer))
+							L.initiate_burst(affected_mob, src)
+						anyleft = TRUE
+				if(!anyleft)
+					qdel(src)
 
 
 //We look for a candidate. If found, we spawn the candidate as a larva.
@@ -171,8 +188,14 @@
 		new_xeno << sound('sound/effects/alien/new_larva.ogg')
 
 	stage = 6
+/mob/living/carbon/xenomorph/larva
+	var/burst_timer = null
 
 /mob/living/carbon/xenomorph/larva/proc/initiate_burst(mob/living/victim, obj/item/alien_embryo/embryo)
+	if(timeleft(burst_timer))
+		return
+	burst_timer = null
+
 	if(loc != victim)
 		return
 
@@ -186,9 +209,12 @@
 								"<span class='danger'>You feel something wiggling in your [embryo?.emerge_target_flavor]!</span>")
 	victim.jitter(150)
 
-	addtimer(CALLBACK(src, PROC_REF(burst), victim, embryo), 3 SECONDS)
+	burst_timer = addtimer(CALLBACK(src, PROC_REF(burst), victim, embryo), 3 SECONDS, TIMER_STOPPABLE)
 
 /mob/living/carbon/xenomorph/larva/proc/burst(mob/living/victim, obj/item/alien_embryo/embryo)
+	if(timeleft(burst_timer))
+		deltimer(burst_timer)
+	burst_timer = null
 	if(QDELETED(victim))
 		return
 
@@ -205,11 +231,18 @@
 	if(!QDELETED(embryo))
 		QDEL_NULL(embryo)
 
-	var/obj/item/alien_embryo/remainingembryo = locate() in victim
-	if(!remainingembryo)
-		var/mob/living/carbon/xenomorph/larva/remaininglarva = locate() in victim
-		if(!remaininglarva)
-			victim.status_flags &= ~(XENO_HOST)
+	var/anyleft = FALSE
+	for(var/obj/item/alien_embryo/remainingembryo in victim)
+		if(!QDELETED(remainingembryo))
+			anyleft = TRUE
+			break
+	if(!anyleft)
+		for(var/mob/living/carbon/xenomorph/larva/remaininglarva in victim)
+			if(!QDELETED(remaininglarva))
+				anyleft = TRUE
+				break
+	if(!anyleft)
+		victim.status_flags &= ~(XENO_HOST)
 	victim.med_hud_set_status()
 
 	log_combat(src, null, "was born as a larva.")
@@ -217,8 +250,14 @@
 	if(ismonkey(victim))
 		victim.apply_damage(25, BRUTE, BODY_ZONE_HEAD, updating_health = TRUE)
 		victim.adjustCloneLoss(25)
-	if((((locate(/obj/structure/bed/nest) in loc) || loc_weeds_type) && hive.living_xeno_ruler?.z == loc.z) && !mind)
-		addtimer(CALLBACK(src, PROC_REF(burrow)), 4 SECONDS)
+	if(((locate(/obj/structure/bed/nest) in loc) || loc_weeds_type) && !mind)
+		var/suitablesilo = FALSE
+		for(var/obj/silo in GLOB.xeno_resin_silos_by_hive[hivenumber])
+			if(silo.z == z)
+				suitablesilo = TRUE
+				break
+		if(suitablesilo)
+			addtimer(CALLBACK(src, PROC_REF(burrow)), 4 SECONDS)
 
 
 /mob/living/proc/emote_burstscream()
