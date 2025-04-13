@@ -124,7 +124,10 @@ ADMIN_VERB(edit_admin_permissions, R_PERMISSIONS, "Permissions Panel", "Edit adm
 		output += "</table></div><div id='top'><b>Search:</b> <input type='text' id='filter' value='' style='width:70%;' onkeyup='updateSearch();'></div></body>"
 	if(QDELETED(usr))
 		return
-	usr << browse("<!DOCTYPE html><html>[jointext(output, "")]</html>","window=editrights;size=1000x650")
+	var/window_size = "size=1000x650"
+	if(usr.client.window_scaling && usr.client.prefs?.ui_scale)
+		window_size = "size=[1000 * owner.window_scaling]x[650 * owner.window_scaling]"
+	usr << browse("<!DOCTYPE html><html>[jointext(output, "")]</html>","window=editrights;[window_size]")
 
 /datum/admins/proc/edit_rights_topic(list/href_list)
 	if(!check_rights(R_PERMISSIONS))

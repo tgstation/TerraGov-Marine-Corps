@@ -24,8 +24,8 @@ export const RADIO_PREFIXES = {
   ':o ': 'AI',
   ':s ': 'CAS',
   ':u ': 'Req',
-  ':q ': 'alpha',
-  ':b ': 'bravo',
-  ':c ': 'charlie',
-  ':d ': 'delta',
+  ':q ': 'Alpha',
+  ':b ': 'Bravo',
+  ':c ': 'Charlie',
+  ':d ': 'Delta',
 } as const;

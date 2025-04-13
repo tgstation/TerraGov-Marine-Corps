@@ -203,6 +203,14 @@ export const GameSettings = (props) => {
                 rightLabel={'Primary monitor'}
               />
               <ToggleFieldPreference
+                label="UI scaling"
+                value="ui_scale"
+                action="ui_scale"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+                tooltip="Whether UIs should scale up to match your monitor scaling"
+              />
+              <ToggleFieldPreference
                 label="TGUI Input boxes"
                 value="tgui_input"
                 action="tgui_input"

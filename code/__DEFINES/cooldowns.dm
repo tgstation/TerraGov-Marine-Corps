@@ -60,11 +60,12 @@
 #define COOLDOWN_WHISTLE_WARCRY "cooldown_whistle_warcry"
 #define COOLDOWN_ARMORED_SMOKE "cooldown_armored_smoke"
 #define COOLDOWN_LOCATE_APC "cooldown_locate_apc"
+#define COOLDOWN_PDA_PLAY "cooldown_pda_play"
 
 //Mecha cooldowns
 #define COOLDOWN_MECHA "mecha"
 #define COOLDOWN_MECHA_MESSAGE "mecha_message"
-#define COOLDOWN_MECHA_EQUIPMENT(type) ("mecha_equip_[type]")
+#define COOLDOWN_MECHA_EQUIPMENT(cooldown_key) ("mecha_equip_[cooldown_key]")
 #define COOLDOWN_MECHA_ARMOR "mecha_armor"
 #define COOLDOWN_MECHA_ASSAULT_ARMOR "mecha_assault_armor"
 #define COOLDOWN_MECHA_MELEE_ATTACK "mecha_melee"

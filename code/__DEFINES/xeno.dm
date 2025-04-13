@@ -131,15 +131,11 @@ GLOBAL_LIST_INIT(plant_images_list, list(
 //List of resin structure images
 GLOBAL_LIST_INIT(resin_images_list, list(
 	RESIN_WALL = image('icons/Xeno/actions/construction.dmi', icon_state = RESIN_WALL),
-	STICKY_RESIN = image('icons/Xeno/actions/construction.dmi', icon_state = STICKY_RESIN),
-	RESIN_DOOR = image('icons/Xeno/actions/construction.dmi', icon_state = RESIN_DOOR)
-))
-
-//List of special resin structure images
-GLOBAL_LIST_INIT(resin_special_images_list, list(
 	BULLETPROOF_WALL = image('icons/Xeno/actions/construction.dmi', icon_state = BULLETPROOF_WALL),
 	FIREPROOF_WALL = image('icons/Xeno/actions/construction.dmi', icon_state = FIREPROOF_WALL),
-	HARDY_WALL = image('icons/Xeno/actions/construction.dmi', icon_state = HARDY_WALL)
+	HARDY_WALL = image('icons/Xeno/actions/construction.dmi', icon_state = HARDY_WALL),
+	STICKY_RESIN = image('icons/Xeno/actions/construction.dmi', icon_state = STICKY_RESIN),
+	RESIN_DOOR = image('icons/Xeno/actions/construction.dmi', icon_state = RESIN_DOOR),
 ))
 
 //List of puppeteer pheromone images
@@ -206,6 +202,11 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 #define ERROR_NO_SUPPORT 7
 /// Failed to other blockers such as egg, power plant , coocon , traps
 #define ERROR_CONSTRUCT 8
+
+#define WEED_REQUIRES_LOS (1<<0)
+#define WEED_TAKES_TIME (1<<1)
+#define WEED_COSTS_QB_POINTS (1<<2)
+#define WEED_USES_PLASMA (1<<3)
 
 #define PUPPET_WITHER_RANGE 15
 

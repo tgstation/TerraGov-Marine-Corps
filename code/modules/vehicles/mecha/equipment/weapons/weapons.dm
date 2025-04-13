@@ -79,13 +79,16 @@
 	if(!current_target)
 		return
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
+		LAZYSET(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key), src)
 		windup_checked = WEAPON_WINDUP_CHECKING
 		if(windup_sound)
 			playsound(chassis.loc, windup_sound, 30, TRUE)
 		if(!do_after(source, windup_delay, NONE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
+			LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key))
 			return
 		windup_checked = WEAPON_WINDUP_CHECKED
+		LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key))
 	if(QDELETED(current_target))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
@@ -100,7 +103,7 @@
 
 	//not an explicit timer (unwrapped timer start), but I dont think having a mirror timer is a better idea
 	//feel free to improve if think of a better way to make sure cooldowns are shared
-	LAZYSET(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(type), src)
+	LAZYSET(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key), src)
 	// dont wanna call parent because it would override this timer
 	chassis.use_power(energy_drain)
 
@@ -163,8 +166,8 @@
 	current_firer?.client?.mouse_pointer_icon = chassis.mouse_pointer
 	//not an explicit timer (unwrapped timer start), but I dont think having a mirror timer is a better idea
 	//feel free to improve if think of a better way to make sure cooldowns are shared
-	LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(type))
-	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), equip_cooldown)
+	LAZYREMOVE(chassis.cooldowns, COOLDOWN_MECHA_EQUIPMENT(cooldown_key))
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(cooldown_key), equip_cooldown)
 	set_target(null)
 	current_firer = null
 
@@ -460,7 +463,7 @@
 	projectiles--
 	proj_init(O, source)
 	O.throw_at(target, missile_range, missile_speed, source, FALSE)
-	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), equip_cooldown)
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(cooldown_key), equip_cooldown)
 	chassis.use_power(energy_drain)
 	if(smoke_effect)
 		var/firing_angle = Get_Angle(get_turf(src), target)
