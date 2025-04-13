@@ -614,11 +614,6 @@
 				popup.open(FALSE)
 			break
 
-	if(href_list["lookitem"])
-		var/obj/item/I = locate(href_list["lookitem"])
-		if(istype(I))
-			I.examine(usr)
-
 	return ..()
 
 /mob/living/carbon/human/grabbed_self_attack()
