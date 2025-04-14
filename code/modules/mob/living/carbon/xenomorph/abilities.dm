@@ -1444,12 +1444,8 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	var/atom/selected = xeno_owner.selected_resin
 	var/obj/effect/build_hologram/hologram = new(target_turf, selected)
 	hologram.alpha = 0
-	// hologram.smoothing_flags = initial(selected.smoothing_flags)
 	hologram.layer = selected.layer + 1
-	// hologram.smoothing_groups = list(SMOOTH_GROUP_HOLOGRAM)
-	// hologram.canSmoothWith = null
 	hologram.step_size = move_range * ICON_SIZE_ALL
-	// QUEUE_SMOOTH(hologram)
 	animate(hologram, 1 SECONDS, alpha = initial(hologram.alpha))
 	holograms += hologram
 

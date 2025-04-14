@@ -250,13 +250,16 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
 	layer = ABOVE_ALL_MOB_LAYER
+	smoothing_groups = list(SMOOTH_GROUP_HOLOGRAM)
+	canSmoothWith = list(SMOOTH_GROUP_HOLOGRAM)
 	alpha = 190
 
 /obj/effect/build_hologram/Initialize(mapload, atom/copy_type)
-	. = ..()
 	if(ispath(copy_type))
 		icon = initial(copy_type.icon)
 		icon_state = initial(copy_type.icon_state)
 		base_icon_state = initial(copy_type.base_icon_state)
 		color = initial(copy_type.color)
+		smoothing_flags = initial(copy_type.smoothing_flags)
+	. = ..()
 	makeHologram(0.7, FALSE)
