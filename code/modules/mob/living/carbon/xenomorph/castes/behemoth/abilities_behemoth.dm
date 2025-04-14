@@ -749,7 +749,7 @@
 			pixel_x += 19
 			pixel_y -= 12
 
-/obj/effect/temp_visual/shockwave/enhanced/Initialize(mapload, radius, direction)
+/obj/effect/temp_visual/shockwave/enhanced/Initialize(mapload, radius, direction, speed_rate=1, easing_type = LINEAR_EASING, y_offset=0, x_offset=0)
 	. = ..()
 	switch(direction)
 		if(NORTH)
@@ -892,7 +892,7 @@
 	rotation = 0
 	spin = generator(GEN_NUM, 5, 20)
 
-/obj/effect/temp_visual/shockwave/primal_wrath/Initialize(mapload, radius, direction)
+/obj/effect/temp_visual/shockwave/primal_wrath/Initialize(mapload, radius, direction, speed_rate=1, easing_type = LINEAR_EASING, y_offset=0, x_offset=0)
 	. = ..()
 	switch(direction)
 		if(NORTH)
