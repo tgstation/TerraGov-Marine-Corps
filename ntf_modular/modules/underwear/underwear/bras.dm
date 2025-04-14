@@ -166,7 +166,7 @@
 	colorable_allowed = COLOR_WHEEL_ALLOWED
 
 /obj/item/clothing/underwear/bra/pasties_alt
-	name = "pasties"
+	name = "cross pasties"
 	icon_state = "pasties_alt"
 	greyscale_config = /datum/greyscale_config/bra
 	colorable_allowed = COLOR_WHEEL_ALLOWED
