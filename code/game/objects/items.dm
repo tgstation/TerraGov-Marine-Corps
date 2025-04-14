@@ -599,6 +599,23 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 			if(H.wear_id)
 				return FALSE
 			equip_to_slot = TRUE
+		// NTF EDIT START
+		if(SLOT_UNDERWEAR)
+			if(H.w_underwear)
+				return FALSE
+			equip_to_slot = TRUE
+		if(SLOT_SOCKS)
+			if(H.w_socks)
+				return FALSE
+			equip_to_slot = TRUE
+		if(SLOT_SHIRT)
+			if(H.w_undershirt)
+				return FALSE
+			equip_to_slot = TRUE
+		if(SLOT_BRA)
+			if(H.bra)
+				return FALSE
+			equip_to_slot = TRUE
 
 		//direct slots with prerequisites
 		if(SLOT_WEAR_SUIT)
