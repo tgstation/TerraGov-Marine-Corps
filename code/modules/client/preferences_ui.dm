@@ -176,16 +176,6 @@
 			.["mapRef"] = "player_pref_map"
 		if(GEAR_CUSTOMIZATION)
 			.["clothing"] = list(
-				"underwear" = list(
-					"male" = GLOB.underwear_m,
-					"female" = GLOB.underwear_f,
-					"plural" = GLOB.underwear_f + GLOB.underwear_m,
-				),
-				"undershirt" = list(
-					"male" = GLOB.undershirt_m,
-					"female" = GLOB.undershirt_f,
-					"plural" = GLOB.undershirt_m + GLOB.undershirt_f,
-				),
 				"backpack" = GLOB.backpacklist,
 				)
 			.["gearsets"] = list()
@@ -379,6 +369,8 @@
 			alternate_option = 2 // return to lobby
 			update_preview_icon()
 
+		/** NTF removal - we are using our own fancy underwear system
+
 		if("underwear")
 			var/list/underwear_options
 			if(gender == MALE)
@@ -404,6 +396,7 @@
 				return
 			undershirt = new_undershirt
 			update_preview_icon()
+		*/
 
 		if("backpack")
 			var/new_backpack = GLOB.backpacklist.Find(params["newValue"])

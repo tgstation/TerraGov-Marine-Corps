@@ -228,6 +228,16 @@
 #define ITEM_SLOT_L_HAND (1<<15) //left hand
 #define ITEM_SLOT_R_HAND (1<<16) //right hand
 #define ITEM_SLOT_SECONDARY (1<<17) //campaign loadouts only
+// NTF EDIT START
+/// Underwear slot
+#define ITEM_SLOT_UNDERWEAR (1<<18)
+/// Socks slot
+#define ITEM_SLOT_SOCKS (1<<19)
+/// Shirt slot
+#define ITEM_SLOT_SHIRT (1<<20)
+/// Bra slot
+#define ITEM_SLOT_BRA (1<<21)
+// NTF EDIT END
 
 ///Inventory slot bits to plain english strings
 GLOBAL_LIST_INIT(inventory_slots_to_string, list(
@@ -249,6 +259,12 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 	"[ITEM_SLOT_L_HAND]" = "Left hand",
 	"[ITEM_SLOT_R_HAND]" = "Right hand",
 	"[ITEM_SLOT_SECONDARY]" = "Secondary",
+	// NTF EDIT START
+	"[ITEM_SLOT_UNDERWEAR]" = "Underwear",
+	"[ITEM_SLOT_SOCKS]" = "Socks",
+	"[ITEM_SLOT_SHIRT]" = "Shirt",
+	"[ITEM_SLOT_BRA]" = "Bra",
+	// NTF EDIT END
 ))
 
 //=================================================
@@ -285,6 +301,12 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 #define SLOT_IN_R_POUCH 29
 #define SLOT_IN_HEAD 30
 #define SLOT_IN_BELT 31
+// NTF EDIT START
+#define SLOT_UNDERWEAR 32
+#define SLOT_SOCKS 33
+#define SLOT_SHIRT 34
+#define SLOT_BRA 35
+// NTF EDIT END
 //=================================================
 
 
@@ -307,6 +329,12 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 #define slot_l_store_str "slot_l_store"
 #define slot_r_store_str "slot_r_store"
 #define slot_tie_str "slot_tie"
+/// NTF EDIT START
+#define slot_underwear_str "slot_underwear"
+#define slot_socks_str "slot_socks"
+#define slot_shirt_str "slot_shirt"
+#define slot_bra_str "slot_bra"
+/// NTF EDIT END
 
 ///Correspondance between slot strings and slot numbers
 GLOBAL_LIST_INIT(slot_str_to_slot, list(
@@ -328,6 +356,12 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	"slot_l_store" = SLOT_L_STORE,
 	"slot_r_store" = SLOT_R_STORE,
 	"slot_tie" = SLOT_ACCESSORY,
+	// NTF EDIT START
+	"slot_underwear" = SLOT_UNDERWEAR,
+	"slot_socks" = SLOT_SOCKS,
+	"slot_shirt" = SLOT_SHIRT,
+	"slot_bra" = SLOT_BRA,
+	// NTF EDIT END
 ))
 
 //I hate that this has to exist
@@ -362,6 +396,16 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			. = ITEM_SLOT_R_POCKET
 		if(SLOT_L_STORE)
 			. = ITEM_SLOT_L_POCKET
+		// NTF EDIT START
+		if(SLOT_UNDERWEAR)
+			. = ITEM_SLOT_UNDERWEAR
+		if(SLOT_SOCKS)
+			. = ITEM_SLOT_SOCKS
+		if(SLOT_SHIRT)
+			. = ITEM_SLOT_SHIRT
+		if(SLOT_BRA)
+			. = ITEM_SLOT_BRA
+		// NTF EDIT END
 
 /proc/slotbit2slotdefine(slotbit)
 	. = 0
@@ -400,6 +444,15 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			. = SLOT_L_HAND
 		if(ITEM_SLOT_R_HAND)
 			. = SLOT_R_HAND
+		// NTF EDIT START
+		if(ITEM_SLOT_UNDERWEAR)
+			. = SLOT_UNDERWEAR
+		if(ITEM_SLOT_SOCKS)
+			. = SLOT_SOCKS
+		if(ITEM_SLOT_SHIRT)
+			. = SLOT_SHIRT
+		if(ITEM_SLOT_BRA)
+			. = SLOT_BRA
 
 //=================================================
 // bitflags for clothing parts
@@ -552,6 +605,10 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_R_POUCH,\
 	SLOT_IN_HEAD,\
 	SLOT_IN_BELT,\
+	SLOT_UNDERWEAR,\
+	SLOT_SOCKS,\
+	SLOT_SHIRT,\
+	SLOT_BRA,\
 )
 
 /// A list of equip slots that are valid for quick equip preferences

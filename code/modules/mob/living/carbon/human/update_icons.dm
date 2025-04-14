@@ -551,7 +551,12 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	UpdateDamageIcon()
 	update_transform()
 	update_headbite()
-
+	// NTF EDIT START
+	update_inv_socks()
+	update_inv_underwear()
+	update_inv_undershirt()
+	update_inv_bra()
+	// NTF EDIT END
 
 /* --------------------------------------- */
 //vvvvvv UPDATE_INV PROCS vvvvvv
@@ -811,3 +816,59 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		return
 	overlays_standing[FIRE_LAYER] = mutable_appearance('icons/mob/OnFire.dmi', fire_stacks < 15 ? "Standing_weak" : "Standing_medium", -FIRE_LAYER)
 	apply_overlay(FIRE_LAYER)
+
+// NTF EDIT START
+
+/mob/living/carbon/human/update_inv_socks()
+	remove_overlay(SOCKS_LAYER)
+	if(!w_socks)
+		return
+
+	if(client && hud_used?.hud_shown && hud_used.extra_shown)
+		w_socks.screen_loc = "WEST:6,SOUTH+5:15"
+		client.screen += w_socks
+
+	overlays_standing[SOCKS_LAYER] = w_socks.make_worn_icon(species_type = species.name, slot_name = slot_socks_str, default_icon = 'ntf_modular/modules/underwear/underwear/underwear.dmi', default_layer = SOCKS_LAYER)
+
+	apply_overlay(SOCKS_LAYER)
+
+/mob/living/carbon/human/update_inv_underwear()
+	remove_overlay(UNDERWEAR_LAYER)
+	if(!w_underwear)
+		return
+
+	if(client && hud_used?.hud_shown && hud_used.extra_shown)
+		w_underwear.screen_loc = "WEST:6,SOUTH+4:13"
+		client.screen += w_underwear
+
+	overlays_standing[UNDERWEAR_LAYER] = w_underwear.make_worn_icon(species_type = species.name, slot_name = slot_underwear_str, default_icon = 'ntf_modular/modules/underwear/underwear/underwear.dmi', default_layer = UNDERWEAR_LAYER)
+
+	apply_overlay(UNDERWEAR_LAYER)
+
+/mob/living/carbon/human/update_inv_undershirt()
+	remove_overlay(UNDERSHIRT_LAYER)
+	if(!w_undershirt)
+		return
+
+	if(client && hud_used?.hud_shown && hud_used.extra_shown)
+		w_undershirt.screen_loc = "WEST:6,SOUTH+6:17"
+		client.screen += w_undershirt
+
+	overlays_standing[UNDERSHIRT_LAYER] = w_undershirt.make_worn_icon(species_type = species.name, slot_name = slot_shirt_str, default_icon = 'ntf_modular/modules/underwear/underwear/underwear.dmi', default_layer = UNDERSHIRT_LAYER)
+
+	apply_overlay(UNDERSHIRT_LAYER)
+
+/mob/living/carbon/human/update_inv_bra()
+	remove_overlay(BRA_LAYER)
+	if(!bra)
+		return
+
+	if(client && hud_used?.hud_shown && hud_used.extra_shown)
+		bra.screen_loc = "WEST+1:8,SOUTH+4:13"
+		client.screen += bra
+
+	overlays_standing[BRA_LAYER] = bra.make_worn_icon(species_type = species.name, slot_name = slot_bra_str, default_icon = 'ntf_modular/modules/underwear/underwear/underwear.dmi', default_layer = BRA_LAYER)
+
+	apply_overlay(BRA_LAYER)
+
+// NTF EDIT END

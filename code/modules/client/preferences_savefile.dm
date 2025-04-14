@@ -529,12 +529,16 @@
 	for(var/quick_equip_slots in quick_equip)
 		quick_equip_slots = sanitize_inlist(quick_equip_slots, SLOT_DRAW_ORDER[quick_equip], quick_equip_slots)
 	gear = sanitize_islist(gear, default = list(), check_valid = TRUE, possible_input_list = GLOB.gear_datums)
-	if(gender == MALE)
-		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
-		undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
-	else
-		underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_f), initial(underwear))
-		undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_f), initial(undershirt))
+	// NTF EDIT START
+	//if(gender == MALE)
+	//	underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_m), initial(underwear))
+	//	undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_m), initial(undershirt))
+	//else
+	//	underwear = sanitize_integer(underwear, 1, length(GLOB.underwear_f), initial(underwear))
+	//	undershirt = sanitize_integer(undershirt, 1, length(GLOB.undershirt_f), initial(undershirt))
+	underwear = initial(underwear)
+	undershirt = initial(undershirt)
+	// NTF EDIT END
 	backpack = sanitize_integer(backpack, 1, length(GLOB.backpacklist), initial(backpack))
 
 	h_style = sanitize_inlist(h_style, GLOB.hair_styles_list, initial(h_style))
