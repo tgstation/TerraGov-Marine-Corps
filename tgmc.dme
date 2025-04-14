@@ -853,6 +853,7 @@
 #include "code\game\atoms\atom_appearance.dm"
 #include "code\game\atoms\atom_examine.dm"
 #include "code\game\atoms\atom_movable.dm"
+#include "code\game\atoms\mouse_entered.dm"
 #include "code\game\atoms\atom_movable\pass_flags.dm"
 #include "code\game\objects\empulse.dm"
 #include "code\game\objects\items.dm"
