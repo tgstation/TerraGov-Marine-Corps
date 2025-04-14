@@ -331,14 +331,17 @@
 		INVOKE_ASYNC(src, PROC_REF(qb_build_resin), get_turf(over_object))
 
 /datum/action/ability/activable/xeno/secrete_resin/proc/qb_build_resin(turf/T, silent = FALSE)
-	return build_resin(T, WEED_COSTS_QB_POINTS, FALSE, silent = silent)
+	return build_resin(T, WEED_COSTS_QB_POINTS, FALSE,  silent= silent)
 
-/datum/action/ability/activable/xeno/secrete_resin/proc/build_resin(turf/T, weed_flags = WEED_REQUIRES_LOS | WEED_TAKES_TIME | WEED_USES_PLASMA, sound = SFX_ALIEN_RESIN_BUILD, silent = FALSE)
+/datum/action/ability/activable/xeno/secrete_resin/proc/build_resin(turf/T, weed_flags = WEED_REQUIRES_LOS | WEED_TAKES_TIME | WEED_USES_PLASMA | WEED_NOTIFY, sound = SFX_ALIEN_RESIN_BUILD, silent = FALSE)
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!can_build_here(T, silent))
 		return fail_activate()
 	if(CHECK_BITFIELD(weed_flags, WEED_REQUIRES_LOS) && !line_of_sight(owner, T, ignore_target_opacity = istype(T, /turf/closed/wall/resin)))
-		to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
+		if(CHECK_BITFIELD(weed_flags, WEED_COSTS_QB_POINTS))
+			to_chat(owner, span_warning("You cannot build here without line of sight!"))
+		else
+			to_chat(owner, span_warning("You cannot secrete resin without line of sight!"))
 		return fail_activate()
 	if(CHECK_BITFIELD(weed_flags, WEED_TAKES_TIME) && !do_after(X, get_wait(), NONE, T, BUSY_ICON_BUILD))
 		return fail_activate()
@@ -361,8 +364,9 @@
 		T.ChangeTurf(X.selected_resin, baseturfs, CHANGETURF_KEEP_WEEDS)
 	else
 		new_resin = new X.selected_resin(T)
-	X.visible_message(span_xenowarning("\The [X] regurgitates a thick substance and shapes it into \a [initial(AM.name)]!"), \
-	span_xenonotice("We regurgitate some resin and shape it into \a [initial(AM.name)]."), null, 5)
+	if(CHECK_BITFIELD(weed_flags, WEED_NOTIFY))
+		X.visible_message(span_xenowarning("\The [X] regurgitates a thick substance and shapes it into \a [initial(AM.name)]!"), \
+		span_xenonotice("We regurgitate some resin and shape it into \a [initial(AM.name)]."), null, 5)
 	if(sound)
 		playsound(get_turf(owner), sound, 25)
 	switch(X.selected_resin)
