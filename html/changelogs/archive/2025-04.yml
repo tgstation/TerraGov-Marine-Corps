@@ -131,3 +131,57 @@
   TiviPlus:
   - refactor: movement will now execute canonically (ie the expected order, finishing
       one before starting the next)
+2025-04-12:
+  Arar:
+  - bugfix: fixed welding inhand not showing
+  - code_imp: changed welding hat code to use balloon alerts when toggling
+  - refactor: refactored mentions of welding masks into welding helmets
+  Arturlang:
+  - balance: Weed pods are no longer deleted when resin walls are destroyed
+  - rscadd: Special resin walls are now free, but weaker in health in comparison to
+      normal walls, they've been moved into normal secrete resin
+  - rscadd: Adds the ability to replace resin walls with different variants
+  - rscadd: add codex entries for resin wall armor stats.
+  Cerrik:
+  - bugfix: Adjusted the base class of the SAA revolver speedloader
+  Isy232:
+  - rscdel: Command tablets no longer check access for viewing.
+  TiviPlus:
+  - balance: Caps cloak mech gun cooldown CD after uncloaking to 1 second, and treats
+      the fire cooldown as half of it's reality for this purpose
+  - qol: Stat panel is only scrollable if needed
+  - qol: If larva queue is more than 2 people it will show how long it is in the tgui
+      "are you sure" popup when you try to observe
+  Tiviplus, Kuro, Tyeagg, GregorMN, Lumipharon:
+  - rscadd: XvH Mechs have been permanently reenabled. One slot will be granted every
+      20 players, starting at 40 players.
+  - rscadd: Mechs have been reworked to be faster compared to humans, but less tanky
+      (sort of a diver/flanker role)
+  - balance: Mechs no longer have directional armor, and are more mobile (diagonal
+      movement, spinning to fire)
+  - rscadd: Mechs have been resprited and repaletted and will update their sprite
+      on boosting or being destroyed, and they will leave a wreck
+  - qol: Mechs also have many new visual effects
+  - rscadd: Mech weapons are now split into back and hand weapons, and they can switch
+      between them quickly
+  - rscadd: Mechs now have a limb mechanic. Aiming arms (weakest limb, breaks in only
+      a few slashes) will disable the weapon on that limb, aiming the head will disable
+      it's NV, aiming legs will increasingly slow it down with damage taken until  it's
+      movement speed is halved at 0 HP. Slashing torso or an already destroyed limb
+      damages the actual mechs HP
+  - balance: crusher charges will always aim legs, which they will oneshot if they
+      manage to hit them
+  - balance: All mech weapons and (new) modules have been rebalanced and remade from
+      scratch
+  - rscadd: Mech now has a dash it can activate by double tapping into a direction,
+      which consumes energy
+  - qol: The mech Builder UI has been revamped
+  - balance: Only one mech can be spawned per person at the mech builder. Spatial
+      agents (the admin debug job) are exempt
+  tyeagg:
+  - rscadd: pda with audio log support for mappers
+2025-04-14:
+  Atropos:
+  - bugfix: Fixed Global narrate only allowing one character
+  breadhunt:
+  - bugfix: Bluespace gens can now be re-corrupted properly, if damaged but not exploded

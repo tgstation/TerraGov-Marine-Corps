@@ -1,6 +1,0 @@
-author: "Arturlang"
-delete-after: True
-changes:
-  - rscadd: "Special resin walls are now free, but weaker in health in comparison to normal walls, they've been moved into normal secrete resin"
-  - rscadd: "Adds the ability to replace resin walls with different variants"
-  - rscadd: "add codex entries for resin wall armor stats."

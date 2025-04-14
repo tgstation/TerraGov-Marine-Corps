@@ -250,7 +250,7 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/weapon/gun/revolver/small = -1,
 		/obj/item/ammo_magazine/revolver/small = -1,
 		/obj/item/weapon/gun/revolver/single_action/m44 = -1,
-		/obj/item/ammo_magazine/revolver = -1,
+		/obj/item/ammo_magazine/revolver/single_action/m44 = -1,
 		/obj/item/weapon/gun/revolver/judge = -1,
 		/obj/item/ammo_magazine/revolver/judge = -1,
 		/obj/item/ammo_magazine/revolver/judge/buckshot = -1,
