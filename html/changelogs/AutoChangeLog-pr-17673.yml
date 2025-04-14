@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - rscadd: "Small medical rig can now hold hyposprays (60u version)"
