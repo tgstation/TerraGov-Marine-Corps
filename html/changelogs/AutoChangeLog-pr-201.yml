@@ -1,0 +1,4 @@
+author: "Nokia2Student"
+delete-after: True
+changes:
+  - bugfix: "Fix \"Toggle Seethrough\" toggle being lost when gaining primo"
