@@ -180,3 +180,8 @@
       agents (the admin debug job) are exempt
   tyeagg:
   - rscadd: pda with audio log support for mappers
+2025-04-14:
+  Atropos:
+  - bugfix: Fixed Global narrate only allowing one character
+  breadhunt:
+  - bugfix: Bluespace gens can now be re-corrupted properly, if damaged but not exploded
