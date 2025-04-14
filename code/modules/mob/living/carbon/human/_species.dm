@@ -170,6 +170,8 @@
 	var/count_human = FALSE
 	/// Whether this species can select genital overlays
 	var/has_genital_selection = FALSE
+	/// NTF ADDITION START
+	var/has_underwear_slots = FALSE
 
 /datum/species/New()
 	if(hud_type)
@@ -506,6 +508,12 @@
 		equip_slots |= SLOT_IN_R_POUCH
 		equip_slots |= SLOT_ACCESSORY
 		equip_slots |= SLOT_IN_ACCESSORY
+		// NTF EDIT START
+		equip_slots |= SLOT_BRA
+		equip_slots |= SLOT_SOCKS
+		equip_slots |= SLOT_UNDERWEAR
+		equip_slots |= SLOT_SHIRT
+		// NTF EDIT END
 
 ///damage override at the species level, called by /mob/living/proc/apply_damage
 /datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim, mob/attacker)
