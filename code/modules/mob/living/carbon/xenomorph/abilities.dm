@@ -1374,23 +1374,23 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	. = ..()
 	//if its not prep, remove the ability instantly
 	if(!(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active))
-		remove_action(xeno_owner)
+		remove_action(owner)
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED), PROC_REF(toggle_off))
 
 ///Seperate proc that calls remove_action, to block any signal shenanigans.
 /datum/action/ability/activable/xeno/place_pattern/proc/toggle_off()
 	SIGNAL_HANDLER
-	remove_action(xeno_owner)
+	remove_action(owner)
 
 /datum/action/ability/activable/xeno/place_pattern/remove_action(mob/living/L)
 	. = ..()
 	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ,COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ,COMSIG_GLOB_DROPPOD_LANDED))
 
 /datum/action/ability/activable/xeno/place_pattern/on_selection()
-	RegisterSignal(xeno_owner, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(show_hologram_call))
+	RegisterSignal(owner, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(show_hologram_call))
 
 /datum/action/ability/activable/xeno/place_pattern/on_deselection()
-	UnregisterSignal(xeno_owner, COMSIG_ATOM_MOUSE_ENTERED)
+	UnregisterSignal(owner, COMSIG_ATOM_MOUSE_ENTERED)
 	cleanup_holograms()
 
 // don't slow down the other signals
