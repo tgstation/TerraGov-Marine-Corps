@@ -1366,7 +1366,8 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	var/move_range = 4
 	/// how long a hologram lasts without movement
 	var/cleanup_time = 4 SECONDS
-	var/transition_time = 0.5 SECONDS
+	var/transition_time = 1.5 SECONDS
+	var/delay_move = TRUE
 
 /datum/action/ability/activable/xeno/place_pattern/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(select_pattern))
@@ -1429,30 +1430,23 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 
 /datum/action/ability/activable/xeno/place_pattern/proc/create_hologram(turf/target_turf)
 	var/atom/selected = xeno_owner.selected_resin
-	var/obj/effect/build_hologram/hologram = new(target_turf, initial(selected.icon), initial(selected.icon_state))
+	var/obj/effect/build_hologram/hologram = new(target_turf, selected)
 	hologram.alpha = 0
 	hologram.smoothing_flags = initial(selected.smoothing_flags)
 	hologram.layer = selected.layer + 1
 	hologram.smoothing_groups = list(SMOOTH_GROUP_HOLOGRAM)
 	hologram.canSmoothWith = list(SMOOTH_GROUP_HOLOGRAM)
+	hologram.step_size = move_range * ICON_SIZE_ALL
 	QUEUE_SMOOTH(hologram)
-	animate(hologram, transition_time, alpha = 255)
+	animate(hologram, transition_time, alpha = initial(hologram.alpha))
 	holograms += hologram
 
 /datum/action/ability/activable/xeno/place_pattern/proc/move_hologram(turf/target_turf, obj/effect/hologram)
-	// INVOKE_ASYNC(hologram, TYPE_PROC_REF(/atom/movable, throw_at), target_turf, move_range, 10)
-	var/offset_x = (target_turf.x - hologram.x) * ICON_SIZE_ALL
-	var/offset_y = (target_turf.y - hologram.y) * ICON_SIZE_ALL
 	hologram.abstract_move(target_turf)
-	hologram.pixel_x = -offset_x
-	hologram.pixel_y = -offset_y
-	animate(hologram, transition_time, pixel_x = initial(hologram.pixel_x), pixel_y = initial(hologram.pixel_y))
-	addtimer(CALLBACK(hologram, TYPE_PROC_REF(/atom/movable, abstract_move), target_turf), transition_time)
-	QUEUE_SMOOTH(hologram)
 
 /datum/action/ability/activable/xeno/place_pattern/proc/start_cleanup_timer()
 	delete_timer()
-	// cleanup_timer = addtimer(CALLBACK(src, PROC_REF(cleanup_holograms)), cleanup_time, TIMER_STOPPABLE)
+	cleanup_timer = addtimer(CALLBACK(src, PROC_REF(cleanup_holograms)), cleanup_time, TIMER_STOPPABLE)
 
 /datum/action/ability/activable/xeno/place_pattern/proc/delete_timer()
 	deltimer(cleanup_timer)
@@ -1473,7 +1467,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	cleanup_holograms()
 
 /datum/action/ability/activable/xeno/place_pattern/use_ability(atom/A)
-	var/datum/action/ability/activable/xeno/secrete_resin/secrete_resin = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/secrete_resin]
+	var/datum/action/ability/activable/xeno/secrete_resin/secrete_resin = locate() in xeno_owner.actions
 	if(!istype(secrete_resin))
 		to_chat(xeno_owner, span_warning("We need to be able to secrete resin to use [src]!"))
 		return FALSE

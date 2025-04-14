@@ -250,13 +250,16 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
 	layer = ABOVE_ALL_MOB_LAYER
-	pass_flags = ALL
+	alpha = 190
+	canSmoothWith = list(SMOOTH_GROUP_HOLOGRAM)
+	smoothing_groups = list(SMOOTH_GROUP_HOLOGRAM)
 
-/obj/effect/build_hologram/Initialize(mapload, new_icon, new_icon_state)
+/obj/effect/build_hologram/Initialize(mapload, atom/copy_type)
 	. = ..()
-	if(isnull(new_icon) || isnull(new_icon_state))
-		stack_trace("Build Hologram called with null icon or icon_state")
+	if(!ispath(copy_type))
+		stack_trace("Build Hologram called with a null copy_type")
 		return INITIALIZE_HINT_QDEL
-	icon = new_icon
-	icon_state = new_icon_state
-	makeHologram(0.7)
+	icon = initial(copy_type.icon)
+	icon_state = initial(copy_type.icon_state)
+	base_icon_state = initial(copy_type.base_icon_state)
+	makeHologram(0.7, FALSE)
