@@ -18,6 +18,7 @@
 	area_type = /area
 	protect_indoors = TRUE
 	target_trait = ZTRAIT_SNOWSTORM
+	use_glow = FALSE
 	aesthetic = TRUE
 
 	barometer_predictable = TRUE
