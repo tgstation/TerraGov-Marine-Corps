@@ -2,16 +2,15 @@
 #define GENERATOR_LIGHT_DAMAGE 1
 #define GENERATOR_MEDIUM_DAMAGE 2
 #define GENERATOR_HEAVY_DAMAGE 3
-#define GENERATOR_EXPLODING 4
+#define GENERATOR_CORRUPTED_DAMAGE 4
+#define GENERATOR_EXPLODING 5
 
+//The radius that psychic mist leaks out to if the generator explodes
+#define GENERATOR_MIST_RANGE 10
 #define PSYCHIC_MIST_COLOR "#7f16c5"
 
 //Counter of how many TBGs there are active, for disks
 GLOBAL_VAR_INIT(active_bluespace_generators, 0)
-//Count of all generators on the ground, including exploded generators (they still produce points)
-GLOBAL_VAR_INIT(corruptable_generators_groundside, 0)
-//Counter of how many TBGs there are corrupted, for psy gen
-GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 
 /obj/machinery/power/geothermal
 	name = "\improper G-11 geothermal generator"
@@ -270,6 +269,7 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 	power_generation_max = 10000000 //Powers an entire colony
 	time_to_break = 20 SECONDS
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
+	buildstate = GENERATOR_CORRUPTED_DAMAGE
 	//Stores whether we're in the turning off animation
 	var/winding_down = FALSE
 	//List of turbines connected for visuals
@@ -278,11 +278,6 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 	var/datum/looping_sound/generator/tbg/ambient_soundloop
 	//Explosion alarm soundloop
 	var/datum/looping_sound/alarm_loop/generator/alarm_soundloop
-
-	///Hive it should be powering and whether it should be generating hive psycic points instead of power on process()
-	var/corrupted = XENO_HIVE_NORMAL
-	//Last hive to corrupt the generator
-	var/last_corrupted = XENO_HIVE_NORMAL
 
 	COOLDOWN_DECLARE(toggle_power)
 
@@ -297,22 +292,18 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 		connected_turbines += potential_turbine
 		potential_turbine.connected = src
 
-	if(is_ground_level(z))
-		GLOB.corruptable_generators_groundside++
-	if(corrupted)
-		corrupt(corrupted)
-
 /obj/machinery/power/geothermal/tbg/Destroy()
 	if(is_on)
-		GLOB.active_bluespace_generators-- //corruptable_generators_groundside & gens_corruption_by_hive are not decremented because they are still used in psychic mist calculations
-	GLOB.gens_corruption_by_hive["[corrupted]"]--
+		GLOB.active_bluespace_generators--
 	QDEL_NULL(ambient_soundloop)
 	QDEL_NULL(alarm_soundloop)
 	for(var/obj/machinery/power/tbg_turbine/turbine AS in connected_turbines)
 		QDEL_NULL(turbine)
 
 	//After generators get destroyed, psychic mist is emitted
-	new /obj/effect/mist_origin(get_turf(src), last_corrupted)
+	for(var/turf/tile in filled_circle_turfs(src, GENERATOR_MIST_RANGE))
+		new /obj/effect/psychic_mist(tile)
+
 	return ..()
 
 /obj/machinery/power/geothermal/tbg/update_icon_state()
@@ -371,7 +362,7 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 	return TRUE
 
 /obj/machinery/power/geothermal/tbg/welder_act(mob/living/user, obj/item/I)
-	if(corrupted)
+	if(buildstate == GENERATOR_CORRUPTED_DAMAGE)
 		var/obj/item/tool/weldingtool/WT = I
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 			user.visible_message(span_notice("[user] fumbles around figuring out the resin tendrils on [src]."),
@@ -391,41 +382,37 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 		if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
 			return FALSE
 
-		GLOB.gens_corruption_by_hive["[corrupted]"]--
-		last_corrupted = corrupted
-		corrupted = 0
+		buildstate--
 		update_icon()
 	return ..()
 
 /obj/machinery/power/geothermal/tbg/interact_hand(mob/living/user)
-	if(corrupted)
-		to_chat(user, span_warning("You have to clean that generator before it can be used!"))
+	if(buildstate == GENERATOR_CORRUPTED_DAMAGE)
+		balloon_alert(user, "Disgusting resin blocks the control panel!")
 		return FALSE
 	return ..()
 
 /obj/machinery/power/geothermal/tbg/update_overlays()
 	. = ..()
-	if(corrupted)
+	if(buildstate == GENERATOR_CORRUPTED_DAMAGE)
 		. += image(icon, src, "overlay_corrupted", layer)
 
 /obj/machinery/power/geothermal/tbg/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	if(corrupted)
+	if(buildstate == GENERATOR_CORRUPTED_DAMAGE)
 		. += "It is covered in writhing tendrils [!isxeno(user) ? "that could be cut away with a welder" : ""]."
 
 /obj/machinery/power/geothermal/tbg/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(corrupted == xeno_attacker.hivenumber) //you have no reason to interact with it if its already corrupted
-		return
 	if(xeno_attacker.status_flags & INCORPOREAL || HAS_TRAIT_FROM(xeno_attacker, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))
 		return
 
 	. = ..()
-	if(!xeno_attacker.do_actions && buildstate == GENERATOR_HEAVY_DAMAGE && CHECK_BITFIELD(xeno_attacker.xeno_caste.can_flags, CASTE_CAN_CORRUPT_GENERATOR))
-		balloon_alert(xeno_attacker, "You begin corrupting the generator...")
+	if(!xeno_attacker.do_actions && buildstate == GENERATOR_HEAVY_DAMAGE)
+		balloon_alert(xeno_attacker, "You begin gunking up the generator with resin...")
 		if(!do_after(xeno_attacker, 10 SECONDS, NONE, src, BUSY_ICON_HOSTILE))
 			return
-		corrupt(xeno_attacker.hivenumber)
-		balloon_alert(xeno_attacker, "You have corrupted the generator!")
+		buildstate = GENERATOR_CORRUPTED_DAMAGE
+		balloon_alert(xeno_attacker, "You fill the generator with resinous ooze!")
 		record_generator_sabotages(xeno_attacker)
 
 /// Updates the turbine animation after the winding down sound effect has finished
@@ -498,13 +485,6 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 		light.disable()
 	qdel(src) //Destroy generator after big explosion happens
 
-/// Corrupts the generator, making it start producing psy gen
-/obj/machinery/power/geothermal/tbg/proc/corrupt(hivenumber)
-	corrupted = hivenumber
-	last_corrupted = corrupted
-	GLOB.gens_corruption_by_hive["[corrupted]"]++
-	update_icon()
-
 /// TBG turbine attached to the TBG; purely visual
 /obj/machinery/power/tbg_turbine
 	name = "\improper Generator Turbine"
@@ -552,7 +532,7 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 
 /obj/machinery/power/tbg_turbine/update_overlays()
 	. = ..()
-	if(connected?.corrupted)
+	if(connected?.buildstate == GENERATOR_CORRUPTED_DAMAGE)
 		. += image(icon, src, "circ_overlay_corrupted", layer)
 
 // Forward all repair/xeno attack actions to the central TBG engine
@@ -583,30 +563,6 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 
 
 /// Psychic mist -- Spawns on generator if it explodes; provides point gen as the generator would have
-/obj/effect/mist_origin
-	name = ""
-	//Lists all visual mist effects
-	var/list/mist_list = list()
-	//What hive we should add psy points to
-	var/hivenumber
-
-/obj/effect/mist_origin/Initialize(mapload, last_corrupted_hivenumber)
-	. = ..()
-	hivenumber = last_corrupted_hivenumber
-	GLOB.gens_corruption_by_hive["[hivenumber]"]++
-	for(var/turf/tile in filled_circle_turfs(src, 10))
-		var/obj/effect/psychic_mist/new_mist = new(tile)
-		mist_list += new_mist
-
-/obj/effect/mist_origin/Destroy()
-	//Remove bluespace generator from psy-gen equation, since we're no longer producing points
-	GLOB.gens_corruption_by_hive["[hivenumber]"]--
-	GLOB.corruptable_generators_groundside--
-	for(var/obj/effect/psychic_mist/mist AS in mist_list)
-		QDEL_NULL(mist)
-	return ..()
-
-
 /obj/effect/psychic_mist
 	name = "psychic mist"
 	desc = "Condensed droplets of raw psychic energy swirl around you."

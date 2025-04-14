@@ -123,7 +123,7 @@
 #define XENO_TURRET_PRICE 100
 
 //How many psy points a hive gets if all generators are corrupted
-#define GENERATOR_PSYCH_POINT_OUTPUT 1
+#define PASSIVE_PSYCH_POINT_OUTPUT 1
 //How many psy points are gave for each marine psy drained at low pop
 #define PSY_DRAIN_REWARD_MAX 90
 //How many psy points are gave for each marine psy drained at high pop
