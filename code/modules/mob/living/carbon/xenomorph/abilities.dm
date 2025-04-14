@@ -1348,8 +1348,8 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 /datum/action/ability/activable/xeno/place_pattern
 	name = "Place Pattern"
 	desc = "Place a pattern of hive walls."
-	action_icon_state = RESIN_WALL
-	action_icon = 'icons/Xeno/actions/construction.dmi'
+	action_icon_state = "square2x2"
+	action_icon = 'icons/Xeno/patterns.dmi'
 	target_flags = ABILITY_TURF_TARGET
 	gamemode_flags = ABILITY_NUCLEARWAR
 	keybinding_signals = list(
@@ -1471,6 +1471,9 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 		return
 	selected_pattern = new pattern_choice
 	var/datum/buildingpattern/pattern = pattern_choice
+	var/image/pattern_icon = GLOB.pattern_images_list[pattern_choice]
+	action_icon_state = pattern_icon.icon_state
+	update_button_icon()
 	xeno_owner.balloon_alert(xeno_owner, pattern.overheadmsg)
 	cleanup_holograms()
 
