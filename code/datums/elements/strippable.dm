@@ -318,7 +318,7 @@
 
 	var/list/items = list()
 
-	for(var/strippable_key in strippable6.items)
+	for(var/strippable_key in strippable.items)
 		var/datum/strippable_item/item_data = strippable.items[strippable_key]
 
 		if(!item_data.should_show(owner, user))
