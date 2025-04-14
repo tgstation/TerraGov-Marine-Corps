@@ -251,8 +251,6 @@
 	anchored = TRUE
 	layer = ABOVE_ALL_MOB_LAYER
 	alpha = 190
-	canSmoothWith = list(SMOOTH_GROUP_HOLOGRAM)
-	smoothing_groups = list(SMOOTH_GROUP_HOLOGRAM)
 
 /obj/effect/build_hologram/Initialize(mapload, atom/copy_type)
 	. = ..()
@@ -262,4 +260,5 @@
 	icon = initial(copy_type.icon)
 	icon_state = initial(copy_type.icon_state)
 	base_icon_state = initial(copy_type.base_icon_state)
+	color = initial(copy_type.color)
 	makeHologram(0.7, FALSE)

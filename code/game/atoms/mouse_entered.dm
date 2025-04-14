@@ -13,4 +13,3 @@
 		return
 
 	SEND_SIGNAL(user, COMSIG_ATOM_MOUSE_ENTERED, src)
-	to_chat(user, "MouseEntered, [src]")
