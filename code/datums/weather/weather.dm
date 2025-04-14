@@ -112,7 +112,7 @@
 		var/turf/impacted_mob_turf = get_turf(impacted_mob)
 		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
 			continue
-		if(telegraph_sound)
+		if(play_screen_indicator)
 			impacted_mob.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("WEATHER WARNING", "[capitalize(name)] inbound. Seek shelter", RIGHT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/rightaligned)
 		if(telegraph_message)
 			to_chat(impacted_mob, telegraph_message)
