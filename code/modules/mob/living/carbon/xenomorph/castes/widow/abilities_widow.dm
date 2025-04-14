@@ -99,7 +99,7 @@
 			continue
 		if(HAS_TRAIT(victim, TRAIT_LEASHED))
 			continue
-		if(!check_path(src, victim, projectile = TRUE))
+		if(check_path(src, victim, pass_flags_checked = PASS_PROJECTILE) != get_turf(victim))
 			continue
 		leash_victims += victim
 	for(var/mob/living/carbon/human/snared_victim AS in leash_victims)

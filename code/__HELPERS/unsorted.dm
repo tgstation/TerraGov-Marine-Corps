@@ -1329,14 +1329,14 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
  *	bypass_xeno - whether to bypass dense xeno structures in the same way as flamers
  *	air_pass - whether to bypass non airtight atoms
  */
-/proc/check_path(atom/start, atom/end, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
-	var/list/path_to_target = getline(start, end)
+/proc/check_path(atom/start, atom/end, pass_flags_checked = NONE)
+	var/list/path_to_target = get_line(start, end) //we don't use traversal because link blocked checks both diags as needed
 	var/line_count = 1
 	while(line_count < length(path_to_target))
-		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], bypass_window, projectile, bypass_xeno, air_pass))
-			return FALSE
+		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], pass_flags_checked))
+			break
 		line_count ++
-	return TRUE
+	return path_to_target[line_count]
 
 /**
  * Returns a rectangle of turfs in front of the center.
