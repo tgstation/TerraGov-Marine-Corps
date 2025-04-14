@@ -227,7 +227,7 @@
 	removed_type = /obj/item/organ/kidneys
 	robotic_type = /obj/item/organ/kidneys/prosthetic
 	organ_id = ORGAN_KIDNEYS
-	damage_description = "Damaged and broken kidneys reduce the amount of reagents a person can have in their system before they feel drawbacks."
+	damage_description = "Damaged and failing kidneys reduce the amount of reagents a person can have in their system before they feel drawbacks."
 	///Tracks the number of reagent/medicine datums we currently have
 	var/current_medicine_count = 0
 	///How many drugs we can take before they overwhelm us. Decreases with damage
