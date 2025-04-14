@@ -254,11 +254,9 @@
 
 /obj/effect/build_hologram/Initialize(mapload, atom/copy_type)
 	. = ..()
-	if(!ispath(copy_type))
-		stack_trace("Build Hologram called with a null copy_type")
-		return INITIALIZE_HINT_QDEL
-	icon = initial(copy_type.icon)
-	icon_state = initial(copy_type.icon_state)
-	base_icon_state = initial(copy_type.base_icon_state)
-	color = initial(copy_type.color)
+	if(ispath(copy_type))
+		icon = initial(copy_type.icon)
+		icon_state = initial(copy_type.icon_state)
+		base_icon_state = initial(copy_type.base_icon_state)
+		color = initial(copy_type.color)
 	makeHologram(0.7, FALSE)
