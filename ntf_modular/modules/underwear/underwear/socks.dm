@@ -56,11 +56,11 @@
 	icon_state = "black_thigh"
 
 /obj/item/clothing/underwear/socks/thin_knee
-	name = "Socks - Think (knee high)"
+	name = "Socks - Thin (knee high)"
 	icon_state = "thin_knee"
 
 /obj/item/clothing/underwear/socks/thin_thigh
-	name = "Socks - Think (thigh high)"
+	name = "Socks - Thin (thigh high)"
 	icon_state = "thin_thigh"
 
 /obj/item/clothing/underwear/socks/pantyhose
