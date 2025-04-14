@@ -166,7 +166,7 @@
 	if(A.stat == CONSCIOUS)
 		to_chat(A, span_warning("[X] thoroughly [sexverb]s you!"))
 		implanted_embryos++
-	if(implanted_embryos >= MAX_LARVA_PREGNANCIES)
+	if(implanted_embryos > MAX_LARVA_PREGNANCIES)
 		to_chat(owner, span_danger("This Host is way too full! We overstuff them..."))
 		A.emote("scream")
 		A.apply_damage((damageperlarva/damagescaledivisor)*implanted_embryos, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //Too many larvae!
