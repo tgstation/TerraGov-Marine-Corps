@@ -1,0 +1,5 @@
+author: "Lewdcifer"
+delete-after: True
+changes:
+  - balance: "The Warrior's wall impact damage multiplier has been increased from x0.5 to x1.0 of the Warrior's melee damage."
+  - balance: "The Warrior's punch damage multiplier has been increased from x1.0 to x1.2."
