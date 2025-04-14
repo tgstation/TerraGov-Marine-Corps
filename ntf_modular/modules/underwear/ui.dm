@@ -35,7 +35,7 @@
 	inv_box.icon_state = "underwear"
 	inv_box.icon_full = "template"
 	inv_box.screen_loc = ui_boxers
-	inv_box.slot_id = SLOT_UNDERWEAR // Bluemoon edit
+	inv_box.slot_id = SLOT_UNDERWEAR
 	inv_box.hud = src
 	extra_inventory += inv_box
 
@@ -47,7 +47,7 @@
 	inv_box.icon_state = "socks"
 	inv_box.icon_full = "template"
 	inv_box.screen_loc = ui_socks
-	inv_box.slot_id = SLOT_SOCKS // Bluemoon edit
+	inv_box.slot_id = SLOT_SOCKS
 	inv_box.hud = src
 	extra_inventory += inv_box
 
@@ -59,7 +59,7 @@
 	inv_box.icon_state = "shirt"
 	inv_box.icon_full = "template"
 	inv_box.screen_loc = ui_shirt
-	inv_box.slot_id = SLOT_SHIRT // Bluemoon edit
+	inv_box.slot_id = SLOT_SHIRT
 	inv_box.hud = src
 	extra_inventory += inv_box
 
