@@ -96,6 +96,7 @@
 		return ..()
 	for(var/mob/occupant AS in occupants)
 		mob_exit(occupant, FALSE, TRUE)
+	setDir(dir_in) // in case of no occupants we need to fix layering and dir
 	is_wreck = TRUE
 	obj_integrity = max_integrity
 	update_appearance()
