@@ -842,7 +842,7 @@
 				group.build_planes_offset(my_hud, my_hud.current_plane_offset)
 
 		if("multiz_performance")
-			multiz_performance = WRAP(multiz_performance + 1, MAX_EXPECTED_Z_DEPTH-1, MULTIZ_PERFORMANCE_DISABLE + 1)
+			multiz_performance = WRAP(multiz_performance + 1, MULTIZ_PERFORMANCE_DISABLE, MAX_EXPECTED_Z_DEPTH)
 			var/datum/hud/my_hud = parent.mob?.hud_used
 			if(!my_hud)
 				return
