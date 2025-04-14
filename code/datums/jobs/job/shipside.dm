@@ -343,7 +343,6 @@ Though you are an officer, your authority is limited to the dropship and the Con
 	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
-	job_points_needed = 80
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
@@ -369,7 +368,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	client_count -= 20
 	client_count = FLOOR(client_count / 20, 1)
 	// effectively, 1 at 40, 2 at 60, 3 at 80, etc
-	if(client_count > 1)
+	if(client_count >= 1)
 		add_job_positions(client_count)
 
 /datum/job/terragov/command/mech_pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
