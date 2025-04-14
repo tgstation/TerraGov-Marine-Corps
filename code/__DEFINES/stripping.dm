@@ -17,6 +17,12 @@
 #define STRIPPABLE_ITEM_RHAND "right_hand"
 #define STRIPPABLE_ITEM_HANDCUFFS "handcuffs"
 #define STRIPPABLE_ITEM_PARROT_HEADSET "parrot_headset"
+// NTF EDIT START
+#define STRIPPABLE_ITEM_UNDERSHIRT "undershirt"
+#define STRIPPABLE_ITEM_UNDERWEAR "underwear"
+#define STRIPPABLE_ITEM_SOCKS "socks"
+#define STRIPPABLE_ITEM_BRA "bra"
+// NTF EDIT END
 
 /// This slot is not obscured.
 #define STRIPPABLE_OBSCURING_NONE 0

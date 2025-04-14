@@ -66,3 +66,19 @@
 
 /mob/proc/update_headbite()
 	return
+
+// NTF EDIT START
+
+/mob/proc/update_inv_socks()
+	return
+
+/mob/proc/update_inv_undershirt()
+	return
+
+/mob/proc/update_inv_underwear()
+	return
+
+/mob/proc/update_inv_bra()
+	return
+
+// NTF EDIT END
