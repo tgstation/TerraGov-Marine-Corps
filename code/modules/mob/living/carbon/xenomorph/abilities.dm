@@ -1366,8 +1366,6 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	var/move_range = 4
 	/// how long a hologram lasts without movement
 	var/cleanup_time = 4 SECONDS
-	var/transition_time = 1.5 SECONDS
-	var/delay_move = TRUE
 
 /datum/action/ability/activable/xeno/place_pattern/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(select_pattern))
@@ -1413,10 +1411,20 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	for(var/turf/target_turf in target_turfs)
 		if(create_new)
 			create_hologram(target_turf)
+			check_turf_validity(target_turf, holograms[index])
 		else
 			move_hologram(target_turf, holograms[index])
+			check_turf_validity(target_turf, holograms[index])
 		index++
 	start_cleanup_timer()
+
+/datum/action/ability/activable/xeno/place_pattern/proc/check_turf_validity(turf/target_turf, obj/effect/hologram)
+	var/datum/action/ability/activable/xeno/secrete_resin/secrete_resin = locate() in xeno_owner.actions
+	if(!secrete_resin)
+		return
+	hologram.remove_filter("invalid_turf_filter")
+	if(!secrete_resin.can_build_here(target_turf, TRUE))
+		hologram.add_filter("invalid_turf_filter", 1, color_matrix_filter(rgb(233, 23, 23)))
 
 /datum/action/ability/activable/xeno/place_pattern/proc/should_replace_holograms(list/target_turfs)
 	if(length(holograms) != length(target_turfs))
@@ -1432,13 +1440,13 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	var/atom/selected = xeno_owner.selected_resin
 	var/obj/effect/build_hologram/hologram = new(target_turf, selected)
 	hologram.alpha = 0
-	hologram.smoothing_flags = initial(selected.smoothing_flags)
+	// hologram.smoothing_flags = initial(selected.smoothing_flags)
 	hologram.layer = selected.layer + 1
-	hologram.smoothing_groups = list(SMOOTH_GROUP_HOLOGRAM)
-	hologram.canSmoothWith = list(SMOOTH_GROUP_HOLOGRAM)
+	// hologram.smoothing_groups = list(SMOOTH_GROUP_HOLOGRAM)
+	// hologram.canSmoothWith = null
 	hologram.step_size = move_range * ICON_SIZE_ALL
-	QUEUE_SMOOTH(hologram)
-	animate(hologram, transition_time, alpha = initial(hologram.alpha))
+	// QUEUE_SMOOTH(hologram)
+	animate(hologram, 1 SECONDS, alpha = initial(hologram.alpha))
 	holograms += hologram
 
 /datum/action/ability/activable/xeno/place_pattern/proc/move_hologram(turf/target_turf, obj/effect/hologram)
@@ -1487,19 +1495,18 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	var/turf/sourceturf = get_turf(A)
 	if(!sourceturf)
 		return list()
-	var/starty = sourceturf.y
-	var/iterx = sourceturf.x
+	var/starty = sourceturf.y + selected_pattern.offset_y
+	var/iterx
 	var/startz = sourceturf.z
-	var/turf/targetturf = locate(sourceturf.x, starty, startz)
+	var/turf/targetturf
 
 	var/list/turfs = list()
 	for(var/layer in selected_pattern.pattern)
-		iterx = sourceturf.x
+		iterx = sourceturf.x + selected_pattern.offset_x
 		for(var/tile in splittext(layer, ""))
-			if(tile != "X")
-				continue
-			targetturf = locate(iterx, starty, startz)
-			turfs += targetturf
+			if(tile == "X")
+				targetturf = locate(iterx, starty, startz)
+				turfs += targetturf
 			iterx = iterx - 1
 		starty = starty + 1
 	return turfs
