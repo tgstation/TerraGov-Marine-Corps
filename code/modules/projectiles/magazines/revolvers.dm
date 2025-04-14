@@ -112,8 +112,8 @@
 	max_rounds = 6
 
 /obj/item/ammo_magazine/revolver/single_action/m44
-	name = "\improper R-44 magnum speed loader (.44)"
-	desc = "A SAA R-44 revolver speed loader."
+	name = "\improper R-44 SAA magnum speed loader (.44)"
+	desc = "A R-44 SAA revolver speed loader."
 	default_ammo = /datum/ammo/bullet/revolver
 	equip_slot_flags = NONE
 	caliber = CALIBER_44
