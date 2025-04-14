@@ -72,6 +72,8 @@
 	if(!ammo || ammo.current_rounds <= 0)
 		playsound(source, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
 		return
+	if(source.incapacitated(TRUE))
+		return
 	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return
 
@@ -190,6 +192,8 @@
 	if(!current_target)
 		return
 	if(windup_checked == WEAPON_WINDUP_CHECKING)
+		return
+	if(current_firer.incapacitated(TRUE))
 		return
 	var/turf/source_turf = chassis.primary_weapon == src ? chassis.hitbox.get_projectile_loc(src) : get_turf(src)
 	if(armored_weapon_flags & MODULE_FIXED_FIRE_ARC)
