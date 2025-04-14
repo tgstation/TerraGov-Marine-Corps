@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;ammo - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/ammo.html#var">Var Details</a> - <a href="datum/ammo.html#proc">Proc Details</a></header>
+<main>
+<h1>The base ammo datum <aside>/<a href="datum.html">datum</a>/<a href="datum/ammo.html">ammo</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 10"/></a></h1>
+
+<p>This datum is the base for absolutely every ammo type in the game.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/ammo.html#var/accuracy">accuracy</a></th><td>This is added to the bullet's base accuracy</td></tr>
+            <tr><th><a href="datum/ammo.html#var/accuracy_var_low">accuracy_var_low</a></th><td>How much the accuracy varies when fired</td></tr>
+            <tr><th><a href="datum/ammo.html#var/accurate_range">accurate_range</a></th><td>For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though</td></tr>
+            <tr><th><a href="datum/ammo.html#var/accurate_range_min">accurate_range_min</a></th><td>Snipers use this to simulate poor accuracy at close ranges</td></tr>
+            <tr><th><a href="datum/ammo.html#var/airburst_multiplier">airburst_multiplier</a></th><td>how much damage airbursts do to mobs around the target, multiplier of the bullet's damage</td></tr>
+            <tr><th><a href="datum/ammo.html#var/ammo_behavior_flags">ammo_behavior_flags</a></th><td>What kind of behavior the ammo has</td></tr>
+            <tr><th><a href="datum/ammo.html#var/armor_type">armor_type</a></th><td>Does this have an override for the armor type the ammo should test? Bullet by default</td></tr>
+            <tr><th><a href="datum/ammo.html#var/barricade_clear_distance">barricade_clear_distance</a></th><td>How far the bullet can travel before incurring a chance of hitting barricades; normally 1.</td></tr>
+            <tr><th><a href="datum/ammo.html#var/bonus_projectiles_amount">bonus_projectiles_amount</a></th><td>How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together</td></tr>
+            <tr><th><a href="datum/ammo.html#var/bonus_projectiles_scatter">bonus_projectiles_scatter</a></th><td>Degrees scattered per two projectiles, each in a different direction.</td></tr>
+            <tr><th><a href="datum/ammo.html#var/bonus_projectiles_type">bonus_projectiles_type</a></th><td>Type path of the extra projectiles</td></tr>
+            <tr><th><a href="datum/ammo.html#var/bullet_color">bullet_color</a></th><td>Determines what color our bullet will be when it flies</td></tr>
+            <tr><th><a href="datum/ammo.html#var/damage">damage</a></th><td>This is the base damage of the bullet as it is fired</td></tr>
+            <tr><th><a href="datum/ammo.html#var/damage_falloff">damage_falloff</a></th><td>How much damage the bullet loses per turf traveled</td></tr>
+            <tr><th><a href="datum/ammo.html#var/damage_type">damage_type</a></th><td>BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here</td></tr>
+            <tr><th><a href="datum/ammo.html#var/deflagrate_multiplier">deflagrate_multiplier</a></th><td>Multiplier for deflagrate chance</td></tr>
+            <tr><th><a href="datum/ammo.html#var/fire_burst_damage">fire_burst_damage</a></th><td>Flat damage caused if fire_burst is triggered by deflagrate</td></tr>
+            <tr><th><a href="datum/ammo.html#var/handful_amount">handful_amount</a></th><td>how much of this ammo you can carry in a handful</td></tr>
+            <tr><th><a href="datum/ammo.html#var/handful_greyscale_colors">handful_greyscale_colors</a></th><td>greyscale color for the bullet items associated with the ammo</td></tr>
+            <tr><th><a href="datum/ammo.html#var/handful_greyscale_config">handful_greyscale_config</a></th><td>greyscale config for the bullet items associated with the ammo</td></tr>
+            <tr><th><a href="datum/ammo.html#var/handful_icon_state">handful_icon_state</a></th><td>used in icons/obj/items/ammo for use in generating handful sprites</td></tr>
+            <tr><th><a href="datum/ammo.html#var/hitscan_effect_icon">hitscan_effect_icon</a></th><td>If this ammo is hitscan, the icon of beam coming out from the gun</td></tr>
+            <tr><th><a href="datum/ammo.html#var/hud_state">hud_state</a></th><td>Bullet type on the Ammo HUD</td></tr>
+            <tr><th><a href="datum/ammo.html#var/incendiary_strength">incendiary_strength</a></th><td>Base fire stacks added on hit if the projectile has AMMO_INCENDIARY</td></tr>
+            <tr><th><a href="datum/ammo.html#var/max_range">max_range</a></th><td>This will de-increment a counter on the bullet</td></tr>
+            <tr><th><a href="datum/ammo.html#var/on_pierce_multiplier">on_pierce_multiplier</a></th><td>A multiplier applied to piercing projectile, that reduces its damage/penetration/sundering on hit</td></tr>
+            <tr><th><a href="datum/ammo.html#var/penetration">penetration</a></th><td>How much armor it ignores before calculations take place</td></tr>
+            <tr><th><a href="datum/ammo.html#var/ping">ping</a></th><td>The icon that is displayed when the bullet bounces off something.</td></tr>
+            <tr><th><a href="datum/ammo.html#var/point_blank_range">point_blank_range</a></th><td>Weapons will get a large accuracy buff at this short range</td></tr>
+            <tr><th><a href="datum/ammo.html#var/projectile_greyscale_colors">projectile_greyscale_colors</a></th><td>greyscale color for the projectile associated with the ammo</td></tr>
+            <tr><th><a href="datum/ammo.html#var/projectile_greyscale_config">projectile_greyscale_config</a></th><td>greyscale config for the projectile associated with the ammo</td></tr>
+            <tr><th><a href="datum/ammo.html#var/scatter">scatter</a></th><td>How much the ammo scatters when burst fired, added to gun scatter, along with other mods</td></tr>
+            <tr><th><a href="datum/ammo.html#var/shell_speed">shell_speed</a></th><td>How fast the projectile moves</td></tr>
+            <tr><th><a href="datum/ammo.html#var/shrapnel_chance">shrapnel_chance</a></th><td>The % chance it will imbed in a human</td></tr>
+            <tr><th><a href="datum/ammo.html#var/sound_armor">sound_armor</a></th><td>When it's blocked by human armor.</td></tr>
+            <tr><th><a href="datum/ammo.html#var/sound_bounce">sound_bounce</a></th><td>When it bounces off something.</td></tr>
+            <tr><th><a href="datum/ammo.html#var/sound_hit">sound_hit</a></th><td>When it deals damage.</td></tr>
+            <tr><th><a href="datum/ammo.html#var/sound_miss">sound_miss</a></th><td>When it misses someone.</td></tr>
+            <tr><th><a href="datum/ammo.html#var/sundering">sundering</a></th><td>How many stacks of sundering to apply to a mob on hit</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/ammo.html#proc/ammo_process">ammo_process</a></th><td>called on projectile process() when AMMO_SPECIAL_PROCESS flag is active</td></tr>
+            <tr><th><a href="datum/ammo.html#proc/deflagrate">deflagrate</a></th><td>handles the probability of a projectile hit to trigger fire_burst, based off actual damage done</td></tr>
+            <tr><th><a href="datum/ammo.html#proc/fire_bonus_projectiles">fire_bonus_projectiles</a></th><td>Fires additional projectiles, generally considered to still be originating from a gun
+Such a buckshot
+origin_override used to have the new projectile(s) originate from a different source than the main projectile</td></tr>
+            <tr><th><a href="datum/ammo.html#proc/fire_burst">fire_burst</a></th><td>the actual fireblast triggered by deflagrate</td></tr>
+            <tr><th><a href="datum/ammo.html#proc/fire_directionalburst">fire_directionalburst</a></th><td>A variant of Fire_bonus_projectiles without fixed scatter and no link between gun and bonus_projectile accuracy</td></tr>
+            <tr><th><a href="datum/ammo.html#proc/on_hit_mob">on_hit_mob</a></th><td>Special effects when hitting mobs.</td></tr>
+            <tr><th><a href="datum/ammo.html#proc/on_hit_obj">on_hit_obj</a></th><td>Special effects when hitting objects.</td></tr>
+            <tr><th><a href="datum/ammo.html#proc/on_hit_turf">on_hit_turf</a></th><td>Special effects when hitting dense turfs.</td></tr>
+            <tr><th><a href="datum/ammo.html#proc/on_leave_turf">on_leave_turf</a></th><td>Special effects for leaving a turf. Only called if the projectile has AMMO_LEAVE_TURF enabled</td></tr>
+            <tr><th><a href="datum/ammo.html#proc/on_shield_block">on_shield_block</a></th><td>Does it do something special when shield blocked? Ie. a flare or grenade that still blows up.</td></tr>
+            <tr><th><a href="datum/ammo.html#proc/reflect">reflect</a></th><td>bounces the projectile by creating a new projectile and calculating an angle of reflection</td></tr>
+            <tr><th><a href="datum/ammo.html#proc/staggerstun">staggerstun</a></th><td>Handles CC application on the victim</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/accuracy"><aside class="declaration">var </aside>accuracy
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 33"/></a></h3>
+        <p>This is added to the bullet's base accuracy</p><h3 id="var/accuracy_var_low"><aside class="declaration">var </aside>accuracy_var_low
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 35"/></a></h3>
+        <p>How much the accuracy varies when fired</p><h3 id="var/accurate_range"><aside class="declaration">var </aside>accurate_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 38"/></a></h3>
+        <p>For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though</p><h3 id="var/accurate_range_min"><aside class="declaration">var </aside>accurate_range_min
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 40"/></a></h3>
+        <p>Snipers use this to simulate poor accuracy at close ranges</p><h3 id="var/airburst_multiplier"><aside class="declaration">var </aside>airburst_multiplier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 72"/></a></h3>
+        <p>how much damage airbursts do to mobs around the target, multiplier of the bullet's damage</p><h3 id="var/ammo_behavior_flags"><aside class="declaration">var </aside>ammo_behavior_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 74"/></a></h3>
+        <p>What kind of behavior the ammo has</p><h3 id="var/armor_type"><aside class="declaration">var </aside>armor_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 68"/></a></h3>
+        <p>Does this have an override for the armor type the ammo should test? Bullet by default</p><h3 id="var/barricade_clear_distance"><aside class="declaration">var </aside>barricade_clear_distance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 66"/></a></h3>
+        <p>How far the bullet can travel before incurring a chance of hitting barricades; normally 1.</p><h3 id="var/bonus_projectiles_amount"><aside class="declaration">var </aside>bonus_projectiles_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 62"/></a></h3>
+        <p>How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together</p><h3 id="var/bonus_projectiles_scatter"><aside class="declaration">var </aside>bonus_projectiles_scatter
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 64"/></a></h3>
+        <p>Degrees scattered per two projectiles, each in a different direction.</p><h3 id="var/bonus_projectiles_type"><aside class="declaration">var </aside>bonus_projectiles_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 60"/></a></h3>
+        <p>Type path of the extra projectiles</p><h3 id="var/bullet_color"><aside class="declaration">var </aside>bullet_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 76"/></a></h3>
+        <p>Determines what color our bullet will be when it flies</p><h3 id="var/damage"><aside class="declaration">var </aside>damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 48"/></a></h3>
+        <p>This is the base damage of the bullet as it is fired</p><h3 id="var/damage_falloff"><aside class="declaration">var </aside>damage_falloff
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 50"/></a></h3>
+        <p>How much damage the bullet loses per turf traveled</p><h3 id="var/damage_type"><aside class="declaration">var </aside>damage_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 52"/></a></h3>
+        <p>BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here</p><h3 id="var/deflagrate_multiplier"><aside class="declaration">var </aside>deflagrate_multiplier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 90"/></a></h3>
+        <p>Multiplier for deflagrate chance</p><h3 id="var/fire_burst_damage"><aside class="declaration">var </aside>fire_burst_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 92"/></a></h3>
+        <p>Flat damage caused if fire_burst is triggered by deflagrate</p><h3 id="var/handful_amount"><aside class="declaration">var </aside>handful_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 17"/></a></h3>
+        <p>how much of this ammo you can carry in a handful</p><h3 id="var/handful_greyscale_colors"><aside class="declaration">var </aside>handful_greyscale_colors
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 84"/></a></h3>
+        <p>greyscale color for the bullet items associated with the ammo</p><h3 id="var/handful_greyscale_config"><aside class="declaration">var </aside>handful_greyscale_config
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 82"/></a></h3>
+        <p>greyscale config for the bullet items associated with the ammo</p><h3 id="var/handful_icon_state"><aside class="declaration">var </aside>handful_icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 15"/></a></h3>
+        <p>used in icons/obj/items/ammo for use in generating handful sprites</p><h3 id="var/hitscan_effect_icon"><aside class="declaration">var </aside>hitscan_effect_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 78"/></a></h3>
+        <p>If this ammo is hitscan, the icon of beam coming out from the gun</p><h3 id="var/hud_state"><aside class="declaration">var </aside>hud_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 19"/></a></h3>
+        <p>Bullet type on the Ammo HUD</p><h3 id="var/incendiary_strength"><aside class="declaration">var </aside>incendiary_strength
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 94"/></a></h3>
+        <p>Base fire stacks added on hit if the projectile has AMMO_INCENDIARY</p><h3 id="var/max_range"><aside class="declaration">var </aside>max_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 44"/></a></h3>
+        <p>This will de-increment a counter on the bullet</p><h3 id="var/on_pierce_multiplier"><aside class="declaration">var </aside>on_pierce_multiplier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 80"/></a></h3>
+        <p>A multiplier applied to piercing projectile, that reduces its damage/penetration/sundering on hit</p><h3 id="var/penetration"><aside class="declaration">var </aside>penetration
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 54"/></a></h3>
+        <p>How much armor it ignores before calculations take place</p><h3 id="var/ping"><aside class="declaration">var </aside>ping
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 22"/></a></h3>
+        <p>The icon that is displayed when the bullet bounces off something.</p><h3 id="var/point_blank_range"><aside class="declaration">var </aside>point_blank_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 42"/></a></h3>
+        <p>Weapons will get a large accuracy buff at this short range</p><h3 id="var/projectile_greyscale_colors"><aside class="declaration">var </aside>projectile_greyscale_colors
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 88"/></a></h3>
+        <p>greyscale color for the projectile associated with the ammo</p><h3 id="var/projectile_greyscale_config"><aside class="declaration">var </aside>projectile_greyscale_config
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 86"/></a></h3>
+        <p>greyscale config for the projectile associated with the ammo</p><h3 id="var/scatter"><aside class="declaration">var </aside>scatter
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 46"/></a></h3>
+        <p>How much the ammo scatters when burst fired, added to gun scatter, along with other mods</p><h3 id="var/shell_speed"><aside class="declaration">var </aside>shell_speed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 58"/></a></h3>
+        <p>How fast the projectile moves</p><h3 id="var/shrapnel_chance"><aside class="declaration">var </aside>shrapnel_chance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 56"/></a></h3>
+        <p>The % chance it will imbed in a human</p><h3 id="var/sound_armor"><aside class="declaration">var </aside>sound_armor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 26"/></a></h3>
+        <p>When it's blocked by human armor.</p><h3 id="var/sound_bounce"><aside class="declaration">var </aside>sound_bounce
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 30"/></a></h3>
+        <p>When it bounces off something.</p><h3 id="var/sound_hit"><aside class="declaration">var </aside>sound_hit
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 24"/></a></h3>
+        <p>When it deals damage.</p><h3 id="var/sound_miss"><aside class="declaration">var </aside>sound_miss
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 28"/></a></h3>
+        <p>When it misses someone.</p><h3 id="var/sundering"><aside class="declaration">var </aside>sundering
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 70"/></a></h3>
+        <p>How many stacks of sundering to apply to a mob on hit</p><h2 id="proc">Proc Details</h2><h3 id="proc/ammo_process"><aside class="declaration">proc </aside>ammo_process<aside>(/<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/proj, damage) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L305">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 305"/></a></aside>
+        </h3>
+        <p>called on projectile process() when AMMO_SPECIAL_PROCESS flag is active</p><h3 id="proc/deflagrate"><aside class="declaration">proc </aside>deflagrate<aside>(/<a href="atom.html">atom</a>/target, /<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/proj) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L199">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 199"/></a></aside>
+        </h3>
+        <p>handles the probability of a projectile hit to trigger fire_burst, based off actual damage done</p><h3 id="proc/fire_bonus_projectiles"><aside class="declaration">proc </aside>fire_bonus_projectiles<aside>(/<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/main_proj, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/shooter, /<a href="atom.html">atom</a>/source, range, speed, angle, target, origin_override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L234">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 234"/></a></aside>
+        </h3>
+        <p>Fires additional projectiles, generally considered to still be originating from a gun
+Such a buckshot
+origin_override used to have the new projectile(s) originate from a different source than the main projectile</p><h3 id="proc/fire_burst"><aside class="declaration">proc </aside>fire_burst<aside>(/<a href="atom.html">atom</a>/target, /<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/proj) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L213">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 213"/></a></aside>
+        </h3>
+        <p>the actual fireblast triggered by deflagrate</p><h3 id="proc/fire_directionalburst"><aside class="declaration">proc </aside>fire_directionalburst<aside>(/<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/main_proj, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/shooter, /<a href="atom.html">atom</a>/source, projectile_amount, angle, target, loc_override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L261">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 261"/></a></aside>
+        </h3>
+        <p>A variant of Fire_bonus_projectiles without fixed scatter and no link between gun and bonus_projectile accuracy</p><h3 id="proc/on_hit_mob"><aside class="declaration">proc </aside>on_hit_mob<aside>(/<a href="mob.html">mob</a>/target_mob, /<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/proj) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 108"/></a></aside>
+        </h3>
+        <p>Special effects when hitting mobs.</p><h3 id="proc/on_hit_obj"><aside class="declaration">proc </aside>on_hit_obj<aside>(/<a href="obj.html">obj</a>/target_obj, /<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/proj) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 112"/></a></aside>
+        </h3>
+        <p>Special effects when hitting objects.</p><h3 id="proc/on_hit_turf"><aside class="declaration">proc </aside>on_hit_turf<aside>(/<a href="turf.html">turf</a>/target_turf, /<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/proj) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 104"/></a></aside>
+        </h3>
+        <p>Special effects when hitting dense turfs.</p><h3 id="proc/on_leave_turf"><aside class="declaration">proc </aside>on_leave_turf<aside>(/<a href="turf.html">turf</a>/target_turf, /<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/proj) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 116"/></a></aside>
+        </h3>
+        <p>Special effects for leaving a turf. Only called if the projectile has AMMO_LEAVE_TURF enabled</p><h3 id="proc/on_shield_block"><aside class="declaration">proc </aside>on_shield_block<aside>(/<a href="mob.html">mob</a>/target_mob, /<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/proj) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 100"/></a></aside>
+        </h3>
+        <p>Does it do something special when shield blocked? Ie. a flare or grenade that still blows up.</p><h3 id="proc/reflect"><aside class="declaration">proc </aside>reflect<aside>(/<a href="turf.html">turf</a>/T, /<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/proj, scatter_variance) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L309">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 309"/></a></aside>
+        </h3>
+        <p>bounces the projectile by creating a new projectile and calculating an angle of reflection</p><h3 id="proc/staggerstun"><aside class="declaration">proc </aside>staggerstun<aside>(/<a href="mob.html">mob</a>/victim, /<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/proj, max_range, stun, paralyze, stagger, slowdown, knockback, soft_size_threshold, hard_size_threshold) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_datums.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_datums.dm 120"/></a></aside>
+        </h3>
+        <p>Handles CC application on the victim</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;interior - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/interior.html#var">Var Details</a> - <a href="datum/interior.html#proc">Proc Details</a></header>
+<main>
+<h1>interior <aside>/<a href="datum.html">datum</a>/<a href="datum/interior.html">interior</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/interior/_interior.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;interior&#x2F;_interior.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/interior.html#var/container">container</a></th><td>container that this interior is attached to; what we are the inside of</td></tr>
+            <tr><th><a href="datum/interior.html#var/exit_callback">exit_callback</a></th><td>callback to execute when we want to eject the mob</td></tr>
+            <tr><th><a href="datum/interior.html#var/loaded_turfs">loaded_turfs</a></th><td>list of all loaded turfs. we keep this around in case we need to update linkages or similar</td></tr>
+            <tr><th><a href="datum/interior.html#var/occupants">occupants</a></th><td>occupants that entered this interior through the intended way</td></tr>
+            <tr><th><a href="datum/interior.html#var/reservation">reservation</a></th><td>turf reservation where we will load our interior // TODO REPLACE ME WITH LAZYTEMPLATELOAD STUFF</td></tr>
+            <tr><th><a href="datum/interior.html#var/template">template</a></th><td>map template to load as the interior</td></tr>
+            <tr><th><a href="datum/interior.html#var/this_area">this_area</a></th><td>the interior area. you should only be using 1 area for the whole thing, if you're not, make this support it lol</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/interior.html#proc/connect_atoms">connect_atoms</a></th><td>connects all atoms as needed to the interior. seperate so it can be used in debugging</td></tr>
+            <tr><th><a href="datum/interior.html#proc/handle_area_leave">handle_area_leave</a></th><td>when someone who entered the &quot;proper&quot; way leaves the area, remove them as an occupant without teleporting</td></tr>
+            <tr><th><a href="datum/interior.html#proc/handle_container_del">handle_container_del</a></th><td>called when parent container is deleted</td></tr>
+            <tr><th><a href="datum/interior.html#proc/handle_occupant_del">handle_occupant_del</a></th><td>called when a mob gets deleted while an occupant</td></tr>
+            <tr><th><a href="datum/interior.html#proc/init_map">init_map</a></th><td>actual inits the map, seperate proc because otherwise it fails linter due to &quot;sleep in new&quot; // TODO REPLACE ME WITH LAZYTEMPLATELOAD STUFF</td></tr>
+            <tr><th><a href="datum/interior.html#proc/mob_enter">mob_enter</a></th><td>called when we want to move a mob into the interior</td></tr>
+            <tr><th><a href="datum/interior.html#proc/mob_leave">mob_leave</a></th><td>called when we want to remove a mob from the interior</td></tr>
+            <tr><th><a href="datum/interior.html#proc/on_container_enter">on_container_enter</a></th><td>called when someone enters the container</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/container"><aside class="declaration">var </aside>container
+            <aside>&ndash; /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/interior/_interior.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;interior&#x2F;_interior.dm 7"/></a></h3>
+        <p>container that this interior is attached to; what we are the inside of</p><h3 id="var/exit_callback"><aside class="declaration">var </aside>exit_callback
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/interior/_interior.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;interior&#x2F;_interior.dm 9"/></a></h3>
+        <p>callback to execute when we want to eject the mob</p><h3 id="var/loaded_turfs"><aside class="declaration">var </aside>loaded_turfs
+            <aside>&ndash; /list/turf</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/interior/_interior.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;interior&#x2F;_interior.dm 15"/></a></h3>
+        <p>list of all loaded turfs. we keep this around in case we need to update linkages or similar</p><h3 id="var/occupants"><aside class="declaration">var </aside>occupants
+            <aside>&ndash; /list/mob</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/interior/_interior.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;interior&#x2F;_interior.dm 11"/></a></h3>
+        <p>occupants that entered this interior through the intended way</p><h3 id="var/reservation"><aside class="declaration">var </aside>reservation
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/turf_reservation.html">turf_reservation</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/interior/_interior.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;interior&#x2F;_interior.dm 13"/></a></h3>
+        <p>turf reservation where we will load our interior // TODO REPLACE ME WITH LAZYTEMPLATELOAD STUFF</p><h3 id="var/template"><aside class="declaration">var </aside>template
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/interior/_interior.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;interior&#x2F;_interior.dm 5"/></a></h3>
+        <p>map template to load as the interior</p><h3 id="var/this_area"><aside class="declaration">var </aside>this_area
+            <aside>&ndash; /<a href="area.html">area</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/interior/_interior.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;interior&#x2F;_interior.dm 19"/></a></h3>
+        <p>the interior area. you should only be using 1 area for the whole thing, if you're not, make this support it lol</p><h2 id="proc">Proc Details</h2><h3 id="proc/connect_atoms"><aside class="declaration">proc </aside>connect_atoms<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/interior/_interior.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;interior&#x2F;_interior.dm 57"/></a></aside>
+        </h3>
+        <p>connects all atoms as needed to the interior. seperate so it can be used in debugging</p><h3 id="proc/handle_area_leave"><aside class="declaration">proc </aside>handle_area_leave<aside>(/<a href="mob.html">mob</a>/source, /<a href="area.html">area</a>/oldarea, direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/interior/_interior.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;interior&#x2F;_interior.dm 97"/></a></aside>
+        </h3>
+        <p>when someone who entered the &quot;proper&quot; way leaves the area, remove them as an occupant without teleporting</p><h3 id="proc/handle_container_del"><aside class="declaration">proc </aside>handle_container_del<aside>(/<a href="atom.html">atom</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/interior/_interior.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;interior&#x2F;_interior.dm 92"/></a></aside>
+        </h3>
+        <p>called when parent container is deleted</p><h3 id="proc/handle_occupant_del"><aside class="declaration">proc </aside>handle_occupant_del<aside>(/<a href="mob.html">mob</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/interior/_interior.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;interior&#x2F;_interior.dm 87"/></a></aside>
+        </h3>
+        <p>called when a mob gets deleted while an occupant</p><h3 id="proc/init_map"><aside class="declaration">proc </aside>init_map<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/interior/_interior.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;interior&#x2F;_interior.dm 29"/></a></aside>
+        </h3>
+        <p>actual inits the map, seperate proc because otherwise it fails linter due to &quot;sleep in new&quot; // TODO REPLACE ME WITH LAZYTEMPLATELOAD STUFF</p><h3 id="proc/mob_enter"><aside class="declaration">proc </aside>mob_enter<aside>(/<a href="mob.html">mob</a>/enterer) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/interior/_interior.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;interior&#x2F;_interior.dm 70"/></a></aside>
+        </h3>
+        <p>called when we want to move a mob into the interior</p><h3 id="proc/mob_leave"><aside class="declaration">proc </aside>mob_leave<aside>(/<a href="mob.html">mob</a>/leaver, teleport) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/interior/_interior.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;interior&#x2F;_interior.dm 79"/></a></aside>
+        </h3>
+        <p>called when we want to remove a mob from the interior</p><h3 id="proc/on_container_enter"><aside class="declaration">proc </aside>on_container_enter<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/moved_in, direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/interior/_interior.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;interior&#x2F;_interior.dm 64"/></a></aside>
+        </h3>
+        <p>called when someone enters the container</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

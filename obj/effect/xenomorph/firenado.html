@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;effect&#x2F;xenomorph&#x2F;firenado - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/effect/xenomorph/firenado.html#var">Var Details</a> - <a href="obj/effect/xenomorph/firenado.html#proc">Proc Details</a></header>
+<main>
+<h1>firenado <aside>/<a href="obj.html">obj</a>/<a href="obj/effect/xenomorph/firenado.html">effect/xenomorph/firenado</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/pyrogen/abilities_pyrogen.dm#L284">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;pyrogen&#x2F;abilities_pyrogen.dm 284"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/effect/xenomorph/firenado.html#var/creator">creator</a></th><td>The pyrogen who created this effect.</td></tr>
+            <tr><th><a href="obj/effect/xenomorph/firenado.html#var/turf_starting">turf_starting</a></th><td>The starting turf to see how far we are.</td></tr>
+            <tr><th><a href="obj/effect/xenomorph/firenado.html#var/turf_target">turf_target</a></th><td>The target turf that we will try to go to.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/effect/xenomorph/firenado.html#proc/Moved">Moved</a></th><td>Creates melting fire in a 3x3 and applies various effects to all humans in the new loc.</td></tr>
+            <tr><th><a href="obj/effect/xenomorph/firenado.html#proc/get_acceptable_turfs">get_acceptable_turfs</a></th><td>Returns a list of open turfs that do not contain melting fire.</td></tr>
+            <tr><th><a href="obj/effect/xenomorph/firenado.html#proc/mob_act">mob_act</a></th><td>Sets living non-xenos with melting fire and deals burning damage to them.</td></tr>
+            <tr><th><a href="obj/effect/xenomorph/firenado.html#proc/on_cross">on_cross</a></th><td>Applies various effects to humans who enter the same loc as the firenado.</td></tr>
+            <tr><th><a href="obj/effect/xenomorph/firenado.html#proc/process">process</a></th><td>Delete itself if it reaches maximum distance, reaches the target turf, or fails to take a step toward the target turf.</td></tr>
+            <tr><th><a href="obj/effect/xenomorph/firenado.html#proc/refresh_or_create_fire">refresh_or_create_fire</a></th><td>Refreshes the burn ticks of the melting fire on a turf or creates one if it does not exist.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/creator"><aside class="declaration">var </aside>creator
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a>/<a href="mob/living/carbon/xenomorph/pyrogen.html">pyrogen</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/pyrogen/abilities_pyrogen.dm#L300">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;pyrogen&#x2F;abilities_pyrogen.dm 300"/></a></h3>
+        <p>The pyrogen who created this effect.</p><h3 id="var/turf_starting"><aside class="declaration">var </aside>turf_starting
+            <aside>&ndash; /<a href="turf.html">turf</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/pyrogen/abilities_pyrogen.dm#L294">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;pyrogen&#x2F;abilities_pyrogen.dm 294"/></a></h3>
+        <p>The starting turf to see how far we are.</p><h3 id="var/turf_target"><aside class="declaration">var </aside>turf_target
+            <aside>&ndash; /<a href="turf.html">turf</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/pyrogen/abilities_pyrogen.dm#L296">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;pyrogen&#x2F;abilities_pyrogen.dm 296"/></a></h3>
+        <p>The target turf that we will try to go to.</p><h2 id="proc">Proc Details</h2><h3 id="proc/Moved">Moved<aside>(/<a href="atom.html">atom</a>/old_loc, movement_dir, forced, /list/old_locs) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/pyrogen/abilities_pyrogen.dm#L365">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;pyrogen&#x2F;abilities_pyrogen.dm 365"/></a></aside>
+        </h3>
+        <p>Creates melting fire in a 3x3 and applies various effects to all humans in the new loc.</p><h3 id="proc/get_acceptable_turfs"><aside class="declaration">proc </aside>get_acceptable_turfs<aside>(/list/turf/possible_turfs) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/pyrogen/abilities_pyrogen.dm#L395">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;pyrogen&#x2F;abilities_pyrogen.dm 395"/></a></aside>
+        </h3>
+        <p>Returns a list of open turfs that do not contain melting fire.</p><h3 id="proc/mob_act"><aside class="declaration">proc </aside>mob_act<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/pyrogen/abilities_pyrogen.dm#L384">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;pyrogen&#x2F;abilities_pyrogen.dm 384"/></a></aside>
+        </h3>
+        <p>Sets living non-xenos with melting fire and deals burning damage to them.</p><h3 id="proc/on_cross"><aside class="declaration">proc </aside>on_cross<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/arrived, oldloc, oldlocs) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/pyrogen/abilities_pyrogen.dm#L377">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;pyrogen&#x2F;abilities_pyrogen.dm 377"/></a></aside>
+        </h3>
+        <p>Applies various effects to humans who enter the same loc as the firenado.</p><h3 id="proc/process">process<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/pyrogen/abilities_pyrogen.dm#L349">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;pyrogen&#x2F;abilities_pyrogen.dm 349"/></a></aside>
+        </h3>
+        <p>Delete itself if it reaches maximum distance, reaches the target turf, or fails to take a step toward the target turf.</p><h3 id="proc/refresh_or_create_fire"><aside class="declaration">proc </aside>refresh_or_create_fire<aside>(/<a href="turf.html">turf</a>/target_turf) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/pyrogen/abilities_pyrogen.dm#L406">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;pyrogen&#x2F;abilities_pyrogen.dm 406"/></a></aside>
+        </h3>
+        <p>Refreshes the burn ticks of the melting fire on a turf or creates one if it does not exist.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

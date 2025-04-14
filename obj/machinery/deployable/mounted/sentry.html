@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;deployable&#x2F;mounted&#x2F;sentry - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/deployable/mounted/sentry.html#var">Var Details</a> - <a href="obj/machinery/deployable/mounted/sentry.html#proc">Proc Details</a></header>
+<main>
+<h1>sentry <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/deployable.html">deployable</a>/<a href="obj/machinery/deployable/mounted.html">mounted</a>/<a href="obj/machinery/deployable/mounted/sentry.html">sentry</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 12"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#var/camera">camera</a></th><td>Camera for viewing with cam consoles</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#var/firing">firing</a></th><td>For minimap icon change if sentry is firing</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#var/iff_signal">iff_signal</a></th><td>Iff signal of the sentry. If the /gun has a set IFF then this will be the same as that. If not the sentry will get its IFF signal from the deployer</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#var/knockdown_threshold">knockdown_threshold</a></th><td>Damage required to knock the sentry over and disable it</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#var/last_alert">last_alert</a></th><td>Time of last alert</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#var/last_damage_alert">last_damage_alert</a></th><td>Time of last damage alert</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#var/potential_targets">potential_targets</a></th><td>List of targets that can be shot at</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#var/radio">radio</a></th><td>Radio so that the sentry can scream for help</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#var/range">range</a></th><td>View and fire range of the sentry</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#var/spark_system">spark_system</a></th><td>Spark system for making sparks</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#proc/check_next_shot">check_next_shot</a></th><td>Checks the range and the path of the target currently being shot at to see if it is eligable for being shot at again. If not it will stop the firing.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#proc/check_target_path">check_target_path</a></th><td>Checks the path to the target for obstructions. Returns TRUE if the path is clear, FALSE if not.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#proc/get_target">get_target</a></th><td>Works through potential targets. First checks if they are in range, and if they are friend/foe. Then checks the path to them. Returns the first eligable target.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#proc/knock_down">knock_down</a></th><td>Bonks the sentry onto its side. This currently is used here, and in /living/carbon/xeno/warrior/mob_abilities in punch</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#proc/match_iff">match_iff</a></th><td>Checks the users faction against turret IFF, used to stop hostile factions from interacting with turrets in ways they shouldn't.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#proc/remove_emp">remove_emp</a></th><td>Lifts EMP effects</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#proc/scan">scan</a></th><td>Checks the nearby mobs for eligability. If they can be targets it stores them in potential_targets. Returns TRUE if there are targets, FALSE if not.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#proc/sentry_alert">sentry_alert</a></th><td>Sentry wants to scream for help.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#proc/sentry_start_fire">sentry_start_fire</a></th><td>Sees if theres a target to shoot, then handles firing.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#proc/sentry_stop_fire">sentry_stop_fire</a></th><td>Ends firing</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#proc/set_on">set_on</a></th><td>Handles turning the sentry ON and OFF. new_state is a bool</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted/sentry.html#proc/update_minimap_icon">update_minimap_icon</a></th><td>Change minimap icon if its firing or not firing</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/camera"><aside class="declaration">var </aside>camera
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/camera.html">camera</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 21"/></a></h3>
+        <p>Camera for viewing with cam consoles</p><h3 id="var/firing"><aside class="declaration">var </aside>firing
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 42"/></a></h3>
+        <p>For minimap icon change if sentry is firing</p><h3 id="var/iff_signal"><aside class="declaration">var </aside>iff_signal
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 35"/></a></h3>
+        <p>Iff signal of the sentry. If the /gun has a set IFF then this will be the same as that. If not the sentry will get its IFF signal from the deployer</p><h3 id="var/knockdown_threshold"><aside class="declaration">var </aside>knockdown_threshold
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 25"/></a></h3>
+        <p>Damage required to knock the sentry over and disable it</p><h3 id="var/last_alert"><aside class="declaration">var </aside>last_alert
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 29"/></a></h3>
+        <p>Time of last alert</p><h3 id="var/last_damage_alert"><aside class="declaration">var </aside>last_damage_alert
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 31"/></a></h3>
+        <p>Time of last damage alert</p><h3 id="var/potential_targets"><aside class="declaration">var </aside>potential_targets
+            <aside>&ndash; /list/atom</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 27"/></a></h3>
+        <p>List of targets that can be shot at</p><h3 id="var/radio"><aside class="declaration">var </aside>radio
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/radio.html">radio</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 33"/></a></h3>
+        <p>Radio so that the sentry can scream for help</p><h3 id="var/range"><aside class="declaration">var </aside>range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 23"/></a></h3>
+        <p>View and fire range of the sentry</p><h3 id="var/spark_system"><aside class="declaration">var </aside>spark_system
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/effect_system.html">effect_system</a>/spark_spread</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 19"/></a></h3>
+        <p>Spark system for making sparks</p><h2 id="proc">Proc Details</h2><h3 id="proc/check_next_shot"><aside class="declaration">proc </aside>check_next_shot<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/gun_target, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a>/<a href="obj/item/weapon/gun.html">gun</a>/gun) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L416">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 416"/></a></aside>
+        </h3>
+        <p>Checks the range and the path of the target currently being shot at to see if it is eligable for being shot at again. If not it will stop the firing.</p><h3 id="proc/check_target_path"><aside class="declaration">proc </aside>check_target_path<aside>(/<a href="atom.html">atom</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L464">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 464"/></a></aside>
+        </h3>
+        <p>Checks the path to the target for obstructions. Returns TRUE if the path is clear, FALSE if not.</p><h3 id="proc/get_target"><aside class="declaration">proc </aside>get_target<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L506">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 506"/></a></aside>
+        </h3>
+        <p>Works through potential targets. First checks if they are in range, and if they are friend/foe. Then checks the path to them. Returns the first eligable target.</p><h3 id="proc/knock_down"><aside class="declaration">proc </aside>knock_down<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L300">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 300"/></a></aside>
+        </h3>
+        <p>Bonks the sentry onto its side. This currently is used here, and in /living/carbon/xeno/warrior/mob_abilities in punch</p><h3 id="proc/match_iff"><aside class="declaration">proc </aside>match_iff<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L532">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 532"/></a></aside>
+        </h3>
+        <p>Checks the users faction against turret IFF, used to stop hostile factions from interacting with turrets in ways they shouldn't.</p><h3 id="proc/remove_emp"><aside class="declaration">proc </aside>remove_emp<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L333">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 333"/></a></aside>
+        </h3>
+        <p>Lifts EMP effects</p><h3 id="proc/scan"><aside class="declaration">proc </aside>scan<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L384">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 384"/></a></aside>
+        </h3>
+        <p>Checks the nearby mobs for eligability. If they can be targets it stores them in potential_targets. Returns TRUE if there are targets, FALSE if not.</p><h3 id="proc/sentry_alert"><aside class="declaration">proc </aside>sentry_alert<aside>(alert_code, /<a href="mob.html">mob</a>/mob) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L342">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 342"/></a></aside>
+        </h3>
+        <p>Sentry wants to scream for help.</p><h3 id="proc/sentry_start_fire"><aside class="declaration">proc </aside>sentry_start_fire<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L431">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 431"/></a></aside>
+        </h3>
+        <p>Sees if theres a target to shoot, then handles firing.</p><h3 id="proc/sentry_stop_fire"><aside class="declaration">proc </aside>sentry_stop_fire<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L457">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 457"/></a></aside>
+        </h3>
+        <p>Ends firing</p><h3 id="proc/set_on"><aside class="declaration">proc </aside>set_on<aside>(new_state) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L276">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 276"/></a></aside>
+        </h3>
+        <p>Handles turning the sentry ON and OFF. new_state is a bool</p><h3 id="proc/update_minimap_icon"><aside class="declaration">proc </aside>update_minimap_icon<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/sentries.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;sentries.dm 76"/></a></aside>
+        </h3>
+        <p>Change minimap icon if its firing or not firing</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

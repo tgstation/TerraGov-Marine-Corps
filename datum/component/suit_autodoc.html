@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;suit_autodoc - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/suit_autodoc.html#proc">Proc Details</a></header>
+<main>
+<h1>suit_autodoc <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/suit_autodoc.html">suit_autodoc</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 24"/></a></h1>
+
+<p>Autodoc component</p>
+<p>The autodoc is an item component that can be eqiupped to inject the wearer with chemicals.</p>
+<p>Parameters</p>
+<ul>
+<li>chem_cooldown {time} default time between injections of chemicals</li>
+<li>list/burn_chems {list/datum/reagent/medicine} chemicals available to be injected to treat burn injuries</li>
+<li>list/oxy_chems {list/datum/reagent/medicine} chemicals available to be injected to treat oxygen injuries</li>
+<li>list/brute_chems {list/datum/reagent/medicine} chemicals available to be injected to treat brute injuries</li>
+<li>list/tox_chems {list/datum/reagent/medicine} chemicals available to be injected to treat toxin injuries</li>
+<li>list/pain_chems {list/datum/reagent/medicine} chemicals available to be injected to treat pain injuries</li>
+<li>overdose_threshold_mod {float} how close to overdosing will drugs inject to</li>
+</ul><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/Destroy">Destroy</a></th><td>Cleans up any actions, and internal items used by the autodoc component</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/Initialize">Initialize</a></th><td>Setup the default cooldown, chemicals and supported limbs</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/RegisterWithParent">RegisterWithParent</a></th><td>Registers signals to enable/disable the autodoc when equipped/dropper/etc</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/Topic">Topic</a></th><td>Handles the topic interactions with the suit when updating configurations</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/UnregisterFromParent">UnregisterFromParent</a></th><td>Remove signals</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/action_toggle">action_toggle</a></th><td>Toggle the suit</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/can_interact">can_interact</a></th><td>If the user is able to interact with the suit</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/configure">configure</a></th><td>Proc to show the suit configuration page</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/damage_taken">damage_taken</a></th><td>Proc for the damange taken signal, calls treat_injuries</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/disable">disable</a></th><td>Disables to stop processing and calls to the signals from the user.</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/dropped">dropped</a></th><td>Disables the autodoc and removes actions when dropped</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/enable">enable</a></th><td>Enable processing and calls out to register signals from the user.</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/equipped">equipped</a></th><td>Enable the autodoc and give appropriate actions</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/examine">examine</a></th><td>Hook into the examine of the parent to show additional information about the suit_autodoc</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/give_actions">give_actions</a></th><td>Add the actions to the user</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/inject_chems">inject_chems</a></th><td>Handles actually injecting specific checmicals for specific damage types.</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/interact">interact</a></th><td>Shows the suit configuration</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/nextuse_ready">nextuse_ready</a></th><td>Plays a sound and message to the user informing the user chemicals are ready again</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/process">process</a></th><td>Process proc called periodically, calls treat_injuries</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/remove_actions">remove_actions</a></th><td>Remove the actions from the user</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/scan_user">scan_user</a></th><td>Proc to handle the internal analyzer scanning the user</td></tr>
+            <tr><th><a href="datum/component/suit_autodoc.html#proc/treat_injuries">treat_injuries</a></th><td>Trys to inject each chmical into the user.</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/Destroy"><aside class="parent"><a title="/datum/component" href="datum/component.html#proc/Destroy">&uarr;</a></aside>Destroy<aside>(force, silent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 90"/></a></aside>
+        </h3>
+        <p>Cleans up any actions, and internal items used by the autodoc component</p><h3 id="proc/Initialize"><aside class="parent"><a title="/datum/component" href="datum/component.html#proc/Initialize">&uarr;</a></aside>Initialize<aside>(chem_cooldown, /list/burn_chems, /list/oxy_chems, /list/brute_chems, /list/tox_chems, /list/pain_chems, overdose_threshold_mod) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 70"/></a></aside>
+        </h3>
+        <p>Setup the default cooldown, chemicals and supported limbs</p><h3 id="proc/RegisterWithParent"><aside class="parent"><a title="/datum/component" href="datum/component.html#proc/RegisterWithParent">&uarr;</a></aside>RegisterWithParent<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 101"/></a></aside>
+        </h3>
+        <p>Registers signals to enable/disable the autodoc when equipped/dropper/etc</p><h3 id="proc/Topic"><aside class="parent"><a title="/datum" href="datum.html#proc/Topic">&uarr;</a></aside>Topic<aside>(href, href_list) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L382">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 382"/></a></aside>
+        </h3>
+        <p>Handles the topic interactions with the suit when updating configurations</p><h3 id="proc/UnregisterFromParent"><aside class="parent"><a title="/datum/component" href="datum/component.html#proc/UnregisterFromParent">&uarr;</a></aside>UnregisterFromParent<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 117"/></a></aside>
+        </h3>
+        <p>Remove signals</p><h3 id="proc/action_toggle"><aside class="declaration">proc </aside>action_toggle<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L313">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 313"/></a></aside>
+        </h3>
+        <p>Toggle the suit</p>
+<p>This will enable or disable the suit</p><h3 id="proc/can_interact">can_interact<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L376">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 376"/></a></aside>
+        </h3>
+        <p>If the user is able to interact with the suit</p>
+<p>Always TRUE</p><h3 id="proc/configure"><aside class="declaration">proc </aside>configure<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L333">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 333"/></a></aside>
+        </h3>
+        <p>Proc to show the suit configuration page</p><h3 id="proc/damage_taken"><aside class="declaration">proc </aside>damage_taken<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/wearer, damage) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L208">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 208"/></a></aside>
+        </h3>
+        <p>Proc for the damange taken signal, calls treat_injuries</p><h3 id="proc/disable"><aside class="declaration">proc </aside>disable<aside>(silent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L177">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 177"/></a></aside>
+        </h3>
+        <p>Disables to stop processing and calls to the signals from the user.</p>
+<p>Additionally removes limb support if applicable</p><h3 id="proc/dropped"><aside class="declaration">proc </aside>dropped<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 152"/></a></aside>
+        </h3>
+        <p>Disables the autodoc and removes actions when dropped</p><h3 id="proc/enable"><aside class="declaration">proc </aside>enable<aside>(silent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L193">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 193"/></a></aside>
+        </h3>
+        <p>Enable processing and calls out to register signals from the user.</p>
+<p>Additionally adds limb support if applicable</p><h3 id="proc/equipped"><aside class="declaration">proc </aside>equipped<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/equipper, slot) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L164">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 164"/></a></aside>
+        </h3>
+        <p>Enable the autodoc and give appropriate actions</p><h3 id="proc/examine"><aside class="declaration">proc </aside>examine<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user, /list/details) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 131"/></a></aside>
+        </h3>
+        <p>Hook into the examine of the parent to show additional information about the suit_autodoc</p><h3 id="proc/give_actions"><aside class="declaration">proc </aside>give_actions<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L288">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 288"/></a></aside>
+        </h3>
+        <p>Add the actions to the user</p>
+<p>Actions include</p>
+<ul>
+<li>Enable and disable the suit</li>
+<li>Manually do a health scan</li>
+<li>Open suit settings</li>
+</ul><h3 id="proc/inject_chems"><aside class="declaration">proc </aside>inject_chems<aside>(/list/chems, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H, cooldown_type, damage, threshold, treatment_message, message_prefix) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L224">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 224"/></a></aside>
+        </h3>
+        <p>Handles actually injecting specific checmicals for specific damage types.</p>
+<p>This proc checks the damage is over the appropraite threshold, the cooldowns and if succesful injects
+chemicals into the user and sets the cooldown again</p><h3 id="proc/interact">interact<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L340">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 340"/></a></aside>
+        </h3>
+        <p>Shows the suit configuration</p><h3 id="proc/nextuse_ready"><aside class="declaration">proc </aside>nextuse_ready<aside>(message) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L268">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 268"/></a></aside>
+        </h3>
+        <p>Plays a sound and message to the user informing the user chemicals are ready again</p><h3 id="proc/process">process<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L215">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 215"/></a></aside>
+        </h3>
+        <p>Process proc called periodically, calls treat_injuries</p><h3 id="proc/remove_actions"><aside class="declaration">proc </aside>remove_actions<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L301">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 301"/></a></aside>
+        </h3>
+        <p>Remove the actions from the user</p>
+<p>Actions include</p>
+<ul>
+<li>Enable and disable the suit</li>
+<li>Manually do a health scan</li>
+<li>Open suit settings</li>
+</ul><h3 id="proc/scan_user"><aside class="declaration">proc </aside>scan_user<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L326">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 326"/></a></aside>
+        </h3>
+        <p>Proc to handle the internal analyzer scanning the user</p><h3 id="proc/treat_injuries"><aside class="declaration">proc </aside>treat_injuries<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/suit_autodoc.dm#L251">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;suit_autodoc.dm 251"/></a></aside>
+        </h3>
+        <p>Trys to inject each chmical into the user.</p>
+<p>Calls each proc and then reports the results if any to the user.
+additionally trys to support any limbs if required</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

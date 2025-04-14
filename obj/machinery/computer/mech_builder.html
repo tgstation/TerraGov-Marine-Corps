@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;mech_builder - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/computer/mech_builder.html#var">Var Details</a> - <a href="obj/machinery/computer/mech_builder.html#proc">Proc Details</a></header>
+<main>
+<h1>mech_builder <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/computer.html">computer</a>/<a href="obj/machinery/computer/mech_builder.html">mech_builder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_constructor.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_constructor.dm 91"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/computer/mech_builder.html#var/available_colors">available_colors</a></th><td>list(STRING-list(STRING-STRING)) of primary and secondary palettes. first string is category, second is name</td></tr>
+            <tr><th><a href="obj/machinery/computer/mech_builder.html#var/available_visor_colors">available_visor_colors</a></th><td>list(STRING-list(STRING-STRING)) of visor palettes. first string is category, second is name</td></tr>
+            <tr><th><a href="obj/machinery/computer/mech_builder.html#var/current_stats">current_stats</a></th><td>list of stat data that will be sent to the UI</td></tr>
+            <tr><th><a href="obj/machinery/computer/mech_builder.html#var/equipment_max">equipment_max</a></th><td>List of max equipment that we're allowed to attach while using this console</td></tr>
+            <tr><th><a href="obj/machinery/computer/mech_builder.html#var/mech_view">mech_view</a></th><td>reference to the mech screen object</td></tr>
+            <tr><th><a href="obj/machinery/computer/mech_builder.html#var/selected_equipment">selected_equipment</a></th><td>Currently selected equipment, maxes are determined by equipment_max</td></tr>
+            <tr><th><a href="obj/machinery/computer/mech_builder.html#var/selected_name">selected_name</a></th><td>current selected name for the mech</td></tr>
+            <tr><th><a href="obj/machinery/computer/mech_builder.html#var/selected_primary">selected_primary</a></th><td>STRING-STRING list of mech_slot-primary_color_palette</td></tr>
+            <tr><th><a href="obj/machinery/computer/mech_builder.html#var/selected_secondary">selected_secondary</a></th><td>STRING-STRING list of mech_slot-secondary_color_palette</td></tr>
+            <tr><th><a href="obj/machinery/computer/mech_builder.html#var/selected_variants">selected_variants</a></th><td>STRING-STRING list of mech_slot-part_type</td></tr>
+            <tr><th><a href="obj/machinery/computer/mech_builder.html#var/selected_visor">selected_visor</a></th><td>string of the visor palette</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/computer/mech_builder.html#proc/deploy_mech">deploy_mech</a></th><td>Actually deploys mech after a short delay to let people spot it coming down</td></tr>
+            <tr><th><a href="obj/machinery/computer/mech_builder.html#proc/update_stats">update_stats</a></th><td>updates the current_stats data for the UI</td></tr>
+            <tr><th><a href="obj/machinery/computer/mech_builder.html#proc/update_ui_view">update_ui_view</a></th><td>Updates the displayed mech preview dummy in the UI</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/available_colors"><aside class="declaration">var </aside>available_colors
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_constructor.dm#L144">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_constructor.dm 144"/></a></h3>
+        <p>list(STRING-list(STRING-STRING)) of primary and secondary palettes. first string is category, second is name</p><h3 id="var/available_visor_colors"><aside class="declaration">var </aside>available_visor_colors
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_constructor.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_constructor.dm 146"/></a></h3>
+        <p>list(STRING-list(STRING-STRING)) of visor palettes. first string is category, second is name</p><h3 id="var/current_stats"><aside class="declaration">var </aside>current_stats
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_constructor.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_constructor.dm 141"/></a></h3>
+        <p>list of stat data that will be sent to the UI</p><h3 id="var/equipment_max"><aside class="declaration">var </aside>equipment_max
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_constructor.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_constructor.dm 137"/></a></h3>
+        <p>List of max equipment that we're allowed to attach while using this console</p><h3 id="var/mech_view"><aside class="declaration">var </aside>mech_view
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/map_view.html">map_view</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_constructor.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_constructor.dm 139"/></a></h3>
+        <p>reference to the mech screen object</p><h3 id="var/selected_equipment"><aside class="declaration">var </aside>selected_equipment
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_constructor.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_constructor.dm 127"/></a></h3>
+        <p>Currently selected equipment, maxes are determined by equipment_max</p><h3 id="var/selected_name"><aside class="declaration">var </aside>selected_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_constructor.dm#L99">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_constructor.dm 99"/></a></h3>
+        <p>current selected name for the mech</p><h3 id="var/selected_primary"><aside class="declaration">var </aside>selected_primary
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_constructor.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_constructor.dm 101"/></a></h3>
+        <p>STRING-STRING list of mech_slot-primary_color_palette</p><h3 id="var/selected_secondary"><aside class="declaration">var </aside>selected_secondary
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_constructor.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_constructor.dm 109"/></a></h3>
+        <p>STRING-STRING list of mech_slot-secondary_color_palette</p><h3 id="var/selected_variants"><aside class="declaration">var </aside>selected_variants
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_constructor.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_constructor.dm 119"/></a></h3>
+        <p>STRING-STRING list of mech_slot-part_type</p><h3 id="var/selected_visor"><aside class="declaration">var </aside>selected_visor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_constructor.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_constructor.dm 117"/></a></h3>
+        <p>string of the visor palette</p><h2 id="proc">Proc Details</h2><h3 id="proc/deploy_mech"><aside class="declaration">proc </aside>deploy_mech<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_constructor.dm#L449">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_constructor.dm 449"/></a></aside>
+        </h3>
+        <p>Actually deploys mech after a short delay to let people spot it coming down</p><h3 id="proc/update_stats"><aside class="declaration">proc </aside>update_stats<aside>(selected_part, old_bodytype, new_bodytype) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_constructor.dm#L485">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_constructor.dm 485"/></a></aside>
+        </h3>
+        <p>updates the current_stats data for the UI</p><h3 id="proc/update_ui_view"><aside class="declaration">proc </aside>update_ui_view<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_constructor.dm#L510">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_constructor.dm 510"/></a></aside>
+        </h3>
+        <p>Updates the displayed mech preview dummy in the UI</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

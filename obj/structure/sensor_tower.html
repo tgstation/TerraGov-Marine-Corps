@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;structure&#x2F;sensor_tower - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/structure/sensor_tower.html#var">Var Details</a> - <a href="obj/structure/sensor_tower.html#proc">Proc Details</a></header>
+<main>
+<h1>sensor_tower <aside>/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/sensor_tower.html">sensor_tower</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#var/activate_time">activate_time</a></th><td>Time it takes to start the activation</td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#var/activated">activated</a></th><td>True if the sensor tower has finished activation, used for minimap icon and preventing deactivation</td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#var/already_activated">already_activated</a></th><td>Prevents there being more than one sensor tower being activated</td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#var/current_timer">current_timer</a></th><td>The timer for when the sensor tower activates</td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#var/deactivate_time">deactivate_time</a></th><td>Time it takes to stop the activation</td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#var/generate_time">generate_time</a></th><td>Time it takes for the sensor tower to fully activate</td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#var/id">id</a></th><td>Count amount of sensor towers existing</td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#var/remaining_game_time">remaining_game_time</a></th><td>How long is left in the game end timer. Recorded as a var to pause the timer while tower is activating</td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#var/towerid">towerid</a></th><td>The id for the tower when it initializes, used for minimap icon</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#proc/attacker_interaction">attacker_interaction</a></th><td>Handles attacker interactions with the tower</td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#proc/attacker_state_check">attacker_state_check</a></th><td>Checks whether an attack can currently activate this tower</td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#proc/begin_activation">begin_activation</a></th><td>Starts timer and sends an alert</td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#proc/deactivate">deactivate</a></th><td>Stops timer if activating and sends an alert</td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#proc/defender_interaction">defender_interaction</a></th><td>Handles defender interactions with the tower</td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#proc/finish_activation">finish_activation</a></th><td>When timer ends add a point to the point pool in sensor capture, increase game timer, and send an alert</td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#proc/toggle_game_timer">toggle_game_timer</a></th><td>Pauses or restarts the gamemode timer</td></tr>
+            <tr><th><a href="obj/structure/sensor_tower.html#proc/update_control_minimap_icon">update_control_minimap_icon</a></th><td>Update minimap icon of tower if its deactivated, activated , and fully activated</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/activate_time"><aside class="declaration">var </aside>activate_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 16"/></a></h3>
+        <p>Time it takes to start the activation</p><h3 id="var/activated"><aside class="declaration">var </aside>activated
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 24"/></a></h3>
+        <p>True if the sensor tower has finished activation, used for minimap icon and preventing deactivation</p><h3 id="var/already_activated"><aside class="declaration">var </aside>already_activated
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 26"/></a></h3>
+        <p>Prevents there being more than one sensor tower being activated</p><h3 id="var/current_timer"><aside class="declaration">var </aside>current_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 12"/></a></h3>
+        <p>The timer for when the sensor tower activates</p><h3 id="var/deactivate_time"><aside class="declaration">var </aside>deactivate_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 18"/></a></h3>
+        <p>Time it takes to stop the activation</p><h3 id="var/generate_time"><aside class="declaration">var </aside>generate_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 14"/></a></h3>
+        <p>Time it takes for the sensor tower to fully activate</p><h3 id="var/id"><aside class="declaration">var </aside>id
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 20"/></a></h3>
+        <p>Count amount of sensor towers existing</p><h3 id="var/remaining_game_time"><aside class="declaration">var </aside>remaining_game_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 30"/></a></h3>
+        <p>How long is left in the game end timer. Recorded as a var to pause the timer while tower is activating</p><h3 id="var/towerid"><aside class="declaration">var </aside>towerid
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 22"/></a></h3>
+        <p>The id for the tower when it initializes, used for minimap icon</p><h2 id="proc">Proc Details</h2><h3 id="proc/attacker_interaction"><aside class="declaration">proc </aside>attacker_interaction<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 76"/></a></aside>
+        </h3>
+        <p>Handles attacker interactions with the tower</p><h3 id="proc/attacker_state_check"><aside class="declaration">proc </aside>attacker_state_check<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 88"/></a></aside>
+        </h3>
+        <p>Checks whether an attack can currently activate this tower</p><h3 id="proc/begin_activation"><aside class="declaration">proc </aside>begin_activation<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 101"/></a></aside>
+        </h3>
+        <p>Starts timer and sends an alert</p><h3 id="proc/deactivate"><aside class="declaration">proc </aside>deactivate<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L140">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 140"/></a></aside>
+        </h3>
+        <p>Stops timer if activating and sends an alert</p><h3 id="proc/defender_interaction"><aside class="declaration">proc </aside>defender_interaction<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 55"/></a></aside>
+        </h3>
+        <p>Handles defender interactions with the tower</p><h3 id="proc/finish_activation"><aside class="declaration">proc </aside>finish_activation<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 114"/></a></aside>
+        </h3>
+        <p>When timer ends add a point to the point pool in sensor capture, increase game timer, and send an alert</p><h3 id="proc/toggle_game_timer"><aside class="declaration">proc </aside>toggle_game_timer<aside>(addition_time) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 155"/></a></aside>
+        </h3>
+        <p>Pauses or restarts the gamemode timer</p><h3 id="proc/update_control_minimap_icon"><aside class="declaration">proc </aside>update_control_minimap_icon<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/sensor_tower.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;sensor_tower.dm 171"/></a></aside>
+        </h3>
+        <p>Update minimap icon of tower if its deactivated, activated , and fully activated</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

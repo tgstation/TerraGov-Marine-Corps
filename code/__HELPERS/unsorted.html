@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__HELPERS&#x2F;unsorted.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__HELPERS/unsorted.html#define">Define Details</a></header>
+<main>
+<h1>code/__HELPERS/unsorted.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/unsorted.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;unsorted.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__HELPERS/unsorted.html#define/NAMEOF">NAMEOF</a></th><td>NAMEOF: Compile time checked variable name to string conversion
+evaluates to a string equal to &quot;X&quot;, but compile errors if X isn't a var on datum.
+datum may be null, but it does need to be a typed var.</td></tr>
+        <tr><th><a href="code/__HELPERS/unsorted.html#define/NAMEOF_STATIC">NAMEOF_STATIC</a></th><td>NAMEOF that actually works in static definitions because src::type requires src to be defined</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/angle_to_dir">angle_to_dir</a></th>
+                <td>Returns one of the 8 directions based on an angle</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/angle_to_cardinal_dir">angle_to_cardinal_dir</a></th>
+                <td>Returns one of the 4 cardinal directions based on an angle</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_between_angles">get_between_angles</a></th>
+                <td>returns degrees between two angles</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/LinkBlocked">LinkBlocked</a></th>
+                <td>Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/DirBlocked">DirBlocked</a></th>
+                <td>Checks if moving in a direction is blocked</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/TurfBlockedNonWindow">TurfBlockedNonWindow</a></th>
+                <td>Returns true if any object on a turf is both dense and not a window</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_closest_atom">get_closest_atom</a></th>
+                <td>Returns the closest atom of a specific type in a list from a source</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/closest_cardinal_dir">closest_cardinal_dir</a></th>
+                <td>If given a diagonal dir, return a corresponding cardinal dir. East/west preferred</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/params2screenpixel">params2screenpixel</a></th>
+                <td>Converts a screen loc param to a x,y coordinate pixel on the screen</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/weight_class_to_text">weight_class_to_text</a></th>
+                <td>Returns a string based on the weight class define used as argument.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/weight_class_data">weight_class_data</a></th>
+                <td>Returns an assoc list of WEIGHT CLASS TEXT = DESCRIPTION based on the arg you provide.
+Used by examine tags for giving each weight class a special description.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/semver_to_list">semver_to_list</a></th>
+                <td>Converts a semver string into a list of numbers</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_atom_on_turf">get_atom_on_turf</a></th>
+                <td>Returns the top-most atom sitting on the turf.
+For example, using this on a disk, which is in a bag, on a mob,
+will return the mob because it's on the turf.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_sorted_areas">get_sorted_areas</a></th>
+                <td>Returns a sorted version of GLOB.areas, by name</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/dview">dview</a></th>
+                <td>Version of view() which ignores darkness, because BYOND doesn't have it (I actually suggested it but it was tagged redundant, BUT HEARERS IS A T- /rant).</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/getpois">getpois</a></th>
+                <td>Returns a list of all items of interest with their name</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/LeftAndRightOfDir">LeftAndRightOfDir</a></th>
+                <td>Returns the left and right dir of the input dir, used for AI stutter step while attacking</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_areas">get_areas</a></th>
+                <td>Takes: Area type as text string or as typepath OR an instance of the area. Returns: A list of all areas of that type in the world.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_nested_locs">get_nested_locs</a></th>
+                <td>Returns a list of all locations (except the area) the movable is within.</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/generate_cone">generate_cone</a></th>
+                <td>Generates a cone shape. Any other checks should be handled with the resulting list. Can work with up to 359 degrees
+Variables:
+center - where the cone begins, or center of a circle drawn with this
+max_row_count - how many rows are checked
+starting_row - from how far should the turfs start getting included in the cone. -1 required to include center turf due to byond
+cone_width - big the angle of the cone is
+cone_direction - at what angle should the cone be made, relative to the game board's orientation
+blocked - whether the cone should take into consideration obstacles</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/check_path">check_path</a></th>
+                <td>Draws a line between two atoms, then checks if the path is blocked
+Returns the last turf in the list it can successfully path to</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/turf_block_check">turf_block_check</a></th>
+                <td>Return TRUE if we have a block, return FALSE otherwise</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_forward_square">get_forward_square</a></th>
+                <td>Returns a rectangle of turfs in front of the center.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/NAMEOF"><aside class="declaration">#define </aside>NAMEOF
+            <aside>(datum, X)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/unsorted.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;unsorted.dm 29"/></a>
+    </h3>
+    <p>NAMEOF: Compile time checked variable name to string conversion
+evaluates to a string equal to &quot;X&quot;, but compile errors if X isn't a var on datum.
+datum may be null, but it does need to be a typed var.</p><h3 id="define/NAMEOF_STATIC"><aside class="declaration">#define </aside>NAMEOF_STATIC
+            <aside>(datum, X)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/unsorted.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;unsorted.dm 35"/></a>
+    </h3>
+    <p>NAMEOF that actually works in static definitions because src::type requires src to be defined</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

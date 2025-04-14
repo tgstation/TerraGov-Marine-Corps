@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;area - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="area.html#var">Var Details</a> - <a href="area.html#proc">Proc Details</a></header>
+<main>
+<h1>area <aside>/<a href="area.html">area</a></aside><aside> inherits /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="area.html#var/all_fire_doors">all_fire_doors</a></th><td>Keeps a lit of adjacent firelocks, used for alarms/ZAS</td></tr>
+            <tr><th><a href="area.html#var/area_flavor">area_flavor</a></th><td>string used to determine specific icon variants when structures are used in an area</td></tr>
+            <tr><th><a href="area.html#var/area_has_base_lighting">area_has_base_lighting</a></th><td>Whether this area has a currently active base lighting, bool</td></tr>
+            <tr><th><a href="area.html#var/area_limited_icon_smoothing">area_limited_icon_smoothing</a></th><td>Boolean to limit the areas (subtypes included) that atoms in this area can smooth with. Used for shuttles.</td></tr>
+            <tr><th><a href="area.html#var/base_lighting_alpha">base_lighting_alpha</a></th><td>alpha 0-255 of lighting_effect and thus baselighting intensity</td></tr>
+            <tr><th><a href="area.html#var/base_lighting_color">base_lighting_color</a></th><td>The colour of the light acting on this area</td></tr>
+            <tr><th><a href="area.html#var/cameras">cameras</a></th><td>Cameras in this area</td></tr>
+            <tr><th><a href="area.html#var/ceiling">ceiling</a></th><td>the material the ceiling is made of. Used for debris from airstrikes and orbital beacons in ceiling_debris()</td></tr>
+            <tr><th><a href="area.html#var/fake_zlevel">fake_zlevel</a></th><td>Used in designating the &quot;level&quot; of maps pretending to be multi-z one Z</td></tr>
+            <tr><th><a href="area.html#var/lighting_effects">lighting_effects</a></th><td>List of mutable appearances we underlay to show light
+In the form plane offset + 1 -&gt; appearance to use</td></tr>
+            <tr><th><a href="area.html#var/max_ambience_cooldown">max_ambience_cooldown</a></th><td>Used to decide what the maximum time between ambience is</td></tr>
+            <tr><th><a href="area.html#var/min_ambience_cooldown">min_ambience_cooldown</a></th><td>Used to decide what the minimum time between ambience is</td></tr>
+            <tr><th><a href="area.html#var/outside">outside</a></th><td>Is this area considered inside or outside</td></tr>
+            <tr><th><a href="area.html#var/static_lighting">static_lighting</a></th><td>Whether this area allows static lighting and thus loads the lighting objects</td></tr>
+            <tr><th><a href="area.html#var/turfs_by_zlevel">turfs_by_zlevel</a></th><td>List of all turfs currently inside this area as nested lists indexed by zlevel.
+Acts as a filtered version of area.contents For faster lookup
+(area.contents is actually a filtered loop over world)
+Semi fragile, but it prevents stupid so I think it's worth it</td></tr>
+            <tr><th><a href="area.html#var/turfs_to_uncontain_by_zlevel">turfs_to_uncontain_by_zlevel</a></th><td>turfs_by_z_level can hold MASSIVE lists, so rather then adding/removing from it each time we have a problem turf
+We should instead store a list of turfs to REMOVE from it, then hook into a getter for it
+There is a risk of this and contained_turfs leaking, so a subsystem will run it down to 0 incrementally if it gets too large
+This uses the same nested list format as turfs_by_zlevel</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="area.html#proc/cannonize_contained_turfs">cannonize_contained_turfs</a></th><td>Ensures that the contained_turfs list properly represents the turfs actually inside us</td></tr>
+            <tr><th><a href="area.html#proc/cannonize_contained_turfs_by_zlevel">cannonize_contained_turfs_by_zlevel</a></th><td>Ensures that the contained_turfs list properly represents the turfs actually inside us</td></tr>
+            <tr><th><a href="area.html#proc/get_apc">get_apc</a></th><td>Returns the first APC it finds in an area</td></tr>
+            <tr><th><a href="area.html#proc/get_apc_list">get_apc_list</a></th><td>Returns a list of APCs in this area</td></tr>
+            <tr><th><a href="area.html#proc/get_highest_zlevel">get_highest_zlevel</a></th><td>Returns the highest zlevel that this area contains turfs for</td></tr>
+            <tr><th><a href="area.html#proc/get_turfs_by_zlevel">get_turfs_by_zlevel</a></th><td>Returns a list with all turfs in this zlevel.</td></tr>
+            <tr><th><a href="area.html#proc/get_turfs_from_all_zlevels">get_turfs_from_all_zlevels</a></th><td>Merges a list containing all of the turfs zlevel lists from get_zlevel_turf_lists inside one list. Use get_zlevel_turf_lists() or get_turfs_by_zlevel() unless you need all the turfs in one list to avoid generating large lists</td></tr>
+            <tr><th><a href="area.html#proc/get_zlevel_turf_lists">get_zlevel_turf_lists</a></th><td>Returns a nested list of lists with all turfs split by zlevel.
+only zlevels with turfs are returned. The order of the list is not guaranteed.</td></tr>
+            <tr><th><a href="area.html#proc/has_contained_turfs">has_contained_turfs</a></th><td>Returns TRUE if we have contained turfs, FALSE otherwise</td></tr>
+            <tr><th><a href="area.html#proc/reg_in_areas_in_z">reg_in_areas_in_z</a></th><td>Register this area as belonging to a z level</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/all_fire_doors"><aside class="declaration">var </aside>all_fire_doors
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 64"/></a></h3>
+        <p>Keeps a lit of adjacent firelocks, used for alarms/ZAS</p><h3 id="var/area_flavor"><aside class="declaration">var </aside>area_flavor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 79"/></a></h3>
+        <p>string used to determine specific icon variants when structures are used in an area</p><h3 id="var/area_has_base_lighting"><aside class="declaration">var </aside>area_has_base_lighting
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_area.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_area.dm 7"/></a></h3>
+        <p>Whether this area has a currently active base lighting, bool</p><h3 id="var/area_limited_icon_smoothing"><aside class="declaration">var </aside>area_limited_icon_smoothing
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 76"/></a></h3>
+        <p>Boolean to limit the areas (subtypes included) that atoms in this area can smooth with. Used for shuttles.</p><h3 id="var/base_lighting_alpha"><aside class="declaration">var </aside>base_lighting_alpha
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_area.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_area.dm 9"/></a></h3>
+        <p>alpha 0-255 of lighting_effect and thus baselighting intensity</p><h3 id="var/base_lighting_color"><aside class="declaration">var </aside>base_lighting_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_area.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_area.dm 11"/></a></h3>
+        <p>The colour of the light acting on this area</p><h3 id="var/cameras"><aside class="declaration">var </aside>cameras
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 62"/></a></h3>
+        <p>Cameras in this area</p><h3 id="var/ceiling"><aside class="declaration">var </aside>ceiling
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 54"/></a></h3>
+        <p>the material the ceiling is made of. Used for debris from airstrikes and orbital beacons in ceiling_debris()</p><h3 id="var/fake_zlevel"><aside class="declaration">var </aside>fake_zlevel
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 56"/></a></h3>
+        <p>Used in designating the &quot;level&quot; of maps pretending to be multi-z one Z</p><h3 id="var/lighting_effects"><aside class="declaration">var </aside>lighting_effects
+            <aside>&ndash; /list/mutable_appearance</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_area.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_area.dm 5"/></a></h3>
+        <p>List of mutable appearances we underlay to show light
+In the form plane offset + 1 -&gt; appearance to use</p><h3 id="var/max_ambience_cooldown"><aside class="declaration">var </aside>max_ambience_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 73"/></a></h3>
+        <p>Used to decide what the maximum time between ambience is</p><h3 id="var/min_ambience_cooldown"><aside class="declaration">var </aside>min_ambience_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 71"/></a></h3>
+        <p>Used to decide what the minimum time between ambience is</p><h3 id="var/outside"><aside class="declaration">var </aside>outside
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 58"/></a></h3>
+        <p>Is this area considered inside or outside</p><h3 id="var/static_lighting"><aside class="declaration">var </aside>static_lighting
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_static/static_lighting_area.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_static&#x2F;static_lighting_area.dm 3"/></a></h3>
+        <p>Whether this area allows static lighting and thus loads the lighting objects</p><h3 id="var/turfs_by_zlevel"><aside class="declaration">var </aside>turfs_by_zlevel
+            <aside>&ndash; /list/list/turf</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 16"/></a></h3>
+        <p>List of all turfs currently inside this area as nested lists indexed by zlevel.
+Acts as a filtered version of area.contents For faster lookup
+(area.contents is actually a filtered loop over world)
+Semi fragile, but it prevents stupid so I think it's worth it</p><h3 id="var/turfs_to_uncontain_by_zlevel"><aside class="declaration">var </aside>turfs_to_uncontain_by_zlevel
+            <aside>&ndash; /list/list/turf</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 22"/></a></h3>
+        <p>turfs_by_z_level can hold MASSIVE lists, so rather then adding/removing from it each time we have a problem turf
+We should instead store a list of turfs to REMOVE from it, then hook into a getter for it
+There is a risk of this and contained_turfs leaking, so a subsystem will run it down to 0 incrementally if it gets too large
+This uses the same nested list format as turfs_by_zlevel</p><h2 id="proc">Proc Details</h2><h3 id="proc/cannonize_contained_turfs"><aside class="declaration">proc </aside>cannonize_contained_turfs<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L220">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 220"/></a></aside>
+        </h3>
+        <p>Ensures that the contained_turfs list properly represents the turfs actually inside us</p><h3 id="proc/cannonize_contained_turfs_by_zlevel"><aside class="declaration">proc </aside>cannonize_contained_turfs_by_zlevel<aside>(zlevel_to_clean, _autoclean) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 192"/></a></aside>
+        </h3>
+        <p>Ensures that the contained_turfs list properly represents the turfs actually inside us</p><h3 id="proc/get_apc"><aside class="declaration">proc </aside>get_apc<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/power.dm#L307">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;power.dm 307"/></a></aside>
+        </h3>
+        <p>Returns the first APC it finds in an area</p><h3 id="proc/get_apc_list"><aside class="declaration">proc </aside>get_apc_list<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/power.dm#L299">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;power.dm 299"/></a></aside>
+        </h3>
+        <p>Returns a list of APCs in this area</p><h3 id="proc/get_highest_zlevel"><aside class="declaration">proc </aside>get_highest_zlevel<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L150">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 150"/></a></aside>
+        </h3>
+        <p>Returns the highest zlevel that this area contains turfs for</p><h3 id="proc/get_turfs_by_zlevel"><aside class="declaration">proc </aside>get_turfs_by_zlevel<aside>(zlevel) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 175"/></a></aside>
+        </h3>
+        <p>Returns a list with all turfs in this zlevel.</p><h3 id="proc/get_turfs_from_all_zlevels"><aside class="declaration">proc </aside>get_turfs_from_all_zlevels<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L186">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 186"/></a></aside>
+        </h3>
+        <p>Merges a list containing all of the turfs zlevel lists from get_zlevel_turf_lists inside one list. Use get_zlevel_turf_lists() or get_turfs_by_zlevel() unless you need all the turfs in one list to avoid generating large lists</p><h3 id="proc/get_zlevel_turf_lists"><aside class="declaration">proc </aside>get_zlevel_turf_lists<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L162">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 162"/></a></aside>
+        </h3>
+        <p>Returns a nested list of lists with all turfs split by zlevel.
+only zlevels with turfs are returned. The order of the list is not guaranteed.</p><h3 id="proc/has_contained_turfs"><aside class="declaration">proc </aside>has_contained_turfs<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L228">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 228"/></a></aside>
+        </h3>
+        <p>Returns TRUE if we have contained turfs, FALSE otherwise</p><h3 id="proc/reg_in_areas_in_z"><aside class="declaration">proc </aside>reg_in_areas_in_z<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/area/area.dm#L243">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 243"/></a></aside>
+        </h3>
+        <p>Register this area as belonging to a z level</p>
+<p>Ensures the item is added to the SSmapping.areas_in_z list for this z</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

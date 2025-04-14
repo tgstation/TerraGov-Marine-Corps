@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;structure&#x2F;xeno - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/structure/xeno.html#var">Var Details</a> - <a href="obj/structure/xeno.html#proc">Proc Details</a></header>
+<main>
+<h1>xeno <aside>/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/xeno.html">xeno</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/_xeno_structure.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;_xeno_structure.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/structure/xeno.html#var/hivenumber">hivenumber</a></th><td>Which hive(number) do we belong to?</td></tr>
+            <tr><th><a href="obj/structure/xeno.html#var/proximity_monitor">proximity_monitor</a></th><td>proximity monitor for threat detection</td></tr>
+            <tr><th><a href="obj/structure/xeno.html#var/threat_warning">threat_warning</a></th><td>Is the structure currently detecting a threat</td></tr>
+            <tr><th><a href="obj/structure/xeno.html#var/xeno_structure_flags">xeno_structure_flags</a></th><td>Bitflags specific to xeno structures</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/structure/xeno.html#proc/Destroy">Destroy</a></th><td>because admins can spawn them</td></tr>
+            <tr><th><a href="obj/structure/xeno.html#proc/HasProximity">HasProximity</a></th><td>Alerts the Hive when hostiles get too close to this structure</td></tr>
+            <tr><th><a href="obj/structure/xeno.html#proc/clear_warning">clear_warning</a></th><td>Clears any threat warnings</td></tr>
+            <tr><th><a href="obj/structure/xeno.html#proc/damage_alert">damage_alert</a></th><td>Notifies the hive when we take damage</td></tr>
+            <tr><th><a href="obj/structure/xeno.html#proc/update_minimap_icon">update_minimap_icon</a></th><td>resets minimap icon for structure</td></tr>
+            <tr><th><a href="obj/structure/xeno.html#proc/weed_removed">weed_removed</a></th><td>Destroy the xeno structure when the weed it was on is destroyed</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/hivenumber"><aside class="declaration">var </aside>hivenumber
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/_xeno_structure.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;_xeno_structure.dm 8"/></a></h3>
+        <p>Which hive(number) do we belong to?</p><h3 id="var/proximity_monitor"><aside class="declaration">var </aside>proximity_monitor
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/proximity_monitor.html">proximity_monitor</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/_xeno_structure.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;_xeno_structure.dm 12"/></a></h3>
+        <p>proximity monitor for threat detection</p><h3 id="var/threat_warning"><aside class="declaration">var </aside>threat_warning
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/_xeno_structure.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;_xeno_structure.dm 10"/></a></h3>
+        <p>Is the structure currently detecting a threat</p><h3 id="var/xeno_structure_flags"><aside class="declaration">var </aside>xeno_structure_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/_xeno_structure.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;_xeno_structure.dm 6"/></a></h3>
+        <p>Bitflags specific to xeno structures</p><h2 id="proc">Proc Details</h2><h3 id="proc/Destroy"><aside class="parent"><a title="/datum" href="datum.html#proc/Destroy">&uarr;</a></aside>Destroy<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/_xeno_structure.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;_xeno_structure.dm 28"/></a></aside>
+        </h3>
+        <p>because admins can spawn them</p><h3 id="proc/HasProximity">HasProximity<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/hostile) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/_xeno_structure.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;_xeno_structure.dm 59"/></a></aside>
+        </h3>
+        <p>Alerts the Hive when hostiles get too close to this structure</p><h3 id="proc/clear_warning"><aside class="declaration">proc </aside>clear_warning<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/_xeno_structure.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;_xeno_structure.dm 136"/></a></aside>
+        </h3>
+        <p>Clears any threat warnings</p><h3 id="proc/damage_alert"><aside class="declaration">proc </aside>damage_alert<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/_xeno_structure.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;_xeno_structure.dm 126"/></a></aside>
+        </h3>
+        <p>Notifies the hive when we take damage</p><h3 id="proc/update_minimap_icon"><aside class="declaration">proc </aside>update_minimap_icon<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/_xeno_structure.dm#L142">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;_xeno_structure.dm 142"/></a></aside>
+        </h3>
+        <p>resets minimap icon for structure</p><h3 id="proc/weed_removed"><aside class="declaration">proc </aside>weed_removed<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/_xeno_structure.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;_xeno_structure.dm 87"/></a></aside>
+        </h3>
+        <p>Destroy the xeno structure when the weed it was on is destroyed</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

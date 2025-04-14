@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;udder - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/udder.html#var">Var Details</a> - <a href="obj/item/udder.html#proc">Proc Details</a></header>
+<main>
+<h1>udder item <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/udder.html">udder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/udder.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;udder.dm 62"/></a></h1>
+
+<p>Abstract item that is held in nullspace and manages reagents. Created by udder component.
+While perhaps reagents created by udder component COULD be managed in the mob, it would be somewhat finnicky and I actually like the abstract udders.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/udder.html#var/on_generate_callback">on_generate_callback</a></th><td>optional proc to callback to when the udder generates milk</td></tr>
+            <tr><th><a href="obj/item/udder.html#var/size">size</a></th><td>how much the udder holds</td></tr>
+            <tr><th><a href="obj/item/udder.html#var/udder_mob">udder_mob</a></th><td>mob that has the udder component</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/udder.html#proc/generate">generate</a></th><td></td></tr>
+            <tr><th><a href="obj/item/udder.html#proc/initial_conditions">initial_conditions</a></th><td></td></tr>
+            <tr><th><a href="obj/item/udder.html#proc/milk">milk</a></th><td></td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/on_generate_callback"><aside class="declaration">var </aside>on_generate_callback
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/udder.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;udder.dm 71"/></a></h3>
+        <p>optional proc to callback to when the udder generates milk</p><h3 id="var/size"><aside class="declaration">var </aside>size
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/udder.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;udder.dm 65"/></a></h3>
+        <p>how much the udder holds</p><h3 id="var/udder_mob"><aside class="declaration">var </aside>udder_mob
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/udder.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;udder.dm 67"/></a></h3>
+        <p>mob that has the udder component</p><h2 id="proc">Proc Details</h2><h3 id="proc/generate"><aside class="declaration">proc </aside>generate<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/udder.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;udder.dm 103"/></a></aside>
+        </h3>
+        <hh1 id="generate">generate</hh1>
+<p>Proc called every 2 seconds from SSMobs to add whatever reagent the udder is generating.</p><h3 id="proc/initial_conditions"><aside class="declaration">proc </aside>initial_conditions<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/udder.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;udder.dm 92"/></a></aside>
+        </h3>
+        <hh1 id="initial-conditions">initial_conditions</hh1>
+<p>Proc called on creation separate from the reagent datum creation to allow for signalled milk generation instead of processing milk generation
+also useful for changing initial amounts in reagent holder (cows start with milk, gutlunches start empty)</p><h3 id="proc/milk"><aside class="declaration">proc </aside>milk<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/reagent_containers.html">reagent_containers</a>/glass/milk_holder, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/udder.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;udder.dm 114"/></a></aside>
+        </h3>
+        <hh1 id="milk">milk</hh1>
+<p>Proc called from attacking the component parent with the correct item, moves reagents into the glass basically.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

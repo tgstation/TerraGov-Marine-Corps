@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;armor_module&#x2F;armor - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/armor_module/armor.html#var">Var Details</a> - <a href="obj/item/armor_module/armor.html#proc">Proc Details</a></header>
+<main>
+<h1>armor <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/armor_module.html">armor_module</a>/<a href="obj/item/armor_module/armor.html">armor</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L140">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 140"/></a></h1>
+
+<p>These are the basic type for armor armor_modules. What seperates these from /armor_module is that these are designed to be recolored.
+These include Leg plates, Chest plates, Shoulder Plates and Visors. This could be expanded to anything that functions like armor and has greyscale functionality.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/armor_module/armor.html#var/secondary_color">secondary_color</a></th><td>If TRUE, this armor piece can be recolored when its parent is right clicked by facepaint.</td></tr>
+            <tr><th><a href="obj/item/armor_module/armor.html#var/slowdown">slowdown</a></th><td>Addititve Slowdown of this armor piece</td></tr>
+            <tr><th><a href="obj/item/armor_module/armor.html#var/soft_armor">soft_armor</a></th><td>The additional armor provided by equipping this piece.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/armor_module/armor.html#proc/extra_examine">extra_examine</a></th><td>Relays the extra controls to the user when the parent is examined.</td></tr>
+            <tr><th><a href="obj/item/armor_module/armor.html#proc/handle_color">handle_color</a></th><td>Sends a list of available colored attachments to be colored when the parent is right clicked with paint.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/secondary_color"><aside class="declaration">var </aside>secondary_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 157"/></a></h3>
+        <p>If TRUE, this armor piece can be recolored when its parent is right clicked by facepaint.</p><h3 id="var/slowdown"><aside class="parent"><a title="/obj/item" href="obj/item.html#var/slowdown">&uarr;</a></aside>slowdown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L148">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 148"/></a></h3>
+        <p>Addititve Slowdown of this armor piece</p><h3 id="var/soft_armor"><aside class="parent"><a title="/obj" href="obj.html#var/soft_armor">&uarr;</a></aside>soft_armor
+            <aside>&ndash; /<a href="datum.html">datum</a>/armor</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L145">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 145"/></a></h3>
+        <p>The additional armor provided by equipping this piece.</p><h2 id="proc">Proc Details</h2><h3 id="proc/extra_examine"><aside class="declaration">proc </aside>extra_examine<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user, /list/examine_list) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L190">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 190"/></a></aside>
+        </h3>
+        <p>Relays the extra controls to the user when the parent is examined.</p><h3 id="proc/handle_color"><aside class="declaration">proc </aside>handle_color<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user, /list/obj/item/secondaries) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L178">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 178"/></a></aside>
+        </h3>
+        <p>Sends a list of available colored attachments to be colored when the parent is right clicked with paint.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

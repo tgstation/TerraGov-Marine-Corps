@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;reagent_containers - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/reagent_containers.html#var">Var Details</a> - <a href="obj/item/reagent_containers.html#proc">Proc Details</a></header>
+<main>
+<h1>reagent_containers <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/reagent_containers.html">reagent_containers</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/reagent_containers.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;reagent_containers.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/reagent_containers.html#var/amount_per_transfer_from_this">amount_per_transfer_from_this</a></th><td>The maximum amount of reagents per transfer that will be moved out of this reagent container.</td></tr>
+            <tr><th><a href="obj/item/reagent_containers.html#var/fill_icon">fill_icon</a></th><td>The icon file to take fill icon appearances from</td></tr>
+            <tr><th><a href="obj/item/reagent_containers.html#var/fill_icon_state">fill_icon_state</a></th><td>The optional custom name for the reagent fill icon_state prefix
+If not set, uses the current icon state.</td></tr>
+            <tr><th><a href="obj/item/reagent_containers.html#var/fill_icon_thresholds">fill_icon_thresholds</a></th><td>The different thresholds at which the reagent fill overlay will change. See medical/reagent_fillings.dmi.</td></tr>
+            <tr><th><a href="obj/item/reagent_containers.html#var/free_refills">free_refills</a></th><td>Whether we can restock this in a vendor without it having its starting reagents</td></tr>
+            <tr><th><a href="obj/item/reagent_containers.html#var/liquifier">liquifier</a></th><td>Can liquify/grind pills without needing fluid to dissolve.</td></tr>
+            <tr><th><a href="obj/item/reagent_containers.html#var/list_reagents">list_reagents</a></th><td>List of reagents to add</td></tr>
+            <tr><th><a href="obj/item/reagent_containers.html#var/possible_transfer_amounts">possible_transfer_amounts</a></th><td>The different possible amounts of reagent to transfer out of the container</td></tr>
+            <tr><th><a href="obj/item/reagent_containers.html#var/reagent_flags">reagent_flags</a></th><td>Reagent flags, a few examples being if the container is open or not, if its transparent, if you can inject stuff in and out of the container, and so on</td></tr>
+            <tr><th><a href="obj/item/reagent_containers.html#var/volume">volume</a></th><td>The maximum amount of reagents this container can hold</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/reagent_containers.html#proc/change_transfer_amount">change_transfer_amount</a></th><td>Opens a tgui_input_list and changes the transfer_amount of our container based on our selection</td></tr>
+            <tr><th><a href="obj/item/reagent_containers.html#proc/has_initial_reagents">has_initial_reagents</a></th><td>True if this object currently contains at least its starting reagents, false otherwise. Extra reagents are ignored.</td></tr>
+            <tr><th><a href="obj/item/reagent_containers.html#proc/on_reagent_add">on_reagent_add</a></th><td>Updates the icon of the container when the reagents change. Eats signal args</td></tr>
+            <tr><th><a href="obj/item/reagent_containers.html#proc/record_reagent_consumption">record_reagent_consumption</a></th><td>Record what reagents and how much of them were transferred to a mob into their ckey's /datum/personal_statistics</td></tr>
+            <tr><th><a href="obj/item/reagent_containers.html#proc/try_splash">try_splash</a></th><td>Splashes atom/target with whatever reagents are contained</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/amount_per_transfer_from_this"><aside class="declaration">var </aside>amount_per_transfer_from_this
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/reagent_containers.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;reagent_containers.dm 15"/></a></h3>
+        <p>The maximum amount of reagents per transfer that will be moved out of this reagent container.</p><h3 id="var/fill_icon"><aside class="declaration">var </aside>fill_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/reagent_containers.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;reagent_containers.dm 43"/></a></h3>
+        <p>The icon file to take fill icon appearances from</p><h3 id="var/fill_icon_state"><aside class="declaration">var </aside>fill_icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/reagent_containers.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;reagent_containers.dm 41"/></a></h3>
+        <p>The optional custom name for the reagent fill icon_state prefix
+If not set, uses the current icon state.</p><h3 id="var/fill_icon_thresholds"><aside class="declaration">var </aside>fill_icon_thresholds
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/reagent_containers.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;reagent_containers.dm 38"/></a></h3>
+        <p>The different thresholds at which the reagent fill overlay will change. See medical/reagent_fillings.dmi.</p>
+<p>Should be a list of integers which correspond to a reagent unit threshold.
+If null, no automatic fill overlays are generated.</p>
+<p>For example, list(0) will mean it will gain a the overlay with any reagents present. This overlay is &quot;overlayname0&quot;.
+list(0, 10) whill have two overlay options, for 0-10 units (&quot;overlayname0&quot;) and 10+ units (&quot;overlayname10&quot;).</p><h3 id="var/free_refills"><aside class="declaration">var </aside>free_refills
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/reagent_containers.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;reagent_containers.dm 27"/></a></h3>
+        <p>Whether we can restock this in a vendor without it having its starting reagents</p><h3 id="var/liquifier"><aside class="declaration">var </aside>liquifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/reagent_containers.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;reagent_containers.dm 23"/></a></h3>
+        <p>Can liquify/grind pills without needing fluid to dissolve.</p><h3 id="var/list_reagents"><aside class="declaration">var </aside>list_reagents
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/reagent_containers.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;reagent_containers.dm 25"/></a></h3>
+        <p>List of reagents to add</p><h3 id="var/possible_transfer_amounts"><aside class="declaration">var </aside>possible_transfer_amounts
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/reagent_containers.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;reagent_containers.dm 17"/></a></h3>
+        <p>The different possible amounts of reagent to transfer out of the container</p><h3 id="var/reagent_flags"><aside class="declaration">var </aside>reagent_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/reagent_containers.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;reagent_containers.dm 21"/></a></h3>
+        <p>Reagent flags, a few examples being if the container is open or not, if its transparent, if you can inject stuff in and out of the container, and so on</p><h3 id="var/volume"><aside class="declaration">var </aside>volume
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/reagent_containers.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;reagent_containers.dm 19"/></a></h3>
+        <p>The maximum amount of reagents this container can hold</p><h2 id="proc">Proc Details</h2><h3 id="proc/change_transfer_amount"><aside class="declaration">proc </aside>change_transfer_amount<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/reagent_containers.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;reagent_containers.dm 68"/></a></aside>
+        </h3>
+        <p>Opens a tgui_input_list and changes the transfer_amount of our container based on our selection</p><h3 id="proc/has_initial_reagents"><aside class="declaration">proc </aside>has_initial_reagents<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/reagent_containers.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;reagent_containers.dm 97"/></a></aside>
+        </h3>
+        <p>True if this object currently contains at least its starting reagents, false otherwise. Extra reagents are ignored.</p><h3 id="proc/on_reagent_add"><aside class="declaration">proc </aside>on_reagent_add<aside>(/<a href="datum.html">datum</a>/<a href="datum/reagents.html">reagents</a>/holder, ...) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/reagent_containers.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;reagent_containers.dm 114"/></a></aside>
+        </h3>
+        <p>Updates the icon of the container when the reagents change. Eats signal args</p><h3 id="proc/record_reagent_consumption"><aside class="declaration">proc </aside>record_reagent_consumption<aside>(amount, /list/reagents_list, /<a href="mob.html">mob</a>/user, /<a href="mob.html">mob</a>/receiver) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/personal_statistics.dm#L427">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;personal_statistics.dm 427"/></a></aside>
+        </h3>
+        <p>Record what reagents and how much of them were transferred to a mob into their ckey's /datum/personal_statistics</p><h3 id="proc/try_splash"><aside class="declaration">proc </aside>try_splash<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="atom.html">atom</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/reagent_containers.dm#L140">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;reagent_containers.dm 140"/></a></aside>
+        </h3>
+        <p>Splashes atom/target with whatever reagents are contained</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;xeno_action&#x2F;reagent_slash - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/xeno_action/reagent_slash.html#var">Var Details</a> - <a href="datum/action/ability/xeno_action/reagent_slash.html#proc">Proc Details</a></header>
+<main>
+<h1>reagent_slash <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/xeno_action.html">xeno_action</a>/<a href="datum/action/ability/xeno_action/reagent_slash.html">reagent_slash</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/defiler/abilities_defiler.dm#L407">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;defiler&#x2F;abilities_defiler.dm 407"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/reagent_slash.html#var/particle_holder">particle_holder</a></th><td>Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/reagent_slash.html#var/reagent_slash_count">reagent_slash_count</a></th><td>How many remaining reagent slashes the Defiler has</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/reagent_slash.html#var/reagent_slash_duration_timer_id">reagent_slash_duration_timer_id</a></th><td>Timer ID for the Reagent Slashes timer; we reference this to delete the timer if the effect lapses before the timer does</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/reagent_slash.html#var/reagent_slash_reagent">reagent_slash_reagent</a></th><td>Defines the reagent being used for reagent slashes; locks it to the selected reagent on activation</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/reagent_slash.html#proc/reagent_slash">reagent_slash</a></th><td>Called when we slash while reagent slash is active</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/reagent_slash.html#proc/reagent_slash_deactivate">reagent_slash_deactivate</a></th><td>Called when the duration of reagent slash lapses</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/particle_holder"><aside class="declaration">var </aside>particle_holder
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/abstract/particle_holder.html">effect/abstract/particle_holder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/defiler/abilities_defiler.dm#L427">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;defiler&#x2F;abilities_defiler.dm 427"/></a></h3>
+        <p>Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.</p><h3 id="var/reagent_slash_count"><aside class="declaration">var </aside>reagent_slash_count
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/defiler/abilities_defiler.dm#L419">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;defiler&#x2F;abilities_defiler.dm 419"/></a></h3>
+        <p>How many remaining reagent slashes the Defiler has</p><h3 id="var/reagent_slash_duration_timer_id"><aside class="declaration">var </aside>reagent_slash_duration_timer_id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/defiler/abilities_defiler.dm#L421">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;defiler&#x2F;abilities_defiler.dm 421"/></a></h3>
+        <p>Timer ID for the Reagent Slashes timer; we reference this to delete the timer if the effect lapses before the timer does</p><h3 id="var/reagent_slash_reagent"><aside class="declaration">var </aside>reagent_slash_reagent
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/defiler/abilities_defiler.dm#L423">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;defiler&#x2F;abilities_defiler.dm 423"/></a></h3>
+        <p>Defines the reagent being used for reagent slashes; locks it to the selected reagent on activation</p><h2 id="proc">Proc Details</h2><h3 id="proc/reagent_slash"><aside class="declaration">proc </aside>reagent_slash<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target, damage, /list/damage_mod, /list/armor_mod) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/defiler/abilities_defiler.dm#L457">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;defiler&#x2F;abilities_defiler.dm 457"/></a></aside>
+        </h3>
+        <p>Called when we slash while reagent slash is active</p><h3 id="proc/reagent_slash_deactivate"><aside class="declaration">proc </aside>reagent_slash_deactivate<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a>/X) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/defiler/abilities_defiler.dm#L443">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;defiler&#x2F;abilities_defiler.dm 443"/></a></aside>
+        </h3>
+        <p>Called when the duration of reagent slash lapses</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

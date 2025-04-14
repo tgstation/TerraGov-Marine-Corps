@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;preferences - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/preferences.html#var">Var Details</a> - <a href="datum/preferences.html#proc">Proc Details</a></header>
+<main>
+<h1>preferences <aside>/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 4"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/preferences.html#var/accessible_tgui_themes">accessible_tgui_themes</a></th><td>Preference for letting people make TGUI windows use more accessible (basically, default) themes, where needed/possible.
+Example application: health analyzers using this to choose between default themes or the NtOS themes.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/ambient_occlusion">ambient_occlusion</a></th><td>ambient occlusion, or the shadows drawn below objects</td></tr>
+            <tr><th><a href="datum/preferences.html#var/auto_fit_viewport">auto_fit_viewport</a></th><td>Should we automatically fit the viewport?</td></tr>
+            <tr><th><a href="datum/preferences.html#var/chat_on_map">chat_on_map</a></th><td>Chat on map</td></tr>
+            <tr><th><a href="datum/preferences.html#var/chem_macros">chem_macros</a></th><td>Saves chemical recipes based on client so they persist through games</td></tr>
+            <tr><th><a href="datum/preferences.html#var/fast_mc_refresh">fast_mc_refresh</a></th><td>Whether or not the MC tab of the Stat Panel refreshes fast. This is expensive so make sure you need it.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/favorite_outfits">favorite_outfits</a></th><td>What outfit typepaths we've favorited in the SelectEquipment menu</td></tr>
+            <tr><th><a href="datum/preferences.html#var/fullscreen_mode">fullscreen_mode</a></th><td>If the game is in fullscreen mode</td></tr>
+            <tr><th><a href="datum/preferences.html#var/hear_ooc_anywhere_as_staff">hear_ooc_anywhere_as_staff</a></th><td>When enabled, can hear OOC channels from anywhere in any situation.
+Ex: mentors/admins being able to hear XOOC as a human, or LOOC when not nearby the speaker.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/ignoring">ignoring</a></th><td>List of keys we are ignoring in global OOC</td></tr>
+            <tr><th><a href="datum/preferences.html#var/loadout_manager">loadout_manager</a></th><td>The loadout manager</td></tr>
+            <tr><th><a href="datum/preferences.html#var/map_name">map_name</a></th><td>New TGUI Preference preview</td></tr>
+            <tr><th><a href="datum/preferences.html#var/multiz_parallax">multiz_parallax</a></th><td>whether we want to use multi-z parallax. performance option</td></tr>
+            <tr><th><a href="datum/preferences.html#var/multiz_performance">multiz_performance</a></th><td>performance setting for multiz</td></tr>
+            <tr><th><a href="datum/preferences.html#var/mute_others_combat_messages">mute_others_combat_messages</a></th><td>Whether to mute goonchat combat messages from others, such as when they are shot.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/mute_self_combat_messages">mute_self_combat_messages</a></th><td>Whether to mute goonchat combat messages when we are the source, such as when we are shot.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/mute_xeno_health_alert_messages">mute_xeno_health_alert_messages</a></th><td>Whether to mute xeno health alerts from when other xenos are badly hurt.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/pixel_size">pixel_size</a></th><td>What size should pixels be displayed as? 0 is strech to fit</td></tr>
+            <tr><th><a href="datum/preferences.html#var/preferred_squad_som">preferred_squad_som</a></th><td>Your preferred squad, when playing SOM</td></tr>
+            <tr><th><a href="datum/preferences.html#var/quick_equip">quick_equip</a></th><td>Quick equip slots, up to <a href="code/__DEFINES/preferences.html#define/MAX_QUICK_EQUIP_SLOTS" title="MAX_QUICK_EQUIP_SLOTS">MAX_QUICK_EQUIP_SLOTS</a>. One per quick equip hotkey.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/radio_tts_flags">radio_tts_flags</a></th><td>Which types of comms the user wants to hear TTS from</td></tr>
+            <tr><th><a href="datum/preferences.html#var/scaling_method">scaling_method</a></th><td>What scaling method should we use? Distort means nearest neighbor</td></tr>
+            <tr><th><a href="datum/preferences.html#var/see_rc_emotes">see_rc_emotes</a></th><td>Whether emotes will be displayed on runechat. Requires chat_on_map to have effect.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/show_status_bar">show_status_bar</a></th><td>Hide status bar (bottom left)</td></tr>
+            <tr><th><a href="datum/preferences.html#var/show_xeno_rank">show_xeno_rank</a></th><td>Whether we generate a xeno name to show in the chatbox and on the mob.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/slot_draw_order_pref">slot_draw_order_pref</a></th><td>List of slot_draw_order</td></tr>
+            <tr><th><a href="datum/preferences.html#var/sound_tts">sound_tts</a></th><td>whether the user wants to hear tts</td></tr>
+            <tr><th><a href="datum/preferences.html#var/split_admin_tabs">split_admin_tabs</a></th><td>When enabled, will split the 'Admin' panel into several tabs.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/status_toggle_flags">status_toggle_flags</a></th><td>State tracking of hive status toggles</td></tr>
+            <tr><th><a href="datum/preferences.html#var/stim_sequences">stim_sequences</a></th><td>list(&quot;sequencename&quot; = list(uid, uid, uid))</td></tr>
+            <tr><th><a href="datum/preferences.html#var/tab_index">tab_index</a></th><td>Current tab index of the game preferences ui</td></tr>
+            <tr><th><a href="datum/preferences.html#var/tts_pitch">tts_pitch</a></th><td>how much to pitch the tts voice up and down</td></tr>
+            <tr><th><a href="datum/preferences.html#var/tts_voice">tts_voice</a></th><td>What tts voice should be used</td></tr>
+            <tr><th><a href="datum/preferences.html#var/unique_action_use_active_hand">unique_action_use_active_hand</a></th><td>If unique action will only act on the item in the active hand. If false, it will try to act on the item on the inactive hand as well in certain conditions.</td></tr>
+            <tr><th><a href="datum/preferences.html#var/volume_tts">volume_tts</a></th><td>Volume to use for tts</td></tr>
+            <tr><th><a href="datum/preferences.html#var/widescreenpref">widescreenpref</a></th><td>Should we be in the widescreen mode set by the config?</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/preferences.html#proc/delete_loadout">delete_loadout</a></th><td>Delete a loadout from the savefile</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/load_loadout">load_loadout</a></th><td>Load a loadout from the savefile and returns it</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/load_loadout_list">load_loadout_list</a></th><td>Load the loadout list</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/load_loadout_manager">load_loadout_manager</a></th><td>Load from a savefile and unserialize the loadout manager
+This is deprecated and should be used only to convert old loadout list save system to new one</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/reset_loadouts_file">reset_loadouts_file</a></th><td>Erase all loadouts that could be saved on the savefile</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/save_loadout">save_loadout</a></th><td>Save a loadout into the savefile</td></tr>
+            <tr><th><a href="datum/preferences.html#proc/save_loadout_list">save_loadout_list</a></th><td>Save the loadout list</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/accessible_tgui_themes"><aside class="declaration">var </aside>accessible_tgui_themes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L158">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 158"/></a></h3>
+        <p>Preference for letting people make TGUI windows use more accessible (basically, default) themes, where needed/possible.
+Example application: health analyzers using this to choose between default themes or the NtOS themes.</p><h3 id="var/ambient_occlusion"><aside class="declaration">var </aside>ambient_occlusion
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L185">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 185"/></a></h3>
+        <p>ambient occlusion, or the shadows drawn below objects</p><h3 id="var/auto_fit_viewport"><aside class="declaration">var </aside>auto_fit_viewport
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L168">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 168"/></a></h3>
+        <p>Should we automatically fit the viewport?</p><h3 id="var/chat_on_map"><aside class="declaration">var </aside>chat_on_map
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 161"/></a></h3>
+        <p>Chat on map</p><h3 id="var/chem_macros"><aside class="declaration">var </aside>chem_macros
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 56"/></a></h3>
+        <p>Saves chemical recipes based on client so they persist through games</p><h3 id="var/fast_mc_refresh"><aside class="declaration">var </aside>fast_mc_refresh
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 192"/></a></h3>
+        <p>Whether or not the MC tab of the Stat Panel refreshes fast. This is expensive so make sure you need it.</p><h3 id="var/favorite_outfits"><aside class="declaration">var </aside>favorite_outfits
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L207">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 207"/></a></h3>
+        <p>What outfit typepaths we've favorited in the SelectEquipment menu</p><h3 id="var/fullscreen_mode"><aside class="declaration">var </aside>fullscreen_mode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L181">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 181"/></a></h3>
+        <p>If the game is in fullscreen mode</p><h3 id="var/hear_ooc_anywhere_as_staff"><aside class="declaration">var </aside>hear_ooc_anywhere_as_staff
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L197">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 197"/></a></h3>
+        <p>When enabled, can hear OOC channels from anywhere in any situation.
+Ex: mentors/admins being able to hear XOOC as a human, or LOOC when not nearby the speaker.</p><h3 id="var/ignoring"><aside class="declaration">var </aside>ignoring
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 131"/></a></h3>
+        <p>List of keys we are ignoring in global OOC</p><h3 id="var/loadout_manager"><aside class="declaration">var </aside>loadout_manager
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/loadout_manager.html">loadout_manager</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 173"/></a></h3>
+        <p>The loadout manager</p><h3 id="var/map_name"><aside class="declaration">var </aside>map_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L200">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 200"/></a></h3>
+        <p>New TGUI Preference preview</p><h3 id="var/multiz_parallax"><aside class="declaration">var </aside>multiz_parallax
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L187">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 187"/></a></h3>
+        <p>whether we want to use multi-z parallax. performance option</p><h3 id="var/multiz_performance"><aside class="declaration">var </aside>multiz_performance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L189">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 189"/></a></h3>
+        <p>performance setting for multiz</p><h3 id="var/mute_others_combat_messages"><aside class="declaration">var </aside>mute_others_combat_messages
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 139"/></a></h3>
+        <p>Whether to mute goonchat combat messages from others, such as when they are shot.</p><h3 id="var/mute_self_combat_messages"><aside class="declaration">var </aside>mute_self_combat_messages
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 137"/></a></h3>
+        <p>Whether to mute goonchat combat messages when we are the source, such as when we are shot.</p><h3 id="var/mute_xeno_health_alert_messages"><aside class="declaration">var </aside>mute_xeno_health_alert_messages
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 141"/></a></h3>
+        <p>Whether to mute xeno health alerts from when other xenos are badly hurt.</p><h3 id="var/pixel_size"><aside class="declaration">var </aside>pixel_size
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L177">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 177"/></a></h3>
+        <p>What size should pixels be displayed as? 0 is strech to fit</p><h3 id="var/preferred_squad_som"><aside class="declaration">var </aside>preferred_squad_som
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 81"/></a></h3>
+        <p>Your preferred squad, when playing SOM</p><h3 id="var/quick_equip"><aside class="declaration">var </aside>quick_equip
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 84"/></a></h3>
+        <p>Quick equip slots, up to <a href="code/__DEFINES/preferences.html#define/MAX_QUICK_EQUIP_SLOTS" title="MAX_QUICK_EQUIP_SLOTS">MAX_QUICK_EQUIP_SLOTS</a>. One per quick equip hotkey.</p><h3 id="var/radio_tts_flags"><aside class="declaration">var </aside>radio_tts_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L154">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 154"/></a></h3>
+        <p>Which types of comms the user wants to hear TTS from</p><h3 id="var/scaling_method"><aside class="declaration">var </aside>scaling_method
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L179">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 179"/></a></h3>
+        <p>What scaling method should we use? Distort means nearest neighbor</p><h3 id="var/see_rc_emotes"><aside class="declaration">var </aside>see_rc_emotes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L165">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 165"/></a></h3>
+        <p>Whether emotes will be displayed on runechat. Requires chat_on_map to have effect.</p><h3 id="var/show_status_bar"><aside class="declaration">var </aside>show_status_bar
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L183">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 183"/></a></h3>
+        <p>Hide status bar (bottom left)</p><h3 id="var/show_xeno_rank"><aside class="declaration">var </aside>show_xeno_rank
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 143"/></a></h3>
+        <p>Whether we generate a xeno name to show in the chatbox and on the mob.</p><h3 id="var/slot_draw_order_pref"><aside class="declaration">var </aside>slot_draw_order_pref
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L213">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 213"/></a></h3>
+        <p>List of slot_draw_order</p><h3 id="var/sound_tts"><aside class="declaration">var </aside>sound_tts
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 146"/></a></h3>
+        <p>whether the user wants to hear tts</p><h3 id="var/split_admin_tabs"><aside class="declaration">var </aside>split_admin_tabs
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L194">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 194"/></a></h3>
+        <p>When enabled, will split the 'Admin' panel into several tabs.</p><h3 id="var/status_toggle_flags"><aside class="declaration">var </aside>status_toggle_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L216">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 216"/></a></h3>
+        <p>State tracking of hive status toggles</p><h3 id="var/stim_sequences"><aside class="declaration">var </aside>stim_sequences
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L210">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 210"/></a></h3>
+        <p>list(&quot;sequencename&quot; = list(uid, uid, uid))</p><h3 id="var/tab_index"><aside class="declaration">var </aside>tab_index
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 53"/></a></h3>
+        <p>Current tab index of the game preferences ui</p><h3 id="var/tts_pitch"><aside class="declaration">var </aside>tts_pitch
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L150">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 150"/></a></h3>
+        <p>how much to pitch the tts voice up and down</p><h3 id="var/tts_voice"><aside class="declaration">var </aside>tts_voice
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L148">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 148"/></a></h3>
+        <p>What tts voice should be used</p><h3 id="var/unique_action_use_active_hand"><aside class="declaration">var </aside>unique_action_use_active_hand
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L204">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 204"/></a></h3>
+        <p>If unique action will only act on the item in the active hand. If false, it will try to act on the item on the inactive hand as well in certain conditions.</p><h3 id="var/volume_tts"><aside class="declaration">var </aside>volume_tts
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 152"/></a></h3>
+        <p>Volume to use for tts</p><h3 id="var/widescreenpref"><aside class="declaration">var </aside>widescreenpref
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences.dm 175"/></a></h3>
+        <p>Should we be in the widescreen mode set by the config?</p><h2 id="proc">Proc Details</h2><h3 id="proc/delete_loadout"><aside class="declaration">proc </aside>delete_loadout<aside>(loadout_name, loadout_job) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences_savefile.dm#L752">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences_savefile.dm 752"/></a></aside>
+        </h3>
+        <p>Delete a loadout from the savefile</p><h3 id="proc/load_loadout"><aside class="declaration">proc </aside>load_loadout<aside>(loadout_name, loadout_job) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences_savefile.dm#L764">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences_savefile.dm 764"/></a></aside>
+        </h3>
+        <p>Load a loadout from the savefile and returns it</p><h3 id="proc/load_loadout_list"><aside class="declaration">proc </aside>load_loadout_list<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences_savefile.dm#L796">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences_savefile.dm 796"/></a></aside>
+        </h3>
+        <p>Load the loadout list</p><h3 id="proc/load_loadout_manager"><aside class="declaration">proc </aside>load_loadout_manager<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences_savefile.dm#L816">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences_savefile.dm 816"/></a></aside>
+        </h3>
+        <p>Load from a savefile and unserialize the loadout manager
+This is deprecated and should be used only to convert old loadout list save system to new one</p><h3 id="proc/reset_loadouts_file"><aside class="declaration">proc </aside>reset_loadouts_file<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences_savefile.dm#L834">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences_savefile.dm 834"/></a></aside>
+        </h3>
+        <p>Erase all loadouts that could be saved on the savefile</p><h3 id="proc/save_loadout"><aside class="declaration">proc </aside>save_loadout<aside>(/<a href="datum.html">datum</a>/<a href="datum/loadout.html">loadout</a>/loadout) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences_savefile.dm#L737">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences_savefile.dm 737"/></a></aside>
+        </h3>
+        <p>Save a loadout into the savefile</p><h3 id="proc/save_loadout_list"><aside class="declaration">proc </aside>save_loadout_list<aside>(loadouts_data, loadout_version) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences_savefile.dm#L781">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences_savefile.dm 781"/></a></aside>
+        </h3>
+        <p>Save the loadout list</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

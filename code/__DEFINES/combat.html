@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;combat.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/combat.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/combat.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/combat.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;combat.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/combat.html#define/MELEE">MELEE</a></th><td>Involves a melee attack or a thrown object.</td></tr>
+        <tr><th><a href="code/__DEFINES/combat.html#define/BULLET">BULLET</a></th><td>Involves a solid projectile.</td></tr>
+        <tr><th><a href="code/__DEFINES/combat.html#define/LASER">LASER</a></th><td>Involves a laser.</td></tr>
+        <tr><th><a href="code/__DEFINES/combat.html#define/ENERGY">ENERGY</a></th><td>Involves an EMP or energy-based projectile.</td></tr>
+        <tr><th><a href="code/__DEFINES/combat.html#define/BOMB">BOMB</a></th><td>Involves a shockwave, usually from an explosion.</td></tr>
+        <tr><th><a href="code/__DEFINES/combat.html#define/BIO">BIO</a></th><td>Involved in checking whether a disease can infect or spread. Also involved in xeno neurotoxin.</td></tr>
+        <tr><th><a href="code/__DEFINES/combat.html#define/FIRE">FIRE</a></th><td>Involves fire or temperature extremes.</td></tr>
+        <tr><th><a href="code/__DEFINES/combat.html#define/ACID">ACID</a></th><td>Involves corrosive substances.</td></tr>
+        <tr><th><a href="code/__DEFINES/combat.html#define/COMBAT_MELEE_ATTACK">COMBAT_MELEE_ATTACK</a></th><td>Melee damage</td></tr>
+        <tr><th><a href="code/__DEFINES/combat.html#define/COMBAT_PROJ_ATTACK">COMBAT_PROJ_ATTACK</a></th><td>Projectile damage</td></tr>
+        <tr><th><a href="code/__DEFINES/combat.html#define/COMBAT_TOUCH_ATTACK">COMBAT_TOUCH_ATTACK</a></th><td>Potentially hostile interactions that aren't actually damage, such as disarms or grabs</td></tr>
+        <tr><th><a href="code/__DEFINES/combat.html#define/SHIELD_TOGGLE">SHIELD_TOGGLE</a></th><td>Can be toggled on and off</td></tr>
+        <tr><th><a href="code/__DEFINES/combat.html#define/SHIELD_PURE_BLOCKING">SHIELD_PURE_BLOCKING</a></th><td>Shield works by % chance to simply block the attack entirely, instead of normal reductive calc</td></tr>
+        <tr><th><a href="code/__DEFINES/combat.html#define/SHIELD_PARENT_INTEGRITY">SHIELD_PARENT_INTEGRITY</a></th><td>Transfers damage to parent's integrity</td></tr>
+        <tr><th><a href="code/__DEFINES/combat.html#define/XENO_DEFAULT_ACCURACY">XENO_DEFAULT_ACCURACY</a></th><td>Xenomorph accuracy</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ACID"><aside class="declaration">#define </aside>ACID
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/combat.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;combat.dm 36"/></a>
+    </h3>
+    <p>Involves corrosive substances.</p><h3 id="define/BIO"><aside class="declaration">#define </aside>BIO
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/combat.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;combat.dm 32"/></a>
+    </h3>
+    <p>Involved in checking whether a disease can infect or spread. Also involved in xeno neurotoxin.</p><h3 id="define/BOMB"><aside class="declaration">#define </aside>BOMB
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/combat.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;combat.dm 30"/></a>
+    </h3>
+    <p>Involves a shockwave, usually from an explosion.</p><h3 id="define/BULLET"><aside class="declaration">#define </aside>BULLET
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/combat.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;combat.dm 24"/></a>
+    </h3>
+    <p>Involves a solid projectile.</p><h3 id="define/COMBAT_MELEE_ATTACK"><aside class="declaration">#define </aside>COMBAT_MELEE_ATTACK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/combat.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;combat.dm 57"/></a>
+    </h3>
+    <p>Melee damage</p><h3 id="define/COMBAT_PROJ_ATTACK"><aside class="declaration">#define </aside>COMBAT_PROJ_ATTACK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/combat.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;combat.dm 59"/></a>
+    </h3>
+    <p>Projectile damage</p><h3 id="define/COMBAT_TOUCH_ATTACK"><aside class="declaration">#define </aside>COMBAT_TOUCH_ATTACK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/combat.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;combat.dm 61"/></a>
+    </h3>
+    <p>Potentially hostile interactions that aren't actually damage, such as disarms or grabs</p><h3 id="define/ENERGY"><aside class="declaration">#define </aside>ENERGY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/combat.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;combat.dm 28"/></a>
+    </h3>
+    <p>Involves an EMP or energy-based projectile.</p><h3 id="define/FIRE"><aside class="declaration">#define </aside>FIRE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/combat.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;combat.dm 34"/></a>
+    </h3>
+    <p>Involves fire or temperature extremes.</p><h3 id="define/LASER"><aside class="declaration">#define </aside>LASER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/combat.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;combat.dm 26"/></a>
+    </h3>
+    <p>Involves a laser.</p><h3 id="define/MELEE"><aside class="declaration">#define </aside>MELEE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/combat.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;combat.dm 22"/></a>
+    </h3>
+    <p>Involves a melee attack or a thrown object.</p><h3 id="define/SHIELD_PARENT_INTEGRITY"><aside class="declaration">#define </aside>SHIELD_PARENT_INTEGRITY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/combat.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;combat.dm 68"/></a>
+    </h3>
+    <p>Transfers damage to parent's integrity</p><h3 id="define/SHIELD_PURE_BLOCKING"><aside class="declaration">#define </aside>SHIELD_PURE_BLOCKING
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/combat.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;combat.dm 66"/></a>
+    </h3>
+    <p>Shield works by % chance to simply block the attack entirely, instead of normal reductive calc</p><h3 id="define/SHIELD_TOGGLE"><aside class="declaration">#define </aside>SHIELD_TOGGLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/combat.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;combat.dm 64"/></a>
+    </h3>
+    <p>Can be toggled on and off</p><h3 id="define/XENO_DEFAULT_ACCURACY"><aside class="declaration">#define </aside>XENO_DEFAULT_ACCURACY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/combat.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;combat.dm 83"/></a>
+    </h3>
+    <p>Xenomorph accuracy</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

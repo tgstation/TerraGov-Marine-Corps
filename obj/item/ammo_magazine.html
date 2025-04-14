@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;ammo_magazine - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/ammo_magazine.html#var">Var Details</a> - <a href="obj/item/ammo_magazine.html#proc">Proc Details</a></header>
+<main>
+<h1>ammo_magazine <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/ammo_magazine.html">ammo_magazine</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#var/aim_speed_mod">aim_speed_mod</a></th><td>Changes the slowdown amount when wielding a weapon by this value.</td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#var/base_ammo_icon">base_ammo_icon</a></th><td>the default icon if MAGAZINE_SHOW_AMMO is used.</td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#var/bonus_overlay">bonus_overlay</a></th><td>Icon state to an overlay to add to the gun, for extended mags, box mags, and so on</td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#var/caliber">caliber</a></th><td>This is used for matching handfuls to each other or whatever the mag is. The #Defines can be found in __DEFINES/calibers.dm</td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#var/current_rounds">current_rounds</a></th><td>Set this to something else for it not to start with different initial counts.</td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#var/default_ammo">default_ammo</a></th><td>This is a typepath for the type of bullet the magazine holds, it is cast so that it can draw the variable handful_amount from default_ammo in create_handful()</td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#var/fill_delay">fill_delay</a></th><td>Delay for filling this magazine with another one.</td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#var/magazine_flags">magazine_flags</a></th><td>flags specifically for magazines.</td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#var/max_rounds">max_rounds</a></th><td>How many rounds it can hold.</td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#var/overcharge_ammo">overcharge_ammo</a></th><td>Generally used for energy weapons</td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#var/reload_delay">reload_delay</a></th><td>Set a timer for reloading mags. Higher is slower.</td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#var/scatter_unwielded_mod">scatter_unwielded_mod</a></th><td>Increases or decreases scatter chance but for onehanded firing.</td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#var/used_casings">used_casings</a></th><td>Just an easier way to track how many shells to eject later.</td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#var/wield_delay_mod">wield_delay_mod</a></th><td>How long ADS takes (time before firing)</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#proc/create_handful">create_handful</a></th><td>This will attempt to place the ammo in the user's hand if possible.</td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#proc/generate_handful">generate_handful</a></th><td>Called on a /ammo_magazine that wishes to be a handful. It generates all the data required for the handful.</td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#proc/get_additional_codex_info">get_additional_codex_info</a></th><td>Any additional mechanic info specific to this magazine or the ammo in it</td></tr>
+            <tr><th><a href="obj/item/ammo_magazine.html#proc/match_ammo">match_ammo</a></th><td>sets greyscale for the handful if it has been specified by the ammo datum</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/aim_speed_mod"><aside class="declaration">var </aside>aim_speed_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 43"/></a></h3>
+        <p>Changes the slowdown amount when wielding a weapon by this value.</p><h3 id="var/base_ammo_icon"><aside class="declaration">var </aside>base_ammo_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 37"/></a></h3>
+        <p>the default icon if MAGAZINE_SHOW_AMMO is used.</p><h3 id="var/bonus_overlay"><aside class="declaration">var </aside>bonus_overlay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 17"/></a></h3>
+        <p>Icon state to an overlay to add to the gun, for extended mags, box mags, and so on</p><h3 id="var/caliber"><aside class="declaration">var </aside>caliber
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 23"/></a></h3>
+        <p>This is used for matching handfuls to each other or whatever the mag is. The #Defines can be found in __DEFINES/calibers.dm</p><h3 id="var/current_rounds"><aside class="declaration">var </aside>current_rounds
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 25"/></a></h3>
+        <p>Set this to something else for it not to start with different initial counts.</p><h3 id="var/default_ammo"><aside class="declaration">var </aside>default_ammo
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/ammo.html">ammo</a>/bullet</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 19"/></a></h3>
+        <p>This is a typepath for the type of bullet the magazine holds, it is cast so that it can draw the variable handful_amount from default_ammo in create_handful()</p><h3 id="var/fill_delay"><aside class="declaration">var </aside>fill_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 31"/></a></h3>
+        <p>Delay for filling this magazine with another one.</p><h3 id="var/magazine_flags"><aside class="declaration">var </aside>magazine_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 35"/></a></h3>
+        <p>flags specifically for magazines.</p><h3 id="var/max_rounds"><aside class="declaration">var </aside>max_rounds
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 27"/></a></h3>
+        <p>How many rounds it can hold.</p><h3 id="var/overcharge_ammo"><aside class="declaration">var </aside>overcharge_ammo
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/ammo.html">ammo</a>/bullet</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 21"/></a></h3>
+        <p>Generally used for energy weapons</p><h3 id="var/reload_delay"><aside class="declaration">var </aside>reload_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 29"/></a></h3>
+        <p>Set a timer for reloading mags. Higher is slower.</p><h3 id="var/scatter_unwielded_mod"><aside class="declaration">var </aside>scatter_unwielded_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 41"/></a></h3>
+        <p>Increases or decreases scatter chance but for onehanded firing.</p><h3 id="var/used_casings"><aside class="declaration">var </aside>used_casings
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 33"/></a></h3>
+        <p>Just an easier way to track how many shells to eject later.</p><h3 id="var/wield_delay_mod"><aside class="declaration">var </aside>wield_delay_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 45"/></a></h3>
+        <p>How long ADS takes (time before firing)</p><h2 id="proc">Proc Details</h2><h3 id="proc/create_handful"><aside class="declaration">proc </aside>create_handful<aside>(/<a href="mob.html">mob</a>/user, transfer_amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 170"/></a></aside>
+        </h3>
+        <p>This will attempt to place the ammo in the user's hand if possible.</p><h3 id="proc/generate_handful"><aside class="declaration">proc </aside>generate_handful<aside>(new_ammo, new_caliber, new_rounds, maximum_rounds) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L193">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 193"/></a></aside>
+        </h3>
+        <p>Called on a /ammo_magazine that wishes to be a handful. It generates all the data required for the handful.</p><h3 id="proc/get_additional_codex_info"><aside class="declaration">proc </aside>get_additional_codex_info<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/codex/entries/magazine_codex.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;codex&#x2F;entries&#x2F;magazine_codex.dm 87"/></a></aside>
+        </h3>
+        <p>Any additional mechanic info specific to this magazine or the ammo in it</p><h3 id="proc/match_ammo"><aside class="declaration">proc </aside>match_ammo<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/ammo_magazine.html">ammo_magazine</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammunition.dm#L215">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammunition.dm 215"/></a></aside>
+        </h3>
+        <p>sets greyscale for the handful if it has been specified by the ammo datum</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

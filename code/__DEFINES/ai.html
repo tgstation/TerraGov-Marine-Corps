@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;ai.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/ai.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/ai.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/ai.html#define/REASON_FINISHED_NODE_MOVE">REASON_FINISHED_NODE_MOVE</a></th><td>The AI component has finished moving towards a node, change the state because of that certain thing happening</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/REASON_TARGET_KILLED">REASON_TARGET_KILLED</a></th><td>Signal that's sent whenever the AI component kills off it's current target, this triggers a state change which could then go into a &quot;patrol&quot; or decide to attack another nearby target</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/REASON_TARGET_SPOTTED">REASON_TARGET_SPOTTED</a></th><td>AI component spotted a valid target and wants to attack it</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/REASON_REFRESH_TARGET">REASON_REFRESH_TARGET</a></th><td>Repick targets every so often so we don't get stuck on a single thing forever</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/MOVING_TO_NODE">MOVING_TO_NODE</a></th><td>AI component state where it's moving towards a node</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/ESCORTING_ATOM">ESCORTING_ATOM</a></th><td>AI component state where we're escorting something and looking for a target nearby</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/MOVING_TO_ATOM">MOVING_TO_ATOM</a></th><td>AI component state where we're moving towards <em>something</em>, probably something we want to hit</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/MOVING_TO_SAFETY">MOVING_TO_SAFETY</a></th><td>Ai component state where the ai tries to flee to heal</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/IDLE">IDLE</a></th><td>Ai component state where the ai just does nothing</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/FOLLOWING_PATH">FOLLOWING_PATH</a></th><td>Ai component state where the ai is following a tile path</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/NODE_LAST_VISITED">NODE_LAST_VISITED</a></th><td>A define for a node variable which is the last world.time that a AI visited it</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/IDENTIFIER_XENO">IDENTIFIER_XENO</a></th><td>Identifier tags
+Ultilized for having AI look at weights based on if they're a &quot;marine human&quot; or a &quot;xenomorph&quot; or something else
+This is mainly used for deciding what weights are to be looked at when determing a node waypoint of going towards</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/TARGET_VEHICLE">TARGET_VEHICLE</a></th><td>Tanks and mechs</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_COMBAT_TARGET_BLIND_DISTANCE">AI_COMBAT_TARGET_BLIND_DISTANCE</a></th><td>The AI will maintain a combat target within this range, even without LOS</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_ESCORTING_BREAK_DISTANCE">AI_ESCORTING_BREAK_DISTANCE</a></th><td>AI will give up escorting something beyond this distance</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_OBSTACLE_ATTACK">AI_OBSTACLE_ATTACK</a></th><td>Obstacle needs attacking</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_OBSTACLE_JUMP">AI_OBSTACLE_JUMP</a></th><td>Obstacle can be jumped</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_OBSTACLE_RESOLVED">AI_OBSTACLE_RESOLVED</a></th><td>Obstacle has already been handled</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/HUMAN_AI_SELF_HEAL">HUMAN_AI_SELF_HEAL</a></th><td>If the mob parent can heal itself and so should flee</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/HUMAN_AI_USE_WEAPONS">HUMAN_AI_USE_WEAPONS</a></th><td>Uses weapons</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/HUMAN_AI_AUDIBLE_CONTROL">HUMAN_AI_AUDIBLE_CONTROL</a></th><td>Listens to audible instructions</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/HUMAN_AI_NO_FF">HUMAN_AI_NO_FF</a></th><td>Will try avoid FF when possible</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/HUMAN_AI_AVOID_HAZARDS">HUMAN_AI_AVOID_HAZARDS</a></th><td>Will try avoid hazards when possible</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/HUMAN_AI_FIRING">HUMAN_AI_FIRING</a></th><td>Currently shooting</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/HUMAN_AI_NEED_WEAPONS">HUMAN_AI_NEED_WEAPONS</a></th><td>Looking for weapons</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/HUMAN_AI_HEALING">HUMAN_AI_HEALING</a></th><td>Healing or being healed</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/HUMAN_AI_SELF_HEALING">HUMAN_AI_SELF_HEALING</a></th><td>Healing self</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_FIRE_CAN_HIT">AI_FIRE_CAN_HIT</a></th><td>We're good to shoot</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_FIRE_INVALID_TARGET">AI_FIRE_INVALID_TARGET</a></th><td>Invalid due to being deleted or something else strange</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_FIRE_NO_AMMO">AI_FIRE_NO_AMMO</a></th><td>Need ammo</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_FIRE_OUT_OF_RANGE">AI_FIRE_OUT_OF_RANGE</a></th><td>Out of range</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_FIRE_NO_LOS">AI_FIRE_NO_LOS</a></th><td>No line of sight</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_FIRE_FRIENDLY_BLOCKED">AI_FIRE_FRIENDLY_BLOCKED</a></th><td>Friendly in the way</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_FIRE_TARGET_DEAD">AI_FIRE_TARGET_DEAD</a></th><td>Target already dead</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_MED_SELFISH">AI_MED_SELFISH</a></th><td>Don't help anyone else</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_MED_STANDARD">AI_MED_STANDARD</a></th><td>Tries to inap crit friends</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_MED_MEDIC">AI_MED_MEDIC</a></th><td>Tries to heal whenver possible</td></tr>
+        <tr><th><a href="code/__DEFINES/ai.html#define/AI_MED_DOCTOR">AI_MED_DOCTOR</a></th><td>Prioritises healing above combat</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/AI_COMBAT_TARGET_BLIND_DISTANCE"><aside class="declaration">#define </aside>AI_COMBAT_TARGET_BLIND_DISTANCE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 60"/></a>
+    </h3>
+    <p>The AI will maintain a combat target within this range, even without LOS</p><h3 id="define/AI_ESCORTING_BREAK_DISTANCE"><aside class="declaration">#define </aside>AI_ESCORTING_BREAK_DISTANCE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 65"/></a>
+    </h3>
+    <p>AI will give up escorting something beyond this distance</p><h3 id="define/AI_FIRE_CAN_HIT"><aside class="declaration">#define </aside>AI_FIRE_CAN_HIT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 112"/></a>
+    </h3>
+    <p>We're good to shoot</p><h3 id="define/AI_FIRE_FRIENDLY_BLOCKED"><aside class="declaration">#define </aside>AI_FIRE_FRIENDLY_BLOCKED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 122"/></a>
+    </h3>
+    <p>Friendly in the way</p><h3 id="define/AI_FIRE_INVALID_TARGET"><aside class="declaration">#define </aside>AI_FIRE_INVALID_TARGET
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 114"/></a>
+    </h3>
+    <p>Invalid due to being deleted or something else strange</p><h3 id="define/AI_FIRE_NO_AMMO"><aside class="declaration">#define </aside>AI_FIRE_NO_AMMO
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 116"/></a>
+    </h3>
+    <p>Need ammo</p><h3 id="define/AI_FIRE_NO_LOS"><aside class="declaration">#define </aside>AI_FIRE_NO_LOS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 120"/></a>
+    </h3>
+    <p>No line of sight</p><h3 id="define/AI_FIRE_OUT_OF_RANGE"><aside class="declaration">#define </aside>AI_FIRE_OUT_OF_RANGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 118"/></a>
+    </h3>
+    <p>Out of range</p><h3 id="define/AI_FIRE_TARGET_DEAD"><aside class="declaration">#define </aside>AI_FIRE_TARGET_DEAD
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 124"/></a>
+    </h3>
+    <p>Target already dead</p><h3 id="define/AI_MED_DOCTOR"><aside class="declaration">#define </aside>AI_MED_DOCTOR
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 134"/></a>
+    </h3>
+    <p>Prioritises healing above combat</p><h3 id="define/AI_MED_MEDIC"><aside class="declaration">#define </aside>AI_MED_MEDIC
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 132"/></a>
+    </h3>
+    <p>Tries to heal whenver possible</p><h3 id="define/AI_MED_SELFISH"><aside class="declaration">#define </aside>AI_MED_SELFISH
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L128">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 128"/></a>
+    </h3>
+    <p>Don't help anyone else</p><h3 id="define/AI_MED_STANDARD"><aside class="declaration">#define </aside>AI_MED_STANDARD
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 130"/></a>
+    </h3>
+    <p>Tries to inap crit friends</p><h3 id="define/AI_OBSTACLE_ATTACK"><aside class="declaration">#define </aside>AI_OBSTACLE_ATTACK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 83"/></a>
+    </h3>
+    <p>Obstacle needs attacking</p><h3 id="define/AI_OBSTACLE_JUMP"><aside class="declaration">#define </aside>AI_OBSTACLE_JUMP
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 85"/></a>
+    </h3>
+    <p>Obstacle can be jumped</p><h3 id="define/AI_OBSTACLE_RESOLVED"><aside class="declaration">#define </aside>AI_OBSTACLE_RESOLVED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 87"/></a>
+    </h3>
+    <p>Obstacle has already been handled</p><h3 id="define/ESCORTING_ATOM"><aside class="declaration">#define </aside>ESCORTING_ATOM
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 17"/></a>
+    </h3>
+    <p>AI component state where we're escorting something and looking for a target nearby</p><h3 id="define/FOLLOWING_PATH"><aside class="declaration">#define </aside>FOLLOWING_PATH
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 29"/></a>
+    </h3>
+    <p>Ai component state where the ai is following a tile path</p><h3 id="define/HUMAN_AI_AUDIBLE_CONTROL"><aside class="declaration">#define </aside>HUMAN_AI_AUDIBLE_CONTROL
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 94"/></a>
+    </h3>
+    <p>Listens to audible instructions</p><h3 id="define/HUMAN_AI_AVOID_HAZARDS"><aside class="declaration">#define </aside>HUMAN_AI_AVOID_HAZARDS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 98"/></a>
+    </h3>
+    <p>Will try avoid hazards when possible</p><h3 id="define/HUMAN_AI_FIRING"><aside class="declaration">#define </aside>HUMAN_AI_FIRING
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 101"/></a>
+    </h3>
+    <p>Currently shooting</p><h3 id="define/HUMAN_AI_HEALING"><aside class="declaration">#define </aside>HUMAN_AI_HEALING
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 105"/></a>
+    </h3>
+    <p>Healing or being healed</p><h3 id="define/HUMAN_AI_NEED_WEAPONS"><aside class="declaration">#define </aside>HUMAN_AI_NEED_WEAPONS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 103"/></a>
+    </h3>
+    <p>Looking for weapons</p><h3 id="define/HUMAN_AI_NO_FF"><aside class="declaration">#define </aside>HUMAN_AI_NO_FF
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 96"/></a>
+    </h3>
+    <p>Will try avoid FF when possible</p><h3 id="define/HUMAN_AI_SELF_HEAL"><aside class="declaration">#define </aside>HUMAN_AI_SELF_HEAL
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 90"/></a>
+    </h3>
+    <p>If the mob parent can heal itself and so should flee</p><h3 id="define/HUMAN_AI_SELF_HEALING"><aside class="declaration">#define </aside>HUMAN_AI_SELF_HEALING
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 107"/></a>
+    </h3>
+    <p>Healing self</p><h3 id="define/HUMAN_AI_USE_WEAPONS"><aside class="declaration">#define </aside>HUMAN_AI_USE_WEAPONS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 92"/></a>
+    </h3>
+    <p>Uses weapons</p><h3 id="define/IDENTIFIER_XENO"><aside class="declaration">#define </aside>IDENTIFIER_XENO
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 39"/></a>
+    </h3>
+    <p>Identifier tags
+Ultilized for having AI look at weights based on if they're a &quot;marine human&quot; or a &quot;xenomorph&quot; or something else
+This is mainly used for deciding what weights are to be looked at when determing a node waypoint of going towards</p><h3 id="define/IDLE"><aside class="declaration">#define </aside>IDLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 26"/></a>
+    </h3>
+    <p>Ai component state where the ai just does nothing</p><h3 id="define/MOVING_TO_ATOM"><aside class="declaration">#define </aside>MOVING_TO_ATOM
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 20"/></a>
+    </h3>
+    <p>AI component state where we're moving towards <em>something</em>, probably something we want to hit</p><h3 id="define/MOVING_TO_NODE"><aside class="declaration">#define </aside>MOVING_TO_NODE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 14"/></a>
+    </h3>
+    <p>AI component state where it's moving towards a node</p><h3 id="define/MOVING_TO_SAFETY"><aside class="declaration">#define </aside>MOVING_TO_SAFETY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 23"/></a>
+    </h3>
+    <p>Ai component state where the ai tries to flee to heal</p><h3 id="define/NODE_LAST_VISITED"><aside class="declaration">#define </aside>NODE_LAST_VISITED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 32"/></a>
+    </h3>
+    <p>A define for a node variable which is the last world.time that a AI visited it</p><h3 id="define/REASON_FINISHED_NODE_MOVE"><aside class="declaration">#define </aside>REASON_FINISHED_NODE_MOVE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 2"/></a>
+    </h3>
+    <p>The AI component has finished moving towards a node, change the state because of that certain thing happening</p><h3 id="define/REASON_REFRESH_TARGET"><aside class="declaration">#define </aside>REASON_REFRESH_TARGET
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 11"/></a>
+    </h3>
+    <p>Repick targets every so often so we don't get stuck on a single thing forever</p><h3 id="define/REASON_TARGET_KILLED"><aside class="declaration">#define </aside>REASON_TARGET_KILLED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 5"/></a>
+    </h3>
+    <p>Signal that's sent whenever the AI component kills off it's current target, this triggers a state change which could then go into a &quot;patrol&quot; or decide to attack another nearby target</p><h3 id="define/REASON_TARGET_SPOTTED"><aside class="declaration">#define </aside>REASON_TARGET_SPOTTED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 8"/></a>
+    </h3>
+    <p>AI component spotted a valid target and wants to attack it</p><h3 id="define/TARGET_VEHICLE"><aside class="declaration">#define </aside>TARGET_VEHICLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 53"/></a>
+    </h3>
+    <p>Tanks and mechs</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;explosive&#x2F;plastique - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/explosive/plastique.html#var">Var Details</a> - <a href="obj/item/explosive/plastique.html#proc">Proc Details</a></header>
+<main>
+<h1>plastique <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/explosive/plastique.html">explosive/plastique</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/plastique.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;plastique.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/explosive/plastique.html#var/alarm_sounded">alarm_sounded</a></th><td>Whether we're towards the end of the det timer, for sprite updates</td></tr>
+            <tr><th><a href="obj/item/explosive/plastique.html#var/armed">armed</a></th><td>whether the plastic explosive is armed or not</td></tr>
+            <tr><th><a href="obj/item/explosive/plastique.html#var/detonation_pending">detonation_pending</a></th><td>the plastic explosive has not detonated yet</td></tr>
+            <tr><th><a href="obj/item/explosive/plastique.html#var/last_user">last_user</a></th><td>Current/last user of the c4</td></tr>
+            <tr><th><a href="obj/item/explosive/plastique.html#var/plant_target">plant_target</a></th><td>which atom the plastique explosive is planted on</td></tr>
+            <tr><th><a href="obj/item/explosive/plastique.html#var/smokeradius">smokeradius</a></th><td>radius this smoke will encompass</td></tr>
+            <tr><th><a href="obj/item/explosive/plastique.html#var/smoketype">smoketype</a></th><td>smoke type created when the c4 detonates</td></tr>
+            <tr><th><a href="obj/item/explosive/plastique.html#var/timer">timer</a></th><td>the time it takes for the c4 to detonate</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/explosive/plastique.html#proc/detonate">detonate</a></th><td>Handles the actual explosion effects</td></tr>
+            <tr><th><a href="obj/item/explosive/plastique.html#proc/warning_sound">warning_sound</a></th><td>Triggers a warning beep prior to the actual detonation, while also setting the actual detonation timer</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/alarm_sounded"><aside class="declaration">var </aside>alarm_sounded
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/plastique.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;plastique.dm 17"/></a></h3>
+        <p>Whether we're towards the end of the det timer, for sprite updates</p><h3 id="var/armed"><aside class="declaration">var </aside>armed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/plastique.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;plastique.dm 11"/></a></h3>
+        <p>whether the plastic explosive is armed or not</p><h3 id="var/detonation_pending"><aside class="declaration">var </aside>detonation_pending
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/plastique.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;plastique.dm 15"/></a></h3>
+        <p>the plastic explosive has not detonated yet</p><h3 id="var/last_user"><aside class="declaration">var </aside>last_user
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/plastique.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;plastique.dm 27"/></a></h3>
+        <p>Current/last user of the c4</p><h3 id="var/plant_target"><aside class="declaration">var </aside>plant_target
+            <aside>&ndash; /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/plastique.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;plastique.dm 19"/></a></h3>
+        <p>which atom the plastique explosive is planted on</p><h3 id="var/smokeradius"><aside class="declaration">var </aside>smokeradius
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/plastique.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;plastique.dm 23"/></a></h3>
+        <p>radius this smoke will encompass</p><h3 id="var/smoketype"><aside class="declaration">var </aside>smoketype
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/effect_system.html">effect_system</a>/<a href="datum/effect_system/smoke_spread.html">smoke_spread</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/plastique.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;plastique.dm 21"/></a></h3>
+        <p>smoke type created when the c4 detonates</p><h3 id="var/timer"><aside class="declaration">var </aside>timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/plastique.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;plastique.dm 13"/></a></h3>
+        <p>the time it takes for the c4 to detonate</p><h2 id="proc">Proc Details</h2><h3 id="proc/detonate"><aside class="declaration">proc </aside>detonate<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/plastique.dm#L156">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;plastique.dm 156"/></a></aside>
+        </h3>
+        <p>Handles the actual explosion effects</p><h3 id="proc/warning_sound"><aside class="declaration">proc </aside>warning_sound<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/plastique.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;plastique.dm 171"/></a></aside>
+        </h3>
+        <p>Triggers a warning beep prior to the actual detonation, while also setting the actual detonation timer</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

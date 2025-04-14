@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;status_effect&#x2F;xeno_psychic_link - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/status_effect/xeno_psychic_link.html#var">Var Details</a> - <a href="datum/status_effect/xeno_psychic_link.html#proc">Proc Details</a></header>
+<main>
+<h1>xeno_psychic_link <aside>/<a href="datum.html">datum</a>/<a href="datum/status_effect.html">status_effect</a>/<a href="datum/status_effect/xeno_psychic_link.html">xeno_psychic_link</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L345">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 345"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/status_effect/xeno_psychic_link.html#var/link_range">link_range</a></th><td>How far apart the linked mobs can be</td></tr>
+            <tr><th><a href="datum/status_effect/xeno_psychic_link.html#var/minimum_health">minimum_health</a></th><td>Minimum health threshold before the effect is deactivated</td></tr>
+            <tr><th><a href="datum/status_effect/xeno_psychic_link.html#var/psylink_beam">psylink_beam</a></th><td>The beam used to represent the link between linked xenos.</td></tr>
+            <tr><th><a href="datum/status_effect/xeno_psychic_link.html#var/redirect_mod">redirect_mod</a></th><td>Percentage of damage to be redirected</td></tr>
+            <tr><th><a href="datum/status_effect/xeno_psychic_link.html#var/target_mob">target_mob</a></th><td>Xenomorph the owner is linked to</td></tr>
+            <tr><th><a href="datum/status_effect/xeno_psychic_link.html#var/was_within_range">was_within_range</a></th><td>If the target xeno was within range</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/status_effect/xeno_psychic_link.html#proc/handle_brute_damage">handle_brute_damage</a></th><td>Transfers mitigated brute damage</td></tr>
+            <tr><th><a href="datum/status_effect/xeno_psychic_link.html#proc/handle_burn_damage">handle_burn_damage</a></th><td>Transfers mitigated burn damage</td></tr>
+            <tr><th><a href="datum/status_effect/xeno_psychic_link.html#proc/handle_dist">handle_dist</a></th><td>Handles the link breaking due to distance</td></tr>
+            <tr><th><a href="datum/status_effect/xeno_psychic_link.html#proc/handle_mob_dead">handle_mob_dead</a></th><td>Handles the link breaking due to dying</td></tr>
+            <tr><th><a href="datum/status_effect/xeno_psychic_link.html#proc/link_toggle">link_toggle</a></th><td>Handles the link toggling on and off</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/link_range"><aside class="declaration">var </aside>link_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L351">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 351"/></a></h3>
+        <p>How far apart the linked mobs can be</p><h3 id="var/minimum_health"><aside class="declaration">var </aside>minimum_health
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L355">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 355"/></a></h3>
+        <p>Minimum health threshold before the effect is deactivated</p><h3 id="var/psylink_beam"><aside class="declaration">var </aside>psylink_beam
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/beam.html">beam</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L361">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 361"/></a></h3>
+        <p>The beam used to represent the link between linked xenos.</p><h3 id="var/redirect_mod"><aside class="declaration">var </aside>redirect_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L353">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 353"/></a></h3>
+        <p>Percentage of damage to be redirected</p><h3 id="var/target_mob"><aside class="declaration">var </aside>target_mob
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L349">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 349"/></a></h3>
+        <p>Xenomorph the owner is linked to</p><h3 id="var/was_within_range"><aside class="declaration">var </aside>was_within_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L357">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 357"/></a></h3>
+        <p>If the target xeno was within range</p><h2 id="proc">Proc Details</h2><h3 id="proc/handle_brute_damage"><aside class="declaration">proc </aside>handle_brute_damage<aside>(/<a href="datum.html">datum</a>/source, amount, /list/amount_mod) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L435">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 435"/></a></aside>
+        </h3>
+        <p>Transfers mitigated brute damage</p><h3 id="proc/handle_burn_damage"><aside class="declaration">proc </aside>handle_burn_damage<aside>(/<a href="datum.html">datum</a>/source, amount, /list/amount_mod) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L426">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 426"/></a></aside>
+        </h3>
+        <p>Transfers mitigated burn damage</p><h3 id="proc/handle_dist"><aside class="declaration">proc </aside>handle_dist<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L400">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 400"/></a></aside>
+        </h3>
+        <p>Handles the link breaking due to distance</p><h3 id="proc/handle_mob_dead"><aside class="declaration">proc </aside>handle_mob_dead<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L395">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 395"/></a></aside>
+        </h3>
+        <p>Handles the link breaking due to dying</p><h3 id="proc/link_toggle"><aside class="declaration">proc </aside>link_toggle<aside>(toggle_on) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L410">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 410"/></a></aside>
+        </h3>
+        <p>Handles the link toggling on and off</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

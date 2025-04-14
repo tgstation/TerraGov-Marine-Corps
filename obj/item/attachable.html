@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;attachable - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/attachable.html#var">Var Details</a> - <a href="obj/item/attachable.html#proc">Proc Details</a></header>
+<main>
+<h1>attachable <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/attachable.html">attachable</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 21"/></a></h1>
+
+<ul>
+<li>Gun attachable items code. Lets you add various effects to firearms.</li>
+</ul>
+<p>Some attachables are hardcoded in the projectile firing system, like grenade launchers, flamethrowers.</p>
+<p>When you are adding new guns into the attachment list, or even old guns, make sure that said guns
+properly accept overlays. You can find the proper offsets in the individual gun dms, so make sure
+you set them right. It's a pain to go back to find which guns are set incorrectly.
+To summarize: rail attachments should go on top of the rail. For rifles, this usually means the middle of the gun.
+For handguns, this is usually toward the back of the gun. SMGs usually follow rifles.
+Muzzle attachments should connect to the barrel, not sit under or above it. The only exception is the bayonet.
+Underrail attachments should just fit snugly, that's about it. Stocks are pretty obvious.</p>
+<p>All attachment offsets are now in a list, including stocks. Guns that don't take attachments can keep the list null.
+~N</p>
+<p>Anything that isn't used as the gun fires should be a flat number, never a percentange. It screws with the calculations,
+and can mean that the order you attach something/detach something will matter in the final number. It's also completely
+inaccurate. Don't worry if force is ever negative, it won't runtime.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/accuracy_mod">accuracy_mod</a></th><td>Modifier to firing accuracy, works off a multiplier.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/accuracy_unwielded_mod">accuracy_unwielded_mod</a></th><td>Modifier to firing accuracy but for when onehanded.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/activation_sound">activation_sound</a></th><td>The specific sound played when activating this attachment.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/add_aim_mode">add_aim_mode</a></th><td>adds aim mode to the gun</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/aim_mode_delay_mod">aim_mode_delay_mod</a></th><td>Modifies aim mode fire rate debuff by a %</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/aim_mode_movement_mult">aim_mode_movement_mult</a></th><td>Changes aim mode movement delay multiplicatively</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/aim_speed_mod">aim_speed_mod</a></th><td>Changes the slowdown amount when wielding a weapon by this value.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/ammo_mod">ammo_mod</a></th><td>what ammo the gun could also fire, different lasers usually.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/attach_delay">attach_delay</a></th><td>How long in deciseconds it takes to attach a weapon with level 1 combat training. Default is 1.5 seconds.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/attach_features_flags">attach_features_flags</a></th><td>various yes no flags associated with attachments. See defines for these: [ATTACH_REMOVABLE]</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/attach_shell_speed_mod">attach_shell_speed_mod</a></th><td>Changes the speed of projectiles fired</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/attach_skill">attach_skill</a></th><td>Skill used to attach src to something.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/attach_skill_upper_threshold">attach_skill_upper_threshold</a></th><td>Skill threshold where the time to attach is halved.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/attach_sound">attach_sound</a></th><td>Sound played on attach</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/attachment_action_type">attachment_action_type</a></th><td>what ability to give the user when attached to a weapon they are holding.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/attachment_firing_delay">attachment_firing_delay</a></th><td>the delay between shots, for attachments that fire stuff</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/base_icon">base_icon</a></th><td>Replacement for initial icon that allows for the code to work with multiple variants</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/burst_accuracy_mod">burst_accuracy_mod</a></th><td>additive modifier to burst fire accuracy.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/burst_delay_mod">burst_delay_mod</a></th><td>Changes burst firing delay. Cannot go below 0.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/burst_mod">burst_mod</a></th><td>Changes amount of shots in a burst</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/burst_scatter_mod">burst_scatter_mod</a></th><td>Additive to burst scatter modifier from burst fire, works off a multiplier.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/charge_mod">charge_mod</a></th><td>how much charge difference it now costs to shoot. negative means more shots per mag.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/damage_falloff_mod">damage_falloff_mod</a></th><td>Modifier to damage falloff, works off a multiplier.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/damage_mod">damage_mod</a></th><td>Modifer to the damage mult, works off a multiplier.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/delay_mod">delay_mod</a></th><td>Changes firing delay. Cannot go below 0.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/detach_delay">detach_delay</a></th><td>How long in deciseconds it takes to detach a weapon with level 1 combat training. Default is 1.5 seconds.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/gun_attachment_offset_mod">gun_attachment_offset_mod</a></th><td>lazylist of attachment slot offsets for a gun.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/gun_firemode_list_mod">gun_firemode_list_mod</a></th><td>what firemodes this attachment allows/adds.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/lace_deployed">lace_deployed</a></th><td>only used by lace, denotes whether the lace is currently deployed</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/light_mod">light_mod</a></th><td>Adds an x-brightness flashlight to the weapon, which can be toggled on and off.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/master_gun">master_gun</a></th><td>what gun this attachment is currently attached to, if any.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/max_scatter_mod">max_scatter_mod</a></th><td>Maximum scatter</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/max_scatter_unwielded_mod">max_scatter_unwielded_mod</a></th><td>Maximum scatter when unwielded</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/melee_mod">melee_mod</a></th><td>Flat number that adjusts the amount of mÃªlÃ©e force the weapon this is attached to has.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/min_scatter_mod">min_scatter_mod</a></th><td>Minimum scatter</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/min_scatter_unwielded_mod">min_scatter_unwielded_mod</a></th><td>Minimum scatter when unwielded</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/movement_acc_penalty_mod">movement_acc_penalty_mod</a></th><td>Modifies accuracy/scatter penalty when firing onehanded while moving.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/pixel_shift_x">pixel_shift_x</a></th><td>Determines the amount of pixels to move the icon state for the overlay. in the x direction</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/pixel_shift_y">pixel_shift_y</a></th><td>Determines the amount of pixels to move the icon state for the overlay. in the y direction</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/recoil_mod">recoil_mod</a></th><td>If positive, adds recoil, if negative, lowers it. Recoil can't go below 0.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/recoil_unwielded_mod">recoil_unwielded_mod</a></th><td>If positive, adds recoil, if negative, lowers it. but for onehanded firing. Recoil can't go below 0.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/scatter_decay_mod">scatter_decay_mod</a></th><td>How much scatter decays every X seconds</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/scatter_decay_unwielded_mod">scatter_decay_unwielded_mod</a></th><td>How much scatter decays every X seconds when wielded</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/scatter_increase_mod">scatter_increase_mod</a></th><td>How much scatter increases per shot</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/scatter_increase_unwielded_mod">scatter_increase_unwielded_mod</a></th><td>How much scatter increases per shot when wielded</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/scatter_mod">scatter_mod</a></th><td>Increases or decreases scatter chance.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/scatter_unwielded_mod">scatter_unwielded_mod</a></th><td>Increases or decreases scatter chance but for onehanded firing.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/scope_zoom_mod">scope_zoom_mod</a></th><td>used for the codex to denote if a weapon has the ability to zoom in or not.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/scoped_accuracy_mod">scoped_accuracy_mod</a></th><td>Modifier to firing accuracy but for when scoped in, works off a multiplier.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/shot_marine_damage_falloff">shot_marine_damage_falloff</a></th><td>Modifies projectile damage by a % when a marine gets passed, but not hit</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/silence_mod">silence_mod</a></th><td>Adds silenced to weapon. changing its fire sound, muzzle flash, and volume. TRUE or FALSE</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/size_mod">size_mod</a></th><td>Increases the weight class.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/slot">slot</a></th><td>ATTACHMENT_SLOT_MUZZLE, ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_STOCK the particular 'slot' the attachment can attach to. must always be a singular slot.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/variants_by_parent_type">variants_by_parent_type</a></th><td>Assoc list that uses the parents type as a key. type = &quot;new_icon_state&quot;. This will change the icon state depending on what type the parent is. If the list is empty, or the parent type is not within, it will have no effect.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#var/wield_delay_mod">wield_delay_mod</a></th><td>How long ADS takes (time before firing)</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/attachable.html#proc/activate">activate</a></th><td>Called when the attachment is activated.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#proc/apply_modifiers">apply_modifiers</a></th><td>Handles the modifiers to the parent gun</td></tr>
+            <tr><th><a href="obj/item/attachable.html#proc/can_attach">can_attach</a></th><td>Called when the attachment is trying to be attached. If the attachment is allowed to go through, return TRUE.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#proc/on_attach">on_attach</a></th><td>Called when the attachment is attached to something. If it is a gun it will update the guns stats.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#proc/on_detach">on_detach</a></th><td>Called when the attachment is detached from something. If the thing is a gun, it returns its stats to what they were before being attached.</td></tr>
+            <tr><th><a href="obj/item/attachable.html#proc/ui_action_click">ui_action_click</a></th><td>actually gives the user aim_mode if they're holding the gun</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/accuracy_mod"><aside class="declaration">var </aside>accuracy_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 36"/></a></h3>
+        <p>Modifier to firing accuracy, works off a multiplier.</p><h3 id="var/accuracy_unwielded_mod"><aside class="declaration">var </aside>accuracy_unwielded_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 40"/></a></h3>
+        <p>Modifier to firing accuracy but for when onehanded.</p><h3 id="var/activation_sound"><aside class="declaration">var </aside>activation_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 110"/></a></h3>
+        <p>The specific sound played when activating this attachment.</p><h3 id="var/add_aim_mode"><aside class="declaration">var </aside>add_aim_mode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 106"/></a></h3>
+        <p>adds aim mode to the gun</p><h3 id="var/aim_mode_delay_mod"><aside class="declaration">var </aside>aim_mode_delay_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 104"/></a></h3>
+        <p>Modifies aim mode fire rate debuff by a %</p><h3 id="var/aim_mode_movement_mult"><aside class="declaration">var </aside>aim_mode_movement_mult
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 100"/></a></h3>
+        <p>Changes aim mode movement delay multiplicatively</p><h3 id="var/aim_speed_mod"><aside class="declaration">var </aside>aim_speed_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 88"/></a></h3>
+        <p>Changes the slowdown amount when wielding a weapon by this value.</p><h3 id="var/ammo_mod"><aside class="declaration">var </aside>ammo_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 120"/></a></h3>
+        <p>what ammo the gun could also fire, different lasers usually.</p><h3 id="var/attach_delay"><aside class="declaration">var </aside>attach_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 96"/></a></h3>
+        <p>How long in deciseconds it takes to attach a weapon with level 1 combat training. Default is 1.5 seconds.</p><h3 id="var/attach_features_flags"><aside class="declaration">var </aside>attach_features_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 112"/></a></h3>
+        <p>various yes no flags associated with attachments. See defines for these: [ATTACH_REMOVABLE]</p><h3 id="var/attach_shell_speed_mod"><aside class="declaration">var </aside>attach_shell_speed_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 92"/></a></h3>
+        <p>Changes the speed of projectiles fired</p><h3 id="var/attach_skill"><aside class="declaration">var </aside>attach_skill
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 130"/></a></h3>
+        <p>Skill used to attach src to something.</p><h3 id="var/attach_skill_upper_threshold"><aside class="declaration">var </aside>attach_skill_upper_threshold
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 132"/></a></h3>
+        <p>Skill threshold where the time to attach is halved.</p><h3 id="var/attach_sound"><aside class="declaration">var </aside>attach_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 134"/></a></h3>
+        <p>Sound played on attach</p><h3 id="var/attachment_action_type"><aside class="declaration">var </aside>attachment_action_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 116"/></a></h3>
+        <p>what ability to give the user when attached to a weapon they are holding.</p><h3 id="var/attachment_firing_delay"><aside class="declaration">var </aside>attachment_firing_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 108"/></a></h3>
+        <p>the delay between shots, for attachments that fire stuff</p><h3 id="var/base_icon"><aside class="declaration">var </aside>base_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 136"/></a></h3>
+        <p>Replacement for initial icon that allows for the code to work with multiple variants</p><h3 id="var/burst_accuracy_mod"><aside class="declaration">var </aside>burst_accuracy_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 74"/></a></h3>
+        <p>additive modifier to burst fire accuracy.</p><h3 id="var/burst_delay_mod"><aside class="declaration">var </aside>burst_delay_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 82"/></a></h3>
+        <p>Changes burst firing delay. Cannot go below 0.</p><h3 id="var/burst_mod"><aside class="declaration">var </aside>burst_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 84"/></a></h3>
+        <p>Changes amount of shots in a burst</p><h3 id="var/burst_scatter_mod"><aside class="declaration">var </aside>burst_scatter_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 72"/></a></h3>
+        <p>Additive to burst scatter modifier from burst fire, works off a multiplier.</p><h3 id="var/charge_mod"><aside class="declaration">var </aside>charge_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 122"/></a></h3>
+        <p>how much charge difference it now costs to shoot. negative means more shots per mag.</p><h3 id="var/damage_falloff_mod"><aside class="declaration">var </aside>damage_falloff_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 44"/></a></h3>
+        <p>Modifier to damage falloff, works off a multiplier.</p><h3 id="var/damage_mod"><aside class="declaration">var </aside>damage_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 42"/></a></h3>
+        <p>Modifer to the damage mult, works off a multiplier.</p><h3 id="var/delay_mod"><aside class="declaration">var </aside>delay_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 80"/></a></h3>
+        <p>Changes firing delay. Cannot go below 0.</p><h3 id="var/detach_delay"><aside class="declaration">var </aside>detach_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 98"/></a></h3>
+        <p>How long in deciseconds it takes to detach a weapon with level 1 combat training. Default is 1.5 seconds.</p><h3 id="var/gun_attachment_offset_mod"><aside class="declaration">var </aside>gun_attachment_offset_mod
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 126"/></a></h3>
+        <p>lazylist of attachment slot offsets for a gun.</p><h3 id="var/gun_firemode_list_mod"><aside class="declaration">var </aside>gun_firemode_list_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 124"/></a></h3>
+        <p>what firemodes this attachment allows/adds.</p><h3 id="var/lace_deployed"><aside class="declaration">var </aside>lace_deployed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 114"/></a></h3>
+        <p>only used by lace, denotes whether the lace is currently deployed</p><h3 id="var/light_mod"><aside class="declaration">var </aside>light_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 78"/></a></h3>
+        <p>Adds an x-brightness flashlight to the weapon, which can be toggled on and off.</p><h3 id="var/master_gun"><aside class="declaration">var </aside>master_gun
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a>/<a href="obj/item/weapon/gun.html">gun</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L128">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 128"/></a></h3>
+        <p>what gun this attachment is currently attached to, if any.</p><h3 id="var/max_scatter_mod"><aside class="declaration">var </aside>max_scatter_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 52"/></a></h3>
+        <p>Maximum scatter</p><h3 id="var/max_scatter_unwielded_mod"><aside class="declaration">var </aside>max_scatter_unwielded_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 54"/></a></h3>
+        <p>Maximum scatter when unwielded</p><h3 id="var/melee_mod"><aside class="declaration">var </aside>melee_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 46"/></a></h3>
+        <p>Flat number that adjusts the amount of mÃªlÃ©e force the weapon this is attached to has.</p><h3 id="var/min_scatter_mod"><aside class="declaration">var </aside>min_scatter_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 64"/></a></h3>
+        <p>Minimum scatter</p><h3 id="var/min_scatter_unwielded_mod"><aside class="declaration">var </aside>min_scatter_unwielded_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 66"/></a></h3>
+        <p>Minimum scatter when unwielded</p><h3 id="var/movement_acc_penalty_mod"><aside class="declaration">var </aside>movement_acc_penalty_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 94"/></a></h3>
+        <p>Modifies accuracy/scatter penalty when firing onehanded while moving.</p><h3 id="var/pixel_shift_x"><aside class="declaration">var </aside>pixel_shift_x
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 32"/></a></h3>
+        <p>Determines the amount of pixels to move the icon state for the overlay. in the x direction</p><h3 id="var/pixel_shift_y"><aside class="declaration">var </aside>pixel_shift_y
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 34"/></a></h3>
+        <p>Determines the amount of pixels to move the icon state for the overlay. in the y direction</p><h3 id="var/recoil_mod"><aside class="declaration">var </aside>recoil_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 68"/></a></h3>
+        <p>If positive, adds recoil, if negative, lowers it. Recoil can't go below 0.</p><h3 id="var/recoil_unwielded_mod"><aside class="declaration">var </aside>recoil_unwielded_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 70"/></a></h3>
+        <p>If positive, adds recoil, if negative, lowers it. but for onehanded firing. Recoil can't go below 0.</p><h3 id="var/scatter_decay_mod"><aside class="declaration">var </aside>scatter_decay_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 56"/></a></h3>
+        <p>How much scatter decays every X seconds</p><h3 id="var/scatter_decay_unwielded_mod"><aside class="declaration">var </aside>scatter_decay_unwielded_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 58"/></a></h3>
+        <p>How much scatter decays every X seconds when wielded</p><h3 id="var/scatter_increase_mod"><aside class="declaration">var </aside>scatter_increase_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 60"/></a></h3>
+        <p>How much scatter increases per shot</p><h3 id="var/scatter_increase_unwielded_mod"><aside class="declaration">var </aside>scatter_increase_unwielded_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 62"/></a></h3>
+        <p>How much scatter increases per shot when wielded</p><h3 id="var/scatter_mod"><aside class="declaration">var </aside>scatter_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 48"/></a></h3>
+        <p>Increases or decreases scatter chance.</p><h3 id="var/scatter_unwielded_mod"><aside class="declaration">var </aside>scatter_unwielded_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 50"/></a></h3>
+        <p>Increases or decreases scatter chance but for onehanded firing.</p><h3 id="var/scope_zoom_mod"><aside class="declaration">var </aside>scope_zoom_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 118"/></a></h3>
+        <p>used for the codex to denote if a weapon has the ability to zoom in or not.</p><h3 id="var/scoped_accuracy_mod"><aside class="declaration">var </aside>scoped_accuracy_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 38"/></a></h3>
+        <p>Modifier to firing accuracy but for when scoped in, works off a multiplier.</p><h3 id="var/shot_marine_damage_falloff"><aside class="declaration">var </aside>shot_marine_damage_falloff
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 102"/></a></h3>
+        <p>Modifies projectile damage by a % when a marine gets passed, but not hit</p><h3 id="var/silence_mod"><aside class="declaration">var </aside>silence_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 76"/></a></h3>
+        <p>Adds silenced to weapon. changing its fire sound, muzzle flash, and volume. TRUE or FALSE</p><h3 id="var/size_mod"><aside class="declaration">var </aside>size_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 86"/></a></h3>
+        <p>Increases the weight class.</p><h3 id="var/slot"><aside class="declaration">var </aside>slot
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 30"/></a></h3>
+        <p>ATTACHMENT_SLOT_MUZZLE, ATTACHMENT_SLOT_RAIL, ATTACHMENT_SLOT_UNDER, ATTACHMENT_SLOT_STOCK the particular 'slot' the attachment can attach to. must always be a singular slot.</p><h3 id="var/variants_by_parent_type"><aside class="declaration">var </aside>variants_by_parent_type
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 138"/></a></h3>
+        <p>Assoc list that uses the parents type as a key. type = &quot;new_icon_state&quot;. This will change the icon state depending on what type the parent is. If the list is empty, or the parent type is not within, it will have no effect.</p><h3 id="var/wield_delay_mod"><aside class="declaration">var </aside>wield_delay_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 90"/></a></h3>
+        <p>How long ADS takes (time before firing)</p><h2 id="proc">Proc Details</h2><h3 id="proc/activate"><aside class="declaration">proc </aside>activate<aside>(/<a href="mob.html">mob</a>/user, turn_off) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L305">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 305"/></a></aside>
+        </h3>
+        <p>Called when the attachment is activated.</p><h3 id="proc/apply_modifiers"><aside class="declaration">proc </aside>apply_modifiers<aside>(attaching_item, /<a href="mob.html">mob</a>/user, attaching) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L189">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 189"/></a></aside>
+        </h3>
+        <p>Handles the modifiers to the parent gun</p><h3 id="proc/can_attach"><aside class="declaration">proc </aside>can_attach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attaching_to, /<a href="mob.html">mob</a>/attacher) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L309">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 309"/></a></aside>
+        </h3>
+        <p>Called when the attachment is trying to be attached. If the attachment is allowed to go through, return TRUE.</p><h3 id="proc/on_attach"><aside class="declaration">proc </aside>on_attach<aside>(attaching_item, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L145">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 145"/></a></aside>
+        </h3>
+        <p>Called when the attachment is attached to something. If it is a gun it will update the guns stats.</p><h3 id="proc/on_detach"><aside class="declaration">proc </aside>on_detach<aside>(detaching_item, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 170"/></a></aside>
+        </h3>
+        <p>Called when the attachment is detached from something. If the thing is a gun, it returns its stats to what they were before being attached.</p><h3 id="proc/ui_action_click">ui_action_click<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/item_action.html">item_action</a>/action, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a>/<a href="obj/item/weapon/gun.html">gun</a>/G) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L296">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 296"/></a></aside>
+        </h3>
+        <p>actually gives the user aim_mode if they're holding the gun</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

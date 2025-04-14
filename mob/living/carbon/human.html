@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="mob/living/carbon/human.html#var">Var Details</a> - <a href="mob/living/carbon/human.html#proc">Proc Details</a></header>
+<main>
+<h1>human <aside>/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_examine.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_examine.dm 11"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/age">age</a></th><td>Character's age (pure fluff)</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/assigned_squad">assigned_squad</a></th><td>The squad this human is assigned to</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/belt">belt</a></th><td>The belt being worn.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/chestburst">chestburst</a></th><td>chestburst state</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/command_aura_allowed">command_aura_allowed</a></th><td>Auras we can create, used for the order choice UI.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/damageoverlaytemp">damageoverlaytemp</a></th><td>Used to help determine the severity icon state for our damage hud overlays</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/dead_ticks">dead_ticks</a></th><td>How long the human is dead, in life ticks, which is 2 seconds</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/ethnicity">ethnicity</a></th><td>The character's ethnicity</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/exploit_record">exploit_record</a></th><td>This human's custom exploit record. Fluff.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/flag_aura">flag_aura</a></th><td>Strength of the flag aura affecting us</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/flavor_text">flavor_text</a></th><td>This human's flavor text. Shows up when they're examined.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/gen_record">gen_record</a></th><td>This human's custom employment record. Fluff.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/germ_level">germ_level</a></th><td>How much dirt the mob's accumulated. Harmless by itself, but can trigger issues with open wounds or surgery.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/glasses">glasses</a></th><td>The glasses being worn.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/gloves">gloves</a></th><td>The gloves being worn.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/head">head</a></th><td>The item currently on the character's head.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/holo_card_color">holo_card_color</a></th><td>Which color type of holocard is printed on us</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/internal_organs_by_name">internal_organs_by_name</a></th><td>A list of internal organs by name [&quot;organ name&quot;] = /datum/internal_organ</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/l_store">l_store</a></th><td>The item currently in the left pocket</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/last_dam">last_dam</a></th><td>Used for determining if we need to process all limbs or just some or even none.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/last_shock_effect">last_shock_effect</a></th><td>This is the cooldown on suffering additional effects for when shock gets high</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/limbs">limbs</a></th><td>A list of our limb datums</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/makeup_style">makeup_style</a></th><td>The style of the makeup the mob currently has applied. Used to determine the right icon state for on the mob.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/marksman_aura">marksman_aura</a></th><td>Strength of the focus order aura affecting us</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/med_record">med_record</a></th><td>This human's custom medical record. Fluff.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/mob_height">mob_height</a></th><td>Height of the mob</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/mobility_aura">mobility_aura</a></th><td>Strength of the move order aura affecting us</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/protection_aura">protection_aura</a></th><td>Strength of the hold order aura affecting us</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/r_store">r_store</a></th><td>The item currently in the right pocket</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/religion">religion</a></th><td>The character's religion. Fluff.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/s_store">s_store</a></th><td>The item currently inside the suit storage slot (not inside the armor itself)</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/sec_record">sec_record</a></th><td>This human's custom security record. Fluff.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/shoes">shoes</a></th><td>The shoes currently being worn.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/stand_icon">stand_icon</a></th><td>The current standing icon</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/undershirt">undershirt</a></th><td>Which undershirt the player wants.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/underwear">underwear</a></th><td>Which underwear the player wants</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/w_uniform">w_uniform</a></th><td>The jumpsuit/uniform that's currently being worn.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/wear_ear">wear_ear</a></th><td>The headset/ear item being worn.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/wear_id">wear_id</a></th><td>The ID being worn.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/wear_suit">wear_suit</a></th><td>The item currently being worn in the suit slot (usually armor)</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#var/xeno_push_delay">xeno_push_delay</a></th><td>The cooldown for being pushed by xenos on harm intent</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/acid_spray_entered">acid_spray_entered</a></th><td>Signal handler to burn and maybe stun the human entering the acid spray</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/amputate_limb">amputate_limb</a></th><td>Amputates the limb in the specified limb zone</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/apply_height_filters">apply_height_filters</a></th><td>Applies a filter to an appearance according to mob height</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/apply_height_offsets">apply_height_offsets</a></th><td>Used in some circumstances where appearances can get cut off from the mob sprite from being too tall</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/async_do_quick_equip">async_do_quick_equip</a></th><td>async signal wrapper for do_quick_equip</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/check_defib">check_defib</a></th><td>Proc for checking parameters of a human for defibrillation.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/copy_clothing_prefs">copy_clothing_prefs</a></th><td>copies over clothing preferences like underwear to another human</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/do_quick_equip">do_quick_equip</a></th><td>runs equip, quick_equip_used is the # in INVOKE_ASYNC</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/do_unique_action">do_unique_action</a></th><td>Try to perform a unique action on the held items</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/equip_role_outfit">equip_role_outfit</a></th><td>finds and equips a valid outfit for a specified job and species</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/finish_revive_to_crit">finish_revive_to_crit</a></th><td>Check if we have a mind, and finish the revive if we do</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/force_say">force_say</a></th><td>Makes the player force say what's in their current input box.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/get_damage_icon_part">get_damage_icon_part</a></th><td>fetches the damage icon part, and caches it if it made a new one</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/get_equipped_items">get_equipped_items</a></th><td>Used to return a list of equipped items on a human mob; does not include held items (use get_all_gear)</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/get_eye_protection">get_eye_protection</a></th><td>get_eye_protection()
+Returns a number between -1 to 2</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/get_mob_height">get_mob_height</a></th><td>Getter for mob height</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/get_organ_slot">get_organ_slot</a></th><td>Gets organ by name</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/get_target_lock">get_target_lock</a></th><td>This looks for a an ID on a person and checkes if an access tag from their ID matches the provided access tag. Used with the gun, claymore, sentry and possibly other IFF code.
+Does not actually check for station jobs.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/get_type_in_slots">get_type_in_slots</a></th><td>Return the first item found in SLOT_ALL of the type searched
+type searched the type you are looking for</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/has_ai">has_ai</a></th><td>Checks if we have an AI behavior active</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/has_working_organs">has_working_organs</a></th><td>Proc to check if a carbon human has the required organs to sustain life.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/heal_limbs">heal_limbs</a></th><td>Heal limbs until the total mob health went up by health_to_heal</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/heal_overall_damage">heal_overall_damage</a></th><td>Heal MANY limbs, in random order. If robo_repair is TRUE then both metal and flesh limbs will be healed, otherwise only flesh.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/hud_set_order">hud_set_order</a></th><td>Updates aura hud icons</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/interact_other_hand">interact_other_hand</a></th><td>Current active hand will interact with the other hand. Uses attackby and attack_hand.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/is_item_in_hands">is_item_in_hands</a></th><td>Return [TRUE]|[FALSE] if item_searched is in the hands of the human
+item_searched the item you want to check</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/is_item_in_slots">is_item_in_slots</a></th><td>Return [TRUE]|[FALSE] if item_searched is equipped or in the hands of the human
+item_searched the item you want to check</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/issue_order">issue_order</a></th><td>Actually issues an Order</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/on_crit_moved">on_crit_moved</a></th><td>gives humans oxy when moved around in certain conditions. called on COMSIG_MOVABLE_MOVED</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/pick_order_target">pick_order_target</a></th><td>Choose what we're sending a buff order through</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/receive_order">receive_order</a></th><td>Proc to give a marine an order
+target : what atom to track
+arrow_type : what kind of visual arrow will be spawned on the marine
+verb_name : a word / sentence to describe the order</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/remove_organ_slot">remove_organ_slot</a></th><td>Removes organ by name</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/resuscitate">resuscitate</a></th><td>Proc that brings a carbon human back to life. Only works if their health is higher than their death threshold and they are dead in the first place.</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/revive_to_crit">revive_to_crit</a></th><td>Revive the huamn up to X health points</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/set_flag_aura">set_flag_aura</a></th><td>Updates the flag aura if it is actually changing</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/set_marksman_aura_aura">set_marksman_aura_aura</a></th><td>Updates the marksman aura if it is actually changing</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/set_mob_height">set_mob_height</a></th><td>Setter for mob height</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/set_mobility_aura">set_mobility_aura</a></th><td>Updates the mobility aura if it is actually changing</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/set_protection_aura">set_protection_aura</a></th><td>Updates the protection aura if it is actually changing</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/set_species">set_species</a></th><td>Turns our human into a selected species <code>new_species</code>
+new_species must be either a string or a species datum</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/set_undefibbable">set_undefibbable</a></th><td>Marks the mob as unrevivable
+Arguments:</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/suggest_squad_assign">suggest_squad_assign</a></th><td>wrapper for a signal to handle opening the squad selector ui just before drop</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/update_bodyparts">update_bodyparts</a></th><td>snowflake replacement handling since we don't have tg's proper handling of individual body parts as overlays</td></tr>
+            <tr><th><a href="mob/living/carbon/human.html#proc/update_sight">update_sight</a></th><td>ffs why is this on human instead of carbon its breaking shit!!!!! fix this!!!! todo!!!</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/age"><aside class="declaration">var </aside>age
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 55"/></a></h3>
+        <p>Character's age (pure fluff)</p><h3 id="var/assigned_squad"><aside class="declaration">var </aside>assigned_squad
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/squad.html">squad</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 139"/></a></h3>
+        <p>The squad this human is assigned to</p><h3 id="var/belt"><aside class="declaration">var </aside>belt
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 78"/></a></h3>
+        <p>The belt being worn.</p><h3 id="var/chestburst"><aside class="declaration">var </aside>chestburst
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 143"/></a></h3>
+        <p>chestburst state</p><h3 id="var/command_aura_allowed"><aside class="declaration">var </aside>command_aura_allowed
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L128">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 128"/></a></h3>
+        <p>Auras we can create, used for the order choice UI.</p><h3 id="var/damageoverlaytemp"><aside class="declaration">var </aside>damageoverlaytemp
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 141"/></a></h3>
+        <p>Used to help determine the severity icon state for our damage hud overlays</p><h3 id="var/dead_ticks"><aside class="declaration">var </aside>dead_ticks
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 115"/></a></h3>
+        <p>How long the human is dead, in life ticks, which is 2 seconds</p><h3 id="var/ethnicity"><aside class="declaration">var </aside>ethnicity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 41"/></a></h3>
+        <p>The character's ethnicity</p><h3 id="var/exploit_record"><aside class="declaration">var </aside>exploit_record
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 109"/></a></h3>
+        <p>This human's custom exploit record. Fluff.</p><h3 id="var/flag_aura"><aside class="declaration">var </aside>flag_aura
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 136"/></a></h3>
+        <p>Strength of the flag aura affecting us</p><h3 id="var/flavor_text"><aside class="declaration">var </aside>flavor_text
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 101"/></a></h3>
+        <p>This human's flavor text. Shows up when they're examined.</p><h3 id="var/gen_record"><aside class="declaration">var </aside>gen_record
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 107"/></a></h3>
+        <p>This human's custom employment record. Fluff.</p><h3 id="var/germ_level"><aside class="declaration">var </aside>germ_level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 125"/></a></h3>
+        <p>How much dirt the mob's accumulated. Harmless by itself, but can trigger issues with open wounds or surgery.</p><h3 id="var/glasses"><aside class="declaration">var </aside>glasses
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/clothing.html">clothing</a>/<a href="obj/item/clothing/glasses.html">glasses</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 82"/></a></h3>
+        <p>The glasses being worn.</p><h3 id="var/gloves"><aside class="declaration">var </aside>gloves
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/clothing.html">clothing</a>/gloves</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 80"/></a></h3>
+        <p>The gloves being worn.</p><h3 id="var/head"><aside class="declaration">var </aside>head
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 84"/></a></h3>
+        <p>The item currently on the character's head.</p><h3 id="var/holo_card_color"><aside class="declaration">var </aside>holo_card_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 118"/></a></h3>
+        <p>Which color type of holocard is printed on us</p><h3 id="var/internal_organs_by_name"><aside class="declaration">var </aside>internal_organs_by_name
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 123"/></a></h3>
+        <p>A list of internal organs by name [&quot;organ name&quot;] = /datum/internal_organ</p><h3 id="var/l_store"><aside class="declaration">var </aside>l_store
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 92"/></a></h3>
+        <p>The item currently in the left pocket</p><h3 id="var/last_dam"><aside class="declaration">var </aside>last_dam
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 98"/></a></h3>
+        <p>Used for determining if we need to process all limbs or just some or even none.</p><h3 id="var/last_shock_effect"><aside class="declaration">var </aside>last_shock_effect
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L148">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 148"/></a></h3>
+        <p>This is the cooldown on suffering additional effects for when shock gets high</p><h3 id="var/limbs"><aside class="declaration">var </aside>limbs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 121"/></a></h3>
+        <p>A list of our limb datums</p><h3 id="var/makeup_style"><aside class="declaration">var </aside>makeup_style
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 52"/></a></h3>
+        <p>The style of the makeup the mob currently has applied. Used to determine the right icon state for on the mob.</p><h3 id="var/marksman_aura"><aside class="declaration">var </aside>marksman_aura
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 134"/></a></h3>
+        <p>Strength of the focus order aura affecting us</p><h3 id="var/med_record"><aside class="declaration">var </aside>med_record
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 103"/></a></h3>
+        <p>This human's custom medical record. Fluff.</p><h3 id="var/mob_height"><aside class="declaration">var </aside>mob_height
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L151">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 151"/></a></h3>
+        <p>Height of the mob</p><h3 id="var/mobility_aura"><aside class="declaration">var </aside>mobility_aura
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 130"/></a></h3>
+        <p>Strength of the move order aura affecting us</p><h3 id="var/protection_aura"><aside class="declaration">var </aside>protection_aura
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 132"/></a></h3>
+        <p>Strength of the hold order aura affecting us</p><h3 id="var/r_store"><aside class="declaration">var </aside>r_store
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 90"/></a></h3>
+        <p>The item currently in the right pocket</p><h3 id="var/religion"><aside class="declaration">var </aside>religion
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 65"/></a></h3>
+        <p>The character's religion. Fluff.</p><h3 id="var/s_store"><aside class="declaration">var </aside>s_store
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 72"/></a></h3>
+        <p>The item currently inside the suit storage slot (not inside the armor itself)</p><h3 id="var/sec_record"><aside class="declaration">var </aside>sec_record
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 105"/></a></h3>
+        <p>This human's custom security record. Fluff.</p><h3 id="var/shoes"><aside class="declaration">var </aside>shoes
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/clothing.html">clothing</a>/<a href="obj/item/clothing/shoes.html">shoes</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 76"/></a></h3>
+        <p>The shoes currently being worn.</p><h3 id="var/stand_icon"><aside class="declaration">var </aside>stand_icon
+            <aside>&ndash; /icon</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 95"/></a></h3>
+        <p>The current standing icon</p><h3 id="var/undershirt"><aside class="declaration">var </aside>undershirt
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 60"/></a></h3>
+        <p>Which undershirt the player wants.</p><h3 id="var/underwear"><aside class="declaration">var </aside>underwear
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 58"/></a></h3>
+        <p>Which underwear the player wants</p><h3 id="var/w_uniform"><aside class="declaration">var </aside>w_uniform
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/clothing.html">clothing</a>/<a href="obj/item/clothing/under.html">under</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 74"/></a></h3>
+        <p>The jumpsuit/uniform that's currently being worn.</p><h3 id="var/wear_ear"><aside class="declaration">var </aside>wear_ear
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 86"/></a></h3>
+        <p>The headset/ear item being worn.</p><h3 id="var/wear_id"><aside class="declaration">var </aside>wear_id
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/card/id.html">card/id</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 88"/></a></h3>
+        <p>The ID being worn.</p><h3 id="var/wear_suit"><aside class="declaration">var </aside>wear_suit
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 70"/></a></h3>
+        <p>The item currently being worn in the suit slot (usually armor)</p><h3 id="var/xeno_push_delay"><aside class="declaration">var </aside>xeno_push_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L145">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 145"/></a></h3>
+        <p>The cooldown for being pushed by xenos on harm intent</p><h2 id="proc">Proc Details</h2><h3 id="proc/acid_spray_entered"><aside class="declaration">proc </aside>acid_spray_entered<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/effect/xenomorph/spray.html">effect/xenomorph/spray</a>/acid_spray, acid_damage, slow_amt) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/aliens.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;aliens.dm 67"/></a></aside>
+        </h3>
+        <p>Signal handler to burn and maybe stun the human entering the acid spray</p><h3 id="proc/amputate_limb"><aside class="declaration">proc </aside>amputate_limb<aside>(limb_zone) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L660">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 660"/></a></aside>
+        </h3>
+        <p>Amputates the limb in the specified limb zone</p><h3 id="proc/apply_height_filters"><aside class="declaration">proc </aside>apply_height_filters<aside>(/<a href="image.html">image</a>/appearance) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/update_icons.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;update_icons.dm 124"/></a></aside>
+        </h3>
+        <p>Applies a filter to an appearance according to mob height</p><h3 id="proc/apply_height_offsets"><aside class="declaration">proc </aside>apply_height_offsets<aside>(/<a href="image.html">image</a>/appearance, upper_torso) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/update_icons.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;update_icons.dm 107"/></a></aside>
+        </h3>
+        <p>Used in some circumstances where appearances can get cut off from the mob sprite from being too tall</p>
+<p>upper_torso is to specify whether the appearance is locate in the upper half of the mob rather than the lower half,
+higher up things (hats for example) need to be offset more due to the location of the filter displacement</p><h3 id="proc/async_do_quick_equip"><aside class="declaration">proc </aside>async_do_quick_equip<aside>(/<a href="atom.html">atom</a>/source, /<a href="datum.html">datum</a>/<a href="datum/keybinding.html">keybinding</a>/<a href="datum/keybinding/human/quick_equip.html">human/quick_equip</a>/equip_slot) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/inventory.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;inventory.dm 2"/></a></aside>
+        </h3>
+        <p>async signal wrapper for do_quick_equip</p><h3 id="proc/check_defib"><aside class="declaration">proc </aside>check_defib<aside>(additional_health_increase) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_helpers.dm#L310">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 310"/></a></aside>
+        </h3>
+        <p>Proc for checking parameters of a human for defibrillation.</p>
+<p>Checks decapitation, DNR status, organ damage and health status (in that order) for defibrillation.</p>
+<p>See defines in <code>__DEFINES/defibrillator.dm</code> for bitflags.</p>
+<p><code>additional_health_increase</code> can be used to add additional health when calculating health for situations like grabbing ghost.</p><h3 id="proc/copy_clothing_prefs"><aside class="declaration">proc </aside>copy_clothing_prefs<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/destination) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defines.dm#L154">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defines.dm 154"/></a></aside>
+        </h3>
+        <p>copies over clothing preferences like underwear to another human</p><h3 id="proc/do_quick_equip"><aside class="declaration">proc </aside>do_quick_equip<aside>(quick_equip_slot) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/inventory.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;inventory.dm 8"/></a></aside>
+        </h3>
+        <p>runs equip, quick_equip_used is the # in INVOKE_ASYNC</p><h3 id="proc/do_unique_action"><aside class="declaration">proc </aside>do_unique_action<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_helpers.dm#L459">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_helpers.dm 459"/></a></aside>
+        </h3>
+        <p>Try to perform a unique action on the held items</p><h3 id="proc/equip_role_outfit"><aside class="declaration">proc </aside>equip_role_outfit<aside>(/<a href="datum.html">datum</a>/<a href="datum/job.html">job</a>/assigned_role) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L314">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 314"/></a></aside>
+        </h3>
+        <p>finds and equips a valid outfit for a specified job and species</p><h3 id="proc/finish_revive_to_crit"><aside class="declaration">proc </aside>finish_revive_to_crit<aside>(should_offer_to_ghost, should_zombify) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/living_health_procs.dm#L406">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;living_health_procs.dm 406"/></a></aside>
+        </h3>
+        <p>Check if we have a mind, and finish the revive if we do</p><h3 id="proc/force_say"><aside class="declaration">proc </aside>force_say<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui_input/say_modal/speech.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui_input&#x2F;say_modal&#x2F;speech.dm 75"/></a></aside>
+        </h3>
+        <p>Makes the player force say what's in their current input box.</p><h3 id="proc/get_damage_icon_part"><aside class="declaration">proc </aside>get_damage_icon_part<aside>(damage_state, body_part) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/update_icons.dm#L271">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;update_icons.dm 271"/></a></aside>
+        </h3>
+        <p>fetches the damage icon part, and caches it if it made a new one</p><h3 id="proc/get_equipped_items"><aside class="parent"><a title="/mob/living" href="mob/living.html#proc/get_equipped_items">&uarr;</a></aside>get_equipped_items<aside>(include_pockets) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L347">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 347"/></a></aside>
+        </h3>
+        <p>Used to return a list of equipped items on a human mob; does not include held items (use get_all_gear)</p>
+<p>Argument(s):</p>
+<ul>
+<li>Optional - include_pockets (TRUE/FALSE), whether or not to include the pockets and suit storage in the returned list</li>
+</ul><h3 id="proc/get_eye_protection">get_eye_protection<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human.dm#L662">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 662"/></a></aside>
+        </h3>
+        <p>get_eye_protection()
+Returns a number between -1 to 2</p><h3 id="proc/get_mob_height"><aside class="declaration">proc </aside>get_mob_height<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_helpers.dm#L353">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 353"/></a></aside>
+        </h3>
+        <p>Getter for mob height</p>
+<p>Mainly so that dwarfism can adjust height without needing to override existing height</p>
+<p>Returns a mob height num</p><h3 id="proc/get_organ_slot"><aside class="declaration">proc </aside>get_organ_slot<aside>(string) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_helpers.dm#L371">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 371"/></a></aside>
+        </h3>
+        <p>Gets organ by name</p><h3 id="proc/get_target_lock"><aside class="declaration">proc </aside>get_target_lock<aside>(/list/unique_access) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_defense.dm#L367">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_defense.dm 367"/></a></aside>
+        </h3>
+        <p>This looks for a an ID on a person and checkes if an access tag from their ID matches the provided access tag. Used with the gun, claymore, sentry and possibly other IFF code.
+Does not actually check for station jobs.</p><h3 id="proc/get_type_in_slots"><aside class="declaration">proc </aside>get_type_in_slots<aside>(type_searched) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/inventory.dm#L571">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;inventory.dm 571"/></a></aside>
+        </h3>
+        <p>Return the first item found in SLOT_ALL of the type searched
+type searched the type you are looking for</p><h3 id="proc/has_ai"><aside class="declaration">proc </aside>has_ai<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human.dm#L1137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 1137"/></a></aside>
+        </h3>
+        <p>Checks if we have an AI behavior active</p><h3 id="proc/has_working_organs"><aside class="declaration">proc </aside>has_working_organs<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_helpers.dm#L273">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 273"/></a></aside>
+        </h3>
+        <p>Proc to check if a carbon human has the required organs to sustain life.</p>
+<p>Returns false if <code>has_brain</code> returns false, this human is missing a heart, or their current heart is broken</p>
+<p>Returns true otherwise</p><h3 id="proc/heal_limbs"><aside class="declaration">proc </aside>heal_limbs<aside>(health_to_heal) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/living_health_procs.dm#L244">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;living_health_procs.dm 244"/></a></aside>
+        </h3>
+        <p>Heal limbs until the total mob health went up by health_to_heal</p><h3 id="proc/heal_overall_damage">heal_overall_damage<aside>(brute, burn, robo_repair, updating_health) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_damage.dm#L261">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_damage.dm 261"/></a></aside>
+        </h3>
+        <p>Heal MANY limbs, in random order. If robo_repair is TRUE then both metal and flesh limbs will be healed, otherwise only flesh.</p><h3 id="proc/hud_set_order"><aside class="declaration">proc </aside>hud_set_order<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/data_huds.dm#L641">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;data_huds.dm 641"/></a></aside>
+        </h3>
+        <p>Updates aura hud icons</p><h3 id="proc/interact_other_hand"><aside class="declaration">proc </aside>interact_other_hand<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_helpers.dm#L381">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 381"/></a></aside>
+        </h3>
+        <p>Current active hand will interact with the other hand. Uses attackby and attack_hand.</p><h3 id="proc/is_item_in_hands"><aside class="declaration">proc </aside>is_item_in_hands<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item_searched) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/inventory.dm#L581">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;inventory.dm 581"/></a></aside>
+        </h3>
+        <p>Return [TRUE]|[FALSE] if item_searched is in the hands of the human
+item_searched the item you want to check</p><h3 id="proc/is_item_in_slots"><aside class="declaration">proc </aside>is_item_in_slots<aside>(item_searched) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/inventory.dm#L561">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;inventory.dm 561"/></a></aside>
+        </h3>
+        <p>Return [TRUE]|[FALSE] if item_searched is equipped or in the hands of the human
+item_searched the item you want to check</p><h3 id="proc/issue_order"><aside class="declaration">verb </aside>issue_order<aside>(command_aura) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/orders.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;orders.dm 122"/></a></aside>
+        </h3>
+        <p>Actually issues an Order</p><h3 id="proc/on_crit_moved"><aside class="declaration">proc </aside>on_crit_moved<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/old_loc, movement_dir, forced, /list/old_locs) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/life.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;life.dm 41"/></a></aside>
+        </h3>
+        <p>gives humans oxy when moved around in certain conditions. called on COMSIG_MOVABLE_MOVED</p><h3 id="proc/pick_order_target"><aside class="declaration">proc </aside>pick_order_target<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/orders.dm#L178">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;orders.dm 178"/></a></aside>
+        </h3>
+        <p>Choose what we're sending a buff order through</p><h3 id="proc/receive_order"><aside class="declaration">proc </aside>receive_order<aside>(/<a href="atom.html">atom</a>/target, arrow_type, verb_name, faction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/order_action.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;order_action.dm 78"/></a></aside>
+        </h3>
+        <p>Proc to give a marine an order
+target : what atom to track
+arrow_type : what kind of visual arrow will be spawned on the marine
+verb_name : a word / sentence to describe the order</p><h3 id="proc/remove_organ_slot"><aside class="declaration">proc </aside>remove_organ_slot<aside>(string) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_helpers.dm#L375">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 375"/></a></aside>
+        </h3>
+        <p>Removes organ by name</p><h3 id="proc/resuscitate"><aside class="declaration">proc </aside>resuscitate<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_helpers.dm#L289">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 289"/></a></aside>
+        </h3>
+        <p>Proc that brings a carbon human back to life. Only works if their health is higher than their death threshold and they are dead in the first place.</p>
+<p>Intended to be called by defibrillators or anything that brings a carbon human back to life</p><h3 id="proc/revive_to_crit"><aside class="declaration">proc </aside>revive_to_crit<aside>(should_offer_to_ghost, should_zombify) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/living_health_procs.dm#L385">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;living_health_procs.dm 385"/></a></aside>
+        </h3>
+        <p>Revive the huamn up to X health points</p><h3 id="proc/set_flag_aura"><aside class="declaration">proc </aside>set_flag_aura<aside>(new_aura) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/life/handle_status_effects.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life&#x2F;handle_status_effects.dm 61"/></a></aside>
+        </h3>
+        <p>Updates the flag aura if it is actually changing</p><h3 id="proc/set_marksman_aura_aura"><aside class="declaration">proc </aside>set_marksman_aura_aura<aside>(new_aura) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/life/handle_status_effects.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life&#x2F;handle_status_effects.dm 53"/></a></aside>
+        </h3>
+        <p>Updates the marksman aura if it is actually changing</p><h3 id="proc/set_mob_height"><aside class="declaration">proc </aside>set_mob_height<aside>(new_height) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_helpers.dm#L334">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 334"/></a></aside>
+        </h3>
+        <p>Setter for mob height</p>
+<p>Exists so that the update is done immediately</p>
+<p>Returns TRUE if changed, FALSE otherwise</p><h3 id="proc/set_mobility_aura"><aside class="declaration">proc </aside>set_mobility_aura<aside>(new_aura) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/life/handle_status_effects.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life&#x2F;handle_status_effects.dm 35"/></a></aside>
+        </h3>
+        <p>Updates the mobility aura if it is actually changing</p><h3 id="proc/set_protection_aura"><aside class="declaration">proc </aside>set_protection_aura<aside>(new_aura) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/life/handle_status_effects.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life&#x2F;handle_status_effects.dm 46"/></a></aside>
+        </h3>
+        <p>Updates the protection aura if it is actually changing</p><h3 id="proc/set_species"><aside class="declaration">proc </aside>set_species<aside>(new_species, default_colour) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human.dm#L775">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human.dm 775"/></a></aside>
+        </h3>
+        <p>Turns our human into a selected species <code>new_species</code>
+new_species must be either a string or a species datum</p><h3 id="proc/set_undefibbable"><aside class="declaration">proc </aside>set_undefibbable<aside>(affects_synth) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/life.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;life.dm 50"/></a></aside>
+        </h3>
+        <p>Marks the mob as unrevivable
+Arguments:</p>
+<ul>
+<li>affects_synth - If synths should be affected</li>
+</ul><h3 id="proc/suggest_squad_assign"><aside class="declaration">proc </aside>suggest_squad_assign<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/human_helpers.dm#L261">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;human_helpers.dm 261"/></a></aside>
+        </h3>
+        <p>wrapper for a signal to handle opening the squad selector ui just before drop</p><h3 id="proc/update_bodyparts"><aside class="declaration">proc </aside>update_bodyparts<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/update_icons.dm#L560">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;update_icons.dm 560"/></a></aside>
+        </h3>
+        <p>snowflake replacement handling since we don't have tg's proper handling of individual body parts as overlays</p><h3 id="proc/update_sight"><aside class="parent"><a title="/mob" href="mob.html#proc/update_sight">&uarr;</a></aside>update_sight<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon.dm#L330">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon.dm 330"/></a></aside>
+        </h3>
+        <p>ffs why is this on human instead of carbon its breaking shit!!!!! fix this!!!! todo!!!</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

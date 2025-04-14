@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;structure&#x2F;xeno&#x2F;aoe_leash - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/structure/xeno/aoe_leash.html#var">Var Details</a> - <a href="obj/structure/xeno/aoe_leash.html#proc">Proc Details</a></header>
+<main>
+<h1>aoe_leash <aside>/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/xeno.html">xeno</a>/<a href="obj/structure/xeno/aoe_leash.html">aoe_leash</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/widow/abilities_widow.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;widow&#x2F;abilities_widow.dm 70"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/structure/xeno/aoe_leash.html#var/beams">beams</a></th><td>List of beams to be removed on obj_destruction</td></tr>
+            <tr><th><a href="obj/structure/xeno/aoe_leash.html#var/leash_life">leash_life</a></th><td>How long the leash ball lasts untill it dies</td></tr>
+            <tr><th><a href="obj/structure/xeno/aoe_leash.html#var/leash_radius">leash_radius</a></th><td>Radius for how far the leash should affect humans and how far away they may walk</td></tr>
+            <tr><th><a href="obj/structure/xeno/aoe_leash.html#var/leash_victims">leash_victims</a></th><td>List of victims to unregister aoe_leash is destroyed</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/structure/xeno/aoe_leash.html#proc/Destroy">Destroy</a></th><td>Add || CONSCIOUS after testing
+To remove beams after the leash_ball is destroyed and also unregister all victims</td></tr>
+            <tr><th><a href="obj/structure/xeno/aoe_leash.html#proc/Initialize">Initialize</a></th><td>Humans caught get beamed and registered for proc/check_dist, aoe_leash also gains increased integrity for each caught human</td></tr>
+            <tr><th><a href="obj/structure/xeno/aoe_leash.html#proc/attack_alien">attack_alien</a></th><td>This is so that xenos can remove leash balls</td></tr>
+            <tr><th><a href="obj/structure/xeno/aoe_leash.html#proc/check_dist">check_dist</a></th><td>Humans caught in the aoe_leash will be pulled back if they leave it's radius</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/beams"><aside class="declaration">var </aside>beams
+            <aside>&ndash; /list/obj/effect/ebeam</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/widow/abilities_widow.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;widow&#x2F;abilities_widow.dm 87"/></a></h3>
+        <p>List of beams to be removed on obj_destruction</p><h3 id="var/leash_life"><aside class="declaration">var </aside>leash_life
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/widow/abilities_widow.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;widow&#x2F;abilities_widow.dm 83"/></a></h3>
+        <p>How long the leash ball lasts untill it dies</p><h3 id="var/leash_radius"><aside class="declaration">var </aside>leash_radius
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/widow/abilities_widow.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;widow&#x2F;abilities_widow.dm 85"/></a></h3>
+        <p>Radius for how far the leash should affect humans and how far away they may walk</p><h3 id="var/leash_victims"><aside class="declaration">var </aside>leash_victims
+            <aside>&ndash; /list/mob/living/carbon/human</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/widow/abilities_widow.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;widow&#x2F;abilities_widow.dm 89"/></a></h3>
+        <p>List of victims to unregister aoe_leash is destroyed</p><h2 id="proc">Proc Details</h2><h3 id="proc/Destroy"><aside class="parent"><a title="/obj/structure/xeno" href="obj/structure/xeno.html#proc/Destroy">&uarr;</a></aside>Destroy<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/widow/abilities_widow.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;widow&#x2F;abilities_widow.dm 113"/></a></aside>
+        </h3>
+        <p>Add || CONSCIOUS after testing
+To remove beams after the leash_ball is destroyed and also unregister all victims</p><h3 id="proc/Initialize"><aside class="parent"><a title="/atom" href="atom.html#proc/Initialize">&uarr;</a></aside>Initialize<aside>(mapload, _hivenumber) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/widow/abilities_widow.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;widow&#x2F;abilities_widow.dm 92"/></a></aside>
+        </h3>
+        <p>Humans caught get beamed and registered for proc/check_dist, aoe_leash also gains increased integrity for each caught human</p><h3 id="proc/attack_alien">attack_alien<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a>/xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration, isrightclick) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/widow/abilities_widow.dm#L128">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;widow&#x2F;abilities_widow.dm 128"/></a></aside>
+        </h3>
+        <p>This is so that xenos can remove leash balls</p><h3 id="proc/check_dist"><aside class="declaration">proc </aside>check_dist<aside>(/<a href="atom.html">atom</a>/source, /<a href="atom.html">atom</a>/newloc, direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/widow/abilities_widow.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;widow&#x2F;abilities_widow.dm 122"/></a></aside>
+        </h3>
+        <p>Humans caught in the aoe_leash will be pulled back if they leave it's radius</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

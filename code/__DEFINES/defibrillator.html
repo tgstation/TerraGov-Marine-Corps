@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;defibrillator.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/defibrillator.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/defibrillator.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/defibrillator.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;defibrillator.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/defibrillator.html#define/DEFIBRILLATOR_BASE_HEALING_VALUE">DEFIBRILLATOR_BASE_HEALING_VALUE</a></th><td>The base healing number for a defibrillator.</td></tr>
+        <tr><th><a href="code/__DEFINES/defibrillator.html#define/DEFIBRILLATOR_COOLDOWN">DEFIBRILLATOR_COOLDOWN</a></th><td>How often you can defib someone</td></tr>
+        <tr><th><a href="code/__DEFINES/defibrillator.html#define/DEFIBRILLATOR_HEALING_TIMES_SKILL">DEFIBRILLATOR_HEALING_TIMES_SKILL</a></th><td>A macro for healing with a defibrillator.</td></tr>
+        <tr><th><a href="code/__DEFINES/defibrillator.html#define/DEFIB_POSSIBLE">DEFIB_POSSIBLE</a></th><td>Ready to defibrillate</td></tr>
+        <tr><th><a href="code/__DEFINES/defibrillator.html#define/DEFIB_FAIL_DECAPITATED">DEFIB_FAIL_DECAPITATED</a></th><td>Missing a head</td></tr>
+        <tr><th><a href="code/__DEFINES/defibrillator.html#define/DEFIB_FAIL_BRAINDEAD">DEFIB_FAIL_BRAINDEAD</a></th><td>They have TRAIT_UNDEFIBBABLE</td></tr>
+        <tr><th><a href="code/__DEFINES/defibrillator.html#define/DEFIB_FAIL_BAD_ORGANS">DEFIB_FAIL_BAD_ORGANS</a></th><td>Doesn't have the required organs to sustain life OR heart is broken</td></tr>
+        <tr><th><a href="code/__DEFINES/defibrillator.html#define/DEFIB_FAIL_TOO_MUCH_DAMAGE">DEFIB_FAIL_TOO_MUCH_DAMAGE</a></th><td>Too much damage</td></tr>
+        <tr><th><a href="code/__DEFINES/defibrillator.html#define/DEFIB_PREVENT_REVIVE_STATES">DEFIB_PREVENT_REVIVE_STATES</a></th><td>Revival states that strictly entail permadeath. These will prevent defibrillation</td></tr>
+        <tr><th><a href="code/__DEFINES/defibrillator.html#define/DEFIB_REVIVABLE_STATES">DEFIB_REVIVABLE_STATES</a></th><td>All defibrillation outcomes that leave a revivable patient</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/DEFIBRILLATOR_BASE_HEALING_VALUE"><aside class="declaration">#define </aside>DEFIBRILLATOR_BASE_HEALING_VALUE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/defibrillator.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;defibrillator.dm 2"/></a>
+    </h3>
+    <p>The base healing number for a defibrillator.</p><h3 id="define/DEFIBRILLATOR_COOLDOWN"><aside class="declaration">#define </aside>DEFIBRILLATOR_COOLDOWN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/defibrillator.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;defibrillator.dm 5"/></a>
+    </h3>
+    <p>How often you can defib someone</p><h3 id="define/DEFIBRILLATOR_HEALING_TIMES_SKILL"><aside class="declaration">#define </aside>DEFIBRILLATOR_HEALING_TIMES_SKILL
+            <aside>(skill_input, healing_value)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/defibrillator.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;defibrillator.dm 12"/></a>
+    </h3>
+    <p>A macro for healing with a defibrillator.</p>
+<ul>
+<li><code>skill_input</code> - What to multiply <code>healing_value</code> by. If this is less than <code>SKILL_MEDICAL_PRACTICED</code>, will be 8.</li>
+<li><code>healing_value</code> - The number to multiply. Should be <code>DEFIBRILLATOR_BASE_HEALING_VALUE</code> unless you want to change the base healing value</li>
+</ul><h3 id="define/DEFIB_FAIL_BAD_ORGANS"><aside class="declaration">#define </aside>DEFIB_FAIL_BAD_ORGANS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/defibrillator.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;defibrillator.dm 22"/></a>
+    </h3>
+    <p>Doesn't have the required organs to sustain life OR heart is broken</p><h3 id="define/DEFIB_FAIL_BRAINDEAD"><aside class="declaration">#define </aside>DEFIB_FAIL_BRAINDEAD
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/defibrillator.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;defibrillator.dm 20"/></a>
+    </h3>
+    <p>They have TRAIT_UNDEFIBBABLE</p><h3 id="define/DEFIB_FAIL_DECAPITATED"><aside class="declaration">#define </aside>DEFIB_FAIL_DECAPITATED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/defibrillator.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;defibrillator.dm 18"/></a>
+    </h3>
+    <p>Missing a head</p><h3 id="define/DEFIB_FAIL_TOO_MUCH_DAMAGE"><aside class="declaration">#define </aside>DEFIB_FAIL_TOO_MUCH_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/defibrillator.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;defibrillator.dm 24"/></a>
+    </h3>
+    <p>Too much damage</p><h3 id="define/DEFIB_POSSIBLE"><aside class="declaration">#define </aside>DEFIB_POSSIBLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/defibrillator.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;defibrillator.dm 16"/></a>
+    </h3>
+    <p>Ready to defibrillate</p><h3 id="define/DEFIB_PREVENT_REVIVE_STATES"><aside class="declaration">#define </aside>DEFIB_PREVENT_REVIVE_STATES
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/defibrillator.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;defibrillator.dm 27"/></a>
+    </h3>
+    <p>Revival states that strictly entail permadeath. These will prevent defibrillation</p><h3 id="define/DEFIB_REVIVABLE_STATES"><aside class="declaration">#define </aside>DEFIB_REVIVABLE_STATES
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/defibrillator.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;defibrillator.dm 29"/></a>
+    </h3>
+    <p>All defibrillation outcomes that leave a revivable patient</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

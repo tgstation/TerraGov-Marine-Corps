@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;effect&#x2F;particle_effect&#x2F;smoke - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/effect/particle_effect/smoke.html#var">Var Details</a> - <a href="obj/effect/particle_effect/smoke.html#proc">Proc Details</a></header>
+<main>
+<h1>smoke <aside>/<a href="obj.html">obj</a>/<a href="obj/effect/particle_effect/smoke.html">effect/particle_effect/smoke</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/effect_system/smoke.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;smoke.dm 6"/></a></h1>
+
+<p>SMOKE SYSTEMS</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/effect/particle_effect/smoke.html#var/bio_protection">bio_protection</a></th><td>Effect strength mult against bio protection</td></tr>
+            <tr><th><a href="obj/effect/particle_effect/smoke.html#var/cloud">cloud</a></th><td>for associated chemical smoke</td></tr>
+            <tr><th><a href="obj/effect/particle_effect/smoke.html#var/expansion_speed">expansion_speed</a></th><td>time in decisecond for a smoke to spread one tile.</td></tr>
+            <tr><th><a href="obj/effect/particle_effect/smoke.html#var/fraction">fraction</a></th><td>Fraction used for chem touch effects</td></tr>
+            <tr><th><a href="obj/effect/particle_effect/smoke.html#var/lifetime">lifetime</a></th><td>Duration in 2 second ticks</td></tr>
+            <tr><th><a href="obj/effect/particle_effect/smoke.html#var/minimum_effect_delay">minimum_effect_delay</a></th><td>Delay in ticks before this smoke can affect a given mob again, applied in living's effect_smoke</td></tr>
+            <tr><th><a href="obj/effect/particle_effect/smoke.html#var/origin">origin</a></th><td>The original source of the smoke. Used for smoke spread checks</td></tr>
+            <tr><th><a href="obj/effect/particle_effect/smoke.html#var/smoke_traits">smoke_traits</a></th><td>Special effect traits</td></tr>
+            <tr><th><a href="obj/effect/particle_effect/smoke.html#var/strength">strength</a></th><td>Smoke effect strength mult</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/effect/particle_effect/smoke.html#proc/copy_stats">copy_stats</a></th><td>Copies key stats from a parent smoke to a newly created smoke</td></tr>
+            <tr><th><a href="obj/effect/particle_effect/smoke.html#proc/spread_smoke">spread_smoke</a></th><td>Attempts to spread smoke to the surrounding cardinal turfs</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/bio_protection"><aside class="declaration">var </aside>bio_protection
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/effect_system/smoke.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;smoke.dm 26"/></a></h3>
+        <p>Effect strength mult against bio protection</p><h3 id="var/cloud"><aside class="declaration">var </aside>cloud
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/effect_system.html">effect_system</a>/<a href="datum/effect_system/smoke_spread.html">smoke_spread</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/effect_system/smoke.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;smoke.dm 28"/></a></h3>
+        <p>for associated chemical smoke</p><h3 id="var/expansion_speed"><aside class="declaration">var </aside>expansion_speed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/effect_system/smoke.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;smoke.dm 20"/></a></h3>
+        <p>time in decisecond for a smoke to spread one tile.</p><h3 id="var/fraction"><aside class="declaration">var </aside>fraction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/effect_system/smoke.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;smoke.dm 30"/></a></h3>
+        <p>Fraction used for chem touch effects</p><h3 id="var/lifetime"><aside class="declaration">var </aside>lifetime
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/effect_system/smoke.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;smoke.dm 18"/></a></h3>
+        <p>Duration in 2 second ticks</p><h3 id="var/minimum_effect_delay"><aside class="declaration">var </aside>minimum_effect_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/effect_system/smoke.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;smoke.dm 32"/></a></h3>
+        <p>Delay in ticks before this smoke can affect a given mob again, applied in living's effect_smoke</p><h3 id="var/origin"><aside class="declaration">var </aside>origin
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/effect_system/smoke.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;smoke.dm 34"/></a></h3>
+        <p>The original source of the smoke. Used for smoke spread checks</p><h3 id="var/smoke_traits"><aside class="declaration">var </aside>smoke_traits
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/effect_system/smoke.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;smoke.dm 22"/></a></h3>
+        <p>Special effect traits</p><h3 id="var/strength"><aside class="declaration">var </aside>strength
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/effect_system/smoke.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;smoke.dm 24"/></a></h3>
+        <p>Smoke effect strength mult</p><h2 id="proc">Proc Details</h2><h3 id="proc/copy_stats"><aside class="declaration">proc </aside>copy_stats<aside>(/<a href="obj.html">obj</a>/<a href="obj/effect/particle_effect/smoke.html">effect/particle_effect/smoke</a>/parent, merge) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/effect_system/smoke.dm#L183">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;smoke.dm 183"/></a></aside>
+        </h3>
+        <p>Copies key stats from a parent smoke to a newly created smoke</p><h3 id="proc/spread_smoke"><aside class="declaration">proc </aside>spread_smoke<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/effect_system/smoke.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;effect_system&#x2F;smoke.dm 138"/></a></aside>
+        </h3>
+        <p>Attempts to spread smoke to the surrounding cardinal turfs</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

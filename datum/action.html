@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action.html#var">Var Details</a> - <a href="datum/action.html#proc">Proc Details</a></header>
+<main>
+<h1>action <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 11"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action.html#var/action_type">action_type</a></th><td>Defines what visual references will be initialized at round-start</td></tr>
+            <tr><th><a href="datum/action.html#var/hidden">hidden</a></th><td>Is this action explicitly hidden from the owner</td></tr>
+            <tr><th><a href="datum/action.html#var/keybinding_signals">keybinding_signals</a></th><td>Used for keybindings , use KEYBINDING_NORMAL or KEYBINDING_ALTERNATE for keybinding_activation or alternate_ability_activate</td></tr>
+            <tr><th><a href="datum/action.html#var/toggled">toggled</a></th><td>Used for keeping track of the addition of the selected/active frames</td></tr>
+            <tr><th><a href="datum/action.html#var/visual_references">visual_references</a></th><td>Holds a set of misc visual references to use with the overlay API. Always atleast one</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action.html#proc/ai_should_start_consider">ai_should_start_consider</a></th><td>Should a AI element occasionally see if this ability should be used?</td></tr>
+            <tr><th><a href="datum/action.html#proc/ai_should_use">ai_should_use</a></th><td>When called, see if based on the surroundings should the AI use this ability</td></tr>
+            <tr><th><a href="datum/action.html#proc/alternate_action_activate">alternate_action_activate</a></th><td>Signal Handler for alternate actions</td></tr>
+            <tr><th><a href="datum/action.html#proc/clean_action">clean_action</a></th><td>Cleans up the action if the owner is deleted</td></tr>
+            <tr><th><a href="datum/action.html#proc/deselect">deselect</a></th><td>Deselecting this action for use</td></tr>
+            <tr><th><a href="datum/action.html#proc/fail_activate">fail_activate</a></th><td>assumption: if no keybind ref passed you want to call normally.
+would use _listen_lookup but that'd start getting cursed and overly expensive for what it is
+Add it if you need it</td></tr>
+            <tr><th><a href="datum/action.html#proc/handle_button_status_visuals">handle_button_status_visuals</a></th><td>A proc called on update button action for  additional visuals beyond the very base</td></tr>
+            <tr><th><a href="datum/action.html#proc/keybind_activation">keybind_activation</a></th><td>Signal Handler for main action</td></tr>
+            <tr><th><a href="datum/action.html#proc/keybind_trigger">keybind_trigger</a></th><td>Handler for what action to trigger, inherit from this and call parent before for extra actions</td></tr>
+            <tr><th><a href="datum/action.html#proc/select">select</a></th><td>Setting this action as the active action</td></tr>
+            <tr><th><a href="datum/action.html#proc/set_toggle">set_toggle</a></th><td>Depending on the action type , toggles the selected/active frame to show without allowing stacking multiple overlays</td></tr>
+            <tr><th><a href="datum/action.html#proc/should_show">should_show</a></th><td>Whether the owner can see this action</td></tr>
+            <tr><th><a href="datum/action.html#proc/update_button_icon">update_button_icon</a></th><td>The cutting needs to be done /BEFORE/ the string maptext gets changed. Since byond internally recognizes it as a different image, and doesn't cut it properly</td></tr>
+            <tr><th><a href="datum/action.html#proc/update_map_text">update_map_text</a></th><td>A handler used to update the maptext and show the change immediately.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/action_type"><aside class="declaration">var </aside>action_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 26"/></a></h3>
+        <p>Defines what visual references will be initialized at round-start</p><h3 id="var/hidden"><aside class="declaration">var </aside>hidden
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 30"/></a></h3>
+        <p>Is this action explicitly hidden from the owner</p><h3 id="var/keybinding_signals"><aside class="declaration">var </aside>keybinding_signals
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 24"/></a></h3>
+        <p>Used for keybindings , use KEYBINDING_NORMAL or KEYBINDING_ALTERNATE for keybinding_activation or alternate_ability_activate</p><h3 id="var/toggled"><aside class="declaration">var </aside>toggled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 28"/></a></h3>
+        <p>Used for keeping track of the addition of the selected/active frames</p><h3 id="var/visual_references"><aside class="declaration">var </aside>visual_references
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 22"/></a></h3>
+        <p>Holds a set of misc visual references to use with the overlay API. Always atleast one</p><h2 id="proc">Proc Details</h2><h3 id="proc/ai_should_start_consider"><aside class="declaration">proc </aside>ai_should_start_consider<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L219">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 219"/></a></aside>
+        </h3>
+        <p>Should a AI element occasionally see if this ability should be used?</p><h3 id="proc/ai_should_use"><aside class="declaration">proc </aside>ai_should_use<aside>(target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L223">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 223"/></a></aside>
+        </h3>
+        <p>When called, see if based on the surroundings should the AI use this ability</p><h3 id="proc/alternate_action_activate"><aside class="declaration">proc </aside>alternate_action_activate<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 160"/></a></aside>
+        </h3>
+        <p>Signal Handler for alternate actions</p><h3 id="proc/clean_action"><aside class="declaration">proc </aside>clean_action<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 67"/></a></aside>
+        </h3>
+        <p>Cleans up the action if the owner is deleted</p><h3 id="proc/deselect"><aside class="declaration">proc </aside>deselect<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 89"/></a></aside>
+        </h3>
+        <p>Deselecting this action for use</p><h3 id="proc/fail_activate"><aside class="declaration">proc </aside>fail_activate<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L177">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 177"/></a></aside>
+        </h3>
+        <p>assumption: if no keybind ref passed you want to call normally.
+would use _listen_lookup but that'd start getting cursed and overly expensive for what it is
+Add it if you need it</p><h3 id="proc/handle_button_status_visuals"><aside class="declaration">proc </aside>handle_button_status_visuals<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 141"/></a></aside>
+        </h3>
+        <p>A proc called on update button action for  additional visuals beyond the very base</p><h3 id="proc/keybind_activation"><aside class="declaration">proc </aside>keybind_activation<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L153">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 153"/></a></aside>
+        </h3>
+        <p>Signal Handler for main action</p><h3 id="proc/keybind_trigger"><aside class="declaration">proc </aside>keybind_trigger<aside>(/<a href="mob.html">mob</a>/source, /<a href="datum.html">datum</a>/<a href="datum/keybinding.html">keybinding</a>/kb_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L165">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 165"/></a></aside>
+        </h3>
+        <p>Handler for what action to trigger, inherit from this and call parent before for extra actions</p><h3 id="proc/select"><aside class="declaration">proc </aside>select<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 85"/></a></aside>
+        </h3>
+        <p>Setting this action as the active action</p><h3 id="proc/set_toggle"><aside class="declaration">proc </aside>set_toggle<aside>(value) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 77"/></a></aside>
+        </h3>
+        <p>Depending on the action type , toggles the selected/active frame to show without allowing stacking multiple overlays</p><h3 id="proc/should_show"><aside class="declaration">proc </aside>should_show<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 73"/></a></aside>
+        </h3>
+        <p>Whether the owner can see this action</p><h3 id="proc/update_button_icon"><aside class="declaration">proc </aside>update_button_icon<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 110"/></a></aside>
+        </h3>
+        <p>The cutting needs to be done /BEFORE/ the string maptext gets changed. Since byond internally recognizes it as a different image, and doesn't cut it properly</p><h3 id="proc/update_map_text"><aside class="declaration">proc </aside>update_map_text<aside>(key_string, key_signal) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 94"/></a></aside>
+        </h3>
+        <p>A handler used to update the maptext and show the change immediately.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

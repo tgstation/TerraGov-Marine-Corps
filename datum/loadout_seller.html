@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;loadout_seller - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/loadout_seller.html#var">Var Details</a> - <a href="datum/loadout_seller.html#proc">Proc Details</a></header>
+<main>
+<h1>loadout_seller <aside>/<a href="datum.html">datum</a>/<a href="datum/loadout_seller.html">loadout_seller</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/loadout/loadout_seller.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;loadout&#x2F;loadout_seller.dm 9"/></a></h1>
+
+<p>Small loadout in charge of dealing with a user trying to equip a saved loadout
+First it will reserve all items that can be bought, and save the name of all items that cannot be bought
+If the list of items that cannot be bought is empty, the transaction will be automaticly accepted and the loadout will be equipped on the user
+If it's not empty, it will warn the user and give him the list of non-buyable items.
+The user can chose to proceed with the buy, and he is equipped with what was already be bought,
+or he can chose to refuse, and then the items are put back in the vendors</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/loadout_seller.html#var/available_points">available_points</a></th><td>How many points can be used when equipping the loadout</td></tr>
+            <tr><th><a href="datum/loadout_seller.html#var/buying_choices_left">buying_choices_left</a></th><td>The buying bitfield this marine used to equip the loadout</td></tr>
+            <tr><th><a href="datum/loadout_seller.html#var/faction">faction</a></th><td>The faction of the seller.</td></tr>
+            <tr><th><a href="datum/loadout_seller.html#var/item_list">item_list</a></th><td>Assoc list of items in visible slots.</td></tr>
+            <tr><th><a href="datum/loadout_seller.html#var/unavailable_items">unavailable_items</a></th><td>How many items were not available</td></tr>
+            <tr><th><a href="datum/loadout_seller.html#var/unique_items_list">unique_items_list</a></th><td>Items that were taken from essential kits, used to check for duplicates</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/loadout_seller.html#proc/do_equip_loadout">do_equip_loadout</a></th><td>Will equip the mob with the items that were bought previously</td></tr>
+            <tr><th><a href="datum/loadout_seller.html#proc/prepare_to_equip_loadout">prepare_to_equip_loadout</a></th><td>Will save all the bought items in item_list, and keep the record of unavailable_items</td></tr>
+            <tr><th><a href="datum/loadout_seller.html#proc/sell_rest_of_essential_kit">sell_rest_of_essential_kit</a></th><td>If one item from essential kit was bought, we sell the rest and put in on the ground</td></tr>
+            <tr><th><a href="datum/loadout_seller.html#proc/try_to_equip_loadout">try_to_equip_loadout</a></th><td>Buy all items of the loadout from vendors. If some items could not be bought, we warned the user and ask him if he wants to continue.
+If the user still want to proceed, we equip the user with the loadout
+Else we sell everything back to vendors</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/available_points"><aside class="declaration">var </aside>available_points
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/loadout/loadout_seller.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;loadout&#x2F;loadout_seller.dm 13"/></a></h3>
+        <p>How many points can be used when equipping the loadout</p><h3 id="var/buying_choices_left"><aside class="declaration">var </aside>buying_choices_left
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/loadout/loadout_seller.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;loadout&#x2F;loadout_seller.dm 15"/></a></h3>
+        <p>The buying bitfield this marine used to equip the loadout</p><h3 id="var/faction"><aside class="declaration">var </aside>faction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/loadout/loadout_seller.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;loadout&#x2F;loadout_seller.dm 21"/></a></h3>
+        <p>The faction of the seller.</p><h3 id="var/item_list"><aside class="declaration">var </aside>item_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/loadout/loadout_seller.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;loadout&#x2F;loadout_seller.dm 19"/></a></h3>
+        <p>Assoc list of items in visible slots.</p><h3 id="var/unavailable_items"><aside class="declaration">var </aside>unavailable_items
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/loadout/loadout_seller.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;loadout&#x2F;loadout_seller.dm 11"/></a></h3>
+        <p>How many items were not available</p><h3 id="var/unique_items_list"><aside class="declaration">var </aside>unique_items_list
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/loadout/loadout_seller.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;loadout&#x2F;loadout_seller.dm 17"/></a></h3>
+        <p>Items that were taken from essential kits, used to check for duplicates</p><h2 id="proc">Proc Details</h2><h3 id="proc/do_equip_loadout"><aside class="declaration">proc </aside>do_equip_loadout<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/loadout/loadout_seller.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;loadout&#x2F;loadout_seller.dm 39"/></a></aside>
+        </h3>
+        <p>Will equip the mob with the items that were bought previously</p><h3 id="proc/prepare_to_equip_loadout"><aside class="declaration">proc </aside>prepare_to_equip_loadout<aside>(/<a href="datum.html">datum</a>/<a href="datum/loadout.html">loadout</a>/loadout, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/loadout/loadout_seller.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;loadout&#x2F;loadout_seller.dm 28"/></a></aside>
+        </h3>
+        <p>Will save all the bought items in item_list, and keep the record of unavailable_items</p><h3 id="proc/sell_rest_of_essential_kit"><aside class="declaration">proc </aside>sell_rest_of_essential_kit<aside>(/<a href="datum.html">datum</a>/<a href="datum/loadout.html">loadout</a>/loadout, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/loadout/loadout_seller.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;loadout&#x2F;loadout_seller.dm 66"/></a></aside>
+        </h3>
+        <p>If one item from essential kit was bought, we sell the rest and put in on the ground</p><h3 id="proc/try_to_equip_loadout"><aside class="declaration">proc </aside>try_to_equip_loadout<aside>(/<a href="datum.html">datum</a>/<a href="datum/loadout.html">loadout</a>/loadout, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/loadout/loadout_seller.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;loadout&#x2F;loadout_seller.dm 54"/></a></aside>
+        </h3>
+        <p>Buy all items of the loadout from vendors. If some items could not be bought, we warned the user and ask him if he wants to continue.
+If the user still want to proceed, we equip the user with the loadout
+Else we sell everything back to vendors</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

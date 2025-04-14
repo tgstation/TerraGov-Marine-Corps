@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;throw_parry - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/throw_parry.html#var">Var Details</a> - <a href="datum/component/throw_parry.html#proc">Proc Details</a></header>
+<main>
+<h1>throw_parry <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/throw_parry.html">throw_parry</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/throw_parry.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;throw_parry.dm 6"/></a></h1>
+
+<p>This component allows a mob/living to parry thrown objects back towards its source provided certain conditions are met.
+COMSIG_PARRY_TRIGGER together with a duration enables parrying for this time frame, durations do not stack and only the current latest ending one is used.
+A thrown item being parried will prevent the throw from ending and returns said thrown object back towards its source with half its speed.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/throw_parry.html#var/living_parent">living_parent</a></th><td>The mob/living this component interacts with, namely reacting to attempted throw impacts on it.</td></tr>
+            <tr><th><a href="datum/component/throw_parry.html#var/parry_until">parry_until</a></th><td>Until which world.time the parry is active. Parries can only trigger if this is larger than the current world.time.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/throw_parry.html#proc/enable_parry">enable_parry</a></th><td>Enables parrying for the passed duration. Multiple sources of enabling will not be directly summed up, instead using the latest ending one.</td></tr>
+            <tr><th><a href="datum/component/throw_parry.html#proc/parry_check">parry_check</a></th><td>This is triggered by an object attempting to impact into something with the parry component attached and checks whether the current conditions are valid to trigger a parry success.
+The mob has to be conscious aswell as not resting and the parry duration must not have timed out.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/living_parent"><aside class="declaration">var </aside>living_parent
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/throw_parry.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;throw_parry.dm 8"/></a></h3>
+        <p>The mob/living this component interacts with, namely reacting to attempted throw impacts on it.</p><h3 id="var/parry_until"><aside class="declaration">var </aside>parry_until
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/throw_parry.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;throw_parry.dm 10"/></a></h3>
+        <p>Until which world.time the parry is active. Parries can only trigger if this is larger than the current world.time.</p><h2 id="proc">Proc Details</h2><h3 id="proc/enable_parry"><aside class="declaration">proc </aside>enable_parry<aside>(parry_triggerer, duration) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/throw_parry.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;throw_parry.dm 49"/></a></aside>
+        </h3>
+        <p>Enables parrying for the passed duration. Multiple sources of enabling will not be directly summed up, instead using the latest ending one.</p><h3 id="proc/parry_check"><aside class="declaration">proc </aside>parry_check<aside>(parry_target, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/to_parry) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/throw_parry.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;throw_parry.dm 35"/></a></aside>
+        </h3>
+        <p>This is triggered by an object attempting to impact into something with the parry component attached and checks whether the current conditions are valid to trigger a parry success.
+The mob has to be conscious aswell as not resting and the parry duration must not have timed out.</p>
+<ul>
+<li>Returns TRUE on successful parry and nothing if failed, which is then handled by throwing code.</li>
+</ul></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

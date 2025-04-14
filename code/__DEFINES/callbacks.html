@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;callbacks.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/callbacks.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/callbacks.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/callbacks.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;callbacks.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/callbacks.html#define/CALLBACK">CALLBACK</a></th><td>A shorthand for the callback datum, <a href="datum/callback.html">documented here</a></td></tr>
+        <tr><th><a href="code/__DEFINES/callbacks.html#define/INVOKE_NEXT_TICK">INVOKE_NEXT_TICK</a></th><td>Shorthand for invoking a proc next tick</td></tr>
+        <tr><th><a href="code/__DEFINES/callbacks.html#define/MAKE_SPAWN_ACT_LIKE_WAITFOR">MAKE_SPAWN_ACT_LIKE_WAITFOR</a></th><td>Per the DM reference, spawn(-1) will execute the spawned code immediately until a block is met.</td></tr>
+        <tr><th><a href="code/__DEFINES/callbacks.html#define/ASYNC">ASYNC</a></th><td>Create a codeblock that will not block the callstack if a block is met.</td></tr>
+        <tr><th><a href="code/__DEFINES/callbacks.html#define/VERB_CALLBACK">VERB_CALLBACK</a></th><td>like CALLBACK but specifically for verb callbacks</td></tr>
+        <tr><th><a href="code/__DEFINES/callbacks.html#define/VARSET_CALLBACK">VARSET_CALLBACK</a></th><td>Set a var to x in y time</td></tr>
+        <tr><th><a href="code/__DEFINES/callbacks.html#define/VARSET_WEAK_CALLBACK">VARSET_WEAK_CALLBACK</a></th><td>Same as VARSET_CALLBACK, but uses a weakref to the datum.
+Use this if the timer is exceptionally long.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ASYNC"><aside class="declaration">#define </aside>ASYNC
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/callbacks.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;callbacks.dm 11"/></a>
+    </h3>
+    <p>Create a codeblock that will not block the callstack if a block is met.</p><h3 id="define/CALLBACK"><aside class="declaration">#define </aside>CALLBACK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/callbacks.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;callbacks.dm 3"/></a>
+    </h3>
+    <p>A shorthand for the callback datum, <a href="datum/callback.html">documented here</a></p><h3 id="define/INVOKE_NEXT_TICK"><aside class="declaration">#define </aside>INVOKE_NEXT_TICK
+            <aside>(arguments ...)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/callbacks.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;callbacks.dm 6"/></a>
+    </h3>
+    <p>Shorthand for invoking a proc next tick</p><h3 id="define/MAKE_SPAWN_ACT_LIKE_WAITFOR"><aside class="declaration">#define </aside>MAKE_SPAWN_ACT_LIKE_WAITFOR
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/callbacks.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;callbacks.dm 9"/></a>
+    </h3>
+    <p>Per the DM reference, spawn(-1) will execute the spawned code immediately until a block is met.</p><h3 id="define/VARSET_CALLBACK"><aside class="declaration">#define </aside>VARSET_CALLBACK
+            <aside>(datum, var, var_value)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/callbacks.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;callbacks.dm 30"/></a>
+    </h3>
+    <p>Set a var to x in y time</p><h3 id="define/VARSET_WEAK_CALLBACK"><aside class="declaration">#define </aside>VARSET_WEAK_CALLBACK
+            <aside>(datum, var, var_value)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/callbacks.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;callbacks.dm 33"/></a>
+    </h3>
+    <p>Same as VARSET_CALLBACK, but uses a weakref to the datum.
+Use this if the timer is exceptionally long.</p><h3 id="define/VERB_CALLBACK"><aside class="declaration">#define </aside>VERB_CALLBACK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/callbacks.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;callbacks.dm 27"/></a>
+    </h3>
+    <p>like CALLBACK but specifically for verb callbacks</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

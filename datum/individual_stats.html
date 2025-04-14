@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;individual_stats - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/individual_stats.html#var">Var Details</a> - <a href="datum/individual_stats.html#proc">Proc Details</a></header>
+<main>
+<h1>individual_stats <aside>/<a href="datum.html">datum</a>/<a href="datum/individual_stats.html">individual_stats</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 4"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/individual_stats.html#var/currency">currency</a></th><td>Credits. You buy stuff with it</td></tr>
+            <tr><th><a href="datum/individual_stats.html#var/current_mob">current_mob</a></th><td>currently occupied mob - if any</td></tr>
+            <tr><th><a href="datum/individual_stats.html#var/faction">faction</a></th><td>The faction associated with these stats</td></tr>
+            <tr><th><a href="datum/individual_stats.html#var/loadouts">loadouts</a></th><td>List of loadouts by role</td></tr>
+            <tr><th><a href="datum/individual_stats.html#var/perks_by_job">perks_by_job</a></th><td>Unlocked perks organised by jobs effected</td></tr>
+            <tr><th><a href="datum/individual_stats.html#var/selected_job">selected_job</a></th><td>Currently selected UI job tab</td></tr>
+            <tr><th><a href="datum/individual_stats.html#var/selected_tab">selected_tab</a></th><td>Currently selected UI category tab</td></tr>
+            <tr><th><a href="datum/individual_stats.html#var/unlocked_items">unlocked_items</a></th><td>Unlocked items</td></tr>
+            <tr><th><a href="datum/individual_stats.html#var/unlocked_perks">unlocked_perks</a></th><td>Single list of unlocked perks for easy reference</td></tr>
+            <tr><th><a href="datum/individual_stats.html#var/valid_jobs">valid_jobs</a></th><td>List of job types based on faction</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/individual_stats.html#proc/apply_perks">apply_perks</a></th><td>Applies all perks to a mob</td></tr>
+            <tr><th><a href="datum/individual_stats.html#proc/give_funds">give_funds</a></th><td>Applies cash</td></tr>
+            <tr><th><a href="datum/individual_stats.html#proc/make_available_loadout_item">make_available_loadout_item</a></th><td>Adds an item to the unlockable list for a job</td></tr>
+            <tr><th><a href="datum/individual_stats.html#proc/post_mission_credits">post_mission_credits</a></th><td>Pay each player additional credits based on individual performance during the mission</td></tr>
+            <tr><th><a href="datum/individual_stats.html#proc/purchase_perk">purchase_perk</a></th><td>Adds a perk if able</td></tr>
+            <tr><th><a href="datum/individual_stats.html#proc/replace_loadout_option">replace_loadout_option</a></th><td>Adds and equips a loadout item, replacing another</td></tr>
+            <tr><th><a href="datum/individual_stats.html#proc/unlock_loadout_item">unlock_loadout_item</a></th><td>Unlocks a loadout item for use</td></tr>
+            <tr><th><a href="datum/individual_stats.html#proc/use_funds">use_funds</a></th><td>uses some funtokens, returns the amount missing, if insufficient funds</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/currency"><aside class="declaration">var </aside>currency
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 10"/></a></h3>
+        <p>Credits. You buy stuff with it</p><h3 id="var/current_mob"><aside class="declaration">var </aside>current_mob
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 8"/></a></h3>
+        <p>currently occupied mob - if any</p><h3 id="var/faction"><aside class="declaration">var </aside>faction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 22"/></a></h3>
+        <p>The faction associated with these stats</p><h3 id="var/loadouts"><aside class="declaration">var </aside>loadouts
+            <aside>&ndash; /list/datum/outfit_holder</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 20"/></a></h3>
+        <p>List of loadouts by role</p><h3 id="var/perks_by_job"><aside class="declaration">var </aside>perks_by_job
+            <aside>&ndash; /list/list/datum/perk</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 16"/></a></h3>
+        <p>Unlocked perks organised by jobs effected</p><h3 id="var/selected_job"><aside class="declaration">var </aside>selected_job
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 28"/></a></h3>
+        <p>Currently selected UI job tab</p><h3 id="var/selected_tab"><aside class="declaration">var </aside>selected_tab
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 24"/></a></h3>
+        <p>Currently selected UI category tab</p><h3 id="var/unlocked_items"><aside class="declaration">var </aside>unlocked_items
+            <aside>&ndash; /list/list/datum/loadout_item</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 18"/></a></h3>
+        <p>Unlocked items</p><h3 id="var/unlocked_perks"><aside class="declaration">var </aside>unlocked_perks
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 14"/></a></h3>
+        <p>Single list of unlocked perks for easy reference</p><h3 id="var/valid_jobs"><aside class="declaration">var </aside>valid_jobs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 12"/></a></h3>
+        <p>List of job types based on faction</p><h2 id="proc">Proc Details</h2><h3 id="proc/apply_perks"><aside class="declaration">proc </aside>apply_perks<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L153">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 153"/></a></aside>
+        </h3>
+        <p>Applies all perks to a mob</p><h3 id="proc/give_funds"><aside class="declaration">proc </aside>give_funds<aside>(amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 57"/></a></aside>
+        </h3>
+        <p>Applies cash</p><h3 id="proc/make_available_loadout_item"><aside class="declaration">proc </aside>make_available_loadout_item<aside>(item_type, job_type_or_types, /<a href="mob.html">mob</a>/user, job_req_override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 125"/></a></aside>
+        </h3>
+        <p>Adds an item to the unlockable list for a job</p><h3 id="proc/post_mission_credits"><aside class="declaration">proc </aside>post_mission_credits<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 51"/></a></aside>
+        </h3>
+        <p>Pay each player additional credits based on individual performance during the mission</p><h3 id="proc/purchase_perk"><aside class="declaration">proc </aside>purchase_perk<aside>(/<a href="datum.html">datum</a>/<a href="datum/perk.html">perk</a>/new_perk, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 70"/></a></aside>
+        </h3>
+        <p>Adds a perk if able</p><h3 id="proc/replace_loadout_option"><aside class="declaration">proc </aside>replace_loadout_option<aside>(new_item, removed_item, job_type_or_types, job_req_override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 138"/></a></aside>
+        </h3>
+        <p>Adds and equips a loadout item, replacing another</p><h3 id="proc/unlock_loadout_item"><aside class="declaration">proc </aside>unlock_loadout_item<aside>(item_type, job_type_or_types, /<a href="mob.html">mob</a>/user, cost_override, job_req_override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 108"/></a></aside>
+        </h3>
+        <p>Unlocks a loadout item for use</p><h3 id="proc/use_funds"><aside class="declaration">proc </aside>use_funds<aside>(amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/individual_stats.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;individual_stats.dm 64"/></a></aside>
+        </h3>
+        <p>uses some funtokens, returns the amount missing, if insufficient funds</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

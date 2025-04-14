@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;vehicle_mounted_weapon - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/vehicle_mounted_weapon.html#var">Var Details</a> - <a href="datum/component/vehicle_mounted_weapon.html#proc">Proc Details</a></header>
+<main>
+<h1>vehicle_mounted_weapon <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/vehicle_mounted_weapon.html">vehicle_mounted_weapon</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/mounted_gun.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;mounted_gun.dm 2"/></a></h1>
+
+<p>This component allows gun mounting on vehicle types</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/vehicle_mounted_weapon.html#var/mounted_gun">mounted_gun</a></th><td>The gun mounted on a vehicle</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/vehicle_mounted_weapon.html#proc/on_attack_hand">on_attack_hand</a></th><td>Behaviour on attack hand. Puts the gun in the user's hands if they're riding the vehicle and don't have the gun in their hands.</td></tr>
+            <tr><th><a href="datum/component/vehicle_mounted_weapon.html#proc/on_attackby">on_attackby</a></th><td>Behaviour on attackby. When a user clicks the wheelchair with an ammo magazine they reload the mounted weapon.</td></tr>
+            <tr><th><a href="datum/component/vehicle_mounted_weapon.html#proc/on_buckle">on_buckle</a></th><td>Behaviour on buckle. Puts the gun in the buckled mob's hands.</td></tr>
+            <tr><th><a href="datum/component/vehicle_mounted_weapon.html#proc/on_examine">on_examine</a></th><td>Adds stuff to the examine of the vehicle.</td></tr>
+            <tr><th><a href="datum/component/vehicle_mounted_weapon.html#proc/on_mousedrop">on_mousedrop</a></th><td>Behaviour on mouse drop. If the user has clickdragged the chair to themselves they will unload it.</td></tr>
+            <tr><th><a href="datum/component/vehicle_mounted_weapon.html#proc/on_unbuckle">on_unbuckle</a></th><td>Behaviour on unbuckle. Force drops the gun from the unbuckled mob's hands.</td></tr>
+            <tr><th><a href="datum/component/vehicle_mounted_weapon.html#proc/on_weapon_drop">on_weapon_drop</a></th><td>Handles the weapon being dropped. The only way this should happen is if they unbuckle, and this makes sure they can't just take the gun and run off with it.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/mounted_gun"><aside class="declaration">var </aside>mounted_gun
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a>/<a href="obj/item/weapon/gun.html">gun</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/mounted_gun.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;mounted_gun.dm 6"/></a></h3>
+        <p>The gun mounted on a vehicle</p><h2 id="proc">Proc Details</h2><h3 id="proc/on_attack_hand"><aside class="declaration">proc </aside>on_attack_hand<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/mounted_gun.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;mounted_gun.dm 67"/></a></aside>
+        </h3>
+        <p>Behaviour on attack hand. Puts the gun in the user's hands if they're riding the vehicle and don't have the gun in their hands.</p><h3 id="proc/on_attackby"><aside class="declaration">proc </aside>on_attackby<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, /<a href="mob.html">mob</a>/user, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/mounted_gun.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;mounted_gun.dm 60"/></a></aside>
+        </h3>
+        <p>Behaviour on attackby. When a user clicks the wheelchair with an ammo magazine they reload the mounted weapon.</p><h3 id="proc/on_buckle"><aside class="declaration">proc </aside>on_buckle<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/mounted_gun.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;mounted_gun.dm 37"/></a></aside>
+        </h3>
+        <p>Behaviour on buckle. Puts the gun in the buckled mob's hands.</p><h3 id="proc/on_examine"><aside class="declaration">proc </aside>on_examine<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user, /list/examine_list) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/mounted_gun.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;mounted_gun.dm 75"/></a></aside>
+        </h3>
+        <p>Adds stuff to the examine of the vehicle.</p><h3 id="proc/on_mousedrop"><aside class="declaration">proc </aside>on_mousedrop<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/over, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/mounted_gun.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;mounted_gun.dm 52"/></a></aside>
+        </h3>
+        <p>Behaviour on mouse drop. If the user has clickdragged the chair to themselves they will unload it.</p><h3 id="proc/on_unbuckle"><aside class="declaration">proc </aside>on_unbuckle<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/unbuckled_mob, force) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/mounted_gun.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;mounted_gun.dm 47"/></a></aside>
+        </h3>
+        <p>Behaviour on unbuckle. Force drops the gun from the unbuckled mob's hands.</p><h3 id="proc/on_weapon_drop"><aside class="declaration">proc </aside>on_weapon_drop<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/dropped, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/mounted_gun.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;mounted_gun.dm 85"/></a></aside>
+        </h3>
+        <p>Handles the weapon being dropped. The only way this should happen is if they unbuckle, and this makes sure they can't just take the gun and run off with it.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;xeno_action&#x2F;toxic_slash - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/xeno_action/toxic_slash.html#var">Var Details</a> - <a href="datum/action/ability/xeno_action/toxic_slash.html#proc">Proc Details</a></header>
+<main>
+<h1>toxic_slash <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/xeno_action.html">xeno_action</a>/<a href="datum/action/ability/xeno_action/toxic_slash.html">toxic_slash</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/sentinel/abilities_sentinel.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;sentinel&#x2F;abilities_sentinel.dm 37"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/toxic_slash.html#var/ability_duration">ability_duration</a></th><td>Timer for the ability; we reference this to delete the timer if the effect lapses before the timer does.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/toxic_slash.html#var/intoxication_stacks">intoxication_stacks</a></th><td>The amount of stacks to apply per hit.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/toxic_slash.html#var/particle_holder">particle_holder</a></th><td>Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/toxic_slash.html#var/remaining_slashes">remaining_slashes</a></th><td>The remaining amount of Toxic Slashes.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/toxic_slash.html#proc/toxic_slash">toxic_slash</a></th><td>Called when Toxic Slash is active.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/toxic_slash.html#proc/toxic_slash_deactivate">toxic_slash_deactivate</a></th><td>Called when Toxic Slash expires.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ability_duration"><aside class="declaration">var </aside>ability_duration
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/sentinel/abilities_sentinel.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;sentinel&#x2F;abilities_sentinel.dm 53"/></a></h3>
+        <p>Timer for the ability; we reference this to delete the timer if the effect lapses before the timer does.</p><h3 id="var/intoxication_stacks"><aside class="declaration">var </aside>intoxication_stacks
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/sentinel/abilities_sentinel.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;sentinel&#x2F;abilities_sentinel.dm 49"/></a></h3>
+        <p>The amount of stacks to apply per hit.</p><h3 id="var/particle_holder"><aside class="declaration">var </aside>particle_holder
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/abstract/particle_holder.html">effect/abstract/particle_holder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/sentinel/abilities_sentinel.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;sentinel&#x2F;abilities_sentinel.dm 57"/></a></h3>
+        <p>Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.</p><h3 id="var/remaining_slashes"><aside class="declaration">var </aside>remaining_slashes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/sentinel/abilities_sentinel.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;sentinel&#x2F;abilities_sentinel.dm 51"/></a></h3>
+        <p>The remaining amount of Toxic Slashes.</p><h2 id="proc">Proc Details</h2><h3 id="proc/toxic_slash"><aside class="declaration">proc </aside>toxic_slash<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target, damage, /list/damage_mod, /list/armor_mod) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/sentinel/abilities_sentinel.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;sentinel&#x2F;abilities_sentinel.dm 73"/></a></aside>
+        </h3>
+        <p>Called when Toxic Slash is active.</p><h3 id="proc/toxic_slash_deactivate"><aside class="declaration">proc </aside>toxic_slash_deactivate<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a>/xeno_owner) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/sentinel/abilities_sentinel.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;sentinel&#x2F;abilities_sentinel.dm 89"/></a></aside>
+        </h3>
+        <p>Called when Toxic Slash expires.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;atom&#x2F;movable - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="atom/movable.html#var">Var Details</a> - <a href="atom/movable.html#proc">Proc Details</a></header>
+<main>
+<h1>movable <aside>/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/(builtins)#L1">
+        <img src="git.png" width="16" height="16" title="(builtins) 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="atom/movable.html#var/active_movement">active_movement</a></th><td>A list containing arguments for Moved().</td></tr>
+            <tr><th><a href="atom/movable.html#var/affected_movable_lights">affected_movable_lights</a></th><td>Lazylist to keep track on the sources of illumination.</td></tr>
+            <tr><th><a href="atom/movable.html#var/affecting_dynamic_lumi">affecting_dynamic_lumi</a></th><td>Highest-intensity light affecting us, which determines our visibility.</td></tr>
+            <tr><th><a href="atom/movable.html#var/blocks_emissive">blocks_emissive</a></th><td>Either FALSE, <a href="code/__DEFINES/lighting.html#define/EMISSIVE_BLOCK_GENERIC" title="EMISSIVE_BLOCK_GENERIC">EMISSIVE_BLOCK_GENERIC</a>, or <a href="code/__DEFINES/lighting.html#define/EMISSIVE_BLOCK_UNIQUE" title="EMISSIVE_BLOCK_UNIQUE">EMISSIVE_BLOCK_UNIQUE</a></td></tr>
+            <tr><th><a href="atom/movable.html#var/client_mobs_in_contents">client_mobs_in_contents</a></th><td>contains every client mob corresponding to every client eye in this container. lazily updated by SSparallax and is sparse:
+only the last container of a client eye has this list assuming no movement since SSparallax's last fire</td></tr>
+            <tr><th><a href="atom/movable.html#var/currently_z_moving">currently_z_moving</a></th><td>is the mob currently ascending or descending through z levels?</td></tr>
+            <tr><th><a href="atom/movable.html#var/drag_delay">drag_delay</a></th><td>Delay added to mob's move_delay when pulling it.</td></tr>
+            <tr><th><a href="atom/movable.html#var/drag_windup">drag_windup</a></th><td>Wind-up before the mob can pull an object.</td></tr>
+            <tr><th><a href="atom/movable.html#var/em_block">em_block</a></th><td>Internal holder for emissive blocker object, do not use directly use blocks_emissive</td></tr>
+            <tr><th><a href="atom/movable.html#var/faction">faction</a></th><td>The faction this AM is associated with, if any</td></tr>
+            <tr><th><a href="atom/movable.html#var/important_recursive_contents">important_recursive_contents</a></th><td>an associative lazylist of relevant nested contents by &quot;channel&quot;, the list is of the form: list(channel = list(important nested contents of that type))
+each channel has a specific purpose and is meant to replace potentially expensive nested contents iteration.
+do NOT add channels to this for little reason as it can add considerable memory usage.</td></tr>
+            <tr><th><a href="atom/movable.html#var/move_force">move_force</a></th><td>How much the atom tries to push things out its way</td></tr>
+            <tr><th><a href="atom/movable.html#var/move_resist">move_resist</a></th><td>How much the atom resists being thrown or moved.</td></tr>
+            <tr><th><a href="atom/movable.html#var/moving_diagonally">moving_diagonally</a></th><td>TRUE if we should not push or shuffle on bump/enter</td></tr>
+            <tr><th><a href="atom/movable.html#var/pass_flags">pass_flags</a></th><td>What things this atom can move past, if it has the corrosponding flag. Should not be directly modified</td></tr>
+            <tr><th><a href="atom/movable.html#var/pitch">pitch</a></th><td>The pitch adjustment that this movable uses when speaking.</td></tr>
+            <tr><th><a href="atom/movable.html#var/pulledby">pulledby</a></th><td>AM that is pulling us</td></tr>
+            <tr><th><a href="atom/movable.html#var/pulling">pulling</a></th><td>AM we are pulling</td></tr>
+            <tr><th><a href="atom/movable.html#var/spatial_grid_key">spatial_grid_key</a></th><td>String representing the spatial grid groups we want to be held in.
+acts as a key to the list of spatial grid contents types we exist in via SSspatial_grid.spatial_grid_categories.
+We do it like this to prevent people trying to mutate them and to save memory on holding the lists ourselves</td></tr>
+            <tr><th><a href="atom/movable.html#var/thrown_speed">thrown_speed</a></th><td>Speed of the current throw. 0 When not throwing.</td></tr>
+            <tr><th><a href="atom/movable.html#var/tts_silicon_voice_effect">tts_silicon_voice_effect</a></th><td>Set to anything other than &quot;&quot; to activate the silicon voice effect for TTS messages.</td></tr>
+            <tr><th><a href="atom/movable.html#var/voice">voice</a></th><td>The voice that this movable makes when speaking</td></tr>
+            <tr><th><a href="atom/movable.html#var/voice_filter">voice_filter</a></th><td>The filter to apply to the voice when processing the TTS audio message.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="atom/movable.html#proc/CanPassThrough">CanPassThrough</a></th><td>Returns true or false to allow src to move through the blocker, mover has final say</td></tr>
+            <tr><th><a href="atom/movable.html#proc/CanReach">CanReach</a></th><td>A backwards depth-limited breadth-first-search to see if the target is
+logically &quot;in&quot; anything adjacent to us.</td></tr>
+            <tr><th><a href="atom/movable.html#proc/Crossed">Crossed</a></th><td>default byond proc that is deprecated for us in lieu of signals. do not call</td></tr>
+            <tr><th><a href="atom/movable.html#proc/Move">Move</a></th><td>The move proc is responsible for (in order):</td></tr>
+            <tr><th><a href="atom/movable.html#proc/Uncross">Uncross</a></th><td><code>Uncross()</code> is a default BYOND proc that is called when something is <em>going</em>
+to exit this atom's turf. It is prefered over <code>Uncrossed</code> when you want to
+deny that movement, such as in the case of border objects, objects that allow
+you to walk through them in any direction except the one they block
+(think side windows).</td></tr>
+            <tr><th><a href="atom/movable.html#proc/Uncrossed">Uncrossed</a></th><td>default byond proc that is normally called on everything inside the previous turf
+a movable was in after moving to its current turf
+this is wasteful since the vast majority of objects do not use Uncrossed
+use connect_loc to register to COMSIG_ATOM_EXITED instead</td></tr>
+            <tr><th><a href="atom/movable.html#proc/_do_submerge">_do_submerge</a></th><td>Adds submerge effects to the AM. Should never be called directly</td></tr>
+            <tr><th><a href="atom/movable.html#proc/_reset_transformation_animation">_reset_transformation_animation</a></th><td>Resets filters and removes transformation animations helper objects from vis contents.</td></tr>
+            <tr><th><a href="atom/movable.html#proc/abstract_move">abstract_move</a></th><td>meant for movement with zero side effects. only use for objects that are supposed to move &quot;invisibly&quot; (like camera mobs or ghosts)
+if you want something to move onto a tile with a beartrap or recycler or tripmine or mouse without that object knowing about it at all, use this
+most of the time you want forceMove()</td></tr>
+            <tr><th><a href="atom/movable.html#proc/add_nosubmerge_trait">add_nosubmerge_trait</a></th><td>Wrapper for setting the submerge trait. This trait should ALWAYS be set via this proc so we can listen for the trait removal in all cases</td></tr>
+            <tr><th><a href="atom/movable.html#proc/add_pass_flags">add_pass_flags</a></th><td>Correctly sets pass_flags with their source</td></tr>
+            <tr><th><a href="atom/movable.html#proc/ai_should_stay_buckled">ai_should_stay_buckled</a></th><td>Whether an NPC mob should stay buckled to this atom or not</td></tr>
+            <tr><th><a href="atom/movable.html#proc/become_hearing_sensitive">become_hearing_sensitive</a></th><td>allows this movable to hear and adds itself to the important_recursive_contents list of itself and every movable loc its in</td></tr>
+            <tr><th><a href="atom/movable.html#proc/become_warped_invisible">become_warped_invisible</a></th><td>Adds a warping effect to the provided atom, while making it invisible
+Note: alpha on the target decreases the strength of the effect
+Also overrides any render target on the target atom temporarily while active
+do we want to consider a managed render target thing for this?
+@param invis_atom The atom to apply the effect to
+@param strength The strength of the effect, 100 is highest, 0 means no effect</td></tr>
+            <tr><th><a href="atom/movable.html#proc/can_z_move">can_z_move</a></th><td>Checks if the destination turf is elegible for z movement from the start turf to a given direction and returns it if so.
+Args:</td></tr>
+            <tr><th><a href="atom/movable.html#proc/cancel_override_minimap_tracking">cancel_override_minimap_tracking</a></th><td>Stops minimap override tracking</td></tr>
+            <tr><th><a href="atom/movable.html#proc/compose_name_href">compose_name_href</a></th><td>Allows us to wrap the name for specific cases like AI tracking or observer tracking</td></tr>
+            <tr><th><a href="atom/movable.html#proc/face_atom">face_atom</a></th><td>Change the direction of the atom to face the targeted atom</td></tr>
+            <tr><th><a href="atom/movable.html#proc/footstep_override">footstep_override</a></th><td>overrides the turf's normal footstep sound</td></tr>
+            <tr><th><a href="atom/movable.html#proc/force_push">force_push</a></th><td>returns bool for if we want to get handle forcepushing, return is bool if we can move an anchored obj</td></tr>
+            <tr><th><a href="atom/movable.html#proc/force_pushed">force_pushed</a></th><td>returns bool for if we want to get forcepushed</td></tr>
+            <tr><th><a href="atom/movable.html#proc/get_export_value">get_export_value</a></th><td>Getter proc for the point value of this object</td></tr>
+            <tr><th><a href="atom/movable.html#proc/get_gravity">get_gravity</a></th><td>Checks the gravity the atom is subjected to</td></tr>
+            <tr><th><a href="atom/movable.html#proc/get_z_move_affected">get_z_move_affected</a></th><td>Returns a list of movables that should also be affected when src moves through zlevels, and src.</td></tr>
+            <tr><th><a href="atom/movable.html#proc/is_jumpable">is_jumpable</a></th><td>Can this be jumped over</td></tr>
+            <tr><th><a href="atom/movable.html#proc/keybind_face_direction">keybind_face_direction</a></th><td>A wrapper for setDir that should only be able to fail by living mobs.</td></tr>
+            <tr><th><a href="atom/movable.html#proc/lose_hearing_sensitivity">lose_hearing_sensitivity</a></th><td>removes the hearing sensitivity channel from the important_recursive_contents list of this and all nested locs containing us if there are no more sources of the trait left
+since RECURSIVE_CONTENTS_HEARING_SENSITIVE is also a spatial grid content type, removes us from the spatial grid if the trait is removed</td></tr>
+            <tr><th><a href="atom/movable.html#proc/move_crush">move_crush</a></th><td>returns bool for if we want to get handle move crushing, return is bool if we can move an anchored obj</td></tr>
+            <tr><th><a href="atom/movable.html#proc/move_crushed">move_crushed</a></th><td>returns bool for if we want to get crushed</td></tr>
+            <tr><th><a href="atom/movable.html#proc/move_from_pull">move_from_pull</a></th><td>Called when src is being moved to a target turf because another movable (puller) is moving around.</td></tr>
+            <tr><th><a href="atom/movable.html#proc/on_changed_z_level">on_changed_z_level</a></th><td>Called when a movable changes z-levels.</td></tr>
+            <tr><th><a href="atom/movable.html#proc/on_warped_overlays">on_warped_overlays</a></th><td>signal handler to remove any emissives while we're warped invis</td></tr>
+            <tr><th><a href="atom/movable.html#proc/override_minimap_tracking">override_minimap_tracking</a></th><td>Used to handle minimap tracking inside other movables</td></tr>
+            <tr><th><a href="atom/movable.html#proc/remove_pass_flags">remove_pass_flags</a></th><td>Correctly removes sources and pass_flags as required</td></tr>
+            <tr><th><a href="atom/movable.html#proc/set_currently_z_moving">set_currently_z_moving</a></th><td>Sets the currently_z_moving variable to a new value. Used to allow some zMovement sources to have precedence over others.</td></tr>
+            <tr><th><a href="atom/movable.html#proc/set_flying">set_flying</a></th><td>Toggles AM between flying states</td></tr>
+            <tr><th><a href="atom/movable.html#proc/set_light_range_power_color">set_light_range_power_color</a></th><td>Helper to change several lighting overlay settings.</td></tr>
+            <tr><th><a href="atom/movable.html#proc/set_submerge_level">set_submerge_level</a></th><td>Sets the submerged level of an AM based on its turf</td></tr>
+            <tr><th><a href="atom/movable.html#proc/set_throwing">set_throwing</a></th><td>Toggles AM between throwing states</td></tr>
+            <tr><th><a href="atom/movable.html#proc/stop_throw">stop_throw</a></th><td>Clean up all throw vars</td></tr>
+            <tr><th><a href="atom/movable.html#proc/stop_warped_invisible">stop_warped_invisible</a></th><td>Stops the warped invisibility effect</td></tr>
+            <tr><th><a href="atom/movable.html#proc/supply_export">supply_export</a></th><td>Function that sells whatever object this is to the faction_selling; returns a /datum/export_report if successful</td></tr>
+            <tr><th><a href="atom/movable.html#proc/throw_bounce">throw_bounce</a></th><td>Bounces the AM off hit_atom</td></tr>
+            <tr><th><a href="atom/movable.html#proc/throw_impact">throw_impact</a></th><td>called when src is thrown into hit_atom</td></tr>
+            <tr><th><a href="atom/movable.html#proc/transformation_animation">transformation_animation</a></th><td>Creates animation that turns current icon into result appearance from top down.</td></tr>
+            <tr><th><a href="atom/movable.html#proc/turf_collision">turf_collision</a></th><td>This is called when the AM is thrown into a dense turf</td></tr>
+            <tr><th><a href="atom/movable.html#proc/turf_cover_check">turf_cover_check</a></th><td>returns that src is covering its turf. Used to prevent turf interactions such as water</td></tr>
+            <tr><th><a href="atom/movable.html#proc/update_dynamic_luminosity">update_dynamic_luminosity</a></th><td>Keeps track of the sources of dynamic luminosity and updates our visibility with the highest.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active_movement"><aside class="declaration">var </aside>active_movement
+            <aside>&ndash; /tmp/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 10"/></a></h3>
+        <p>A list containing arguments for Moved().</p><h3 id="var/affected_movable_lights"><aside class="declaration">var </aside>affected_movable_lights
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 78"/></a></h3>
+        <p>Lazylist to keep track on the sources of illumination.</p><h3 id="var/affecting_dynamic_lumi"><aside class="declaration">var </aside>affecting_dynamic_lumi
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 80"/></a></h3>
+        <p>Highest-intensity light affecting us, which determines our visibility.</p><h3 id="var/blocks_emissive"><aside class="declaration">var </aside>blocks_emissive
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 64"/></a></h3>
+        <p>Either FALSE, <a href="code/__DEFINES/lighting.html#define/EMISSIVE_BLOCK_GENERIC" title="EMISSIVE_BLOCK_GENERIC">EMISSIVE_BLOCK_GENERIC</a>, or <a href="code/__DEFINES/lighting.html#define/EMISSIVE_BLOCK_UNIQUE" title="EMISSIVE_BLOCK_UNIQUE">EMISSIVE_BLOCK_UNIQUE</a></p><h3 id="var/client_mobs_in_contents"><aside class="declaration">var </aside>client_mobs_in_contents
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 89"/></a></h3>
+        <p>contains every client mob corresponding to every client eye in this container. lazily updated by SSparallax and is sparse:
+only the last container of a client eye has this list assuming no movement since SSparallax's last fire</p><h3 id="var/currently_z_moving"><aside class="declaration">var </aside>currently_z_moving
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 61"/></a></h3>
+        <p>is the mob currently ascending or descending through z levels?</p><h3 id="var/drag_delay"><aside class="declaration">var </aside>drag_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 17"/></a></h3>
+        <p>Delay added to mob's move_delay when pulling it.</p><h3 id="var/drag_windup"><aside class="declaration">var </aside>drag_windup
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 19"/></a></h3>
+        <p>Wind-up before the mob can pull an object.</p><h3 id="var/em_block"><aside class="declaration">var </aside>em_block
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/render_step/emissive_blocker.html">render_step/emissive_blocker</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 66"/></a></h3>
+        <p>Internal holder for emissive blocker object, do not use directly use blocks_emissive</p><h3 id="var/faction"><aside class="declaration">var </aside>faction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 6"/></a></h3>
+        <p>The faction this AM is associated with, if any</p><h3 id="var/important_recursive_contents"><aside class="declaration">var </aside>important_recursive_contents
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 86"/></a></h3>
+        <p>an associative lazylist of relevant nested contents by &quot;channel&quot;, the list is of the form: list(channel = list(important nested contents of that type))
+each channel has a specific purpose and is meant to replace potentially expensive nested contents iteration.
+do NOT add channels to this for little reason as it can add considerable memory usage.</p><h3 id="var/move_force"><aside class="declaration">var </aside>move_force
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 13"/></a></h3>
+        <p>How much the atom tries to push things out its way</p><h3 id="var/move_resist"><aside class="declaration">var </aside>move_resist
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 15"/></a></h3>
+        <p>How much the atom resists being thrown or moved.</p><h3 id="var/moving_diagonally"><aside class="declaration">var </aside>moving_diagonally
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 39"/></a></h3>
+        <p>TRUE if we should not push or shuffle on bump/enter</p><h3 id="var/pass_flags"><aside class="declaration">var </aside>pass_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 37"/></a></h3>
+        <p>What things this atom can move past, if it has the corrosponding flag. Should not be directly modified</p><h3 id="var/pitch"><aside class="declaration">var </aside>pitch
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 71"/></a></h3>
+        <p>The pitch adjustment that this movable uses when speaking.</p><h3 id="var/pulledby"><aside class="declaration">var </aside>pulledby
+            <aside>&ndash; /<a href="mob.html">mob</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 28"/></a></h3>
+        <p>AM that is pulling us</p><h3 id="var/pulling"><aside class="declaration">var </aside>pulling
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 30"/></a></h3>
+        <p>AM we are pulling</p><h3 id="var/spatial_grid_key"><aside class="declaration">var </aside>spatial_grid_key
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 96"/></a></h3>
+        <p>String representing the spatial grid groups we want to be held in.
+acts as a key to the list of spatial grid contents types we exist in via SSspatial_grid.spatial_grid_categories.
+We do it like this to prevent people trying to mutate them and to save memory on holding the lists ourselves</p><h3 id="var/thrown_speed"><aside class="declaration">var </aside>thrown_speed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 23"/></a></h3>
+        <p>Speed of the current throw. 0 When not throwing.</p><h3 id="var/tts_silicon_voice_effect"><aside class="declaration">var </aside>tts_silicon_voice_effect
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 75"/></a></h3>
+        <p>Set to anything other than &quot;&quot; to activate the silicon voice effect for TTS messages.</p><h3 id="var/voice"><aside class="declaration">var </aside>voice
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 69"/></a></h3>
+        <p>The voice that this movable makes when speaking</p><h3 id="var/voice_filter"><aside class="declaration">var </aside>voice_filter
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 73"/></a></h3>
+        <p>The filter to apply to the voice when processing the TTS audio message.</p><h2 id="proc">Proc Details</h2><h3 id="proc/CanPassThrough"><aside class="declaration">proc </aside>CanPassThrough<aside>(/<a href="atom.html">atom</a>/blocker, /<a href="turf.html">turf</a>/target, blocker_opinion) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1503">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1503"/></a></aside>
+        </h3>
+        <p>Returns true or false to allow src to move through the blocker, mover has final say</p><h3 id="proc/CanReach"><aside class="declaration">proc </aside>CanReach<aside>(/<a href="atom.html">atom</a>/ultimate_target, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/tool, view_only) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/click.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;click.dm 171"/></a></aside>
+        </h3>
+        <p>A backwards depth-limited breadth-first-search to see if the target is
+logically &quot;in&quot; anything adjacent to us.</p><h3 id="proc/Crossed">Crossed<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/AM, oldloc) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L539">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 539"/></a></aside>
+        </h3>
+        <p>default byond proc that is deprecated for us in lieu of signals. do not call</p><h3 id="proc/Move"><aside class="declaration">proc </aside>Move<aside>(/<a href="atom.html">atom</a>/newloc, direction, glide_size_override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L400">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 400"/></a></aside>
+        </h3>
+        <p>The move proc is responsible for (in order):</p>
+<ul>
+<li>Checking if you can move out of the current loc (The exit proc, which calls on_exit through the connect_loc)</li>
+<li>Checking if you can move into the new loc (The enter proc, which calls on_enter through the connect_loc and is also overwritten by some atoms)
+This is where most bumps take place</li>
+<li>If you can do both, then it changes the loc var calls Exited on the old loc, and Entered on the new loc</li>
+<li>After that, it does some area checks, calls Moved and handle pulling/buckled mobs.area</li>
+</ul>
+<p>A diagonal move is slightly different as Moved, entered and exited is called only once
+In order of calling:</p>
+<ul>
+<li>Check if you can exit the current loc</li>
+<li>Check if it's a diagonal move</li>
+<li>If yes, check if you could exit the turf in that direction, and then if you can enter it (This calls on_exit and on_enter)</li>
+<li>Check if you can enter the final new loc</li>
+<li>Do the rest of the Move proc normally (Moved, entered, exited, check area change etc)</li>
+</ul>
+<p>Warning : Doesn't support well multi-tile diagonal moves</p><h3 id="proc/Uncross">Uncross<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L563">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 563"/></a></aside>
+        </h3>
+        <p><code>Uncross()</code> is a default BYOND proc that is called when something is <em>going</em>
+to exit this atom's turf. It is prefered over <code>Uncrossed</code> when you want to
+deny that movement, such as in the case of border objects, objects that allow
+you to walk through them in any direction except the one they block
+(think side windows).</p>
+<p>While being seemingly harmless, most everything doesn't actually want to
+use this, meaning that we are wasting proc calls for every single atom
+on a turf, every single time something exits it, when basically nothing
+cares.</p>
+<p>This overhead caused real problems on Sybil round #159709, where lag
+attributed to Uncross was so bad that the entire master controller
+collapsed and people made Among Us lobbies in OOC.</p>
+<p>If you want to replicate the old <code>Uncross()</code> behavior, the most apt
+replacement is [<code>/datum/element/connect_loc</code>] while hooking onto
+[<code>COMSIG_ATOM_EXIT</code>].</p><h3 id="proc/Uncrossed">Uncrossed<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/AM) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L573">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 573"/></a></aside>
+        </h3>
+        <p>default byond proc that is normally called on everything inside the previous turf
+a movable was in after moving to its current turf
+this is wasteful since the vast majority of objects do not use Uncrossed
+use connect_loc to register to COMSIG_ATOM_EXITED instead</p><h3 id="proc/_do_submerge"><aside class="declaration">proc </aside>_do_submerge<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1651">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1651"/></a></aside>
+        </h3>
+        <p>Adds submerge effects to the AM. Should never be called directly</p><h3 id="proc/_reset_transformation_animation"><aside class="declaration">proc </aside>_reset_transformation_animation<aside>(filter_index) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/icons.dm#L1236">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;icons.dm 1236"/></a></aside>
+        </h3>
+        <p>Resets filters and removes transformation animations helper objects from vis contents.</p><h3 id="proc/abstract_move"><aside class="declaration">proc </aside>abstract_move<aside>(/<a href="atom.html">atom</a>/new_loc) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L375">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 375"/></a></aside>
+        </h3>
+        <p>meant for movement with zero side effects. only use for objects that are supposed to move &quot;invisibly&quot; (like camera mobs or ghosts)
+if you want something to move onto a tile with a beartrap or recycler or tripmine or mouse without that object knowing about it at all, use this
+most of the time you want forceMove()</p><h3 id="proc/add_nosubmerge_trait"><aside class="declaration">proc </aside>add_nosubmerge_trait<aside>(trait_source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1644">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1644"/></a></aside>
+        </h3>
+        <p>Wrapper for setting the submerge trait. This trait should ALWAYS be set via this proc so we can listen for the trait removal in all cases</p><h3 id="proc/add_pass_flags"><aside class="declaration">proc </aside>add_pass_flags<aside>(new_pass_flags, trait_source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable/pass_flags.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable&#x2F;pass_flags.dm 2"/></a></aside>
+        </h3>
+        <p>Correctly sets pass_flags with their source</p><h3 id="proc/ai_should_stay_buckled"><aside class="declaration">proc </aside>ai_should_stay_buckled<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/npc) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/helper_procs.dm#L210">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;helper_procs.dm 210"/></a></aside>
+        </h3>
+        <p>Whether an NPC mob should stay buckled to this atom or not</p><h3 id="proc/become_hearing_sensitive"><aside class="declaration">proc </aside>become_hearing_sensitive<aside>(trait_source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1511">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1511"/></a></aside>
+        </h3>
+        <p>allows this movable to hear and adds itself to the important_recursive_contents list of itself and every movable loc its in</p><h3 id="proc/become_warped_invisible"><aside class="declaration">proc </aside>become_warped_invisible<aside>(strength) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/filters.dm#L336">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;filters.dm 336"/></a></aside>
+        </h3>
+        <p>Adds a warping effect to the provided atom, while making it invisible
+Note: alpha on the target decreases the strength of the effect
+Also overrides any render target on the target atom temporarily while active
+do we want to consider a managed render target thing for this?
+@param invis_atom The atom to apply the effect to
+@param strength The strength of the effect, 100 is highest, 0 means no effect</p><h3 id="proc/can_z_move"><aside class="declaration">proc </aside>can_z_move<aside>(direction, /<a href="turf.html">turf</a>/start, /<a href="turf.html">turf</a>/destination, z_move_flags, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/rider) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L336">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 336"/></a></aside>
+        </h3>
+        <p>Checks if the destination turf is elegible for z movement from the start turf to a given direction and returns it if so.
+Args:</p>
+<ul>
+<li>direction: the direction to go, UP or DOWN, only relevant if target is null.</li>
+<li>start: Each destination has a starting point on the other end. This is it. Most of the times the location of the source.</li>
+<li>z_move_flags: bitflags used for various checks. See __DEFINES/movement.dm.</li>
+<li>rider: A living mob in control of the movable. Only non-null when a mob is riding a vehicle through z-levels.</li>
+</ul><h3 id="proc/cancel_override_minimap_tracking"><aside class="declaration">proc </aside>cancel_override_minimap_tracking<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/mover) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L320">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 320"/></a></aside>
+        </h3>
+        <p>Stops minimap override tracking</p><h3 id="proc/compose_name_href"><aside class="declaration">proc </aside>compose_name_href<aside>(name) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/say.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;say.dm 112"/></a></aside>
+        </h3>
+        <p>Allows us to wrap the name for specific cases like AI tracking or observer tracking</p>
+<p>Arguments</p>
+<ul>
+<li>name {string} the name of the mob to modify.</li>
+</ul><h3 id="proc/face_atom"><aside class="declaration">proc </aside>face_atom<aside>(/<a href="atom.html">atom</a>/A) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1368">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1368"/></a></aside>
+        </h3>
+        <p>Change the direction of the atom to face the targeted atom</p><h3 id="proc/footstep_override"><aside class="declaration">proc </aside>footstep_override<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, /list/footstep_overrides) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1634">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1634"/></a></aside>
+        </h3>
+        <p>overrides the turf's normal footstep sound</p><h3 id="proc/force_push"><aside class="declaration">proc </aside>force_push<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/pushed_atom, force, direction, silent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1482">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1482"/></a></aside>
+        </h3>
+        <p>returns bool for if we want to get handle forcepushing, return is bool if we can move an anchored obj</p><h3 id="proc/force_pushed"><aside class="declaration">proc </aside>force_pushed<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/pusher, force, direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1478">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1478"/></a></aside>
+        </h3>
+        <p>returns bool for if we want to get forcepushed</p><h3 id="proc/get_export_value"><aside class="declaration">proc </aside>get_export_value<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/requisitions/supply_export.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;requisitions&#x2F;supply_export.dm 30"/></a></aside>
+        </h3>
+        <p>Getter proc for the point value of this object</p>
+<p>Returns:</p>
+<ul>
+<li>A list where the first value is the number of req points and the second number is the number of cas points.</li>
+</ul><h3 id="proc/get_gravity"><aside class="declaration">proc </aside>get_gravity<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1583">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1583"/></a></aside>
+        </h3>
+        <p>Checks the gravity the atom is subjected to</p><h3 id="proc/get_z_move_affected"><aside class="declaration">proc </aside>get_z_move_affected<aside>(z_move_flags) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L309">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 309"/></a></aside>
+        </h3>
+        <p>Returns a list of movables that should also be affected when src moves through zlevels, and src.</p><h3 id="proc/is_jumpable"><aside class="declaration">proc </aside>is_jumpable<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/jumper) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 192"/></a></aside>
+        </h3>
+        <p>Can this be jumped over</p><h3 id="proc/keybind_face_direction"><aside class="declaration">proc </aside>keybind_face_direction<aside>(direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1661">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1661"/></a></aside>
+        </h3>
+        <p>A wrapper for setDir that should only be able to fail by living mobs.</p>
+<p>Called from [/atom/movable/proc/keyLoop], this exists to be overwritten by living mobs with a check to see if we're actually alive enough to change directions</p><h3 id="proc/lose_hearing_sensitivity"><aside class="declaration">proc </aside>lose_hearing_sensitivity<aside>(trait_source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1533">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1533"/></a></aside>
+        </h3>
+        <p>removes the hearing sensitivity channel from the important_recursive_contents list of this and all nested locs containing us if there are no more sources of the trait left
+since RECURSIVE_CONTENTS_HEARING_SENSITIVE is also a spatial grid content type, removes us from the spatial grid if the trait is removed</p>
+<ul>
+<li>trait_source - trait source define or ALL, if ALL, force removes hearing sensitivity. if a trait source define, removes hearing sensitivity only if the trait is removed</li>
+</ul><h3 id="proc/move_crush"><aside class="declaration">proc </aside>move_crush<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/crushed_atom, force, direction, silent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1488">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1488"/></a></aside>
+        </h3>
+        <p>returns bool for if we want to get handle move crushing, return is bool if we can move an anchored obj</p><h3 id="proc/move_crushed"><aside class="declaration">proc </aside>move_crushed<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/pusher, force, direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1494">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1494"/></a></aside>
+        </h3>
+        <p>returns bool for if we want to get crushed</p><h3 id="proc/move_from_pull"><aside class="declaration">proc </aside>move_from_pull<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/puller, /<a href="turf.html">turf</a>/target_turf, glide_size_override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L512">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 512"/></a></aside>
+        </h3>
+        <p>Called when src is being moved to a target turf because another movable (puller) is moving around.</p><h3 id="proc/on_changed_z_level"><aside class="declaration">proc </aside>on_changed_z_level<aside>(/<a href="turf.html">turf</a>/old_turf, /<a href="turf.html">turf</a>/new_turf, same_z_layer, notify_contents) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1209">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1209"/></a></aside>
+        </h3>
+        <p>Called when a movable changes z-levels.</p>
+<p>Arguments:</p>
+<ul>
+<li>old_turf - The previous turf they were on before.</li>
+<li>new_turf - The turf they have now entered.</li>
+<li>same_z_layer - If their old and new z levels are on the same level of plane offsets or not</li>
+<li>notify_contents - Whether or not to notify the movable's contents that their z-level has changed. NOTE, IF YOU SET THIS, YOU NEED TO MANUALLY SET PLANE OF THE CONTENTS LATER</li>
+</ul><h3 id="proc/on_warped_overlays"><aside class="declaration">proc </aside>on_warped_overlays<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, /list/new_overlays) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/filters.dm#L353">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;filters.dm 353"/></a></aside>
+        </h3>
+        <p>signal handler to remove any emissives while we're warped invis</p><h3 id="proc/override_minimap_tracking"><aside class="declaration">proc </aside>override_minimap_tracking<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/loc) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L314">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 314"/></a></aside>
+        </h3>
+        <p>Used to handle minimap tracking inside other movables</p><h3 id="proc/remove_pass_flags"><aside class="declaration">proc </aside>remove_pass_flags<aside>(old_pass_flags, trait_source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable/pass_flags.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable&#x2F;pass_flags.dm 7"/></a></aside>
+        </h3>
+        <p>Correctly removes sources and pass_flags as required</p><h3 id="proc/set_currently_z_moving"><aside class="declaration">proc </aside>set_currently_z_moving<aside>(new_z_moving_value, forced) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L617">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 617"/></a></aside>
+        </h3>
+        <p>Sets the currently_z_moving variable to a new value. Used to allow some zMovement sources to have precedence over others.</p><h3 id="proc/set_flying"><aside class="declaration">proc </aside>set_flying<aside>(flying, new_layer) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1469">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1469"/></a></aside>
+        </h3>
+        <p>Toggles AM between flying states</p><h3 id="proc/set_light_range_power_color"><aside class="declaration">proc </aside>set_light_range_power_color<aside>(range, power, color) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/movable_luminosity.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;movable_luminosity.dm 16"/></a></aside>
+        </h3>
+        <p>Helper to change several lighting overlay settings.</p><h3 id="proc/set_submerge_level"><aside class="declaration">proc </aside>set_submerge_level<aside>(/<a href="turf.html">turf</a>/new_loc, /<a href="turf.html">turf</a>/old_loc, submerge_icon, submerge_icon_state, duration) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1603">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1603"/></a></aside>
+        </h3>
+        <p>Sets the submerged level of an AM based on its turf</p><h3 id="proc/set_throwing"><aside class="declaration">proc </aside>set_throwing<aside>(new_throwing) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1457">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1457"/></a></aside>
+        </h3>
+        <p>Toggles AM between throwing states</p><h3 id="proc/stop_throw"><aside class="declaration">proc </aside>stop_throw<aside>(flying, original_layer) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L860">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 860"/></a></aside>
+        </h3>
+        <p>Clean up all throw vars</p><h3 id="proc/stop_warped_invisible"><aside class="declaration">proc </aside>stop_warped_invisible<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/filters.dm#L360">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;filters.dm 360"/></a></aside>
+        </h3>
+        <p>Stops the warped invisibility effect</p><h3 id="proc/supply_export"><aside class="declaration">proc </aside>supply_export<aside>(faction_selling) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/requisitions/supply_export.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;requisitions&#x2F;supply_export.dm 2"/></a></aside>
+        </h3>
+        <p>Function that sells whatever object this is to the faction_selling; returns a /datum/export_report if successful</p><h3 id="proc/throw_bounce"><aside class="declaration">proc </aside>throw_bounce<aside>(/<a href="atom.html">atom</a>/hit_atom, /<a href="turf.html">turf</a>/old_throw_source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L717">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 717"/></a></aside>
+        </h3>
+        <p>Bounces the AM off hit_atom</p><h3 id="proc/throw_impact"><aside class="declaration">proc </aside>throw_impact<aside>(/<a href="atom.html">atom</a>/hit_atom, speed, bounce) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L704">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 704"/></a></aside>
+        </h3>
+        <p>called when src is thrown into hit_atom</p><h3 id="proc/transformation_animation"><aside class="declaration">proc </aside>transformation_animation<aside>(result_appearance, time, transform_appearance) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/icons.dm#L1203">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;icons.dm 1203"/></a></aside>
+        </h3>
+        <p>Creates animation that turns current icon into result appearance from top down.</p>
+<p>result_appearance - End result appearance/atom/image
+time - Animation duration
+transform_appearance - Appearance/atom/image of effect that moves along the animation - should be horizonatally centered</p><h3 id="proc/turf_collision"><aside class="declaration">proc </aside>turf_collision<aside>(/<a href="turf.html">turf</a>/T, speed) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1592">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1592"/></a></aside>
+        </h3>
+        <p>This is called when the AM is thrown into a dense turf</p><h3 id="proc/turf_cover_check"><aside class="declaration">proc </aside>turf_cover_check<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1639">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1639"/></a></aside>
+        </h3>
+        <p>returns that src is covering its turf. Used to prevent turf interactions such as water</p><h3 id="proc/update_dynamic_luminosity"><aside class="declaration">proc </aside>update_dynamic_luminosity<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/movable_luminosity.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;movable_luminosity.dm 2"/></a></aside>
+        </h3>
+        <p>Keeps track of the sources of dynamic luminosity and updates our visibility with the highest.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

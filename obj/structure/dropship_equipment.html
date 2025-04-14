@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;structure&#x2F;dropship_equipment - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/structure/dropship_equipment.html#var">Var Details</a> - <a href="obj/structure/dropship_equipment.html#proc">Proc Details</a></header>
+<main>
+<h1>dropship_equipment <aside>/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/dropship_equipment.html">dropship_equipment</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_equipment.dm#L166">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_equipment.dm 166"/></a></h1>
+
+<p>::</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment.html#var/ammo_equipped">ammo_equipped</a></th><td>the ammo currently equipped.</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment.html#var/ammo_type_used">ammo_type_used</a></th><td>what kind of ammo this uses if any</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment.html#var/dropship_equipment_flags">dropship_equipment_flags</a></th><td>whether it uses ammo</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment.html#var/equip_category">equip_category</a></th><td>on what kind of base this can be installed.</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment.html#var/linked_console">linked_console</a></th><td>whether the equipment is a weapon usable for dropship bombardment.
+the weapons console of the dropship we're installed on. Not used by CAS planes</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment.html#var/linked_shuttle">linked_shuttle</a></th><td>whether they get a button when shown on the shuttle console's equipment list.</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment.html#var/point_cost">point_cost</a></th><td>how many points it costs to build this with the fabricator, set to 0 if unbuildable.</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment.html#var/screen_mode">screen_mode</a></th><td>used by the dropship console code when this equipment is selected</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment.html#var/ship_base">ship_base</a></th><td>the ship base the equipment is currently installed on.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment.html#proc/on_arrival">on_arrival</a></th><td>things to do when the shuttle this equipment is attached to land.</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment.html#proc/on_launch">on_launch</a></th><td>things to do when the shuttle this equipment is attached to is about to launch.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ammo_equipped"><aside class="declaration">var </aside>ammo_equipped
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/ship_ammo.html">ship_ammo</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_equipment.dm#L181">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_equipment.dm 181"/></a></h3>
+        <p>the ammo currently equipped.</p><h3 id="var/ammo_type_used"><aside class="declaration">var </aside>ammo_type_used
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_equipment.dm#L194">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_equipment.dm 194"/></a></h3>
+        <p>what kind of ammo this uses if any</p><h3 id="var/dropship_equipment_flags"><aside class="declaration">var </aside>dropship_equipment_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_equipment.dm#L179">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_equipment.dm 179"/></a></h3>
+        <p>whether it uses ammo</p><h3 id="var/equip_category"><aside class="declaration">var </aside>equip_category
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_equipment.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_equipment.dm 175"/></a></h3>
+        <p>on what kind of base this can be installed.</p><h3 id="var/linked_console"><aside class="declaration">var </aside>linked_console
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/computer.html">computer</a>/dropship_weapons</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_equipment.dm#L184">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_equipment.dm 184"/></a></h3>
+        <p>whether the equipment is a weapon usable for dropship bombardment.
+the weapons console of the dropship we're installed on. Not used by CAS planes</p><h3 id="var/linked_shuttle"><aside class="declaration">var </aside>linked_shuttle
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/docking_port.html">docking_port</a>/<a href="obj/docking_port/mobile.html">mobile</a>/<a href="obj/docking_port/mobile/marine_dropship.html">marine_dropship</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_equipment.dm#L186">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_equipment.dm 186"/></a></h3>
+        <p>whether they get a button when shown on the shuttle console's equipment list.</p><h3 id="var/point_cost"><aside class="declaration">var </aside>point_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_equipment.dm#L190">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_equipment.dm 190"/></a></h3>
+        <p>how many points it costs to build this with the fabricator, set to 0 if unbuildable.</p><h3 id="var/screen_mode"><aside class="declaration">var </aside>screen_mode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_equipment.dm#L188">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_equipment.dm 188"/></a></h3>
+        <p>used by the dropship console code when this equipment is selected</p><h3 id="var/ship_base"><aside class="declaration">var </aside>ship_base
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/attach_point.html">effect/attach_point</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_equipment.dm#L177">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_equipment.dm 177"/></a></h3>
+        <p>the ship base the equipment is currently installed on.</p><h2 id="proc">Proc Details</h2><h3 id="proc/on_arrival"><aside class="declaration">proc </aside>on_arrival<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_equipment.dm#L288">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_equipment.dm 288"/></a></aside>
+        </h3>
+        <p>things to do when the shuttle this equipment is attached to land.</p><h3 id="proc/on_launch"><aside class="declaration">proc </aside>on_launch<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_equipment.dm#L284">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_equipment.dm 284"/></a></aside>
+        </h3>
+        <p>things to do when the shuttle this equipment is attached to is about to launch.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

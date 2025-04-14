@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;weapon&#x2F;gun - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/weapon/gun.html#var">Var Details</a> - <a href="obj/item/weapon/gun.html#proc">Proc Details</a></header>
+<main>
+<h1>gun <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a>/<a href="obj/item/weapon/gun.html">gun</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 17"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/accuracy_mult">accuracy_mult</a></th><td>Multiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/accuracy_mult_unwielded">accuracy_mult_unwielded</a></th><td>same vars as above but for unwielded firing.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/active_attachable">active_attachable</a></th><td>This is only not null when a weapon attachment is activated. All procs of firing get passed to this when it is not null.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/aim_fire_delay">aim_fire_delay</a></th><td>Determines how fire delay is changed when aim mode is active</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/aim_fire_delay_mods">aim_fire_delay_mods</a></th><td>Holds the values modifying aim_fire_delay</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/aim_slowdown">aim_slowdown</a></th><td>Slowdown for wielding</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/aim_speed_modifier">aim_speed_modifier</a></th><td>Determines character slowdown from aim mode. Default is 66%</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/aim_time">aim_time</a></th><td>Time to enter aim mode, generally one second.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/akimbo_additional_delay">akimbo_additional_delay</a></th><td>If fire delay is 1 second, and akimbo_additional_delay is 0.5, then you'll have to wait 1 second * 0.5 to fire the second gun</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/akimbo_scatter_mod">akimbo_scatter_mod</a></th><td>mult to scatter when firing akimbo</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/allowed_ammo_types">allowed_ammo_types</a></th><td>List of allowed specific types. If trying to reload with something in this list it will succeed. This is mainly for use in internal magazine weapons or scenarios where you do not want to inclue a whole subtype.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/ammo_datum_type">ammo_datum_type</a></th><td>Stored ammo datum. I changed the var name because it was really annoying to find specific cases of 'ammo' in a file full of guns and ammunition.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/ammo_diff">ammo_diff</a></th><td>what ammo to use for overcharge</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/ammo_level_icon">ammo_level_icon</a></th><td>Whether the gun has ammo level overlays for its icon, mainly for eguns</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/ammo_per_shot">ammo_per_shot</a></th><td>How much ammo consumed per shot; normally 1.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/attach_delay">attach_delay</a></th><td>Time it takes to attach src to a master gun.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/attach_features_flags">attach_features_flags</a></th><td>Flags for attachment functions.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/attachable_allowed">attachable_allowed</a></th><td>List of allowed attachments, IT MUST INCLUDE THE STARTING ATTACHMENT TYPES OR THEY WILL NOT ATTACH.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/attachable_offset">attachable_offset</a></th><td>List of offsets to make attachment overlays not look wonky.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/attachment_overlays">attachment_overlays</a></th><td>Image list of attachments overlays.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/attachments_by_slot">attachments_by_slot</a></th><td>List of slots a gun can have.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/autoburst_delay">autoburst_delay</a></th><td>when autobursting, this is the total amount of time before the weapon fires again. If no amount is specified, defaults to fire_delay + extra_delay</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/base_gun_icon">base_gun_icon</a></th><td>the default gun icon_state. change to reskin the gun</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/burst_accuracy_bonus">burst_accuracy_bonus</a></th><td>Additive number added to accuracy_mult.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/burst_amount">burst_amount</a></th><td>How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/burst_delay">burst_delay</a></th><td>The delay in between shots. Lower = less delay = faster.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/burst_scatter_mult">burst_scatter_mult</a></th><td>Multiplier. Increases or decreases how much bonus scatter is added when burst firing, based off burst size</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/casings_to_eject">casings_to_eject</a></th><td>Amount of casings to eject for guns that toggle like revolvers and dbs.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/chamber_closed_message">chamber_closed_message</a></th><td>Message for when the chamber is closed.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/chamber_items">chamber_items</a></th><td>List of stored ammunition items.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/chamber_opened_message">chamber_opened_message</a></th><td>Message for when the chamber is opened.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/charge_cost">charge_cost</a></th><td>how much energy is consumed per shot.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/cock_animation">cock_animation</a></th><td>Animation of the gun Cocking.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/cock_delay">cock_delay</a></th><td>Delay between cocking the gun.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/cock_locked_message">cock_locked_message</a></th><td>Message for a pump lock.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/cock_message_delay">cock_message_delay</a></th><td>Delay between given cocked_message.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/cocked_message">cocked_message</a></th><td>Message given to user on cocking.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/cocked_sound">cocked_sound</a></th><td>Sound of cocking the gun.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/cool_amount">cool_amount</a></th><td>heat reduction per second</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/current_chamber_position">current_chamber_position</a></th><td>Current selected position of chamber_items, this will determin the next item to be inserted into the chamber. If the gun uses magazines it will be the position of the magazine to be used. If the gun cycles (revolvers), this number will increase by one everytime it cycles until it reaches max_chamber_items, then it will revert back to one.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/damage_falloff_mult">damage_falloff_mult</a></th><td>Same as above, for damage bleed (falloff)</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/damage_mult">damage_mult</a></th><td>Same as above, for damage.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/default_ammo_type">default_ammo_type</a></th><td>Default magazine to spawn with.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/deploy_time">deploy_time</a></th><td>If the gun is deployable, the time it takes for the weapon to deploy.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/deployable_item">deployable_item</a></th><td>If the gun has a deployed item..</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/deployed_scatter_change">deployed_scatter_change</a></th><td>If the gun is deployed, change the scatter amount by this number. Negative reduces scatter, positive adds.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/detach_delay">detach_delay</a></th><td>Time it takes to detach src to a master gun.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/dry_fire_sound">dry_fire_sound</a></th><td>Sound for the gun firing when empty.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/dual_wield">dual_wield</a></th><td>If this gun is in inactive hands and shooting in akimbo</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/empty_sound">empty_sound</a></th><td>Sound played when the gun auto ejects its magazine.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/extra_delay">extra_delay</a></th><td>When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/fire_animation">fire_animation</a></th><td>State for a fire animation if the gun has any</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/fire_delay">fire_delay</a></th><td>For regular shots, how long to wait before firing again.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/fire_rattle">fire_rattle</a></th><td>Does our gun have a unique sound when running out of ammo? If so, use this instead of pitch shifting.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/fire_sound">fire_sound</a></th><td>Sound of firing the gun.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/general_codex_key">general_codex_key</a></th><td>Key for the codex</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/gun_accuracy_mod">gun_accuracy_mod</a></th><td>Additive to projectile accuracy, after gun_accuracy_mult</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/gun_accuracy_mult">gun_accuracy_mult</a></th><td>Projectile accuracy is multiplied by the number</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/gun_crosshair">gun_crosshair</a></th><td>Crosshair icon of the gun</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/gun_features_flags">gun_features_flags</a></th><td>Innate carateristics of that gun</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/gun_fire_angle">gun_fire_angle</a></th><td>If specified, the gun can only fire in a cone forwards with an angle of this var</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/gun_firemode">gun_firemode</a></th><td>Current selected firemode of the gun.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/gun_firemode_list">gun_firemode_list</a></th><td>List of allowed firemodes.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/gun_scatter">gun_scatter</a></th><td>The actual scatter value of the fired projectile</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/gun_skill_category">gun_skill_category</a></th><td>Skill used to operate this gun.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/gun_user">gun_user</a></th><td>The mob holding the gun</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/gunattachment">gunattachment</a></th><td>the current gun attachment, used for attachment aim mode</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/hand_reload_sound">hand_reload_sound</a></th><td>Sound for reloading by handfuls</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/heat_amount">heat_amount</a></th><td>heat on this gun. at over 100 heat stops you from firing and goes on cooldown</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/heat_meter">heat_meter</a></th><td>image we create to keep track of heat</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/heat_per_fire">heat_per_fire</a></th><td>heat that we add every successful fire()</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/icon_overlay_x_offset">icon_overlay_x_offset</a></th><td>Whether the icon_state overlay is offset in the x axis</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/icon_overlay_y_offset">icon_overlay_y_offset</a></th><td>Whether the icon_state overlay is offset in the Y axis</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/iff_marine_damage_falloff">iff_marine_damage_falloff</a></th><td>Modifies projectile damage by a % when a marine gets passed, but not hit</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/in_chamber">in_chamber</a></th><td>Current object slated for firing. Magazines/Handfuls will make this a projectile. Internal magazines that aren't handfuls will have this be the object in the gun.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/knockdown_threshold">knockdown_threshold</a></th><td>Damage threshold for whether a turret will be knocked down.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/last_cock_message">last_cock_message</a></th><td>World.time of the last cocked_message.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/last_cocked">last_cocked</a></th><td>World.time of the last cock.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/last_fired">last_fired</a></th><td>World.time of last gun firing.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/master_gun">master_gun</a></th><td>Gun reference if src is an attachment and is attached to a gun. This will be the gun that src is attached to.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/max_chamber_items">max_chamber_items</a></th><td>Maximum allowed chamber items. If the gun has AMMO_RECIEVER_TOGGLES_OPEN then the total amount in the gun will be the one here. If not, the gun will be able to contain this number + the chamber. If this is zero and doesnt use magazines, reloading will go directly into the chamber.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/max_rounds">max_rounds</a></th><td>If the gun uses magazines, it is the max rounds of the magazine(s). If it has an internal chamber, it is max_chamber_items.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/max_scatter">max_scatter</a></th><td>Maximum scatter</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/max_scatter_unwielded">max_scatter_unwielded</a></th><td>Maximum scatter when wielded</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/min_scatter">min_scatter</a></th><td>Minimum scatter</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/min_scatter_unwielded">min_scatter_unwielded</a></th><td>Minimum scatter when wielded</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/movement_acc_penalty_mult">movement_acc_penalty_mult</a></th><td>Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing while moving.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/muzzle_flash">muzzle_flash</a></th><td>Effect for the muzzle flash of the gun.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/muzzle_flash_color">muzzle_flash_color</a></th><td>Color of the muzzle flash effect.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/muzzle_flash_lum">muzzle_flash_lum</a></th><td>Brightness of the muzzle flash effect.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/muzzleflash_iconstate">muzzleflash_iconstate</a></th><td>Icon state of the muzzle flash effect.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/opened_sound">opened_sound</a></th><td>Sounds of opening the guns reciever. (DBs, Martinis opening.)</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/overcharge">overcharge</a></th><td>In overcharge mode?</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/overheat_multiplier">overheat_multiplier</a></th><td>multiplier on cool amount to determine overheat time</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/overheat_timer">overheat_timer</a></th><td>tracks overheat timer ref</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/pixel_shift_x">pixel_shift_x</a></th><td>Pixel shift on the X Axis for the attached overlay.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/pixel_shift_y">pixel_shift_y</a></th><td>Pixel shift on the Y Axis for the attached overlay.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/placed_overlay_iconstate">placed_overlay_iconstate</a></th><td>Icon state used for an added overlay for a sentry. Currently only used in Build-A-Sentry.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/reciever_flags">reciever_flags</a></th><td>Flags to determin guns ammo/operation.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/recoil">recoil</a></th><td>Screen shake when the weapon is fired while wielded.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/recoil_backtime_multiplier">recoil_backtime_multiplier</a></th><td>a multiplier of the duration the recoil takes to go back to normal view, this is (recoil*recoil_backtime_multiplier)+1</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/recoil_deviation">recoil_deviation</a></th><td>this is how much deviation the gun recoil can have, recoil pushes the screen towards the reverse angle you shot + some deviation which this is the max.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/recoil_unwielded">recoil_unwielded</a></th><td>Screen shake when the weapon is fired while unwielded.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/reload_sound">reload_sound</a></th><td>Sound played for reloading.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/rounds">rounds</a></th><td>Stored sum of magazine rounds / chamber contents. This is used for anything needing ammo. It is updated on reload/unload/fire</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/rounds_per_shot">rounds_per_shot</a></th><td>If the gun uses a magazine, the gun will subtract this from the magazine every fire.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/scatter">scatter</a></th><td>How much the bullet currently scattered when last fired.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/scatter_decay">scatter_decay</a></th><td>How much scatter decays every decisecond</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/scatter_decay_unwielded">scatter_decay_unwielded</a></th><td>How much scatter decays every decisecond</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/scatter_increase">scatter_increase</a></th><td>How much scatter increases per shot</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/scatter_increase_unwielded">scatter_increase_unwielded</a></th><td>How much scatter increases per shot when wielded</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/scatter_unwielded">scatter_unwielded</a></th><td>How much the bullet scatters when fired while unwielded.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/sentry_iff_signal">sentry_iff_signal</a></th><td>IFF signal for sentries. If it is set here it will be this signal forever. If null the IFF signal will be dependant on the deployer.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/shell_eject_animation">shell_eject_animation</a></th><td>Animation for opening the chamber of a gun.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/shell_speed_mod">shell_speed_mod</a></th><td>Modifies the speed of projectiles fired.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/shots_fired">shots_fired</a></th><td>How many bullets the gun fired while bursting/auto firing</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/slot">slot</a></th><td>Slot the gun fits into.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/starting_attachment_types">starting_attachment_types</a></th><td>The attachments this gun starts with on Init</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/target">target</a></th><td>The atom targeted by the user</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/turret_flags">turret_flags</a></th><td>Flags that the deployed sentry uses upon deployment.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/turret_range">turret_range</a></th><td>Range of deployed turret</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/type_of_casings">type_of_casings</a></th><td>Types of casing it ejects.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/undeploy_time">undeploy_time</a></th><td>If the gun is deployable, the time it takes for the weapon to undeploy. Defaults to deploy time</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/unload_sound">unload_sound</a></th><td>Sound of unloading the gun.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/wield_delay">wield_delay</a></th><td>How long between wielding and firing in tenths of seconds</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/wield_delay_mod">wield_delay_mod</a></th><td>How long ADS takes (time before firing)</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/wield_penalty">wield_penalty</a></th><td>Extra wield delay for untrained operators</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/wield_time">wield_time</a></th><td>Storing value for above</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/windup_checked">windup_checked</a></th><td>Used if a weapon need windup before firing</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/windup_delay">windup_delay</a></th><td>Delay for the gun winding up before firing.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#var/windup_sound">windup_sound</a></th><td>Sound played during windup.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/Fire">Fire</a></th><td>Wrapper proc to complete the whole firing process.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/able_to_fire">able_to_fire</a></th><td>Checks if the gun can be fired</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/activate">activate</a></th><td>This activates the weapon for use.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/activate_attachment">activate_attachment</a></th><td>Gets the attachents by slot and activates them.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/activate_muzzle_attachment">activate_muzzle_attachment</a></th><td>Signal handler to activate the muzzle attachement of that gun if it's in our active hand</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/activate_rail_attachment">activate_rail_attachment</a></th><td>if your attached weapon has aim mode, stops it from aimming
+if your attached weapon has aim mode, makes it aim
+Signal handler to activate the rail attachement of that gun if it's in our active hand</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/activate_underrail_attachment">activate_underrail_attachment</a></th><td>Signal handler to activate the underrail attachement of that gun if it's in our active hand</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/add_aim_mode_fire_delay">add_aim_mode_fire_delay</a></th><td>Adds an aim_fire_delay modificatio value</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/adjust_current_rounds">adjust_current_rounds</a></th><td>Adds or subtracts rounds from the magazine.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/apply_gun_modifiers">apply_gun_modifiers</a></th><td>Applies gun modifiers to a projectile before firing</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/can_attach">can_attach</a></th><td>Called when the attachment is trying to be attached. If the attachment is allowed to go through, return TRUE.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/change_target">change_target</a></th><td>Update the target if you draged your mouse</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/clean_gun_user">clean_gun_user</a></th><td>Null out gun user to prevent hard del</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/clean_target">clean_target</a></th><td>Set the target to it's turf, so we keep shooting even when it was qdeled</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/complete_overheat">complete_overheat</a></th><td>called by a timer after overheat finishes</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/cycle">cycle</a></th><td>Cycles the gun, handles ammunition draw</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/do_fire">do_fire</a></th><td>Actually fires the gun, sets up the projectile and fires it.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/do_toggle_firemode">do_toggle_firemode</a></th><td>Actually does the toggling of the fire mode</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/drop_connected_mag">drop_connected_mag</a></th><td>Checks to see if the current object in chamber is a worn magazine and if so unloads it</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/examine_ammo_count">examine_ammo_count</a></th><td>Gives the user a description of the ammunition remaining, as well as other information pertaining to reloading/ammo.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/fill_gun">fill_gun</a></th><td>Fills the gun with ammunition. This is not inlined with Initialize because it could be used outside and needs to sleep.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/fire_after_autonomous_windup">fire_after_autonomous_windup</a></th><td>Fire after a fake windup</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/get_ammo">get_ammo</a></th><td>Sets and returns the guns ammo type from the current magazine.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/get_ammo_list">get_ammo_list</a></th><td>returns ammo string icon_states to display in the ammo counter of the HUD. list(normal_state, empty_state)</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/get_ammo_object">get_ammo_object</a></th><td>Gets a projectile to fire from the magazines ammo type.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/get_current_rounds">get_current_rounds</a></th><td>Getter to draw current rounds. Overwrite if the magazine is not a /ammo_magazine</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/get_display_ammo_count">get_display_ammo_count</a></th><td>returns ammo count to display in the ammo counter of the HUD</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/get_magazine_default_ammo">get_magazine_default_ammo</a></th><td>Getter to draw default ammo type. If the mag has none, overwrite and return null.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/get_magazine_features_flags">get_magazine_features_flags</a></th><td>Getter to draw magazine_flags features. If the mag has none, overwrite and return null.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/get_magazine_overlay">get_magazine_overlay</a></th><td>Getter to draw the magazine overlay on the gun. If the mag has none, overwrite and return null.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/get_magazine_reload_delay">get_magazine_reload_delay</a></th><td>Getter to draw reload delay. If the mag has none, overwrite and return null.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/get_max_rounds">get_max_rounds</a></th><td>Getter to draw max rounds.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/gun_on_cooldown">gun_on_cooldown</a></th><td>Checks if the gun is on cooldown</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/has_attachment">has_attachment</a></th><td>Checks the gun to see if it has an attachment of type attachment_type</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/make_casing">make_casing</a></th><td>Generates a casing</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/on_attach">on_attach</a></th><td>This is called when an attachment gun (src) attaches to a gun.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/on_attachment_attach">on_attachment_attach</a></th><td>Called when an attachment is attached to this gun (src).</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/on_attachment_detach">on_attachment_detach</a></th><td>Called when an attachment is detached from this gun (src).</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/on_detach">on_detach</a></th><td>This is called when an attachment gun (src) detaches from a gun.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/on_unzoom">on_unzoom</a></th><td>Handles unzoom behavior</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/play_fire_sound">play_fire_sound</a></th><td>Plays firing sound when firing</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/recalculate_aim_mode_fire_delay">recalculate_aim_mode_fire_delay</a></th><td>Calculates aim_fire_delay, can't be below 0</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/reload">reload</a></th><td>Handles reloading. Called on attack_by
+Reload works in one of three ways, depending on the guns flags.
+First, if the gun is set to magazines, it will do checks based on the magazines vars and if it succeeds it will load the magazine.
+If the gun uses handfuls, the gun will create or take a handful with one round and insert those.
+If the gun does not use handfuls, or magazines. It will merely fill the gun with whatever item is inserted.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/remove_aim_mode_fire_delay">remove_aim_mode_fire_delay</a></th><td>Removes an aim_fire_delay modificatio value</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/remove_muzzle_flash">remove_muzzle_flash</a></th><td>Removes muzzle flash viscontents</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/reset_fire">reset_fire</a></th><td>Clean all references</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/reset_light_range">reset_light_range</a></th><td>Turns off gun fire lighting</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/set_bursting">set_bursting</a></th><td>Inform the gun if he is currently bursting, to prevent reloading</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/set_gun_user">set_gun_user</a></th><td>Set the user in argument as gun_user</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/set_target">set_target</a></th><td>Set the target and take care of hard delete</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/setup_bullet_accuracy">setup_bullet_accuracy</a></th><td>Sets the projectile accuracy and scatter</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/simulate_recoil">simulate_recoil</a></th><td>Generates screenshake if the gun has recoil</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/start_fire">start_fire</a></th><td>Check if the gun can fire and add it to bucket auto_fire system if needed, or just fire the gun if not</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/stop_fire">stop_fire</a></th><td>Reset variables used in firing and remove the gun from the autofire system</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/tactical_reload">tactical_reload</a></th><td>This performs a tactical reload with src using new_magazine to load the gun.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/toggle_auto_eject">toggle_auto_eject</a></th><td>Toggles weapons ejecting their magazines when they're empty. This one is one a gun level and is used via right clicking the gun.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/toggle_auto_eject_keybind">toggle_auto_eject_keybind</a></th><td>Signal handler to toggle automatic magazine ejection</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/toggle_firemode">toggle_firemode</a></th><td>A verb in the right click context menu of the weapon for toggling firemode</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/toggle_gun_safety_keybind">toggle_gun_safety_keybind</a></th><td>Signal handler to toggle the safety of the gun</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/unique_action">unique_action</a></th><td>Performs the unique action. Can be overwritten.
+This does a few things, depending on the flags of the gun.
+If the gun doesn't Toggle it will perform a cycle, if it requires operation the gun will check the cycle against the cock delays.
+If the gun does toggle, Unique action will open the chamber. (Open the barrel on a DB, or the cylinder on a revolver.)</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/unload">unload</a></th><td>Handles unloading. Called on attackhand. Draws the chamber_items out first, then in_chamber</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/unload_gun">unload_gun</a></th><td>Signal handler to unload that gun if it's in our active hand</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/update_ammo_count">update_ammo_count</a></th><td>Updates the guns rounds and max_rounds vars based on the contents of chamber_items</td></tr>
+            <tr><th><a href="obj/item/weapon/gun.html#proc/update_mouse_pointer">update_mouse_pointer</a></th><td>Updates the current mouse pointer to use the gun crosshair or not</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/accuracy_mult"><aside class="declaration">var </aside>accuracy_mult
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L193">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 193"/></a></h3>
+        <p>Multiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.</p><h3 id="var/accuracy_mult_unwielded"><aside class="declaration">var </aside>accuracy_mult_unwielded
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L231">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 231"/></a></h3>
+        <p>same vars as above but for unwielded firing.</p><h3 id="var/active_attachable"><aside class="declaration">var </aside>active_attachable
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a>/<a href="obj/item/weapon/gun.html">gun</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L328">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 328"/></a></h3>
+        <p>This is only not null when a weapon attachment is activated. All procs of firing get passed to this when it is not null.</p><h3 id="var/aim_fire_delay"><aside class="declaration">var </aside>aim_fire_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L241">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 241"/></a></h3>
+        <p>Determines how fire delay is changed when aim mode is active</p><h3 id="var/aim_fire_delay_mods"><aside class="declaration">var </aside>aim_fire_delay_mods
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L243">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 243"/></a></h3>
+        <p>Holds the values modifying aim_fire_delay</p><h3 id="var/aim_slowdown"><aside class="declaration">var </aside>aim_slowdown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L259">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 259"/></a></h3>
+        <p>Slowdown for wielding</p><h3 id="var/aim_speed_modifier"><aside class="declaration">var </aside>aim_speed_modifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L245">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 245"/></a></h3>
+        <p>Determines character slowdown from aim mode. Default is 66%</p><h3 id="var/aim_time"><aside class="declaration">var </aside>aim_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L247">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 247"/></a></h3>
+        <p>Time to enter aim mode, generally one second.</p><h3 id="var/akimbo_additional_delay"><aside class="declaration">var </aside>akimbo_additional_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L180">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 180"/></a></h3>
+        <p>If fire delay is 1 second, and akimbo_additional_delay is 0.5, then you'll have to wait 1 second * 0.5 to fire the second gun</p><h3 id="var/akimbo_scatter_mod"><aside class="declaration">var </aside>akimbo_scatter_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L178">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 178"/></a></h3>
+        <p>mult to scatter when firing akimbo</p><h3 id="var/allowed_ammo_types"><aside class="declaration">var </aside>allowed_ammo_types
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L145">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 145"/></a></h3>
+        <p>List of allowed specific types. If trying to reload with something in this list it will succeed. This is mainly for use in internal magazine weapons or scenarios where you do not want to inclue a whole subtype.</p><h3 id="var/ammo_datum_type"><aside class="declaration">var </aside>ammo_datum_type
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/ammo.html">ammo</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 141"/></a></h3>
+        <p>Stored ammo datum. I changed the var name because it was really annoying to find specific cases of 'ammo' in a file full of guns and ammunition.</p><h3 id="var/ammo_diff"><aside class="declaration">var </aside>ammo_diff
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L275">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 275"/></a></h3>
+        <p>what ammo to use for overcharge</p><h3 id="var/ammo_level_icon"><aside class="declaration">var </aside>ammo_level_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L309">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 309"/></a></h3>
+        <p>Whether the gun has ammo level overlays for its icon, mainly for eguns</p><h3 id="var/ammo_per_shot"><aside class="declaration">var </aside>ammo_per_shot
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L271">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 271"/></a></h3>
+        <p>How much ammo consumed per shot; normally 1.</p><h3 id="var/attach_delay"><aside class="declaration">var </aside>attach_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L358">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 358"/></a></h3>
+        <p>Time it takes to attach src to a master gun.</p><h3 id="var/attach_features_flags"><aside class="declaration">var </aside>attach_features_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L356">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 356"/></a></h3>
+        <p>Flags for attachment functions.</p><h3 id="var/attachable_allowed"><aside class="declaration">var </aside>attachable_allowed
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L326">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 326"/></a></h3>
+        <p>List of allowed attachments, IT MUST INCLUDE THE STARTING ATTACHMENT TYPES OR THEY WILL NOT ATTACH.</p><h3 id="var/attachable_offset"><aside class="declaration">var </aside>attachable_offset
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L324">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 324"/></a></h3>
+        <p>List of offsets to make attachment overlays not look wonky.</p><h3 id="var/attachment_overlays"><aside class="declaration">var </aside>attachment_overlays
+            <aside>&ndash; /list/image</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L332">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 332"/></a></h3>
+        <p>Image list of attachments overlays.</p><h3 id="var/attachments_by_slot"><aside class="declaration">var </aside>attachments_by_slot
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L334">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 334"/></a></h3>
+        <p>List of slots a gun can have.</p><h3 id="var/autoburst_delay"><aside class="declaration">var </aside>autoburst_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L256">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 256"/></a></h3>
+        <p>when autobursting, this is the total amount of time before the weapon fires again. If no amount is specified, defaults to fire_delay + extra_delay</p><h3 id="var/base_gun_icon"><aside class="declaration">var </aside>base_gun_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L164">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 164"/></a></h3>
+        <p>the default gun icon_state. change to reskin the gun</p><h3 id="var/burst_accuracy_bonus"><aside class="declaration">var </aside>burst_accuracy_bonus
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L229">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 229"/></a></h3>
+        <p>Additive number added to accuracy_mult.</p><h3 id="var/burst_amount"><aside class="declaration">var </aside>burst_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L250">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 250"/></a></h3>
+        <p>How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.</p><h3 id="var/burst_delay"><aside class="declaration">var </aside>burst_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L252">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 252"/></a></h3>
+        <p>The delay in between shots. Lower = less delay = faster.</p><h3 id="var/burst_scatter_mult"><aside class="declaration">var </aside>burst_scatter_mult
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L227">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 227"/></a></h3>
+        <p>Multiplier. Increases or decreases how much bonus scatter is added when burst firing, based off burst size</p><h3 id="var/casings_to_eject"><aside class="declaration">var </aside>casings_to_eject
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 135"/></a></h3>
+        <p>Amount of casings to eject for guns that toggle like revolvers and dbs.</p><h3 id="var/chamber_closed_message"><aside class="declaration">var </aside>chamber_closed_message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 79"/></a></h3>
+        <p>Message for when the chamber is closed.</p><h3 id="var/chamber_items"><aside class="declaration">var </aside>chamber_items
+            <aside>&ndash; /list/obj</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 122"/></a></h3>
+        <p>List of stored ammunition items.</p><h3 id="var/chamber_opened_message"><aside class="declaration">var </aside>chamber_opened_message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 77"/></a></h3>
+        <p>Message for when the chamber is opened.</p><h3 id="var/charge_cost"><aside class="declaration">var </aside>charge_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L269">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 269"/></a></h3>
+        <p>how much energy is consumed per shot.</p><h3 id="var/cock_animation"><aside class="declaration">var </aside>cock_animation
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 82"/></a></h3>
+        <p>Animation of the gun Cocking.</p><h3 id="var/cock_delay"><aside class="declaration">var </aside>cock_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 97"/></a></h3>
+        <p>Delay between cocking the gun.</p><h3 id="var/cock_locked_message"><aside class="declaration">var </aside>cock_locked_message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 75"/></a></h3>
+        <p>Message for a pump lock.</p><h3 id="var/cock_message_delay"><aside class="declaration">var </aside>cock_message_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 87"/></a></h3>
+        <p>Delay between given cocked_message.</p><h3 id="var/cocked_message"><aside class="declaration">var </aside>cocked_message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 73"/></a></h3>
+        <p>Message given to user on cocking.</p><h3 id="var/cocked_sound"><aside class="declaration">var </aside>cocked_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 90"/></a></h3>
+        <p>Sound of cocking the gun.</p><h3 id="var/cool_amount"><aside class="declaration">var </aside>cool_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L297">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 297"/></a></h3>
+        <p>heat reduction per second</p><h3 id="var/current_chamber_position"><aside class="declaration">var </aside>current_chamber_position
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 127"/></a></h3>
+        <p>Current selected position of chamber_items, this will determin the next item to be inserted into the chamber. If the gun uses magazines it will be the position of the magazine to be used. If the gun cycles (revolvers), this number will increase by one everytime it cycles until it reaches max_chamber_items, then it will revert back to one.</p><h3 id="var/damage_falloff_mult"><aside class="declaration">var </aside>damage_falloff_mult
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L197">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 197"/></a></h3>
+        <p>Same as above, for damage bleed (falloff)</p><h3 id="var/damage_mult"><aside class="declaration">var </aside>damage_mult
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L195">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 195"/></a></h3>
+        <p>Same as above, for damage.</p><h3 id="var/default_ammo_type"><aside class="declaration">var </aside>default_ammo_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 143"/></a></h3>
+        <p>Default magazine to spawn with.</p><h3 id="var/deploy_time"><aside class="declaration">var </aside>deploy_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L372">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 372"/></a></h3>
+        <p>If the gun is deployable, the time it takes for the weapon to deploy.</p><h3 id="var/deployable_item"><aside class="declaration">var </aside>deployable_item
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L369">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 369"/></a></h3>
+        <p>If the gun has a deployed item..</p><h3 id="var/deployed_scatter_change"><aside class="declaration">var </aside>deployed_scatter_change
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L376">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 376"/></a></h3>
+        <p>If the gun is deployed, change the scatter amount by this number. Negative reduces scatter, positive adds.</p><h3 id="var/detach_delay"><aside class="declaration">var </aside>detach_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L360">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 360"/></a></h3>
+        <p>Time it takes to detach src to a master gun.</p><h3 id="var/dry_fire_sound"><aside class="declaration">var </aside>dry_fire_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 104"/></a></h3>
+        <p>Sound for the gun firing when empty.</p><h3 id="var/dual_wield"><aside class="declaration">var </aside>dual_wield
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L176">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 176"/></a></h3>
+        <p>If this gun is in inactive hands and shooting in akimbo</p><h3 id="var/empty_sound"><aside class="declaration">var </aside>empty_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 108"/></a></h3>
+        <p>Sound played when the gun auto ejects its magazine.</p><h3 id="var/extra_delay"><aside class="declaration">var </aside>extra_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L254">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 254"/></a></h3>
+        <p>When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.</p><h3 id="var/fire_animation"><aside class="declaration">var </aside>fire_animation
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 57"/></a></h3>
+        <p>State for a fire animation if the gun has any</p><h3 id="var/fire_delay"><aside class="declaration">var </aside>fire_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L235">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 235"/></a></h3>
+        <p>For regular shots, how long to wait before firing again.</p><h3 id="var/fire_rattle"><aside class="declaration">var </aside>fire_rattle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 64"/></a></h3>
+        <p>Does our gun have a unique sound when running out of ammo? If so, use this instead of pitch shifting.</p><h3 id="var/fire_sound"><aside class="declaration">var </aside>fire_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 62"/></a></h3>
+        <p>Sound of firing the gun.</p><h3 id="var/general_codex_key"><aside class="declaration">var </aside>general_codex_key
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L167">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 167"/></a></h3>
+        <p>Key for the codex</p><h3 id="var/gun_accuracy_mod"><aside class="declaration">var </aside>gun_accuracy_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L282">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 282"/></a></h3>
+        <p>Additive to projectile accuracy, after gun_accuracy_mult</p><h3 id="var/gun_accuracy_mult"><aside class="declaration">var </aside>gun_accuracy_mult
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L280">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 280"/></a></h3>
+        <p>Projectile accuracy is multiplied by the number</p><h3 id="var/gun_crosshair"><aside class="declaration">var </aside>gun_crosshair
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L315">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 315"/></a></h3>
+        <p>Crosshair icon of the gun</p><h3 id="var/gun_features_flags"><aside class="declaration">var </aside>gun_features_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L154">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 154"/></a></h3>
+        <p>Innate carateristics of that gun</p><h3 id="var/gun_fire_angle"><aside class="declaration">var </aside>gun_fire_angle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L286">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 286"/></a></h3>
+        <p>If specified, the gun can only fire in a cone forwards with an angle of this var</p><h3 id="var/gun_firemode"><aside class="declaration">var </aside>gun_firemode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L156">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 156"/></a></h3>
+        <p>Current selected firemode of the gun.</p><h3 id="var/gun_firemode_list"><aside class="declaration">var </aside>gun_firemode_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L158">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 158"/></a></h3>
+        <p>List of allowed firemodes.</p><h3 id="var/gun_scatter"><aside class="declaration">var </aside>gun_scatter
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L284">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 284"/></a></h3>
+        <p>The actual scatter value of the fired projectile</p><h3 id="var/gun_skill_category"><aside class="declaration">var </aside>gun_skill_category
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 161"/></a></h3>
+        <p>Skill used to operate this gun.</p><h3 id="var/gun_user"><aside class="declaration">var </aside>gun_user
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 170"/></a></h3>
+        <p>The mob holding the gun</p><h3 id="var/gunattachment"><aside class="declaration">var </aside>gunattachment
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a>/<a href="obj/item/weapon/gun.html">gun</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L342">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 342"/></a></h3>
+        <p>the current gun attachment, used for attachment aim mode</p><h3 id="var/hand_reload_sound"><aside class="declaration">var </aside>hand_reload_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 112"/></a></h3>
+        <p>Sound for reloading by handfuls</p><h3 id="var/heat_amount"><aside class="declaration">var </aside>heat_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L293">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 293"/></a></h3>
+        <p>heat on this gun. at over 100 heat stops you from firing and goes on cooldown</p><h3 id="var/heat_meter"><aside class="declaration">var </aside>heat_meter
+            <aside>&ndash; /<a href="image.html">image</a>/<a href="image/heat_bar.html">heat_bar</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L303">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 303"/></a></h3>
+        <p>image we create to keep track of heat</p><h3 id="var/heat_per_fire"><aside class="declaration">var </aside>heat_per_fire
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L295">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 295"/></a></h3>
+        <p>heat that we add every successful fire()</p><h3 id="var/icon_overlay_x_offset"><aside class="declaration">var </aside>icon_overlay_x_offset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L311">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 311"/></a></h3>
+        <p>Whether the icon_state overlay is offset in the x axis</p><h3 id="var/icon_overlay_y_offset"><aside class="declaration">var </aside>icon_overlay_y_offset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L313">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 313"/></a></h3>
+        <p>Whether the icon_state overlay is offset in the Y axis</p><h3 id="var/iff_marine_damage_falloff"><aside class="declaration">var </aside>iff_marine_damage_falloff
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L239">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 239"/></a></h3>
+        <p>Modifies projectile damage by a % when a marine gets passed, but not hit</p><h3 id="var/in_chamber"><aside class="declaration">var </aside>in_chamber
+            <aside>&ndash; /<a href="obj.html">obj</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 120"/></a></h3>
+        <p>Current object slated for firing. Magazines/Handfuls will make this a projectile. Internal magazines that aren't handfuls will have this be the object in the gun.</p><h3 id="var/knockdown_threshold"><aside class="declaration">var </aside>knockdown_threshold
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L380">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 380"/></a></h3>
+        <p>Damage threshold for whether a turret will be knocked down.</p><h3 id="var/last_cock_message"><aside class="declaration">var </aside>last_cock_message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 85"/></a></h3>
+        <p>World.time of the last cocked_message.</p><h3 id="var/last_cocked"><aside class="declaration">var </aside>last_cocked
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 95"/></a></h3>
+        <p>World.time of the last cock.</p><h3 id="var/last_fired"><aside class="declaration">var </aside>last_fired
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 66"/></a></h3>
+        <p>World.time of last gun firing.</p><h3 id="var/master_gun"><aside class="declaration">var </aside>master_gun
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a>/<a href="obj/item/weapon/gun.html">gun</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L348">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 348"/></a></h3>
+        <p>Gun reference if src is an attachment and is attached to a gun. This will be the gun that src is attached to.</p><h3 id="var/max_chamber_items"><aside class="declaration">var </aside>max_chamber_items
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 124"/></a></h3>
+        <p>Maximum allowed chamber items. If the gun has AMMO_RECIEVER_TOGGLES_OPEN then the total amount in the gun will be the one here. If not, the gun will be able to contain this number + the chamber. If this is zero and doesnt use magazines, reloading will go directly into the chamber.</p><h3 id="var/max_rounds"><aside class="declaration">var </aside>max_rounds
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 117"/></a></h3>
+        <p>If the gun uses magazines, it is the max rounds of the magazine(s). If it has an internal chamber, it is max_chamber_items.</p><h3 id="var/max_scatter"><aside class="declaration">var </aside>max_scatter
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L211">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 211"/></a></h3>
+        <p>Maximum scatter</p><h3 id="var/max_scatter_unwielded"><aside class="declaration">var </aside>max_scatter_unwielded
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L213">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 213"/></a></h3>
+        <p>Maximum scatter when wielded</p><h3 id="var/min_scatter"><aside class="declaration">var </aside>min_scatter
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L223">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 223"/></a></h3>
+        <p>Minimum scatter</p><h3 id="var/min_scatter_unwielded"><aside class="declaration">var </aside>min_scatter_unwielded
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L225">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 225"/></a></h3>
+        <p>Minimum scatter when wielded</p><h3 id="var/movement_acc_penalty_mult"><aside class="declaration">var </aside>movement_acc_penalty_mult
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L233">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 233"/></a></h3>
+        <p>Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing while moving.</p><h3 id="var/muzzle_flash"><aside class="declaration">var </aside>muzzle_flash
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/vis_obj/effect/muzzle_flash</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 44"/></a></h3>
+        <p>Effect for the muzzle flash of the gun.</p><h3 id="var/muzzle_flash_color"><aside class="declaration">var </aside>muzzle_flash_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 50"/></a></h3>
+        <p>Color of the muzzle flash effect.</p><h3 id="var/muzzle_flash_lum"><aside class="declaration">var </aside>muzzle_flash_lum
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 48"/></a></h3>
+        <p>Brightness of the muzzle flash effect.</p><h3 id="var/muzzleflash_iconstate"><aside class="declaration">var </aside>muzzleflash_iconstate
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 46"/></a></h3>
+        <p>Icon state of the muzzle flash effect.</p><h3 id="var/opened_sound"><aside class="declaration">var </aside>opened_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 92"/></a></h3>
+        <p>Sounds of opening the guns reciever. (DBs, Martinis opening.)</p><h3 id="var/overcharge"><aside class="declaration">var </aside>overcharge
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L273">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 273"/></a></h3>
+        <p>In overcharge mode?</p><h3 id="var/overheat_multiplier"><aside class="declaration">var </aside>overheat_multiplier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L301">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 301"/></a></h3>
+        <p>multiplier on cool amount to determine overheat time</p><h3 id="var/overheat_timer"><aside class="declaration">var </aside>overheat_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L299">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 299"/></a></h3>
+        <p>tracks overheat timer ref</p><h3 id="var/pixel_shift_x"><aside class="declaration">var </aside>pixel_shift_x
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L352">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 352"/></a></h3>
+        <p>Pixel shift on the X Axis for the attached overlay.</p><h3 id="var/pixel_shift_y"><aside class="declaration">var </aside>pixel_shift_y
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L354">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 354"/></a></h3>
+        <p>Pixel shift on the Y Axis for the attached overlay.</p><h3 id="var/placed_overlay_iconstate"><aside class="declaration">var </aside>placed_overlay_iconstate
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L387">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 387"/></a></h3>
+        <p>Icon state used for an added overlay for a sentry. Currently only used in Build-A-Sentry.</p><h3 id="var/reciever_flags"><aside class="declaration">var </aside>reciever_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 130"/></a></h3>
+        <p>Flags to determin guns ammo/operation.</p><h3 id="var/recoil"><aside class="declaration">var </aside>recoil
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L199">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 199"/></a></h3>
+        <p>Screen shake when the weapon is fired while wielded.</p><h3 id="var/recoil_backtime_multiplier"><aside class="declaration">var </aside>recoil_backtime_multiplier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L203">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 203"/></a></h3>
+        <p>a multiplier of the duration the recoil takes to go back to normal view, this is (recoil*recoil_backtime_multiplier)+1</p><h3 id="var/recoil_deviation"><aside class="declaration">var </aside>recoil_deviation
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L205">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 205"/></a></h3>
+        <p>this is how much deviation the gun recoil can have, recoil pushes the screen towards the reverse angle you shot + some deviation which this is the max.</p><h3 id="var/recoil_unwielded"><aside class="declaration">var </aside>recoil_unwielded
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L201">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 201"/></a></h3>
+        <p>Screen shake when the weapon is fired while unwielded.</p><h3 id="var/reload_sound"><aside class="declaration">var </aside>reload_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 110"/></a></h3>
+        <p>Sound played for reloading.</p><h3 id="var/rounds"><aside class="declaration">var </aside>rounds
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 115"/></a></h3>
+        <p>Stored sum of magazine rounds / chamber contents. This is used for anything needing ammo. It is updated on reload/unload/fire</p><h3 id="var/rounds_per_shot"><aside class="declaration">var </aside>rounds_per_shot
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 138"/></a></h3>
+        <p>If the gun uses a magazine, the gun will subtract this from the magazine every fire.</p><h3 id="var/scatter"><aside class="declaration">var </aside>scatter
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L207">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 207"/></a></h3>
+        <p>How much the bullet currently scattered when last fired.</p><h3 id="var/scatter_decay"><aside class="declaration">var </aside>scatter_decay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L215">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 215"/></a></h3>
+        <p>How much scatter decays every decisecond</p><h3 id="var/scatter_decay_unwielded"><aside class="declaration">var </aside>scatter_decay_unwielded
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L217">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 217"/></a></h3>
+        <p>How much scatter decays every decisecond</p><h3 id="var/scatter_increase"><aside class="declaration">var </aside>scatter_increase
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L219">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 219"/></a></h3>
+        <p>How much scatter increases per shot</p><h3 id="var/scatter_increase_unwielded"><aside class="declaration">var </aside>scatter_increase_unwielded
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L221">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 221"/></a></h3>
+        <p>How much scatter increases per shot when wielded</p><h3 id="var/scatter_unwielded"><aside class="declaration">var </aside>scatter_unwielded
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L209">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 209"/></a></h3>
+        <p>How much the bullet scatters when fired while unwielded.</p><h3 id="var/sentry_iff_signal"><aside class="declaration">var </aside>sentry_iff_signal
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L384">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 384"/></a></h3>
+        <p>IFF signal for sentries. If it is set here it will be this signal forever. If null the IFF signal will be dependant on the deployer.</p><h3 id="var/shell_eject_animation"><aside class="declaration">var </aside>shell_eject_animation
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 59"/></a></h3>
+        <p>Animation for opening the chamber of a gun.</p><h3 id="var/shell_speed_mod"><aside class="declaration">var </aside>shell_speed_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L237">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 237"/></a></h3>
+        <p>Modifies the speed of projectiles fired.</p><h3 id="var/shots_fired"><aside class="declaration">var </aside>shots_fired
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 174"/></a></h3>
+        <p>How many bullets the gun fired while bursting/auto firing</p><h3 id="var/slot"><aside class="declaration">var </aside>slot
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L350">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 350"/></a></h3>
+        <p>Slot the gun fits into.</p><h3 id="var/starting_attachment_types"><aside class="declaration">var </aside>starting_attachment_types
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L330">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 330"/></a></h3>
+        <p>The attachments this gun starts with on Init</p><h3 id="var/target"><aside class="declaration">var </aside>target
+            <aside>&ndash; /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L172">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 172"/></a></h3>
+        <p>The atom targeted by the user</p><h3 id="var/turret_flags"><aside class="declaration">var </aside>turret_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L378">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 378"/></a></h3>
+        <p>Flags that the deployed sentry uses upon deployment.</p><h3 id="var/turret_range"><aside class="declaration">var </aside>turret_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L382">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 382"/></a></h3>
+        <p>Range of deployed turret</p><h3 id="var/type_of_casings"><aside class="declaration">var </aside>type_of_casings
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L133">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 133"/></a></h3>
+        <p>Types of casing it ejects.</p><h3 id="var/undeploy_time"><aside class="declaration">var </aside>undeploy_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L374">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 374"/></a></h3>
+        <p>If the gun is deployable, the time it takes for the weapon to undeploy. Defaults to deploy time</p><h3 id="var/unload_sound"><aside class="declaration">var </aside>unload_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 106"/></a></h3>
+        <p>Sound of unloading the gun.</p><h3 id="var/wield_delay"><aside class="declaration">var </aside>wield_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L261">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 261"/></a></h3>
+        <p>How long between wielding and firing in tenths of seconds</p><h3 id="var/wield_delay_mod"><aside class="declaration">var </aside>wield_delay_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L362">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 362"/></a></h3>
+        <p>How long ADS takes (time before firing)</p><h3 id="var/wield_penalty"><aside class="declaration">var </aside>wield_penalty
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L263">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 263"/></a></h3>
+        <p>Extra wield delay for untrained operators</p><h3 id="var/wield_time"><aside class="declaration">var </aside>wield_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L265">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 265"/></a></h3>
+        <p>Storing value for above</p><h3 id="var/windup_checked"><aside class="declaration">var </aside>windup_checked
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L186">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 186"/></a></h3>
+        <p>Used if a weapon need windup before firing</p><h3 id="var/windup_delay"><aside class="declaration">var </aside>windup_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L182">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 182"/></a></h3>
+        <p>Delay for the gun winding up before firing.</p><h3 id="var/windup_sound"><aside class="declaration">var </aside>windup_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L184">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 184"/></a></h3>
+        <p>Sound played during windup.</p><h2 id="proc">Proc Details</h2><h3 id="proc/Fire"><aside class="declaration">proc </aside>Fire<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L831">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 831"/></a></aside>
+        </h3>
+        <p>Wrapper proc to complete the whole firing process.</p><h3 id="proc/able_to_fire"><aside class="declaration">proc </aside>able_to_fire<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1709">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1709"/></a></aside>
+        </h3>
+        <p>Checks if the gun can be fired</p><h3 id="proc/activate"><aside class="declaration">proc </aside>activate<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L353">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 353"/></a></aside>
+        </h3>
+        <p>This activates the weapon for use.</p><h3 id="proc/activate_attachment"><aside class="declaration">proc </aside>activate_attachment<aside>(slot, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_helpers.dm#L348">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_helpers.dm 348"/></a></aside>
+        </h3>
+        <p>Gets the attachents by slot and activates them.</p><h3 id="proc/activate_muzzle_attachment"><aside class="declaration">proc </aside>activate_muzzle_attachment<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_helpers.dm#L636">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_helpers.dm 636"/></a></aside>
+        </h3>
+        <p>Signal handler to activate the muzzle attachement of that gun if it's in our active hand</p><h3 id="proc/activate_rail_attachment"><aside class="declaration">proc </aside>activate_rail_attachment<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_helpers.dm#L628">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_helpers.dm 628"/></a></aside>
+        </h3>
+        <p>if your attached weapon has aim mode, stops it from aimming
+if your attached weapon has aim mode, makes it aim
+Signal handler to activate the rail attachement of that gun if it's in our active hand</p><h3 id="proc/activate_underrail_attachment"><aside class="declaration">proc </aside>activate_underrail_attachment<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_helpers.dm#L644">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_helpers.dm 644"/></a></aside>
+        </h3>
+        <p>Signal handler to activate the underrail attachement of that gun if it's in our active hand</p><h3 id="proc/add_aim_mode_fire_delay"><aside class="declaration">proc </aside>add_aim_mode_fire_delay<aside>(source, value) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_helpers.dm#L558">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_helpers.dm 558"/></a></aside>
+        </h3>
+        <p>Adds an aim_fire_delay modificatio value</p><h3 id="proc/adjust_current_rounds"><aside class="declaration">proc </aside>adjust_current_rounds<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/mag, new_rounds) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1656">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1656"/></a></aside>
+        </h3>
+        <p>Adds or subtracts rounds from the magazine.</p><h3 id="proc/apply_gun_modifiers"><aside class="declaration">proc </aside>apply_gun_modifiers<aside>(/<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/projectile_to_fire, /<a href="atom.html">atom</a>/target, firer) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1782">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1782"/></a></aside>
+        </h3>
+        <p>Applies gun modifiers to a projectile before firing</p><h3 id="proc/can_attach"><aside class="declaration">proc </aside>can_attach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attaching_to, /<a href="mob.html">mob</a>/attacher) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L369">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 369"/></a></aside>
+        </h3>
+        <p>Called when the attachment is trying to be attached. If the attachment is allowed to go through, return TRUE.</p><h3 id="proc/change_target"><aside class="declaration">proc </aside>change_target<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/src_object, /<a href="atom.html">atom</a>/over_object, /<a href="turf.html">turf</a>/src_location, /<a href="turf.html">turf</a>/over_location, src_control, over_control, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L812">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 812"/></a></aside>
+        </h3>
+        <p>Update the target if you draged your mouse</p><h3 id="proc/clean_gun_user"><aside class="declaration">proc </aside>clean_gun_user<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L533">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 533"/></a></aside>
+        </h3>
+        <p>Null out gun user to prevent hard del</p><h3 id="proc/clean_target"><aside class="declaration">proc </aside>clean_target<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L770">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 770"/></a></aside>
+        </h3>
+        <p>Set the target to it's turf, so we keep shooting even when it was qdeled</p><h3 id="proc/complete_overheat"><aside class="declaration">proc </aside>complete_overheat<aside>(overheat_smoke) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1062">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1062"/></a></aside>
+        </h3>
+        <p>called by a timer after overheat finishes</p><h3 id="proc/cycle"><aside class="declaration">proc </aside>cycle<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, after_fire) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1501">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1501"/></a></aside>
+        </h3>
+        <p>Cycles the gun, handles ammunition draw</p><h3 id="proc/do_fire"><aside class="declaration">proc </aside>do_fire<aside>(/<a href="obj.html">obj</a>/object_to_fire) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L911">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 911"/></a></aside>
+        </h3>
+        <p>Actually fires the gun, sets up the projectile and fires it.</p><h3 id="proc/do_toggle_firemode"><aside class="declaration">proc </aside>do_toggle_firemode<aside>(/<a href="datum.html">datum</a>/source, /<a href="datum.html">datum</a>/keybinding, new_firemode) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_helpers.dm#L248">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_helpers.dm 248"/></a></aside>
+        </h3>
+        <p>Actually does the toggling of the fire mode</p><h3 id="proc/drop_connected_mag"><aside class="declaration">proc </aside>drop_connected_mag<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1642">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1642"/></a></aside>
+        </h3>
+        <p>Checks to see if the current object in chamber is a worn magazine and if so unloads it</p><h3 id="proc/examine_ammo_count"><aside class="declaration">proc </aside>examine_ammo_count<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L623">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 623"/></a></aside>
+        </h3>
+        <p>Gives the user a description of the ammunition remaining, as well as other information pertaining to reloading/ammo.</p><h3 id="proc/fill_gun"><aside class="declaration">proc </aside>fill_gun<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1406">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1406"/></a></aside>
+        </h3>
+        <p>Fills the gun with ammunition. This is not inlined with Initialize because it could be used outside and needs to sleep.</p><h3 id="proc/fire_after_autonomous_windup"><aside class="declaration">proc </aside>fire_after_autonomous_windup<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1057">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1057"/></a></aside>
+        </h3>
+        <p>Fire after a fake windup</p><h3 id="proc/get_ammo"><aside class="declaration">proc </aside>get_ammo<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1577">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1577"/></a></aside>
+        </h3>
+        <p>Sets and returns the guns ammo type from the current magazine.</p><h3 id="proc/get_ammo_list"><aside class="declaration">proc </aside>get_ammo_list<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1601">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1601"/></a></aside>
+        </h3>
+        <p>returns ammo string icon_states to display in the ammo counter of the HUD. list(normal_state, empty_state)</p><h3 id="proc/get_ammo_object"><aside class="declaration">proc </aside>get_ammo_object<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1567">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1567"/></a></aside>
+        </h3>
+        <p>Gets a projectile to fire from the magazines ammo type.</p><h3 id="proc/get_current_rounds"><aside class="declaration">proc </aside>get_current_rounds<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/mag) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1651">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1651"/></a></aside>
+        </h3>
+        <p>Getter to draw current rounds. Overwrite if the magazine is not a /ammo_magazine</p><h3 id="proc/get_display_ammo_count"><aside class="declaration">proc </aside>get_display_ammo_count<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1607">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1607"/></a></aside>
+        </h3>
+        <p>returns ammo count to display in the ammo counter of the HUD</p><h3 id="proc/get_magazine_default_ammo"><aside class="declaration">proc </aside>get_magazine_default_ammo<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/mag) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1673">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1673"/></a></aside>
+        </h3>
+        <p>Getter to draw default ammo type. If the mag has none, overwrite and return null.</p><h3 id="proc/get_magazine_features_flags"><aside class="declaration">proc </aside>get_magazine_features_flags<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/mag) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1666">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1666"/></a></aside>
+        </h3>
+        <p>Getter to draw magazine_flags features. If the mag has none, overwrite and return null.</p><h3 id="proc/get_magazine_overlay"><aside class="declaration">proc </aside>get_magazine_overlay<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/mag) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1683">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1683"/></a></aside>
+        </h3>
+        <p>Getter to draw the magazine overlay on the gun. If the mag has none, overwrite and return null.</p><h3 id="proc/get_magazine_reload_delay"><aside class="declaration">proc </aside>get_magazine_reload_delay<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/mag) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1678">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1678"/></a></aside>
+        </h3>
+        <p>Getter to draw reload delay. If the mag has none, overwrite and return null.</p><h3 id="proc/get_max_rounds"><aside class="declaration">proc </aside>get_max_rounds<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/mag) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1661">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1661"/></a></aside>
+        </h3>
+        <p>Getter to draw max rounds.</p><h3 id="proc/gun_on_cooldown"><aside class="declaration">proc </aside>gun_on_cooldown<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1756">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1756"/></a></aside>
+        </h3>
+        <p>Checks if the gun is on cooldown</p><h3 id="proc/has_attachment"><aside class="declaration">proc </aside>has_attachment<aside>(attachment_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_helpers.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_helpers.dm 171"/></a></aside>
+        </h3>
+        <p>Checks the gun to see if it has an attachment of type attachment_type</p><h3 id="proc/make_casing"><aside class="declaration">proc </aside>make_casing<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/magazine, after_fire) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1544">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1544"/></a></aside>
+        </h3>
+        <p>Generates a casing</p><h3 id="proc/on_attach"><aside class="declaration">proc </aside>on_attach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attached_to, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L313">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 313"/></a></aside>
+        </h3>
+        <p>This is called when an attachment gun (src) attaches to a gun.</p><h3 id="proc/on_attachment_attach"><aside class="declaration">proc </aside>on_attachment_attach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attaching_here, /<a href="mob.html">mob</a>/attacher) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L373">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 373"/></a></aside>
+        </h3>
+        <p>Called when an attachment is attached to this gun (src).</p><h3 id="proc/on_attachment_detach"><aside class="declaration">proc </aside>on_attachment_detach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/detaching_here, /<a href="mob.html">mob</a>/attacher) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L376">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 376"/></a></aside>
+        </h3>
+        <p>Called when an attachment is detached from this gun (src).</p><h3 id="proc/on_detach"><aside class="declaration">proc </aside>on_detach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attached_to, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_attachables/attachable.dm#L334">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_attachables&#x2F;attachable.dm 334"/></a></aside>
+        </h3>
+        <p>This is called when an attachment gun (src) detaches from a gun.</p><h3 id="proc/on_unzoom"><aside class="declaration">proc </aside>on_unzoom<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L776">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 776"/></a></aside>
+        </h3>
+        <p>Handles unzoom behavior</p><h3 id="proc/play_fire_sound"><aside class="declaration">proc </aside>play_fire_sound<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1770">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1770"/></a></aside>
+        </h3>
+        <p>Plays firing sound when firing</p><h3 id="proc/recalculate_aim_mode_fire_delay"><aside class="declaration">proc </aside>recalculate_aim_mode_fire_delay<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_helpers.dm#L547">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_helpers.dm 547"/></a></aside>
+        </h3>
+        <p>Calculates aim_fire_delay, can't be below 0</p><h3 id="proc/reload"><aside class="declaration">proc </aside>reload<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/new_mag, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, force) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1279">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1279"/></a></aside>
+        </h3>
+        <p>Handles reloading. Called on attack_by
+Reload works in one of three ways, depending on the guns flags.
+First, if the gun is set to magazines, it will do checks based on the magazines vars and if it succeeds it will load the magazine.
+If the gun uses handfuls, the gun will create or take a handful with one round and insert those.
+If the gun does not use handfuls, or magazines. It will merely fill the gun with whatever item is inserted.</p><h3 id="proc/remove_aim_mode_fire_delay"><aside class="declaration">proc </aside>remove_aim_mode_fire_delay<aside>(source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_helpers.dm#L563">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_helpers.dm 563"/></a></aside>
+        </h3>
+        <p>Removes an aim_fire_delay modificatio value</p><h3 id="proc/remove_muzzle_flash"><aside class="declaration">proc </aside>remove_muzzle_flash<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/flash_loc, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/vis_obj/effect/muzzle_flash/muzzle_flash) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1893">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1893"/></a></aside>
+        </h3>
+        <p>Removes muzzle flash viscontents</p><h3 id="proc/reset_fire"><aside class="declaration">proc </aside>reset_fire<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L791">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 791"/></a></aside>
+        </h3>
+        <p>Clean all references</p><h3 id="proc/reset_light_range"><aside class="declaration">proc </aside>reset_light_range<aside>(lightrange) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1886">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1886"/></a></aside>
+        </h3>
+        <p>Turns off gun fire lighting</p><h3 id="proc/set_bursting"><aside class="declaration">proc </aside>set_bursting<aside>(bursting) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L804">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 804"/></a></aside>
+        </h3>
+        <p>Inform the gun if he is currently bursting, to prevent reloading</p><h3 id="proc/set_gun_user"><aside class="declaration">proc </aside>set_gun_user<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L464">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 464"/></a></aside>
+        </h3>
+        <p>Set the user in argument as gun_user</p><h3 id="proc/set_target"><aside class="declaration">proc </aside>set_target<aside>(/<a href="atom.html">atom</a>/object) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L759">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 759"/></a></aside>
+        </h3>
+        <p>Set the target and take care of hard delete</p><h3 id="proc/setup_bullet_accuracy"><aside class="declaration">proc </aside>setup_bullet_accuracy<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1809">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1809"/></a></aside>
+        </h3>
+        <p>Sets the projectile accuracy and scatter</p><h3 id="proc/simulate_recoil"><aside class="declaration">proc </aside>simulate_recoil<aside>(recoil_bonus, firing_angle) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1860">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1860"/></a></aside>
+        </h3>
+        <p>Generates screenshake if the gun has recoil</p><h3 id="proc/start_fire"><aside class="declaration">proc </aside>start_fire<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/object, /<a href="turf.html">turf</a>/location, control, params, bypass_checks) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L703">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 703"/></a></aside>
+        </h3>
+        <p>Check if the gun can fire and add it to bucket auto_fire system if needed, or just fire the gun if not</p><h3 id="proc/stop_fire"><aside class="declaration">proc </aside>stop_fire<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L781">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 781"/></a></aside>
+        </h3>
+        <p>Reset variables used in firing and remove the gun from the autofire system</p><h3 id="proc/tactical_reload"><aside class="declaration">proc </aside>tactical_reload<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/new_magazine, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_helpers.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_helpers.dm 112"/></a></aside>
+        </h3>
+        <p>This performs a tactical reload with src using new_magazine to load the gun.</p><h3 id="proc/toggle_auto_eject"><aside class="declaration">verb </aside>toggle_auto_eject<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_helpers.dm#L501">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_helpers.dm 501"/></a></aside>
+        </h3>
+        <p>Toggles weapons ejecting their magazines when they're empty. This one is one a gun level and is used via right clicking the gun.</p><h3 id="proc/toggle_auto_eject_keybind"><aside class="declaration">proc </aside>toggle_auto_eject_keybind<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_helpers.dm#L664">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_helpers.dm 664"/></a></aside>
+        </h3>
+        <p>Signal handler to toggle automatic magazine ejection</p><h3 id="proc/toggle_firemode"><aside class="declaration">verb </aside>toggle_firemode<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_helpers.dm#L240">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_helpers.dm 240"/></a></aside>
+        </h3>
+        <p>A verb in the right click context menu of the weapon for toggling firemode</p><h3 id="proc/toggle_gun_safety_keybind"><aside class="declaration">proc </aside>toggle_gun_safety_keybind<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_helpers.dm#L658">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_helpers.dm 658"/></a></aside>
+        </h3>
+        <p>Signal handler to toggle the safety of the gun</p><h3 id="proc/unique_action"><aside class="parent"><a title="/obj/item" href="obj/item.html#proc/unique_action">&uarr;</a></aside>unique_action<aside>(/<a href="mob.html">mob</a>/user, special_treatment) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1179">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1179"/></a></aside>
+        </h3>
+        <p>Performs the unique action. Can be overwritten.
+This does a few things, depending on the flags of the gun.
+If the gun doesn't Toggle it will perform a cycle, if it requires operation the gun will check the cycle against the cock delays.
+If the gun does toggle, Unique action will open the chamber. (Open the barrel on a DB, or the cylinder on a revolver.)</p><h3 id="proc/unload"><aside class="declaration">proc </aside>unload<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, drop, after_fire) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1437">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1437"/></a></aside>
+        </h3>
+        <p>Handles unloading. Called on attackhand. Draws the chamber_items out first, then in_chamber</p><h3 id="proc/unload_gun"><aside class="declaration">proc </aside>unload_gun<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_helpers.dm#L652">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_helpers.dm 652"/></a></aside>
+        </h3>
+        <p>Signal handler to unload that gun if it's in our active hand</p><h3 id="proc/update_ammo_count"><aside class="declaration">proc </aside>update_ammo_count<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1615">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1615"/></a></aside>
+        </h3>
+        <p>Updates the guns rounds and max_rounds vars based on the contents of chamber_items</p><h3 id="proc/update_mouse_pointer"><aside class="declaration">proc </aside>update_mouse_pointer<aside>(reset) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/gun_system.dm#L1899">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;gun_system.dm 1899"/></a></aside>
+        </h3>
+        <p>Updates the current mouse pointer to use the gun crosshair or not</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

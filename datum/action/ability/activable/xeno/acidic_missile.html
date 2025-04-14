@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;activable&#x2F;xeno&#x2F;acidic_missile - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/activable/xeno/acidic_missile.html#var">Var Details</a> - <a href="datum/action/ability/activable/xeno/acidic_missile.html#proc">Proc Details</a></header>
+<main>
+<h1>acidic_missile <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/activable.html">activable</a>/<a href="datum/action/ability/activable/xeno.html">xeno</a>/<a href="datum/action/ability/activable/xeno/acidic_missile.html">acidic_missile</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L445">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 445"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/acidic_missile.html#var/acid_level">acid_level</a></th><td>The acid level of the ability. Affects radius and movement speed.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/acidic_missile.html#var/particle_holder">particle_holder</a></th><td>The particles effects from activation.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/acidic_missile.html#proc/acid_explosion">acid_explosion</a></th><td>Explodes with a radius based on acid level.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/acidic_missile.html#proc/do_after_checks">do_after_checks</a></th><td>Additional checks for do_after. They must have acid level, enough plasma, and must not be leaping.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/acidic_missile.html#proc/end_ability">end_ability</a></th><td>Resets everything related to the ability and ends/completes the ability.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/acidic_missile.html#proc/increase_acid_level">increase_acid_level</a></th><td>Increases acid level and handles its associated effects.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/acidic_missile.html#proc/on_stagger">on_stagger</a></th><td>Completes the ability and triggers the acid explosion at a reduced acid level.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/acidic_missile.html#proc/throw_complete">throw_complete</a></th><td>Completes the ability and triggers the acid explosion.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/acid_level"><aside class="declaration">var </aside>acid_level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L459">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 459"/></a></h3>
+        <p>The acid level of the ability. Affects radius and movement speed.</p><h3 id="var/particle_holder"><aside class="declaration">var </aside>particle_holder
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/abstract/particle_holder.html">effect/abstract/particle_holder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L457">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 457"/></a></h3>
+        <p>The particles effects from activation.</p><h2 id="proc">Proc Details</h2><h3 id="proc/acid_explosion"><aside class="declaration">proc </aside>acid_explosion<aside>(end_ability_afterward, requires_plasma, disallow_leaping, do_emote) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L549">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 549"/></a></aside>
+        </h3>
+        <p>Explodes with a radius based on acid level.</p><h3 id="proc/do_after_checks"><aside class="declaration">proc </aside>do_after_checks<aside>(require_acid_level) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L527">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 527"/></a></aside>
+        </h3>
+        <p>Additional checks for do_after. They must have acid level, enough plasma, and must not be leaping.</p><h3 id="proc/end_ability"><aside class="declaration">proc </aside>end_ability<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L537">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 537"/></a></aside>
+        </h3>
+        <p>Resets everything related to the ability and ends/completes the ability.</p><h3 id="proc/increase_acid_level"><aside class="declaration">proc </aside>increase_acid_level<aside>(require_acid_level) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L496">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 496"/></a></aside>
+        </h3>
+        <p>Increases acid level and handles its associated effects.</p><h3 id="proc/on_stagger"><aside class="declaration">proc </aside>on_stagger<aside>(/<a href="datum.html">datum</a>/source, amount, ignore_canstun) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L490">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 490"/></a></aside>
+        </h3>
+        <p>Completes the ability and triggers the acid explosion at a reduced acid level.</p><h3 id="proc/throw_complete"><aside class="declaration">proc </aside>throw_complete<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L485">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 485"/></a></aside>
+        </h3>
+        <p>Completes the ability and triggers the acid explosion.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

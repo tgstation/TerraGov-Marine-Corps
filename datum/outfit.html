@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;outfit - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/outfit.html#var">Var Details</a> - <a href="datum/outfit.html#proc">Proc Details</a></header>
+<main>
+<h1>outfit <aside>/<a href="datum.html">datum</a>/<a href="datum/outfit.html">outfit</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/outfit.html#var/back">back</a></th><td>The item in the slot of this outfit, set to FALSE if you want to have nothing (defaults to player pref if null)</td></tr>
+            <tr><th><a href="datum/outfit.html#var/backpack_contents">backpack_contents</a></th><td>List of items that should go in the backpack of the user</td></tr>
+            <tr><th><a href="datum/outfit.html#var/belt">belt</a></th><td>The item in the belt slot</td></tr>
+            <tr><th><a href="datum/outfit.html#var/belt_contents">belt_contents</a></th><td>List of items that should go in the belt of the user</td></tr>
+            <tr><th><a href="datum/outfit.html#var/container_list">container_list</a></th><td>A list of all the container contents lists, used to save on copypasta, populated in New()</td></tr>
+            <tr><th><a href="datum/outfit.html#var/ears">ears</a></th><td>The item in the ear slot</td></tr>
+            <tr><th><a href="datum/outfit.html#var/glasses">glasses</a></th><td>The item in the glasses/eye slot</td></tr>
+            <tr><th><a href="datum/outfit.html#var/gloves">gloves</a></th><td>The item in the glove slot</td></tr>
+            <tr><th><a href="datum/outfit.html#var/head">head</a></th><td>The item in the head slot</td></tr>
+            <tr><th><a href="datum/outfit.html#var/head_contents">head_contents</a></th><td>List of items that should go in the headwear of the user</td></tr>
+            <tr><th><a href="datum/outfit.html#var/id">id</a></th><td>The item in the ID slot</td></tr>
+            <tr><th><a href="datum/outfit.html#var/implants">implants</a></th><td>The implants this outfit comes with</td></tr>
+            <tr><th><a href="datum/outfit.html#var/l_hand">l_hand</a></th><td>The item in the left_hand</td></tr>
+            <tr><th><a href="datum/outfit.html#var/l_pocket">l_pocket</a></th><td>The item in the left pocket</td></tr>
+            <tr><th><a href="datum/outfit.html#var/l_pocket_contents">l_pocket_contents</a></th><td>List of items that should go in the left pocket container of the user</td></tr>
+            <tr><th><a href="datum/outfit.html#var/mask">mask</a></th><td>The item in the mask slot</td></tr>
+            <tr><th><a href="datum/outfit.html#var/name">name</a></th><td>The name of this outfit that will show in select outfit</td></tr>
+            <tr><th><a href="datum/outfit.html#var/r_hand">r_hand</a></th><td>The item in the right hand</td></tr>
+            <tr><th><a href="datum/outfit.html#var/r_pocket">r_pocket</a></th><td>The item in the right pocket</td></tr>
+            <tr><th><a href="datum/outfit.html#var/r_pocket_contents">r_pocket_contents</a></th><td>List of items that should go in the right pocket container of the user</td></tr>
+            <tr><th><a href="datum/outfit.html#var/shoe_contents">shoe_contents</a></th><td>List of items that should go in the shoes of the user</td></tr>
+            <tr><th><a href="datum/outfit.html#var/shoes">shoes</a></th><td>The item in the shoe slot</td></tr>
+            <tr><th><a href="datum/outfit.html#var/species">species</a></th><td>the species this outfit is designed for</td></tr>
+            <tr><th><a href="datum/outfit.html#var/suit_contents">suit_contents</a></th><td>List of items that should go in the suit storage of the user</td></tr>
+            <tr><th><a href="datum/outfit.html#var/suit_store">suit_store</a></th><td>The item in the suit storage slot</td></tr>
+            <tr><th><a href="datum/outfit.html#var/w_uniform">w_uniform</a></th><td>The worn uniform of this outfit</td></tr>
+            <tr><th><a href="datum/outfit.html#var/wear_suit">wear_suit</a></th><td>The worn suit of this outfit</td></tr>
+            <tr><th><a href="datum/outfit.html#var/webbing_contents">webbing_contents</a></th><td>List of items that should go in the webbing of the user's uniform</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/outfit.html#proc/copy_from">copy_from</a></th><td>Copy most vars from another outfit to this one</td></tr>
+            <tr><th><a href="datum/outfit.html#proc/post_equip">post_equip</a></th><td>This gets ran after we equip any times from the variables, don't use this to put things inside containers</td></tr>
+            <tr><th><a href="datum/outfit.html#proc/pre_equip">pre_equip</a></th><td>This gets ran before we equip any items from the variables</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/back"><aside class="declaration">var </aside>back
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 9"/></a></h3>
+        <p>The item in the slot of this outfit, set to FALSE if you want to have nothing (defaults to player pref if null)</p><h3 id="var/backpack_contents"><aside class="declaration">var </aside>backpack_contents
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 41"/></a></h3>
+        <p>List of items that should go in the backpack of the user</p>
+<p>Format of this list should be: list(path=count,otherpath=count)</p><h3 id="var/belt"><aside class="declaration">var </aside>belt
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 11"/></a></h3>
+        <p>The item in the belt slot</p><h3 id="var/belt_contents"><aside class="declaration">var </aside>belt_contents
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 47"/></a></h3>
+        <p>List of items that should go in the belt of the user</p>
+<p>Format of this list should be: list(path=count,otherpath=count)</p><h3 id="var/container_list"><aside class="declaration">var </aside>container_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 89"/></a></h3>
+        <p>A list of all the container contents lists, used to save on copypasta, populated in New()</p><h3 id="var/ears"><aside class="declaration">var </aside>ears
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 21"/></a></h3>
+        <p>The item in the ear slot</p><h3 id="var/glasses"><aside class="declaration">var </aside>glasses
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 23"/></a></h3>
+        <p>The item in the glasses/eye slot</p><h3 id="var/gloves"><aside class="declaration">var </aside>gloves
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 13"/></a></h3>
+        <p>The item in the glove slot</p><h3 id="var/head"><aside class="declaration">var </aside>head
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 17"/></a></h3>
+        <p>The item in the head slot</p><h3 id="var/head_contents"><aside class="declaration">var </aside>head_contents
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 71"/></a></h3>
+        <p>List of items that should go in the headwear of the user</p>
+<p>Format of this list should be: list(path=count,otherpath=count)</p><h3 id="var/id"><aside class="declaration">var </aside>id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 25"/></a></h3>
+        <p>The item in the ID slot</p><h3 id="var/implants"><aside class="declaration">var </aside>implants
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 85"/></a></h3>
+        <p>The implants this outfit comes with</p><h3 id="var/l_hand"><aside class="declaration">var </aside>l_hand
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 35"/></a></h3>
+        <p>The item in the left_hand</p><h3 id="var/l_pocket"><aside class="declaration">var </aside>l_pocket
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 27"/></a></h3>
+        <p>The item in the left pocket</p><h3 id="var/l_pocket_contents"><aside class="declaration">var </aside>l_pocket_contents
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 83"/></a></h3>
+        <p>List of items that should go in the left pocket container of the user</p>
+<p>Format of this list should be: list(path=count,otherpath=count)</p><h3 id="var/mask"><aside class="declaration">var </aside>mask
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 19"/></a></h3>
+        <p>The item in the mask slot</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 3"/></a></h3>
+        <p>The name of this outfit that will show in select outfit</p><h3 id="var/r_hand"><aside class="declaration">var </aside>r_hand
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 33"/></a></h3>
+        <p>The item in the right hand</p><h3 id="var/r_pocket"><aside class="declaration">var </aside>r_pocket
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 29"/></a></h3>
+        <p>The item in the right pocket</p><h3 id="var/r_pocket_contents"><aside class="declaration">var </aside>r_pocket_contents
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 77"/></a></h3>
+        <p>List of items that should go in the right pocket container of the user</p>
+<p>Format of this list should be: list(path=count,otherpath=count)</p><h3 id="var/shoe_contents"><aside class="declaration">var </aside>shoe_contents
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 53"/></a></h3>
+        <p>List of items that should go in the shoes of the user</p>
+<p>Format of this list should be: list(path=count,otherpath=count)</p><h3 id="var/shoes"><aside class="declaration">var </aside>shoes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 15"/></a></h3>
+        <p>The item in the shoe slot</p><h3 id="var/species"><aside class="declaration">var </aside>species
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 87"/></a></h3>
+        <p>the species this outfit is designed for</p><h3 id="var/suit_contents"><aside class="declaration">var </aside>suit_contents
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 59"/></a></h3>
+        <p>List of items that should go in the suit storage of the user</p>
+<p>Format of this list should be: list(path=count,otherpath=count)</p><h3 id="var/suit_store"><aside class="declaration">var </aside>suit_store
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 31"/></a></h3>
+        <p>The item in the suit storage slot</p><h3 id="var/w_uniform"><aside class="declaration">var </aside>w_uniform
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 5"/></a></h3>
+        <p>The worn uniform of this outfit</p><h3 id="var/wear_suit"><aside class="declaration">var </aside>wear_suit
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 7"/></a></h3>
+        <p>The worn suit of this outfit</p><h3 id="var/webbing_contents"><aside class="declaration">var </aside>webbing_contents
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 65"/></a></h3>
+        <p>List of items that should go in the webbing of the user's uniform</p>
+<p>Format of this list should be: list(path=count,otherpath=count)</p><h2 id="proc">Proc Details</h2><h3 id="proc/copy_from"><aside class="declaration">proc </aside>copy_from<aside>(/<a href="datum.html">datum</a>/<a href="datum/outfit.html">outfit</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L204">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 204"/></a></aside>
+        </h3>
+        <p>Copy most vars from another outfit to this one</p><h3 id="proc/post_equip"><aside class="declaration">proc </aside>post_equip<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H, visualsOnly) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 108"/></a></aside>
+        </h3>
+        <p>This gets ran after we equip any times from the variables, don't use this to put things inside containers</p><h3 id="proc/pre_equip"><aside class="declaration">proc </aside>pre_equip<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H, visualsOnly) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/outfits/_outfit.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;_outfit.dm 103"/></a></aside>
+        </h3>
+        <p>This gets ran before we equip any items from the variables</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

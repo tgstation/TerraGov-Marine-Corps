@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;status_effect&#x2F;drone_enhancement - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/status_effect/drone_enhancement.html#var">Var Details</a> - <a href="datum/status_effect/drone_enhancement.html#proc">Proc Details</a></header>
+<main>
+<h1>drone_enhancement <aside>/<a href="datum.html">datum</a>/<a href="datum/status_effect.html">status_effect</a>/<a href="datum/status_effect/drone_enhancement.html">drone_enhancement</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L256">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 256"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/status_effect/drone_enhancement.html#var/ability_cost">ability_cost</a></th><td>The plasma cost per tick of this ability.</td></tr>
+            <tr><th><a href="datum/status_effect/drone_enhancement.html#var/buffed_xeno">buffed_xeno</a></th><td>Used to track who is the owner of this buff.</td></tr>
+            <tr><th><a href="datum/status_effect/drone_enhancement.html#var/buffing_xeno">buffing_xeno</a></th><td>Used to track who is giving this buff to the owner.</td></tr>
+            <tr><th><a href="datum/status_effect/drone_enhancement.html#var/enhancement_action">enhancement_action</a></th><td>References the Enhancement action and its vars.</td></tr>
+            <tr><th><a href="datum/status_effect/drone_enhancement.html#var/essence_link_action">essence_link_action</a></th><td>References the Essence Link action and its vars.</td></tr>
+            <tr><th><a href="datum/status_effect/drone_enhancement.html#var/particle_holder">particle_holder</a></th><td>Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.</td></tr>
+            <tr><th><a href="datum/status_effect/drone_enhancement.html#var/was_within_range">was_within_range</a></th><td>If the target xeno was within range.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/status_effect/drone_enhancement.html#proc/handle_death">handle_death</a></th><td>Removes the status effect on death.</td></tr>
+            <tr><th><a href="datum/status_effect/drone_enhancement.html#proc/toggle_buff">toggle_buff</a></th><td>Toggles the buff on or off.</td></tr>
+            <tr><th><a href="datum/status_effect/drone_enhancement.html#proc/toggle_particles">toggle_particles</a></th><td>Toggles particles on or off, adjusting their positioning to fit the buff's owner.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ability_cost"><aside class="declaration">var </aside>ability_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L276">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 276"/></a></h3>
+        <p>The plasma cost per tick of this ability.</p><h3 id="var/buffed_xeno"><aside class="declaration">var </aside>buffed_xeno
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L264">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 264"/></a></h3>
+        <p>Used to track who is the owner of this buff.</p><h3 id="var/buffing_xeno"><aside class="declaration">var </aside>buffing_xeno
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L262">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 262"/></a></h3>
+        <p>Used to track who is giving this buff to the owner.</p><h3 id="var/enhancement_action"><aside class="declaration">var </aside>enhancement_action
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/xeno_action.html">xeno_action</a>/<a href="datum/action/ability/xeno_action/enhancement.html">enhancement</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L270">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 270"/></a></h3>
+        <p>References the Enhancement action and its vars.</p><h3 id="var/essence_link_action"><aside class="declaration">var </aside>essence_link_action
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/activable.html">activable</a>/<a href="datum/action/ability/activable/xeno.html">xeno</a>/<a href="datum/action/ability/activable/xeno/essence_link.html">essence_link</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L268">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 268"/></a></h3>
+        <p>References the Essence Link action and its vars.</p><h3 id="var/particle_holder"><aside class="declaration">var </aside>particle_holder
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/abstract/particle_holder.html">effect/abstract/particle_holder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L266">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 266"/></a></h3>
+        <p>Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.</p><h3 id="var/was_within_range"><aside class="declaration">var </aside>was_within_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L272">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 272"/></a></h3>
+        <p>If the target xeno was within range.</p><h2 id="proc">Proc Details</h2><h3 id="proc/handle_death"><aside class="declaration">proc </aside>handle_death<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L329">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 329"/></a></aside>
+        </h3>
+        <p>Removes the status effect on death.</p><h3 id="proc/toggle_buff"><aside class="declaration">proc </aside>toggle_buff<aside>(toggle) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L308">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 308"/></a></aside>
+        </h3>
+        <p>Toggles the buff on or off.</p><h3 id="proc/toggle_particles"><aside class="declaration">proc </aside>toggle_particles<aside>(toggle) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/xeno_buffs.dm#L319">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;xeno_buffs.dm 319"/></a></aside>
+        </h3>
+        <p>Toggles particles on or off, adjusting their positioning to fit the buff's owner.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

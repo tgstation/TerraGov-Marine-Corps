@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;campaign_mission&#x2F;capture_mission - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/campaign_mission/capture_mission.html#var">Var Details</a> - <a href="datum/campaign_mission/capture_mission.html#proc">Proc Details</a></header>
+<main>
+<h1>capture_mission <aside>/<a href="datum.html">datum</a>/<a href="datum/campaign_mission.html">campaign_mission</a>/<a href="datum/campaign_mission/capture_mission.html">capture_mission</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/capture_mission.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;capture_mission.dm 2"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/campaign_mission/capture_mission.html#var/capture_count">capture_count</a></th><td>How many objects extracted by each team</td></tr>
+            <tr><th><a href="datum/campaign_mission/capture_mission.html#var/min_capture_amount">min_capture_amount</a></th><td>number of targets to capture for a minor victory</td></tr>
+            <tr><th><a href="datum/campaign_mission/capture_mission.html#var/objectives_remaining">objectives_remaining</a></th><td>How many objectives currently remaining</td></tr>
+            <tr><th><a href="datum/campaign_mission/capture_mission.html#var/objectives_total">objectives_total</a></th><td>Total number of objectives at round start</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/campaign_mission/capture_mission.html#proc/objective_cap_started">objective_cap_started</a></th><td>An objective capture cycle was started</td></tr>
+            <tr><th><a href="datum/campaign_mission/capture_mission.html#proc/objective_extracted">objective_extracted</a></th><td>Handles the effect of an objective being claimed</td></tr>
+            <tr><th><a href="datum/campaign_mission/capture_mission.html#proc/objective_reward_bonus">objective_reward_bonus</a></th><td>The addition rewards for capturing objectives, regardless of outcome</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/capture_count"><aside class="declaration">var </aside>capture_count
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/capture_mission.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;capture_mission.dm 12"/></a></h3>
+        <p>How many objects extracted by each team</p><h3 id="var/min_capture_amount"><aside class="declaration">var </aside>min_capture_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/capture_mission.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;capture_mission.dm 8"/></a></h3>
+        <p>number of targets to capture for a minor victory</p><h3 id="var/objectives_remaining"><aside class="declaration">var </aside>objectives_remaining
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/capture_mission.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;capture_mission.dm 10"/></a></h3>
+        <p>How many objectives currently remaining</p><h3 id="var/objectives_total"><aside class="declaration">var </aside>objectives_total
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/capture_mission.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;capture_mission.dm 6"/></a></h3>
+        <p>Total number of objectives at round start</p><h2 id="proc">Proc Details</h2><h3 id="proc/objective_cap_started"><aside class="declaration">proc </aside>objective_cap_started<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/campaign_objective.html">campaign_objective</a>/<a href="obj/structure/campaign_objective/capture_objective.html">capture_objective</a>/fultonable/objective, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/capture_mission.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;capture_mission.dm 75"/></a></aside>
+        </h3>
+        <p>An objective capture cycle was started</p><h3 id="proc/objective_extracted"><aside class="declaration">proc </aside>objective_extracted<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/campaign_objective.html">campaign_objective</a>/<a href="obj/structure/campaign_objective/capture_objective.html">capture_objective</a>/fultonable/objective, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/capture_mission.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;capture_mission.dm 89"/></a></aside>
+        </h3>
+        <p>Handles the effect of an objective being claimed</p><h3 id="proc/objective_reward_bonus"><aside class="declaration">proc </aside>objective_reward_bonus<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/capture_mission.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;capture_mission.dm 107"/></a></aside>
+        </h3>
+        <p>The addition rewards for capturing objectives, regardless of outcome</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

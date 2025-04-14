@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;game_mode&#x2F;hvh&#x2F;campaign - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/game_mode/hvh/campaign.html#var">Var Details</a> - <a href="datum/game_mode/hvh/campaign.html#proc">Proc Details</a></header>
+<main>
+<h1>campaign <aside>/<a href="datum.html">datum</a>/<a href="datum/game_mode.html">game_mode</a>/<a href="datum/game_mode/hvh.html">hvh</a>/<a href="datum/game_mode/hvh/campaign.html">campaign</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#var/current_mission">current_mission</a></th><td>The current mission type being played</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#var/player_death_times">player_death_times</a></th><td>List of death times by ckey. Used for respawn time</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#var/respawn_timers">respawn_timers</a></th><td>List of timers to auto open the respawn window</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#var/stat_list">stat_list</a></th><td>campaign stats organised by faction</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#proc/IsJobAvailable">IsJobAvailable</a></th><td>Check which jobs are valid, to add to the job selector menu</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#proc/attempt_attrition_respawn">attempt_attrition_respawn</a></th><td>respawns the player if attrition points are available</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#proc/attrition_respawn">attrition_respawn</a></th><td>Actually respawns the player, if still able</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#proc/auto_attempt_respawn">auto_attempt_respawn</a></th><td>Auto pops up the respawn window</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#proc/autobalance_bonus">autobalance_bonus</a></th><td>buffs the weaker team if players don't voluntarily switch</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#proc/autobalance_check">autobalance_check</a></th><td></td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#proc/autobalance_cycle">autobalance_cycle</a></th><td>Checks team balance and tries to correct if possible</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#proc/cut_death_list">cut_death_list</a></th><td>cuts the death time and respawn_timers list at mission end</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#proc/end_mission">end_mission</a></th><td>Handles post mission cleanup</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#proc/load_new_mission">load_new_mission</a></th><td>sets up the newly selected mission</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#proc/register_faction_member">register_faction_member</a></th><td>Sets up newly spawned players with the campaign status verb</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#proc/scale_loadouts">scale_loadouts</a></th><td>Limited loadout quantities scale by pop</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#proc/set_death_time">set_death_time</a></th><td>Records the players death time for respawn time purposes</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#proc/shuffle_teams">shuffle_teams</a></th><td>Shuffles the teams forcefully</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/campaign.html#proc/swap_player_team">swap_player_team</a></th><td>Actually swaps the player to the other team, unless balance has been restored</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/current_mission"><aside class="declaration">var </aside>current_mission
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/campaign_mission.html">campaign_mission</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 27"/></a></h3>
+        <p>The current mission type being played</p><h3 id="var/player_death_times"><aside class="declaration">var </aside>player_death_times
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 31"/></a></h3>
+        <p>List of death times by ckey. Used for respawn time</p><h3 id="var/respawn_timers"><aside class="declaration">var </aside>respawn_timers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 33"/></a></h3>
+        <p>List of timers to auto open the respawn window</p><h3 id="var/stat_list"><aside class="declaration">var </aside>stat_list
+            <aside>&ndash; /list/datum/faction_stats</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 29"/></a></h3>
+        <p>campaign stats organised by faction</p><h2 id="proc">Proc Details</h2><h3 id="proc/IsJobAvailable"><aside class="declaration">proc </aside>IsJobAvailable<aside>(/<a href="mob.html">mob</a>/candidate, /<a href="datum.html">datum</a>/<a href="datum/job.html">job</a>/job, faction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L437">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 437"/></a></aside>
+        </h3>
+        <p>Check which jobs are valid, to add to the job selector menu</p><h3 id="proc/attempt_attrition_respawn"><aside class="declaration">proc </aside>attempt_attrition_respawn<aside>(/<a href="mob.html">mob</a>/candidate) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L333">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 333"/></a></aside>
+        </h3>
+        <p>respawns the player if attrition points are available</p><h3 id="proc/attrition_respawn"><aside class="declaration">proc </aside>attrition_respawn<aside>(/<a href="mob.html">mob</a>/<a href="mob/new_player.html">new_player</a>/ready_candidate, /<a href="datum.html">datum</a>/<a href="datum/job.html">job</a>/job_datum) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L414">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 414"/></a></aside>
+        </h3>
+        <p>Actually respawns the player, if still able</p><h3 id="proc/auto_attempt_respawn"><aside class="declaration">proc </aside>auto_attempt_respawn<aside>(respawnee_ckey) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L297">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 297"/></a></aside>
+        </h3>
+        <p>Auto pops up the respawn window</p><h3 id="proc/autobalance_bonus"><aside class="declaration">proc </aside>autobalance_bonus<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L259">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 259"/></a></aside>
+        </h3>
+        <p>buffs the weaker team if players don't voluntarily switch</p><h3 id="proc/autobalance_check"><aside class="declaration">proc </aside>autobalance_check<aside>(ratio) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L227">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 227"/></a></aside>
+        </h3>
+        <ul>
+<li>Checks team balance</li>
+<li>Returns null if teams are nominally balanced</li>
+<li>Returns a list with the stronger team first if they are inbalanced</li>
+</ul><h3 id="proc/autobalance_cycle"><aside class="declaration">proc </aside>autobalance_cycle<aside>(forced) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L207">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 207"/></a></aside>
+        </h3>
+        <p>Checks team balance and tries to correct if possible</p><h3 id="proc/cut_death_list"><aside class="declaration">proc </aside>cut_death_list<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L325">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 325"/></a></aside>
+        </h3>
+        <p>cuts the death time and respawn_timers list at mission end</p><h3 id="proc/end_mission"><aside class="declaration">proc </aside>end_mission<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L308">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 308"/></a></aside>
+        </h3>
+        <p>Handles post mission cleanup</p><h3 id="proc/load_new_mission"><aside class="declaration">proc </aside>load_new_mission<aside>(/<a href="datum.html">datum</a>/<a href="datum/campaign_mission.html">campaign_mission</a>/new_mission) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L196">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 196"/></a></aside>
+        </h3>
+        <p>sets up the newly selected mission</p><h3 id="proc/register_faction_member"><aside class="declaration">proc </aside>register_faction_member<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/new_member) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L459">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 459"/></a></aside>
+        </h3>
+        <p>Sets up newly spawned players with the campaign status verb</p><h3 id="proc/scale_loadouts"><aside class="declaration">proc </aside>scale_loadouts<aside>(pop_override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L314">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 314"/></a></aside>
+        </h3>
+        <p>Limited loadout quantities scale by pop</p><h3 id="proc/set_death_time"><aside class="declaration">proc </aside>set_death_time<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/player, override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L285">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 285"/></a></aside>
+        </h3>
+        <p>Records the players death time for respawn time purposes</p><h3 id="proc/shuffle_teams"><aside class="declaration">proc </aside>shuffle_teams<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L268">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 268"/></a></aside>
+        </h3>
+        <p>Shuffles the teams forcefully</p><h3 id="proc/swap_player_team"><aside class="declaration">proc </aside>swap_player_team<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/user, new_faction, forced, fund_bonus) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign.dm#L237">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign.dm 237"/></a></aside>
+        </h3>
+        <p>Actually swaps the player to the other team, unless balance has been restored</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

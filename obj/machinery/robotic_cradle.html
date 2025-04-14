@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;robotic_cradle - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/robotic_cradle.html#var">Var Details</a> - <a href="obj/machinery/robotic_cradle.html#proc">Proc Details</a></header>
+<main>
+<h1>robotic_cradle <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/robotic_cradle.html">robotic_cradle</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/robotic_cradle.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 8"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#var/occupant">occupant</a></th><td>This var is the reference used for the patient</td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#var/operation_timer">operation_timer</a></th><td>This var is so we can call deltimer() it if we need to abort the operation early</td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#var/radio">radio</a></th><td>This var is in reference to the radio the cradle uses to speak to the crew</td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#var/repairing">repairing</a></th><td>This var is used to see if the machine is currently repairing or not.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#proc/handle_repair_operation">handle_repair_operation</a></th><td>Callback to start repair on someone entering the cradle</td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#proc/notify_about_eject">notify_about_eject</a></th><td>This proc acts as a heads up to the doctors/engineers about the patient exiting the cradle for whatever reason. Takes CRADLE_NOTICE defines as arguments</td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#proc/perform_eject">perform_eject</a></th><td>Finishes ejecting the patient after the cradle is done. Takes CRADLE_NOTICE defines as arguments, used in notify_about_eject()</td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#proc/perform_repair">perform_repair</a></th><td>This proc handles the actual repair once the timer is up and ejects the healed robot.</td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#proc/place_mob_inside">place_mob_inside</a></th><td>Handles any mob placing themselves or someone else into the cradle. target_mob is the mob being placed in, operating_mob is the person placing the mob in. Returns true if the mob got placed inside, false otherwise</td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#proc/remove_occupant">remove_occupant</a></th><td>Forces the occupant out of the cradle, leaves it empty for someone else to enter.</td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#proc/start_emergency_eject">start_emergency_eject</a></th><td>This proc ejects whomever is inside the cradle while it is presumably operating. mob_ejecting is the mob triggering the eject</td></tr>
+            <tr><th><a href="obj/machinery/robotic_cradle.html#proc/start_repair_operation">start_repair_operation</a></th><td>Starts the repair operation of the cradle</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/occupant"><aside class="declaration">var </aside>occupant
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/robotic_cradle.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 24"/></a></h3>
+        <p>This var is the reference used for the patient</p><h3 id="var/operation_timer"><aside class="declaration">var </aside>operation_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/robotic_cradle.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 30"/></a></h3>
+        <p>This var is so we can call deltimer() it if we need to abort the operation early</p><h3 id="var/radio"><aside class="declaration">var </aside>radio
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/radio.html">radio</a>/<a href="obj/item/radio/headset.html">headset</a>/<a href="obj/item/radio/headset/mainship.html">mainship</a>/doc</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/robotic_cradle.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 26"/></a></h3>
+        <p>This var is in reference to the radio the cradle uses to speak to the crew</p><h3 id="var/repairing"><aside class="declaration">var </aside>repairing
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/robotic_cradle.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 22"/></a></h3>
+        <p>This var is used to see if the machine is currently repairing or not.</p><h2 id="proc">Proc Details</h2><h3 id="proc/handle_repair_operation"><aside class="declaration">proc </aside>handle_repair_operation<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/robotic_cradle.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 170"/></a></aside>
+        </h3>
+        <p>Callback to start repair on someone entering the cradle</p><h3 id="proc/notify_about_eject"><aside class="declaration">proc </aside>notify_about_eject<aside>(notice_code) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/robotic_cradle.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 77"/></a></aside>
+        </h3>
+        <p>This proc acts as a heads up to the doctors/engineers about the patient exiting the cradle for whatever reason. Takes CRADLE_NOTICE defines as arguments</p><h3 id="proc/perform_eject"><aside class="declaration">proc </aside>perform_eject<aside>(notice_code) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/robotic_cradle.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 108"/></a></aside>
+        </h3>
+        <p>Finishes ejecting the patient after the cradle is done. Takes CRADLE_NOTICE defines as arguments, used in notify_about_eject()</p><h3 id="proc/perform_repair"><aside class="declaration">proc </aside>perform_repair<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/robotic_cradle.dm#L182">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 182"/></a></aside>
+        </h3>
+        <p>This proc handles the actual repair once the timer is up and ejects the healed robot.</p><h3 id="proc/place_mob_inside"><aside class="declaration">proc </aside>place_mob_inside<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target_mob, /<a href="mob.html">mob</a>/operating_mob) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/robotic_cradle.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 116"/></a></aside>
+        </h3>
+        <p>Handles any mob placing themselves or someone else into the cradle. target_mob is the mob being placed in, operating_mob is the person placing the mob in. Returns true if the mob got placed inside, false otherwise</p><h3 id="proc/remove_occupant"><aside class="declaration">proc </aside>remove_occupant<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/robotic_cradle.dm#L99">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 99"/></a></aside>
+        </h3>
+        <p>Forces the occupant out of the cradle, leaves it empty for someone else to enter.</p><h3 id="proc/start_emergency_eject"><aside class="declaration">proc </aside>start_emergency_eject<aside>(/<a href="mob.html">mob</a>/mob_ejecting) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/robotic_cradle.dm#L258">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 258"/></a></aside>
+        </h3>
+        <p>This proc ejects whomever is inside the cradle while it is presumably operating. mob_ejecting is the mob triggering the eject</p><h3 id="proc/start_repair_operation"><aside class="declaration">proc </aside>start_repair_operation<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/robotic_cradle.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;robotic_cradle.dm 152"/></a></aside>
+        </h3>
+        <p>Starts the repair operation of the cradle</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

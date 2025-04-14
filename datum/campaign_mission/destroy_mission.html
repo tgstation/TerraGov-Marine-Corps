@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;campaign_mission&#x2F;destroy_mission - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/campaign_mission/destroy_mission.html#var">Var Details</a> - <a href="datum/campaign_mission/destroy_mission.html#proc">Proc Details</a></header>
+<main>
+<h1>destroy_mission <aside>/<a href="datum.html">datum</a>/<a href="datum/campaign_mission.html">campaign_mission</a>/<a href="datum/campaign_mission/destroy_mission.html">destroy_mission</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/destroy_mission.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;destroy_mission.dm 2"/></a></h1>
+
+<p>basic destroy stuff mission</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/campaign_mission/destroy_mission.html#var/attacking_faction">attacking_faction</a></th><td>The faction trying to destroy objectives</td></tr>
+            <tr><th><a href="datum/campaign_mission/destroy_mission.html#var/defending_faction">defending_faction</a></th><td>The faction trying to protect objectives</td></tr>
+            <tr><th><a href="datum/campaign_mission/destroy_mission.html#var/min_destruction_amount">min_destruction_amount</a></th><td>number of targets destroyed for a minor victory</td></tr>
+            <tr><th><a href="datum/campaign_mission/destroy_mission.html#var/objective_destruction_messages">objective_destruction_messages</a></th><td>Overwatch messages for destroying objectives</td></tr>
+            <tr><th><a href="datum/campaign_mission/destroy_mission.html#var/objectives_destroyed">objectives_destroyed</a></th><td>How many objectives currently destroyed</td></tr>
+            <tr><th><a href="datum/campaign_mission/destroy_mission.html#var/objectives_total">objectives_total</a></th><td>Total number of objectives at round start</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/campaign_mission/destroy_mission.html#proc/objective_destroyed">objective_destroyed</a></th><td>Handles the destruction of an objective</td></tr>
+            <tr><th><a href="datum/campaign_mission/destroy_mission.html#proc/set_factions">set_factions</a></th><td>Sets the attacking and defending faction. Can be overridden to make the starting faction defenders</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/attacking_faction"><aside class="declaration">var </aside>attacking_faction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/destroy_mission.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;destroy_mission.dm 22"/></a></h3>
+        <p>The faction trying to destroy objectives</p><h3 id="var/defending_faction"><aside class="declaration">var </aside>defending_faction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/destroy_mission.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;destroy_mission.dm 24"/></a></h3>
+        <p>The faction trying to protect objectives</p><h3 id="var/min_destruction_amount"><aside class="declaration">var </aside>min_destruction_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/destroy_mission.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;destroy_mission.dm 28"/></a></h3>
+        <p>number of targets destroyed for a minor victory</p><h3 id="var/objective_destruction_messages"><aside class="declaration">var </aside>objective_destruction_messages
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/destroy_mission.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;destroy_mission.dm 32"/></a></h3>
+        <p>Overwatch messages for destroying objectives</p><h3 id="var/objectives_destroyed"><aside class="declaration">var </aside>objectives_destroyed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/destroy_mission.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;destroy_mission.dm 30"/></a></h3>
+        <p>How many objectives currently destroyed</p><h3 id="var/objectives_total"><aside class="declaration">var </aside>objectives_total
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/destroy_mission.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;destroy_mission.dm 26"/></a></h3>
+        <p>Total number of objectives at round start</p><h2 id="proc">Proc Details</h2><h3 id="proc/objective_destroyed"><aside class="declaration">proc </aside>objective_destroyed<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/destroyed_objective) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/destroy_mission.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;destroy_mission.dm 124"/></a></aside>
+        </h3>
+        <p>Handles the destruction of an objective</p><h3 id="proc/set_factions"><aside class="declaration">proc </aside>set_factions<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/destroy_mission.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;destroy_mission.dm 119"/></a></aside>
+        </h3>
+        <p>Sets the attacking and defending faction. Can be overridden to make the starting faction defenders</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

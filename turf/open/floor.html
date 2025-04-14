@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;turf&#x2F;open&#x2F;floor - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="turf/open/floor.html#var">Var Details</a> - <a href="turf/open/floor.html#proc">Proc Details</a></header>
+<main>
+<h1>floor <aside>/<a href="turf.html">turf</a>/<a href="turf/open.html">open</a>/<a href="turf/open/floor.html">floor</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="turf/open/floor.html#var/breakable_tile">breakable_tile</a></th><td>Can this turf be broken</td></tr>
+            <tr><th><a href="turf/open/floor.html#var/broken">broken</a></th><td>If the turf has been physically damaged</td></tr>
+            <tr><th><a href="turf/open/floor.html#var/burnable_tile">burnable_tile</a></th><td>can this turf be burnt</td></tr>
+            <tr><th><a href="turf/open/floor.html#var/burnt">burnt</a></th><td>If the turf has been damaged by fire</td></tr>
+            <tr><th><a href="turf/open/floor.html#var/drytimer_id">drytimer_id</a></th><td>turf dry timer</td></tr>
+            <tr><th><a href="turf/open/floor.html#var/floor_tile">floor_tile</a></th><td>the type of tile that makes this turf</td></tr>
+            <tr><th><a href="turf/open/floor.html#var/hull_floor">hull_floor</a></th><td>invincible floor, can't interact with it</td></tr>
+            <tr><th><a href="turf/open/floor.html#var/icon_variants">icon_variants</a></th><td>Number of icon state variation this turf has</td></tr>
+            <tr><th><a href="turf/open/floor.html#var/wet_overlay">wet_overlay</a></th><td>holder for the wet floor overlay</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="turf/open/floor.html#proc/break_tile">break_tile</a></th><td>Breaks the turf</td></tr>
+            <tr><th><a href="turf/open/floor.html#proc/broken_states">broken_states</a></th><td>Returns a list of icon_states to show this turf is broken</td></tr>
+            <tr><th><a href="turf/open/floor.html#proc/burn_tile">burn_tile</a></th><td>Burns the turf</td></tr>
+            <tr><th><a href="turf/open/floor.html#proc/burnt_states">burnt_states</a></th><td>Returns a list of icon_states to show this turf is burnt</td></tr>
+            <tr><th><a href="turf/open/floor.html#proc/has_tile">has_tile</a></th><td>checks if this turf has a floor tile of some kind</td></tr>
+            <tr><th><a href="turf/open/floor.html#proc/make_plating">make_plating</a></th><td>Things seem to rely on this actually returning plating. Override it if you have other baseturfs.</td></tr>
+            <tr><th><a href="turf/open/floor.html#proc/normal_states">normal_states</a></th><td>Returns an undamaged icon state for this turf</td></tr>
+            <tr><th><a href="turf/open/floor.html#proc/pry_tile">pry_tile</a></th><td>Removes the floor tile from the turf via a tool</td></tr>
+            <tr><th><a href="turf/open/floor.html#proc/remove_tile">remove_tile</a></th><td>Removes the floor tile from the turf</td></tr>
+            <tr><th><a href="turf/open/floor.html#proc/spawn_tile">spawn_tile</a></th><td>creates a loose floor tile</td></tr>
+            <tr><th><a href="turf/open/floor.html#proc/try_replace_tile">try_replace_tile</a></th><td>swaps out an existing floor tile with another one</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/breakable_tile"><aside class="declaration">var </aside>breakable_tile
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 15"/></a></h3>
+        <p>Can this turf be broken</p><h3 id="var/broken"><aside class="declaration">var </aside>broken
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 9"/></a></h3>
+        <p>If the turf has been physically damaged</p><h3 id="var/burnable_tile"><aside class="declaration">var </aside>burnable_tile
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 17"/></a></h3>
+        <p>can this turf be burnt</p><h3 id="var/burnt"><aside class="declaration">var </aside>burnt
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 11"/></a></h3>
+        <p>If the turf has been damaged by fire</p><h3 id="var/drytimer_id"><aside class="declaration">var </aside>drytimer_id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 25"/></a></h3>
+        <p>turf dry timer</p><h3 id="var/floor_tile"><aside class="declaration">var </aside>floor_tile
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a>/<a href="obj/item/stack/tile.html">tile</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 13"/></a></h3>
+        <p>the type of tile that makes this turf</p><h3 id="var/hull_floor"><aside class="declaration">var </aside>hull_floor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 19"/></a></h3>
+        <p>invincible floor, can't interact with it</p><h3 id="var/icon_variants"><aside class="declaration">var </aside>icon_variants
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 7"/></a></h3>
+        <p>Number of icon state variation this turf has</p><h3 id="var/wet_overlay"><aside class="declaration">var </aside>wet_overlay
+            <aside>&ndash; /<a href="image.html">image</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 21"/></a></h3>
+        <p>holder for the wet floor overlay</p><h2 id="proc">Proc Details</h2><h3 id="proc/break_tile"><aside class="declaration">proc </aside>break_tile<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 92"/></a></aside>
+        </h3>
+        <p>Breaks the turf</p><h3 id="proc/broken_states"><aside class="declaration">proc </aside>broken_states<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 84"/></a></aside>
+        </h3>
+        <p>Returns a list of icon_states to show this turf is broken</p><h3 id="proc/burn_tile">burn_tile<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 101"/></a></aside>
+        </h3>
+        <p>Burns the turf</p><h3 id="proc/burnt_states"><aside class="declaration">proc </aside>burnt_states<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 88"/></a></aside>
+        </h3>
+        <p>Returns a list of icon_states to show this turf is burnt</p><h3 id="proc/has_tile"><aside class="declaration">proc </aside>has_tile<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 160"/></a></aside>
+        </h3>
+        <p>checks if this turf has a floor tile of some kind</p><h3 id="proc/make_plating"><aside class="declaration">proc </aside>make_plating<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 110"/></a></aside>
+        </h3>
+        <p>Things seem to rely on this actually returning plating. Override it if you have other baseturfs.</p><h3 id="proc/normal_states"><aside class="declaration">proc </aside>normal_states<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 78"/></a></aside>
+        </h3>
+        <p>Returns an undamaged icon state for this turf</p><h3 id="proc/pry_tile"><aside class="declaration">proc </aside>pry_tile<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, /<a href="mob.html">mob</a>/user, silent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 141"/></a></aside>
+        </h3>
+        <p>Removes the floor tile from the turf via a tool</p><h3 id="proc/remove_tile"><aside class="declaration">proc </aside>remove_tile<aside>(/<a href="mob.html">mob</a>/user, silent, make_tile) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 146"/></a></aside>
+        </h3>
+        <p>Removes the floor tile from the turf</p><h3 id="proc/spawn_tile"><aside class="declaration">proc </aside>spawn_tile<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L164">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 164"/></a></aside>
+        </h3>
+        <p>creates a loose floor tile</p><h3 id="proc/try_replace_tile"><aside class="declaration">proc </aside>try_replace_tile<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a>/<a href="obj/item/stack/tile.html">tile</a>/T, /<a href="mob.html">mob</a>/user, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/floor.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;floor.dm 125"/></a></aside>
+        </h3>
+        <p>swaps out an existing floor tile with another one</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

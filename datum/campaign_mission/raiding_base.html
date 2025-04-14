@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;campaign_mission&#x2F;raiding_base - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/campaign_mission/raiding_base.html#var">Var Details</a> - <a href="datum/campaign_mission/raiding_base.html#proc">Proc Details</a></header>
+<main>
+<h1>raiding_base <aside>/<a href="datum.html">datum</a>/<a href="datum/campaign_mission.html">campaign_mission</a>/<a href="datum/campaign_mission/raiding_base.html">raiding_base</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/raiding_base.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;raiding_base.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/campaign_mission/raiding_base.html#var/beacon_type">beacon_type</a></th><td>The type of beacon used in this mission</td></tr>
+            <tr><th><a href="datum/campaign_mission/raiding_base.html#var/beacons_remaining">beacons_remaining</a></th><td>Count of beacons still in play</td></tr>
+            <tr><th><a href="datum/campaign_mission/raiding_base.html#var/ob_called">ob_called</a></th><td>Records whether the OB has been called</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/campaign_mission/raiding_base.html#proc/beacon_destroyed">beacon_destroyed</a></th><td>Handles a beacon being destroyed. Separate from normal objective destruction for convenience as we want the specific beacon ref</td></tr>
+            <tr><th><a href="datum/campaign_mission/raiding_base.html#proc/beacon_effect">beacon_effect</a></th><td>Handles the actual detonation effects</td></tr>
+            <tr><th><a href="datum/campaign_mission/raiding_base.html#proc/beacon_placed">beacon_placed</a></th><td>Reacts to an OB beacon being successfully triggered</td></tr>
+            <tr><th><a href="datum/campaign_mission/raiding_base.html#proc/beacon_triggered">beacon_triggered</a></th><td>Reacts to an OB beacon being successfully triggered</td></tr>
+            <tr><th><a href="datum/campaign_mission/raiding_base.html#proc/get_valid_beacon_areas">get_valid_beacon_areas</a></th><td>Returns a list of areas in which the beacon can be deployed</td></tr>
+            <tr><th><a href="datum/campaign_mission/raiding_base.html#proc/play_beacon_deployed_annoucement">play_beacon_deployed_annoucement</a></th><td>Maptext alert when a beacon is placed</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/beacon_type"><aside class="declaration">var </aside>beacon_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/raiding_base.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;raiding_base.dm 56"/></a></h3>
+        <p>The type of beacon used in this mission</p><h3 id="var/beacons_remaining"><aside class="declaration">var </aside>beacons_remaining
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/raiding_base.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;raiding_base.dm 60"/></a></h3>
+        <p>Count of beacons still in play</p><h3 id="var/ob_called"><aside class="declaration">var </aside>ob_called
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/raiding_base.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;raiding_base.dm 58"/></a></h3>
+        <p>Records whether the OB has been called</p><h2 id="proc">Proc Details</h2><h3 id="proc/beacon_destroyed"><aside class="declaration">proc </aside>beacon_destroyed<aside>(/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/campaign_objective.html">campaign_objective</a>/<a href="obj/structure/campaign_objective/destruction_objective.html">destruction_objective</a>/<a href="obj/structure/campaign_objective/destruction_objective/bunker_buster.html">bunker_buster</a>/beacon) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/raiding_base.dm#L197">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;raiding_base.dm 197"/></a></aside>
+        </h3>
+        <p>Handles a beacon being destroyed. Separate from normal objective destruction for convenience as we want the specific beacon ref</p><h3 id="proc/beacon_effect"><aside class="declaration">proc </aside>beacon_effect<aside>(/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/campaign_objective.html">campaign_objective</a>/<a href="obj/structure/campaign_objective/destruction_objective.html">destruction_objective</a>/<a href="obj/structure/campaign_objective/destruction_objective/bunker_buster.html">bunker_buster</a>/beacon, /<a href="turf.html">turf</a>/location) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/raiding_base.dm#L215">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;raiding_base.dm 215"/></a></aside>
+        </h3>
+        <p>Handles the actual detonation effects</p><h3 id="proc/beacon_placed"><aside class="declaration">proc </aside>beacon_placed<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/campaign_objective.html">campaign_objective</a>/<a href="obj/structure/campaign_objective/destruction_objective.html">destruction_objective</a>/<a href="obj/structure/campaign_objective/destruction_objective/bunker_buster.html">bunker_buster</a>/beacon) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/raiding_base.dm#L184">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;raiding_base.dm 184"/></a></aside>
+        </h3>
+        <p>Reacts to an OB beacon being successfully triggered</p><h3 id="proc/beacon_triggered"><aside class="declaration">proc </aside>beacon_triggered<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/campaign_objective.html">campaign_objective</a>/<a href="obj/structure/campaign_objective/destruction_objective.html">destruction_objective</a>/<a href="obj/structure/campaign_objective/destruction_objective/bunker_buster.html">bunker_buster</a>/beacon, activation_delay) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/raiding_base.dm#L209">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;raiding_base.dm 209"/></a></aside>
+        </h3>
+        <p>Reacts to an OB beacon being successfully triggered</p><h3 id="proc/get_valid_beacon_areas"><aside class="declaration">proc </aside>get_valid_beacon_areas<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/raiding_base.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;raiding_base.dm 171"/></a></aside>
+        </h3>
+        <p>Returns a list of areas in which the beacon can be deployed</p><h3 id="proc/play_beacon_deployed_annoucement"><aside class="declaration">proc </aside>play_beacon_deployed_annoucement<aside>(/<a href="area.html">area</a>/deployed_area) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/missions/raiding_base.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;missions&#x2F;raiding_base.dm 192"/></a></aside>
+        </h3>
+        <p>Maptext alert when a beacon is placed</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;ammo&#x2F;xeno&#x2F;boiler_gas - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/ammo/xeno/boiler_gas.html#var">Var Details</a> - <a href="datum/ammo/xeno/boiler_gas.html#proc">Proc Details</a></header>
+<main>
+<h1>boiler_gas <aside>/<a href="datum.html">datum</a>/<a href="datum/ammo.html">ammo</a>/<a href="datum/ammo/xeno.html">xeno</a>/<a href="datum/ammo/xeno/boiler_gas.html">boiler_gas</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_types/xenos/gas_xenoammo.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_types&#x2F;xenos&#x2F;gas_xenoammo.dm 7"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/ammo/xeno/boiler_gas.html#var/fixed_spread_range">fixed_spread_range</a></th><td>Base spread range</td></tr>
+            <tr><th><a href="datum/ammo/xeno/boiler_gas.html#var/hit_drowsyness">hit_drowsyness</a></th><td>On a direct hit, how much drowsyness gets added to the target?</td></tr>
+            <tr><th><a href="datum/ammo/xeno/boiler_gas.html#var/hit_eye_blur">hit_eye_blur</a></th><td>On a direct hit, how much do the victim's eyes get blurred?</td></tr>
+            <tr><th><a href="datum/ammo/xeno/boiler_gas.html#var/hit_paralyze_time">hit_paralyze_time</a></th><td>On a direct hit, how long is the target paralyzed?</td></tr>
+            <tr><th><a href="datum/ammo/xeno/boiler_gas.html#var/icon_key">icon_key</a></th><td>Key used for icon stuff during bombard ammo selection.</td></tr>
+            <tr><th><a href="datum/ammo/xeno/boiler_gas.html#var/passed_turf_smoke_type">passed_turf_smoke_type</a></th><td>Which type is the smoke we leave on passed tiles, provided the projectile has AMMO_LEAVE_TURF enabled?</td></tr>
+            <tr><th><a href="datum/ammo/xeno/boiler_gas.html#var/select_text">select_text</a></th><td>This text will show up when a boiler selects this ammo. Span proc should be applied when this var is used.</td></tr>
+            <tr><th><a href="datum/ammo/xeno/boiler_gas.html#var/trail_spread_system">trail_spread_system</a></th><td>We're going to reuse one smoke spread system repeatedly to cut down on processing.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/ammo/xeno/boiler_gas.html#proc/enhance_trap">enhance_trap</a></th><td>Loads a trap with a gas cloud depending on current glob type
+Called when something with a boiler glob as current ammo interacts with an empty resin trap.</td></tr>
+            <tr><th><a href="datum/ammo/xeno/boiler_gas.html#proc/set_reagents">set_reagents</a></th><td>Set up the list of reagents the spit transfers upon impact</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/fixed_spread_range"><aside class="declaration">var </aside>fixed_spread_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_types/xenos/gas_xenoammo.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_types&#x2F;xenos&#x2F;gas_xenoammo.dm 33"/></a></h3>
+        <p>Base spread range</p><h3 id="var/hit_drowsyness"><aside class="declaration">var </aside>hit_drowsyness
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_types/xenos/gas_xenoammo.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_types&#x2F;xenos&#x2F;gas_xenoammo.dm 31"/></a></h3>
+        <p>On a direct hit, how much drowsyness gets added to the target?</p><h3 id="var/hit_eye_blur"><aside class="declaration">var </aside>hit_eye_blur
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_types/xenos/gas_xenoammo.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_types&#x2F;xenos&#x2F;gas_xenoammo.dm 29"/></a></h3>
+        <p>On a direct hit, how much do the victim's eyes get blurred?</p><h3 id="var/hit_paralyze_time"><aside class="declaration">var </aside>hit_paralyze_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_types/xenos/gas_xenoammo.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_types&#x2F;xenos&#x2F;gas_xenoammo.dm 27"/></a></h3>
+        <p>On a direct hit, how long is the target paralyzed?</p><h3 id="var/icon_key"><aside class="declaration">var </aside>icon_key
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_types/xenos/gas_xenoammo.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_types&#x2F;xenos&#x2F;gas_xenoammo.dm 12"/></a></h3>
+        <p>Key used for icon stuff during bombard ammo selection.</p><h3 id="var/passed_turf_smoke_type"><aside class="declaration">var </aside>passed_turf_smoke_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_types/xenos/gas_xenoammo.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_types&#x2F;xenos&#x2F;gas_xenoammo.dm 35"/></a></h3>
+        <p>Which type is the smoke we leave on passed tiles, provided the projectile has AMMO_LEAVE_TURF enabled?</p><h3 id="var/select_text"><aside class="declaration">var </aside>select_text
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_types/xenos/gas_xenoammo.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_types&#x2F;xenos&#x2F;gas_xenoammo.dm 14"/></a></h3>
+        <p>This text will show up when a boiler selects this ammo. Span proc should be applied when this var is used.</p><h3 id="var/trail_spread_system"><aside class="declaration">var </aside>trail_spread_system
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/effect_system.html">effect_system</a>/<a href="datum/effect_system/smoke_spread.html">smoke_spread</a>/xeno</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_types/xenos/gas_xenoammo.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_types&#x2F;xenos&#x2F;gas_xenoammo.dm 39"/></a></h3>
+        <p>We're going to reuse one smoke spread system repeatedly to cut down on processing.</p><h2 id="proc">Proc Details</h2><h3 id="proc/enhance_trap"><aside class="declaration">proc </aside>enhance_trap<aside>(/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/xeno.html">xeno</a>/<a href="obj/structure/xeno/trap.html">trap</a>/trap, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a>/user_xeno) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_types/xenos/gas_xenoammo.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_types&#x2F;xenos&#x2F;gas_xenoammo.dm 54"/></a></aside>
+        </h3>
+        <p>Loads a trap with a gas cloud depending on current glob type
+Called when something with a boiler glob as current ammo interacts with an empty resin trap.</p>
+<ul>
+<li>Args:</li>
+<li>trap: The trap being loaded</li>
+<li>user_xeno: The xeno interacting with the trap</li>
+<li>Returns: TRUE on success, FALSE on failure.</li>
+</ul><h3 id="proc/set_reagents"><aside class="declaration">proc </aside>set_reagents<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/ammo_types/xenos/gas_xenoammo.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;ammo_types&#x2F;xenos&#x2F;gas_xenoammo.dm 73"/></a></aside>
+        </h3>
+        <p>Set up the list of reagents the spit transfers upon impact</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

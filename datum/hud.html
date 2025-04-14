@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;hud - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/hud.html#var">Var Details</a> - <a href="datum/hud.html#proc">Proc Details</a></header>
+<main>
+<h1>hud <aside>/<a href="datum.html">datum</a>/<a href="datum/hud.html">hud</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 8"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/hud.html#var/always_visible_inventory">always_visible_inventory</a></th><td>Screen objects that never exit view.</td></tr>
+            <tr><th><a href="datum/hud.html#var/combo_display">combo_display</a></th><td>Displays a HUD element that indicates the current combo, as well as what has been inputted so far.</td></tr>
+            <tr><th><a href="datum/hud.html#var/current_plane_offset">current_plane_offset</a></th><td>Think of multiz as a stack of z levels. Each index in that stack has its own group of plane masters
+This variable is the plane offset our mob/client is currently &quot;on&quot;
+We use it to track what we should show/not show
+Goes from 0 to the max (z level stack size - 1)</td></tr>
+            <tr><th><a href="datum/hud.html#var/hotkey_ui_hidden">hotkey_ui_hidden</a></th><td>This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)</td></tr>
+            <tr><th><a href="datum/hud.html#var/hud_shown">hud_shown</a></th><td>Used for the HUD toggle (F12)</td></tr>
+            <tr><th><a href="datum/hud.html#var/hud_version">hud_version</a></th><td>the hud version used (standard, reduced, none)</td></tr>
+            <tr><th><a href="datum/hud.html#var/inventory_shown">inventory_shown</a></th><td>the inventory</td></tr>
+            <tr><th><a href="datum/hud.html#var/last_byond_version">last_byond_version</a></th><td>The BYOND version of the client that was last logged into this mob.
+Currently used to rebuild all plane master groups when going between 515&lt;-&gt;516.</td></tr>
+            <tr><th><a href="datum/hud.html#var/master_groups">master_groups</a></th><td>Assoc list of key =&gt; &quot;plane master groups&quot;
+This is normally just the main window, but it'll occasionally contain things like spyglasses windows</td></tr>
+            <tr><th><a href="datum/hud.html#var/plane_master_controllers">plane_master_controllers</a></th><td>Assoc list of controller groups, associated with key string group name with value of the plane master controller ref</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/hud.html#proc/add_ammo_hud">add_ammo_hud</a></th><td>Add an ammo hud to the user informing of the ammo count of ammo_owner</td></tr>
+            <tr><th><a href="datum/hud.html#proc/build_plane_groups">build_plane_groups</a></th><td>Creates the required plane masters to fill out new z layers (because each &quot;level&quot; of multiz gets its own plane master set)</td></tr>
+            <tr><th><a href="datum/hud.html#proc/get_plane_group">get_plane_group</a></th><td>Returns the corresponding plane group datum if one exists</td></tr>
+            <tr><th><a href="datum/hud.html#proc/get_plane_master">get_plane_master</a></th><td>Returns the plane master that matches the input plane from the passed in group</td></tr>
+            <tr><th><a href="datum/hud.html#proc/get_planes_from">get_planes_from</a></th><td>Returns all the planes belonging to the passed in group key</td></tr>
+            <tr><th><a href="datum/hud.html#proc/get_true_plane_masters">get_true_plane_masters</a></th><td>Returns a list of all plane masters that match the input true plane, drawn from the passed in group (ignores z layer offsets)</td></tr>
+            <tr><th><a href="datum/hud.html#proc/remove_ammo_hud">remove_ammo_hud</a></th><td>Remove the ammo hud related to the gun G from the user</td></tr>
+            <tr><th><a href="datum/hud.html#proc/update_ammo_hud">update_ammo_hud</a></th><td>Update the ammo hud related to the gun G</td></tr>
+            <tr><th><a href="datum/hud.html#proc/update_interactive_emotes">update_interactive_emotes</a></th><td>Update the hud; taken from how alerts do it, but slimmed down</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/always_visible_inventory"><aside class="declaration">var </aside>always_visible_inventory
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 61"/></a></h3>
+        <p>Screen objects that never exit view.</p><h3 id="var/combo_display"><aside class="declaration">var </aside>combo_display
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/combo.html">combo</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 52"/></a></h3>
+        <p>Displays a HUD element that indicates the current combo, as well as what has been inputted so far.</p><h3 id="var/current_plane_offset"><aside class="declaration">var </aside>current_plane_offset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 76"/></a></h3>
+        <p>Think of multiz as a stack of z levels. Each index in that stack has its own group of plane masters
+This variable is the plane offset our mob/client is currently &quot;on&quot;
+We use it to track what we should show/not show
+Goes from 0 to the max (z level stack size - 1)</p><h3 id="var/hotkey_ui_hidden"><aside class="declaration">var </aside>hotkey_ui_hidden
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 19"/></a></h3>
+        <p>This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)</p><h3 id="var/hud_shown"><aside class="declaration">var </aside>hud_shown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 14"/></a></h3>
+        <p>Used for the HUD toggle (F12)</p><h3 id="var/hud_version"><aside class="declaration">var </aside>hud_version
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 12"/></a></h3>
+        <p>the hud version used (standard, reduced, none)</p><h3 id="var/inventory_shown"><aside class="declaration">var </aside>inventory_shown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 16"/></a></h3>
+        <p>the inventory</p><h3 id="var/last_byond_version"><aside class="declaration">var </aside>last_byond_version
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 87"/></a></h3>
+        <p>The BYOND version of the client that was last logged into this mob.
+Currently used to rebuild all plane master groups when going between 515&lt;-&gt;516.</p><h3 id="var/master_groups"><aside class="declaration">var </aside>master_groups
+            <aside>&ndash; /list/datum/plane_master_group</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 68"/></a></h3>
+        <p>Assoc list of key =&gt; &quot;plane master groups&quot;
+This is normally just the main window, but it'll occasionally contain things like spyglasses windows</p><h3 id="var/plane_master_controllers"><aside class="declaration">var </aside>plane_master_controllers
+            <aside>&ndash; /list/atom/movable/plane_master_controller</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 70"/></a></h3>
+        <p>Assoc list of controller groups, associated with key string group name with value of the plane master controller ref</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_ammo_hud"><aside class="declaration">proc </aside>add_ammo_hud<aside>(/<a href="datum.html">datum</a>/ammo_owner, /list/ammo_type, ammo_count) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L400">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 400"/></a></aside>
+        </h3>
+        <p>Add an ammo hud to the user informing of the ammo count of ammo_owner</p><h3 id="proc/build_plane_groups"><aside class="declaration">proc </aside>build_plane_groups<aside>(starting_offset, ending_offset) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L227">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 227"/></a></aside>
+        </h3>
+        <p>Creates the required plane masters to fill out new z layers (because each &quot;level&quot; of multiz gets its own plane master set)</p><h3 id="proc/get_plane_group"><aside class="declaration">proc </aside>get_plane_group<aside>(key) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L251">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 251"/></a></aside>
+        </h3>
+        <p>Returns the corresponding plane group datum if one exists</p><h3 id="proc/get_plane_master"><aside class="declaration">proc </aside>get_plane_master<aside>(plane, group_key) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L233">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 233"/></a></aside>
+        </h3>
+        <p>Returns the plane master that matches the input plane from the passed in group</p><h3 id="proc/get_planes_from"><aside class="declaration">proc </aside>get_planes_from<aside>(group_key) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L246">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 246"/></a></aside>
+        </h3>
+        <p>Returns all the planes belonging to the passed in group key</p><h3 id="proc/get_true_plane_masters"><aside class="declaration">proc </aside>get_true_plane_masters<aside>(true_plane, group_key) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L239">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 239"/></a></aside>
+        </h3>
+        <p>Returns a list of all plane masters that match the input true plane, drawn from the passed in group (ignores z layer offsets)</p><h3 id="proc/remove_ammo_hud"><aside class="declaration">proc </aside>remove_ammo_hud<aside>(/<a href="datum.html">datum</a>/ammo_owner) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L412">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 412"/></a></aside>
+        </h3>
+        <p>Remove the ammo hud related to the gun G from the user</p><h3 id="proc/update_ammo_hud"><aside class="declaration">proc </aside>update_ammo_hud<aside>(/<a href="datum.html">datum</a>/ammo_owner, /list/ammo_type, ammo_count) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/hud.dm#L426">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;hud.dm 426"/></a></aside>
+        </h3>
+        <p>Update the ammo hud related to the gun G</p><h3 id="proc/update_interactive_emotes"><aside class="declaration">proc </aside>update_interactive_emotes<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/interactive_emotes.dm#L246">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;interactive_emotes.dm 246"/></a></aside>
+        </h3>
+        <p>Update the hud; taken from how alerts do it, but slimmed down</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

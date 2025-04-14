@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_reagent.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/dcs/signals/signals_reagent.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/dcs/signals/signals_reagent.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals_reagent.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_reagent.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_reagent.html#define/COMSIG_REAGENTS_PRE_ADD_REAGENT">COMSIG_REAGENTS_PRE_ADD_REAGENT</a></th><td>from base of [/datum/reagents/proc/add_reagent] - Sent before the reagent is added: (reagenttype, amount, reagtemp, data, no_react)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_reagent.html#define/COMPONENT_CANCEL_REAGENT_ADD">COMPONENT_CANCEL_REAGENT_ADD</a></th><td>Prevents the reagent from being added.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_reagent.html#define/COMSIG_REAGENTS_NEW_REAGENT">COMSIG_REAGENTS_NEW_REAGENT</a></th><td>from base of [/datum/reagents/proc/add_reagent]: (reagent_type, amount, reagtemp, data, no_react)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_reagent.html#define/COMSIG_REAGENTS_ADD_REAGENT">COMSIG_REAGENTS_ADD_REAGENT</a></th><td>from base of [/datum/reagents/proc/add_reagent]: (reagent_type, amount, reagtemp, data, no_react)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_reagent.html#define/COMSIG_REAGENTS_DEL_REAGENT">COMSIG_REAGENTS_DEL_REAGENT</a></th><td>from base of <a href="datum/reagents.html#proc/del_reagent" title="/datum/reagents">/datum/reagents/proc/del_reagent</a>: (reagent_type)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_reagent.html#define/COMSIG_REAGENTS_REM_REAGENT">COMSIG_REAGENTS_REM_REAGENT</a></th><td>from base of <a href="datum/reagents.html#proc/remove_reagent" title="/datum/reagents">/datum/reagents/proc/remove_reagent</a>: (reagent_type, amount)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_reagent.html#define/COMSIG_REAGENTS_CLEAR_REAGENTS">COMSIG_REAGENTS_CLEAR_REAGENTS</a></th><td>from base of <a href="datum/reagents.html#proc/clear_reagents" title="/datum/reagents">/datum/reagents/proc/clear_reagents</a>: ()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_reagent.html#define/COMSIG_REAGENTS_CRAFTING_PING">COMSIG_REAGENTS_CRAFTING_PING</a></th><td>from base of [/datum/component/personal_crafting/proc/del_reqs]: ()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_reagent.html#define/COMSIG_REAGENTS_CUP_TRANSFER_TO">COMSIG_REAGENTS_CUP_TRANSFER_TO</a></th><td>sent when reagents are transfered from a cup, to something refillable (atom/transfer_to)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals_reagent.html#define/COMSIG_REAGENTS_CUP_TRANSFER_FROM">COMSIG_REAGENTS_CUP_TRANSFER_FROM</a></th><td>sent when reagents are transfered from some reagent container, to a cup (atom/transfer_from)</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/COMPONENT_CANCEL_REAGENT_ADD"><aside class="declaration">#define </aside>COMPONENT_CANCEL_REAGENT_ADD
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals_reagent.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_reagent.dm 8"/></a>
+    </h3>
+    <p>Prevents the reagent from being added.</p><h3 id="define/COMSIG_REAGENTS_ADD_REAGENT"><aside class="declaration">#define </aside>COMSIG_REAGENTS_ADD_REAGENT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals_reagent.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_reagent.dm 12"/></a>
+    </h3>
+    <p>from base of [/datum/reagents/proc/add_reagent]: (reagent_type, amount, reagtemp, data, no_react)</p><h3 id="define/COMSIG_REAGENTS_CLEAR_REAGENTS"><aside class="declaration">#define </aside>COMSIG_REAGENTS_CLEAR_REAGENTS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals_reagent.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_reagent.dm 18"/></a>
+    </h3>
+    <p>from base of <a href="datum/reagents.html#proc/clear_reagents" title="/datum/reagents">/datum/reagents/proc/clear_reagents</a>: ()</p><h3 id="define/COMSIG_REAGENTS_CRAFTING_PING"><aside class="declaration">#define </aside>COMSIG_REAGENTS_CRAFTING_PING
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals_reagent.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_reagent.dm 21"/></a>
+    </h3>
+    <p>from base of [/datum/component/personal_crafting/proc/del_reqs]: ()</p><h3 id="define/COMSIG_REAGENTS_CUP_TRANSFER_FROM"><aside class="declaration">#define </aside>COMSIG_REAGENTS_CUP_TRANSFER_FROM
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals_reagent.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_reagent.dm 25"/></a>
+    </h3>
+    <p>sent when reagents are transfered from some reagent container, to a cup (atom/transfer_from)</p><h3 id="define/COMSIG_REAGENTS_CUP_TRANSFER_TO"><aside class="declaration">#define </aside>COMSIG_REAGENTS_CUP_TRANSFER_TO
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals_reagent.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_reagent.dm 23"/></a>
+    </h3>
+    <p>sent when reagents are transfered from a cup, to something refillable (atom/transfer_to)</p><h3 id="define/COMSIG_REAGENTS_DEL_REAGENT"><aside class="declaration">#define </aside>COMSIG_REAGENTS_DEL_REAGENT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals_reagent.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_reagent.dm 14"/></a>
+    </h3>
+    <p>from base of <a href="datum/reagents.html#proc/del_reagent" title="/datum/reagents">/datum/reagents/proc/del_reagent</a>: (reagent_type)</p><h3 id="define/COMSIG_REAGENTS_NEW_REAGENT"><aside class="declaration">#define </aside>COMSIG_REAGENTS_NEW_REAGENT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals_reagent.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_reagent.dm 10"/></a>
+    </h3>
+    <p>from base of [/datum/reagents/proc/add_reagent]: (reagent_type, amount, reagtemp, data, no_react)</p><h3 id="define/COMSIG_REAGENTS_PRE_ADD_REAGENT"><aside class="declaration">#define </aside>COMSIG_REAGENTS_PRE_ADD_REAGENT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals_reagent.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_reagent.dm 6"/></a>
+    </h3>
+    <p>from base of [/datum/reagents/proc/add_reagent] - Sent before the reagent is added: (reagenttype, amount, reagtemp, data, no_react)</p><h3 id="define/COMSIG_REAGENTS_REM_REAGENT"><aside class="declaration">#define </aside>COMSIG_REAGENTS_REM_REAGENT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals_reagent.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals_reagent.dm 16"/></a>
+    </h3>
+    <p>from base of <a href="datum/reagents.html#proc/remove_reagent" title="/datum/reagents">/datum/reagents/proc/remove_reagent</a>: (reagent_type, amount)</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

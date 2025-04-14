@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;mob - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="mob.html#var">Var Details</a> - <a href="mob.html#proc">Proc Details</a></header>
+<main>
+<h1>mob <aside>/<a href="mob.html">mob</a></aside><aside> inherits /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob.html#var/active_thinking_indicator">active_thinking_indicator</a></th><td>the icon currently used for the thinking indicator's bubble</td></tr>
+            <tr><th><a href="mob.html#var/active_typing_indicator">active_typing_indicator</a></th><td>the icon currently used for the typing indicator's bubble</td></tr>
+            <tr><th><a href="mob.html#var/alerts">alerts</a></th><td>contains /atom/movable/screen/alert only, used by alerts.dm</td></tr>
+            <tr><th><a href="mob.html#var/bubble_icon">bubble_icon</a></th><td>what icon the mob uses for speechbubbles</td></tr>
+            <tr><th><a href="mob.html#var/cached_multiplicative_slowdown">cached_multiplicative_slowdown</a></th><td>The calculated mob speed slowdown based on the modifiers list.</td></tr>
+            <tr><th><a href="mob.html#var/canon_client">canon_client</a></th><td>The current client inhabiting this mob. Managed by login/logout
+This exists so we can do cleanup in logout for occasions where a client was transfere rather then destroyed
+We need to do this because the mob on logout never actually has a reference to client
+We also need to clear this var/do other cleanup in client/Destroy, since that happens before logout
+HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</td></tr>
+            <tr><th><a href="mob.html#var/control_object">control_object</a></th><td>Used by admins to possess objects.</td></tr>
+            <tr><th><a href="mob.html#var/dextrous">dextrous</a></th><td>Has enough dexterity to interact with advanced objects?</td></tr>
+            <tr><th><a href="mob.html#var/do_actions">do_actions</a></th><td>Lazylist assoc list of do_after and do_mob actions the mob is currently performing: list([target] = amount)</td></tr>
+            <tr><th><a href="mob.html#var/do_self_harm">do_self_harm</a></th><td>Whether or not the mob can hit themselves.</td></tr>
+            <tr><th><a href="mob.html#var/focus">focus</a></th><td>What receives our keyboard inputs. src by default</td></tr>
+            <tr><th><a href="mob.html#var/has_unlimited_silicon_privilege">has_unlimited_silicon_privilege</a></th><td>Can they interact with station electronics</td></tr>
+            <tr><th><a href="mob.html#var/interactee">interactee</a></th><td>the thing that the mob is currently interacting with (e.g. a computer, another mob (stripping a mob), manning a hmg)</td></tr>
+            <tr><th><a href="mob.html#var/lighting_color_cutoffs">lighting_color_cutoffs</a></th><td>A list of red, green and blue cutoffs
+This is what actually gets applied to the mob, it's modified by things like glasses</td></tr>
+            <tr><th><a href="mob.html#var/lighting_cutoff">lighting_cutoff</a></th><td>Percentage of how much rgb to max the lighting plane at
+This lets us brighten it without washing out color
+Scale from 0-100, reset off update_sight()</td></tr>
+            <tr><th><a href="mob.html#var/listed_turf">listed_turf</a></th><td>the current turf being examined in the stat panel</td></tr>
+            <tr><th><a href="mob.html#var/lying_angle">lying_angle</a></th><td>Mob's angle in BYOND degrees. 0 is north (up/standing for humans), 90 and 270 are east and west respectively (lying horizontally), and 90 is south (upside-down).</td></tr>
+            <tr><th><a href="mob.html#var/machine">machine</a></th><td>The machine the mob is interacting with (this is very bad old code btw)</td></tr>
+            <tr><th><a href="mob.html#var/move_on_shuttle">move_on_shuttle</a></th><td>Can move on the shuttle.</td></tr>
+            <tr><th><a href="mob.html#var/movespeed_modification">movespeed_modification</a></th><td>List of movement speed modifiers applying to this mob. Lazy list, see mob_movespeed.dm</td></tr>
+            <tr><th><a href="mob.html#var/next_move_adjust">next_move_adjust</a></th><td>Amount to adjust action/click delays by, + or -</td></tr>
+            <tr><th><a href="mob.html#var/next_move_slowdown">next_move_slowdown</a></th><td>Amount added during the next movement_delay(), then is reset.</td></tr>
+            <tr><th><a href="mob.html#var/observers">observers</a></th><td>The list of people observing this mob.</td></tr>
+            <tr><th><a href="mob.html#var/pain_stored">pain_stored</a></th><td>TODO MOVE ME OR EVEN BETTER GET RID OF ME</td></tr>
+            <tr><th><a href="mob.html#var/progbar_towers">progbar_towers</a></th><td>for stacking the total pixel height of the aboves.</td></tr>
+            <tr><th><a href="mob.html#var/progressbars">progressbars</a></th><td>for stacking do_after bars</td></tr>
+            <tr><th><a href="mob.html#var/queued_interactions">queued_interactions</a></th><td>List of queued interactions on this mob</td></tr>
+            <tr><th><a href="mob.html#var/remote_control">remote_control</a></th><td>Calls relaymove() to whatever it is</td></tr>
+            <tr><th><a href="mob.html#var/s_active">s_active</a></th><td>Our mobs currently active storage</td></tr>
+            <tr><th><a href="mob.html#var/speak_emote">speak_emote</a></th><td>Verbs used when speaking instead of the default ones.</td></tr>
+            <tr><th><a href="mob.html#var/stat">stat</a></th><td>Whether a mob is alive or dead. TODO: Move this to living - Nodrak</td></tr>
+            <tr><th><a href="mob.html#var/tgui_open_uis">tgui_open_uis</a></th><td>global</td></tr>
+            <tr><th><a href="mob.html#var/thinking_IC">thinking_IC</a></th><td>User is thinking in character. Used to revert to thinking state after stop_typing</td></tr>
+            <tr><th><a href="mob.html#var/updating_glide_size">updating_glide_size</a></th><td>Whether the mob is updating glide size when movespeed updates or not</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="mob.html#proc/AltRightClickOn">AltRightClickOn</a></th><td>Called when a owner mob Alt + Rightmouseclicks an atom, given that Altclick does not return TRUE</td></tr>
+            <tr><th><a href="mob.html#proc/ClickOn">ClickOn</a></th><td>Standard mob ClickOn()
+Handles exceptions: Buildmode, middle click, modified clicks, mech actions</td></tr>
+            <tr><th><a href="mob.html#proc/Process_Spacemove">Process_Spacemove</a></th><td>Process_Spacemove
+Called by /client/Move()
+For moving in space
+Return 1 for movement 0 for none</td></tr>
+            <tr><th><a href="mob.html#proc/RightClickOn">RightClickOn</a></th><td>Called when a owner mob Rightmouseclicks an atom</td></tr>
+            <tr><th><a href="mob.html#proc/ShiftRightClickOn">ShiftRightClickOn</a></th><td>Called when a owner mob Shift + Rightmouseclicks an atom</td></tr>
+            <tr><th><a href="mob.html#proc/UnEquip">UnEquip</a></th><td>DO NOT CALL THIS PROC</td></tr>
+            <tr><th><a href="mob.html#proc/UnarmedAttack">UnarmedAttack</a></th><td>Translates into attack_hand, etc.</td></tr>
+            <tr><th><a href="mob.html#proc/add_click_catcher">add_click_catcher</a></th><td>Sets up the click_catcher for the client</td></tr>
+            <tr><th><a href="mob.html#proc/add_movespeed_modifier">add_movespeed_modifier</a></th><td>Add a move speed modifier to a mob</td></tr>
+            <tr><th><a href="mob.html#proc/additive_flagged_slowdown">additive_flagged_slowdown</a></th><td>Give the sum of all slowdown that have inputted flag</td></tr>
+            <tr><th><a href="mob.html#proc/attack_ui">attack_ui</a></th><td>This proc is called whenever someone clicks an inventory ui slot.</td></tr>
+            <tr><th><a href="mob.html#proc/become_uncliented">become_uncliented</a></th><td>Cleanup proc that's called when a mob loses a client, either through client destroy or logout
+Logout happens post client del, so we can't just copypaste this there. This keeps things clean and consistent</td></tr>
+            <tr><th><a href="mob.html#proc/binarycheck">binarycheck</a></th><td>Returns false by default</td></tr>
+            <tr><th><a href="mob.html#proc/buckle_mob">buckle_mob</a></th><td>Buckle to another mob
+You can buckle on mobs if you're next to them since most are dense
+Turns you to face the other mob too</td></tr>
+            <tr><th><a href="mob.html#proc/can_be_facehugged">can_be_facehugged</a></th><td>Can this mob be facehugged?</td></tr>
+            <tr><th><a href="mob.html#proc/can_put_in_hand">can_put_in_hand</a></th><td>Returns if we're able to put something in a hand of a mob</td></tr>
+            <tr><th><a href="mob.html#proc/can_wait_in_larva_queue">can_wait_in_larva_queue</a></th><td>Returns if the mob is valid to keep waiting in the larva queue</td></tr>
+            <tr><th><a href="mob.html#proc/changeNext_move">changeNext_move</a></th><td>how many times we've fired the railgun this cycle
+max times we can fire within a single volley
+used to check if we have valid targets
+Delays the mob's next click/action by num deciseconds
+eg: 10 - 3 = 7 deciseconds of delay
+eg: 10 * 0.5 = 5 deciseconds of delay
+DOES NOT EFFECT THE BASE 1 DECISECOND DELAY OF NEXT_CLICK</td></tr>
+            <tr><th><a href="mob.html#proc/check_emote">check_emote</a></th><td>Check if this message is an emote</td></tr>
+            <tr><th><a href="mob.html#proc/clear_fullscreen">clear_fullscreen</a></th><td>Removes a fullscreen overlay</td></tr>
+            <tr><th><a href="mob.html#proc/clear_important_client_contents">clear_important_client_contents</a></th><td>We got our awareness updated by the important recursive contents stuff, now we add our membership
+Clears the clients channel of this mob</td></tr>
+            <tr><th><a href="mob.html#proc/create_chat_message">create_chat_message</a></th><td>Creates a message overlay at a defined location for a given speaker</td></tr>
+            <tr><th><a href="mob.html#proc/create_thinking_indicator">create_thinking_indicator</a></th><td>Creates a thinking indicator over the mob.</td></tr>
+            <tr><th><a href="mob.html#proc/create_typing_indicator">create_typing_indicator</a></th><td>Creates a typing indicator over the mob.</td></tr>
+            <tr><th><a href="mob.html#proc/default_lighting_cutoff">default_lighting_cutoff</a></th><td>Returns this mob's default lighting alpha</td></tr>
+            <tr><th><a href="mob.html#proc/do_after_coefficent">do_after_coefficent</a></th><td>Multiplier on all do_afters for this mob</td></tr>
+            <tr><th><a href="mob.html#proc/down">down</a></th><td>Moves a mob down a z level</td></tr>
+            <tr><th><a href="mob.html#proc/draw_from_slot_if_possible">draw_from_slot_if_possible</a></th><td>Checks an inventory slot for an item that can be drawn that is directly stored, or inside another storage item, and draws it if possible</td></tr>
+            <tr><th><a href="mob.html#proc/dropItemToGround">dropItemToGround</a></th><td>Used to drop an item (if it exists) to the ground.</td></tr>
+            <tr><th><a href="mob.html#proc/drop_all_held_items">drop_all_held_items</a></th><td>Drops the items in our hands.</td></tr>
+            <tr><th><a href="mob.html#proc/drop_held_item">drop_held_item</a></th><td>Drops the item in our active hand.</td></tr>
+            <tr><th><a href="mob.html#proc/drop_item_v">drop_item_v</a></th><td>Helper proc used by the drop_item verb and on screen button.</td></tr>
+            <tr><th><a href="mob.html#proc/drop_l_hand">drop_l_hand</a></th><td>Drops the item in our left hand.</td></tr>
+            <tr><th><a href="mob.html#proc/drop_r_hand">drop_r_hand</a></th><td>Drops the item in our right hand.</td></tr>
+            <tr><th><a href="mob.html#proc/enable_client_mobs_in_contents">enable_client_mobs_in_contents</a></th><td>We get our awareness updated by the important recursive contents stuff, here we remove our membership
+propogates ourselves through our nested contents, similar to other important_recursive_contents procs
+main difference is that client contents need to possibly duplicate recursive contents for the clients mob AND its eye</td></tr>
+            <tr><th><a href="mob.html#proc/eord_respawn">eord_respawn</a></th><td>This is only available to mobs once they join EORD.</td></tr>
+            <tr><th><a href="mob.html#proc/equip_to_appropriate_slot">equip_to_appropriate_slot</a></th><td>Attempts to store an item in a valid location based on SLOT_EQUIP_ORDER</td></tr>
+            <tr><th><a href="mob.html#proc/equip_to_slot">equip_to_slot</a></th><td>This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
+In most cases you will want to use equip_to_slot_if_possible()</td></tr>
+            <tr><th><a href="mob.html#proc/equip_to_slot_if_possible">equip_to_slot_if_possible</a></th><td>This is a SAFE proc. Use this instead of equip_to_slot()!
+set del_on_fail to have it delete item_to_equip if it fails to equip
+unset redraw_mob to prevent the mob from being redrawn at the end.</td></tr>
+            <tr><th><a href="mob.html#proc/equip_to_slot_or_del">equip_to_slot_or_del</a></th><td>This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.</td></tr>
+            <tr><th><a href="mob.html#proc/equip_to_slot_or_hand">equip_to_slot_or_hand</a></th><td>Tries to equip an item to the slot provided, otherwise tries to put it in hands, if hands are full the item is deleted</td></tr>
+            <tr><th><a href="mob.html#proc/examinate">examinate</a></th><td>This is a mob verb for speed reasons (nice one BYOND).
+See <a href="https://secure.byond.com/forum/?post=1326139&amp;page=2#comment8198716">this BYOND forum post</a>
+for why this isnt something like <code>/atom/verb/examine</code>.</td></tr>
+            <tr><th><a href="mob.html#proc/finish_clear_fullscreen">finish_clear_fullscreen</a></th><td>Actually removes the fullscreen overlay when ready</td></tr>
+            <tr><th><a href="mob.html#proc/get_active_held_item">get_active_held_item</a></th><td>returns the thing in our currently active hand</td></tr>
+            <tr><th><a href="mob.html#proc/get_config_multiplicative_speed">get_config_multiplicative_speed</a></th><td>Get the global config movespeed of a mob by type</td></tr>
+            <tr><th><a href="mob.html#proc/get_equipped_slot">get_equipped_slot</a></th><td>Find the slot an item is equipped to and returns its slot define</td></tr>
+            <tr><th><a href="mob.html#proc/get_held_item">get_held_item</a></th><td>Proc to get the item in the active hand.</td></tr>
+            <tr><th><a href="mob.html#proc/get_held_items">get_held_items</a></th><td>Get a list of all held items</td></tr>
+            <tr><th><a href="mob.html#proc/get_inactive_held_item">get_inactive_held_item</a></th><td>returns the thing in our currently inactive hand</td></tr>
+            <tr><th><a href="mob.html#proc/get_item_by_slot">get_item_by_slot</a></th><td>Returns the item in a given slot</td></tr>
+            <tr><th><a href="mob.html#proc/get_item_by_slot_bit">get_item_by_slot_bit</a></th><td>Returns the item in a given bit slot</td></tr>
+            <tr><th><a href="mob.html#proc/get_item_for_held_index">get_item_for_held_index</a></th><td>gets an item by hand index</td></tr>
+            <tr><th><a href="mob.html#proc/get_liquid_slowdown">get_liquid_slowdown</a></th><td>Returns the slowdown applied to the mob when moving through liquids like water</td></tr>
+            <tr><th><a href="mob.html#proc/get_mob_buckling_height">get_mob_buckling_height</a></th><td>returns the height in pixel the mob should have when buckled to another mob.</td></tr>
+            <tr><th><a href="mob.html#proc/get_movespeed_modifiers">get_movespeed_modifiers</a></th><td>Get the move speed modifiers list of the mob</td></tr>
+            <tr><th><a href="mob.html#proc/get_policy_keywords">get_policy_keywords</a></th><td>Get the list of keywords for policy config</td></tr>
+            <tr><th><a href="mob.html#proc/get_status_tab_items">get_status_tab_items</a></th><td>Adds this list to the output to the stat browser</td></tr>
+            <tr><th><a href="mob.html#proc/has_movespeed_modifier">has_movespeed_modifier</a></th><td>Is there a movespeed modifier for this mob</td></tr>
+            <tr><th><a href="mob.html#proc/index_to_hand">index_to_hand</a></th><td>returns the hand based on index (1 for left hand, 2 for right)</td></tr>
+            <tr><th><a href="mob.html#proc/interaction_emote">interaction_emote</a></th><td>All in one function to begin interactions</td></tr>
+            <tr><th><a href="mob.html#proc/is_holding_item_of_type">is_holding_item_of_type</a></th><td>Checks if this mob is holding a certain type of item in hands
+returns the item if found
+Args:</td></tr>
+            <tr><th><a href="mob.html#proc/log_message">log_message</a></th><td>Logs a message in a mob's individual log, and in the global logs as well if log_globally is true</td></tr>
+            <tr><th><a href="mob.html#proc/log_mob_tag">log_mob_tag</a></th><td>Logs a mesage to the mob_tags log, including the mobs tag
+Arguments:</td></tr>
+            <tr><th><a href="mob.html#proc/movespeed_modifier_identical_check">movespeed_modifier_identical_check</a></th><td>Check if a movespeed modifier is identical to another</td></tr>
+            <tr><th><a href="mob.html#proc/onShuttleMove">onShuttleMove</a></th><td>Mob move procs</td></tr>
+            <tr><th><a href="mob.html#proc/on_eord">on_eord</a></th><td>Side effects of being sent to the end of round deathmatch zone</td></tr>
+            <tr><th><a href="mob.html#proc/overlay_fullscreen">overlay_fullscreen</a></th><td>Applies a fullscreen overlay</td></tr>
+            <tr><th><a href="mob.html#proc/play_screen_text">play_screen_text</a></th><td>proc for playing a screen_text on a mob.
+enqueues it if a screen text is running and plays i otherwise
+Arguments:</td></tr>
+            <tr><th><a href="mob.html#proc/playsound_local">playsound_local</a></th><td>snowflake, note this ignores walls cus I cant be assed rn
+Plays a sound locally</td></tr>
+            <tr><th><a href="mob.html#proc/post_buckle_mob">post_buckle_mob</a></th><td>Call back post buckle to a mob to offset your visual height</td></tr>
+            <tr><th><a href="mob.html#proc/post_unbuckle_mob">post_unbuckle_mob</a></th><td>Call back post unbuckle from a mob, (reset your visual height here)</td></tr>
+            <tr><th><a href="mob.html#proc/put_in_active_hand">put_in_active_hand</a></th><td>Puts the item into our active hand if possible.</td></tr>
+            <tr><th><a href="mob.html#proc/put_in_any_hand_if_possible">put_in_any_hand_if_possible</a></th><td>Attempts to put an item in either hand, prioritizing the active hand</td></tr>
+            <tr><th><a href="mob.html#proc/put_in_hand">put_in_hand</a></th><td>Puts an item in a specific hand index (so left or right)</td></tr>
+            <tr><th><a href="mob.html#proc/put_in_hand_check">put_in_hand_check</a></th><td>Proc that checks if we can put something into someone's hands</td></tr>
+            <tr><th><a href="mob.html#proc/put_in_hands">put_in_hands</a></th><td>Puts the item our active hand if possible. Failing that it tries our inactive hand.
+If both hands fail the item falls to the floor.</td></tr>
+            <tr><th><a href="mob.html#proc/put_in_inactive_hand">put_in_inactive_hand</a></th><td>Puts the item into our inactive hand if possible.</td></tr>
+            <tr><th><a href="mob.html#proc/put_in_l_hand">put_in_l_hand</a></th><td>Puts the item into your l_hand if possible and calls all necessary triggers/updates.</td></tr>
+            <tr><th><a href="mob.html#proc/put_in_r_hand">put_in_r_hand</a></th><td>Puts the item into your r_hand if possible and calls all necessary triggers/updates.</td></tr>
+            <tr><th><a href="mob.html#proc/record_structures_built">record_structures_built</a></th><td>Tally when a structure is constructed</td></tr>
+            <tr><th><a href="mob.html#proc/record_traps_created">record_traps_created</a></th><td>Short proc that tallies up traps_created; reduce copy pasta</td></tr>
+            <tr><th><a href="mob.html#proc/remove_all_indicators">remove_all_indicators</a></th><td>Removes any indicators and marks the mob as not speaking IC.</td></tr>
+            <tr><th><a href="mob.html#proc/remove_movespeed_modifier">remove_movespeed_modifier</a></th><td>Remove a move speed modifier from a mob</td></tr>
+            <tr><th><a href="mob.html#proc/remove_thinking_indicator">remove_thinking_indicator</a></th><td>Removes the thinking indicator over the mob.</td></tr>
+            <tr><th><a href="mob.html#proc/remove_typing_indicator">remove_typing_indicator</a></th><td>Removes the typing indicator over the mob.</td></tr>
+            <tr><th><a href="mob.html#proc/say_verb">say_verb</a></th><td>what clients use to speak. when you type a message into the chat bar in say mode, this is the first thing that goes off serverside.</td></tr>
+            <tr><th><a href="mob.html#proc/setGrabState">setGrabState</a></th><td>Updates the grab state of the mob and updates movespeed</td></tr>
+            <tr><th><a href="mob.html#proc/set_invis_see">set_invis_see</a></th><td>see invisibility is the mob's capability to see things that ought to be hidden from it
+Can think of it as a primitive version of changing the alpha of planes
+We mostly use it to hide ghosts, no real reason why</td></tr>
+            <tr><th><a href="mob.html#proc/set_sight">set_sight</a></th><td>Sight here is the mob.sight var, which tells byond what to actually show to our client
+See <a href="code/__DEFINES/sight.html" title="code\__DEFINES\sight.dm">code__DEFINES\sight.dm</a> for more details</td></tr>
+            <tr><th><a href="mob.html#proc/set_skills">set_skills</a></th><td>Handles setting or changing a mob's skills</td></tr>
+            <tr><th><a href="mob.html#proc/shared_ui_interaction">shared_ui_interaction</a></th><td>public</td></tr>
+            <tr><th><a href="mob.html#proc/shuttleRotate">shuttleRotate</a></th><td>Mob rotate procs</td></tr>
+            <tr><th><a href="mob.html#proc/sort_movespeed_modlist">sort_movespeed_modlist</a></th><td>Sort the list of move speed modifiers</td></tr>
+            <tr><th><a href="mob.html#proc/stripPanelUnequip">stripPanelUnequip</a></th><td>The mob is trying to strip an item from someone</td></tr>
+            <tr><th><a href="mob.html#proc/sync_lighting_plane_cutoff">sync_lighting_plane_cutoff</a></th><td>Set the lighting plane hud filters to the mobs lighting_cutoff var</td></tr>
+            <tr><th><a href="mob.html#proc/temporarilyRemoveItemFromInventory">temporarilyRemoveItemFromInventory</a></th><td>Removes an item on a mob's inventory.</td></tr>
+            <tr><th><a href="mob.html#proc/throw_item">throw_item</a></th><td>Throws active held item at target in params</td></tr>
+            <tr><th><a href="mob.html#proc/transferItemToLoc">transferItemToLoc</a></th><td>For when the item will be immediately placed in a loc other than the ground.</td></tr>
+            <tr><th><a href="mob.html#proc/up">up</a></th><td>Moves a mob upwards in z level</td></tr>
+            <tr><th><a href="mob.html#proc/update_action_buttons">update_action_buttons</a></th><td>This is the proc used to update all the action buttons.</td></tr>
+            <tr><th><a href="mob.html#proc/update_config_movespeed">update_config_movespeed</a></th><td>Set or update the global movespeed config on a mob</td></tr>
+            <tr><th><a href="mob.html#proc/update_joined_player_list">update_joined_player_list</a></th><td>Signal sent after the eye has been successfully updated, with the client existing.</td></tr>
+            <tr><th><a href="mob.html#proc/update_mouse_pointer">update_mouse_pointer</a></th><td>Update the mouse pointer of the attached client in this mob</td></tr>
+            <tr><th><a href="mob.html#proc/update_movespeed">update_movespeed</a></th><td>Go through the list of movespeed modifiers and calculate a final movespeed</td></tr>
+            <tr><th><a href="mob.html#proc/update_sight">update_sight</a></th><td>Update the lighting plane and sight of this mob (sends COMSIG_MOB_UPDATE_SIGHT)</td></tr>
+            <tr><th><a href="mob.html#proc/update_stat">update_stat</a></th><td>Called to update the stat var, returns a boolean to indicate if it has been handled.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active_thinking_indicator"><aside class="declaration">var </aside>active_thinking_indicator
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 138"/></a></h3>
+        <p>the icon currently used for the thinking indicator's bubble</p><h3 id="var/active_typing_indicator"><aside class="declaration">var </aside>active_typing_indicator
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 136"/></a></h3>
+        <p>the icon currently used for the typing indicator's bubble</p><h3 id="var/alerts"><aside class="declaration">var </aside>alerts
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 80"/></a></h3>
+        <p>contains /atom/movable/screen/alert only, used by alerts.dm</p><h3 id="var/bubble_icon"><aside class="declaration">var </aside>bubble_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 134"/></a></h3>
+        <p>what icon the mob uses for speechbubbles</p><h3 id="var/cached_multiplicative_slowdown"><aside class="declaration">var </aside>cached_multiplicative_slowdown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 45"/></a></h3>
+        <p>The calculated mob speed slowdown based on the modifiers list.</p><h3 id="var/canon_client"><aside class="declaration">var </aside>canon_client
+            <aside>&ndash; /<a href="client.html">client</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_grab.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_grab.dm 3"/></a></h3>
+        <p>The current client inhabiting this mob. Managed by login/logout
+This exists so we can do cleanup in logout for occasions where a client was transfere rather then destroyed
+We need to do this because the mob on logout never actually has a reference to client
+We also need to clear this var/do other cleanup in client/Destroy, since that happens before logout
+HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</p><h3 id="var/control_object"><aside class="declaration">var </aside>control_object
+            <aside>&ndash; /<a href="obj.html">obj</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 107"/></a></h3>
+        <p>Used by admins to possess objects.</p><h3 id="var/dextrous"><aside class="declaration">var </aside>dextrous
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 118"/></a></h3>
+        <p>Has enough dexterity to interact with advanced objects?</p><h3 id="var/do_actions"><aside class="declaration">var </aside>do_actions
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 102"/></a></h3>
+        <p>Lazylist assoc list of do_after and do_mob actions the mob is currently performing: list([target] = amount)</p><h3 id="var/do_self_harm"><aside class="declaration">var </aside>do_self_harm
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 26"/></a></h3>
+        <p>Whether or not the mob can hit themselves.</p><h3 id="var/focus"><aside class="declaration">var </aside>focus
+            <aside>&ndash; /<a href="datum.html">datum</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 125"/></a></h3>
+        <p>What receives our keyboard inputs. src by default</p><h3 id="var/has_unlimited_silicon_privilege"><aside class="declaration">var </aside>has_unlimited_silicon_privilege
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 131"/></a></h3>
+        <p>Can they interact with station electronics</p><h3 id="var/interactee"><aside class="declaration">var </aside>interactee
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 105"/></a></h3>
+        <p>the thing that the mob is currently interacting with (e.g. a computer, another mob (stripping a mob), manning a hmg)</p><h3 id="var/lighting_color_cutoffs"><aside class="declaration">var </aside>lighting_color_cutoffs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 98"/></a></h3>
+        <p>A list of red, green and blue cutoffs
+This is what actually gets applied to the mob, it's modified by things like glasses</p><h3 id="var/lighting_cutoff"><aside class="declaration">var </aside>lighting_cutoff
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 89"/></a></h3>
+        <p>Percentage of how much rgb to max the lighting plane at
+This lets us brighten it without washing out color
+Scale from 0-100, reset off update_sight()</p><h3 id="var/listed_turf"><aside class="declaration">var </aside>listed_turf
+            <aside>&ndash; /<a href="turf.html">turf</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 116"/></a></h3>
+        <p>the current turf being examined in the stat panel</p><h3 id="var/lying_angle"><aside class="declaration">var </aside>lying_angle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 61"/></a></h3>
+        <p>Mob's angle in BYOND degrees. 0 is north (up/standing for humans), 90 and 270 are east and west respectively (lying horizontally), and 90 is south (upside-down).</p><h3 id="var/machine"><aside class="declaration">var </aside>machine
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 121"/></a></h3>
+        <p>The machine the mob is interacting with (this is very bad old code btw)</p><h3 id="var/move_on_shuttle"><aside class="declaration">var </aside>move_on_shuttle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 58"/></a></h3>
+        <p>Can move on the shuttle.</p><h3 id="var/movespeed_modification"><aside class="declaration">var </aside>movespeed_modification
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 43"/></a></h3>
+        <p>List of movement speed modifiers applying to this mob. Lazy list, see mob_movespeed.dm</p><h3 id="var/next_move_adjust"><aside class="declaration">var </aside>next_move_adjust
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 51"/></a></h3>
+        <p>Amount to adjust action/click delays by, + or -</p><h3 id="var/next_move_slowdown"><aside class="declaration">var </aside>next_move_slowdown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 49"/></a></h3>
+        <p>Amount added during the next movement_delay(), then is reset.</p><h3 id="var/observers"><aside class="declaration">var </aside>observers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 29"/></a></h3>
+        <p>The list of people observing this mob.</p><h3 id="var/pain_stored"><aside class="declaration">var </aside>pain_stored
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/pain.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;pain.dm 6"/></a></h3>
+        <p>TODO MOVE ME OR EVEN BETTER GET RID OF ME</p><h3 id="var/progbar_towers"><aside class="declaration">var </aside>progbar_towers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 77"/></a></h3>
+        <p>for stacking the total pixel height of the aboves.</p><h3 id="var/progressbars"><aside class="declaration">var </aside>progressbars
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 75"/></a></h3>
+        <p>for stacking do_after bars</p><h3 id="var/queued_interactions"><aside class="declaration">var </aside>queued_interactions
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 82"/></a></h3>
+        <p>List of queued interactions on this mob</p><h3 id="var/remote_control"><aside class="declaration">var </aside>remote_control
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 109"/></a></h3>
+        <p>Calls relaymove() to whatever it is</p><h3 id="var/s_active"><aside class="declaration">var </aside>s_active
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/storage.html">storage</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 113"/></a></h3>
+        <p>Our mobs currently active storage</p><h3 id="var/speak_emote"><aside class="declaration">var </aside>speak_emote
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 31"/></a></h3>
+        <p>Verbs used when speaking instead of the default ones.</p><h3 id="var/stat"><aside class="declaration">var </aside>stat
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 17"/></a></h3>
+        <p>Whether a mob is alive or dead. TODO: Move this to living - Nodrak</p><h3 id="var/tgui_open_uis"><aside class="declaration">var </aside>tgui_open_uis
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/external.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 137"/></a></h3>
+        <p>global</p>
+<p>Tracks open UIs for a user.</p><h3 id="var/thinking_IC"><aside class="declaration">var </aside>thinking_IC
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L140">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 140"/></a></h3>
+        <p>User is thinking in character. Used to revert to thinking state after stop_typing</p><h3 id="var/updating_glide_size"><aside class="declaration">var </aside>updating_glide_size
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_defines.dm#L128">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 128"/></a></h3>
+        <p>Whether the mob is updating glide size when movespeed updates or not</p><h2 id="proc">Proc Details</h2><h3 id="proc/AltRightClickOn"><aside class="declaration">proc </aside>AltRightClickOn<aside>(/<a href="atom.html">atom</a>/A) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/click.dm#L385">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;click.dm 385"/></a></aside>
+        </h3>
+        <p>Called when a owner mob Alt + Rightmouseclicks an atom, given that Altclick does not return TRUE</p><h3 id="proc/ClickOn"><aside class="declaration">proc </aside>ClickOn<aside>(/<a href="atom.html">atom</a>/A, location, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/click.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;click.dm 49"/></a></aside>
+        </h3>
+        <p>Standard mob ClickOn()
+Handles exceptions: Buildmode, middle click, modified clicks, mech actions</p>
+<p>After that, mostly just check your state, check whether you're holding an item,
+check whether you're adjacent to the target, then pass off the click to whoever
+is receiving it.
+The most common are:</p>
+<ul>
+<li>mob/UnarmedAttack(atom, adjacent, params) - used here only when adjacent, with no item in hand; in the case of humans, checks gloves</li>
+<li>atom/attackby(item, user, params) - used only when adjacent</li>
+<li>item/afterattack(atom, user, adjacent, params) - used both ranged and adjacent when not handled by attackby</li>
+<li>mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed</li>
+</ul><h3 id="proc/Process_Spacemove"><aside class="declaration">proc </aside>Process_Spacemove<aside>(check_drift) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_movement.dm#L156">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_movement.dm 156"/></a></aside>
+        </h3>
+        <p>Process_Spacemove
+Called by /client/Move()
+For moving in space
+Return 1 for movement 0 for none</p><h3 id="proc/RightClickOn"><aside class="declaration">proc </aside>RightClickOn<aside>(/<a href="atom.html">atom</a>/A) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/click.dm#L359">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;click.dm 359"/></a></aside>
+        </h3>
+        <p>Called when a owner mob Rightmouseclicks an atom</p><h3 id="proc/ShiftRightClickOn"><aside class="declaration">proc </aside>ShiftRightClickOn<aside>(/<a href="atom.html">atom</a>/A) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/click.dm#L376">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;click.dm 376"/></a></aside>
+        </h3>
+        <p>Called when a owner mob Shift + Rightmouseclicks an atom</p><h3 id="proc/UnEquip"><aside class="declaration">proc </aside>UnEquip<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, force, /<a href="atom.html">atom</a>/newloc) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L289">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 289"/></a></aside>
+        </h3>
+        <p>DO NOT CALL THIS PROC</p>
+<ul>
+<li>Use one of the above 3 helper procs.</li>
+<li>You may override it, but do not modify the args.</li>
+</ul><h3 id="proc/UnarmedAttack"><aside class="declaration">proc </aside>UnarmedAttack<aside>(/<a href="atom.html">atom</a>/A, has_proximity, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/click.dm#L271">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;click.dm 271"/></a></aside>
+        </h3>
+        <p>Translates into attack_hand, etc.</p>
+<p>has_proximity is TRUE if this afterattack was called on something adjacent, in your square, or on your person.</p>
+<p>has_proximity is not currently passed to attack_hand, and is instead used
+in human click code to allow glove touches only at melee range.</p>
+<p>params is passed on here as the third arg</p><h3 id="proc/add_click_catcher"><aside class="declaration">proc </aside>add_click_catcher<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/atom_hud.dm#L145">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;atom_hud.dm 145"/></a></aside>
+        </h3>
+        <p>Sets up the click_catcher for the client</p><h3 id="proc/add_movespeed_modifier"><aside class="declaration">proc </aside>add_movespeed_modifier<aside>(id, update, priority, flags, override, multiplicative_slowdown, conflict) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_movespeed.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_movespeed.dm 38"/></a></aside>
+        </h3>
+        <p>Add a move speed modifier to a mob</p><h3 id="proc/additive_flagged_slowdown"><aside class="declaration">proc </aside>additive_flagged_slowdown<aside>(flag) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_movespeed.dm#L159">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_movespeed.dm 159"/></a></aside>
+        </h3>
+        <p>Give the sum of all slowdown that have inputted flag</p><h3 id="proc/attack_ui"><aside class="declaration">proc </aside>attack_ui<aside>(slot) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L217">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 217"/></a></aside>
+        </h3>
+        <p>This proc is called whenever someone clicks an inventory ui slot.</p><h3 id="proc/become_uncliented"><aside class="declaration">proc </aside>become_uncliented<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L885">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 885"/></a></aside>
+        </h3>
+        <p>Cleanup proc that's called when a mob loses a client, either through client destroy or logout
+Logout happens post client del, so we can't just copypaste this there. This keeps things clean and consistent</p><h3 id="proc/binarycheck"><aside class="declaration">proc </aside>binarycheck<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/say.dm#L423">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;say.dm 423"/></a></aside>
+        </h3>
+        <p>Returns false by default</p><h3 id="proc/buckle_mob">buckle_mob<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L522">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 522"/></a></aside>
+        </h3>
+        <p>Buckle to another mob
+You can buckle on mobs if you're next to them since most are dense
+Turns you to face the other mob too</p><h3 id="proc/can_be_facehugged"><aside class="declaration">proc </aside>can_be_facehugged<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/clothing.html">clothing</a>/<a href="obj/item/clothing/mask.html">mask</a>/<a href="obj/item/clothing/mask/facehugger.html">facehugger</a>/F, check_death, check_mask, provoked) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L408">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 408"/></a></aside>
+        </h3>
+        <p>Can this mob be facehugged?</p><h3 id="proc/can_put_in_hand"><aside class="declaration">proc </aside>can_put_in_hand<aside>(I, hand_index) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 152"/></a></aside>
+        </h3>
+        <p>Returns if we're able to put something in a hand of a mob</p><h3 id="proc/can_wait_in_larva_queue"><aside class="declaration">proc </aside>can_wait_in_larva_queue<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/larva_queue.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;larva_queue.dm 45"/></a></aside>
+        </h3>
+        <p>Returns if the mob is valid to keep waiting in the larva queue</p><h3 id="proc/changeNext_move"><aside class="declaration">proc </aside>changeNext_move<aside>(num) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/click.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;click.dm 7"/></a></aside>
+        </h3>
+        <p>how many times we've fired the railgun this cycle
+max times we can fire within a single volley
+used to check if we have valid targets
+Delays the mob's next click/action by num deciseconds
+eg: 10 - 3 = 7 deciseconds of delay
+eg: 10 * 0.5 = 5 deciseconds of delay
+DOES NOT EFFECT THE BASE 1 DECISECOND DELAY OF NEXT_CLICK</p><h3 id="proc/check_emote"><aside class="declaration">proc </aside>check_emote<aside>(message) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/say.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;say.dm 116"/></a></aside>
+        </h3>
+        <p>Check if this message is an emote</p><h3 id="proc/clear_fullscreen"><aside class="declaration">proc </aside>clear_fullscreen<aside>(category, animated) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/fullscreen.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;fullscreen.dm 36"/></a></aside>
+        </h3>
+        <p>Removes a fullscreen overlay</p><h3 id="proc/clear_important_client_contents"><aside class="declaration">proc </aside>clear_important_client_contents<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1568">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1568"/></a></aside>
+        </h3>
+        <p>We got our awareness updated by the important recursive contents stuff, now we add our membership
+Clears the clients channel of this mob</p><h3 id="proc/create_chat_message"><aside class="declaration">proc </aside>create_chat_message<aside>(/<a href="atom.html">atom</a>/speaker, /<a href="datum.html">datum</a>/language/message_language, raw_message, /list/spans, message_mode, runechat_flags) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/chatmessage.dm#L282">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;chatmessage.dm 282"/></a></aside>
+        </h3>
+        <p>Creates a message overlay at a defined location for a given speaker</p>
+<p>Arguments:</p>
+<ul>
+<li>speaker - The atom who is saying this message</li>
+<li>message_language - The language that the message is said in</li>
+<li>raw_message - The text content of the message</li>
+<li>spans - Additional classes to be added to the message</li>
+<li>message_mode - String relating to the mode of the message</li>
+<li>runechat_flags - Bitflags relating to the message</li>
+</ul><h3 id="proc/create_thinking_indicator"><aside class="declaration">proc </aside>create_thinking_indicator<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui_input/say_modal/typing.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui_input&#x2F;say_modal&#x2F;typing.dm 2"/></a></aside>
+        </h3>
+        <p>Creates a thinking indicator over the mob.</p><h3 id="proc/create_typing_indicator"><aside class="declaration">proc </aside>create_typing_indicator<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui_input/say_modal/typing.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui_input&#x2F;say_modal&#x2F;typing.dm 10"/></a></aside>
+        </h3>
+        <p>Creates a typing indicator over the mob.</p><h3 id="proc/default_lighting_cutoff"><aside class="declaration">proc </aside>default_lighting_cutoff<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_helpers.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_helpers.dm 20"/></a></aside>
+        </h3>
+        <p>Returns this mob's default lighting alpha</p><h3 id="proc/do_after_coefficent"><aside class="declaration">proc </aside>do_after_coefficent<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/mobs.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;mobs.dm 125"/></a></aside>
+        </h3>
+        <p>Multiplier on all do_afters for this mob</p><h3 id="proc/down"><aside class="declaration">verb </aside>down<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_movement.dm#L374">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_movement.dm 374"/></a></aside>
+        </h3>
+        <p>Moves a mob down a z level</p><h3 id="proc/draw_from_slot_if_possible"><aside class="declaration">proc </aside>draw_from_slot_if_possible<aside>(slot) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L309">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 309"/></a></aside>
+        </h3>
+        <p>Checks an inventory slot for an item that can be drawn that is directly stored, or inside another storage item, and draws it if possible</p><h3 id="proc/dropItemToGround"><aside class="declaration">proc </aside>dropItemToGround<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, force) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L260">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 260"/></a></aside>
+        </h3>
+        <p>Used to drop an item (if it exists) to the ground.</p>
+<ul>
+<li>Will return TRUE is successfully dropped.</li>
+<li>Will return FALSE if the item can not be dropped due to TRAIT_NODROP via doUnEquip().</li>
+<li>Will return null if there is no item.
+If the item can be dropped, it will be forceMove()'d to the ground and the turf's Entered() will be called.</li>
+</ul><h3 id="proc/drop_all_held_items"><aside class="declaration">proc </aside>drop_all_held_items<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L247">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 247"/></a></aside>
+        </h3>
+        <p>Drops the items in our hands.</p>
+<p>Returns TURE if it was successful.</p><h3 id="proc/drop_held_item"><aside class="declaration">proc </aside>drop_held_item<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L235">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 235"/></a></aside>
+        </h3>
+        <p>Drops the item in our active hand.</p>
+<p>Returns TURE if it was successful.</p><h3 id="proc/drop_item_v"><aside class="declaration">proc </aside>drop_item_v<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L199">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 199"/></a></aside>
+        </h3>
+        <p>Helper proc used by the drop_item verb and on screen button.</p>
+<p>Returns TURE if it was successful.</p><h3 id="proc/drop_l_hand"><aside class="declaration">proc </aside>drop_l_hand<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L211">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 211"/></a></aside>
+        </h3>
+        <p>Drops the item in our left hand.</p>
+<p>Returns TURE if it was successful.</p><h3 id="proc/drop_r_hand"><aside class="declaration">proc </aside>drop_r_hand<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L223">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 223"/></a></aside>
+        </h3>
+        <p>Drops the item in our right hand.</p>
+<p>Returns TURE if it was successful.</p><h3 id="proc/enable_client_mobs_in_contents"><aside class="declaration">proc </aside>enable_client_mobs_in_contents<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1554">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1554"/></a></aside>
+        </h3>
+        <p>We get our awareness updated by the important recursive contents stuff, here we remove our membership
+propogates ourselves through our nested contents, similar to other important_recursive_contents procs
+main difference is that client contents need to possibly duplicate recursive contents for the clients mob AND its eye</p><h3 id="proc/eord_respawn"><aside class="declaration">proc </aside>eord_respawn<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_verbs.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_verbs.dm 131"/></a></aside>
+        </h3>
+        <p>This is only available to mobs once they join EORD.</p><h3 id="proc/equip_to_appropriate_slot"><aside class="declaration">proc </aside>equip_to_appropriate_slot<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/W, ignore_delay) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L298">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 298"/></a></aside>
+        </h3>
+        <p>Attempts to store an item in a valid location based on SLOT_EQUIP_ORDER</p><h3 id="proc/equip_to_slot"><aside class="declaration">proc </aside>equip_to_slot<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item_to_equip, slot, bitslot) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L262">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 262"/></a></aside>
+        </h3>
+        <p>This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
+In most cases you will want to use equip_to_slot_if_possible()</p><h3 id="proc/equip_to_slot_if_possible"><aside class="declaration">proc </aside>equip_to_slot_if_possible<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item_to_equip, slot, ignore_delay, del_on_fail, warning, redraw_mob, override_nodrop) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L236">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 236"/></a></aside>
+        </h3>
+        <p>This is a SAFE proc. Use this instead of equip_to_slot()!
+set del_on_fail to have it delete item_to_equip if it fails to equip
+unset redraw_mob to prevent the mob from being redrawn at the end.</p><h3 id="proc/equip_to_slot_or_del"><aside class="declaration">proc </aside>equip_to_slot_or_del<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/W, slot, override_nodrop) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L289">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 289"/></a></aside>
+        </h3>
+        <p>This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.</p><h3 id="proc/equip_to_slot_or_hand"><aside class="declaration">proc </aside>equip_to_slot_or_hand<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/W, slot, override_nodrop) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L293">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 293"/></a></aside>
+        </h3>
+        <p>Tries to equip an item to the slot provided, otherwise tries to put it in hands, if hands are full the item is deleted</p><h3 id="proc/examinate"><aside class="declaration">verb </aside>examinate<aside>(/<a href="atom.html">atom</a>/examinify) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_verbs.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_verbs.dm 10"/></a></aside>
+        </h3>
+        <p>This is a mob verb for speed reasons (nice one BYOND).
+See <a href="https://secure.byond.com/forum/?post=1326139&amp;page=2#comment8198716">this BYOND forum post</a>
+for why this isnt something like <code>/atom/verb/examine</code>.</p>
+<p>SIGNAL FUN:
+Produces a signal <a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MOB_EXAMINATE" title="COMSIG_MOB_EXAMINATE">COMSIG_MOB_EXAMINATE</a>, for doing stuff to people who examine things,
+like applying debilitating effects to someone who examines a specific type of atom.</p><h3 id="proc/finish_clear_fullscreen"><aside class="declaration">proc </aside>finish_clear_fullscreen<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/fullscreen.html">fullscreen</a>/screen, category) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/fullscreen.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;fullscreen.dm 49"/></a></aside>
+        </h3>
+        <p>Actually removes the fullscreen overlay when ready</p><h3 id="proc/get_active_held_item"><aside class="declaration">proc </aside>get_active_held_item<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 7"/></a></aside>
+        </h3>
+        <p>returns the thing in our currently active hand</p><h3 id="proc/get_config_multiplicative_speed"><aside class="declaration">proc </aside>get_config_multiplicative_speed<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_movespeed.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_movespeed.dm 73"/></a></aside>
+        </h3>
+        <p>Get the global config movespeed of a mob by type</p><h3 id="proc/get_equipped_slot"><aside class="declaration">proc </aside>get_equipped_slot<aside>(/<a href="obj.html">obj</a>/equipped_item) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L354">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 354"/></a></aside>
+        </h3>
+        <p>Find the slot an item is equipped to and returns its slot define</p><h3 id="proc/get_held_item"><aside class="declaration">proc </aside>get_held_item<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L395">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 395"/></a></aside>
+        </h3>
+        <p>Proc to get the item in the active hand.</p><h3 id="proc/get_held_items"><aside class="declaration">proc </aside>get_held_items<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L404">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 404"/></a></aside>
+        </h3>
+        <p>Get a list of all held items</p><h3 id="proc/get_inactive_held_item"><aside class="declaration">proc </aside>get_inactive_held_item<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 17"/></a></aside>
+        </h3>
+        <p>returns the thing in our currently inactive hand</p><h3 id="proc/get_item_by_slot"><aside class="declaration">proc </aside>get_item_by_slot<aside>(slot_id) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L432">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 432"/></a></aside>
+        </h3>
+        <p>Returns the item in a given slot</p><h3 id="proc/get_item_by_slot_bit"><aside class="declaration">proc </aside>get_item_by_slot_bit<aside>(slot_bit) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L436">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 436"/></a></aside>
+        </h3>
+        <p>Returns the item in a given bit slot</p><h3 id="proc/get_item_for_held_index"><aside class="declaration">proc </aside>get_item_for_held_index<aside>(hand_index) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L185">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 185"/></a></aside>
+        </h3>
+        <p>gets an item by hand index</p><h3 id="proc/get_liquid_slowdown"><aside class="declaration">proc </aside>get_liquid_slowdown<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_helpers.dm#L478">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_helpers.dm 478"/></a></aside>
+        </h3>
+        <p>Returns the slowdown applied to the mob when moving through liquids like water</p><h3 id="proc/get_mob_buckling_height"><aside class="declaration">proc </aside>get_mob_buckling_height<aside>(/<a href="mob.html">mob</a>/seat) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L541">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 541"/></a></aside>
+        </h3>
+        <p>returns the height in pixel the mob should have when buckled to another mob.</p><h3 id="proc/get_movespeed_modifiers"><aside class="declaration">proc </aside>get_movespeed_modifiers<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_movespeed.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_movespeed.dm 112"/></a></aside>
+        </h3>
+        <p>Get the move speed modifiers list of the mob</p><h3 id="proc/get_policy_keywords"><aside class="declaration">proc </aside>get_policy_keywords<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_helpers.dm#L454">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_helpers.dm 454"/></a></aside>
+        </h3>
+        <p>Get the list of keywords for policy config</p>
+<p>This gets the type, mind assigned roles and antag datums as a list, these are later used
+to send the user relevant headadmin policy config</p><h3 id="proc/get_status_tab_items"><aside class="declaration">proc </aside>get_status_tab_items<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L740">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 740"/></a></aside>
+        </h3>
+        <p>Adds this list to the output to the stat browser</p><h3 id="proc/has_movespeed_modifier"><aside class="declaration">proc </aside>has_movespeed_modifier<aside>(id) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_movespeed.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_movespeed.dm 65"/></a></aside>
+        </h3>
+        <p>Is there a movespeed modifier for this mob</p><h3 id="proc/index_to_hand"><aside class="declaration">proc </aside>index_to_hand<aside>(hand_index) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L181">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 181"/></a></aside>
+        </h3>
+        <p>returns the hand based on index (1 for left hand, 2 for right)</p><h3 id="proc/interaction_emote"><aside class="declaration">proc </aside>interaction_emote<aside>(/<a href="mob.html">mob</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/interactive_emotes.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;interactive_emotes.dm 2"/></a></aside>
+        </h3>
+        <p>All in one function to begin interactions</p><h3 id="proc/is_holding_item_of_type"><aside class="declaration">proc </aside>is_holding_item_of_type<aside>(typepath) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 30"/></a></aside>
+        </h3>
+        <p>Checks if this mob is holding a certain type of item in hands
+returns the item if found
+Args:</p>
+<ul>
+<li>typepath: typepath to check for</li>
+</ul><h3 id="proc/log_message"><aside class="parent"><a title="/atom" href="atom.html#proc/log_message">&uarr;</a></aside>log_message<aside>(message, message_type, color, log_globally) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/logging/mob.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;logging&#x2F;mob.dm 11"/></a></aside>
+        </h3>
+        <p>Logs a message in a mob's individual log, and in the global logs as well if log_globally is true</p><h3 id="proc/log_mob_tag"><aside class="declaration">proc </aside>log_mob_tag<aside>(text, /list/data) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/logging/mob.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;logging&#x2F;mob.dm 6"/></a></aside>
+        </h3>
+        <p>Logs a mesage to the mob_tags log, including the mobs tag
+Arguments:</p>
+<ul>
+<li>text - text to log.</li>
+</ul><h3 id="proc/movespeed_modifier_identical_check"><aside class="declaration">proc </aside>movespeed_modifier_identical_check<aside>(/list/mod1, /list/mod2) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_movespeed.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_movespeed.dm 116"/></a></aside>
+        </h3>
+        <p>Check if a movespeed modifier is identical to another</p><h3 id="proc/onShuttleMove">onShuttleMove<aside>(/<a href="turf.html">turf</a>/newT, /<a href="turf.html">turf</a>/oldT, /list/movement_force, move_dir, /<a href="obj.html">obj</a>/<a href="obj/docking_port.html">docking_port</a>/<a href="obj/docking_port/stationary.html">stationary</a>/old_dock, /<a href="obj.html">obj</a>/<a href="obj/docking_port.html">docking_port</a>/<a href="obj/docking_port/mobile.html">mobile</a>/moving_dock) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/on_move.dm#L250">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;on_move.dm 250"/></a></aside>
+        </h3>
+        <p>Mob move procs</p><h3 id="proc/on_eord"><aside class="declaration">proc </aside>on_eord<aside>(/<a href="turf.html">turf</a>/destination) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L912">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 912"/></a></aside>
+        </h3>
+        <p>Side effects of being sent to the end of round deathmatch zone</p><h3 id="proc/overlay_fullscreen"><aside class="declaration">proc </aside>overlay_fullscreen<aside>(category, type, severity) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/fullscreen.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;fullscreen.dm 10"/></a></aside>
+        </h3>
+        <p>Applies a fullscreen overlay</p><h3 id="proc/play_screen_text"><aside class="declaration">proc </aside>play_screen_text<aside>(text, alert_type, override_color) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/screen_alert/_screen_alert.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;screen_alert&#x2F;_screen_alert.dm 9"/></a></aside>
+        </h3>
+        <p>proc for playing a screen_text on a mob.
+enqueues it if a screen text is running and plays i otherwise
+Arguments:</p>
+<ul>
+<li>text: text we want to be displayed</li>
+<li>alert_type: typepath OR atom for screen text type we want to play here</li>
+<li>override_color: color of the screen text</li>
+</ul><h3 id="proc/playsound_local"><aside class="declaration">proc </aside>playsound_local<aside>(/<a href="turf.html">turf</a>/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, /sound/sound_to_use, distance_multiplier) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/sound.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;sound.dm 157"/></a></aside>
+        </h3>
+        <p>snowflake, note this ignores walls cus I cant be assed rn
+Plays a sound locally</p>
+<p>Arguments:</p>
+<ul>
+<li>turf_source - The turf our sound originates from</li>
+<li>soundin - the .ogg or SFX of our sound</li>
+<li>vol - Changes the volume of our sound, relevant when measuring falloff</li>
+<li>vary - to make the frequency var of the sound vary (mostly unused).</li>
+<li>frequency - Optional: if vary is set, this is how much we vary by (or a random amount if not given any value)</li>
+<li>falloff - Optional: Calculates falloff if not passed a value</li>
+<li>is_global - if false, sets our environment to SOUND_ENVIRONMENT_ROOM</li>
+<li>channel - Optional: Picks a random available channel if not set</li>
+<li>sound_to_use - Optional: Will default to soundin</li>
+<li>distance_multiplier - Affects x and z hearing</li>
+</ul><h3 id="proc/post_buckle_mob">post_buckle_mob<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/M) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L530">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 530"/></a></aside>
+        </h3>
+        <p>Call back post buckle to a mob to offset your visual height</p><h3 id="proc/post_unbuckle_mob">post_unbuckle_mob<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/M) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L536">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 536"/></a></aside>
+        </h3>
+        <p>Call back post unbuckle from a mob, (reset your visual height here)</p><h3 id="proc/put_in_active_hand"><aside class="declaration">proc </aside>put_in_active_hand<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/W) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 101"/></a></aside>
+        </h3>
+        <p>Puts the item into our active hand if possible.</p>
+<p>Arguments</p>
+<ul>
+<li>obj/item/W is the item you are trying to equip</li>
+</ul>
+<p>Returns TRUE on success.</p><h3 id="proc/put_in_any_hand_if_possible"><aside class="declaration">proc </aside>put_in_any_hand_if_possible<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/W, del_on_fail, warning, redraw_mob) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L224">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 224"/></a></aside>
+        </h3>
+        <p>Attempts to put an item in either hand, prioritizing the active hand</p><h3 id="proc/put_in_hand"><aside class="declaration">proc </aside>put_in_hand<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, hand_index, del_on_fail) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 160"/></a></aside>
+        </h3>
+        <p>Puts an item in a specific hand index (so left or right)</p><h3 id="proc/put_in_hand_check"><aside class="declaration">proc </aside>put_in_hand_check<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, hand_index) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 170"/></a></aside>
+        </h3>
+        <p>Proc that checks if we can put something into someone's hands</p><h3 id="proc/put_in_hands"><aside class="declaration">proc </aside>put_in_hands<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/W, del_on_fail) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 132"/></a></aside>
+        </h3>
+        <p>Puts the item our active hand if possible. Failing that it tries our inactive hand.
+If both hands fail the item falls to the floor.</p>
+<p>Arguments</p>
+<ul>
+<li>obj/item/W is the item you are trying to equip</li>
+<li>del_on_fail if true will delete the item instead of dropping it to the floor</li>
+</ul>
+<p>Returns TRUE if it was able to put the thing into one of our hands.</p><h3 id="proc/put_in_inactive_hand"><aside class="declaration">proc </aside>put_in_inactive_hand<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/W) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 115"/></a></aside>
+        </h3>
+        <p>Puts the item into our inactive hand if possible.</p>
+<p>Arguments</p>
+<ul>
+<li>obj/item/W is the item you are trying to equip
+Returns TRUE on success.</li>
+</ul><h3 id="proc/put_in_l_hand"><aside class="declaration">proc </aside>put_in_l_hand<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/W) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 47"/></a></aside>
+        </h3>
+        <p>Puts the item into your l_hand if possible and calls all necessary triggers/updates.</p>
+<p>Arguments</p>
+<ul>
+<li>obj/item/W is the item you are trying to equip</li>
+</ul>
+<p>Returns TRUE on success.</p><h3 id="proc/put_in_r_hand"><aside class="declaration">proc </aside>put_in_r_hand<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/W) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 74"/></a></aside>
+        </h3>
+        <p>Puts the item into your r_hand if possible and calls all necessary triggers/updates.</p>
+<p>Arguments</p>
+<ul>
+<li>obj/item/W is the item you are trying to equip</li>
+</ul>
+<p>Returns TRUE on success.</p><h3 id="proc/record_structures_built"><aside class="declaration">proc </aside>record_structures_built<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/personal_statistics.dm#L651">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;personal_statistics.dm 651"/></a></aside>
+        </h3>
+        <p>Tally when a structure is constructed</p><h3 id="proc/record_traps_created"><aside class="declaration">proc </aside>record_traps_created<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/personal_statistics.dm#L625">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;personal_statistics.dm 625"/></a></aside>
+        </h3>
+        <p>Short proc that tallies up traps_created; reduce copy pasta</p><h3 id="proc/remove_all_indicators"><aside class="declaration">proc </aside>remove_all_indicators<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui_input/say_modal/typing.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui_input&#x2F;say_modal&#x2F;typing.dm 18"/></a></aside>
+        </h3>
+        <p>Removes any indicators and marks the mob as not speaking IC.</p><h3 id="proc/remove_movespeed_modifier"><aside class="declaration">proc </aside>remove_movespeed_modifier<aside>(id, update) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_movespeed.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_movespeed.dm 55"/></a></aside>
+        </h3>
+        <p>Remove a move speed modifier from a mob</p><h3 id="proc/remove_thinking_indicator"><aside class="declaration">proc </aside>remove_thinking_indicator<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui_input/say_modal/typing.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui_input&#x2F;say_modal&#x2F;typing.dm 6"/></a></aside>
+        </h3>
+        <p>Removes the thinking indicator over the mob.</p><h3 id="proc/remove_typing_indicator"><aside class="declaration">proc </aside>remove_typing_indicator<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui_input/say_modal/typing.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui_input&#x2F;say_modal&#x2F;typing.dm 14"/></a></aside>
+        </h3>
+        <p>Removes the typing indicator over the mob.</p><h3 id="proc/say_verb"><aside class="declaration">verb </aside>say_verb<aside>(message) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/say.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;say.dm 2"/></a></aside>
+        </h3>
+        <p>what clients use to speak. when you type a message into the chat bar in say mode, this is the first thing that goes off serverside.</p><h3 id="proc/setGrabState">setGrabState<aside>(newstate) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L851">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 851"/></a></aside>
+        </h3>
+        <p>Updates the grab state of the mob and updates movespeed</p><h3 id="proc/set_invis_see"><aside class="declaration">proc </aside>set_invis_see<aside>(new_sight) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_helpers.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_helpers.dm 45"/></a></aside>
+        </h3>
+        <p>see invisibility is the mob's capability to see things that ought to be hidden from it
+Can think of it as a primitive version of changing the alpha of planes
+We mostly use it to hide ghosts, no real reason why</p><h3 id="proc/set_sight"><aside class="declaration">proc </aside>set_sight<aside>(new_value) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_helpers.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_helpers.dm 27"/></a></aside>
+        </h3>
+        <p>Sight here is the mob.sight var, which tells byond what to actually show to our client
+See <a href="code/__DEFINES/sight.html" title="code\__DEFINES\sight.dm">code__DEFINES\sight.dm</a> for more details</p><h3 id="proc/set_skills"><aside class="declaration">proc </aside>set_skills<aside>(/<a href="datum.html">datum</a>/<a href="datum/skills.html">skills</a>/new_skillset) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_helpers.dm#L473">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_helpers.dm 473"/></a></aside>
+        </h3>
+        <p>Handles setting or changing a mob's skills</p><h3 id="proc/shared_ui_interaction"><aside class="declaration">proc </aside>shared_ui_interaction<aside>(src_object) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states.dm 62"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Standard interaction/sanity checks. Different mob types may have overrides.</p>
+<p>return UI_state The state of the UI.</p><h3 id="proc/shuttleRotate"><aside class="parent"><a title="/atom" href="atom.html#proc/shuttleRotate">&uarr;</a></aside>shuttleRotate<aside>(rotation, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/shuttle_rotate.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;shuttle_rotate.dm 35"/></a></aside>
+        </h3>
+        <p>Mob rotate procs</p><h3 id="proc/sort_movespeed_modlist"><aside class="declaration">proc </aside>sort_movespeed_modlist<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_movespeed.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_movespeed.dm 135"/></a></aside>
+        </h3>
+        <p>Sort the list of move speed modifiers</p>
+<p>Verifies it too. Sorts highest priority (first applied) to lowest priority (last applied)</p><h3 id="proc/stripPanelUnequip"><aside class="declaration">proc </aside>stripPanelUnequip<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, /<a href="mob.html">mob</a>/M) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L428">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 428"/></a></aside>
+        </h3>
+        <p>The mob is trying to strip an item from someone</p><h3 id="proc/sync_lighting_plane_cutoff"><aside class="declaration">proc </aside>sync_lighting_plane_cutoff<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L823">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 823"/></a></aside>
+        </h3>
+        <p>Set the lighting plane hud filters to the mobs lighting_cutoff var</p><h3 id="proc/temporarilyRemoveItemFromInventory"><aside class="declaration">proc </aside>temporarilyRemoveItemFromInventory<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, force) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L281">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 281"/></a></aside>
+        </h3>
+        <p>Removes an item on a mob's inventory.</p>
+<ul>
+<li>It does not change the item's loc, just unequips it from the mob.</li>
+<li>Used just before you want to delete the item, or moving it afterwards.</li>
+</ul><h3 id="proc/throw_item"><aside class="declaration">proc </aside>throw_item<aside>(/<a href="atom.html">atom</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon.dm#L144">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon.dm 144"/></a></aside>
+        </h3>
+        <p>Throws active held item at target in params</p><h3 id="proc/transferItemToLoc"><aside class="declaration">proc </aside>transferItemToLoc<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, /<a href="atom.html">atom</a>/newloc, force) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/inventory.dm#L272">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;inventory.dm 272"/></a></aside>
+        </h3>
+        <p>For when the item will be immediately placed in a loc other than the ground.</p><h3 id="proc/up"><aside class="declaration">verb </aside>up<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_movement.dm#L345">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_movement.dm 345"/></a></aside>
+        </h3>
+        <p>Moves a mob upwards in z level</p><h3 id="proc/update_action_buttons"><aside class="declaration">proc </aside>update_action_buttons<aside>(reload_screen) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/action.dm#L227">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;action.dm 227"/></a></aside>
+        </h3>
+        <p>This is the proc used to update all the action buttons.</p><h3 id="proc/update_config_movespeed"><aside class="declaration">proc </aside>update_config_movespeed<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_movespeed.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_movespeed.dm 69"/></a></aside>
+        </h3>
+        <p>Set or update the global movespeed config on a mob</p><h3 id="proc/update_joined_player_list"><aside class="declaration">proc </aside>update_joined_player_list<aside>(newname, oldname) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L782">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 782"/></a></aside>
+        </h3>
+        <p>Signal sent after the eye has been successfully updated, with the client existing.</p><h3 id="proc/update_mouse_pointer"><aside class="declaration">proc </aside>update_mouse_pointer<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L838">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 838"/></a></aside>
+        </h3>
+        <p>Update the mouse pointer of the attached client in this mob</p><h3 id="proc/update_movespeed"><aside class="declaration">proc </aside>update_movespeed<aside>(resort) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_movespeed.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_movespeed.dm 87"/></a></aside>
+        </h3>
+        <p>Go through the list of movespeed modifiers and calculate a final movespeed</p><h3 id="proc/update_sight"><aside class="declaration">proc </aside>update_sight<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L817">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 817"/></a></aside>
+        </h3>
+        <p>Update the lighting plane and sight of this mob (sends COMSIG_MOB_UPDATE_SIGHT)</p><h3 id="proc/update_stat"><aside class="declaration">proc </aside>update_stat<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob.dm#L608">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 608"/></a></aside>
+        </h3>
+        <p>Called to update the stat var, returns a boolean to indicate if it has been handled.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

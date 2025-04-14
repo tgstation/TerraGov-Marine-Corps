@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;researchcomp - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/researchcomp.html#var">Var Details</a> - <a href="obj/machinery/researchcomp.html#proc">Proc Details</a></header>
+<main>
+<h1>researchcomp <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/researchcomp.html">researchcomp</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/research.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;research.dm 15"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/researchcomp.html#var/allowed_resources_desc">allowed_resources_desc</a></th><td>Description of usable resources for starting research</td></tr>
+            <tr><th><a href="obj/machinery/researchcomp.html#var/init_resource">init_resource</a></th><td>Loaded resource to begin research</td></tr>
+            <tr><th><a href="obj/machinery/researchcomp.html#var/researching">researching</a></th><td>UI holder</td></tr>
+            <tr><th><a href="obj/machinery/researchcomp.html#var/reward_tiers">reward_tiers</a></th><td>Research reward tiers</td></tr>
+            <tr><th><a href="obj/machinery/researchcomp.html#var/rewards_lists">rewards_lists</a></th><td>List of rewards for each category</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/researchcomp.html#proc/construct_insertable_resources_desc">construct_insertable_resources_desc</a></th><td>Creates the description of usable resources for starting research</td></tr>
+            <tr><th><a href="obj/machinery/researchcomp.html#proc/finish_research">finish_research</a></th><td>Handles the research process completing</td></tr>
+            <tr><th><a href="obj/machinery/researchcomp.html#proc/generate_research_rewards_list">generate_research_rewards_list</a></th><td>Generates rewards using the resource's rarity modifiers and a list of potential rewards</td></tr>
+            <tr><th><a href="obj/machinery/researchcomp.html#proc/replace_init_resource">replace_init_resource</a></th><td>Inserts/Replaces the resource used to being research</td></tr>
+            <tr><th><a href="obj/machinery/researchcomp.html#proc/research_item">research_item</a></th><td>Generates rewards from a research resource</td></tr>
+            <tr><th><a href="obj/machinery/researchcomp.html#proc/start_research">start_research</a></th><td>Begins the research process</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/allowed_resources_desc"><aside class="declaration">var </aside>allowed_resources_desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/research.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;research.dm 23"/></a></h3>
+        <p>Description of usable resources for starting research</p><h3 id="var/init_resource"><aside class="declaration">var </aside>init_resource
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/research_resource.html">research_resource</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/research.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;research.dm 25"/></a></h3>
+        <p>Loaded resource to begin research</p><h3 id="var/researching"><aside class="declaration">var </aside>researching
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/research.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;research.dm 27"/></a></h3>
+        <p>UI holder</p><h3 id="var/reward_tiers"><aside class="declaration">var </aside>reward_tiers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/research.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;research.dm 30"/></a></h3>
+        <p>Research reward tiers</p><h3 id="var/rewards_lists"><aside class="declaration">var </aside>rewards_lists
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/research.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;research.dm 38"/></a></h3>
+        <p>List of rewards for each category</p><h2 id="proc">Proc Details</h2><h3 id="proc/construct_insertable_resources_desc"><aside class="declaration">proc </aside>construct_insertable_resources_desc<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/research.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;research.dm 84"/></a></aside>
+        </h3>
+        <p>Creates the description of usable resources for starting research</p><h3 id="proc/finish_research"><aside class="declaration">proc </aside>finish_research<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/research.dm#L189">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;research.dm 189"/></a></aside>
+        </h3>
+        <p>Handles the research process completing</p><h3 id="proc/generate_research_rewards_list"><aside class="declaration">proc </aside>generate_research_rewards_list<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/research_resource.html">research_resource</a>/resource, /list/potential_rewards, /list/earned_rewards) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/research.dm#L210">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;research.dm 210"/></a></aside>
+        </h3>
+        <p>Generates rewards using the resource's rarity modifiers and a list of potential rewards</p><h3 id="proc/replace_init_resource"><aside class="declaration">proc </aside>replace_init_resource<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/new_resource) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/research.dm#L169">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;research.dm 169"/></a></aside>
+        </h3>
+        <p>Inserts/Replaces the resource used to being research</p><h3 id="proc/research_item"><aside class="declaration">proc </aside>research_item<aside>(/<a href="atom.html">atom</a>/rewards_position, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/research_resource.html">research_resource</a>/resource, bucket) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/research.dm#L199">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;research.dm 199"/></a></aside>
+        </h3>
+        <p>Generates rewards from a research resource</p><h3 id="proc/start_research"><aside class="declaration">proc </aside>start_research<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, research_time) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/research.dm#L183">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;research.dm 183"/></a></aside>
+        </h3>
+        <p>Begins the research process</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;jump - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/jump.html#var">Var Details</a> - <a href="datum/component/jump.html#proc">Proc Details</a></header>
+<main>
+<h1>jump <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/jump.html">jump</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 14"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/jump.html#var/external_user">external_user</a></th><td>A 3rd party that controls the jumping of parent. Probably a vehicle driver</td></tr>
+            <tr><th><a href="datum/component/jump.html#var/jump_cooldown">jump_cooldown</a></th><td>time between jumps</td></tr>
+            <tr><th><a href="datum/component/jump.html#var/jump_duration">jump_duration</a></th><td>air time</td></tr>
+            <tr><th><a href="datum/component/jump.html#var/jump_flags">jump_flags</a></th><td>Special jump behavior flags</td></tr>
+            <tr><th><a href="datum/component/jump.html#var/jump_height">jump_height</a></th><td>the how high the jumper visually jumps</td></tr>
+            <tr><th><a href="datum/component/jump.html#var/jump_sound">jump_sound</a></th><td>the sound of the jump</td></tr>
+            <tr><th><a href="datum/component/jump.html#var/jump_start_time">jump_start_time</a></th><td>When the jump started. Only relevant for charged jumps</td></tr>
+            <tr><th><a href="datum/component/jump.html#var/jumper_allow_pass_flags">jumper_allow_pass_flags</a></th><td>allow_pass_flags flags applied to the jumper on jump</td></tr>
+            <tr><th><a href="datum/component/jump.html#var/stamina_cost">stamina_cost</a></th><td>how much stamina jumping takes</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/jump.html#proc/can_jump">can_jump</a></th><td>Checks if you can actually jump right now</td></tr>
+            <tr><th><a href="datum/component/jump.html#proc/charge_jump">charge_jump</a></th><td>Starts charging the jump</td></tr>
+            <tr><th><a href="datum/component/jump.html#proc/do_jump">do_jump</a></th><td>Performs the jump</td></tr>
+            <tr><th><a href="datum/component/jump.html#proc/end_jump">end_jump</a></th><td>Ends the jump</td></tr>
+            <tr><th><a href="datum/component/jump.html#proc/jump_throw">jump_throw</a></th><td>Jump throw bonuses</td></tr>
+            <tr><th><a href="datum/component/jump.html#proc/remove_external_user">remove_external_user</a></th><td>Unsets an external controller</td></tr>
+            <tr><th><a href="datum/component/jump.html#proc/set_external_user">set_external_user</a></th><td>Sets an external controller, such as a vehicle driver</td></tr>
+            <tr><th><a href="datum/component/jump.html#proc/set_vars">set_vars</a></th><td>Actually sets the jump vars</td></tr>
+            <tr><th><a href="datum/component/jump.html#proc/start_jump">start_jump</a></th><td>handles pre-jump checks and setup of additional jump behavior.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/external_user"><aside class="declaration">var </aside>external_user
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 35"/></a></h3>
+        <p>A 3rd party that controls the jumping of parent. Probably a vehicle driver</p><h3 id="var/jump_cooldown"><aside class="declaration">var </aside>jump_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 19"/></a></h3>
+        <p>time between jumps</p><h3 id="var/jump_duration"><aside class="declaration">var </aside>jump_duration
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 17"/></a></h3>
+        <p>air time</p><h3 id="var/jump_flags"><aside class="declaration">var </aside>jump_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 27"/></a></h3>
+        <p>Special jump behavior flags</p><h3 id="var/jump_height"><aside class="declaration">var </aside>jump_height
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 23"/></a></h3>
+        <p>the how high the jumper visually jumps</p><h3 id="var/jump_sound"><aside class="declaration">var </aside>jump_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 25"/></a></h3>
+        <p>the sound of the jump</p><h3 id="var/jump_start_time"><aside class="declaration">var </aside>jump_start_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 31"/></a></h3>
+        <p>When the jump started. Only relevant for charged jumps</p><h3 id="var/jumper_allow_pass_flags"><aside class="declaration">var </aside>jumper_allow_pass_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 29"/></a></h3>
+        <p>allow_pass_flags flags applied to the jumper on jump</p><h3 id="var/stamina_cost"><aside class="declaration">var </aside>stamina_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 21"/></a></h3>
+        <p>how much stamina jumping takes</p><h2 id="proc">Proc Details</h2><h3 id="proc/can_jump"><aside class="declaration">proc </aside>can_jump<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/jumper) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 95"/></a></aside>
+        </h3>
+        <p>Checks if you can actually jump right now</p><h3 id="proc/charge_jump"><aside class="declaration">proc </aside>charge_jump<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/jumper) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 91"/></a></aside>
+        </h3>
+        <p>Starts charging the jump</p><h3 id="proc/do_jump"><aside class="declaration">proc </aside>do_jump<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/jumper) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 131"/></a></aside>
+        </h3>
+        <p>Performs the jump</p><h3 id="proc/end_jump"><aside class="declaration">proc </aside>end_jump<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/jumper, old_pass_flags) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 171"/></a></aside>
+        </h3>
+        <p>Ends the jump</p><h3 id="proc/jump_throw"><aside class="declaration">proc </aside>jump_throw<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/thrower, target, thrown_thing, /list/throw_modifiers) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L180">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 180"/></a></aside>
+        </h3>
+        <p>Jump throw bonuses</p><h3 id="proc/remove_external_user"><aside class="declaration">proc </aside>remove_external_user<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/old_user, control_flags) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 82"/></a></aside>
+        </h3>
+        <p>Unsets an external controller</p><h3 id="proc/set_external_user"><aside class="declaration">proc </aside>set_external_user<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/new_user, control_flags) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 70"/></a></aside>
+        </h3>
+        <p>Sets an external controller, such as a vehicle driver</p><h3 id="proc/set_vars"><aside class="declaration">proc </aside>set_vars<aside>(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 52"/></a></aside>
+        </h3>
+        <p>Actually sets the jump vars</p><h3 id="proc/start_jump"><aside class="declaration">proc </aside>start_jump<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/jumper) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/jump.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;jump.dm 115"/></a></aside>
+        </h3>
+        <p>handles pre-jump checks and setup of additional jump behavior.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

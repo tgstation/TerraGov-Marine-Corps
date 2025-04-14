@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;submerge_modifier - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/submerge_modifier.html#var">Var Details</a> - <a href="datum/component/submerge_modifier.html#proc">Proc Details</a></header>
+<main>
+<h1>submerge_modifier <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/submerge_modifier.html">submerge_modifier</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/submerge_mod.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;submerge_mod.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/submerge_modifier.html#var/submerge_height">submerge_height</a></th><td>Height in pixels a target is submerged by the parent of this component</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/submerge_modifier.html#proc/add_connections">add_connections</a></th><td>Adds the submerge element to a turf and registers for the submerge signal</td></tr>
+            <tr><th><a href="datum/component/submerge_modifier.html#proc/get_submerge_height_mod">get_submerge_height_mod</a></th><td>How high up an AM's is covered by an alpha mask when submerged. This amount is additive</td></tr>
+            <tr><th><a href="datum/component/submerge_modifier.html#proc/move_submerge_element">move_submerge_element</a></th><td>Removes and adds connections on move</td></tr>
+            <tr><th><a href="datum/component/submerge_modifier.html#proc/remove_connections">remove_connections</a></th><td>Removes the submerge element from a turf if it can no longer submerge things</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/submerge_height"><aside class="declaration">var </aside>submerge_height
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/submerge_mod.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;submerge_mod.dm 7"/></a></h3>
+        <p>Height in pixels a target is submerged by the parent of this component</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_connections"><aside class="declaration">proc </aside>add_connections<aside>(/<a href="turf.html">turf</a>/new_turf) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/submerge_mod.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;submerge_mod.dm 39"/></a></aside>
+        </h3>
+        <p>Adds the submerge element to a turf and registers for the submerge signal</p><h3 id="proc/get_submerge_height_mod"><aside class="declaration">proc </aside>get_submerge_height_mod<aside>(/<a href="turf.html">turf</a>/source, /list/submerge_list) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/submerge_mod.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;submerge_mod.dm 61"/></a></aside>
+        </h3>
+        <p>How high up an AM's is covered by an alpha mask when submerged. This amount is additive</p><h3 id="proc/move_submerge_element"><aside class="declaration">proc </aside>move_submerge_element<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, /<a href="atom.html">atom</a>/old_loc, movement_dir, forced, /list/old_locs) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/submerge_mod.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;submerge_mod.dm 55"/></a></aside>
+        </h3>
+        <p>Removes and adds connections on move</p><h3 id="proc/remove_connections"><aside class="declaration">proc </aside>remove_connections<aside>(/<a href="turf.html">turf</a>/old_turf) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/submerge_mod.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;submerge_mod.dm 46"/></a></aside>
+        </h3>
+        <p>Removes the submerge element from a turf if it can no longer submerge things</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

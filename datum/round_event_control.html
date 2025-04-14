@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;round_event_control - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/round_event_control.html#var">Var Details</a> - <a href="datum/round_event_control.html#proc">Proc Details</a></header>
+<main>
+<h1>round_event_control <aside>/<a href="datum.html">datum</a>/<a href="datum/round_event_control.html">round_event_control</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/events/_events.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;events&#x2F;_events.dm 2"/></a></h1>
+
+<p>this datum is used by the events controller to dictate how it selects events</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/round_event_control.html#var/earliest_start">earliest_start</a></th><td>The earliest world.time that an event can start (round-duration in deciseconds) default: 20 mins</td></tr>
+            <tr><th><a href="datum/round_event_control.html#var/min_players">min_players</a></th><td>The minimum amount of alive, non-AFK human players on server required to start the event.</td></tr>
+            <tr><th><a href="datum/round_event_control.html#var/name">name</a></th><td>The human-readable name of the event</td></tr>
+            <tr><th><a href="datum/round_event_control.html#var/occurrences">occurrences</a></th><td>How many times this event has occured</td></tr>
+            <tr><th><a href="datum/round_event_control.html#var/triggering">triggering</a></th><td>admin cancellation</td></tr>
+            <tr><th><a href="datum/round_event_control.html#var/typepath">typepath</a></th><td>The typepath of the event datum /datum/round_event</td></tr>
+            <tr><th><a href="datum/round_event_control.html#var/weight">weight</a></th><td>The weight this event has in the random-selection process.
+Higher weights are more likely to be picked.
+10 is the default weight. 20 is twice more likely; 5 is half as likely as this default.
+0 here does NOT disable the event, it just makes it extremely unlikely</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/round_event_control.html#proc/can_spawn_event">can_spawn_event</a></th><td>Checks if the event can be spawned. Used by event controller. Admin-created events override this.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/earliest_start"><aside class="declaration">var </aside>earliest_start
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/events/_events.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;events&#x2F;_events.dm 16"/></a></h3>
+        <p>The earliest world.time that an event can start (round-duration in deciseconds) default: 20 mins</p><h3 id="var/min_players"><aside class="declaration">var </aside>min_players
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/events/_events.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;events&#x2F;_events.dm 18"/></a></h3>
+        <p>The minimum amount of alive, non-AFK human players on server required to start the event.</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/events/_events.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;events&#x2F;_events.dm 4"/></a></h3>
+        <p>The human-readable name of the event</p><h3 id="var/occurrences"><aside class="declaration">var </aside>occurrences
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/events/_events.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;events&#x2F;_events.dm 21"/></a></h3>
+        <p>How many times this event has occured</p><h3 id="var/triggering"><aside class="declaration">var </aside>triggering
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/events/_events.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;events&#x2F;_events.dm 36"/></a></h3>
+        <p>admin cancellation</p><h3 id="var/typepath"><aside class="declaration">var </aside>typepath
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/events/_events.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;events&#x2F;_events.dm 6"/></a></h3>
+        <p>The typepath of the event datum /datum/round_event</p><h3 id="var/weight"><aside class="declaration">var </aside>weight
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/events/_events.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;events&#x2F;_events.dm 13"/></a></h3>
+        <p>The weight this event has in the random-selection process.
+Higher weights are more likely to be picked.
+10 is the default weight. 20 is twice more likely; 5 is half as likely as this default.
+0 here does NOT disable the event, it just makes it extremely unlikely</p><h2 id="proc">Proc Details</h2><h3 id="proc/can_spawn_event"><aside class="declaration">proc </aside>can_spawn_event<aside>(players_amt, gamemode) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/events/_events.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;events&#x2F;_events.dm 37"/></a></aside>
+        </h3>
+        <p>Checks if the event can be spawned. Used by event controller. Admin-created events override this.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

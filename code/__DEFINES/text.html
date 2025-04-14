@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;text.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/text.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/text.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/text.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/text.html#define/MAPTEXT">MAPTEXT</a></th><td>Prepares a text to be used for maptext. Use this so it doesn't look hideous.</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/MAPTEXT_PIXELLARI">MAPTEXT_PIXELLARI</a></th><td>Pixel-perfect scaled fonts for use in the MAP element as defined in skin.dmf</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/MAPTEXT_GRAND9K">MAPTEXT_GRAND9K</a></th><td>Standard size (ie: normal runechat) - Size options: 6pt 12pt 18pt.</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/MAPTEXT_TINY_UNICODE">MAPTEXT_TINY_UNICODE</a></th><td>Small size. (ie: context subtooltips, spell delays) - Size options: 12pt 24pt.</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/MAPTEXT_SPESSFONT">MAPTEXT_SPESSFONT</a></th><td>Smallest size. (ie: whisper runechat) - Size options: 6pt 12pt 18pt.</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/MAPTEXT_VCR_OSD_MONO">MAPTEXT_VCR_OSD_MONO</a></th><td>Prepares a text to be used for maptext, using a variable size font.</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/WXH_TO_HEIGHT">WXH_TO_HEIGHT</a></th><td>Macro from Lummox used to get height from a MeasureText proc
+resolves the MeasureText() return value once, then resolves the height, then sets return_var to that.</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/SANITIZE_FILENAME">SANITIZE_FILENAME</a></th><td>Removes characters incompatible with file names.</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/STRIP_HTML_SIMPLE">STRIP_HTML_SIMPLE</a></th><td>Simply removes the &lt; and &gt; characters, and limits the length of the message.</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/PREVENT_CHARACTER_TRIM_LOSS">PREVENT_CHARACTER_TRIM_LOSS</a></th><td>stuff like <code>copytext(input, length(input))</code> will trim the last character of the input,
+because DM does it so it copies until the char BEFORE the <code>end</code> arg, so we need to bump <code>end</code> by 1 in these cases.</td></tr>
+        <tr><th><a href="code/__DEFINES/text.html#define/LOWER_TEXT">LOWER_TEXT</a></th><td>BYOND's string procs don't support being used on datum references (as in it doesn't look for a name for stringification)
+We just use this macro to ensure that we will only pass strings to this BYOND-level function without developers needing to really worry about it.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/LOWER_TEXT"><aside class="declaration">#define </aside>LOWER_TEXT
+            <aside>(thing)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/text.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 73"/></a>
+    </h3>
+    <p>BYOND's string procs don't support being used on datum references (as in it doesn't look for a name for stringification)
+We just use this macro to ensure that we will only pass strings to this BYOND-level function without developers needing to really worry about it.</p><h3 id="define/MAPTEXT"><aside class="declaration">#define </aside>MAPTEXT
+            <aside>(text)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/text.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 2"/></a>
+    </h3>
+    <p>Prepares a text to be used for maptext. Use this so it doesn't look hideous.</p><h3 id="define/MAPTEXT_GRAND9K"><aside class="declaration">#define </aside>MAPTEXT_GRAND9K
+            <aside>(text)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/text.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 19"/></a>
+    </h3>
+    <p>Standard size (ie: normal runechat) - Size options: 6pt 12pt 18pt.</p><h3 id="define/MAPTEXT_PIXELLARI"><aside class="declaration">#define </aside>MAPTEXT_PIXELLARI
+            <aside>(text)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/text.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 16"/></a>
+    </h3>
+    <p>Pixel-perfect scaled fonts for use in the MAP element as defined in skin.dmf</p>
+<p>Four sizes to choose from, use the sizes as mentioned below.
+Between the variations and a step there should be an option that fits your use case.
+BYOND uses pt sizing, different than px used in TGUI. Using px will make it look blurry due to poor antialiasing.</p>
+<p>Default sizes are prefilled in the macro for ease of use and a consistent visual look.
+To use a step other than the default in the macro, specify it in a span style.
+For example: MAPTEXT_PIXELLARI(&quot;<span style='font-size: 24pt'>Some large maptext here</span>&quot;)
+Large size (ie: context tooltips) - Size options: 12pt 24pt.</p><h3 id="define/MAPTEXT_SPESSFONT"><aside class="declaration">#define </aside>MAPTEXT_SPESSFONT
+            <aside>(text)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/text.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 25"/></a>
+    </h3>
+    <p>Smallest size. (ie: whisper runechat) - Size options: 6pt 12pt 18pt.</p><h3 id="define/MAPTEXT_TINY_UNICODE"><aside class="declaration">#define </aside>MAPTEXT_TINY_UNICODE
+            <aside>(text)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/text.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 22"/></a>
+    </h3>
+    <p>Small size. (ie: context subtooltips, spell delays) - Size options: 12pt 24pt.</p><h3 id="define/MAPTEXT_VCR_OSD_MONO"><aside class="declaration">#define </aside>MAPTEXT_VCR_OSD_MONO
+            <aside>(text)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/text.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 49"/></a>
+    </h3>
+    <p>Prepares a text to be used for maptext, using a variable size font.</p>
+<p>More flexible but doesn't scale pixel perfect to BYOND icon resolutions.
+(May be blurry.) Can use any size in pt or px.</p>
+<p>You MUST Specify the size when using the macro
+For example: MAPTEXT_VCR_OSD_MONO(&quot;<span style='font-size: 24pt'>Some large maptext here</span>&quot;)
+Prepares a text to be used for maptext, using a variable size font.
+Variable size font. More flexible but doesn't scale pixel perfect to BYOND icon resolutions. (May be blurry.) Can use any size in pt or px.</p><h3 id="define/PREVENT_CHARACTER_TRIM_LOSS"><aside class="declaration">#define </aside>PREVENT_CHARACTER_TRIM_LOSS
+            <aside>(integer)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/text.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 69"/></a>
+    </h3>
+    <p>stuff like <code>copytext(input, length(input))</code> will trim the last character of the input,
+because DM does it so it copies until the char BEFORE the <code>end</code> arg, so we need to bump <code>end</code> by 1 in these cases.</p><h3 id="define/SANITIZE_FILENAME"><aside class="declaration">#define </aside>SANITIZE_FILENAME
+            <aside>(text)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/text.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 60"/></a>
+    </h3>
+    <p>Removes characters incompatible with file names.</p><h3 id="define/STRIP_HTML_SIMPLE"><aside class="declaration">#define </aside>STRIP_HTML_SIMPLE
+            <aside>(text, limit)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/text.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 63"/></a>
+    </h3>
+    <p>Simply removes the &lt; and &gt; characters, and limits the length of the message.</p><h3 id="define/WXH_TO_HEIGHT"><aside class="declaration">#define </aside>WXH_TO_HEIGHT
+            <aside>(measurement, return_var)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/text.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;text.dm 53"/></a>
+    </h3>
+    <p>Macro from Lummox used to get height from a MeasureText proc
+resolves the MeasureText() return value once, then resolves the height, then sets return_var to that.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

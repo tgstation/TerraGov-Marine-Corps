@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;factory_part - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/factory_part.html#var">Var Details</a> - <a href="obj/item/factory_part.html#proc">Proc Details</a></header>
+<main>
+<h1>factory_part <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/factory_part.html">factory_part</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/factory/parts.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;factory&#x2F;parts.dm 3"/></a></h1>
+
+<p>Base item used in factories, only changes icon and stage for the item then creates a new item when its done
+in order to set a recipe set recipe = GLOB.myrecipe in Initialize</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/factory_part.html#var/completion_stage">completion_stage</a></th><td>How many cycles we go through until we become the result</td></tr>
+            <tr><th><a href="obj/item/factory_part.html#var/next_machine">next_machine</a></th><td>What type of machine the obj goes through first/next</td></tr>
+            <tr><th><a href="obj/item/factory_part.html#var/recipe">recipe</a></th><td>reference to a glob list containing the recipe</td></tr>
+            <tr><th><a href="obj/item/factory_part.html#var/result">result</a></th><td>What result we become when we've run through all our machines</td></tr>
+            <tr><th><a href="obj/item/factory_part.html#var/stage">stage</a></th><td>How many cycles of processing we've gone through</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/factory_part.html#proc/advance_stage">advance_stage</a></th><td>once the part is processed this proc updates iconstate, result, completion etc</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/completion_stage"><aside class="declaration">var </aside>completion_stage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/factory/parts.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;factory&#x2F;parts.dm 11"/></a></h3>
+        <p>How many cycles we go through until we become the result</p><h3 id="var/next_machine"><aside class="declaration">var </aside>next_machine
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/factory/parts.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;factory&#x2F;parts.dm 13"/></a></h3>
+        <p>What type of machine the obj goes through first/next</p><h3 id="var/recipe"><aside class="declaration">var </aside>recipe
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/factory/parts.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;factory&#x2F;parts.dm 15"/></a></h3>
+        <p>reference to a glob list containing the recipe</p><h3 id="var/result"><aside class="declaration">var </aside>result
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/factory/parts.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;factory&#x2F;parts.dm 17"/></a></h3>
+        <p>What result we become when we've run through all our machines</p><h3 id="var/stage"><aside class="declaration">var </aside>stage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/factory/parts.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;factory&#x2F;parts.dm 9"/></a></h3>
+        <p>How many cycles of processing we've gone through</p><h2 id="proc">Proc Details</h2><h3 id="proc/advance_stage"><aside class="declaration">proc </aside>advance_stage<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/factory/parts.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;factory&#x2F;parts.dm 27"/></a></aside>
+        </h3>
+        <p>once the part is processed this proc updates iconstate, result, completion etc</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;automatedfire - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/automatedfire.html#var">Var Details</a> - <a href="datum/component/automatedfire.html#proc">Proc Details</a></header>
+<main>
+<h1>automatedfire <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/automatedfire.html">automatedfire</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/autofire.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;autofire.dm 93"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/automatedfire.html#var/next">next</a></th><td>Contains the reference to the next component in the bucket, used by autofire subsystem</td></tr>
+            <tr><th><a href="datum/component/automatedfire.html#var/next_fire">next_fire</a></th><td>Contains the scheduled fire time, used for scheduling EOL</td></tr>
+            <tr><th><a href="datum/component/automatedfire.html#var/prev">prev</a></th><td>Contains the reference to the previous component in the bucket, used by autofire subsystem</td></tr>
+            <tr><th><a href="datum/component/automatedfire.html#var/shooter">shooter</a></th><td>The owner of this component</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/automatedfire.html#proc/process_shot">process_shot</a></th><td>Handle the firing of the autofire component</td></tr>
+            <tr><th><a href="datum/component/automatedfire.html#proc/schedule_shot">schedule_shot</a></th><td>schedule the shooter into the system, inserting it into the next fire queue</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/next"><aside class="declaration">var </aside>next
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/automatedfire.html">automatedfire</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/autofire.dm#L99">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;autofire.dm 99"/></a></h3>
+        <p>Contains the reference to the next component in the bucket, used by autofire subsystem</p><h3 id="var/next_fire"><aside class="declaration">var </aside>next_fire
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/autofire.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;autofire.dm 97"/></a></h3>
+        <p>Contains the scheduled fire time, used for scheduling EOL</p><h3 id="var/prev"><aside class="declaration">var </aside>prev
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/automatedfire.html">automatedfire</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/autofire.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;autofire.dm 104"/></a></h3>
+        <p>Contains the reference to the previous component in the bucket, used by autofire subsystem</p><h3 id="var/shooter"><aside class="declaration">var </aside>shooter
+            <aside>&ndash; /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/autofire.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;autofire.dm 95"/></a></h3>
+        <p>The owner of this component</p><h2 id="proc">Proc Details</h2><h3 id="proc/process_shot"><aside class="declaration">proc </aside>process_shot<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/autofire.dm#L140">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;autofire.dm 140"/></a></aside>
+        </h3>
+        <p>Handle the firing of the autofire component</p><h3 id="proc/schedule_shot"><aside class="declaration">proc </aside>schedule_shot<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/autofire.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;autofire.dm 105"/></a></aside>
+        </h3>
+        <p>schedule the shooter into the system, inserting it into the next fire queue</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

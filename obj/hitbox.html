@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;hitbox - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/hitbox.html#var">Var Details</a> - <a href="obj/hitbox.html#proc">Proc Details</a></header>
+<main>
+<h1>hitbox <aside>/<a href="obj.html">obj</a>/<a href="obj/hitbox.html">hitbox</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 8"/></a></h1>
+
+<p>HITBOX
+The core of multitile. Acts as a relay for damage and stops people from walking onto the multitle sprite
+has changed bounds and as thus must always be forcemoved so it doesnt break everything
+I would use pixel movement but the maptick caused by it is way too high and a fake tile based movement might work? but I want this to at least pretend to be generic
+Thus we just use this relay. it's an obj so we can make sure all the damage procs that work on root also work on the hitbox</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/hitbox.html#var/root">root</a></th><td>The &quot;parent&quot; that this hitbox is attached to and to whom it will relay damage</td></tr>
+            <tr><th><a href="obj/hitbox.html#var/tank_desants">tank_desants</a></th><td>people riding on this hitbox that we want to move with us</td></tr>
+            <tr><th><a href="obj/hitbox.html#var/vehicle_length">vehicle_length</a></th><td>Length of the vehicle. Assumed to be longer than it is wide</td></tr>
+            <tr><th><a href="obj/hitbox.html#var/vehicle_width">vehicle_width</a></th><td>Width of the vehicle</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/hitbox.html#proc/add_desant">add_desant</a></th><td>Adds a new desant</td></tr>
+            <tr><th><a href="obj/hitbox.html#proc/can_cross_hitbox">can_cross_hitbox</a></th><td>signal handler for handling PASS_WALKOVER</td></tr>
+            <tr><th><a href="obj/hitbox.html#proc/get_projectile_loc">get_projectile_loc</a></th><td>Returns the turf where primary weapon projectiles should source from</td></tr>
+            <tr><th><a href="obj/hitbox.html#proc/on_attempt_drive">on_attempt_drive</a></th><td>called when the tank is off movement cooldown and someone tries to move it</td></tr>
+            <tr><th><a href="obj/hitbox.html#proc/on_desant_del">on_desant_del</a></th><td>cleanup riders on deletion</td></tr>
+            <tr><th><a href="obj/hitbox.html#proc/on_exited">on_exited</a></th><td>signal handler when we leave a turf under the hitbox</td></tr>
+            <tr><th><a href="obj/hitbox.html#proc/on_jump_landed">on_jump_landed</a></th><td>signal handler when someone jumping lands on us</td></tr>
+            <tr><th><a href="obj/hitbox.html#proc/on_stop_throw">on_stop_throw</a></th><td>signal handler when something thrown lands on us</td></tr>
+            <tr><th><a href="obj/hitbox.html#proc/owner_turned">owner_turned</a></th><td>Signal handler to spin the desants as well when the tank turns</td></tr>
+            <tr><th><a href="obj/hitbox.html#proc/remove_desant">remove_desant</a></th><td>Removes a desant</td></tr>
+            <tr><th><a href="obj/hitbox.html#proc/root_delete">root_delete</a></th><td>when root deletes is the only time we want to be deleting</td></tr>
+            <tr><th><a href="obj/hitbox.html#proc/root_move">root_move</a></th><td>when the owner moves, let's move with them!</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/root"><aside class="declaration">var </aside>root
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/vehicle.html">vehicle</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 20"/></a></h3>
+        <p>The &quot;parent&quot; that this hitbox is attached to and to whom it will relay damage</p><h3 id="var/tank_desants"><aside class="declaration">var </aside>tank_desants
+            <aside>&ndash; /list/atom/movable</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 18"/></a></h3>
+        <p>people riding on this hitbox that we want to move with us</p><h3 id="var/vehicle_length"><aside class="declaration">var </aside>vehicle_length
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 22"/></a></h3>
+        <p>Length of the vehicle. Assumed to be longer than it is wide</p><h3 id="var/vehicle_width"><aside class="declaration">var </aside>vehicle_width
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 24"/></a></h3>
+        <p>Width of the vehicle</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_desant"><aside class="declaration">proc </aside>add_desant<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/new_desant) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 93"/></a></aside>
+        </h3>
+        <p>Adds a new desant</p><h3 id="proc/can_cross_hitbox"><aside class="declaration">proc </aside>can_cross_hitbox<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/mover) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 64"/></a></aside>
+        </h3>
+        <p>signal handler for handling PASS_WALKOVER</p><h3 id="proc/get_projectile_loc"><aside class="declaration">proc </aside>get_projectile_loc<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/armored_weapon.html">armored_weapon</a>/weapon) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L242">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 242"/></a></aside>
+        </h3>
+        <p>Returns the turf where primary weapon projectiles should source from</p><h3 id="proc/on_attempt_drive"><aside class="declaration">proc </aside>on_attempt_drive<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/movable_parent, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 171"/></a></aside>
+        </h3>
+        <p>called when the tank is off movement cooldown and someone tries to move it</p><h3 id="proc/on_desant_del"><aside class="declaration">proc </aside>on_desant_del<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 135"/></a></aside>
+        </h3>
+        <p>cleanup riders on deletion</p><h3 id="proc/on_exited"><aside class="declaration">proc </aside>on_exited<aside>(/<a href="atom.html">atom</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/AM, direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 122"/></a></aside>
+        </h3>
+        <p>signal handler when we leave a turf under the hitbox</p><h3 id="proc/on_jump_landed"><aside class="declaration">proc </aside>on_jump_landed<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/lander) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 112"/></a></aside>
+        </h3>
+        <p>signal handler when someone jumping lands on us</p><h3 id="proc/on_stop_throw"><aside class="declaration">proc </aside>on_stop_throw<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/thrown_movable) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 117"/></a></aside>
+        </h3>
+        <p>signal handler when something thrown lands on us</p><h3 id="proc/owner_turned"><aside class="declaration">proc </aside>owner_turned<aside>(/<a href="datum.html">datum</a>/source, old_dir, new_dir) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 70"/></a></aside>
+        </h3>
+        <p>Signal handler to spin the desants as well when the tank turns</p><h3 id="proc/remove_desant"><aside class="declaration">proc </aside>remove_desant<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/desant) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 104"/></a></aside>
+        </h3>
+        <p>Removes a desant</p><h3 id="proc/root_delete"><aside class="declaration">proc </aside>root_delete<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L140">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 140"/></a></aside>
+        </h3>
+        <p>when root deletes is the only time we want to be deleting</p><h3 id="proc/root_move"><aside class="declaration">proc </aside>root_move<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/mover, /<a href="atom.html">atom</a>/oldloc, direction, forced, /list/turf/old_locs) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/_hitbox.dm#L145">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;_hitbox.dm 145"/></a></aside>
+        </h3>
+        <p>when the owner moves, let's move with them!</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

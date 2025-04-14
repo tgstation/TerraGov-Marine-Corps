@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;effect&#x2F;xenomorph&#x2F;acid - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/effect/xenomorph/acid.html#var">Var Details</a> - <a href="obj/effect/xenomorph/acid.html#proc">Proc Details</a></header>
+<main>
+<h1>acid <aside>/<a href="obj.html">obj</a>/<a href="obj/effect/xenomorph/acid.html">effect/xenomorph/acid</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/aliens.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;aliens.dm 105"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/effect/xenomorph/acid.html#var/acid_damage">acid_damage</a></th><td>acid damage on pick up, subject to armor</td></tr>
+            <tr><th><a href="obj/effect/xenomorph/acid.html#var/acid_melt_multiplier">acid_melt_multiplier</a></th><td>How much faster or slower acid melts specific objects/turfs.</td></tr>
+            <tr><th><a href="obj/effect/xenomorph/acid.html#var/acid_strength">acid_strength</a></th><td>how fast something will melt when subject to this acid.</td></tr>
+            <tr><th><a href="obj/effect/xenomorph/acid.html#var/acid_t">acid_t</a></th><td>the target atom for being melted</td></tr>
+            <tr><th><a href="obj/effect/xenomorph/acid.html#var/strength_t">strength_t</a></th><td>stages of meltage, currently used to determine what messages to output</td></tr>
+            <tr><th><a href="obj/effect/xenomorph/acid.html#var/ticks">ticks</a></th><td>the current tick on destruction stage, currently used to determine what messages to output</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/effect/xenomorph/acid.html#proc/on_attempt_pickup">on_attempt_pickup</a></th><td>Sig handler to show this acid is attached to something</td></tr>
+            <tr><th><a href="obj/effect/xenomorph/acid.html#proc/on_pickup">on_pickup</a></th><td>Sig handler to show this acid is attached to something</td></tr>
+            <tr><th><a href="obj/effect/xenomorph/acid.html#proc/on_target_del">on_target_del</a></th><td>cleans up if the target is destroyed</td></tr>
+            <tr><th><a href="obj/effect/xenomorph/acid.html#proc/on_target_move">on_target_move</a></th><td>Moves with the target</td></tr>
+            <tr><th><a href="obj/effect/xenomorph/acid.html#proc/return_self_acid">return_self_acid</a></th><td>Sig handler to show this acid is attached to something</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/acid_damage"><aside class="declaration">var </aside>acid_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/aliens.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;aliens.dm 120"/></a></h3>
+        <p>acid damage on pick up, subject to armor</p><h3 id="var/acid_melt_multiplier"><aside class="declaration">var </aside>acid_melt_multiplier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/aliens.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;aliens.dm 126"/></a></h3>
+        <p>How much faster or slower acid melts specific objects/turfs.</p><h3 id="var/acid_strength"><aside class="declaration">var </aside>acid_strength
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/aliens.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;aliens.dm 118"/></a></h3>
+        <p>how fast something will melt when subject to this acid.</p><h3 id="var/acid_t"><aside class="declaration">var </aside>acid_t
+            <aside>&ndash; /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/aliens.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;aliens.dm 114"/></a></h3>
+        <p>the target atom for being melted</p><h3 id="var/strength_t"><aside class="declaration">var </aside>strength_t
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/aliens.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;aliens.dm 122"/></a></h3>
+        <p>stages of meltage, currently used to determine what messages to output</p><h3 id="var/ticks"><aside class="declaration">var </aside>ticks
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/aliens.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;aliens.dm 116"/></a></h3>
+        <p>the current tick on destruction stage, currently used to determine what messages to output</p><h2 id="proc">Proc Details</h2><h3 id="proc/on_attempt_pickup"><aside class="declaration">proc </aside>on_attempt_pickup<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/aliens.dm#L197">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;aliens.dm 197"/></a></aside>
+        </h3>
+        <p>Sig handler to show this acid is attached to something</p><h3 id="proc/on_pickup"><aside class="declaration">proc </aside>on_pickup<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/human_user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/aliens.dm#L205">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;aliens.dm 205"/></a></aside>
+        </h3>
+        <p>Sig handler to show this acid is attached to something</p><h3 id="proc/on_target_del"><aside class="declaration">proc </aside>on_target_del<aside>(/<a href="atom.html">atom</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/aliens.dm#L182">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;aliens.dm 182"/></a></aside>
+        </h3>
+        <p>cleans up if the target is destroyed</p><h3 id="proc/on_target_move"><aside class="declaration">proc </aside>on_target_move<aside>(/<a href="atom.html">atom</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/aliens.dm#L187">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;aliens.dm 187"/></a></aside>
+        </h3>
+        <p>Moves with the target</p><h3 id="proc/return_self_acid"><aside class="declaration">proc </aside>return_self_acid<aside>(/<a href="atom.html">atom</a>/source, /list/acid_List) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/aliens.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;aliens.dm 192"/></a></aside>
+        </h3>
+        <p>Sig handler to show this acid is attached to something</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

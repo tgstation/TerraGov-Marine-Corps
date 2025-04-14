@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="mob/living/carbon/xenomorph.html#var">Var Details</a> - <a href="mob/living/carbon/xenomorph.html#proc">Proc Details</a></header>
+<main>
+<h1>xenomorph <aside>/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L266">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 266"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/ammo">ammo</a></th><td>The ammo datum for our spit projectiles. We're born with this, it changes sometimes.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/attack_effect">attack_effect</a></th><td>Visual effect that appears when doing a normal attack.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/backpack_overlay">backpack_overlay</a></th><td>Handles displaying any equipped backpack item, such as a saddle</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/behemoth_charging">behemoth_charging</a></th><td>Whether we are currently charging or not.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/caste_base_type">caste_base_type</a></th><td>datum/xeno_caste that we will be on init</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/corrosive_ammo">corrosive_ammo</a></th><td>Boiler acid ammo</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/current_aura">current_aura</a></th><td>The aura we're currently emitted. Destroyed whenever we change or stop pheromones.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/eaten_mob">eaten_mob</a></th><td>A mob the xeno ate</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/endurance_broken">endurance_broken</a></th><td>Whether our Endurance has been broken, due to losing all of its health.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/endurance_health">endurance_health</a></th><td>The amount of remaining health that Endurance has.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/endurance_health_max">endurance_health_max</a></th><td>The maximum amount of health that Endurance can have.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/endure">endure</a></th><td>when true the rav will not go into crit or take crit damage.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/evolution_stored">evolution_stored</a></th><td>How much evolution they have stored</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/fire_overlay">fire_overlay</a></th><td>Handles displaying the various fire states of the xeno</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/footstep_type">footstep_type</a></th><td>The type of footstep this xeno has.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/frenzy_aura">frenzy_aura</a></th><td>Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/hive">hive</a></th><td>Hive datum we belong to</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/hivenumber">hivenumber</a></th><td>Hive name define</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/huggers">huggers</a></th><td>Number of huggers the xeno is currently carrying</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/inherent_verbs">inherent_verbs</a></th><td>This list of inherent verbs lets us take any proc basically anywhere and add them.
+If they're not a xeno subtype it might crash or do weird things, like using human verb procs
+It should add them properly on New() and should reset/readd them on evolves</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/is_charging">is_charging</a></th><td>Will the mob charge when moving ? You need the charge verb to change this</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/leader_current_aura">leader_current_aura</a></th><td>If we're chosen as leader, this is the leader aura we emit.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/loc_weeds_type">loc_weeds_type</a></th><td>Type of weeds the xeno is standing on, null when not on weeds</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/neuro_ammo">neuro_ammo</a></th><td>Boiler Neuro ammo</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/nicknumber">nicknumber</a></th><td>Naming variables</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/observed_xeno">observed_xeno</a></th><td>The xenomorph that this source is currently overwatching</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/pheromone_cost">pheromone_cost</a></th><td>Passive plasma cost per tick for enabled personal (not leadership) pheromones.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/plasma_stored">plasma_stored</a></th><td>Plasma currently stored</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/recovery_aura">recovery_aura</a></th><td>Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/regen_power">regen_power</a></th><td>Resets to -xeno_caste.regen_delay when you take damage.
+Negative values act as a delay while values greater than 0 act as a multiplier.
+Will increase by 10 every decisecond if under 0.
+Increases by xeno_caste.regen_ramp_amount every decisecond. If you want to balance this, look at the xeno_caste defines mentioned above.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/selected_plant">selected_plant</a></th><td>which plant to place when we use sow</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/selected_reagent">selected_reagent</a></th><td>which reagent to slash with using reagent slash</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/selected_resin">selected_resin</a></th><td>which resin structure to build when we secrete resin</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/status_toggle_flags">status_toggle_flags</a></th><td>State tracking of hive status toggles</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/steam_rush">steam_rush</a></th><td>When true the boiler gains speed and resets the duration on attack</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/sunder">sunder</a></th><td>sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/tier">tier</a></th><td>This will track their &quot;tier&quot; to restrict/limit evolutions</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/tracked">tracked</a></th><td>The xenos/silo/nuke currently tracked by the xeno_tracker arrow</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/upgrade">upgrade</a></th><td>This will track their upgrade level.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/upgrade_stored">upgrade_stored</a></th><td>How much upgrade points they have stored.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/vampirism">vampirism</a></th><td>when true the rav leeches healing off of hitting marines</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/warding_aura">warding_aura</a></th><td>Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/wound_overlay">wound_overlay</a></th><td>Handles displaying the various wound states of the xeno.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/wrath_stored">wrath_stored</a></th><td>The amount of Wrath currently stored.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/xeno_flags">xeno_flags</a></th><td>Xeno mob specific flags</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/xeno_melee_damage_modifier">xeno_melee_damage_modifier</a></th><td>Multiplicative melee damage modifier; referenced by attack_alien.dm, most notably attack_alien_harm</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/xeno_resting_cooldown">xeno_resting_cooldown</a></th><td>The resting cooldown</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#var/xeno_unresting_cooldown">xeno_unresting_cooldown</a></th><td>The unresting cooldown</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/apply_health_stat_buff">apply_health_stat_buff</a></th><td>Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff while maintaining current health percent.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/can_mount">can_mount</a></th><td>Checks if user can mount src</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/carry_target">carry_target</a></th><td>Handles the target trying to ride src</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/caste_evolution_checks">caste_evolution_checks</a></th><td>Check if the xeno can currently evolve into a specific caste</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/change_form">change_form</a></th><td>Initiate of form changing on the xeno</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/check_concious_state">check_concious_state</a></th><td>A simple handler for checking your state. Will ignore if the xeno is lying down</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/check_weeds">check_weeds</a></th><td>Checks for nearby intact weeds</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/clean_tracked">clean_tracked</a></th><td>Signal handler to null tracked</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/do_evolve">do_evolve</a></th><td>Handles the evolution or devolution of the xenomorph</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/eject_victim">eject_victim</a></th><td>Eject the mob inside our belly, and putting it in a cocoon if needed</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/finish_evolve">finish_evolve</a></th><td>Actually changes the xenomorph to another caste</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/generic_evolution_checks">generic_evolution_checks</a></th><td>Check if the xeno is currently able to evolve</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/get_evolution_options">get_evolution_options</a></th><td>Creates a list of possible /datum/xeno_caste options for a caste based on their tier.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/give_rally_abilities">give_rally_abilities</a></th><td>Helper proc for giving the rally abilities</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/handle_living_sunder_updates">handle_living_sunder_updates</a></th><td>Handles sunder modification/recovery during life.dm for xenos</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/handle_weeds_adjacent_removed">handle_weeds_adjacent_removed</a></th><td>Handles logic for weeds nearby the xeno getting removed</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/handle_weeds_on_movement">handle_weeds_on_movement</a></th><td></td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/hivemind_end">hivemind_end</a></th><td>Called to create the suffix for xeno hivemind messages</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/hivemind_start">hivemind_start</a></th><td>Called to create the prefix for xeno hivemind messages</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/onhithuman">onhithuman</a></th><td>Called whenever a xeno slashes a human</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/playtime_as_number">playtime_as_number</a></th><td>Returns the playtime as a number, used for rank icons</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/record_recycle_points">record_recycle_points</a></th><td>Tally how many req-points worth of xenomorphs have been recycled</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/remove_rally_hive_ability">remove_rally_hive_ability</a></th><td>Helper proc for removing the rally hive ability appropriately</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/reset_bombard_pointer">reset_bombard_pointer</a></th><td>Resets the boiler's mouse cursor to the default cursor.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/salve_healing">salve_healing</a></th><td>Heals the target.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/set_bombard_pointer">set_bombard_pointer</a></th><td>Set the boiler's mouse cursor to the green firing cursor.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/set_datum">set_datum</a></th><td>Change the caste of the xeno. If restore health is true, then health is set to the new max health</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/set_tracked">set_tracked</a></th><td>Set the var tracked to to_track</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/shriek_burst">shriek_burst</a></th><td>executes a burst of shockwaves. quad ease out so it does dash too fast and insta dissapear. maybe should use it on explosions too</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/spec_evolution_boost">spec_evolution_boost</a></th><td>Handles special conditions that influence a caste's evolution point gain, such as larva gaining a bonus if on weed.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/update_ammo_glow">update_ammo_glow</a></th><td>updates the xenos glow, based on its base glow/color, and its ammo reserves. More green ammo = more green glow; more yellow = more yellow.</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/update_glow">update_glow</a></th><td>updates the xeno's glow, based on the ability being used</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/update_leader_icon">update_leader_icon</a></th><td>Handles icon updates when leadered/unleadered. Evolution.dm also uses this</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/update_snowflake_overlays">update_snowflake_overlays</a></th><td>Updates the niche overlays of a xenomorph, like the backpack overlay</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/update_wounds">update_wounds</a></th><td>Updates the wound overlays on the xeno</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/upgrade_possible">upgrade_possible</a></th><td>returns TRUE if we are permitted to evo to the next caste FALSE otherwise</td></tr>
+            <tr><th><a href="mob/living/carbon/xenomorph.html#proc/xeno_iff_check">xeno_iff_check</a></th><td>This handles checking for a xenomorph's potential IFF signals carried by components
+Currently, IFF tags attach a component listening for this.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ammo"><aside class="declaration">var </aside>ammo
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/ammo.html">ammo</a>/<a href="datum/ammo/xeno.html">xeno</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L329">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 329"/></a></h3>
+        <p>The ammo datum for our spit projectiles. We're born with this, it changes sometimes.</p><h3 id="var/attack_effect"><aside class="declaration">var </aside>attack_effect
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L377">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 377"/></a></h3>
+        <p>Visual effect that appears when doing a normal attack.</p><h3 id="var/backpack_overlay"><aside class="declaration">var </aside>backpack_overlay
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/vis_obj/xeno_wounds/backpack_overlay.html">vis_obj/xeno_wounds/backpack_overlay</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L310">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 310"/></a></h3>
+        <p>Handles displaying any equipped backpack item, such as a saddle</p><h3 id="var/behemoth_charging"><aside class="declaration">var </aside>behemoth_charging
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L404">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 404"/></a></h3>
+        <p>Whether we are currently charging or not.</p><h3 id="var/caste_base_type"><aside class="declaration">var </aside>caste_base_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L313">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 313"/></a></h3>
+        <p>datum/xeno_caste that we will be on init</p><h3 id="var/corrosive_ammo"><aside class="declaration">var </aside>corrosive_ammo
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L437">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 437"/></a></h3>
+        <p>Boiler acid ammo</p><h3 id="var/current_aura"><aside class="declaration">var </aside>current_aura
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/aura_bearer.html">aura_bearer</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L331">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 331"/></a></h3>
+        <p>The aura we're currently emitted. Destroyed whenever we change or stop pheromones.</p><h3 id="var/eaten_mob"><aside class="declaration">var </aside>eaten_mob
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L319">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 319"/></a></h3>
+        <p>A mob the xeno ate</p><h3 id="var/endurance_broken"><aside class="declaration">var </aside>endurance_broken
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L418">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 418"/></a></h3>
+        <p>Whether our Endurance has been broken, due to losing all of its health.</p><h3 id="var/endurance_health"><aside class="declaration">var </aside>endurance_health
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L414">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 414"/></a></h3>
+        <p>The amount of remaining health that Endurance has.</p><h3 id="var/endurance_health_max"><aside class="declaration">var </aside>endurance_health_max
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L416">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 416"/></a></h3>
+        <p>The maximum amount of health that Endurance can have.</p><h3 id="var/endure"><aside class="declaration">var </aside>endure
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L392">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 392"/></a></h3>
+        <p>when true the rav will not go into crit or take crit damage.</p><h3 id="var/evolution_stored"><aside class="declaration">var </aside>evolution_stored
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L321">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 321"/></a></h3>
+        <p>How much evolution they have stored</p><h3 id="var/fire_overlay"><aside class="declaration">var </aside>fire_overlay
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/vis_obj/xeno_wounds/fire_overlay.html">vis_obj/xeno_wounds/fire_overlay</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L308">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 308"/></a></h3>
+        <p>Handles displaying the various fire states of the xeno</p><h3 id="var/footstep_type"><aside class="declaration">var </aside>footstep_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L430">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 430"/></a></h3>
+        <p>The type of footstep this xeno has.</p><h3 id="var/frenzy_aura"><aside class="declaration">var </aside>frenzy_aura
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L337">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 337"/></a></h3>
+        <p>Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING</p><h3 id="var/hive"><aside class="declaration">var </aside>hive
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/hive_status.html">hive_status</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L299">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 299"/></a></h3>
+        <p>Hive datum we belong to</p><h3 id="var/hivenumber"><aside class="declaration">var </aside>hivenumber
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L297">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 297"/></a></h3>
+        <p>Hive name define</p><h3 id="var/huggers"><aside class="declaration">var </aside>huggers
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L435">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 435"/></a></h3>
+        <p>Number of huggers the xeno is currently carrying</p><h3 id="var/inherent_verbs"><aside class="declaration">var </aside>inherent_verbs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L368">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 368"/></a></h3>
+        <p>This list of inherent verbs lets us take any proc basically anywhere and add them.
+If they're not a xeno subtype it might crash or do weird things, like using human verb procs
+It should add them properly on New() and should reset/readd them on evolves</p><h3 id="var/is_charging"><aside class="declaration">var </aside>is_charging
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L381">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 381"/></a></h3>
+        <p>Will the mob charge when moving ? You need the charge verb to change this</p><h3 id="var/leader_current_aura"><aside class="declaration">var </aside>leader_current_aura
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/aura_bearer.html">aura_bearer</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L333">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 333"/></a></h3>
+        <p>If we're chosen as leader, this is the leader aura we emit.</p><h3 id="var/loc_weeds_type"><aside class="declaration">var </aside>loc_weeds_type
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/alien.html">alien</a>/<a href="obj/alien/weeds.html">weeds</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L351">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 351"/></a></h3>
+        <p>Type of weeds the xeno is standing on, null when not on weeds</p><h3 id="var/neuro_ammo"><aside class="declaration">var </aside>neuro_ammo
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L439">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 439"/></a></h3>
+        <p>Boiler Neuro ammo</p><h3 id="var/nicknumber"><aside class="declaration">var </aside>nicknumber
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L363">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 363"/></a></h3>
+        <p>Naming variables</p><h3 id="var/observed_xeno"><aside class="declaration">var </aside>observed_xeno
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L371">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 371"/></a></h3>
+        <p>The xenomorph that this source is currently overwatching</p><h3 id="var/pheromone_cost"><aside class="declaration">var </aside>pheromone_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L335">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 335"/></a></h3>
+        <p>Passive plasma cost per tick for enabled personal (not leadership) pheromones.</p><h3 id="var/plasma_stored"><aside class="declaration">var </aside>plasma_stored
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L316">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 316"/></a></h3>
+        <p>Plasma currently stored</p><h3 id="var/recovery_aura"><aside class="declaration">var </aside>recovery_aura
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L341">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 341"/></a></h3>
+        <p>Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING</p><h3 id="var/regen_power"><aside class="declaration">var </aside>regen_power
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L346">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 346"/></a></h3>
+        <p>Resets to -xeno_caste.regen_delay when you take damage.
+Negative values act as a delay while values greater than 0 act as a multiplier.
+Will increase by 10 every decisecond if under 0.
+Increases by xeno_caste.regen_ramp_amount every decisecond. If you want to balance this, look at the xeno_caste defines mentioned above.</p><h3 id="var/selected_plant"><aside class="declaration">var </aside>selected_plant
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/xeno.html">xeno</a>/<a href="obj/structure/xeno/plant.html">plant</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L361">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 361"/></a></h3>
+        <p>which plant to place when we use sow</p><h3 id="var/selected_reagent"><aside class="declaration">var </aside>selected_reagent
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L359">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 359"/></a></h3>
+        <p>which reagent to slash with using reagent slash</p><h3 id="var/selected_resin"><aside class="declaration">var </aside>selected_resin
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L355">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 355"/></a></h3>
+        <p>which resin structure to build when we secrete resin</p><h3 id="var/status_toggle_flags"><aside class="declaration">var </aside>status_toggle_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L304">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 304"/></a></h3>
+        <p>State tracking of hive status toggles</p><h3 id="var/steam_rush"><aside class="declaration">var </aside>steam_rush
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L410">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 410"/></a></h3>
+        <p>When true the boiler gains speed and resets the duration on attack</p><h3 id="var/sunder"><aside class="declaration">var </aside>sunder
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L327">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 327"/></a></h3>
+        <p>sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values</p><h3 id="var/tier"><aside class="declaration">var </aside>tier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L353">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 353"/></a></h3>
+        <p>This will track their &quot;tier&quot; to restrict/limit evolutions</p><h3 id="var/tracked"><aside class="declaration">var </aside>tracked
+            <aside>&ndash; /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L427">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 427"/></a></h3>
+        <p>The xenos/silo/nuke currently tracked by the xeno_tracker arrow</p><h3 id="var/upgrade"><aside class="declaration">var </aside>upgrade
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L325">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 325"/></a></h3>
+        <p>This will track their upgrade level.</p><h3 id="var/upgrade_stored"><aside class="declaration">var </aside>upgrade_stored
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L323">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 323"/></a></h3>
+        <p>How much upgrade points they have stored.</p><h3 id="var/vampirism"><aside class="declaration">var </aside>vampirism
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L394">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 394"/></a></h3>
+        <p>when true the rav leeches healing off of hitting marines</p><h3 id="var/warding_aura"><aside class="declaration">var </aside>warding_aura
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L339">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 339"/></a></h3>
+        <p>Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING</p><h3 id="var/wound_overlay"><aside class="declaration">var </aside>wound_overlay
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/vis_obj/xeno_wounds</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L306">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 306"/></a></h3>
+        <p>Handles displaying the various wound states of the xeno.</p><h3 id="var/wrath_stored"><aside class="declaration">var </aside>wrath_stored
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L406">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 406"/></a></h3>
+        <p>The amount of Wrath currently stored.</p><h3 id="var/xeno_flags"><aside class="declaration">var </aside>xeno_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L301">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 301"/></a></h3>
+        <p>Xeno mob specific flags</p><h3 id="var/xeno_melee_damage_modifier"><aside class="declaration">var </aside>xeno_melee_damage_modifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L374">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 374"/></a></h3>
+        <p>Multiplicative melee damage modifier; referenced by attack_alien.dm, most notably attack_alien_harm</p><h3 id="var/xeno_resting_cooldown"><aside class="declaration">var </aside>xeno_resting_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L444">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 444"/></a></h3>
+        <p>The resting cooldown</p><h3 id="var/xeno_unresting_cooldown"><aside class="declaration">var </aside>xeno_unresting_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L446">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 446"/></a></h3>
+        <p>The unresting cooldown</p><h2 id="proc">Proc Details</h2><h3 id="proc/apply_health_stat_buff"><aside class="declaration">proc </aside>apply_health_stat_buff<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenomorph.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenomorph.dm 116"/></a></aside>
+        </h3>
+        <p>Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff while maintaining current health percent.</p><h3 id="proc/can_mount"><aside class="declaration">proc </aside>can_mount<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, target_mounting) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenomorph.dm#L553">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenomorph.dm 553"/></a></aside>
+        </h3>
+        <p>Checks if user can mount src</p>
+<p>Arguments:</p>
+<ul>
+<li>user - The mob trying to mount</li>
+<li>target_mounting - Is the target initiating the mounting process?</li>
+</ul><h3 id="proc/carry_target"><aside class="declaration">proc </aside>carry_target<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/target, target_mounting) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenomorph.dm#L563">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenomorph.dm 563"/></a></aside>
+        </h3>
+        <p>Handles the target trying to ride src</p>
+<p>Arguments:</p>
+<ul>
+<li>target - The mob being put on the back</li>
+<li>target_mounting - Is the target initiating the mounting process?</li>
+</ul><h3 id="proc/caste_evolution_checks"><aside class="declaration">proc </aside>caste_evolution_checks<aside>(new_caste_type, regression) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/evolution.dm#L289">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;evolution.dm 289"/></a></aside>
+        </h3>
+        <p>Check if the xeno can currently evolve into a specific caste</p><h3 id="proc/change_form"><aside class="declaration">proc </aside>change_form<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenomorph.dm#L242">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenomorph.dm 242"/></a></aside>
+        </h3>
+        <p>Initiate of form changing on the xeno</p><h3 id="proc/check_concious_state"><aside class="declaration">proc </aside>check_concious_state<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenoprocs.dm#L225">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenoprocs.dm 225"/></a></aside>
+        </h3>
+        <p>A simple handler for checking your state. Will ignore if the xeno is lying down</p><h3 id="proc/check_weeds"><aside class="declaration">proc </aside>check_weeds<aside>(/<a href="turf.html">turf</a>/T, strict_turf_check) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenomorph.dm#L443">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenomorph.dm 443"/></a></aside>
+        </h3>
+        <p>Checks for nearby intact weeds</p><h3 id="proc/clean_tracked"><aside class="declaration">proc </aside>clean_tracked<aside>(/<a href="atom.html">atom</a>/to_track) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenoprocs.dm#L586">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenoprocs.dm 586"/></a></aside>
+        </h3>
+        <p>Signal handler to null tracked</p><h3 id="proc/do_evolve"><aside class="declaration">proc </aside>do_evolve<aside>(/<a href="datum.html">datum</a>/<a href="datum/xeno_caste.html">xeno_caste</a>/caste_type, regression) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/evolution.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;evolution.dm 97"/></a></aside>
+        </h3>
+        <p>Handles the evolution or devolution of the xenomorph</p><h3 id="proc/eject_victim"><aside class="declaration">proc </aside>eject_victim<aside>(make_cocoon, /<a href="turf.html">turf</a>/eject_location) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenoprocs.dm#L561">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenoprocs.dm 561"/></a></aside>
+        </h3>
+        <p>Eject the mob inside our belly, and putting it in a cocoon if needed</p><h3 id="proc/finish_evolve"><aside class="declaration">proc </aside>finish_evolve<aside>(new_mob_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/evolution.dm#L149">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;evolution.dm 149"/></a></aside>
+        </h3>
+        <p>Actually changes the xenomorph to another caste</p><h3 id="proc/generic_evolution_checks"><aside class="declaration">proc </aside>generic_evolution_checks<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/evolution.dm#L235">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;evolution.dm 235"/></a></aside>
+        </h3>
+        <p>Check if the xeno is currently able to evolve</p><h3 id="proc/get_evolution_options"><aside class="declaration">proc </aside>get_evolution_options<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/evolution.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;evolution.dm 52"/></a></aside>
+        </h3>
+        <p>Creates a list of possible /datum/xeno_caste options for a caste based on their tier.</p><h3 id="proc/give_rally_abilities"><aside class="declaration">proc </aside>give_rally_abilities<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_helpers.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_helpers.dm 30"/></a></aside>
+        </h3>
+        <p>Helper proc for giving the rally abilities</p><h3 id="proc/handle_living_sunder_updates"><aside class="declaration">proc </aside>handle_living_sunder_updates<aside>(seconds_per_tick) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/life.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;life.dm 64"/></a></aside>
+        </h3>
+        <p>Handles sunder modification/recovery during life.dm for xenos</p><h3 id="proc/handle_weeds_adjacent_removed"><aside class="declaration">proc </aside>handle_weeds_adjacent_removed<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenomorph.dm#L457">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenomorph.dm 457"/></a></aside>
+        </h3>
+        <p>Handles logic for weeds nearby the xeno getting removed</p><h3 id="proc/handle_weeds_on_movement"><aside class="declaration">proc </aside>handle_weeds_on_movement<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenomorph.dm#L466">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenomorph.dm 466"/></a></aside>
+        </h3>
+        <ul>
+<li>Handles logic for the xeno moving to a new weeds tile.
+Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesnât change </li>
+</ul><h3 id="proc/hivemind_end"><aside class="declaration">proc </aside>hivemind_end<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/say.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;say.dm 15"/></a></aside>
+        </h3>
+        <p>Called to create the suffix for xeno hivemind messages</p>
+<p>This should be used to close off any opened elements from <a href="mob/living/carbon/xenomorph.html#proc/hivemind_start" title="/mob/living/carbon/xenomorph">/mob/living/carbon/xenomorph/hivemind_start</a>.</p><h3 id="proc/hivemind_start"><aside class="declaration">proc </aside>hivemind_start<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/say.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;say.dm 7"/></a></aside>
+        </h3>
+        <p>Called to create the prefix for xeno hivemind messages</p>
+<p>Used to apply styling for queen/shrike/hivemind/leaders, giving them largetext and specific colouring.
+This is also paired with <a href="mob/living/carbon/xenomorph.html#proc/hivemind_end" title="/mob/living/carbon/xenomorph">/mob/living/carbon/xenomorph/hivemind_end</a></p><h3 id="proc/onhithuman"><aside class="declaration">proc </aside>onhithuman<aside>(attacker, target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L449">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 449"/></a></aside>
+        </h3>
+        <p>Called whenever a xeno slashes a human</p><h3 id="proc/playtime_as_number"><aside class="declaration">proc </aside>playtime_as_number<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenomorph.dm#L189">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenomorph.dm 189"/></a></aside>
+        </h3>
+        <p>Returns the playtime as a number, used for rank icons</p><h3 id="proc/record_recycle_points"><aside class="declaration">proc </aside>record_recycle_points<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a>/trash) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/personal_statistics.dm#L523">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;personal_statistics.dm 523"/></a></aside>
+        </h3>
+        <p>Tally how many req-points worth of xenomorphs have been recycled</p><h3 id="proc/remove_rally_hive_ability"><aside class="declaration">proc </aside>remove_rally_hive_ability<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_helpers.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_helpers.dm 40"/></a></aside>
+        </h3>
+        <p>Helper proc for removing the rally hive ability appropriately</p><h3 id="proc/reset_bombard_pointer"><aside class="declaration">proc </aside>reset_bombard_pointer<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/boiler/abilities_boiler.dm#L323">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;boiler&#x2F;abilities_boiler.dm 323"/></a></aside>
+        </h3>
+        <p>Resets the boiler's mouse cursor to the default cursor.</p><h3 id="proc/salve_healing"><aside class="declaration">proc </aside>salve_healing<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/queen/abilities_queen.dm#L467">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;queen&#x2F;abilities_queen.dm 467"/></a></aside>
+        </h3>
+        <p>Heals the target.</p><h3 id="proc/set_bombard_pointer"><aside class="declaration">proc </aside>set_bombard_pointer<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/boiler/abilities_boiler.dm#L318">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;boiler&#x2F;abilities_boiler.dm 318"/></a></aside>
+        </h3>
+        <p>Set the boiler's mouse cursor to the green firing cursor.</p><h3 id="proc/set_datum"><aside class="declaration">proc </aside>set_datum<aside>(restore_health_and_plasma) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenomorph.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenomorph.dm 86"/></a></aside>
+        </h3>
+        <p>Change the caste of the xeno. If restore health is true, then health is set to the new max health</p><h3 id="proc/set_tracked"><aside class="declaration">proc </aside>set_tracked<aside>(/<a href="atom.html">atom</a>/to_track) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenoprocs.dm#L576">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenoprocs.dm 576"/></a></aside>
+        </h3>
+        <p>Set the var tracked to to_track</p><h3 id="proc/shriek_burst"><aside class="declaration">proc </aside>shriek_burst<aside>(range_diff) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/update_icons.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;update_icons.dm 82"/></a></aside>
+        </h3>
+        <p>executes a burst of shockwaves. quad ease out so it does dash too fast and insta dissapear. maybe should use it on explosions too</p><h3 id="proc/spec_evolution_boost"><aside class="declaration">proc </aside>spec_evolution_boost<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/evolution.dm#L350">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;evolution.dm 350"/></a></aside>
+        </h3>
+        <p>Handles special conditions that influence a caste's evolution point gain, such as larva gaining a bonus if on weed.</p><h3 id="proc/update_ammo_glow"><aside class="declaration">proc </aside>update_ammo_glow<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenomorph.dm#L591">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenomorph.dm 591"/></a></aside>
+        </h3>
+        <p>updates the xenos glow, based on its base glow/color, and its ammo reserves. More green ammo = more green glow; more yellow = more yellow.</p><h3 id="proc/update_glow"><aside class="declaration">proc </aside>update_glow<aside>(range, power, color) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenoprocs.dm#L603">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenoprocs.dm 603"/></a></aside>
+        </h3>
+        <p>updates the xeno's glow, based on the ability being used</p><h3 id="proc/update_leader_icon"><aside class="declaration">proc </aside>update_leader_icon<aside>(makeleader) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenoprocs.dm#L591">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenoprocs.dm 591"/></a></aside>
+        </h3>
+        <p>Handles icon updates when leadered/unleadered. Evolution.dm also uses this</p><h3 id="proc/update_snowflake_overlays"><aside class="declaration">proc </aside>update_snowflake_overlays<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/update_icons.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;update_icons.dm 155"/></a></aside>
+        </h3>
+        <p>Updates the niche overlays of a xenomorph, like the backpack overlay</p><h3 id="proc/update_wounds"><aside class="declaration">proc </aside>update_wounds<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/update_icons.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;update_icons.dm 105"/></a></aside>
+        </h3>
+        <p>Updates the wound overlays on the xeno</p><h3 id="proc/upgrade_possible"><aside class="declaration">proc </aside>upgrade_possible<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xenoprocs.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xenoprocs.dm 130"/></a></aside>
+        </h3>
+        <p>returns TRUE if we are permitted to evo to the next caste FALSE otherwise</p><h3 id="proc/xeno_iff_check"><aside class="declaration">proc </aside>xeno_iff_check<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_helpers.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_helpers.dm 58"/></a></aside>
+        </h3>
+        <p>This handles checking for a xenomorph's potential IFF signals carried by components
+Currently, IFF tags attach a component listening for this.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

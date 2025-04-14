@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;glasses&#x2F;night_vision - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/clothing/glasses/night_vision.html#var">Var Details</a> - <a href="obj/item/clothing/glasses/night_vision.html#proc">Proc Details</a></header>
+<main>
+<h1>night_vision <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/clothing.html">clothing</a>/<a href="obj/item/clothing/glasses.html">glasses</a>/<a href="obj/item/clothing/glasses/night_vision.html">night_vision</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/glasses/glasses.dm#L439">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;glasses&#x2F;glasses.dm 439"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/clothing/glasses/night_vision.html#var/active_energy_cost">active_energy_cost</a></th><td>How much energy this module needs when activated</td></tr>
+            <tr><th><a href="obj/item/clothing/glasses/night_vision.html#var/active_sound">active_sound</a></th><td>Looping sound to play</td></tr>
+            <tr><th><a href="obj/item/clothing/glasses/night_vision.html#var/battery">battery</a></th><td>The battery inside</td></tr>
+            <tr><th><a href="obj/item/clothing/glasses/night_vision.html#var/looping_sound_volume">looping_sound_volume</a></th><td>How loud the looping sound should be</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/clothing/glasses/night_vision.html#proc/battery_status">battery_status</a></th><td>Info regarding battery status; separate proc so that it can be displayed when examining the parent object</td></tr>
+            <tr><th><a href="obj/item/clothing/glasses/night_vision.html#proc/eject_battery">eject_battery</a></th><td>Eject the internal battery, if there is one</td></tr>
+            <tr><th><a href="obj/item/clothing/glasses/night_vision.html#proc/insert_battery">insert_battery</a></th><td>Insert a battery, if checks pass</td></tr>
+            <tr><th><a href="obj/item/clothing/glasses/night_vision.html#proc/update_worn_state">update_worn_state</a></th><td>Simple proc to update the worn state of the glasses; will use the active value by default if no argument passed</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active_energy_cost"><aside class="declaration">var </aside>active_energy_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/glasses/glasses.dm#L458">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;glasses&#x2F;glasses.dm 458"/></a></h3>
+        <p>How much energy this module needs when activated</p><h3 id="var/active_sound"><aside class="declaration">var </aside>active_sound
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/looping_sound.html">looping_sound</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/glasses/glasses.dm#L460">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;glasses&#x2F;glasses.dm 460"/></a></h3>
+        <p>Looping sound to play</p><h3 id="var/battery"><aside class="declaration">var </aside>battery
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/cell.html">cell</a>/night_vision_battery</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/glasses/glasses.dm#L456">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;glasses&#x2F;glasses.dm 456"/></a></h3>
+        <p>The battery inside</p><h3 id="var/looping_sound_volume"><aside class="declaration">var </aside>looping_sound_volume
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/glasses/glasses.dm#L462">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;glasses&#x2F;glasses.dm 462"/></a></h3>
+        <p>How loud the looping sound should be</p><h2 id="proc">Proc Details</h2><h3 id="proc/battery_status"><aside class="declaration">proc </aside>battery_status<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/glasses/glasses.dm#L479">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;glasses&#x2F;glasses.dm 479"/></a></aside>
+        </h3>
+        <p>Info regarding battery status; separate proc so that it can be displayed when examining the parent object</p><h3 id="proc/eject_battery"><aside class="declaration">proc </aside>eject_battery<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/glasses/glasses.dm#L514">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;glasses&#x2F;glasses.dm 514"/></a></aside>
+        </h3>
+        <p>Eject the internal battery, if there is one</p><h3 id="proc/insert_battery"><aside class="declaration">proc </aside>insert_battery<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/glasses/glasses.dm#L498">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;glasses&#x2F;glasses.dm 498"/></a></aside>
+        </h3>
+        <p>Insert a battery, if checks pass</p><h3 id="proc/update_worn_state"><aside class="declaration">proc </aside>update_worn_state<aside>(state) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/glasses/glasses.dm#L553">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;glasses&#x2F;glasses.dm 553"/></a></aside>
+        </h3>
+        <p>Simple proc to update the worn state of the glasses; will use the active value by default if no argument passed</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

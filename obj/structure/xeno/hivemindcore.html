@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;structure&#x2F;xeno&#x2F;hivemindcore - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/structure/xeno/hivemindcore.html#var">Var Details</a> - <a href="obj/structure/xeno/hivemindcore.html#proc">Proc Details</a></header>
+<main>
+<h1>hivemindcore <aside>/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/xeno.html">xeno</a>/<a href="obj/structure/xeno/hivemindcore.html">hivemindcore</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/hivemind/hivemind.dm#L295">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;hivemind&#x2F;hivemind.dm 295"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/structure/xeno/hivemindcore.html#var/hivemind_proxy_alert_cooldown">hivemind_proxy_alert_cooldown</a></th><td>The cooldown of the alert hivemind gets when a hostile is near it's core</td></tr>
+            <tr><th><a href="obj/structure/xeno/hivemindcore.html#var/parent">parent</a></th><td>The weakref to the parent hivemind mob that we're attached to</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/structure/xeno/hivemindcore.html#proc/get_parent">get_parent</a></th><td>Getter for the parent of this hive core</td></tr>
+            <tr><th><a href="obj/structure/xeno/hivemindcore.html#proc/hivemind_proxy_alert">hivemind_proxy_alert</a></th><td>Proc checks if we should alert the hivemind, and if it can, it does so.
+datum/source - the atom (in this case it should be a turf) sending the crossed signal
+atom/movable/hostile - the atom that triggered the crossed signal, in this case we're looking for a mob</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/hivemind_proxy_alert_cooldown"><aside class="declaration">var </aside>hivemind_proxy_alert_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/hivemind/hivemind.dm#L303">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;hivemind&#x2F;hivemind.dm 303"/></a></h3>
+        <p>The cooldown of the alert hivemind gets when a hostile is near it's core</p><h3 id="var/parent"><aside class="declaration">var </aside>parent
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/weakref.html">weakref</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/hivemind/hivemind.dm#L307">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;hivemind&#x2F;hivemind.dm 307"/></a></h3>
+        <p>The weakref to the parent hivemind mob that we're attached to</p><h2 id="proc">Proc Details</h2><h3 id="proc/get_parent"><aside class="declaration">proc </aside>get_parent<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/hivemind/hivemind.dm#L383">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;hivemind&#x2F;hivemind.dm 383"/></a></aside>
+        </h3>
+        <p>Getter for the parent of this hive core</p><h3 id="proc/hivemind_proxy_alert"><aside class="declaration">proc </aside>hivemind_proxy_alert<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/hostile) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/hivemind/hivemind.dm#L361">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;hivemind&#x2F;hivemind.dm 361"/></a></aside>
+        </h3>
+        <p>Proc checks if we should alert the hivemind, and if it can, it does so.
+datum/source - the atom (in this case it should be a turf) sending the crossed signal
+atom/movable/hostile - the atom that triggered the crossed signal, in this case we're looking for a mob</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;activable&#x2F;xeno&#x2F;conqueror_will - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/activable/xeno/conqueror_will.html#var">Var Details</a> - <a href="datum/action/ability/activable/xeno/conqueror_will.html#proc">Proc Details</a></header>
+<main>
+<h1>conqueror_will <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/activable.html">activable</a>/<a href="datum/action/ability/activable/xeno.html">xeno</a>/<a href="datum/action/ability/activable/xeno/conqueror_will.html">conqueror_will</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L183">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 183"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#var/combo_streak">combo_streak</a></th><td>The streak of attacks the user has performed.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#var/display_combos">display_combos</a></th><td>If enabled, a meter will be displayed on the HUD for the current combo streak.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#var/particle_holder">particle_holder</a></th><td>Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#var/reset_timer">reset_timer</a></th><td>Timer ID. Length of time until combo streaks are automatically reset.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#var/warning_timer">warning_timer</a></th><td>Timer ID. Length of time after which the ability will warn the user of an impending reset.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#proc/add_to_attack">add_to_attack</a></th><td>Adds bonuses to normal attacks, usually replacing visuals and sound effects, and builds up combos if the ability isn't on cooldown.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#proc/adjust_particles">adjust_particles</a></th><td>Adjusts particles to match the user. Alignments are hand picked, and may have to be remade if the Conqueror's icon ever changes.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#proc/alternate_action_activate">alternate_action_activate</a></th><td>Toggles the combo display.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#proc/check_range">check_range</a></th><td>Checks if an eligible target is within the specified range. If true, the user will be moved towards them.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#proc/combo_jab">combo_jab</a></th><td>A flurry of rapid and precise strikes, dealing additional damage.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#proc/combo_kick">combo_kick</a></th><td>A mighty kick that sends the target flying. If they collide with another atom, that atom is also affected.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#proc/combo_punch">combo_punch</a></th><td>A well delivered punch to a weak point, incapacitating the target for the duration.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#proc/combo_uppercut">combo_uppercut</a></th><td>A strong uppercut that knocks the target upwards, incapacitating them for the duration.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#proc/disable_ability">disable_ability</a></th><td>Disables the ability.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#proc/enable_ability">enable_ability</a></th><td>Enables the ability.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#proc/kicked_end">kicked_end</a></th><td>Ends the target's throw. Taken from Warrior code.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#proc/kicked_into">kicked_into</a></th><td>If the target collides into another atom, that atom is affected. Taken from Warrior code.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#proc/no_combo">no_combo</a></th><td>A simple hook.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#proc/on_death">on_death</a></th><td>If the user dies, a check will be added in the case of revival, to reenable the ability.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#proc/reset_combo">reset_combo</a></th><td>Resets any ongoing combos.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/conqueror_will.html#proc/uppercut_landing">uppercut_landing</a></th><td>After the target lands, certain traits are reset, and the rest of the effects are applied.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/combo_streak"><aside class="declaration">var </aside>combo_streak
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L198">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 198"/></a></h3>
+        <p>The streak of attacks the user has performed.</p><h3 id="var/display_combos"><aside class="declaration">var </aside>display_combos
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L196">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 196"/></a></h3>
+        <p>If enabled, a meter will be displayed on the HUD for the current combo streak.</p><h3 id="var/particle_holder"><aside class="declaration">var </aside>particle_holder
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/abstract/particle_holder.html">effect/abstract/particle_holder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L194">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 194"/></a></h3>
+        <p>Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.</p><h3 id="var/reset_timer"><aside class="declaration">var </aside>reset_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L200">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 200"/></a></h3>
+        <p>Timer ID. Length of time until combo streaks are automatically reset.</p><h3 id="var/warning_timer"><aside class="declaration">var </aside>warning_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L204">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 204"/></a></h3>
+        <p>Timer ID. Length of time after which the ability will warn the user of an impending reset.</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_to_attack"><aside class="declaration">proc </aside>add_to_attack<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/living_target, isrightclick) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L304">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 304"/></a></aside>
+        </h3>
+        <p>Adds bonuses to normal attacks, usually replacing visuals and sound effects, and builds up combos if the ability isn't on cooldown.</p><h3 id="proc/adjust_particles"><aside class="declaration">proc </aside>adjust_particles<aside>(/<a href="datum.html">datum</a>/source, unused, new_dir) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L257">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 257"/></a></aside>
+        </h3>
+        <p>Adjusts particles to match the user. Alignments are hand picked, and may have to be remade if the Conqueror's icon ever changes.</p><h3 id="proc/alternate_action_activate"><aside class="parent"><a title="/datum/action" href="datum/action.html#proc/alternate_action_activate">&uarr;</a></aside>alternate_action_activate<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L222">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 222"/></a></aside>
+        </h3>
+        <p>Toggles the combo display.</p><h3 id="proc/check_range"><aside class="declaration">proc </aside>check_range<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/atom_target, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L275">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 275"/></a></aside>
+        </h3>
+        <p>Checks if an eligible target is within the specified range. If true, the user will be moved towards them.</p><h3 id="proc/combo_jab"><aside class="declaration">proc </aside>combo_jab<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/living_target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L391">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 391"/></a></aside>
+        </h3>
+        <p>A flurry of rapid and precise strikes, dealing additional damage.</p><h3 id="proc/combo_kick"><aside class="declaration">proc </aside>combo_kick<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/living_target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L400">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 400"/></a></aside>
+        </h3>
+        <p>A mighty kick that sends the target flying. If they collide with another atom, that atom is also affected.</p><h3 id="proc/combo_punch"><aside class="declaration">proc </aside>combo_punch<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/living_target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L355">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 355"/></a></aside>
+        </h3>
+        <p>A well delivered punch to a weak point, incapacitating the target for the duration.</p><h3 id="proc/combo_uppercut"><aside class="declaration">proc </aside>combo_uppercut<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/living_target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L367">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 367"/></a></aside>
+        </h3>
+        <p>A strong uppercut that knocks the target upwards, incapacitating them for the duration.</p><h3 id="proc/disable_ability"><aside class="declaration">proc </aside>disable_ability<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L244">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 244"/></a></aside>
+        </h3>
+        <p>Disables the ability.</p><h3 id="proc/enable_ability"><aside class="declaration">proc </aside>enable_ability<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L234">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 234"/></a></aside>
+        </h3>
+        <p>Enables the ability.</p><h3 id="proc/kicked_end"><aside class="declaration">proc </aside>kicked_end<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L428">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 428"/></a></aside>
+        </h3>
+        <p>Ends the target's throw. Taken from Warrior code.</p><h3 id="proc/kicked_into"><aside class="declaration">proc </aside>kicked_into<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/hit_atom, impact_speed) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L411">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 411"/></a></aside>
+        </h3>
+        <p>If the target collides into another atom, that atom is affected. Taken from Warrior code.</p><h3 id="proc/no_combo"><aside class="declaration">proc </aside>no_combo<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/living_target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L349">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 349"/></a></aside>
+        </h3>
+        <p>A simple hook.</p><h3 id="proc/on_death"><aside class="declaration">proc </aside>on_death<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L251">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 251"/></a></aside>
+        </h3>
+        <p>If the user dies, a check will be added in the case of revival, to reenable the ability.</p><h3 id="proc/reset_combo"><aside class="declaration">proc </aside>reset_combo<aside>(silent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L333">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 333"/></a></aside>
+        </h3>
+        <p>Resets any ongoing combos.</p><h3 id="proc/uppercut_landing"><aside class="declaration">proc </aside>uppercut_landing<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/living_target, debuff_duration) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L382">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 382"/></a></aside>
+        </h3>
+        <p>After the target lands, certain traits are reset, and the rest of the effects are applied.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

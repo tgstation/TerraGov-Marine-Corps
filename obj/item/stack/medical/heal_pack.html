@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;stack&#x2F;medical&#x2F;heal_pack - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/stack/medical/heal_pack.html#var">Var Details</a> - <a href="obj/item/stack/medical/heal_pack.html#proc">Proc Details</a></header>
+<main>
+<h1>heal_pack <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a>/<a href="obj/item/stack/medical.html">medical</a>/<a href="obj/item/stack/medical/heal_pack.html">heal_pack</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/stacks/medical.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;medical.dm 59"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/stack/medical/heal_pack.html#var/heal_brute">heal_brute</a></th><td>How much brute damage this pack heals when applied to a limb</td></tr>
+            <tr><th><a href="obj/item/stack/medical/heal_pack.html#var/heal_burn">heal_burn</a></th><td>How much burn damage this pack heals when applied to a limb</td></tr>
+            <tr><th><a href="obj/item/stack/medical/heal_pack.html#var/heal_flags">heal_flags</a></th><td>Set of wound flags applied by use, including BANDAGE, SALVE, and DISINFECT</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/stack/medical/heal_pack.html#proc/can_heal_limb">can_heal_limb</a></th><td>return TRUE if a given limb can be healed by src, FALSE otherwise</td></tr>
+            <tr><th><a href="obj/item/stack/medical/heal_pack.html#proc/generate_treatment_messages">generate_treatment_messages</a></th><td>Purely visual, generates the success/failure messages for using a health pack</td></tr>
+            <tr><th><a href="obj/item/stack/medical/heal_pack.html#proc/heal_limb">heal_limb</a></th><td>Applies the heal_pack to a specified limb. Unskilled penalty is a multiplier between 0 and 1 on brute/burn healing effectiveness</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/heal_brute"><aside class="declaration">var </aside>heal_brute
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/stacks/medical.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;medical.dm 64"/></a></h3>
+        <p>How much brute damage this pack heals when applied to a limb</p><h3 id="var/heal_burn"><aside class="declaration">var </aside>heal_burn
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/stacks/medical.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;medical.dm 66"/></a></h3>
+        <p>How much burn damage this pack heals when applied to a limb</p><h3 id="var/heal_flags"><aside class="declaration">var </aside>heal_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/stacks/medical.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;medical.dm 68"/></a></h3>
+        <p>Set of wound flags applied by use, including BANDAGE, SALVE, and DISINFECT</p><h2 id="proc">Proc Details</h2><h3 id="proc/can_heal_limb"><aside class="declaration">proc </aside>can_heal_limb<aside>(/<a href="datum.html">datum</a>/<a href="datum/limb.html">limb</a>/affecting) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/stacks/medical.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;medical.dm 106"/></a></aside>
+        </h3>
+        <p>return TRUE if a given limb can be healed by src, FALSE otherwise</p><h3 id="proc/generate_treatment_messages"><aside class="declaration">proc </aside>generate_treatment_messages<aside>(/<a href="mob.html">mob</a>/user, /<a href="mob.html">mob</a>/patient, /<a href="datum.html">datum</a>/<a href="datum/limb.html">limb</a>/target_limb, success) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/stacks/medical.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;medical.dm 137"/></a></aside>
+        </h3>
+        <p>Purely visual, generates the success/failure messages for using a health pack</p><h3 id="proc/heal_limb"><aside class="declaration">proc </aside>heal_limb<aside>(/<a href="datum.html">datum</a>/<a href="datum/limb.html">limb</a>/affecting, unskilled_penalty) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/stacks/medical.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;stacks&#x2F;medical.dm 122"/></a></aside>
+        </h3>
+        <p>Applies the heal_pack to a specified limb. Unskilled penalty is a multiplier between 0 and 1 on brute/burn healing effectiveness</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

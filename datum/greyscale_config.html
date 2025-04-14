@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;greyscale_config - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/greyscale_config.html#var">Var Details</a> - <a href="datum/greyscale_config.html#proc">Proc Details</a></header>
+<main>
+<h1>greyscale_config <aside>/<a href="datum.html">datum</a>/<a href="datum/greyscale_config.html">greyscale_config</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 2"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/greyscale_config.html#var/expected_colors">expected_colors</a></th><td>How many colors are expected to be given when building the sprite</td></tr>
+            <tr><th><a href="datum/greyscale_config.html#var/greyscale_flags">greyscale_flags</a></th><td>Flags that can be used to modify use</td></tr>
+            <tr><th><a href="datum/greyscale_config.html#var/icon_cache">icon_cache</a></th><td>Generated icons keyed by their color arguments</td></tr>
+            <tr><th><a href="datum/greyscale_config.html#var/icon_file">icon_file</a></th><td>Reference to the dmi file for this config</td></tr>
+            <tr><th><a href="datum/greyscale_config.html#var/icon_states">icon_states</a></th><td>A list of icon states and their layers</td></tr>
+            <tr><th><a href="datum/greyscale_config.html#var/json_config">json_config</a></th><td>Reference to the json config file</td></tr>
+            <tr><th><a href="datum/greyscale_config.html#var/name">name</a></th><td>User friendly name used in the debug menu</td></tr>
+            <tr><th><a href="datum/greyscale_config.html#var/prefix">prefix</a></th><td>This is used to differentiate sprites that can use the same json, but you dont want a ton of different icon files. It applies this prefix to the icon states before gathering the icons.</td></tr>
+            <tr><th><a href="datum/greyscale_config.html#var/string_icon_file">string_icon_file</a></th><td>String path to the icon file, used for reloading</td></tr>
+            <tr><th><a href="datum/greyscale_config.html#var/string_json_config">string_json_config</a></th><td>String path to the json file, used for reloading</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/greyscale_config.html#proc/DebugName">DebugName</a></th><td>Gets the name used for debug purposes</td></tr>
+            <tr><th><a href="datum/greyscale_config.html#proc/Generate">Generate</a></th><td>Actually create the icon and color it in, handles caching</td></tr>
+            <tr><th><a href="datum/greyscale_config.html#proc/GenerateLayerGroup">GenerateLayerGroup</a></th><td>Internal recursive proc to handle nested layer groups</td></tr>
+            <tr><th><a href="datum/greyscale_config.html#proc/ReadIconStateConfiguration">ReadIconStateConfiguration</a></th><td>Takes the json icon state configuration and puts it into a more processed format</td></tr>
+            <tr><th><a href="datum/greyscale_config.html#proc/ReadLayersFromJson">ReadLayersFromJson</a></th><td>Takes the json layers configuration and puts it into a more processed format</td></tr>
+            <tr><th><a href="datum/greyscale_config.html#proc/ReadMetadata">ReadMetadata</a></th><td>Reads layer configurations to take out some useful overall information</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/expected_colors"><aside class="declaration">var </aside>expected_colors
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 24"/></a></h3>
+        <p>How many colors are expected to be given when building the sprite</p><h3 id="var/greyscale_flags"><aside class="declaration">var </aside>greyscale_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 33"/></a></h3>
+        <p>Flags that can be used to modify use</p><h3 id="var/icon_cache"><aside class="declaration">var </aside>icon_cache
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 27"/></a></h3>
+        <p>Generated icons keyed by their color arguments</p><h3 id="var/icon_file"><aside class="declaration">var </aside>icon_file
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 9"/></a></h3>
+        <p>Reference to the dmi file for this config</p><h3 id="var/icon_states"><aside class="declaration">var </aside>icon_states
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 21"/></a></h3>
+        <p>A list of icon states and their layers</p><h3 id="var/json_config"><aside class="declaration">var </aside>json_config
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 6"/></a></h3>
+        <p>Reference to the json config file</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 4"/></a></h3>
+        <p>User friendly name used in the debug menu</p><h3 id="var/prefix"><aside class="declaration">var </aside>prefix
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 30"/></a></h3>
+        <p>This is used to differentiate sprites that can use the same json, but you dont want a ton of different icon files. It applies this prefix to the icon states before gathering the icons.</p><h3 id="var/string_icon_file"><aside class="declaration">var </aside>string_icon_file
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 18"/></a></h3>
+        <p>String path to the icon file, used for reloading</p><h3 id="var/string_json_config"><aside class="declaration">var </aside>string_json_config
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 15"/></a></h3>
+        <p>String path to the json file, used for reloading</p><h2 id="proc">Proc Details</h2><h3 id="proc/DebugName"><aside class="declaration">proc </aside>DebugName<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 65"/></a></aside>
+        </h3>
+        <p>Gets the name used for debug purposes</p><h3 id="proc/Generate"><aside class="declaration">proc </aside>Generate<aside>(color_string, /list/render_steps) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 119"/></a></aside>
+        </h3>
+        <p>Actually create the icon and color it in, handles caching</p><h3 id="proc/GenerateLayerGroup"><aside class="declaration">proc </aside>GenerateLayerGroup<aside>(/list/colors, /list/group, /list/render_steps) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 137"/></a></aside>
+        </h3>
+        <p>Internal recursive proc to handle nested layer groups</p><h3 id="proc/ReadIconStateConfiguration"><aside class="declaration">proc </aside>ReadIconStateConfiguration<aside>(/list/data) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 69"/></a></aside>
+        </h3>
+        <p>Takes the json icon state configuration and puts it into a more processed format</p><h3 id="proc/ReadLayersFromJson"><aside class="declaration">proc </aside>ReadLayersFromJson<aside>(/list/data) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 80"/></a></aside>
+        </h3>
+        <p>Takes the json layers configuration and puts it into a more processed format</p><h3 id="proc/ReadMetadata"><aside class="declaration">proc </aside>ReadMetadata<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/greyscale/_greyscale_config.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;greyscale&#x2F;_greyscale_config.dm 98"/></a></aside>
+        </h3>
+        <p>Reads layer configurations to take out some useful overall information</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

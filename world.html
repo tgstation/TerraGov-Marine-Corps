@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;world - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="world.html#proc">Proc Details</a></header>
+<main>
+<h1>world <aside>/<a href="world.html">world</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/world.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;world.dm 1"/></a></h1>
+
+<p>Used to find the sources of harddels, quite laggy, don't be surpised if it freezes your client for a good while</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="world.html#proc/ConfigLoaded">ConfigLoaded</a></th><td>Runs after config is loaded but before Master is initialized</td></tr>
+            <tr><th><a href="world.html#proc/Genesis">Genesis</a></th><td>WORLD INITIALIZATION
+THIS IS THE INIT ORDER:</td></tr>
+            <tr><th><a href="world.html#proc/InitTgs">InitTgs</a></th><td>Initializes TGS and loads the returned revising info into GLOB.revdata</td></tr>
+            <tr><th><a href="world.html#proc/RunUnattendedFunctions">RunUnattendedFunctions</a></th><td>Runs after the call to Master.Initialize, but before the delay kicks in. Used to turn the world execution into some single function then exit</td></tr>
+            <tr><th><a href="world.html#proc/_">_</a></th><td>THE GENESIS CALL</td></tr>
+            <tr><th><a href="world.html#proc/get_world_state_for_logging">get_world_state_for_logging</a></th><td>Returns a list of data about the world state, don't clutter</td></tr>
+            <tr><th><a href="world.html#proc/increase_max_x">increase_max_x</a></th><td>Handles increasing the world's maxx var and initializing the new turfs and assigning them to the global area.
+If map_load_z_cutoff is passed in, it will only load turfs up to that z level, inclusive.
+This is because maploading will handle the turfs it loads itself.</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/ConfigLoaded"><aside class="declaration">proc </aside>ConfigLoaded<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/world.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;world.dm 110"/></a></aside>
+        </h3>
+        <p>Runs after config is loaded but before Master is initialized</p><h3 id="proc/Genesis"><aside class="declaration">proc </aside>Genesis<aside>(tracy_initialized) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/world.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;world.dm 57"/></a></aside>
+        </h3>
+        <p>WORLD INITIALIZATION
+THIS IS THE INIT ORDER:</p>
+<p>BYOND =&gt;</p>
+<ul>
+<li>(secret init native) =&gt;
+<ul>
+<li>world.Genesis() =&gt;
+<ul>
+<li>world.init_byond_tracy()</li>
+<li>(Start native profiling)</li>
+<li>world.init_debugger()</li>
+<li>Master =&gt;
+<ul>
+<li>config *unloaded</li>
+<li>(all subsystems) PreInit()</li>
+<li>GLOB =&gt;
+<ul>
+<li>make_datum_reference_lists()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>(/static variable inits, reverse declaration order)</li>
+</ul>
+</li>
+<li>(all pre-mapped atoms) /atom/New()</li>
+<li>world.New() =&gt;
+<ul>
+<li>config.Load()</li>
+<li>world.InitTgs() =&gt;
+<ul>
+<li>TgsNew() *may sleep</li>
+<li>GLOB.rev_data.load_tgs_info()</li>
+</ul>
+</li>
+<li>world.ConfigLoaded() =&gt;
+<ul>
+<li>SSdbcore.InitializeRound()</li>
+<li>world.SetupLogs()</li>
+<li>load_admins()</li>
+<li>...</li>
+</ul>
+</li>
+<li>Master.Initialize() =&gt;
+<ul>
+<li>(all subsystems) Initialize()</li>
+<li>Master.StartProcessing() =&gt;
+<ul>
+<li>Master.Loop() =&gt;
+<ul>
+<li>Failsafe</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>world.RunUnattendedFunctions()</li>
+</ul>
+</li>
+</ul>
+<p>Now listen up because I want to make something clear:
+If something is not in this list it should almost definitely be handled by a subsystem Initialize()ing
+If whatever it is that needs doing doesn't fit in a subsystem you probably aren't trying hard enough tbhfam</p>
+<p>GOT IT MEMORIZED?</p>
+<ul>
+<li>Dominion/Cyberboss</li>
+</ul>
+<p>THIS !!!SINGLE!!! PROC IS WHERE ANY FORM OF INIITIALIZATION THAT CAN'T BE PERFORMED IN MASTER/NEW() IS DONE
+NOWHERE THE FUCK ELSE
+I DON'T CARE HOW MANY LAYERS OF DEBUG/PROFILE/TRACE WE HAVE, YOU JUST HAVE TO DEAL WITH THIS PROC EXISTING
+I'M NOT EVEN GOING TO TELL YOU WHERE IT'S CALLED FROM BECAUSE I'M DECLARING THAT FORBIDDEN KNOWLEDGE
+SO HELP ME GOD IF I FIND ABSTRACTION LAYERS OVER THIS!</p><h3 id="proc/InitTgs"><aside class="declaration">proc </aside>InitTgs<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/world.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;world.dm 132"/></a></aside>
+        </h3>
+        <p>Initializes TGS and loads the returned revising info into GLOB.revdata</p><h3 id="proc/RunUnattendedFunctions"><aside class="declaration">proc </aside>RunUnattendedFunctions<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/world.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;world.dm 137"/></a></aside>
+        </h3>
+        <p>Runs after the call to Master.Initialize, but before the delay kicks in. Used to turn the world execution into some single function then exit</p><h3 id="proc/_"><aside class="declaration">proc </aside>_<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/genesis_call.dme#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;genesis_call.dme 41"/></a></aside>
+        </h3>
+        <p>THE GENESIS CALL</p>
+<p>THE VERY FIRST LINE OF DM CODE TO EXECUTE
+Ong this must be done before !!!EVERYTHING!!! else
+NO IFS ANDS OR BUTS
+it's a hack, not an example of any sort, and DEFINITELY should NOT be emulated
+IT JUST HAS TO BE FIRST!!!!!!
+If you want to do something in the initialization pipeline
+FIRST RTFM IN /code/game/world.dm
+AND THEN NEVER RETURN TO THIS PLACE</p>
+<p>If you're still here, here's an explanation:
+BYOND loves to tell you about its loving spouse /global
+But it's actually having a sexy an affair with /static
+Specifically statics in procs
+Priority is given to these lines of code in REVERSE order of declaration in the .dme
+Which is why this file has a funky name
+So this is what we use to call world.Genesis()
+It's a nameless, no-op function, because it does absolutely nothing
+It exists to hold a static var which is initialized to null
+It's on /world to hide it from reflection
+Painful right? Good, now you share my suffering
+Please lock the door on your way out</p><h3 id="proc/get_world_state_for_logging"><aside class="declaration">proc </aside>get_world_state_for_logging<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/world.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;world.dm 157"/></a></aside>
+        </h3>
+        <p>Returns a list of data about the world state, don't clutter</p><h3 id="proc/increase_max_x"><aside class="declaration">proc </aside>increase_max_x<aside>(new_maxx, map_load_z_cutoff) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/world.dm#L365">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;world.dm 365"/></a></aside>
+        </h3>
+        <p>Handles increasing the world's maxx var and initializing the new turfs and assigning them to the global area.
+If map_load_z_cutoff is passed in, it will only load turfs up to that z level, inclusive.
+This is because maploading will handle the turfs it loads itself.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

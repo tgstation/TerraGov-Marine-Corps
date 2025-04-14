@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;xeno_action&#x2F;zero_form_beam - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/xeno_action/zero_form_beam.html#var">Var Details</a> - <a href="datum/action/ability/xeno_action/zero_form_beam.html#proc">Proc Details</a></header>
+<main>
+<h1>zero_form_beam <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/xeno_action.html">xeno_action</a>/<a href="datum/action/ability/xeno_action/zero_form_beam.html">zero_form_beam</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_king.dm#L304">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_king.dm 304"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/zero_form_beam.html#var/beam">beam</a></th><td>ref to beam that is currently active</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/zero_form_beam.html#var/last_attempted_movedir">last_attempted_movedir</a></th><td>last attempted move direction. we use this to allow diagonal beaming.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/zero_form_beam.html#var/particles">particles</a></th><td>particle holder for the particle visual effects</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/zero_form_beam.html#var/targets">targets</a></th><td>list of turfs we are hitting while shooting our beam</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/zero_form_beam.html#var/timer_ref">timer_ref</a></th><td>ref to looping timer for the fire loop</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/zero_form_beam.html#proc/execute_attack">execute_attack</a></th><td>recursive proc for firing the actual beam</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/zero_form_beam.html#proc/stop_beaming">stop_beaming</a></th><td>ends and cleans up beam</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/beam"><aside class="declaration">var </aside>beam
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/beam.html">beam</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_king.dm#L320">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_king.dm 320"/></a></h3>
+        <p>ref to beam that is currently active</p><h3 id="var/last_attempted_movedir"><aside class="declaration">var </aside>last_attempted_movedir
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_king.dm#L316">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_king.dm 316"/></a></h3>
+        <p>last attempted move direction. we use this to allow diagonal beaming.</p><h3 id="var/particles"><aside class="declaration">var </aside>particles
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/abstract/particle_holder.html">effect/abstract/particle_holder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_king.dm#L322">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_king.dm 322"/></a></h3>
+        <p>particle holder for the particle visual effects</p><h3 id="var/targets"><aside class="declaration">var </aside>targets
+            <aside>&ndash; /list/turf</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_king.dm#L318">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_king.dm 318"/></a></h3>
+        <p>list of turfs we are hitting while shooting our beam</p><h3 id="var/timer_ref"><aside class="declaration">var </aside>timer_ref
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_king.dm#L328">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_king.dm 328"/></a></h3>
+        <p>ref to looping timer for the fire loop</p><h2 id="proc">Proc Details</h2><h3 id="proc/execute_attack"><aside class="declaration">proc </aside>execute_attack<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_king.dm#L410">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_king.dm 410"/></a></aside>
+        </h3>
+        <p>recursive proc for firing the actual beam</p><h3 id="proc/stop_beaming"><aside class="declaration">proc </aside>stop_beaming<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_king.dm#L433">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_king.dm 433"/></a></aside>
+        </h3>
+        <p>ends and cleans up beam</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

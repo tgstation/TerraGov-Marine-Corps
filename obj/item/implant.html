@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;implant - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/implant.html#var">Var Details</a> - <a href="obj/item/implant.html#proc">Proc Details</a></header>
+<main>
+<h1>implant <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/implant.html">implant</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/implant.html#var/action_type">action_type</a></th><td>Type of action to give</td></tr>
+            <tr><th><a href="obj/item/implant.html#var/activation_action">activation_action</a></th><td>Activation_action reference</td></tr>
+            <tr><th><a href="obj/item/implant.html#var/allow_reagents">allow_reagents</a></th><td>whether this implant allows reagents to be inserted into it</td></tr>
+            <tr><th><a href="obj/item/implant.html#var/allowed_limbs">allowed_limbs</a></th><td>Whitelist for llimbs that this implavnt is allowed to be inserted into, all limbs by default</td></tr>
+            <tr><th><a href="obj/item/implant.html#var/cooldown_time">cooldown_time</a></th><td>Cooldown between usages of the implant</td></tr>
+            <tr><th><a href="obj/item/implant.html#var/implant_color">implant_color</a></th><td>Color of the implant, used for selecting the implant cases icon_state</td></tr>
+            <tr><th><a href="obj/item/implant.html#var/implant_flags">implant_flags</a></th><td>Implant secific flags</td></tr>
+            <tr><th><a href="obj/item/implant.html#var/implant_owner">implant_owner</a></th><td>Owner mob this implant is inserted to</td></tr>
+            <tr><th><a href="obj/item/implant.html#var/implanted">implanted</a></th><td>Whether this implant has been implanted inside a human yet</td></tr>
+            <tr><th><a href="obj/item/implant.html#var/malfunction">malfunction</a></th><td>What level of malfunction/breakage this implant is at, used for functionality checks</td></tr>
+            <tr><th><a href="obj/item/implant.html#var/part">part</a></th><td>The owner limb this implant is inside</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/implant.html#proc/activate">activate</a></th><td>Handles the actual activation of the implant/it's effects. Returns TRUE on succesful activation and FALSE on failure for parentcalls</td></tr>
+            <tr><th><a href="obj/item/implant.html#proc/get_data">get_data</a></th><td>Returns info about a implant concerning its usage and such</td></tr>
+            <tr><th><a href="obj/item/implant.html#proc/implant">implant</a></th><td>What does the implant do upon injection?
+returns TRUE if the implant succeeds</td></tr>
+            <tr><th><a href="obj/item/implant.html#proc/meltdown">meltdown</a></th><td>Destroys and makes the implant unusable</td></tr>
+            <tr><th><a href="obj/item/implant.html#proc/on_hear">on_hear</a></th><td>Called when the implant hears a message, used for activation phrases and the like</td></tr>
+            <tr><th><a href="obj/item/implant.html#proc/try_implant">try_implant</a></th><td>Attempts to implant a mob with this implant, TRUE on success, FALSE on failure</td></tr>
+            <tr><th><a href="obj/item/implant.html#proc/unimplant">unimplant</a></th><td>Cleans up on being removed from a mob</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/action_type"><aside class="declaration">var </aside>action_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 23"/></a></h3>
+        <p>Type of action to give</p><h3 id="var/activation_action"><aside class="declaration">var </aside>activation_action
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 25"/></a></h3>
+        <p>Activation_action reference</p><h3 id="var/allow_reagents"><aside class="declaration">var </aside>allow_reagents
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 15"/></a></h3>
+        <p>whether this implant allows reagents to be inserted into it</p><h3 id="var/allowed_limbs"><aside class="declaration">var </aside>allowed_limbs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 21"/></a></h3>
+        <p>Whitelist for llimbs that this implavnt is allowed to be inserted into, all limbs by default</p><h3 id="var/cooldown_time"><aside class="declaration">var </aside>cooldown_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 27"/></a></h3>
+        <p>Cooldown between usages of the implant</p><h3 id="var/implant_color"><aside class="declaration">var </aside>implant_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 13"/></a></h3>
+        <p>Color of the implant, used for selecting the implant cases icon_state</p><h3 id="var/implant_flags"><aside class="declaration">var </aside>implant_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 19"/></a></h3>
+        <p>Implant secific flags</p><h3 id="var/implant_owner"><aside class="declaration">var </aside>implant_owner
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 9"/></a></h3>
+        <p>Owner mob this implant is inserted to</p><h3 id="var/implanted"><aside class="declaration">var </aside>implanted
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 7"/></a></h3>
+        <p>Whether this implant has been implanted inside a human yet</p><h3 id="var/malfunction"><aside class="declaration">var </aside>malfunction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 17"/></a></h3>
+        <p>What level of malfunction/breakage this implant is at, used for functionality checks</p><h3 id="var/part"><aside class="declaration">var </aside>part
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/limb.html">limb</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 11"/></a></h3>
+        <p>The owner limb this implant is inside</p><h2 id="proc">Proc Details</h2><h3 id="proc/activate"><aside class="declaration">proc </aside>activate<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 59"/></a></aside>
+        </h3>
+        <p>Handles the actual activation of the implant/it's effects. Returns TRUE on succesful activation and FALSE on failure for parentcalls</p><h3 id="proc/get_data"><aside class="declaration">proc </aside>get_data<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 118"/></a></aside>
+        </h3>
+        <p>Returns info about a implant concerning its usage and such</p><h3 id="proc/implant"><aside class="declaration">proc </aside>implant<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/target, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 81"/></a></aside>
+        </h3>
+        <p>What does the implant do upon injection?
+returns TRUE if the implant succeeds</p><h3 id="proc/meltdown"><aside class="declaration">proc </aside>meltdown<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 127"/></a></aside>
+        </h3>
+        <p>Destroys and makes the implant unusable</p><h3 id="proc/on_hear"><aside class="declaration">proc </aside>on_hear<aside>(/<a href="datum.html">datum</a>/source, message, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/speaker, message_language, raw_message, radio_freq, /list/spans, message_mode) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 122"/></a></aside>
+        </h3>
+        <p>Called when the implant hears a message, used for activation phrases and the like</p><h3 id="proc/try_implant"><aside class="declaration">proc </aside>try_implant<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/target, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 66"/></a></aside>
+        </h3>
+        <p>Attempts to implant a mob with this implant, TRUE on success, FALSE on failure</p><h3 id="proc/unimplant"><aside class="declaration">proc </aside>unimplant<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/implants/implant.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;implants&#x2F;implant.dm 106"/></a></aside>
+        </h3>
+        <p>Cleans up on being removed from a mob</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

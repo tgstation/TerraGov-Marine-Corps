@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;view_data - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/view_data.html#var">Var Details</a> - <a href="datum/view_data.html#proc">Proc Details</a></header>
+<main>
+<h1>view_data <aside>/<a href="datum.html">datum</a>/<a href="datum/view_data.html">view_data</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 3"/></a></h1>
+
+<p>Container for client viewsize</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/view_data.html#var/chief">chief</a></th><td>The client that owns this view packet</td></tr>
+            <tr><th><a href="datum/view_data.html#var/default">default</a></th><td>This client's current &quot;default&quot; view, in the format &quot;WidthxHeight&quot;
+We add/remove from this when we want to change their window size</td></tr>
+            <tr><th><a href="datum/view_data.html#var/height">height</a></th><td>Height offset to apply to the default view string, see above</td></tr>
+            <tr><th><a href="datum/view_data.html#var/supress_changes">supress_changes</a></th><td>If the view is currently being suppressed by some other &quot;monitor&quot;
+For when you want to own the client's eye without fucking with their viewport
+Doesn't make sense for a binocoler to effect your view in a camera console</td></tr>
+            <tr><th><a href="datum/view_data.html#var/width">width</a></th><td>Width offset to apply to the default view string if we're not suppressed for some reason</td></tr>
+            <tr><th><a href="datum/view_data.html#var/zoom">zoom</a></th><td>This client's current zoom level, if it's not being suppressed
+If it's 0, we autoscale to the size of the window. Otherwise it's treated as the ratio between
+the pixels on the map and output pixels. Only looks proper nice in increments of whole numbers (iirc)
+Stored here so other parts of the code have a non blocking way of getting a user's functional zoom</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/view_data.html#proc/add">add</a></th><td>adds the number inputted to the zoom and applies it</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/add_size">add_size</a></th><td>adds the size, which can also be a string, to the default and applies it</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/add_to_height">add_to_height</a></th><td>adds the inputted height to the view</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/add_to_width">add_to_width</a></th><td>adds the inputted width to the view</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/apply">apply</a></th><td>applies all current outstanding changes to the client</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/assert_format">assert_format</a></th><td>Resets the format type</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/get_client_view_size">get_client_view_size</a></th><td>returns the client view size in string format</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/is_zooming">is_zooming</a></th><td>Returns a boolean if the client has any form of zoom</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/reset_to_default">reset_to_default</a></th><td>Resets the zoom to the default string</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/safe_apply_formatting">safe_apply_formatting</a></th><td>Updates formatting while considering zoom</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/set_default">set_default</a></th><td>sets the default view size froma  string</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/set_height">set_height</a></th><td>sets the height of the view</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/set_view_radius_to">set_view_radius_to</a></th><td>INCREASES the view radius by this.</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/set_width">set_width</a></th><td>sets the width of the view</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/set_width_and_height">set_width_and_height</a></th><td>sets width and height as numbers</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/supress">supress</a></th><td>supresses any further view changes until it is unsupressed</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/unsupress">unsupress</a></th><td>unsupresses to allow further view changes</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/update_pixel_format">update_pixel_format</a></th><td>applies the current clients preferred pixel size setting</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/update_zoom_mode">update_zoom_mode</a></th><td>applies the preferred clients scaling method</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/zoom_in">zoom_in</a></th><td>Zooms the client back in with an animate pretty simple</td></tr>
+            <tr><th><a href="datum/view_data.html#proc/zoom_out">zoom_out</a></th><td>zooms out the client with a given radius and offset as well as a direction</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/chief"><aside class="declaration">var </aside>chief
+            <aside>&ndash; /<a href="client.html">client</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 21"/></a></h3>
+        <p>The client that owns this view packet</p><h3 id="var/default"><aside class="declaration">var </aside>default
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 10"/></a></h3>
+        <p>This client's current &quot;default&quot; view, in the format &quot;WidthxHeight&quot;
+We add/remove from this when we want to change their window size</p><h3 id="var/height"><aside class="declaration">var </aside>height
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 7"/></a></h3>
+        <p>Height offset to apply to the default view string, see above</p><h3 id="var/supress_changes"><aside class="declaration">var </aside>supress_changes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 19"/></a></h3>
+        <p>If the view is currently being suppressed by some other &quot;monitor&quot;
+For when you want to own the client's eye without fucking with their viewport
+Doesn't make sense for a binocoler to effect your view in a camera console</p><h3 id="var/width"><aside class="declaration">var </aside>width
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 5"/></a></h3>
+        <p>Width offset to apply to the default view string if we're not suppressed for some reason</p><h3 id="var/zoom"><aside class="declaration">var </aside>zoom
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 15"/></a></h3>
+        <p>This client's current zoom level, if it's not being suppressed
+If it's 0, we autoscale to the size of the window. Otherwise it's treated as the ratio between
+the pixels on the map and output pixels. Only looks proper nice in increments of whole numbers (iirc)
+Stored here so other parts of the code have a non blocking way of getting a user's functional zoom</p><h2 id="proc">Proc Details</h2><h3 id="proc/add"><aside class="declaration">proc </aside>add<aside>(num_to_add) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 70"/></a></aside>
+        </h3>
+        <p>adds the number inputted to the zoom and applies it</p><h3 id="proc/add_size"><aside class="declaration">proc </aside>add_size<aside>(toAdd) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 76"/></a></aside>
+        </h3>
+        <p>adds the size, which can also be a string, to the default and applies it</p><h3 id="proc/add_to_height"><aside class="declaration">proc </aside>add_to_height<aside>(height_to_add) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 111"/></a></aside>
+        </h3>
+        <p>adds the inputted height to the view</p><h3 id="proc/add_to_width"><aside class="declaration">proc </aside>add_to_width<aside>(width_to_add) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 106"/></a></aside>
+        </h3>
+        <p>adds the inputted width to the view</p><h3 id="proc/apply"><aside class="declaration">proc </aside>apply<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 116"/></a></aside>
+        </h3>
+        <p>applies all current outstanding changes to the client</p><h3 id="proc/assert_format"><aside class="declaration">proc </aside>assert_format<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 45"/></a></aside>
+        </h3>
+        <p>Resets the format type</p><h3 id="proc/get_client_view_size"><aside class="declaration">proc </aside>get_client_view_size<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 131"/></a></aside>
+        </h3>
+        <p>returns the client view size in string format</p><h3 id="proc/is_zooming"><aside class="declaration">proc </aside>is_zooming<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 60"/></a></aside>
+        </h3>
+        <p>Returns a boolean if the client has any form of zoom</p><h3 id="proc/reset_to_default"><aside class="declaration">proc </aside>reset_to_default<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 64"/></a></aside>
+        </h3>
+        <p>Resets the zoom to the default string</p><h3 id="proc/safe_apply_formatting"><aside class="declaration">proc </aside>safe_apply_formatting<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 38"/></a></aside>
+        </h3>
+        <p>Updates formatting while considering zoom</p><h3 id="proc/set_default"><aside class="declaration">proc </aside>set_default<aside>(string) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 33"/></a></aside>
+        </h3>
+        <p>sets the default view size froma  string</p><h3 id="proc/set_height"><aside class="declaration">proc </aside>set_height<aside>(new_height) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 101"/></a></aside>
+        </h3>
+        <p>sets the height of the view</p><h3 id="proc/set_view_radius_to"><aside class="declaration">proc </aside>set_view_radius_to<aside>(toAdd) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 83"/></a></aside>
+        </h3>
+        <p>INCREASES the view radius by this.</p><h3 id="proc/set_width"><aside class="declaration">proc </aside>set_width<aside>(new_width) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 96"/></a></aside>
+        </h3>
+        <p>sets the width of the view</p><h3 id="proc/set_width_and_height"><aside class="declaration">proc </aside>set_width_and_height<aside>(new_width, new_height) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 90"/></a></aside>
+        </h3>
+        <p>sets width and height as numbers</p><h3 id="proc/supress"><aside class="declaration">proc </aside>supress<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 121"/></a></aside>
+        </h3>
+        <p>supresses any further view changes until it is unsupressed</p><h3 id="proc/unsupress"><aside class="declaration">proc </aside>unsupress<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 126"/></a></aside>
+        </h3>
+        <p>unsupresses to allow further view changes</p><h3 id="proc/update_pixel_format"><aside class="declaration">proc </aside>update_pixel_format<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 50"/></a></aside>
+        </h3>
+        <p>applies the current clients preferred pixel size setting</p><h3 id="proc/update_zoom_mode"><aside class="declaration">proc </aside>update_zoom_mode<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 56"/></a></aside>
+        </h3>
+        <p>applies the preferred clients scaling method</p><h3 id="proc/zoom_in"><aside class="declaration">proc </aside>zoom_in<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 138"/></a></aside>
+        </h3>
+        <p>Zooms the client back in with an animate pretty simple</p><h3 id="proc/zoom_out"><aside class="declaration">proc </aside>zoom_out<aside>(radius, offset, direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/view.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;view.dm 143"/></a></aside>
+        </h3>
+        <p>zooms out the client with a given radius and offset as well as a direction</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

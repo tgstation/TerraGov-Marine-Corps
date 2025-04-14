@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;docking_port&#x2F;mobile&#x2F;marine_dropship&#x2F;casplane - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/docking_port/mobile/marine_dropship/casplane.html#var">Var Details</a> - <a href="obj/docking_port/mobile/marine_dropship/casplane.html#proc">Proc Details</a></header>
+<main>
+<h1>casplane <aside>/<a href="obj.html">obj</a>/<a href="obj/docking_port.html">docking_port</a>/<a href="obj/docking_port/mobile.html">mobile</a>/<a href="obj/docking_port/mobile/marine_dropship.html">marine_dropship</a>/<a href="obj/docking_port/mobile/marine_dropship/casplane.html">casplane</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 6"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#var/active_weapon">active_weapon</a></th><td>Our currently selected weapon we will fire</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#var/attackdir">attackdir</a></th><td>Direction we will use for attacks while in combat mode</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#var/cas_mini">cas_mini</a></th><td>Minimap for the pilot to know where the marines have ran off to</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#var/chair">chair</a></th><td>Chair that handles all the ui and click stuff</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#var/currently_returning">currently_returning</a></th><td>If the shuttle is currently returning to the hangar.</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#var/engines">engines</a></th><td>List of engine tiles so we can track them for overlays</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#var/engines_on">engines_on</a></th><td>whether our engines ar eshowing an overlay</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#var/eyeobj">eyeobj</a></th><td>Camera eye we create when we begin a CAS mission that we fire from</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#var/fuel_left">fuel_left</a></th><td>Number for how much fuel we have left, this x15 seconds is how much time we have while flying</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#var/fuel_max">fuel_max</a></th><td>How much fuel we can hold maximum</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#var/jump_action">jump_action</a></th><td>Jump to Lase action for active firemissions</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#var/off_action">off_action</a></th><td>Action to stop the eye</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#var/state">state</a></th><td>What state our plane is in, i.e can we launch/do we have to deploy stairs etc</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#proc/begin_cas_mission">begin_cas_mission</a></th><td>Runs checks and creates a new eye/hands over control to the eye</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#proc/end_cas_mission">end_cas_mission</a></th><td>Ends the CAS mission</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#proc/fire_weapons_at">fire_weapons_at</a></th><td>Handles clicking on a target while in CAS mode</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#proc/give_eye_control">give_eye_control</a></th><td>Gives user control of the eye and allows them to start shooting</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#proc/handle_topic">handle_topic</a></th><td>Used to intercept JUMP links.</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#proc/on_equipment_change">on_equipment_change</a></th><td>Called to check if a equipment was changed and to unset the active equipment if it got removed</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#proc/record_cas_activity">record_cas_activity</a></th><td>Tally up the corresponding weapon used by the pilot into their /datum/personal_statistics</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#proc/turn_off_engines">turn_off_engines</a></th><td>Updates state and overlay to make te engines off</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#proc/turn_on_engines">turn_on_engines</a></th><td>Updates state and overlay to make te engines on</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship/casplane.html#proc/update_state">update_state</a></th><td>Updates our state. We use a different var from mode so we can distinguish when engines are turned on/ we are in-flight</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active_weapon"><aside class="declaration">var </aside>active_weapon
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/dropship_equipment.html">dropship_equipment</a>/<a href="obj/structure/dropship_equipment/cas/weapon.html">cas/weapon</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 36"/></a></h3>
+        <p>Our currently selected weapon we will fire</p><h3 id="var/attackdir"><aside class="declaration">var </aside>attackdir
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 20"/></a></h3>
+        <p>Direction we will use for attacks while in combat mode</p><h3 id="var/cas_mini"><aside class="declaration">var </aside>cas_mini
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/minimap.html">minimap</a>/marine/external</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 38"/></a></h3>
+        <p>Minimap for the pilot to know where the marines have ran off to</p><h3 id="var/chair"><aside class="declaration">var </aside>chair
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/caspart.html">caspart</a>/<a href="obj/structure/caspart/caschair.html">caschair</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 24"/></a></h3>
+        <p>Chair that handles all the ui and click stuff</p><h3 id="var/currently_returning"><aside class="declaration">var </aside>currently_returning
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 41"/></a></h3>
+        <p>If the shuttle is currently returning to the hangar.</p><h3 id="var/engines"><aside class="declaration">var </aside>engines
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 22"/></a></h3>
+        <p>List of engine tiles so we can track them for overlays</p><h3 id="var/engines_on"><aside class="declaration">var </aside>engines_on
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 34"/></a></h3>
+        <p>whether our engines ar eshowing an overlay</p><h3 id="var/eyeobj"><aside class="declaration">var </aside>eyeobj
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/camera.html">camera</a>/<a href="mob/camera/aiEye/remote.html">aiEye/remote</a>/<a href="mob/camera/aiEye/remote/hud.html">hud</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 26"/></a></h3>
+        <p>Camera eye we create when we begin a CAS mission that we fire from</p><h3 id="var/fuel_left"><aside class="declaration">var </aside>fuel_left
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 30"/></a></h3>
+        <p>Number for how much fuel we have left, this x15 seconds is how much time we have while flying</p><h3 id="var/fuel_max"><aside class="declaration">var </aside>fuel_max
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 32"/></a></h3>
+        <p>How much fuel we can hold maximum</p><h3 id="var/jump_action"><aside class="declaration">var </aside>jump_action
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/innate/jump_to_lase</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 45"/></a></h3>
+        <p>Jump to Lase action for active firemissions</p><h3 id="var/off_action"><aside class="declaration">var </aside>off_action
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/innate/camera_off/cas</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 28"/></a></h3>
+        <p>Action to stop the eye</p><h3 id="var/state"><aside class="declaration">var </aside>state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 18"/></a></h3>
+        <p>What state our plane is in, i.e can we launch/do we have to deploy stairs etc</p><h2 id="proc">Proc Details</h2><h3 id="proc/begin_cas_mission"><aside class="declaration">proc </aside>begin_cas_mission<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 131"/></a></aside>
+        </h3>
+        <p>Runs checks and creates a new eye/hands over control to the eye</p><h3 id="proc/end_cas_mission"><aside class="declaration">proc </aside>end_cas_mission<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L221">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 221"/></a></aside>
+        </h3>
+        <p>Ends the CAS mission</p><h3 id="proc/fire_weapons_at"><aside class="declaration">proc </aside>fire_weapons_at<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/target, /<a href="turf.html">turf</a>/location, control, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L251">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 251"/></a></aside>
+        </h3>
+        <p>Handles clicking on a target while in CAS mode</p><h3 id="proc/give_eye_control"><aside class="declaration">proc </aside>give_eye_control<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L202">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 202"/></a></aside>
+        </h3>
+        <p>Gives user control of the eye and allows them to start shooting</p><h3 id="proc/handle_topic"><aside class="declaration">proc </aside>handle_topic<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user, /list/href_list) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L301">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 301"/></a></aside>
+        </h3>
+        <p>Used to intercept JUMP links.</p><h3 id="proc/on_equipment_change"><aside class="declaration">proc </aside>on_equipment_change<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 113"/></a></aside>
+        </h3>
+        <p>Called to check if a equipment was changed and to unset the active equipment if it got removed</p><h3 id="proc/record_cas_activity"><aside class="declaration">proc </aside>record_cas_activity<aside>(/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/dropship_equipment.html">dropship_equipment</a>/<a href="obj/structure/dropship_equipment/cas/weapon.html">cas/weapon</a>/weapon) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/personal_statistics.dm#L503">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;personal_statistics.dm 503"/></a></aside>
+        </h3>
+        <p>Tally up the corresponding weapon used by the pilot into their /datum/personal_statistics</p><h3 id="proc/turn_off_engines"><aside class="declaration">proc </aside>turn_off_engines<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 105"/></a></aside>
+        </h3>
+        <p>Updates state and overlay to make te engines off</p><h3 id="proc/turn_on_engines"><aside class="declaration">proc </aside>turn_on_engines<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 96"/></a></aside>
+        </h3>
+        <p>Updates state and overlay to make te engines on</p><h3 id="proc/update_state"><aside class="declaration">proc </aside>update_state<aside>(/<a href="datum.html">datum</a>/source, newmode) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/condor/cas_shuttle.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;condor&#x2F;cas_shuttle.dm 118"/></a></aside>
+        </h3>
+        <p>Updates our state. We use a different var from mode so we can distinguish when engines are turned on/ we are in-flight</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;vehicle_module - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/vehicle_module.html#var">Var Details</a> - <a href="obj/item/vehicle_module.html#proc">Proc Details</a></header>
+<main>
+<h1>vehicle_module <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/vehicle_module.html">vehicle_module</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/action_icon">action_icon</a></th><td>dmi for the action button</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/action_icon_state">action_icon_state</a></th><td>icon_state for the action button</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/attach_delay">attach_delay</a></th><td>Time it takes to attach.</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/attach_features_flags">attach_features_flags</a></th><td>Bitfield flags of various features.</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/attach_icon">attach_icon</a></th><td>Icon sheet of the attachment overlays</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/attachments_allowed">attachments_allowed</a></th><td>Allowed attachment types</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/attachments_by_slot">attachments_by_slot</a></th><td>List of slots this attachment has.</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/can_attach">can_attach</a></th><td>Proc typepath that is called when this is item is being attached to something. Returns TRUE if it can attach.</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/detach_delay">detach_delay</a></th><td>Time it takes to detach.</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/on_attach">on_attach</a></th><td>Proc typepath that is called when this is attached to something.</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/on_detach">on_detach</a></th><td>Proc typepath that is called when this is detached from something.</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/parent">parent</a></th><td>Reference to parent object.</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/pixel_shift_x">pixel_shift_x</a></th><td>Pixel shift for the item overlay on the X axis.</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/pixel_shift_y">pixel_shift_y</a></th><td>Pixel shift for the item overlay on the Y axis.</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/should_use_obj_appeareance">should_use_obj_appeareance</a></th><td>Whether the obj appearance for this attachment should be used for the action buttno</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/slot">slot</a></th><td>Slot the attachment is able to occupy.</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/starting_attachments">starting_attachments</a></th><td>Starting attachments that are spawned with this.</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#var/toggle_signal">toggle_signal</a></th><td>The signal for this module if it can toggled</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#proc/activate">activate</a></th><td>Called on ui_action_click. Used for activating the module.</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#proc/can_attach">can_attach</a></th><td>Called before a module is attached.</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#proc/on_attach">on_attach</a></th><td>Called when the module is added to the armor.</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#proc/on_buckle">on_buckle</a></th><td>Adds actions if the mob has the correct flag</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#proc/on_detach">on_detach</a></th><td>Called when the module is removed from the armor.</td></tr>
+            <tr><th><a href="obj/item/vehicle_module.html#proc/on_unbuckle">on_unbuckle</a></th><td>Removes actions if the mob had them</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/action_icon"><aside class="declaration">var </aside>action_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 42"/></a></h3>
+        <p>dmi for the action button</p><h3 id="var/action_icon_state"><aside class="declaration">var </aside>action_icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 44"/></a></h3>
+        <p>icon_state for the action button</p><h3 id="var/attach_delay"><aside class="declaration">var </aside>attach_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 28"/></a></h3>
+        <p>Time it takes to attach.</p><h3 id="var/attach_features_flags"><aside class="declaration">var </aside>attach_features_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 26"/></a></h3>
+        <p>Bitfield flags of various features.</p><h3 id="var/attach_icon"><aside class="declaration">var </aside>attach_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 14"/></a></h3>
+        <p>Icon sheet of the attachment overlays</p><h3 id="var/attachments_allowed"><aside class="declaration">var </aside>attachments_allowed
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 37"/></a></h3>
+        <p>Allowed attachment types</p><h3 id="var/attachments_by_slot"><aside class="declaration">var </aside>attachments_by_slot
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 33"/></a></h3>
+        <p>List of slots this attachment has.</p><h3 id="var/can_attach"><aside class="declaration">var </aside>can_attach
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 20"/></a></h3>
+        <p>Proc typepath that is called when this is item is being attached to something. Returns TRUE if it can attach.</p><h3 id="var/detach_delay"><aside class="declaration">var </aside>detach_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 30"/></a></h3>
+        <p>Time it takes to detach.</p><h3 id="var/on_attach"><aside class="declaration">var </aside>on_attach
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 16"/></a></h3>
+        <p>Proc typepath that is called when this is attached to something.</p><h3 id="var/on_detach"><aside class="declaration">var </aside>on_detach
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 18"/></a></h3>
+        <p>Proc typepath that is called when this is detached from something.</p><h3 id="var/parent"><aside class="declaration">var </aside>parent
+            <aside>&ndash; /<a href="obj.html">obj</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 9"/></a></h3>
+        <p>Reference to parent object.</p><h3 id="var/pixel_shift_x"><aside class="declaration">var </aside>pixel_shift_x
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 22"/></a></h3>
+        <p>Pixel shift for the item overlay on the X axis.</p><h3 id="var/pixel_shift_y"><aside class="declaration">var </aside>pixel_shift_y
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 24"/></a></h3>
+        <p>Pixel shift for the item overlay on the Y axis.</p><h3 id="var/should_use_obj_appeareance"><aside class="declaration">var </aside>should_use_obj_appeareance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 46"/></a></h3>
+        <p>Whether the obj appearance for this attachment should be used for the action buttno</p><h3 id="var/slot"><aside class="declaration">var </aside>slot
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 12"/></a></h3>
+        <p>Slot the attachment is able to occupy.</p><h3 id="var/starting_attachments"><aside class="declaration">var </aside>starting_attachments
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 35"/></a></h3>
+        <p>Starting attachments that are spawned with this.</p><h3 id="var/toggle_signal"><aside class="declaration">var </aside>toggle_signal
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 40"/></a></h3>
+        <p>The signal for this module if it can toggled</p><h2 id="proc">Proc Details</h2><h3 id="proc/activate"><aside class="declaration">proc </aside>activate<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 107"/></a></aside>
+        </h3>
+        <p>Called on ui_action_click. Used for activating the module.</p><h3 id="proc/can_attach"><aside class="declaration">proc </aside>can_attach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attaching_to, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 55"/></a></aside>
+        </h3>
+        <p>Called before a module is attached.</p><h3 id="proc/on_attach"><aside class="declaration">proc </aside>on_attach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attaching_to, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 59"/></a></aside>
+        </h3>
+        <p>Called when the module is added to the armor.</p><h3 id="proc/on_buckle"><aside class="declaration">proc </aside>on_buckle<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 78"/></a></aside>
+        </h3>
+        <p>Adds actions if the mob has the correct flag</p><h3 id="proc/on_detach"><aside class="declaration">proc </aside>on_detach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/detaching_from, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 70"/></a></aside>
+        </h3>
+        <p>Called when the module is removed from the armor.</p><h3 id="proc/on_unbuckle"><aside class="declaration">proc </aside>on_unbuckle<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/unbuckled_mob, force) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/vehicle_attachments/vehicle_modules.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;vehicle_attachments&#x2F;vehicle_modules.dm 93"/></a></aside>
+        </h3>
+        <p>Removes actions if the mob had them</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;harvester - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/harvester.html#var">Var Details</a> - <a href="datum/component/harvester.html#proc">Proc Details</a></header>
+<main>
+<h1>harvester <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/harvester.html">harvester</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 15"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/harvester.html#var/loadable_reagents">loadable_reagents</a></th><td>List of loadable reagents</td></tr>
+            <tr><th><a href="datum/component/harvester.html#var/loaded_reagent">loaded_reagent</a></th><td>Loaded reagent</td></tr>
+            <tr><th><a href="datum/component/harvester.html#var/loaded_reagents">loaded_reagents</a></th><td>Amount of reagents loaded into the blade</td></tr>
+            <tr><th><a href="datum/component/harvester.html#var/max_loadable_reagent_amount">max_loadable_reagent_amount</a></th><td>The maximum amount that one chemical can be loaded</td></tr>
+            <tr><th><a href="datum/component/harvester.html#var/reagent_select_action">reagent_select_action</a></th><td>Selects the active reagent</td></tr>
+            <tr><th><a href="datum/component/harvester.html#var/selected_reagent">selected_reagent</a></th><td>reagent selected for actions</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/harvester.html#proc/activate_blade">activate_blade</a></th><td>Signal handler calling activation of the harvester</td></tr>
+            <tr><th><a href="datum/component/harvester.html#proc/activate_blade_async">activate_blade_async</a></th><td>Handles behavior when activating the weapon</td></tr>
+            <tr><th><a href="datum/component/harvester.html#proc/attack">attack</a></th><td>Signal handler calling when user attacks</td></tr>
+            <tr><th><a href="datum/component/harvester.html#proc/attack_bicaridine">attack_bicaridine</a></th><td>Handles behavior when attacking a mob with bicaridine</td></tr>
+            <tr><th><a href="datum/component/harvester.html#proc/attackby">attackby</a></th><td>Signal handler calling when user is filling the harvester</td></tr>
+            <tr><th><a href="datum/component/harvester.html#proc/attackby_async">attackby_async</a></th><td>Handles behavior for when item is clicked on</td></tr>
+            <tr><th><a href="datum/component/harvester.html#proc/examine">examine</a></th><td>Adds additional text for the component when examining the item</td></tr>
+            <tr><th><a href="datum/component/harvester.html#proc/get_mechanics_info">get_mechanics_info</a></th><td>Adds mechanics info to the weapon</td></tr>
+            <tr><th><a href="datum/component/harvester.html#proc/upate_mob_overlay">upate_mob_overlay</a></th><td>Updates the mob sprite</td></tr>
+            <tr><th><a href="datum/component/harvester.html#proc/update_loaded_color">update_loaded_color</a></th><td>Updates the color of the overlay on top of the item sprite based on what chem is loaded in</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/loadable_reagents"><aside class="declaration">var </aside>loadable_reagents
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 21"/></a></h3>
+        <p>List of loadable reagents</p><h3 id="var/loaded_reagent"><aside class="declaration">var </aside>loaded_reagent
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/reagent.html">reagent</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 19"/></a></h3>
+        <p>Loaded reagent</p><h3 id="var/loaded_reagents"><aside class="declaration">var </aside>loaded_reagents
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 28"/></a></h3>
+        <p>Amount of reagents loaded into the blade</p><h3 id="var/max_loadable_reagent_amount"><aside class="declaration">var </aside>max_loadable_reagent_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 32"/></a></h3>
+        <p>The maximum amount that one chemical can be loaded</p><h3 id="var/reagent_select_action"><aside class="declaration">var </aside>reagent_select_action
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/harvester/reagent_select</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 30"/></a></h3>
+        <p>Selects the active reagent</p><h3 id="var/selected_reagent"><aside class="declaration">var </aside>selected_reagent
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/reagent.html">reagent</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 17"/></a></h3>
+        <p>reagent selected for actions</p><h2 id="proc">Proc Details</h2><h3 id="proc/activate_blade"><aside class="declaration">proc </aside>activate_blade<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L201">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 201"/></a></aside>
+        </h3>
+        <p>Signal handler calling activation of the harvester</p><h3 id="proc/activate_blade_async"><aside class="declaration">proc </aside>activate_blade_async<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 139"/></a></aside>
+        </h3>
+        <p>Handles behavior when activating the weapon</p><h3 id="proc/attack"><aside class="declaration">proc </aside>attack<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/weapon) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L206">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 206"/></a></aside>
+        </h3>
+        <p>Signal handler calling when user attacks</p><h3 id="proc/attack_bicaridine"><aside class="declaration">proc </aside>attack_bicaridine<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/weapon) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L249">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 249"/></a></aside>
+        </h3>
+        <p>Handles behavior when attacking a mob with bicaridine</p><h3 id="proc/attackby"><aside class="declaration">proc </aside>attackby<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/cont, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L196">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 196"/></a></aside>
+        </h3>
+        <p>Signal handler calling when user is filling the harvester</p><h3 id="proc/attackby_async"><aside class="declaration">proc </aside>attackby_async<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/cont, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 94"/></a></aside>
+        </h3>
+        <p>Handles behavior for when item is clicked on</p><h3 id="proc/examine"><aside class="declaration">proc </aside>examine<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user, /list/examine_list) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 73"/></a></aside>
+        </h3>
+        <p>Adds additional text for the component when examining the item</p><h3 id="proc/get_mechanics_info"><aside class="declaration">proc </aside>get_mechanics_info<aside>(/<a href="datum.html">datum</a>/source, /list/mechanics_text) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 88"/></a></aside>
+        </h3>
+        <p>Adds mechanics info to the weapon</p><h3 id="proc/upate_mob_overlay"><aside class="declaration">proc </aside>upate_mob_overlay<aside>(/<a href="datum.html">datum</a>/source, /mutable_appearance/standing, inhands, icon_used, state_used) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L186">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 186"/></a></aside>
+        </h3>
+        <p>Updates the mob sprite</p><h3 id="proc/update_loaded_color"><aside class="declaration">proc </aside>update_loaded_color<aside>(/<a href="datum.html">datum</a>/source, /list/overlays_list) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/harvester.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;harvester.dm 175"/></a></aside>
+        </h3>
+        <p>Updates the color of the overlay on top of the item sprite based on what chem is loaded in</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;larva_queue - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/larva_queue.html#var">Var Details</a> - <a href="datum/component/larva_queue.html#proc">Proc Details</a></header>
+<main>
+<h1>larva_queue <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/larva_queue.html">larva_queue</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/larva_queue.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;larva_queue.dm 4"/></a></h1>
+
+<p>Handles clients getting the action to join the larva queue when they're eligible</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/larva_queue.html#var/action">action</a></th><td>Our queue action</td></tr>
+            <tr><th><a href="datum/component/larva_queue.html#var/position">position</a></th><td>The position we have in the larva queue (0 means you're not in it)</td></tr>
+            <tr><th><a href="datum/component/larva_queue.html#var/waiter">waiter</a></th><td>The client we track (instead of having to cast every time)</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/larva_queue.html#proc/add_queue_action">add_queue_action</a></th><td>Adds the larva queue action whenever the client is eligible to wait
+Removes from queue if they were no longer eligible</td></tr>
+            <tr><th><a href="datum/component/larva_queue.html#proc/get_queue_position">get_queue_position</a></th><td>Gets the current position in the larva queue</td></tr>
+            <tr><th><a href="datum/component/larva_queue.html#proc/remove_queue_action">remove_queue_action</a></th><td>Removes the larva queue action whenever the client leaves a mob</td></tr>
+            <tr><th><a href="datum/component/larva_queue.html#proc/set_queue_position">set_queue_position</a></th><td>Sets the current position in the larva queue</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/action"><aside class="declaration">var </aside>action
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/join_larva_queue</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/larva_queue.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;larva_queue.dm 11"/></a></h3>
+        <p>Our queue action</p><h3 id="var/position"><aside class="declaration">var </aside>position
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/larva_queue.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;larva_queue.dm 9"/></a></h3>
+        <p>The position we have in the larva queue (0 means you're not in it)</p><h3 id="var/waiter"><aside class="declaration">var </aside>waiter
+            <aside>&ndash; /<a href="client.html">client</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/larva_queue.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;larva_queue.dm 7"/></a></h3>
+        <p>The client we track (instead of having to cast every time)</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_queue_action"><aside class="declaration">proc </aside>add_queue_action<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/larva_queue.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;larva_queue.dm 60"/></a></aside>
+        </h3>
+        <p>Adds the larva queue action whenever the client is eligible to wait
+Removes from queue if they were no longer eligible</p><h3 id="proc/get_queue_position"><aside class="declaration">proc </aside>get_queue_position<aside>(waiter) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/larva_queue.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;larva_queue.dm 84"/></a></aside>
+        </h3>
+        <p>Gets the current position in the larva queue</p><h3 id="proc/remove_queue_action"><aside class="declaration">proc </aside>remove_queue_action<aside>(/<a href="client.html">client</a>/our_client, /<a href="mob.html">mob</a>/old_mob) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/larva_queue.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;larva_queue.dm 76"/></a></aside>
+        </h3>
+        <p>Removes the larva queue action whenever the client leaves a mob</p><h3 id="proc/set_queue_position"><aside class="declaration">proc </aside>set_queue_position<aside>(waiter, new_position) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/larva_queue.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;larva_queue.dm 91"/></a></aside>
+        </h3>
+        <p>Sets the current position in the larva queue</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

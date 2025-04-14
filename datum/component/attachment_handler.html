@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;attachment_handler - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/attachment_handler.html#var">Var Details</a> - <a href="datum/component/attachment_handler.html#proc">Proc Details</a></header>
+<main>
+<h1>attachment_handler <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/attachment_handler.html">attachment_handler</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#var/attachable_overlays">attachable_overlays</a></th><td>List of the attachment overlay images. This is so that we can easily swap overlays in and out.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#var/attachables_allowed">attachables_allowed</a></th><td>Typepath list that stores type data of allowed attachments. The attachment needs the attachment element to be able to attach regardless of what is stored here.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#var/attachment_data_by_slot">attachment_data_by_slot</a></th><td>Assoc list that stores the attachment data of an attachment in the slot.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#var/attachment_offsets">attachment_offsets</a></th><td>List of offsets for the parent that adjusts the attachment overlay. slot1_x = 1, slot1_y = 1, slot2_x = 3, slot2_y = 7, etc. Can be null, in that case the offsets for all the attachments default to 0.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#var/can_attach">can_attach</a></th><td>Proc the parent calls to see if its eligable for attachment.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#var/on_attach">on_attach</a></th><td>Proc the parent calls on attach.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#var/on_detach">on_detach</a></th><td>Proc the parent calls on detach.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#var/slots">slots</a></th><td>Assoc list that stores the refs of the attachments to the parent. 'slot = reference'</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#proc/apply_custom">apply_custom</a></th><td>Updates the mob sprite of the attachment.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#proc/attach_without_user">attach_without_user</a></th><td>This is for other objects to be able to attach things without the need for a user.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#proc/can_attach">can_attach</a></th><td>Checks the current slots of the parent and if there are attachments that can be removed in those slots. Basically it makes sure theres room for the attachment.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#proc/clean_references">clean_references</a></th><td>Deletes the attachments when the parent deletes.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#proc/detach_check">detach_check</a></th><td>Checks if you are actually able to detach an item or not</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#proc/do_attach">do_attach</a></th><td>The gun has another gun attached to it
+Theres probably a better way to do this.
+This is the do_after and user checks for attaching.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#proc/do_detach">do_detach</a></th><td>Does the detach, shows the user the removable attachments and handles the do_after.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#proc/finish_detach">finish_detach</a></th><td>Actually detaches the attachment. This can be called directly to bypass checks.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#proc/finish_handle_attachment">finish_handle_attachment</a></th><td>Finishes setting up the attachment. This is where the attachment actually attaches. This can be called directly to bypass any checks to directly attach an object.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#proc/remove_overlay">remove_overlay</a></th><td>Handles the removal of attachment overlays when the item is unequipped</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#proc/start_detach">start_detach</a></th><td>Starts with the detach, is called when the user Alt-Clicks the parent.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#proc/start_handle_attachment">start_handle_attachment</a></th><td>Starts processing the attack, and whether or not the attachable can attack.</td></tr>
+            <tr><th><a href="datum/component/attachment_handler.html#proc/update_parent_overlay">update_parent_overlay</a></th><td>This updates the overlays of the parent and applies the right ones.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/attachable_overlays"><aside class="declaration">var </aside>attachable_overlays
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 19"/></a></h3>
+        <p>List of the attachment overlay images. This is so that we can easily swap overlays in and out.</p><h3 id="var/attachables_allowed"><aside class="declaration">var </aside>attachables_allowed
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 7"/></a></h3>
+        <p>Typepath list that stores type data of allowed attachments. The attachment needs the attachment element to be able to attach regardless of what is stored here.</p><h3 id="var/attachment_data_by_slot"><aside class="declaration">var </aside>attachment_data_by_slot
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 5"/></a></h3>
+        <p>Assoc list that stores the attachment data of an attachment in the slot.</p><h3 id="var/attachment_offsets"><aside class="declaration">var </aside>attachment_offsets
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 15"/></a></h3>
+        <p>List of offsets for the parent that adjusts the attachment overlay. slot1_x = 1, slot1_y = 1, slot2_x = 3, slot2_y = 7, etc. Can be null, in that case the offsets for all the attachments default to 0.</p><h3 id="var/can_attach"><aside class="declaration">var </aside>can_attach
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 13"/></a></h3>
+        <p>Proc the parent calls to see if its eligable for attachment.</p><h3 id="var/on_attach"><aside class="declaration">var </aside>on_attach
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 9"/></a></h3>
+        <p>Proc the parent calls on attach.</p><h3 id="var/on_detach"><aside class="declaration">var </aside>on_detach
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 11"/></a></h3>
+        <p>Proc the parent calls on detach.</p><h3 id="var/slots"><aside class="declaration">var </aside>slots
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 3"/></a></h3>
+        <p>Assoc list that stores the refs of the attachments to the parent. 'slot = reference'</p><h2 id="proc">Proc Details</h2><h3 id="proc/apply_custom"><aside class="declaration">proc </aside>apply_custom<aside>(/<a href="datum.html">datum</a>/source, /mutable_appearance/standing, inhands, icon_used, state_used) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L338">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 338"/></a></aside>
+        </h3>
+        <p>Updates the mob sprite of the attachment.</p><h3 id="proc/attach_without_user"><aside class="declaration">proc </aside>attach_without_user<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attachment) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L288">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 288"/></a></aside>
+        </h3>
+        <p>This is for other objects to be able to attach things without the need for a user.</p><h3 id="proc/can_attach"><aside class="declaration">proc </aside>can_attach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attachment, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /list/attachment_data) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L167">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 167"/></a></aside>
+        </h3>
+        <p>Checks the current slots of the parent and if there are attachments that can be removed in those slots. Basically it makes sure theres room for the attachment.</p><h3 id="proc/clean_references"><aside class="declaration">proc </aside>clean_references<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L398">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 398"/></a></aside>
+        </h3>
+        <p>Deletes the attachments when the parent deletes.</p><h3 id="proc/detach_check"><aside class="declaration">proc </aside>detach_check<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L213">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 213"/></a></aside>
+        </h3>
+        <p>Checks if you are actually able to detach an item or not</p><h3 id="proc/do_attach"><aside class="declaration">proc </aside>do_attach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attachment, /<a href="mob.html">mob</a>/attacher, /list/attachment_data) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 126"/></a></aside>
+        </h3>
+        <p>The gun has another gun attached to it
+Theres probably a better way to do this.
+This is the do_after and user checks for attaching.</p><h3 id="proc/do_detach"><aside class="declaration">proc </aside>do_detach<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /list/attachments_to_remove) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L223">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 223"/></a></aside>
+        </h3>
+        <p>Does the detach, shows the user the removable attachments and handles the do_after.</p><h3 id="proc/finish_detach"><aside class="declaration">proc </aside>finish_detach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attachment, /list/attachment_data, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L267">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 267"/></a></aside>
+        </h3>
+        <p>Actually detaches the attachment. This can be called directly to bypass checks.</p><h3 id="proc/finish_handle_attachment"><aside class="declaration">proc </aside>finish_handle_attachment<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attachment, /list/attachment_data, /<a href="mob.html">mob</a>/attacker) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 90"/></a></aside>
+        </h3>
+        <p>Finishes setting up the attachment. This is where the attachment actually attaches. This can be called directly to bypass any checks to directly attach an object.</p><h3 id="proc/remove_overlay"><aside class="declaration">proc </aside>remove_overlay<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L383">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 383"/></a></aside>
+        </h3>
+        <p>Handles the removal of attachment overlays when the item is unequipped</p><h3 id="proc/start_detach"><aside class="declaration">proc </aside>start_detach<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L189">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 189"/></a></aside>
+        </h3>
+        <p>Starts with the detach, is called when the user Alt-Clicks the parent.</p><h3 id="proc/start_handle_attachment"><aside class="declaration">proc </aside>start_handle_attachment<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/attacking, /<a href="mob.html">mob</a>/attacker) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 50"/></a></aside>
+        </h3>
+        <p>Starts processing the attack, and whether or not the attachable can attack.</p><h3 id="proc/update_parent_overlay"><aside class="declaration">proc </aside>update_parent_overlay<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/attachment_handler.dm#L293">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;attachment_handler.dm 293"/></a></aside>
+        </h3>
+        <p>This updates the overlays of the parent and applies the right ones.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

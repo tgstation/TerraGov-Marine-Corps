@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;activable&#x2F;xeno&#x2F;psy_crush - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/activable/xeno/psy_crush.html#var">Var Details</a> - <a href="datum/action/ability/activable/xeno/psy_crush.html#proc">Proc Details</a></header>
+<main>
+<h1>psy_crush <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/activable.html">activable</a>/<a href="datum/action/ability/activable/xeno.html">xeno</a>/<a href="datum/action/ability/activable/xeno/psy_crush.html">psy_crush</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L302">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 302"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/psy_crush.html#var/ability_range">ability_range</a></th><td>max range at which we can cast out ability</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/psy_crush.html#var/channel_loop_timer">channel_loop_timer</a></th><td>timer hash for the timer we use when charging up</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/psy_crush.html#var/channel_particle">channel_particle</a></th><td>The particle type this ability uses</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/psy_crush.html#var/current_iterations">current_iterations</a></th><td>How many times we have expanded our effect radius</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/psy_crush.html#var/effect_list">effect_list</a></th><td>list of effects used to visualise area of effect</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/psy_crush.html#var/filters_applied">filters_applied</a></th><td>A list of all things that had a fliter applied</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/psy_crush.html#var/max_interations">max_interations</a></th><td>The number of times we can expand our effect radius. Effectively a max radius</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/psy_crush.html#var/orb">orb</a></th><td>Holder for the orb visual effect</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/psy_crush.html#var/particle_holder">particle_holder</a></th><td>Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/psy_crush.html#var/target_turfs">target_turfs</a></th><td>List of turfs in the effect radius</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/psy_crush.html#proc/apply_filters">apply_filters</a></th><td>Apply a filter on all items in the list of turfs</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/psy_crush.html#proc/check_distance">check_distance</a></th><td>Checks if the owner is close enough/can see the target</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/psy_crush.html#proc/crush">crush</a></th><td>crushes all turfs in the AOE</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/psy_crush.html#proc/do_channel">do_channel</a></th><td>Increases the area of effect, or triggers the crush if we've reached max iterations</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/psy_crush.html#proc/remove_all_filters">remove_all_filters</a></th><td>Remove all filters of items in filters_applied</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/psy_crush.html#proc/stop_crush">stop_crush</a></th><td>stops channeling and unregisters all listeners, resetting the ability</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ability_range"><aside class="declaration">var </aside>ability_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L327">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 327"/></a></h3>
+        <p>max range at which we can cast out ability</p><h3 id="var/channel_loop_timer"><aside class="declaration">var </aside>channel_loop_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L319">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 319"/></a></h3>
+        <p>timer hash for the timer we use when charging up</p><h3 id="var/channel_particle"><aside class="declaration">var </aside>channel_particle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L333">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 333"/></a></h3>
+        <p>The particle type this ability uses</p><h3 id="var/current_iterations"><aside class="declaration">var </aside>current_iterations
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L317">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 317"/></a></h3>
+        <p>How many times we have expanded our effect radius</p><h3 id="var/effect_list"><aside class="declaration">var </aside>effect_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L323">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 323"/></a></h3>
+        <p>list of effects used to visualise area of effect</p><h3 id="var/filters_applied"><aside class="declaration">var </aside>filters_applied
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L325">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 325"/></a></h3>
+        <p>A list of all things that had a fliter applied</p><h3 id="var/max_interations"><aside class="declaration">var </aside>max_interations
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L315">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 315"/></a></h3>
+        <p>The number of times we can expand our effect radius. Effectively a max radius</p><h3 id="var/orb"><aside class="declaration">var </aside>orb
+            <aside>&ndash; /<a href="obj.html">obj</a>/effect/xeno/crush_orb</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L329">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 329"/></a></h3>
+        <p>Holder for the orb visual effect</p><h3 id="var/particle_holder"><aside class="declaration">var </aside>particle_holder
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/abstract/particle_holder.html">effect/abstract/particle_holder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L331">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 331"/></a></h3>
+        <p>Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.</p><h3 id="var/target_turfs"><aside class="declaration">var </aside>target_turfs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L321">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 321"/></a></h3>
+        <p>List of turfs in the effect radius</p><h2 id="proc">Proc Details</h2><h3 id="proc/apply_filters"><aside class="declaration">proc </aside>apply_filters<aside>(/list/turfs) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L475">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 475"/></a></aside>
+        </h3>
+        <p>Apply a filter on all items in the list of turfs</p><h3 id="proc/check_distance"><aside class="declaration">proc </aside>check_distance<aside>(/<a href="atom.html">atom</a>/target, sight_needed) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L375">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 375"/></a></aside>
+        </h3>
+        <p>Checks if the owner is close enough/can see the target</p><h3 id="proc/crush"><aside class="declaration">proc </aside>crush<aside>(/<a href="turf.html">turf</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L416">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 416"/></a></aside>
+        </h3>
+        <p>crushes all turfs in the AOE</p><h3 id="proc/do_channel"><aside class="declaration">proc </aside>do_channel<aside>(/<a href="turf.html">turf</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L385">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 385"/></a></aside>
+        </h3>
+        <p>Increases the area of effect, or triggers the crush if we've reached max iterations</p><h3 id="proc/remove_all_filters"><aside class="declaration">proc </aside>remove_all_filters<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L487">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 487"/></a></aside>
+        </h3>
+        <p>Remove all filters of items in filters_applied</p><h3 id="proc/stop_crush"><aside class="declaration">proc </aside>stop_crush<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L452">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 452"/></a></aside>
+        </h3>
+        <p>stops channeling and unregisters all listeners, resetting the ability</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;element&#x2F;footstep - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/element/footstep.html#var">Var Details</a> - <a href="datum/element/footstep.html#proc">Proc Details</a></header>
+<main>
+<h1>footstep <aside>/<a href="datum.html">datum</a>/<a href="datum/element.html">element</a>/<a href="datum/element/footstep.html">footstep</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/footstep.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;footstep.dm 4"/></a></h1>
+
+<p>Footstep element. Plays footsteps at parents location when it is appropriate.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/element/footstep.html#var/e_range">e_range</a></th><td>e_range stands for extra range - aka how far the sound can be heard. This is added to the base value and ignored if there isn't a base value.</td></tr>
+            <tr><th><a href="datum/element/footstep.html#var/footstep_sounds">footstep_sounds</a></th><td>This can be a list OR a soundfile OR null. Determines whatever sound gets played.</td></tr>
+            <tr><th><a href="datum/element/footstep.html#var/footstep_type">footstep_type</a></th><td>footstep_type is a define which determines what kind of sounds should get chosen.</td></tr>
+            <tr><th><a href="datum/element/footstep.html#var/sound_vary">sound_vary</a></th><td>Whether or not to add variation to the sounds played</td></tr>
+            <tr><th><a href="datum/element/footstep.html#var/steps_for_living">steps_for_living</a></th><td>A list containing living mobs and the number of steps they have taken since the last time their footsteps were played.</td></tr>
+            <tr><th><a href="datum/element/footstep.html#var/volume">volume</a></th><td>volume determines the extra volume of the footstep. This is multiplied by the base volume, should there be one.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/element/footstep.html#proc/humanstep_wrapper">humanstep_wrapper</a></th><td>Wrapper for movement triggered footsteps for human step</td></tr>
+            <tr><th><a href="datum/element/footstep.html#proc/play_humanstep">play_humanstep</a></th><td>Plays footsteps for humans</td></tr>
+            <tr><th><a href="datum/element/footstep.html#proc/play_simplestep">play_simplestep</a></th><td>Plays footsteps for anything that isn't human</td></tr>
+            <tr><th><a href="datum/element/footstep.html#proc/prepare_step">prepare_step</a></th><td>Prepares a footstep for living mobs. Determines if it should get played. Returns the turf it should get played on. Note that it is always a /turf/open</td></tr>
+            <tr><th><a href="datum/element/footstep.html#proc/simplestep_wrapper">simplestep_wrapper</a></th><td>Wrapper for movement triggered footsteps for simplestep</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/e_range"><aside class="declaration">var </aside>e_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/footstep.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;footstep.dm 12"/></a></h3>
+        <p>e_range stands for extra range - aka how far the sound can be heard. This is added to the base value and ignored if there isn't a base value.</p><h3 id="var/footstep_sounds"><aside class="declaration">var </aside>footstep_sounds
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/footstep.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;footstep.dm 16"/></a></h3>
+        <p>This can be a list OR a soundfile OR null. Determines whatever sound gets played.</p><h3 id="var/footstep_type"><aside class="declaration">var </aside>footstep_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/footstep.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;footstep.dm 14"/></a></h3>
+        <p>footstep_type is a define which determines what kind of sounds should get chosen.</p><h3 id="var/sound_vary"><aside class="declaration">var </aside>sound_vary
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/footstep.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;footstep.dm 18"/></a></h3>
+        <p>Whether or not to add variation to the sounds played</p><h3 id="var/steps_for_living"><aside class="declaration">var </aside>steps_for_living
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/footstep.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;footstep.dm 8"/></a></h3>
+        <p>A list containing living mobs and the number of steps they have taken since the last time their footsteps were played.</p><h3 id="var/volume"><aside class="declaration">var </aside>volume
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/footstep.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;footstep.dm 10"/></a></h3>
+        <p>volume determines the extra volume of the footstep. This is multiplied by the base volume, should there be one.</p><h2 id="proc">Proc Details</h2><h3 id="proc/humanstep_wrapper"><aside class="declaration">proc </aside>humanstep_wrapper<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/source, old_loc, movement_dir, forced, old_locs) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/footstep.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;footstep.dm 89"/></a></aside>
+        </h3>
+        <p>Wrapper for movement triggered footsteps for human step</p><h3 id="proc/play_humanstep"><aside class="declaration">proc </aside>play_humanstep<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/source, force_play, volume_multiplier, range_adjustment) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/footstep.dm#L151">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;footstep.dm 151"/></a></aside>
+        </h3>
+        <p>Plays footsteps for humans</p><h3 id="proc/play_simplestep"><aside class="declaration">proc </aside>play_simplestep<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/source, force_play, volume_multiplier, range_adjustment) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/footstep.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;footstep.dm 95"/></a></aside>
+        </h3>
+        <p>Plays footsteps for anything that isn't human</p><h3 id="proc/prepare_step"><aside class="declaration">proc </aside>prepare_step<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/footstep.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;footstep.dm 54"/></a></aside>
+        </h3>
+        <p>Prepares a footstep for living mobs. Determines if it should get played. Returns the turf it should get played on. Note that it is always a /turf/open</p><h3 id="proc/simplestep_wrapper"><aside class="declaration">proc </aside>simplestep_wrapper<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/footstep.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;footstep.dm 83"/></a></aside>
+        </h3>
+        <p>Wrapper for movement triggered footsteps for simplestep</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

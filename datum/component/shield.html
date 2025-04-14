@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;shield - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/shield.html#var">Var Details</a> - <a href="datum/component/shield.html#proc">Proc Details</a></header>
+<main>
+<h1>shield <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/shield.html">shield</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/shield.html#var/active">active</a></th><td>Is the shield currently active</td></tr>
+            <tr><th><a href="datum/component/shield.html#var/affected">affected</a></th><td>Shielded mob</td></tr>
+            <tr><th><a href="datum/component/shield.html#var/cover">cover</a></th><td>Percentage damage The shield intercepts.</td></tr>
+            <tr><th><a href="datum/component/shield.html#var/intercept_damage_cb">intercept_damage_cb</a></th><td>Callback to block damage entirely</td></tr>
+            <tr><th><a href="datum/component/shield.html#var/layer">layer</a></th><td>Shield priority layer</td></tr>
+            <tr><th><a href="datum/component/shield.html#var/shield_flags">shield_flags</a></th><td>Behavior flags</td></tr>
+            <tr><th><a href="datum/component/shield.html#var/slot_flags">slot_flags</a></th><td>What slots the parent item provides its shield effects in</td></tr>
+            <tr><th><a href="datum/component/shield.html#var/transfer_damage_cb">transfer_damage_cb</a></th><td>Callback to transfer damage to the shield</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/shield.html#proc/activate_with_user">activate_with_user</a></th><td>Activates shield effects</td></tr>
+            <tr><th><a href="datum/component/shield.html#proc/deactivate_with_user">deactivate_with_user</a></th><td>Deactivates shield effects</td></tr>
+            <tr><th><a href="datum/component/shield.html#proc/get_shield_status_modifier">get_shield_status_modifier</a></th><td>Calculates a modifier to the shield coverage based on user or parent conditions</td></tr>
+            <tr><th><a href="datum/component/shield.html#proc/item_intercept_attack">item_intercept_attack</a></th><td>Damage intercept calculation</td></tr>
+            <tr><th><a href="datum/component/shield.html#proc/item_pure_block_chance">item_pure_block_chance</a></th><td>Block chance calculation</td></tr>
+            <tr><th><a href="datum/component/shield.html#proc/on_attack_cb_shields_call">on_attack_cb_shields_call</a></th><td>Signal handler for incoming damage, directs to the right callback proc</td></tr>
+            <tr><th><a href="datum/component/shield.html#proc/setup_callbacks">setup_callbacks</a></th><td>Sets up the correct callbacks based on flagged behavior</td></tr>
+            <tr><th><a href="datum/component/shield.html#proc/shield_affect_user">shield_affect_user</a></th><td>Toggles shield effects for the user</td></tr>
+            <tr><th><a href="datum/component/shield.html#proc/shield_detach_from_user">shield_detach_from_user</a></th><td>Detaches shield from the user</td></tr>
+            <tr><th><a href="datum/component/shield.html#proc/shield_dropped">shield_dropped</a></th><td>Handles unequipping the shield</td></tr>
+            <tr><th><a href="datum/component/shield.html#proc/shield_equipped">shield_equipped</a></th><td>Handles equipping the shield</td></tr>
+            <tr><th><a href="datum/component/shield.html#proc/toggle_shield">toggle_shield</a></th><td>Toggles the mitigation on or off when already equipped</td></tr>
+            <tr><th><a href="datum/component/shield.html#proc/transfer_damage_to_parent">transfer_damage_to_parent</a></th><td>Applies damage to parent item</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active"><aside class="declaration">var </aside>active
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 17"/></a></h3>
+        <p>Is the shield currently active</p><h3 id="var/affected"><aside class="declaration">var </aside>affected
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 3"/></a></h3>
+        <p>Shielded mob</p><h3 id="var/cover"><aside class="declaration">var </aside>cover
+            <aside>&ndash; /<a href="datum.html">datum</a>/armor</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 9"/></a></h3>
+        <p>Percentage damage The shield intercepts.</p><h3 id="var/intercept_damage_cb"><aside class="declaration">var </aside>intercept_damage_cb
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 5"/></a></h3>
+        <p>Callback to block damage entirely</p><h3 id="var/layer"><aside class="declaration">var </aside>layer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 15"/></a></h3>
+        <p>Shield priority layer</p><h3 id="var/shield_flags"><aside class="declaration">var </aside>shield_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 11"/></a></h3>
+        <p>Behavior flags</p><h3 id="var/slot_flags"><aside class="declaration">var </aside>slot_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 13"/></a></h3>
+        <p>What slots the parent item provides its shield effects in</p><h3 id="var/transfer_damage_cb"><aside class="declaration">var </aside>transfer_damage_cb
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 7"/></a></h3>
+        <p>Callback to transfer damage to the shield</p><h2 id="proc">Proc Details</h2><h3 id="proc/activate_with_user"><aside class="declaration">proc </aside>activate_with_user<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 126"/></a></aside>
+        </h3>
+        <p>Activates shield effects</p><h3 id="proc/deactivate_with_user"><aside class="declaration">proc </aside>deactivate_with_user<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 130"/></a></aside>
+        </h3>
+        <p>Deactivates shield effects</p><h3 id="proc/get_shield_status_modifier"><aside class="declaration">proc </aside>get_shield_status_modifier<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 141"/></a></aside>
+        </h3>
+        <p>Calculates a modifier to the shield coverage based on user or parent conditions</p><h3 id="proc/item_intercept_attack"><aside class="declaration">proc </aside>item_intercept_attack<aside>(attack_type, incoming_damage, damage_type, silent, penetration) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L162">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 162"/></a></aside>
+        </h3>
+        <p>Damage intercept calculation</p><h3 id="proc/item_pure_block_chance"><aside class="declaration">proc </aside>item_pure_block_chance<aside>(attack_type, incoming_damage, damage_type, silent, penetration) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 192"/></a></aside>
+        </h3>
+        <p>Block chance calculation</p><h3 id="proc/on_attack_cb_shields_call"><aside class="declaration">proc </aside>on_attack_cb_shields_call<aside>(/<a href="datum.html">datum</a>/source, /list/affecting_shields, dam_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 134"/></a></aside>
+        </h3>
+        <p>Signal handler for incoming damage, directs to the right callback proc</p><h3 id="proc/setup_callbacks"><aside class="declaration">proc </aside>setup_callbacks<aside>(shield_flags) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 56"/></a></aside>
+        </h3>
+        <p>Sets up the correct callbacks based on flagged behavior</p><h3 id="proc/shield_affect_user"><aside class="declaration">proc </aside>shield_affect_user<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 108"/></a></aside>
+        </h3>
+        <p>Toggles shield effects for the user</p><h3 id="proc/shield_detach_from_user"><aside class="declaration">proc </aside>shield_detach_from_user<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 118"/></a></aside>
+        </h3>
+        <p>Detaches shield from the user</p><h3 id="proc/shield_dropped"><aside class="declaration">proc </aside>shield_dropped<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 96"/></a></aside>
+        </h3>
+        <p>Handles unequipping the shield</p><h3 id="proc/shield_equipped"><aside class="declaration">proc </aside>shield_equipped<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, slot) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 81"/></a></aside>
+        </h3>
+        <p>Handles equipping the shield</p><h3 id="proc/toggle_shield"><aside class="declaration">proc </aside>toggle_shield<aside>(/<a href="datum.html">datum</a>/source, new_state) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 65"/></a></aside>
+        </h3>
+        <p>Toggles the mitigation on or off when already equipped</p><h3 id="proc/transfer_damage_to_parent"><aside class="declaration">proc </aside>transfer_damage_to_parent<aside>(return_damage, incoming_damage, damage_type, silent, penetration) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/shield.dm#L181">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;shield.dm 181"/></a></aside>
+        </h3>
+        <p>Applies damage to parent item</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

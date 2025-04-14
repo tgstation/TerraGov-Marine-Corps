@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;storage - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/storage.html#var">Var Details</a> - <a href="datum/storage.html#proc">Proc Details</a></header>
+<main>
+<h1>storage <aside>/<a href="datum.html">datum</a>/<a href="datum/storage.html">storage</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 21"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/storage.html#var/access_delay">access_delay</a></th><td>How long does it take to put items into or out of this, in ticks</td></tr>
+            <tr><th><a href="datum/storage.html#var/allow_drawing_method">allow_drawing_method</a></th><td>whether this object can change its drawing method</td></tr>
+            <tr><th><a href="datum/storage.html#var/allow_quick_empty">allow_quick_empty</a></th><td>Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.</td></tr>
+            <tr><th><a href="datum/storage.html#var/allow_quick_gather">allow_quick_gather</a></th><td>Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.</td></tr>
+            <tr><th><a href="datum/storage.html#var/boxes">boxes</a></th><td>storage UI</td></tr>
+            <tr><th><a href="datum/storage.html#var/can_hold">can_hold</a></th><td>Typecache of items that can be inserted into this storage.
+By default, all item types can be inserted (assuming other conditions are met).
+Do not set directly, use set_holdable</td></tr>
+            <tr><th><a href="datum/storage.html#var/cant_hold">cant_hold</a></th><td>Typecache of items that cannot be inserted into this storage.
+By default, no item types are barred from insertion.
+Do not set directly, use set_holdable</td></tr>
+            <tr><th><a href="datum/storage.html#var/click_border_end">click_border_end</a></th><td>In slotless storage, stores areas where clicking will refer to the associated item</td></tr>
+            <tr><th><a href="datum/storage.html#var/click_border_start">click_border_start</a></th><td>In slotless storage, stores areas where clicking will refer to the associated item</td></tr>
+            <tr><th><a href="datum/storage.html#var/closer">closer</a></th><td>storage UI</td></tr>
+            <tr><th><a href="datum/storage.html#var/collection_mode">collection_mode</a></th><td>FALSE = pick one at a time, TRUE = pick all on tile</td></tr>
+            <tr><th><a href="datum/storage.html#var/content_watchers">content_watchers</a></th><td>list of mobs currently seeing the storage's contents</td></tr>
+            <tr><th><a href="datum/storage.html#var/display_contents_with_number">display_contents_with_number</a></th><td>Set this to make the storage item group contents of the same type and display them as a number.</td></tr>
+            <tr><th><a href="datum/storage.html#var/draw_mode">draw_mode</a></th><td>FALSE = will open the inventory if you click on the storage container, TRUE = will draw from the inventory if you click on the storage container</td></tr>
+            <tr><th><a href="datum/storage.html#var/draw_sound">draw_sound</a></th><td>the sound produced when the special item is drawn</td></tr>
+            <tr><th><a href="datum/storage.html#var/foldable">foldable</a></th><td>BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard</td></tr>
+            <tr><th><a href="datum/storage.html#var/holsterable_allowed">holsterable_allowed</a></th><td>the snowflake item(s) that will update the sprite.</td></tr>
+            <tr><th><a href="datum/storage.html#var/holstered_item">holstered_item</a></th><td>records the specific special item currently in the holster</td></tr>
+            <tr><th><a href="datum/storage.html#var/holstered_item_underlay">holstered_item_underlay</a></th><td>Image that get's underlayed under the sprite of the holster</td></tr>
+            <tr><th><a href="datum/storage.html#var/max_storage_space">max_storage_space</a></th><td>The sum of the storage costs of all the items in this storage item.</td></tr>
+            <tr><th><a href="datum/storage.html#var/max_w_class">max_w_class</a></th><td>Max size of objects that this object can store (in effect only if canhold isn't set)</td></tr>
+            <tr><th><a href="datum/storage.html#var/opened">opened</a></th><td>Has it been opened before?</td></tr>
+            <tr><th><a href="datum/storage.html#var/parent">parent</a></th><td>A reference to the atom linked to this storage object
+If the parent goes, we go. Will never be null.</td></tr>
+            <tr><th><a href="datum/storage.html#var/real_location">real_location</a></th><td>A reference to the atom where the items are actually stored.
+By default this is parent. Should generally never be null.
+Sometimes it's not the parent, that's what is called &quot;dissassociated storage&quot;.</td></tr>
+            <tr><th><a href="datum/storage.html#var/refill_sound">refill_sound</a></th><td>What sound gets played when the item is tactical refilled</td></tr>
+            <tr><th><a href="datum/storage.html#var/refill_types">refill_types</a></th><td>What item do you use to tactical refill this</td></tr>
+            <tr><th><a href="datum/storage.html#var/sheathe_sound">sheathe_sound</a></th><td>the sound produced when the special item is sheathed</td></tr>
+            <tr><th><a href="datum/storage.html#var/show_storage_fullness">show_storage_fullness</a></th><td>whether our storage box on hud changes color when full.</td></tr>
+            <tr><th><a href="datum/storage.html#var/sprite_slots">sprite_slots</a></th><td>Defines how many versions of the sprites that gets progressively emptier as they get closer to &quot;_0&quot; in .dmi.</td></tr>
+            <tr><th><a href="datum/storage.html#var/storage_continue">storage_continue</a></th><td>storage UI</td></tr>
+            <tr><th><a href="datum/storage.html#var/storage_end">storage_end</a></th><td>storage UI</td></tr>
+            <tr><th><a href="datum/storage.html#var/storage_flags">storage_flags</a></th><td>flags for special behaviours</td></tr>
+            <tr><th><a href="datum/storage.html#var/storage_slots">storage_slots</a></th><td>The number of storage slots in this container.</td></tr>
+            <tr><th><a href="datum/storage.html#var/storage_start">storage_start</a></th><td>storage UI</td></tr>
+            <tr><th><a href="datum/storage.html#var/storage_type_limits">storage_type_limits</a></th><td>Typecache of items that can always be inserted into this storage, regardless of size.</td></tr>
+            <tr><th><a href="datum/storage.html#var/storage_type_limits_max">storage_type_limits_max</a></th><td>Associated list of types and their max count, formatted as
+storage_type_limits_max = list(
+/obj/A = 3,
+)</td></tr>
+            <tr><th><a href="datum/storage.html#var/stored_continue">stored_continue</a></th><td>storage UI</td></tr>
+            <tr><th><a href="datum/storage.html#var/stored_end">stored_end</a></th><td>storage UI</td></tr>
+            <tr><th><a href="datum/storage.html#var/stored_start">stored_start</a></th><td>storage UI</td></tr>
+            <tr><th><a href="datum/storage.html#var/trash_item">trash_item</a></th><td>the item left behind when our parent is destroyed</td></tr>
+            <tr><th><a href="datum/storage.html#var/use_sound">use_sound</a></th><td>sound played when used. null for no sound.</td></tr>
+            <tr><th><a href="datum/storage.html#var/use_to_pickup">use_to_pickup</a></th><td>Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/storage.html#proc/attempt_draw_object">attempt_draw_object</a></th><td>Attempts to get the first possible object from this container</td></tr>
+            <tr><th><a href="datum/storage.html#proc/can_be_inserted">can_be_inserted</a></th><td>This proc return 1 if the item can be picked up and 0 if it can't. Set the warning to stop it from printing messages</td></tr>
+            <tr><th><a href="datum/storage.html#proc/can_see_content">can_see_content</a></th><td>Returns a list of lookers, basically any mob that can see our contents</td></tr>
+            <tr><th><a href="datum/storage.html#proc/close">close</a></th><td>Closes our storage</td></tr>
+            <tr><th><a href="datum/storage.html#proc/delete_contents">delete_contents</a></th><td>Delete everything that's inside the storage</td></tr>
+            <tr><th><a href="datum/storage.html#proc/do_refill">do_refill</a></th><td>Refills the storage from the refill_types item</td></tr>
+            <tr><th><a href="datum/storage.html#proc/handle_access_delay">handle_access_delay</a></th><td>This proc handles the delay associated with a storage object.
+If there is no delay, or the delay is negative, it simply returns TRUE.
+Should return true if the access delay is completed successfully.</td></tr>
+            <tr><th><a href="datum/storage.html#proc/handle_atom_del">handle_atom_del</a></th><td>signal sent from /atom/proc/handle_atom_del(atom/A)</td></tr>
+            <tr><th><a href="datum/storage.html#proc/handle_item_insertion">handle_item_insertion</a></th><td>This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted.
+That's done by can_be_inserted()
+The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
+such as when picking up all the items on a tile with one click.
+user can be null, it refers to the potential mob doing the insertion.</td></tr>
+            <tr><th><a href="datum/storage.html#proc/hide_from">hide_from</a></th><td>Hides our inventory from user, sets s_active to null and removes user from content_watchers</td></tr>
+            <tr><th><a href="datum/storage.html#proc/insertion_message">insertion_message</a></th><td>Output a message when an item is inserted into a storage object</td></tr>
+            <tr><th><a href="datum/storage.html#proc/item_init_in_parent">item_init_in_parent</a></th><td>Stores an item properly if its spawned directly into parent</td></tr>
+            <tr><th><a href="datum/storage.html#proc/item_removed_from_storage">item_removed_from_storage</a></th><td>Handles if the item is forcemoved out of storage</td></tr>
+            <tr><th><a href="datum/storage.html#proc/max_stack_merging">max_stack_merging</a></th><td>signal sent from /atom/proc/max_stack_merging()</td></tr>
+            <tr><th><a href="datum/storage.html#proc/on_alt_click">on_alt_click</a></th><td>Called when you alt + left click on parent
+Attempts to draw an object from our storage</td></tr>
+            <tr><th><a href="datum/storage.html#proc/on_alt_right_click">on_alt_right_click</a></th><td>Called when you alt + right click on parent
+Opens the inventory of our storage</td></tr>
+            <tr><th><a href="datum/storage.html#proc/on_attack_hand">on_attack_hand</a></th><td>Called when you click on parent with an empty hand</td></tr>
+            <tr><th><a href="datum/storage.html#proc/on_attack_hand_alternate">on_attack_hand_alternate</a></th><td>Called when you RIGHT click on parent with an empty hand
+Attempts to draw an object from our storage</td></tr>
+            <tr><th><a href="datum/storage.html#proc/on_attack_self">on_attack_self</a></th><td>BubbleWrap - Called when the parent clicks on itself. Used mostly to fold empty boxes</td></tr>
+            <tr><th><a href="datum/storage.html#proc/on_attackby">on_attackby</a></th><td>This proc is called when you want to place an attacking_item into the storage</td></tr>
+            <tr><th><a href="datum/storage.html#proc/on_contents_explode">on_contents_explode</a></th><td>handles explosions on parent exploding the things in storage</td></tr>
+            <tr><th><a href="datum/storage.html#proc/on_ctrl_click">on_ctrl_click</a></th><td>Called when you ctrl + left click on parent
+Attempts to draw an object from out storage, but it draw from the left side instead of the right</td></tr>
+            <tr><th><a href="datum/storage.html#proc/on_emp">on_emp</a></th><td>Called whenever parent is hit by an EMP, effectively EMPs everything inside your storage</td></tr>
+            <tr><th><a href="datum/storage.html#proc/on_mousedrop_onto">on_mousedrop_onto</a></th><td>Signal handler for when you click drag parent to something (usually ourselves or an inventory slot)</td></tr>
+            <tr><th><a href="datum/storage.html#proc/on_quick_equip_request">on_quick_equip_request</a></th><td>Equips an item from our storage, returns signal COMSIG_QUICK_EQUIP_HANDLED to prevent standard quick equip behaviour</td></tr>
+            <tr><th><a href="datum/storage.html#proc/open">open</a></th><td>Opens our storage, closes the storage if we are s_active</td></tr>
+            <tr><th><a href="datum/storage.html#proc/orient2hud">orient2hud</a></th><td>This proc determines the size of the inventory to be displayed. Please touch it only if you know what you're doing.</td></tr>
+            <tr><th><a href="datum/storage.html#proc/orient_objs">orient_objs</a></th><td>This proc draws out the inventory and places the items on it.
+tx and ty are the upper left tile and
+mx, my are the bottm right.
+The numbers are calculated from the bottom-left The bottom-left slot being 1,1.</td></tr>
+            <tr><th><a href="datum/storage.html#proc/put_item_in_l_hand">put_item_in_l_hand</a></th><td>Removes item_to_put_in_hand from the storage it's currently in, and then places it into our left hand</td></tr>
+            <tr><th><a href="datum/storage.html#proc/put_item_in_r_hand">put_item_in_r_hand</a></th><td>Removes item_to_put_in_hand from the storage it's currently in, and then places it into our right hand</td></tr>
+            <tr><th><a href="datum/storage.html#proc/put_storage_in_hand">put_storage_in_hand</a></th><td>Wrapper that puts the storage into our chosen hand</td></tr>
+            <tr><th><a href="datum/storage.html#proc/quick_empty">quick_empty</a></th><td>Dumps out the contents of our inventory onto our turf</td></tr>
+            <tr><th><a href="datum/storage.html#proc/recalculate_storage_space">recalculate_storage_space</a></th><td>Called from signal in order to update the color of our storage, it's &quot;fullness&quot; basically</td></tr>
+            <tr><th><a href="datum/storage.html#proc/register_storage_signals">register_storage_signals</a></th><td>Registers signals to parent</td></tr>
+            <tr><th><a href="datum/storage.html#proc/remove_from_storage">remove_from_storage</a></th><td>Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target</td></tr>
+            <tr><th><a href="datum/storage.html#proc/return_inv">return_inv</a></th><td>Gets the inventory of a storage
+if recursive = TRUE, this will also get the inventories of things within the inventory</td></tr>
+            <tr><th><a href="datum/storage.html#proc/set_parent">set_parent</a></th><td>Set the passed atom as the parent</td></tr>
+            <tr><th><a href="datum/storage.html#proc/should_access_delay">should_access_delay</a></th><td>This proc checks to see if we should actually delay access in this scenario
+This proc should return TRUE or FALSE</td></tr>
+            <tr><th><a href="datum/storage.html#proc/show_to">show_to</a></th><td>Shows our inventory to user, we become s_active and user is added to our content_watchers</td></tr>
+            <tr><th><a href="datum/storage.html#proc/slot_orient_objs">slot_orient_objs</a></th><td>This proc draws out the inventory and places the items on it. It uses the standard position.</td></tr>
+            <tr><th><a href="datum/storage.html#proc/space_orient_objs">space_orient_objs</a></th><td>Generates a UI for slotless storage based on the objects inside of it</td></tr>
+            <tr><th><a href="datum/storage.html#proc/storage_depth">storage_depth</a></th><td>Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area). Returns -1 if the atom was not found on container.</td></tr>
+            <tr><th><a href="datum/storage.html#proc/storage_depth_turf">storage_depth_turf</a></th><td>Like storage depth, but returns the depth to the nearest turf. Returns -1 if no top level turf (a loc was null somewhere, or a non-turf atom's loc was an area somehow).</td></tr>
+            <tr><th><a href="datum/storage.html#proc/unregister_storage_signals">unregister_storage_signals</a></th><td>Unregisters our signals from parent. Used when parent loses storage but is not destroyed</td></tr>
+            <tr><th><a href="datum/storage.html#proc/update_verbs">update_verbs</a></th><td>Updates our verbs if we are equipped</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/access_delay"><aside class="declaration">var </aside>access_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 112"/></a></h3>
+        <p>How long does it take to put items into or out of this, in ticks</p><h3 id="var/allow_drawing_method"><aside class="declaration">var </aside>allow_drawing_method
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 98"/></a></h3>
+        <p>whether this object can change its drawing method</p><h3 id="var/allow_quick_empty"><aside class="declaration">var </aside>allow_quick_empty
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 94"/></a></h3>
+        <p>Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.</p><h3 id="var/allow_quick_gather"><aside class="declaration">var </aside>allow_quick_gather
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 96"/></a></h3>
+        <p>Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.</p><h3 id="var/boxes"><aside class="declaration">var </aside>boxes
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/storage</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 71"/></a></h3>
+        <p>storage UI</p><h3 id="var/can_hold"><aside class="declaration">var </aside>can_hold
+            <aside>&ndash; /list/obj/item</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 39"/></a></h3>
+        <p>Typecache of items that can be inserted into this storage.
+By default, all item types can be inserted (assuming other conditions are met).
+Do not set directly, use set_holdable</p><h3 id="var/cant_hold"><aside class="declaration">var </aside>cant_hold
+            <aside>&ndash; /list/obj/item</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 43"/></a></h3>
+        <p>Typecache of items that cannot be inserted into this storage.
+By default, no item types are barred from insertion.
+Do not set directly, use set_holdable</p><h3 id="var/click_border_end"><aside class="declaration">var </aside>click_border_end
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 69"/></a></h3>
+        <p>In slotless storage, stores areas where clicking will refer to the associated item</p><h3 id="var/click_border_start"><aside class="declaration">var </aside>click_border_start
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 67"/></a></h3>
+        <p>In slotless storage, stores areas where clicking will refer to the associated item</p><h3 id="var/closer"><aside class="declaration">var </aside>closer
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/close</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 85"/></a></h3>
+        <p>storage UI</p><h3 id="var/collection_mode"><aside class="declaration">var </aside>collection_mode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 102"/></a></h3>
+        <p>FALSE = pick one at a time, TRUE = pick all on tile</p><h3 id="var/content_watchers"><aside class="declaration">var </aside>content_watchers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 110"/></a></h3>
+        <p>list of mobs currently seeing the storage's contents</p><h3 id="var/display_contents_with_number"><aside class="declaration">var </aside>display_contents_with_number
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 92"/></a></h3>
+        <p>Set this to make the storage item group contents of the same type and display them as a number.</p><h3 id="var/draw_mode"><aside class="declaration">var </aside>draw_mode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 100"/></a></h3>
+        <p>FALSE = will open the inventory if you click on the storage container, TRUE = will draw from the inventory if you click on the storage container</p><h3 id="var/draw_sound"><aside class="declaration">var </aside>draw_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 124"/></a></h3>
+        <p>the sound produced when the special item is drawn</p><h3 id="var/foldable"><aside class="declaration">var </aside>foldable
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 104"/></a></h3>
+        <p>BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard</p><h3 id="var/holsterable_allowed"><aside class="declaration">var </aside>holsterable_allowed
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L128">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 128"/></a></h3>
+        <p>the snowflake item(s) that will update the sprite.</p><h3 id="var/holstered_item"><aside class="declaration">var </aside>holstered_item
+            <aside>&ndash; /<a href="obj.html">obj</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 130"/></a></h3>
+        <p>records the specific special item currently in the holster</p><h3 id="var/holstered_item_underlay"><aside class="declaration">var </aside>holstered_item_underlay
+            <aside>&ndash; /<a href="image.html">image</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 135"/></a></h3>
+        <p>Image that get's underlayed under the sprite of the holster</p><h3 id="var/max_storage_space"><aside class="declaration">var </aside>max_storage_space
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 60"/></a></h3>
+        <p>The sum of the storage costs of all the items in this storage item.</p><h3 id="var/max_w_class"><aside class="declaration">var </aside>max_w_class
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 58"/></a></h3>
+        <p>Max size of objects that this object can store (in effect only if canhold isn't set)</p><h3 id="var/opened"><aside class="declaration">var </aside>opened
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 108"/></a></h3>
+        <p>Has it been opened before?</p><h3 id="var/parent"><aside class="declaration">var </aside>parent
+            <aside>&ndash; /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 26"/></a></h3>
+        <p>A reference to the atom linked to this storage object
+If the parent goes, we go. Will never be null.</p><h3 id="var/real_location"><aside class="declaration">var </aside>real_location
+            <aside>&ndash; /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 34"/></a></h3>
+        <p>A reference to the atom where the items are actually stored.
+By default this is parent. Should generally never be null.
+Sometimes it's not the parent, that's what is called &quot;dissassociated storage&quot;.</p>
+<p>Do NOT set this directly, use set_real_location.</p><h3 id="var/refill_sound"><aside class="declaration">var </aside>refill_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 116"/></a></h3>
+        <p>What sound gets played when the item is tactical refilled</p><h3 id="var/refill_types"><aside class="declaration">var </aside>refill_types
+            <aside>&ndash; /list/obj/item</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 114"/></a></h3>
+        <p>What item do you use to tactical refill this</p><h3 id="var/sheathe_sound"><aside class="declaration">var </aside>sheathe_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 126"/></a></h3>
+        <p>the sound produced when the special item is sheathed</p><h3 id="var/show_storage_fullness"><aside class="declaration">var </aside>show_storage_fullness
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 88"/></a></h3>
+        <p>whether our storage box on hud changes color when full.</p><h3 id="var/sprite_slots"><aside class="declaration">var </aside>sprite_slots
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 64"/></a></h3>
+        <p>Defines how many versions of the sprites that gets progressively emptier as they get closer to &quot;_0&quot; in .dmi.</p><h3 id="var/storage_continue"><aside class="declaration">var </aside>storage_continue
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/storage</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 75"/></a></h3>
+        <p>storage UI</p><h3 id="var/storage_end"><aside class="declaration">var </aside>storage_end
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/storage</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 77"/></a></h3>
+        <p>storage UI</p><h3 id="var/storage_flags"><aside class="declaration">var </aside>storage_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 120"/></a></h3>
+        <p>flags for special behaviours</p><h3 id="var/storage_slots"><aside class="declaration">var </aside>storage_slots
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 62"/></a></h3>
+        <p>The number of storage slots in this container.</p><h3 id="var/storage_start"><aside class="declaration">var </aside>storage_start
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/storage</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 73"/></a></h3>
+        <p>storage UI</p><h3 id="var/storage_type_limits"><aside class="declaration">var </aside>storage_type_limits
+            <aside>&ndash; /list/obj/item</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 45"/></a></h3>
+        <p>Typecache of items that can always be inserted into this storage, regardless of size.</p><h3 id="var/storage_type_limits_max"><aside class="declaration">var </aside>storage_type_limits_max
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 56"/></a></h3>
+        <p>Associated list of types and their max count, formatted as
+storage_type_limits_max = list(
+/obj/A = 3,
+)</p>
+<p>Any inserted objects will decrement the allowed count of every listed type which matches or is a parent of that object.
+With entries for both /obj/A and /obj/A/B, inserting a B requires non-zero allowed count remaining for, and reduces, both.</p><h3 id="var/stored_continue"><aside class="declaration">var </aside>stored_continue
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/storage</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 81"/></a></h3>
+        <p>storage UI</p><h3 id="var/stored_end"><aside class="declaration">var </aside>stored_end
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/storage</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 83"/></a></h3>
+        <p>storage UI</p><h3 id="var/stored_start"><aside class="declaration">var </aside>stored_start
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/storage</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 79"/></a></h3>
+        <p>storage UI</p><h3 id="var/trash_item"><aside class="declaration">var </aside>trash_item
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 118"/></a></h3>
+        <p>the item left behind when our parent is destroyed</p><h3 id="var/use_sound"><aside class="declaration">var </aside>use_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 106"/></a></h3>
+        <p>sound played when used. null for no sound.</p><h3 id="var/use_to_pickup"><aside class="declaration">var </aside>use_to_pickup
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 90"/></a></h3>
+        <p>Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.</p><h2 id="proc">Proc Details</h2><h3 id="proc/attempt_draw_object"><aside class="declaration">proc </aside>attempt_draw_object<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, start_from_left) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L1066">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 1066"/></a></aside>
+        </h3>
+        <p>Attempts to get the first possible object from this container</p>
+<p>Arguments:</p>
+<ul>
+<li>mob/living/user - The mob attempting to draw from this container</li>
+<li>start_from_left - If true we draw the leftmost object instead of the rightmost. FALSE by default.</li>
+</ul><h3 id="proc/can_be_inserted"><aside class="declaration">proc </aside>can_be_inserted<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item_to_insert, /<a href="mob.html">mob</a>/user, warning) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L698">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 698"/></a></aside>
+        </h3>
+        <p>This proc return 1 if the item can be picked up and 0 if it can't. Set the warning to stop it from printing messages</p><h3 id="proc/can_see_content"><aside class="declaration">proc </aside>can_see_content<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L519">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 519"/></a></aside>
+        </h3>
+        <p>Returns a list of lookers, basically any mob that can see our contents</p><h3 id="proc/close"><aside class="declaration">proc </aside>close<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L545">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 545"/></a></aside>
+        </h3>
+        <p>Closes our storage</p><h3 id="proc/delete_contents"><aside class="declaration">proc </aside>delete_contents<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L925">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 925"/></a></aside>
+        </h3>
+        <p>Delete everything that's inside the storage</p><h3 id="proc/do_refill"><aside class="declaration">proc </aside>do_refill<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/storage.html">storage</a>/refiller, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L892">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 892"/></a></aside>
+        </h3>
+        <p>Refills the storage from the refill_types item</p><h3 id="proc/handle_access_delay"><aside class="declaration">proc </aside>handle_access_delay<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/accessed, /<a href="mob.html">mob</a>/user, taking_out, alert_user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L761">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 761"/></a></aside>
+        </h3>
+        <p>This proc handles the delay associated with a storage object.
+If there is no delay, or the delay is negative, it simply returns TRUE.
+Should return true if the access delay is completed successfully.</p><h3 id="proc/handle_atom_del"><aside class="declaration">proc </aside>handle_atom_del<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/movable_atom) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L1003">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 1003"/></a></aside>
+        </h3>
+        <p>signal sent from /atom/proc/handle_atom_del(atom/A)</p><h3 id="proc/handle_item_insertion"><aside class="declaration">proc </aside>handle_item_insertion<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, prevent_warning, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L797">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 797"/></a></aside>
+        </h3>
+        <p>This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted.
+That's done by can_be_inserted()
+The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
+such as when picking up all the items on a tile with one click.
+user can be null, it refers to the potential mob doing the insertion.</p><h3 id="proc/hide_from"><aside class="declaration">proc </aside>hide_from<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L505">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 505"/></a></aside>
+        </h3>
+        <p>Hides our inventory from user, sets s_active to null and removes user from content_watchers</p><h3 id="proc/insertion_message"><aside class="declaration">proc </aside>insertion_message<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L832">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 832"/></a></aside>
+        </h3>
+        <p>Output a message when an item is inserted into a storage object</p><h3 id="proc/item_init_in_parent"><aside class="declaration">proc </aside>item_init_in_parent<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/new_item) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L786">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 786"/></a></aside>
+        </h3>
+        <p>Stores an item properly if its spawned directly into parent</p><h3 id="proc/item_removed_from_storage"><aside class="declaration">proc </aside>item_removed_from_storage<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L1009">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 1009"/></a></aside>
+        </h3>
+        <p>Handles if the item is forcemoved out of storage</p><h3 id="proc/max_stack_merging"><aside class="declaration">proc </aside>max_stack_merging<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a>/stacks) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L1014">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 1014"/></a></aside>
+        </h3>
+        <p>signal sent from /atom/proc/max_stack_merging()</p><h3 id="proc/on_alt_click"><aside class="declaration">proc </aside>on_alt_click<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L362">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 362"/></a></aside>
+        </h3>
+        <p>Called when you alt + left click on parent
+Attempts to draw an object from our storage</p><h3 id="proc/on_alt_right_click"><aside class="declaration">proc </aside>on_alt_right_click<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L372">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 372"/></a></aside>
+        </h3>
+        <p>Called when you alt + right click on parent
+Opens the inventory of our storage</p><h3 id="proc/on_attack_hand"><aside class="declaration">proc </aside>on_attack_hand<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L327">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 327"/></a></aside>
+        </h3>
+        <p>Called when you click on parent with an empty hand</p><h3 id="proc/on_attack_hand_alternate"><aside class="declaration">proc </aside>on_attack_hand_alternate<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L352">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 352"/></a></aside>
+        </h3>
+        <p>Called when you RIGHT click on parent with an empty hand
+Attempts to draw an object from our storage</p><h3 id="proc/on_attack_self"><aside class="declaration">proc </aside>on_attack_self<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L980">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 980"/></a></aside>
+        </h3>
+        <p>BubbleWrap - Called when the parent clicks on itself. Used mostly to fold empty boxes</p><h3 id="proc/on_attackby"><aside class="declaration">proc </aside>on_attackby<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attacking_item, /<a href="mob.html">mob</a>/user, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L312">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 312"/></a></aside>
+        </h3>
+        <p>This proc is called when you want to place an attacking_item into the storage</p><h3 id="proc/on_contents_explode"><aside class="declaration">proc </aside>on_contents_explode<aside>(/<a href="datum.html">datum</a>/source, severity) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L1037">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 1037"/></a></aside>
+        </h3>
+        <p>handles explosions on parent exploding the things in storage</p><h3 id="proc/on_ctrl_click"><aside class="declaration">proc </aside>on_ctrl_click<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L381">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 381"/></a></aside>
+        </h3>
+        <p>Called when you ctrl + left click on parent
+Attempts to draw an object from out storage, but it draw from the left side instead of the right</p><h3 id="proc/on_emp"><aside class="declaration">proc </aside>on_emp<aside>(/<a href="datum.html">datum</a>/source, severity) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L974">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 974"/></a></aside>
+        </h3>
+        <p>Called whenever parent is hit by an EMP, effectively EMPs everything inside your storage</p><h3 id="proc/on_mousedrop_onto"><aside class="declaration">proc </aside>on_mousedrop_onto<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/over_object, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L391">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 391"/></a></aside>
+        </h3>
+        <p>Signal handler for when you click drag parent to something (usually ourselves or an inventory slot)</p><h3 id="proc/on_quick_equip_request"><aside class="declaration">proc </aside>on_quick_equip_request<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L966">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 966"/></a></aside>
+        </h3>
+        <p>Equips an item from our storage, returns signal COMSIG_QUICK_EQUIP_HANDLED to prevent standard quick equip behaviour</p><h3 id="proc/open"><aside class="declaration">proc </aside>open<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L529">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 529"/></a></aside>
+        </h3>
+        <p>Opens our storage, closes the storage if we are s_active</p><h3 id="proc/orient2hud"><aside class="declaration">proc </aside>orient2hud<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L669">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 669"/></a></aside>
+        </h3>
+        <p>This proc determines the size of the inventory to be displayed. Please touch it only if you know what you're doing.</p><h3 id="proc/orient_objs"><aside class="declaration">proc </aside>orient_objs<aside>(tx, ty, mx, my) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L554">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 554"/></a></aside>
+        </h3>
+        <p>This proc draws out the inventory and places the items on it.
+tx and ty are the upper left tile and
+mx, my are the bottm right.
+The numbers are calculated from the bottom-left The bottom-left slot being 1,1.</p><h3 id="proc/put_item_in_l_hand"><aside class="declaration">proc </aside>put_item_in_l_hand<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item_to_put_in_hand, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L437">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 437"/></a></aside>
+        </h3>
+        <p>Removes item_to_put_in_hand from the storage it's currently in, and then places it into our left hand</p><h3 id="proc/put_item_in_r_hand"><aside class="declaration">proc </aside>put_item_in_r_hand<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item_to_put_in_hand, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L428">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 428"/></a></aside>
+        </h3>
+        <p>Removes item_to_put_in_hand from the storage it's currently in, and then places it into our right hand</p><h3 id="proc/put_storage_in_hand"><aside class="declaration">proc </aside>put_storage_in_hand<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/over_object, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L420">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 420"/></a></aside>
+        </h3>
+        <p>Wrapper that puts the storage into our chosen hand</p><h3 id="proc/quick_empty"><aside class="declaration">proc </aside>quick_empty<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L915">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 915"/></a></aside>
+        </h3>
+        <p>Dumps out the contents of our inventory onto our turf</p><h3 id="proc/recalculate_storage_space"><aside class="declaration">proc </aside>recalculate_storage_space<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L1026">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 1026"/></a></aside>
+        </h3>
+        <p>Called from signal in order to update the color of our storage, it's &quot;fullness&quot; basically</p><h3 id="proc/register_storage_signals"><aside class="declaration">proc </aside>register_storage_signals<aside>(/<a href="atom.html">atom</a>/parent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L225">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 225"/></a></aside>
+        </h3>
+        <p>Registers signals to parent</p><h3 id="proc/remove_from_storage"><aside class="declaration">proc </aside>remove_from_storage<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, /<a href="atom.html">atom</a>/new_location, /<a href="mob.html">mob</a>/user, silent, bypass_delay, move_item) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L848">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 848"/></a></aside>
+        </h3>
+        <p>Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target</p>
+<p>Arguments:</p>
+<ul>
+<li>item: the item that is getting removed</li>
+<li>new_location: where the item is being sent to</li>
+<li>user: whoever/whatever is calling this proc</li>
+<li>silent: defaults to FALSE, on subtypes this is used to prevent a sound from being played</li>
+<li>bypass_delay: if TRUE, will bypass draw delay</li>
+</ul><h3 id="proc/return_inv"><aside class="declaration">proc </aside>return_inv<aside>(recursive) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L469">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 469"/></a></aside>
+        </h3>
+        <p>Gets the inventory of a storage
+if recursive = TRUE, this will also get the inventories of things within the inventory</p><h3 id="proc/set_parent"><aside class="declaration">proc </aside>set_parent<aside>(/<a href="atom.html">atom</a>/new_parent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L215">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 215"/></a></aside>
+        </h3>
+        <p>Set the passed atom as the parent</p><h3 id="proc/should_access_delay"><aside class="declaration">proc </aside>should_access_delay<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/accessed, /<a href="mob.html">mob</a>/user, taking_out) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L782">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 782"/></a></aside>
+        </h3>
+        <p>This proc checks to see if we should actually delay access in this scenario
+This proc should return TRUE or FALSE</p><h3 id="proc/show_to"><aside class="declaration">proc </aside>show_to<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L480">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 480"/></a></aside>
+        </h3>
+        <p>Shows our inventory to user, we become s_active and user is added to our content_watchers</p><h3 id="proc/slot_orient_objs"><aside class="declaration">proc </aside>slot_orient_objs<aside>(rows, cols, /list/obj/item/display_contents) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L570">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 570"/></a></aside>
+        </h3>
+        <p>This proc draws out the inventory and places the items on it. It uses the standard position.</p><h3 id="proc/space_orient_objs"><aside class="declaration">proc </aside>space_orient_objs<aside>(/list/obj/item/display_contents) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L600">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 600"/></a></aside>
+        </h3>
+        <p>Generates a UI for slotless storage based on the objects inside of it</p><h3 id="proc/storage_depth"><aside class="declaration">proc </aside>storage_depth<aside>(/<a href="atom.html">atom</a>/container) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L932">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 932"/></a></aside>
+        </h3>
+        <p>Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area). Returns -1 if the atom was not found on container.</p><h3 id="proc/storage_depth_turf"><aside class="declaration">proc </aside>storage_depth_turf<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L949">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 949"/></a></aside>
+        </h3>
+        <p>Like storage depth, but returns the depth to the nearest turf. Returns -1 if no top level turf (a loc was null somewhere, or a non-turf atom's loc was an area somehow).</p><h3 id="proc/unregister_storage_signals"><aside class="declaration">proc </aside>unregister_storage_signals<aside>(/<a href="atom.html">atom</a>/parent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L249">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 249"/></a></aside>
+        </h3>
+        <p>Unregisters our signals from parent. Used when parent loses storage but is not destroyed</p><h3 id="proc/update_verbs"><aside class="declaration">proc </aside>update_verbs<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user, slot) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L1044">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 1044"/></a></aside>
+        </h3>
+        <p>Updates our verbs if we are equipped</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

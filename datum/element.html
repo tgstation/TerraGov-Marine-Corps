@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;element - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/element.html#var">Var Details</a> - <a href="datum/element.html#proc">Proc Details</a></header>
+<main>
+<h1>element <aside>/<a href="datum.html">datum</a>/<a href="datum/element.html">element</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/_element.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;_element.dm 7"/></a></h1>
+
+<p>A holder for simple behaviour that can be attached to many different types</p>
+<p>Only one element of each type is instanced during game init.
+Otherwise acts basically like a lightweight component.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/element.html#var/argument_hash_start_idx">argument_hash_start_idx</a></th><td>The index of the first attach argument to consider for duplicate elements</td></tr>
+            <tr><th><a href="datum/element.html#var/element_flags">element_flags</a></th><td>Option flags for element behaviour</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/element.html#proc/Attach">Attach</a></th><td>Activates the functionality defined by the element on the given target datum</td></tr>
+            <tr><th><a href="datum/element.html#proc/Detach">Detach</a></th><td>Deactivates the functionality defines by the element on the given datum</td></tr>
+            <tr><th><a href="datum/element.html#proc/on_client_change">on_client_change</a></th><td>Triggered when a client enters/gets admin-dragged into a mob. Necesarry since keybindings are done using individual client preferences.</td></tr>
+            <tr><th><a href="datum/element.html#proc/on_keybinding_change">on_keybinding_change</a></th><td>Checks all actions on the mob to see if they match the keybind_signal and updates the trigger key.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/argument_hash_start_idx"><aside class="declaration">var </aside>argument_hash_start_idx
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/_element.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;_element.dm 20"/></a></h3>
+        <p>The index of the first attach argument to consider for duplicate elements</p>
+<p>All arguments from this index onwards (1 based) are hashed into the key to determine
+if this is a new unique element or one already exists</p>
+<p>Is only used when flags contains <a href="code/__DEFINES/dcs/flags.html#define/ELEMENT_BESPOKE" title="ELEMENT_BESPOKE">ELEMENT_BESPOKE</a></p>
+<p>This is infinity so you must explicitly set this</p><h3 id="var/element_flags"><aside class="declaration">var </aside>element_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/_element.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;_element.dm 9"/></a></h3>
+        <p>Option flags for element behaviour</p><h2 id="proc">Proc Details</h2><h3 id="proc/Attach"><aside class="declaration">proc </aside>Attach<aside>(/<a href="datum.html">datum</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/_element.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;_element.dm 23"/></a></aside>
+        </h3>
+        <p>Activates the functionality defined by the element on the given target datum</p><h3 id="proc/Detach"><aside class="declaration">proc </aside>Detach<aside>(/<a href="datum.html">datum</a>/source, ...) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/_element.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;_element.dm 36"/></a></aside>
+        </h3>
+        <p>Deactivates the functionality defines by the element on the given datum</p><h3 id="proc/on_client_change"><aside class="declaration">proc </aside>on_client_change<aside>(/<a href="mob.html">mob</a>/current_mob) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/keybinding_update.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;keybinding_update.dm 38"/></a></aside>
+        </h3>
+        <p>Triggered when a client enters/gets admin-dragged into a mob. Necesarry since keybindings are done using individual client preferences.</p><h3 id="proc/on_keybinding_change"><aside class="declaration">proc </aside>on_keybinding_change<aside>(/<a href="mob.html">mob</a>/current_mob, /<a href="datum.html">datum</a>/<a href="datum/keybinding.html">keybinding</a>/changed_bind) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/keybinding_update.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;keybinding_update.dm 18"/></a></aside>
+        </h3>
+        <p>Checks all actions on the mob to see if they match the keybind_signal and updates the trigger key.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

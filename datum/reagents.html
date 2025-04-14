@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;reagents - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/reagents.html#var">Var Details</a> - <a href="datum/reagents.html#proc">Proc Details</a></header>
+<main>
+<h1>reagents <aside>/<a href="datum.html">datum</a>/<a href="datum/reagents.html">reagents</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/reagents.html#var/addiction_list">addiction_list</a></th><td>currently addicted reagents</td></tr>
+            <tr><th><a href="datum/reagents.html#var/addiction_tick">addiction_tick</a></th><td>see <a href="datum/reagents.html#proc/metabolize" title="/datum/reagents">/datum/reagents/proc/metabolize</a> for usage</td></tr>
+            <tr><th><a href="datum/reagents.html#var/chem_temp">chem_temp</a></th><td>Current temp of the holder volume</td></tr>
+            <tr><th><a href="datum/reagents.html#var/last_tick">last_tick</a></th><td>unused</td></tr>
+            <tr><th><a href="datum/reagents.html#var/maximum_volume">maximum_volume</a></th><td>Max volume of this holder</td></tr>
+            <tr><th><a href="datum/reagents.html#var/my_atom">my_atom</a></th><td>The atom this holder is attached to</td></tr>
+            <tr><th><a href="datum/reagents.html#var/reagent_flags">reagent_flags</a></th><td>various flags, see code__DEFINES\reagents.dm</td></tr>
+            <tr><th><a href="datum/reagents.html#var/reagent_list">reagent_list</a></th><td>The reagents being held</td></tr>
+            <tr><th><a href="datum/reagents.html#var/total_volume">total_volume</a></th><td>Current volume of all the reagents</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/reagents.html#proc/clear_reagents">clear_reagents</a></th><td>Removes all reagents</td></tr>
+            <tr><th><a href="datum/reagents.html#proc/copy_to">copy_to</a></th><td>Copies the reagents to the target object</td></tr>
+            <tr><th><a href="datum/reagents.html#proc/del_reagent">del_reagent</a></th><td>Remove a reagent datum with the type provided from this container. True if one is removed, false otherwise.</td></tr>
+            <tr><th><a href="datum/reagents.html#proc/get_holder">get_holder</a></th><td>Getter proc for our atom holder</td></tr>
+            <tr><th><a href="datum/reagents.html#proc/get_master_reagent">get_master_reagent</a></th><td>Get a reference to the reagent there is the most of in this holder</td></tr>
+            <tr><th><a href="datum/reagents.html#proc/get_master_reagent_id">get_master_reagent_id</a></th><td>Get the id of the reagent there is the most of in this holder</td></tr>
+            <tr><th><a href="datum/reagents.html#proc/get_master_reagent_name">get_master_reagent_name</a></th><td>Get the name of the reagent there is the most of in this holder</td></tr>
+            <tr><th><a href="datum/reagents.html#proc/get_reagent">get_reagent</a></th><td>Returns a regent if it is in this datum</td></tr>
+            <tr><th><a href="datum/reagents.html#proc/get_reagents">get_reagents</a></th><td>Returns a list of all reagents in this datum</td></tr>
+            <tr><th><a href="datum/reagents.html#proc/log_list">log_list</a></th><td>Used in attack logs for reagents in pills and such</td></tr>
+            <tr><th><a href="datum/reagents.html#proc/metabolize">metabolize</a></th><td>Triggers metabolizing the reagents in this holder</td></tr>
+            <tr><th><a href="datum/reagents.html#proc/remove_all">remove_all</a></th><td>Removes all reagents from this holder</td></tr>
+            <tr><th><a href="datum/reagents.html#proc/remove_any">remove_any</a></th><td>Remove an amount of reagents without caring about what they are</td></tr>
+            <tr><th><a href="datum/reagents.html#proc/remove_reagent">remove_reagent</a></th><td>Like add_reagent but you can enter a list. Format it like this: list(/datum/reagent/toxin = 10, /datum/reagent/consumable/ethanol/beer = 15)</td></tr>
+            <tr><th><a href="datum/reagents.html#proc/trans_id_to">trans_id_to</a></th><td>Transfer a specific reagent id to the target object</td></tr>
+            <tr><th><a href="datum/reagents.html#proc/trans_to">trans_to</a></th><td>Transfer some stuff from this holder to a target object</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/addiction_list"><aside class="declaration">var </aside>addiction_list
+            <aside>&ndash; /list/datum/reagent</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 19"/></a></h3>
+        <p>currently addicted reagents</p><h3 id="var/addiction_tick"><aside class="declaration">var </aside>addiction_tick
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 17"/></a></h3>
+        <p>see <a href="datum/reagents.html#proc/metabolize" title="/datum/reagents">/datum/reagents/proc/metabolize</a> for usage</p><h3 id="var/chem_temp"><aside class="declaration">var </aside>chem_temp
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 13"/></a></h3>
+        <p>Current temp of the holder volume</p><h3 id="var/last_tick"><aside class="declaration">var </aside>last_tick
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 15"/></a></h3>
+        <p>unused</p><h3 id="var/maximum_volume"><aside class="declaration">var </aside>maximum_volume
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 9"/></a></h3>
+        <p>Max volume of this holder</p><h3 id="var/my_atom"><aside class="declaration">var </aside>my_atom
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/weakref.html">weakref</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 11"/></a></h3>
+        <p>The atom this holder is attached to</p><h3 id="var/reagent_flags"><aside class="declaration">var </aside>reagent_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 23"/></a></h3>
+        <p>various flags, see code__DEFINES\reagents.dm</p><h3 id="var/reagent_list"><aside class="declaration">var </aside>reagent_list
+            <aside>&ndash; /list/datum/reagent</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 5"/></a></h3>
+        <p>The reagents being held</p><h3 id="var/total_volume"><aside class="declaration">var </aside>total_volume
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 7"/></a></h3>
+        <p>Current volume of all the reagents</p><h2 id="proc">Proc Details</h2><h3 id="proc/clear_reagents"><aside class="declaration">proc </aside>clear_reagents<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 146"/></a></aside>
+        </h3>
+        <p>Removes all reagents</p><h3 id="proc/copy_to"><aside class="declaration">proc </aside>copy_to<aside>(/<a href="obj.html">obj</a>/target, amount, multiplier, preserve_data) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L204">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 204"/></a></aside>
+        </h3>
+        <p>Copies the reagents to the target object</p><h3 id="proc/del_reagent"><aside class="declaration">proc </aside>del_reagent<aside>(type_to_remove) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L475">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 475"/></a></aside>
+        </h3>
+        <p>Remove a reagent datum with the type provided from this container. True if one is removed, false otherwise.</p><h3 id="proc/get_holder"><aside class="declaration">proc </aside>get_holder<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L794">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 794"/></a></aside>
+        </h3>
+        <p>Getter proc for our atom holder</p><h3 id="proc/get_master_reagent"><aside class="declaration">proc </aside>get_master_reagent<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L133">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 133"/></a></aside>
+        </h3>
+        <p>Get a reference to the reagent there is the most of in this holder</p><h3 id="proc/get_master_reagent_id"><aside class="declaration">proc </aside>get_master_reagent_id<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 120"/></a></aside>
+        </h3>
+        <p>Get the id of the reagent there is the most of in this holder</p><h3 id="proc/get_master_reagent_name"><aside class="declaration">proc </aside>get_master_reagent_name<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 107"/></a></aside>
+        </h3>
+        <p>Get the name of the reagent there is the most of in this holder</p><h3 id="proc/get_reagent"><aside class="declaration">proc </aside>get_reagent<aside>(reagent_id) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L673">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 673"/></a></aside>
+        </h3>
+        <p>Returns a regent if it is in this datum</p><h3 id="proc/get_reagents"><aside class="declaration">proc </aside>get_reagents<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L680">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 680"/></a></aside>
+        </h3>
+        <p>Returns a list of all reagents in this datum</p><h3 id="proc/log_list"><aside class="declaration">proc </aside>log_list<aside>(external_list) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 43"/></a></aside>
+        </h3>
+        <p>Used in attack logs for reagents in pills and such</p>
+<p>Arguments:</p>
+<ul>
+<li>external_list - list of reagent types = amounts</li>
+</ul><h3 id="proc/metabolize"><aside class="declaration">proc </aside>metabolize<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L, can_overdose, liverless) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L273">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 273"/></a></aside>
+        </h3>
+        <p>Triggers metabolizing the reagents in this holder</p>
+<p>Arguments:</p>
+<ul>
+<li>mob/living/carbon/C - The mob to metabolize in, if null it uses <a href="datum/reagents.html#var/my_atom" title="/datum/reagents">/datum/reagents/var/my_atom</a></li>
+<li>can_overdose - Allows overdosing</li>
+<li>liverless - Stops reagents that aren't set as <a href="datum/reagent.html#var/self_consuming" title="/datum/reagent">/datum/reagent/var/self_consuming</a> from metabolizing</li>
+</ul><h3 id="proc/remove_all"><aside class="declaration">proc </aside>remove_all<aside>(amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 94"/></a></aside>
+        </h3>
+        <p>Removes all reagents from this holder</p><h3 id="proc/remove_any"><aside class="declaration">proc </aside>remove_any<aside>(amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 60"/></a></aside>
+        </h3>
+        <p>Remove an amount of reagents without caring about what they are</p><h3 id="proc/remove_reagent"><aside class="declaration">proc </aside>remove_reagent<aside>(reagent, amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L624">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 624"/></a></aside>
+        </h3>
+        <p>Like add_reagent but you can enter a list. Format it like this: list(/datum/reagent/toxin = 10, /datum/reagent/consumable/ethanol/beer = 15)</p><h3 id="proc/trans_id_to"><aside class="declaration">proc </aside>trans_id_to<aside>(/<a href="obj.html">obj</a>/target, reagent, amount, preserve_data) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L237">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 237"/></a></aside>
+        </h3>
+        <p>Transfer a specific reagent id to the target object</p><h3 id="proc/trans_to"><aside class="declaration">proc </aside>trans_to<aside>(/<a href="obj.html">obj</a>/target, amount, multiplier, preserve_data, no_react) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/holder/holder.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;holder&#x2F;holder.dm 171"/></a></aside>
+        </h3>
+        <p>Transfer some stuff from this holder to a target object</p>
+<p>Arguments:</p>
+<ul>
+<li>obj/target - Target to attempt transfer to</li>
+<li>amount - amount of reagent volume to transfer</li>
+<li>multiplier - multiplies amount of each reagent by this number</li>
+<li>preserve_data - if preserve_data=0, the reagents data will be lost. Usefull if you use data for some strange stuff and don't want it to be transferred.</li>
+<li>no_react - passed through to [/datum/reagents/proc/add_reagent]</li>
+<li>mob/transfered_by - used for logging</li>
+<li>remove_blacklisted - skips transferring of reagents with can_synth = FALSE</li>
+<li>method - passed through to [/datum/reagents/proc/react_single] and [/datum/reagent/proc/on_transfer]</li>
+<li>show_message - passed through to [/datum/reagents/proc/react_single]</li>
+<li>round_robin - if round_robin=TRUE, so transfer 5 from 15 water, 15 sugar and 15 plasma becomes 10, 15, 15 instead of 13.3333, 13.3333 13.3333. Good if you hate floating point errors</li>
+</ul></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

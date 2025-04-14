@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;shuttle - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/shuttle.html#var">Var Details</a> - <a href="datum/controller/subsystem/shuttle.html#proc">Proc Details</a></header>
+<main>
+<h1>shuttle <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/shuttle.html">shuttle</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/shuttle.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;shuttle.dm 4"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/shuttle.html#var/assoc_mobile">assoc_mobile</a></th><td>For ID generation</td></tr>
+            <tr><th><a href="datum/controller/subsystem/shuttle.html#var/assoc_stationary">assoc_stationary</a></th><td>For ID generation</td></tr>
+            <tr><th><a href="datum/controller/subsystem/shuttle.html#var/loading_shuttle">loading_shuttle</a></th><td>safety to stop shuttles loading over each other</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/shuttle.html#proc/moveShuttleQuickToDock">moveShuttleQuickToDock</a></th><td>Skip the transit to directly go to the destination. This is not instantaneous
+shuttleId : Id of the shuttle to move
+dockId : Id of the destination dockId</td></tr>
+            <tr><th><a href="datum/controller/subsystem/shuttle.html#proc/moveShuttleToDock">moveShuttleToDock</a></th><td>Move the shuttle to it's destination. If called normally, the shuttle will spool engines, then go to transit, then do its prearrival, then land on destination dock
+shuttleId : Id of the shuttle to move
+obj/docking_port/stationary/D : Reference of the destination dock
+timed: If FALSE, the shuttle will instantanly move to the destination dock</td></tr>
+            <tr><th><a href="datum/controller/subsystem/shuttle.html#proc/moveShuttleToTransit">moveShuttleToTransit</a></th><td>Generate a transit and set it as a destination. The shuttle will stay in that transit until it is called again
+Because it uses standard shuttle code, the shuttle will do this :
+Originport -&gt; transit -&gt; arrived to destination(will actually not move from transit, because destiantion = the transit)
+shuttleId : Id of the shuttle to move
+timed : If FALSE, the shuttle will instantly move to its destination</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/assoc_mobile"><aside class="declaration">var </aside>assoc_mobile
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/shuttle.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;shuttle.dm 17"/></a></h3>
+        <p>For ID generation</p><h3 id="var/assoc_stationary"><aside class="declaration">var </aside>assoc_stationary
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/shuttle.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;shuttle.dm 19"/></a></h3>
+        <p>For ID generation</p><h3 id="var/loading_shuttle"><aside class="declaration">var </aside>loading_shuttle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/shuttle.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;shuttle.dm 49"/></a></h3>
+        <p>safety to stop shuttles loading over each other</p><h2 id="proc">Proc Details</h2><h3 id="proc/moveShuttleQuickToDock"><aside class="declaration">proc </aside>moveShuttleQuickToDock<aside>(shuttleId, dockId) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/shuttle.dm#L151">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;shuttle.dm 151"/></a></aside>
+        </h3>
+        <p>Skip the transit to directly go to the destination. This is not instantaneous
+shuttleId : Id of the shuttle to move
+dockId : Id of the destination dockId</p><h3 id="proc/moveShuttleToDock"><aside class="declaration">proc </aside>moveShuttleToDock<aside>(shuttleId, /<a href="obj.html">obj</a>/<a href="obj/docking_port.html">docking_port</a>/<a href="obj/docking_port/stationary.html">stationary</a>/D, timed) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/shuttle.dm#L168">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;shuttle.dm 168"/></a></aside>
+        </h3>
+        <p>Move the shuttle to it's destination. If called normally, the shuttle will spool engines, then go to transit, then do its prearrival, then land on destination dock
+shuttleId : Id of the shuttle to move
+obj/docking_port/stationary/D : Reference of the destination dock
+timed: If FALSE, the shuttle will instantanly move to the destination dock</p><h3 id="proc/moveShuttleToTransit"><aside class="declaration">proc </aside>moveShuttleToTransit<aside>(shuttleId, timed) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/shuttle.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;shuttle.dm 139"/></a></aside>
+        </h3>
+        <p>Generate a transit and set it as a destination. The shuttle will stay in that transit until it is called again
+Because it uses standard shuttle code, the shuttle will do this :
+Originport -&gt; transit -&gt; arrived to destination(will actually not move from transit, because destiantion = the transit)
+shuttleId : Id of the shuttle to move
+timed : If FALSE, the shuttle will instantly move to its destination</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

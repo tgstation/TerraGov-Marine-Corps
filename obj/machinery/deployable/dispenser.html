@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;deployable&#x2F;dispenser - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/deployable/dispenser.html#var">Var Details</a> - <a href="obj/machinery/deployable/dispenser.html#proc">Proc Details</a></header>
+<main>
+<h1>dispenser <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/deployable.html">deployable</a>/<a href="obj/machinery/deployable/dispenser.html">dispenser</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/storage/dispenser.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;storage&#x2F;dispenser.dm 2"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/deployable/dispenser.html#var/active">active</a></th><td>if the dispenser has finished deploying and is fully active and can be used.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/dispenser.html#var/affecting_list">affecting_list</a></th><td>list of human mobs we're currently affecting in our area.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/deployable/dispenser.html#proc/deploy">deploy</a></th><td>finishes deploying after the deploy timer</td></tr>
+            <tr><th><a href="obj/machinery/deployable/dispenser.html#proc/entered_tiles">entered_tiles</a></th><td>checks if a mob that moved close is elligible to get heal beamed.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/dispenser.html#proc/on_affecting_qdel">on_affecting_qdel</a></th><td>cleans human from affecting_list when it gets qdeletted</td></tr>
+            <tr><th><a href="obj/machinery/deployable/dispenser.html#proc/on_beam_qdel">on_beam_qdel</a></th><td>cleans human from affecting_list when the beam gets qdeletted</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active"><aside class="declaration">var </aside>active
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/storage/dispenser.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;storage&#x2F;dispenser.dm 14"/></a></h3>
+        <p>if the dispenser has finished deploying and is fully active and can be used.</p><h3 id="var/affecting_list"><aside class="declaration">var </aside>affecting_list
+            <aside>&ndash; /list/mob/living/carbon/human</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/storage/dispenser.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;storage&#x2F;dispenser.dm 12"/></a></h3>
+        <p>list of human mobs we're currently affecting in our area.</p><h2 id="proc">Proc Details</h2><h3 id="proc/deploy"><aside class="declaration">proc </aside>deploy<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/storage/dispenser.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;storage&#x2F;dispenser.dm 23"/></a></aside>
+        </h3>
+        <p>finishes deploying after the deploy timer</p><h3 id="proc/entered_tiles"><aside class="declaration">proc </aside>entered_tiles<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/entering) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/storage/dispenser.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;storage&#x2F;dispenser.dm 47"/></a></aside>
+        </h3>
+        <p>checks if a mob that moved close is elligible to get heal beamed.</p><h3 id="proc/on_affecting_qdel"><aside class="declaration">proc </aside>on_affecting_qdel<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/storage/dispenser.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;storage&#x2F;dispenser.dm 62"/></a></aside>
+        </h3>
+        <p>cleans human from affecting_list when it gets qdeletted</p><h3 id="proc/on_beam_qdel"><aside class="declaration">proc </aside>on_beam_qdel<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/storage/dispenser.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;storage&#x2F;dispenser.dm 67"/></a></aside>
+        </h3>
+        <p>cleans human from affecting_list when the beam gets qdeletted</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;reagent - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/reagent.html#var">Var Details</a> - <a href="datum/reagent.html#proc">Proc Details</a></header>
+<main>
+<h1>reagent <aside>/<a href="datum.html">datum</a>/<a href="datum/reagent.html">reagent</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 11"/></a></h1>
+
+<p>A single reagent</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/reagent.html#var/addiction_stage">addiction_stage</a></th><td>increases as addiction gets worse</td></tr>
+            <tr><th><a href="datum/reagent.html#var/addiction_threshold">addiction_threshold</a></th><td>above this amount addictions start</td></tr>
+            <tr><th><a href="datum/reagent.html#var/can_synth">can_synth</a></th><td>can this reagent be synthesized? (for example: odysseus syringe gun)</td></tr>
+            <tr><th><a href="datum/reagent.html#var/color">color</a></th><td>color it looks in containers etc</td></tr>
+            <tr><th><a href="datum/reagent.html#var/current_cycle">current_cycle</a></th><td>increments everytime on_mob_life is called</td></tr>
+            <tr><th><a href="datum/reagent.html#var/custom_metabolism">custom_metabolism</a></th><td>how fast the reagent is metabolized by the mob</td></tr>
+            <tr><th><a href="datum/reagent.html#var/data">data</a></th><td>special data associated with this like viruses etc</td></tr>
+            <tr><th><a href="datum/reagent.html#var/default_container">default_container</a></th><td>The default reagent container for the reagent, used for icon generation</td></tr>
+            <tr><th><a href="datum/reagent.html#var/description">description</a></th><td>nor do they have descriptions</td></tr>
+            <tr><th><a href="datum/reagent.html#var/effect_str">effect_str</a></th><td>Affects the strength of reagent effects</td></tr>
+            <tr><th><a href="datum/reagent.html#var/holder">holder</a></th><td>reagent holder this belongs to</td></tr>
+            <tr><th><a href="datum/reagent.html#var/medbayblacklist">medbayblacklist</a></th><td>Used for certain chems we don't want being extracted via dialysis or being used in cryo, makes all important medical machines (dispenser, cryo etc...) refuse to interact with the reagent</td></tr>
+            <tr><th><a href="datum/reagent.html#var/name">name</a></th><td>datums don't have names by default</td></tr>
+            <tr><th><a href="datum/reagent.html#var/overdose_crit_threshold">overdose_crit_threshold</a></th><td>above this the big bad overdoses happen</td></tr>
+            <tr><th><a href="datum/reagent.html#var/overdose_threshold">overdose_threshold</a></th><td>above this overdoses happen</td></tr>
+            <tr><th><a href="datum/reagent.html#var/overdosed">overdosed</a></th><td>You fucked up and this is now triggering its overdose effects, purge that shit quick.</td></tr>
+            <tr><th><a href="datum/reagent.html#var/overdosed_crit">overdosed_crit</a></th><td>You really fucked up and now getting the worst of the worse.</td></tr>
+            <tr><th><a href="datum/reagent.html#var/purge_list">purge_list</a></th><td>List of reagents removed by this chemical</td></tr>
+            <tr><th><a href="datum/reagent.html#var/purge_rate">purge_rate</a></th><td>rate at which it purges specific chems</td></tr>
+            <tr><th><a href="datum/reagent.html#var/reactindeadmob">reactindeadmob</a></th><td>If true allow foam and smoke to transfer reagent into dead mobs</td></tr>
+            <tr><th><a href="datum/reagent.html#var/reagent_state">reagent_state</a></th><td>LIQUID, SOLID, GAS</td></tr>
+            <tr><th><a href="datum/reagent.html#var/scannable">scannable</a></th><td>does this show up on health analyzers</td></tr>
+            <tr><th><a href="datum/reagent.html#var/self_consuming">self_consuming</a></th><td>if false stops metab in liverless mobs</td></tr>
+            <tr><th><a href="datum/reagent.html#var/specific_heat">specific_heat</a></th><td>J/(K*mol)</td></tr>
+            <tr><th><a href="datum/reagent.html#var/taste_description">taste_description</a></th><td>used by taste messages</td></tr>
+            <tr><th><a href="datum/reagent.html#var/taste_multi">taste_multi</a></th><td>how this taste compares to others. Higher values means it is more noticable</td></tr>
+            <tr><th><a href="datum/reagent.html#var/trait_flags">trait_flags</a></th><td>Specific trait flags, like HEARTSTOPPER CHESTSTOPPER BRADYCARDICS TACHYCARDIC</td></tr>
+            <tr><th><a href="datum/reagent.html#var/volume">volume</a></th><td>pretend this is moles</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/reagent.html#proc/addiction_act_stage1">addiction_act_stage1</a></th><td>Called when addiction hits stage1, see <a href="datum/reagents.html#proc/metabolize" title="/datum/reagents">/datum/reagents/proc/metabolize</a></td></tr>
+            <tr><th><a href="datum/reagent.html#proc/addiction_act_stage2">addiction_act_stage2</a></th><td>Called when addiction hits stage2, see <a href="datum/reagents.html#proc/metabolize" title="/datum/reagents">/datum/reagents/proc/metabolize</a></td></tr>
+            <tr><th><a href="datum/reagent.html#proc/addiction_act_stage3">addiction_act_stage3</a></th><td>Called when addiction hits stage3, see <a href="datum/reagents.html#proc/metabolize" title="/datum/reagents">/datum/reagents/proc/metabolize</a></td></tr>
+            <tr><th><a href="datum/reagent.html#proc/addiction_act_stage4">addiction_act_stage4</a></th><td>Called when addiction hits stage4, see <a href="datum/reagents.html#proc/metabolize" title="/datum/reagents">/datum/reagents/proc/metabolize</a></td></tr>
+            <tr><th><a href="datum/reagent.html#proc/ai_should_use">ai_should_use</a></th><td>Checks if an NPC should use give this to someone</td></tr>
+            <tr><th><a href="datum/reagent.html#proc/on_ex_act">on_ex_act</a></th><td>Called when the reagent container is hit by an explosion</td></tr>
+            <tr><th><a href="datum/reagent.html#proc/on_merge">on_merge</a></th><td>Called when two reagents of the same are mixing.</td></tr>
+            <tr><th><a href="datum/reagent.html#proc/on_mob_add">on_mob_add</a></th><td>Called when this reagent is first added to a mob</td></tr>
+            <tr><th><a href="datum/reagent.html#proc/on_mob_delete">on_mob_delete</a></th><td>Called when this reagent is removed while inside a mob</td></tr>
+            <tr><th><a href="datum/reagent.html#proc/on_mob_life">on_mob_life</a></th><td>Called from <a href="datum/reagents.html#proc/metabolize" title="/datum/reagents">/datum/reagents/proc/metabolize</a></td></tr>
+            <tr><th><a href="datum/reagent.html#proc/on_move">on_move</a></th><td>Called by [/datum/reagents/proc/conditional_update_move]</td></tr>
+            <tr><th><a href="datum/reagent.html#proc/on_new">on_new</a></th><td>Called after add_reagents creates a new reagent.</td></tr>
+            <tr><th><a href="datum/reagent.html#proc/on_overdose_crit_start">on_overdose_crit_start</a></th><td>Called when a CRITICAL overdose starts.</td></tr>
+            <tr><th><a href="datum/reagent.html#proc/on_overdose_start">on_overdose_start</a></th><td>Called when an overdose starts</td></tr>
+            <tr><th><a href="datum/reagent.html#proc/on_overdose_stop">on_overdose_stop</a></th><td>Called when an overdose stops</td></tr>
+            <tr><th><a href="datum/reagent.html#proc/on_update">on_update</a></th><td>Called by [/datum/reagents/proc/conditional_update]</td></tr>
+            <tr><th><a href="datum/reagent.html#proc/overdose_crit_process">overdose_crit_process</a></th><td>Called when a CRITICAL overdose threshold and is trigger effects.</td></tr>
+            <tr><th><a href="datum/reagent.html#proc/overdose_process">overdose_process</a></th><td>Called if the reagent has passed the overdose threshold and is set to be triggering overdose effects</td></tr>
+            <tr><th><a href="datum/reagent.html#proc/purge">purge</a></th><td>Called during metablism, checks to see if any chemicals need to purge other chemicals.</td></tr>
+            <tr><th><a href="datum/reagent.html#proc/reaction_mob">reaction_mob</a></th><td>Applies this reagent to a <a href="mob/living.html" title="/mob/living">/mob/living</a></td></tr>
+            <tr><th><a href="datum/reagent.html#proc/reaction_obj">reaction_obj</a></th><td>Applies this reagent to an <a href="obj.html" title="/obj">/obj</a></td></tr>
+            <tr><th><a href="datum/reagent.html#proc/reaction_turf">reaction_turf</a></th><td>Applies this reagent to a <a href="turf.html" title="/turf">/turf</a></td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/addiction_stage"><aside class="declaration">var </aside>addiction_stage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 49"/></a></h3>
+        <p>increases as addiction gets worse</p><h3 id="var/addiction_threshold"><aside class="declaration">var </aside>addiction_threshold
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 47"/></a></h3>
+        <p>above this amount addictions start</p><h3 id="var/can_synth"><aside class="declaration">var </aside>can_synth
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 35"/></a></h3>
+        <p>can this reagent be synthesized? (for example: odysseus syringe gun)</p><h3 id="var/color"><aside class="declaration">var </aside>color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 33"/></a></h3>
+        <p>color it looks in containers etc</p><h3 id="var/current_cycle"><aside class="declaration">var </aside>current_cycle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 29"/></a></h3>
+        <p>increments everytime on_mob_life is called</p><h3 id="var/custom_metabolism"><aside class="declaration">var </aside>custom_metabolism
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 37"/></a></h3>
+        <p>how fast the reagent is metabolized by the mob</p><h3 id="var/data"><aside class="declaration">var </aside>data
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 27"/></a></h3>
+        <p>special data associated with this like viruses etc</p><h3 id="var/default_container"><aside class="declaration">var </aside>default_container
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/reagent_containers.html">reagent_containers</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 68"/></a></h3>
+        <p>The default reagent container for the reagent, used for icon generation</p><h3 id="var/description"><aside class="declaration">var </aside>description
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 15"/></a></h3>
+        <p>nor do they have descriptions</p><h3 id="var/effect_str"><aside class="declaration">var </aside>effect_str
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 61"/></a></h3>
+        <p>Affects the strength of reagent effects</p><h3 id="var/holder"><aside class="declaration">var </aside>holder
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/reagents.html">reagents</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 23"/></a></h3>
+        <p>reagent holder this belongs to</p><h3 id="var/medbayblacklist"><aside class="declaration">var </aside>medbayblacklist
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 63"/></a></h3>
+        <p>Used for certain chems we don't want being extracted via dialysis or being used in cryo, makes all important medical machines (dispenser, cryo etc...) refuse to interact with the reagent</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 13"/></a></h3>
+        <p>datums don't have names by default</p><h3 id="var/overdose_crit_threshold"><aside class="declaration">var </aside>overdose_crit_threshold
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 45"/></a></h3>
+        <p>above this the big bad overdoses happen</p><h3 id="var/overdose_threshold"><aside class="declaration">var </aside>overdose_threshold
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 43"/></a></h3>
+        <p>above this overdoses happen</p><h3 id="var/overdosed"><aside class="declaration">var </aside>overdosed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 39"/></a></h3>
+        <p>You fucked up and this is now triggering its overdose effects, purge that shit quick.</p><h3 id="var/overdosed_crit"><aside class="declaration">var </aside>overdosed_crit
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 41"/></a></h3>
+        <p>You really fucked up and now getting the worst of the worse.</p><h3 id="var/purge_list"><aside class="declaration">var </aside>purge_list
+            <aside>&ndash; /list/datum/reagent</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 55"/></a></h3>
+        <p>List of reagents removed by this chemical</p><h3 id="var/purge_rate"><aside class="declaration">var </aside>purge_rate
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 57"/></a></h3>
+        <p>rate at which it purges specific chems</p><h3 id="var/reactindeadmob"><aside class="declaration">var </aside>reactindeadmob
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 65"/></a></h3>
+        <p>If true allow foam and smoke to transfer reagent into dead mobs</p><h3 id="var/reagent_state"><aside class="declaration">var </aside>reagent_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 25"/></a></h3>
+        <p>LIQUID, SOLID, GAS</p><h3 id="var/scannable"><aside class="declaration">var </aside>scannable
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 51"/></a></h3>
+        <p>does this show up on health analyzers</p><h3 id="var/self_consuming"><aside class="declaration">var </aside>self_consuming
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 53"/></a></h3>
+        <p>if false stops metab in liverless mobs</p><h3 id="var/specific_heat"><aside class="declaration">var </aside>specific_heat
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 17"/></a></h3>
+        <p>J/(K*mol)</p><h3 id="var/taste_description"><aside class="declaration">var </aside>taste_description
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 19"/></a></h3>
+        <p>used by taste messages</p><h3 id="var/taste_multi"><aside class="declaration">var </aside>taste_multi
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 21"/></a></h3>
+        <p>how this taste compares to others. Higher values means it is more noticable</p><h3 id="var/trait_flags"><aside class="declaration">var </aside>trait_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 59"/></a></h3>
+        <p>Specific trait flags, like HEARTSTOPPER CHESTSTOPPER BRADYCARDICS TACHYCARDIC</p><h3 id="var/volume"><aside class="declaration">var </aside>volume
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 31"/></a></h3>
+        <p>pretend this is moles</p><h2 id="proc">Proc Details</h2><h3 id="proc/addiction_act_stage1"><aside class="declaration">proc </aside>addiction_act_stage1<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L, metabolism) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 157"/></a></aside>
+        </h3>
+        <p>Called when addiction hits stage1, see <a href="datum/reagents.html#proc/metabolize" title="/datum/reagents">/datum/reagents/proc/metabolize</a></p><h3 id="proc/addiction_act_stage2"><aside class="declaration">proc </aside>addiction_act_stage2<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L, metabolism) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L163">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 163"/></a></aside>
+        </h3>
+        <p>Called when addiction hits stage2, see <a href="datum/reagents.html#proc/metabolize" title="/datum/reagents">/datum/reagents/proc/metabolize</a></p><h3 id="proc/addiction_act_stage3"><aside class="declaration">proc </aside>addiction_act_stage3<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L, metabolism) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L169">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 169"/></a></aside>
+        </h3>
+        <p>Called when addiction hits stage3, see <a href="datum/reagents.html#proc/metabolize" title="/datum/reagents">/datum/reagents/proc/metabolize</a></p><h3 id="proc/addiction_act_stage4"><aside class="declaration">proc </aside>addiction_act_stage4<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L, metabolism) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 175"/></a></aside>
+        </h3>
+        <p>Called when addiction hits stage4, see <a href="datum/reagents.html#proc/metabolize" title="/datum/reagents">/datum/reagents/proc/metabolize</a></p><h3 id="proc/ai_should_use"><aside class="declaration">proc </aside>ai_should_use<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target, inject_vol) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L201">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 201"/></a></aside>
+        </h3>
+        <p>Checks if an NPC should use give this to someone</p><h3 id="proc/on_ex_act"><aside class="declaration">proc </aside>on_ex_act<aside>(severity) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L153">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 153"/></a></aside>
+        </h3>
+        <p>Called when the reagent container is hit by an explosion</p><h3 id="proc/on_merge"><aside class="declaration">proc </aside>on_merge<aside>(data) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L145">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 145"/></a></aside>
+        </h3>
+        <p>Called when two reagents of the same are mixing.</p><h3 id="proc/on_mob_add"><aside class="declaration">proc </aside>on_mob_add<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L, metabolism) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 105"/></a></aside>
+        </h3>
+        <p>Called when this reagent is first added to a mob</p><h3 id="proc/on_mob_delete"><aside class="declaration">proc </aside>on_mob_delete<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L, metabolism) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 109"/></a></aside>
+        </h3>
+        <p>Called when this reagent is removed while inside a mob</p><h3 id="proc/on_mob_life"><aside class="declaration">proc </aside>on_mob_life<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L, metabolism) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 98"/></a></aside>
+        </h3>
+        <p>Called from <a href="datum/reagents.html#proc/metabolize" title="/datum/reagents">/datum/reagents/proc/metabolize</a></p><h3 id="proc/on_move"><aside class="declaration">proc </aside>on_move<aside>(/<a href="atom.html">atom</a>/A) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 137"/></a></aside>
+        </h3>
+        <p>Called by [/datum/reagents/proc/conditional_update_move]</p><h3 id="proc/on_new"><aside class="declaration">proc </aside>on_new<aside>(data) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 141"/></a></aside>
+        </h3>
+        <p>Called after add_reagents creates a new reagent.</p><h3 id="proc/on_overdose_crit_start"><aside class="declaration">proc </aside>on_overdose_crit_start<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L, metabolism) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 131"/></a></aside>
+        </h3>
+        <p>Called when a CRITICAL overdose starts.</p><h3 id="proc/on_overdose_start"><aside class="declaration">proc </aside>on_overdose_start<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L, metabolism) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 117"/></a></aside>
+        </h3>
+        <p>Called when an overdose starts</p><h3 id="proc/on_overdose_stop"><aside class="declaration">proc </aside>on_overdose_stop<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L, metabolism) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 123"/></a></aside>
+        </h3>
+        <p>Called when an overdose stops</p><h3 id="proc/on_update"><aside class="declaration">proc </aside>on_update<aside>(/<a href="atom.html">atom</a>/A) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L149">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 149"/></a></aside>
+        </h3>
+        <p>Called by [/datum/reagents/proc/conditional_update]</p><h3 id="proc/overdose_crit_process"><aside class="declaration">proc </aside>overdose_crit_process<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L, metabolism) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 127"/></a></aside>
+        </h3>
+        <p>Called when a CRITICAL overdose threshold and is trigger effects.</p><h3 id="proc/overdose_process"><aside class="declaration">proc </aside>overdose_process<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L, metabolism) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 113"/></a></aside>
+        </h3>
+        <p>Called if the reagent has passed the overdose threshold and is set to be triggering overdose effects</p><h3 id="proc/purge"><aside class="declaration">proc </aside>purge<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L, metabolism) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L189">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 189"/></a></aside>
+        </h3>
+        <p>Called during metablism, checks to see if any chemicals need to purge other chemicals.</p><h3 id="proc/reaction_mob"><aside class="declaration">proc </aside>reaction_mob<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L, method, volume, show_message, touch_protection) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 80"/></a></aside>
+        </h3>
+        <p>Applies this reagent to a <a href="mob/living.html" title="/mob/living">/mob/living</a></p><h3 id="proc/reaction_obj"><aside class="declaration">proc </aside>reaction_obj<aside>(/<a href="obj.html">obj</a>/O, volume) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 90"/></a></aside>
+        </h3>
+        <p>Applies this reagent to an <a href="obj.html" title="/obj">/obj</a></p><h3 id="proc/reaction_turf"><aside class="declaration">proc </aside>reaction_turf<aside>(/<a href="turf.html">turf</a>/T, volume) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents.dm 94"/></a></aside>
+        </h3>
+        <p>Applies this reagent to a <a href="turf.html" title="/turf">/turf</a></p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

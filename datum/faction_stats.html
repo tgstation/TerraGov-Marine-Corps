@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;faction_stats - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/faction_stats.html#var">Var Details</a> - <a href="datum/faction_stats.html#proc">Proc Details</a></header>
+<main>
+<h1>faction_stats <aside>/<a href="datum.html">datum</a>/<a href="datum/faction_stats.html">faction_stats</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 80"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/faction_stats.html#var/accumulated_mission_reward">accumulated_mission_reward</a></th><td>records how much currency has been earned from missions, for late join players</td></tr>
+            <tr><th><a href="datum/faction_stats.html#var/active_attrition_points">active_attrition_points</a></th><td>How many attrition points have been dedicated to the current mission</td></tr>
+            <tr><th><a href="datum/faction_stats.html#var/attrition_gain_multiplier">attrition_gain_multiplier</a></th><td>Multiplier on the passive attrition point gain for this faction</td></tr>
+            <tr><th><a href="datum/faction_stats.html#var/available_missions">available_missions</a></th><td>Future missions this faction can currently choose from</td></tr>
+            <tr><th><a href="datum/faction_stats.html#var/faction">faction</a></th><td>The faction associated with these stats</td></tr>
+            <tr><th><a href="datum/faction_stats.html#var/faction_assets">faction_assets</a></th><td>List of all assets the faction currently has</td></tr>
+            <tr><th><a href="datum/faction_stats.html#var/faction_leader">faction_leader</a></th><td>The decision maker for this leader</td></tr>
+            <tr><th><a href="datum/faction_stats.html#var/faction_portrait">faction_portrait</a></th><td>Portrait used for general screen text notifications</td></tr>
+            <tr><th><a href="datum/faction_stats.html#var/finished_missions">finished_missions</a></th><td>Missions this faction has succesfully completed</td></tr>
+            <tr><th><a href="datum/faction_stats.html#var/individual_stat_list">individual_stat_list</a></th><td>list of individual stats by ckey</td></tr>
+            <tr><th><a href="datum/faction_stats.html#var/loss_bonus">loss_bonus</a></th><td>cumulative loss bonus which is applied to attrition gain mult and player credit mission reward</td></tr>
+            <tr><th><a href="datum/faction_stats.html#var/purchasable_assets">purchasable_assets</a></th><td>List of all assets the faction can currently purchase</td></tr>
+            <tr><th><a href="datum/faction_stats.html#var/respawn_delay_modifier">respawn_delay_modifier</a></th><td>Faction-wide modifier to respawn delay</td></tr>
+            <tr><th><a href="datum/faction_stats.html#var/stats_flags">stats_flags</a></th><td>Any special behavior flags for the faction</td></tr>
+            <tr><th><a href="datum/faction_stats.html#var/total_attrition_points">total_attrition_points</a></th><td>Dictates how many respawns this faction has access to overall</td></tr>
+            <tr><th><a href="datum/faction_stats.html#var/victory_points">victory_points</a></th><td>Victory points earned by this faction</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/add_asset">add_asset</a></th><td>Adds a new asset to the faction for use</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/add_new_mission">add_new_mission</a></th><td>Adds a mission to the available mission pool</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/apply_cash">apply_cash</a></th><td>applies cash rewards to the faction and all individuals</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/choose_faction_leader">choose_faction_leader</a></th><td>Elects a new faction leader</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/force_update_static_data">force_update_static_data</a></th><td>force updates static data when something changes externally</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/generate_new_mission">generate_new_mission</a></th><td>Randomly adds a new mission to the available pool</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/get_player_stats">get_player_stats</a></th><td>Returns a users individual stat datum, generating a new one if required</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/get_selector">get_selector</a></th><td>Returns the faction's leader, selecting one if none is available</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/get_status_tab_items">get_status_tab_items</a></th><td>Generates status tab info for the mission</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/is_leadership_role">is_leadership_role</a></th><td>Checks if a mob is in a command role for this faction</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/mission_end">mission_end</a></th><td>handles post mission wrap up for the faction</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/mission_start">mission_start</a></th><td>handles mission start updates</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/register_faction_member">register_faction_member</a></th><td>Sets up newly spawned players with the campaign status verb</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/remove_asset">remove_asset</a></th><td>Removes an asset from a faction entirely</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/respawn_member">respawn_member</a></th><td>Deletes a faction member and preps them for respawn</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/return_to_base">return_to_base</a></th><td>Returns faction members back to spawn or prepares them for respawn if deployed</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/set_attrition">set_attrition</a></th><td>Sets attrition for the team</td></tr>
+            <tr><th><a href="datum/faction_stats.html#proc/set_faction_leader">set_faction_leader</a></th><td>Sets the faction leader</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/accumulated_mission_reward"><aside class="declaration">var </aside>accumulated_mission_reward
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 111"/></a></h3>
+        <p>records how much currency has been earned from missions, for late join players</p><h3 id="var/active_attrition_points"><aside class="declaration">var </aside>active_attrition_points
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 91"/></a></h3>
+        <p>How many attrition points have been dedicated to the current mission</p><h3 id="var/attrition_gain_multiplier"><aside class="declaration">var </aside>attrition_gain_multiplier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 93"/></a></h3>
+        <p>Multiplier on the passive attrition point gain for this faction</p><h3 id="var/available_missions"><aside class="declaration">var </aside>available_missions
+            <aside>&ndash; /list/datum/campaign_mission</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 97"/></a></h3>
+        <p>Future missions this faction can currently choose from</p><h3 id="var/faction"><aside class="declaration">var </aside>faction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 83"/></a></h3>
+        <p>The faction associated with these stats</p><h3 id="var/faction_assets"><aside class="declaration">var </aside>faction_assets
+            <aside>&ndash; /list/datum/campaign_asset</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 101"/></a></h3>
+        <p>List of all assets the faction currently has</p><h3 id="var/faction_leader"><aside class="declaration">var </aside>faction_leader
+            <aside>&ndash; /<a href="mob.html">mob</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 85"/></a></h3>
+        <p>The decision maker for this leader</p><h3 id="var/faction_portrait"><aside class="declaration">var </aside>faction_portrait
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 107"/></a></h3>
+        <p>Portrait used for general screen text notifications</p><h3 id="var/finished_missions"><aside class="declaration">var </aside>finished_missions
+            <aside>&ndash; /list/datum/campaign_mission</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L99">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 99"/></a></h3>
+        <p>Missions this faction has succesfully completed</p><h3 id="var/individual_stat_list"><aside class="declaration">var </aside>individual_stat_list
+            <aside>&ndash; /list/datum/individual_stats</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 113"/></a></h3>
+        <p>list of individual stats by ckey</p><h3 id="var/loss_bonus"><aside class="declaration">var </aside>loss_bonus
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 95"/></a></h3>
+        <p>cumulative loss bonus which is applied to attrition gain mult and player credit mission reward</p><h3 id="var/purchasable_assets"><aside class="declaration">var </aside>purchasable_assets
+            <aside>&ndash; /list/datum/campaign_asset</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 103"/></a></h3>
+        <p>List of all assets the faction can currently purchase</p><h3 id="var/respawn_delay_modifier"><aside class="declaration">var </aside>respawn_delay_modifier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 109"/></a></h3>
+        <p>Faction-wide modifier to respawn delay</p><h3 id="var/stats_flags"><aside class="declaration">var </aside>stats_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 105"/></a></h3>
+        <p>Any special behavior flags for the faction</p><h3 id="var/total_attrition_points"><aside class="declaration">var </aside>total_attrition_points
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 89"/></a></h3>
+        <p>Dictates how many respawns this faction has access to overall</p><h3 id="var/victory_points"><aside class="declaration">var </aside>victory_points
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 87"/></a></h3>
+        <p>Victory points earned by this faction</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_asset"><aside class="declaration">proc </aside>add_asset<aside>(/<a href="datum.html">datum</a>/<a href="datum/campaign_asset.html">campaign_asset</a>/new_asset) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L228">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 228"/></a></aside>
+        </h3>
+        <p>Adds a new asset to the faction for use</p><h3 id="proc/add_new_mission"><aside class="declaration">proc </aside>add_new_mission<aside>(/<a href="datum.html">datum</a>/<a href="datum/campaign_mission.html">campaign_mission</a>/new_mission) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 170"/></a></aside>
+        </h3>
+        <p>Adds a mission to the available mission pool</p><h3 id="proc/apply_cash"><aside class="declaration">proc </aside>apply_cash<aside>(amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L282">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 282"/></a></aside>
+        </h3>
+        <p>applies cash rewards to the faction and all individuals</p><h3 id="proc/choose_faction_leader"><aside class="declaration">proc </aside>choose_faction_leader<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L181">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 181"/></a></aside>
+        </h3>
+        <p>Elects a new faction leader</p><h3 id="proc/force_update_static_data"><aside class="declaration">proc </aside>force_update_static_data<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L339">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 339"/></a></aside>
+        </h3>
+        <p>force updates static data when something changes externally</p><h3 id="proc/generate_new_mission"><aside class="declaration">proc </aside>generate_new_mission<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L162">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 162"/></a></aside>
+        </h3>
+        <p>Randomly adds a new mission to the available pool</p><h3 id="proc/get_player_stats"><aside class="declaration">proc </aside>get_player_stats<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L154">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 154"/></a></aside>
+        </h3>
+        <p>Returns a users individual stat datum, generating a new one if required</p><h3 id="proc/get_selector"><aside class="declaration">proc </aside>get_selector<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 174"/></a></aside>
+        </h3>
+        <p>Returns the faction's leader, selecting one if none is available</p><h3 id="proc/get_status_tab_items"><aside class="declaration">proc </aside>get_status_tab_items<aside>(/<a href="mob.html">mob</a>/source, /list/items) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L318">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 318"/></a></aside>
+        </h3>
+        <p>Generates status tab info for the mission</p><h3 id="proc/is_leadership_role"><aside class="declaration">proc </aside>is_leadership_role<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L332">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 332"/></a></aside>
+        </h3>
+        <p>Checks if a mob is in a command role for this faction</p><h3 id="proc/mission_end"><aside class="declaration">proc </aside>mission_end<aside>(/<a href="datum.html">datum</a>/source, /<a href="datum.html">datum</a>/<a href="datum/campaign_mission.html">campaign_mission</a>/completed_mission, winning_faction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L264">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 264"/></a></aside>
+        </h3>
+        <p>handles post mission wrap up for the faction</p><h3 id="proc/mission_start"><aside class="declaration">proc </aside>mission_start<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L257">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 257"/></a></aside>
+        </h3>
+        <p>handles mission start updates</p><h3 id="proc/register_faction_member"><aside class="declaration">proc </aside>register_faction_member<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/new_member) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 136"/></a></aside>
+        </h3>
+        <p>Sets up newly spawned players with the campaign status verb</p><h3 id="proc/remove_asset"><aside class="declaration">proc </aside>remove_asset<aside>(/<a href="datum.html">datum</a>/<a href="datum/campaign_asset.html">campaign_asset</a>/removed_asset) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L237">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 237"/></a></aside>
+        </h3>
+        <p>Removes an asset from a faction entirely</p><h3 id="proc/respawn_member"><aside class="declaration">proc </aside>respawn_member<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/faction_member) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L307">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 307"/></a></aside>
+        </h3>
+        <p>Deletes a faction member and preps them for respawn</p><h3 id="proc/return_to_base"><aside class="declaration">proc </aside>return_to_base<aside>(/<a href="datum.html">datum</a>/<a href="datum/campaign_mission.html">campaign_mission</a>/completed_mission) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L292">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 292"/></a></aside>
+        </h3>
+        <p>Returns faction members back to spawn or prepares them for respawn if deployed</p><h3 id="proc/set_attrition"><aside class="declaration">proc </aside>set_attrition<aside>(amount, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L244">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 244"/></a></aside>
+        </h3>
+        <p>Sets attrition for the team</p><h3 id="proc/set_faction_leader"><aside class="declaration">proc </aside>set_faction_leader<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/new_leader) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L210">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 210"/></a></aside>
+        </h3>
+        <p>Sets the faction leader</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

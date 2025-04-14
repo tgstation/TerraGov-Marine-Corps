@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;camera_advanced&#x2F;shuttle_docker - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var">Var Details</a> - <a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#proc">Proc Details</a></header>
+<main>
+<h1>shuttle_docker <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/computer.html">computer</a>/<a href="obj/machinery/computer/camera_advanced.html">camera_advanced</a>/<a href="obj/machinery/computer/camera_advanced/shuttle_docker.html">shuttle_docker</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/designate_time">designate_time</a></th><td>Delay of the place_action</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/designating_target_loc">designating_target_loc</a></th><td>Turf that was selected for landing</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/jammed">jammed</a></th><td>The console is unusable when jammed</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/jumpto_ports">jumpto_ports</a></th><td>Hashset of ports to jump to and ignore for collision purposes</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/last_valid_ground_port">last_valid_ground_port</a></th><td>The previous custom docking port that was safely landed at, for emergency landings</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/locked_traits">locked_traits</a></th><td>Traits forbided for custom docking</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/my_port">my_port</a></th><td>The custom docking port placed by this console</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/nvg_vision_mode">nvg_vision_mode</a></th><td>If the user wants to see with night vision on</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/place_action">place_action</a></th><td>Action of placing the shuttle custom landing zone</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/rotate_action">rotate_action</a></th><td>Action of rotating the shuttle around its center</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/see_hidden">see_hidden</a></th><td>Are we able to see hidden ports when using the console</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/shuttleId">shuttleId</a></th><td>The id of the shuttle linked to this console</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/shuttlePortId">shuttlePortId</a></th><td>The id of the custom docking port placed by this console</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/shuttlePortName">shuttlePortName</a></th><td>The name of the custom docking port placed by this console</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/shuttle_port">shuttle_port</a></th><td>The mobile docking port of the connected shuttle</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/view_range">view_range</a></th><td>Dimensions of the viewport when using this console</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/whitelist_turfs">whitelist_turfs</a></th><td>Turfs that can be landed on</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/x_offset">x_offset</a></th><td>Horizontal offset from the console of the origin tile when using it</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#var/y_offset">y_offset</a></th><td>Vertical offset from the console of the origin tile when using it</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#proc/canDesignateTarget">canDesignateTarget</a></th><td>Create one use port that deleted after fly off, to not lose information that is needed to properly fly off.
+Checks if we are able to designate the target location</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#proc/checkLandingSpot">checkLandingSpot</a></th><td>Checks if the currently hovered area is a valid landing spot</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#proc/checkLandingTurf">checkLandingTurf</a></th><td>Checks if the turf is valid for landing</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#proc/check_hovering_spot">check_hovering_spot</a></th><td>Checks if the currently hovered area is accessible by the shuttle</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#proc/placeLandingSpot">placeLandingSpot</a></th><td>Handles the creation of the custom landing spot</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#proc/rotateLandingSpot">rotateLandingSpot</a></th><td>Handles the rotation of the shuttle</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/shuttle_docker.html#proc/shuttle_arrived">shuttle_arrived</a></th><td>Change the fly state of the shuttle, called when a new shuttle port is reached</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/designate_time"><aside class="declaration">var </aside>designate_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 37"/></a></h3>
+        <p>Delay of the place_action</p><h3 id="var/designating_target_loc"><aside class="declaration">var </aside>designating_target_loc
+            <aside>&ndash; /<a href="turf.html">turf</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 39"/></a></h3>
+        <p>Turf that was selected for landing</p><h3 id="var/jammed"><aside class="declaration">var </aside>jammed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 41"/></a></h3>
+        <p>The console is unusable when jammed</p><h3 id="var/jumpto_ports"><aside class="declaration">var </aside>jumpto_ports
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 17"/></a></h3>
+        <p>Hashset of ports to jump to and ignore for collision purposes</p><h3 id="var/last_valid_ground_port"><aside class="declaration">var </aside>last_valid_ground_port
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/docking_port.html">docking_port</a>/<a href="obj/docking_port/stationary.html">stationary</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 21"/></a></h3>
+        <p>The previous custom docking port that was safely landed at, for emergency landings</p><h3 id="var/locked_traits"><aside class="declaration">var </aside>locked_traits
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 25"/></a></h3>
+        <p>Traits forbided for custom docking</p><h3 id="var/my_port"><aside class="declaration">var </aside>my_port
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/docking_port.html">docking_port</a>/<a href="obj/docking_port/stationary.html">stationary</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 19"/></a></h3>
+        <p>The custom docking port placed by this console</p><h3 id="var/nvg_vision_mode"><aside class="declaration">var </aside>nvg_vision_mode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 43"/></a></h3>
+        <p>If the user wants to see with night vision on</p><h3 id="var/place_action"><aside class="declaration">var </aside>place_action
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/innate/shuttledocker_place</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 9"/></a></h3>
+        <p>Action of placing the shuttle custom landing zone</p><h3 id="var/rotate_action"><aside class="declaration">var </aside>rotate_action
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/innate/shuttledocker_rotate</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 7"/></a></h3>
+        <p>Action of rotating the shuttle around its center</p><h3 id="var/see_hidden"><aside class="declaration">var </aside>see_hidden
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 35"/></a></h3>
+        <p>Are we able to see hidden ports when using the console</p><h3 id="var/shuttleId"><aside class="declaration">var </aside>shuttleId
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 11"/></a></h3>
+        <p>The id of the shuttle linked to this console</p><h3 id="var/shuttlePortId"><aside class="declaration">var </aside>shuttlePortId
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 13"/></a></h3>
+        <p>The id of the custom docking port placed by this console</p><h3 id="var/shuttlePortName"><aside class="declaration">var </aside>shuttlePortName
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 15"/></a></h3>
+        <p>The name of the custom docking port placed by this console</p><h3 id="var/shuttle_port"><aside class="declaration">var </aside>shuttle_port
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/docking_port.html">docking_port</a>/<a href="obj/docking_port/mobile.html">mobile</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 23"/></a></h3>
+        <p>The mobile docking port of the connected shuttle</p><h3 id="var/view_range"><aside class="declaration">var </aside>view_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 27"/></a></h3>
+        <p>Dimensions of the viewport when using this console</p><h3 id="var/whitelist_turfs"><aside class="declaration">var </aside>whitelist_turfs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 33"/></a></h3>
+        <p>Turfs that can be landed on</p><h3 id="var/x_offset"><aside class="declaration">var </aside>x_offset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 29"/></a></h3>
+        <p>Horizontal offset from the console of the origin tile when using it</p><h3 id="var/y_offset"><aside class="declaration">var </aside>y_offset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 31"/></a></h3>
+        <p>Vertical offset from the console of the origin tile when using it</p><h2 id="proc">Proc Details</h2><h3 id="proc/canDesignateTarget"><aside class="declaration">proc </aside>canDesignateTarget<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L221">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 221"/></a></aside>
+        </h3>
+        <p>Create one use port that deleted after fly off, to not lose information that is needed to properly fly off.
+Checks if we are able to designate the target location</p><h3 id="proc/checkLandingSpot"><aside class="declaration">proc </aside>checkLandingSpot<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L263">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 263"/></a></aside>
+        </h3>
+        <p>Checks if the currently hovered area is a valid landing spot</p><h3 id="proc/checkLandingTurf"><aside class="declaration">proc </aside>checkLandingTurf<aside>(/<a href="turf.html">turf</a>/T, /list/overlappers) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L292">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 292"/></a></aside>
+        </h3>
+        <p>Checks if the turf is valid for landing</p><h3 id="proc/check_hovering_spot"><aside class="declaration">proc </aside>check_hovering_spot<aside>(/<a href="turf.html">turf</a>/next_turf) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L244">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 244"/></a></aside>
+        </h3>
+        <p>Checks if the currently hovered area is accessible by the shuttle</p><h3 id="proc/placeLandingSpot"><aside class="declaration">proc </aside>placeLandingSpot<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L154">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 154"/></a></aside>
+        </h3>
+        <p>Handles the creation of the custom landing spot</p><h3 id="proc/rotateLandingSpot"><aside class="declaration">proc </aside>rotateLandingSpot<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L227">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 227"/></a></aside>
+        </h3>
+        <p>Handles the rotation of the shuttle</p><h3 id="proc/shuttle_arrived"><aside class="declaration">proc </aside>shuttle_arrived<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/navigation_computer.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;navigation_computer.dm 87"/></a></aside>
+        </h3>
+        <p>Change the fly state of the shuttle, called when a new shuttle port is reached</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;cloning&#x2F;vats - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/cloning/vats.html#var">Var Details</a> - <a href="obj/machinery/cloning/vats.html#proc">Proc Details</a></header>
+<main>
+<h1>vats <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/cloning.html">cloning</a>/<a href="obj/machinery/cloning/vats.html">vats</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cloning/cloning.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cloning&#x2F;cloning.dm 92"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/cloning/vats.html#var/beaker">beaker</a></th><td>The beaker that holds the &quot;biomass&quot;</td></tr>
+            <tr><th><a href="obj/machinery/cloning/vats.html#var/biomass_required">biomass_required</a></th><td>Amount of biomass required to start growing and the amount of reagents that gets removed on successful grow</td></tr>
+            <tr><th><a href="obj/machinery/cloning/vats.html#var/grow_timer">grow_timer</a></th><td>The amount of times it takes for the clone to pop out</td></tr>
+            <tr><th><a href="obj/machinery/cloning/vats.html#var/linked_console">linked_console</a></th><td>The control terminal</td></tr>
+            <tr><th><a href="obj/machinery/cloning/vats.html#var/occupant">occupant</a></th><td>The mob inside the clone vat</td></tr>
+            <tr><th><a href="obj/machinery/cloning/vats.html#var/timerid">timerid</a></th><td>ID of the timer that determines when a clone finishes growing</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/cloning/vats.html#proc/eject_user">eject_user</a></th><td>Pop the grown human out</td></tr>
+            <tr><th><a href="obj/machinery/cloning/vats.html#proc/finish_growing_human">finish_growing_human</a></th><td>Spawn the human, add them to the SSD mob list, delete the timer</td></tr>
+            <tr><th><a href="obj/machinery/cloning/vats.html#proc/grow_human">grow_human</a></th><td>Eat up the biomass, start the grow timer</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/beaker"><aside class="declaration">var </aside>beaker
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/reagent_containers.html">reagent_containers</a>/glass</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cloning/cloning.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cloning&#x2F;cloning.dm 109"/></a></h3>
+        <p>The beaker that holds the &quot;biomass&quot;</p><h3 id="var/biomass_required"><aside class="declaration">var </aside>biomass_required
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cloning/cloning.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cloning&#x2F;cloning.dm 113"/></a></h3>
+        <p>Amount of biomass required to start growing and the amount of reagents that gets removed on successful grow</p><h3 id="var/grow_timer"><aside class="declaration">var </aside>grow_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cloning/cloning.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cloning&#x2F;cloning.dm 115"/></a></h3>
+        <p>The amount of times it takes for the clone to pop out</p><h3 id="var/linked_console"><aside class="declaration">var </aside>linked_console
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/computer.html">computer</a>/<a href="obj/machinery/computer/cloning_console/vats.html">cloning_console/vats</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cloning/cloning.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cloning&#x2F;cloning.dm 111"/></a></h3>
+        <p>The control terminal</p><h3 id="var/occupant"><aside class="declaration">var </aside>occupant
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cloning/cloning.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cloning&#x2F;cloning.dm 107"/></a></h3>
+        <p>The mob inside the clone vat</p><h3 id="var/timerid"><aside class="declaration">var </aside>timerid
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cloning/cloning.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cloning&#x2F;cloning.dm 105"/></a></h3>
+        <p>ID of the timer that determines when a clone finishes growing</p><h2 id="proc">Proc Details</h2><h3 id="proc/eject_user"><aside class="declaration">proc </aside>eject_user<aside>(silent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cloning/cloning.dm#L271">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cloning&#x2F;cloning.dm 271"/></a></aside>
+        </h3>
+        <p>Pop the grown human out</p><h3 id="proc/finish_growing_human"><aside class="declaration">proc </aside>finish_growing_human<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cloning/cloning.dm#L252">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cloning&#x2F;cloning.dm 252"/></a></aside>
+        </h3>
+        <p>Spawn the human, add them to the SSD mob list, delete the timer</p><h3 id="proc/grow_human"><aside class="declaration">proc </aside>grow_human<aside>(instant) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cloning/cloning.dm#L237">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cloning&#x2F;cloning.dm 237"/></a></aside>
+        </h3>
+        <p>Eat up the biomass, start the grow timer</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

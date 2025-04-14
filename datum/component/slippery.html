@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;slippery - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/slippery.html#var">Var Details</a></header>
+<main>
+<h1>slippery <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/slippery.html">slippery</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/slippery.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;slippery.dm 2"/></a></h1>
+
+<p>Slippery component, for making anything slippery. Of course.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/slippery.html#var/callback">callback</a></th><td>A proc callback to call on slip.</td></tr>
+            <tr><th><a href="datum/component/slippery.html#var/default_connections">default_connections</a></th><td>What we give to connect_loc by default, makes slippable mobs moving over us slip</td></tr>
+            <tr><th><a href="datum/component/slippery.html#var/holder">holder</a></th><td>If parent is an item, this is the person currently holding/wearing the parent (or the parent if no one is holding it)</td></tr>
+            <tr><th><a href="datum/component/slippery.html#var/holder_connect_loc_behalf">holder_connect_loc_behalf</a></th><td>The connect_loc_behalf component for the holder_connections list.</td></tr>
+            <tr><th><a href="datum/component/slippery.html#var/holder_connections">holder_connections</a></th><td>What we give to connect_loc if we're an item and get equipped by a mob. makes slippable mobs moving over our holder slip</td></tr>
+            <tr><th><a href="datum/component/slippery.html#var/override_noslip">override_noslip</a></th><td>Does this override noslip shoes?</td></tr>
+            <tr><th><a href="datum/component/slippery.html#var/paralyze_time">paralyze_time</a></th><td>How long we're knocked down/paralyzed for</td></tr>
+            <tr><th><a href="datum/component/slippery.html#var/run_only">run_only</a></th><td>Does this care if we're running or not?</td></tr>
+            <tr><th><a href="datum/component/slippery.html#var/slide_steps">slide_steps</a></th><td>How many steps we slide upon slip</td></tr>
+            <tr><th><a href="datum/component/slippery.html#var/slot_whitelist">slot_whitelist</a></th><td>Whitelist of item slots the parent can be equipped in that make the holder slippery. If null or empty, it will always make the holder slippery.</td></tr>
+            <tr><th><a href="datum/component/slippery.html#var/stun_time">stun_time</a></th><td>How long the slip keeps you stunned.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/callback"><aside class="declaration">var </aside>callback
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/slippery.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;slippery.dm 15"/></a></h3>
+        <p>A proc callback to call on slip.</p><h3 id="var/default_connections"><aside class="declaration">var </aside>default_connections
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/slippery.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;slippery.dm 21"/></a></h3>
+        <p>What we give to connect_loc by default, makes slippable mobs moving over us slip</p><h3 id="var/holder"><aside class="declaration">var </aside>holder
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/slippery.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;slippery.dm 17"/></a></h3>
+        <p>If parent is an item, this is the person currently holding/wearing the parent (or the parent if no one is holding it)</p><h3 id="var/holder_connect_loc_behalf"><aside class="declaration">var </aside>holder_connect_loc_behalf
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/weakref.html">weakref</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/slippery.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;slippery.dm 33"/></a></h3>
+        <p>The connect_loc_behalf component for the holder_connections list.</p><h3 id="var/holder_connections"><aside class="declaration">var </aside>holder_connections
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/slippery.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;slippery.dm 26"/></a></h3>
+        <p>What we give to connect_loc if we're an item and get equipped by a mob. makes slippable mobs moving over our holder slip</p><h3 id="var/override_noslip"><aside class="declaration">var </aside>override_noslip
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/slippery.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;slippery.dm 11"/></a></h3>
+        <p>Does this override noslip shoes?</p><h3 id="var/paralyze_time"><aside class="declaration">var </aside>paralyze_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/slippery.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;slippery.dm 7"/></a></h3>
+        <p>How long we're knocked down/paralyzed for</p><h3 id="var/run_only"><aside class="declaration">var </aside>run_only
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/slippery.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;slippery.dm 9"/></a></h3>
+        <p>Does this care if we're running or not?</p><h3 id="var/slide_steps"><aside class="declaration">var </aside>slide_steps
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/slippery.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;slippery.dm 13"/></a></h3>
+        <p>How many steps we slide upon slip</p><h3 id="var/slot_whitelist"><aside class="declaration">var </aside>slot_whitelist
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/slippery.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;slippery.dm 19"/></a></h3>
+        <p>Whitelist of item slots the parent can be equipped in that make the holder slippery. If null or empty, it will always make the holder slippery.</p><h3 id="var/stun_time"><aside class="declaration">var </aside>stun_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/slippery.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;slippery.dm 5"/></a></h3>
+        <p>How long the slip keeps you stunned.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

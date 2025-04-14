@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;datums&#x2F;loadout&#x2F;loadout_helper.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>code/datums/loadout/loadout_helper.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/loadout/loadout_helper.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;loadout&#x2F;loadout_helper.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th>/proc/<a href="global.html#proc/create_empty_loadout">create_empty_loadout</a></th>
+                <td>Return a new empty loayout</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/buy_item_in_vendor">buy_item_in_vendor</a></th>
+                <td>Return true if the item was found in a linked vendor and successfully bought</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/buy_stack">buy_stack</a></th>
+                <td>Check if that stack is buyable in a points vendor (currently, only metal, sandbags and plasteel)</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/item2representation_type">item2representation_type</a></th>
+                <td>Return wich type of item_representation should representate any item_type</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/is_handful_buyable">is_handful_buyable</a></th>
+                <td>Return TRUE if this handful should be buyable, aka if it's corresponding aka box is in a linked vendor</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/give_free_headset">give_free_headset</a></th>
+                <td>Will give a headset corresponding to the user job to the user</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/can_buy_category">can_buy_category</a></th>
+                <td>Will check if the selected category can be bought according to the category choices left</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/buy_category">buy_category</a></th>
+                <td>Return true if you can buy this category, and also change the loadout seller buying bitfield</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_item_stack_number">get_item_stack_number</a></th>
+                <td>If the item is not a stack, return 1. If it is a stack, return the stack size</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/get_item_stack_representation_amount">get_item_stack_representation_amount</a></th>
+                <td>If the item representation is not a stack, return 1. Else, return the satck size</td></tr></table></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__HELPERS&#x2F;colors.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>code/__HELPERS/colors.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/colors.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;colors.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th>/proc/<a href="global.html#proc/blend_screen_color">blend_screen_color</a></th>
+                <td>Blends together two colors (passed as 3 or 4 length lists) using the screen blend mode
+Much like multiply, screen effects the brightness of the resulting color
+Screen blend will always lighten the resulting color, since before multiplication we invert the colors
+This makes our resulting output brighter instead of darker</td></tr>
+        <tr><th>/proc/<a href="global.html#proc/blend_cutoff_colors">blend_cutoff_colors</a></th>
+                <td>Used to blend together two different color cutoffs
+Uses the screen blendmode under the hood, essentially just <a href="global.html#proc/blend_screen_color" title="/global">/proc/blend_screen_color</a>
+But paired down and modified to work for our color range
+Accepts the color cutoffs as two 3 length list(0-100,...) arguments</td></tr></table></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

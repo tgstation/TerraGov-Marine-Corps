@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;camera_advanced&#x2F;overwatch&#x2F;military - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/computer/camera_advanced/overwatch/military.html#var">Var Details</a> - <a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc">Proc Details</a></header>
+<main>
+<h1>military <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/computer.html">computer</a>/<a href="obj/machinery/computer/camera_advanced.html">camera_advanced</a>/<a href="obj/machinery/computer/camera_advanced/overwatch.html">overwatch</a>/<a href="obj/machinery/computer/camera_advanced/overwatch/military.html">military</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#var/bombardment_radial_options">bombardment_radial_options</a></th><td>Static list of CIC radial options for the camera when clicking on an OB marker</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#var/current_order">current_order</a></th><td>Selected order to give to marine</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#var/human_radial_options">human_radial_options</a></th><td>Static list of CIC radial options for the camera when clicking on a marine</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#var/marked_lase">marked_lase</a></th><td>Ref of the lase that's had an OB warning mark placed on the minimap</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#var/selected_target">selected_target</a></th><td>Selected target for bombarding</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#var/send_attack_order">send_attack_order</a></th><td>datum used when sending an attack order</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#var/send_defend_order">send_defend_order</a></th><td>datum used when sending a defend order</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#var/send_rally_order">send_rally_order</a></th><td>datum used when sending a rally order</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#var/send_retreat_order">send_retreat_order</a></th><td>datum used when sending a retreat order</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#var/squad_radial_options">squad_radial_options</a></th><td>Static list of CIC radial options for the camera when having clicked on a turf and selected Squad Actions</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#var/turf_radial_options">turf_radial_options</a></th><td>Static list of CIC radial options for the camera when clicking on a turf</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc/alert_lase">alert_lase</a></th><td>Lets anyone using an overwatch console know that an OB has just been lased</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc/attempt_radial">attempt_radial</a></th><td>Signal handler for radial menu</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc/attempt_spotlight">attempt_spotlight</a></th><td>This is an orbital light. Basically, huge thing which the CIC can use to light up areas for a bit of time.</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc/change_lead">change_lead</a></th><td>Changes the current squad leader</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc/do_fire_bombard">do_fire_bombard</a></th><td>About to fire</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc/do_land_bombard">do_land_bombard</a></th><td>Randomises OB impact location a little and tells the OB cannon to fire</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc/do_radial">do_radial</a></th><td>Quick-select radial menu for Overwatch</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc/get_firesupport_data">get_firesupport_data</a></th><td>Provides details on available firesupport options</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc/handle_bombard">handle_bombard</a></th><td>Checks and warnings before OB starts to fire</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc/mark_insubordination">mark_insubordination</a></th><td>Marks a marine for insubordination</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc/message_member">message_member</a></th><td>Messages a specific individual</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc/remove_mark_from_lase">remove_mark_from_lase</a></th><td>Removes any active marks on OB lases, if any</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc/send_to_squads">send_to_squads</a></th><td>Messages all available squads</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc/set_order">set_order</a></th><td>Setter for the current order</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc/squad_select">squad_select</a></th><td>Radial menu squad select menu</td></tr>
+            <tr><th><a href="obj/machinery/computer/camera_advanced/overwatch/military.html#proc/transfer_squad">transfer_squad</a></th><td>Moves a marine to another squad</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/bombardment_radial_options"><aside class="declaration">var </aside>bombardment_radial_options
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 23"/></a></h3>
+        <p>Static list of CIC radial options for the camera when clicking on an OB marker</p><h3 id="var/current_order"><aside class="declaration">var </aside>current_order
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/innate/order.html">innate/order</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 7"/></a></h3>
+        <p>Selected order to give to marine</p><h3 id="var/human_radial_options"><aside class="declaration">var </aside>human_radial_options
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 17"/></a></h3>
+        <p>Static list of CIC radial options for the camera when clicking on a marine</p><h3 id="var/marked_lase"><aside class="declaration">var </aside>marked_lase
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/overlay/temp/laser_target.html">effect/overlay/temp/laser_target</a>/ob</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 3"/></a></h3>
+        <p>Ref of the lase that's had an OB warning mark placed on the minimap</p><h3 id="var/selected_target"><aside class="declaration">var </aside>selected_target
+            <aside>&ndash; /<a href="obj.html">obj</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 5"/></a></h3>
+        <p>Selected target for bombarding</p><h3 id="var/send_attack_order"><aside class="declaration">var </aside>send_attack_order
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/innate/order.html">innate/order</a>/attack_order</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 9"/></a></h3>
+        <p>datum used when sending an attack order</p><h3 id="var/send_defend_order"><aside class="declaration">var </aside>send_defend_order
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/innate/order.html">innate/order</a>/defend_order</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 13"/></a></h3>
+        <p>datum used when sending a defend order</p><h3 id="var/send_rally_order"><aside class="declaration">var </aside>send_rally_order
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/innate/order.html">innate/order</a>/rally_order</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 15"/></a></h3>
+        <p>datum used when sending a rally order</p><h3 id="var/send_retreat_order"><aside class="declaration">var </aside>send_retreat_order
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/innate/order.html">innate/order</a>/retreat_order</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 11"/></a></h3>
+        <p>datum used when sending a retreat order</p><h3 id="var/squad_radial_options"><aside class="declaration">var </aside>squad_radial_options
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 34"/></a></h3>
+        <p>Static list of CIC radial options for the camera when having clicked on a turf and selected Squad Actions</p><h3 id="var/turf_radial_options"><aside class="declaration">var </aside>turf_radial_options
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 28"/></a></h3>
+        <p>Static list of CIC radial options for the camera when clicking on a turf</p><h2 id="proc">Proc Details</h2><h3 id="proc/alert_lase"><aside class="declaration">proc </aside>alert_lase<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/effect/overlay/temp/laser_target.html">effect/overlay/temp/laser_target</a>/ob/incoming_laser) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L500">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 500"/></a></aside>
+        </h3>
+        <p>Lets anyone using an overwatch console know that an OB has just been lased</p><h3 id="proc/attempt_radial"><aside class="declaration">proc </aside>attempt_radial<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/A, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L326">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 326"/></a></aside>
+        </h3>
+        <p>Signal handler for radial menu</p><h3 id="proc/attempt_spotlight"><aside class="declaration">proc </aside>attempt_spotlight<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/A, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L412">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 412"/></a></aside>
+        </h3>
+        <p>This is an orbital light. Basically, huge thing which the CIC can use to light up areas for a bit of time.</p><h3 id="proc/change_lead"><aside class="declaration">proc </aside>change_lead<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L523">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 523"/></a></aside>
+        </h3>
+        <p>Changes the current squad leader</p><h3 id="proc/do_fire_bombard"><aside class="declaration">proc </aside>do_fire_bombard<aside>(/<a href="turf.html">turf</a>/T, user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L508">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 508"/></a></aside>
+        </h3>
+        <p>About to fire</p><h3 id="proc/do_land_bombard"><aside class="declaration">proc </aside>do_land_bombard<aside>(/<a href="turf.html">turf</a>/T, user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L513">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 513"/></a></aside>
+        </h3>
+        <p>Randomises OB impact location a little and tells the OB cannon to fire</p><h3 id="proc/do_radial"><aside class="declaration">proc </aside>do_radial<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/A, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L331">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 331"/></a></aside>
+        </h3>
+        <p>Quick-select radial menu for Overwatch</p><h3 id="proc/get_firesupport_data"><aside class="declaration">proc </aside>get_firesupport_data<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L270">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 270"/></a></aside>
+        </h3>
+        <p>Provides details on available firesupport options</p><h3 id="proc/handle_bombard"><aside class="declaration">proc </aside>handle_bombard<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L459">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 459"/></a></aside>
+        </h3>
+        <p>Checks and warnings before OB starts to fire</p><h3 id="proc/mark_insubordination"><aside class="declaration">proc </aside>mark_insubordination<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L553">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 553"/></a></aside>
+        </h3>
+        <p>Marks a marine for insubordination</p><h3 id="proc/message_member"><aside class="declaration">proc </aside>message_member<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target, message, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/sender) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L636">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 636"/></a></aside>
+        </h3>
+        <p>Messages a specific individual</p><h3 id="proc/remove_mark_from_lase"><aside class="declaration">proc </aside>remove_mark_from_lase<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L406">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 406"/></a></aside>
+        </h3>
+        <p>Removes any active marks on OB lases, if any</p><h3 id="proc/send_to_squads"><aside class="declaration">proc </aside>send_to_squads<aside>(txt) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L454">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 454"/></a></aside>
+        </h3>
+        <p>Messages all available squads</p><h3 id="proc/set_order"><aside class="declaration">proc </aside>set_order<aside>(/<a href="datum.html">datum</a>/source, /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/innate/order.html">innate/order</a>/order) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L449">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 449"/></a></aside>
+        </h3>
+        <p>Setter for the current order</p><h3 id="proc/squad_select"><aside class="declaration">proc </aside>squad_select<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/A) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L655">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 655"/></a></aside>
+        </h3>
+        <p>Radial menu squad select menu</p><h3 id="proc/transfer_squad"><aside class="declaration">proc </aside>transfer_squad<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/transfer_marine, /<a href="datum.html">datum</a>/<a href="datum/squad.html">squad</a>/new_squad) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/overwatch/military.dm#L583">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;overwatch&#x2F;military.dm 583"/></a></aside>
+        </h3>
+        <p>Moves a marine to another squad</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

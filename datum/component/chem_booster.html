@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;chem_booster - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/chem_booster.html#var">Var Details</a> - <a href="datum/component/chem_booster.html#proc">Proc Details</a></header>
+<main>
+<h1>chem_booster <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/chem_booster.html">chem_booster</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 20"/></a></h1>
+
+<p>Chem booster component</p>
+<p>This component stores &quot;green blood&quot; and uses it to increase effect_str of chems in the user's body.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/analyzer">analyzer</a></th><td>Instant analyzer for the chemsuit</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/automatic_meds_use">automatic_meds_use</a></th><td>Whether the contents on the meds_beaker will be injected into the wearer when the system is turned on</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/boost_amount">boost_amount</a></th><td>Stores the current effect strength</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/boost_icon">boost_icon</a></th><td>Boost icon, image cycles between 2 states</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/boost_on">boost_on</a></th><td>Determines whether the suit is on</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/boost_tier1">boost_tier1</a></th><td>Normal boost</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/boost_tier2">boost_tier2</a></th><td>Overcharged boost</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/brute_heal_amp">brute_heal_amp</a></th><td>Vali brute healing is multiplied by this</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/burn_heal_amp">burn_heal_amp</a></th><td>Vali burn healing is multiplied by this</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/component_actions">component_actions</a></th><td>Actions that the component provides</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/connected_weapon">connected_weapon</a></th><td>Item connected to the system</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/meds_beaker">meds_beaker</a></th><td>Internal reagent storage used to store and automatically inject reagents into the wearer</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/movement_boost">movement_boost</a></th><td>Vali movement speed buff is this value</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/processing_start">processing_start</a></th><td>When was the effect activated. Used to activate negative effects after a certain amount of use</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/reagent_info">reagent_info</a></th><td>Information about how reagents boost the system's effects.</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/reagent_stats">reagent_stats</a></th><td>This list contains the vali stat increases that correspond to each reagent
+They go in the order:
+brute_heal_amp, burn_heal_amp, tox_heal, stamina_regen_amp, movement_boost, min required volume, entry name</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/resource_drain_amount">resource_drain_amount</a></th><td>Amount required for operation</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/resource_overlay">resource_overlay</a></th><td>Image that gets added to the wearer's overlays and gets changed based on resource_storage_current</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/resource_storage_current">resource_storage_current</a></th><td>Amount of substance stored currently</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/resource_storage_max">resource_storage_max</a></th><td>Amount of substance that the component can store</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/stamina_regen_amp">stamina_regen_amp</a></th><td>Vali stamina regen is multiplied by this</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/tox_heal">tox_heal</a></th><td>Vali toxin healing is multiplied by this</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#var/vali_necro_timer">vali_necro_timer</a></th><td>How much time left on vali heal till necrosis occurs</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/configure">configure</a></th><td>Opens the radial menu with everything</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/connect_weapon">connect_weapon</a></th><td>Links the held item, if compatible, to the chem booster and registers attacking with it</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/drain_resource">drain_resource</a></th><td>Handles resource collection and is ativated when attacking with a weapon.</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/dropped">dropped</a></th><td>Disables active functions and cleans up actions when the suit is unequipped</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/equipped">equipped</a></th><td>Sets up actions and vars when the suit is equipped</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/examine">examine</a></th><td>Adds additional text for the component when examining the item it is attached to</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/extract">extract</a></th><td>Extracts resource from the suit to fill a beaker</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/get_meds_beaker_contents">get_meds_beaker_contents</a></th><td>Shows the loaded reagents to the person examining the parent/wearer</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/load_up">load_up</a></th><td>Fills an internal beaker that gets injected into the wearer on suit activation</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/manage_weapon_connection">manage_weapon_connection</a></th><td>Handles the setting up and removal of signals and vars related to connecting an item to the suit</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/on_off">on_off</a></th><td>Handles turning on/off the processing part of the component, along with the negative effects related to this</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/scan_user">scan_user</a></th><td>Used to scan the person</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/setup_bonus_effects">setup_bonus_effects</a></th><td>Handles Vali stat boosts and any other potential buffs on activation/deactivation</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/setup_reagent_info">setup_reagent_info</a></th><td>Shows info on what stats each reagent boosts and how much units they require</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/show_radial">show_radial</a></th><td>Shows the radial menu with suit options. It is separate from configure() due to linters</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/steal_greenblood">steal_greenblood</a></th><td>handles xeno abilities mooching our greenblood. Signal is routed through the equipping mob.</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/update_boost">update_boost</a></th><td>Updates the boost amount of the suit and effect_str of reagents if component is on. &quot;amount&quot; is the final level you want to set the boost to.</td></tr>
+            <tr><th><a href="datum/component/chem_booster.html#proc/update_resource">update_resource</a></th><td>Adds or removes resource from the suit. Signal gets sent at every 25% of stored resource</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/analyzer"><aside class="declaration">var </aside>analyzer
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/healthanalyzer.html">healthanalyzer</a>/integrated</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 37"/></a></h3>
+        <p>Instant analyzer for the chemsuit</p><h3 id="var/automatic_meds_use"><aside class="declaration">var </aside>automatic_meds_use
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 55"/></a></h3>
+        <p>Whether the contents on the meds_beaker will be injected into the wearer when the system is turned on</p><h3 id="var/boost_amount"><aside class="declaration">var </aside>boost_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 41"/></a></h3>
+        <p>Stores the current effect strength</p><h3 id="var/boost_icon"><aside class="declaration">var </aside>boost_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 47"/></a></h3>
+        <p>Boost icon, image cycles between 2 states</p><h3 id="var/boost_on"><aside class="declaration">var </aside>boost_on
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 39"/></a></h3>
+        <p>Determines whether the suit is on</p><h3 id="var/boost_tier1"><aside class="declaration">var </aside>boost_tier1
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 43"/></a></h3>
+        <p>Normal boost</p><h3 id="var/boost_tier2"><aside class="declaration">var </aside>boost_tier2
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 45"/></a></h3>
+        <p>Overcharged boost</p><h3 id="var/brute_heal_amp"><aside class="declaration">var </aside>brute_heal_amp
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 62"/></a></h3>
+        <p>Vali brute healing is multiplied by this</p><h3 id="var/burn_heal_amp"><aside class="declaration">var </aside>burn_heal_amp
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 64"/></a></h3>
+        <p>Vali burn healing is multiplied by this</p><h3 id="var/component_actions"><aside class="declaration">var </aside>component_actions
+            <aside>&ndash; /list/datum/action</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 30"/></a></h3>
+        <p>Actions that the component provides</p><h3 id="var/connected_weapon"><aside class="declaration">var </aside>connected_weapon
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 49"/></a></h3>
+        <p>Item connected to the system</p><h3 id="var/meds_beaker"><aside class="declaration">var </aside>meds_beaker
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/reagent_containers.html">reagent_containers</a>/glass/beaker</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 53"/></a></h3>
+        <p>Internal reagent storage used to store and automatically inject reagents into the wearer</p><h3 id="var/movement_boost"><aside class="declaration">var </aside>movement_boost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 70"/></a></h3>
+        <p>Vali movement speed buff is this value</p><h3 id="var/processing_start"><aside class="declaration">var </aside>processing_start
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 51"/></a></h3>
+        <p>When was the effect activated. Used to activate negative effects after a certain amount of use</p><h3 id="var/reagent_info"><aside class="declaration">var </aside>reagent_info
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 60"/></a></h3>
+        <p>Information about how reagents boost the system's effects.</p><h3 id="var/reagent_stats"><aside class="declaration">var </aside>reagent_stats
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 79"/></a></h3>
+        <p>This list contains the vali stat increases that correspond to each reagent
+They go in the order:
+brute_heal_amp, burn_heal_amp, tox_heal, stamina_regen_amp, movement_boost, min required volume, entry name</p><h3 id="var/resource_drain_amount"><aside class="declaration">var </aside>resource_drain_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 28"/></a></h3>
+        <p>Amount required for operation</p><h3 id="var/resource_overlay"><aside class="declaration">var </aside>resource_overlay
+            <aside>&ndash; /static/<a href="image.html">image</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 57"/></a></h3>
+        <p>Image that gets added to the wearer's overlays and gets changed based on resource_storage_current</p><h3 id="var/resource_storage_current"><aside class="declaration">var </aside>resource_storage_current
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 26"/></a></h3>
+        <p>Amount of substance stored currently</p><h3 id="var/resource_storage_max"><aside class="declaration">var </aside>resource_storage_max
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 24"/></a></h3>
+        <p>Amount of substance that the component can store</p><h3 id="var/stamina_regen_amp"><aside class="declaration">var </aside>stamina_regen_amp
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 68"/></a></h3>
+        <p>Vali stamina regen is multiplied by this</p><h3 id="var/tox_heal"><aside class="declaration">var </aside>tox_heal
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 66"/></a></h3>
+        <p>Vali toxin healing is multiplied by this</p><h3 id="var/vali_necro_timer"><aside class="declaration">var </aside>vali_necro_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 72"/></a></h3>
+        <p>How much time left on vali heal till necrosis occurs</p><h2 id="proc">Proc Details</h2><h3 id="proc/configure"><aside class="declaration">proc </aside>configure<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L217">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 217"/></a></aside>
+        </h3>
+        <p>Opens the radial menu with everything</p><h3 id="proc/connect_weapon"><aside class="declaration">proc </aside>connect_weapon<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L335">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 335"/></a></aside>
+        </h3>
+        <p>Links the held item, if compatible, to the chem booster and registers attacking with it</p><h3 id="proc/drain_resource"><aside class="declaration">proc </aside>drain_resource<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/M, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L383">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 383"/></a></aside>
+        </h3>
+        <p>Handles resource collection and is ativated when attacking with a weapon.</p><h3 id="proc/dropped"><aside class="declaration">proc </aside>dropped<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L158">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 158"/></a></aside>
+        </h3>
+        <p>Disables active functions and cleans up actions when the suit is unequipped</p><h3 id="proc/equipped"><aside class="declaration">proc </aside>equipped<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/equipper, slot) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L178">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 178"/></a></aside>
+        </h3>
+        <p>Sets up actions and vars when the suit is equipped</p><h3 id="proc/examine"><aside class="declaration">proc </aside>examine<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user, /list/examine_text) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 152"/></a></aside>
+        </h3>
+        <p>Adds additional text for the component when examining the item it is attached to</p><h3 id="proc/extract"><aside class="declaration">proc </aside>extract<aside>(volume) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L402">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 402"/></a></aside>
+        </h3>
+        <p>Extracts resource from the suit to fill a beaker</p><h3 id="proc/get_meds_beaker_contents"><aside class="declaration">proc </aside>get_meds_beaker_contents<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L478">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 478"/></a></aside>
+        </h3>
+        <p>Shows the loaded reagents to the person examining the parent/wearer</p><h3 id="proc/load_up"><aside class="declaration">proc </aside>load_up<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L432">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 432"/></a></aside>
+        </h3>
+        <p>Fills an internal beaker that gets injected into the wearer on suit activation</p><h3 id="proc/manage_weapon_connection"><aside class="declaration">proc </aside>manage_weapon_connection<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/weapon_to_connect) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L364">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 364"/></a></aside>
+        </h3>
+        <p>Handles the setting up and removal of signals and vars related to connecting an item to the suit</p><h3 id="proc/on_off"><aside class="declaration">proc </aside>on_off<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L250">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 250"/></a></aside>
+        </h3>
+        <p>Handles turning on/off the processing part of the component, along with the negative effects related to this</p><h3 id="proc/scan_user"><aside class="declaration">proc </aside>scan_user<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L326">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 326"/></a></aside>
+        </h3>
+        <p>Used to scan the person</p><h3 id="proc/setup_bonus_effects"><aside class="declaration">proc </aside>setup_bonus_effects<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L300">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 300"/></a></aside>
+        </h3>
+        <p>Handles Vali stat boosts and any other potential buffs on activation/deactivation</p><h3 id="proc/setup_reagent_info"><aside class="declaration">proc </aside>setup_reagent_info<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L133">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 133"/></a></aside>
+        </h3>
+        <p>Shows info on what stats each reagent boosts and how much units they require</p><h3 id="proc/show_radial"><aside class="declaration">proc </aside>show_radial<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L222">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 222"/></a></aside>
+        </h3>
+        <p>Shows the radial menu with suit options. It is separate from configure() due to linters</p><h3 id="proc/steal_greenblood"><aside class="declaration">proc </aside>steal_greenblood<aside>(owner, drain_plasma_gain, drainer) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L532">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 532"/></a></aside>
+        </h3>
+        <p>handles xeno abilities mooching our greenblood. Signal is routed through the equipping mob.</p><h3 id="proc/update_boost"><aside class="declaration">proc </aside>update_boost<aside>(amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L294">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 294"/></a></aside>
+        </h3>
+        <p>Updates the boost amount of the suit and effect_str of reagents if component is on. &quot;amount&quot; is the final level you want to set the boost to.</p><h3 id="proc/update_resource"><aside class="declaration">proc </aside>update_resource<aside>(amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/chem_booster.dm#L394">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;chem_booster.dm 394"/></a></aside>
+        </h3>
+        <p>Adds or removes resource from the suit. Signal gets sent at every 25% of stored resource</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;docking_port&#x2F;mobile - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/docking_port/mobile.html#var">Var Details</a> - <a href="obj/docking_port/mobile.html#proc">Proc Details</a></header>
+<main>
+<h1>mobile <aside>/<a href="obj.html">obj</a>/<a href="obj/docking_port.html">docking_port</a>/<a href="obj/docking_port/mobile.html">mobile</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/shuttle.dm#L350">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;shuttle.dm 350"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/docking_port/mobile.html#var/callTime">callTime</a></th><td>time spent in transit (deciseconds). Should not be lower then 10 seconds without editing the animation of the hyperspace ripples.</td></tr>
+            <tr><th><a href="obj/docking_port/mobile.html#var/control_flags">control_flags</a></th><td>All shuttle_control computers that share at least one control flag is able to link to this shuttle</td></tr>
+            <tr><th><a href="obj/docking_port/mobile.html#var/ignitionTime">ignitionTime</a></th><td>time spent &quot;starting the engines&quot;. Also rate limits how often we try to reserve transit space if its ever full of transiting shuttles.</td></tr>
+            <tr><th><a href="obj/docking_port/mobile.html#var/mode">mode</a></th><td>current shuttle mode</td></tr>
+            <tr><th><a href="obj/docking_port/mobile.html#var/prearrivalTime">prearrivalTime</a></th><td>delay after call time finishes for sound effects, explosions, etc.</td></tr>
+            <tr><th><a href="obj/docking_port/mobile.html#var/rechargeTime">rechargeTime</a></th><td>time spent after arrival before being able to launch again</td></tr>
+            <tr><th><a href="obj/docking_port/mobile.html#var/shuttle_computer">shuttle_computer</a></th><td>Reference of the shuttle docker holding the mobile docking port</td></tr>
+            <tr><th><a href="obj/docking_port/mobile.html#var/timer">timer</a></th><td>used as a timer (if you want time left to complete move, use timeLeft proc)</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/docking_port/mobile.html#proc/beforeShuttleMove">beforeShuttleMove</a></th><td>Misc move procs</td></tr>
+            <tr><th><a href="obj/docking_port/mobile.html#proc/calculate_docking_port_information">calculate_docking_port_information</a></th><td>Calculated and populates the information used for docking and some internal vars.
+This can also be used to calculate from shuttle_areas so that you can expand/shrink shuttles!</td></tr>
+            <tr><th><a href="obj/docking_port/mobile.html#proc/initiate_docking">initiate_docking</a></th><td>This is the main proc. It instantly moves our mobile port to stationary port <code>new_dock</code>.</td></tr>
+            <tr><th><a href="obj/docking_port/mobile.html#proc/linkup">linkup</a></th><td>Called after the shuttle is loaded from template</td></tr>
+            <tr><th><a href="obj/docking_port/mobile.html#proc/preflight_check">preflight_check</a></th><td>Both lists are associative with a turf:bitflag structure. (new_turfs bitflag space unused currently)
+The bitflag contains the data for what inhabitants of that coordinate should be moved to the new location
+The bitflags can be found in __DEFINES/shuttles.dm</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/callTime"><aside class="declaration">var </aside>callTime
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/shuttle.dm#L365">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;shuttle.dm 365"/></a></h3>
+        <p>time spent in transit (deciseconds). Should not be lower then 10 seconds without editing the animation of the hyperspace ripples.</p><h3 id="var/control_flags"><aside class="declaration">var </aside>control_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/shuttle.dm#L402">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;shuttle.dm 402"/></a></h3>
+        <p>All shuttle_control computers that share at least one control flag is able to link to this shuttle</p><h3 id="var/ignitionTime"><aside class="declaration">var </aside>ignitionTime
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/shuttle.dm#L367">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;shuttle.dm 367"/></a></h3>
+        <p>time spent &quot;starting the engines&quot;. Also rate limits how often we try to reserve transit space if its ever full of transiting shuttles.</p><h3 id="var/mode"><aside class="declaration">var </aside>mode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/shuttle.dm#L363">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;shuttle.dm 363"/></a></h3>
+        <p>current shuttle mode</p><h3 id="var/prearrivalTime"><aside class="declaration">var </aside>prearrivalTime
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/shuttle.dm#L371">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;shuttle.dm 371"/></a></h3>
+        <p>delay after call time finishes for sound effects, explosions, etc.</p><h3 id="var/rechargeTime"><aside class="declaration">var </aside>rechargeTime
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/shuttle.dm#L369">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;shuttle.dm 369"/></a></h3>
+        <p>time spent after arrival before being able to launch again</p><h3 id="var/shuttle_computer"><aside class="declaration">var </aside>shuttle_computer
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/computer.html">computer</a>/<a href="obj/machinery/computer/camera_advanced.html">camera_advanced</a>/<a href="obj/machinery/computer/camera_advanced/shuttle_docker.html">shuttle_docker</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/shuttle.dm#L407">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;shuttle.dm 407"/></a></h3>
+        <p>Reference of the shuttle docker holding the mobile docking port</p><h3 id="var/timer"><aside class="declaration">var </aside>timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/shuttle.dm#L359">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;shuttle.dm 359"/></a></h3>
+        <p>used as a timer (if you want time left to complete move, use timeLeft proc)</p><h2 id="proc">Proc Details</h2><h3 id="proc/beforeShuttleMove">beforeShuttleMove<aside>(/<a href="turf.html">turf</a>/newT, rotation, move_mode, /<a href="obj.html">obj</a>/<a href="obj/docking_port.html">docking_port</a>/<a href="obj/docking_port/mobile.html">mobile</a>/moving_dock) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/on_move.dm#L304">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;on_move.dm 304"/></a></aside>
+        </h3>
+        <p>Misc move procs</p><h3 id="proc/calculate_docking_port_information"><aside class="declaration">proc </aside>calculate_docking_port_information<aside>(/<a href="datum.html">datum</a>/<a href="datum/map_template.html">map_template</a>/shuttle/loading_from) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/shuttle.dm#L1008">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;shuttle.dm 1008"/></a></aside>
+        </h3>
+        <p>Calculated and populates the information used for docking and some internal vars.
+This can also be used to calculate from shuttle_areas so that you can expand/shrink shuttles!</p>
+<p>Arguments:</p>
+<ul>
+<li>loading_from - The template that the shuttle was loaded from, if not given we iterate shuttle_areas to calculate information instead</li>
+</ul><h3 id="proc/initiate_docking"><aside class="declaration">proc </aside>initiate_docking<aside>(/<a href="obj.html">obj</a>/<a href="obj/docking_port.html">docking_port</a>/<a href="obj/docking_port/stationary.html">stationary</a>/new_dock, movement_direction, force) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/docking.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;docking.dm 2"/></a></aside>
+        </h3>
+        <p>This is the main proc. It instantly moves our mobile port to stationary port <code>new_dock</code>.</p><h3 id="proc/linkup"><aside class="declaration">proc </aside>linkup<aside>(/<a href="datum.html">datum</a>/<a href="datum/map_template.html">map_template</a>/shuttle/template, /<a href="obj.html">obj</a>/<a href="obj/docking_port.html">docking_port</a>/<a href="obj/docking_port/stationary.html">stationary</a>/dock) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/shuttle.dm#L445">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;shuttle.dm 445"/></a></aside>
+        </h3>
+        <p>Called after the shuttle is loaded from template</p><h3 id="proc/preflight_check"><aside class="declaration">proc </aside>preflight_check<aside>(/list/old_turfs, /list/new_turfs, /list/areas_to_move, rotation) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/docking.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;docking.dm 113"/></a></aside>
+        </h3>
+        <p>Both lists are associative with a turf:bitflag structure. (new_turfs bitflag space unused currently)
+The bitflag contains the data for what inhabitants of that coordinate should be moved to the new location
+The bitflags can be found in __DEFINES/shuttles.dm</p>
+<p>Hiding turfs if necessary</p>
+<p>Unhiding turfs if necessary</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

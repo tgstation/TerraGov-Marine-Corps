@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;mapping - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/mapping.html#var">Var Details</a> - <a href="datum/controller/subsystem/mapping.html#proc">Proc Details</a></header>
+<main>
+<h1>mapping <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/mapping.html">mapping</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/adding_new_zlevel">adding_new_zlevel</a></th><td>True when in the process of adding a new Z-level, global locking</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/critical_planes">critical_planes</a></th><td>List of plane masters that are of critical priority</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/gravity_by_z_level">gravity_by_z_level</a></th><td>shows the gravity value for each z level</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/groundmap_voted">groundmap_voted</a></th><td>If true, non-admin players will not be able to initiate a vote to change groundmap</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/last_round_player_count">last_round_player_count</a></th><td>The number of connected clients for the previous round</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/lists_to_reserve">lists_to_reserve</a></th><td>List of lists of turfs to reserve</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/loaded_lazy_templates">loaded_lazy_templates</a></th><td>list of lazy templates that have been loaded</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/max_plane_offset">max_plane_offset</a></th><td>The largest plane offset we've generated so far</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/modular_templates">modular_templates</a></th><td>list of all modular mapping templates</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/multiz_levels">multiz_levels</a></th><td>list of all z level indices that form multiz connections and whether theyre linked up or down.
+list of lists, inner lists are of the form: list(&quot;up or down link direction&quot; = TRUE)</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/plane_offset_blacklist">plane_offset_blacklist</a></th><td>List of planes that do not allow for offsetting</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/plane_offset_to_true">plane_offset_to_true</a></th><td>Assoc list of string plane values to their true, non offset representation</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/plane_to_offset">plane_to_offset</a></th><td>Assoc list of string plane to the plane's offset value</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/render_offset_blacklist">render_offset_blacklist</a></th><td>List of render targets that do not allow for offsetting</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/shipmap_voted">shipmap_voted</a></th><td>If true, non-admin players will not be able to initiate a vote to change shipmap</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/true_to_offset_planes">true_to_offset_planes</a></th><td>Assoc list of true string plane values to a list of all potential offset planess</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/z_level_to_lowest_plane_offset">z_level_to_lowest_plane_offset</a></th><td>List of z level (as number) -&gt; The lowest plane offset in that z stack</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/z_level_to_plane_offset">z_level_to_plane_offset</a></th><td>List of z level (as number) -&gt; plane offset of that z level
+Used to maintain the plane cube</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/z_level_to_stack">z_level_to_stack</a></th><td>List of z level (as number) -&gt; list of all z levels vertically connected to ours
+Useful for fast grouping lookups and such</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/z_list">z_list</a></th><td>list of all z level datums in the order of their z (z level 1 is at index 1, etc.)</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/z_trait_levels">z_trait_levels</a></th><td>list of traits and their associated z leves</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/add_reservation_zlevel">add_reservation_zlevel</a></th><td>Adds a new reservation z level. A bit of space that can be handed out on request
+Of note, reservations default to transit turfs, to make their most common use, shuttles, faster</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/calculate_default_z_level_gravities">calculate_default_z_level_gravities</a></th><td>Generates baseline gravity levels for all z-levels based off traits</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/calculate_z_level_gravity">calculate_z_level_gravity</a></th><td>Calculates the gravity for a z-level</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/generate_linkages_for_z_level">generate_linkages_for_z_level</a></th><td>generates z level linkages for multiz for a given z</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/generate_offset_lists">generate_offset_lists</a></th><td>Takes an offset to generate misc lists to, and a base to start from
+Use this to react globally to maintain parity with plane offsets</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/generate_z_level_linkages">generate_z_level_linkages</a></th><td>generates z level linkages for all z</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/get_connected_levels">get_connected_levels</a></th><td>Takes a turf or a z level, and returns a list of all the z levels that are connected to it</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/get_level">get_level</a></th><td>Returns the /datum/space_level associated with the given z level.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/get_station_center">get_station_center</a></th><td>Prefer not to use this one too often</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/initialize_reserved_level">initialize_reserved_level</a></th><td>Sets up a z level as reserved
+This is not for wiping reserved levels, use wipe_reservations() for that.
+If this is called after SSatom init, it will call Initialize on all turfs on the passed z, as its name promises</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/lazy_load_template">lazy_load_template</a></th><td>lazy loads a map template in a reserved z. use for stuff like rooms that you teleport to like interiors or similar</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/level_has_all_traits">level_has_all_traits</a></th><td>Check if levels[z] has all of the specified traits</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/level_has_any_trait">level_has_any_trait</a></th><td>Check if levels[z] has any of the specified traits</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/level_trait">level_trait</a></th><td>Look up levels[z].traits[trait]</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/levels_by_all_traits">levels_by_all_traits</a></th><td>Get a list of all z which have all of the specified traits</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/levels_by_any_trait">levels_by_any_trait</a></th><td>Get a list of all z which have any of the specified traits</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/levels_by_trait">levels_by_trait</a></th><td>Get a list of all z which have the specified trait</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/load_last_round_playercount">load_last_round_playercount</a></th><td>Loads the number of players we had last round, for use in modular mapping</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/manage_z_level">manage_z_level</a></th><td>Takes a z level datum, and tells the mapping subsystem to manage it
+Also handles things like plane offset generation, and other things that happen on a z level to z level basis</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/request_turf_block_reservation">request_turf_block_reservation</a></th><td>Requests a /datum/turf_reservation based on the given width, height, and z_size. You can specify a z_reservation to use a specific z level, or leave it null to use any z level.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/reserve_turfs">reserve_turfs</a></th><td>Schedules a group of turfs to be handed back to the reservation system's control
+If await is true, will sleep until the turfs are finished work</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/wipe_reservations">wipe_reservations</a></th><td>clears all map reservations</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/adding_new_zlevel"><aside class="declaration">var </aside>adding_new_zlevel
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 61"/></a></h3>
+        <p>True when in the process of adding a new Z-level, global locking</p><h3 id="var/critical_planes"><aside class="declaration">var </aside>critical_planes
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 47"/></a></h3>
+        <p>List of plane masters that are of critical priority</p><h3 id="var/gravity_by_z_level"><aside class="declaration">var </aside>gravity_by_z_level
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 74"/></a></h3>
+        <p>shows the gravity value for each z level</p><h3 id="var/groundmap_voted"><aside class="declaration">var </aside>groundmap_voted
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 67"/></a></h3>
+        <p>If true, non-admin players will not be able to initiate a vote to change groundmap</p><h3 id="var/last_round_player_count"><aside class="declaration">var </aside>last_round_player_count
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 71"/></a></h3>
+        <p>The number of connected clients for the previous round</p><h3 id="var/lists_to_reserve"><aside class="declaration">var </aside>lists_to_reserve
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 64"/></a></h3>
+        <p>List of lists of turfs to reserve</p><h3 id="var/loaded_lazy_templates"><aside class="declaration">var </aside>loaded_lazy_templates
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 82"/></a></h3>
+        <p>list of lazy templates that have been loaded</p><h3 id="var/max_plane_offset"><aside class="declaration">var </aside>max_plane_offset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 49"/></a></h3>
+        <p>The largest plane offset we've generated so far</p><h3 id="var/modular_templates"><aside class="declaration">var </aside>modular_templates
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 15"/></a></h3>
+        <p>list of all modular mapping templates</p><h3 id="var/multiz_levels"><aside class="declaration">var </aside>multiz_levels
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 57"/></a></h3>
+        <p>list of all z level indices that form multiz connections and whether theyre linked up or down.
+list of lists, inner lists are of the form: list(&quot;up or down link direction&quot; = TRUE)</p><h3 id="var/plane_offset_blacklist"><aside class="declaration">var </aside>plane_offset_blacklist
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 43"/></a></h3>
+        <p>List of planes that do not allow for offsetting</p><h3 id="var/plane_offset_to_true"><aside class="declaration">var </aside>plane_offset_to_true
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 37"/></a></h3>
+        <p>Assoc list of string plane values to their true, non offset representation</p><h3 id="var/plane_to_offset"><aside class="declaration">var </aside>plane_to_offset
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 41"/></a></h3>
+        <p>Assoc list of string plane to the plane's offset value</p><h3 id="var/render_offset_blacklist"><aside class="declaration">var </aside>render_offset_blacklist
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 45"/></a></h3>
+        <p>List of render targets that do not allow for offsetting</p><h3 id="var/shipmap_voted"><aside class="declaration">var </aside>shipmap_voted
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 69"/></a></h3>
+        <p>If true, non-admin players will not be able to initiate a vote to change shipmap</p><h3 id="var/true_to_offset_planes"><aside class="declaration">var </aside>true_to_offset_planes
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 39"/></a></h3>
+        <p>Assoc list of true string plane values to a list of all potential offset planess</p><h3 id="var/z_level_to_lowest_plane_offset"><aside class="declaration">var </aside>z_level_to_lowest_plane_offset
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 33"/></a></h3>
+        <p>List of z level (as number) -&gt; The lowest plane offset in that z stack</p><h3 id="var/z_level_to_plane_offset"><aside class="declaration">var </aside>z_level_to_plane_offset
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 28"/></a></h3>
+        <p>List of z level (as number) -&gt; plane offset of that z level
+Used to maintain the plane cube</p><h3 id="var/z_level_to_stack"><aside class="declaration">var </aside>z_level_to_stack
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 31"/></a></h3>
+        <p>List of z level (as number) -&gt; list of all z levels vertically connected to ours
+Useful for fast grouping lookups and such</p><h3 id="var/z_list"><aside class="declaration">var </aside>z_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 54"/></a></h3>
+        <p>list of all z level datums in the order of their z (z level 1 is at index 1, etc.)</p><h3 id="var/z_trait_levels"><aside class="declaration">var </aside>z_trait_levels
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 77"/></a></h3>
+        <p>list of traits and their associated z leves</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_reservation_zlevel"><aside class="declaration">proc </aside>add_reservation_zlevel<aside>(for_shuttles) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L436">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 436"/></a></aside>
+        </h3>
+        <p>Adds a new reservation z level. A bit of space that can be handed out on request
+Of note, reservations default to transit turfs, to make their most common use, shuttles, faster</p><h3 id="proc/calculate_default_z_level_gravities"><aside class="declaration">proc </aside>calculate_default_z_level_gravities<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L527">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 527"/></a></aside>
+        </h3>
+        <p>Generates baseline gravity levels for all z-levels based off traits</p><h3 id="proc/calculate_z_level_gravity"><aside class="declaration">proc </aside>calculate_z_level_gravity<aside>(z_level_number) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L532">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 532"/></a></aside>
+        </h3>
+        <p>Calculates the gravity for a z-level</p><h3 id="proc/generate_linkages_for_z_level"><aside class="declaration">proc </aside>generate_linkages_for_z_level<aside>(z_level) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L167">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 167"/></a></aside>
+        </h3>
+        <p>generates z level linkages for multiz for a given z</p><h3 id="proc/generate_offset_lists"><aside class="declaration">proc </aside>generate_offset_lists<aside>(gen_from, new_offset) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L635">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 635"/></a></aside>
+        </h3>
+        <p>Takes an offset to generate misc lists to, and a base to start from
+Use this to react globally to maintain parity with plane offsets</p><h3 id="proc/generate_z_level_linkages"><aside class="declaration">proc </aside>generate_z_level_linkages<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L162">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 162"/></a></aside>
+        </h3>
+        <p>generates z level linkages for all z</p><h3 id="proc/get_connected_levels"><aside class="declaration">proc </aside>get_connected_levels<aside>(/<a href="turf.html">turf</a>/connected) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L668">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 668"/></a></aside>
+        </h3>
+        <p>Takes a turf or a z level, and returns a list of all the z levels that are connected to it</p><h3 id="proc/get_level"><aside class="declaration">proc </aside>get_level<aside>(z) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mapping/space_management/zlevel_manager.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mapping&#x2F;space_management&#x2F;zlevel_manager.dm 38"/></a></aside>
+        </h3>
+        <p>Returns the /datum/space_level associated with the given z level.</p><h3 id="proc/get_station_center"><aside class="declaration">proc </aside>get_station_center<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mapping/space_management/traits.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mapping&#x2F;space_management&#x2F;traits.dm 53"/></a></aside>
+        </h3>
+        <p>Prefer not to use this one too often</p><h3 id="proc/initialize_reserved_level"><aside class="declaration">proc </aside>initialize_reserved_level<aside>(z) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L474">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 474"/></a></aside>
+        </h3>
+        <p>Sets up a z level as reserved
+This is not for wiping reserved levels, use wipe_reservations() for that.
+If this is called after SSatom init, it will call Initialize on all turfs on the passed z, as its name promises</p><h3 id="proc/lazy_load_template"><aside class="declaration">proc </aside>lazy_load_template<aside>(template_key, force) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L676">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 676"/></a></aside>
+        </h3>
+        <p>lazy loads a map template in a reserved z. use for stuff like rooms that you teleport to like interiors or similar</p><h3 id="proc/level_has_all_traits"><aside class="declaration">proc </aside>level_has_all_traits<aside>(z, /list/traits) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mapping/space_management/traits.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mapping&#x2F;space_management&#x2F;traits.dm 26"/></a></aside>
+        </h3>
+        <p>Check if levels[z] has all of the specified traits</p><h3 id="proc/level_has_any_trait"><aside class="declaration">proc </aside>level_has_any_trait<aside>(z, /list/traits) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mapping/space_management/traits.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mapping&#x2F;space_management&#x2F;traits.dm 19"/></a></aside>
+        </h3>
+        <p>Check if levels[z] has any of the specified traits</p><h3 id="proc/level_trait"><aside class="declaration">proc </aside>level_trait<aside>(z, trait) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mapping/space_management/traits.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mapping&#x2F;space_management&#x2F;traits.dm 2"/></a></aside>
+        </h3>
+        <p>Look up levels[z].traits[trait]</p><h3 id="proc/levels_by_all_traits"><aside class="declaration">proc </aside>levels_by_all_traits<aside>(/list/traits) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mapping/space_management/traits.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mapping&#x2F;space_management&#x2F;traits.dm 45"/></a></aside>
+        </h3>
+        <p>Get a list of all z which have all of the specified traits</p><h3 id="proc/levels_by_any_trait"><aside class="declaration">proc </aside>levels_by_any_trait<aside>(/list/traits) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mapping/space_management/traits.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mapping&#x2F;space_management&#x2F;traits.dm 37"/></a></aside>
+        </h3>
+        <p>Get a list of all z which have any of the specified traits</p><h3 id="proc/levels_by_trait"><aside class="declaration">proc </aside>levels_by_trait<aside>(trait) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mapping/space_management/traits.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mapping&#x2F;space_management&#x2F;traits.dm 33"/></a></aside>
+        </h3>
+        <p>Get a list of all z which have the specified trait</p><h3 id="proc/load_last_round_playercount"><aside class="declaration">proc </aside>load_last_round_playercount<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L183">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 183"/></a></aside>
+        </h3>
+        <p>Loads the number of players we had last round, for use in modular mapping</p><h3 id="proc/manage_z_level"><aside class="declaration">proc </aside>manage_z_level<aside>(/<a href="datum.html">datum</a>/space_level/new_z, filled_with_space, contain_turfs) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L545">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 545"/></a></aside>
+        </h3>
+        <p>Takes a z level datum, and tells the mapping subsystem to manage it
+Also handles things like plane offset generation, and other things that happen on a z level to z level basis</p><h3 id="proc/request_turf_block_reservation"><aside class="declaration">proc </aside>request_turf_block_reservation<aside>(width, height, z_size, z_reservation, reservation_type, turf_type_override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L441">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 441"/></a></aside>
+        </h3>
+        <p>Requests a /datum/turf_reservation based on the given width, height, and z_size. You can specify a z_reservation to use a specific z level, or leave it null to use any z level.</p><h3 id="proc/reserve_turfs"><aside class="declaration">proc </aside>reserve_turfs<aside>(/list/turfs, await) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L499">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 499"/></a></aside>
+        </h3>
+        <p>Schedules a group of turfs to be handed back to the reservation system's control
+If await is true, will sleep until the turfs are finished work</p><h3 id="proc/wipe_reservations"><aside class="declaration">proc </aside>wipe_reservations<aside>(wipe_safety_delay) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/mapping.dm#L190">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 190"/></a></aside>
+        </h3>
+        <p>clears all map reservations</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

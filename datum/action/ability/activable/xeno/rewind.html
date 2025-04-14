@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;activable&#x2F;xeno&#x2F;rewind - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/activable/xeno/rewind.html#var">Var Details</a> - <a href="datum/action/ability/activable/xeno/rewind.html#proc">Proc Details</a></header>
+<main>
+<h1>rewind <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/activable.html">activable</a>/<a href="datum/action/ability/activable/xeno.html">xeno</a>/<a href="datum/action/ability/activable/xeno/rewind.html">rewind</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L250">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 250"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/rewind.html#var/last_target_locs_list">last_target_locs_list</a></th><td>List of locations the atom took since it was last saved</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/rewind.html#var/range">range</a></th><td>How far can you rewind someone</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/rewind.html#var/rewind_timer">rewind_timer</a></th><td>Holder for the rewind timer</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/rewind.html#var/start_rewinding">start_rewinding</a></th><td>How long till the time rewinds</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/rewind.html#var/target_initial_brute_damage">target_initial_brute_damage</a></th><td>Initial brute damage of the target</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/rewind.html#var/target_initial_burn_damage">target_initial_burn_damage</a></th><td>Initial burn damage of the target</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/rewind.html#var/target_initial_fire_stacks">target_initial_fire_stacks</a></th><td>Initial fire stacks of the target</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/rewind.html#var/target_initial_on_fire">target_initial_on_fire</a></th><td>Initial on_fire value</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/rewind.html#var/target_initial_sunder">target_initial_sunder</a></th><td>Initial sunder of the target</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/rewind.html#var/targeted">targeted</a></th><td>The targeted atom</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/rewind.html#proc/rewind">rewind</a></th><td>Move the target two tiles per tick</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/rewind.html#proc/save_move">save_move</a></th><td>Signal handler</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/rewind.html#proc/start_rewinding">start_rewinding</a></th><td>Start the reset process</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/last_target_locs_list"><aside class="declaration">var </aside>last_target_locs_list
+            <aside>&ndash; /list/turf</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L266">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 266"/></a></h3>
+        <p>List of locations the atom took since it was last saved</p><h3 id="var/range"><aside class="declaration">var </aside>range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L278">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 278"/></a></h3>
+        <p>How far can you rewind someone</p><h3 id="var/rewind_timer"><aside class="declaration">var </aside>rewind_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L282">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 282"/></a></h3>
+        <p>Holder for the rewind timer</p><h3 id="var/start_rewinding"><aside class="declaration">var </aside>start_rewinding
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L262">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 262"/></a></h3>
+        <p>How long till the time rewinds</p><h3 id="var/target_initial_brute_damage"><aside class="declaration">var </aside>target_initial_brute_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L270">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 270"/></a></h3>
+        <p>Initial brute damage of the target</p><h3 id="var/target_initial_burn_damage"><aside class="declaration">var </aside>target_initial_burn_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L268">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 268"/></a></h3>
+        <p>Initial burn damage of the target</p><h3 id="var/target_initial_fire_stacks"><aside class="declaration">var </aside>target_initial_fire_stacks
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L274">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 274"/></a></h3>
+        <p>Initial fire stacks of the target</p><h3 id="var/target_initial_on_fire"><aside class="declaration">var </aside>target_initial_on_fire
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L276">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 276"/></a></h3>
+        <p>Initial on_fire value</p><h3 id="var/target_initial_sunder"><aside class="declaration">var </aside>target_initial_sunder
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L272">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 272"/></a></h3>
+        <p>Initial sunder of the target</p><h3 id="var/targeted"><aside class="declaration">var </aside>targeted
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L264">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 264"/></a></h3>
+        <p>The targeted atom</p><h2 id="proc">Proc Details</h2><h3 id="proc/rewind"><aside class="declaration">proc </aside>rewind<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L354">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 354"/></a></aside>
+        </h3>
+        <p>Move the target two tiles per tick</p><h3 id="proc/save_move"><aside class="declaration">proc </aside>save_move<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, oldloc) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L334">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 334"/></a></aside>
+        </h3>
+        <p>Signal handler</p><h3 id="proc/start_rewinding"><aside class="declaration">proc </aside>start_rewinding<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L339">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 339"/></a></aside>
+        </h3>
+        <p>Start the reset process</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

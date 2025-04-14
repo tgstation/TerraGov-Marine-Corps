@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;xeno_action&#x2F;conqueror_obliteration - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/xeno_action/conqueror_obliteration.html#var">Var Details</a> - <a href="datum/action/ability/xeno_action/conqueror_obliteration.html#proc">Proc Details</a></header>
+<main>
+<h1>conqueror_obliteration <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/xeno_action.html">xeno_action</a>/<a href="datum/action/ability/xeno_action/conqueror_obliteration.html">conqueror_obliteration</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L787">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 787"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_obliteration.html#var/ability_range">ability_range</a></th><td>The current range of the AoE.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_obliteration.html#var/ability_warning">ability_warning</a></th><td>Stores the visual effect for the AoE's warning.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_obliteration.html#var/attack_timer">attack_timer</a></th><td>Timer ID. Stores the timer after which an attack will repeat.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_obliteration.html#var/targets_to_attack">targets_to_attack</a></th><td>List containing the targets that we will attack while executing this ability.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_obliteration.html#proc/attack_targets">attack_targets</a></th><td>Attacks all eligible targets, inflicting damage and creating visuals.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_obliteration.html#proc/clear_ref">clear_ref</a></th><td>Removes a target from the list and clears related signals.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_obliteration.html#proc/enable_ability">enable_ability</a></th><td>Enables the abiity. If activated via the keybind, releasing it will move on to the next step.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_obliteration.html#proc/end_ability">end_ability</a></th><td>not a mob so its an obj
+Ends the ability.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_obliteration.html#proc/try_start_attack">try_start_attack</a></th><td>Checks if we meet the conditions to begin our attack, and tries to do so.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ability_range"><aside class="declaration">var </aside>ability_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L801">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 801"/></a></h3>
+        <p>The current range of the AoE.</p><h3 id="var/ability_warning"><aside class="declaration">var </aside>ability_warning
+            <aside>&ndash; /<a href="obj.html">obj</a>/effect/obliteration_warning</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L803">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 803"/></a></h3>
+        <p>Stores the visual effect for the AoE's warning.</p><h3 id="var/attack_timer"><aside class="declaration">var </aside>attack_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L809">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 809"/></a></h3>
+        <p>Timer ID. Stores the timer after which an attack will repeat.</p><h3 id="var/targets_to_attack"><aside class="declaration">var </aside>targets_to_attack
+            <aside>&ndash; /list/mob/living</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L805">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 805"/></a></h3>
+        <p>List containing the targets that we will attack while executing this ability.</p><h2 id="proc">Proc Details</h2><h3 id="proc/attack_targets"><aside class="declaration">proc </aside>attack_targets<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L926">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 926"/></a></aside>
+        </h3>
+        <p>Attacks all eligible targets, inflicting damage and creating visuals.</p><h3 id="proc/clear_ref"><aside class="declaration">proc </aside>clear_ref<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L920">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 920"/></a></aside>
+        </h3>
+        <p>Removes a target from the list and clears related signals.</p><h3 id="proc/enable_ability"><aside class="declaration">proc </aside>enable_ability<aside>(keybind) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L870">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 870"/></a></aside>
+        </h3>
+        <p>Enables the abiity. If activated via the keybind, releasing it will move on to the next step.</p><h3 id="proc/end_ability"><aside class="declaration">proc </aside>end_ability<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L958">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 958"/></a></aside>
+        </h3>
+        <p>not a mob so its an obj
+Ends the ability.</p><h3 id="proc/try_start_attack"><aside class="declaration">proc </aside>try_start_attack<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L884">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 884"/></a></aside>
+        </h3>
+        <p>Checks if we meet the conditions to begin our attack, and tries to do so.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

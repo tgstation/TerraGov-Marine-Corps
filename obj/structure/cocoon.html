@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;structure&#x2F;cocoon - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/structure/cocoon.html#var">Var Details</a> - <a href="obj/structure/cocoon.html#proc">Proc Details</a></header>
+<main>
+<h1>cocoon <aside>/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/cocoon.html">cocoon</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/cocoon.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cocoon.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/structure/cocoon.html#var/busy">busy</a></th><td>Standard busy check</td></tr>
+            <tr><th><a href="obj/structure/cocoon.html#var/cocoon_life_time">cocoon_life_time</a></th><td>How much time the cocoon takes to deplete the life force of the marine</td></tr>
+            <tr><th><a href="obj/structure/cocoon.html#var/hivenumber">hivenumber</a></th><td>Which hive it belongs too</td></tr>
+            <tr><th><a href="obj/structure/cocoon.html#var/larva_point_reward">larva_point_reward</a></th><td>How much larva points it gives at the end of its life time (8 points for one larva in distress)</td></tr>
+            <tr><th><a href="obj/structure/cocoon.html#var/victim">victim</a></th><td>What is inside the cocoon</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/structure/cocoon.html#proc/life_draining_over">life_draining_over</a></th><td>Stop producing points and release the victim if needed</td></tr>
+            <tr><th><a href="obj/structure/cocoon.html#proc/on_shuttle_crush">on_shuttle_crush</a></th><td>Signal proc, makes sure the victim gets gibbed if a shuttle lands on the cocoon</td></tr>
+            <tr><th><a href="obj/structure/cocoon.html#proc/release_victim">release_victim</a></th><td>Open the cocoon and move the victim out</td></tr>
+            <tr><th><a href="obj/structure/cocoon.html#proc/unanchor_from_nest">unanchor_from_nest</a></th><td>Allow the cocoon to be opened and dragged</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/busy"><aside class="declaration">var </aside>busy
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/cocoon.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cocoon.dm 20"/></a></h3>
+        <p>Standard busy check</p><h3 id="var/cocoon_life_time"><aside class="declaration">var </aside>cocoon_life_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/cocoon.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cocoon.dm 18"/></a></h3>
+        <p>How much time the cocoon takes to deplete the life force of the marine</p><h3 id="var/hivenumber"><aside class="declaration">var </aside>hivenumber
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/cocoon.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cocoon.dm 14"/></a></h3>
+        <p>Which hive it belongs too</p><h3 id="var/larva_point_reward"><aside class="declaration">var </aside>larva_point_reward
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/cocoon.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cocoon.dm 22"/></a></h3>
+        <p>How much larva points it gives at the end of its life time (8 points for one larva in distress)</p><h3 id="var/victim"><aside class="declaration">var </aside>victim
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/cocoon.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cocoon.dm 16"/></a></h3>
+        <p>What is inside the cocoon</p><h2 id="proc">Proc Details</h2><h3 id="proc/life_draining_over"><aside class="declaration">proc </aside>life_draining_over<aside>(/<a href="datum.html">datum</a>/source, must_release_victim) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/cocoon.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cocoon.dm 63"/></a></aside>
+        </h3>
+        <p>Stop producing points and release the victim if needed</p><h3 id="proc/on_shuttle_crush"><aside class="declaration">proc </aside>on_shuttle_crush<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/docking_port.html">docking_port</a>/<a href="obj/docking_port/mobile.html">mobile</a>/shuttle) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/cocoon.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cocoon.dm 83"/></a></aside>
+        </h3>
+        <p>Signal proc, makes sure the victim gets gibbed if a shuttle lands on the cocoon</p><h3 id="proc/release_victim"><aside class="declaration">proc </aside>release_victim<aside>(gib) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/cocoon.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cocoon.dm 88"/></a></aside>
+        </h3>
+        <p>Open the cocoon and move the victim out</p><h3 id="proc/unanchor_from_nest"><aside class="declaration">proc </aside>unanchor_from_nest<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/cocoon.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;cocoon.dm 56"/></a></aside>
+        </h3>
+        <p>Allow the cocoon to be opened and dragged</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

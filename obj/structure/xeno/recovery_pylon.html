@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;structure&#x2F;xeno&#x2F;recovery_pylon - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/structure/xeno/recovery_pylon.html#var">Var Details</a> - <a href="obj/structure/xeno/recovery_pylon.html#proc">Proc Details</a></header>
+<main>
+<h1>recovery_pylon <aside>/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/xeno.html">xeno</a>/<a href="obj/structure/xeno/recovery_pylon.html">recovery_pylon</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/recovery_pylon.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;recovery_pylon.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/structure/xeno/recovery_pylon.html#var/buffed_xenos">buffed_xenos</a></th><td>List of buffed xenomorphs.</td></tr>
+            <tr><th><a href="obj/structure/xeno/recovery_pylon.html#var/particle_holder">particle_holder</a></th><td>Holds the particles.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/structure/xeno/recovery_pylon.html#proc/apply_buff">apply_buff</a></th><td>Applies a buff to any entering xenormorph that reduces improves regen variables.</td></tr>
+            <tr><th><a href="obj/structure/xeno/recovery_pylon.html#proc/create_effects">create_effects</a></th><td>Creates what this structure is suppose to do.</td></tr>
+            <tr><th><a href="obj/structure/xeno/recovery_pylon.html#proc/delete_effects">delete_effects</a></th><td>Removes what this structure is suppose to do.</td></tr>
+            <tr><th><a href="obj/structure/xeno/recovery_pylon.html#proc/remove_buff">remove_buff</a></th><td>Reverses the buffs to leaving xenomorphs if they were given it.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/buffed_xenos"><aside class="declaration">var </aside>buffed_xenos
+            <aside>&ndash; /list/mob/living/carbon/xenomorph</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/recovery_pylon.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;recovery_pylon.dm 13"/></a></h3>
+        <p>List of buffed xenomorphs.</p><h3 id="var/particle_holder"><aside class="declaration">var </aside>particle_holder
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/abstract/particle_holder.html">effect/abstract/particle_holder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/recovery_pylon.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;recovery_pylon.dm 17"/></a></h3>
+        <p>Holds the particles.</p><h2 id="proc">Proc Details</h2><h3 id="proc/apply_buff"><aside class="declaration">proc </aside>apply_buff<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/entering_movable, /<a href="atom.html">atom</a>/old_loc) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/recovery_pylon.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;recovery_pylon.dm 49"/></a></aside>
+        </h3>
+        <p>Applies a buff to any entering xenormorph that reduces improves regen variables.</p><h3 id="proc/create_effects"><aside class="declaration">proc </aside>create_effects<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/recovery_pylon.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;recovery_pylon.dm 76"/></a></aside>
+        </h3>
+        <p>Creates what this structure is suppose to do.</p><h3 id="proc/delete_effects"><aside class="declaration">proc </aside>delete_effects<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/recovery_pylon.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;recovery_pylon.dm 88"/></a></aside>
+        </h3>
+        <p>Removes what this structure is suppose to do.</p><h3 id="proc/remove_buff"><aside class="declaration">proc </aside>remove_buff<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/leaving_movable, direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/recovery_pylon.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;recovery_pylon.dm 62"/></a></aside>
+        </h3>
+        <p>Reverses the buffs to leaving xenomorphs if they were given it.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;deployable&#x2F;mortar - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/deployable/mortar.html#var">Var Details</a> - <a href="obj/machinery/deployable/mortar.html#proc">Proc Details</a></header>
+<main>
+<h1>mortar <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/deployable.html">deployable</a>/<a href="obj/machinery/deployable/mortar.html">mortar</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 10"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/ai_targeter">ai_targeter</a></th><td>Used for remote targeting by AI</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/allowed_shells">allowed_shells</a></th><td>What type of shells can we use?</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/chamber_items">chamber_items</a></th><td>List of stored ammunition items.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/cool_off_time">cool_off_time</a></th><td>Time it takes for the mortar to cool off to fire</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/coords">coords</a></th><td>list of the target x and y, and the dialing we can do to them</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/current_shots">current_shots</a></th><td>Amount of shots that we need to monitor with imapct cameras</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/fire_amount">fire_amount</a></th><td>Amount of shells to fire if this is empty all shells in chamber items list will fire</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/fire_delay">fire_delay</a></th><td>How long to wait before next shot</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/fire_sound">fire_sound</a></th><td>The fire sound of the mortar or artillery piece.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/firing">firing</a></th><td>Used for deconstruction and aiming sanity</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/impact_cam">impact_cam</a></th><td>Camera to display impact shots</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/last_three_inputs">last_three_inputs</a></th><td>saved last three inputs that were actually used to fire a round</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/linked_struct_binoculars">linked_struct_binoculars</a></th><td>list of linked binoculars to the structure of the mortar, used for continuity to item</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/max_rounds">max_rounds</a></th><td>Amount of shells that can be loaded</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/max_spread">max_spread</a></th><td>Max spread on target</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/minimum_range">minimum_range</a></th><td>Minimum range to fire</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/offset_per_turfs">offset_per_turfs</a></th><td>Number of turfs to offset from target by 1</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/reload_time">reload_time</a></th><td>Time to load a shell</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/spread">spread</a></th><td>Constant spread on target</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#var/tally_type">tally_type</a></th><td>Used for round stats</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#proc/attack_ai">attack_ai</a></th><td>Prompt for the AI to unlink itself.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#proc/begin_fire">begin_fire</a></th><td>Start firing the gun on target and increase tally</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#proc/falling">falling</a></th><td>Begins fall animation for projectile and plays fall sound</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#proc/get_new_list">get_new_list</a></th><td>this proc is used because pointers suck and references would break the saving of coordinates.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#proc/handle_undeploy_references">handle_undeploy_references</a></th><td>Handles the continuity transfer of linked binoculars from the mortar struct to the mortar item</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#proc/perform_firing_visuals">perform_firing_visuals</a></th><td>perform any individual sprite-specific visuals here</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#proc/recieve_target">recieve_target</a></th><td>Proc called by tactical binoculars to send targeting information.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#proc/return_cam">return_cam</a></th><td>Returns the impact camera to the mortar</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mortar.html#proc/unset_targeter">unset_targeter</a></th><td>Unlinking the AI from this mortar</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ai_targeter"><aside class="declaration">var </aside>ai_targeter
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/ai_target_beacon</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 70"/></a></h3>
+        <p>Used for remote targeting by AI</p><h3 id="var/allowed_shells"><aside class="declaration">var </aside>allowed_shells
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 56"/></a></h3>
+        <p>What type of shells can we use?</p><h3 id="var/chamber_items"><aside class="declaration">var </aside>chamber_items
+            <aside>&ndash; /list/obj</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 45"/></a></h3>
+        <p>List of stored ammunition items.</p><h3 id="var/cool_off_time"><aside class="declaration">var </aside>cool_off_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 39"/></a></h3>
+        <p>Time it takes for the mortar to cool off to fire</p><h3 id="var/coords"><aside class="declaration">var </aside>coords
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 16"/></a></h3>
+        <p>list of the target x and y, and the dialing we can do to them</p><h3 id="var/current_shots"><aside class="declaration">var </aside>current_shots
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 53"/></a></h3>
+        <p>Amount of shots that we need to monitor with imapct cameras</p><h3 id="var/fire_amount"><aside class="declaration">var </aside>fire_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 49"/></a></h3>
+        <p>Amount of shells to fire if this is empty all shells in chamber items list will fire</p><h3 id="var/fire_delay"><aside class="declaration">var </aside>fire_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 41"/></a></h3>
+        <p>How long to wait before next shot</p><h3 id="var/fire_sound"><aside class="declaration">var </aside>fire_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 33"/></a></h3>
+        <p>The fire sound of the mortar or artillery piece.</p><h3 id="var/firing"><aside class="declaration">var </aside>firing
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 31"/></a></h3>
+        <p>Used for deconstruction and aiming sanity</p><h3 id="var/impact_cam"><aside class="declaration">var </aside>impact_cam
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/camera.html">camera</a>/artillery</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 51"/></a></h3>
+        <p>Camera to display impact shots</p><h3 id="var/last_three_inputs"><aside class="declaration">var </aside>last_three_inputs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 18"/></a></h3>
+        <p>saved last three inputs that were actually used to fire a round</p><h3 id="var/linked_struct_binoculars"><aside class="declaration">var </aside>linked_struct_binoculars
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 77"/></a></h3>
+        <p>list of linked binoculars to the structure of the mortar, used for continuity to item</p><h3 id="var/max_rounds"><aside class="declaration">var </aside>max_rounds
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 43"/></a></h3>
+        <p>Amount of shells that can be loaded</p><h3 id="var/max_spread"><aside class="declaration">var </aside>max_spread
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 28"/></a></h3>
+        <p>Max spread on target</p><h3 id="var/minimum_range"><aside class="declaration">var </aside>minimum_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 37"/></a></h3>
+        <p>Minimum range to fire</p><h3 id="var/offset_per_turfs"><aside class="declaration">var </aside>offset_per_turfs
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 24"/></a></h3>
+        <p>Number of turfs to offset from target by 1</p><h3 id="var/reload_time"><aside class="declaration">var </aside>reload_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 47"/></a></h3>
+        <p>Time to load a shell</p><h3 id="var/spread"><aside class="declaration">var </aside>spread
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 26"/></a></h3>
+        <p>Constant spread on target</p><h3 id="var/tally_type"><aside class="declaration">var </aside>tally_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 67"/></a></h3>
+        <p>Used for round stats</p><h2 id="proc">Proc Details</h2><h3 id="proc/attack_ai">attack_ai<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/silicon.html">silicon</a>/<a href="mob/living/silicon/ai.html">ai</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L320">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 320"/></a></aside>
+        </h3>
+        <p>Prompt for the AI to unlink itself.</p><h3 id="proc/begin_fire"><aside class="declaration">proc </aside>begin_fire<aside>(/<a href="atom.html">atom</a>/target, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/mortal_shell.html">mortal_shell</a>/arty_shell) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L261">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 261"/></a></aside>
+        </h3>
+        <p>Start firing the gun on target and increase tally</p><h3 id="proc/falling"><aside class="declaration">proc </aside>falling<aside>(/<a href="turf.html">turf</a>/T, /<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/shell) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L315">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 315"/></a></aside>
+        </h3>
+        <p>Begins fall animation for projectile and plays fall sound</p><h3 id="proc/get_new_list"><aside class="declaration">proc </aside>get_new_list<aside>(str) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L183">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 183"/></a></aside>
+        </h3>
+        <p>this proc is used because pointers suck and references would break the saving of coordinates.</p><h3 id="proc/handle_undeploy_references"><aside class="declaration">proc </aside>handle_undeploy_references<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L331">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 331"/></a></aside>
+        </h3>
+        <p>Handles the continuity transfer of linked binoculars from the mortar struct to the mortar item</p><h3 id="proc/perform_firing_visuals"><aside class="declaration">proc </aside>perform_firing_visuals<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L304">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 304"/></a></aside>
+        </h3>
+        <p>perform any individual sprite-specific visuals here</p><h3 id="proc/recieve_target"><aside class="declaration">proc </aside>recieve_target<aside>(/<a href="turf.html">turf</a>/T, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L297">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 297"/></a></aside>
+        </h3>
+        <p>Proc called by tactical binoculars to send targeting information.</p><h3 id="proc/return_cam"><aside class="declaration">proc </aside>return_cam<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L309">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 309"/></a></aside>
+        </h3>
+        <p>Returns the impact camera to the mortar</p><h3 id="proc/unset_targeter"><aside class="declaration">proc </aside>unset_targeter<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/mortar.dm#L325">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;mortar.dm 325"/></a></aside>
+        </h3>
+        <p>Unlinking the AI from this mortar</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

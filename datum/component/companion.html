@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;companion - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/companion.html#var">Var Details</a> - <a href="datum/component/companion.html#proc">Proc Details</a></header>
+<main>
+<h1>companion <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/companion.html">companion</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/companion.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;companion.dm 11"/></a></h1>
+
+<p>Companion component</p>
+<p>This component defines behaviour for a mob to follow another mob and react to stuff it does.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/companion.html#var/mob_master">mob_master</a></th><td>The mob this mob is following</td></tr>
+            <tr><th><a href="datum/component/companion.html#var/on_hear_behaviours">on_hear_behaviours</a></th><td>List of actions performed upon hearing certain things from mob_master</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/companion.html#proc/assign_mob_master">assign_mob_master</a></th><td>Handles assigning a new master mob</td></tr>
+            <tr><th><a href="datum/component/companion.html#proc/clear_note">clear_note</a></th><td>Deletes the created commands note</td></tr>
+            <tr><th><a href="datum/component/companion.html#proc/goodbye">goodbye</a></th><td>Removes the current master_mob through a command</td></tr>
+            <tr><th><a href="datum/component/companion.html#proc/handle_attackby">handle_attackby</a></th><td>Handles what the companion does when interacted with with an item</td></tr>
+            <tr><th><a href="datum/component/companion.html#proc/handle_mob_master_speech">handle_mob_master_speech</a></th><td>Handles what the slug does on hearing its owner</td></tr>
+            <tr><th><a href="datum/component/companion.html#proc/handle_repeat_speech">handle_repeat_speech</a></th><td>Does the words repeating action</td></tr>
+            <tr><th><a href="datum/component/companion.html#proc/handle_update_name">handle_update_name</a></th><td>Does the name update action</td></tr>
+            <tr><th><a href="datum/component/companion.html#proc/help">help</a></th><td>The mob gives a note to the mob_master containing available commands</td></tr>
+            <tr><th><a href="datum/component/companion.html#proc/repeat_speech">repeat_speech</a></th><td>The slugcat repeats the person's words</td></tr>
+            <tr><th><a href="datum/component/companion.html#proc/unassign_mob_master">unassign_mob_master</a></th><td>This needs to be after the AI component as that sets the intent to harm
+Handles unassigning a master mob and cleaning up things related to that</td></tr>
+            <tr><th><a href="datum/component/companion.html#proc/update_name">update_name</a></th><td>The slugcat listens for its new name</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/mob_master"><aside class="declaration">var </aside>mob_master
+            <aside>&ndash; /<a href="mob.html">mob</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/companion.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;companion.dm 13"/></a></h3>
+        <p>The mob this mob is following</p><h3 id="var/on_hear_behaviours"><aside class="declaration">var </aside>on_hear_behaviours
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/companion.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;companion.dm 15"/></a></h3>
+        <p>List of actions performed upon hearing certain things from mob_master</p><h2 id="proc">Proc Details</h2><h3 id="proc/assign_mob_master"><aside class="declaration">proc </aside>assign_mob_master<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/new_mob_master, hello_message) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/companion.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;companion.dm 88"/></a></aside>
+        </h3>
+        <p>Handles assigning a new master mob</p><h3 id="proc/clear_note"><aside class="declaration">proc </aside>clear_note<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/companion.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;companion.dm 65"/></a></aside>
+        </h3>
+        <p>Deletes the created commands note</p><h3 id="proc/goodbye"><aside class="declaration">proc </aside>goodbye<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/companion.dm#L168">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;companion.dm 168"/></a></aside>
+        </h3>
+        <p>Removes the current master_mob through a command</p><h3 id="proc/handle_attackby"><aside class="declaration">proc </aside>handle_attackby<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, /<a href="mob.html">mob</a>/user, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/companion.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;companion.dm 71"/></a></aside>
+        </h3>
+        <p>Handles what the companion does when interacted with with an item</p><h3 id="proc/handle_mob_master_speech"><aside class="declaration">proc </aside>handle_mob_master_speech<aside>(/<a href="datum.html">datum</a>/source, message, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/speaker, message_language, raw_message, radio_freq, /list/spans, message_mode) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/companion.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;companion.dm 117"/></a></aside>
+        </h3>
+        <p>Handles what the slug does on hearing its owner</p><h3 id="proc/handle_repeat_speech"><aside class="declaration">proc </aside>handle_repeat_speech<aside>(/<a href="datum.html">datum</a>/source, message, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/speaker, message_language, raw_message, radio_freq, /list/spans, message_mode) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/companion.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;companion.dm 160"/></a></aside>
+        </h3>
+        <p>Does the words repeating action</p><h3 id="proc/handle_update_name"><aside class="declaration">proc </aside>handle_update_name<aside>(/<a href="datum.html">datum</a>/source, message, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/speaker, message_language, raw_message, radio_freq, /list/spans, message_mode) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/companion.dm#L144">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;companion.dm 144"/></a></aside>
+        </h3>
+        <p>Does the name update action</p><h3 id="proc/help"><aside class="declaration">proc </aside>help<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/companion.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;companion.dm 48"/></a></aside>
+        </h3>
+        <p>The mob gives a note to the mob_master containing available commands</p><h3 id="proc/repeat_speech"><aside class="declaration">proc </aside>repeat_speech<aside>(message) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/companion.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;companion.dm 155"/></a></aside>
+        </h3>
+        <p>The slugcat repeats the person's words</p><h3 id="proc/unassign_mob_master"><aside class="declaration">proc </aside>unassign_mob_master<aside>(goodbye_message) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/companion.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;companion.dm 103"/></a></aside>
+        </h3>
+        <p>This needs to be after the AI component as that sets the intent to harm
+Handles unassigning a master mob and cleaning up things related to that</p><h3 id="proc/update_name"><aside class="declaration">proc </aside>update_name<aside>(message) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/companion.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;companion.dm 139"/></a></aside>
+        </h3>
+        <p>The slugcat listens for its new name</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

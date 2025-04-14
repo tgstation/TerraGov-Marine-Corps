@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;activable&#x2F;xeno&#x2F;item_throw - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/activable/xeno/item_throw.html#var">Var Details</a> - <a href="datum/action/ability/activable/xeno/item_throw.html#proc">Proc Details</a></header>
+<main>
+<h1>item_throw <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/activable.html">activable</a>/<a href="datum/action/ability/activable/xeno.html">xeno</a>/<a href="datum/action/ability/activable/xeno/item_throw.html">item_throw</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/praetorian/abilities_praetorian.dm#L805">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;praetorian&#x2F;abilities_praetorian.dm 805"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/item_throw.html#var/has_moved_already">has_moved_already</a></th><td>If they have moved at least a single tile since picking up an item.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/item_throw.html#var/held_appearance">held_appearance</a></th><td>Mutable appearance of the held item.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/item_throw.html#var/held_item">held_item</a></th><td>If we are holding an item.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/item_throw.html#proc/drop_item">drop_item</a></th><td>Drops the item on the floor, thus ending the ability.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/item_throw.html#proc/on_item_qdel">on_item_qdel</a></th><td>Handles the unexpected qdel of the held item.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/item_throw.html#proc/on_move">on_move</a></th><td>On move, drop the item if they moved once already. Otherwise, set it so that they'll drop the item if they move again.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/item_throw.html#proc/on_owner_turn">on_owner_turn</a></th><td>Turns the held_appearance accordingly whenever the owner turns.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/item_throw.html#proc/on_throw_end">on_throw_end</a></th><td>Reduces throwforce by what it was increased by.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/has_moved_already"><aside class="declaration">var </aside>has_moved_already
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/praetorian/abilities_praetorian.dm#L817">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;praetorian&#x2F;abilities_praetorian.dm 817"/></a></h3>
+        <p>If they have moved at least a single tile since picking up an item.</p><h3 id="var/held_appearance"><aside class="declaration">var </aside>held_appearance
+            <aside>&ndash; /mutable_appearance</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/praetorian/abilities_praetorian.dm#L823">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;praetorian&#x2F;abilities_praetorian.dm 823"/></a></h3>
+        <p>Mutable appearance of the held item.</p><h3 id="var/held_item"><aside class="declaration">var </aside>held_item
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/praetorian/abilities_praetorian.dm#L819">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;praetorian&#x2F;abilities_praetorian.dm 819"/></a></h3>
+        <p>If we are holding an item.</p><h2 id="proc">Proc Details</h2><h3 id="proc/drop_item"><aside class="declaration">proc </aside>drop_item<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/praetorian/abilities_praetorian.dm#L897">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;praetorian&#x2F;abilities_praetorian.dm 897"/></a></aside>
+        </h3>
+        <p>Drops the item on the floor, thus ending the ability.</p><h3 id="proc/on_item_qdel"><aside class="declaration">proc </aside>on_item_qdel<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/praetorian/abilities_praetorian.dm#L911">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;praetorian&#x2F;abilities_praetorian.dm 911"/></a></aside>
+        </h3>
+        <p>Handles the unexpected qdel of the held item.</p><h3 id="proc/on_move"><aside class="declaration">proc </aside>on_move<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/praetorian/abilities_praetorian.dm#L889">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;praetorian&#x2F;abilities_praetorian.dm 889"/></a></aside>
+        </h3>
+        <p>On move, drop the item if they moved once already. Otherwise, set it so that they'll drop the item if they move again.</p><h3 id="proc/on_owner_turn"><aside class="declaration">proc </aside>on_owner_turn<aside>(/<a href="datum.html">datum</a>/source, old_dir, new_dir) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/praetorian/abilities_praetorian.dm#L921">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;praetorian&#x2F;abilities_praetorian.dm 921"/></a></aside>
+        </h3>
+        <p>Turns the held_appearance accordingly whenever the owner turns.</p><h3 id="proc/on_throw_end"><aside class="declaration">proc </aside>on_throw_end<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/praetorian/abilities_praetorian.dm#L882">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;praetorian&#x2F;abilities_praetorian.dm 882"/></a></aside>
+        </h3>
+        <p>Reduces throwforce by what it was increased by.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

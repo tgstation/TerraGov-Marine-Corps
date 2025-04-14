@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;mecha_parts&#x2F;mecha_equipment&#x2F;weapon - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var">Var Details</a> - <a href="obj/item/mecha_parts/mecha_equipment/weapon.html#proc">Proc Details</a></header>
+<main>
+<h1>weapon <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/mecha_parts/mecha_equipment.html">mecha_parts/mecha_equipment</a>/<a href="obj/item/mecha_parts/mecha_equipment/weapon.html">weapon</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/ammotype">ammotype</a></th><td>ammo datum/object typepath</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/burst_amount">burst_amount</a></th><td>bullets per burst if firemode is set to burst</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/current_firer">current_firer</a></th><td>current mob firing this weapon. used for tracking for iff and etc in fire()</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/current_target">current_target</a></th><td>current tracked target for fire(), updated when user drags</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/fire_mode">fire_mode</a></th><td>fire mode to use for autofire</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/fire_sound">fire_sound</a></th><td>sound file to play when this weapon you know, fires</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/flash_offsets">flash_offsets</a></th><td>list for this weapons flash offsets Format: MECHA_SLOT = list(DIR = list(PIXEL_X, PIXEL_Y))</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/flash_offsets_core">flash_offsets_core</a></th><td>identical to [flash_offsets], but for use with the snowflake mecha core sprites</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/muzzle_flash">muzzle_flash</a></th><td>Muzzle flash visual reference</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/muzzle_flash_color">muzzle_flash_color</a></th><td>color of the muzzle flash while shooting</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/muzzle_flash_lum">muzzle_flash_lum</a></th><td>Range of light when we flash while shooting</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/muzzle_iconstate">muzzle_iconstate</a></th><td>Icon state of the muzzle flash effect.</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/projectile_burst_delay">projectile_burst_delay</a></th><td>time between shots in a burst</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/projectile_delay">projectile_delay</a></th><td>since mech guns only get one firemode this is for all types of shots</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/rearm_time">rearm_time</a></th><td>how many seconds automatic rearming takes</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/smoke_effect">smoke_effect</a></th><td>smoke effect for when the gun fires</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/variance">variance</a></th><td>scatter of this weapon. in degrees and modified by arm this is attached to</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/windup_checked">windup_checked</a></th><td>Tracks windups</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/windup_delay">windup_delay</a></th><td>windup delay for this object</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#var/windup_sound">windup_sound</a></th><td>windup sound played during windup</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#proc/apply_weapon_modifiers">apply_weapon_modifiers</a></th><td>does any effects and changes to the projectile when it is fired</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#proc/change_target">change_target</a></th><td>Changes the current target.</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#proc/clean_target">clean_target</a></th><td>Cleans the current target in case of Hardel</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#proc/fire">fire</a></th><td>actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#proc/remove_flash">remove_flash</a></th><td>removes the flash object from viscontents</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#proc/reset_fire">reset_fire</a></th><td>Resets the autofire component.</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#proc/set_target">set_target</a></th><td>Sets the current target and registers for qdel to prevent hardels</td></tr>
+            <tr><th><a href="obj/item/mecha_parts/mecha_equipment/weapon.html#proc/stop_fire">stop_fire</a></th><td>Stops the Autofire component and resets the current cursor.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ammotype"><aside class="declaration">var </aside>ammotype
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/ammo.html">ammo</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 8"/></a></h3>
+        <p>ammo datum/object typepath</p><h3 id="var/burst_amount"><aside class="declaration">var </aside>burst_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 48"/></a></h3>
+        <p>bullets per burst if firemode is set to burst</p><h3 id="var/current_firer"><aside class="declaration">var </aside>current_firer
+            <aside>&ndash; /<a href="mob.html">mob</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 14"/></a></h3>
+        <p>current mob firing this weapon. used for tracking for iff and etc in fire()</p><h3 id="var/current_target"><aside class="declaration">var </aside>current_target
+            <aside>&ndash; /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 12"/></a></h3>
+        <p>current tracked target for fire(), updated when user drags</p><h3 id="var/fire_mode"><aside class="declaration">var </aside>fire_mode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 50"/></a></h3>
+        <p>fire mode to use for autofire</p><h3 id="var/fire_sound"><aside class="declaration">var </aside>fire_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 10"/></a></h3>
+        <p>sound file to play when this weapon you know, fires</p><h3 id="var/flash_offsets"><aside class="declaration">var </aside>flash_offsets
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 20"/></a></h3>
+        <p>list for this weapons flash offsets Format: MECHA_SLOT = list(DIR = list(PIXEL_X, PIXEL_Y))</p><h3 id="var/flash_offsets_core"><aside class="declaration">var </aside>flash_offsets_core
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 25"/></a></h3>
+        <p>identical to [flash_offsets], but for use with the snowflake mecha core sprites</p><h3 id="var/muzzle_flash"><aside class="declaration">var </aside>muzzle_flash
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/vis_obj/effect/muzzle_flash</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 18"/></a></h3>
+        <p>Muzzle flash visual reference</p><h3 id="var/muzzle_flash_color"><aside class="declaration">var </aside>muzzle_flash_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 34"/></a></h3>
+        <p>color of the muzzle flash while shooting</p><h3 id="var/muzzle_flash_lum"><aside class="declaration">var </aside>muzzle_flash_lum
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 36"/></a></h3>
+        <p>Range of light when we flash while shooting</p><h3 id="var/muzzle_iconstate"><aside class="declaration">var </aside>muzzle_iconstate
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 32"/></a></h3>
+        <p>Icon state of the muzzle flash effect.</p><h3 id="var/projectile_burst_delay"><aside class="declaration">var </aside>projectile_burst_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 46"/></a></h3>
+        <p>time between shots in a burst</p><h3 id="var/projectile_delay"><aside class="declaration">var </aside>projectile_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 44"/></a></h3>
+        <p>since mech guns only get one firemode this is for all types of shots</p><h3 id="var/rearm_time"><aside class="declaration">var </aside>rearm_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 52"/></a></h3>
+        <p>how many seconds automatic rearming takes</p><h3 id="var/smoke_effect"><aside class="declaration">var </aside>smoke_effect
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 54"/></a></h3>
+        <p>smoke effect for when the gun fires</p><h3 id="var/variance"><aside class="declaration">var </aside>variance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 42"/></a></h3>
+        <p>scatter of this weapon. in degrees and modified by arm this is attached to</p><h3 id="var/windup_checked"><aside class="declaration">var </aside>windup_checked
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 16"/></a></h3>
+        <p>Tracks windups</p><h3 id="var/windup_delay"><aside class="declaration">var </aside>windup_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 40"/></a></h3>
+        <p>windup delay for this object</p><h3 id="var/windup_sound"><aside class="declaration">var </aside>windup_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 38"/></a></h3>
+        <p>windup sound played during windup</p><h2 id="proc">Proc Details</h2><h3 id="proc/apply_weapon_modifiers"><aside class="declaration">proc </aside>apply_weapon_modifiers<aside>(/<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/projectile_to_fire, /<a href="mob.html">mob</a>/firer) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 175"/></a></aside>
+        </h3>
+        <p>does any effects and changes to the projectile when it is fired</p><h3 id="proc/change_target"><aside class="declaration">proc </aside>change_target<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/src_object, /<a href="atom.html">atom</a>/over_object, /<a href="turf.html">turf</a>/src_location, /<a href="turf.html">turf</a>/over_location, src_control, over_control, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L133">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 133"/></a></aside>
+        </h3>
+        <p>Changes the current target.</p><h3 id="proc/clean_target"><aside class="declaration">proc </aside>clean_target<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L159">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 159"/></a></aside>
+        </h3>
+        <p>Cleans the current target in case of Hardel</p><h3 id="proc/fire"><aside class="declaration">proc </aside>fire<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L196">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 196"/></a></aside>
+        </h3>
+        <p>actually executes firing when autofire asks for it, returns TRUE to keep firing FALSE to stop</p><h3 id="proc/remove_flash"><aside class="declaration">proc </aside>remove_flash<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/vis_obj/effect/muzzle_flash/flash) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L284">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 284"/></a></aside>
+        </h3>
+        <p>removes the flash object from viscontents</p><h3 id="proc/reset_fire"><aside class="declaration">proc </aside>reset_fire<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L164">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 164"/></a></aside>
+        </h3>
+        <p>Resets the autofire component.</p><h3 id="proc/set_target"><aside class="declaration">proc </aside>set_target<aside>(/<a href="atom.html">atom</a>/object) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 138"/></a></aside>
+        </h3>
+        <p>Sets the current target and registers for qdel to prevent hardels</p><h3 id="proc/stop_fire"><aside class="declaration">proc </aside>stop_fire<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/source, /<a href="atom.html">atom</a>/object, location, control, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/equipment/weapons/weapons.dm#L148">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;equipment&#x2F;weapons&#x2F;weapons.dm 148"/></a></aside>
+        </h3>
+        <p>Stops the Autofire component and resets the current cursor.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

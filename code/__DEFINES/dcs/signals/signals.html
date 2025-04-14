@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/dcs/signals/signals.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/dcs/signals/signals.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_NEW_Z">COMSIG_GLOB_NEW_Z</a></th><td>from base of datum/controller/subsystem/mapping/proc/add_new_zlevel(): (list/args)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CRASH_SHIP_LANDED">COMSIG_GLOB_CRASH_SHIP_LANDED</a></th><td>Marine ship in Crash gamemode has landed</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_GAMESTATE_GROUNDSIDE">COMSIG_GLOB_GAMESTATE_GROUNDSIDE</a></th><td>Gamemode changed to groundside state</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_GAMESTATE_SHIPSIDE">COMSIG_GLOB_GAMESTATE_SHIPSIDE</a></th><td>Gamemode changed to shipside state</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE">COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE</a></th><td>from /obj/machinery/setAnchored(): (machine, anchoredstate)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_VAR_EDIT">COMSIG_GLOB_VAR_EDIT</a></th><td>called after a successful var edit somewhere in the world: (list/args)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_EXPLOSION">COMSIG_GLOB_EXPLOSION</a></th><td>called after an explosion happened : (epicenter, devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_GAMEMODE_LOADED">COMSIG_GLOB_GAMEMODE_LOADED</a></th><td>Gamemode has successfully loaded</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CLIENT_CONNECT">COMSIG_GLOB_CLIENT_CONNECT</a></th><td>a client (re)connected, after all /client/New() checks have passed : (client/connected_client)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_WEATHER_TELEGRAPH">COMSIG_WEATHER_TELEGRAPH</a></th><td>a weather event of some kind occurred</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_DROPSHIP_TRANSIT">COMSIG_GLOB_DROPSHIP_TRANSIT</a></th><td>Sent when a marine dropship enters transit level</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_DROPSHIP_HIJACKED">COMSIG_GLOB_DROPSHIP_HIJACKED</a></th><td>Sent when xenos launch a hijacked dropship</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_LIGHT_OFF">COMSIG_GLOB_LIGHT_OFF</a></th><td>Sent when nightfall is casted</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_FLOODLIGHT_SWITCH">COMSIG_GLOB_FLOODLIGHT_SWITCH</a></th><td>Sent when the floodlight switch is powered</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED">COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED</a></th><td>Sent when the xenos lock the dropship controls</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_MINI_DROPSHIP_DESTROYED">COMSIG_GLOB_MINI_DROPSHIP_DESTROYED</a></th><td>Sent when the xenos destroy the tadpole controls</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_EXPANDED_WORLD_BOUNDS">COMSIG_GLOB_EXPANDED_WORLD_BOUNDS</a></th><td>sent after world.maxx and/or world.maxy are expanded: (has_exapnded_world_maxx, has_expanded_world_maxy)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CLONE_PRODUCED">COMSIG_GLOB_CLONE_PRODUCED</a></th><td>called after a clone is produced and leaves his vat</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_HOLOPAD_AI_CALLED">COMSIG_GLOB_HOLOPAD_AI_CALLED</a></th><td>called when an AI is requested by a holopad</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_BLUESPACE_GEN_ACTIVATED">COMSIG_GLOB_BLUESPACE_GEN_ACTIVATED</a></th><td>called whenever a groundside thermal bluespace generator turns on/off</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED">COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED</a></th><td>Sent when mob is deployed via a patrol point</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_TGMC">COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_TGMC</a></th><td>Opens the TGMC shipside shutters on campaign</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_SOM">COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_SOM</a></th><td>Opens the SOM shipside shutters on campaign</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CAMPAIGN_MISSION_LOADED">COMSIG_GLOB_CAMPAIGN_MISSION_LOADED</a></th><td>Sent when a new campaign mission is loaded</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CAMPAIGN_MISSION_STARTED">COMSIG_GLOB_CAMPAIGN_MISSION_STARTED</a></th><td>Sent when a campaign mission is started</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CAMPAIGN_MISSION_ENDED">COMSIG_GLOB_CAMPAIGN_MISSION_ENDED</a></th><td>Sent when a campaign mission ends</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED">COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED</a></th><td>Sent when a campaign objective has been destroyed</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED">COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED</a></th><td>Sent when a campaign capture objective has been captured</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_DECAPTURED">COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_DECAPTURED</a></th><td>Sent when a campaign capture objective has been decaptured</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAP_STARTED">COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAP_STARTED</a></th><td>Sent when a campaign capture objective has started the capture process</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS">COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS</a></th><td>Enables droppod use during campaign</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CAMPAIGN_DISABLE_DROPPODS">COMSIG_GLOB_CAMPAIGN_DISABLE_DROPPODS</a></th><td>Disables droppod use during campaign</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED">COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED</a></th><td>Removes teleporter restrictions from a mission</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CAMPAIGN_DROPBLOCKER_DISABLED">COMSIG_GLOB_CAMPAIGN_DROPBLOCKER_DISABLED</a></th><td>Removes droppod restrictions from a mission</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE">COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE</a></th><td>Override code for NT base rescue mission</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_RUNNING">COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_RUNNING</a></th><td>Code computer starts running</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_STOP_RUNNING">COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_STOP_RUNNING</a></th><td>Code computer stops running</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CAMPAIGN_OB_BEACON_ACTIVATION">COMSIG_GLOB_CAMPAIGN_OB_BEACON_ACTIVATION</a></th><td>Campaign OB beacon deployed</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED">COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED</a></th><td>Campaign OB beacon going off</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_TELEPORTER_ARRAY_ENABLED">COMSIG_GLOB_TELEPORTER_ARRAY_ENABLED</a></th><td>Enables the teleporter array</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_AI_HAZARD_NOTIFIED">COMSIG_GLOB_AI_HAZARD_NOTIFIED</a></th><td>from /atom/notify_ai_hazard()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_MOB_ON_CRIT">COMSIG_GLOB_MOB_ON_CRIT</a></th><td>from /mob/living/carbon/proc/on_crit()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_AI_NEED_HEAL">COMSIG_GLOB_AI_NEED_HEAL</a></th><td>from /datum/ai_behavior/human/proc/on_take_damage()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GLOB_MOB_CALL_MEDIC">COMSIG_GLOB_MOB_CALL_MEDIC</a></th><td>from /datum/emote/living/carbon/human/medic/run_emote()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_FIND_FOOTSTEP_SOUND">COMSIG_FIND_FOOTSTEP_SOUND</a></th><td>from turf/open/get_footstep_override(), to find an override footstep sound</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ELEMENT_JUMP_STARTED">COMSIG_ELEMENT_JUMP_STARTED</a></th><td>from /datum/element/jump when a jump has started and ended</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ADMIN_HELP_MADE_INACTIVE">COMSIG_ADMIN_HELP_MADE_INACTIVE</a></th><td>Admin helps
+From /datum/admin_help/RemoveActive().
+Fired when an adminhelp is made inactive either due to closing or resolving.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ADMIN_HELP_REPLIED">COMSIG_ADMIN_HELP_REPLIED</a></th><td>Called when the player replies. From /client/proc/cmd_admin_pm().</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_CLIENT_VERB_ADDED">COMSIG_CLIENT_VERB_ADDED</a></th><td>Called after one or more verbs are added: (list of verbs added)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_CLIENT_VERB_REMOVED">COMSIG_CLIENT_VERB_REMOVED</a></th><td>Called after one or more verbs are removed: (list of verbs added)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_CLIENT_MOB_LOGIN">COMSIG_CLIENT_MOB_LOGIN</a></th><td>Called on the client that just logged into a mob</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_CLIENT_MOB_LOGOUT">COMSIG_CLIENT_MOB_LOGOUT</a></th><td>Called on the client that just logged out from the mob: (/mob)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION">COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION</a></th><td>from /datum/component/larva_queue</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION">COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION</a></th><td>from /datum/component/larva_queue</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_COMPONENT_CLEAN_ACT">COMSIG_COMPONENT_CLEAN_ACT</a></th><td>Called on an object to &quot;clean it&quot;, such as removing blood decals/overlays, etc. The clean types bitfield is sent with it. Return TRUE if any cleaning was necessary and thus performed.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMPONENT_CLEANED">COMPONENT_CLEANED</a></th><td>Returned by cleanable components when they are cleaned.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/ATOM_MAX_STACK_MERGING">ATOM_MAX_STACK_MERGING</a></th><td>from base of atom/max_stack_merging(): (obj/item/stack/S)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/ATOM_RECALCULATE_STORAGE_SPACE">ATOM_RECALCULATE_STORAGE_SPACE</a></th><td>from base of atom/recalculate_storage_space(): ()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_BUMPED">COMSIG_ATOM_BUMPED</a></th><td>from base of atom/Bumped(): (/atom/movable)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MOVABLE_KEYBIND_FACE_DIR">COMSIG_MOVABLE_KEYBIND_FACE_DIR</a></th><td>from base of atom/movable/keybind_face_direction(): (dir). Called before turning with the movement lock key.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_IGNORE_MOVEMENT_LOCK">COMSIG_IGNORE_MOVEMENT_LOCK</a></th><td>ignores the movement lock key, used for turning while strafing in a mech</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_TAKE_DAMAGE">COMSIG_ATOM_TAKE_DAMAGE</a></th><td>from base of [/atom/proc/take_damage]: (damage_amount, damage_type, damage_flag, effects, attack_dir, aurmor_penetration)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMPONENT_NO_TAKE_DAMAGE">COMPONENT_NO_TAKE_DAMAGE</a></th><td>Return bitflags for the above signal which prevents the atom taking any damage.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_REPAIR_DAMAGE">COMSIG_ATOM_REPAIR_DAMAGE</a></th><td>from base of [/atom/proc/repair_damage]: (repair_amount, mob/user)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMPONENT_NO_REPAIR">COMPONENT_NO_REPAIR</a></th><td>Return bitflags for the above signal which prevents the atom repairing any damage.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_EMP_ACT">COMSIG_ATOM_EMP_ACT</a></th><td>from base of atom/emp_act(): (severity)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_EXAMINE">COMSIG_ATOM_EXAMINE</a></th><td>from base of atom/examine(): (/mob, list/examine_text)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_EXAMINE_TAGS">COMSIG_ATOM_EXAMINE_TAGS</a></th><td>from base of atom/examine_tags(): (/mob, list/examine_tags)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_GET_EXAMINE_NAME">COMSIG_ATOM_GET_EXAMINE_NAME</a></th><td>from base of atom/get_examine_name(): (/mob, list/overrides)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_GET_MECHANICS_INFO">COMSIG_ATOM_GET_MECHANICS_INFO</a></th><td>from base of atom/get_mechanics_info(): (/mob)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATE_APPEARANCE">COMSIG_ATOM_UPDATE_APPEARANCE</a></th><td>from base of <a href="atom.html#proc/update_appearance" title="/atom">/atom/proc/update_appearance</a>: (updates)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_NO_UPDATE_NAME">COMSIG_ATOM_NO_UPDATE_NAME</a></th><td>If returned from <a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATE_APPEARANCE" title="COMSIG_ATOM_UPDATE_APPEARANCE">COMSIG_ATOM_UPDATE_APPEARANCE</a> it prevents the atom from updating its name.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_NO_UPDATE_DESC">COMSIG_ATOM_NO_UPDATE_DESC</a></th><td>If returned from <a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATE_APPEARANCE" title="COMSIG_ATOM_UPDATE_APPEARANCE">COMSIG_ATOM_UPDATE_APPEARANCE</a> it prevents the atom from updating its desc.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_NO_UPDATE_ICON">COMSIG_ATOM_NO_UPDATE_ICON</a></th><td>If returned from <a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATE_APPEARANCE" title="COMSIG_ATOM_UPDATE_APPEARANCE">COMSIG_ATOM_UPDATE_APPEARANCE</a> it prevents the atom from updating its icon.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATE_NAME">COMSIG_ATOM_UPDATE_NAME</a></th><td>from base of <a href="atom.html#proc/update_name" title="/atom">/atom/proc/update_name</a>: (updates)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATE_DESC">COMSIG_ATOM_UPDATE_DESC</a></th><td>from base of <a href="atom.html#proc/update_desc" title="/atom">/atom/proc/update_desc</a>: (updates)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATE_ICON">COMSIG_ATOM_UPDATE_ICON</a></th><td>from base of <a href="atom.html#proc/update_icon" title="/atom">/atom/update_icon</a>: ()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_NO_UPDATE_ICON_STATE">COMSIG_ATOM_NO_UPDATE_ICON_STATE</a></th><td>If returned from <a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATE_ICON" title="COMSIG_ATOM_UPDATE_ICON">COMSIG_ATOM_UPDATE_ICON</a> it prevents the atom from updating its icon state.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_NO_UPDATE_OVERLAYS">COMSIG_ATOM_NO_UPDATE_OVERLAYS</a></th><td>If returned from <a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATE_ICON" title="COMSIG_ATOM_UPDATE_ICON">COMSIG_ATOM_UPDATE_ICON</a> it prevents the atom from updating its overlays.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATE_ICON_STATE">COMSIG_ATOM_UPDATE_ICON_STATE</a></th><td>from base of <a href="atom.html" title="/atom">atom/update_icon_state</a>: ()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATE_OVERLAYS">COMSIG_ATOM_UPDATE_OVERLAYS</a></th><td>from base of <a href="atom.html#proc/update_overlays" title="/atom">/atom/update_overlays</a>: (list/new_overlays)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_POST_UPDATE_OVERLAYS">COMSIG_ATOM_POST_UPDATE_OVERLAYS</a></th><td>called after <a href="atom.html#proc/update_overlays" title="/atom">/atom/update_overlays</a>: (list/new_overlays)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATED_ICON">COMSIG_ATOM_UPDATED_ICON</a></th><td>from base of <a href="atom.html#proc/update_icon" title="/atom">/atom/update_icon</a>: (signalOut, did_anything)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_INTERCEPT_Z_FALL">COMSIG_ATOM_INTERCEPT_Z_FALL</a></th><td>called for each movable in a turf contents on /turf/zImpact(): (atom/movable/A, levels)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_ON_Z_IMPACT">COMSIG_ATOM_ON_Z_IMPACT</a></th><td>signal sent out by an atom upon onZImpact : (turf/impacted_turf, levels)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_CONTENTS_EX_ACT">COMSIG_CONTENTS_EX_ACT</a></th><td>from base of atom/contents_explosion(): (severity)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_SET_OPACITY">COMSIG_ATOM_SET_OPACITY</a></th><td>from base of atom/set_opacity(): (new_opacity)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_SET_LIGHT_RANGE">COMSIG_ATOM_SET_LIGHT_RANGE</a></th><td>Called right before the atom changes the value of light_range to a different one, from base atom/set_light_range(): (new_range)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_SET_LIGHT_POWER">COMSIG_ATOM_SET_LIGHT_POWER</a></th><td>Called right before the atom changes the value of light_power to a different one, from base atom/set_light_power(): (new_power)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_SET_LIGHT_COLOR">COMSIG_ATOM_SET_LIGHT_COLOR</a></th><td>Called right before the atom changes the value of light_color to a different one, from base atom/set_light_color(): (new_color)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_SET_LIGHT_ON">COMSIG_ATOM_SET_LIGHT_ON</a></th><td>Called right before the atom changes the value of light_on to a different one, from base atom/set_light_on(): (new_value)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_SET_LIGHT_FLAGS">COMSIG_ATOM_SET_LIGHT_FLAGS</a></th><td>Called right before the atom changes the value of light_flags to a different one, from base atom/set_light_flags(): (new_value)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_GET_SELF_ACID">COMSIG_ATOM_GET_SELF_ACID</a></th><td>From base of atom/get_self_acid</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MOVABLE_CROSS">COMSIG_MOVABLE_CROSS</a></th><td>from base of atom/movable/Cross(): (/atom/movable)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MOVABLE_LOCATION_CHANGE">COMSIG_MOVABLE_LOCATION_CHANGE</a></th><td>from base of atom/movable/update_loc(): (/atom/oldloc)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MOVABLE_PREBUCKLE">COMSIG_MOVABLE_PREBUCKLE</a></th><td>from /atom/movable/proc/buckle_mob(): (mob/living/M, force, check_loc, buckle_mob_flags)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_VEHICLE_GRANT_CONTROL_FLAG">COMSIG_VEHICLE_GRANT_CONTROL_FLAG</a></th><td>from /obj/vehicle/add_control_flags</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_VEHICLE_REVOKE_CONTROL_FLAG">COMSIG_VEHICLE_REVOKE_CONTROL_FLAG</a></th><td>from /obj/vehicle/remove_control_flags</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_VEHICLE_MOVE">COMSIG_VEHICLE_MOVE</a></th><td>from /obj/vehicle/sealed/proc/driver_move</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MULTITILE_VEHICLE_ROTATED">COMSIG_MULTITILE_VEHICLE_ROTATED</a></th><td>From obj/hitbox/owner_turned</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_RIDDEN_DRIVER_MOVE">COMSIG_RIDDEN_DRIVER_MOVE</a></th><td>from /obj/vehicle/proc/driver_move, caught by the riding component to check and execute the driver trying to drive the vehicle</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_CAN_Z_MOVE">COMSIG_CAN_Z_MOVE</a></th><td>from /atom/movable/can_z_move(): (turf/start, turf/destination)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMPONENT_CANT_Z_MOVE">COMPONENT_CANT_Z_MOVE</a></th><td>Return to block z movement</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_BUCKLED_CAN_Z_MOVE">COMSIG_BUCKLED_CAN_Z_MOVE</a></th><td>from /mob/living/can_z_move, sent to whatever the mob is buckled to. Only ridable movables should be ridden up or down btw.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MOVABLE_SHUTTLE_CRUSH">COMSIG_MOVABLE_SHUTTLE_CRUSH</a></th><td>sent before a thing is crushed by a shuttle</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MOVABLE_PATROL_DEPLOYED">COMSIG_MOVABLE_PATROL_DEPLOYED</a></th><td>Movable deployed via a patrol point</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_TURF_RESERVATION_RELEASED">COMSIG_TURF_RESERVATION_RELEASED</a></th><td>from base of /datum/turf_reservation/proc/Release: (datum/turf_reservation/reservation)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_TURF_MULTIZ_DEL">COMSIG_TURF_MULTIZ_DEL</a></th><td>from base of turf/multiz_turf_del(): (turf/source, direction)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_TURF_MULTIZ_NEW">COMSIG_TURF_MULTIZ_NEW</a></th><td>from base of turf/multiz_turf_new: (turf/source, direction)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_TURF_INDUSTRIAL_LIFT_ENTER">COMSIG_TURF_INDUSTRIAL_LIFT_ENTER</a></th><td>called when an elevator enters this turf</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_OBJ_HIDE">COMSIG_OBJ_HIDE</a></th><td>from base of /turf/proc/levelupdate(). (intact) true to hide and false to unhide</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MACHINERY_POWERED">COMSIG_MACHINERY_POWERED</a></th><td>from /obj/machinery/proc/powered: ()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MACHINERY_USE_POWER">COMSIG_MACHINERY_USE_POWER</a></th><td>from /obj/machinery/proc/use_power: (amount, chan, list/power_sources)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MACHINERY_POWER_LOST">COMSIG_MACHINERY_POWER_LOST</a></th><td>from base power_change() when power is lost</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MACHINERY_POWER_RESTORED">COMSIG_MACHINERY_POWER_RESTORED</a></th><td>from base power_change() when power is restored</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_PORTGEN_POWER_TOGGLE">COMSIG_PORTGEN_POWER_TOGGLE</a></th><td>from /obj/machinery/power/port_gen/proc/TogglePower: ()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_PORTGEN_PROCESS">COMSIG_PORTGEN_PROCESS</a></th><td>from /obj/machinery/power/port_gen/process: ()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_UNMANNED_TURRET_UPDATED">COMSIG_UNMANNED_TURRET_UPDATED</a></th><td>from /obj/vehicle/unmanned/attackby: (newtype)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ITEM_ATTEMPT_PICK_UP">COMSIG_ITEM_ATTEMPT_PICK_UP</a></th><td>From /obj/item/proc/pickup(): (/obj/item/picked_up_item)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ITEM_QUICK_EQUIP">COMSIG_ITEM_QUICK_EQUIP</a></th><td>from base of obj/item/quick_equip(): (mob/user)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MOB_RESET_PERSPECTIVE">COMSIG_MOB_RESET_PERSPECTIVE</a></th><td>From base of /mob/proc/reset_perspective() : ()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MOUSEDROP_ONTO">COMSIG_MOUSEDROP_ONTO</a></th><td>from base of atom/MouseDrop(): (/atom/over, /mob/user)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MOUSEDROPPED_ONTO">COMSIG_MOUSEDROPPED_ONTO</a></th><td>from base of atom/MouseDrop_T: (/atom/from, /mob/user)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MOB_EXAMINATE">COMSIG_MOB_EXAMINATE</a></th><td>from base of /mob/verb/examinate(): (atom/target)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MOB_HUD_REFRESHED">COMSIG_MOB_HUD_REFRESHED</a></th><td>from base of hud/show_to(): (datum/hud/hud_source)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_CLIENT_SET_EYE">COMSIG_CLIENT_SET_EYE</a></th><td>from base of /client/proc/set_eye() : (atom/old_eye, atom/new_eye)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MOB_SIGHT_CHANGE">COMSIG_MOB_SIGHT_CHANGE</a></th><td>from base of mob/set_sight(): (new_sight, old_sight)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MOB_SEE_INVIS_CHANGE">COMSIG_MOB_SEE_INVIS_CHANGE</a></th><td>from base of mob/set_invis_see(): (new_invis, old_invis)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ITEM_GRILLED">COMSIG_ITEM_GRILLED</a></th><td>Called when an object is grilled ontop of a griddle</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_GRILL_COMPLETED">COMSIG_GRILL_COMPLETED</a></th><td>Called when an object is turned into another item through grilling ontop of a griddle</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MOB_GET_STATUS_TAB_ITEMS">COMSIG_MOB_GET_STATUS_TAB_ITEMS</a></th><td>from mob/get_status_tab_items(): (list/items)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MOB_DROPPING_ITEM">COMSIG_MOB_DROPPING_ITEM</a></th><td>from mob/proc/dropItemToGround()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/MOB_GET_DO_AFTER_COEFFICIENT">MOB_GET_DO_AFTER_COEFFICIENT</a></th><td>From mob/do_after_coefficent()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/MOB_GET_MISS_CHANCE_MOD">MOB_GET_MISS_CHANCE_MOD</a></th><td>From get_zone_with_miss_chance</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_HUMAN_HAS_AI">COMSIG_HUMAN_HAS_AI</a></th><td>From mob/living/carbon/human/has_ai()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_AI_JUMP">COMSIG_AI_JUMP</a></th><td>AI mob wants to jump</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_AI_EQUIPPED_GUN">COMSIG_AI_EQUIPPED_GUN</a></th><td>AI mob equipped a melee weapon</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_AI_EQUIPPED_MELEE">COMSIG_AI_EQUIPPED_MELEE</a></th><td>AI mob equipped a melee weapon</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_AI_HEALING_MOB">COMSIG_AI_HEALING_MOB</a></th><td>Mob being healed by an AI mob</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_AI_HEALING_FINISHED">COMSIG_AI_HEALING_FINISHED</a></th><td>Mob AI healing finished</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_LIVING_SET_LYING_ANGLE">COMSIG_LIVING_SET_LYING_ANGLE</a></th><td>from /mob/living/proc/set_lying_angle</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_LIVING_CAN_JUMP">COMSIG_LIVING_CAN_JUMP</a></th><td>From /mob/living/can_jump</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_LIVING_TREAT_MESSAGE">COMSIG_LIVING_TREAT_MESSAGE</a></th><td>From mob/living/treat_message(): (list/message_args)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/TREAT_MESSAGE_ARG">TREAT_MESSAGE_ARG</a></th><td>The index of message_args that corresponds to the actual message</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_LIVING_POST_FULLY_HEAL">COMSIG_LIVING_POST_FULLY_HEAL</a></th><td>from end of fully_heal(): (admin_revive)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_LIVING_WEEDS_AT_LOC_CREATED">COMSIG_LIVING_WEEDS_AT_LOC_CREATED</a></th><td>from obj/alien/weeds/Initialize()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_LIVING_WEEDS_ADJACENT_REMOVED">COMSIG_LIVING_WEEDS_ADJACENT_REMOVED</a></th><td>from obj/alien/weeds/Destroy()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_LIVING_SET_JUMP_COMPONENT">COMSIG_LIVING_SET_JUMP_COMPONENT</a></th><td>From base of mob/living/set_jump_component()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_LIVING_PICKED_UP_ITEM">COMSIG_LIVING_PICKED_UP_ITEM</a></th><td>From /obj/item/proc/pickup(): (/obj/item/picked_up_item)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_LIVING_Z_IMPACT">COMSIG_LIVING_Z_IMPACT</a></th><td>From base of mob/living/ZImpactDamage() (mob/living, levels, turf/t)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/ZIMPACT_CANCEL_DAMAGE">ZIMPACT_CANCEL_DAMAGE</a></th><td>Just for the signal return, does not run normal living handing of z fall damage for mobs</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/ZIMPACT_NO_MESSAGE">ZIMPACT_NO_MESSAGE</a></th><td>Do not show default z-impact message</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/ZIMPACT_NO_SPIN">ZIMPACT_NO_SPIN</a></th><td>Do not do the spin animation when landing</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_HUMAN_APPLY_OVERLAY">COMSIG_HUMAN_APPLY_OVERLAY</a></th><td>from [/mob/living/carbon/human/proc/apply_overlay]: (cache_index, list/overlays_to_apply)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_HUMAN_REMOVE_OVERLAY">COMSIG_HUMAN_REMOVE_OVERLAY</a></th><td>from [/mob/living/carbon/human/proc/remove_overlay]: (cache_index, list/overlays_to_remove)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_XENOMORPH_ATTACK_LIVING">COMSIG_XENOMORPH_ATTACK_LIVING</a></th><td>from /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location, random_location, no_head, no_crit, force_intent)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_XENOMORPH_POSTATTACK_LIVING">COMSIG_XENOMORPH_POSTATTACK_LIVING</a></th><td>after attacking, accounts for armor</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_XENO_OBJ_THROW_HIT">COMSIG_XENO_OBJ_THROW_HIT</a></th><td>from [/mob/living/carbon/xenomorph/throw_impact]: (obj/target, speed)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_XENO_LIVING_THROW_HIT">COMSIG_XENO_LIVING_THROW_HIT</a></th><td>from [/mob/living/carbon/xenomorph/throw_impact]: (mob/living/target)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_XENO_PROJECTILE_HIT">COMSIG_XENO_PROJECTILE_HIT</a></th><td>from [/mob/living/carbon/xenomorph/projectile_hit] called when a projectile hits a xeno but before confirmation of a hit (can miss due to inaccuracy/evasion)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_XENO_IFF_CHECK">COMSIG_XENO_IFF_CHECK</a></th><td>Signal used by certain IFF checking things to see if a xeno carries an IFF tag of the faction.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_NPC_FIND_NEW_ESCORT">COMSIG_NPC_FIND_NEW_ESCORT</a></th><td>See if we have any priority escort targets</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_SONG_START">COMSIG_SONG_START</a></th><td>sent to the instrument when a song starts playing</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_SONG_END">COMSIG_SONG_END</a></th><td>sent to the instrument when a song stops playing</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MECHA_ACTION_TRIGGER">COMSIG_MECHA_ACTION_TRIGGER</a></th><td>sent from mecha action buttons to the mecha they're linked to</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MECHA_MELEE_CLICK">COMSIG_MECHA_MELEE_CLICK</a></th><td>sent from clicking while you have no equipment selected. Sent before cooldown and adjacency checks, so you can use this for infinite range things if you want.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMPONENT_CANCEL_MELEE_CLICK">COMPONENT_CANCEL_MELEE_CLICK</a></th><td>Prevents click from happening.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_MECHA_EQUIPMENT_CLICK">COMSIG_MECHA_EQUIPMENT_CLICK</a></th><td>sent from clicking while you have equipment selected.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMPONENT_CANCEL_EQUIPMENT_CLICK">COMPONENT_CANCEL_EQUIPMENT_CLICK</a></th><td>Prevents click from happening.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ACTION_TRIGGER">COMSIG_ACTION_TRIGGER</a></th><td>Non-Signal Component Related Defines</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_REEQUIP_FAILURE">COMSIG_REEQUIP_FAILURE</a></th><td>From reequip components</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/SPATIAL_GRID_CELL_ENTERED">SPATIAL_GRID_CELL_ENTERED</a></th><td>Called from base of /datum/controller/subsystem/spatial_grid/proc/enter_cell: (/atom/movable)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/SPATIAL_GRID_CELL_EXITED">SPATIAL_GRID_CELL_EXITED</a></th><td>Called from base of /datum/controller/subsystem/spatial_grid/proc/exit_cell: (/atom/movable)</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_CAVE_INTERFERENCE_CHECK">COMSIG_CAVE_INTERFERENCE_CHECK</a></th><td>Cave comms interference check signal.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_CAMPAIGN_NEW_ASSET">COMSIG_CAMPAIGN_NEW_ASSET</a></th><td>Campaign asset obtained for the first time</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_CAMPAIGN_ASSET_ACTIVATION">COMSIG_CAMPAIGN_ASSET_ACTIVATION</a></th><td>Campaign asset activation successful</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_CAMPAIGN_DISABLER_ACTIVATION">COMSIG_CAMPAIGN_DISABLER_ACTIVATION</a></th><td>Campaign asset disabler activated</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_SECURITY_LEVEL_CHANGED">COMSIG_SECURITY_LEVEL_CHANGED</a></th><td>From <a href="datum/controller/subsystem/security_level.html#proc/set_level" title="/datum/controller/subsystem/security_level">/datum/controller/subsystem/security_level/proc/set_level</a>
+<code>/datum/security_level/next_level</code>, <code>/datum/security_level/previous_level</code></td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ATOM_MAX_STACK_MERGING"><aside class="declaration">#define </aside>ATOM_MAX_STACK_MERGING
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L247">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 247"/></a>
+    </h3>
+    <p>from base of atom/max_stack_merging(): (obj/item/stack/S)</p><h3 id="define/ATOM_RECALCULATE_STORAGE_SPACE"><aside class="declaration">#define </aside>ATOM_RECALCULATE_STORAGE_SPACE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L249">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 249"/></a>
+    </h3>
+    <p>from base of atom/recalculate_storage_space(): ()</p><h3 id="define/COMPONENT_CANCEL_EQUIPMENT_CLICK"><aside class="declaration">#define </aside>COMPONENT_CANCEL_EQUIPMENT_CLICK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L898">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 898"/></a>
+    </h3>
+    <p>Prevents click from happening.</p><h3 id="define/COMPONENT_CANCEL_MELEE_CLICK"><aside class="declaration">#define </aside>COMPONENT_CANCEL_MELEE_CLICK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L894">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 894"/></a>
+    </h3>
+    <p>Prevents click from happening.</p><h3 id="define/COMPONENT_CANT_Z_MOVE"><aside class="declaration">#define </aside>COMPONENT_CANT_Z_MOVE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L394">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 394"/></a>
+    </h3>
+    <p>Return to block z movement</p><h3 id="define/COMPONENT_CLEANED"><aside class="declaration">#define </aside>COMPONENT_CLEANED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L245">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 245"/></a>
+    </h3>
+    <p>Returned by cleanable components when they are cleaned.</p><h3 id="define/COMPONENT_NO_REPAIR"><aside class="declaration">#define </aside>COMPONENT_NO_REPAIR
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L275">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 275"/></a>
+    </h3>
+    <p>Return bitflags for the above signal which prevents the atom repairing any damage.</p><h3 id="define/COMPONENT_NO_TAKE_DAMAGE"><aside class="declaration">#define </aside>COMPONENT_NO_TAKE_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L271">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 271"/></a>
+    </h3>
+    <p>Return bitflags for the above signal which prevents the atom taking any damage.</p><h3 id="define/COMSIG_ACTION_TRIGGER"><aside class="declaration">#define </aside>COMSIG_ACTION_TRIGGER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L904">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 904"/></a>
+    </h3>
+    <p>Non-Signal Component Related Defines</p><h3 id="define/COMSIG_ADMIN_HELP_MADE_INACTIVE"><aside class="declaration">#define </aside>COMSIG_ADMIN_HELP_MADE_INACTIVE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L184">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 184"/></a>
+    </h3>
+    <p>Admin helps
+From /datum/admin_help/RemoveActive().
+Fired when an adminhelp is made inactive either due to closing or resolving.</p><h3 id="define/COMSIG_ADMIN_HELP_REPLIED"><aside class="declaration">#define </aside>COMSIG_ADMIN_HELP_REPLIED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L187">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 187"/></a>
+    </h3>
+    <p>Called when the player replies. From /client/proc/cmd_admin_pm().</p><h3 id="define/COMSIG_AI_EQUIPPED_GUN"><aside class="declaration">#define </aside>COMSIG_AI_EQUIPPED_GUN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L661">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 661"/></a>
+    </h3>
+    <p>AI mob equipped a melee weapon</p><h3 id="define/COMSIG_AI_EQUIPPED_MELEE"><aside class="declaration">#define </aside>COMSIG_AI_EQUIPPED_MELEE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L663">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 663"/></a>
+    </h3>
+    <p>AI mob equipped a melee weapon</p><h3 id="define/COMSIG_AI_HEALING_FINISHED"><aside class="declaration">#define </aside>COMSIG_AI_HEALING_FINISHED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L667">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 667"/></a>
+    </h3>
+    <p>Mob AI healing finished</p><h3 id="define/COMSIG_AI_HEALING_MOB"><aside class="declaration">#define </aside>COMSIG_AI_HEALING_MOB
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L665">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 665"/></a>
+    </h3>
+    <p>Mob being healed by an AI mob</p><h3 id="define/COMSIG_AI_JUMP"><aside class="declaration">#define </aside>COMSIG_AI_JUMP
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L659">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 659"/></a>
+    </h3>
+    <p>AI mob wants to jump</p><h3 id="define/COMSIG_ATOM_BUMPED"><aside class="declaration">#define </aside>COMSIG_ATOM_BUMPED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L255">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 255"/></a>
+    </h3>
+    <p>from base of atom/Bumped(): (/atom/movable)</p><h3 id="define/COMSIG_ATOM_EMP_ACT"><aside class="declaration">#define </aside>COMSIG_ATOM_EMP_ACT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L277">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 277"/></a>
+    </h3>
+    <p>from base of atom/emp_act(): (severity)</p><h3 id="define/COMSIG_ATOM_EXAMINE"><aside class="declaration">#define </aside>COMSIG_ATOM_EXAMINE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L279">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 279"/></a>
+    </h3>
+    <p>from base of atom/examine(): (/mob, list/examine_text)</p><h3 id="define/COMSIG_ATOM_EXAMINE_TAGS"><aside class="declaration">#define </aside>COMSIG_ATOM_EXAMINE_TAGS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L281">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 281"/></a>
+    </h3>
+    <p>from base of atom/examine_tags(): (/mob, list/examine_tags)</p><h3 id="define/COMSIG_ATOM_GET_EXAMINE_NAME"><aside class="declaration">#define </aside>COMSIG_ATOM_GET_EXAMINE_NAME
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L283">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 283"/></a>
+    </h3>
+    <p>from base of atom/get_examine_name(): (/mob, list/overrides)</p><h3 id="define/COMSIG_ATOM_GET_MECHANICS_INFO"><aside class="declaration">#define </aside>COMSIG_ATOM_GET_MECHANICS_INFO
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L290">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 290"/></a>
+    </h3>
+    <p>from base of atom/get_mechanics_info(): (/mob)</p><h3 id="define/COMSIG_ATOM_GET_SELF_ACID"><aside class="declaration">#define </aside>COMSIG_ATOM_GET_SELF_ACID
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L352">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 352"/></a>
+    </h3>
+    <p>From base of atom/get_self_acid</p><h3 id="define/COMSIG_ATOM_INTERCEPT_Z_FALL"><aside class="declaration">#define </aside>COMSIG_ATOM_INTERCEPT_Z_FALL
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L321">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 321"/></a>
+    </h3>
+    <p>called for each movable in a turf contents on /turf/zImpact(): (atom/movable/A, levels)</p><h3 id="define/COMSIG_ATOM_NO_UPDATE_DESC"><aside class="declaration">#define </aside>COMSIG_ATOM_NO_UPDATE_DESC
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L298">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 298"/></a>
+    </h3>
+    <p>If returned from <a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATE_APPEARANCE" title="COMSIG_ATOM_UPDATE_APPEARANCE">COMSIG_ATOM_UPDATE_APPEARANCE</a> it prevents the atom from updating its desc.</p><h3 id="define/COMSIG_ATOM_NO_UPDATE_ICON"><aside class="declaration">#define </aside>COMSIG_ATOM_NO_UPDATE_ICON
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L300">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 300"/></a>
+    </h3>
+    <p>If returned from <a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATE_APPEARANCE" title="COMSIG_ATOM_UPDATE_APPEARANCE">COMSIG_ATOM_UPDATE_APPEARANCE</a> it prevents the atom from updating its icon.</p><h3 id="define/COMSIG_ATOM_NO_UPDATE_ICON_STATE"><aside class="declaration">#define </aside>COMSIG_ATOM_NO_UPDATE_ICON_STATE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L308">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 308"/></a>
+    </h3>
+    <p>If returned from <a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATE_ICON" title="COMSIG_ATOM_UPDATE_ICON">COMSIG_ATOM_UPDATE_ICON</a> it prevents the atom from updating its icon state.</p><h3 id="define/COMSIG_ATOM_NO_UPDATE_NAME"><aside class="declaration">#define </aside>COMSIG_ATOM_NO_UPDATE_NAME
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L296">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 296"/></a>
+    </h3>
+    <p>If returned from <a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATE_APPEARANCE" title="COMSIG_ATOM_UPDATE_APPEARANCE">COMSIG_ATOM_UPDATE_APPEARANCE</a> it prevents the atom from updating its name.</p><h3 id="define/COMSIG_ATOM_NO_UPDATE_OVERLAYS"><aside class="declaration">#define </aside>COMSIG_ATOM_NO_UPDATE_OVERLAYS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L310">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 310"/></a>
+    </h3>
+    <p>If returned from <a href="code/__DEFINES/dcs/signals/signals.html#define/COMSIG_ATOM_UPDATE_ICON" title="COMSIG_ATOM_UPDATE_ICON">COMSIG_ATOM_UPDATE_ICON</a> it prevents the atom from updating its overlays.</p><h3 id="define/COMSIG_ATOM_ON_Z_IMPACT"><aside class="declaration">#define </aside>COMSIG_ATOM_ON_Z_IMPACT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L323">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 323"/></a>
+    </h3>
+    <p>signal sent out by an atom upon onZImpact : (turf/impacted_turf, levels)</p><h3 id="define/COMSIG_ATOM_POST_UPDATE_OVERLAYS"><aside class="declaration">#define </aside>COMSIG_ATOM_POST_UPDATE_OVERLAYS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L316">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 316"/></a>
+    </h3>
+    <p>called after <a href="atom.html#proc/update_overlays" title="/atom">/atom/update_overlays</a>: (list/new_overlays)</p><h3 id="define/COMSIG_ATOM_REPAIR_DAMAGE"><aside class="declaration">#define </aside>COMSIG_ATOM_REPAIR_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L273">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 273"/></a>
+    </h3>
+    <p>from base of [/atom/proc/repair_damage]: (repair_amount, mob/user)</p><h3 id="define/COMSIG_ATOM_SET_LIGHT_COLOR"><aside class="declaration">#define </aside>COMSIG_ATOM_SET_LIGHT_COLOR
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L346">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 346"/></a>
+    </h3>
+    <p>Called right before the atom changes the value of light_color to a different one, from base atom/set_light_color(): (new_color)</p><h3 id="define/COMSIG_ATOM_SET_LIGHT_FLAGS"><aside class="declaration">#define </aside>COMSIG_ATOM_SET_LIGHT_FLAGS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L350">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 350"/></a>
+    </h3>
+    <p>Called right before the atom changes the value of light_flags to a different one, from base atom/set_light_flags(): (new_value)</p><h3 id="define/COMSIG_ATOM_SET_LIGHT_ON"><aside class="declaration">#define </aside>COMSIG_ATOM_SET_LIGHT_ON
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L348">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 348"/></a>
+    </h3>
+    <p>Called right before the atom changes the value of light_on to a different one, from base atom/set_light_on(): (new_value)</p><h3 id="define/COMSIG_ATOM_SET_LIGHT_POWER"><aside class="declaration">#define </aside>COMSIG_ATOM_SET_LIGHT_POWER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L344">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 344"/></a>
+    </h3>
+    <p>Called right before the atom changes the value of light_power to a different one, from base atom/set_light_power(): (new_power)</p><h3 id="define/COMSIG_ATOM_SET_LIGHT_RANGE"><aside class="declaration">#define </aside>COMSIG_ATOM_SET_LIGHT_RANGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L342">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 342"/></a>
+    </h3>
+    <p>Called right before the atom changes the value of light_range to a different one, from base atom/set_light_range(): (new_range)</p><h3 id="define/COMSIG_ATOM_SET_OPACITY"><aside class="declaration">#define </aside>COMSIG_ATOM_SET_OPACITY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L339">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 339"/></a>
+    </h3>
+    <p>from base of atom/set_opacity(): (new_opacity)</p><h3 id="define/COMSIG_ATOM_TAKE_DAMAGE"><aside class="declaration">#define </aside>COMSIG_ATOM_TAKE_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L269">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 269"/></a>
+    </h3>
+    <p>from base of [/atom/proc/take_damage]: (damage_amount, damage_type, damage_flag, effects, attack_dir, aurmor_penetration)</p><h3 id="define/COMSIG_ATOM_UPDATED_ICON"><aside class="declaration">#define </aside>COMSIG_ATOM_UPDATED_ICON
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L318">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 318"/></a>
+    </h3>
+    <p>from base of <a href="atom.html#proc/update_icon" title="/atom">/atom/update_icon</a>: (signalOut, did_anything)</p><h3 id="define/COMSIG_ATOM_UPDATE_APPEARANCE"><aside class="declaration">#define </aside>COMSIG_ATOM_UPDATE_APPEARANCE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L294">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 294"/></a>
+    </h3>
+    <p>from base of <a href="atom.html#proc/update_appearance" title="/atom">/atom/proc/update_appearance</a>: (updates)</p><h3 id="define/COMSIG_ATOM_UPDATE_DESC"><aside class="declaration">#define </aside>COMSIG_ATOM_UPDATE_DESC
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L304">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 304"/></a>
+    </h3>
+    <p>from base of <a href="atom.html#proc/update_desc" title="/atom">/atom/proc/update_desc</a>: (updates)</p><h3 id="define/COMSIG_ATOM_UPDATE_ICON"><aside class="declaration">#define </aside>COMSIG_ATOM_UPDATE_ICON
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L306">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 306"/></a>
+    </h3>
+    <p>from base of <a href="atom.html#proc/update_icon" title="/atom">/atom/update_icon</a>: ()</p><h3 id="define/COMSIG_ATOM_UPDATE_ICON_STATE"><aside class="declaration">#define </aside>COMSIG_ATOM_UPDATE_ICON_STATE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L312">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 312"/></a>
+    </h3>
+    <p>from base of <a href="atom.html" title="/atom">atom/update_icon_state</a>: ()</p><h3 id="define/COMSIG_ATOM_UPDATE_NAME"><aside class="declaration">#define </aside>COMSIG_ATOM_UPDATE_NAME
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L302">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 302"/></a>
+    </h3>
+    <p>from base of <a href="atom.html#proc/update_name" title="/atom">/atom/proc/update_name</a>: (updates)</p><h3 id="define/COMSIG_ATOM_UPDATE_OVERLAYS"><aside class="declaration">#define </aside>COMSIG_ATOM_UPDATE_OVERLAYS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L314">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 314"/></a>
+    </h3>
+    <p>from base of <a href="atom.html#proc/update_overlays" title="/atom">/atom/update_overlays</a>: (list/new_overlays)</p><h3 id="define/COMSIG_BUCKLED_CAN_Z_MOVE"><aside class="declaration">#define </aside>COMSIG_BUCKLED_CAN_Z_MOVE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L396">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 396"/></a>
+    </h3>
+    <p>from /mob/living/can_z_move, sent to whatever the mob is buckled to. Only ridable movables should be ridden up or down btw.</p><h3 id="define/COMSIG_CAMPAIGN_ASSET_ACTIVATION"><aside class="declaration">#define </aside>COMSIG_CAMPAIGN_ASSET_ACTIVATION
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L957">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 957"/></a>
+    </h3>
+    <p>Campaign asset activation successful</p><h3 id="define/COMSIG_CAMPAIGN_DISABLER_ACTIVATION"><aside class="declaration">#define </aside>COMSIG_CAMPAIGN_DISABLER_ACTIVATION
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L959">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 959"/></a>
+    </h3>
+    <p>Campaign asset disabler activated</p><h3 id="define/COMSIG_CAMPAIGN_NEW_ASSET"><aside class="declaration">#define </aside>COMSIG_CAMPAIGN_NEW_ASSET
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L955">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 955"/></a>
+    </h3>
+    <p>Campaign asset obtained for the first time</p><h3 id="define/COMSIG_CAN_Z_MOVE"><aside class="declaration">#define </aside>COMSIG_CAN_Z_MOVE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L392">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 392"/></a>
+    </h3>
+    <p>from /atom/movable/can_z_move(): (turf/start, turf/destination)</p><h3 id="define/COMSIG_CAVE_INTERFERENCE_CHECK"><aside class="declaration">#define </aside>COMSIG_CAVE_INTERFERENCE_CHECK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L951">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 951"/></a>
+    </h3>
+    <p>Cave comms interference check signal.</p><h3 id="define/COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION"><aside class="declaration">#define </aside>COMSIG_CLIENT_GET_LARVA_QUEUE_POSITION
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L232">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 232"/></a>
+    </h3>
+    <p>from /datum/component/larva_queue</p><h3 id="define/COMSIG_CLIENT_MOB_LOGIN"><aside class="declaration">#define </aside>COMSIG_CLIENT_MOB_LOGIN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L230">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 230"/></a>
+    </h3>
+    <p>Called on the client that just logged into a mob</p><h3 id="define/COMSIG_CLIENT_MOB_LOGOUT"><aside class="declaration">#define </aside>COMSIG_CLIENT_MOB_LOGOUT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L231">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 231"/></a>
+    </h3>
+    <p>Called on the client that just logged out from the mob: (/mob)</p><h3 id="define/COMSIG_CLIENT_SET_EYE"><aside class="declaration">#define </aside>COMSIG_CLIENT_SET_EYE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L602">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 602"/></a>
+    </h3>
+    <p>from base of /client/proc/set_eye() : (atom/old_eye, atom/new_eye)</p><h3 id="define/COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION"><aside class="declaration">#define </aside>COMSIG_CLIENT_SET_LARVA_QUEUE_POSITION
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L233">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 233"/></a>
+    </h3>
+    <p>from /datum/component/larva_queue</p><h3 id="define/COMSIG_CLIENT_VERB_ADDED"><aside class="declaration">#define </aside>COMSIG_CLIENT_VERB_ADDED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L225">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 225"/></a>
+    </h3>
+    <p>Called after one or more verbs are added: (list of verbs added)</p><h3 id="define/COMSIG_CLIENT_VERB_REMOVED"><aside class="declaration">#define </aside>COMSIG_CLIENT_VERB_REMOVED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L227">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 227"/></a>
+    </h3>
+    <p>Called after one or more verbs are removed: (list of verbs added)</p><h3 id="define/COMSIG_COMPONENT_CLEAN_ACT"><aside class="declaration">#define </aside>COMSIG_COMPONENT_CLEAN_ACT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L243">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 243"/></a>
+    </h3>
+    <p>Called on an object to &quot;clean it&quot;, such as removing blood decals/overlays, etc. The clean types bitfield is sent with it. Return TRUE if any cleaning was necessary and thus performed.</p><h3 id="define/COMSIG_CONTENTS_EX_ACT"><aside class="declaration">#define </aside>COMSIG_CONTENTS_EX_ACT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L328">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 328"/></a>
+    </h3>
+    <p>from base of atom/contents_explosion(): (severity)</p><h3 id="define/COMSIG_ELEMENT_JUMP_STARTED"><aside class="declaration">#define </aside>COMSIG_ELEMENT_JUMP_STARTED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L168">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 168"/></a>
+    </h3>
+    <p>from /datum/element/jump when a jump has started and ended</p><h3 id="define/COMSIG_FIND_FOOTSTEP_SOUND"><aside class="declaration">#define </aside>COMSIG_FIND_FOOTSTEP_SOUND
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L165">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 165"/></a>
+    </h3>
+    <p>from turf/open/get_footstep_override(), to find an override footstep sound</p><h3 id="define/COMSIG_GLOB_AI_HAZARD_NOTIFIED"><aside class="declaration">#define </aside>COMSIG_GLOB_AI_HAZARD_NOTIFIED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L147">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 147"/></a>
+    </h3>
+    <p>from /atom/notify_ai_hazard()</p><h3 id="define/COMSIG_GLOB_AI_NEED_HEAL"><aside class="declaration">#define </aside>COMSIG_GLOB_AI_NEED_HEAL
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 152"/></a>
+    </h3>
+    <p>from /datum/ai_behavior/human/proc/on_take_damage()</p><h3 id="define/COMSIG_GLOB_BLUESPACE_GEN_ACTIVATED"><aside class="declaration">#define </aside>COMSIG_GLOB_BLUESPACE_GEN_ACTIVATED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 102"/></a>
+    </h3>
+    <p>called whenever a groundside thermal bluespace generator turns on/off</p><h3 id="define/COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED"><aside class="declaration">#define </aside>COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAPTURED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 120"/></a>
+    </h3>
+    <p>Sent when a campaign capture objective has been captured</p><h3 id="define/COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAP_STARTED"><aside class="declaration">#define </aside>COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_CAP_STARTED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 124"/></a>
+    </h3>
+    <p>Sent when a campaign capture objective has started the capture process</p><h3 id="define/COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_DECAPTURED"><aside class="declaration">#define </aside>COMSIG_GLOB_CAMPAIGN_CAPTURE_OBJECTIVE_DECAPTURED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 122"/></a>
+    </h3>
+    <p>Sent when a campaign capture objective has been decaptured</p><h3 id="define/COMSIG_GLOB_CAMPAIGN_DISABLE_DROPPODS"><aside class="declaration">#define </aside>COMSIG_GLOB_CAMPAIGN_DISABLE_DROPPODS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L128">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 128"/></a>
+    </h3>
+    <p>Disables droppod use during campaign</p><h3 id="define/COMSIG_GLOB_CAMPAIGN_DROPBLOCKER_DISABLED"><aside class="declaration">#define </aside>COMSIG_GLOB_CAMPAIGN_DROPBLOCKER_DISABLED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 132"/></a>
+    </h3>
+    <p>Removes droppod restrictions from a mission</p><h3 id="define/COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS"><aside class="declaration">#define </aside>COMSIG_GLOB_CAMPAIGN_ENABLE_DROPPODS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 126"/></a>
+    </h3>
+    <p>Enables droppod use during campaign</p><h3 id="define/COMSIG_GLOB_CAMPAIGN_MISSION_ENDED"><aside class="declaration">#define </aside>COMSIG_GLOB_CAMPAIGN_MISSION_ENDED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 116"/></a>
+    </h3>
+    <p>Sent when a campaign mission ends</p><h3 id="define/COMSIG_GLOB_CAMPAIGN_MISSION_LOADED"><aside class="declaration">#define </aside>COMSIG_GLOB_CAMPAIGN_MISSION_LOADED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 112"/></a>
+    </h3>
+    <p>Sent when a new campaign mission is loaded</p><h3 id="define/COMSIG_GLOB_CAMPAIGN_MISSION_STARTED"><aside class="declaration">#define </aside>COMSIG_GLOB_CAMPAIGN_MISSION_STARTED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 114"/></a>
+    </h3>
+    <p>Sent when a campaign mission is started</p><h3 id="define/COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE"><aside class="declaration">#define </aside>COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_CODE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 134"/></a>
+    </h3>
+    <p>Override code for NT base rescue mission</p><h3 id="define/COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_RUNNING"><aside class="declaration">#define </aside>COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_RUNNING
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 136"/></a>
+    </h3>
+    <p>Code computer starts running</p><h3 id="define/COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_STOP_RUNNING"><aside class="declaration">#define </aside>COMSIG_GLOB_CAMPAIGN_NT_OVERRIDE_STOP_RUNNING
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 138"/></a>
+    </h3>
+    <p>Code computer stops running</p><h3 id="define/COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED"><aside class="declaration">#define </aside>COMSIG_GLOB_CAMPAIGN_OBJECTIVE_DESTROYED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 118"/></a>
+    </h3>
+    <p>Sent when a campaign objective has been destroyed</p><h3 id="define/COMSIG_GLOB_CAMPAIGN_OB_BEACON_ACTIVATION"><aside class="declaration">#define </aside>COMSIG_GLOB_CAMPAIGN_OB_BEACON_ACTIVATION
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L140">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 140"/></a>
+    </h3>
+    <p>Campaign OB beacon deployed</p><h3 id="define/COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED"><aside class="declaration">#define </aside>COMSIG_GLOB_CAMPAIGN_OB_BEACON_TRIGGERED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L142">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 142"/></a>
+    </h3>
+    <p>Campaign OB beacon going off</p><h3 id="define/COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED"><aside class="declaration">#define </aside>COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 130"/></a>
+    </h3>
+    <p>Removes teleporter restrictions from a mission</p><h3 id="define/COMSIG_GLOB_CLIENT_CONNECT"><aside class="declaration">#define </aside>COMSIG_GLOB_CLIENT_CONNECT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 48"/></a>
+    </h3>
+    <p>a client (re)connected, after all /client/New() checks have passed : (client/connected_client)</p><h3 id="define/COMSIG_GLOB_CLONE_PRODUCED"><aside class="declaration">#define </aside>COMSIG_GLOB_CLONE_PRODUCED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 96"/></a>
+    </h3>
+    <p>called after a clone is produced and leaves his vat</p><h3 id="define/COMSIG_GLOB_CRASH_SHIP_LANDED"><aside class="declaration">#define </aside>COMSIG_GLOB_CRASH_SHIP_LANDED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 17"/></a>
+    </h3>
+    <p>Marine ship in Crash gamemode has landed</p><h3 id="define/COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED"><aside class="declaration">#define </aside>COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 77"/></a>
+    </h3>
+    <p>Sent when the xenos lock the dropship controls</p><h3 id="define/COMSIG_GLOB_DROPSHIP_HIJACKED"><aside class="declaration">#define </aside>COMSIG_GLOB_DROPSHIP_HIJACKED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 71"/></a>
+    </h3>
+    <p>Sent when xenos launch a hijacked dropship</p><h3 id="define/COMSIG_GLOB_DROPSHIP_TRANSIT"><aside class="declaration">#define </aside>COMSIG_GLOB_DROPSHIP_TRANSIT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 69"/></a>
+    </h3>
+    <p>Sent when a marine dropship enters transit level</p><h3 id="define/COMSIG_GLOB_EXPANDED_WORLD_BOUNDS"><aside class="declaration">#define </aside>COMSIG_GLOB_EXPANDED_WORLD_BOUNDS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 93"/></a>
+    </h3>
+    <p>sent after world.maxx and/or world.maxy are expanded: (has_exapnded_world_maxx, has_expanded_world_maxy)</p><h3 id="define/COMSIG_GLOB_EXPLOSION"><aside class="declaration">#define </aside>COMSIG_GLOB_EXPLOSION
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 43"/></a>
+    </h3>
+    <p>called after an explosion happened : (epicenter, devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)</p><h3 id="define/COMSIG_GLOB_FLOODLIGHT_SWITCH"><aside class="declaration">#define </aside>COMSIG_GLOB_FLOODLIGHT_SWITCH
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 75"/></a>
+    </h3>
+    <p>Sent when the floodlight switch is powered</p><h3 id="define/COMSIG_GLOB_GAMEMODE_LOADED"><aside class="declaration">#define </aside>COMSIG_GLOB_GAMEMODE_LOADED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 45"/></a>
+    </h3>
+    <p>Gamemode has successfully loaded</p><h3 id="define/COMSIG_GLOB_GAMESTATE_GROUNDSIDE"><aside class="declaration">#define </aside>COMSIG_GLOB_GAMESTATE_GROUNDSIDE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 19"/></a>
+    </h3>
+    <p>Gamemode changed to groundside state</p><h3 id="define/COMSIG_GLOB_GAMESTATE_SHIPSIDE"><aside class="declaration">#define </aside>COMSIG_GLOB_GAMESTATE_SHIPSIDE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 21"/></a>
+    </h3>
+    <p>Gamemode changed to shipside state</p><h3 id="define/COMSIG_GLOB_HOLOPAD_AI_CALLED"><aside class="declaration">#define </aside>COMSIG_GLOB_HOLOPAD_AI_CALLED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L99">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 99"/></a>
+    </h3>
+    <p>called when an AI is requested by a holopad</p><h3 id="define/COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED"><aside class="declaration">#define </aside>COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 106"/></a>
+    </h3>
+    <p>Sent when mob is deployed via a patrol point</p><h3 id="define/COMSIG_GLOB_LIGHT_OFF"><aside class="declaration">#define </aside>COMSIG_GLOB_LIGHT_OFF
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 73"/></a>
+    </h3>
+    <p>Sent when nightfall is casted</p><h3 id="define/COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE"><aside class="declaration">#define </aside>COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 39"/></a>
+    </h3>
+    <p>from /obj/machinery/setAnchored(): (machine, anchoredstate)</p><h3 id="define/COMSIG_GLOB_MINI_DROPSHIP_DESTROYED"><aside class="declaration">#define </aside>COMSIG_GLOB_MINI_DROPSHIP_DESTROYED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 79"/></a>
+    </h3>
+    <p>Sent when the xenos destroy the tadpole controls</p><h3 id="define/COMSIG_GLOB_MOB_CALL_MEDIC"><aside class="declaration">#define </aside>COMSIG_GLOB_MOB_CALL_MEDIC
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 155"/></a>
+    </h3>
+    <p>from /datum/emote/living/carbon/human/medic/run_emote()</p><h3 id="define/COMSIG_GLOB_MOB_ON_CRIT"><aside class="declaration">#define </aside>COMSIG_GLOB_MOB_ON_CRIT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L150">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 150"/></a>
+    </h3>
+    <p>from /mob/living/carbon/proc/on_crit()</p><h3 id="define/COMSIG_GLOB_NEW_Z"><aside class="declaration">#define </aside>COMSIG_GLOB_NEW_Z
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 10"/></a>
+    </h3>
+    <p>from base of datum/controller/subsystem/mapping/proc/add_new_zlevel(): (list/args)</p><h3 id="define/COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_SOM"><aside class="declaration">#define </aside>COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_SOM
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 110"/></a>
+    </h3>
+    <p>Opens the SOM shipside shutters on campaign</p><h3 id="define/COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_TGMC"><aside class="declaration">#define </aside>COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_TGMC
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 108"/></a>
+    </h3>
+    <p>Opens the TGMC shipside shutters on campaign</p><h3 id="define/COMSIG_GLOB_TELEPORTER_ARRAY_ENABLED"><aside class="declaration">#define </aside>COMSIG_GLOB_TELEPORTER_ARRAY_ENABLED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L144">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 144"/></a>
+    </h3>
+    <p>Enables the teleporter array</p><h3 id="define/COMSIG_GLOB_VAR_EDIT"><aside class="declaration">#define </aside>COMSIG_GLOB_VAR_EDIT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 41"/></a>
+    </h3>
+    <p>called after a successful var edit somewhere in the world: (list/args)</p><h3 id="define/COMSIG_GRILL_COMPLETED"><aside class="declaration">#define </aside>COMSIG_GRILL_COMPLETED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L620">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 620"/></a>
+    </h3>
+    <p>Called when an object is turned into another item through grilling ontop of a griddle</p><h3 id="define/COMSIG_HUMAN_APPLY_OVERLAY"><aside class="declaration">#define </aside>COMSIG_HUMAN_APPLY_OVERLAY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L746">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 746"/></a>
+    </h3>
+    <p>from [/mob/living/carbon/human/proc/apply_overlay]: (cache_index, list/overlays_to_apply)</p><h3 id="define/COMSIG_HUMAN_HAS_AI"><aside class="declaration">#define </aside>COMSIG_HUMAN_HAS_AI
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L656">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 656"/></a>
+    </h3>
+    <p>From mob/living/carbon/human/has_ai()</p><h3 id="define/COMSIG_HUMAN_REMOVE_OVERLAY"><aside class="declaration">#define </aside>COMSIG_HUMAN_REMOVE_OVERLAY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L748">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 748"/></a>
+    </h3>
+    <p>from [/mob/living/carbon/human/proc/remove_overlay]: (cache_index, list/overlays_to_remove)</p><h3 id="define/COMSIG_IGNORE_MOVEMENT_LOCK"><aside class="declaration">#define </aside>COMSIG_IGNORE_MOVEMENT_LOCK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L260">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 260"/></a>
+    </h3>
+    <p>ignores the movement lock key, used for turning while strafing in a mech</p><h3 id="define/COMSIG_ITEM_ATTEMPT_PICK_UP"><aside class="declaration">#define </aside>COMSIG_ITEM_ATTEMPT_PICK_UP
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L506">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 506"/></a>
+    </h3>
+    <p>From /obj/item/proc/pickup(): (/obj/item/picked_up_item)</p><h3 id="define/COMSIG_ITEM_GRILLED"><aside class="declaration">#define </aside>COMSIG_ITEM_GRILLED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L617">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 617"/></a>
+    </h3>
+    <p>Called when an object is grilled ontop of a griddle</p><h3 id="define/COMSIG_ITEM_QUICK_EQUIP"><aside class="declaration">#define </aside>COMSIG_ITEM_QUICK_EQUIP
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L509">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 509"/></a>
+    </h3>
+    <p>from base of obj/item/quick_equip(): (mob/user)</p><h3 id="define/COMSIG_LIVING_CAN_JUMP"><aside class="declaration">#define </aside>COMSIG_LIVING_CAN_JUMP
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L687">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 687"/></a>
+    </h3>
+    <p>From /mob/living/can_jump</p><h3 id="define/COMSIG_LIVING_PICKED_UP_ITEM"><aside class="declaration">#define </aside>COMSIG_LIVING_PICKED_UP_ITEM
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L725">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 725"/></a>
+    </h3>
+    <p>From /obj/item/proc/pickup(): (/obj/item/picked_up_item)</p><h3 id="define/COMSIG_LIVING_POST_FULLY_HEAL"><aside class="declaration">#define </aside>COMSIG_LIVING_POST_FULLY_HEAL
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L709">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 709"/></a>
+    </h3>
+    <p>from end of fully_heal(): (admin_revive)</p><h3 id="define/COMSIG_LIVING_SET_JUMP_COMPONENT"><aside class="declaration">#define </aside>COMSIG_LIVING_SET_JUMP_COMPONENT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L721">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 721"/></a>
+    </h3>
+    <p>From base of mob/living/set_jump_component()</p><h3 id="define/COMSIG_LIVING_SET_LYING_ANGLE"><aside class="declaration">#define </aside>COMSIG_LIVING_SET_LYING_ANGLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L683">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 683"/></a>
+    </h3>
+    <p>from /mob/living/proc/set_lying_angle</p><h3 id="define/COMSIG_LIVING_TREAT_MESSAGE"><aside class="declaration">#define </aside>COMSIG_LIVING_TREAT_MESSAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L690">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 690"/></a>
+    </h3>
+    <p>From mob/living/treat_message(): (list/message_args)</p><h3 id="define/COMSIG_LIVING_WEEDS_ADJACENT_REMOVED"><aside class="declaration">#define </aside>COMSIG_LIVING_WEEDS_ADJACENT_REMOVED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L716">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 716"/></a>
+    </h3>
+    <p>from obj/alien/weeds/Destroy()</p><h3 id="define/COMSIG_LIVING_WEEDS_AT_LOC_CREATED"><aside class="declaration">#define </aside>COMSIG_LIVING_WEEDS_AT_LOC_CREATED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L715">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 715"/></a>
+    </h3>
+    <p>from obj/alien/weeds/Initialize()</p><h3 id="define/COMSIG_LIVING_Z_IMPACT"><aside class="declaration">#define </aside>COMSIG_LIVING_Z_IMPACT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L727">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 727"/></a>
+    </h3>
+    <p>From base of mob/living/ZImpactDamage() (mob/living, levels, turf/t)</p><h3 id="define/COMSIG_MACHINERY_POWERED"><aside class="declaration">#define </aside>COMSIG_MACHINERY_POWERED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L439">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 439"/></a>
+    </h3>
+    <p>from /obj/machinery/proc/powered: ()</p><h3 id="define/COMSIG_MACHINERY_POWER_LOST"><aside class="declaration">#define </aside>COMSIG_MACHINERY_POWER_LOST
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L444">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 444"/></a>
+    </h3>
+    <p>from base power_change() when power is lost</p><h3 id="define/COMSIG_MACHINERY_POWER_RESTORED"><aside class="declaration">#define </aside>COMSIG_MACHINERY_POWER_RESTORED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L446">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 446"/></a>
+    </h3>
+    <p>from base power_change() when power is restored</p><h3 id="define/COMSIG_MACHINERY_USE_POWER"><aside class="declaration">#define </aside>COMSIG_MACHINERY_USE_POWER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L441">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 441"/></a>
+    </h3>
+    <p>from /obj/machinery/proc/use_power: (amount, chan, list/power_sources)</p><h3 id="define/COMSIG_MECHA_ACTION_TRIGGER"><aside class="declaration">#define </aside>COMSIG_MECHA_ACTION_TRIGGER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L889">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 889"/></a>
+    </h3>
+    <p>sent from mecha action buttons to the mecha they're linked to</p><h3 id="define/COMSIG_MECHA_EQUIPMENT_CLICK"><aside class="declaration">#define </aside>COMSIG_MECHA_EQUIPMENT_CLICK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L896">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 896"/></a>
+    </h3>
+    <p>sent from clicking while you have equipment selected.</p><h3 id="define/COMSIG_MECHA_MELEE_CLICK"><aside class="declaration">#define </aside>COMSIG_MECHA_MELEE_CLICK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L892">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 892"/></a>
+    </h3>
+    <p>sent from clicking while you have no equipment selected. Sent before cooldown and adjacency checks, so you can use this for infinite range things if you want.</p><h3 id="define/COMSIG_MOB_DROPPING_ITEM"><aside class="declaration">#define </aside>COMSIG_MOB_DROPPING_ITEM
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L650">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 650"/></a>
+    </h3>
+    <p>from mob/proc/dropItemToGround()</p><h3 id="define/COMSIG_MOB_EXAMINATE"><aside class="declaration">#define </aside>COMSIG_MOB_EXAMINATE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L596">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 596"/></a>
+    </h3>
+    <p>from base of /mob/verb/examinate(): (atom/target)</p><h3 id="define/COMSIG_MOB_GET_STATUS_TAB_ITEMS"><aside class="declaration">#define </aside>COMSIG_MOB_GET_STATUS_TAB_ITEMS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L648">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 648"/></a>
+    </h3>
+    <p>from mob/get_status_tab_items(): (list/items)</p><h3 id="define/COMSIG_MOB_HUD_REFRESHED"><aside class="declaration">#define </aside>COMSIG_MOB_HUD_REFRESHED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L600">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 600"/></a>
+    </h3>
+    <p>from base of hud/show_to(): (datum/hud/hud_source)</p><h3 id="define/COMSIG_MOB_RESET_PERSPECTIVE"><aside class="declaration">#define </aside>COMSIG_MOB_RESET_PERSPECTIVE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L552">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 552"/></a>
+    </h3>
+    <p>From base of /mob/proc/reset_perspective() : ()</p><h3 id="define/COMSIG_MOB_SEE_INVIS_CHANGE"><aside class="declaration">#define </aside>COMSIG_MOB_SEE_INVIS_CHANGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L607">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 607"/></a>
+    </h3>
+    <p>from base of mob/set_invis_see(): (new_invis, old_invis)</p><h3 id="define/COMSIG_MOB_SIGHT_CHANGE"><aside class="declaration">#define </aside>COMSIG_MOB_SIGHT_CHANGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L605">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 605"/></a>
+    </h3>
+    <p>from base of mob/set_sight(): (new_sight, old_sight)</p><h3 id="define/COMSIG_MOUSEDROPPED_ONTO"><aside class="declaration">#define </aside>COMSIG_MOUSEDROPPED_ONTO
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L583">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 583"/></a>
+    </h3>
+    <p>from base of atom/MouseDrop_T: (/atom/from, /mob/user)</p><h3 id="define/COMSIG_MOUSEDROP_ONTO"><aside class="declaration">#define </aside>COMSIG_MOUSEDROP_ONTO
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L581">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 581"/></a>
+    </h3>
+    <p>from base of atom/MouseDrop(): (/atom/over, /mob/user)</p><h3 id="define/COMSIG_MOVABLE_CROSS"><aside class="declaration">#define </aside>COMSIG_MOVABLE_CROSS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L360">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 360"/></a>
+    </h3>
+    <p>from base of atom/movable/Cross(): (/atom/movable)</p><h3 id="define/COMSIG_MOVABLE_KEYBIND_FACE_DIR"><aside class="declaration">#define </aside>COMSIG_MOVABLE_KEYBIND_FACE_DIR
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L258">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 258"/></a>
+    </h3>
+    <p>from base of atom/movable/keybind_face_direction(): (dir). Called before turning with the movement lock key.</p><h3 id="define/COMSIG_MOVABLE_LOCATION_CHANGE"><aside class="declaration">#define </aside>COMSIG_MOVABLE_LOCATION_CHANGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L362">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 362"/></a>
+    </h3>
+    <p>from base of atom/movable/update_loc(): (/atom/oldloc)</p><h3 id="define/COMSIG_MOVABLE_PATROL_DEPLOYED"><aside class="declaration">#define </aside>COMSIG_MOVABLE_PATROL_DEPLOYED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L409">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 409"/></a>
+    </h3>
+    <p>Movable deployed via a patrol point</p><h3 id="define/COMSIG_MOVABLE_PREBUCKLE"><aside class="declaration">#define </aside>COMSIG_MOVABLE_PREBUCKLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L367">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 367"/></a>
+    </h3>
+    <p>from /atom/movable/proc/buckle_mob(): (mob/living/M, force, check_loc, buckle_mob_flags)</p><h3 id="define/COMSIG_MOVABLE_SHUTTLE_CRUSH"><aside class="declaration">#define </aside>COMSIG_MOVABLE_SHUTTLE_CRUSH
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L407">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 407"/></a>
+    </h3>
+    <p>sent before a thing is crushed by a shuttle</p><h3 id="define/COMSIG_MULTITILE_VEHICLE_ROTATED"><aside class="declaration">#define </aside>COMSIG_MULTITILE_VEHICLE_ROTATED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L379">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 379"/></a>
+    </h3>
+    <p>From obj/hitbox/owner_turned</p><h3 id="define/COMSIG_NPC_FIND_NEW_ESCORT"><aside class="declaration">#define </aside>COMSIG_NPC_FIND_NEW_ESCORT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L872">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 872"/></a>
+    </h3>
+    <p>See if we have any priority escort targets</p><h3 id="define/COMSIG_OBJ_HIDE"><aside class="declaration">#define </aside>COMSIG_OBJ_HIDE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L435">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 435"/></a>
+    </h3>
+    <p>from base of /turf/proc/levelupdate(). (intact) true to hide and false to unhide</p><h3 id="define/COMSIG_PORTGEN_POWER_TOGGLE"><aside class="declaration">#define </aside>COMSIG_PORTGEN_POWER_TOGGLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L448">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 448"/></a>
+    </h3>
+    <p>from /obj/machinery/power/port_gen/proc/TogglePower: ()</p><h3 id="define/COMSIG_PORTGEN_PROCESS"><aside class="declaration">#define </aside>COMSIG_PORTGEN_PROCESS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L449">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 449"/></a>
+    </h3>
+    <p>from /obj/machinery/power/port_gen/process: ()</p><h3 id="define/COMSIG_REEQUIP_FAILURE"><aside class="declaration">#define </aside>COMSIG_REEQUIP_FAILURE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L932">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 932"/></a>
+    </h3>
+    <p>From reequip components</p><h3 id="define/COMSIG_RIDDEN_DRIVER_MOVE"><aside class="declaration">#define </aside>COMSIG_RIDDEN_DRIVER_MOVE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L381">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 381"/></a>
+    </h3>
+    <p>from /obj/vehicle/proc/driver_move, caught by the riding component to check and execute the driver trying to drive the vehicle</p><h3 id="define/COMSIG_SECURITY_LEVEL_CHANGED"><aside class="declaration">#define </aside>COMSIG_SECURITY_LEVEL_CHANGED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L963">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 963"/></a>
+    </h3>
+    <p>From <a href="datum/controller/subsystem/security_level.html#proc/set_level" title="/datum/controller/subsystem/security_level">/datum/controller/subsystem/security_level/proc/set_level</a>
+<code>/datum/security_level/next_level</code>, <code>/datum/security_level/previous_level</code></p><h3 id="define/COMSIG_SONG_END"><aside class="declaration">#define </aside>COMSIG_SONG_END
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L884">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 884"/></a>
+    </h3>
+    <p>sent to the instrument when a song stops playing</p><h3 id="define/COMSIG_SONG_START"><aside class="declaration">#define </aside>COMSIG_SONG_START
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L882">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 882"/></a>
+    </h3>
+    <p>sent to the instrument when a song starts playing</p><h3 id="define/COMSIG_TURF_INDUSTRIAL_LIFT_ENTER"><aside class="declaration">#define </aside>COMSIG_TURF_INDUSTRIAL_LIFT_ENTER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L428">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 428"/></a>
+    </h3>
+    <p>called when an elevator enters this turf</p><h3 id="define/COMSIG_TURF_MULTIZ_DEL"><aside class="declaration">#define </aside>COMSIG_TURF_MULTIZ_DEL
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L424">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 424"/></a>
+    </h3>
+    <p>from base of turf/multiz_turf_del(): (turf/source, direction)</p><h3 id="define/COMSIG_TURF_MULTIZ_NEW"><aside class="declaration">#define </aside>COMSIG_TURF_MULTIZ_NEW
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L426">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 426"/></a>
+    </h3>
+    <p>from base of turf/multiz_turf_new: (turf/source, direction)</p><h3 id="define/COMSIG_TURF_RESERVATION_RELEASED"><aside class="declaration">#define </aside>COMSIG_TURF_RESERVATION_RELEASED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L422">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 422"/></a>
+    </h3>
+    <p>from base of /datum/turf_reservation/proc/Release: (datum/turf_reservation/reservation)</p><h3 id="define/COMSIG_UNMANNED_TURRET_UPDATED"><aside class="declaration">#define </aside>COMSIG_UNMANNED_TURRET_UPDATED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L451">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 451"/></a>
+    </h3>
+    <p>from /obj/vehicle/unmanned/attackby: (newtype)</p><h3 id="define/COMSIG_VEHICLE_GRANT_CONTROL_FLAG"><aside class="declaration">#define </aside>COMSIG_VEHICLE_GRANT_CONTROL_FLAG
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L373">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 373"/></a>
+    </h3>
+    <p>from /obj/vehicle/add_control_flags</p><h3 id="define/COMSIG_VEHICLE_MOVE"><aside class="declaration">#define </aside>COMSIG_VEHICLE_MOVE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L377">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 377"/></a>
+    </h3>
+    <p>from /obj/vehicle/sealed/proc/driver_move</p><h3 id="define/COMSIG_VEHICLE_REVOKE_CONTROL_FLAG"><aside class="declaration">#define </aside>COMSIG_VEHICLE_REVOKE_CONTROL_FLAG
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L375">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 375"/></a>
+    </h3>
+    <p>from /obj/vehicle/remove_control_flags</p><h3 id="define/COMSIG_WEATHER_TELEGRAPH"><aside class="declaration">#define </aside>COMSIG_WEATHER_TELEGRAPH
+            <aside>(event_type)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 51"/></a>
+    </h3>
+    <p>a weather event of some kind occurred</p><h3 id="define/COMSIG_XENOMORPH_ATTACK_LIVING"><aside class="declaration">#define </aside>COMSIG_XENOMORPH_ATTACK_LIVING
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L800">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 800"/></a>
+    </h3>
+    <p>from /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location, random_location, no_head, no_crit, force_intent)</p><h3 id="define/COMSIG_XENOMORPH_POSTATTACK_LIVING"><aside class="declaration">#define </aside>COMSIG_XENOMORPH_POSTATTACK_LIVING
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L804">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 804"/></a>
+    </h3>
+    <p>after attacking, accounts for armor</p><h3 id="define/COMSIG_XENO_IFF_CHECK"><aside class="declaration">#define </aside>COMSIG_XENO_IFF_CHECK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L862">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 862"/></a>
+    </h3>
+    <p>Signal used by certain IFF checking things to see if a xeno carries an IFF tag of the faction.</p><h3 id="define/COMSIG_XENO_LIVING_THROW_HIT"><aside class="declaration">#define </aside>COMSIG_XENO_LIVING_THROW_HIT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L829">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 829"/></a>
+    </h3>
+    <p>from [/mob/living/carbon/xenomorph/throw_impact]: (mob/living/target)</p><h3 id="define/COMSIG_XENO_OBJ_THROW_HIT"><aside class="declaration">#define </aside>COMSIG_XENO_OBJ_THROW_HIT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L828">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 828"/></a>
+    </h3>
+    <p>from [/mob/living/carbon/xenomorph/throw_impact]: (obj/target, speed)</p><h3 id="define/COMSIG_XENO_PROJECTILE_HIT"><aside class="declaration">#define </aside>COMSIG_XENO_PROJECTILE_HIT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L831">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 831"/></a>
+    </h3>
+    <p>from [/mob/living/carbon/xenomorph/projectile_hit] called when a projectile hits a xeno but before confirmation of a hit (can miss due to inaccuracy/evasion)</p><h3 id="define/MOB_GET_DO_AFTER_COEFFICIENT"><aside class="declaration">#define </aside>MOB_GET_DO_AFTER_COEFFICIENT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L652">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 652"/></a>
+    </h3>
+    <p>From mob/do_after_coefficent()</p><h3 id="define/MOB_GET_MISS_CHANCE_MOD"><aside class="declaration">#define </aside>MOB_GET_MISS_CHANCE_MOD
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L654">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 654"/></a>
+    </h3>
+    <p>From get_zone_with_miss_chance</p><h3 id="define/SPATIAL_GRID_CELL_ENTERED"><aside class="declaration">#define </aside>SPATIAL_GRID_CELL_ENTERED
+            <aside>(contents_type)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L937">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 937"/></a>
+    </h3>
+    <p>Called from base of /datum/controller/subsystem/spatial_grid/proc/enter_cell: (/atom/movable)</p><h3 id="define/SPATIAL_GRID_CELL_EXITED"><aside class="declaration">#define </aside>SPATIAL_GRID_CELL_EXITED
+            <aside>(contents_type)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L939">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 939"/></a>
+    </h3>
+    <p>Called from base of /datum/controller/subsystem/spatial_grid/proc/exit_cell: (/atom/movable)</p><h3 id="define/TREAT_MESSAGE_ARG"><aside class="declaration">#define </aside>TREAT_MESSAGE_ARG
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L692">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 692"/></a>
+    </h3>
+    <p>The index of message_args that corresponds to the actual message</p><h3 id="define/ZIMPACT_CANCEL_DAMAGE"><aside class="declaration">#define </aside>ZIMPACT_CANCEL_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L729">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 729"/></a>
+    </h3>
+    <p>Just for the signal return, does not run normal living handing of z fall damage for mobs</p><h3 id="define/ZIMPACT_NO_MESSAGE"><aside class="declaration">#define </aside>ZIMPACT_NO_MESSAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L731">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 731"/></a>
+    </h3>
+    <p>Do not show default z-impact message</p><h3 id="define/ZIMPACT_NO_SPIN"><aside class="declaration">#define </aside>ZIMPACT_NO_SPIN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/dcs/signals/signals.dm#L733">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;signals&#x2F;signals.dm 733"/></a>
+    </h3>
+    <p>Do not do the spin animation when landing</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

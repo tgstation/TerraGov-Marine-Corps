@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;status_effect - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/status_effect.html#var">Var Details</a> - <a href="datum/status_effect.html#proc">Proc Details</a></header>
+<main>
+<h1>status_effect <aside>/<a href="datum.html">datum</a>/<a href="datum/status_effect.html">status_effect</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/status_effect.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;status_effect.dm 5"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/status_effect.html#var/alert_type">alert_type</a></th><td>the alert thrown by the status effect, contains name and description</td></tr>
+            <tr><th><a href="datum/status_effect.html#var/duration">duration</a></th><td>How long the status effect lasts in DECISECONDS. Enter -1 for an effect that never ends unless removed through some means</td></tr>
+            <tr><th><a href="datum/status_effect.html#var/examine_text">examine_text</a></th><td>If defined, this text will appear when the mob is examined - to use he, she etc. use &quot;SUBJECTPRONOUN&quot; and replace it in the examines themselves</td></tr>
+            <tr><th><a href="datum/status_effect.html#var/id">id</a></th><td>Used for screen alerts</td></tr>
+            <tr><th><a href="datum/status_effect.html#var/linked_alert">linked_alert</a></th><td>the alert itself, if it exists</td></tr>
+            <tr><th><a href="datum/status_effect.html#var/owner">owner</a></th><td>The mob affected by the status effect.</td></tr>
+            <tr><th><a href="datum/status_effect.html#var/status_type">status_type</a></th><td>How many of the effect can be on one mob, and what happens when you try to add another</td></tr>
+            <tr><th><a href="datum/status_effect.html#var/tick_interval">tick_interval</a></th><td>How many deciseconds between ticks, approximately. Leave at 10 for every second</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/status_effect.html#proc/check_duration">check_duration</a></th><td>Use this for manually checking if the effect should've ended, when FASTPROCESSING just isn't fast enough</td></tr>
+            <tr><th><a href="datum/status_effect.html#proc/nextmove_modifier">nextmove_modifier</a></th><td>clickdelay/nextmove modifiers!</td></tr>
+            <tr><th><a href="datum/status_effect.html#proc/refresh">refresh</a></th><td>Refreshed the duration</td></tr>
+            <tr><th><a href="datum/status_effect.html#proc/tick">tick</a></th><td>Called every tick</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/alert_type"><aside class="declaration">var </aside>alert_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/status_effect.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;status_effect.dm 19"/></a></h3>
+        <p>the alert thrown by the status effect, contains name and description</p><h3 id="var/duration"><aside class="declaration">var </aside>duration
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/status_effect.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;status_effect.dm 9"/></a></h3>
+        <p>How long the status effect lasts in DECISECONDS. Enter -1 for an effect that never ends unless removed through some means</p><h3 id="var/examine_text"><aside class="declaration">var </aside>examine_text
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/status_effect.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;status_effect.dm 17"/></a></h3>
+        <p>If defined, this text will appear when the mob is examined - to use he, she etc. use &quot;SUBJECTPRONOUN&quot; and replace it in the examines themselves</p><h3 id="var/id"><aside class="declaration">var </aside>id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/status_effect.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;status_effect.dm 7"/></a></h3>
+        <p>Used for screen alerts</p><h3 id="var/linked_alert"><aside class="declaration">var </aside>linked_alert
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/alert/status_effect</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/status_effect.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;status_effect.dm 21"/></a></h3>
+        <p>the alert itself, if it exists</p><h3 id="var/owner"><aside class="declaration">var </aside>owner
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/status_effect.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;status_effect.dm 13"/></a></h3>
+        <p>The mob affected by the status effect.</p><h3 id="var/status_type"><aside class="declaration">var </aside>status_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/status_effect.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;status_effect.dm 15"/></a></h3>
+        <p>How many of the effect can be on one mob, and what happens when you try to add another</p><h3 id="var/tick_interval"><aside class="declaration">var </aside>tick_interval
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/status_effect.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;status_effect.dm 11"/></a></h3>
+        <p>How many deciseconds between ticks, approximately. Leave at 10 for every second</p><h2 id="proc">Proc Details</h2><h3 id="proc/check_duration"><aside class="declaration">proc </aside>check_duration<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/status_effect.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;status_effect.dm 89"/></a></aside>
+        </h3>
+        <p>Use this for manually checking if the effect should've ended, when FASTPROCESSING just isn't fast enough</p><h3 id="proc/nextmove_modifier"><aside class="declaration">proc </aside>nextmove_modifier<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/status_effect.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;status_effect.dm 82"/></a></aside>
+        </h3>
+        <p>clickdelay/nextmove modifiers!</p><h3 id="proc/refresh"><aside class="declaration">proc </aside>refresh<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/status_effect.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;status_effect.dm 75"/></a></aside>
+        </h3>
+        <p>Refreshed the duration</p><h3 id="proc/tick"><aside class="declaration">proc </aside>tick<aside>(delta_time) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/status_effects/status_effect.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;status_effects&#x2F;status_effect.dm 69"/></a></aside>
+        </h3>
+        <p>Called every tick</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

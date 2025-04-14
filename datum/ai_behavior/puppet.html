@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;ai_behavior&#x2F;puppet - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/ai_behavior/puppet.html#var">Var Details</a> - <a href="datum/ai_behavior/puppet.html#proc">Proc Details</a></header>
+<main>
+<h1>puppet <aside>/<a href="datum.html">datum</a>/<a href="datum/ai_behavior.html">ai_behavior</a>/<a href="datum/ai_behavior/puppet.html">puppet</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#var/feed">feed</a></th><td>the feed ability</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#var/master_ref">master_ref</a></th><td>weakref to our puppeteer</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#var/too_far_escort">too_far_escort</a></th><td>should we go back to escorting the puppeteer if we stray too far</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/attack_target">attack_target</a></th><td>Signal handler to try to attack our target
+Attack our current atom we are moving to, if targetted is specified attack that instead</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/change_order">change_order</a></th><td>changes our current behavior with a define (order), optionally with a target, FALSE means fail and TRUE means success</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/cleanup_signals">cleanup_signals</a></th><td>cleans up signals and unregisters obstructed move signal</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/climb_window_frame">climb_window_frame</a></th><td>makes our parent climb over a turf with a window by setting its location to it</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/deal_with_obstacle">deal_with_obstacle</a></th><td>behavior to deal with obstacles</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/die_on_master_death">die_on_master_death</a></th><td>signal handler for if the master (puppeteer) dies, gibs the puppet</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/do_feed">do_feed</a></th><td>uses our feed ability if possible and it exists, on the target</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/do_jump">do_jump</a></th><td>resist when puppeter does</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/look_for_new_state">look_for_new_state</a></th><td>looks for a new state, handles recalling if too far and some AI shenanigans</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/parent_resist">parent_resist</a></th><td>resist when puppeter does</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/register_action_signals">register_action_signals</a></th><td>override for MOVING_TO_ATOM to register signals for maintaining distance with our target and attacking</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/seek_and_attack">seek_and_attack</a></th><td>seeks a living humans in a 9 tile range near our parent, picks one, then changes our action to move towards it and attack.</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/seek_and_attack_closest">seek_and_attack_closest</a></th><td>attack the first closest human, by moving towards it</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/start_ai">start_ai</a></th><td>starts AI and registers obstructed move signal</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/start_resting">start_resting</a></th><td>rest when puppeter does</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/stop_resting">stop_resting</a></th><td>stop resting when puppeter does</td></tr>
+            <tr><th><a href="datum/ai_behavior/puppet.html#proc/unregister_action_signals">unregister_action_signals</a></th><td>override for MOVING_TO_ATOM to unregister signals for maintaining distance with our target and attacking</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/feed"><aside class="declaration">var </aside>feed
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/activable.html">activable</a>/<a href="datum/action/ability/activable/xeno.html">xeno</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 13"/></a></h3>
+        <p>the feed ability</p><h3 id="var/master_ref"><aside class="declaration">var </aside>master_ref
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/weakref.html">weakref</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 8"/></a></h3>
+        <p>weakref to our puppeteer</p><h3 id="var/too_far_escort"><aside class="declaration">var </aside>too_far_escort
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 6"/></a></h3>
+        <p>should we go back to escorting the puppeteer if we stray too far</p><h2 id="proc">Proc Details</h2><h3 id="proc/attack_target"><aside class="declaration">proc </aside>attack_target<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/targetted) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 49"/></a></aside>
+        </h3>
+        <p>Signal handler to try to attack our target
+Attack our current atom we are moving to, if targetted is specified attack that instead</p><h3 id="proc/change_order"><aside class="declaration">proc </aside>change_order<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/source, order, /<a href="atom.html">atom</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 127"/></a></aside>
+        </h3>
+        <p>changes our current behavior with a define (order), optionally with a target, FALSE means fail and TRUE means success</p><h3 id="proc/cleanup_signals"><aside class="parent"><a title="/datum/ai_behavior" href="datum/ai_behavior.html#proc/cleanup_signals">&uarr;</a></aside>cleanup_signals<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 34"/></a></aside>
+        </h3>
+        <p>cleans up signals and unregisters obstructed move signal</p><h3 id="proc/climb_window_frame"><aside class="declaration">proc </aside>climb_window_frame<aside>(/<a href="turf.html">turf</a>/window_turf) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 170"/></a></aside>
+        </h3>
+        <p>makes our parent climb over a turf with a window by setting its location to it</p><h3 id="proc/deal_with_obstacle"><aside class="parent"><a title="/datum/ai_behavior" href="datum/ai_behavior.html#proc/deal_with_obstacle">&uarr;</a></aside>deal_with_obstacle<aside>(/<a href="datum.html">datum</a>/source, direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L150">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 150"/></a></aside>
+        </h3>
+        <p>behavior to deal with obstacles</p><h3 id="proc/die_on_master_death"><aside class="declaration">proc </aside>die_on_master_death<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 42"/></a></aside>
+        </h3>
+        <p>signal handler for if the master (puppeteer) dies, gibs the puppet</p><h3 id="proc/do_feed"><aside class="declaration">proc </aside>do_feed<aside>(/<a href="atom.html">atom</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L176">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 176"/></a></aside>
+        </h3>
+        <p>uses our feed ability if possible and it exists, on the target</p><h3 id="proc/do_jump"><aside class="declaration">proc </aside>do_jump<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L197">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 197"/></a></aside>
+        </h3>
+        <p>resist when puppeter does</p><h3 id="proc/look_for_new_state"><aside class="parent"><a title="/datum/ai_behavior" href="datum/ai_behavior.html#proc/look_for_new_state">&uarr;</a></aside>look_for_new_state<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 69"/></a></aside>
+        </h3>
+        <p>looks for a new state, handles recalling if too far and some AI shenanigans</p><h3 id="proc/parent_resist"><aside class="declaration">proc </aside>parent_resist<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L203">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 203"/></a></aside>
+        </h3>
+        <p>resist when puppeter does</p><h3 id="proc/register_action_signals">register_action_signals<aside>(action_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 90"/></a></aside>
+        </h3>
+        <p>override for MOVING_TO_ATOM to register signals for maintaining distance with our target and attacking</p><h3 id="proc/seek_and_attack"><aside class="declaration">proc </aside>seek_and_attack<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 114"/></a></aside>
+        </h3>
+        <p>seeks a living humans in a 9 tile range near our parent, picks one, then changes our action to move towards it and attack.</p><h3 id="proc/seek_and_attack_closest"><aside class="declaration">proc </aside>seek_and_attack_closest<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 106"/></a></aside>
+        </h3>
+        <p>attack the first closest human, by moving towards it</p><h3 id="proc/start_ai"><aside class="parent"><a title="/datum/ai_behavior" href="datum/ai_behavior.html#proc/start_ai">&uarr;</a></aside>start_ai<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 21"/></a></aside>
+        </h3>
+        <p>starts AI and registers obstructed move signal</p><h3 id="proc/start_resting"><aside class="declaration">proc </aside>start_resting<aside>(/<a href="mob.html">mob</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L185">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 185"/></a></aside>
+        </h3>
+        <p>rest when puppeter does</p><h3 id="proc/stop_resting"><aside class="declaration">proc </aside>stop_resting<aside>(/<a href="mob.html">mob</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L191">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 191"/></a></aside>
+        </h3>
+        <p>stop resting when puppeter does</p><h3 id="proc/unregister_action_signals">unregister_action_signals<aside>(action_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/puppet.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;puppet.dm 98"/></a></aside>
+        </h3>
+        <p>override for MOVING_TO_ATOM to unregister signals for maintaining distance with our target and attacking</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

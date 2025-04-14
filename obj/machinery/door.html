@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;door - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/door.html#var">Var Details</a> - <a href="obj/machinery/door.html#proc">Proc Details</a></header>
+<main>
+<h1>door <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/door.html">door</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/doors/door.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;doors&#x2F;door.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/door.html#var/cycle_linked_airlock">cycle_linked_airlock</a></th><td>what airlock we are linked with</td></tr>
+            <tr><th><a href="obj/machinery/door.html#var/cyclelinkeddir">cyclelinkeddir</a></th><td>bool for determining linked state</td></tr>
+            <tr><th><a href="obj/machinery/door.html#var/elevator_mode">elevator_mode</a></th><td>Special operating mode for elevator doors</td></tr>
+            <tr><th><a href="obj/machinery/door.html#var/elevator_status">elevator_status</a></th><td>Current elevator status for processing</td></tr>
+            <tr><th><a href="obj/machinery/door.html#var/emergency">emergency</a></th><td>used for determining emergency access</td></tr>
+            <tr><th><a href="obj/machinery/door.html#var/transport_linked_id">transport_linked_id</a></th><td>What specific lift ID do we link with?</td></tr>
+            <tr><th><a href="obj/machinery/door.html#var/unres_sides">unres_sides</a></th><td>Unrestricted sides. A bitflag for which direction (if any) can open the door with no access</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/door.html#proc/unrestricted_side">unrestricted_side</a></th><td>Allows for specific sides of airlocks to be unrestricted (IE, can exit maint freely, but need access to enter)</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/cycle_linked_airlock"><aside class="declaration">var </aside>cycle_linked_airlock
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/door.html">door</a>/<a href="obj/machinery/door/airlock.html">airlock</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/doors/door.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;doors&#x2F;door.dm 39"/></a></h3>
+        <p>what airlock we are linked with</p><h3 id="var/cyclelinkeddir"><aside class="declaration">var </aside>cyclelinkeddir
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/doors/door.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;doors&#x2F;door.dm 37"/></a></h3>
+        <p>bool for determining linked state</p><h3 id="var/elevator_mode"><aside class="declaration">var </aside>elevator_mode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/doors/door.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;doors&#x2F;door.dm 42"/></a></h3>
+        <p>Special operating mode for elevator doors</p><h3 id="var/elevator_status"><aside class="declaration">var </aside>elevator_status
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/doors/door.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;doors&#x2F;door.dm 44"/></a></h3>
+        <p>Current elevator status for processing</p><h3 id="var/emergency"><aside class="declaration">var </aside>emergency
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/doors/door.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;doors&#x2F;door.dm 35"/></a></h3>
+        <p>used for determining emergency access</p><h3 id="var/transport_linked_id"><aside class="declaration">var </aside>transport_linked_id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/doors/door.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;doors&#x2F;door.dm 46"/></a></h3>
+        <p>What specific lift ID do we link with?</p><h3 id="var/unres_sides"><aside class="declaration">var </aside>unres_sides
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/doors/door.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;doors&#x2F;door.dm 27"/></a></h3>
+        <p>Unrestricted sides. A bitflag for which direction (if any) can open the door with no access</p><h2 id="proc">Proc Details</h2><h3 id="proc/unrestricted_side"><aside class="declaration">proc </aside>unrestricted_side<aside>(/<a href="mob.html">mob</a>/opener) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/doors/door.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;doors&#x2F;door.dm 138"/></a></aside>
+        </h3>
+        <p>Allows for specific sides of airlocks to be unrestricted (IE, can exit maint freely, but need access to enter)</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;activable&#x2F;xeno&#x2F;landslide - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/activable/xeno/landslide.html#var">Var Details</a> - <a href="datum/action/ability/activable/xeno/landslide.html#proc">Proc Details</a></header>
+<main>
+<h1>landslide <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/activable.html">activable</a>/<a href="datum/action/ability/activable/xeno.html">xeno</a>/<a href="datum/action/ability/activable/xeno/landslide.html">landslide</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L229">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 229"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/landslide.html#var/ability_active">ability_active</a></th><td>Whether this ability is currently active or not.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/landslide.html#var/current_charges">current_charges</a></th><td>The amount of charges we currently have.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/landslide.html#var/maximum_charges">maximum_charges</a></th><td>The maximum amount of charges we can have.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/landslide.html#proc/change_maximum_charges">change_maximum_charges</a></th><td>Changes the maximum amount of charges the ability can have.
+This will also adjust the current amount of charges to account for the new difference, be it positive or negative.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/landslide.html#proc/do_charge">do_charge</a></th><td>Moves the user in the specified direction. This simulates movement by using step() and repeatedly calling itself.
+Will repeatedly check a 3x1 rectangle in front of the user, applying its effects to valid targets and stopping early if the path is blocked.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/landslide.html#proc/end_charge">end_charge</a></th><td>Ends the charge.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/landslide.html#proc/enhanced_do_charge">enhanced_do_charge</a></th><td>Moves the user in the specified direction. This simulates movement by using step() and repeatedly calling itself.
+Will repeatedly check a 3x1 rectangle in front of the user, applying its effects to valid targets and stopping early if the path is blocked.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/landslide.html#proc/get_affected_turfs">get_affected_turfs</a></th><td>Gets a list of the turfs affected by this ability, based on direction and range.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/landslide.html#proc/hit_living">hit_living</a></th><td>Applies several effects to a living target.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/landslide.html#proc/hit_object">hit_object</a></th><td>Attempts to deconstruct the object in question if possible.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ability_active"><aside class="declaration">var </aside>ability_active
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L242">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 242"/></a></h3>
+        <p>Whether this ability is currently active or not.</p><h3 id="var/current_charges"><aside class="declaration">var </aside>current_charges
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L244">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 244"/></a></h3>
+        <p>The amount of charges we currently have.</p><h3 id="var/maximum_charges"><aside class="declaration">var </aside>maximum_charges
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L246">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 246"/></a></h3>
+        <p>The maximum amount of charges we can have.</p><h2 id="proc">Proc Details</h2><h3 id="proc/change_maximum_charges"><aside class="declaration">proc </aside>change_maximum_charges<aside>(amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L540">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 540"/></a></aside>
+        </h3>
+        <p>Changes the maximum amount of charges the ability can have.
+This will also adjust the current amount of charges to account for the new difference, be it positive or negative.</p>
+<ul>
+<li>amount: The new amount of maximum charges.</li>
+</ul><h3 id="proc/do_charge"><aside class="declaration">proc </aside>do_charge<aside>(/<a href="turf.html">turf</a>/owner_turf, direction, damage, which_step) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L355">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 355"/></a></aside>
+        </h3>
+        <p>Moves the user in the specified direction. This simulates movement by using step() and repeatedly calling itself.
+Will repeatedly check a 3x1 rectangle in front of the user, applying its effects to valid targets and stopping early if the path is blocked.</p>
+<ul>
+<li>owner_turf: The turf where the owner is.</li>
+<li>direction: The direction to move in.</li>
+<li>damage: The damage we will deal to valid targets.</li>
+<li>which_step: Used to determine the initial positioning of visual effects.</li>
+</ul><h3 id="proc/end_charge"><aside class="declaration">proc </aside>end_charge<aside>(reason) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L473">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 473"/></a></aside>
+        </h3>
+        <p>Ends the charge.</p>
+<ul>
+<li>reason: If specified, determines the reason why the charge ended, and does the respective balloon alert. Leave empty for no reason.</li>
+</ul><h3 id="proc/enhanced_do_charge"><aside class="declaration">proc </aside>enhanced_do_charge<aside>(direction, damage, speed, steps_to_take) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L418">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 418"/></a></aside>
+        </h3>
+        <p>Moves the user in the specified direction. This simulates movement by using step() and repeatedly calling itself.
+Will repeatedly check a 3x1 rectangle in front of the user, applying its effects to valid targets and stopping early if the path is blocked.</p>
+<ul>
+<li>direction: The direction to move in.</li>
+<li>damage: The damage we will deal to valid targets.</li>
+<li>speed: The speed at which we move. This is reduced when we're nearing our destination, to simulate a slow-down effect.</li>
+<li>steps_to_take: The amount of steps needed to reach our destination. This is used to determine when to end the charge,</li>
+</ul><h3 id="proc/get_affected_turfs"><aside class="declaration">proc </aside>get_affected_turfs<aside>(/<a href="turf.html">turf</a>/origin_turf, direction, range) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L338">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 338"/></a></aside>
+        </h3>
+        <p>Gets a list of the turfs affected by this ability, based on direction and range.</p>
+<ul>
+<li>origin_turf: The origin turf from which to start checking.</li>
+<li>direction: The direction to check in.</li>
+<li>range: The range in tiles to limit our checks to.</li>
+</ul><h3 id="proc/hit_living"><aside class="declaration">proc </aside>hit_living<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/living_target, damage) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L491">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 491"/></a></aside>
+        </h3>
+        <p>Applies several effects to a living target.</p>
+<ul>
+<li>living_target: The targeted living mob.</li>
+<li>damage: The damage inflicted by related effects.</li>
+</ul><h3 id="proc/hit_object"><aside class="declaration">proc </aside>hit_object<aside>(/<a href="obj.html">obj</a>/object_target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L508">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 508"/></a></aside>
+        </h3>
+        <p>Attempts to deconstruct the object in question if possible.</p>
+<ul>
+<li>object_target: The targeted object.</li>
+</ul></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;xeno_action&#x2F;conqueror_dash - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/xeno_action/conqueror_dash.html#var">Var Details</a> - <a href="datum/action/ability/xeno_action/conqueror_dash.html#proc">Proc Details</a></header>
+<main>
+<h1>conqueror_dash <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/xeno_action.html">xeno_action</a>/<a href="datum/action/ability/xeno_action/conqueror_dash.html">conqueror_dash</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 11"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_dash.html#var/double_tap_timing">double_tap_timing</a></th><td>The timing for activating a dash by double tapping a movement key.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_dash.html#var/last_move_dir">last_move_dir</a></th><td>Stores the direction of the last movement made.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_dash.html#var/last_move_time">last_move_time</a></th><td>Stores the time at which we last moved.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_dash.html#proc/activate_dash">activate_dash</a></th><td>Does a dash in the specified direction.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_dash.html#proc/check_dash">check_dash</a></th><td>Checks if we can dash in the specified direction, and activates the ability if so.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_dash.html#proc/dash_east">dash_east</a></th><td>Checks if we can dash to the east.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_dash.html#proc/dash_north">dash_north</a></th><td>Checks if we can dash to the north.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_dash.html#proc/dash_south">dash_south</a></th><td>Checks if we can dash to the south.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_dash.html#proc/dash_west">dash_west</a></th><td>Checks if we can dash to the west.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_dash.html#proc/disable_ability">disable_ability</a></th><td>Disables the ability.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_dash.html#proc/enable_ability">enable_ability</a></th><td>Enables the ability.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_dash.html#proc/end_dash">end_dash</a></th><td>Gets rid of dash bonuses, if any.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_dash.html#proc/on_death">on_death</a></th><td>If the user dies, a check will be added in the case of revival, to reenable the ability.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/conqueror_dash.html#proc/set_timing">set_timing</a></th><td>Opens an input window to allow customization of the double tap timing.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/double_tap_timing"><aside class="declaration">var </aside>double_tap_timing
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 28"/></a></h3>
+        <p>The timing for activating a dash by double tapping a movement key.</p><h3 id="var/last_move_dir"><aside class="declaration">var </aside>last_move_dir
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 26"/></a></h3>
+        <p>Stores the direction of the last movement made.</p><h3 id="var/last_move_time"><aside class="declaration">var </aside>last_move_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 24"/></a></h3>
+        <p>Stores the time at which we last moved.</p><h2 id="proc">Proc Details</h2><h3 id="proc/activate_dash"><aside class="declaration">proc </aside>activate_dash<aside>(direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 117"/></a></aside>
+        </h3>
+        <p>Does a dash in the specified direction.</p><h3 id="proc/check_dash"><aside class="declaration">proc </aside>check_dash<aside>(direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 107"/></a></aside>
+        </h3>
+        <p>Checks if we can dash in the specified direction, and activates the ability if so.</p><h3 id="proc/dash_east"><aside class="declaration">proc </aside>dash_east<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 87"/></a></aside>
+        </h3>
+        <p>Checks if we can dash to the east.</p><h3 id="proc/dash_north"><aside class="declaration">proc </aside>dash_north<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 92"/></a></aside>
+        </h3>
+        <p>Checks if we can dash to the north.</p><h3 id="proc/dash_south"><aside class="declaration">proc </aside>dash_south<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 97"/></a></aside>
+        </h3>
+        <p>Checks if we can dash to the south.</p><h3 id="proc/dash_west"><aside class="declaration">proc </aside>dash_west<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 102"/></a></aside>
+        </h3>
+        <p>Checks if we can dash to the west.</p><h3 id="proc/disable_ability"><aside class="declaration">proc </aside>disable_ability<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 76"/></a></aside>
+        </h3>
+        <p>Disables the ability.</p><h3 id="proc/enable_ability"><aside class="declaration">proc </aside>enable_ability<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 68"/></a></aside>
+        </h3>
+        <p>Enables the ability.</p><h3 id="proc/end_dash"><aside class="declaration">proc </aside>end_dash<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 135"/></a></aside>
+        </h3>
+        <p>Gets rid of dash bonuses, if any.</p><h3 id="proc/on_death"><aside class="declaration">proc </aside>on_death<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 81"/></a></aside>
+        </h3>
+        <p>If the user dies, a check will be added in the case of revival, to reenable the ability.</p><h3 id="proc/set_timing"><aside class="declaration">proc </aside>set_timing<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/king/abilities_conqueror.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;king&#x2F;abilities_conqueror.dm 141"/></a></aside>
+        </h3>
+        <p>Opens an input window to allow customization of the double tap timing.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;beacon - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/beacon.html#var">Var Details</a> - <a href="datum/component/beacon.html#proc">Proc Details</a></header>
+<main>
+<h1>beacon <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/beacon.html">beacon</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 2"/></a></h1>
+
+<p>This component is used to give stuff beacon functionality.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/beacon.html#var/activator">activator</a></th><td>The mob who activated this beacon</td></tr>
+            <tr><th><a href="datum/component/beacon.html#var/active">active</a></th><td>Is the beacon active?</td></tr>
+            <tr><th><a href="datum/component/beacon.html#var/active_icon_state">active_icon_state</a></th><td>The icon state when this beacon is active</td></tr>
+            <tr><th><a href="datum/component/beacon.html#var/anchor">anchor</a></th><td>Should the parent anchor on activation?</td></tr>
+            <tr><th><a href="datum/component/beacon.html#var/anchor_time">anchor_time</a></th><td>How long it takes for this item to activate it's signal/deploy</td></tr>
+            <tr><th><a href="datum/component/beacon.html#var/beacon_cam">beacon_cam</a></th><td>The camera attached to the beacon</td></tr>
+            <tr><th><a href="datum/component/beacon.html#var/beacon_datum">beacon_datum</a></th><td>The reference to the beacon datum</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/beacon.html#proc/activate">activate</a></th><td>Activates the beacon</td></tr>
+            <tr><th><a href="datum/component/beacon.html#proc/clean_beacon_datum">clean_beacon_datum</a></th><td>If the signal source dies, the beacon datum should as well</td></tr>
+            <tr><th><a href="datum/component/beacon.html#proc/deactivate">deactivate</a></th><td>Deactivates the beacon</td></tr>
+            <tr><th><a href="datum/component/beacon.html#proc/on_attack_hand">on_attack_hand</a></th><td>This will only get called when you want to deactivate a beacon, ie clicking a deployed beacon</td></tr>
+            <tr><th><a href="datum/component/beacon.html#proc/on_attack_self">on_attack_self</a></th><td>The proc that gets called when the user uses the item in their hand</td></tr>
+            <tr><th><a href="datum/component/beacon.html#proc/on_examine">on_examine</a></th><td>Adds an extra line of instructions to the examine</td></tr>
+            <tr><th><a href="datum/component/beacon.html#proc/on_update_icon_state">on_update_icon_state</a></th><td>Updates the icon state of the object to an active state, if it has one</td></tr>
+            <tr><th><a href="datum/component/beacon.html#proc/on_update_name">on_update_name</a></th><td>Gives the beacon broadcaster object the appropriate, descriptive name</td></tr>
+            <tr><th><a href="datum/component/beacon.html#proc/on_z_change">on_z_change</a></th><td>What happens when we change Z level</td></tr>
+            <tr><th><a href="datum/component/beacon.html#proc/toggle_activation">toggle_activation</a></th><td>Toggles the active state of the beacon</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/activator"><aside class="declaration">var </aside>activator
+            <aside>&ndash; /<a href="mob.html">mob</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 18"/></a></h3>
+        <p>The mob who activated this beacon</p><h3 id="var/active"><aside class="declaration">var </aside>active
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 4"/></a></h3>
+        <p>Is the beacon active?</p><h3 id="var/active_icon_state"><aside class="declaration">var </aside>active_icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 14"/></a></h3>
+        <p>The icon state when this beacon is active</p><h3 id="var/anchor"><aside class="declaration">var </aside>anchor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 10"/></a></h3>
+        <p>Should the parent anchor on activation?</p><h3 id="var/anchor_time"><aside class="declaration">var </aside>anchor_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 12"/></a></h3>
+        <p>How long it takes for this item to activate it's signal/deploy</p><h3 id="var/beacon_cam"><aside class="declaration">var </aside>beacon_cam
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/camera.html">camera</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 8"/></a></h3>
+        <p>The camera attached to the beacon</p><h3 id="var/beacon_datum"><aside class="declaration">var </aside>beacon_datum
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/supply_beacon.html">supply_beacon</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 6"/></a></h3>
+        <p>The reference to the beacon datum</p><h2 id="proc">Proc Details</h2><h3 id="proc/activate"><aside class="declaration">proc </aside>activate<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 84"/></a></aside>
+        </h3>
+        <p>Activates the beacon</p><h3 id="proc/clean_beacon_datum"><aside class="declaration">proc </aside>clean_beacon_datum<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 170"/></a></aside>
+        </h3>
+        <p>If the signal source dies, the beacon datum should as well</p><h3 id="proc/deactivate"><aside class="declaration">proc </aside>deactivate<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 135"/></a></aside>
+        </h3>
+        <p>Deactivates the beacon</p><h3 id="proc/on_attack_hand"><aside class="declaration">proc </aside>on_attack_hand<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 73"/></a></aside>
+        </h3>
+        <p>This will only get called when you want to deactivate a beacon, ie clicking a deployed beacon</p><h3 id="proc/on_attack_self"><aside class="declaration">proc </aside>on_attack_self<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 60"/></a></aside>
+        </h3>
+        <p>The proc that gets called when the user uses the item in their hand</p><h3 id="proc/on_examine"><aside class="declaration">proc </aside>on_examine<aside>(/<a href="atom.html">atom</a>/source, /<a href="mob.html">mob</a>/user, /list/examine_list) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L165">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 165"/></a></aside>
+        </h3>
+        <p>Adds an extra line of instructions to the examine</p><h3 id="proc/on_update_icon_state"><aside class="declaration">proc </aside>on_update_icon_state<aside>(/<a href="atom.html">atom</a>/source, updates) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L183">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 183"/></a></aside>
+        </h3>
+        <p>Updates the icon state of the object to an active state, if it has one</p><h3 id="proc/on_update_name"><aside class="declaration">proc </aside>on_update_name<aside>(/<a href="atom.html">atom</a>/source, updates) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 175"/></a></aside>
+        </h3>
+        <p>Gives the beacon broadcaster object the appropriate, descriptive name</p><h3 id="proc/on_z_change"><aside class="declaration">proc </aside>on_z_change<aside>(/<a href="atom.html">atom</a>/source, old_z, new_z) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L191">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 191"/></a></aside>
+        </h3>
+        <p>What happens when we change Z level</p><h3 id="proc/toggle_activation"><aside class="declaration">proc </aside>toggle_activation<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/beacon.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;beacon.dm 51"/></a></aside>
+        </h3>
+        <p>Toggles the active state of the beacon</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

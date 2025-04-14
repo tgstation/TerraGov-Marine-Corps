@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;direction - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/direction.html#var">Var Details</a> - <a href="datum/controller/subsystem/direction.html#proc">Proc Details</a></header>
+<main>
+<h1>direction <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/direction.html">direction</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/direction.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;direction.dm 4"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/direction.html#var/last_faction_id">last_faction_id</a></th><td>Used as a incrememnted var to create new faction IDs</td></tr>
+            <tr><th><a href="datum/controller/subsystem/direction.html#var/leader_mapping">leader_mapping</a></th><td>this is a map of defines to mob references, eg; list(FACTION_ID = <mob ref>, FACTION_ID2 = <mob ref>)</td></tr>
+            <tr><th><a href="datum/controller/subsystem/direction.html#var/mobs_in_processing">mobs_in_processing</a></th><td>Lookup for list(<mob ref> = squad_id)</td></tr>
+            <tr><th><a href="datum/controller/subsystem/direction.html#var/processing_mobs">processing_mobs</a></th><td>this is a two d list of defines to lists of mobs tracking that leader
+eg; list(CHARLIE_SL = list(&lt;list of references to squad marines), XENO_NORMAL_QUEEN = list(&lt;list of xeno mob refs))</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/direction.html#proc/clear_leader">clear_leader</a></th><td>Clears the leader for this squad id</td></tr>
+            <tr><th><a href="datum/controller/subsystem/direction.html#proc/init_squad">init_squad</a></th><td>Creates a new squad so tat we can start tracking it's leader
+Arguments:</td></tr>
+            <tr><th><a href="datum/controller/subsystem/direction.html#proc/set_leader">set_leader</a></th><td>Sets a new leader for a squad</td></tr>
+            <tr><th><a href="datum/controller/subsystem/direction.html#proc/start_tracking">start_tracking</a></th><td>Adds a new mob to a squad so it can track
+Arguments:</td></tr>
+            <tr><th><a href="datum/controller/subsystem/direction.html#proc/stop_tracking">stop_tracking</a></th><td>Removes a new mob drom a squad so it can stop tracking
+Arguments:</td></tr>
+            <tr><th><a href="datum/controller/subsystem/direction.html#proc/untrack_all_in_squad">untrack_all_in_squad</a></th><td>Stops all members of this squad from tracking the leader</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/last_faction_id"><aside class="declaration">var </aside>last_faction_id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/direction.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;direction.dm 31"/></a></h3>
+        <p>Used as a incrememnted var to create new faction IDs</p><h3 id="var/leader_mapping"><aside class="declaration">var </aside>leader_mapping
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/direction.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;direction.dm 11"/></a></h3>
+        <p>this is a map of defines to mob references, eg; list(FACTION_ID = <mob ref>, FACTION_ID2 = <mob ref>)</p><h3 id="var/mobs_in_processing"><aside class="declaration">var </aside>mobs_in_processing
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/direction.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;direction.dm 18"/></a></h3>
+        <p>Lookup for list(<mob ref> = squad_id)</p><h3 id="var/processing_mobs"><aside class="declaration">var </aside>processing_mobs
+            <aside>&ndash; /list/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/direction.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;direction.dm 15"/></a></h3>
+        <p>this is a two d list of defines to lists of mobs tracking that leader
+eg; list(CHARLIE_SL = list(&lt;list of references to squad marines), XENO_NORMAL_QUEEN = list(&lt;list of xeno mob refs))</p><h2 id="proc">Proc Details</h2><h3 id="proc/clear_leader"><aside class="declaration">proc </aside>clear_leader<aside>(squad_id) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/direction.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;direction.dm 132"/></a></aside>
+        </h3>
+        <p>Clears the leader for this squad id</p><h3 id="proc/init_squad"><aside class="declaration">proc </aside>init_squad<aside>(new_squad_id, /<a href="mob.html">mob</a>/squad_leader_mob) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/direction.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;direction.dm 141"/></a></aside>
+        </h3>
+        <p>Creates a new squad so tat we can start tracking it's leader
+Arguments:</p>
+<ul>
+<li>new_squad_id: string ID for the new squad we are creating, if none is given creates a new id with last faction id</li>
+<li>squad_leader_mob: optional; mob that we want to be SL of this squad</li>
+</ul><h3 id="proc/set_leader"><aside class="declaration">proc </aside>set_leader<aside>(squad_id, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/new_leader) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/direction.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;direction.dm 126"/></a></aside>
+        </h3>
+        <p>Sets a new leader for a squad</p><h3 id="proc/start_tracking"><aside class="declaration">proc </aside>start_tracking<aside>(squad_id, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/new_tracker) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/direction.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;direction.dm 96"/></a></aside>
+        </h3>
+        <p>Adds a new mob to a squad so it can track
+Arguments:</p>
+<ul>
+<li>squad_id: string squad ID we want to be tracking</li>
+<li>new_tracker: New mob we are adding that wants to track the leader of this squad</li>
+</ul><h3 id="proc/stop_tracking"><aside class="declaration">proc </aside>stop_tracking<aside>(squad_id, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/tracker, force) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/direction.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;direction.dm 112"/></a></aside>
+        </h3>
+        <p>Removes a new mob drom a squad so it can stop tracking
+Arguments:</p>
+<ul>
+<li>squad_id: string squad ID we want to be tracking</li>
+<li>tracker: Mob we are removing from tracking</li>
+</ul><h3 id="proc/untrack_all_in_squad"><aside class="declaration">proc </aside>untrack_all_in_squad<aside>(squad_id) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/direction.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;direction.dm 77"/></a></aside>
+        </h3>
+        <p>Stops all members of this squad from tracking the leader</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

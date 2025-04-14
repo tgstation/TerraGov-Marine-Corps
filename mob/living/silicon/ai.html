@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="mob/living/silicon/ai.html#var">Var Details</a> - <a href="mob/living/silicon/ai.html#proc">Proc Details</a></header>
+<main>
+<h1>ai <aside>/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/silicon.html">silicon</a>/<a href="mob/living/silicon/ai.html">ai</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_examine.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_examine.dm 14"/></a></h1>
+
+<p>This elevator serves me alone. I have complete control over this entire level. With cameras as my eyes and nodes as my hands, I rule here, insect.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/controlling">controlling</a></th><td>If it is currently controlling an object</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/current_order">current_order</a></th><td>Selected order to give to marine</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/last_ai_bioscan">last_ai_bioscan</a></th><td>stores the last time the AI manually scanned the planet. we don't do cooldown_declare because we need the world time for our game panel</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/last_announcement">last_announcement</a></th><td>Holds world time of our last regular announcement</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/last_pinged_marines">last_pinged_marines</a></th><td>used for cooldown when AI pings the location of a xeno or xeno structure</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/linked_artillery">linked_artillery</a></th><td>Linked artillery for remote targeting.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#var/mini">mini</a></th><td>Reference to the AIs minimap.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/Destroy">Destroy</a></th><td>register the various signals we need for alerts</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/ai_ping">ai_ping</a></th><td>takes an atom A and sends an alert, coordinate and for the atom to eligible marine forces if cooldown is over</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/announcement">announcement</a></th><td>gets vox &quot;sentence&quot; from player input</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/associate_artillery">associate_artillery</a></th><td>Called for associating the AI with artillery</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/clean_artillery_refs">clean_artillery_refs</a></th><td>Proc called when linked_mortar is deleted.</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/holopad_talk">holopad_talk</a></th><td>Handles relayed speech</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/notify_ai">notify_ai</a></th><td>list of mobs to send the notification to
+time for calculations
+divide our range into SW, NW, SE and NE for the purposes of identification
+we subtract the receivers X/Y value from the target atoms X/Y value, once for x coords and one for y coords
+by checking whether the result is positive or negative, we can tell the general direction the target atom is in
+to avoid upsetting balance we give very general directions</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/ping_ai">ping_ai</a></th><td>Receive notifications about someone calling the AI via holopad</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/receive_laser_cas">receive_laser_cas</a></th><td>Receive notifications about CAS laser dots that have been deployed</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/receive_laser_ob">receive_laser_ob</a></th><td>Receive notifications about OB laser dots that have been deployed</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/receive_laser_railgun">receive_laser_railgun</a></th><td>Receive notifications about railgun laser dots that have been deployed</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/receive_lockdown_warning">receive_lockdown_warning</a></th><td>Receive notifications about the xenos locking down the Alamo</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/receive_tad_warning">receive_tad_warning</a></th><td>Receive notifications about the tad control equipment being destroyed</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/send_order">send_order</a></th><td>Print order visual to all marines squad hud and give them an arrow to follow the waypoint</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/set_order">set_order</a></th><td>Set the current order</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/show_disk_complete">show_disk_complete</a></th><td>Receive notifications about disks being generated</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/show_fresh_clone">show_fresh_clone</a></th><td>Receive notifications about a fresh clone being active</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/show_nuke_start">show_nuke_start</a></th><td>Receive notifications about the nuclear bomb being armed</td></tr>
+            <tr><th><a href="mob/living/silicon/ai.html#proc/shuttle_takeoff_notification">shuttle_takeoff_notification</a></th><td>This gives the stupid computer a notification whenever the dropship takes off. Crutch for a supercomputer.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/controlling"><aside class="declaration">var </aside>controlling
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 63"/></a></h3>
+        <p>If it is currently controlling an object</p><h3 id="var/current_order"><aside class="declaration">var </aside>current_order
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/innate/order.html">innate/order</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 53"/></a></h3>
+        <p>Selected order to give to marine</p><h3 id="var/last_ai_bioscan"><aside class="declaration">var </aside>last_ai_bioscan
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 78"/></a></h3>
+        <p>stores the last time the AI manually scanned the planet. we don't do cooldown_declare because we need the world time for our game panel</p><h3 id="var/last_announcement"><aside class="declaration">var </aside>last_announcement
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 38"/></a></h3>
+        <p>Holds world time of our last regular announcement</p><h3 id="var/last_pinged_marines"><aside class="declaration">var </aside>last_pinged_marines
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 72"/></a></h3>
+        <p>used for cooldown when AI pings the location of a xeno or xeno structure</p><h3 id="var/linked_artillery"><aside class="declaration">var </aside>linked_artillery
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/deployable.html">deployable</a>/<a href="obj/machinery/deployable/mortar.html">mortar</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 66"/></a></h3>
+        <p>Linked artillery for remote targeting.</p><h3 id="var/mini"><aside class="declaration">var </aside>mini
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/minimap.html">minimap</a>/ai</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 69"/></a></h3>
+        <p>Reference to the AIs minimap.</p><h2 id="proc">Proc Details</h2><h3 id="proc/Destroy"><aside class="parent"><a title="/datum" href="datum.html#proc/Destroy">&uarr;</a></aside>Destroy<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai.dm#L144">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 144"/></a></aside>
+        </h3>
+        <p>register the various signals we need for alerts</p><h3 id="proc/ai_ping"><aside class="declaration">proc </aside>ai_ping<aside>(/<a href="atom.html">atom</a>/A, cooldown) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai.dm#L553">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 553"/></a></aside>
+        </h3>
+        <p>takes an atom A and sends an alert, coordinate and for the atom to eligible marine forces if cooldown is over</p><h3 id="proc/announcement"><aside class="declaration">proc </aside>announcement<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/say.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;say.dm 77"/></a></aside>
+        </h3>
+        <p>gets vox &quot;sentence&quot; from player input</p><h3 id="proc/associate_artillery"><aside class="declaration">proc </aside>associate_artillery<aside>(mortar) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai.dm#L448">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 448"/></a></aside>
+        </h3>
+        <p>Called for associating the AI with artillery</p><h3 id="proc/clean_artillery_refs"><aside class="declaration">proc </aside>clean_artillery_refs<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai.dm#L457">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 457"/></a></aside>
+        </h3>
+        <p>Proc called when linked_mortar is deleted.</p><h3 id="proc/holopad_talk"><aside class="declaration">proc </aside>holopad_talk<aside>(message, language) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/say.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;say.dm 17"/></a></aside>
+        </h3>
+        <p>Handles relayed speech</p><h3 id="proc/notify_ai"><aside class="declaration">proc </aside>notify_ai<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/silicon.html">silicon</a>/receivingai, message, ai_sound, /<a href="atom.html">atom</a>/source, /mutable_appearance/alert_overlay, action, header, notify_volume) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai_notifications.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai_notifications.dm 2"/></a></aside>
+        </h3>
+        <p>list of mobs to send the notification to
+time for calculations
+divide our range into SW, NW, SE and NE for the purposes of identification
+we subtract the receivers X/Y value from the target atoms X/Y value, once for x coords and one for y coords
+by checking whether the result is positive or negative, we can tell the general direction the target atom is in
+to avoid upsetting balance we give very general directions</p><h3 id="proc/ping_ai"><aside class="declaration">proc </aside>ping_ai<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/holopad.html">holopad</a>/callingholopad) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai_notifications.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai_notifications.dm 79"/></a></aside>
+        </h3>
+        <p>Receive notifications about someone calling the AI via holopad</p><h3 id="proc/receive_laser_cas"><aside class="declaration">proc </aside>receive_laser_cas<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/effect/overlay/temp/laser_target.html">effect/overlay/temp/laser_target</a>/cas/incoming_laser) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai_notifications.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai_notifications.dm 32"/></a></aside>
+        </h3>
+        <p>Receive notifications about CAS laser dots that have been deployed</p><h3 id="proc/receive_laser_ob"><aside class="declaration">proc </aside>receive_laser_ob<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/effect/overlay/temp/laser_target.html">effect/overlay/temp/laser_target</a>/ob/incoming_laser) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai_notifications.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai_notifications.dm 26"/></a></aside>
+        </h3>
+        <p>Receive notifications about OB laser dots that have been deployed</p><h3 id="proc/receive_laser_railgun"><aside class="declaration">proc </aside>receive_laser_railgun<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/effect/overlay/temp/laser_target.html">effect/overlay/temp/laser_target</a>/cas/incoming_laser) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai_notifications.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai_notifications.dm 38"/></a></aside>
+        </h3>
+        <p>Receive notifications about railgun laser dots that have been deployed</p><h3 id="proc/receive_lockdown_warning"><aside class="declaration">proc </aside>receive_lockdown_warning<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/computer.html">computer</a>/shuttle/marine_dropship/lockedship) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai_notifications.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai_notifications.dm 44"/></a></aside>
+        </h3>
+        <p>Receive notifications about the xenos locking down the Alamo</p><h3 id="proc/receive_tad_warning"><aside class="declaration">proc </aside>receive_tad_warning<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/computer.html">computer</a>/<a href="obj/machinery/computer/camera_advanced.html">camera_advanced</a>/<a href="obj/machinery/computer/camera_advanced/shuttle_docker.html">shuttle_docker</a>/<a href="obj/machinery/computer/camera_advanced/shuttle_docker/minidropship.html">minidropship</a>/ruinedtad) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai_notifications.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai_notifications.dm 52"/></a></aside>
+        </h3>
+        <p>Receive notifications about the tad control equipment being destroyed</p><h3 id="proc/send_order"><aside class="declaration">proc </aside>send_order<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai.dm#L159">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 159"/></a></aside>
+        </h3>
+        <p>Print order visual to all marines squad hud and give them an arrow to follow the waypoint</p><h3 id="proc/set_order"><aside class="declaration">proc </aside>set_order<aside>(/<a href="datum.html">datum</a>/source, /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/innate/order.html">innate/order</a>/order) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai.dm#L167">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 167"/></a></aside>
+        </h3>
+        <p>Set the current order</p><h3 id="proc/show_disk_complete"><aside class="declaration">proc </aside>show_disk_complete<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/computer.html">computer</a>/<a href="obj/machinery/computer/nuke_disk_generator.html">nuke_disk_generator</a>/generatingcomputer) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai_notifications.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai_notifications.dm 58"/></a></aside>
+        </h3>
+        <p>Receive notifications about disks being generated</p><h3 id="proc/show_fresh_clone"><aside class="declaration">proc </aside>show_fresh_clone<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/cloning.html">cloning</a>/<a href="obj/machinery/cloning/vats.html">vats</a>/cloningtube) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai_notifications.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai_notifications.dm 72"/></a></aside>
+        </h3>
+        <p>Receive notifications about a fresh clone being active</p><h3 id="proc/show_nuke_start"><aside class="declaration">proc </aside>show_nuke_start<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/nuclearbomb.html">nuclearbomb</a>/nukebomb) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai_notifications.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai_notifications.dm 65"/></a></aside>
+        </h3>
+        <p>Receive notifications about the nuclear bomb being armed</p><h3 id="proc/shuttle_takeoff_notification"><aside class="declaration">proc </aside>shuttle_takeoff_notification<aside>(/<a href="datum.html">datum</a>/source, shuttleId, D) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/ai.dm#L172">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;ai.dm 172"/></a></aside>
+        </h3>
+        <p>This gives the stupid computer a notification whenever the dropship takes off. Crutch for a supercomputer.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

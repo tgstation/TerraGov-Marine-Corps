@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;explosive&#x2F;mine - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/explosive/mine.html#var">Var Details</a> - <a href="obj/item/explosive/mine.html#proc">Proc Details</a></header>
+<main>
+<h1>mine <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/explosive/mine.html">explosive/mine</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/mine.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;mine.dm 11"/></a></h1>
+
+<p>Mines</p>
+<p>Mines have an invisible &quot;tripwire&quot; atom that explodes when crossed
+Stepping directly on the mine will also blow it up</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/explosive/mine.html#var/armed">armed</a></th><td>State of the mine. Will the mine explode or not</td></tr>
+            <tr><th><a href="obj/item/explosive/mine.html#var/iff_signal">iff_signal</a></th><td>IFF signal - used to determine friendly units</td></tr>
+            <tr><th><a href="obj/item/explosive/mine.html#var/target_mode">target_mode</a></th><td>Trigger flags for this mine</td></tr>
+            <tr><th><a href="obj/item/explosive/mine.html#var/triggered">triggered</a></th><td>If the mine has been triggered</td></tr>
+            <tr><th><a href="obj/item/explosive/mine.html#var/tripwire">tripwire</a></th><td>Tripwire holds reference to the tripwire obj that is used to trigger an explosion</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/explosive/mine.html#proc/attack_alien">attack_alien</a></th><td>Alien attacks trigger the explosive to instantly detonate</td></tr>
+            <tr><th><a href="obj/item/explosive/mine.html#proc/attack_self">attack_self</a></th><td>attack_self is used to arm the mine</td></tr>
+            <tr><th><a href="obj/item/explosive/mine.html#proc/attackby">attackby</a></th><td>Supports diarming a mine</td></tr>
+            <tr><th><a href="obj/item/explosive/mine.html#proc/deploy_mine">deploy_mine</a></th><td>this proc is used to deploy a mine</td></tr>
+            <tr><th><a href="obj/item/explosive/mine.html#proc/emp_act">emp_act</a></th><td>Any emp effects mines will trigger their explosion</td></tr>
+            <tr><th><a href="obj/item/explosive/mine.html#proc/ex_act">ex_act</a></th><td>On explosion mines trigger their own explosion, assuming there were not deleted straight away (larger explosions or probability)</td></tr>
+            <tr><th><a href="obj/item/explosive/mine.html#proc/fire_act">fire_act</a></th><td>Flamer fire will cause mines to trigger their explosion</td></tr>
+            <tr><th><a href="obj/item/explosive/mine.html#proc/trigger_explosion">trigger_explosion</a></th><td>Trigger an actual explosion and delete the mine.</td></tr>
+            <tr><th><a href="obj/item/explosive/mine.html#proc/trip_mine">trip_mine</a></th><td>so dragged corpses don't trigger mines.</td></tr>
+            <tr><th><a href="obj/item/explosive/mine.html#proc/update_icon_state">update_icon_state</a></th><td>Update the icon, adding &quot;_armed&quot; if appropriate to the icon_state.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/armed"><aside class="declaration">var </aside>armed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/mine.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;mine.dm 29"/></a></h3>
+        <p>State of the mine. Will the mine explode or not</p><h3 id="var/iff_signal"><aside class="declaration">var </aside>iff_signal
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/mine.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;mine.dm 25"/></a></h3>
+        <p>IFF signal - used to determine friendly units</p><h3 id="var/target_mode"><aside class="declaration">var </aside>target_mode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/mine.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;mine.dm 23"/></a></h3>
+        <p>Trigger flags for this mine</p><h3 id="var/triggered"><aside class="declaration">var </aside>triggered
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/mine.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;mine.dm 27"/></a></h3>
+        <p>If the mine has been triggered</p><h3 id="var/tripwire"><aside class="declaration">var </aside>tripwire
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/mine_tripwire.html">effect/mine_tripwire</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/mine.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;mine.dm 33"/></a></h3>
+        <p>Tripwire holds reference to the tripwire obj that is used to trigger an explosion</p><h2 id="proc">Proc Details</h2><h3 id="proc/attack_alien">attack_alien<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a>/xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration, isrightclick) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/mine.dm#L173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;mine.dm 173"/></a></aside>
+        </h3>
+        <p>Alien attacks trigger the explosive to instantly detonate</p><h3 id="proc/attack_self"><aside class="parent"><a title="/obj/item" href="obj/item.html#proc/attack_self">&uarr;</a></aside>attack_self<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/mine.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;mine.dm 66"/></a></aside>
+        </h3>
+        <p>attack_self is used to arm the mine</p><h3 id="proc/attackby">attackby<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, /<a href="mob.html">mob</a>/user, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/mine.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;mine.dm 103"/></a></aside>
+        </h3>
+        <p>Supports diarming a mine</p><h3 id="proc/deploy_mine"><aside class="declaration">proc </aside>deploy_mine<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, iff_sig) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/mine.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;mine.dm 88"/></a></aside>
+        </h3>
+        <p>this proc is used to deploy a mine</p><h3 id="proc/emp_act">emp_act<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/mine.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;mine.dm 56"/></a></aside>
+        </h3>
+        <p>Any emp effects mines will trigger their explosion</p><h3 id="proc/ex_act"><aside class="parent"><a title="/atom" href="atom.html#proc/ex_act">&uarr;</a></aside>ex_act<aside>(severity) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/mine.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;mine.dm 50"/></a></aside>
+        </h3>
+        <p>On explosion mines trigger their own explosion, assuming there were not deleted straight away (larger explosions or probability)</p><h3 id="proc/fire_act"><aside class="parent"><a title="/atom" href="atom.html#proc/fire_act">&uarr;</a></aside>fire_act<aside>(burn_level) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/mine.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;mine.dm 61"/></a></aside>
+        </h3>
+        <p>Flamer fire will cause mines to trigger their explosion</p><h3 id="proc/trigger_explosion"><aside class="declaration">proc </aside>trigger_explosion<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/mine.dm#L187">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;mine.dm 187"/></a></aside>
+        </h3>
+        <p>Trigger an actual explosion and delete the mine.</p><h3 id="proc/trip_mine"><aside class="declaration">proc </aside>trip_mine<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/victim) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/mine.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;mine.dm 137"/></a></aside>
+        </h3>
+        <p>so dragged corpses don't trigger mines.</p><h3 id="proc/update_icon_state"><aside class="parent"><a title="/atom" href="atom.html#proc/update_icon_state">&uarr;</a></aside>update_icon_state<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/explosives/mine.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;explosives&#x2F;mine.dm 45"/></a></aside>
+        </h3>
+        <p>Update the icon, adding &quot;_armed&quot; if appropriate to the icon_state.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

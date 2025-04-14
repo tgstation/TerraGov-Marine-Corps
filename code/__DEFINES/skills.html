@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;skills.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/skills.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/skills.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_UNARMED">SKILL_UNARMED</a></th><td>UNARMED skill; higher disarm chance on humans(+5% per level); slight increase in punch damage.</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/UNARMED_SKILL_DAMAGE_MOD">UNARMED_SKILL_DAMAGE_MOD</a></th><td>Unarmed damage mod from UNARMED skill</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/UNARMED_SKILL_DISARM_MOD">UNARMED_SKILL_DISARM_MOD</a></th><td>Disarm chance mod from UNARMED skill</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_MELEE_WEAPONS">SKILL_MELEE_WEAPONS</a></th><td>Melee skill; 15% extra damage per skill level</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/MELEE_SKILL_DAM_BUFF">MELEE_SKILL_DAM_BUFF</a></th><td>The amount of extra damage per melee skill level</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_COMBAT">SKILL_COMBAT</a></th><td>Combat skill; Increase or decrase accuracy, recoil, damage, and firing delay of most guns; ability to tac reload</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/COMBAT_SKILL_DAM_MOD">COMBAT_SKILL_DAM_MOD</a></th><td>Damage mod for having the weapon specific skill above 0</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_PISTOLS">SKILL_PISTOLS</a></th><td>Pistols skill; Increase accuracy, recoil, and damage of pistols and revolvers.</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_SMGS">SKILL_SMGS</a></th><td>SMG skill; Increase accuracy, recoil, and damage of SMGs.</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_RIFLES">SKILL_RIFLES</a></th><td>Rifles skill; Increase accuracy, recoil, and damage of rifles.</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_SHOTGUNS">SKILL_SHOTGUNS</a></th><td>Shotgun skill; Increase accuracy, recoil, and damage of shotguns.</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_HEAVY_WEAPONS">SKILL_HEAVY_WEAPONS</a></th><td>Heavy weapons skill; Increase accuracy, recoil, damage, and firing delay of heavy weapons (eg. machineguns, pulse rifles, flamethrower).</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_SMARTGUN">SKILL_SMARTGUN</a></th><td>Smartgun skill; Increase or decrase accuracy, recoil, damage, and firing delay for smartgun, and whether we can use smartguns at all.</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_ENGINEER">SKILL_ENGINEER</a></th><td>Engineer skill; higher levels means faster engine repair and more integrity repair off welding</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_CONSTRUCTION">SKILL_CONSTRUCTION</a></th><td>Construction skill; higher levels means faster buidling</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_MEDICAL">SKILL_MEDICAL</a></th><td>Medical skill; higher levels means faster syringe use and better defibrillation</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_SURGERY">SKILL_SURGERY</a></th><td>Surgery skill; higher levels means faster surgery, less fumble time to start surgery</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_LEADERSHIP">SKILL_LEADERSHIP</a></th><td>Leadership skill; order strength + range of effect</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_PILOT">SKILL_PILOT</a></th><td>Pilot skill, hidden; affects dropship weapon usage (not called anywhere on Condor)</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_POLICE">SKILL_POLICE</a></th><td>Police skill; use of special equipment</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_POWERLOADER">SKILL_POWERLOADER</a></th><td>Powerloader skill; movespeed when using a powerloader</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_LARGE_VEHICLE">SKILL_LARGE_VEHICLE</a></th><td>Multitile vehicle skill; can you use the vehicle or not</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_MECH">SKILL_MECH</a></th><td>mech vehicle skill; can you use greyscale mechs or not</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_STAMINA">SKILL_STAMINA</a></th><td>Stamina skill - you do cardio, right?; buff stamina-related things</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/STAMINA_SKILL_COOLDOWN_MOD">STAMINA_SKILL_COOLDOWN_MOD</a></th><td>Stamina cooldown after you use it and before it starts to regenerate</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/STAMINA_SKILL_REGEN_MOD">STAMINA_SKILL_REGEN_MOD</a></th><td>Stamina skill regen multiplier increase for when stamina skill goes up</td></tr>
+        <tr><th><a href="code/__DEFINES/skills.html#define/SKILL_TASK_TRIVIAL">SKILL_TASK_TRIVIAL</a></th><td>Skill-related fumble and delay times; in deciseconds</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/COMBAT_SKILL_DAM_MOD"><aside class="declaration">#define </aside>COMBAT_SKILL_DAM_MOD
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 35"/></a>
+    </h3>
+    <p>Damage mod for having the weapon specific skill above 0</p><h3 id="define/MELEE_SKILL_DAM_BUFF"><aside class="declaration">#define </aside>MELEE_SKILL_DAM_BUFF
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 25"/></a>
+    </h3>
+    <p>The amount of extra damage per melee skill level</p><h3 id="define/SKILL_COMBAT"><aside class="declaration">#define </aside>SKILL_COMBAT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 28"/></a>
+    </h3>
+    <p>Combat skill; Increase or decrase accuracy, recoil, damage, and firing delay of most guns; ability to tac reload</p><h3 id="define/SKILL_CONSTRUCTION"><aside class="declaration">#define </aside>SKILL_CONSTRUCTION
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 87"/></a>
+    </h3>
+    <p>Construction skill; higher levels means faster buidling</p><h3 id="define/SKILL_ENGINEER"><aside class="declaration">#define </aside>SKILL_ENGINEER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 77"/></a>
+    </h3>
+    <p>Engineer skill; higher levels means faster engine repair and more integrity repair off welding</p><h3 id="define/SKILL_HEAVY_WEAPONS"><aside class="declaration">#define </aside>SKILL_HEAVY_WEAPONS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 62"/></a>
+    </h3>
+    <p>Heavy weapons skill; Increase accuracy, recoil, damage, and firing delay of heavy weapons (eg. machineguns, pulse rifles, flamethrower).</p><h3 id="define/SKILL_LARGE_VEHICLE"><aside class="declaration">#define </aside>SKILL_LARGE_VEHICLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L148">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 148"/></a>
+    </h3>
+    <p>Multitile vehicle skill; can you use the vehicle or not</p><h3 id="define/SKILL_LEADERSHIP"><aside class="declaration">#define </aside>SKILL_LEADERSHIP
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 117"/></a>
+    </h3>
+    <p>Leadership skill; order strength + range of effect</p><h3 id="define/SKILL_MECH"><aside class="declaration">#define </aside>SKILL_MECH
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L156">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 156"/></a>
+    </h3>
+    <p>mech vehicle skill; can you use greyscale mechs or not</p><h3 id="define/SKILL_MEDICAL"><aside class="declaration">#define </aside>SKILL_MEDICAL
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 97"/></a>
+    </h3>
+    <p>Medical skill; higher levels means faster syringe use and better defibrillation</p><h3 id="define/SKILL_MELEE_WEAPONS"><aside class="declaration">#define </aside>SKILL_MELEE_WEAPONS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 17"/></a>
+    </h3>
+    <p>Melee skill; 15% extra damage per skill level</p><h3 id="define/SKILL_PILOT"><aside class="declaration">#define </aside>SKILL_PILOT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 126"/></a>
+    </h3>
+    <p>Pilot skill, hidden; affects dropship weapon usage (not called anywhere on Condor)</p><h3 id="define/SKILL_PISTOLS"><aside class="declaration">#define </aside>SKILL_PISTOLS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 38"/></a>
+    </h3>
+    <p>Pistols skill; Increase accuracy, recoil, and damage of pistols and revolvers.</p><h3 id="define/SKILL_POLICE"><aside class="declaration">#define </aside>SKILL_POLICE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 132"/></a>
+    </h3>
+    <p>Police skill; use of special equipment</p><h3 id="define/SKILL_POWERLOADER"><aside class="declaration">#define </aside>SKILL_POWERLOADER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 139"/></a>
+    </h3>
+    <p>Powerloader skill; movespeed when using a powerloader</p><h3 id="define/SKILL_RIFLES"><aside class="declaration">#define </aside>SKILL_RIFLES
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 50"/></a>
+    </h3>
+    <p>Rifles skill; Increase accuracy, recoil, and damage of rifles.</p><h3 id="define/SKILL_SHOTGUNS"><aside class="declaration">#define </aside>SKILL_SHOTGUNS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 56"/></a>
+    </h3>
+    <p>Shotgun skill; Increase accuracy, recoil, and damage of shotguns.</p><h3 id="define/SKILL_SMARTGUN"><aside class="declaration">#define </aside>SKILL_SMARTGUN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 68"/></a>
+    </h3>
+    <p>Smartgun skill; Increase or decrase accuracy, recoil, damage, and firing delay for smartgun, and whether we can use smartguns at all.</p><h3 id="define/SKILL_SMGS"><aside class="declaration">#define </aside>SKILL_SMGS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 44"/></a>
+    </h3>
+    <p>SMG skill; Increase accuracy, recoil, and damage of SMGs.</p><h3 id="define/SKILL_STAMINA"><aside class="declaration">#define </aside>SKILL_STAMINA
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L162">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 162"/></a>
+    </h3>
+    <p>Stamina skill - you do cardio, right?; buff stamina-related things</p><h3 id="define/SKILL_SURGERY"><aside class="declaration">#define </aside>SKILL_SURGERY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 107"/></a>
+    </h3>
+    <p>Surgery skill; higher levels means faster surgery, less fumble time to start surgery</p><h3 id="define/SKILL_TASK_TRIVIAL"><aside class="declaration">#define </aside>SKILL_TASK_TRIVIAL
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 175"/></a>
+    </h3>
+    <p>Skill-related fumble and delay times; in deciseconds</p><h3 id="define/SKILL_UNARMED"><aside class="declaration">#define </aside>SKILL_UNARMED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 3"/></a>
+    </h3>
+    <p>UNARMED skill; higher disarm chance on humans(+5% per level); slight increase in punch damage.</p><h3 id="define/STAMINA_SKILL_COOLDOWN_MOD"><aside class="declaration">#define </aside>STAMINA_SKILL_COOLDOWN_MOD
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 170"/></a>
+    </h3>
+    <p>Stamina cooldown after you use it and before it starts to regenerate</p><h3 id="define/STAMINA_SKILL_REGEN_MOD"><aside class="declaration">#define </aside>STAMINA_SKILL_REGEN_MOD
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L172">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 172"/></a>
+    </h3>
+    <p>Stamina skill regen multiplier increase for when stamina skill goes up</p><h3 id="define/UNARMED_SKILL_DAMAGE_MOD"><aside class="declaration">#define </aside>UNARMED_SKILL_DAMAGE_MOD
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 12"/></a>
+    </h3>
+    <p>Unarmed damage mod from UNARMED skill</p><h3 id="define/UNARMED_SKILL_DISARM_MOD"><aside class="declaration">#define </aside>UNARMED_SKILL_DISARM_MOD
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/skills.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;skills.dm 14"/></a>
+    </h3>
+    <p>Disarm chance mod from UNARMED skill</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

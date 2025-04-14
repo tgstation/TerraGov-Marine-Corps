@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;miner - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/miner.html#var">Var Details</a> - <a href="obj/machinery/miner.html#proc">Proc Details</a></header>
+<main>
+<h1>miner <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/miner.html">miner</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/miner.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;miner.dm 18"/></a></h1>
+
+<p>Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/miner.html#var/add_tick">add_tick</a></th><td>Tracks how many ticks have passed since we last added a sheet of material</td></tr>
+            <tr><th><a href="obj/machinery/miner.html#var/dropship_bonus">dropship_bonus</a></th><td>Applies the actual bonus points for the dropship for each sale</td></tr>
+            <tr><th><a href="obj/machinery/miner.html#var/max_miner_integrity">max_miner_integrity</a></th><td>Max health of the miner</td></tr>
+            <tr><th><a href="obj/machinery/miner.html#var/miner_integrity">miner_integrity</a></th><td>Health for the miner we use because changing obj_integrity is apparently bad</td></tr>
+            <tr><th><a href="obj/machinery/miner.html#var/miner_status">miner_status</a></th><td>Current status of the miner</td></tr>
+            <tr><th><a href="obj/machinery/miner.html#var/miner_upgrade_type">miner_upgrade_type</a></th><td>What type of upgrade it has installed , used to change the icon of the miner.</td></tr>
+            <tr><th><a href="obj/machinery/miner.html#var/mineral_value">mineral_value</a></th><td>The mineral type that's produced</td></tr>
+            <tr><th><a href="obj/machinery/miner.html#var/required_ticks">required_ticks</a></th><td>How many times we neeed to tick for a resource to be created, in this case this is 2* the specified amount</td></tr>
+            <tr><th><a href="obj/machinery/miner.html#var/stored_mineral">stored_mineral</a></th><td>How many sheets of material we have stored</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/miner.html#proc/attempt_upgrade">attempt_upgrade</a></th><td>Called whenever someone attacks the miner with a object which is considered a upgrade.The object needs to have a uptype var.</td></tr>
+            <tr><th><a href="obj/machinery/miner.html#proc/disable_on_hijack">disable_on_hijack</a></th><td>Called via global signal to prevent perpetual mining</td></tr>
+            <tr><th><a href="obj/machinery/miner.html#proc/init_marker">init_marker</a></th><td>This proc is called during Initialize() and should be used to initially setup the minimap marker of a functional miner.</td></tr>
+            <tr><th><a href="obj/machinery/miner.html#proc/record_miner_repair">record_miner_repair</a></th><td>Separate record keeping proc to reduce copy pasta</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/add_tick"><aside class="declaration">var </aside>add_tick
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/miner.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;miner.dm 35"/></a></h3>
+        <p>Tracks how many ticks have passed since we last added a sheet of material</p><h3 id="var/dropship_bonus"><aside class="declaration">var </aside>dropship_bonus
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/miner.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;miner.dm 41"/></a></h3>
+        <p>Applies the actual bonus points for the dropship for each sale</p><h3 id="var/max_miner_integrity"><aside class="declaration">var </aside>max_miner_integrity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/miner.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;miner.dm 45"/></a></h3>
+        <p>Max health of the miner</p><h3 id="var/miner_integrity"><aside class="declaration">var </aside>miner_integrity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/miner.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;miner.dm 43"/></a></h3>
+        <p>Health for the miner we use because changing obj_integrity is apparently bad</p><h3 id="var/miner_status"><aside class="declaration">var </aside>miner_status
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/miner.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;miner.dm 33"/></a></h3>
+        <p>Current status of the miner</p><h3 id="var/miner_upgrade_type"><aside class="declaration">var </aside>miner_upgrade_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/miner.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;miner.dm 49"/></a></h3>
+        <p>What type of upgrade it has installed , used to change the icon of the miner.</p><h3 id="var/mineral_value"><aside class="declaration">var </aside>mineral_value
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/miner.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;miner.dm 39"/></a></h3>
+        <p>The mineral type that's produced</p><h3 id="var/required_ticks"><aside class="declaration">var </aside>required_ticks
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/miner.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;miner.dm 37"/></a></h3>
+        <p>How many times we neeed to tick for a resource to be created, in this case this is 2* the specified amount</p><h3 id="var/stored_mineral"><aside class="declaration">var </aside>stored_mineral
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/miner.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;miner.dm 31"/></a></h3>
+        <p>How many sheets of material we have stored</p><h2 id="proc">Proc Details</h2><h3 id="proc/attempt_upgrade"><aside class="declaration">proc </aside>attempt_upgrade<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/minerupgrade.html">minerupgrade</a>/upgrade, /<a href="mob.html">mob</a>/user, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/miner.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;miner.dm 92"/></a></aside>
+        </h3>
+        <p>Called whenever someone attacks the miner with a object which is considered a upgrade.The object needs to have a uptype var.</p><h3 id="proc/disable_on_hijack"><aside class="declaration">proc </aside>disable_on_hijack<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/miner.dm#L355">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;miner.dm 355"/></a></aside>
+        </h3>
+        <p>Called via global signal to prevent perpetual mining</p><h3 id="proc/init_marker"><aside class="declaration">proc </aside>init_marker<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/miner.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;miner.dm 71"/></a></aside>
+        </h3>
+        <p>This proc is called during Initialize() and should be used to initially setup the minimap marker of a functional miner.</p>
+<ul>
+<li>For a miner starting broken, it should be overridden and immediately return instead, as broken miners will automatically set their minimap marker during their first process()</li>
+</ul><h3 id="proc/record_miner_repair"><aside class="declaration">proc </aside>record_miner_repair<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/personal_statistics.dm#L532">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;personal_statistics.dm 532"/></a></aside>
+        </h3>
+        <p>Separate record keeping proc to reduce copy pasta</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

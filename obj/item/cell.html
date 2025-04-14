@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;cell - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/cell.html#var">Var Details</a> - <a href="obj/item/cell.html#proc">Proc Details</a></header>
+<main>
+<h1>cell <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/cell.html">cell</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/power_cells.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;power_cells.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/cell.html#var/charge">charge</a></th><td>note %age conveted to actual charge in New</td></tr>
+            <tr><th><a href="obj/item/cell.html#var/charge_amount">charge_amount</a></th><td>How much power to give, if self_recharge is true. The number is in absolute cell charge, as it gets divided by CELLRATE later.</td></tr>
+            <tr><th><a href="obj/item/cell.html#var/charge_delay">charge_delay</a></th><td>How long it takes for the cell to start recharging after last use</td></tr>
+            <tr><th><a href="obj/item/cell.html#var/charge_overlay">charge_overlay</a></th><td>used to track what set of overlays to use to display charge level</td></tr>
+            <tr><th><a href="obj/item/cell.html#var/last_use">last_use</a></th><td>A tracker for use in self-charging</td></tr>
+            <tr><th><a href="obj/item/cell.html#var/maxcharge">maxcharge</a></th><td>maximum amount of charge the cell can hold</td></tr>
+            <tr><th><a href="obj/item/cell.html#var/minor_fault">minor_fault</a></th><td>If not 100% reliable, it will build up faults.</td></tr>
+            <tr><th><a href="obj/item/cell.html#var/rigged">rigged</a></th><td>BOOL, true if rigged to explode</td></tr>
+            <tr><th><a href="obj/item/cell.html#var/self_recharge">self_recharge</a></th><td>BOOL, If true, the cell will recharge itself.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/cell.html#proc/corrupt">corrupt</a></th><td>Divides charge and maxcharge, then has a 10% chance to be rigged to explode</td></tr>
+            <tr><th><a href="obj/item/cell.html#proc/explode">explode</a></th><td>Explodes, scaling with cell charge</td></tr>
+            <tr><th><a href="obj/item/cell.html#proc/get_electrocute_damage">get_electrocute_damage</a></th><td>Returns a number based on the current charge of the power cell</td></tr>
+            <tr><th><a href="obj/item/cell.html#proc/give">give</a></th><td>Adds power to the cell</td></tr>
+            <tr><th><a href="obj/item/cell.html#proc/is_fully_charged">is_fully_charged</a></th><td>Returns TRUE if charge is equal to maxcharge</td></tr>
+            <tr><th><a href="obj/item/cell.html#proc/percent">percent</a></th><td>return % charge of cell</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/charge"><aside class="declaration">var </aside>charge
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/power_cells.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;power_cells.dm 17"/></a></h3>
+        <p>note %age conveted to actual charge in New</p><h3 id="var/charge_amount"><aside class="declaration">var </aside>charge_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/power_cells.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;power_cells.dm 27"/></a></h3>
+        <p>How much power to give, if self_recharge is true. The number is in absolute cell charge, as it gets divided by CELLRATE later.</p><h3 id="var/charge_delay"><aside class="declaration">var </aside>charge_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/power_cells.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;power_cells.dm 31"/></a></h3>
+        <p>How long it takes for the cell to start recharging after last use</p><h3 id="var/charge_overlay"><aside class="declaration">var </aside>charge_overlay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/power_cells.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;power_cells.dm 33"/></a></h3>
+        <p>used to track what set of overlays to use to display charge level</p><h3 id="var/last_use"><aside class="declaration">var </aside>last_use
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/power_cells.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;power_cells.dm 29"/></a></h3>
+        <p>A tracker for use in self-charging</p><h3 id="var/maxcharge"><aside class="declaration">var </aside>maxcharge
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/power_cells.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;power_cells.dm 19"/></a></h3>
+        <p>maximum amount of charge the cell can hold</p><h3 id="var/minor_fault"><aside class="declaration">var </aside>minor_fault
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/power_cells.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;power_cells.dm 23"/></a></h3>
+        <p>If not 100% reliable, it will build up faults.</p><h3 id="var/rigged"><aside class="declaration">var </aside>rigged
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/power_cells.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;power_cells.dm 21"/></a></h3>
+        <p>BOOL, true if rigged to explode</p><h3 id="var/self_recharge"><aside class="declaration">var </aside>self_recharge
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/power_cells.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;power_cells.dm 25"/></a></h3>
+        <p>BOOL, If true, the cell will recharge itself.</p><h2 id="proc">Proc Details</h2><h3 id="proc/corrupt"><aside class="declaration">proc </aside>corrupt<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/power_cells.dm#L235">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;power_cells.dm 235"/></a></aside>
+        </h3>
+        <p>Divides charge and maxcharge, then has a 10% chance to be rigged to explode</p><h3 id="proc/explode"><aside class="declaration">proc </aside>explode<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/power_cells.dm#L224">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;power_cells.dm 224"/></a></aside>
+        </h3>
+        <p>Explodes, scaling with cell charge</p><h3 id="proc/get_electrocute_damage"><aside class="declaration">proc </aside>get_electrocute_damage<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/power_cells.dm#L242">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;power_cells.dm 242"/></a></aside>
+        </h3>
+        <p>Returns a number based on the current charge of the power cell</p><h3 id="proc/give"><aside class="declaration">proc </aside>give<aside>(amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/power_cells.dm#L204">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;power_cells.dm 204"/></a></aside>
+        </h3>
+        <p>Adds power to the cell</p><h3 id="proc/is_fully_charged"><aside class="declaration">proc </aside>is_fully_charged<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/power_cells.dm#L220">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;power_cells.dm 220"/></a></aside>
+        </h3>
+        <p>Returns TRUE if charge is equal to maxcharge</p><h3 id="proc/percent"><aside class="declaration">proc </aside>percent<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/power_cells.dm#L216">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;power_cells.dm 216"/></a></aside>
+        </h3>
+        <p>return % charge of cell</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

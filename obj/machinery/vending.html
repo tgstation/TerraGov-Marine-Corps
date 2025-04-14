@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;vending - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/vending.html#var">Var Details</a> - <a href="obj/machinery/vending.html#proc">Proc Details</a></header>
+<main>
+<h1>vending <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/vending.html">vending</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 56"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/active">active</a></th><td>Whether this vendor is active or not.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/check_accounts">check_accounts</a></th><td>1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/coin_records">coin_records</a></th><td>list of /datum/vending_product's that are available on the vendor when a coin is used.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/contraband">contraband</a></th><td>Contraband products that are only available on vendor when hacked.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/currently_vending">currently_vending</a></th><td>A /datum/vending_product instance of what we're paying for right now.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/ewallet">ewallet</a></th><td>Current cash card.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/extended_inventory">extended_inventory</a></th><td>If the vending machine is hacked, makes the items on contraband list available.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/hacking_safety">hacking_safety</a></th><td>Stops the machine from being hacked to shoot inventory or allow all access</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/hidden_records">hidden_records</a></th><td>list of /datum/vending_product's that are available when vendor is hacked.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/icon_deny">icon_deny</a></th><td>Icon state when failing to vend, be it by no access or money.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/icon_vend">icon_vend</a></th><td>Icon state when successfuly vending</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/isshared">isshared</a></th><td>If this vendor uses a global list for items.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/knockdown_threshold">knockdown_threshold</a></th><td>How much damage we can take before tipping over.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/last_reply">last_reply</a></th><td>When was last time we spoke when vending</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/last_slogan">last_slogan</a></th><td>Last time we spoke our slogan</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/premium">premium</a></th><td>Premium products that are only available when using a coin to pay for it.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/prices">prices</a></th><td>Prices for each item, list(/type/path = price), items not in the list don't have a price.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/product_ads">product_ads</a></th><td>String of small ad messages in the vending screen - random chance</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/product_records">product_records</a></th><td>list of /datum/vending_product's that are always available on the vendor</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/product_slogans">product_slogans</a></th><td>String of slogans separated by semicolons, optional</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/products">products</a></th><td>Normal products that are always available on the vendor.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/seasonal_items">seasonal_items</a></th><td></td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/seconds_electrified">seconds_electrified</a></th><td>how many seconds(duh) we have left electrified.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/shoot_inventory">shoot_inventory</a></th><td>If we should fire items at customers! We're broken!</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/shut_up">shut_up</a></th><td>If true the machine won't be speaking slogans randomly. Stop spouting those godawful pitches!</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/slogan_delay">slogan_delay</a></th><td>The interval between slogans.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/small_ads">small_ads</a></th><td>small ad messages in the vending screen - random chance of popping up whenever you open it</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/tipped_level">tipped_level</a></th><td>How much tipped we are.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/vend_delay">vend_delay</a></th><td>How long it takes to vend an item, vend_ready is false during that.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/vend_ready">vend_ready</a></th><td>If the vendor is ready to vend.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/vend_reply">vend_reply</a></th><td>Message spoken by the vending machine when a item is vended</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#var/vending_sound">vending_sound</a></th><td>The sound the vendor makes when it vends something</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/vending.html#proc/build_inventory">build_inventory</a></th><td>Builds a vending machine inventory from the given list into their records depending of category.</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#proc/build_seasonal_tabs">build_seasonal_tabs</a></th><td>Makes additional tabs/adds to the tabs based on the seasonal_items vendor specification</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#proc/build_shared_inventory">build_shared_inventory</a></th><td>Builds shared vendors inventory
+the first vendor that calls this uses build_inventory and makes their records in GLOB.vending_records[type] or premium or contraband, etc.
+the rest of vendors of same type just set all their records to the respective global lists</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#proc/display_message_and_visuals">display_message_and_visuals</a></th><td>Displays a balloon alert to the user if enable is true
+state determines what the vending machine will do other than display a simple balloon message</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#proc/do_stock">do_stock</a></th><td>Actually does the restock. Overridden by lasgun vendor for snowflake behaviour</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#proc/interact">interact</a></th><td>Used only when vendor is tipped to put it back up
+Normal usage is in ui_interact</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#proc/release_item">release_item</a></th><td>Vends the item</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#proc/scan_card">scan_card</a></th><td>The found record matching the item_to_refill in the vending_records lists</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#proc/start_release_item">start_release_item</a></th><td>Tries to vend the item</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#proc/stock">stock</a></th><td>Tries to restock &quot;item_to_stock&quot; into the vending machine again after some checks.
+show_feedback states whether or not to display any messages to the player, display the vending flicker animation as well as sound effects when recharging a cell.
+Returns TRUE if item has been restocked, FALSE otherwise..</td></tr>
+            <tr><th><a href="obj/machinery/vending.html#proc/stock_vacuum">stock_vacuum</a></th><td>Vending machine tries to restock all of the loose item on it's location onto itself.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active"><aside class="declaration">var </aside>active
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 79"/></a></h3>
+        <p>Whether this vendor is active or not.</p><h3 id="var/check_accounts"><aside class="declaration">var </aside>check_accounts
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 160"/></a></h3>
+        <p>1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!</p><h3 id="var/coin_records"><aside class="declaration">var </aside>coin_records
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 134"/></a></h3>
+        <p>list of /datum/vending_product's that are available on the vendor when a coin is used.</p><h3 id="var/contraband"><aside class="declaration">var </aside>contraband
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 116"/></a></h3>
+        <p>Contraband products that are only available on vendor when hacked.</p><h3 id="var/currently_vending"><aside class="declaration">var </aside>currently_vending
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/vending_product.html">vending_product</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 85"/></a></h3>
+        <p>A /datum/vending_product instance of what we're paying for right now.</p><h3 id="var/ewallet"><aside class="declaration">var </aside>ewallet
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/spacecash/ewallet</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L162">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 162"/></a></h3>
+        <p>Current cash card.</p><h3 id="var/extended_inventory"><aside class="declaration">var </aside>extended_inventory
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L158">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 158"/></a></h3>
+        <p>If the vending machine is hacked, makes the items on contraband list available.</p><h3 id="var/hacking_safety"><aside class="declaration">var </aside>hacking_safety
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L166">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 166"/></a></h3>
+        <p>Stops the machine from being hacked to shoot inventory or allow all access</p><h3 id="var/hidden_records"><aside class="declaration">var </aside>hidden_records
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 132"/></a></h3>
+        <p>list of /datum/vending_product's that are available when vendor is hacked.</p><h3 id="var/icon_deny"><aside class="declaration">var </aside>icon_deny
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L150">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 150"/></a></h3>
+        <p>Icon state when failing to vend, be it by no access or money.</p><h3 id="var/icon_vend"><aside class="declaration">var </aside>icon_vend
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L148">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 148"/></a></h3>
+        <p>Icon state when successfuly vending</p><h3 id="var/isshared"><aside class="declaration">var </aside>isshared
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 87"/></a></h3>
+        <p>If this vendor uses a global list for items.</p><h3 id="var/knockdown_threshold"><aside class="declaration">var </aside>knockdown_threshold
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 171"/></a></h3>
+        <p>How much damage we can take before tipping over.</p><h3 id="var/last_reply"><aside class="declaration">var </aside>last_reply
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L142">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 142"/></a></h3>
+        <p>When was last time we spoke when vending</p><h3 id="var/last_slogan"><aside class="declaration">var </aside>last_slogan
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L144">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 144"/></a></h3>
+        <p>Last time we spoke our slogan</p><h3 id="var/premium"><aside class="declaration">var </aside>premium
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 118"/></a></h3>
+        <p>Premium products that are only available when using a coin to pay for it.</p><h3 id="var/prices"><aside class="declaration">var </aside>prices
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 120"/></a></h3>
+        <p>Prices for each item, list(/type/path = price), items not in the list don't have a price.</p><h3 id="var/product_ads"><aside class="declaration">var </aside>product_ads
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 125"/></a></h3>
+        <p>String of small ad messages in the vending screen - random chance</p><h3 id="var/product_records"><aside class="declaration">var </aside>product_records
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 130"/></a></h3>
+        <p>list of /datum/vending_product's that are always available on the vendor</p><h3 id="var/product_slogans"><aside class="declaration">var </aside>product_slogans
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 123"/></a></h3>
+        <p>String of slogans separated by semicolons, optional</p><h3 id="var/products"><aside class="declaration">var </aside>products
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 110"/></a></h3>
+        <p>Normal products that are always available on the vendor.</p><h3 id="var/seasonal_items"><aside class="declaration">var </aside>seasonal_items
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 114"/></a></h3>
+        <ul>
+<li>List of seasons whose products are added to the vendor's.
+<ul>
+<li>Format for each entry is SEASON_NAME = &quot;tab name&quot;</li>
+</ul>
+</li>
+</ul><h3 id="var/seconds_electrified"><aside class="declaration">var </aside>seconds_electrified
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 152"/></a></h3>
+        <p>how many seconds(duh) we have left electrified.</p><h3 id="var/shoot_inventory"><aside class="declaration">var </aside>shoot_inventory
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L154">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 154"/></a></h3>
+        <p>If we should fire items at customers! We're broken!</p><h3 id="var/shut_up"><aside class="declaration">var </aside>shut_up
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L156">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 156"/></a></h3>
+        <p>If true the machine won't be speaking slogans randomly. Stop spouting those godawful pitches!</p><h3 id="var/slogan_delay"><aside class="declaration">var </aside>slogan_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 146"/></a></h3>
+        <p>The interval between slogans.</p><h3 id="var/small_ads"><aside class="declaration">var </aside>small_ads
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 138"/></a></h3>
+        <p>small ad messages in the vending screen - random chance of popping up whenever you open it</p><h3 id="var/tipped_level"><aside class="declaration">var </aside>tipped_level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L164">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 164"/></a></h3>
+        <p>How much tipped we are.</p><h3 id="var/vend_delay"><aside class="declaration">var </aside>vend_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 83"/></a></h3>
+        <p>How long it takes to vend an item, vend_ready is false during that.</p><h3 id="var/vend_ready"><aside class="declaration">var </aside>vend_ready
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 81"/></a></h3>
+        <p>If the vendor is ready to vend.</p><h3 id="var/vend_reply"><aside class="declaration">var </aside>vend_reply
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L140">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 140"/></a></h3>
+        <p>Message spoken by the vending machine when a item is vended</p><h3 id="var/vending_sound"><aside class="declaration">var </aside>vending_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 89"/></a></h3>
+        <p>The sound the vendor makes when it vends something</p><h2 id="proc">Proc Details</h2><h3 id="proc/build_inventory"><aside class="declaration">proc </aside>build_inventory<aside>(/list/productlist, category) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L250">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 250"/></a></aside>
+        </h3>
+        <p>Builds a vending machine inventory from the given list into their records depending of category.</p><h3 id="proc/build_seasonal_tabs"><aside class="declaration">proc </aside>build_seasonal_tabs<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L275">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 275"/></a></aside>
+        </h3>
+        <p>Makes additional tabs/adds to the tabs based on the seasonal_items vendor specification</p><h3 id="proc/build_shared_inventory"><aside class="declaration">proc </aside>build_shared_inventory<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L230">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 230"/></a></aside>
+        </h3>
+        <p>Builds shared vendors inventory
+the first vendor that calls this uses build_inventory and makes their records in GLOB.vending_records[type] or premium or contraband, etc.
+the rest of vendors of same type just set all their records to the respective global lists</p><h3 id="proc/display_message_and_visuals"><aside class="declaration">proc </aside>display_message_and_visuals<aside>(/<a href="mob.html">mob</a>/user, enable, message, state) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L807">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 807"/></a></aside>
+        </h3>
+        <p>Displays a balloon alert to the user if enable is true
+state determines what the vending machine will do other than display a simple balloon message</p><h3 id="proc/do_stock"><aside class="declaration">proc </aside>do_stock<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item_to_stock, /<a href="mob.html">mob</a>/user, show_feedback, /<a href="datum.html">datum</a>/<a href="datum/vending_product.html">vending_product</a>/record) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L687">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 687"/></a></aside>
+        </h3>
+        <p>Actually does the restock. Overridden by lasgun vendor for snowflake behaviour</p><h3 id="proc/interact">interact<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L486">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 486"/></a></aside>
+        </h3>
+        <p>Used only when vendor is tipped to put it back up
+Normal usage is in ui_interact</p><h3 id="proc/release_item"><aside class="declaration">proc </aside>release_item<aside>(/<a href="datum.html">datum</a>/<a href="datum/vending_product.html">vending_product</a>/product, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L630">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 630"/></a></aside>
+        </h3>
+        <p>Vends the item</p><h3 id="proc/scan_card"><aside class="declaration">proc </aside>scan_card<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/card/I) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L416">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 416"/></a></aside>
+        </h3>
+        <p>The found record matching the item_to_refill in the vending_records lists</p><h3 id="proc/start_release_item"><aside class="declaration">proc </aside>start_release_item<aside>(/<a href="datum.html">datum</a>/<a href="datum/vending_product.html">vending_product</a>/product, delay_vending, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L615">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 615"/></a></aside>
+        </h3>
+        <p>Tries to vend the item</p><h3 id="proc/stock"><aside class="declaration">proc </aside>stock<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item_to_stock, /<a href="mob.html">mob</a>/user, show_feedback) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L668">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 668"/></a></aside>
+        </h3>
+        <p>Tries to restock &quot;item_to_stock&quot; into the vending machine again after some checks.
+show_feedback states whether or not to display any messages to the player, display the vending flicker animation as well as sound effects when recharging a cell.
+Returns TRUE if item has been restocked, FALSE otherwise..</p><h3 id="proc/stock_vacuum"><aside class="declaration">proc </aside>stock_vacuum<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/vending/vending.dm#L793">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;vending&#x2F;vending.dm 793"/></a></aside>
+        </h3>
+        <p>Vending machine tries to restock all of the loose item on it's location onto itself.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

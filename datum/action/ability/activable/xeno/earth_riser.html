@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;activable&#x2F;xeno&#x2F;earth_riser - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/activable/xeno/earth_riser.html#var">Var Details</a> - <a href="datum/action/ability/activable/xeno/earth_riser.html#proc">Proc Details</a></header>
+<main>
+<h1>earth_riser <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/activable.html">activable</a>/<a href="datum/action/ability/activable/xeno.html">xeno</a>/<a href="datum/action/ability/activable/xeno/earth_riser.html">earth_riser</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L577">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 577"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/earth_riser.html#var/active_pillars">active_pillars</a></th><td>List that contains all Earth Pillars created by this ability.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/earth_riser.html#var/maximum_pillars">maximum_pillars</a></th><td>Maximum amount of Earth Pillars that this ability can have.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/earth_riser.html#proc/change_maximum_pillars">change_maximum_pillars</a></th><td>Changes the maximum amount of Earth Pillars that can be had.
+If the user has more Earth Pillars active than the new maximum, it will destroy them, from oldest to newest, until meeting the new amount.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/earth_riser.html#proc/do_ability">do_ability</a></th><td>Checks if there's any living mobs in the target turf, displaces them if so, then creates a new Earth Pillar and adds it to the list of active pillars.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/earth_riser.html#proc/pillar_destroyed">pillar_destroyed</a></th><td>removes the pillar from active_pillars</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/earth_riser.html#proc/pillar_thrown">pillar_thrown</a></th><td>Handles the cooldown when a pillar is actually thrown</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active_pillars"><aside class="declaration">var </aside>active_pillars
+            <aside>&ndash; /list/obj/structure/earth_pillar</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L591">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 591"/></a></h3>
+        <p>List that contains all Earth Pillars created by this ability.</p><h3 id="var/maximum_pillars"><aside class="declaration">var </aside>maximum_pillars
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L589">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 589"/></a></h3>
+        <p>Maximum amount of Earth Pillars that this ability can have.</p><h2 id="proc">Proc Details</h2><h3 id="proc/change_maximum_pillars"><aside class="declaration">proc </aside>change_maximum_pillars<aside>(amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L692">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 692"/></a></aside>
+        </h3>
+        <p>Changes the maximum amount of Earth Pillars that can be had.
+If the user has more Earth Pillars active than the new maximum, it will destroy them, from oldest to newest, until meeting the new amount.</p><h3 id="proc/do_ability"><aside class="declaration">proc </aside>do_ability<aside>(/<a href="turf.html">turf</a>/target_turf, enhanced) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L659">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 659"/></a></aside>
+        </h3>
+        <p>Checks if there's any living mobs in the target turf, displaces them if so, then creates a new Earth Pillar and adds it to the list of active pillars.</p><h3 id="proc/pillar_destroyed"><aside class="declaration">proc </aside>pillar_destroyed<aside>(/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/earth_pillar.html">earth_pillar</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L683">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 683"/></a></aside>
+        </h3>
+        <p>removes the pillar from active_pillars</p><h3 id="proc/pillar_thrown"><aside class="declaration">proc </aside>pillar_thrown<aside>(/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/earth_pillar.html">earth_pillar</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L675">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 675"/></a></aside>
+        </h3>
+        <p>Handles the cooldown when a pillar is actually thrown</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

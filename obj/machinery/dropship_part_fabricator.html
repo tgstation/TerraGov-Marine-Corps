@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;dropship_part_fabricator - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/dropship_part_fabricator.html#var">Var Details</a> - <a href="obj/machinery/dropship_part_fabricator.html#proc">Proc Details</a></header>
+<main>
+<h1>dropship_part_fabricator <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/dropship_part_fabricator.html">dropship_part_fabricator</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/dropship_part_fabricator.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;dropship_part_fabricator.dm 4"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/dropship_part_fabricator.html#var/busy">busy</a></th><td>Whether the fabricator is currently printing something or not</td></tr>
+            <tr><th><a href="obj/machinery/dropship_part_fabricator.html#var/printing">printing</a></th><td>Current item being printed</td></tr>
+            <tr><th><a href="obj/machinery/dropship_part_fabricator.html#var/queue">queue</a></th><td>List of everything in queue</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/dropship_part_fabricator.html#proc/build_dropship_part">build_dropship_part</a></th><td>Starts the printing process, does point calculations</td></tr>
+            <tr><th><a href="obj/machinery/dropship_part_fabricator.html#proc/do_build_dropship_part">do_build_dropship_part</a></th><td>Finishes up printing, checks for next in queue, prints the actual part</td></tr>
+            <tr><th><a href="obj/machinery/dropship_part_fabricator.html#proc/find_equipment">find_equipment</a></th><td>Returns dats of all equipment of types listed</td></tr>
+            <tr><th><a href="obj/machinery/dropship_part_fabricator.html#proc/get_cost">get_cost</a></th><td>Gets the cost of the product we want to make</td></tr>
+            <tr><th><a href="obj/machinery/dropship_part_fabricator.html#proc/next_queue">next_queue</a></th><td>Processes next item in queue, if queue has not finished already</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/busy"><aside class="declaration">var </aside>busy
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/dropship_part_fabricator.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;dropship_part_fabricator.dm 19"/></a></h3>
+        <p>Whether the fabricator is currently printing something or not</p><h3 id="var/printing"><aside class="declaration">var </aside>printing
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/dropship_part_fabricator.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;dropship_part_fabricator.dm 17"/></a></h3>
+        <p>Current item being printed</p><h3 id="var/queue"><aside class="declaration">var </aside>queue
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/dropship_part_fabricator.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;dropship_part_fabricator.dm 15"/></a></h3>
+        <p>List of everything in queue</p><h2 id="proc">Proc Details</h2><h3 id="proc/build_dropship_part"><aside class="declaration">proc </aside>build_dropship_part<aside>(part_type, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/dropship_part_fabricator.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;dropship_part_fabricator.dm 77"/></a></aside>
+        </h3>
+        <p>Starts the printing process, does point calculations</p><h3 id="proc/do_build_dropship_part"><aside class="declaration">proc </aside>do_build_dropship_part<aside>(part_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/dropship_part_fabricator.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;dropship_part_fabricator.dm 118"/></a></aside>
+        </h3>
+        <p>Finishes up printing, checks for next in queue, prints the actual part</p><h3 id="proc/find_equipment"><aside class="declaration">proc </aside>find_equipment<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/dropship_part_fabricator.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;dropship_part_fabricator.dm 59"/></a></aside>
+        </h3>
+        <p>Returns dats of all equipment of types listed</p><h3 id="proc/get_cost"><aside class="declaration">proc </aside>get_cost<aside>(build_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/dropship_part_fabricator.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;dropship_part_fabricator.dm 103"/></a></aside>
+        </h3>
+        <p>Gets the cost of the product we want to make</p><h3 id="proc/next_queue"><aside class="declaration">proc </aside>next_queue<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/dropship_part_fabricator.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;dropship_part_fabricator.dm 126"/></a></aside>
+        </h3>
+        <p>Processes next item in queue, if queue has not finished already</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

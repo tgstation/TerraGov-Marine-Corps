@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;global_vars - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/global_vars.html#var">Var Details</a></header>
+<main>
+<h1>global_vars <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/global_vars.html">controller/global_vars</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/globals.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;globals.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/access_state">access_state</a></th><td>tgui state: access_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/additional_admin_item_slot_list">additional_admin_item_slot_list</a></th><td>List of all additional item slot used by the admin loadout build mode</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/admin_activities">admin_activities</a></th><td>All admin related log lines minus their categories</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/admin_state">admin_state</a></th><td>tgui state: admin_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/ai_damtype_to_heal_list">ai_damtype_to_heal_list</a></th><td>Assoc list of items to use to treat different damage types</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/ai_instances_active">ai_instances_active</a></th><td>A GLOB of all /datum/component/ai_controller that currently exist</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/ai_squad_presets">ai_squad_presets</a></th><td>List of squads that can be spawned, and the roles in them, sorted in spawn order</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/alamo_state">alamo_state</a></th><td>tgui state: access_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/alert_consoles">alert_consoles</a></th><td>Station alert consoles, /obj/machinery/computer/station_alert</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/all_req_access">all_req_access</a></th><td>Dictionary of all req_access lists.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/all_req_one_access">all_req_one_access</a></th><td>Dictionary of all one_req_access lists.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/always_state">always_state</a></th><td>tgui state: always_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/ammo_list">ammo_list</a></th><td>List of all ammo types. Used by guns to tell the projectile how to act.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/apcs_list">apcs_list</a></th><td>list of all Area Power Controller machines, separate from machines for powernet speeeeeeed.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/areas">areas</a></th><td>Just a list of all the area objects in the game
+Note, areas can have duplicate types</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/areas_by_type">areas_by_type</a></th><td>An association from typepath to area instance. Only includes areas with <code>unique</code> set.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/balance">balance</a></th><td></td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/boiler_glob_image_list">boiler_glob_image_list</a></th><td>List of glob action button images, used for radial selection.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/boiler_glob_list">boiler_glob_list</a></th><td>List of globs, keyed by icon state. Used for radial selection.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/cable_list">cable_list</a></th><td>Index for all cables, so that powernets don't have to look through the entire world all the time</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/cached_maps">cached_maps</a></th><td>List of all the maps that have been cached for /proc/load_map</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/cached_storage_typecaches">cached_storage_typecaches</a></th><td>Almost 100% of the time the lists passed into set_holdable are reused for each instance
+Just fucking cache it 4head
+Yes I could generalize this, but I don't want anyone else using it. in fact, DO NOT COPY THIS
+If you find yourself needing this pattern, you're likely better off using static typecaches
+I'm not because I do not trust implementers of the storage component to use them, BUT
+IF I FIND YOU USING THIS PATTERN IN YOUR CODE I WILL BREAK YOU ACROSS MY KNEES
+~Lemon</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/campaign_default_assets">campaign_default_assets</a></th><td>Default assets a faction starts with</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/campaign_default_purchasable_assets">campaign_default_purchasable_assets</a></th><td>Default assets a faction can purchase</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/campaign_jobs">campaign_jobs</a></th><td>All jobs used in campaign</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/campaign_mech_spawners">campaign_mech_spawners</a></th><td>List of all mech spawners in campaign mode</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/campaign_mission_pool">campaign_mission_pool</a></th><td>The weighted potential mission pool by faction</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/campaign_objectives">campaign_objectives</a></th><td>List of all objectives in the campaign gamemode loaded in the current mission</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/campaign_reward_spawners">campaign_reward_spawners</a></th><td>Locations for rewards to spawn by faction</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/campaign_som_major_loot">campaign_som_major_loot</a></th><td>Loot table if SOM win a major victory in a campaign mission</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/campaign_som_minor_loot">campaign_som_minor_loot</a></th><td>Loot table if SOM win a minor victory in a campaign mission</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/campaign_structures">campaign_structures</a></th><td>List of non-objective campaign related structures loaded in the current mission</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/campaign_tank_spawners">campaign_tank_spawners</a></th><td>List of all tank spawners in campaign mode</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/campaign_tgmc_major_loot">campaign_tgmc_major_loot</a></th><td>Loot table if Marines win a major victory in a campaign mission</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/campaign_tgmc_minor_loot">campaign_tgmc_minor_loot</a></th><td>Loot table if Marines win a minor victory in a campaign mission</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/chemical_reactions_list">chemical_reactions_list</a></th><td>list of all /datum/chemical_reaction datums index by reactants, Used during chemical reactions</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/chemical_reagents_list">chemical_reagents_list</a></th><td>list of all /datum/reagent datums instances indexed by reagent typepath. Used by chemistry stuff</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/conscious_state">conscious_state</a></th><td>tgui state: conscious_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/contained_state">contained_state</a></th><td>tgui state: contained_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/cooking_recipes">cooking_recipes</a></th><td>Global list of all cooking related crafting recipes.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/cooking_recipes_atoms">cooking_recipes_atoms</a></th><td>This is a global list of typepaths, these typepaths are atoms or reagents that are associated with cooking recipes.
+This includes stuff like recipe components and results.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/crafting_recipes">crafting_recipes</a></th><td>Global list of all non-cooking related crafting recipes.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/crafting_recipes_atoms">crafting_recipes_atoms</a></th><td>This is a global list of typepaths, these typepaths are atoms or reagents that are associated with crafting recipes.
+This includes stuff like recipe components and results.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/custom_squad_colors">custom_squad_colors</a></th><td>Color_hex = ui_key assoc list</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/deep_inventory_state">deep_inventory_state</a></th><td>tgui state: deep_inventory_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/default_state">default_state</a></th><td>tgui state: default_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/droppod_bays">droppod_bays</a></th><td>List of all droppod bays</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/dropship_lzs">dropship_lzs</a></th><td>For remote construction of FOB using a computer on the ship during setup phase</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/dropship_state">dropship_state</a></th><td>tgui state: dropship_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/em_block_color">em_block_color</a></th><td>A globaly cached version of <a href="code/__DEFINES/lighting.html#define/EM_BLOCK_COLOR" title="EM_BLOCK_COLOR">EM_BLOCK_COLOR</a> for quick access.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/em_mask_matrix">em_mask_matrix</a></th><td>A globaly cached version of <a href="code/__DEFINES/lighting.html#define/EM_MASK_MATRIX" title="EM_MASK_MATRIX">EM_MASK_MATRIX</a> for quick access.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/emissive_color">emissive_color</a></th><td>A globaly cached version of <a href="code/__DEFINES/lighting.html#define/EMISSIVE_COLOR" title="EMISSIVE_COLOR">EMISSIVE_COLOR</a> for quick access.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/evo_panel">evo_panel</a></th><td>Global variable for accessing evolution panel. Does not need to be unique to each xeno as ui_data pulls relevant information based on context.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/faction_stats_datums">faction_stats_datums</a></th><td>List of all faction_stats datums, by faction</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/faction_to_acronym">faction_to_acronym</a></th><td>Acronyms for each faction, or the shortest name possible</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/faction_to_alignement">faction_to_alignement</a></th><td>Alignement for each faction</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/faction_to_campaign_door_signal">faction_to_campaign_door_signal</a></th><td>Faction signals for campaign mode doors</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/faction_to_data_hud">faction_to_data_hud</a></th><td>List of correspond factions to data hud</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/faction_to_iff">faction_to_iff</a></th><td>Iff for each faction that is able to use iff</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/fire_support_types">fire_support_types</a></th><td>Assoc list of firesupport types</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/focused_tests">focused_tests</a></th><td>A list of every test that is currently focused.
+Use the PERFORM_ALL_TESTS macro instead.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/fun_state">fun_state</a></th><td>tgui state: fun_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/glass_style_singletons">glass_style_singletons</a></th><td>Global list of all glass style singletons created. See <a href="global.html#proc/create_glass_styles" title="/global">/proc/create_glass_styles</a> for list format.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/glide_size_multiplier">glide_size_multiplier</a></th><td>Compensating for time dilation</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/hands_state">hands_state</a></th><td>tgui state: hands_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/hive_ui_caste_index">hive_ui_caste_index</a></th><td>Returns the index of the corresponding static caste data given caste typepath.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/hive_ui_state">hive_ui_state</a></th><td>tgui state: hive_ui_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/hive_ui_static_data">hive_ui_static_data</a></th><td>Contains static data passed to all hive status UI.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/human_adjacent_state">human_adjacent_state</a></th><td>tgui state: human_adjacent_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/human_heights_to_offsets">human_heights_to_offsets</a></th><td>Assoc list of all heights, cast to strings, to &quot;&quot;&quot;&quot;tuples&quot;&quot;&quot;&quot;&quot;
+The first &quot;&quot;&quot;tuple&quot;&quot;&quot; index is the upper body offset
+The second &quot;&quot;&quot;tuple&quot;&quot;&quot; index is the lower body offset</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/human_init_actions">human_init_actions</a></th><td>The actions given to all humans on init</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/intel_computers">intel_computers</a></th><td>All the intel computers for the random events</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/inventory_slots_to_string">inventory_slots_to_string</a></th><td>Inventory slot bits to plain english strings</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/inventory_state">inventory_state</a></th><td>tgui state: inventory_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/job_specific_clothes_vendor">job_specific_clothes_vendor</a></th><td>Assoc list linking the job title with their specific clothes vendor</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/job_specific_points_vendor">job_specific_points_vendor</a></th><td>Assoc list linking the job title with their specific points vendor</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/jobs_squad_corpsman">jobs_squad_corpsman</a></th><td>Is a corpsman type job</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/jobs_squad_engineer">jobs_squad_engineer</a></th><td>Is a engineer type job</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/jobs_squad_leader">jobs_squad_leader</a></th><td>Is an SL type job</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/jobs_squad_roles">jobs_squad_roles</a></th><td>Squad type role, regardless of faction</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/jobs_squad_specialist">jobs_squad_specialist</a></th><td>Is a specialist type job</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/jobs_squad_standard">jobs_squad_standard</a></th><td>Is a squad standard type job</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/key_to_time_of_role_death">key_to_time_of_role_death</a></th><td>Assoc list of key to timeofdeath (last death from an important role) to know if a player can respawn</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/language_menu_state">language_menu_state</a></th><td>tgui state: language_menu_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/layers_to_offset">layers_to_offset</a></th><td>Used for human height overlay adjustments
+Certain standing overlay layers shouldn't have a filter applied and should instead just offset by a pixel y
+This list contains all the layers that must offset, with its value being whether it's a part of the upper half of the body (TRUE) or not (FALSE)</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/loadout_instantiate_default_contents">loadout_instantiate_default_contents</a></th><td>Storage items that will always have their default content</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/loadout_linked_vendor">loadout_linked_vendor</a></th><td>All the vendor types which the automated loadout vendor can take items from.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/loadout_variant_keys">loadout_variant_keys</a></th><td>saved loadout key = icon_state, AGAIN DO NOT EDIT THE KEYS IT WILL BREAK LOADOUTS</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/machines">machines</a></th><td>NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/mainship_lights">mainship_lights</a></th><td>list of mainship lights, used for altering intensity and color during red and delta security levels</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/never_state">never_state</a></th><td>tgui state: never_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/new_player_state">new_player_state</a></th><td>tgui state: new_player_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/non_ascii_regex">non_ascii_regex</a></th><td>Regex for detecting non-ASCII symbols</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/not_incapacitated_state">not_incapacitated_state</a></th><td>tgui state: not_incapacitated_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/not_incapacitated_turf_state">not_incapacitated_turf_state</a></th><td>tgui state: not_incapacitated_turf_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/notcontained_state">notcontained_state</a></th><td>tgui state: notcontained_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/nuke_disk_spawn_locs">nuke_disk_spawn_locs</a></th><td>list of spawn locations for nuke disk consoles</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/nuke_ineligible_site">nuke_ineligible_site</a></th><td>List of area names where /obj/machinery/nuclearbomb cannot be activated</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/nuke_list">nuke_list</a></th><td>list of all /obj/machinery/nuclearbomb</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/observer_state">observer_state</a></th><td>tgui state: observer_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/physical_obscured_state">physical_obscured_state</a></th><td>tgui state: physical_obscured_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/physical_state">physical_state</a></th><td>tgui state: physical_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/pillars_by_z">pillars_by_z</a></th><td>List of z pillars (datums placed in the bottom left of XbyX squares that control transparency in that space)
+The pillars are stored in triple depth lists indexed by (world_size % pillar_size) + 1
+They are created at transparent turf request, and deleted when no turfs remain</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/poll_options">poll_options</a></th><td>All poll option datums of running polls</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/polls">polls</a></th><td>All currently running polls held as datums</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/ranked_jobs_by_faction">ranked_jobs_by_faction</a></th><td>jobs by faction, ranked by seniority</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/reverse_contained_state">reverse_contained_state</a></th><td>tgui state: reverse_contained_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/roles_allowed_minimap_draw">roles_allowed_minimap_draw</a></th><td>A player needs to be unbanned from ALL these roles in order to be able to use the minimap drawing tool</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/self_state">self_state</a></th><td>tgui state: self_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/ship_alarms">ship_alarms</a></th><td>list of shipside alarm effects used for delta level alert sirens</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/slot_str_to_slot">slot_str_to_slot</a></th><td>Correspondance between slot strings and slot numbers</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/sorted_areas">sorted_areas</a></th><td>Used by jump-to-area etc. Updated by area/updateName()
+If this is null, it needs to be recalculated. Use get_sorted_areas() as a getter please</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/ssd_living_mobs">ssd_living_mobs</a></th><td>List of ssd living mobs</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/strain_list">strain_list</a></th><td>basetype = list(strain1, strain2)</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/submerge_filter_timer_list">submerge_filter_timer_list</a></th><td>List of all filter removal timers. Glob to avoid an AM level var</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/teleporter_arrays">teleporter_arrays</a></th><td>List of all teleporter arrays</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/topdown_planes">topdown_planes</a></th><td>Whitelist of planes allowed to use TOPDOWN_LAYER</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/unit_test_mapping_logs">unit_test_mapping_logs</a></th><td>When unit testing, all logs sent to log_mapping are stored here.</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/vox_sounds">vox_sounds</a></th><td>If there is no single listener, broadcast to everyone in the same z level
+Play voice for all mobs in the z level</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/xeno_stat_multiplicator_buff">xeno_stat_multiplicator_buff</a></th><td>How much xeno stats (health, damage and recov) are buffed</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/xeno_state">xeno_state</a></th><td>tgui state: xeno_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/xeno_tunnels_by_hive">xeno_tunnels_by_hive</a></th><td>list of all /obj/structure/xeno/tunnel</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/z_state">z_state</a></th><td>tgui state: z_state</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/access_state"><aside class="declaration">var </aside>access_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/access_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/access.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;access.dm 8"/></a></h3>
+        <p>tgui state: access_state</p>
+<p>Humans need to have access and be adjacent to use it.
+Silicons and other lifeforms get their default ui_state pass.</p><h3 id="var/additional_admin_item_slot_list"><aside class="declaration">var </aside>additional_admin_item_slot_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/loadout.dm#L229">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;loadout.dm 229"/></a></h3>
+        <p>List of all additional item slot used by the admin loadout build mode</p><h3 id="var/admin_activities"><aside class="declaration">var </aside>admin_activities
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/logging.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;logging.dm 41"/></a></h3>
+        <p>All admin related log lines minus their categories</p><h3 id="var/admin_state"><aside class="declaration">var </aside>admin_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/admin_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/admin.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;admin.dm 12"/></a></h3>
+        <p>tgui state: admin_state</p>
+<p>Checks that the user is an admin, end-of-story.</p><h3 id="var/ai_damtype_to_heal_list"><aside class="declaration">var </aside>ai_damtype_to_heal_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L999">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 999"/></a></h3>
+        <p>Assoc list of items to use to treat different damage types</p><h3 id="var/ai_instances_active"><aside class="declaration">var </aside>ai_instances_active
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 75"/></a></h3>
+        <p>A GLOB of all /datum/component/ai_controller that currently exist</p><h3 id="var/ai_squad_presets"><aside class="declaration">var </aside>ai_squad_presets
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/ai.dm#L249">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;ai.dm 249"/></a></h3>
+        <p>List of squads that can be spawned, and the roles in them, sorted in spawn order</p><h3 id="var/alamo_state"><aside class="declaration">var </aside>alamo_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/alamo_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/alamo.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;alamo.dm 9"/></a></h3>
+        <p>tgui state: access_state</p>
+<p>Humans need to have access and be adjacent to use it.
+Silicons and other lifeforms get their default ui_state pass.
+Xenomorphs need to be intelligent &amp; hive lead</p><h3 id="var/alert_consoles"><aside class="declaration">var </aside>alert_consoles
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 101"/></a></h3>
+        <p>Station alert consoles, /obj/machinery/computer/station_alert</p><h3 id="var/all_req_access"><aside class="declaration">var </aside>all_req_access
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/access.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 2"/></a></h3>
+        <p>Dictionary of all req_access lists.</p><h3 id="var/all_req_one_access"><aside class="declaration">var </aside>all_req_one_access
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/access.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;access.dm 4"/></a></h3>
+        <p>Dictionary of all one_req_access lists.</p><h3 id="var/always_state"><aside class="declaration">var </aside>always_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/always_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/always.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;always.dm 12"/></a></h3>
+        <p>tgui state: always_state</p>
+<p>Always grants the user UI_INTERACTIVE. Period.</p><h3 id="var/ammo_list"><aside class="declaration">var </aside>ammo_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 4"/></a></h3>
+        <p>List of all ammo types. Used by guns to tell the projectile how to act.</p><h3 id="var/apcs_list"><aside class="declaration">var </aside>apcs_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 95"/></a></h3>
+        <p>list of all Area Power Controller machines, separate from machines for powernet speeeeeeed.</p><h3 id="var/areas"><aside class="declaration">var </aside>areas
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/mapping.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mapping.dm 116"/></a></h3>
+        <p>Just a list of all the area objects in the game
+Note, areas can have duplicate types</p><h3 id="var/areas_by_type"><aside class="declaration">var </aside>areas_by_type
+            <aside>&ndash; /static/list/area</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/mapping.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mapping.dm 122"/></a></h3>
+        <p>An association from typepath to area instance. Only includes areas with <code>unique</code> set.</p><h3 id="var/balance"><aside class="declaration">var </aside>balance
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/balance</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/balance.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;balance.dm 6"/></a></h3>
+        <ul>
+<li>Balance datum</li>
+</ul>
+<p>This is for tracking and storing balance values that are automatically added to the database on edit.</p><h3 id="var/boiler_glob_image_list"><aside class="declaration">var </aside>boiler_glob_image_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/boiler/abilities_boiler.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;boiler&#x2F;abilities_boiler.dm 16"/></a></h3>
+        <p>List of glob action button images, used for radial selection.</p><h3 id="var/boiler_glob_list"><aside class="declaration">var </aside>boiler_glob_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/boiler/abilities_boiler.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;boiler&#x2F;abilities_boiler.dm 8"/></a></h3>
+        <p>List of globs, keyed by icon state. Used for radial selection.</p><h3 id="var/cable_list"><aside class="declaration">var </aside>cable_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 2"/></a></h3>
+        <p>Index for all cables, so that powernets don't have to look through the entire world all the time</p><h3 id="var/cached_maps"><aside class="declaration">var </aside>cached_maps
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/mapping.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mapping.dm 112"/></a></h3>
+        <p>List of all the maps that have been cached for /proc/load_map</p><h3 id="var/cached_storage_typecaches"><aside class="declaration">var </aside>cached_storage_typecaches
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/storage/storage.dm#L280">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;storage&#x2F;storage.dm 280"/></a></h3>
+        <p>Almost 100% of the time the lists passed into set_holdable are reused for each instance
+Just fucking cache it 4head
+Yes I could generalize this, but I don't want anyone else using it. in fact, DO NOT COPY THIS
+If you find yourself needing this pattern, you're likely better off using static typecaches
+I'm not because I do not trust implementers of the storage component to use them, BUT
+IF I FIND YOU USING THIS PATTERN IN YOUR CODE I WILL BREAK YOU ACROSS MY KNEES
+~Lemon</p><h3 id="var/campaign_default_assets"><aside class="declaration">var </aside>campaign_default_assets
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 2"/></a></h3>
+        <p>Default assets a faction starts with</p><h3 id="var/campaign_default_purchasable_assets"><aside class="declaration">var </aside>campaign_default_purchasable_assets
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 21"/></a></h3>
+        <p>Default assets a faction can purchase</p><h3 id="var/campaign_jobs"><aside class="declaration">var </aside>campaign_jobs
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/game_modes.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;game_modes.dm 11"/></a></h3>
+        <p>All jobs used in campaign</p><h3 id="var/campaign_mech_spawners"><aside class="declaration">var </aside>campaign_mech_spawners
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 60"/></a></h3>
+        <p>List of all mech spawners in campaign mode</p><h3 id="var/campaign_mission_pool"><aside class="declaration">var </aside>campaign_mission_pool
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/faction_stats.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;faction_stats.dm 60"/></a></h3>
+        <p>The weighted potential mission pool by faction</p><h3 id="var/campaign_objectives"><aside class="declaration">var </aside>campaign_objectives
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 56"/></a></h3>
+        <p>List of all objectives in the campaign gamemode loaded in the current mission</p><h3 id="var/campaign_reward_spawners"><aside class="declaration">var </aside>campaign_reward_spawners
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 64"/></a></h3>
+        <p>Locations for rewards to spawn by faction</p><h3 id="var/campaign_som_major_loot"><aside class="declaration">var </aside>campaign_som_major_loot
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/game_modes.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;game_modes.dm 57"/></a></h3>
+        <p>Loot table if SOM win a major victory in a campaign mission</p><h3 id="var/campaign_som_minor_loot"><aside class="declaration">var </aside>campaign_som_minor_loot
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/game_modes.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;game_modes.dm 72"/></a></h3>
+        <p>Loot table if SOM win a minor victory in a campaign mission</p><h3 id="var/campaign_structures"><aside class="declaration">var </aside>campaign_structures
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 58"/></a></h3>
+        <p>List of non-objective campaign related structures loaded in the current mission</p><h3 id="var/campaign_tank_spawners"><aside class="declaration">var </aside>campaign_tank_spawners
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 62"/></a></h3>
+        <p>List of all tank spawners in campaign mode</p><h3 id="var/campaign_tgmc_major_loot"><aside class="declaration">var </aside>campaign_tgmc_major_loot
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/game_modes.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;game_modes.dm 31"/></a></h3>
+        <p>Loot table if Marines win a major victory in a campaign mission</p><h3 id="var/campaign_tgmc_minor_loot"><aside class="declaration">var </aside>campaign_tgmc_minor_loot
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/game_modes.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;game_modes.dm 46"/></a></h3>
+        <p>Loot table if Marines win a minor victory in a campaign mission</p><h3 id="var/chemical_reactions_list"><aside class="declaration">var </aside>chemical_reactions_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 72"/></a></h3>
+        <p>list of all /datum/chemical_reaction datums index by reactants, Used during chemical reactions</p><h3 id="var/chemical_reagents_list"><aside class="declaration">var </aside>chemical_reagents_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 74"/></a></h3>
+        <p>list of all /datum/reagent datums instances indexed by reagent typepath. Used by chemistry stuff</p><h3 id="var/conscious_state"><aside class="declaration">var </aside>conscious_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/conscious_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/conscious.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;conscious.dm 12"/></a></h3>
+        <p>tgui state: conscious_state</p>
+<p>Only checks if the user is conscious.</p><h3 id="var/contained_state"><aside class="declaration">var </aside>contained_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/contained_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/contained.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;contained.dm 12"/></a></h3>
+        <p>tgui state: contained_state</p>
+<p>Checks that the user is inside the src_object.</p><h3 id="var/cooking_recipes"><aside class="declaration">var </aside>cooking_recipes
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 83"/></a></h3>
+        <p>Global list of all cooking related crafting recipes.</p><h3 id="var/cooking_recipes_atoms"><aside class="declaration">var </aside>cooking_recipes_atoms
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 86"/></a></h3>
+        <p>This is a global list of typepaths, these typepaths are atoms or reagents that are associated with cooking recipes.
+This includes stuff like recipe components and results.</p><h3 id="var/crafting_recipes"><aside class="declaration">var </aside>crafting_recipes
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 78"/></a></h3>
+        <p>Global list of all non-cooking related crafting recipes.</p><h3 id="var/crafting_recipes_atoms"><aside class="declaration">var </aside>crafting_recipes_atoms
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 81"/></a></h3>
+        <p>This is a global list of typepaths, these typepaths are atoms or reagents that are associated with crafting recipes.
+This includes stuff like recipe components and results.</p><h3 id="var/custom_squad_colors"><aside class="declaration">var </aside>custom_squad_colors
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/squads.dm#L503">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;squads.dm 503"/></a></h3>
+        <p>Color_hex = ui_key assoc list</p><h3 id="var/deep_inventory_state"><aside class="declaration">var </aside>deep_inventory_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/deep_inventory_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/deep_inventory.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;deep_inventory.dm 13"/></a></h3>
+        <p>tgui state: deep_inventory_state</p>
+<p>Checks that the src_object is in the user's deep
+(backpack, box, toolbox, etc) inventory.</p><h3 id="var/default_state"><aside class="declaration">var </aside>default_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/default</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/default.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;default.dm 13"/></a></h3>
+        <p>tgui state: default_state</p>
+<p>Checks a number of things -- mostly physical distance for humans
+and view for robots.</p><h3 id="var/droppod_bays"><aside class="declaration">var </aside>droppod_bays
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 68"/></a></h3>
+        <p>List of all droppod bays</p><h3 id="var/dropship_lzs"><aside class="declaration">var </aside>dropship_lzs
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/remote_fob/drone.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;remote_fob&#x2F;drone.dm 2"/></a></h3>
+        <p>For remote construction of FOB using a computer on the ship during setup phase</p><h3 id="var/dropship_state"><aside class="declaration">var </aside>dropship_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/dropship_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/dropship.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;dropship.dm 6"/></a></h3>
+        <p>tgui state: dropship_state</p>
+<p>Checks that the user is next to the src object</p><h3 id="var/em_block_color"><aside class="declaration">var </aside>em_block_color
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/lighting.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 52"/></a></h3>
+        <p>A globaly cached version of <a href="code/__DEFINES/lighting.html#define/EM_BLOCK_COLOR" title="EM_BLOCK_COLOR">EM_BLOCK_COLOR</a> for quick access.</p><h3 id="var/em_mask_matrix"><aside class="declaration">var </aside>em_mask_matrix
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/lighting.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 60"/></a></h3>
+        <p>A globaly cached version of <a href="code/__DEFINES/lighting.html#define/EM_MASK_MATRIX" title="EM_MASK_MATRIX">EM_MASK_MATRIX</a> for quick access.</p><h3 id="var/emissive_color"><aside class="declaration">var </aside>emissive_color
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/lighting.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;lighting.dm 47"/></a></h3>
+        <p>A globaly cached version of <a href="code/__DEFINES/lighting.html#define/EMISSIVE_COLOR" title="EMISSIVE_COLOR">EMISSIVE_COLOR</a> for quick access.</p><h3 id="var/evo_panel"><aside class="declaration">var </aside>evo_panel
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/evolution_panel.html">evolution_panel</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/tgui.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;tgui.dm 3"/></a></h3>
+        <p>Global variable for accessing evolution panel. Does not need to be unique to each xeno as ui_data pulls relevant information based on context.</p><h3 id="var/faction_stats_datums"><aside class="declaration">var </aside>faction_stats_datums
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/game_modes.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;game_modes.dm 2"/></a></h3>
+        <p>List of all faction_stats datums, by faction</p><h3 id="var/faction_to_acronym"><aside class="declaration">var </aside>faction_to_acronym
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/factions.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;factions.dm 93"/></a></h3>
+        <p>Acronyms for each faction, or the shortest name possible</p><h3 id="var/faction_to_alignement"><aside class="declaration">var </aside>faction_to_alignement
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/factions.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;factions.dm 33"/></a></h3>
+        <p>Alignement for each faction</p><h3 id="var/faction_to_campaign_door_signal"><aside class="declaration">var </aside>faction_to_campaign_door_signal
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/doors/poddoor.dm#L293">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;doors&#x2F;poddoor.dm 293"/></a></h3>
+        <p>Faction signals for campaign mode doors</p><h3 id="var/faction_to_data_hud"><aside class="declaration">var </aside>faction_to_data_hud
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/factions.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;factions.dm 111"/></a></h3>
+        <p>List of correspond factions to data hud</p><h3 id="var/faction_to_iff"><aside class="declaration">var </aside>faction_to_iff
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/factions.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;factions.dm 73"/></a></h3>
+        <p>Iff for each faction that is able to use iff</p><h3 id="var/fire_support_types"><aside class="declaration">var </aside>fire_support_types
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/fire_support.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;fire_support.dm 51"/></a></h3>
+        <p>Assoc list of firesupport types</p><h3 id="var/focused_tests"><aside class="declaration">var </aside>focused_tests
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/unit_tests/unit_test.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;unit_tests&#x2F;unit_test.dm 21"/></a></h3>
+        <p>A list of every test that is currently focused.
+Use the PERFORM_ALL_TESTS macro instead.</p><h3 id="var/fun_state"><aside class="declaration">var </aside>fun_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/fun_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/fun.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;fun.dm 12"/></a></h3>
+        <p>tgui state: fun_state</p>
+<p>Checks that the user has the fun privilige.</p><h3 id="var/glass_style_singletons"><aside class="declaration">var </aside>glass_style_singletons
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/reagent_containers/cups/_glass_datum.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;reagent_containers&#x2F;cups&#x2F;_glass_datum.dm 2"/></a></h3>
+        <p>Global list of all glass style singletons created. See <a href="global.html#proc/create_glass_styles" title="/global">/proc/create_glass_styles</a> for list format.</p><h3 id="var/glide_size_multiplier"><aside class="declaration">var </aside>glide_size_multiplier
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/movement.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;movement.dm 9"/></a></h3>
+        <p>Compensating for time dilation</p><h3 id="var/hands_state"><aside class="declaration">var </aside>hands_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/hands_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/hands.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;hands.dm 12"/></a></h3>
+        <p>tgui state: hands_state</p>
+<p>Checks that the src_object is in the user's hands.</p><h3 id="var/hive_ui_caste_index"><aside class="declaration">var </aside>hive_ui_caste_index
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/mobs.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mobs.dm 152"/></a></h3>
+        <p>Returns the index of the corresponding static caste data given caste typepath.</p><h3 id="var/hive_ui_state"><aside class="declaration">var </aside>hive_ui_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/hive_ui_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/xeno.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;xeno.dm 24"/></a></h3>
+        <p>tgui state: hive_ui_state</p>
+<p>Givens the UI state of hive status page.</p><h3 id="var/hive_ui_static_data"><aside class="declaration">var </aside>hive_ui_static_data
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/mobs.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mobs.dm 155"/></a></h3>
+        <p>Contains static data passed to all hive status UI.</p><h3 id="var/human_adjacent_state"><aside class="declaration">var </aside>human_adjacent_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/human_adjacent_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/human_adjacent.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;human_adjacent.dm 13"/></a></h3>
+        <p>tgui state: human_adjacent_state</p>
+<p>In addition to default checks, only allows interaction for a
+human adjacent user.</p><h3 id="var/human_heights_to_offsets"><aside class="declaration">var </aside>human_heights_to_offsets
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L440">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 440"/></a></h3>
+        <p>Assoc list of all heights, cast to strings, to &quot;&quot;&quot;&quot;tuples&quot;&quot;&quot;&quot;&quot;
+The first &quot;&quot;&quot;tuple&quot;&quot;&quot; index is the upper body offset
+The second &quot;&quot;&quot;tuple&quot;&quot;&quot; index is the lower body offset</p><h3 id="var/human_init_actions"><aside class="declaration">var </aside>human_init_actions
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/mobs.dm#L210">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mobs.dm 210"/></a></h3>
+        <p>The actions given to all humans on init</p><h3 id="var/intel_computers"><aside class="declaration">var </aside>intel_computers
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 39"/></a></h3>
+        <p>All the intel computers for the random events</p><h3 id="var/inventory_slots_to_string"><aside class="declaration">var </aside>inventory_slots_to_string
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L233">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 233"/></a></h3>
+        <p>Inventory slot bits to plain english strings</p><h3 id="var/inventory_state"><aside class="declaration">var </aside>inventory_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/inventory_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/inventory.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;inventory.dm 13"/></a></h3>
+        <p>tgui state: inventory_state</p>
+<p>Checks that the src_object is in the user's top-level
+(hand, ear, pocket, belt, etc) inventory.</p><h3 id="var/job_specific_clothes_vendor"><aside class="declaration">var </aside>job_specific_clothes_vendor
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/loadout.dm#L689">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;loadout.dm 689"/></a></h3>
+        <p>Assoc list linking the job title with their specific clothes vendor</p><h3 id="var/job_specific_points_vendor"><aside class="declaration">var </aside>job_specific_points_vendor
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/loadout.dm#L202">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;loadout.dm 202"/></a></h3>
+        <p>Assoc list linking the job title with their specific points vendor</p><h3 id="var/jobs_squad_corpsman"><aside class="declaration">var </aside>jobs_squad_corpsman
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/jobs.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;jobs.dm 132"/></a></h3>
+        <p>Is a corpsman type job</p><h3 id="var/jobs_squad_engineer"><aside class="declaration">var </aside>jobs_squad_engineer
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/jobs.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;jobs.dm 134"/></a></h3>
+        <p>Is a engineer type job</p><h3 id="var/jobs_squad_leader"><aside class="declaration">var </aside>jobs_squad_leader
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/jobs.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;jobs.dm 130"/></a></h3>
+        <p>Is an SL type job</p><h3 id="var/jobs_squad_roles"><aside class="declaration">var </aside>jobs_squad_roles
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/jobs.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;jobs.dm 127"/></a></h3>
+        <p>Squad type role, regardless of faction</p><h3 id="var/jobs_squad_specialist"><aside class="declaration">var </aside>jobs_squad_specialist
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/jobs.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;jobs.dm 136"/></a></h3>
+        <p>Is a specialist type job</p><h3 id="var/jobs_squad_standard"><aside class="declaration">var </aside>jobs_squad_standard
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/jobs.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;jobs.dm 138"/></a></h3>
+        <p>Is a squad standard type job</p><h3 id="var/key_to_time_of_role_death"><aside class="declaration">var </aside>key_to_time_of_role_death
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/misc.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;misc.dm 36"/></a></h3>
+        <p>Assoc list of key to timeofdeath (last death from an important role) to know if a player can respawn</p><h3 id="var/language_menu_state"><aside class="declaration">var </aside>language_menu_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/language_menu</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/language_menu.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;language_menu.dm 11"/></a></h3>
+        <p>tgui state: language_menu_state</p><h3 id="var/layers_to_offset"><aside class="declaration">var </aside>layers_to_offset
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L461">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 461"/></a></h3>
+        <p>Used for human height overlay adjustments
+Certain standing overlay layers shouldn't have a filter applied and should instead just offset by a pixel y
+This list contains all the layers that must offset, with its value being whether it's a part of the upper half of the body (TRUE) or not (FALSE)</p><h3 id="var/loadout_instantiate_default_contents"><aside class="declaration">var </aside>loadout_instantiate_default_contents
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/loadout.dm#L759">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;loadout.dm 759"/></a></h3>
+        <p>Storage items that will always have their default content</p><h3 id="var/loadout_linked_vendor"><aside class="declaration">var </aside>loadout_linked_vendor
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/loadout.dm#L237">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;loadout.dm 237"/></a></h3>
+        <p>All the vendor types which the automated loadout vendor can take items from.</p><h3 id="var/loadout_variant_keys"><aside class="declaration">var </aside>loadout_variant_keys
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/loadout_variants.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;loadout_variants.dm 52"/></a></h3>
+        <p>saved loadout key = icon_state, AGAIN DO NOT EDIT THE KEYS IT WILL BREAK LOADOUTS</p><h3 id="var/machines"><aside class="declaration">var </aside>machines
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 31"/></a></h3>
+        <p>NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !</p><h3 id="var/mainship_lights"><aside class="declaration">var </aside>mainship_lights
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 35"/></a></h3>
+        <p>list of mainship lights, used for altering intensity and color during red and delta security levels</p><h3 id="var/never_state"><aside class="declaration">var </aside>never_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/never_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/never.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;never.dm 12"/></a></h3>
+        <p>tgui state: never_state</p>
+<p>Always closes the UI, no matter what. See the ui_state in religious_tool.dm to see an example</p><h3 id="var/new_player_state"><aside class="declaration">var </aside>new_player_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/new_player_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/new_player.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;new_player.dm 7"/></a></h3>
+        <p>tgui state: new_player_state</p>
+<p>Checks that the user is a /mob/dead/new_player</p><h3 id="var/non_ascii_regex"><aside class="declaration">var </aside>non_ascii_regex
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/admin.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;admin.dm 17"/></a></h3>
+        <p>Regex for detecting non-ASCII symbols</p><h3 id="var/not_incapacitated_state"><aside class="declaration">var </aside>not_incapacitated_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/not_incapacitated_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/not_incapacitated.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;not_incapacitated.dm 12"/></a></h3>
+        <p>tgui state: not_incapacitated_state</p>
+<p>Checks that the user isn't incapacitated</p><h3 id="var/not_incapacitated_turf_state"><aside class="declaration">var </aside>not_incapacitated_turf_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/not_incapacitated_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/not_incapacitated.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;not_incapacitated.dm 20"/></a></h3>
+        <p>tgui state: not_incapacitated_turf_state</p>
+<p>Checks that the user isn't incapacitated and that their loc is a turf</p><h3 id="var/notcontained_state"><aside class="declaration">var </aside>notcontained_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/notcontained_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/notcontained.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;notcontained.dm 13"/></a></h3>
+        <p>tgui state: notcontained_state</p>
+<p>Checks that the user is not inside src_object, and then makes the
+default checks.</p><h3 id="var/nuke_disk_spawn_locs"><aside class="declaration">var </aside>nuke_disk_spawn_locs
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 48"/></a></h3>
+        <p>list of spawn locations for nuke disk consoles</p><h3 id="var/nuke_ineligible_site"><aside class="declaration">var </aside>nuke_ineligible_site
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 46"/></a></h3>
+        <p>List of area names where /obj/machinery/nuclearbomb cannot be activated</p><h3 id="var/nuke_list"><aside class="declaration">var </aside>nuke_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 42"/></a></h3>
+        <p>list of all /obj/machinery/nuclearbomb</p><h3 id="var/observer_state"><aside class="declaration">var </aside>observer_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/observer_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/observer.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;observer.dm 12"/></a></h3>
+        <p>tgui state: observer_state</p>
+<p>Checks that the user is an observer/ghost.</p><h3 id="var/physical_obscured_state"><aside class="declaration">var </aside>physical_obscured_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/physical_obscured_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/physical.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;physical.dm 38"/></a></h3>
+        <p>tgui state: physical_obscured_state</p>
+<p>Short-circuits the default state to only check physical distance, being in view doesn't matter</p><h3 id="var/physical_state"><aside class="declaration">var </aside>physical_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/physical</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/physical.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;physical.dm 12"/></a></h3>
+        <p>tgui state: physical_state</p>
+<p>Short-circuits the default state to only check physical distance.</p><h3 id="var/pillars_by_z"><aside class="declaration">var </aside>pillars_by_z
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/turf_transparency.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;turf_transparency.dm 4"/></a></h3>
+        <p>List of z pillars (datums placed in the bottom left of XbyX squares that control transparency in that space)
+The pillars are stored in triple depth lists indexed by (world_size % pillar_size) + 1
+They are created at transparent turf request, and deleted when no turfs remain</p><h3 id="var/poll_options"><aside class="declaration">var </aside>poll_options
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/misc.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;misc.dm 32"/></a></h3>
+        <p>All poll option datums of running polls</p><h3 id="var/polls"><aside class="declaration">var </aside>polls
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/misc.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;misc.dm 28"/></a></h3>
+        <p>All currently running polls held as datums</p><h3 id="var/ranked_jobs_by_faction"><aside class="declaration">var </aside>ranked_jobs_by_faction
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/game_modes.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;game_modes.dm 5"/></a></h3>
+        <p>jobs by faction, ranked by seniority</p><h3 id="var/reverse_contained_state"><aside class="declaration">var </aside>reverse_contained_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/reverse_contained_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/reverse_contained.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;reverse_contained.dm 13"/></a></h3>
+        <p>tgui state: reverse_contained_state</p>
+<p>Checks if src_object is inside of user.</p><h3 id="var/roles_allowed_minimap_draw"><aside class="declaration">var </aside>roles_allowed_minimap_draw
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/devices/minimap_tablet.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;devices&#x2F;minimap_tablet.dm 2"/></a></h3>
+        <p>A player needs to be unbanned from ALL these roles in order to be able to use the minimap drawing tool</p><h3 id="var/self_state"><aside class="declaration">var </aside>self_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/self_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/self.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;self.dm 12"/></a></h3>
+        <p>tgui state: self_state</p>
+<p>Only checks that the user and src_object are the same.</p><h3 id="var/ship_alarms"><aside class="declaration">var </aside>ship_alarms
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 37"/></a></h3>
+        <p>list of shipside alarm effects used for delta level alert sirens</p><h3 id="var/slot_str_to_slot"><aside class="declaration">var </aside>slot_str_to_slot
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L320">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 320"/></a></h3>
+        <p>Correspondance between slot strings and slot numbers</p><h3 id="var/sorted_areas"><aside class="declaration">var </aside>sorted_areas
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/mapping.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;mapping.dm 119"/></a></h3>
+        <p>Used by jump-to-area etc. Updated by area/updateName()
+If this is null, it needs to be recalculated. Use get_sorted_areas() as a getter please</p><h3 id="var/ssd_living_mobs"><aside class="declaration">var </aside>ssd_living_mobs
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/misc.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;misc.dm 52"/></a></h3>
+        <p>List of ssd living mobs</p><h3 id="var/strain_list"><aside class="declaration">var </aside>strain_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/xeno_defines.dm#L242">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;xeno_defines.dm 242"/></a></h3>
+        <p>basetype = list(strain1, strain2)</p><h3 id="var/submerge_filter_timer_list"><aside class="declaration">var </aside>submerge_filter_timer_list
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/atoms/atom_movable.dm#L1600">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms&#x2F;atom_movable.dm 1600"/></a></h3>
+        <p>List of all filter removal timers. Glob to avoid an AM level var</p><h3 id="var/teleporter_arrays"><aside class="declaration">var </aside>teleporter_arrays
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 66"/></a></h3>
+        <p>List of all teleporter arrays</p><h3 id="var/topdown_planes"><aside class="declaration">var </aside>topdown_planes
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/_planes.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_planes.dm 91"/></a></h3>
+        <p>Whitelist of planes allowed to use TOPDOWN_LAYER</p><h3 id="var/unit_test_mapping_logs"><aside class="declaration">var </aside>unit_test_mapping_logs
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/unit_tests/unit_test.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;unit_tests&#x2F;unit_test.dm 17"/></a></h3>
+        <p>When unit testing, all logs sent to log_mapping are stored here.</p><h3 id="var/vox_sounds"><aside class="declaration">var </aside>vox_sounds
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/silicon/ai/vox_sounds.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;silicon&#x2F;ai&#x2F;vox_sounds.dm 10"/></a></h3>
+        <p>If there is no single listener, broadcast to everyone in the same z level
+Play voice for all mobs in the z level</p><h3 id="var/xeno_stat_multiplicator_buff"><aside class="declaration">var </aside>xeno_stat_multiplicator_buff
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/monitor.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;monitor.dm 52"/></a></h3>
+        <p>How much xeno stats (health, damage and recov) are buffed</p><h3 id="var/xeno_state"><aside class="declaration">var </aside>xeno_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/xeno_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/xeno.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;xeno.dm 7"/></a></h3>
+        <p>tgui state: xeno_state</p>
+<p>Checks that the user is a xeno, ezpz.</p><h3 id="var/xeno_tunnels_by_hive"><aside class="declaration">var </aside>xeno_tunnels_by_hive
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_globalvars/lists/objects.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_globalvars&#x2F;lists&#x2F;objects.dm 104"/></a></h3>
+        <p>list of all /obj/structure/xeno/tunnel</p><h3 id="var/z_state"><aside class="declaration">var </aside>z_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/z_state</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states/zlevel.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;zlevel.dm 12"/></a></h3>
+        <p>tgui state: z_state</p>
+<p>Only checks that the Z-level of the user and src_object are the same.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

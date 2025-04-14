@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;loadout_item - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/loadout_item.html#var">Var Details</a> - <a href="datum/loadout_item.html#proc">Proc Details</a></header>
+<main>
+<h1>loadout_item <aside>/<a href="datum.html">datum</a>/<a href="datum/loadout_item.html">loadout_item</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 42"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/desc">desc</a></th><td>Item desc</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/item_blacklist">item_blacklist</a></th><td>assoc list by slot of items blacklisted for this to be equipped</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/item_slot">item_slot</a></th><td>inventory slot it is intended to go into</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/item_typepath">item_typepath</a></th><td>Typepath of the actual item this datum represents</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/item_whitelist">item_whitelist</a></th><td>assoc list by slot of items required for this to be equipped. Requires only 1 out of the list</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/jobs_supported">jobs_supported</a></th><td>Job types that this perk is available to</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/loadout_item_flags">loadout_item_flags</a></th><td>Behavior flags for loadout items</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/name">name</a></th><td>Item name</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/purchase_cost">purchase_cost</a></th><td>Cost to use this option</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/quantity">quantity</a></th><td>The amount of this available per mission. -1 for unlimited</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/req_desc">req_desc</a></th><td>Addition desc for special reqs such as black/whitelist</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/ui_icon">ui_icon</a></th><td>UI icon for this item</td></tr>
+            <tr><th><a href="datum/loadout_item.html#var/unlock_cost">unlock_cost</a></th><td>Cost to unlock this option</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/loadout_item.html#proc/blacklist_check">blacklist_check</a></th><td>Checks if a loadout has any blacklisted items</td></tr>
+            <tr><th><a href="datum/loadout_item.html#proc/equip_mandatory_item">equip_mandatory_item</a></th><td>Equips a mandatory item when src is equipt for player convenience</td></tr>
+            <tr><th><a href="datum/loadout_item.html#proc/item_checks">item_checks</a></th><td>Attempts to add an item to a loadout</td></tr>
+            <tr><th><a href="datum/loadout_item.html#proc/on_holder_equip">on_holder_equip</a></th><td>Any additional behavior when this datum is equipped to an outfit_holder</td></tr>
+            <tr><th><a href="datum/loadout_item.html#proc/post_equip">post_equip</a></th><td>Any post equip things related to this item</td></tr>
+            <tr><th><a href="datum/loadout_item.html#proc/role_post_equip">role_post_equip</a></th><td>A separate post equip proc for role specific code. Split for more flexible parent overriding</td></tr>
+            <tr><th><a href="datum/loadout_item.html#proc/whitelist_check">whitelist_check</a></th><td>checks if a loadout has one or more whitelist items</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/desc"><aside class="declaration">var </aside>desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 46"/></a></h3>
+        <p>Item desc</p><h3 id="var/item_blacklist"><aside class="declaration">var </aside>item_blacklist
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 70"/></a></h3>
+        <p>assoc list by slot of items blacklisted for this to be equipped</p><h3 id="var/item_slot"><aside class="declaration">var </aside>item_slot
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 54"/></a></h3>
+        <p>inventory slot it is intended to go into</p><h3 id="var/item_typepath"><aside class="declaration">var </aside>item_typepath
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 50"/></a></h3>
+        <p>Typepath of the actual item this datum represents</p><h3 id="var/item_whitelist"><aside class="declaration">var </aside>item_whitelist
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 66"/></a></h3>
+        <p>assoc list by slot of items required for this to be equipped. Requires only 1 out of the list</p><h3 id="var/jobs_supported"><aside class="declaration">var </aside>jobs_supported
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 64"/></a></h3>
+        <p>Job types that this perk is available to</p><h3 id="var/loadout_item_flags"><aside class="declaration">var </aside>loadout_item_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 56"/></a></h3>
+        <p>Behavior flags for loadout items</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 44"/></a></h3>
+        <p>Item name</p><h3 id="var/purchase_cost"><aside class="declaration">var </aside>purchase_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 60"/></a></h3>
+        <p>Cost to use this option</p><h3 id="var/quantity"><aside class="declaration">var </aside>quantity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 62"/></a></h3>
+        <p>The amount of this available per mission. -1 for unlimited</p><h3 id="var/req_desc"><aside class="declaration">var </aside>req_desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 48"/></a></h3>
+        <p>Addition desc for special reqs such as black/whitelist</p><h3 id="var/ui_icon"><aside class="declaration">var </aside>ui_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 52"/></a></h3>
+        <p>UI icon for this item</p><h3 id="var/unlock_cost"><aside class="declaration">var </aside>unlock_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 58"/></a></h3>
+        <p>Cost to unlock this option</p><h2 id="proc">Proc Details</h2><h3 id="proc/blacklist_check"><aside class="declaration">proc </aside>blacklist_check<aside>(/<a href="datum.html">datum</a>/<a href="datum/outfit_holder.html">outfit_holder</a>/outfit_holder) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 87"/></a></aside>
+        </h3>
+        <p>Checks if a loadout has any blacklisted items</p><h3 id="proc/equip_mandatory_item"><aside class="declaration">proc </aside>equip_mandatory_item<aside>(/<a href="datum.html">datum</a>/<a href="datum/outfit_holder.html">outfit_holder</a>/outfit_holder, mandatory_type, mandatory_slot) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 111"/></a></aside>
+        </h3>
+        <p>Equips a mandatory item when src is equipt for player convenience</p><h3 id="proc/item_checks"><aside class="declaration">proc </aside>item_checks<aside>(/<a href="datum.html">datum</a>/<a href="datum/outfit_holder.html">outfit_holder</a>/outfit_holder) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 71"/></a></aside>
+        </h3>
+        <p>Attempts to add an item to a loadout</p><h3 id="proc/on_holder_equip"><aside class="declaration">proc </aside>on_holder_equip<aside>(/<a href="datum.html">datum</a>/outfit_holder) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 95"/></a></aside>
+        </h3>
+        <p>Any additional behavior when this datum is equipped to an outfit_holder</p><h3 id="proc/post_equip"><aside class="declaration">proc </aside>post_equip<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/wearer, /<a href="datum.html">datum</a>/<a href="datum/outfit.html">outfit</a>/<a href="datum/outfit/quick.html">quick</a>/loadout, /<a href="datum.html">datum</a>/<a href="datum/outfit_holder.html">outfit_holder</a>/holder) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 103"/></a></aside>
+        </h3>
+        <p>Any post equip things related to this item</p><h3 id="proc/role_post_equip"><aside class="declaration">proc </aside>role_post_equip<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/wearer, /<a href="datum.html">datum</a>/<a href="datum/outfit.html">outfit</a>/<a href="datum/outfit/quick.html">quick</a>/loadout, /<a href="datum.html">datum</a>/<a href="datum/outfit_holder.html">outfit_holder</a>/holder) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 107"/></a></aside>
+        </h3>
+        <p>A separate post equip proc for role specific code. Split for more flexible parent overriding</p><h3 id="proc/whitelist_check"><aside class="declaration">proc </aside>whitelist_check<aside>(/<a href="datum.html">datum</a>/<a href="datum/outfit_holder.html">outfit_holder</a>/outfit_holder) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/loadout_items.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;loadout_items.dm 79"/></a></aside>
+        </h3>
+        <p>checks if a loadout has one or more whitelist items</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

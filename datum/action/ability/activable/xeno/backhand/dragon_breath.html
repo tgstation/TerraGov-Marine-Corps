@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;activable&#x2F;xeno&#x2F;backhand&#x2F;dragon_breath - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/activable/xeno/backhand/dragon_breath.html#var">Var Details</a> - <a href="datum/action/ability/activable/xeno/backhand/dragon_breath.html#proc">Proc Details</a></header>
+<main>
+<h1>dragon_breath <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/activable.html">activable</a>/<a href="datum/action/ability/activable/xeno.html">xeno</a>/<a href="datum/action/ability/activable/xeno/backhand.html">backhand</a>/<a href="datum/action/ability/activable/xeno/backhand/dragon_breath.html">dragon_breath</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L349">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 349"/></a></h1>
+
+<p>This prevents them from entering the LZ early.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand/dragon_breath.html#var/ability_timer">ability_timer</a></th><td>The timer id for the timer that ends the ability after a period of time.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand/dragon_breath.html#var/affected_turfs_in_order">affected_turfs_in_order</a></th><td>The turfs that will (eventually) get affected by the ability. Reset upon movement or when empty.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand/dragon_breath.html#var/starting_direction">starting_direction</a></th><td>The starting direction of the ability.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand/dragon_breath.html#var/tick_timer">tick_timer</a></th><td>The timer id for the timer that occurs every tick while the ability is active.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand/dragon_breath.html#var/visual_effect">visual_effect</a></th><td>The visual effect to delete early if needed.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand/dragon_breath.html#proc/end_ability">end_ability</a></th><td>Undoes everything associated with starting the ability.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand/dragon_breath.html#proc/on_deselection">on_deselection</a></th><td>Ends the ability early.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand/dragon_breath.html#proc/on_move">on_move</a></th><td>Rotates the owner back to the starting direction.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand/dragon_breath.html#proc/refresh_or_create_fire">refresh_or_create_fire</a></th><td>Creates a melting fire if it does not exist. If it does, refresh it and affect all atoms in the same turf.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand/dragon_breath.html#proc/tick_effects">tick_effects</a></th><td>Performs the ability at a pace similar of CAS which is one width length at a length.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ability_timer"><aside class="declaration">var </aside>ability_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L369">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 369"/></a></h3>
+        <p>The timer id for the timer that ends the ability after a period of time.</p><h3 id="var/affected_turfs_in_order"><aside class="declaration">var </aside>affected_turfs_in_order
+            <aside>&ndash; /list/turf</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L365">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 365"/></a></h3>
+        <p>The turfs that will (eventually) get affected by the ability. Reset upon movement or when empty.</p><h3 id="var/starting_direction"><aside class="declaration">var </aside>starting_direction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L363">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 363"/></a></h3>
+        <p>The starting direction of the ability.</p><h3 id="var/tick_timer"><aside class="declaration">var </aside>tick_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L373">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 373"/></a></h3>
+        <p>The timer id for the timer that occurs every tick while the ability is active.</p><h3 id="var/visual_effect"><aside class="declaration">var </aside>visual_effect
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/temp_visual.html">effect/temp_visual</a>/dragon/fire_breath</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L367">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 367"/></a></h3>
+        <p>The visual effect to delete early if needed.</p><h2 id="proc">Proc Details</h2><h3 id="proc/end_ability"><aside class="declaration">proc </aside>end_ability<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L485">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 485"/></a></aside>
+        </h3>
+        <p>Undoes everything associated with starting the ability.</p><h3 id="proc/on_deselection"><aside class="parent"><a title="/datum/action/ability/activable" href="datum/action/ability/activable.html#proc/on_deselection">&uarr;</a></aside>on_deselection<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L423">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 423"/></a></aside>
+        </h3>
+        <p>Ends the ability early.</p><h3 id="proc/on_move"><aside class="declaration">proc </aside>on_move<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L429">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 429"/></a></aside>
+        </h3>
+        <p>Rotates the owner back to the starting direction.</p><h3 id="proc/refresh_or_create_fire"><aside class="declaration">proc </aside>refresh_or_create_fire<aside>(/<a href="turf.html">turf</a>/target_turf) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L475">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 475"/></a></aside>
+        </h3>
+        <p>Creates a melting fire if it does not exist. If it does, refresh it and affect all atoms in the same turf.</p><h3 id="proc/tick_effects"><aside class="declaration">proc </aside>tick_effects<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L442">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 442"/></a></aside>
+        </h3>
+        <p>Performs the ability at a pace similar of CAS which is one width length at a length.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

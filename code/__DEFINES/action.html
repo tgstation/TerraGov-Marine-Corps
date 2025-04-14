@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;action.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/action.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/action.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/action.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;action.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>This is just a file holding string defines for reference retrieval on /action datums
+ideally you should never override the base list , and just add onto its length
+The noting system for these is
+VREF_[DATA_TYPE]_[WHAT_IS_IT_USED_FOR]</p></td></tr>
+        <tr><th><a href="code/__DEFINES/action.html#define/VREF_MUTABLE_LINKED_OBJ">VREF_MUTABLE_LINKED_OBJ</a></th><td>A define for accesing the mutable appearance of the linked obj. Holds a reference of the objects appearance</td></tr>
+        <tr><th><a href="code/__DEFINES/action.html#define/VREF_MUTABLE_ACTION_STATE">VREF_MUTABLE_ACTION_STATE</a></th><td>A mutable appearance of icon made with action_icon_state and action_icon</td></tr>
+        <tr><th><a href="code/__DEFINES/action.html#define/VREF_MUTABLE_MAPTEXT">VREF_MUTABLE_MAPTEXT</a></th><td>A mutable appearance for keybinding maptext</td></tr>
+        <tr><th><a href="code/__DEFINES/action.html#define/VREF_MUTABLE_SELECTED_FRAME">VREF_MUTABLE_SELECTED_FRAME</a></th><td>A mutable appearance to add a &quot;selected&quot; frame around the edges</td></tr>
+        <tr><th><a href="code/__DEFINES/action.html#define/VREF_IMAGE_ONTOP">VREF_IMAGE_ONTOP</a></th><td>A misc image holder for stuff thats meant to be added ontop , used by a few actions</td></tr>
+        <tr><th><a href="code/__DEFINES/action.html#define/VREF_MUTABLE_EMPOWERED_FRAME">VREF_MUTABLE_EMPOWERED_FRAME</a></th><td>A mutable appearance to add the &quot;empowered&quot; frame around the edges</td></tr>
+        <tr><th><a href="code/__DEFINES/action.html#define/VREF_MUTABLE_BUILDING_COUNTER">VREF_MUTABLE_BUILDING_COUNTER</a></th><td>A reference for the build counter of a xeno</td></tr>
+        <tr><th><a href="code/__DEFINES/action.html#define/ACTION_TOGGLE">ACTION_TOGGLE</a></th><td>Actions that toggle on click/trigger</td></tr>
+        <tr><th><a href="code/__DEFINES/action.html#define/ACTION_CLICK">ACTION_CLICK</a></th><td>Actions that trigger when clicked/triggered</td></tr>
+        <tr><th><a href="code/__DEFINES/action.html#define/ACTION_SELECT">ACTION_SELECT</a></th><td>Actions that get selected and can be targeted when clicked/triggered</td></tr>
+        <tr><th><a href="code/__DEFINES/action.html#define/KEYBINDING_NORMAL">KEYBINDING_NORMAL</a></th><td>Normal keybinding , calls keybind_activation</td></tr>
+        <tr><th><a href="code/__DEFINES/action.html#define/KEYBINDING_ALTERNATE">KEYBINDING_ALTERNATE</a></th><td>Alternate keybinding , calls alternate_ability_activation</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ACTION_CLICK"><aside class="declaration">#define </aside>ACTION_CLICK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/action.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;action.dm 57"/></a>
+    </h3>
+    <p>Actions that trigger when clicked/triggered</p><h3 id="define/ACTION_SELECT"><aside class="declaration">#define </aside>ACTION_SELECT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/action.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;action.dm 59"/></a>
+    </h3>
+    <p>Actions that get selected and can be targeted when clicked/triggered</p><h3 id="define/ACTION_TOGGLE"><aside class="declaration">#define </aside>ACTION_TOGGLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/action.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;action.dm 55"/></a>
+    </h3>
+    <p>Actions that toggle on click/trigger</p><h3 id="define/KEYBINDING_ALTERNATE"><aside class="declaration">#define </aside>KEYBINDING_ALTERNATE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/action.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;action.dm 64"/></a>
+    </h3>
+    <p>Alternate keybinding , calls alternate_ability_activation</p><h3 id="define/KEYBINDING_NORMAL"><aside class="declaration">#define </aside>KEYBINDING_NORMAL
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/action.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;action.dm 62"/></a>
+    </h3>
+    <p>Normal keybinding , calls keybind_activation</p><h3 id="define/VREF_IMAGE_ONTOP"><aside class="declaration">#define </aside>VREF_IMAGE_ONTOP
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/action.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;action.dm 19"/></a>
+    </h3>
+    <p>A misc image holder for stuff thats meant to be added ontop , used by a few actions</p><h3 id="define/VREF_MUTABLE_ACTION_STATE"><aside class="declaration">#define </aside>VREF_MUTABLE_ACTION_STATE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/action.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;action.dm 12"/></a>
+    </h3>
+    <p>A mutable appearance of icon made with action_icon_state and action_icon</p><h3 id="define/VREF_MUTABLE_BUILDING_COUNTER"><aside class="declaration">#define </aside>VREF_MUTABLE_BUILDING_COUNTER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/action.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;action.dm 24"/></a>
+    </h3>
+    <p>A reference for the build counter of a xeno</p><h3 id="define/VREF_MUTABLE_EMPOWERED_FRAME"><aside class="declaration">#define </aside>VREF_MUTABLE_EMPOWERED_FRAME
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/action.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;action.dm 22"/></a>
+    </h3>
+    <p>A mutable appearance to add the &quot;empowered&quot; frame around the edges</p><h3 id="define/VREF_MUTABLE_LINKED_OBJ"><aside class="declaration">#define </aside>VREF_MUTABLE_LINKED_OBJ
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/action.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;action.dm 10"/></a>
+    </h3>
+    <p>A define for accesing the mutable appearance of the linked obj. Holds a reference of the objects appearance</p><h3 id="define/VREF_MUTABLE_MAPTEXT"><aside class="declaration">#define </aside>VREF_MUTABLE_MAPTEXT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/action.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;action.dm 15"/></a>
+    </h3>
+    <p>A mutable appearance for keybinding maptext</p><h3 id="define/VREF_MUTABLE_SELECTED_FRAME"><aside class="declaration">#define </aside>VREF_MUTABLE_SELECTED_FRAME
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/action.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;action.dm 17"/></a>
+    </h3>
+    <p>A mutable appearance to add a &quot;selected&quot; frame around the edges</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

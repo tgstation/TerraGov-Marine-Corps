@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;vehicle&#x2F;sealed&#x2F;armored - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/vehicle/sealed/armored.html#var">Var Details</a> - <a href="obj/vehicle/sealed/armored.html#proc">Proc Details</a></header>
+<main>
+<h1>armored <aside>/<a href="obj.html">obj</a>/<a href="obj/vehicle.html">vehicle</a>/<a href="obj/vehicle/sealed.html">sealed</a>/<a href="obj/vehicle/sealed/armored.html">armored</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/armored_flags">armored_flags</a></th><td>Tank bitflags</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/damage_icon_path">damage_icon_path</a></th><td>Icon file path for the damage overlay</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/damage_overlay">damage_overlay</a></th><td>Damage overlay for when the vehicle gets damaged</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/drive_inside_loop">drive_inside_loop</a></th><td>sound that plays inside when we drive around</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/drive_loop">drive_loop</a></th><td>sound loop that plays while we move around</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/driver_utility_module">driver_utility_module</a></th><td>Our driver utility module</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/easy_load_list">easy_load_list</a></th><td>List for storing all item typepaths that we may &quot;easy load&quot; into the tank by attacking its entrance
+This will be turned into a typeCache on  initialize</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/engine_off_interior_sound">engine_off_interior_sound</a></th><td>sound to play inside the tank after the driver leaves</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/engine_off_sound">engine_off_sound</a></th><td>sound to play outside the tank after the driver leaves</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/gunner_utility_module">gunner_utility_module</a></th><td>Our driver utility module</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/idle_inside_loop">idle_inside_loop</a></th><td>sound loop that plays inside the tank when driver is in but we're not moving</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/idle_loop">idle_loop</a></th><td>sound loop that plays when we are not moving with a driver present</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/interior">interior</a></th><td>reference to our interior datum if set, uses the typepath its set to</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/minimap_flags">minimap_flags</a></th><td>Minimap flags to use for this vehcile</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/minimap_icon_state">minimap_icon_state</a></th><td>minimap iconstate to use for this vehicle</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/permitted_mods">permitted_mods</a></th><td>list of mods we allow to attach</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/permitted_weapons">permitted_weapons</a></th><td>list of weapons we allow to attach</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/primary_weapon">primary_weapon</a></th><td>What weapon we have in our primary slot</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/ram_damage">ram_damage</a></th><td>damage done by rams</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/required_entry_skill">required_entry_skill</a></th><td>Skill required to enter this vehicle</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/secondary_weapon">secondary_weapon</a></th><td>What weapon we have in our secondary slot</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/secondary_weapon_overlay">secondary_weapon_overlay</a></th><td>secondary independently rotating overlay, if we only have a secondary weapon</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/strafe">strafe</a></th><td>Wether we are strafing</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/turret_icon">turret_icon</a></th><td>Icon for the rotating turret icon. also should hold the icons for the weapon icons</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/turret_icon_state">turret_icon_state</a></th><td>Iconstate for the rotating main turret</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/turret_overlay">turret_overlay</a></th><td>Cool and good turret overlay that allows independently swiveling guns</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/underlay">underlay</a></th><td>Overlay for larger vehicles that need under parts</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#var/weapons_safety">weapons_safety</a></th><td>if true disables stops users from being able to shoot weapons</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#proc/enter_locations">enter_locations</a></th><td>returns a list of possible locations that this vehicle may be entered from</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#proc/interior_exit">interior_exit</a></th><td>called when a mob tried to leave our interior</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#proc/on_mouseclick">on_mouseclick</a></th><td>handles mouseclicks by a user in the vehicle</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#proc/play_interior_sound">play_interior_sound</a></th><td>playsound_local identical args, use this when a sound should be played for the occupants.</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#proc/set_safety">set_safety</a></th><td>Toggles Weapons Safety</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#proc/swivel_turret">swivel_turret</a></th><td>Rotates the cannon overlay</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#proc/toggle_strafe">toggle_strafe</a></th><td>Toggles strafemode on or off</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#proc/try_easy_load">try_easy_load</a></th><td>call to try easy_loading an item into the tank. Checks for all being in the list , interior existing and the user bieng at the enter loc</td></tr>
+            <tr><th><a href="obj/vehicle/sealed/armored.html#proc/update_minimap_icon">update_minimap_icon</a></th><td>Updates the vehicles minimap icon</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/armored_flags"><aside class="declaration">var </aside>armored_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 19"/></a></h3>
+        <p>Tank bitflags</p><h3 id="var/damage_icon_path"><aside class="declaration">var </aside>damage_icon_path
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 45"/></a></h3>
+        <p>Icon file path for the damage overlay</p><h3 id="var/damage_overlay"><aside class="declaration">var </aside>damage_overlay
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/vis_obj/tank_damage</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 43"/></a></h3>
+        <p>Damage overlay for when the vehicle gets damaged</p><h3 id="var/drive_inside_loop"><aside class="declaration">var </aside>drive_inside_loop
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/looping_sound.html">looping_sound</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 28"/></a></h3>
+        <p>sound that plays inside when we drive around</p><h3 id="var/drive_loop"><aside class="declaration">var </aside>drive_loop
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/looping_sound.html">looping_sound</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 26"/></a></h3>
+        <p>sound loop that plays while we move around</p><h3 id="var/driver_utility_module"><aside class="declaration">var </aside>driver_utility_module
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/tank_module.html">tank_module</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 58"/></a></h3>
+        <p>Our driver utility module</p><h3 id="var/easy_load_list"><aside class="declaration">var </aside>easy_load_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 88"/></a></h3>
+        <p>List for storing all item typepaths that we may &quot;easy load&quot; into the tank by attacking its entrance
+This will be turned into a typeCache on  initialize</p><h3 id="var/engine_off_interior_sound"><aside class="declaration">var </aside>engine_off_interior_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 32"/></a></h3>
+        <p>sound to play inside the tank after the driver leaves</p><h3 id="var/engine_off_sound"><aside class="declaration">var </aside>engine_off_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 30"/></a></h3>
+        <p>sound to play outside the tank after the driver leaves</p><h3 id="var/gunner_utility_module"><aside class="declaration">var </aside>gunner_utility_module
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/tank_module.html">tank_module</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 60"/></a></h3>
+        <p>Our driver utility module</p><h3 id="var/idle_inside_loop"><aside class="declaration">var </aside>idle_inside_loop
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/looping_sound.html">looping_sound</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 24"/></a></h3>
+        <p>sound loop that plays inside the tank when driver is in but we're not moving</p><h3 id="var/idle_loop"><aside class="declaration">var </aside>idle_loop
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/looping_sound.html">looping_sound</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 22"/></a></h3>
+        <p>sound loop that plays when we are not moving with a driver present</p><h3 id="var/interior"><aside class="declaration">var </aside>interior
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/interior.html">interior</a>/<a href="datum/interior/armored.html">armored</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 50"/></a></h3>
+        <p>reference to our interior datum if set, uses the typepath its set to</p><h3 id="var/minimap_flags"><aside class="declaration">var </aside>minimap_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 75"/></a></h3>
+        <p>Minimap flags to use for this vehcile</p><h3 id="var/minimap_icon_state"><aside class="declaration">var </aside>minimap_icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 77"/></a></h3>
+        <p>minimap iconstate to use for this vehicle</p><h3 id="var/permitted_mods"><aside class="declaration">var </aside>permitted_mods
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 69"/></a></h3>
+        <p>list of mods we allow to attach</p><h3 id="var/permitted_weapons"><aside class="declaration">var </aside>permitted_weapons
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 62"/></a></h3>
+        <p>list of weapons we allow to attach</p><h3 id="var/primary_weapon"><aside class="declaration">var </aside>primary_weapon
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/armored_weapon.html">armored_weapon</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 54"/></a></h3>
+        <p>What weapon we have in our primary slot</p><h3 id="var/ram_damage"><aside class="declaration">var </aside>ram_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 83"/></a></h3>
+        <p>damage done by rams</p><h3 id="var/required_entry_skill"><aside class="declaration">var </aside>required_entry_skill
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 52"/></a></h3>
+        <p>Skill required to enter this vehicle</p><h3 id="var/secondary_weapon"><aside class="declaration">var </aside>secondary_weapon
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/armored_weapon.html">armored_weapon</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 56"/></a></h3>
+        <p>What weapon we have in our secondary slot</p><h3 id="var/secondary_weapon_overlay"><aside class="declaration">var </aside>secondary_weapon_overlay
+            <aside>&ndash; /<a href="image.html">image</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 41"/></a></h3>
+        <p>secondary independently rotating overlay, if we only have a secondary weapon</p><h3 id="var/strafe"><aside class="declaration">var </aside>strafe
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 90"/></a></h3>
+        <p>Wether we are strafing</p><h3 id="var/turret_icon"><aside class="declaration">var </aside>turret_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 37"/></a></h3>
+        <p>Icon for the rotating turret icon. also should hold the icons for the weapon icons</p><h3 id="var/turret_icon_state"><aside class="declaration">var </aside>turret_icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 39"/></a></h3>
+        <p>Iconstate for the rotating main turret</p><h3 id="var/turret_overlay"><aside class="declaration">var </aside>turret_overlay
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/vis_obj/turret_overlay.html">vis_obj/turret_overlay</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 35"/></a></h3>
+        <p>Cool and good turret overlay that allows independently swiveling guns</p><h3 id="var/underlay"><aside class="declaration">var </aside>underlay
+            <aside>&ndash; /<a href="image.html">image</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 47"/></a></h3>
+        <p>Overlay for larger vehicles that need under parts</p><h3 id="var/weapons_safety"><aside class="declaration">var </aside>weapons_safety
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 79"/></a></h3>
+        <p>if true disables stops users from being able to shoot weapons</p><h2 id="proc">Proc Details</h2><h3 id="proc/enter_locations"><aside class="declaration">proc </aside>enter_locations<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/entering_thing) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L184">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 184"/></a></aside>
+        </h3>
+        <p>returns a list of possible locations that this vehicle may be entered from</p><h3 id="proc/interior_exit"><aside class="declaration">proc </aside>interior_exit<aside>(/<a href="mob.html">mob</a>/leaver, /<a href="datum.html">datum</a>/<a href="datum/interior.html">interior</a>/inside, teleport) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L328">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 328"/></a></aside>
+        </h3>
+        <p>called when a mob tried to leave our interior</p><h3 id="proc/on_mouseclick"><aside class="declaration">proc </aside>on_mouseclick<aside>(/<a href="mob.html">mob</a>/user, /<a href="atom.html">atom</a>/target, /<a href="turf.html">turf</a>/location, control, /list/modifiers) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L699">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 699"/></a></aside>
+        </h3>
+        <p>handles mouseclicks by a user in the vehicle</p><h3 id="proc/play_interior_sound"><aside class="declaration">proc </aside>play_interior_sound<aside>(/<a href="turf.html">turf</a>/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, /sound/sound_to_use, distance_multiplier) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L690">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 690"/></a></aside>
+        </h3>
+        <p>playsound_local identical args, use this when a sound should be played for the occupants.</p><h3 id="proc/set_safety"><aside class="declaration">proc </aside>set_safety<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L667">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 667"/></a></aside>
+        </h3>
+        <p>Toggles Weapons Safety</p>
+<p>Handles enabling or disabling the safety function.</p><h3 id="proc/swivel_turret"><aside class="declaration">proc </aside>swivel_turret<aside>(/<a href="atom.html">atom</a>/A, new_weapon_dir) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L674">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 674"/></a></aside>
+        </h3>
+        <p>Rotates the cannon overlay</p><h3 id="proc/toggle_strafe"><aside class="declaration">proc </aside>toggle_strafe<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/armored_actions.dm#L167">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;armored_actions.dm 167"/></a></aside>
+        </h3>
+        <p>Toggles strafemode on or off</p><h3 id="proc/try_easy_load"><aside class="declaration">proc </aside>try_easy_load<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/thing_to_load, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L335">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 335"/></a></aside>
+        </h3>
+        <p>call to try easy_loading an item into the tank. Checks for all being in the list , interior existing and the user bieng at the enter loc</p><h3 id="proc/update_minimap_icon"><aside class="declaration">proc </aside>update_minimap_icon<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/armored/__armored.dm#L738">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;armored&#x2F;__armored.dm 738"/></a></aside>
+        </h3>
+        <p>Updates the vehicles minimap icon</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;deployable&#x2F;mounted - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/deployable/mounted.html#var">Var Details</a> - <a href="obj/machinery/deployable/mounted.html#proc">Proc Details</a></header>
+<main>
+<h1>mounted <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/deployable.html">deployable</a>/<a href="obj/machinery/deployable/mounted.html">mounted</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/mounted.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;mounted.dm 2"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted.html#var/has_anchored_sprite">has_anchored_sprite</a></th><td>If the gun has different sprites for being anchored.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted.html#var/user_old_move_resist">user_old_move_resist</a></th><td>Stores user old move resist and apply on unset interaction</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted.html#var/user_old_x">user_old_x</a></th><td>Store user old pixel x</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted.html#var/user_old_y">user_old_y</a></th><td>Store user old pixel y</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted.html#proc/can_fire">can_fire</a></th><td>Checks if you can fire</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted.html#proc/change_target">change_target</a></th><td>Happens when you drag the mouse.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted.html#proc/check_eye">check_eye</a></th><td>makes sure you can see and or use the gun</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted.html#proc/hud_set_gun_ammo">hud_set_gun_ammo</a></th><td>Makes mounted guns ammo visible</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted.html#proc/interact">interact</a></th><td>This is called when a user tries to operate the gun</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted.html#proc/on_set_interaction">on_set_interaction</a></th><td>Sets the user as manning the internal gun</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted.html#proc/on_unset_interaction">on_unset_interaction</a></th><td>Unsets the user from manning the internal gun</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted.html#proc/reload">reload</a></th><td>Reloads the internal_item</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted.html#proc/start_fire">start_fire</a></th><td>Begins the Firing Process, does custom checks before calling the guns start_fire()</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted.html#proc/update_icon_state">update_icon_state</a></th><td>generates the icon based on how much ammo it has.</td></tr>
+            <tr><th><a href="obj/machinery/deployable/mounted.html#proc/update_pixels">update_pixels</a></th><td>Updates the pixel offset of user so it looks like their manning the gun from behind</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/has_anchored_sprite"><aside class="declaration">var </aside>has_anchored_sprite
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/mounted.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;mounted.dm 18"/></a></h3>
+        <p>If the gun has different sprites for being anchored.</p><h3 id="var/user_old_move_resist"><aside class="declaration">var </aside>user_old_move_resist
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/mounted.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;mounted.dm 16"/></a></h3>
+        <p>Stores user old move resist and apply on unset interaction</p><h3 id="var/user_old_x"><aside class="declaration">var </aside>user_old_x
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/mounted.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;mounted.dm 12"/></a></h3>
+        <p>Store user old pixel x</p><h3 id="var/user_old_y"><aside class="declaration">var </aside>user_old_y
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/mounted.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;mounted.dm 14"/></a></h3>
+        <p>Store user old pixel y</p><h2 id="proc">Proc Details</h2><h3 id="proc/can_fire"><aside class="declaration">proc </aside>can_fire<aside>(/<a href="atom.html">atom</a>/object) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/mounted.dm#L220">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;mounted.dm 220"/></a></aside>
+        </h3>
+        <p>Checks if you can fire</p><h3 id="proc/change_target"><aside class="declaration">proc </aside>change_target<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/src_object, /<a href="atom.html">atom</a>/over_object, /<a href="turf.html">turf</a>/src_location, /<a href="turf.html">turf</a>/over_location, src_control, over_control, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/mounted.dm#L208">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;mounted.dm 208"/></a></aside>
+        </h3>
+        <p>Happens when you drag the mouse.</p><h3 id="proc/check_eye">check_eye<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/mounted.dm#L322">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;mounted.dm 322"/></a></aside>
+        </h3>
+        <p>makes sure you can see and or use the gun</p><h3 id="proc/hud_set_gun_ammo"><aside class="declaration">proc </aside>hud_set_gun_ammo<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/data_huds.dm#L695">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;data_huds.dm 695"/></a></aside>
+        </h3>
+        <p>Makes mounted guns ammo visible</p><h3 id="proc/interact">interact<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/mounted.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;mounted.dm 115"/></a></aside>
+        </h3>
+        <p>This is called when a user tries to operate the gun</p><h3 id="proc/on_set_interaction">on_set_interaction<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/mounted.dm#L148">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;mounted.dm 148"/></a></aside>
+        </h3>
+        <p>Sets the user as manning the internal gun</p><h3 id="proc/on_unset_interaction">on_unset_interaction<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/mounted.dm#L289">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;mounted.dm 289"/></a></aside>
+        </h3>
+        <p>Unsets the user from manning the internal gun</p><h3 id="proc/reload"><aside class="declaration">proc </aside>reload<aside>(/<a href="mob.html">mob</a>/user, ammo_magazine) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/mounted.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;mounted.dm 87"/></a></aside>
+        </h3>
+        <p>Reloads the internal_item</p><h3 id="proc/start_fire"><aside class="declaration">proc </aside>start_fire<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/object, /<a href="turf.html">turf</a>/location, control, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/mounted.dm#L195">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;mounted.dm 195"/></a></aside>
+        </h3>
+        <p>Begins the Firing Process, does custom checks before calling the guns start_fire()</p><h3 id="proc/update_icon_state"><aside class="parent"><a title="/atom" href="atom.html#proc/update_icon_state">&uarr;</a></aside>update_icon_state<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/mounted.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;mounted.dm 21"/></a></aside>
+        </h3>
+        <p>generates the icon based on how much ammo it has.</p><h3 id="proc/update_pixels"><aside class="declaration">proc </aside>update_pixels<aside>(/<a href="mob.html">mob</a>/user, mounting) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/mounted.dm#L173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;mounted.dm 173"/></a></aside>
+        </h3>
+        <p>Updates the pixel offset of user so it looks like their manning the gun from behind</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

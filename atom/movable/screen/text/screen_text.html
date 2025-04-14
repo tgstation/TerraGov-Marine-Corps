@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;atom&#x2F;movable&#x2F;screen&#x2F;text&#x2F;screen_text - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="atom/movable/screen/text/screen_text.html#var">Var Details</a> - <a href="atom/movable/screen/text/screen_text.html#proc">Proc Details</a></header>
+<main>
+<h1>screen_text <aside>/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/text/screen_text.html">text/screen_text</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/screen_alert/_screen_alert.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;screen_alert&#x2F;_screen_alert.dm 22"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="atom/movable/screen/text/screen_text.html#var/fade_in_time">fade_in_time</a></th><td>Time taken to fade in as we start printing text</td></tr>
+            <tr><th><a href="atom/movable/screen/text/screen_text.html#var/fade_out_delay">fade_out_delay</a></th><td>Time before fade out after printing is finished</td></tr>
+            <tr><th><a href="atom/movable/screen/text/screen_text.html#var/fade_out_time">fade_out_time</a></th><td>Time taken when fading out after fade_out_delay</td></tr>
+            <tr><th><a href="atom/movable/screen/text/screen_text.html#var/letters_per_update">letters_per_update</a></th><td>letters to update by per text to per play_delay</td></tr>
+            <tr><th><a href="atom/movable/screen/text/screen_text.html#var/play_delay">play_delay</a></th><td>delay between playing each letter. in general use 1 for fluff and 0.5 for time sensitive messsages</td></tr>
+            <tr><th><a href="atom/movable/screen/text/screen_text.html#var/style_close">style_close</a></th><td>closing styling for the message</td></tr>
+            <tr><th><a href="atom/movable/screen/text/screen_text.html#var/style_open">style_open</a></th><td>opening styling for the message</td></tr>
+            <tr><th><a href="atom/movable/screen/text/screen_text.html#var/text_to_play">text_to_play</a></th><td>var for the text we are going to play</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="atom/movable/screen/text/screen_text.html#proc/after_play">after_play</a></th><td>handles post-play effects like fade out after the fade out delay</td></tr>
+            <tr><th><a href="atom/movable/screen/text/screen_text.html#proc/end_play">end_play</a></th><td>ends the play then deletes this screen object and plays the next one in queue if it exists</td></tr>
+            <tr><th><a href="atom/movable/screen/text/screen_text.html#proc/play_to_client">play_to_client</a></th><td>proc for actually playing this screen_text on a mob.
+Arguments:</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/fade_in_time"><aside class="declaration">var </aside>fade_in_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/screen_alert/_screen_alert.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;screen_alert&#x2F;_screen_alert.dm 34"/></a></h3>
+        <p>Time taken to fade in as we start printing text</p><h3 id="var/fade_out_delay"><aside class="declaration">var </aside>fade_out_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/screen_alert/_screen_alert.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;screen_alert&#x2F;_screen_alert.dm 36"/></a></h3>
+        <p>Time before fade out after printing is finished</p><h3 id="var/fade_out_time"><aside class="declaration">var </aside>fade_out_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/screen_alert/_screen_alert.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;screen_alert&#x2F;_screen_alert.dm 38"/></a></h3>
+        <p>Time taken when fading out after fade_out_delay</p><h3 id="var/letters_per_update"><aside class="declaration">var </aside>letters_per_update
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/screen_alert/_screen_alert.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;screen_alert&#x2F;_screen_alert.dm 42"/></a></h3>
+        <p>letters to update by per text to per play_delay</p><h3 id="var/play_delay"><aside class="declaration">var </aside>play_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/screen_alert/_screen_alert.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;screen_alert&#x2F;_screen_alert.dm 40"/></a></h3>
+        <p>delay between playing each letter. in general use 1 for fluff and 0.5 for time sensitive messsages</p><h3 id="var/style_close"><aside class="declaration">var </aside>style_close
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/screen_alert/_screen_alert.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;screen_alert&#x2F;_screen_alert.dm 47"/></a></h3>
+        <p>closing styling for the message</p><h3 id="var/style_open"><aside class="declaration">var </aside>style_open
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/screen_alert/_screen_alert.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;screen_alert&#x2F;_screen_alert.dm 45"/></a></h3>
+        <p>opening styling for the message</p><h3 id="var/text_to_play"><aside class="declaration">var </aside>text_to_play
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/screen_alert/_screen_alert.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;screen_alert&#x2F;_screen_alert.dm 51"/></a></h3>
+        <p>var for the text we are going to play</p><h2 id="proc">Proc Details</h2><h3 id="proc/after_play"><aside class="declaration">proc </aside>after_play<aside>(/<a href="client.html">client</a>/player) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/screen_alert/_screen_alert.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;screen_alert&#x2F;_screen_alert.dm 83"/></a></aside>
+        </h3>
+        <p>handles post-play effects like fade out after the fade out delay</p><h3 id="proc/end_play"><aside class="declaration">proc </aside>end_play<aside>(/<a href="client.html">client</a>/player) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/screen_alert/_screen_alert.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;screen_alert&#x2F;_screen_alert.dm 91"/></a></aside>
+        </h3>
+        <p>ends the play then deletes this screen object and plays the next one in queue if it exists</p><h3 id="proc/play_to_client"><aside class="declaration">proc </aside>play_to_client<aside>(/<a href="client.html">client</a>/player) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/screen_alert/_screen_alert.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;screen_alert&#x2F;_screen_alert.dm 56"/></a></aside>
+        </h3>
+        <p>proc for actually playing this screen_text on a mob.
+Arguments:</p>
+<ul>
+<li>player: client to play to</li>
+</ul></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

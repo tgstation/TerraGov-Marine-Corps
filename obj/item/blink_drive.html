@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;blink_drive - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/blink_drive.html#var">Var Details</a> - <a href="obj/item/blink_drive.html#proc">Proc Details</a></header>
+<main>
+<h1>blink_drive <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/blink_drive.html">blink_drive</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/blink_drive.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;blink_drive.dm 5"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/blink_drive.html#var/blink_action">blink_action</a></th><td>Controlling action</td></tr>
+            <tr><th><a href="obj/item/blink_drive.html#var/charge_timer">charge_timer</a></th><td>The timer for recharging the drive</td></tr>
+            <tr><th><a href="obj/item/blink_drive.html#var/charges">charges</a></th><td>Number of teleport charges you currently have</td></tr>
+            <tr><th><a href="obj/item/blink_drive.html#var/equipped_user">equipped_user</a></th><td>The mob wearing the blink drive. Needed for item updates.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/blink_drive.html#proc/recharge">recharge</a></th><td>Recharges the drive, and sets another timer if not maxed out</td></tr>
+            <tr><th><a href="obj/item/blink_drive.html#proc/teleport">teleport</a></th><td>Handles the actual teleportation</td></tr>
+            <tr><th><a href="obj/item/blink_drive.html#proc/teleport_debuff_aoe">teleport_debuff_aoe</a></th><td>The effects applied on teleporting from or to a location</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/blink_action"><aside class="declaration">var </aside>blink_action
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/activable.html">activable</a>/<a href="datum/action/ability/activable/item_toggle.html">item_toggle</a>/blink_drive</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/blink_drive.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;blink_drive.dm 27"/></a></h3>
+        <p>Controlling action</p><h3 id="var/charge_timer"><aside class="declaration">var </aside>charge_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/blink_drive.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;blink_drive.dm 23"/></a></h3>
+        <p>The timer for recharging the drive</p><h3 id="var/charges"><aside class="declaration">var </aside>charges
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/blink_drive.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;blink_drive.dm 21"/></a></h3>
+        <p>Number of teleport charges you currently have</p><h3 id="var/equipped_user"><aside class="declaration">var </aside>equipped_user
+            <aside>&ndash; /<a href="mob.html">mob</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/blink_drive.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;blink_drive.dm 25"/></a></h3>
+        <p>The mob wearing the blink drive. Needed for item updates.</p><h2 id="proc">Proc Details</h2><h3 id="proc/recharge"><aside class="declaration">proc </aside>recharge<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/blink_drive.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;blink_drive.dm 143"/></a></aside>
+        </h3>
+        <p>Recharges the drive, and sets another timer if not maxed out</p><h3 id="proc/teleport"><aside class="declaration">proc </aside>teleport<aside>(/<a href="atom.html">atom</a>/A, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/blink_drive.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;blink_drive.dm 84"/></a></aside>
+        </h3>
+        <p>Handles the actual teleportation</p><h3 id="proc/teleport_debuff_aoe"><aside class="declaration">proc </aside>teleport_debuff_aoe<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/teleporter) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/blink_drive.dm#L153">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;blink_drive.dm 153"/></a></aside>
+        </h3>
+        <p>The effects applied on teleporting from or to a location</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

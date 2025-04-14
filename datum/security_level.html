@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;security_level - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/security_level.html#var">Var Details</a></header>
+<main>
+<h1>security_level <aside>/<a href="datum.html">datum</a>/<a href="datum/security_level.html">security_level</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/security_levels/security_level_datums.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;security_levels&#x2F;security_level_datums.dm 8"/></a></h1>
+
+<p>The base class for datumized security levels. These are used by <code>SSsecurity_level</code>.</p>
+<p>Each subtype represents a possible security level for the security level subsystem.</p>
+<p>Base type is abstract: only subtypes will be seen by the security level system.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/security_level.html#var/announcement_color">announcement_color</a></th><td>The color of our announcement divider.</td></tr>
+            <tr><th><a href="datum/security_level.html#var/elevating_body">elevating_body</a></th><td>Our announcement when elevating to this level.</td></tr>
+            <tr><th><a href="datum/security_level.html#var/elevating_sound">elevating_sound</a></th><td>The sound that we will play when elevating to this security level.</td></tr>
+            <tr><th><a href="datum/security_level.html#var/elevating_to_configuration_key">elevating_to_configuration_key</a></th><td>Our configuration key for elevating to text, if set, will override the default elevating to announcement.</td></tr>
+            <tr><th><a href="datum/security_level.html#var/fire_alarm_light_color">fire_alarm_light_color</a></th><td>What color we will use on fire alarms when switching to this level.</td></tr>
+            <tr><th><a href="datum/security_level.html#var/lowering_body">lowering_body</a></th><td>Our announcement when lowering to this level.</td></tr>
+            <tr><th><a href="datum/security_level.html#var/lowering_sound">lowering_sound</a></th><td>The sound that we will play when lowering to this security level.</td></tr>
+            <tr><th><a href="datum/security_level.html#var/lowering_to_configuration_key">lowering_to_configuration_key</a></th><td>Our configuration key for lowering to text, if set, will override the default lowering to announcement.</td></tr>
+            <tr><th><a href="datum/security_level.html#var/name">name</a></th><td>The name of this security level. Shown to players.
+For firealarm overlays to work, there must be an icon in
+fire_alarm.dmi named after this. <code>fire_oamber</code> as an example.</td></tr>
+            <tr><th><a href="datum/security_level.html#var/number_level">number_level</a></th><td>The numerical level of this security level, see defines for more information.</td></tr>
+            <tr><th><a href="datum/security_level.html#var/sec_level_flags">sec_level_flags</a></th><td>Governs many behaviors for the security level, such as how it
+may be switched to by players, if it entails an evac/SD emergency, etc.
+See defines in __DEFINES\security_levels.dm</td></tr>
+            <tr><th><a href="datum/security_level.html#var/status_display_icon">status_display_icon</a></th><td>What we will set status display icons to when switching to this level.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/announcement_color"><aside class="declaration">var </aside>announcement_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/security_levels/security_level_datums.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;security_levels&#x2F;security_level_datums.dm 14"/></a></h3>
+        <p>The color of our announcement divider.</p><h3 id="var/elevating_body"><aside class="declaration">var </aside>elevating_body
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/security_levels/security_level_datums.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;security_levels&#x2F;security_level_datums.dm 32"/></a></h3>
+        <p>Our announcement when elevating to this level.</p><h3 id="var/elevating_sound"><aside class="declaration">var </aside>elevating_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/security_levels/security_level_datums.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;security_levels&#x2F;security_level_datums.dm 28"/></a></h3>
+        <p>The sound that we will play when elevating to this security level.</p><h3 id="var/elevating_to_configuration_key"><aside class="declaration">var </aside>elevating_to_configuration_key
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/security_levels/security_level_datums.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;security_levels&#x2F;security_level_datums.dm 38"/></a></h3>
+        <p>Our configuration key for elevating to text, if set, will override the default elevating to announcement.</p><h3 id="var/fire_alarm_light_color"><aside class="declaration">var </aside>fire_alarm_light_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/security_levels/security_level_datums.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;security_levels&#x2F;security_level_datums.dm 18"/></a></h3>
+        <p>What color we will use on fire alarms when switching to this level.</p><h3 id="var/lowering_body"><aside class="declaration">var </aside>lowering_body
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/security_levels/security_level_datums.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;security_levels&#x2F;security_level_datums.dm 30"/></a></h3>
+        <p>Our announcement when lowering to this level.</p><h3 id="var/lowering_sound"><aside class="declaration">var </aside>lowering_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/security_levels/security_level_datums.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;security_levels&#x2F;security_level_datums.dm 26"/></a></h3>
+        <p>The sound that we will play when lowering to this security level.</p><h3 id="var/lowering_to_configuration_key"><aside class="declaration">var </aside>lowering_to_configuration_key
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/security_levels/security_level_datums.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;security_levels&#x2F;security_level_datums.dm 34"/></a></h3>
+        <p>Our configuration key for lowering to text, if set, will override the default lowering to announcement.</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/security_levels/security_level_datums.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;security_levels&#x2F;security_level_datums.dm 12"/></a></h3>
+        <p>The name of this security level. Shown to players.
+For firealarm overlays to work, there must be an icon in
+fire_alarm.dmi named after this. <code>fire_oamber</code> as an example.</p><h3 id="var/number_level"><aside class="declaration">var </aside>number_level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/security_levels/security_level_datums.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;security_levels&#x2F;security_level_datums.dm 20"/></a></h3>
+        <p>The numerical level of this security level, see defines for more information.</p><h3 id="var/sec_level_flags"><aside class="declaration">var </aside>sec_level_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/security_levels/security_level_datums.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;security_levels&#x2F;security_level_datums.dm 24"/></a></h3>
+        <p>Governs many behaviors for the security level, such as how it
+may be switched to by players, if it entails an evac/SD emergency, etc.
+See defines in __DEFINES\security_levels.dm</p><h3 id="var/status_display_icon"><aside class="declaration">var </aside>status_display_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/security_levels/security_level_datums.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;security_levels&#x2F;security_level_datums.dm 16"/></a></h3>
+        <p>What we will set status display icons to when switching to this level.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

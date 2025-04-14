@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;xeno_action&#x2F;empower - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/xeno_action/empower.html#var">Var Details</a> - <a href="datum/action/ability/xeno_action/empower.html#proc">Proc Details</a></header>
+<main>
+<h1>empower <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/xeno_action.html">xeno_action</a>/<a href="datum/action/ability/xeno_action/empower.html">empower</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warrior/abilities_warrior.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warrior&#x2F;abilities_warrior.dm 7"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/empower.html#var/combo_count">combo_count</a></th><td>The amount of abilities we've chained together.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/empower.html#var/empowerable_actions">empowerable_actions</a></th><td>List of abilities that can be empowered.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/empower.html#var/fade_timer">fade_timer</a></th><td>Holds the fade-out timer.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/empower.html#proc/activate_empower">activate_empower</a></th><td>Handles empowering, and gives visual feedback if applicable.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/empower.html#proc/check_empower">check_empower</a></th><td>Checks if Empower is capped and gives bonuses if so, otherwise increases combo count.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/empower.html#proc/clear_empower">clear_empower</a></th><td>Clears empowering, as well as visual feedback and combo count.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/empower.html#proc/empower_fade">empower_fade</a></th><td>Happens when Empower fades.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/combo_count"><aside class="declaration">var </aside>combo_count
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warrior/abilities_warrior.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warrior&#x2F;abilities_warrior.dm 12"/></a></h3>
+        <p>The amount of abilities we've chained together.</p><h3 id="var/empowerable_actions"><aside class="declaration">var </aside>empowerable_actions
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warrior/abilities_warrior.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warrior&#x2F;abilities_warrior.dm 14"/></a></h3>
+        <p>List of abilities that can be empowered.</p><h3 id="var/fade_timer"><aside class="declaration">var </aside>fade_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warrior/abilities_warrior.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warrior&#x2F;abilities_warrior.dm 10"/></a></h3>
+        <p>Holds the fade-out timer.</p><h2 id="proc">Proc Details</h2><h3 id="proc/activate_empower"><aside class="declaration">proc </aside>activate_empower<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warrior/abilities_warrior.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warrior&#x2F;abilities_warrior.dm 36"/></a></aside>
+        </h3>
+        <p>Handles empowering, and gives visual feedback if applicable.</p><h3 id="proc/check_empower"><aside class="declaration">proc </aside>check_empower<aside>(/<a href="atom.html">atom</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warrior/abilities_warrior.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warrior&#x2F;abilities_warrior.dm 23"/></a></aside>
+        </h3>
+        <p>Checks if Empower is capped and gives bonuses if so, otherwise increases combo count.</p><h3 id="proc/clear_empower"><aside class="declaration">proc </aside>clear_empower<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warrior/abilities_warrior.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warrior&#x2F;abilities_warrior.dm 46"/></a></aside>
+        </h3>
+        <p>Clears empowering, as well as visual feedback and combo count.</p><h3 id="proc/empower_fade"><aside class="declaration">proc </aside>empower_fade<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warrior/abilities_warrior.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warrior&#x2F;abilities_warrior.dm 55"/></a></aside>
+        </h3>
+        <p>Happens when Empower fades.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

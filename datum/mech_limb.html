@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;mech_limb - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/mech_limb.html#var">Var Details</a> - <a href="datum/mech_limb.html#proc">Proc Details</a></header>
+<main>
+<h1>mech_limb <aside>/<a href="datum.html">datum</a>/<a href="datum/mech_limb.html">mech_limb</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/mech_limb.html#var/colors">colors</a></th><td>2 or 3 entry list of primary, secondary, visor color to use</td></tr>
+            <tr><th><a href="datum/mech_limb.html#var/def_zones">def_zones</a></th><td>for part_health, if the targetted zone is in this list will make this limb take damage</td></tr>
+            <tr><th><a href="datum/mech_limb.html#var/disabled">disabled</a></th><td>whether this has taken full damage and become disabled</td></tr>
+            <tr><th><a href="datum/mech_limb.html#var/display_name">display_name</a></th><td>The name for this limb to display when examined</td></tr>
+            <tr><th><a href="datum/mech_limb.html#var/greyscale_type">greyscale_type</a></th><td>typepath for greyscale icon generation</td></tr>
+            <tr><th><a href="datum/mech_limb.html#var/has_boosting_state">has_boosting_state</a></th><td>whether the greyscale config supports boosting sprites</td></tr>
+            <tr><th><a href="datum/mech_limb.html#var/has_damage_overlays">has_damage_overlays</a></th><td>whether the icon file for the greyscale config ALSO includes some damage overlays</td></tr>
+            <tr><th><a href="datum/mech_limb.html#var/has_destroyed_iconstate">has_destroyed_iconstate</a></th><td>whether the greyscale config supports destroyed sprites</td></tr>
+            <tr><th><a href="datum/mech_limb.html#var/health_mod">health_mod</a></th><td>when attached the mechs health is modified by this amount</td></tr>
+            <tr><th><a href="datum/mech_limb.html#var/icon_state">icon_state</a></th><td>icon state name for the part we are using</td></tr>
+            <tr><th><a href="datum/mech_limb.html#var/overlay_icon">overlay_icon</a></th><td>overlay icon to generate</td></tr>
+            <tr><th><a href="datum/mech_limb.html#var/owner">owner</a></th><td>Reference to the mech we are attached too. Remember, this will clean us up ind estroy already</td></tr>
+            <tr><th><a href="datum/mech_limb.html#var/part_health">part_health</a></th><td>If set, instead of relaying damage to the owning mech will instead relay damage to this limb and will call [/proc/on_disable]</td></tr>
+            <tr><th><a href="datum/mech_limb.html#var/slowdown_mod">slowdown_mod</a></th><td>when attached the mechs slowdown is modified by this amount</td></tr>
+            <tr><th><a href="datum/mech_limb.html#var/soft_armor_mod">soft_armor_mod</a></th><td>when attached the mechs armor is modified by this amount</td></tr>
+            <tr><th><a href="datum/mech_limb.html#var/weight">weight</a></th><td>The weight that we contribute to the max limit, if this is equipped to a greyscale mech</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/mech_limb.html#proc/attach">attach</a></th><td>proc to call to add this limb to the mech object
+Args:</td></tr>
+            <tr><th><a href="datum/mech_limb.html#proc/detach">detach</a></th><td>proc to call to remove this limb to the mech object
+Args:</td></tr>
+            <tr><th><a href="datum/mech_limb.html#proc/disable">disable</a></th><td>makes this limb &quot;destroyed&quot;</td></tr>
+            <tr><th><a href="datum/mech_limb.html#proc/do_repairs">do_repairs</a></th><td>does the actual repair of this limb</td></tr>
+            <tr><th><a href="datum/mech_limb.html#proc/get_overlays">get_overlays</a></th><td>Returns an overlay or list of overlays to use on the mech</td></tr>
+            <tr><th><a href="datum/mech_limb.html#proc/intercept_damage">intercept_damage</a></th><td>intercepts damage intended for the mech and applies it to this limb when needed</td></tr>
+            <tr><th><a href="datum/mech_limb.html#proc/intercept_repair">intercept_repair</a></th><td>intercepts repair intended for the mech and applies it to this limb when needed</td></tr>
+            <tr><th><a href="datum/mech_limb.html#proc/reenable">reenable</a></th><td>makes this limb un-&quot;destroyed&quot;</td></tr>
+            <tr><th><a href="datum/mech_limb.html#proc/take_damage">take_damage</a></th><td>handles actually dealing damage to the mech</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/colors"><aside class="declaration">var </aside>colors
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 29"/></a></h3>
+        <p>2 or 3 entry list of primary, secondary, visor color to use</p><h3 id="var/def_zones"><aside class="declaration">var </aside>def_zones
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 9"/></a></h3>
+        <p>for part_health, if the targetted zone is in this list will make this limb take damage</p><h3 id="var/disabled"><aside class="declaration">var </aside>disabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 11"/></a></h3>
+        <p>whether this has taken full damage and become disabled</p><h3 id="var/display_name"><aside class="declaration">var </aside>display_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 5"/></a></h3>
+        <p>The name for this limb to display when examined</p><h3 id="var/greyscale_type"><aside class="declaration">var </aside>greyscale_type
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/greyscale_config.html">greyscale_config</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 19"/></a></h3>
+        <p>typepath for greyscale icon generation</p><h3 id="var/has_boosting_state"><aside class="declaration">var </aside>has_boosting_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 25"/></a></h3>
+        <p>whether the greyscale config supports boosting sprites</p><h3 id="var/has_damage_overlays"><aside class="declaration">var </aside>has_damage_overlays
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 23"/></a></h3>
+        <p>whether the icon file for the greyscale config ALSO includes some damage overlays</p><h3 id="var/has_destroyed_iconstate"><aside class="declaration">var </aside>has_destroyed_iconstate
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 27"/></a></h3>
+        <p>whether the greyscale config supports destroyed sprites</p><h3 id="var/health_mod"><aside class="declaration">var </aside>health_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 13"/></a></h3>
+        <p>when attached the mechs health is modified by this amount</p><h3 id="var/icon_state"><aside class="declaration">var </aside>icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 21"/></a></h3>
+        <p>icon state name for the part we are using</p><h3 id="var/overlay_icon"><aside class="declaration">var </aside>overlay_icon
+            <aside>&ndash; /icon</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 31"/></a></h3>
+        <p>overlay icon to generate</p><h3 id="var/owner"><aside class="declaration">var </aside>owner
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/vehicle.html">vehicle</a>/<a href="obj/vehicle/sealed.html">sealed</a>/<a href="obj/vehicle/sealed/mecha.html">mecha</a>/<a href="obj/vehicle/sealed/mecha/combat/greyscale.html">combat/greyscale</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 3"/></a></h3>
+        <p>Reference to the mech we are attached too. Remember, this will clean us up ind estroy already</p><h3 id="var/part_health"><aside class="declaration">var </aside>part_health
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 7"/></a></h3>
+        <p>If set, instead of relaying damage to the owning mech will instead relay damage to this limb and will call [/proc/on_disable]</p><h3 id="var/slowdown_mod"><aside class="declaration">var </aside>slowdown_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 17"/></a></h3>
+        <p>when attached the mechs slowdown is modified by this amount</p><h3 id="var/soft_armor_mod"><aside class="declaration">var </aside>soft_armor_mod
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 15"/></a></h3>
+        <p>when attached the mechs armor is modified by this amount</p><h3 id="var/weight"><aside class="declaration">var </aside>weight
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 33"/></a></h3>
+        <p>The weight that we contribute to the max limit, if this is equipped to a greyscale mech</p><h2 id="proc">Proc Details</h2><h3 id="proc/attach"><aside class="declaration">proc </aside>attach<aside>(/<a href="obj.html">obj</a>/<a href="obj/vehicle.html">vehicle</a>/<a href="obj/vehicle/sealed.html">sealed</a>/<a href="obj/vehicle/sealed/mecha.html">mecha</a>/<a href="obj/vehicle/sealed/mecha/combat/greyscale.html">combat/greyscale</a>/attached, slot) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 69"/></a></aside>
+        </h3>
+        <p>proc to call to add this limb to the mech object
+Args:</p>
+<ul>
+<li>attached: mech we are attaching to</li>
+<li>slot: slot we are being attached to mostly relevant for r/l arm</li>
+</ul><h3 id="proc/detach"><aside class="declaration">proc </aside>detach<aside>(/<a href="obj.html">obj</a>/<a href="obj/vehicle.html">vehicle</a>/<a href="obj/vehicle/sealed.html">sealed</a>/<a href="obj/vehicle/sealed/mecha.html">mecha</a>/<a href="obj/vehicle/sealed/mecha/combat/greyscale.html">combat/greyscale</a>/detached) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 93"/></a></aside>
+        </h3>
+        <p>proc to call to remove this limb to the mech object
+Args:</p>
+<ul>
+<li>attached: mech we are attaching to</li>
+</ul><h3 id="proc/disable"><aside class="declaration">proc </aside>disable<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 173"/></a></aside>
+        </h3>
+        <p>makes this limb &quot;destroyed&quot;</p><h3 id="proc/do_repairs"><aside class="declaration">proc </aside>do_repairs<aside>(repair_amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L166">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 166"/></a></aside>
+        </h3>
+        <p>does the actual repair of this limb</p><h3 id="proc/get_overlays"><aside class="declaration">proc </aside>get_overlays<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 114"/></a></aside>
+        </h3>
+        <p>Returns an overlay or list of overlays to use on the mech</p><h3 id="proc/intercept_damage"><aside class="declaration">proc </aside>intercept_damage<aside>(/<a href="datum.html">datum</a>/source, damage_amount, damage_type, armor_type, effects, attack_dir, armour_penetration, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/blame_mob) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 137"/></a></aside>
+        </h3>
+        <p>intercepts damage intended for the mech and applies it to this limb when needed</p><h3 id="proc/intercept_repair"><aside class="declaration">proc </aside>intercept_repair<aside>(/<a href="datum.html">datum</a>/source, repair_amount, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L156">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 156"/></a></aside>
+        </h3>
+        <p>intercepts repair intended for the mech and applies it to this limb when needed</p><h3 id="proc/reenable"><aside class="declaration">proc </aside>reenable<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L182">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 182"/></a></aside>
+        </h3>
+        <p>makes this limb un-&quot;destroyed&quot;</p><h3 id="proc/take_damage"><aside class="declaration">proc </aside>take_damage<aside>(damage_amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/vehicles/mecha/combat/greyscale/greyscale_limbs.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;mecha&#x2F;combat&#x2F;greyscale&#x2F;greyscale_limbs.dm 146"/></a></aside>
+        </h3>
+        <p>handles actually dealing damage to the mech</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

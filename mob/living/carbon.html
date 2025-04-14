@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;mob&#x2F;living&#x2F;carbon - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="mob/living/carbon.html#var">Var Details</a> - <a href="mob/living/carbon.html#proc">Proc Details</a></header>
+<main>
+<h1>carbon <aside>/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon_defines.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defines.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob/living/carbon.html#var/analgesic">analgesic</a></th><td>when this is set, the mob isn't affected by shock or pain. life should decrease this by 1 every tick</td></tr>
+            <tr><th><a href="mob/living/carbon.html#var/breath_failing">breath_failing</a></th><td>Tracks whether our most recent breath has failed, for messages and HUD feedback.</td></tr>
+            <tr><th><a href="mob/living/carbon.html#var/dream_amounts">dream_amounts</a></th><td>amount of dreams left to go</td></tr>
+            <tr><th><a href="mob/living/carbon.html#var/drunkenness">drunkenness</a></th><td>Overall drunkenness - check handle_status_effects() in life.dm for effects</td></tr>
+            <tr><th><a href="mob/living/carbon.html#var/gib_chance">gib_chance</a></th><td>% Chance of exploding on death, incremented by total damage taken if not initially zero.</td></tr>
+            <tr><th><a href="mob/living/carbon.html#var/handcuffed">handcuffed</a></th><td>Whether or not the mob is handcuffed</td></tr>
+            <tr><th><a href="mob/living/carbon.html#var/life_tick">life_tick</a></th><td>The amount of life ticks that have processed on this mob.</td></tr>
+            <tr><th><a href="mob/living/carbon.html#var/losebreath">losebreath</a></th><td>Causes breathing to fail and generate oxyloss instead of recover it, even outside crit.</td></tr>
+            <tr><th><a href="mob/living/carbon.html#var/mob_abilities">mob_abilities</a></th><td>list of abilities this mob has access to</td></tr>
+            <tr><th><a href="mob/living/carbon.html#var/overlays_standing">overlays_standing</a></th><td>carbon overlay layers</td></tr>
+            <tr><th><a href="mob/living/carbon.html#var/selected_ability">selected_ability</a></th><td>Currently selected ability</td></tr>
+            <tr><th><a href="mob/living/carbon.html#var/species">species</a></th><td>Contains icon generation and language information, set during New().</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/add_ability">add_ability</a></th><td>adds an ability to the mob</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/deduct_ability_cost">deduct_ability_cost</a></th><td>deducts the cost of using an ability</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/do_give">do_give</a></th><td>Look for a nearby human to give the held item, and ask him if he wants it</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/get_damaged_organ">get_damaged_organ</a></th><td>Return the most damaged internal_organ that isn't at 0, or null.</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/give_signal_handler">give_signal_handler</a></th><td>Signal handler for give keybind</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/grabbed_self_attack">grabbed_self_attack</a></th><td>Handles when the player clicks on themself with the grab item</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/inject_blood">inject_blood</a></th><td>BLOOD TRANSFERS</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/on_crit">on_crit</a></th><td>called just after this mob goes unconscious due to taking too much dmg</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/remove_ability">remove_ability</a></th><td>Removes an ability from a mob</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/replace_by_ai">replace_by_ai</a></th><td>Kick the player from this mob, replace it by a more competent ai</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/update_handcuffed">update_handcuffed</a></th><td>called when we get cuffed/uncuffed</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/update_transform">update_transform</a></th><td>IMPORTANT: Multiple animate() calls do not stack well, so try to do them all at once if you can.</td></tr>
+            <tr><th><a href="mob/living/carbon.html#proc/wear_mask_update">wear_mask_update</a></th><td>Updates the mask slot icon</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/analgesic"><aside class="declaration">var </aside>analgesic
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon_defines.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defines.dm 10"/></a></h3>
+        <p>when this is set, the mob isn't affected by shock or pain. life should decrease this by 1 every tick</p><h3 id="var/breath_failing"><aside class="declaration">var </aside>breath_failing
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon_defines.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defines.dm 15"/></a></h3>
+        <p>Tracks whether our most recent breath has failed, for messages and HUD feedback.</p><h3 id="var/dream_amounts"><aside class="declaration">var </aside>dream_amounts
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/flufftext/Dreaming.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;flufftext&#x2F;Dreaming.dm 32"/></a></h3>
+        <p>amount of dreams left to go</p><h3 id="var/drunkenness"><aside class="declaration">var </aside>drunkenness
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon_defines.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defines.dm 19"/></a></h3>
+        <p>Overall drunkenness - check handle_status_effects() in life.dm for effects</p><h3 id="var/gib_chance"><aside class="declaration">var </aside>gib_chance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon_defines.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defines.dm 41"/></a></h3>
+        <p>% Chance of exploding on death, incremented by total damage taken if not initially zero.</p><h3 id="var/handcuffed"><aside class="declaration">var </aside>handcuffed
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/restraints/handcuffs</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon_defines.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defines.dm 12"/></a></h3>
+        <p>Whether or not the mob is handcuffed</p><h3 id="var/life_tick"><aside class="declaration">var </aside>life_tick
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon_defines.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defines.dm 8"/></a></h3>
+        <p>The amount of life ticks that have processed on this mob.</p><h3 id="var/losebreath"><aside class="declaration">var </aside>losebreath
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon_defines.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defines.dm 27"/></a></h3>
+        <p>Causes breathing to fail and generate oxyloss instead of recover it, even outside crit.</p><h3 id="var/mob_abilities"><aside class="declaration">var </aside>mob_abilities
+            <aside>&ndash; /list/datum/action/ability</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon_defines.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defines.dm 43"/></a></h3>
+        <p>list of abilities this mob has access to</p><h3 id="var/overlays_standing"><aside class="declaration">var </aside>overlays_standing
+            <aside>&ndash; /list/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon_defines.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defines.dm 49"/></a></h3>
+        <p>carbon overlay layers</p><h3 id="var/selected_ability"><aside class="declaration">var </aside>selected_ability
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/activable.html">activable</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon_defines.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defines.dm 45"/></a></h3>
+        <p>Currently selected ability</p><h3 id="var/species"><aside class="declaration">var </aside>species
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/species.html">species</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon_defines.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defines.dm 6"/></a></h3>
+        <p>Contains icon generation and language information, set during New().</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_ability"><aside class="declaration">proc </aside>add_ability<aside>(/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/new_ability) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L284">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 284"/></a></aside>
+        </h3>
+        <p>adds an ability to the mob</p><h3 id="proc/deduct_ability_cost"><aside class="declaration">proc </aside>deduct_ability_cost<aside>(amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L277">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 277"/></a></aside>
+        </h3>
+        <p>deducts the cost of using an ability</p><h3 id="proc/do_give"><aside class="declaration">proc </aside>do_give<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/give.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;give.dm 13"/></a></aside>
+        </h3>
+        <p>Look for a nearby human to give the held item, and ask him if he wants it</p><h3 id="proc/get_damaged_organ"><aside class="declaration">proc </aside>get_damaged_organ<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon_helpers.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_helpers.dm 17"/></a></aside>
+        </h3>
+        <p>Return the most damaged internal_organ that isn't at 0, or null.</p><h3 id="proc/give_signal_handler"><aside class="declaration">proc </aside>give_signal_handler<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/give.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;give.dm 8"/></a></aside>
+        </h3>
+        <p>Signal handler for give keybind</p><h3 id="proc/grabbed_self_attack"><aside class="declaration">proc </aside>grabbed_self_attack<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon.dm#L403">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon.dm 403"/></a></aside>
+        </h3>
+        <p>Handles when the player clicks on themself with the grab item</p><h3 id="proc/inject_blood"><aside class="declaration">proc </aside>inject_blood<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/reagent_containers.html">reagent_containers</a>/container, amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/blood.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;blood.dm 116"/></a></aside>
+        </h3>
+        <p>BLOOD TRANSFERS</p><h3 id="proc/on_crit"><aside class="declaration">proc </aside>on_crit<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/life.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;life.dm 85"/></a></aside>
+        </h3>
+        <p>called just after this mob goes unconscious due to taking too much dmg</p><h3 id="proc/remove_ability"><aside class="declaration">proc </aside>remove_ability<aside>(/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/old_ability) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L291">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 291"/></a></aside>
+        </h3>
+        <p>Removes an ability from a mob</p><h3 id="proc/replace_by_ai"><aside class="declaration">proc </aside>replace_by_ai<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/carbon_defines.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;carbon_defines.dm 55"/></a></aside>
+        </h3>
+        <p>Kick the player from this mob, replace it by a more competent ai</p><h3 id="proc/update_handcuffed"><aside class="declaration">proc </aside>update_handcuffed<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/restraints/handcuffs/restraints) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/inventory.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;inventory.dm 29"/></a></aside>
+        </h3>
+        <p>called when we get cuffed/uncuffed</p><h3 id="proc/update_transform">update_transform<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/update_icons.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;update_icons.dm 19"/></a></aside>
+        </h3>
+        <p>IMPORTANT: Multiple animate() calls do not stack well, so try to do them all at once if you can.</p><h3 id="proc/wear_mask_update"><aside class="declaration">proc </aside>wear_mask_update<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, equipping) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/inventory.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;inventory.dm 43"/></a></aside>
+        </h3>
+        <p>Updates the mask slot icon</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

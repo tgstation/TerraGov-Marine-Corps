@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;turfs.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/turfs.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/turfs.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/turfs.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;turfs.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/turfs.html#define/CHANGETURF_KEEP_WEEDS">CHANGETURF_KEEP_WEEDS</a></th><td>keep xeno nodes when changing turfs, instead of removing them</td></tr>
+        <tr><th><a href="code/__DEFINES/turfs.html#define/RANGE_TURFS">RANGE_TURFS</a></th><td>Returns a list of turf in a square</td></tr>
+        <tr><th><a href="code/__DEFINES/turfs.html#define/Z_TURFS">Z_TURFS</a></th><td>Returns all turfs in a zlevel</td></tr>
+        <tr><th><a href="code/__DEFINES/turfs.html#define/ALL_TURFS">ALL_TURFS</a></th><td>Returns all currently loaded turfs</td></tr>
+        <tr><th><a href="code/__DEFINES/turfs.html#define/CORNER_BLOCK">CORNER_BLOCK</a></th><td>Returns a list of turfs in the rectangle specified by BOTTOM LEFT corner and height/width, checks for being outside the world border for you</td></tr>
+        <tr><th><a href="code/__DEFINES/turfs.html#define/CORNER_BLOCK_OFFSET">CORNER_BLOCK_OFFSET</a></th><td>Returns a list of turfs similar to CORNER_BLOCK but with offsets</td></tr>
+        <tr><th><a href="code/__DEFINES/turfs.html#define/CORNER_OUTLINE">CORNER_OUTLINE</a></th><td>Returns an outline (neighboring turfs) of the given block</td></tr>
+        <tr><th><a href="code/__DEFINES/turfs.html#define/TURF_NEIGHBORS">TURF_NEIGHBORS</a></th><td>Returns a list of around us</td></tr>
+        <tr><th><a href="code/__DEFINES/turfs.html#define/ADD_TURF_TRANSPARENCY">ADD_TURF_TRANSPARENCY</a></th><td>Makes the set turf transparent</td></tr>
+        <tr><th><a href="code/__DEFINES/turfs.html#define/REMOVE_TURF_TRANSPARENCY">REMOVE_TURF_TRANSPARENCY</a></th><td>Removes the transparency from the set turf</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ADD_TURF_TRANSPARENCY"><aside class="declaration">#define </aside>ADD_TURF_TRANSPARENCY
+            <aside>(modturf, source)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/turfs.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;turfs.dm 45"/></a>
+    </h3>
+    <p>Makes the set turf transparent</p><h3 id="define/ALL_TURFS"><aside class="declaration">#define </aside>ALL_TURFS
+            <aside>(__VA_ARGS__ ...)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/turfs.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;turfs.dm 24"/></a>
+    </h3>
+    <p>Returns all currently loaded turfs</p><h3 id="define/CHANGETURF_KEEP_WEEDS"><aside class="declaration">#define </aside>CHANGETURF_KEEP_WEEDS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/turfs.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;turfs.dm 5"/></a>
+    </h3>
+    <p>keep xeno nodes when changing turfs, instead of removing them</p><h3 id="define/CORNER_BLOCK"><aside class="declaration">#define </aside>CORNER_BLOCK
+            <aside>(corner, width, height)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/turfs.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;turfs.dm 29"/></a>
+    </h3>
+    <p>Returns a list of turfs in the rectangle specified by BOTTOM LEFT corner and height/width, checks for being outside the world border for you</p><h3 id="define/CORNER_BLOCK_OFFSET"><aside class="declaration">#define </aside>CORNER_BLOCK_OFFSET
+            <aside>(corner, width, height, offset_x, offset_y)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/turfs.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;turfs.dm 32"/></a>
+    </h3>
+    <p>Returns a list of turfs similar to CORNER_BLOCK but with offsets</p><h3 id="define/CORNER_OUTLINE"><aside class="declaration">#define </aside>CORNER_OUTLINE
+            <aside>(corner, width, height)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/turfs.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;turfs.dm 35"/></a>
+    </h3>
+    <p>Returns an outline (neighboring turfs) of the given block</p><h3 id="define/RANGE_TURFS"><aside class="declaration">#define </aside>RANGE_TURFS
+            <aside>(RADIUS, CENTER)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/turfs.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;turfs.dm 11"/></a>
+    </h3>
+    <p>Returns a list of turf in a square</p><h3 id="define/REMOVE_TURF_TRANSPARENCY"><aside class="declaration">#define </aside>REMOVE_TURF_TRANSPARENCY
+            <aside>(modturf, source)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/turfs.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;turfs.dm 50"/></a>
+    </h3>
+    <p>Removes the transparency from the set turf</p><h3 id="define/TURF_NEIGHBORS"><aside class="declaration">#define </aside>TURF_NEIGHBORS
+            <aside>(turf)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/turfs.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;turfs.dm 42"/></a>
+    </h3>
+    <p>Returns a list of around us</p><h3 id="define/Z_TURFS"><aside class="declaration">#define </aside>Z_TURFS
+            <aside>(ZLEVEL)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/turfs.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;turfs.dm 21"/></a>
+    </h3>
+    <p>Returns all turfs in a zlevel</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;stun_mitigation - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/stun_mitigation.html#var">Var Details</a> - <a href="datum/component/stun_mitigation.html#proc">Proc Details</a></header>
+<main>
+<h1>stun_mitigation <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/stun_mitigation.html">stun_mitigation</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/stun_mitigation.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;stun_mitigation.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/stun_mitigation.html#var/active">active</a></th><td>Whether the component is currently active</td></tr>
+            <tr><th><a href="datum/component/stun_mitigation.html#var/cover">cover</a></th><td>Percentage chance to mitigate a hardstun</td></tr>
+            <tr><th><a href="datum/component/stun_mitigation.html#var/shield_flags">shield_flags</a></th><td>Any special behavior flags</td></tr>
+            <tr><th><a href="datum/component/stun_mitigation.html#var/slot_flags">slot_flags</a></th><td>The slots in which the parent can be in for the component to apply</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/stun_mitigation.html#proc/activate_with_user">activate_with_user</a></th><td>Actually activates the mitigation effect</td></tr>
+            <tr><th><a href="datum/component/stun_mitigation.html#proc/deactivate_with_user">deactivate_with_user</a></th><td>Actually deactivates the mitigation effect</td></tr>
+            <tr><th><a href="datum/component/stun_mitigation.html#proc/on_attack_stun_mitigation">on_attack_stun_mitigation</a></th><td>attempts to convert incoming hard stuns to soft stuns</td></tr>
+            <tr><th><a href="datum/component/stun_mitigation.html#proc/shield_affect_user">shield_affect_user</a></th><td>Handles the shield setting up for a user, and activating if applicable</td></tr>
+            <tr><th><a href="datum/component/stun_mitigation.html#proc/shield_detach_from_user">shield_detach_from_user</a></th><td>Handles removing the mitigation from a user</td></tr>
+            <tr><th><a href="datum/component/stun_mitigation.html#proc/shield_dropped">shield_dropped</a></th><td>Signal handler for dropping the shield</td></tr>
+            <tr><th><a href="datum/component/stun_mitigation.html#proc/shield_equipped">shield_equipped</a></th><td>Signal handler for equipping the shield to a slot</td></tr>
+            <tr><th><a href="datum/component/stun_mitigation.html#proc/toggle_shield">toggle_shield</a></th><td>Toggles the mitigation on or off when already equipped</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active"><aside class="declaration">var </aside>active
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/stun_mitigation.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;stun_mitigation.dm 10"/></a></h3>
+        <p>Whether the component is currently active</p><h3 id="var/cover"><aside class="declaration">var </aside>cover
+            <aside>&ndash; /<a href="datum.html">datum</a>/armor</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/stun_mitigation.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;stun_mitigation.dm 4"/></a></h3>
+        <p>Percentage chance to mitigate a hardstun</p><h3 id="var/shield_flags"><aside class="declaration">var </aside>shield_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/stun_mitigation.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;stun_mitigation.dm 6"/></a></h3>
+        <p>Any special behavior flags</p><h3 id="var/slot_flags"><aside class="declaration">var </aside>slot_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/stun_mitigation.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;stun_mitigation.dm 8"/></a></h3>
+        <p>The slots in which the parent can be in for the component to apply</p><h2 id="proc">Proc Details</h2><h3 id="proc/activate_with_user"><aside class="declaration">proc </aside>activate_with_user<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/stun_mitigation.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;stun_mitigation.dm 88"/></a></aside>
+        </h3>
+        <p>Actually activates the mitigation effect</p><h3 id="proc/deactivate_with_user"><aside class="declaration">proc </aside>deactivate_with_user<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/stun_mitigation.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;stun_mitigation.dm 92"/></a></aside>
+        </h3>
+        <p>Actually deactivates the mitigation effect</p><h3 id="proc/on_attack_stun_mitigation"><aside class="declaration">proc </aside>on_attack_stun_mitigation<aside>(/<a href="datum.html">datum</a>/source, /list/incoming_stuns, damage_type, penetration) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/stun_mitigation.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;stun_mitigation.dm 104"/></a></aside>
+        </h3>
+        <p>attempts to convert incoming hard stuns to soft stuns</p><h3 id="proc/shield_affect_user"><aside class="declaration">proc </aside>shield_affect_user<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/stun_mitigation.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;stun_mitigation.dm 78"/></a></aside>
+        </h3>
+        <p>Handles the shield setting up for a user, and activating if applicable</p><h3 id="proc/shield_detach_from_user"><aside class="declaration">proc </aside>shield_detach_from_user<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/stun_mitigation.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;stun_mitigation.dm 96"/></a></aside>
+        </h3>
+        <p>Handles removing the mitigation from a user</p><h3 id="proc/shield_dropped"><aside class="declaration">proc </aside>shield_dropped<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/stun_mitigation.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;stun_mitigation.dm 73"/></a></aside>
+        </h3>
+        <p>Signal handler for dropping the shield</p><h3 id="proc/shield_equipped"><aside class="declaration">proc </aside>shield_equipped<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, slot) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/stun_mitigation.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;stun_mitigation.dm 65"/></a></aside>
+        </h3>
+        <p>Signal handler for equipping the shield to a slot</p><h3 id="proc/toggle_shield"><aside class="declaration">proc </aside>toggle_shield<aside>(/<a href="datum.html">datum</a>/source, new_state) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/stun_mitigation.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;stun_mitigation.dm 49"/></a></aside>
+        </h3>
+        <p>Toggles the mitigation on or off when already equipped</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

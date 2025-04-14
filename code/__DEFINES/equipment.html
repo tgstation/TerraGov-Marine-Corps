@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;equipment.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/equipment.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/equipment.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/equipment.html#define/PASS_LOW_STRUCTURE">PASS_LOW_STRUCTURE</a></th><td>Pass low objects like tables or windowframes</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/PASS_GLASS">PASS_GLASS</a></th><td>lasers and the like can pass unobstructed</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/PASS_GRILLE">PASS_GRILLE</a></th><td>Pass grilles</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/PASS_MOB">PASS_MOB</a></th><td>Pass mobs</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/PASS_DEFENSIVE_STRUCTURE">PASS_DEFENSIVE_STRUCTURE</a></th><td>Pass defensive structures like barricades</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/PASS_FIRE">PASS_FIRE</a></th><td>Allows Mobs to pass fire without ignition</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/PASS_XENO">PASS_XENO</a></th><td>Pass xenos</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/PASS_THROW">PASS_THROW</a></th><td>you can throw past</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/PASS_PROJECTILE">PASS_PROJECTILE</a></th><td>projectiles can pass</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/PASS_AIR">PASS_AIR</a></th><td>non-airtight, gas/fire can pass</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/PASS_WALKOVER">PASS_WALKOVER</a></th><td>Mobs can walk freely between turfs with walkover flagged objects</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/PASS_TANK">PASS_TANK</a></th><td>when jumping, mobs can pass onto tanks</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/AI_BLOCKED">AI_BLOCKED</a></th><td>Prevent ai from going onto this turf</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/NOINTERACT">NOINTERACT</a></th><td>You can't interact with it, at all. Useful when doing certain animations.</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/CONDUCT">CONDUCT</a></th><td>conducts electricity (metal etc.)</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/ON_BORDER">ON_BORDER</a></th><td>'border object'. item has priority to check when entering or leaving</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/NOBLOODY">NOBLOODY</a></th><td>Don't want a blood overlay on this one.</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/DIRLOCK">DIRLOCK</a></th><td>movable atom won't change direction when Moving()ing. Useful for items that have several dir states.</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/INITIALIZED">INITIALIZED</a></th><td>Whether /atom/Initialize() has already run for the object</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/PREVENT_CLICK_UNDER">PREVENT_CLICK_UNDER</a></th><td>Prevent clicking things below it on the same turf</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/CRITICAL_ATOM">CRITICAL_ATOM</a></th><td>Use when this shouldn't be obscured by large icons.</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/PREVENT_CONTENTS_EXPLOSION">PREVENT_CONTENTS_EXPLOSION</a></th><td>Does not cascade explosions to its contents.</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/ADMIN_SPAWNED">ADMIN_SPAWNED</a></th><td>was this spawned by an admin? used for stat tracking stuff.</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/BUMP_ATTACKABLE">BUMP_ATTACKABLE</a></th><td>Can this atom be bumped attack</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/SHUTTLE_IMMUNE">SHUTTLE_IMMUNE</a></th><td>This atom will not be qdeled when a shuttle lands on it; it will just move onto the shuttle tile. It will stay on the ground when the shuttle takes off</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/HTML_USE_INITAL_ICON_1">HTML_USE_INITAL_ICON_1</a></th><td>Should we use the initial icon for display? Mostly used by overlay only objects</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/NOBLUDGEON">NOBLUDGEON</a></th><td>when an item has this it produces no &quot;X [Z.attack_verb] Y with their Z!&quot; message with the default handler</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/DELONDROP">DELONDROP</a></th><td>Deletes on drop instead of falling on the floor.</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/TWOHANDED">TWOHANDED</a></th><td>The item is twohanded.</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/WIELDED">WIELDED</a></th><td>The item is wielded with both hands.</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/ITEM_ABSTRACT">ITEM_ABSTRACT</a></th><td>The item is abstract (grab, powerloader_clamp, etc)</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/DOES_NOT_NEED_HANDS">DOES_NOT_NEED_HANDS</a></th><td>Dont need hands to use it</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/SYNTH_RESTRICTED">SYNTH_RESTRICTED</a></th><td>Prevents synths from wearing items with this flag</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/IMPEDE_JETPACK">IMPEDE_JETPACK</a></th><td>Reduce the range of jetpack</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/CAN_BUMP_ATTACK">CAN_BUMP_ATTACK</a></th><td>Item triggers bump attack</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/IS_DEPLOYABLE">IS_DEPLOYABLE</a></th><td>Item can be deployed into a machine</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/DEPLOY_ON_INITIALIZE">DEPLOY_ON_INITIALIZE</a></th><td>Item deploys on initialize</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/IS_DEPLOYED">IS_DEPLOYED</a></th><td>If this is on an item, said item is currently deployed</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/DEPLOYED_NO_PICKUP">DEPLOYED_NO_PICKUP</a></th><td>Disables deployed item pickup</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/DEPLOYED_NO_ROTATE">DEPLOYED_NO_ROTATE</a></th><td>Disables deployed item rotation abilities to rotate.</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/DEPLOYED_NO_ROTATE_ANCHORED">DEPLOYED_NO_ROTATE_ANCHORED</a></th><td>Disables deployed item rotation if anchored.</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/DEPLOYED_WRENCH_DISASSEMBLE">DEPLOYED_WRENCH_DISASSEMBLE</a></th><td>If this is on an item, the item can only be disassembled using a wrench once deployed.</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/DEPLOYED_ANCHORED_FIRING_ONLY">DEPLOYED_ANCHORED_FIRING_ONLY</a></th><td>Disables firing deployable if it is not anchored.</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/FULLY_WIELDED">FULLY_WIELDED</a></th><td>If the item is properly wielded. Used for guns</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/HAS_UNDERLAY">HAS_UNDERLAY</a></th><td>If a holster has underlay sprites</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/IN_INVENTORY">IN_INVENTORY</a></th><td>is this item equipped into an inventory slot or hand of a mob?</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/AUTOBALANCE_CHECK">AUTOBALANCE_CHECK</a></th><td>This item is used for autobalance calculations or excluded, such as valhalla items</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/IN_STORAGE">IN_STORAGE</a></th><td>This item is in any storage</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/CAN_REFILL">CAN_REFILL</a></th><td>If an item can be restocked/refilled in a vendor, despite not being infinite supply</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/BYPASS_VENDOR_CHECK">BYPASS_VENDOR_CHECK</a></th><td>If a storage container can be restocked into a vendor</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/CAN_BUY_LOADOUT">CAN_BUY_LOADOUT</a></th><td>If you can get buy a loadout</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/USED_GHMME">USED_GHMME</a></th><td>If you have used the GHMME</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/SLOT_DRAW_ORDER">SLOT_DRAW_ORDER</a></th><td>Each slot you can draw from, used and messed with in your preferences.</td></tr>
+        <tr><th><a href="code/__DEFINES/equipment.html#define/VALID_EQUIP_SLOTS">VALID_EQUIP_SLOTS</a></th><td>A list of equip slots that are valid for quick equip preferences</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ADMIN_SPAWNED"><aside class="declaration">#define </aside>ADMIN_SPAWNED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 61"/></a>
+    </h3>
+    <p>was this spawned by an admin? used for stat tracking stuff.</p><h3 id="define/AI_BLOCKED"><aside class="declaration">#define </aside>AI_BLOCKED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 40"/></a>
+    </h3>
+    <p>Prevent ai from going onto this turf</p><h3 id="define/AUTOBALANCE_CHECK"><aside class="declaration">#define </aside>AUTOBALANCE_CHECK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 120"/></a>
+    </h3>
+    <p>This item is used for autobalance calculations or excluded, such as valhalla items</p><h3 id="define/BUMP_ATTACKABLE"><aside class="declaration">#define </aside>BUMP_ATTACKABLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 63"/></a>
+    </h3>
+    <p>Can this atom be bumped attack</p><h3 id="define/BYPASS_VENDOR_CHECK"><aside class="declaration">#define </aside>BYPASS_VENDOR_CHECK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L128">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 128"/></a>
+    </h3>
+    <p>If a storage container can be restocked into a vendor</p><h3 id="define/CAN_BUMP_ATTACK"><aside class="declaration">#define </aside>CAN_BUMP_ATTACK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 96"/></a>
+    </h3>
+    <p>Item triggers bump attack</p><h3 id="define/CAN_BUY_LOADOUT"><aside class="declaration">#define </aside>CAN_BUY_LOADOUT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 132"/></a>
+    </h3>
+    <p>If you can get buy a loadout</p><h3 id="define/CAN_REFILL"><aside class="declaration">#define </aside>CAN_REFILL
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 124"/></a>
+    </h3>
+    <p>If an item can be restocked/refilled in a vendor, despite not being infinite supply</p><h3 id="define/CONDUCT"><aside class="declaration">#define </aside>CONDUCT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 44"/></a>
+    </h3>
+    <p>conducts electricity (metal etc.)</p><h3 id="define/CRITICAL_ATOM"><aside class="declaration">#define </aside>CRITICAL_ATOM
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 57"/></a>
+    </h3>
+    <p>Use when this shouldn't be obscured by large icons.</p><h3 id="define/DELONDROP"><aside class="declaration">#define </aside>DELONDROP
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 82"/></a>
+    </h3>
+    <p>Deletes on drop instead of falling on the floor.</p><h3 id="define/DEPLOYED_ANCHORED_FIRING_ONLY"><aside class="declaration">#define </aside>DEPLOYED_ANCHORED_FIRING_ONLY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 112"/></a>
+    </h3>
+    <p>Disables firing deployable if it is not anchored.</p><h3 id="define/DEPLOYED_NO_PICKUP"><aside class="declaration">#define </aside>DEPLOYED_NO_PICKUP
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 104"/></a>
+    </h3>
+    <p>Disables deployed item pickup</p><h3 id="define/DEPLOYED_NO_ROTATE"><aside class="declaration">#define </aside>DEPLOYED_NO_ROTATE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 106"/></a>
+    </h3>
+    <p>Disables deployed item rotation abilities to rotate.</p><h3 id="define/DEPLOYED_NO_ROTATE_ANCHORED"><aside class="declaration">#define </aside>DEPLOYED_NO_ROTATE_ANCHORED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 108"/></a>
+    </h3>
+    <p>Disables deployed item rotation if anchored.</p><h3 id="define/DEPLOYED_WRENCH_DISASSEMBLE"><aside class="declaration">#define </aside>DEPLOYED_WRENCH_DISASSEMBLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 110"/></a>
+    </h3>
+    <p>If this is on an item, the item can only be disassembled using a wrench once deployed.</p><h3 id="define/DEPLOY_ON_INITIALIZE"><aside class="declaration">#define </aside>DEPLOY_ON_INITIALIZE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 100"/></a>
+    </h3>
+    <p>Item deploys on initialize</p><h3 id="define/DIRLOCK"><aside class="declaration">#define </aside>DIRLOCK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 50"/></a>
+    </h3>
+    <p>movable atom won't change direction when Moving()ing. Useful for items that have several dir states.</p><h3 id="define/DOES_NOT_NEED_HANDS"><aside class="declaration">#define </aside>DOES_NOT_NEED_HANDS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 90"/></a>
+    </h3>
+    <p>Dont need hands to use it</p><h3 id="define/FULLY_WIELDED"><aside class="declaration">#define </aside>FULLY_WIELDED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 114"/></a>
+    </h3>
+    <p>If the item is properly wielded. Used for guns</p><h3 id="define/HAS_UNDERLAY"><aside class="declaration">#define </aside>HAS_UNDERLAY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 116"/></a>
+    </h3>
+    <p>If a holster has underlay sprites</p><h3 id="define/HTML_USE_INITAL_ICON_1"><aside class="declaration">#define </aside>HTML_USE_INITAL_ICON_1
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 67"/></a>
+    </h3>
+    <p>Should we use the initial icon for display? Mostly used by overlay only objects</p><h3 id="define/IMPEDE_JETPACK"><aside class="declaration">#define </aside>IMPEDE_JETPACK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 94"/></a>
+    </h3>
+    <p>Reduce the range of jetpack</p><h3 id="define/INITIALIZED"><aside class="declaration">#define </aside>INITIALIZED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 52"/></a>
+    </h3>
+    <p>Whether /atom/Initialize() has already run for the object</p><h3 id="define/IN_INVENTORY"><aside class="declaration">#define </aside>IN_INVENTORY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 118"/></a>
+    </h3>
+    <p>is this item equipped into an inventory slot or hand of a mob?</p><h3 id="define/IN_STORAGE"><aside class="declaration">#define </aside>IN_STORAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 122"/></a>
+    </h3>
+    <p>This item is in any storage</p><h3 id="define/IS_DEPLOYABLE"><aside class="declaration">#define </aside>IS_DEPLOYABLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 98"/></a>
+    </h3>
+    <p>Item can be deployed into a machine</p><h3 id="define/IS_DEPLOYED"><aside class="declaration">#define </aside>IS_DEPLOYED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 102"/></a>
+    </h3>
+    <p>If this is on an item, said item is currently deployed</p><h3 id="define/ITEM_ABSTRACT"><aside class="declaration">#define </aside>ITEM_ABSTRACT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 88"/></a>
+    </h3>
+    <p>The item is abstract (grab, powerloader_clamp, etc)</p><h3 id="define/NOBLOODY"><aside class="declaration">#define </aside>NOBLOODY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 48"/></a>
+    </h3>
+    <p>Don't want a blood overlay on this one.</p><h3 id="define/NOBLUDGEON"><aside class="declaration">#define </aside>NOBLUDGEON
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 80"/></a>
+    </h3>
+    <p>when an item has this it produces no &quot;X [Z.attack_verb] Y with their Z!&quot; message with the default handler</p><h3 id="define/NOINTERACT"><aside class="declaration">#define </aside>NOINTERACT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 42"/></a>
+    </h3>
+    <p>You can't interact with it, at all. Useful when doing certain animations.</p><h3 id="define/ON_BORDER"><aside class="declaration">#define </aside>ON_BORDER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 46"/></a>
+    </h3>
+    <p>'border object'. item has priority to check when entering or leaving</p><h3 id="define/PASS_AIR"><aside class="declaration">#define </aside>PASS_AIR
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 22"/></a>
+    </h3>
+    <p>non-airtight, gas/fire can pass</p><h3 id="define/PASS_DEFENSIVE_STRUCTURE"><aside class="declaration">#define </aside>PASS_DEFENSIVE_STRUCTURE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 12"/></a>
+    </h3>
+    <p>Pass defensive structures like barricades</p><h3 id="define/PASS_FIRE"><aside class="declaration">#define </aside>PASS_FIRE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 14"/></a>
+    </h3>
+    <p>Allows Mobs to pass fire without ignition</p><h3 id="define/PASS_GLASS"><aside class="declaration">#define </aside>PASS_GLASS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 6"/></a>
+    </h3>
+    <p>lasers and the like can pass unobstructed</p><h3 id="define/PASS_GRILLE"><aside class="declaration">#define </aside>PASS_GRILLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 8"/></a>
+    </h3>
+    <p>Pass grilles</p><h3 id="define/PASS_LOW_STRUCTURE"><aside class="declaration">#define </aside>PASS_LOW_STRUCTURE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 4"/></a>
+    </h3>
+    <p>Pass low objects like tables or windowframes</p><h3 id="define/PASS_MOB"><aside class="declaration">#define </aside>PASS_MOB
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 10"/></a>
+    </h3>
+    <p>Pass mobs</p><h3 id="define/PASS_PROJECTILE"><aside class="declaration">#define </aside>PASS_PROJECTILE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 20"/></a>
+    </h3>
+    <p>projectiles can pass</p><h3 id="define/PASS_TANK"><aside class="declaration">#define </aside>PASS_TANK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 26"/></a>
+    </h3>
+    <p>when jumping, mobs can pass onto tanks</p><h3 id="define/PASS_THROW"><aside class="declaration">#define </aside>PASS_THROW
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 18"/></a>
+    </h3>
+    <p>you can throw past</p><h3 id="define/PASS_WALKOVER"><aside class="declaration">#define </aside>PASS_WALKOVER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 24"/></a>
+    </h3>
+    <p>Mobs can walk freely between turfs with walkover flagged objects</p><h3 id="define/PASS_XENO"><aside class="declaration">#define </aside>PASS_XENO
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 16"/></a>
+    </h3>
+    <p>Pass xenos</p><h3 id="define/PREVENT_CLICK_UNDER"><aside class="declaration">#define </aside>PREVENT_CLICK_UNDER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 55"/></a>
+    </h3>
+    <p>Prevent clicking things below it on the same turf</p><h3 id="define/PREVENT_CONTENTS_EXPLOSION"><aside class="declaration">#define </aside>PREVENT_CONTENTS_EXPLOSION
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 59"/></a>
+    </h3>
+    <p>Does not cascade explosions to its contents.</p><h3 id="define/SHUTTLE_IMMUNE"><aside class="declaration">#define </aside>SHUTTLE_IMMUNE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 65"/></a>
+    </h3>
+    <p>This atom will not be qdeled when a shuttle lands on it; it will just move onto the shuttle tile. It will stay on the ground when the shuttle takes off</p><h3 id="define/SLOT_DRAW_ORDER"><aside class="declaration">#define </aside>SLOT_DRAW_ORDER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L520">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 520"/></a>
+    </h3>
+    <p>Each slot you can draw from, used and messed with in your preferences.</p><h3 id="define/SYNTH_RESTRICTED"><aside class="declaration">#define </aside>SYNTH_RESTRICTED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 92"/></a>
+    </h3>
+    <p>Prevents synths from wearing items with this flag</p><h3 id="define/TWOHANDED"><aside class="declaration">#define </aside>TWOHANDED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 84"/></a>
+    </h3>
+    <p>The item is twohanded.</p><h3 id="define/USED_GHMME"><aside class="declaration">#define </aside>USED_GHMME
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 134"/></a>
+    </h3>
+    <p>If you have used the GHMME</p><h3 id="define/VALID_EQUIP_SLOTS"><aside class="declaration">#define </aside>VALID_EQUIP_SLOTS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L574">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 574"/></a>
+    </h3>
+    <p>A list of equip slots that are valid for quick equip preferences</p><h3 id="define/WIELDED"><aside class="declaration">#define </aside>WIELDED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/equipment.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;equipment.dm 86"/></a>
+    </h3>
+    <p>The item is wielded with both hands.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;cic_maptable - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/cic_maptable.html#var">Var Details</a> - <a href="obj/machinery/cic_maptable.html#proc">Proc Details</a></header>
+<main>
+<h1>cic_maptable <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/cic_maptable.html">cic_maptable</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cic_maptable.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cic_maptable.dm 67"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/cic_maptable.html#var/interactees">interactees</a></th><td>List of currently interacting mobs</td></tr>
+            <tr><th><a href="obj/machinery/cic_maptable.html#var/map">map</a></th><td>minimap obj ref that we will display to users</td></tr>
+            <tr><th><a href="obj/machinery/cic_maptable.html#var/minimap_flag">minimap_flag</a></th><td>flags that we want to be shown when you interact with this table</td></tr>
+            <tr><th><a href="obj/machinery/cic_maptable.html#var/targetted_zlevel">targetted_zlevel</a></th><td>by default Zlevel 2, groundside is targetted</td></tr>
+            <tr><th><a href="obj/machinery/cic_maptable.html#var/z_down">z_down</a></th><td>button granted when you're on a multiz level that lets you check above and below you</td></tr>
+            <tr><th><a href="obj/machinery/cic_maptable.html#var/z_indicator">z_indicator</a></th><td>button granted when you're on a multiz level that lets you check above and below you</td></tr>
+            <tr><th><a href="obj/machinery/cic_maptable.html#var/z_up">z_up</a></th><td>button granted when you're on a multiz level that lets you check above and below you</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/cic_maptable.html#proc/change_targeted_z">change_targeted_z</a></th><td>Updates the z-level this maptable views</td></tr>
+            <tr><th><a href="obj/machinery/cic_maptable.html#proc/interact_checks">interact_checks</a></th><td>Returns true if something prevents the user from interacting with this. used mainly with the drawtable</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/interactees"><aside class="declaration">var </aside>interactees
+            <aside>&ndash; /list/mob</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cic_maptable.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cic_maptable.dm 93"/></a></h3>
+        <p>List of currently interacting mobs</p><h3 id="var/map"><aside class="declaration">var </aside>map
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/minimap.html">minimap</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cic_maptable.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cic_maptable.dm 85"/></a></h3>
+        <p>minimap obj ref that we will display to users</p><h3 id="var/minimap_flag"><aside class="declaration">var </aside>minimap_flag
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cic_maptable.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cic_maptable.dm 81"/></a></h3>
+        <p>flags that we want to be shown when you interact with this table</p><h3 id="var/targetted_zlevel"><aside class="declaration">var </aside>targetted_zlevel
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cic_maptable.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cic_maptable.dm 83"/></a></h3>
+        <p>by default Zlevel 2, groundside is targetted</p><h3 id="var/z_down"><aside class="declaration">var </aside>z_down
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/maptable_extras.html">maptable_extras</a>/minimap_z_down</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cic_maptable.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cic_maptable.dm 91"/></a></h3>
+        <p>button granted when you're on a multiz level that lets you check above and below you</p><h3 id="var/z_indicator"><aside class="declaration">var </aside>z_indicator
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/maptable_extras.html">maptable_extras</a>/<a href="atom/movable/screen/maptable_extras/minimap_z_indicator.html">minimap_z_indicator</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cic_maptable.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cic_maptable.dm 87"/></a></h3>
+        <p>button granted when you're on a multiz level that lets you check above and below you</p><h3 id="var/z_up"><aside class="declaration">var </aside>z_up
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/maptable_extras.html">maptable_extras</a>/minimap_z_up</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cic_maptable.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cic_maptable.dm 89"/></a></h3>
+        <p>button granted when you're on a multiz level that lets you check above and below you</p><h2 id="proc">Proc Details</h2><h3 id="proc/change_targeted_z"><aside class="declaration">proc </aside>change_targeted_z<aside>(/<a href="datum.html">datum</a>/source, new_z) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cic_maptable.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cic_maptable.dm 161"/></a></aside>
+        </h3>
+        <p>Updates the z-level this maptable views</p><h3 id="proc/interact_checks"><aside class="declaration">proc </aside>interact_checks<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/cic_maptable.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;cic_maptable.dm 146"/></a></aside>
+        </h3>
+        <p>Returns true if something prevents the user from interacting with this. used mainly with the drawtable</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

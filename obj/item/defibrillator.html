@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;defibrillator - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/defibrillator.html#var">Var Details</a> - <a href="obj/item/defibrillator.html#proc">Proc Details</a></header>
+<main>
+<h1>defibrillator <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/defibrillator.html">defibrillator</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/defibrillator.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;defibrillator.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/defibrillator.html#var/charge_cost">charge_cost</a></th><td>How much charge is used on a shock</td></tr>
+            <tr><th><a href="obj/item/defibrillator.html#var/dcell">dcell</a></th><td>The defibrillator's power cell</td></tr>
+            <tr><th><a href="obj/item/defibrillator.html#var/defib_cooldown">defib_cooldown</a></th><td>The cooldown for using the defib, applied to shocking <em>and</em> toggling</td></tr>
+            <tr><th><a href="obj/item/defibrillator.html#var/defibrillator_healing">defibrillator_healing</a></th><td>The base healing number when someone is shocked. Uses <code>DEFIBRILLATOR_HEALING_TIMES_SKILL</code> to change based on user skill.</td></tr>
+            <tr><th><a href="obj/item/defibrillator.html#var/ready">ready</a></th><td>If the defibrillator is ready to use (paddles out)</td></tr>
+            <tr><th><a href="obj/item/defibrillator.html#var/ready_needed">ready_needed</a></th><td>Whether this defibrillator has to be turned on to use</td></tr>
+            <tr><th><a href="obj/item/defibrillator.html#var/sparks">sparks</a></th><td>Var for quickly creating sparks on shock</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/defibrillator.html#proc/charge_information">charge_information</a></th><td>Returns the amount of charges left and how to recharge the defibrillator.</td></tr>
+            <tr><th><a href="obj/item/defibrillator.html#proc/defib_ready">defib_ready</a></th><td>Proc for checking that the defib is ready to operate</td></tr>
+            <tr><th><a href="obj/item/defibrillator.html#proc/defibrillate">defibrillate</a></th><td>Split proc that actually does the defibrillation. Separated to be used more easily by medical gloves</td></tr>
+            <tr><th><a href="obj/item/defibrillator.html#proc/on_cell_deletion">on_cell_deletion</a></th><td>Called by the deletion of the referenced powercell.</td></tr>
+            <tr><th><a href="obj/item/defibrillator.html#proc/set_dcell">set_dcell</a></th><td>Wrapper to guarantee powercells are properly nulled and avoid hard deletes.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/charge_cost"><aside class="declaration">var </aside>charge_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/defibrillator.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;defibrillator.dm 20"/></a></h3>
+        <p>How much charge is used on a shock</p><h3 id="var/dcell"><aside class="declaration">var </aside>dcell
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/cell.html">cell</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/defibrillator.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;defibrillator.dm 22"/></a></h3>
+        <p>The defibrillator's power cell</p><h3 id="var/defib_cooldown"><aside class="declaration">var </aside>defib_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/defibrillator.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;defibrillator.dm 26"/></a></h3>
+        <p>The cooldown for using the defib, applied to shocking <em>and</em> toggling</p><h3 id="var/defibrillator_healing"><aside class="declaration">var </aside>defibrillator_healing
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/defibrillator.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;defibrillator.dm 18"/></a></h3>
+        <p>The base healing number when someone is shocked. Uses <code>DEFIBRILLATOR_HEALING_TIMES_SKILL</code> to change based on user skill.</p><h3 id="var/ready"><aside class="declaration">var </aside>ready
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/defibrillator.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;defibrillator.dm 14"/></a></h3>
+        <p>If the defibrillator is ready to use (paddles out)</p><h3 id="var/ready_needed"><aside class="declaration">var </aside>ready_needed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/defibrillator.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;defibrillator.dm 16"/></a></h3>
+        <p>Whether this defibrillator has to be turned on to use</p><h3 id="var/sparks"><aside class="declaration">var </aside>sparks
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/effect_system.html">effect_system</a>/spark_spread</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/defibrillator.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;defibrillator.dm 24"/></a></h3>
+        <p>Var for quickly creating sparks on shock</p><h2 id="proc">Proc Details</h2><h3 id="proc/charge_information"><aside class="declaration">proc </aside>charge_information<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/defibrillator.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;defibrillator.dm 78"/></a></aside>
+        </h3>
+        <p>Returns the amount of charges left and how to recharge the defibrillator.</p><h3 id="proc/defib_ready"><aside class="declaration">proc </aside>defib_ready<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/patient, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/defibrillator.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;defibrillator.dm 138"/></a></aside>
+        </h3>
+        <p>Proc for checking that the defib is ready to operate</p><h3 id="proc/defibrillate"><aside class="declaration">proc </aside>defibrillate<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/patient, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/defibrillator.dm#L154">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;defibrillator.dm 154"/></a></aside>
+        </h3>
+        <p>Split proc that actually does the defibrillation. Separated to be used more easily by medical gloves</p><h3 id="proc/on_cell_deletion"><aside class="declaration">proc </aside>on_cell_deletion<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/cell.html">cell</a>/source, force) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/defibrillator.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;defibrillator.dm 129"/></a></aside>
+        </h3>
+        <p>Called by the deletion of the referenced powercell.</p><h3 id="proc/set_dcell"><aside class="declaration">proc </aside>set_dcell<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/cell.html">cell</a>/new_cell) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/defibrillator.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;defibrillator.dm 120"/></a></aside>
+        </h3>
+        <p>Wrapper to guarantee powercells are properly nulled and avoid hard deletes.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

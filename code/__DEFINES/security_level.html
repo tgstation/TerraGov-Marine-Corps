@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;security_level.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/security_level.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/security_level.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/security_level.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;security_level.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>Defines for security level subsystem + datum behavior.</p></td></tr>
+        <tr><th><a href="code/__DEFINES/security_level.html#define/SEC_LEVEL_GREEN">SEC_LEVEL_GREEN</a></th><td>GREEN - Absolutely nothing of note!</td></tr>
+        <tr><th><a href="code/__DEFINES/security_level.html#define/SEC_LEVEL_BLUE">SEC_LEVEL_BLUE</a></th><td>BLUE - Possible threats.</td></tr>
+        <tr><th><a href="code/__DEFINES/security_level.html#define/SEC_LEVEL_RED">SEC_LEVEL_RED</a></th><td>RED - Severe threats. Boarding imminent or actively happening.
+This is the level that will be set when evac and SD are both called off.</td></tr>
+        <tr><th><a href="code/__DEFINES/security_level.html#define/SEC_LEVEL_DELTA">SEC_LEVEL_DELTA</a></th><td>DELTA - Destruction of the ship is imminent.</td></tr>
+        <tr><th><a href="code/__DEFINES/security_level.html#define/SEC_LEVEL_FLAG_CAN_SWITCH_COMMS_CONSOLE">SEC_LEVEL_FLAG_CAN_SWITCH_COMMS_CONSOLE</a></th><td>Players can change to this through comms consoles</td></tr>
+        <tr><th><a href="code/__DEFINES/security_level.html#define/SEC_LEVEL_FLAG_CAN_SWITCH_WITH_AUTH">SEC_LEVEL_FLAG_CAN_SWITCH_WITH_AUTH</a></th><td>Players can change to this but only through keycard authentication, which requires someone else</td></tr>
+        <tr><th><a href="code/__DEFINES/security_level.html#define/SEC_LEVEL_FLAG_CANNOT_SWITCH">SEC_LEVEL_FLAG_CANNOT_SWITCH</a></th><td>Players can't change to this level manually.</td></tr>
+        <tr><th><a href="code/__DEFINES/security_level.html#define/SEC_LEVEL_FLAG_RED_LIGHTS">SEC_LEVEL_FLAG_RED_LIGHTS</a></th><td>Turns shipside lights red.</td></tr>
+        <tr><th><a href="code/__DEFINES/security_level.html#define/SEC_LEVEL_FLAG_STATE_OF_EMERGENCY">SEC_LEVEL_FLAG_STATE_OF_EMERGENCY</a></th><td>Opens SD shutters, shows evacuation and related information in comms console.
+Also causes delta alarms to start playing.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/SEC_LEVEL_BLUE"><aside class="declaration">#define </aside>SEC_LEVEL_BLUE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/security_level.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;security_level.dm 6"/></a>
+    </h3>
+    <p>BLUE - Possible threats.</p><h3 id="define/SEC_LEVEL_DELTA"><aside class="declaration">#define </aside>SEC_LEVEL_DELTA
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/security_level.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;security_level.dm 11"/></a>
+    </h3>
+    <p>DELTA - Destruction of the ship is imminent.</p><h3 id="define/SEC_LEVEL_FLAG_CANNOT_SWITCH"><aside class="declaration">#define </aside>SEC_LEVEL_FLAG_CANNOT_SWITCH
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/security_level.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;security_level.dm 18"/></a>
+    </h3>
+    <p>Players can't change to this level manually.</p><h3 id="define/SEC_LEVEL_FLAG_CAN_SWITCH_COMMS_CONSOLE"><aside class="declaration">#define </aside>SEC_LEVEL_FLAG_CAN_SWITCH_COMMS_CONSOLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/security_level.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;security_level.dm 14"/></a>
+    </h3>
+    <p>Players can change to this through comms consoles</p><h3 id="define/SEC_LEVEL_FLAG_CAN_SWITCH_WITH_AUTH"><aside class="declaration">#define </aside>SEC_LEVEL_FLAG_CAN_SWITCH_WITH_AUTH
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/security_level.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;security_level.dm 16"/></a>
+    </h3>
+    <p>Players can change to this but only through keycard authentication, which requires someone else</p><h3 id="define/SEC_LEVEL_FLAG_RED_LIGHTS"><aside class="declaration">#define </aside>SEC_LEVEL_FLAG_RED_LIGHTS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/security_level.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;security_level.dm 20"/></a>
+    </h3>
+    <p>Turns shipside lights red.</p><h3 id="define/SEC_LEVEL_FLAG_STATE_OF_EMERGENCY"><aside class="declaration">#define </aside>SEC_LEVEL_FLAG_STATE_OF_EMERGENCY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/security_level.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;security_level.dm 23"/></a>
+    </h3>
+    <p>Opens SD shutters, shows evacuation and related information in comms console.
+Also causes delta alarms to start playing.</p><h3 id="define/SEC_LEVEL_GREEN"><aside class="declaration">#define </aside>SEC_LEVEL_GREEN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/security_level.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;security_level.dm 4"/></a>
+    </h3>
+    <p>GREEN - Absolutely nothing of note!</p><h3 id="define/SEC_LEVEL_RED"><aside class="declaration">#define </aside>SEC_LEVEL_RED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/security_level.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;security_level.dm 9"/></a>
+    </h3>
+    <p>RED - Severe threats. Boarding imminent or actively happening.
+This is the level that will be set when evac and SD are both called off.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

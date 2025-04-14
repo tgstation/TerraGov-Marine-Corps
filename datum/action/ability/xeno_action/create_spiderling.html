@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;xeno_action&#x2F;create_spiderling - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/xeno_action/create_spiderling.html#var">Var Details</a> - <a href="datum/action/ability/xeno_action/create_spiderling.html#proc">Proc Details</a></header>
+<main>
+<h1>create_spiderling <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/xeno_action.html">xeno_action</a>/<a href="datum/action/ability/xeno_action/create_spiderling.html">create_spiderling</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/widow/abilities_widow.dm#L145">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;widow&#x2F;abilities_widow.dm 145"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/create_spiderling.html#var/cannibalise_charges">cannibalise_charges</a></th><td>Current amount of cannibalise charges</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/create_spiderling.html#var/spiderlings">spiderlings</a></th><td>List of all our spiderlings</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/create_spiderling.html#proc/action_activate">action_activate</a></th><td>The action to create spiderlings</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/create_spiderling.html#proc/add_spiderling">add_spiderling</a></th><td>Adds spiderlings to spiderling list and registers them for death so we can remove them later</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/create_spiderling.html#proc/remove_spiderling">remove_spiderling</a></th><td>This creates and stores the spiderling so we can reassign the owner for spider swarm and cap how many spiderlings you can have at once
+Removes spiderling from spiderling list and unregisters death signal</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/create_spiderling.html#proc/use_cannibalise">use_cannibalise</a></th><td>Birth a spiderling and use up a charge of cannibalise</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/cannibalise_charges"><aside class="declaration">var </aside>cannibalise_charges
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/widow/abilities_widow.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;widow&#x2F;abilities_widow.dm 161"/></a></h3>
+        <p>Current amount of cannibalise charges</p><h3 id="var/spiderlings"><aside class="declaration">var </aside>spiderlings
+            <aside>&ndash; /list/mob/living/carbon/xenomorph/spiderling</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/widow/abilities_widow.dm#L159">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;widow&#x2F;abilities_widow.dm 159"/></a></h3>
+        <p>List of all our spiderlings</p><h2 id="proc">Proc Details</h2><h3 id="proc/action_activate">action_activate<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/widow/abilities_widow.dm#L178">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;widow&#x2F;abilities_widow.dm 178"/></a></aside>
+        </h3>
+        <p>The action to create spiderlings</p><h3 id="proc/add_spiderling"><aside class="declaration">proc </aside>add_spiderling<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/widow/abilities_widow.dm#L211">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;widow&#x2F;abilities_widow.dm 211"/></a></aside>
+        </h3>
+        <p>Adds spiderlings to spiderling list and registers them for death so we can remove them later</p><h3 id="proc/remove_spiderling"><aside class="declaration">proc </aside>remove_spiderling<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/widow/abilities_widow.dm#L221">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;widow&#x2F;abilities_widow.dm 221"/></a></aside>
+        </h3>
+        <p>This creates and stores the spiderling so we can reassign the owner for spider swarm and cap how many spiderlings you can have at once
+Removes spiderling from spiderling list and unregisters death signal</p><h3 id="proc/use_cannibalise"><aside class="declaration">proc </aside>use_cannibalise<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/widow/abilities_widow.dm#L197">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;widow&#x2F;abilities_widow.dm 197"/></a></aside>
+        </h3>
+        <p>Birth a spiderling and use up a charge of cannibalise</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

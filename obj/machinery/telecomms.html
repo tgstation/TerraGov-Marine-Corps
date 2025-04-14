@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;telecomms - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/telecomms.html#var">Var Details</a> - <a href="obj/machinery/telecomms.html#proc">Proc Details</a></header>
+<main>
+<h1>telecomms <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/telecomms.html">telecomms</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 18"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/telecomms.html#var/autolinkers">autolinkers</a></th><td>list of text/number values to link with</td></tr>
+            <tr><th><a href="obj/machinery/telecomms.html#var/hide">hide</a></th><td>Is it a hidden machine?</td></tr>
+            <tr><th><a href="obj/machinery/telecomms.html#var/id">id</a></th><td>identification string</td></tr>
+            <tr><th><a href="obj/machinery/telecomms.html#var/links">links</a></th><td>list of machines this machine is linked to</td></tr>
+            <tr><th><a href="obj/machinery/telecomms.html#var/links_by_telecomms_type">links_by_telecomms_type</a></th><td>associative lazylist list of the telecomms_type of linked telecomms machines and a list of said machines.
+eg list(telecomms_type1 = list(everything linked to us with that type), telecomms_type2 = list(everything linked to us with THAT type)...)</td></tr>
+            <tr><th><a href="obj/machinery/telecomms.html#var/long_range_link">long_range_link</a></th><td>Can you link it across Z levels or on the otherside of the map? (Relay &amp; Hub)</td></tr>
+            <tr><th><a href="obj/machinery/telecomms.html#var/netspeed">netspeed</a></th><td>how much traffic to lose per second (50 gigabytes/second * netspeed)</td></tr>
+            <tr><th><a href="obj/machinery/telecomms.html#var/network">network</a></th><td>the network of the machinery</td></tr>
+            <tr><th><a href="obj/machinery/telecomms.html#var/telecomms_type">telecomms_type</a></th><td>the relevant type path of this telecomms machine eg /obj/machinery/telecomms/server but not server/preset. used for links_by_telecomms_type</td></tr>
+            <tr><th><a href="obj/machinery/telecomms.html#var/toggled">toggled</a></th><td>Is it toggled on</td></tr>
+            <tr><th><a href="obj/machinery/telecomms.html#var/traffic">traffic</a></th><td>value increases as traffic increases</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/telecomms.html#proc/add_automatic_link">add_automatic_link</a></th><td>Used in auto linking</td></tr>
+            <tr><th><a href="obj/machinery/telecomms.html#proc/add_new_link">add_new_link</a></th><td>adds new_connection to src's links list AND vice versa. also updates links_by_telecomms_type</td></tr>
+            <tr><th><a href="obj/machinery/telecomms.html#proc/receive_information">receive_information</a></th><td>receive information from linked machinery</td></tr>
+            <tr><th><a href="obj/machinery/telecomms.html#proc/relay_information">relay_information</a></th><td>relay signal to all linked machinery that are of type [filter]. If signal has been sent [amount] times, stop sending</td></tr>
+            <tr><th><a href="obj/machinery/telecomms.html#proc/remove_link">remove_link</a></th><td>removes old_connection from src's links list AND vice versa. also updates links_by_telecomms_type</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/autolinkers"><aside class="declaration">var </aside>autolinkers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 34"/></a></h3>
+        <p>list of text/number values to link with</p><h3 id="var/hide"><aside class="declaration">var </aside>hide
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 51"/></a></h3>
+        <p>Is it a hidden machine?</p><h3 id="var/id"><aside class="declaration">var </aside>id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 36"/></a></h3>
+        <p>identification string</p><h3 id="var/links"><aside class="declaration">var </aside>links
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 23"/></a></h3>
+        <p>list of machines this machine is linked to</p><h3 id="var/links_by_telecomms_type"><aside class="declaration">var </aside>links_by_telecomms_type
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 28"/></a></h3>
+        <p>associative lazylist list of the telecomms_type of linked telecomms machines and a list of said machines.
+eg list(telecomms_type1 = list(everything linked to us with that type), telecomms_type2 = list(everything linked to us with THAT type)...)</p><h3 id="var/long_range_link"><aside class="declaration">var </aside>long_range_link
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 49"/></a></h3>
+        <p>Can you link it across Z levels or on the otherside of the map? (Relay &amp; Hub)</p><h3 id="var/netspeed"><aside class="declaration">var </aside>netspeed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 32"/></a></h3>
+        <p>how much traffic to lose per second (50 gigabytes/second * netspeed)</p><h3 id="var/network"><aside class="declaration">var </aside>network
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 40"/></a></h3>
+        <p>the network of the machinery</p><h3 id="var/telecomms_type"><aside class="declaration">var </aside>telecomms_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 38"/></a></h3>
+        <p>the relevant type path of this telecomms machine eg /obj/machinery/telecomms/server but not server/preset. used for links_by_telecomms_type</p><h3 id="var/toggled"><aside class="declaration">var </aside>toggled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 47"/></a></h3>
+        <p>Is it toggled on</p><h3 id="var/traffic"><aside class="declaration">var </aside>traffic
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 30"/></a></h3>
+        <p>value increases as traffic increases</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_automatic_link"><aside class="declaration">proc </aside>add_automatic_link<aside>(/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/telecomms.html">telecomms</a>/T) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 134"/></a></aside>
+        </h3>
+        <p>Used in auto linking</p><h3 id="proc/add_new_link"><aside class="declaration">proc </aside>add_new_link<aside>(/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/telecomms.html">telecomms</a>/new_connection, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L181">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 181"/></a></aside>
+        </h3>
+        <p>adds new_connection to src's links list AND vice versa. also updates links_by_telecomms_type</p><h3 id="proc/receive_information"><aside class="declaration">proc </aside>receive_information<aside>(/<a href="datum.html">datum</a>/signal/signal, /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/telecomms.html">telecomms</a>/machine_from) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L99">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 99"/></a></aside>
+        </h3>
+        <p>receive information from linked machinery</p><h3 id="proc/relay_information"><aside class="declaration">proc </aside>relay_information<aside>(/<a href="datum.html">datum</a>/<a href="datum/signal/subspace.html">signal/subspace</a>/signal, filter, copysig, amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 54"/></a></aside>
+        </h3>
+        <p>relay signal to all linked machinery that are of type [filter]. If signal has been sent [amount] times, stop sending</p><h3 id="proc/remove_link"><aside class="declaration">proc </aside>remove_link<aside>(/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/telecomms.html">telecomms</a>/old_connection, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/telecomms/telecomunications.dm#L199">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;telecomms&#x2F;telecomunications.dm 199"/></a></aside>
+        </h3>
+        <p>removes old_connection from src's links list AND vice versa. also updates links_by_telecomms_type</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

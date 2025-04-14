@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;activable&#x2F;xeno&#x2F;backhand - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/activable/xeno/backhand.html#var">Var Details</a> - <a href="datum/action/ability/activable/xeno/backhand.html#proc">Proc Details</a></header>
+<main>
+<h1>backhand <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/activable.html">activable</a>/<a href="datum/action/ability/activable/xeno.html">xeno</a>/<a href="datum/action/ability/activable/xeno/backhand.html">backhand</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand.html#var/do_after_length">do_after_length</a></th><td>The length of the do_after.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand.html#var/do_after_sound">do_after_sound</a></th><td>The sound that is played before the do_after, if any.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand.html#var/height">height</a></th><td>The height inputted into <code>get_forward_square</code> used to telegraph and to get targets.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand.html#var/turn_around">turn_around</a></th><td>Should they turn around during the initial do_after? Only for regular ability.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand.html#var/vehicle_stun_length">vehicle_stun_length</a></th><td>The amount of deciseconds to stun occupants of vehicles, if they should be stunned at all.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand.html#var/width">width</a></th><td>The width inputted into <code>get_forward_square</code> used to telegraph and to get targets.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand.html#proc/get_damage">get_damage</a></th><td>Gets the base damage in which the ability does.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand.html#proc/grab_extra_check">grab_extra_check</a></th><td>Checks if the ability is still usable and is currently grabbing a human.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand.html#proc/handle_affected_vehicle">handle_affected_vehicle</a></th><td>Does damage to the vehicle and stuns it if the ability wants it so.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand.html#proc/handle_grabbed_human">handle_grabbed_human</a></th><td>Performs a different interaction based on if there is a grabbed human.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/backhand.html#proc/handle_regular_ability">handle_regular_ability</a></th><td>Performs the regular interaction as expected of the ability.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/do_after_length"><aside class="declaration">var </aside>do_after_length
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 13"/></a></h3>
+        <p>The length of the do_after.</p><h3 id="var/do_after_sound"><aside class="declaration">var </aside>do_after_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 11"/></a></h3>
+        <p>The sound that is played before the do_after, if any.</p><h3 id="var/height"><aside class="declaration">var </aside>height
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 17"/></a></h3>
+        <p>The height inputted into <code>get_forward_square</code> used to telegraph and to get targets.</p><h3 id="var/turn_around"><aside class="declaration">var </aside>turn_around
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 19"/></a></h3>
+        <p>Should they turn around during the initial do_after? Only for regular ability.</p><h3 id="var/vehicle_stun_length"><aside class="declaration">var </aside>vehicle_stun_length
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 21"/></a></h3>
+        <p>The amount of deciseconds to stun occupants of vehicles, if they should be stunned at all.</p><h3 id="var/width"><aside class="declaration">var </aside>width
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 15"/></a></h3>
+        <p>The width inputted into <code>get_forward_square</code> used to telegraph and to get targets.</p><h2 id="proc">Proc Details</h2><h3 id="proc/get_damage"><aside class="declaration">proc </aside>get_damage<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 59"/></a></aside>
+        </h3>
+        <p>Gets the base damage in which the ability does.</p><h3 id="proc/grab_extra_check"><aside class="declaration">proc </aside>grab_extra_check<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 152"/></a></aside>
+        </h3>
+        <p>Checks if the ability is still usable and is currently grabbing a human.</p><h3 id="proc/handle_affected_vehicle"><aside class="declaration">proc </aside>handle_affected_vehicle<aside>(/<a href="obj.html">obj</a>/affected_obj, /list/obj/vehicle/hit_vehicles) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 134"/></a></aside>
+        </h3>
+        <p>Does damage to the vehicle and stuns it if the ability wants it so.</p><h3 id="proc/handle_grabbed_human"><aside class="declaration">proc </aside>handle_grabbed_human<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/grabbed_human) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 105"/></a></aside>
+        </h3>
+        <p>Performs a different interaction based on if there is a grabbed human.</p><h3 id="proc/handle_regular_ability"><aside class="declaration">proc </aside>handle_regular_ability<aside>(/<a href="atom.html">atom</a>/target, /list/turf/affected_turfs) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/dragon/abilities_dragon.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;dragon&#x2F;abilities_dragon.dm 63"/></a></aside>
+        </h3>
+        <p>Performs the regular interaction as expected of the ability.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

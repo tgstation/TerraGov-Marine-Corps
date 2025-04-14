@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;limb - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/limb.html#var">Var Details</a> - <a href="datum/limb.html#proc">Proc Details</a></header>
+<main>
+<h1>limb <aside>/<a href="datum.html">datum</a>/<a href="datum/limb.html">limb</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 6"/></a></h1>
+
+<p>EXTERNAL ORGANS</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/limb.html#var/base_regen">base_regen</a></th><td>Amount of damage this limb regenerates per tick while treated before multi-limb regen penalty</td></tr>
+            <tr><th><a href="datum/limb.html#var/brute_dam">brute_dam</a></th><td>brute damage this limb has taken as a part</td></tr>
+            <tr><th><a href="datum/limb.html#var/burn_dam">burn_dam</a></th><td>burn damage this limb has taken as a part</td></tr>
+            <tr><th><a href="datum/limb.html#var/cover_index">cover_index</a></th><td>What % of the body does this limb cover. Make sure that the sum is always 100.</td></tr>
+            <tr><th><a href="datum/limb.html#var/damage_msg">damage_msg</a></th><td>Message that displays when you feel pain from this limb</td></tr>
+            <tr><th><a href="datum/limb.html#var/germ_level">germ_level</a></th><td>INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE</td></tr>
+            <tr><th><a href="datum/limb.html#var/icon_position">icon_position</a></th><td>Whether the icon created for this limb is LEFT, RIGHT or 0. Currently utilised for legs and feet</td></tr>
+            <tr><th><a href="datum/limb.html#var/implants">implants</a></th><td><a href="obj/item/implant.html" title="/obj/item/implant">/obj/item/implant</a> Implants contained within this specific limb</td></tr>
+            <tr><th><a href="datum/limb.html#var/in_surgery_op">in_surgery_op</a></th><td>Whether someone is currently doing surgery on this limb</td></tr>
+            <tr><th><a href="datum/limb.html#var/internal_organs">internal_organs</a></th><td>List of Internal organs of this body part</td></tr>
+            <tr><th><a href="datum/limb.html#var/max_damage">max_damage</a></th><td>Max damage the limb can take. Extremities sever when they have at least LIMB_MAX_DAMAGE_SEVER_RATIO as a fraction of this in brute damage.</td></tr>
+            <tr><th><a href="datum/limb.html#var/name">name</a></th><td>Actual name of the limb</td></tr>
+            <tr><th><a href="datum/limb.html#var/next_infection_message">next_infection_message</a></th><td>Keeps track of the last time the limb bothered its owner about infection to prevent spam.</td></tr>
+            <tr><th><a href="datum/limb.html#var/owner">owner</a></th><td>Human owner mob of this limb</td></tr>
+            <tr><th><a href="datum/limb.html#var/splint_health">splint_health</a></th><td>How many instances of damage the limb can take before its splints fall off</td></tr>
+            <tr><th><a href="datum/limb.html#var/vital">vital</a></th><td>Whether this limb is vital, if true you die on losing it (todo make a flag)</td></tr>
+            <tr><th><a href="datum/limb.html#var/wound_update_accuracy">wound_update_accuracy</a></th><td>how often wounds should be updated, a higher number means less often</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/limb.html#proc/add_internal_bleeding">add_internal_bleeding</a></th><td>For testing convenience. Adds one internal_bleeding wound to the limb.</td></tr>
+            <tr><th><a href="datum/limb.html#proc/apply_splints">apply_splints</a></th><td>applies a splint stack to this limb. should probably be more generic but #notit</td></tr>
+            <tr><th><a href="datum/limb.html#proc/biotize">biotize</a></th><td>used to give LIMB_BIOTIC flag to the limb</td></tr>
+            <tr><th><a href="datum/limb.html#proc/clean_owner">clean_owner</a></th><td>Signal handler to clean owner and prevent hardel</td></tr>
+            <tr><th><a href="datum/limb.html#proc/createwound">createwound</a></th><td>Actually applies the damage to the limb. Use this directly to bypass 'hitting' the limb with regard to splints, internal wounds, and dismemberment.</td></tr>
+            <tr><th><a href="datum/limb.html#proc/emp_act">emp_act</a></th><td>DAMAGE PROCS</td></tr>
+            <tr><th><a href="datum/limb.html#proc/extra_splint_checks">extra_splint_checks</a></th><td>extra checks to perform during [/proc/apply_splints] do_after</td></tr>
+            <tr><th><a href="datum/limb.html#proc/has_external_wound">has_external_wound</a></th><td>True if the limb has any damage on it</td></tr>
+            <tr><th><a href="datum/limb.html#proc/need_process">need_process</a></th><td>PROCESSING &amp; UPDATING</td></tr>
+            <tr><th><a href="datum/limb.html#proc/rejuvenate">rejuvenate</a></th><td>This proc completely restores a damaged organ to perfect condition.</td></tr>
+            <tr><th><a href="datum/limb.html#proc/release_restraints">release_restraints</a></th><td>HELPERS</td></tr>
+            <tr><th><a href="datum/limb.html#proc/reset_limb_surgeries">reset_limb_surgeries</a></th><td>called when limb is removed or robotized, any ongoing surgery and related vars are reset</td></tr>
+            <tr><th><a href="datum/limb.html#proc/robotize">robotize</a></th><td>Emit a signal for autodoc to support the life if available</td></tr>
+            <tr><th><a href="datum/limb.html#proc/setAmputatedTree">setAmputatedTree</a></th><td>DISMEMBERMENT</td></tr>
+            <tr><th><a href="datum/limb.html#proc/update_bleeding">update_bleeding</a></th><td>Updates LIMB_BLEEDING limb flag</td></tr>
+            <tr><th><a href="datum/limb.html#proc/update_wounds">update_wounds</a></th><td>Updating wounds. Handles natural damage healing from limb treatments and processes internal wounds</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/base_regen"><aside class="declaration">var </aside>base_regen
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 21"/></a></h3>
+        <p>Amount of damage this limb regenerates per tick while treated before multi-limb regen penalty</p><h3 id="var/brute_dam"><aside class="declaration">var </aside>brute_dam
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 15"/></a></h3>
+        <p>brute damage this limb has taken as a part</p><h3 id="var/burn_dam"><aside class="declaration">var </aside>burn_dam
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 17"/></a></h3>
+        <p>burn damage this limb has taken as a part</p><h3 id="var/cover_index"><aside class="declaration">var </aside>cover_index
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 76"/></a></h3>
+        <p>What % of the body does this limb cover. Make sure that the sum is always 100.</p><h3 id="var/damage_msg"><aside class="declaration">var </aside>damage_msg
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 44"/></a></h3>
+        <p>Message that displays when you feel pain from this limb</p><h3 id="var/germ_level"><aside class="declaration">var </aside>germ_level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 72"/></a></h3>
+        <p>INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE</p><h3 id="var/icon_position"><aside class="declaration">var </aside>icon_position
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 12"/></a></h3>
+        <p>Whether the icon created for this limb is LEFT, RIGHT or 0. Currently utilised for legs and feet</p><h3 id="var/implants"><aside class="declaration">var </aside>implants
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 60"/></a></h3>
+        <p><a href="obj/item/implant.html" title="/obj/item/implant">/obj/item/implant</a> Implants contained within this specific limb</p><h3 id="var/in_surgery_op"><aside class="declaration">var </aside>in_surgery_op
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 54"/></a></h3>
+        <p>Whether someone is currently doing surgery on this limb</p><h3 id="var/internal_organs"><aside class="declaration">var </aside>internal_organs
+            <aside>&ndash; /list/datum/internal_organ</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 41"/></a></h3>
+        <p>List of Internal organs of this body part</p><h3 id="var/max_damage"><aside class="declaration">var </aside>max_damage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 19"/></a></h3>
+        <p>Max damage the limb can take. Extremities sever when they have at least LIMB_MAX_DAMAGE_SEVER_RATIO as a fraction of this in brute damage.</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 8"/></a></h3>
+        <p>Actual name of the limb</p><h3 id="var/next_infection_message"><aside class="declaration">var </aside>next_infection_message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 74"/></a></h3>
+        <p>Keeps track of the last time the limb bothered its owner about infection to prevent spam.</p><h3 id="var/owner"><aside class="declaration">var </aside>owner
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 68"/></a></h3>
+        <p>Human owner mob of this limb</p><h3 id="var/splint_health"><aside class="declaration">var </aside>splint_health
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 26"/></a></h3>
+        <p>How many instances of damage the limb can take before its splints fall off</p><h3 id="var/vital"><aside class="declaration">var </aside>vital
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 70"/></a></h3>
+        <p>Whether this limb is vital, if true you die on losing it (todo make a flag)</p><h3 id="var/wound_update_accuracy"><aside class="declaration">var </aside>wound_update_accuracy
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 63"/></a></h3>
+        <p>how often wounds should be updated, a higher number means less often</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_internal_bleeding"><aside class="declaration">proc </aside>add_internal_bleeding<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L352">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 352"/></a></aside>
+        </h3>
+        <p>For testing convenience. Adds one internal_bleeding wound to the limb.</p><h3 id="proc/apply_splints"><aside class="declaration">proc </aside>apply_splints<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a>/<a href="obj/item/stack/medical.html">medical</a>/<a href="obj/item/stack/medical/splint.html">splint</a>/S, applied_health, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L932">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 932"/></a></aside>
+        </h3>
+        <p>applies a splint stack to this limb. should probably be more generic but #notit</p><h3 id="proc/biotize"><aside class="declaration">proc </aside>biotize<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L874">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 874"/></a></aside>
+        </h3>
+        <p>used to give LIMB_BIOTIC flag to the limb</p><h3 id="proc/clean_owner"><aside class="declaration">proc </aside>clean_owner<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 102"/></a></aside>
+        </h3>
+        <p>Signal handler to clean owner and prevent hardel</p><h3 id="proc/createwound"><aside class="declaration">proc </aside>createwound<aside>(type, damage) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L339">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 339"/></a></aside>
+        </h3>
+        <p>Actually applies the damage to the limb. Use this directly to bypass 'hitting' the limb with regard to splints, internal wounds, and dismemberment.</p><h3 id="proc/emp_act"><aside class="declaration">proc </aside>emp_act<aside>(severity) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 143"/></a></aside>
+        </h3>
+        <p>DAMAGE PROCS</p><h3 id="proc/extra_splint_checks"><aside class="declaration">proc </aside>extra_splint_checks<aside>(applied_health) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L959">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 959"/></a></aside>
+        </h3>
+        <p>extra checks to perform during [/proc/apply_splints] do_after</p><h3 id="proc/has_external_wound"><aside class="declaration">proc </aside>has_external_wound<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L885">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 885"/></a></aside>
+        </h3>
+        <p>True if the limb has any damage on it</p><h3 id="proc/need_process"><aside class="declaration">proc </aside>need_process<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L361">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 361"/></a></aside>
+        </h3>
+        <p>PROCESSING &amp; UPDATING</p><h3 id="proc/rejuvenate"><aside class="declaration">proc </aside>rejuvenate<aside>(updating_health, updating_icon) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L301">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 301"/></a></aside>
+        </h3>
+        <p>This proc completely restores a damaged organ to perfect condition.</p><h3 id="proc/release_restraints"><aside class="declaration">proc </aside>release_restraints<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L791">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 791"/></a></aside>
+        </h3>
+        <p>HELPERS</p><h3 id="proc/reset_limb_surgeries"><aside class="declaration">proc </aside>reset_limb_surgeries<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L966">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 966"/></a></aside>
+        </h3>
+        <p>called when limb is removed or robotized, any ongoing surgery and related vars are reset</p><h3 id="proc/robotize"><aside class="declaration">proc </aside>robotize<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L866">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 866"/></a></aside>
+        </h3>
+        <p>Emit a signal for autodoc to support the life if available</p><h3 id="proc/setAmputatedTree"><aside class="declaration">proc </aside>setAmputatedTree<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L640">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 640"/></a></aside>
+        </h3>
+        <p>DISMEMBERMENT</p><h3 id="proc/update_bleeding"><aside class="declaration">proc </aside>update_bleeding<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L532">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 532"/></a></aside>
+        </h3>
+        <p>Updates LIMB_BLEEDING limb flag</p><h3 id="proc/update_wounds"><aside class="declaration">proc </aside>update_wounds<aside>(limb_regen_penalty) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/organs/limbs.dm#L506">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;limbs.dm 506"/></a></aside>
+        </h3>
+        <p>Updating wounds. Handles natural damage healing from limb treatments and processes internal wounds</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

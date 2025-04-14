@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;structure&#x2F;dropship_equipment&#x2F;shuttle&#x2F;rappel_system - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/structure/dropship_equipment/shuttle/rappel_system.html#var">Var Details</a> - <a href="obj/structure/dropship_equipment/shuttle/rappel_system.html#proc">Proc Details</a></header>
+<main>
+<h1>rappel_system <aside>/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/dropship_equipment.html">dropship_equipment</a>/<a href="obj/structure/dropship_equipment/shuttle/rappel_system.html">shuttle/rappel_system</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/rappel_system.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;rappel_system.dm 48"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment/shuttle/rappel_system.html#var/disabled_smoke">disabled_smoke</a></th><td>Smoke particle holder for when it's disabled</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment/shuttle/rappel_system.html#var/rappel_state">rappel_state</a></th><td>What state the rope is in (usable, hooked, locked, in-use, etc.)</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment/shuttle/rappel_system.html#var/rope">rope</a></th><td>The rappeling rope we use</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment/shuttle/rappel_system.html#proc/attack_rappel">attack_rappel</a></th><td>Handles xeno attacks on the system; called by the rappel rope whenever attack_alien() is called on the rope</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment/shuttle/rappel_system.html#proc/break_rappel">break_rappel</a></th><td>Disables the rappel system, retracting any active ropes in the process.</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment/shuttle/rappel_system.html#proc/deploy_rope">deploy_rope</a></th><td>Deploys the rappel and unlocks the hatch so that people can drop down</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment/shuttle/rappel_system.html#proc/pre_retract">pre_retract</a></th><td>Feedback for when PO manually retracts the rope. Leads back into retract_rope after sounds and balloon alerts are done.</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment/shuttle/rappel_system.html#proc/rappel_animation">rappel_animation</a></th><td>Human animation for dropping down</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment/shuttle/rappel_system.html#proc/reel_in">reel_in</a></th><td>Part 2 of retract_rope(), moves the rope back into the system after the rope animation has completed. Unbuckles any mobs which were attached to it.</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment/shuttle/rappel_system.html#proc/retract_rope">retract_rope</a></th><td>Undeploys the rappel and locks the hatch. Rappel cannot be retracted if it is currently being attacked (hooked)</td></tr>
+            <tr><th><a href="obj/structure/dropship_equipment/shuttle/rappel_system.html#proc/self_repair">self_repair</a></th><td>Disabled rappels repair themselves after the cord is placed back in.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/disabled_smoke"><aside class="declaration">var </aside>disabled_smoke
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/abstract/particle_holder.html">effect/abstract/particle_holder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/rappel_system.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;rappel_system.dm 62"/></a></h3>
+        <p>Smoke particle holder for when it's disabled</p><h3 id="var/rappel_state"><aside class="declaration">var </aside>rappel_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/rappel_system.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;rappel_system.dm 64"/></a></h3>
+        <p>What state the rope is in (usable, hooked, locked, in-use, etc.)</p><h3 id="var/rope"><aside class="declaration">var </aside>rope
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/rappel_rope/tadpole.html">effect/rappel_rope/tadpole</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/rappel_system.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;rappel_system.dm 60"/></a></h3>
+        <p>The rappeling rope we use</p><h2 id="proc">Proc Details</h2><h3 id="proc/attack_rappel"><aside class="declaration">proc </aside>attack_rappel<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a>/attacker) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/rappel_system.dm#L297">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;rappel_system.dm 297"/></a></aside>
+        </h3>
+        <p>Handles xeno attacks on the system; called by the rappel rope whenever attack_alien() is called on the rope</p><h3 id="proc/break_rappel"><aside class="declaration">proc </aside>break_rappel<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/rappel_system.dm#L324">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;rappel_system.dm 324"/></a></aside>
+        </h3>
+        <p>Disables the rappel system, retracting any active ropes in the process.</p><h3 id="proc/deploy_rope"><aside class="declaration">proc </aside>deploy_rope<aside>(/<a href="turf.html">turf</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/rappel_system.dm#L218">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;rappel_system.dm 218"/></a></aside>
+        </h3>
+        <p>Deploys the rappel and unlocks the hatch so that people can drop down</p><h3 id="proc/pre_retract"><aside class="declaration">proc </aside>pre_retract<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/rappel_system.dm#L242">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;rappel_system.dm 242"/></a></aside>
+        </h3>
+        <p>Feedback for when PO manually retracts the rope. Leads back into retract_rope after sounds and balloon alerts are done.</p><h3 id="proc/rappel_animation"><aside class="declaration">proc </aside>rappel_animation<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/rappel_system.dm#L205">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;rappel_system.dm 205"/></a></aside>
+        </h3>
+        <p>Human animation for dropping down</p><h3 id="proc/reel_in"><aside class="declaration">proc </aside>reel_in<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/rappel_system.dm#L280">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;rappel_system.dm 280"/></a></aside>
+        </h3>
+        <p>Part 2 of retract_rope(), moves the rope back into the system after the rope animation has completed. Unbuckles any mobs which were attached to it.</p><h3 id="proc/retract_rope"><aside class="declaration">proc </aside>retract_rope<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/rappel_system.dm#L258">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;rappel_system.dm 258"/></a></aside>
+        </h3>
+        <p>Undeploys the rappel and locks the hatch. Rappel cannot be retracted if it is currently being attacked (hooked)</p><h3 id="proc/self_repair"><aside class="declaration">proc </aside>self_repair<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/rappel_system.dm#L196">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;rappel_system.dm 196"/></a></aside>
+        </h3>
+        <p>Disabled rappels repair themselves after the cord is placed back in.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

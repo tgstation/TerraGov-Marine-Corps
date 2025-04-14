@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;intel_computer - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/computer/intel_computer.html#var">Var Details</a> - <a href="obj/machinery/computer/intel_computer.html#proc">Proc Details</a></header>
+<main>
+<h1>intel_computer <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/computer.html">computer</a>/<a href="obj/machinery/computer/intel_computer.html">intel_computer</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/computer/intel_computer.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;intel_computer.dm 6"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/computer/intel_computer.html#var/active">active</a></th><td>Whether this computer is activated by the event yet</td></tr>
+            <tr><th><a href="obj/machinery/computer/intel_computer.html#var/dropship_reward">dropship_reward</a></th><td>How much dropship points you get for completing the terminal</td></tr>
+            <tr><th><a href="obj/machinery/computer/intel_computer.html#var/first_login">first_login</a></th><td>On first login we want it to play a cool animation</td></tr>
+            <tr><th><a href="obj/machinery/computer/intel_computer.html#var/logged_in">logged_in</a></th><td>have we logged into the terminal yet?</td></tr>
+            <tr><th><a href="obj/machinery/computer/intel_computer.html#var/printing">printing</a></th><td>Is it currently active?</td></tr>
+            <tr><th><a href="obj/machinery/computer/intel_computer.html#var/printing_complete">printing_complete</a></th><td>When we reach max progress and get the points</td></tr>
+            <tr><th><a href="obj/machinery/computer/intel_computer.html#var/progress">progress</a></th><td>Tracks how much of the terminal is completed</td></tr>
+            <tr><th><a href="obj/machinery/computer/intel_computer.html#var/progress_interval">progress_interval</a></th><td>How much progress we get every tick, up to 100</td></tr>
+            <tr><th><a href="obj/machinery/computer/intel_computer.html#var/supply_reward">supply_reward</a></th><td>How much supply points you get for completing the terminal</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/computer/intel_computer.html#proc/disable_on_hijack">disable_on_hijack</a></th><td>Deactivates this intel computer, for use on hijack</td></tr>
+            <tr><th><a href="obj/machinery/computer/intel_computer.html#proc/update_minimap_icon">update_minimap_icon</a></th><td>Change minimap icon if its on or off</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active"><aside class="declaration">var </aside>active
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/computer/intel_computer.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;intel_computer.dm 19"/></a></h3>
+        <p>Whether this computer is activated by the event yet</p><h3 id="var/dropship_reward"><aside class="declaration">var </aside>dropship_reward
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/computer/intel_computer.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;intel_computer.dm 23"/></a></h3>
+        <p>How much dropship points you get for completing the terminal</p><h3 id="var/first_login"><aside class="declaration">var </aside>first_login
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/computer/intel_computer.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;intel_computer.dm 32"/></a></h3>
+        <p>On first login we want it to play a cool animation</p><h3 id="var/logged_in"><aside class="declaration">var </aside>logged_in
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/computer/intel_computer.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;intel_computer.dm 30"/></a></h3>
+        <p>have we logged into the terminal yet?</p><h3 id="var/printing"><aside class="declaration">var </aside>printing
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/computer/intel_computer.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;intel_computer.dm 34"/></a></h3>
+        <p>Is it currently active?</p><h3 id="var/printing_complete"><aside class="declaration">var </aside>printing_complete
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/computer/intel_computer.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;intel_computer.dm 36"/></a></h3>
+        <p>When we reach max progress and get the points</p><h3 id="var/progress"><aside class="declaration">var </aside>progress
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/computer/intel_computer.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;intel_computer.dm 28"/></a></h3>
+        <p>Tracks how much of the terminal is completed</p><h3 id="var/progress_interval"><aside class="declaration">var </aside>progress_interval
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/computer/intel_computer.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;intel_computer.dm 26"/></a></h3>
+        <p>How much progress we get every tick, up to 100</p><h3 id="var/supply_reward"><aside class="declaration">var </aside>supply_reward
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/computer/intel_computer.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;intel_computer.dm 21"/></a></h3>
+        <p>How much supply points you get for completing the terminal</p><h2 id="proc">Proc Details</h2><h3 id="proc/disable_on_hijack"><aside class="declaration">proc </aside>disable_on_hijack<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/computer/intel_computer.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;intel_computer.dm 120"/></a></aside>
+        </h3>
+        <p>Deactivates this intel computer, for use on hijack</p><h3 id="proc/update_minimap_icon"><aside class="declaration">proc </aside>update_minimap_icon<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/computer/intel_computer.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;intel_computer.dm 86"/></a></aside>
+        </h3>
+        <p>Change minimap icon if its on or off</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

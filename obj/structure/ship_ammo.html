@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;structure&#x2F;ship_ammo - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/structure/ship_ammo.html#var">Var Details</a> - <a href="obj/structure/ship_ammo.html#proc">Proc Details</a></header>
+<main>
+<h1>ship_ammo <aside>/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/ship_ammo.html">ship_ammo</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 7"/></a></h1>
+
+<p>dropship weapon ammunition</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/ammo_count">ammo_count</a></th><td>current ammo count</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/ammo_name">ammo_name</a></th><td>what to call the ammo in the ammo transfering message</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/ammo_type">ammo_type</a></th><td>Type of ammo</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/ammo_used_per_firing">ammo_used_per_firing</a></th><td>how much ammo to use up per firing sequence</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/cas_effect">cas_effect</a></th><td>Type of CAS dot indicator effect to be used</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/crosshair">crosshair</a></th><td>Crosshair to use when this ammo is loaded</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/devastating_explosion_range">devastating_explosion_range</a></th><td>Range of the centre of the explosion</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/equipment_type">equipment_type</a></th><td>type of equipment that accept this type of ammo.</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/fire_range">fire_range</a></th><td>Fire radius, for incendiary weapons</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/firing_voiceline">firing_voiceline</a></th><td>voiceline to play half a second after the weapon is fired</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/heavy_explosion_range">heavy_explosion_range</a></th><td>Range of the middle bit of the explosion</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/light_explosion_range">light_explosion_range</a></th><td>Range of the outer radius of the explosion</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/max_ammo_count">max_ammo_count</a></th><td>maximum ammo count. does NOT determine starting ammo</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/point_cost">point_cost</a></th><td>how many points it costs to build this with the fabricator, set to 0 if unbuildable.</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/prediction_type">prediction_type</a></th><td>CAS impact prediction type to use. Explosive, incendiary, etc</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/transferable_ammo">transferable_ammo</a></th><td>whether the ammo inside this magazine can be transfered to another magazine.</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/travelling_time">travelling_time</a></th><td>Time before the ammo impacts</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#var/warning_sound">warning_sound</a></th><td>sound played mere seconds before impact</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#proc/get_explosion_impact">get_explosion_impact</a></th><td>&quot;Mini&quot; version of explode() code, returns the tiles that <em>would</em> be hit if an explosion were to happen</td></tr>
+            <tr><th><a href="obj/structure/ship_ammo.html#proc/get_turfs_to_impact">get_turfs_to_impact</a></th><td>Gets the turfs this ammo type would affect. Attackdir can be left alone if the ammo type is not directional</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ammo_count"><aside class="declaration">var </aside>ammo_count
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 20"/></a></h3>
+        <p>current ammo count</p><h3 id="var/ammo_name"><aside class="declaration">var </aside>ammo_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 24"/></a></h3>
+        <p>what to call the ammo in the ammo transfering message</p><h3 id="var/ammo_type"><aside class="declaration">var </aside>ammo_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 37"/></a></h3>
+        <p>Type of ammo</p><h3 id="var/ammo_used_per_firing"><aside class="declaration">var </aside>ammo_used_per_firing
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 33"/></a></h3>
+        <p>how much ammo to use up per firing sequence</p><h3 id="var/cas_effect"><aside class="declaration">var </aside>cas_effect
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 48"/></a></h3>
+        <p>Type of CAS dot indicator effect to be used</p><h3 id="var/crosshair"><aside class="declaration">var </aside>crosshair
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 52"/></a></h3>
+        <p>Crosshair to use when this ammo is loaded</p><h3 id="var/devastating_explosion_range"><aside class="declaration">var </aside>devastating_explosion_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 40"/></a></h3>
+        <p>Range of the centre of the explosion</p><h3 id="var/equipment_type"><aside class="declaration">var </aside>equipment_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 18"/></a></h3>
+        <p>type of equipment that accept this type of ammo.</p><h3 id="var/fire_range"><aside class="declaration">var </aside>fire_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 46"/></a></h3>
+        <p>Fire radius, for incendiary weapons</p><h3 id="var/firing_voiceline"><aside class="declaration">var </aside>firing_voiceline
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 31"/></a></h3>
+        <p>voiceline to play half a second after the weapon is fired</p><h3 id="var/heavy_explosion_range"><aside class="declaration">var </aside>heavy_explosion_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 42"/></a></h3>
+        <p>Range of the middle bit of the explosion</p><h3 id="var/light_explosion_range"><aside class="declaration">var </aside>light_explosion_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 44"/></a></h3>
+        <p>Range of the outer radius of the explosion</p><h3 id="var/max_ammo_count"><aside class="declaration">var </aside>max_ammo_count
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 22"/></a></h3>
+        <p>maximum ammo count. does NOT determine starting ammo</p><h3 id="var/point_cost"><aside class="declaration">var </aside>point_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 35"/></a></h3>
+        <p>how many points it costs to build this with the fabricator, set to 0 if unbuildable.</p><h3 id="var/prediction_type"><aside class="declaration">var </aside>prediction_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 50"/></a></h3>
+        <p>CAS impact prediction type to use. Explosive, incendiary, etc</p><h3 id="var/transferable_ammo"><aside class="declaration">var </aside>transferable_ammo
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 27"/></a></h3>
+        <p>whether the ammo inside this magazine can be transfered to another magazine.</p><h3 id="var/travelling_time"><aside class="declaration">var </aside>travelling_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 16"/></a></h3>
+        <p>Time before the ammo impacts</p><h3 id="var/warning_sound"><aside class="declaration">var </aside>warning_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 29"/></a></h3>
+        <p>sound played mere seconds before impact</p><h2 id="proc">Proc Details</h2><h3 id="proc/get_explosion_impact"><aside class="declaration">proc </aside>get_explosion_impact<aside>(/<a href="turf.html">turf</a>/impact) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 105"/></a></aside>
+        </h3>
+        <p>&quot;Mini&quot; version of explode() code, returns the tiles that <em>would</em> be hit if an explosion were to happen</p><h3 id="proc/get_turfs_to_impact"><aside class="declaration">proc </aside>get_turfs_to_impact<aside>(/<a href="turf.html">turf</a>/epicenter, attackdir) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/dropship_ammo.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;dropship_ammo.dm 92"/></a></aside>
+        </h3>
+        <p>Gets the turfs this ammo type would affect. Attackdir can be left alone if the ammo type is not directional</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;xeno_iff - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/xeno_iff.html#var">Var Details</a> - <a href="datum/component/xeno_iff.html#proc">Proc Details</a></header>
+<main>
+<h1>xeno_iff <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/xeno_iff.html">xeno_iff</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/xeno_iff.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;xeno_iff.dm 7"/></a></h1>
+
+<p>A special component that reacts to certain things that check for IFF and returns the IFF attached.
+Applied by xeno IFF tags and meant for xenos only.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/xeno_iff.html#var/iff_type">iff_type</a></th><td>The IFF this component carries. SOM xenos? I got you.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/xeno_iff.html#proc/evolve_carry_over">evolve_carry_over</a></th><td>Handles when a xenomorph evolves by attaching a new component to the evolved xeno.
+How does it remain attached past evolution? I have no clue, bluespace magic. Would be pain to use if it didn't last however.</td></tr>
+            <tr><th><a href="datum/component/xeno_iff.html#proc/iff_check">iff_check</a></th><td>Reacts to an IFF check requesting signal by attaching its own IFF to the bitflag contained in the list sent.
+Done this way because of in-place list magic, so for example a xeno could have multiple reactions from different sources and it would properly combine them.</td></tr>
+            <tr><th><a href="datum/component/xeno_iff.html#proc/on_examine">on_examine</a></th><td>Handles being examined by showing a tag is attached, aswell as if it is friendly relative to the own (if a human examines).</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/iff_type"><aside class="declaration">var </aside>iff_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/xeno_iff.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;xeno_iff.dm 11"/></a></h3>
+        <p>The IFF this component carries. SOM xenos? I got you.</p><h2 id="proc">Proc Details</h2><h3 id="proc/evolve_carry_over"><aside class="declaration">proc </aside>evolve_carry_over<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a>/new_xeno) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/xeno_iff.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;xeno_iff.dm 50"/></a></aside>
+        </h3>
+        <p>Handles when a xenomorph evolves by attaching a new component to the evolved xeno.
+How does it remain attached past evolution? I have no clue, bluespace magic. Would be pain to use if it didn't last however.</p><h3 id="proc/iff_check"><aside class="declaration">proc </aside>iff_check<aside>(/<a href="datum.html">datum</a>/source, /list/iff_list) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/xeno_iff.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;xeno_iff.dm 29"/></a></aside>
+        </h3>
+        <p>Reacts to an IFF check requesting signal by attaching its own IFF to the bitflag contained in the list sent.
+Done this way because of in-place list magic, so for example a xeno could have multiple reactions from different sources and it would properly combine them.</p><h3 id="proc/on_examine"><aside class="declaration">proc </aside>on_examine<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user, /list/examine_list) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/xeno_iff.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;xeno_iff.dm 36"/></a></aside>
+        </h3>
+        <p>Handles being examined by showing a tag is attached, aswell as if it is friendly relative to the own (if a human examines).</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

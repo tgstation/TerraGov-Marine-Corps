@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;_subsystems.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/_subsystems.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/_subsystems.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/_subsystems.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_subsystems.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/_subsystems.html#define/TIMER_DELETE_ME">TIMER_DELETE_ME</a></th><td>Delete the timer on parent datum Destroy() and when deltimer'd</td></tr>
+        <tr><th><a href="code/__DEFINES/_subsystems.html#define/PROCESS_KILL">PROCESS_KILL</a></th><td>Used to trigger object removal from a processing list</td></tr>
+        <tr><th><a href="code/__DEFINES/_subsystems.html#define/INITIALIZE_HINT_QDEL_FORCE">INITIALIZE_HINT_QDEL_FORCE</a></th><td>Call qdel with a force of TRUE after initialization</td></tr>
+        <tr><td colspan="2"><hh3 id="ss-initialization-hints">SS initialization hints</hh3></td></tr>
+        <tr><th><a href="code/__DEFINES/_subsystems.html#define/SS_INIT_FAILURE">SS_INIT_FAILURE</a></th><td>Negative values incidate a failure or warning of some kind, positive are good.
+0 and 1 are unused so that TRUE and FALSE are guarenteed to be invalid values.
+Subsystem failed to initialize entirely. Print a warning, log, and disable firing.</td></tr>
+        <tr><th><a href="code/__DEFINES/_subsystems.html#define/SS_INIT_NONE">SS_INIT_NONE</a></th><td>The default return value which must be overriden. Will succeed with a warning.</td></tr>
+        <tr><th><a href="code/__DEFINES/_subsystems.html#define/SS_INIT_SUCCESS">SS_INIT_SUCCESS</a></th><td>Subsystem initialized sucessfully.</td></tr>
+        <tr><th><a href="code/__DEFINES/_subsystems.html#define/SS_INIT_NO_NEED">SS_INIT_NO_NEED</a></th><td>Successful, but don't print anything. Useful if subsystem was disabled.</td></tr>
+        <tr><td colspan="2"><hh3 id="ss-initialization-load-orders">SS initialization load orders</hh3></td></tr>
+        <tr><th><a href="code/__DEFINES/_subsystems.html#define/SSEXPLOSIONS_MOVABLES">SSEXPLOSIONS_MOVABLES</a></th><td>Explosion Subsystem subtasks</td></tr>
+        <tr><th><a href="code/__DEFINES/_subsystems.html#define/addtimer">addtimer</a></th><td>Create a new timer and add it to the queue.</td></tr>
+        <tr><th><a href="code/__DEFINES/_subsystems.html#define/SS_INIT_TIMER_KEY">SS_INIT_TIMER_KEY</a></th><td>The timer key used to know how long subsystem initialization takes</td></tr>
+        <tr><th><a href="code/__DEFINES/_subsystems.html#define/SS_MOBS_BUCKET_DELAY">SS_MOBS_BUCKET_DELAY</a></th><td>Mobs subsystem defines
+The mobs subsystem buckets up mobs to smooth out processing load,
+each 5 ticks it fires, but won't actually run Life on every fire()
+Instead it buckets mobs and ends up running Life on every mob every 2 seconds
+but since subsystem wait only considers the last fire,
+we need to multiply wait enough that it matches the 2 second interval Life is actually running on</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/INITIALIZE_HINT_QDEL_FORCE"><aside class="declaration">#define </aside>INITIALIZE_HINT_QDEL_FORCE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/_subsystems.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_subsystems.dm 45"/></a>
+    </h3>
+    <p>Call qdel with a force of TRUE after initialization</p><h3 id="define/PROCESS_KILL"><aside class="declaration">#define </aside>PROCESS_KILL
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/_subsystems.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_subsystems.dm 31"/></a>
+    </h3>
+    <p>Used to trigger object removal from a processing list</p><h3 id="define/SSEXPLOSIONS_MOVABLES"><aside class="declaration">#define </aside>SSEXPLOSIONS_MOVABLES
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/_subsystems.dm#L176">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_subsystems.dm 176"/></a>
+    </h3>
+    <p>Explosion Subsystem subtasks</p><h3 id="define/SS_INIT_FAILURE"><aside class="declaration">#define </aside>SS_INIT_FAILURE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/_subsystems.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_subsystems.dm 63"/></a>
+    </h3>
+    <p>Negative values incidate a failure or warning of some kind, positive are good.
+0 and 1 are unused so that TRUE and FALSE are guarenteed to be invalid values.
+Subsystem failed to initialize entirely. Print a warning, log, and disable firing.</p><h3 id="define/SS_INIT_NONE"><aside class="declaration">#define </aside>SS_INIT_NONE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/_subsystems.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_subsystems.dm 66"/></a>
+    </h3>
+    <p>The default return value which must be overriden. Will succeed with a warning.</p><h3 id="define/SS_INIT_NO_NEED"><aside class="declaration">#define </aside>SS_INIT_NO_NEED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/_subsystems.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_subsystems.dm 72"/></a>
+    </h3>
+    <p>Successful, but don't print anything. Useful if subsystem was disabled.</p><h3 id="define/SS_INIT_SUCCESS"><aside class="declaration">#define </aside>SS_INIT_SUCCESS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/_subsystems.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_subsystems.dm 69"/></a>
+    </h3>
+    <p>Subsystem initialized sucessfully.</p><h3 id="define/SS_INIT_TIMER_KEY"><aside class="declaration">#define </aside>SS_INIT_TIMER_KEY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/_subsystems.dm#L190">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_subsystems.dm 190"/></a>
+    </h3>
+    <p>The timer key used to know how long subsystem initialization takes</p><h3 id="define/SS_MOBS_BUCKET_DELAY"><aside class="declaration">#define </aside>SS_MOBS_BUCKET_DELAY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/_subsystems.dm#L200">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_subsystems.dm 200"/></a>
+    </h3>
+    <p>Mobs subsystem defines
+The mobs subsystem buckets up mobs to smooth out processing load,
+each 5 ticks it fires, but won't actually run Life on every fire()
+Instead it buckets mobs and ends up running Life on every mob every 2 seconds
+but since subsystem wait only considers the last fire,
+we need to multiply wait enough that it matches the 2 second interval Life is actually running on</p><h3 id="define/TIMER_DELETE_ME"><aside class="declaration">#define </aside>TIMER_DELETE_ME
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/_subsystems.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_subsystems.dm 26"/></a>
+    </h3>
+    <p>Delete the timer on parent datum Destroy() and when deltimer'd</p><h3 id="define/addtimer"><aside class="declaration">#define </aside>addtimer
+            <aside>(args ...)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/_subsystems.dm#L187">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;_subsystems.dm 187"/></a>
+    </h3>
+    <p>Create a new timer and add it to the queue.</p>
+<ul>
+<li>Arguments:</li>
+<li>
+<ul>
+<li>callback the callback to call on timer finish</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>wait deciseconds to run the timer for</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>flags flags for this timer, see: code__DEFINES\subsystems.dm</li>
+</ul>
+</li>
+</ul></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

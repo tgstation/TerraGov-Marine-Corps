@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;after_image - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/after_image.html#var">Var Details</a> - <a href="datum/component/after_image.html#proc">Proc Details</a></header>
+<main>
+<h1>after_image <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/after_image.html">after_image</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/after_image.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;after_image.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/after_image.html#var/color_cycle">color_cycle</a></th><td>Whether we make a rainbow colour cycle</td></tr>
+            <tr><th><a href="datum/component/after_image.html#var/glide_size">glide_size</a></th><td>Current glide_size of the owner</td></tr>
+            <tr><th><a href="datum/component/after_image.html#var/hsv">hsv</a></th><td>Current colour of the after image</td></tr>
+            <tr><th><a href="datum/component/after_image.html#var/image_duration">image_duration</a></th><td>How long an image lasts</td></tr>
+            <tr><th><a href="datum/component/after_image.html#var/last_colour_time">last_colour_time</a></th><td>Last world time we cycled a colour</td></tr>
+            <tr><th><a href="datum/component/after_image.html#var/last_direction">last_direction</a></th><td>Last dir faced by owner</td></tr>
+            <tr><th><a href="datum/component/after_image.html#var/last_movement">last_movement</a></th><td>Last move time of owner</td></tr>
+            <tr><th><a href="datum/component/after_image.html#var/loop_delay">loop_delay</a></th><td>How frequently an image is made</td></tr>
+            <tr><th><a href="datum/component/after_image.html#var/loop_timer">loop_timer</a></th><td>Holds the loop timer</td></tr>
+            <tr><th><a href="datum/component/after_image.html#var/owner">owner</a></th><td>Mob we are making images of</td></tr>
+            <tr><th><a href="datum/component/after_image.html#var/previous_loc">previous_loc</a></th><td>Last loc of owner. Used for estimating the pixel_x and pixel_y of the target</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/after_image.html#proc/handle_jump">handle_jump</a></th><td>Records jump details</td></tr>
+            <tr><th><a href="datum/component/after_image.html#proc/spawn_image">spawn_image</a></th><td>Creates the after image</td></tr>
+            <tr><th><a href="datum/component/after_image.html#proc/update_glide">update_glide</a></th><td>Updates last dir and glidesize after making a step</td></tr>
+            <tr><th><a href="datum/component/after_image.html#proc/update_step">update_step</a></th><td>Updates prev loc and move time when starting a step</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/color_cycle"><aside class="declaration">var </aside>color_cycle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/after_image.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;after_image.dm 25"/></a></h3>
+        <p>Whether we make a rainbow colour cycle</p><h3 id="var/glide_size"><aside class="declaration">var </aside>glide_size
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/after_image.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;after_image.dm 17"/></a></h3>
+        <p>Current glide_size of the owner</p><h3 id="var/hsv"><aside class="declaration">var </aside>hsv
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/after_image.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;after_image.dm 29"/></a></h3>
+        <p>Current colour of the after image</p><h3 id="var/image_duration"><aside class="declaration">var </aside>image_duration
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/after_image.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;after_image.dm 7"/></a></h3>
+        <p>How long an image lasts</p><h3 id="var/last_colour_time"><aside class="declaration">var </aside>last_colour_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/after_image.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;after_image.dm 27"/></a></h3>
+        <p>Last world time we cycled a colour</p><h3 id="var/last_direction"><aside class="declaration">var </aside>last_direction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/after_image.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;after_image.dm 15"/></a></h3>
+        <p>Last dir faced by owner</p><h3 id="var/last_movement"><aside class="declaration">var </aside>last_movement
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/after_image.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;after_image.dm 13"/></a></h3>
+        <p>Last move time of owner</p><h3 id="var/loop_delay"><aside class="declaration">var </aside>loop_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/after_image.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;after_image.dm 5"/></a></h3>
+        <p>How frequently an image is made</p><h3 id="var/loop_timer"><aside class="declaration">var </aside>loop_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/after_image.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;after_image.dm 9"/></a></h3>
+        <p>Holds the loop timer</p><h3 id="var/owner"><aside class="declaration">var </aside>owner
+            <aside>&ndash; /<a href="mob.html">mob</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/after_image.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;after_image.dm 19"/></a></h3>
+        <p>Mob we are making images of</p><h3 id="var/previous_loc"><aside class="declaration">var </aside>previous_loc
+            <aside>&ndash; /<a href="turf.html">turf</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/after_image.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;after_image.dm 11"/></a></h3>
+        <p>Last loc of owner. Used for estimating the pixel_x and pixel_y of the target</p><h2 id="proc">Proc Details</h2><h3 id="proc/handle_jump"><aside class="declaration">proc </aside>handle_jump<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/mover, jump_height, jump_duration) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/after_image.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;after_image.dm 66"/></a></aside>
+        </h3>
+        <p>Records jump details</p><h3 id="proc/spawn_image"><aside class="declaration">proc </aside>spawn_image<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/after_image.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;after_image.dm 73"/></a></aside>
+        </h3>
+        <p>Creates the after image</p><h3 id="proc/update_glide"><aside class="declaration">proc </aside>update_glide<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/mover) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/after_image.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;after_image.dm 60"/></a></aside>
+        </h3>
+        <p>Updates last dir and glidesize after making a step</p><h3 id="proc/update_step"><aside class="declaration">proc </aside>update_step<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/mover, dir) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/after_image.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;after_image.dm 54"/></a></aside>
+        </h3>
+        <p>Updates prev loc and move time when starting a step</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

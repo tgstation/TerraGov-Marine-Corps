@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;mask&#x2F;facehugger - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/clothing/mask/facehugger.html#var">Var Details</a> - <a href="obj/item/clothing/mask/facehugger.html#proc">Proc Details</a></header>
+<main>
+<h1>facehugger <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/clothing.html">clothing</a>/<a href="obj/item/clothing/mask.html">mask</a>/<a href="obj/item/clothing/mask/facehugger.html">facehugger</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 14"/></a></h1>
+
+<p>Facehuggers</p>
+<p>They work by being activated using timers to trigger leap_at_nearest_target()
+Going inactive and active is handeled by go_active() and go_idle()
+Lifetime is handled by a timer on check_lifecycle()
+For the love of god do not use process() and rng for this kind of shit it makes it unreliable and buggy as fuck</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/about_to_jump">about_to_jump</a></th><td>When TRUE hugger is about to jump</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/activate_time">activate_time</a></th><td>Time to become active again</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/activetimer">activetimer</a></th><td>The timer to go active</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/attached">attached</a></th><td>Whether we're attached to a host</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/combat_hugger">combat_hugger</a></th><td>Is this hugger intended for combat?</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/hivenumber">hivenumber</a></th><td>What hive this hugger belongs to</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/impact_time">impact_time</a></th><td>Time to become active after impacting on a direct thrown hit</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/jump_cooldown">jump_cooldown</a></th><td>Time to recover after jumping</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/jumptimer">jumptimer</a></th><td>The timer tracking when we next jump</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/leaping">leaping</a></th><td>Is actually attacking someone?</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/lifecycle">lifecycle</a></th><td>How long the hugger will survive outside of the egg, or carrier.</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/lifetimer">lifetimer</a></th><td>The timer tracking when we die</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/proximity_time">proximity_time</a></th><td>Time to become active after moving into the facehugger's space.</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/source">source</a></th><td>The xeno that spawned/threw/dropped the hugger. Used for anti-shuffle</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/stasis">stasis</a></th><td>&quot;Freezes&quot; the hugger in for example, eggs</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/stat">stat</a></th><td>Whether the hugger is dead, active or inactive</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#var/sterile">sterile</a></th><td>Whether this hugger can infect things</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#proc/apply_danger_overlay">apply_danger_overlay</a></th><td>Applies an alert overlay when the hugger is about to jump</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#proc/clear_hugger_source">clear_hugger_source</a></th><td>Clears the source of our facehugger for the purpose of anti-shuffle mechanics</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#proc/combat_hugger_check_target">combat_hugger_check_target</a></th><td>See if our target is valid to be attacked</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#proc/facehugger_register_source">facehugger_register_source</a></th><td>Registers the source of our facehugger for the purpose of anti-shuffle mechanics</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#proc/kill_hugger">kill_hugger</a></th><td>Kills the hugger, should be self explanatory</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#proc/melt_away">melt_away</a></th><td>Deletes the dead hugger, usually after a period of being dead</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#proc/pre_leap">pre_leap</a></th><td>Called before we leap</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#proc/remove_danger_overlay">remove_danger_overlay</a></th><td>Remove the hugger's alert overlay</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#proc/reset_attach_status">reset_attach_status</a></th><td>Make it fall off the person so we can update their icons. Won't update if they're in containers though</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#proc/reset_life_timer">reset_life_timer</a></th><td>Resets the life timer for the facehugger</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#proc/try_attach">try_attach</a></th><td>Try to attach to the mask slot</td></tr>
+            <tr><th><a href="obj/item/clothing/mask/facehugger.html#proc/try_impregnate">try_impregnate</a></th><td>Try to put an embryo into the target mob</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/about_to_jump"><aside class="declaration">var </aside>about_to_jump
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 62"/></a></h3>
+        <p>When TRUE hugger is about to jump</p><h3 id="var/activate_time"><aside class="declaration">var </aside>activate_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 56"/></a></h3>
+        <p>Time to become active again</p><h3 id="var/activetimer"><aside class="declaration">var </aside>activetimer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 52"/></a></h3>
+        <p>The timer to go active</p><h3 id="var/attached"><aside class="declaration">var </aside>attached
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 38"/></a></h3>
+        <p>Whether we're attached to a host</p><h3 id="var/combat_hugger"><aside class="declaration">var </aside>combat_hugger
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 60"/></a></h3>
+        <p>Is this hugger intended for combat?</p><h3 id="var/hivenumber"><aside class="declaration">var </aside>hivenumber
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 44"/></a></h3>
+        <p>What hive this hugger belongs to</p><h3 id="var/impact_time"><aside class="declaration">var </aside>impact_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 54"/></a></h3>
+        <p>Time to become active after impacting on a direct thrown hit</p><h3 id="var/jump_cooldown"><aside class="declaration">var </aside>jump_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 58"/></a></h3>
+        <p>Time to recover after jumping</p><h3 id="var/jumptimer"><aside class="declaration">var </aside>jumptimer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 50"/></a></h3>
+        <p>The timer tracking when we next jump</p><h3 id="var/leaping"><aside class="declaration">var </aside>leaping
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 42"/></a></h3>
+        <p>Is actually attacking someone?</p><h3 id="var/lifecycle"><aside class="declaration">var </aside>lifecycle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 40"/></a></h3>
+        <p>How long the hugger will survive outside of the egg, or carrier.</p><h3 id="var/lifetimer"><aside class="declaration">var </aside>lifetimer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 48"/></a></h3>
+        <p>The timer tracking when we die</p><h3 id="var/proximity_time"><aside class="declaration">var </aside>proximity_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 64"/></a></h3>
+        <p>Time to become active after moving into the facehugger's space.</p><h3 id="var/source"><aside class="declaration">var </aside>source
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 46"/></a></h3>
+        <p>The xeno that spawned/threw/dropped the hugger. Used for anti-shuffle</p><h3 id="var/stasis"><aside class="declaration">var </aside>stasis
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 34"/></a></h3>
+        <p>&quot;Freezes&quot; the hugger in for example, eggs</p><h3 id="var/stat"><aside class="declaration">var </aside>stat
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 32"/></a></h3>
+        <p>Whether the hugger is dead, active or inactive</p><h3 id="var/sterile"><aside class="declaration">var </aside>sterile
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 36"/></a></h3>
+        <p>Whether this hugger can infect things</p><h2 id="proc">Proc Details</h2><h3 id="proc/apply_danger_overlay"><aside class="declaration">proc </aside>apply_danger_overlay<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L287">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 287"/></a></aside>
+        </h3>
+        <p>Applies an alert overlay when the hugger is about to jump</p><h3 id="proc/clear_hugger_source"><aside class="declaration">proc </aside>clear_hugger_source<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 93"/></a></aside>
+        </h3>
+        <p>Clears the source of our facehugger for the purpose of anti-shuffle mechanics</p><h3 id="proc/combat_hugger_check_target"><aside class="declaration">proc </aside>combat_hugger_check_target<aside>(/<a href="mob.html">mob</a>/M) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L823">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 823"/></a></aside>
+        </h3>
+        <p>See if our target is valid to be attacked</p><h3 id="proc/facehugger_register_source"><aside class="declaration">proc </aside>facehugger_register_source<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a>/S) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 85"/></a></aside>
+        </h3>
+        <p>Registers the source of our facehugger for the purpose of anti-shuffle mechanics</p><h3 id="proc/kill_hugger"><aside class="declaration">proc </aside>kill_hugger<aside>(melt_timer) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L598">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 598"/></a></aside>
+        </h3>
+        <p>Kills the hugger, should be self explanatory</p><h3 id="proc/melt_away"><aside class="declaration">proc </aside>melt_away<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L627">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 627"/></a></aside>
+        </h3>
+        <p>Deletes the dead hugger, usually after a period of being dead</p><h3 id="proc/pre_leap"><aside class="declaration">proc </aside>pre_leap<aside>(activation_time) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L227">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 227"/></a></aside>
+        </h3>
+        <p>Called before we leap</p><h3 id="proc/remove_danger_overlay"><aside class="declaration">proc </aside>remove_danger_overlay<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L294">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 294"/></a></aside>
+        </h3>
+        <p>Remove the hugger's alert overlay</p><h3 id="proc/reset_attach_status"><aside class="declaration">proc </aside>reset_attach_status<aside>(forcedrop) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L618">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 618"/></a></aside>
+        </h3>
+        <p>Make it fall off the person so we can update their icons. Won't update if they're in containers though</p><h3 id="proc/reset_life_timer"><aside class="declaration">proc </aside>reset_life_timer<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L204">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 204"/></a></aside>
+        </h3>
+        <p>Resets the life timer for the facehugger</p><h3 id="proc/try_attach"><aside class="declaration">proc </aside>try_attach<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/hugged) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L476">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 476"/></a></aside>
+        </h3>
+        <p>Try to attach to the mask slot</p><h3 id="proc/try_impregnate"><aside class="declaration">proc </aside>try_impregnate<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/facehuggers.dm#L570">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;facehuggers.dm 570"/></a></aside>
+        </h3>
+        <p>Try to put an embryo into the target mob</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

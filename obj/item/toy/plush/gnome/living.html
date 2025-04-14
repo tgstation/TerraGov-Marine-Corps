@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;toy&#x2F;plush&#x2F;gnome&#x2F;living - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/toy/plush/gnome/living.html#var">Var Details</a> - <a href="obj/item/toy/plush/gnome/living.html#proc">Proc Details</a></header>
+<main>
+<h1>living <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/toy/plush/gnome/living.html">toy/plush/gnome/living</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/toys/toys.dm#L576">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys&#x2F;toys.dm 576"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/toy/plush/gnome/living.html#var/gnome_act_timer">gnome_act_timer</a></th><td>hold an int that determines what the interval a gnome acts</td></tr>
+            <tr><th><a href="obj/item/toy/plush/gnome/living.html#var/gnome_move_range">gnome_move_range</a></th><td>how far the gnome should choose for teleportation purposes</td></tr>
+            <tr><th><a href="obj/item/toy/plush/gnome/living.html#var/gnome_origin">gnome_origin</a></th><td>original gnome spawn location, used as an emergency backup</td></tr>
+            <tr><th><a href="obj/item/toy/plush/gnome/living.html#var/max_tries">max_tries</a></th><td>sanity cap to prevent gnome spending too much time calculating possible teleport areas, it's theoretically possible to store the gnome in an impossible area so we need to check this</td></tr>
+            <tr><th><a href="obj/item/toy/plush/gnome/living.html#var/pipe_mode">pipe_mode</a></th><td>used for determining if a gnome is in the pipe network</td></tr>
+            <tr><th><a href="obj/item/toy/plush/gnome/living.html#var/pipe_mode_chance">pipe_mode_chance</a></th><td>how likely are we to enter a pipe</td></tr>
+            <tr><th><a href="obj/item/toy/plush/gnome/living.html#var/possible_mobs">possible_mobs</a></th><td>list for keeping track of the mobs around us</td></tr>
+            <tr><th><a href="obj/item/toy/plush/gnome/living.html#var/targetturf">targetturf</a></th><td>list for keeping track of items in current gnome turf</td></tr>
+            <tr><th><a href="obj/item/toy/plush/gnome/living.html#var/teleport_retries">teleport_retries</a></th><td>how many failed teleports we've done</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/toy/plush/gnome/living.html#proc/do_flavor_actions">do_flavor_actions</a></th><td>various flavor actions</td></tr>
+            <tr><th><a href="obj/item/toy/plush/gnome/living.html#proc/get_teleport_prereqs">get_teleport_prereqs</a></th><td>validate that the turf we're attempting to teleport to is not dense in space etc</td></tr>
+            <tr><th><a href="obj/item/toy/plush/gnome/living.html#proc/gnome_act">gnome_act</a></th><td>root proc for handling gnome AI routines</td></tr>
+            <tr><th><a href="obj/item/toy/plush/gnome/living.html#proc/handle_ladders">handle_ladders</a></th><td>targetturf stores our position at the start of routine in all. teleport_routine uses it as a baseline for determining where to find teleport locations also</td></tr>
+            <tr><th><a href="obj/item/toy/plush/gnome/living.html#proc/handle_pipe_mode">handle_pipe_mode</a></th><td>handles gnome transportation using pipes</td></tr>
+            <tr><th><a href="obj/item/toy/plush/gnome/living.html#proc/teleport_routine">teleport_routine</a></th><td>handles gnome teleportation when not being observed by players</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/gnome_act_timer"><aside class="declaration">var </aside>gnome_act_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/toys/toys.dm#L593">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys&#x2F;toys.dm 593"/></a></h3>
+        <p>hold an int that determines what the interval a gnome acts</p><h3 id="var/gnome_move_range"><aside class="declaration">var </aside>gnome_move_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/toys/toys.dm#L579">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys&#x2F;toys.dm 579"/></a></h3>
+        <p>how far the gnome should choose for teleportation purposes</p><h3 id="var/gnome_origin"><aside class="declaration">var </aside>gnome_origin
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/toys/toys.dm#L597">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys&#x2F;toys.dm 597"/></a></h3>
+        <p>original gnome spawn location, used as an emergency backup</p><h3 id="var/max_tries"><aside class="declaration">var </aside>max_tries
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/toys/toys.dm#L583">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys&#x2F;toys.dm 583"/></a></h3>
+        <p>sanity cap to prevent gnome spending too much time calculating possible teleport areas, it's theoretically possible to store the gnome in an impossible area so we need to check this</p><h3 id="var/pipe_mode"><aside class="declaration">var </aside>pipe_mode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/toys/toys.dm#L589">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys&#x2F;toys.dm 589"/></a></h3>
+        <p>used for determining if a gnome is in the pipe network</p><h3 id="var/pipe_mode_chance"><aside class="declaration">var </aside>pipe_mode_chance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/toys/toys.dm#L591">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys&#x2F;toys.dm 591"/></a></h3>
+        <p>how likely are we to enter a pipe</p><h3 id="var/possible_mobs"><aside class="declaration">var </aside>possible_mobs
+            <aside>&ndash; /<a href="mob.html">mob</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/toys/toys.dm#L585">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys&#x2F;toys.dm 585"/></a></h3>
+        <p>list for keeping track of the mobs around us</p><h3 id="var/targetturf"><aside class="declaration">var </aside>targetturf
+            <aside>&ndash; /<a href="turf.html">turf</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/toys/toys.dm#L587">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys&#x2F;toys.dm 587"/></a></h3>
+        <p>list for keeping track of items in current gnome turf</p><h3 id="var/teleport_retries"><aside class="declaration">var </aside>teleport_retries
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/toys/toys.dm#L581">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys&#x2F;toys.dm 581"/></a></h3>
+        <p>how many failed teleports we've done</p><h2 id="proc">Proc Details</h2><h3 id="proc/do_flavor_actions"><aside class="declaration">proc </aside>do_flavor_actions<aside>(/<a href="turf.html">turf</a>/targetturf) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/toys/toys.dm#L696">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys&#x2F;toys.dm 696"/></a></aside>
+        </h3>
+        <p>various flavor actions</p><h3 id="proc/get_teleport_prereqs"><aside class="declaration">proc </aside>get_teleport_prereqs<aside>(/<a href="turf.html">turf</a>/targetturf, ignore_watching_players) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/toys/toys.dm#L675">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys&#x2F;toys.dm 675"/></a></aside>
+        </h3>
+        <p>validate that the turf we're attempting to teleport to is not dense in space etc</p><h3 id="proc/gnome_act"><aside class="declaration">proc </aside>gnome_act<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/toys/toys.dm#L604">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys&#x2F;toys.dm 604"/></a></aside>
+        </h3>
+        <p>root proc for handling gnome AI routines</p><h3 id="proc/handle_ladders"><aside class="declaration">proc </aside>handle_ladders<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/toys/toys.dm#L639">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys&#x2F;toys.dm 639"/></a></aside>
+        </h3>
+        <p>targetturf stores our position at the start of routine in all. teleport_routine uses it as a baseline for determining where to find teleport locations also</p><h3 id="proc/handle_pipe_mode"><aside class="declaration">proc </aside>handle_pipe_mode<aside>(/<a href="turf.html">turf</a>/targetturf) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/toys/toys.dm#L761">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys&#x2F;toys.dm 761"/></a></aside>
+        </h3>
+        <p>handles gnome transportation using pipes</p><h3 id="proc/teleport_routine"><aside class="declaration">proc </aside>teleport_routine<aside>(/<a href="turf.html">turf</a>/targetturf) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/toys/toys.dm#L657">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;toys&#x2F;toys.dm 657"/></a></aside>
+        </h3>
+        <p>handles gnome teleportation when not being observed by players</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

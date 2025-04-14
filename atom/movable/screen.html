@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;atom&#x2F;movable&#x2F;screen - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="atom/movable/screen.html#var">Var Details</a> - <a href="atom/movable/screen.html#proc">Proc Details</a></header>
+<main>
+<h1>screen <aside>/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/screen_objects/screen_objects.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;screen_objects&#x2F;screen_objects.dm 9"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="atom/movable/screen.html#var/assigned_map">assigned_map</a></th><td>Map name assigned to this object.
+Automatically set by /client/proc/add_obj_to_map.</td></tr>
+            <tr><th><a href="atom/movable/screen.html#var/default_click">default_click</a></th><td>If TRUE, clicking the screen element will fall through and perform a default &quot;Click&quot; call
+Obviously this requires your Click override, if any, to call parent on their own.
+This is set to FALSE to default to dissade you from doing this.
+Generally we don't want default Click stuff, which results in bugs like using Telekinesis on a screen element
+or trying to point your gun at your screen.</td></tr>
+            <tr><th><a href="atom/movable/screen.html#var/del_on_map_removal">del_on_map_removal</a></th><td>Mark this object as garbage-collectible after you clean the map
+it was registered on.</td></tr>
+            <tr><th><a href="atom/movable/screen.html#var/hud">hud</a></th><td>A reference to the owner HUD, if any.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="atom/movable/screen.html#proc/fill_rect">fill_rect</a></th><td>Sets screen_loc to fill a rectangular area of the map.</td></tr>
+            <tr><th><a href="atom/movable/screen.html#proc/set_new_hud">set_new_hud</a></th><td>setter used to set our new hud</td></tr>
+            <tr><th><a href="atom/movable/screen.html#proc/set_position">set_position</a></th><td>Sets screen_loc of this screen object, in form of point coordinates,
+with optional pixel offset (px, py).</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/assigned_map"><aside class="declaration">var </aside>assigned_map
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/screen_objects/screen_objects.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;screen_objects&#x2F;screen_objects.dm 26"/></a></h3>
+        <p>Map name assigned to this object.
+Automatically set by /client/proc/add_obj_to_map.</p><h3 id="var/default_click"><aside class="declaration">var </aside>default_click
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/screen_objects/screen_objects.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;screen_objects&#x2F;screen_objects.dm 43"/></a></h3>
+        <p>If TRUE, clicking the screen element will fall through and perform a default &quot;Click&quot; call
+Obviously this requires your Click override, if any, to call parent on their own.
+This is set to FALSE to default to dissade you from doing this.
+Generally we don't want default Click stuff, which results in bugs like using Telekinesis on a screen element
+or trying to point your gun at your screen.</p><h3 id="var/del_on_map_removal"><aside class="declaration">var </aside>del_on_map_removal
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/screen_objects/screen_objects.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;screen_objects&#x2F;screen_objects.dm 34"/></a></h3>
+        <p>Mark this object as garbage-collectible after you clean the map
+it was registered on.</p>
+<p>This could probably be changed to be a proc, for conditional removal.
+But for now, this works.</p><h3 id="var/hud"><aside class="declaration">var </aside>hud
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/hud.html">hud</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/screen_objects/screen_objects.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;screen_objects&#x2F;screen_objects.dm 19"/></a></h3>
+        <p>A reference to the owner HUD, if any.</p><h2 id="proc">Proc Details</h2><h3 id="proc/fill_rect"><aside class="declaration">proc </aside>fill_rect<aside>(x1, y1, x2, y2) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/map_popups.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups.dm 30"/></a></aside>
+        </h3>
+        <p>Sets screen_loc to fill a rectangular area of the map.</p>
+<p>If applicable, &quot;assigned_map&quot; has to be assigned before this proc call.</p><h3 id="proc/set_new_hud"><aside class="declaration">proc </aside>set_new_hud<aside>(/<a href="datum.html">datum</a>/<a href="datum/hud.html">hud</a>/hud_owner) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/screen_objects/screen_objects.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;screen_objects&#x2F;screen_objects.dm 66"/></a></aside>
+        </h3>
+        <p>setter used to set our new hud</p><h3 id="proc/set_position"><aside class="declaration">proc </aside>set_position<aside>(x, y, px, py) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/map_popups.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups.dm 19"/></a></aside>
+        </h3>
+        <p>Sets screen_loc of this screen object, in form of point coordinates,
+with optional pixel offset (px, py).</p>
+<p>If applicable, &quot;assigned_map&quot; has to be assigned before this proc call.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

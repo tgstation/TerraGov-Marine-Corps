@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;structure&#x2F;mineral_door - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/structure/mineral_door.html#var">Var Details</a> - <a href="obj/structure/mineral_door.html#proc">Proc Details</a></header>
+<main>
+<h1>mineral_door <aside>/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/mineral_door.html">mineral_door</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/mineral_doors.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;mineral_doors.dm 4"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/structure/mineral_door.html#var/material_type">material_type</a></th><td>The type of material we're made from and what we drop when destroyed</td></tr>
+            <tr><th><a href="obj/structure/mineral_door.html#var/open">open</a></th><td>Are we open or not</td></tr>
+            <tr><th><a href="obj/structure/mineral_door.html#var/switching_states">switching_states</a></th><td>Are we currently opening/closing</td></tr>
+            <tr><th><a href="obj/structure/mineral_door.html#var/trigger_sound">trigger_sound</a></th><td>The sound that gets played when opening/closing this door</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/structure/mineral_door.html#proc/get_burn_damage_multiplier">get_burn_damage_multiplier</a></th><td>Takes extra damage if our attacking item does burn damage</td></tr>
+            <tr><th><a href="obj/structure/mineral_door.html#proc/toggle_state">toggle_state</a></th><td>The proc that actually does the door closing. Plays the sound, the animation, etc.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/material_type"><aside class="declaration">var </aside>material_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/mineral_doors.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;mineral_doors.dm 21"/></a></h3>
+        <p>The type of material we're made from and what we drop when destroyed</p><h3 id="var/open"><aside class="declaration">var </aside>open
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/mineral_doors.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;mineral_doors.dm 13"/></a></h3>
+        <p>Are we open or not</p><h3 id="var/switching_states"><aside class="declaration">var </aside>switching_states
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/mineral_doors.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;mineral_doors.dm 15"/></a></h3>
+        <p>Are we currently opening/closing</p><h3 id="var/trigger_sound"><aside class="declaration">var </aside>trigger_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/mineral_doors.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;mineral_doors.dm 17"/></a></h3>
+        <p>The sound that gets played when opening/closing this door</p><h2 id="proc">Proc Details</h2><h3 id="proc/get_burn_damage_multiplier"><aside class="declaration">proc </aside>get_burn_damage_multiplier<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attacking_item, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, def_zone, bonus_damage) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/mineral_doors.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;mineral_doors.dm 116"/></a></aside>
+        </h3>
+        <p>Takes extra damage if our attacking item does burn damage</p><h3 id="proc/toggle_state"><aside class="declaration">proc </aside>toggle_state<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/mineral_doors.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;mineral_doors.dm 68"/></a></aside>
+        </h3>
+        <p>The proc that actually does the door closing. Plays the sound, the animation, etc.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

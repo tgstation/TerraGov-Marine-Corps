@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;turf&#x2F;closed&#x2F;wall&#x2F;resin&#x2F;regenerating - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="turf/closed/wall/resin/regenerating.html#var">Var Details</a> - <a href="turf/closed/wall/resin/regenerating.html#proc">Proc Details</a></header>
+<main>
+<h1>regenerating <aside>/<a href="turf.html">turf</a>/<a href="turf/closed.html">closed</a>/<a href="turf/closed/wall.html">wall</a>/<a href="turf/closed/wall/resin.html">resin</a>/<a href="turf/closed/wall/resin/regenerating.html">regenerating</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/walls/resin.dm#L184">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;walls&#x2F;resin.dm 184"/></a></h1>
+
+<p>Regenerating walls that start with lower health, but grow to a much higher hp over time</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="turf/closed/wall/resin/regenerating.html#var/cooldown_on_taking_dmg">cooldown_on_taking_dmg</a></th><td>How long should the wall stop healing for when taking dmg</td></tr>
+            <tr><th><a href="turf/closed/wall/resin/regenerating.html#var/existingtimer">existingtimer</a></th><td>Whether we have a timer already to stop from clogging up the timer ss</td></tr>
+            <tr><th><a href="turf/closed/wall/resin/regenerating.html#var/heal_per_tick">heal_per_tick</a></th><td>How much the walls integrity heals per tick (5 seconds)</td></tr>
+            <tr><th><a href="turf/closed/wall/resin/regenerating.html#var/max_upgradable_health">max_upgradable_health</a></th><td>Total health possible for a wall after regenerating at max health</td></tr>
+            <tr><th><a href="turf/closed/wall/resin/regenerating.html#var/max_upgrade_per_tick">max_upgrade_per_tick</a></th><td>How much the walls max_integrity increases per tick (5 seconds)</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="turf/closed/wall/resin/regenerating.html#proc/start_healing">start_healing</a></th><td>Try to start processing on the wall.
+Will return early if the wall is already at max upgradable health.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/cooldown_on_taking_dmg"><aside class="declaration">var </aside>cooldown_on_taking_dmg
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/walls/resin.dm#L194">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;walls&#x2F;resin.dm 194"/></a></h3>
+        <p>How long should the wall stop healing for when taking dmg</p><h3 id="var/existingtimer"><aside class="declaration">var </aside>existingtimer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/walls/resin.dm#L196">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;walls&#x2F;resin.dm 196"/></a></h3>
+        <p>Whether we have a timer already to stop from clogging up the timer ss</p><h3 id="var/heal_per_tick"><aside class="declaration">var </aside>heal_per_tick
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/walls/resin.dm#L190">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;walls&#x2F;resin.dm 190"/></a></h3>
+        <p>How much the walls integrity heals per tick (5 seconds)</p><h3 id="var/max_upgradable_health"><aside class="declaration">var </aside>max_upgradable_health
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/walls/resin.dm#L188">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;walls&#x2F;resin.dm 188"/></a></h3>
+        <p>Total health possible for a wall after regenerating at max health</p><h3 id="var/max_upgrade_per_tick"><aside class="declaration">var </aside>max_upgrade_per_tick
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/walls/resin.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;walls&#x2F;resin.dm 192"/></a></h3>
+        <p>How much the walls max_integrity increases per tick (5 seconds)</p><h2 id="proc">Proc Details</h2><h3 id="proc/start_healing"><aside class="declaration">proc </aside>start_healing<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/walls/resin.dm#L213">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;walls&#x2F;resin.dm 213"/></a></aside>
+        </h3>
+        <p>Try to start processing on the wall.
+Will return early if the wall is already at max upgradable health.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

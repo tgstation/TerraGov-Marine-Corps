@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;structure&#x2F;xeno&#x2F;plant&#x2F;stealth_plant - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/structure/xeno/plant/stealth_plant.html#var">Var Details</a> - <a href="obj/structure/xeno/plant/stealth_plant.html#proc">Proc Details</a></header>
+<main>
+<h1>stealth_plant <aside>/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/xeno.html">xeno</a>/<a href="obj/structure/xeno/plant.html">plant</a>/<a href="obj/structure/xeno/plant/stealth_plant.html">stealth_plant</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xenoplant.dm#L184">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xenoplant.dm 184"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/structure/xeno/plant/stealth_plant.html#var/active_camouflage_duration">active_camouflage_duration</a></th><td>How long should veil last</td></tr>
+            <tr><th><a href="obj/structure/xeno/plant/stealth_plant.html#var/active_camouflage_pulse_range">active_camouflage_pulse_range</a></th><td>The range of the active stealth ability, does not require line of sight</td></tr>
+            <tr><th><a href="obj/structure/xeno/plant/stealth_plant.html#var/camouflage_range">camouflage_range</a></th><td>The radius of the passive structure camouflage, requires line of sight</td></tr>
+            <tr><th><a href="obj/structure/xeno/plant/stealth_plant.html#var/camouflaged_structures">camouflaged_structures</a></th><td>The list of passively camouflaged structures</td></tr>
+            <tr><th><a href="obj/structure/xeno/plant/stealth_plant.html#var/camouflaged_xenos">camouflaged_xenos</a></th><td>The list of actively camouflaged xenos by veil</td></tr>
+            <tr><th><a href="obj/structure/xeno/plant/stealth_plant.html#var/cooldown">cooldown</a></th><td>How long until the plant can be activated again</td></tr>
+            <tr><th><a href="obj/structure/xeno/plant/stealth_plant.html#var/on_cooldown">on_cooldown</a></th><td>Is the active ability veil on cooldown ?</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/structure/xeno/plant/stealth_plant.html#proc/ready">ready</a></th><td>Called when veil() can be used once again</td></tr>
+            <tr><th><a href="obj/structure/xeno/plant/stealth_plant.html#proc/unveil">unveil</a></th><td>Reveals all xenos hidden by veil()</td></tr>
+            <tr><th><a href="obj/structure/xeno/plant/stealth_plant.html#proc/veil">veil</a></th><td>Hides all nearby xenos</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/active_camouflage_duration"><aside class="declaration">var </aside>active_camouflage_duration
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xenoplant.dm#L195">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xenoplant.dm 195"/></a></h3>
+        <p>How long should veil last</p><h3 id="var/active_camouflage_pulse_range"><aside class="declaration">var </aside>active_camouflage_pulse_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xenoplant.dm#L193">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xenoplant.dm 193"/></a></h3>
+        <p>The range of the active stealth ability, does not require line of sight</p><h3 id="var/camouflage_range"><aside class="declaration">var </aside>camouflage_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xenoplant.dm#L191">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xenoplant.dm 191"/></a></h3>
+        <p>The radius of the passive structure camouflage, requires line of sight</p><h3 id="var/camouflaged_structures"><aside class="declaration">var </aside>camouflaged_structures
+            <aside>&ndash; /list/obj/structure/xeno</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xenoplant.dm#L201">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xenoplant.dm 201"/></a></h3>
+        <p>The list of passively camouflaged structures</p><h3 id="var/camouflaged_xenos"><aside class="declaration">var </aside>camouflaged_xenos
+            <aside>&ndash; /list/mob/living/carbon/xenomorph</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xenoplant.dm#L203">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xenoplant.dm 203"/></a></h3>
+        <p>The list of actively camouflaged xenos by veil</p><h3 id="var/cooldown"><aside class="declaration">var </aside>cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xenoplant.dm#L197">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xenoplant.dm 197"/></a></h3>
+        <p>How long until the plant can be activated again</p><h3 id="var/on_cooldown"><aside class="declaration">var </aside>on_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xenoplant.dm#L199">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xenoplant.dm 199"/></a></h3>
+        <p>Is the active ability veil on cooldown ?</p><h2 id="proc">Proc Details</h2><h3 id="proc/ready"><aside class="declaration">proc </aside>ready<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xenoplant.dm#L261">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xenoplant.dm 261"/></a></aside>
+        </h3>
+        <p>Called when veil() can be used once again</p><h3 id="proc/unveil"><aside class="declaration">proc </aside>unveil<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xenoplant.dm#L266">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xenoplant.dm 266"/></a></aside>
+        </h3>
+        <p>Reveals all xenos hidden by veil()</p><h3 id="proc/veil"><aside class="declaration">proc </aside>veil<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xenoplant.dm#L246">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xenoplant.dm 246"/></a></aside>
+        </h3>
+        <p>Hides all nearby xenos</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;xeno_action&#x2F;evasion - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/xeno_action/evasion.html#var">Var Details</a> - <a href="datum/action/ability/xeno_action/evasion.html#proc">Proc Details</a></header>
+<main>
+<h1>evasion <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/xeno_action.html">xeno_action</a>/<a href="datum/action/ability/xeno_action/evasion.html">evasion</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 77"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/evasion.html#var/auto_evasion">auto_evasion</a></th><td>Whether auto evasion is on or off.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/evasion.html#var/evade_active">evade_active</a></th><td>Whether evasion is currently active</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/evasion.html#var/evasion_duration">evasion_duration</a></th><td>How long our Evasion will last.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/evasion.html#var/evasion_stacks">evasion_stacks</a></th><td>Current amount of Evasion stacks.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/evasion.html#proc/evasion_deactivate">evasion_deactivate</a></th><td>Deactivates Evasion, clearing signals, vars, etc.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/evasion.html#proc/evasion_debuff_check">evasion_debuff_check</a></th><td>Called after getting hit with an Evasion disabling debuff.
+Checks if evasion is active, and if the debuff inflicted any stacks, disabling Evasion if so.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/evasion.html#proc/evasion_dodge">evasion_dodge</a></th><td>This is where the dodgy magic happens</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/evasion.html#proc/evasion_dodge_fx">evasion_dodge_fx</a></th><td>Handles dodge effects and visuals for the Evasion ability.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/evasion.html#proc/evasion_flamer_hit">evasion_flamer_hit</a></th><td>Called when the owner is hit by a flamethrower projectile.
+Reduces evasion stacks based on the damage received.</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/evasion.html#proc/evasion_throw_dodge">evasion_throw_dodge</a></th><td>Determines whether or not a thrown projectile is dodged while the Evasion ability is active</td></tr>
+            <tr><th><a href="datum/action/ability/xeno_action/evasion.html#proc/hud_set_evasion">hud_set_evasion</a></th><td>Sets the evasion duration hud</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/auto_evasion"><aside class="declaration">var </aside>auto_evasion
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 90"/></a></h3>
+        <p>Whether auto evasion is on or off.</p><h3 id="var/evade_active"><aside class="declaration">var </aside>evade_active
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 92"/></a></h3>
+        <p>Whether evasion is currently active</p><h3 id="var/evasion_duration"><aside class="declaration">var </aside>evasion_duration
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 94"/></a></h3>
+        <p>How long our Evasion will last.</p><h3 id="var/evasion_stacks"><aside class="declaration">var </aside>evasion_stacks
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 96"/></a></h3>
+        <p>Current amount of Evasion stacks.</p><h2 id="proc">Proc Details</h2><h3 id="proc/evasion_deactivate"><aside class="declaration">proc </aside>evasion_deactivate<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L209">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 209"/></a></aside>
+        </h3>
+        <p>Deactivates Evasion, clearing signals, vars, etc.</p><h3 id="proc/evasion_debuff_check"><aside class="declaration">proc </aside>evasion_debuff_check<aside>(/<a href="datum.html">datum</a>/source, amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L202">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 202"/></a></aside>
+        </h3>
+        <p>Called after getting hit with an Evasion disabling debuff.
+Checks if evasion is active, and if the debuff inflicted any stacks, disabling Evasion if so.</p><h3 id="proc/evasion_dodge"><aside class="declaration">proc </aside>evasion_dodge<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/proj, cardinal_move, uncrossing) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L245">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 245"/></a></aside>
+        </h3>
+        <p>This is where the dodgy magic happens</p><h3 id="proc/evasion_dodge_fx"><aside class="declaration">proc </aside>evasion_dodge_fx<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/proj) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L263">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 263"/></a></aside>
+        </h3>
+        <p>Handles dodge effects and visuals for the Evasion ability.</p><h3 id="proc/evasion_flamer_hit"><aside class="declaration">proc </aside>evasion_flamer_hit<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/proj) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L187">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 187"/></a></aside>
+        </h3>
+        <p>Called when the owner is hit by a flamethrower projectile.
+Reduces evasion stacks based on the damage received.</p><h3 id="proc/evasion_throw_dodge"><aside class="declaration">proc </aside>evasion_throw_dodge<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/proj) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L232">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 232"/></a></aside>
+        </h3>
+        <p>Determines whether or not a thrown projectile is dodged while the Evasion ability is active</p><h3 id="proc/hud_set_evasion"><aside class="declaration">proc </aside>hud_set_evasion<aside>(duration) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/runner/abilities_runner.dm#L169">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;runner&#x2F;abilities_runner.dm 169"/></a></aside>
+        </h3>
+        <p>Sets the evasion duration hud</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

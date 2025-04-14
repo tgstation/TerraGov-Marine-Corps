@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;power&#x2F;apc - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/power/apc.html#var">Var Details</a> - <a href="obj/machinery/power/apc.html#proc">Proc Details</a></header>
+<main>
+<h1>apc <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/power.html">power</a>/<a href="obj/machinery/power/apc.html">apc</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 9"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/aidisabled">aidisabled</a></th><td>Is the AI locked from using the APC</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/area">area</a></th><td>The area we're affecting</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/beenhit">beenhit</a></th><td>Used for counting how many times it has been hit, used for Aliens at the moment</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/cell">cell</a></th><td>The power cell inside the APC</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/cell_type">cell_type</a></th><td>The type of cell to spawn this APC with</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/chargecount">chargecount</a></th><td>Number of ticks where the apc is trying to recharge</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/chargemode">chargemode</a></th><td>Can the APC recharge?</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/charging">charging</a></th><td>State of the apc charging (not charging, charging, fully charged)</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/coverlocked">coverlocked</a></th><td>Is the apc cover locked?</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/crash_break_probability">crash_break_probability</a></th><td>Probability of APC being broken by a shuttle crash on the same z-level</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/environ">environ</a></th><td>State of the environmental channel (off, auto off, on, auto on)</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/equipment">equipment</a></th><td>State of the equipment channel (off, auto off, on, auto on)</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/has_electronics">has_electronics</a></th><td>State of the electronics inside (missing, installed, secured)</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/icon_update_needed">icon_update_needed</a></th><td>Used to stop the icon from updating too much</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/lastused_environ">lastused_environ</a></th><td>Amount of power used by the environmental channel</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/lastused_equip">lastused_equip</a></th><td>Amount of power used by the equipment channel</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/lastused_light">lastused_light</a></th><td>Amount of power used by the lighting channel</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/lastused_total">lastused_total</a></th><td>Total amount of power used by the three channels</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/lighting">lighting</a></th><td>State of the lighting channel (off, auto off, on, auto on)</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/locked">locked</a></th><td>Is the apc interface locked?</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/longtermpower">longtermpower</a></th><td>Buffer state that makes apcs not shut off channels immediately as long as theres some power left, effect visible in apcs only slowly losing power</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/opened">opened</a></th><td>The current state of the APC cover</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/operating">operating</a></th><td>Is the apc working?</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/shorted">shorted</a></th><td>Is the APC shorted?</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/start_charge">start_charge</a></th><td>The charge of the APC when first spawned</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/terminal">terminal</a></th><td>Reference to our cable terminal</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/update_overlay">update_overlay</a></th><td>Stores the flag for the overlays</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#var/update_state">update_state</a></th><td>Stores the flags related to icon updating</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#proc/check_updates">check_updates</a></th><td>Checks for what icon updates we will need to handle</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#proc/on_cell_deletion">on_cell_deletion</a></th><td>Called by the deletion of the referenced powercell.</td></tr>
+            <tr><th><a href="obj/machinery/power/apc.html#proc/set_cell">set_cell</a></th><td>Wrapper to guarantee powercells are properly nulled and avoid hard deletes.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/aidisabled"><aside class="declaration">var </aside>aidisabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 54"/></a></h3>
+        <p>Is the AI locked from using the APC</p><h3 id="var/area"><aside class="declaration">var </aside>area
+            <aside>&ndash; /<a href="area.html">area</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 24"/></a></h3>
+        <p>The area we're affecting</p><h3 id="var/beenhit"><aside class="declaration">var </aside>beenhit
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 69"/></a></h3>
+        <p>Used for counting how many times it has been hit, used for Aliens at the moment</p><h3 id="var/cell"><aside class="declaration">var </aside>cell
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/cell.html">cell</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 26"/></a></h3>
+        <p>The power cell inside the APC</p><h3 id="var/cell_type"><aside class="declaration">var </aside>cell_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 30"/></a></h3>
+        <p>The type of cell to spawn this APC with</p><h3 id="var/chargecount"><aside class="declaration">var </aside>chargecount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 48"/></a></h3>
+        <p>Number of ticks where the apc is trying to recharge</p><h3 id="var/chargemode"><aside class="declaration">var </aside>chargemode
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 46"/></a></h3>
+        <p>Can the APC recharge?</p><h3 id="var/charging"><aside class="declaration">var </aside>charging
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 44"/></a></h3>
+        <p>State of the apc charging (not charging, charging, fully charged)</p><h3 id="var/coverlocked"><aside class="declaration">var </aside>coverlocked
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 52"/></a></h3>
+        <p>Is the apc cover locked?</p><h3 id="var/crash_break_probability"><aside class="declaration">var </aside>crash_break_probability
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 79"/></a></h3>
+        <p>Probability of APC being broken by a shuttle crash on the same z-level</p><h3 id="var/environ"><aside class="declaration">var </aside>environ
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 40"/></a></h3>
+        <p>State of the environmental channel (off, auto off, on, auto on)</p><h3 id="var/equipment"><aside class="declaration">var </aside>equipment
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 38"/></a></h3>
+        <p>State of the equipment channel (off, auto off, on, auto on)</p><h3 id="var/has_electronics"><aside class="declaration">var </aside>has_electronics
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 67"/></a></h3>
+        <p>State of the electronics inside (missing, installed, secured)</p><h3 id="var/icon_update_needed"><aside class="declaration">var </aside>icon_update_needed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 77"/></a></h3>
+        <p>Used to stop the icon from updating too much</p><h3 id="var/lastused_environ"><aside class="declaration">var </aside>lastused_environ
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 62"/></a></h3>
+        <p>Amount of power used by the environmental channel</p><h3 id="var/lastused_equip"><aside class="declaration">var </aside>lastused_equip
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 60"/></a></h3>
+        <p>Amount of power used by the equipment channel</p><h3 id="var/lastused_light"><aside class="declaration">var </aside>lastused_light
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 58"/></a></h3>
+        <p>Amount of power used by the lighting channel</p><h3 id="var/lastused_total"><aside class="declaration">var </aside>lastused_total
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 64"/></a></h3>
+        <p>Total amount of power used by the three channels</p><h3 id="var/lighting"><aside class="declaration">var </aside>lighting
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 36"/></a></h3>
+        <p>State of the lighting channel (off, auto off, on, auto on)</p><h3 id="var/locked"><aside class="declaration">var </aside>locked
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 50"/></a></h3>
+        <p>Is the apc interface locked?</p><h3 id="var/longtermpower"><aside class="declaration">var </aside>longtermpower
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 71"/></a></h3>
+        <p>Buffer state that makes apcs not shut off channels immediately as long as theres some power left, effect visible in apcs only slowly losing power</p><h3 id="var/opened"><aside class="declaration">var </aside>opened
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 32"/></a></h3>
+        <p>The current state of the APC cover</p><h3 id="var/operating"><aside class="declaration">var </aside>operating
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 42"/></a></h3>
+        <p>Is the apc working?</p><h3 id="var/shorted"><aside class="declaration">var </aside>shorted
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 34"/></a></h3>
+        <p>Is the APC shorted?</p><h3 id="var/start_charge"><aside class="declaration">var </aside>start_charge
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 28"/></a></h3>
+        <p>The charge of the APC when first spawned</p><h3 id="var/terminal"><aside class="declaration">var </aside>terminal
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/power.html">power</a>/terminal</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 56"/></a></h3>
+        <p>Reference to our cable terminal</p><h3 id="var/update_overlay"><aside class="declaration">var </aside>update_overlay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 75"/></a></h3>
+        <p>Stores the flag for the overlays</p><h3 id="var/update_state"><aside class="declaration">var </aside>update_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 73"/></a></h3>
+        <p>Stores the flags related to icon updating</p><h2 id="proc">Proc Details</h2><h3 id="proc/check_updates"><aside class="declaration">proc </aside>check_updates<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc_appearance.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc_appearance.dm 48"/></a></aside>
+        </h3>
+        <p>Checks for what icon updates we will need to handle</p><h3 id="proc/on_cell_deletion"><aside class="declaration">proc </aside>on_cell_deletion<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/cell.html">cell</a>/source, force) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 175"/></a></aside>
+        </h3>
+        <p>Called by the deletion of the referenced powercell.</p><h3 id="proc/set_cell"><aside class="declaration">proc </aside>set_cell<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/cell.html">cell</a>/new_cell) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/power/apc/apc.dm#L166">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;apc&#x2F;apc.dm 166"/></a></aside>
+        </h3>
+        <p>Wrapper to guarantee powercells are properly nulled and avoid hard deletes.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

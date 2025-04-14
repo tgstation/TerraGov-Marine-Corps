@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;effect&#x2F;xeno&#x2F;shield - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/effect/xeno/shield.html#var">Var Details</a> - <a href="obj/effect/xeno/shield.html#proc">Proc Details</a></header>
+<main>
+<h1>shield <aside>/<a href="obj.html">obj</a>/<a href="obj/effect/xeno/shield.html">effect/xeno/shield</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 192"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/effect/xeno/shield.html#var/alternative_reflection">alternative_reflection</a></th><td>If reflecting projectiles should go to a targetted atom.</td></tr>
+            <tr><th><a href="obj/effect/xeno/shield.html#var/frozen_projectiles">frozen_projectiles</a></th><td>All the projectiles currently frozen by this obj</td></tr>
+            <tr><th><a href="obj/effect/xeno/shield.html#var/owner">owner</a></th><td>Who created the shield</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/effect/xeno/shield.html#proc/record_projectiles_frozen">record_projectiles_frozen</a></th><td>Tally up bullets caught/reflected</td></tr>
+            <tr><th><a href="obj/effect/xeno/shield.html#proc/record_rocket_reflection">record_rocket_reflection</a></th><td>Adds to the personal statistics if the reflected projectile was a rocket.</td></tr>
+            <tr><th><a href="obj/effect/xeno/shield.html#proc/reflect_projectiles">reflect_projectiles</a></th><td>Reflects projectiles based on their relative incoming angle</td></tr>
+            <tr><th><a href="obj/effect/xeno/shield.html#proc/release_projectiles">release_projectiles</a></th><td>Unfeezes the projectiles on their original path</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/alternative_reflection"><aside class="declaration">var </aside>alternative_reflection
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L204">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 204"/></a></h3>
+        <p>If reflecting projectiles should go to a targetted atom.</p><h3 id="var/frozen_projectiles"><aside class="declaration">var </aside>frozen_projectiles
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L202">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 202"/></a></h3>
+        <p>All the projectiles currently frozen by this obj</p><h3 id="var/owner"><aside class="declaration">var </aside>owner
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L200">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 200"/></a></h3>
+        <p>Who created the shield</p><h2 id="proc">Proc Details</h2><h3 id="proc/record_projectiles_frozen"><aside class="declaration">proc </aside>record_projectiles_frozen<aside>(/<a href="mob.html">mob</a>/user, amount, reflected) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/personal_statistics.dm#L634">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;personal_statistics.dm 634"/></a></aside>
+        </h3>
+        <p>Tally up bullets caught/reflected</p><h3 id="proc/record_rocket_reflection"><aside class="declaration">proc </aside>record_rocket_reflection<aside>(/<a href="mob.html">mob</a>/user, /<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/projectile) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/personal_statistics.dm#L644">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;personal_statistics.dm 644"/></a></aside>
+        </h3>
+        <p>Adds to the personal statistics if the reflected projectile was a rocket.</p><h3 id="proc/reflect_projectiles"><aside class="declaration">proc </aside>reflect_projectiles<aside>(/<a href="atom.html">atom</a>/targetted_atom) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L251">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 251"/></a></aside>
+        </h3>
+        <p>Reflects projectiles based on their relative incoming angle</p><h3 id="proc/release_projectiles"><aside class="declaration">proc </aside>release_projectiles<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/warlock/abilities_warlock.dm#L244">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;warlock&#x2F;abilities_warlock.dm 244"/></a></aside>
+        </h3>
+        <p>Unfeezes the projectiles on their original path</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

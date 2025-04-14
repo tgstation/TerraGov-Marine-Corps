@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;mob&#x2F;new_player - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="mob/new_player.html#var">Var Details</a> - <a href="mob/new_player.html#proc">Proc Details</a></header>
+<main>
+<h1>new_player <aside>/<a href="mob.html">mob</a>/<a href="mob/new_player.html">new_player</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/new_player.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;new_player.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob/new_player.html#var/saved_job">saved_job</a></th><td>The job we tried to join but were warned it would cause an unbalance. It's saved for later use</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="mob/new_player.html#proc/attempt_late_join">attempt_late_join</a></th><td>Attempts to latejoin the player</td></tr>
+            <tr><th><a href="mob/new_player.html#proc/handle_playeR_POLLSing">handle_playeR_POLLSing</a></th><td>Shows a list of currently running polls a player can vote/has voted on</td></tr>
+            <tr><th><a href="mob/new_player.html#proc/poll_player">poll_player</a></th><td>Redirects a player to the correct poll window based on poll type.</td></tr>
+            <tr><th><a href="mob/new_player.html#proc/poll_player_irv">poll_player_irv</a></th><td>Shows voting window for an IRV type poll, listing its options and relevant details.</td></tr>
+            <tr><th><a href="mob/new_player.html#proc/poll_player_multi">poll_player_multi</a></th><td>Shows voting window for a multiple choice type poll, listing its options and relevant details.</td></tr>
+            <tr><th><a href="mob/new_player.html#proc/poll_player_option">poll_player_option</a></th><td>Shows voting window for an option type poll, listing its options and relevant details.</td></tr>
+            <tr><th><a href="mob/new_player.html#proc/poll_player_rating">poll_player_rating</a></th><td>Shows voting window for a rating type poll, listing its options and relevant details.</td></tr>
+            <tr><th><a href="mob/new_player.html#proc/poll_player_text">poll_player_text</a></th><td>Shows voting window for a text response type poll, listing its relevant details.</td></tr>
+            <tr><th><a href="mob/new_player.html#proc/toggle_ready">toggle_ready</a></th><td>Toggles the new players ready state</td></tr>
+            <tr><th><a href="mob/new_player.html#proc/view_xeno_manifest">view_xeno_manifest</a></th><td>Proc for lobby button &quot;View Hive Leaders&quot; to see current leader/queen status.</td></tr>
+            <tr><th><a href="mob/new_player.html#proc/vote_on_poll_handler">vote_on_poll_handler</a></th><td>Runs some poll validation before a vote is processed.</td></tr>
+            <tr><th><a href="mob/new_player.html#proc/vote_on_poll_irv">vote_on_poll_irv</a></th><td>Processes vote form data and saves results to the database for an IRV type poll.</td></tr>
+            <tr><th><a href="mob/new_player.html#proc/vote_on_poll_multi">vote_on_poll_multi</a></th><td>Processes vote form data and saves results to the database for a multiple choice type poll.</td></tr>
+            <tr><th><a href="mob/new_player.html#proc/vote_on_poll_option">vote_on_poll_option</a></th><td>Processes vote form data and saves results to the database for an option type poll.</td></tr>
+            <tr><th><a href="mob/new_player.html#proc/vote_on_poll_rating">vote_on_poll_rating</a></th><td>Processes vote form data and saves results to the database for a rating type poll.</td></tr>
+            <tr><th><a href="mob/new_player.html#proc/vote_on_poll_text">vote_on_poll_text</a></th><td>Processes response form data and saves results to the database for a text response type poll.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/saved_job"><aside class="declaration">var </aside>saved_job
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/job.html">job</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/new_player.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;new_player.dm 18"/></a></h3>
+        <p>The job we tried to join but were warned it would cause an unbalance. It's saved for later use</p><h2 id="proc">Proc Details</h2><h3 id="proc/attempt_late_join"><aside class="declaration">proc </aside>attempt_late_join<aside>(queue_override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/new_player.dm#L450">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;new_player.dm 450"/></a></aside>
+        </h3>
+        <p>Attempts to latejoin the player</p><h3 id="proc/handle_playeR_POLLSing"><aside class="declaration">proc </aside>handle_playeR_POLLSing<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/poll.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;poll.dm 5"/></a></aside>
+        </h3>
+        <p>Shows a list of currently running polls a player can vote/has voted on</p><h3 id="proc/poll_player"><aside class="declaration">proc </aside>poll_player<aside>(/<a href="datum.html">datum</a>/<a href="datum/poll_question.html">poll_question</a>/poll) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/poll.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;poll.dm 20"/></a></aside>
+        </h3>
+        <p>Redirects a player to the correct poll window based on poll type.</p><h3 id="proc/poll_player_irv"><aside class="declaration">proc </aside>poll_player_irv<aside>(/<a href="datum.html">datum</a>/<a href="datum/poll_question.html">poll_question</a>/poll) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/poll.dm#L224">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;poll.dm 224"/></a></aside>
+        </h3>
+        <p>Shows voting window for an IRV type poll, listing its options and relevant details.</p>
+<p>If already voted on, the options are sorted how a player voted for them, otherwise they are randomly shuffled.</p><h3 id="proc/poll_player_multi"><aside class="declaration">proc </aside>poll_player_multi<aside>(/<a href="datum.html">datum</a>/<a href="datum/poll_question.html">poll_question</a>/poll) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/poll.dm#L180">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;poll.dm 180"/></a></aside>
+        </h3>
+        <p>Shows voting window for a multiple choice type poll, listing its options and relevant details.</p>
+<p>If already voted on, the options a player voted for are pre-selected.</p><h3 id="proc/poll_player_option"><aside class="declaration">proc </aside>poll_player_option<aside>(/<a href="datum.html">datum</a>/<a href="datum/poll_question.html">poll_question</a>/poll) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/poll.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;poll.dm 44"/></a></aside>
+        </h3>
+        <p>Shows voting window for an option type poll, listing its options and relevant details.</p>
+<p>If already voted on, the option a player voted for is pre-selected.</p><h3 id="proc/poll_player_rating"><aside class="declaration">proc </aside>poll_player_rating<aside>(/<a href="datum.html">datum</a>/<a href="datum/poll_question.html">poll_question</a>/poll) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/poll.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;poll.dm 125"/></a></aside>
+        </h3>
+        <p>Shows voting window for a rating type poll, listing its options and relevant details.</p>
+<p>If already voted on, the options a player voted for are pre-selected.</p><h3 id="proc/poll_player_text"><aside class="declaration">proc </aside>poll_player_text<aside>(/<a href="datum.html">datum</a>/<a href="datum/poll_question.html">poll_question</a>/poll) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/poll.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;poll.dm 88"/></a></aside>
+        </h3>
+        <p>Shows voting window for a text response type poll, listing its relevant details.</p>
+<p>If already responded to, the saved response of a player is shown.</p><h3 id="proc/toggle_ready"><aside class="declaration">proc </aside>toggle_ready<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/new_player.dm#L438">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;new_player.dm 438"/></a></aside>
+        </h3>
+        <p>Toggles the new players ready state</p><h3 id="proc/view_xeno_manifest"><aside class="declaration">proc </aside>view_xeno_manifest<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/new_player.dm#L248">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;new_player.dm 248"/></a></aside>
+        </h3>
+        <p>Proc for lobby button &quot;View Hive Leaders&quot; to see current leader/queen status.</p><h3 id="proc/vote_on_poll_handler"><aside class="declaration">proc </aside>vote_on_poll_handler<aside>(/<a href="datum.html">datum</a>/<a href="datum/poll_question.html">poll_question</a>/poll, href_list) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/poll.dm#L313">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;poll.dm 313"/></a></aside>
+        </h3>
+        <p>Runs some poll validation before a vote is processed.</p>
+<p>Checks a player is who they claim to be and that a poll is actually still running.
+Also loads the vote_id to pass onto single-option and text polls.
+Increments the vote count when successful.</p><h3 id="proc/vote_on_poll_irv"><aside class="declaration">proc </aside>vote_on_poll_irv<aside>(/<a href="datum.html">datum</a>/<a href="datum/poll_question.html">poll_question</a>/poll, /list/href_list, admin_rank, sql_poll_id) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/poll.dm#L537">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;poll.dm 537"/></a></aside>
+        </h3>
+        <p>Processes vote form data and saves results to the database for an IRV type poll.</p><h3 id="proc/vote_on_poll_multi"><aside class="declaration">proc </aside>vote_on_poll_multi<aside>(/<a href="datum.html">datum</a>/<a href="datum/poll_question.html">poll_question</a>/poll, /list/href_list, admin_rank, sql_poll_id) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/poll.dm#L490">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;poll.dm 490"/></a></aside>
+        </h3>
+        <p>Processes vote form data and saves results to the database for a multiple choice type poll.</p><h3 id="proc/vote_on_poll_option"><aside class="declaration">proc </aside>vote_on_poll_option<aside>(/<a href="datum.html">datum</a>/<a href="datum/poll_question.html">poll_question</a>/poll, href_list, admin_rank, sql_poll_id, vote_id) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/poll.dm#L380">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;poll.dm 380"/></a></aside>
+        </h3>
+        <p>Processes vote form data and saves results to the database for an option type poll.</p><h3 id="proc/vote_on_poll_rating"><aside class="declaration">proc </aside>vote_on_poll_rating<aside>(/<a href="datum.html">datum</a>/<a href="datum/poll_question.html">poll_question</a>/poll, /list/href_list, admin_rank, sql_poll_id) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/poll.dm#L444">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;poll.dm 444"/></a></aside>
+        </h3>
+        <p>Processes vote form data and saves results to the database for a rating type poll.</p><h3 id="proc/vote_on_poll_text"><aside class="declaration">proc </aside>vote_on_poll_text<aside>(href_list, admin_rank, sql_poll_id, vote_id) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/new_player/poll.dm#L412">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;new_player&#x2F;poll.dm 412"/></a></aside>
+        </h3>
+        <p>Processes response form data and saves results to the database for a text response type poll.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

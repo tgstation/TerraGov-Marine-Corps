@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;campaign_asset - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/campaign_asset.html#var">Var Details</a> - <a href="datum/campaign_asset.html#proc">Proc Details</a></header>
+<main>
+<h1>campaign_asset <aside>/<a href="datum.html">datum</a>/<a href="datum/campaign_asset.html">campaign_asset</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 24"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/campaign_asset.html#var/already_active_message">already_active_message</a></th><td>Message if this asset is already active and can't be activated again</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#var/asset_flags">asset_flags</a></th><td>asset related flags</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#var/asset_portrait">asset_portrait</a></th><td>Specific portrait used when activating this asset. Defaults to faction default if not specified</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#var/blacklist_message">blacklist_message</a></th><td>Feedback message if this asset is unusable during this mission</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#var/blacklist_mission_flags">blacklist_mission_flags</a></th><td>Missions flags that prevent the use of this asset</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#var/cost">cost</a></th><td>Cost in attrition points if this asset is purchased</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#var/desc">desc</a></th><td>Basic description</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#var/detailed_desc">detailed_desc</a></th><td>Detailed description</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#var/faction">faction</a></th><td>The faction associated with these stats</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#var/name">name</a></th><td>Name of this asset</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#var/ui_icon">ui_icon</a></th><td>Iconstate for UI</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#var/uses">uses</a></th><td>Number of times this can be used</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/campaign_asset.html#proc/activated_effect">activated_effect</a></th><td>Triggers any active effects of this asset</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#proc/activation_checks">activation_checks</a></th><td>Returns TRUE if unable to be activated</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#proc/attempt_activatation">attempt_activatation</a></th><td>Handles the activated asset process</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#proc/deactivate">deactivate</a></th><td>Deactivates the asset once the mission is over</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#proc/immediate_effect">immediate_effect</a></th><td>Triggers any immediate effects of this asset</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#proc/passive_effect">passive_effect</a></th><td>Triggers any passive effects of this asset</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#proc/reapply">reapply</a></th><td>Reapplies the asset, refreshing it or restoring uses</td></tr>
+            <tr><th><a href="datum/campaign_asset.html#proc/remove_passive_effect">remove_passive_effect</a></th><td>Removes the passive effect of this asset</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/already_active_message"><aside class="declaration">var </aside>already_active_message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 44"/></a></h3>
+        <p>Message if this asset is already active and can't be activated again</p><h3 id="var/asset_flags"><aside class="declaration">var </aside>asset_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 36"/></a></h3>
+        <p>asset related flags</p><h3 id="var/asset_portrait"><aside class="declaration">var </aside>asset_portrait
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 34"/></a></h3>
+        <p>Specific portrait used when activating this asset. Defaults to faction default if not specified</p><h3 id="var/blacklist_message"><aside class="declaration">var </aside>blacklist_message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 48"/></a></h3>
+        <p>Feedback message if this asset is unusable during this mission</p><h3 id="var/blacklist_mission_flags"><aside class="declaration">var </aside>blacklist_mission_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 46"/></a></h3>
+        <p>Missions flags that prevent the use of this asset</p><h3 id="var/cost"><aside class="declaration">var </aside>cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 40"/></a></h3>
+        <p>Cost in attrition points if this asset is purchased</p><h3 id="var/desc"><aside class="declaration">var </aside>desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 28"/></a></h3>
+        <p>Basic description</p><h3 id="var/detailed_desc"><aside class="declaration">var </aside>detailed_desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 30"/></a></h3>
+        <p>Detailed description</p><h3 id="var/faction"><aside class="declaration">var </aside>faction
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/faction_stats.html">faction_stats</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 32"/></a></h3>
+        <p>The faction associated with these stats</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 26"/></a></h3>
+        <p>Name of this asset</p><h3 id="var/ui_icon"><aside class="declaration">var </aside>ui_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 42"/></a></h3>
+        <p>Iconstate for UI</p><h3 id="var/uses"><aside class="declaration">var </aside>uses
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 38"/></a></h3>
+        <p>Number of times this can be used</p><h2 id="proc">Proc Details</h2><h3 id="proc/activated_effect"><aside class="declaration">proc </aside>activated_effect<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 119"/></a></aside>
+        </h3>
+        <p>Triggers any active effects of this asset</p><h3 id="proc/activation_checks"><aside class="declaration">proc </aside>activation_checks<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 90"/></a></aside>
+        </h3>
+        <p>Returns TRUE if unable to be activated</p><h3 id="proc/attempt_activatation"><aside class="declaration">proc </aside>attempt_activatation<aside>(/<a href="mob.html">mob</a>/user, check_override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 73"/></a></aside>
+        </h3>
+        <p>Handles the activated asset process</p><h3 id="proc/deactivate"><aside class="declaration">proc </aside>deactivate<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 134"/></a></aside>
+        </h3>
+        <p>Deactivates the asset once the mission is over</p><h3 id="proc/immediate_effect"><aside class="declaration">proc </aside>immediate_effect<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 123"/></a></aside>
+        </h3>
+        <p>Triggers any immediate effects of this asset</p><h3 id="proc/passive_effect"><aside class="declaration">proc </aside>passive_effect<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 126"/></a></aside>
+        </h3>
+        <p>Triggers any passive effects of this asset</p><h3 id="proc/reapply"><aside class="declaration">proc </aside>reapply<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 66"/></a></aside>
+        </h3>
+        <p>Reapplies the asset, refreshing it or restoring uses</p><h3 id="proc/remove_passive_effect"><aside class="declaration">proc </aside>remove_passive_effect<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/campaign/campaign_assets.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;campaign&#x2F;campaign_assets.dm 130"/></a></aside>
+        </h3>
+        <p>Removes the passive effect of this asset</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

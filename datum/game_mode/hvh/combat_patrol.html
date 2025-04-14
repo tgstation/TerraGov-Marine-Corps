@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;game_mode&#x2F;hvh&#x2F;combat_patrol - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/game_mode/hvh/combat_patrol.html#var">Var Details</a> - <a href="datum/game_mode/hvh/combat_patrol.html#proc">Proc Details</a></header>
+<main>
+<h1>combat_patrol <aside>/<a href="datum.html">datum</a>/<a href="datum/game_mode.html">game_mode</a>/<a href="datum/game_mode/hvh.html">hvh</a>/<a href="datum/game_mode/hvh/combat_patrol.html">combat_patrol</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/combat_patrol.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;combat_patrol.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/game_mode/hvh/combat_patrol.html#var/game_timer">game_timer</a></th><td>Timer used to calculate how long till round ends</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/combat_patrol.html#var/game_timer_delay">game_timer_delay</a></th><td>Delay from shutter drop until game timer starts</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/combat_patrol.html#var/max_game_time">max_game_time</a></th><td>The length of time until round ends.</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/combat_patrol.html#var/max_time_reached">max_time_reached</a></th><td>Whether the max game time has been reached</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/combat_patrol.html#var/wave_timer">wave_timer</a></th><td>Timer used to calculate how long till next respawn wave</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/combat_patrol.html#var/wave_timer_length">wave_timer_length</a></th><td>The length of time until next respawn wave.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/game_mode/hvh/combat_patrol.html#proc/declare_completion">declare_completion</a></th><td>pulls the number of marines and SOM, both dead and alive</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/combat_patrol.html#proc/respawn_wave">respawn_wave</a></th><td>Allows all the dead to respawn together</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/combat_patrol.html#proc/set_game_end">set_game_end</a></th><td>Triggers the game to end</td></tr>
+            <tr><th><a href="datum/game_mode/hvh/combat_patrol.html#proc/set_game_timer">set_game_timer</a></th><td>round timer</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/game_timer"><aside class="declaration">var </aside>game_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/combat_patrol.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;combat_patrol.dm 11"/></a></h3>
+        <p>Timer used to calculate how long till round ends</p><h3 id="var/game_timer_delay"><aside class="declaration">var </aside>game_timer_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/combat_patrol.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;combat_patrol.dm 21"/></a></h3>
+        <p>Delay from shutter drop until game timer starts</p><h3 id="var/max_game_time"><aside class="declaration">var </aside>max_game_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/combat_patrol.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;combat_patrol.dm 13"/></a></h3>
+        <p>The length of time until round ends.</p><h3 id="var/max_time_reached"><aside class="declaration">var </aside>max_time_reached
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/combat_patrol.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;combat_patrol.dm 19"/></a></h3>
+        <p>Whether the max game time has been reached</p><h3 id="var/wave_timer"><aside class="declaration">var </aside>wave_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/combat_patrol.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;combat_patrol.dm 15"/></a></h3>
+        <p>Timer used to calculate how long till next respawn wave</p><h3 id="var/wave_timer_length"><aside class="declaration">var </aside>wave_timer_length
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/combat_patrol.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;combat_patrol.dm 17"/></a></h3>
+        <p>The length of time until next respawn wave.</p><h2 id="proc">Proc Details</h2><h3 id="proc/declare_completion">declare_completion<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/combat_patrol.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;combat_patrol.dm 122"/></a></aside>
+        </h3>
+        <p>pulls the number of marines and SOM, both dead and alive</p><h3 id="proc/respawn_wave"><aside class="declaration">proc </aside>respawn_wave<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/combat_patrol.dm#L158">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;combat_patrol.dm 158"/></a></aside>
+        </h3>
+        <p>Allows all the dead to respawn together</p><h3 id="proc/set_game_end"><aside class="declaration">proc </aside>set_game_end<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/combat_patrol.dm#L154">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;combat_patrol.dm 154"/></a></aside>
+        </h3>
+        <p>Triggers the game to end</p><h3 id="proc/set_game_timer"><aside class="declaration">proc </aside>set_game_timer<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/combat_patrol.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;combat_patrol.dm 143"/></a></aside>
+        </h3>
+        <p>round timer</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

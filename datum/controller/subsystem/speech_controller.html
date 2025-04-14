@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;speech_controller - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/speech_controller.html#var">Var Details</a> - <a href="datum/controller/subsystem/speech_controller.html#proc">Proc Details</a></header>
+<main>
+<h1>speech_controller <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/speech_controller.html">speech_controller</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/speech_controller.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;speech_controller.dm 4"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/speech_controller.html#var/FOR_ADMINS_IF_BROKE_immediately_execute_all_speech">FOR_ADMINS_IF_BROKE_immediately_execute_all_speech</a></th><td>used so that an admin can force all speech verbs to execute immediately instead of queueing</td></tr>
+            <tr><th><a href="datum/controller/subsystem/speech_controller.html#var/queued_says_to_execute">queued_says_to_execute</a></th><td>list of the form: list(client mob, message that mob is queued to say, other say arguments (if any)).
+this is our process queue, processed every tick.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/speech_controller.html#proc/process_single_say">process_single_say</a></th><td></td></tr>
+            <tr><th><a href="datum/controller/subsystem/speech_controller.html#proc/queue_say_for_mob">queue_say_for_mob</a></th><td>queues mob_to_queue into our process list so they say(message) near the start of the next tick</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/FOR_ADMINS_IF_BROKE_immediately_execute_all_speech"><aside class="declaration">var </aside>FOR_ADMINS_IF_BROKE_immediately_execute_all_speech
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/speech_controller.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;speech_controller.dm 12"/></a></h3>
+        <p>used so that an admin can force all speech verbs to execute immediately instead of queueing</p><h3 id="var/queued_says_to_execute"><aside class="declaration">var </aside>queued_says_to_execute
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/speech_controller.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;speech_controller.dm 16"/></a></h3>
+        <p>list of the form: list(client mob, message that mob is queued to say, other say arguments (if any)).
+this is our process queue, processed every tick.</p><h2 id="proc">Proc Details</h2><h3 id="proc/process_single_say"><aside class="declaration">proc </aside>process_single_say<aside>(/<a href="mob.html">mob</a>/mob_to_speak, message, message_category) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/speech_controller.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;speech_controller.dm 45"/></a></aside>
+        </h3>
+        <pre><code>cache for sanic speed (lists are references anyways)
+</code></pre>
+<p>used in fire() to process a single mobs message through the relevant proc.
+only exists so that sleeps in the message pipeline dont cause the whole queue to wait</p><h3 id="proc/queue_say_for_mob"><aside class="declaration">proc </aside>queue_say_for_mob<aside>(/<a href="mob.html">mob</a>/mob_to_queue, message, message_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/speech_controller.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;speech_controller.dm 19"/></a></aside>
+        </h3>
+        <p>queues mob_to_queue into our process list so they say(message) near the start of the next tick</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;armor_module&#x2F;module&#x2F;eshield - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/armor_module/module/eshield.html#var">Var Details</a> - <a href="obj/item/armor_module/module/eshield.html#proc">Proc Details</a></header>
+<main>
+<h1>eshield <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/armor_module.html">armor_module</a>/<a href="obj/item/armor_module/module.html">module</a>/<a href="obj/item/armor_module/module/eshield.html">eshield</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L305">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 305"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/armor_module/module/eshield.html#var/current_color">current_color</a></th><td>Current shield color</td></tr>
+            <tr><th><a href="obj/item/armor_module/module/eshield.html#var/damaged_shield_cooldown">damaged_shield_cooldown</a></th><td>Delay it takes to start recharging again after the shield has been damaged.</td></tr>
+            <tr><th><a href="obj/item/armor_module/module/eshield.html#var/max_shield_health">max_shield_health</a></th><td>Maximum shield Health</td></tr>
+            <tr><th><a href="obj/item/armor_module/module/eshield.html#var/recharge_rate">recharge_rate</a></th><td>Amount to recharge per tick, processes once every two seconds.</td></tr>
+            <tr><th><a href="obj/item/armor_module/module/eshield.html#var/recharge_timer">recharge_timer</a></th><td>Holds id for a timer which triggers recharge start. Null if not currently delayed.</td></tr>
+            <tr><th><a href="obj/item/armor_module/module/eshield.html#var/shield_color_full">shield_color_full</a></th><td>Shield color when the shield is 66% to full</td></tr>
+            <tr><th><a href="obj/item/armor_module/module/eshield.html#var/shield_color_low">shield_color_low</a></th><td>Shield color when the shield is 0 - 33% full</td></tr>
+            <tr><th><a href="obj/item/armor_module/module/eshield.html#var/shield_color_mid">shield_color_mid</a></th><td>Shield color when the shield is 33 - 66% full</td></tr>
+            <tr><th><a href="obj/item/armor_module/module/eshield.html#var/shield_health">shield_health</a></th><td>Current shield Health</td></tr>
+            <tr><th><a href="obj/item/armor_module/module/eshield.html#var/spark_system">spark_system</a></th><td>Spark system used to generate sparks when the armor takes damage</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/armor_module/module/eshield.html#proc/begin_recharge">begin_recharge</a></th><td>Starts the shield recharging after it has been broken.</td></tr>
+            <tr><th><a href="obj/item/armor_module/module/eshield.html#proc/handle_equip">handle_equip</a></th><td>Handles starting the shield when the parent is equiped to the correct slot.</td></tr>
+            <tr><th><a href="obj/item/armor_module/module/eshield.html#proc/handle_shield">handle_shield</a></th><td>Adds the correct proc callback to the shield list for intercepting damage.</td></tr>
+            <tr><th><a href="obj/item/armor_module/module/eshield.html#proc/handle_unequip">handle_unequip</a></th><td>Handles removing the shield when the parent is unequipped</td></tr>
+            <tr><th><a href="obj/item/armor_module/module/eshield.html#proc/intercept_damage">intercept_damage</a></th><td>Handles the interception of damage.</td></tr>
+            <tr><th><a href="obj/item/armor_module/module/eshield.html#proc/parent_examine">parent_examine</a></th><td>Called to give extra info on parent examine.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/current_color"><aside class="declaration">var </aside>current_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L332">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 332"/></a></h3>
+        <p>Current shield color</p><h3 id="var/damaged_shield_cooldown"><aside class="declaration">var </aside>damaged_shield_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L334">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 334"/></a></h3>
+        <p>Delay it takes to start recharging again after the shield has been damaged.</p><h3 id="var/max_shield_health"><aside class="declaration">var </aside>max_shield_health
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L318">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 318"/></a></h3>
+        <p>Maximum shield Health</p><h3 id="var/recharge_rate"><aside class="declaration">var </aside>recharge_rate
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L320">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 320"/></a></h3>
+        <p>Amount to recharge per tick, processes once every two seconds.</p><h3 id="var/recharge_timer"><aside class="declaration">var </aside>recharge_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L339">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 339"/></a></h3>
+        <p>Holds id for a timer which triggers recharge start. Null if not currently delayed.</p><h3 id="var/shield_color_full"><aside class="declaration">var </aside>shield_color_full
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L330">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 330"/></a></h3>
+        <p>Shield color when the shield is 66% to full</p><h3 id="var/shield_color_low"><aside class="declaration">var </aside>shield_color_low
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L326">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 326"/></a></h3>
+        <p>Shield color when the shield is 0 - 33% full</p><h3 id="var/shield_color_mid"><aside class="declaration">var </aside>shield_color_mid
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L328">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 328"/></a></h3>
+        <p>Shield color when the shield is 33 - 66% full</p><h3 id="var/shield_health"><aside class="declaration">var </aside>shield_health
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L316">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 316"/></a></h3>
+        <p>Current shield Health</p><h3 id="var/spark_system"><aside class="declaration">var </aside>spark_system
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/effect_system.html">effect_system</a>/spark_spread</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L323">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 323"/></a></h3>
+        <p>Spark system used to generate sparks when the armor takes damage</p><h2 id="proc">Proc Details</h2><h3 id="proc/begin_recharge"><aside class="declaration">proc </aside>begin_recharge<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L440">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 440"/></a></aside>
+        </h3>
+        <p>Starts the shield recharging after it has been broken.</p><h3 id="proc/handle_equip"><aside class="declaration">proc </aside>handle_equip<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/equipper, slot) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L386">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 386"/></a></aside>
+        </h3>
+        <p>Handles starting the shield when the parent is equiped to the correct slot.</p><h3 id="proc/handle_shield"><aside class="declaration">proc </aside>handle_shield<aside>(/<a href="datum.html">datum</a>/source, /list/affecting_shields, dam_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L407">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 407"/></a></aside>
+        </h3>
+        <p>Adds the correct proc callback to the shield list for intercepting damage.</p><h3 id="proc/handle_unequip"><aside class="declaration">proc </aside>handle_unequip<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/unequipper, slot) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L397">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 397"/></a></aside>
+        </h3>
+        <p>Handles removing the shield when the parent is unequipped</p><h3 id="proc/intercept_damage"><aside class="declaration">proc </aside>intercept_damage<aside>(attack_type, incoming_damage, damage_type, silent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L414">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 414"/></a></aside>
+        </h3>
+        <p>Handles the interception of damage.</p><h3 id="proc/parent_examine"><aside class="declaration">proc </aside>parent_examine<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user, /list/examine_list) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments/modules.dm#L376">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments&#x2F;modules.dm 376"/></a></aside>
+        </h3>
+        <p>Called to give extra info on parent examine.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

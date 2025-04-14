@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;armor_module - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/armor_module.html#var">Var Details</a> - <a href="obj/item/armor_module.html#proc">Proc Details</a></header>
+<main>
+<h1>armor_module <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/armor_module.html">armor_module</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 2"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/attach_delay">attach_delay</a></th><td>Time it takes to attach.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/attach_features_flags">attach_features_flags</a></th><td>Bitfield flags of various features.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/attach_icon">attach_icon</a></th><td>Icon sheet of the attachment overlays</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/attachment_layer">attachment_layer</a></th><td>Layer for the attachment to be applied to.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/attachments_allowed">attachments_allowed</a></th><td>Allowed attachment types</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/attachments_by_slot">attachments_by_slot</a></th><td>List of slots this attachment has.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/base_icon">base_icon</a></th><td>Replacement for initial icon that allows for the code to work with multiple variants</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/can_attach">can_attach</a></th><td>Proc typepath that is called when this is item is being attached to something. Returns TRUE if it can attach.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/detach_delay">detach_delay</a></th><td>Time it takes to detach.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/light_mod">light_mod</a></th><td>Light modifier for attachment to an armor piece</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/mob_overlay_icon">mob_overlay_icon</a></th><td>Used for when the mob attach overlay icon is different than icon.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/mob_pixel_shift_x">mob_pixel_shift_x</a></th><td>Pixel shift for the mob overlay on the X axis.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/mob_pixel_shift_y">mob_pixel_shift_y</a></th><td>Pixel shift for the mob overlay on the Y axis.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/on_attach">on_attach</a></th><td>Proc typepath that is called when this is attached to something.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/on_detach">on_detach</a></th><td>Proc typepath that is called when this is detached from something.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/parent">parent</a></th><td>Reference to parent modular armor suit.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/pixel_shift_x">pixel_shift_x</a></th><td>Pixel shift for the item overlay on the X axis.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/pixel_shift_y">pixel_shift_y</a></th><td>Pixel shift for the item overlay on the Y axis.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/prefered_slot">prefered_slot</a></th><td>Slot that is required for the action to appear to the equipper. If null the action will appear whenever the item is equiped to a slot.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/slot">slot</a></th><td>Slot the attachment is able to occupy.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/starting_attachments">starting_attachments</a></th><td>Starting attachments that are spawned with this.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/toggle_signal">toggle_signal</a></th><td>The signal for this module if it can toggled</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#var/variants_by_parent_type">variants_by_parent_type</a></th><td>Assoc list that uses the parents type as a key. type = &quot;new_icon_state&quot;. This will change the icon state depending on what type the parent is. If the list is empty, or the parent type is not within, it will have no effect.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/armor_module.html#proc/activate">activate</a></th><td>Called on ui_action_click. Used for activating the module.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#proc/can_attach">can_attach</a></th><td>Called before a module is attached.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#proc/handle_actions">handle_actions</a></th><td>Adds or removes actions based on whether the parent is in the correct slot.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#proc/handle_unequip_actions">handle_unequip_actions</a></th><td>called when the item is dropped: relevant when item is forcedropped from a non-hand slot so we can remove the actions.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#proc/on_attach">on_attach</a></th><td>Called when the module is added to the armor.</td></tr>
+            <tr><th><a href="obj/item/armor_module.html#proc/on_detach">on_detach</a></th><td>Called when the module is removed from the armor.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/attach_delay"><aside class="declaration">var </aside>attach_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 31"/></a></h3>
+        <p>Time it takes to attach.</p><h3 id="var/attach_features_flags"><aside class="declaration">var </aside>attach_features_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 29"/></a></h3>
+        <p>Bitfield flags of various features.</p><h3 id="var/attach_icon"><aside class="declaration">var </aside>attach_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 17"/></a></h3>
+        <p>Icon sheet of the attachment overlays</p><h3 id="var/attachment_layer"><aside class="declaration">var </aside>attachment_layer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 51"/></a></h3>
+        <p>Layer for the attachment to be applied to.</p><h3 id="var/attachments_allowed"><aside class="declaration">var </aside>attachments_allowed
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 61"/></a></h3>
+        <p>Allowed attachment types</p><h3 id="var/attachments_by_slot"><aside class="declaration">var </aside>attachments_by_slot
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 56"/></a></h3>
+        <p>List of slots this attachment has.</p><h3 id="var/base_icon"><aside class="declaration">var </aside>base_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 45"/></a></h3>
+        <p>Replacement for initial icon that allows for the code to work with multiple variants</p><h3 id="var/can_attach"><aside class="declaration">var </aside>can_attach
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 23"/></a></h3>
+        <p>Proc typepath that is called when this is item is being attached to something. Returns TRUE if it can attach.</p><h3 id="var/detach_delay"><aside class="declaration">var </aside>detach_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 33"/></a></h3>
+        <p>Time it takes to detach.</p><h3 id="var/light_mod"><aside class="declaration">var </aside>light_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 42"/></a></h3>
+        <p>Light modifier for attachment to an armor piece</p><h3 id="var/mob_overlay_icon"><aside class="declaration">var </aside>mob_overlay_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 35"/></a></h3>
+        <p>Used for when the mob attach overlay icon is different than icon.</p><h3 id="var/mob_pixel_shift_x"><aside class="declaration">var </aside>mob_pixel_shift_x
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 37"/></a></h3>
+        <p>Pixel shift for the mob overlay on the X axis.</p><h3 id="var/mob_pixel_shift_y"><aside class="declaration">var </aside>mob_pixel_shift_y
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 39"/></a></h3>
+        <p>Pixel shift for the mob overlay on the Y axis.</p><h3 id="var/on_attach"><aside class="declaration">var </aside>on_attach
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 19"/></a></h3>
+        <p>Proc typepath that is called when this is attached to something.</p><h3 id="var/on_detach"><aside class="declaration">var </aside>on_detach
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 21"/></a></h3>
+        <p>Proc typepath that is called when this is detached from something.</p><h3 id="var/parent"><aside class="declaration">var </aside>parent
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/clothing.html">clothing</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 12"/></a></h3>
+        <p>Reference to parent modular armor suit.</p><h3 id="var/pixel_shift_x"><aside class="declaration">var </aside>pixel_shift_x
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 25"/></a></h3>
+        <p>Pixel shift for the item overlay on the X axis.</p><h3 id="var/pixel_shift_y"><aside class="declaration">var </aside>pixel_shift_y
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 27"/></a></h3>
+        <p>Pixel shift for the item overlay on the Y axis.</p><h3 id="var/prefered_slot"><aside class="declaration">var </aside>prefered_slot
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 53"/></a></h3>
+        <p>Slot that is required for the action to appear to the equipper. If null the action will appear whenever the item is equiped to a slot.</p><h3 id="var/slot"><aside class="declaration">var </aside>slot
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 15"/></a></h3>
+        <p>Slot the attachment is able to occupy.</p><h3 id="var/starting_attachments"><aside class="declaration">var </aside>starting_attachments
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 58"/></a></h3>
+        <p>Starting attachments that are spawned with this.</p><h3 id="var/toggle_signal"><aside class="declaration">var </aside>toggle_signal
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 66"/></a></h3>
+        <p>The signal for this module if it can toggled</p><h3 id="var/variants_by_parent_type"><aside class="declaration">var </aside>variants_by_parent_type
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 48"/></a></h3>
+        <p>Assoc list that uses the parents type as a key. type = &quot;new_icon_state&quot;. This will change the icon state depending on what type the parent is. If the list is empty, or the parent type is not within, it will have no effect.</p><h2 id="proc">Proc Details</h2><h3 id="proc/activate"><aside class="declaration">proc </aside>activate<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 132"/></a></aside>
+        </h3>
+        <p>Called on ui_action_click. Used for activating the module.</p><h3 id="proc/can_attach"><aside class="declaration">proc </aside>can_attach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attaching_to, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 73"/></a></aside>
+        </h3>
+        <p>Called before a module is attached.</p><h3 id="proc/handle_actions"><aside class="declaration">proc </aside>handle_actions<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user, slot) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 114"/></a></aside>
+        </h3>
+        <p>Adds or removes actions based on whether the parent is in the correct slot.</p><h3 id="proc/handle_unequip_actions"><aside class="declaration">proc </aside>handle_unequip_actions<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 109"/></a></aside>
+        </h3>
+        <p>called when the item is dropped: relevant when item is forcedropped from a non-hand slot so we can remove the actions.</p><h3 id="proc/on_attach"><aside class="declaration">proc </aside>on_attach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attaching_to, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 77"/></a></aside>
+        </h3>
+        <p>Called when the module is added to the armor.</p><h3 id="proc/on_detach"><aside class="declaration">proc </aside>on_detach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/detaching_from, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/clothing/modular_armor/attachments.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;clothing&#x2F;modular_armor&#x2F;attachments.dm 97"/></a></aside>
+        </h3>
+        <p>Called when the module is removed from the armor.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

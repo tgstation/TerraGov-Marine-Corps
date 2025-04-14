@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;binoculars&#x2F;tactical - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/binoculars/tactical.html#var">Var Details</a> - <a href="obj/item/binoculars/tactical.html#proc">Proc Details</a></header>
+<main>
+<h1>tactical <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/binoculars/tactical.html">binoculars/tactical</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/binoculars.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;binoculars.dm 33"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/binoculars/tactical.html#var/linked_mortars">linked_mortars</a></th><td>Linked mortar for remote targeting.</td></tr>
+            <tr><th><a href="obj/item/binoculars/tactical.html#var/selected_mortar">selected_mortar</a></th><td>Selected mortar index</td></tr>
+            <tr><th><a href="obj/item/binoculars/tactical.html#var/targetturf">targetturf</a></th><td>Last stored turf targetted by rangefinders</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/binoculars/tactical.html#proc/check_mortar_index">check_mortar_index</a></th><td>Proc that when called checks if the selected mortar isnt out of list bounds and if it is, resets to 1</td></tr>
+            <tr><th><a href="obj/item/binoculars/tactical.html#proc/clean_refs">clean_refs</a></th><td>Proc called when linked_mortar is deleted.</td></tr>
+            <tr><th><a href="obj/item/binoculars/tactical.html#proc/set_mortar">set_mortar</a></th><td>Sets or unsets the binocs linked mortar.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/linked_mortars"><aside class="declaration">var </aside>linked_mortars
+            <aside>&ndash; /list/obj/machinery/deployable/mortar</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/binoculars.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;binoculars.dm 48"/></a></h3>
+        <p>Linked mortar for remote targeting.</p><h3 id="var/selected_mortar"><aside class="declaration">var </aside>selected_mortar
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/binoculars.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;binoculars.dm 50"/></a></h3>
+        <p>Selected mortar index</p><h3 id="var/targetturf"><aside class="declaration">var </aside>targetturf
+            <aside>&ndash; /<a href="turf.html">turf</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/binoculars.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;binoculars.dm 46"/></a></h3>
+        <p>Last stored turf targetted by rangefinders</p><h2 id="proc">Proc Details</h2><h3 id="proc/check_mortar_index"><aside class="declaration">proc </aside>check_mortar_index<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/binoculars.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;binoculars.dm 138"/></a></aside>
+        </h3>
+        <p>Proc that when called checks if the selected mortar isnt out of list bounds and if it is, resets to 1</p><h3 id="proc/clean_refs"><aside class="declaration">proc </aside>clean_refs<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/binoculars.dm#L335">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;binoculars.dm 335"/></a></aside>
+        </h3>
+        <p>Proc called when linked_mortar is deleted.</p><h3 id="proc/set_mortar"><aside class="declaration">proc </aside>set_mortar<aside>(/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/deployable.html">deployable</a>/<a href="obj/machinery/deployable/mortar.html">mortar</a>/mortar) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/binoculars.dm#L323">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;binoculars.dm 323"/></a></aside>
+        </h3>
+        <p>Sets or unsets the binocs linked mortar.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

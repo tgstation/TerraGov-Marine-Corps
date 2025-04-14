@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum.html#var">Var Details</a> - <a href="datum.html#proc">Proc Details</a></header>
+<main>
+<h1>datum <aside>/<a href="datum.html">datum</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 11"/></a></h1>
+
+<p>The absolute base class for everything</p>
+<p>A datum instantiated has no physical world prescence, use an atom if you want something
+that actually lives in the world</p>
+<p>Be very mindful about adding variables to this class, they are inherited by every single
+thing in the entire game, and so you can easily cause memory usage to rise a lot with careless
+use of variables at this level</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum.html#var/_active_timers">_active_timers</a></th><td>Active timers with this datum as the target</td></tr>
+            <tr><th><a href="datum.html#var/_datum_components">_datum_components</a></th><td>Components attached to this datum</td></tr>
+            <tr><th><a href="datum.html#var/_listen_lookup">_listen_lookup</a></th><td>Any datum registered to receive signals from this datum is in this list</td></tr>
+            <tr><th><a href="datum.html#var/_signal_procs">_signal_procs</a></th><td>Lazy associated list in the structure of <code>target -&gt; list(signal -&gt; proctype)</code> that are run when the datum receives that signal</td></tr>
+            <tr><th><a href="datum.html#var/_status_traits">_status_traits</a></th><td>Status traits attached to this datum. associative list of the form: list(trait name (string) = list(source1, source2, source3,...))</td></tr>
+            <tr><th><a href="datum.html#var/cached_ref">cached_ref</a></th><td>A cached version of our \ref
+The brunt of \ref costs are in creating entries in the string tree (a tree of immutable strings)
+This avoids doing that more then once per datum by ensuring ref strings always have a reference to them after they're first pulled</td></tr>
+            <tr><th><a href="datum.html#var/cooldowns">cooldowns</a></th><td>Lazy associative list of currently active cooldowns.</td></tr>
+            <tr><th><a href="datum.html#var/datum_flags">datum_flags</a></th><td>Datum level flags</td></tr>
+            <tr><th><a href="datum.html#var/filter_data">filter_data</a></th><td>List for handling persistent filters.</td></tr>
+            <tr><th><a href="datum.html#var/gc_destroyed">gc_destroyed</a></th><td>Tick count time when this object was destroyed.</td></tr>
+            <tr><th><a href="datum.html#var/open_uis">open_uis</a></th><td>Open uis owned by this datum
+Lazy, since this case is semi rare</td></tr>
+            <tr><th><a href="datum.html#var/tgui_shared_states">tgui_shared_states</a></th><td>global</td></tr>
+            <tr><th><a href="datum.html#var/weak_reference">weak_reference</a></th><td>A weak reference to another datum</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum.html#proc/Destroy">Destroy</a></th><td>Default implementation of clean-up code.</td></tr>
+            <tr><th><a href="datum.html#proc/GetComponent">GetComponent</a></th><td>Return any component assigned to this datum of the given type</td></tr>
+            <tr><th><a href="datum.html#proc/GetComponents">GetComponents</a></th><td>Get all components of a given type that are attached to this datum</td></tr>
+            <tr><th><a href="datum.html#proc/GetExactComponent">GetExactComponent</a></th><td>Return any component assigned to this datum of the exact given type</td></tr>
+            <tr><th><a href="datum.html#proc/RegisterSignal">RegisterSignal</a></th><td>Register to listen for a signal from the passed in target</td></tr>
+            <tr><th><a href="datum.html#proc/RegisterSignals">RegisterSignals</a></th><td>Registers multiple signals to the same proc.</td></tr>
+            <tr><th><a href="datum.html#proc/RemoveComponentSource">RemoveComponentSource</a></th><td>Removes a component source from this datum</td></tr>
+            <tr><th><a href="datum.html#proc/TakeComponent">TakeComponent</a></th><td>Transfer this component to another parent</td></tr>
+            <tr><th><a href="datum.html#proc/Topic">Topic</a></th><td>Called when a href for this datum is clicked</td></tr>
+            <tr><th><a href="datum.html#proc/TransferComponents">TransferComponents</a></th><td>Transfer all components to target</td></tr>
+            <tr><th><a href="datum.html#proc/UnregisterSignal">UnregisterSignal</a></th><td>Stop listening to a given signal from target</td></tr>
+            <tr><th><a href="datum.html#proc/_AddComponent">_AddComponent</a></th><td>Creates an instance of <code>new_type</code> in the datum and attaches to it as parent</td></tr>
+            <tr><th><a href="datum.html#proc/_AddElement">_AddElement</a></th><td>Finds the singleton for the element type given and attaches it to src</td></tr>
+            <tr><th><a href="datum.html#proc/_LoadComponent">_LoadComponent</a></th><td>Get existing component of type, or create it and return a reference to it</td></tr>
+            <tr><th><a href="datum.html#proc/_RemoveElement">_RemoveElement</a></th><td>Finds the singleton for the element type given and detaches it from src
+You only need additional arguments beyond the type if you're using <a href="code/__DEFINES/dcs/flags.html#define/ELEMENT_BESPOKE" title="ELEMENT_BESPOKE">ELEMENT_BESPOKE</a></td></tr>
+            <tr><th><a href="datum.html#proc/_SendSignal">_SendSignal</a></th><td>Internal proc to handle most all of the signaling procedure</td></tr>
+            <tr><th><a href="datum.html#proc/add_filter">add_filter</a></th><td></td></tr>
+            <tr><th><a href="datum.html#proc/add_filters">add_filters</a></th><td>A version of add_filter that takes a list of filters to add rather than being individual, to limit calls to update_filters().</td></tr>
+            <tr><th><a href="datum.html#proc/add_traits">add_traits</a></th><td>Proc that handles adding multiple traits to a target via a list. Must have a common source and target.</td></tr>
+            <tr><th><a href="datum.html#proc/change_filter_priority">change_filter_priority</a></th><td>Updates the priority of the passed filter key</td></tr>
+            <tr><th><a href="datum.html#proc/deserialize_json">deserialize_json</a></th><td>Deserializes from JSON. Does not parse type.</td></tr>
+            <tr><th><a href="datum.html#proc/deserialize_list">deserialize_list</a></th><td>Accepts a LIST from deserialize_datum. Should return whether or not the deserialization was successful.</td></tr>
+            <tr><th><a href="datum.html#proc/get_filter">get_filter</a></th><td>Returns the filter associated with the passed key</td></tr>
+            <tr><th><a href="datum.html#proc/get_filter_index">get_filter_index</a></th><td>Returns the indice in filters of the given filter name.
+If it is not found, returns null.</td></tr>
+            <tr><th><a href="datum.html#proc/jatum_new_arglist">jatum_new_arglist</a></th><td>Gets the flat list that can be passed in a <code>new /type(argslist(retval))</code> expression to recreate the datum. Must only return a list containing values that can be JATUM serialized</td></tr>
+            <tr><th><a href="datum.html#proc/modify_filter">modify_filter</a></th><td></td></tr>
+            <tr><th><a href="datum.html#proc/ref_search_details">ref_search_details</a></th><td>Return info about us for reference searching purposes
+Will be logged as a representation of this datum if it's a part of a search chain</td></tr>
+            <tr><th><a href="datum.html#proc/remove_component">remove_component</a></th><td>Removes a component of a specified type</td></tr>
+            <tr><th><a href="datum.html#proc/remove_filter">remove_filter</a></th><td>Removes the passed filter, or multiple filters, if supplied with a list.</td></tr>
+            <tr><th><a href="datum.html#proc/remove_traits">remove_traits</a></th><td>Proc that handles removing multiple traits from a target via a list. Must have a common source and target.</td></tr>
+            <tr><th><a href="datum.html#proc/serialize_json">serialize_json</a></th><td>Serializes into JSON. Does not encode type.</td></tr>
+            <tr><th><a href="datum.html#proc/serialize_list">serialize_list</a></th><td>Return a list of data which can be used to investigate the datum, also ensure that you set the semver in the options list</td></tr>
+            <tr><th><a href="datum.html#proc/transition_filter">transition_filter</a></th><td></td></tr>
+            <tr><th><a href="datum.html#proc/ui_act">ui_act</a></th><td>public</td></tr>
+            <tr><th><a href="datum.html#proc/ui_assets">ui_assets</a></th><td>public</td></tr>
+            <tr><th><a href="datum.html#proc/ui_close">ui_close</a></th><td>public</td></tr>
+            <tr><th><a href="datum.html#proc/ui_data">ui_data</a></th><td>public</td></tr>
+            <tr><th><a href="datum.html#proc/ui_host">ui_host</a></th><td>private</td></tr>
+            <tr><th><a href="datum.html#proc/ui_interact">ui_interact</a></th><td>public</td></tr>
+            <tr><th><a href="datum.html#proc/ui_state">ui_state</a></th><td>private</td></tr>
+            <tr><th><a href="datum.html#proc/ui_static_data">ui_static_data</a></th><td>public</td></tr>
+            <tr><th><a href="datum.html#proc/ui_status">ui_status</a></th><td>public</td></tr>
+            <tr><th><a href="datum.html#proc/update_filters">update_filters</a></th><td>Sorts our filters by priority and reapplies them</td></tr>
+            <tr><th><a href="datum.html#proc/update_static_data">update_static_data</a></th><td>public</td></tr>
+            <tr><th><a href="datum.html#proc/update_static_data_for_all_viewers">update_static_data_for_all_viewers</a></th><td>public</td></tr>
+            <tr><th><a href="datum.html#proc/vv_do_topic">vv_do_topic</a></th><td>This proc is only called if everything topic-wise is verified. The only verifications that should happen here is things like permission checks!
+href_list is a reference, modifying it in these procs WILL change the rest of the proc in topic.dm of admin/view_variables!
+This proc is for &quot;high level&quot; actions like admin heal/set species/etc/etc. The low level debugging things should go in admin/view_variables/topic_basic.dm incase this runtimes.</td></tr>
+            <tr><th><a href="datum.html#proc/vv_edit_var">vv_edit_var</a></th><td>Called when a var is edited with the new value to change to</td></tr>
+            <tr><th><a href="datum.html#proc/vv_get_dropdown">vv_get_dropdown</a></th><td>Gets all the dropdown options in the vv menu.
+When overriding, make sure to call . = ..() first and appent to the result, that way parent items are always at the top and child items are further down.
+Add seperators by doing VV_DROPDOWN_OPTION(&quot;&quot;, &quot;---&quot;)</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/_active_timers"><aside class="declaration">var </aside>_active_timers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 25"/></a></h3>
+        <p>Active timers with this datum as the target</p><h3 id="var/_datum_components"><aside class="declaration">var </aside>_datum_components
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 37"/></a></h3>
+        <p>Components attached to this datum</p>
+<p>Lazy associated list in the structure of <code>type -&gt; component/list of components</code></p><h3 id="var/_listen_lookup"><aside class="declaration">var </aside>_listen_lookup
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 43"/></a></h3>
+        <p>Any datum registered to receive signals from this datum is in this list</p>
+<p>Lazy associated list in the structure of <code>signal -&gt; registree/list of registrees</code></p><h3 id="var/_signal_procs"><aside class="declaration">var </aside>_signal_procs
+            <aside>&ndash; /list/list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 45"/></a></h3>
+        <p>Lazy associated list in the structure of <code>target -&gt; list(signal -&gt; proctype)</code> that are run when the datum receives that signal</p><h3 id="var/_status_traits"><aside class="declaration">var </aside>_status_traits
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 27"/></a></h3>
+        <p>Status traits attached to this datum. associative list of the form: list(trait name (string) = list(source1, source2, source3,...))</p><h3 id="var/cached_ref"><aside class="declaration">var </aside>cached_ref
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 53"/></a></h3>
+        <p>A cached version of our \ref
+The brunt of \ref costs are in creating entries in the string tree (a tree of immutable strings)
+This avoids doing that more then once per datum by ensuring ref strings always have a reference to them after they're first pulled</p><h3 id="var/cooldowns"><aside class="declaration">var </aside>cooldowns
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 63"/></a></h3>
+        <p>Lazy associative list of currently active cooldowns.</p>
+<p>cooldowns [ COOLDOWN_INDEX ] = add_timer()
+add_timer() returns the truthy value of -1 when not stoppable, and else a truthy numeric index</p><h3 id="var/datum_flags"><aside class="declaration">var </aside>datum_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 48"/></a></h3>
+        <p>Datum level flags</p><h3 id="var/filter_data"><aside class="declaration">var </aside>filter_data
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 82"/></a></h3>
+        <p>List for handling persistent filters.</p><h3 id="var/gc_destroyed"><aside class="declaration">var </aside>gc_destroyed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 18"/></a></h3>
+        <p>Tick count time when this object was destroyed.</p>
+<p>If this is non zero then the object has been garbage collected and is awaiting either
+a hard del by the GC subsystme, or to be autocollected (if it has no references)</p><h3 id="var/open_uis"><aside class="declaration">var </aside>open_uis
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 22"/></a></h3>
+        <p>Open uis owned by this datum
+Lazy, since this case is semi rare</p><h3 id="var/tgui_shared_states"><aside class="declaration">var </aside>tgui_shared_states
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/external.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 130"/></a></h3>
+        <p>global</p>
+<p>Associative list of JSON-encoded shared states that were set by
+tgui clients.</p><h3 id="var/weak_reference"><aside class="declaration">var </aside>weak_reference
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/weakref.html">weakref</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 56"/></a></h3>
+        <p>A weak reference to another datum</p><h2 id="proc">Proc Details</h2><h3 id="proc/Destroy"><aside class="declaration">proc </aside>Destroy<aside>(force, ...) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 98"/></a></aside>
+        </h3>
+        <p>Default implementation of clean-up code.</p>
+<p>This should be overridden to remove all references pointing to the object being destroyed, if
+you do override it, make sure to call the parent and return it's return value by default</p>
+<p>Return an appropriate <a href="code/__DEFINES/qdel.html#define/QDEL_HINT_QUEUE" title="QDEL_HINT_QUEUE">QDEL_HINT</a> to modify handling of your deletion;
+in most cases this is <a href="code/__DEFINES/qdel.html#define/QDEL_HINT_QUEUE" title="QDEL_HINT_QUEUE">QDEL_HINT_QUEUE</a>.</p>
+<p>The base case is responsible for doing the following</p>
+<ul>
+<li>Erasing timers pointing to this datum</li>
+<li>Erasing compenents on this datum</li>
+<li>Notifying datums listening to signals from this datum that we are going away</li>
+</ul>
+<p>Returns <a href="code/__DEFINES/qdel.html#define/QDEL_HINT_QUEUE" title="QDEL_HINT_QUEUE">QDEL_HINT_QUEUE</a></p><h3 id="proc/GetComponent"><aside class="declaration">proc </aside>GetComponent<aside>(/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/c_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/_component.dm#L249">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 249"/></a></aside>
+        </h3>
+        <p>Return any component assigned to this datum of the given type</p>
+<p>This will throw an error if it's possible to have more than one component of that type on the parent</p>
+<p>Arguments:</p>
+<ul>
+<li>datum/component/c_type The typepath of the component you want to get a reference to</li>
+</ul><h3 id="proc/GetComponents"><aside class="declaration">proc </aside>GetComponents<aside>(c_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/_component.dm#L290">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 290"/></a></aside>
+        </h3>
+        <p>Get all components of a given type that are attached to this datum</p>
+<p>Arguments:</p>
+<ul>
+<li>c_type The component type path</li>
+</ul><h3 id="proc/GetExactComponent"><aside class="declaration">proc </aside>GetExactComponent<aside>(/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/c_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/_component.dm#L269">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 269"/></a></aside>
+        </h3>
+        <p>Return any component assigned to this datum of the exact given type</p>
+<p>This will throw an error if it's possible to have more than one component of that type on the parent</p>
+<p>Arguments:</p>
+<ul>
+<li>datum/component/c_type The typepath of the component you want to get a reference to</li>
+</ul><h3 id="proc/RegisterSignal"><aside class="declaration">proc </aside>RegisterSignal<aside>(/<a href="datum.html">datum</a>/target, signal_type, proctype, override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/signals.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;signals.dm 16"/></a></aside>
+        </h3>
+        <p>Register to listen for a signal from the passed in target</p>
+<p>This sets up a listening relationship such that when the target object emits a signal
+the source datum this proc is called upon, will receive a callback to the given proctype
+Use PROC_REF(procname), TYPE_PROC_REF(type,procname) or GLOBAL_PROC_REF(procname) macros to validate the passed in proc at compile time.
+PROC_REF for procs defined on current type or it's ancestors, TYPE_PROC_REF for procs defined on unrelated type and GLOBAL_PROC_REF for global procs.
+Return values from procs registered must be a bitfield</p>
+<p>Arguments:</p>
+<ul>
+<li>datum/target The target to listen for signals from</li>
+<li>signal_type A signal name</li>
+<li>proctype The proc to call back when the signal is emitted</li>
+<li>override If a previous registration exists you must explicitly set this</li>
+</ul><h3 id="proc/RegisterSignals"><aside class="declaration">proc </aside>RegisterSignals<aside>(/<a href="datum.html">datum</a>/target, /list/signal_types, proctype, override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/signals.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;signals.dm 57"/></a></aside>
+        </h3>
+        <p>Registers multiple signals to the same proc.</p><h3 id="proc/RemoveComponentSource"><aside class="declaration">proc </aside>RemoveComponentSource<aside>(source, /<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/component_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/_component.dm#L417">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 417"/></a></aside>
+        </h3>
+        <p>Removes a component source from this datum</p><h3 id="proc/TakeComponent"><aside class="declaration">proc </aside>TakeComponent<aside>(/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/_component.dm#L458">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 458"/></a></aside>
+        </h3>
+        <p>Transfer this component to another parent</p>
+<p>Component is taken from source datum</p>
+<p>Arguments:</p>
+<ul>
+<li>datum/component/target Target datum to transfer to</li>
+</ul><h3 id="proc/Topic"><aside class="declaration">proc </aside>Topic<aside>(href, /list/href_list) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L261">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 261"/></a></aside>
+        </h3>
+        <p>Called when a href for this datum is clicked</p>
+<p>Sends a <a href="code/__DEFINES/dcs/signals/signals_datum.html#define/COMSIG_TOPIC" title="COMSIG_TOPIC">COMSIG_TOPIC</a> signal</p><h3 id="proc/TransferComponents"><aside class="declaration">proc </aside>TransferComponents<aside>(/<a href="datum.html">datum</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/_component.dm#L482">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 482"/></a></aside>
+        </h3>
+        <p>Transfer all components to target</p>
+<p>All components from source datum are taken</p>
+<p>Arguments:</p>
+<ul>
+<li>/datum/target the target to move the components to</li>
+</ul><h3 id="proc/UnregisterSignal"><aside class="declaration">proc </aside>UnregisterSignal<aside>(/<a href="datum.html">datum</a>/target, sig_type_or_types) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/signals.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;signals.dm 72"/></a></aside>
+        </h3>
+        <p>Stop listening to a given signal from target</p>
+<p>Breaks the relationship between target and source datum, removing the callback when the signal fires</p>
+<p>Doesn't care if a registration exists or not</p>
+<p>Arguments:</p>
+<ul>
+<li>datum/target Datum to stop listening to signals from</li>
+<li>sig_typeor_types Signal string key or list of signal keys to stop listening to specifically</li>
+</ul><h3 id="proc/_AddComponent"><aside class="declaration">proc </aside>_AddComponent<aside>(/list/raw_args, source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/_component.dm#L309">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 309"/></a></aside>
+        </h3>
+        <p>Creates an instance of <code>new_type</code> in the datum and attaches to it as parent</p>
+<p>Sends the <a href="code/__DEFINES/dcs/signals/signals_datum.html#define/COMSIG_COMPONENT_ADDED" title="COMSIG_COMPONENT_ADDED">COMSIG_COMPONENT_ADDED</a> signal to the datum</p>
+<p>Returns the component that was created. Or the old component in a dupe situation where <a href="code/__DEFINES/dcs/flags.html#define/COMPONENT_DUPE_UNIQUE" title="COMPONENT_DUPE_UNIQUE">COMPONENT_DUPE_UNIQUE</a> was set</p>
+<p>If this tries to add an component to an incompatible type, the component will be deleted and the result will be <code>null</code>. This is very unperformant, try not to do it</p>
+<p>Properly handles duplicate situations based on the <code>dupe_mode</code> var</p><h3 id="proc/_AddElement"><aside class="declaration">proc </aside>_AddElement<aside>(/list/arguments) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/_element.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;_element.dm 52"/></a></aside>
+        </h3>
+        <p>Finds the singleton for the element type given and attaches it to src</p><h3 id="proc/_LoadComponent"><aside class="declaration">proc </aside>_LoadComponent<aside>(/list/arguments) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/_component.dm#L433">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 433"/></a></aside>
+        </h3>
+        <p>Get existing component of type, or create it and return a reference to it</p>
+<p>Use this if the item needs to exist at the time of this call, but may not have been created before now</p>
+<p>Arguments:</p>
+<ul>
+<li>component_type The typepath of the component to create or return</li>
+<li>... additional arguments to be passed when creating the component if it does not exist</li>
+</ul><h3 id="proc/_RemoveElement"><aside class="declaration">proc </aside>_RemoveElement<aside>(/list/arguments) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/elements/_element.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;elements&#x2F;_element.dm 64"/></a></aside>
+        </h3>
+        <p>Finds the singleton for the element type given and detaches it from src
+You only need additional arguments beyond the type if you're using <a href="code/__DEFINES/dcs/flags.html#define/ELEMENT_BESPOKE" title="ELEMENT_BESPOKE">ELEMENT_BESPOKE</a></p><h3 id="proc/_SendSignal"><aside class="declaration">proc </aside>_SendSignal<aside>(sigtype, /list/arguments) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/signals.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;signals.dm 114"/></a></aside>
+        </h3>
+        <p>Internal proc to handle most all of the signaling procedure</p>
+<p>Will runtime if used on datums with an empty lookup list</p>
+<p>Use the <a href="code/__DEFINES/dcs/helpers.html#define/SEND_SIGNAL" title="SEND_SIGNAL">SEND_SIGNAL</a> define instead</p><h3 id="proc/add_filter"><aside class="declaration">proc </aside>add_filter<aside>(name, priority, /list/params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L311">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 311"/></a></aside>
+        </h3>
+        <ul>
+<li>
+<p>Add a filter to the datum.</p>
+</li>
+<li>
+<p>This is on datum level, despite being most commonly / primarily used on atoms, so that filters can be applied to images / mutable appearances.</p>
+</li>
+<li>
+<p>Can also be used to assert a filter's existence. I.E. update a filter regardless if it exists or not.</p>
+</li>
+<li>
+<p>Arguments:</p>
+</li>
+<li>
+<ul>
+<li>name - Filter name</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>priority - Priority used when sorting the filter.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>params - Parameters of the filter.</li>
+</ul>
+</li>
+</ul><h3 id="proc/add_filters"><aside class="declaration">proc </aside>add_filters<aside>(/list/list/filters) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L319">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 319"/></a></aside>
+        </h3>
+        <p>A version of add_filter that takes a list of filters to add rather than being individual, to limit calls to update_filters().</p><h3 id="proc/add_traits"><aside class="declaration">proc </aside>add_traits<aside>(/list/list_of_traits, source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/traits.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;traits.dm 35"/></a></aside>
+        </h3>
+        <p>Proc that handles adding multiple traits to a target via a list. Must have a common source and target.</p><h3 id="proc/change_filter_priority"><aside class="declaration">proc </aside>change_filter_priority<aside>(name, new_priority) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L378">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 378"/></a></aside>
+        </h3>
+        <p>Updates the priority of the passed filter key</p><h3 id="proc/deserialize_json"><aside class="declaration">proc </aside>deserialize_json<aside>(/list/input, /list/options) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L208">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 208"/></a></aside>
+        </h3>
+        <p>Deserializes from JSON. Does not parse type.</p><h3 id="proc/deserialize_list"><aside class="declaration">proc </aside>deserialize_list<aside>(json, /list/options) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L195">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 195"/></a></aside>
+        </h3>
+        <p>Accepts a LIST from deserialize_datum. Should return whether or not the deserialization was successful.</p><h3 id="proc/get_filter"><aside class="declaration">proc </aside>get_filter<aside>(name) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L386">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 386"/></a></aside>
+        </h3>
+        <p>Returns the filter associated with the passed key</p><h3 id="proc/get_filter_index"><aside class="declaration">proc </aside>get_filter_index<aside>(name) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L394">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 394"/></a></aside>
+        </h3>
+        <p>Returns the indice in filters of the given filter name.
+If it is not found, returns null.</p><h3 id="proc/jatum_new_arglist"><aside class="declaration">proc </aside>jatum_new_arglist<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/jatum.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;jatum.dm 6"/></a></aside>
+        </h3>
+        <p>Gets the flat list that can be passed in a <code>new /type(argslist(retval))</code> expression to recreate the datum. Must only return a list containing values that can be JATUM serialized</p><h3 id="proc/modify_filter"><aside class="declaration">proc </aside>modify_filter<aside>(name, /list/new_params, overwrite) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L347">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 347"/></a></aside>
+        </h3>
+        <ul>
+<li>
+<p>Update a filter's parameter to the new one. If the filter doesnt exist we won't do anything.</p>
+</li>
+<li>
+<p>Arguments:</p>
+</li>
+<li>
+<ul>
+<li>name - Filter name</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>new_params - New parameters of the filter</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>overwrite - TRUE means we replace the parameter list completely. FALSE means we only replace the things on new_params.</li>
+</ul>
+</li>
+</ul><h3 id="proc/ref_search_details"><aside class="declaration">proc </aside>ref_search_details<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/admin/view_variables/reference_tracking.dm#L164">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;view_variables&#x2F;reference_tracking.dm 164"/></a></aside>
+        </h3>
+        <p>Return info about us for reference searching purposes
+Will be logged as a representation of this datum if it's a part of a search chain</p><h3 id="proc/remove_component"><aside class="declaration">proc </aside>remove_component<aside>(/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/component_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/_component.dm#L407">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;_component.dm 407"/></a></aside>
+        </h3>
+        <p>Removes a component of a specified type</p><h3 id="proc/remove_filter"><aside class="declaration">proc </aside>remove_filter<aside>(name_or_names) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L398">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 398"/></a></aside>
+        </h3>
+        <p>Removes the passed filter, or multiple filters, if supplied with a list.</p><h3 id="proc/remove_traits"><aside class="declaration">proc </aside>remove_traits<aside>(/list/list_of_traits, source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/traits.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;traits.dm 41"/></a></aside>
+        </h3>
+        <p>Proc that handles removing multiple traits from a target via a list. Must have a common source and target.</p><h3 id="proc/serialize_json"><aside class="declaration">proc </aside>serialize_json<aside>(/list/options) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L200">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 200"/></a></aside>
+        </h3>
+        <p>Serializes into JSON. Does not encode type.</p><h3 id="proc/serialize_list"><aside class="declaration">proc </aside>serialize_list<aside>(/list/options, /list/semvers) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L185">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 185"/></a></aside>
+        </h3>
+        <p>Return a list of data which can be used to investigate the datum, also ensure that you set the semver in the options list</p><h3 id="proc/transition_filter"><aside class="declaration">proc </aside>transition_filter<aside>(name, /list/new_params, time, easing, loop) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L368">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 368"/></a></aside>
+        </h3>
+        <ul>
+<li>
+<p>Update a filter's parameter and animate this change. If the filter doesnt exist we won't do anything.</p>
+</li>
+<li>
+<p>Basically a <a href="datum.html#proc/modify_filter" title="/datum">datum/proc/modify_filter</a> call but with animations. Unmodified filter parameters are kept.</p>
+</li>
+<li>
+<p>Arguments:</p>
+</li>
+<li>
+<ul>
+<li>name - Filter name</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>new_params - New parameters of the filter</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>time - time arg of the BYOND animate() proc.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>easing - easing arg of the BYOND animate() proc.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>loop - loop arg of the BYOND animate() proc.</li>
+</ul>
+</li>
+</ul><h3 id="proc/ui_act"><aside class="declaration">proc </aside>ui_act<aside>(action, /list/params, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui, /<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/state) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/external.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 87"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Called on a UI when the UI receieves a href.
+Think of this as Topic().</p>
+<p>required action string The action/button that has been invoked by the user.
+required params list A list of parameters attached to the button.</p>
+<p>return bool If the user's input has been handled and the UI should update.</p><h3 id="proc/ui_assets"><aside class="declaration">proc </aside>ui_assets<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/external.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 102"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Called on an object when a tgui object is being created, allowing you to
+push various assets to tgui, for examples spritesheets.</p>
+<p>return list List of asset datums or file paths.</p><h3 id="proc/ui_close"><aside class="declaration">proc </aside>ui_close<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/external.dm#L159">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 159"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Called on a UI's object when the UI is closed, not to be confused with
+client/verb/uiclose(), which closes the ui window</p><h3 id="proc/ui_data"><aside class="declaration">proc </aside>ui_data<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/external.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 30"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Data to be sent to the UI.
+This must be implemented for a UI to work.</p>
+<p>required user mob The mob interacting with the UI.</p>
+<p>return list Data to be sent to the UI.</p><h3 id="proc/ui_host"><aside class="declaration">proc </aside>ui_host<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/external.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 112"/></a></aside>
+        </h3>
+        <p>private</p>
+<p>The UI's host object (usually src_object).
+This allows modules/datums to have the UI attached to them,
+and be a part of another object.</p><h3 id="proc/ui_interact"><aside class="declaration">proc </aside>ui_interact<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/external.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 17"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Used to open and update UIs.
+If this proc is not implemented properly, the UI will not update correctly.</p>
+<p>required user mob The mob who opened/is using the UI.
+optional ui datum/tgui The UI to be updated, if it exists.</p><h3 id="proc/ui_state"><aside class="declaration">proc </aside>ui_state<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/external.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 121"/></a></aside>
+        </h3>
+        <p>private</p>
+<p>The UI's state controller to be used for created uis
+This is a proc over a var for memory reasons</p><h3 id="proc/ui_static_data"><aside class="declaration">proc </aside>ui_static_data<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/external.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 47"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Static Data to be sent to the UI.</p>
+<p>Static data differs from normal data in that it's large data that should be
+sent infrequently. This is implemented optionally for heavy uis that would
+be sending a lot of redundant data frequently. Gets squished into one
+object on the frontend side, but the static part is cached.</p>
+<p>required user mob The mob interacting with the UI.</p>
+<p>return list Statuic Data to be sent to the UI.</p><h3 id="proc/ui_status"><aside class="declaration">proc </aside>ui_status<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/state) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/states.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states.dm 19"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Checks the UI state for a mob.</p>
+<p>required user mob The mob who opened/is using the UI.
+required state datum/ui_state The state to check.</p>
+<p>return UI_state The state of the UI.</p><h3 id="proc/update_filters"><aside class="declaration">proc </aside>update_filters<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/datum.dm#L329">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;datum.dm 329"/></a></aside>
+        </h3>
+        <p>Sorts our filters by priority and reapplies them</p><h3 id="proc/update_static_data"><aside class="declaration">proc </aside>update_static_data<aside>(/<a href="mob.html">mob</a>/user, /<a href="datum.html">datum</a>/<a href="datum/tgui.html">tgui</a>/ui) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/external.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 59"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Forces an update on static data. Should be done manually whenever something
+happens to change static data.</p>
+<p>required user the mob currently interacting with the ui
+optional ui ui to be updated</p><h3 id="proc/update_static_data_for_all_viewers"><aside class="declaration">proc </aside>update_static_data_for_all_viewers<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/external.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 72"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Will force an update on static data for all viewers.
+Should be done manually whenever something happens to
+change static data.</p><h3 id="proc/vv_do_topic"><aside class="declaration">proc </aside>vv_do_topic<aside>(/list/href_list) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/admin/verbs/datumvars.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;verbs&#x2F;datumvars.dm 48"/></a></aside>
+        </h3>
+        <p>This proc is only called if everything topic-wise is verified. The only verifications that should happen here is things like permission checks!
+href_list is a reference, modifying it in these procs WILL change the rest of the proc in topic.dm of admin/view_variables!
+This proc is for &quot;high level&quot; actions like admin heal/set species/etc/etc. The low level debugging things should go in admin/view_variables/topic_basic.dm incase this runtimes.</p><h3 id="proc/vv_edit_var"><aside class="declaration">proc </aside>vv_edit_var<aside>(var_name, var_value) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/admin/verbs/datumvars.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;verbs&#x2F;datumvars.dm 8"/></a></aside>
+        </h3>
+        <p>Called when a var is edited with the new value to change to</p><h3 id="proc/vv_get_dropdown"><aside class="declaration">proc </aside>vv_get_dropdown<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/admin/verbs/datumvars.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;verbs&#x2F;datumvars.dm 29"/></a></aside>
+        </h3>
+        <p>Gets all the dropdown options in the vv menu.
+When overriding, make sure to call . = ..() first and appent to the result, that way parent items are always at the top and child items are further down.
+Add seperators by doing VV_DROPDOWN_OPTION(&quot;&quot;, &quot;---&quot;)</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

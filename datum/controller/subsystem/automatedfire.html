@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;automatedfire - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/automatedfire.html#var">Var Details</a> - <a href="datum/controller/subsystem/automatedfire.html#proc">Proc Details</a></header>
+<main>
+<h1>automatedfire <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/automatedfire.html">automatedfire</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/autofire.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;autofire.dm 18"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/automatedfire.html#var/bucket_list">bucket_list</a></th><td>List of buckets, each bucket holds every shooter that has to shoot this byond tick</td></tr>
+            <tr><th><a href="datum/controller/subsystem/automatedfire.html#var/bucket_resolution">bucket_resolution</a></th><td>How many buckets for every frame of world.fps</td></tr>
+            <tr><th><a href="datum/controller/subsystem/automatedfire.html#var/head_offset">head_offset</a></th><td>world.time of the first entry in the bucket list, effectively the 'start time' of the current buckets</td></tr>
+            <tr><th><a href="datum/controller/subsystem/automatedfire.html#var/next_shooter">next_shooter</a></th><td>Reference to the next shooter before we clean shooter.next</td></tr>
+            <tr><th><a href="datum/controller/subsystem/automatedfire.html#var/practical_offset">practical_offset</a></th><td>Index of the first non-empty bucket</td></tr>
+            <tr><th><a href="datum/controller/subsystem/automatedfire.html#var/shooter_count">shooter_count</a></th><td>How many shooter are in the buckets</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/automatedfire.html#proc/reset_buckets">reset_buckets</a></th><td>In the event of a change of world.tick_lag, we refresh the size of the bucket and the bucket resolution</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/bucket_list"><aside class="declaration">var </aside>bucket_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/autofire.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;autofire.dm 33"/></a></h3>
+        <p>List of buckets, each bucket holds every shooter that has to shoot this byond tick</p><h3 id="var/bucket_resolution"><aside class="declaration">var </aside>bucket_resolution
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/autofire.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;autofire.dm 29"/></a></h3>
+        <p>How many buckets for every frame of world.fps</p><h3 id="var/head_offset"><aside class="declaration">var </aside>head_offset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/autofire.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;autofire.dm 25"/></a></h3>
+        <p>world.time of the first entry in the bucket list, effectively the 'start time' of the current buckets</p><h3 id="var/next_shooter"><aside class="declaration">var </aside>next_shooter
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/automatedfire.html">automatedfire</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/autofire.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;autofire.dm 37"/></a></h3>
+        <p>Reference to the next shooter before we clean shooter.next</p><h3 id="var/practical_offset"><aside class="declaration">var </aside>practical_offset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/autofire.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;autofire.dm 27"/></a></h3>
+        <p>Index of the first non-empty bucket</p><h3 id="var/shooter_count"><aside class="declaration">var </aside>shooter_count
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/autofire.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;autofire.dm 31"/></a></h3>
+        <p>How many shooter are in the buckets</p><h2 id="proc">Proc Details</h2><h3 id="proc/reset_buckets"><aside class="declaration">proc </aside>reset_buckets<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/autofire.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;autofire.dm 88"/></a></aside>
+        </h3>
+        <p>In the event of a change of world.tick_lag, we refresh the size of the bucket and the bucket resolution</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

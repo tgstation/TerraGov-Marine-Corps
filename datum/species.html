@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;species - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/species.html#var">Var Details</a> - <a href="datum/species.html#proc">Proc Details</a></header>
+<main>
+<h1>The base species datum <aside>/<a href="datum.html">datum</a>/<a href="datum/species.html">species</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 7"/></a></h1>
+
+<p>This datum handles different species in the game, such as synthetics, mothmen, combat robots, skeletons, etc.
+It is used in <a href="mob/living/carbon/human.html" title="/mob/living/carbon/human">mob/living/carbon/human</a> to determine many things about them, including damage resistance, appearance, special behaviors, and more.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/species.html#var/base_color">base_color</a></th><td>Used when setting species</td></tr>
+            <tr><th><a href="datum/species.html#var/blood_color">blood_color</a></th><td>Color of the blood specific to our species</td></tr>
+            <tr><th><a href="datum/species.html#var/body_temperature">body_temperature</a></th><td>non-IS_SYNTHETIC species will try to stabilize at this temperature. (also affects temperature processing)</td></tr>
+            <tr><th><a href="datum/species.html#var/brute_damage_icon_state">brute_damage_icon_state</a></th><td>icon state for calculating brute damage icons</td></tr>
+            <tr><th><a href="datum/species.html#var/brute_mod">brute_mod</a></th><td>Brute damage modifier</td></tr>
+            <tr><th><a href="datum/species.html#var/burn_damage_icon_state">burn_damage_icon_state</a></th><td>icon state for calculating brute damage icons</td></tr>
+            <tr><th><a href="datum/species.html#var/burn_mod">burn_mod</a></th><td>Burn damage modifier</td></tr>
+            <tr><th><a href="datum/species.html#var/burstscreams">burstscreams</a></th><td>List of sounds for certain emotes [/datum/emote/living/carbon/human/burstscream/get_sound]</td></tr>
+            <tr><th><a href="datum/species.html#var/cold_level_1">cold_level_1</a></th><td>Cold damage level 1 below this point</td></tr>
+            <tr><th><a href="datum/species.html#var/cold_level_2">cold_level_2</a></th><td>Cold damage level 2 below this point</td></tr>
+            <tr><th><a href="datum/species.html#var/cold_level_3">cold_level_3</a></th><td>Cold damage level 3 below this point</td></tr>
+            <tr><th><a href="datum/species.html#var/coughs">coughs</a></th><td>List of sounds for certain emotes [/datum/emote/living/carbon/human/cough/get_sound]</td></tr>
+            <tr><th><a href="datum/species.html#var/count_human">count_human</a></th><td>If this species counts as a human</td></tr>
+            <tr><th><a href="datum/species.html#var/damage_mask_icon">damage_mask_icon</a></th><td>damage mask icon we want to use when drawing wounds</td></tr>
+            <tr><th><a href="datum/species.html#var/death_message">death_message</a></th><td>Message that gets sent on death()</td></tr>
+            <tr><th><a href="datum/species.html#var/death_sound">death_sound</a></th><td>Sound that gets played on death()</td></tr>
+            <tr><th><a href="datum/species.html#var/default_language_holder">default_language_holder</a></th><td>type that gets set as our language_holder on proc/set_species</td></tr>
+            <tr><th><a href="datum/species.html#var/dusted_anim">dusted_anim</a></th><td>species-specific dusting animation</td></tr>
+            <tr><th><a href="datum/species.html#var/eyes">eyes</a></th><td>icon for eyes</td></tr>
+            <tr><th><a href="datum/species.html#var/flesh_color">flesh_color</a></th><td>Color of the gibs that spawn from our species [/mob/living/carbon/human/spawn_gibs]</td></tr>
+            <tr><th><a href="datum/species.html#var/gasps">gasps</a></th><td>List of sounds for certain emotes [/datum/emote/living/carbon/human/gasp/get_sound]</td></tr>
+            <tr><th><a href="datum/species.html#var/gibbed_anim">gibbed_anim</a></th><td>species-specific gibbing animation</td></tr>
+            <tr><th><a href="datum/species.html#var/goredcries">goredcries</a></th><td>List of sounds for certain emotes [/datum/emote/living/carbon/human/gored/get_sound]</td></tr>
+            <tr><th><a href="datum/species.html#var/hair_color">hair_color</a></th><td>If the species only has one hair color</td></tr>
+            <tr><th><a href="datum/species.html#var/has_organ">has_organ</a></th><td>Associated list of our organs</td></tr>
+            <tr><th><a href="datum/species.html#var/hazard_high_pressure">hazard_high_pressure</a></th><td>Dangerously high pressure</td></tr>
+            <tr><th><a href="datum/species.html#var/hazard_low_pressure">hazard_low_pressure</a></th><td>Dangerously low pressure</td></tr>
+            <tr><th><a href="datum/species.html#var/heat_level_1">heat_level_1</a></th><td>Heat damage level 1 above this point</td></tr>
+            <tr><th><a href="datum/species.html#var/heat_level_2">heat_level_2</a></th><td>Heat damage level 2 above this point</td></tr>
+            <tr><th><a href="datum/species.html#var/heat_level_3">heat_level_3</a></th><td>Heat damage level 2 above this point</td></tr>
+            <tr><th><a href="datum/species.html#var/hud">hud</a></th><td>hud that our mob uses, gets given the type stored in hud_type on New()</td></tr>
+            <tr><th><a href="datum/species.html#var/hud_type">hud_type</a></th><td>type that our hud gets set to on New()</td></tr>
+            <tr><th><a href="datum/species.html#var/icobase">icobase</a></th><td>Normal icon file</td></tr>
+            <tr><th><a href="datum/species.html#var/icon_template">icon_template</a></th><td>Used in icon caching</td></tr>
+            <tr><th><a href="datum/species.html#var/inherent_actions">inherent_actions</a></th><td>inherent species-specific actions</td></tr>
+            <tr><th><a href="datum/species.html#var/inherent_traits">inherent_traits</a></th><td>Generic traits tied to having the species</td></tr>
+            <tr><th><a href="datum/species.html#var/inherent_verbs">inherent_verbs</a></th><td>inherent Species-specific verbs</td></tr>
+            <tr><th><a href="datum/species.html#var/joinable_roundstart">joinable_roundstart</a></th><td>Whether it is possible to select this species and join as it</td></tr>
+            <tr><th><a href="datum/species.html#var/knock_down_reduction">knock_down_reduction</a></th><td>how much the knocked_down effect is reduced per Life call</td></tr>
+            <tr><th><a href="datum/species.html#var/knock_out_reduction">knock_out_reduction</a></th><td>how much the stunned effect is reduced per Life call</td></tr>
+            <tr><th><a href="datum/species.html#var/lighting_cutoff">lighting_cutoff</a></th><td>Sets our mobs lighting_alpha on <a href="mob/living/carbon/human.html#proc/update_sight" title="/mob/living/carbon/human">/mob/living/carbon/human/update_sight</a></td></tr>
+            <tr><th><a href="datum/species.html#var/limb_type">limb_type</a></th><td>used in limb code to find which bodytype files to pull from, yes this code can defenitely be improved</td></tr>
+            <tr><th><a href="datum/species.html#var/max_stamina">max_stamina</a></th><td>new max_stamina <a href="mob/living.html#var/max_stamina" title="/mob/living">/mob/living/var/max_stamina</a> of the human mob once species is applied</td></tr>
+            <tr><th><a href="datum/species.html#var/name">name</a></th><td>Species name</td></tr>
+            <tr><th><a href="datum/species.html#var/namepool">namepool</a></th><td>List of names for random generation based on a given pool</td></tr>
+            <tr><th><a href="datum/species.html#var/no_equip">no_equip</a></th><td>Inventory slots the race can't equip stuff to. Golems cannot wear jumpsuits, for example</td></tr>
+            <tr><th><a href="datum/species.html#var/paincries">paincries</a></th><td>List of sounds for certain emotes [/datum/emote/living/carbon/human/pain/get_sound]</td></tr>
+            <tr><th><a href="datum/species.html#var/race_key">race_key</a></th><td>Used in icon caching</td></tr>
+            <tr><th><a href="datum/species.html#var/reagent_tag">reagent_tag</a></th><td>Used for metabolizing reagents</td></tr>
+            <tr><th><a href="datum/species.html#var/remains_type">remains_type</a></th><td>used to determine what item is left behind in /spawn_dust_remains()</td></tr>
+            <tr><th><a href="datum/species.html#var/screams">screams</a></th><td>List of sounds for certain emotes [/datum/emote/living/carbon/human/scream/get_sound]</td></tr>
+            <tr><th><a href="datum/species.html#var/secondary_unarmed">secondary_unarmed</a></th><td>For empty hand harm-intent attack if the first fails</td></tr>
+            <tr><th><a href="datum/species.html#var/secondary_unarmed_type">secondary_unarmed_type</a></th><td>type that our secondary_unarmed gets set to on New()</td></tr>
+            <tr><th><a href="datum/species.html#var/slowdown">slowdown</a></th><td>How much slowdown is innate to our species</td></tr>
+            <tr><th><a href="datum/species.html#var/special_death_message">special_death_message</a></th><td>Special death message that gets overwritten if possible</td></tr>
+            <tr><th><a href="datum/species.html#var/species_flags">species_flags</a></th><td>Special effects that are inherent to our species</td></tr>
+            <tr><th><a href="datum/species.html#var/species_type">species_type</a></th><td>what kind of species it is considered (See: Species defines)</td></tr>
+            <tr><th><a href="datum/species.html#var/stun_reduction">stun_reduction</a></th><td>how much the stunned effect is reduced per Life call</td></tr>
+            <tr><th><a href="datum/species.html#var/taste_sensitivity">taste_sensitivity</a></th><td>used in mob/living/proc/taste</td></tr>
+            <tr><th><a href="datum/species.html#var/total_health">total_health</a></th><td>new maxHealth <a href="mob/living.html#var/maxHealth" title="/mob/living">/mob/living/carbon/human/var/maxHealth</a> of the human mob once species is applied</td></tr>
+            <tr><th><a href="datum/species.html#var/unarmed">unarmed</a></th><td>For empty hand harm-intent attack</td></tr>
+            <tr><th><a href="datum/species.html#var/unarmed_type">unarmed_type</a></th><td>type that our unarmed gets set to on New()</td></tr>
+            <tr><th><a href="datum/species.html#var/warcries">warcries</a></th><td>List of sounds for certain emotes [/datum/emote/living/carbon/human/warcry/get_sound]</td></tr>
+            <tr><th><a href="datum/species.html#var/warning_high_pressure">warning_high_pressure</a></th><td>High pressure warning</td></tr>
+            <tr><th><a href="datum/species.html#var/warning_low_pressure">warning_low_pressure</a></th><td>Low pressure warning</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/species.html#proc/add_inherent_abilities">add_inherent_abilities</a></th><td>Adds all species-specific verbs and actions</td></tr>
+            <tr><th><a href="datum/species.html#proc/apply_damage">apply_damage</a></th><td>damage override at the species level, called by /mob/living/proc/apply_damage</td></tr>
+            <tr><th><a href="datum/species.html#proc/build_hud">build_hud</a></th><td>Builds the HUD using species-specific icons and usable slots</td></tr>
+            <tr><th><a href="datum/species.html#proc/can_shred">can_shred</a></th><td>Called when using the shredding behavior</td></tr>
+            <tr><th><a href="datum/species.html#proc/can_understand">can_understand</a></th><td>Used by xenos understanding larvae and dionaea understanding nymphs</td></tr>
+            <tr><th><a href="datum/species.html#proc/create_organs">create_organs</a></th><td>Handles creation of mob organs and limbs</td></tr>
+            <tr><th><a href="datum/species.html#proc/get_inventory_dialogue">get_inventory_dialogue</a></th><td>Grabs the window recieved when you click-drag someone onto you</td></tr>
+            <tr><th><a href="datum/species.html#proc/handle_chemicals">handle_chemicals</a></th><td>Called by [/mob/living/carbon/human/reagent_check]
+Returns TRUE if we can't metabolize chems, or can't be poisoned by a toxin</td></tr>
+            <tr><th><a href="datum/species.html#proc/handle_death">handle_death</a></th><td>Handles any species-specific death events</td></tr>
+            <tr><th><a href="datum/species.html#proc/handle_fire">handle_fire</a></th><td>Called on Life(), special behaviour if we are on fire</td></tr>
+            <tr><th><a href="datum/species.html#proc/handle_login_special">handle_login_special</a></th><td>Used to update alien icons for aliens</td></tr>
+            <tr><th><a href="datum/species.html#proc/handle_logout_special">handle_logout_special</a></th><td>As above</td></tr>
+            <tr><th><a href="datum/species.html#proc/handle_post_spawn">handle_post_spawn</a></th><td>Handles anything not already covered by basic species assignment</td></tr>
+            <tr><th><a href="datum/species.html#proc/handle_unique_behavior">handle_unique_behavior</a></th><td>Called on Life(), used for special behavior when the carbon human with this species is alive</td></tr>
+            <tr><th><a href="datum/species.html#proc/hug">hug</a></th><td>Called by [/mob/living/carbon/proc/help_shake_act], the act of hugging someone</td></tr>
+            <tr><th><a href="datum/species.html#proc/on_species_gain">on_species_gain</a></th><td>Called when we turn into a species, called by [/mob/living/carbon/human/proc/set_species()]
+drops things we shouldn't be allowed to equip, adds relevant traits, and adjusts the max health of our mob</td></tr>
+            <tr><th><a href="datum/species.html#proc/post_species_loss">post_species_loss</a></th><td>special things to change after we're no longer that species</td></tr>
+            <tr><th><a href="datum/species.html#proc/prefs_name">prefs_name</a></th><td>Returns the name if there is one in prefs</td></tr>
+            <tr><th><a href="datum/species.html#proc/random_name">random_name</a></th><td>Generates a random name from namepool</td></tr>
+            <tr><th><a href="datum/species.html#proc/record_internal_injury">record_internal_injury</a></th><td>Record when a bone break or internal bleeding is inflicted</td></tr>
+            <tr><th><a href="datum/species.html#proc/remove_inherent_abilities">remove_inherent_abilities</a></th><td>Removes all species-specific verbs and actions</td></tr>
+            <tr><th><a href="datum/species.html#proc/spec_unarmedattack">spec_unarmedattack</a></th><td>Snowflake proc for monkeys so they can call attackpaw</td></tr>
+            <tr><th><a href="datum/species.html#proc/update_body">update_body</a></th><td>Basically just used to update moth wings</td></tr>
+            <tr><th><a href="datum/species.html#proc/update_inv_head">update_inv_head</a></th><td>Basically just used to update moth wings</td></tr>
+            <tr><th><a href="datum/species.html#proc/update_inv_w_uniform">update_inv_w_uniform</a></th><td>Basically just used to update moth wings</td></tr>
+            <tr><th><a href="datum/species.html#proc/update_inv_wear_suit">update_inv_wear_suit</a></th><td>Basically just used to update moth wings //Man moths are giga shitcoded</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/base_color"><aside class="declaration">var </aside>base_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 33"/></a></h3>
+        <p>Used when setting species</p><h3 id="var/blood_color"><aside class="declaration">var </aside>blood_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 29"/></a></h3>
+        <p>Color of the blood specific to our species</p><h3 id="var/body_temperature"><aside class="declaration">var </aside>body_temperature
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 105"/></a></h3>
+        <p>non-IS_SYNTHETIC species will try to stabilize at this temperature. (also affects temperature processing)</p><h3 id="var/brute_damage_icon_state"><aside class="declaration">var </aside>brute_damage_icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 21"/></a></h3>
+        <p>icon state for calculating brute damage icons</p><h3 id="var/brute_mod"><aside class="declaration">var </aside>brute_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 59"/></a></h3>
+        <p>Brute damage modifier</p><h3 id="var/burn_damage_icon_state"><aside class="declaration">var </aside>burn_damage_icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 23"/></a></h3>
+        <p>icon state for calculating brute damage icons</p><h3 id="var/burn_mod"><aside class="declaration">var </aside>burn_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 61"/></a></h3>
+        <p>Burn damage modifier</p><h3 id="var/burstscreams"><aside class="declaration">var </aside>burstscreams
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 137"/></a></h3>
+        <p>List of sounds for certain emotes [/datum/emote/living/carbon/human/burstscream/get_sound]</p><h3 id="var/cold_level_1"><aside class="declaration">var </aside>cold_level_1
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 93"/></a></h3>
+        <p>Cold damage level 1 below this point</p><h3 id="var/cold_level_2"><aside class="declaration">var </aside>cold_level_2
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 95"/></a></h3>
+        <p>Cold damage level 2 below this point</p><h3 id="var/cold_level_3"><aside class="declaration">var </aside>cold_level_3
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 97"/></a></h3>
+        <p>Cold damage level 3 below this point</p><h3 id="var/coughs"><aside class="declaration">var </aside>coughs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 135"/></a></h3>
+        <p>List of sounds for certain emotes [/datum/emote/living/carbon/human/cough/get_sound]</p><h3 id="var/count_human"><aside class="declaration">var </aside>count_human
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L163">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 163"/></a></h3>
+        <p>If this species counts as a human</p><h3 id="var/damage_mask_icon"><aside class="declaration">var </aside>damage_mask_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 25"/></a></h3>
+        <p>damage mask icon we want to use when drawing wounds</p><h3 id="var/death_message"><aside class="declaration">var </aside>death_message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 87"/></a></h3>
+        <p>Message that gets sent on death()</p><h3 id="var/death_sound"><aside class="declaration">var </aside>death_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 85"/></a></h3>
+        <p>Sound that gets played on death()</p><h3 id="var/default_language_holder"><aside class="declaration">var </aside>default_language_holder
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L118">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 118"/></a></h3>
+        <p>type that gets set as our language_holder on proc/set_species</p><h3 id="var/dusted_anim"><aside class="declaration">var </aside>dusted_anim
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 81"/></a></h3>
+        <p>species-specific dusting animation</p><h3 id="var/eyes"><aside class="declaration">var </aside>eyes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 27"/></a></h3>
+        <p>icon for eyes</p><h3 id="var/flesh_color"><aside class="declaration">var </aside>flesh_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 31"/></a></h3>
+        <p>Color of the gibs that spawn from our species [/mob/living/carbon/human/spawn_gibs]</p><h3 id="var/gasps"><aside class="declaration">var </aside>gasps
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L133">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 133"/></a></h3>
+        <p>List of sounds for certain emotes [/datum/emote/living/carbon/human/gasp/get_sound]</p><h3 id="var/gibbed_anim"><aside class="declaration">var </aside>gibbed_anim
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 79"/></a></h3>
+        <p>species-specific gibbing animation</p><h3 id="var/goredcries"><aside class="declaration">var </aside>goredcries
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 131"/></a></h3>
+        <p>List of sounds for certain emotes [/datum/emote/living/carbon/human/gored/get_sound]</p><h3 id="var/hair_color"><aside class="declaration">var </aside>hair_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 35"/></a></h3>
+        <p>If the species only has one hair color</p><h3 id="var/has_organ"><aside class="declaration">var </aside>has_organ
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L148">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 148"/></a></h3>
+        <p>Associated list of our organs</p><h3 id="var/hazard_high_pressure"><aside class="declaration">var </aside>hazard_high_pressure
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 107"/></a></h3>
+        <p>Dangerously high pressure</p><h3 id="var/hazard_low_pressure"><aside class="declaration">var </aside>hazard_low_pressure
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 113"/></a></h3>
+        <p>Dangerously low pressure</p><h3 id="var/heat_level_1"><aside class="declaration">var </aside>heat_level_1
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L99">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 99"/></a></h3>
+        <p>Heat damage level 1 above this point</p><h3 id="var/heat_level_2"><aside class="declaration">var </aside>heat_level_2
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 101"/></a></h3>
+        <p>Heat damage level 2 above this point</p><h3 id="var/heat_level_3"><aside class="declaration">var </aside>heat_level_3
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 103"/></a></h3>
+        <p>Heat damage level 2 above this point</p><h3 id="var/hud"><aside class="declaration">var </aside>hud
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/hud_data.html">hud_data</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 43"/></a></h3>
+        <p>hud that our mob uses, gets given the type stored in hud_type on New()</p><h3 id="var/hud_type"><aside class="declaration">var </aside>hud_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 45"/></a></h3>
+        <p>type that our hud gets set to on New()</p><h3 id="var/icobase"><aside class="declaration">var </aside>icobase
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 19"/></a></h3>
+        <p>Normal icon file</p><h3 id="var/icon_template"><aside class="declaration">var </aside>icon_template
+            <aside>&ndash; /icon</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 39"/></a></h3>
+        <p>Used in icon caching</p><h3 id="var/inherent_actions"><aside class="declaration">var </aside>inherent_actions
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 146"/></a></h3>
+        <p>inherent species-specific actions</p><h3 id="var/inherent_traits"><aside class="declaration">var </aside>inherent_traits
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L142">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 142"/></a></h3>
+        <p>Generic traits tied to having the species</p><h3 id="var/inherent_verbs"><aside class="declaration">var </aside>inherent_verbs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L144">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 144"/></a></h3>
+        <p>inherent Species-specific verbs</p><h3 id="var/joinable_roundstart"><aside class="declaration">var </aside>joinable_roundstart
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 161"/></a></h3>
+        <p>Whether it is possible to select this species and join as it</p><h3 id="var/knock_down_reduction"><aside class="declaration">var </aside>knock_down_reduction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 67"/></a></h3>
+        <p>how much the knocked_down effect is reduced per Life call</p><h3 id="var/knock_out_reduction"><aside class="declaration">var </aside>knock_out_reduction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 71"/></a></h3>
+        <p>how much the stunned effect is reduced per Life call</p><h3 id="var/lighting_cutoff"><aside class="declaration">var </aside>lighting_cutoff
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 121"/></a></h3>
+        <p>Sets our mobs lighting_alpha on <a href="mob/living/carbon/human.html#proc/update_sight" title="/mob/living/carbon/human">/mob/living/carbon/human/update_sight</a></p><h3 id="var/limb_type"><aside class="declaration">var </aside>limb_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 15"/></a></h3>
+        <p>used in limb code to find which bodytype files to pull from, yes this code can defenitely be improved</p><h3 id="var/max_stamina"><aside class="declaration">var </aside>max_stamina
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 63"/></a></h3>
+        <p>new max_stamina <a href="mob/living.html#var/max_stamina" title="/mob/living">/mob/living/var/max_stamina</a> of the human mob once species is applied</p><h3 id="var/name"><aside class="declaration">var </aside>name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 9"/></a></h3>
+        <p>Species name</p><h3 id="var/namepool"><aside class="declaration">var </aside>namepool
+            <aside>&ndash; /<a href="datum.html">datum</a>/namepool</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L159">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 159"/></a></h3>
+        <p>List of names for random generation based on a given pool</p><h3 id="var/no_equip"><aside class="declaration">var </aside>no_equip
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L75">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 75"/></a></h3>
+        <p>Inventory slots the race can't equip stuff to. Golems cannot wear jumpsuits, for example</p><h3 id="var/paincries"><aside class="declaration">var </aside>paincries
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 129"/></a></h3>
+        <p>List of sounds for certain emotes [/datum/emote/living/carbon/human/pain/get_sound]</p><h3 id="var/race_key"><aside class="declaration">var </aside>race_key
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 37"/></a></h3>
+        <p>Used in icon caching</p><h3 id="var/reagent_tag"><aside class="declaration">var </aside>reagent_tag
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 124"/></a></h3>
+        <p>Used for metabolizing reagents</p><h3 id="var/remains_type"><aside class="declaration">var </aside>remains_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 83"/></a></h3>
+        <p>used to determine what item is left behind in /spawn_dust_remains()</p><h3 id="var/screams"><aside class="declaration">var </aside>screams
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 127"/></a></h3>
+        <p>List of sounds for certain emotes [/datum/emote/living/carbon/human/scream/get_sound]</p><h3 id="var/secondary_unarmed"><aside class="declaration">var </aside>secondary_unarmed
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/unarmed_attack.html">unarmed_attack</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 51"/></a></h3>
+        <p>For empty hand harm-intent attack if the first fails</p><h3 id="var/secondary_unarmed_type"><aside class="declaration">var </aside>secondary_unarmed_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 53"/></a></h3>
+        <p>type that our secondary_unarmed gets set to on New()</p><h3 id="var/slowdown"><aside class="declaration">var </aside>slowdown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L73">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 73"/></a></h3>
+        <p>How much slowdown is innate to our species</p><h3 id="var/special_death_message"><aside class="declaration">var </aside>special_death_message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 89"/></a></h3>
+        <p>Special death message that gets overwritten if possible</p><h3 id="var/species_flags"><aside class="declaration">var </aside>species_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 13"/></a></h3>
+        <p>Special effects that are inherent to our species</p><h3 id="var/species_type"><aside class="declaration">var </aside>species_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 11"/></a></h3>
+        <p>what kind of species it is considered (See: Species defines)</p><h3 id="var/stun_reduction"><aside class="declaration">var </aside>stun_reduction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 69"/></a></h3>
+        <p>how much the stunned effect is reduced per Life call</p><h3 id="var/taste_sensitivity"><aside class="declaration">var </aside>taste_sensitivity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 116"/></a></h3>
+        <p>used in mob/living/proc/taste</p><h3 id="var/total_health"><aside class="declaration">var </aside>total_health
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 57"/></a></h3>
+        <p>new maxHealth <a href="mob/living.html#var/maxHealth" title="/mob/living">/mob/living/carbon/human/var/maxHealth</a> of the human mob once species is applied</p><h3 id="var/unarmed"><aside class="declaration">var </aside>unarmed
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/unarmed_attack.html">unarmed_attack</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 47"/></a></h3>
+        <p>For empty hand harm-intent attack</p><h3 id="var/unarmed_type"><aside class="declaration">var </aside>unarmed_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 49"/></a></h3>
+        <p>type that our unarmed gets set to on New()</p><h3 id="var/warcries"><aside class="declaration">var </aside>warcries
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 139"/></a></h3>
+        <p>List of sounds for certain emotes [/datum/emote/living/carbon/human/warcry/get_sound]</p><h3 id="var/warning_high_pressure"><aside class="declaration">var </aside>warning_high_pressure
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 109"/></a></h3>
+        <p>High pressure warning</p><h3 id="var/warning_low_pressure"><aside class="declaration">var </aside>warning_low_pressure
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 111"/></a></h3>
+        <p>Low pressure warning</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_inherent_abilities"><aside class="declaration">proc </aside>add_inherent_abilities<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L267">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 267"/></a></aside>
+        </h3>
+        <p>Adds all species-specific verbs and actions</p><h3 id="proc/apply_damage"><aside class="declaration">proc </aside>apply_damage<aside>(damage, damagetype, def_zone, blocked, sharp, edge, updating_health, penetration, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/victim, /<a href="mob.html">mob</a>/attacker) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L502">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 502"/></a></aside>
+        </h3>
+        <p>damage override at the species level, called by /mob/living/proc/apply_damage</p><h3 id="proc/build_hud"><aside class="declaration">proc </aside>build_hud<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L302">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 302"/></a></aside>
+        </h3>
+        <p>Builds the HUD using species-specific icons and usable slots</p><h3 id="proc/can_shred"><aside class="declaration">proc </aside>can_shred<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L348">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 348"/></a></aside>
+        </h3>
+        <p>Called when using the shredding behavior</p><h3 id="proc/can_understand"><aside class="declaration">proc </aside>can_understand<aside>(/<a href="mob.html">mob</a>/other) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L310">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 310"/></a></aside>
+        </h3>
+        <p>Used by xenos understanding larvae and dionaea understanding nymphs</p><h3 id="proc/create_organs"><aside class="declaration">proc </aside>create_organs<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/organless_human) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L179">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 179"/></a></aside>
+        </h3>
+        <p>Handles creation of mob organs and limbs</p><h3 id="proc/get_inventory_dialogue"><aside class="declaration">proc </aside>get_inventory_dialogue<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L306">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 306"/></a></aside>
+        </h3>
+        <p>Grabs the window recieved when you click-drag someone onto you</p><h3 id="proc/handle_chemicals"><aside class="declaration">proc </aside>handle_chemicals<aside>(/<a href="datum.html">datum</a>/<a href="datum/reagent.html">reagent</a>/chem, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L335">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 335"/></a></aside>
+        </h3>
+        <p>Called by [/mob/living/carbon/human/reagent_check]
+Returns TRUE if we can't metabolize chems, or can't be poisoned by a toxin</p><h3 id="proc/handle_death"><aside class="declaration">proc </aside>handle_death<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L281">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 281"/></a></aside>
+        </h3>
+        <p>Handles any species-specific death events</p><h3 id="proc/handle_fire"><aside class="declaration">proc </aside>handle_fire<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L314">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 314"/></a></aside>
+        </h3>
+        <p>Called on Life(), special behaviour if we are on fire</p><h3 id="proc/handle_login_special"><aside class="declaration">proc </aside>handle_login_special<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L294">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 294"/></a></aside>
+        </h3>
+        <p>Used to update alien icons for aliens</p><h3 id="proc/handle_logout_special"><aside class="declaration">proc </aside>handle_logout_special<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L298">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 298"/></a></aside>
+        </h3>
+        <p>As above</p><h3 id="proc/handle_post_spawn"><aside class="declaration">proc </aside>handle_post_spawn<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L277">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 277"/></a></aside>
+        </h3>
+        <p>Handles anything not already covered by basic species assignment</p><h3 id="proc/handle_unique_behavior"><aside class="declaration">proc </aside>handle_unique_behavior<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L290">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 290"/></a></aside>
+        </h3>
+        <p>Called on Life(), used for special behavior when the carbon human with this species is alive</p><h3 id="proc/hug"><aside class="declaration">proc </aside>hug<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L216">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 216"/></a></aside>
+        </h3>
+        <p>Called by [/mob/living/carbon/proc/help_shake_act], the act of hugging someone</p><h3 id="proc/on_species_gain"><aside class="declaration">proc </aside>on_species_gain<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H, /<a href="datum.html">datum</a>/<a href="datum/species.html">species</a>/old_species) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L240">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 240"/></a></aside>
+        </h3>
+        <p>Called when we turn into a species, called by [/mob/living/carbon/human/proc/set_species()]
+drops things we shouldn't be allowed to equip, adds relevant traits, and adjusts the max health of our mob</p><h3 id="proc/post_species_loss"><aside class="declaration">proc </aside>post_species_loss<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L251">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 251"/></a></aside>
+        </h3>
+        <p>special things to change after we're no longer that species</p><h3 id="proc/prefs_name"><aside class="declaration">proc </aside>prefs_name<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/prefs) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L235">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 235"/></a></aside>
+        </h3>
+        <p>Returns the name if there is one in prefs</p><h3 id="proc/random_name"><aside class="declaration">proc </aside>random_name<aside>(gender) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L231">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 231"/></a></aside>
+        </h3>
+        <p>Generates a random name from namepool</p><h3 id="proc/record_internal_injury"><aside class="declaration">proc </aside>record_internal_injury<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/victim, /<a href="mob.html">mob</a>/attacker, old_status, new_status) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/personal_statistics.dm#L608">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;personal_statistics.dm 608"/></a></aside>
+        </h3>
+        <p>Record when a bone break or internal bleeding is inflicted</p><h3 id="proc/remove_inherent_abilities"><aside class="declaration">proc </aside>remove_inherent_abilities<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L257">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 257"/></a></aside>
+        </h3>
+        <p>Removes all species-specific verbs and actions</p><h3 id="proc/spec_unarmedattack"><aside class="declaration">proc </aside>spec_unarmedattack<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/user, /<a href="atom.html">atom</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L286">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 286"/></a></aside>
+        </h3>
+        <p>Snowflake proc for monkeys so they can call attackpaw</p><h3 id="proc/update_body"><aside class="declaration">proc </aside>update_body<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L318">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 318"/></a></aside>
+        </h3>
+        <p>Basically just used to update moth wings</p><h3 id="proc/update_inv_head"><aside class="declaration">proc </aside>update_inv_head<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L322">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 322"/></a></aside>
+        </h3>
+        <p>Basically just used to update moth wings</p><h3 id="proc/update_inv_w_uniform"><aside class="declaration">proc </aside>update_inv_w_uniform<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L326">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 326"/></a></aside>
+        </h3>
+        <p>Basically just used to update moth wings</p><h3 id="proc/update_inv_wear_suit"><aside class="declaration">proc </aside>update_inv_wear_suit<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/human/_species.dm#L330">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;human&#x2F;_species.dm 330"/></a></aside>
+        </h3>
+        <p>Basically just used to update moth wings //Man moths are giga shitcoded</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

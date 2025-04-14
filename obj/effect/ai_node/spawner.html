@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;effect&#x2F;ai_node&#x2F;spawner - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/effect/ai_node/spawner.html#var">Var Details</a> - <a href="obj/effect/ai_node/spawner.html#proc">Proc Details</a></header>
+<main>
+<h1>spawner <aside>/<a href="obj.html">obj</a>/<a href="obj/effect/ai_node.html">effect/ai_node</a>/<a href="obj/effect/ai_node/spawner.html">spawner</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/spawners/spawner.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;spawners&#x2F;spawner.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/effect/ai_node/spawner.html#var/maxamount">maxamount</a></th><td>Max amount of</td></tr>
+            <tr><th><a href="obj/effect/ai_node/spawner.html#var/spawnamount">spawnamount</a></th><td>Amount of types to spawn for each squad created</td></tr>
+            <tr><th><a href="obj/effect/ai_node/spawner.html#var/spawndelay">spawndelay</a></th><td>Delay between squad spawns, dont set this to below SSspawning wait</td></tr>
+            <tr><th><a href="obj/effect/ai_node/spawner.html#var/spawntypes">spawntypes</a></th><td>typepath or list of typepaths for the spawner to pick from</td></tr>
+            <tr><th><a href="obj/effect/ai_node/spawner.html#var/use_postspawn">use_postspawn</a></th><td>Whether we want to use the postspawn proc on the mobs created by the Spawner</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/effect/ai_node/spawner.html#proc/postspawn">postspawn</a></th><td>This proc runs on the created mobs if use_postspawn is enabled, use this to equip humans and such</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/maxamount"><aside class="declaration">var </aside>maxamount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/spawners/spawner.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;spawners&#x2F;spawner.dm 11"/></a></h3>
+        <p>Max amount of</p><h3 id="var/spawnamount"><aside class="declaration">var </aside>spawnamount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/spawners/spawner.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;spawners&#x2F;spawner.dm 7"/></a></h3>
+        <p>Amount of types to spawn for each squad created</p><h3 id="var/spawndelay"><aside class="declaration">var </aside>spawndelay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/spawners/spawner.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;spawners&#x2F;spawner.dm 9"/></a></h3>
+        <p>Delay between squad spawns, dont set this to below SSspawning wait</p><h3 id="var/spawntypes"><aside class="declaration">var </aside>spawntypes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/spawners/spawner.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;spawners&#x2F;spawner.dm 5"/></a></h3>
+        <p>typepath or list of typepaths for the spawner to pick from</p><h3 id="var/use_postspawn"><aside class="declaration">var </aside>use_postspawn
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/spawners/spawner.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;spawners&#x2F;spawner.dm 13"/></a></h3>
+        <p>Whether we want to use the postspawn proc on the mobs created by the Spawner</p><h2 id="proc">Proc Details</h2><h3 id="proc/postspawn"><aside class="declaration">proc </aside>postspawn<aside>(/list/squad) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/spawners/spawner.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;spawners&#x2F;spawner.dm 28"/></a></aside>
+        </h3>
+        <p>This proc runs on the created mobs if use_postspawn is enabled, use this to equip humans and such</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;events - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/events.html#var">Var Details</a> - <a href="datum/controller/subsystem/events.html#proc">Proc Details</a></header>
+<main>
+<h1>events <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/events.html">events</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/events.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;events.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/control">control</a></th><td>list of all datum/round_event_control. Used for selecting events based on weight and occurrences.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/frequency_lower">frequency_lower</a></th><td>Lower bound for how frequently events will occur</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/frequency_upper">frequency_upper</a></th><td>the latest an event can happen after a previous event</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/running">running</a></th><td>list of all existing /datum/round_event</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#var/scheduled">scheduled</a></th><td>The next world.time that a naturally occuring random event can be selected.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#proc/check_event">check_event</a></th><td>checks if we should select a random event yet, and reschedules if necessary</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#proc/reschedule">reschedule</a></th><td>decides which world.time we should select another random event at.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/events.html#proc/spawn_event">spawn_event</a></th><td>selects a random event based on whether it can occur and it's 'weight'(probability)</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/control"><aside class="declaration">var </aside>control
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/events.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;events.dm 7"/></a></h3>
+        <p>list of all datum/round_event_control. Used for selecting events based on weight and occurrences.</p><h3 id="var/frequency_lower"><aside class="declaration">var </aside>frequency_lower
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/events.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;events.dm 15"/></a></h3>
+        <p>Lower bound for how frequently events will occur</p><h3 id="var/frequency_upper"><aside class="declaration">var </aside>frequency_upper
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/events.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;events.dm 17"/></a></h3>
+        <p>the latest an event can happen after a previous event</p><h3 id="var/running"><aside class="declaration">var </aside>running
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/events.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;events.dm 9"/></a></h3>
+        <p>list of all existing /datum/round_event</p><h3 id="var/scheduled"><aside class="declaration">var </aside>scheduled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/events.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;events.dm 13"/></a></h3>
+        <p>The next world.time that a naturally occuring random event can be selected.</p><h2 id="proc">Proc Details</h2><h3 id="proc/check_event"><aside class="declaration">proc </aside>check_event<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/events.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;events.dm 49"/></a></aside>
+        </h3>
+        <p>checks if we should select a random event yet, and reschedules if necessary</p><h3 id="proc/reschedule"><aside class="declaration">proc </aside>reschedule<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/events.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;events.dm 55"/></a></aside>
+        </h3>
+        <p>decides which world.time we should select another random event at.</p><h3 id="proc/spawn_event"><aside class="declaration">proc </aside>spawn_event<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/events.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;events.dm 59"/></a></aside>
+        </h3>
+        <p>selects a random event based on whether it can occur and it's 'weight'(probability)</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

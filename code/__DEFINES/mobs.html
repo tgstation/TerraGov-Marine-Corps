@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;mobs.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/mobs.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/mobs.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/mobs.html#define/AI_VOX">AI_VOX</a></th><td>Comment out if you don't want VOX to be enabled and have players download the voice sounds.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOB_WALK_MOVE_MOD">MOB_WALK_MOVE_MOD</a></th><td>Speed mod for walk intent</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOB_RUN_MOVE_MOD">MOB_RUN_MOVE_MOD</a></th><td>Speed mod for run intent</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER">DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER</a></th><td>Move mod for going diagonally</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/CARBON_CRIT_MAX_OXYLOSS">CARBON_CRIT_MAX_OXYLOSS</a></th><td>The amount of damage you'll take per tick when you can't breath. Default value is 1</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/CARBON_RECOVERY_OXYLOSS">CARBON_RECOVERY_OXYLOSS</a></th><td>the amount of oxyloss recovery per successful breath tick.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/HUMAN_BLOODTYPES">HUMAN_BLOODTYPES</a></th><td>HUMAN BLOODTYPES</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOVE_INTENT_WALK">MOVE_INTENT_WALK</a></th><td>MOVE DEFINES</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/ORGAN_ASSISTED">ORGAN_ASSISTED</a></th><td>INTERNAL ORGANS DEFINES</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SURGERY_CANNOT_USE">SURGERY_CANNOT_USE</a></th><td>SURGERY DEFINES</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/LIVING_DEFAULT_MAX_HEALTH">LIVING_DEFAULT_MAX_HEALTH</a></th><td>Default living <code>maxHealth</code></td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/LIVING_STAMINA_EXHAUSTION_COOLDOWN">LIVING_STAMINA_EXHAUSTION_COOLDOWN</a></th><td>Stamina exhaustion</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/XENO_LEAPING">XENO_LEAPING</a></th><td>Xeno is currently performing a leap/dash attack</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/XENO_LEADER">XENO_LEADER</a></th><td>Hive leader</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/XENO_ZOOMED">XENO_ZOOMED</a></th><td>Zoomed out</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/XENO_MOBHUD">XENO_MOBHUD</a></th><td>mobhud on</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/XENO_ROUNY">XENO_ROUNY</a></th><td>rouny mode</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_DAMAGE_PER_STACK">PYROGEN_DAMAGE_PER_STACK</a></th><td>Damage per melting fire stack</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_ASSIST_REMOVAL_STRENGTH">PYROGEN_ASSIST_REMOVAL_STRENGTH</a></th><td>Amount of ticks of fire removed when helped by another human to extinguish</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_CHARGESPEED">PYROGEN_CHARGESPEED</a></th><td>How fast the pyrogen moves when charging using fire charge</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_CHARGEDISTANCE">PYROGEN_CHARGEDISTANCE</a></th><td>Maximum charge distance.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_FIRECHARGE_DAMAGE">PYROGEN_FIRECHARGE_DAMAGE</a></th><td>Damage on hitting a mob using fire charge</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_FIRECHARGE_DAMAGE_PER_STACK">PYROGEN_FIRECHARGE_DAMAGE_PER_STACK</a></th><td>Bonus damage per fire stack</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_FIREBALL_DIRECT_DAMAGE">PYROGEN_FIREBALL_DIRECT_DAMAGE</a></th><td>Bonus damage for directly hitting someone</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_FIREBALL_AOE_DAMAGE">PYROGEN_FIREBALL_AOE_DAMAGE</a></th><td>Damage in a 3x3 AOE when we hit anything</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_FIREBALL_VEHICLE_AOE_DAMAGE">PYROGEN_FIREBALL_VEHICLE_AOE_DAMAGE</a></th><td>Damage in a 3x3 AOE when we hit a vehicle</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_FIREBALL_MELTING_STACKS">PYROGEN_FIREBALL_MELTING_STACKS</a></th><td>Fire stacks on FIREBALL burst in the 3x3 AOE</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_FIREBALL_MAXDIST">PYROGEN_FIREBALL_MAXDIST</a></th><td>How many turfs can our fireball move</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_FIREBALL_SPEED">PYROGEN_FIREBALL_SPEED</a></th><td>How fast the fireball moves</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_MELTING_FIRE_DAMAGE">PYROGEN_MELTING_FIRE_DAMAGE</a></th><td>How much damage the fire does per tick or cross.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_MELTING_FIRE_EFFECT_STACK">PYROGEN_MELTING_FIRE_EFFECT_STACK</a></th><td>How many melting fire effect stacks we give per tick or cross</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_FIRESTORM_TORNADE_COUNT">PYROGEN_FIRESTORM_TORNADE_COUNT</a></th><td>How many  tornadoes we unleash when using the firestorm</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_TORNADE_HIT_DAMAGE">PYROGEN_TORNADE_HIT_DAMAGE</a></th><td>Damage on fire tornado hit</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_TORNADO_MELTING_FIRE_STACKS">PYROGEN_TORNADO_MELTING_FIRE_STACKS</a></th><td>melting fire stacks on fire tornado hit</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_HEATRAY_HIT_DAMAGE">PYROGEN_HEATRAY_HIT_DAMAGE</a></th><td>damage on direct hit with the heatray</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_HEATRAY_VEHICLE_HIT_DAMAGE">PYROGEN_HEATRAY_VEHICLE_HIT_DAMAGE</a></th><td>damage on vehicles with the heatray</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_HEATRAY_BONUS_DAMAGE_PER_MELTING_STACK">PYROGEN_HEATRAY_BONUS_DAMAGE_PER_MELTING_STACK</a></th><td>damage per melting fire stack</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_HEATRAY_RANGE">PYROGEN_HEATRAY_RANGE</a></th><td>Range for the heatray</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_HEATRAY_CHARGEUP">PYROGEN_HEATRAY_CHARGEUP</a></th><td>Time before the beam fires</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_HEATRAY_MAXDURATION">PYROGEN_HEATRAY_MAXDURATION</a></th><td>Max duration of the heatray</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_HEATRAY_REFIRE_TIME">PYROGEN_HEATRAY_REFIRE_TIME</a></th><td>Time between each refire of the pyrogen heatray (in 3 seconds it will fire 3 times)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/PYROGEN_MELTING_FIRE_STACKS_PER_RESIST">PYROGEN_MELTING_FIRE_STACKS_PER_RESIST</a></th><td>Amount of stacks removed per resist.</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BANELING_SMOKE_DURATION">BANELING_SMOKE_DURATION</a></th><td>Not specified in seconds because it causes smoke to last almost four times as long if done so</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/IGNORE_USER_LOC_CHANGE">IGNORE_USER_LOC_CHANGE</a></th><td>Can do the action even if mob moves location</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/IGNORE_TARGET_LOC_CHANGE">IGNORE_TARGET_LOC_CHANGE</a></th><td>Can do the action even if the target moves location</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/IGNORE_HELD_ITEM">IGNORE_HELD_ITEM</a></th><td>Can do the action even if the item is no longer being held</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/IGNORE_INCAPACITATED">IGNORE_INCAPACITATED</a></th><td>Can do the action even if the mob is incapacitated (ex. handcuffed)</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/IGNORE_SLOWDOWNS">IGNORE_SLOWDOWNS</a></th><td>Used to prevent important slowdowns from being abused by drugs like kronkaine</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/MOB_WATER_SLOWDOWN">MOB_WATER_SLOWDOWN</a></th><td>Default slowdown for mobs moving through liquid</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/XENO_WATER_SLOWDOWN">XENO_WATER_SLOWDOWN</a></th><td>Slowdown for xenos moving through liquid</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BOILER_WATER_SLOWDOWN">BOILER_WATER_SLOWDOWN</a></th><td>Slowdown for boilers moving through liquid</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/WARLOCK_WATER_SLOWDOWN">WARLOCK_WATER_SLOWDOWN</a></th><td>Slowdown for warlocks moving through liquid</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SPECIES_HUMAN">SPECIES_HUMAN</a></th><td>Human species or those that functional behave like them. Default species</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/SPECIES_COMBAT_ROBOT">SPECIES_COMBAT_ROBOT</a></th><td>Combat robot species</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/GRAB_SLAM_DELAY">GRAB_SLAM_DELAY</a></th><td>Nextmove delay after performing an interaction with a grab on something</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BASE_OBJ_SLAM_DAMAGE">BASE_OBJ_SLAM_DAMAGE</a></th><td>Default damage for slamming a mob against an object</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BASE_WALL_SLAM_DAMAGE">BASE_WALL_SLAM_DAMAGE</a></th><td>Default damage for slamming a mob against a wall</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/BASE_MOB_SLAM_DAMAGE">BASE_MOB_SLAM_DAMAGE</a></th><td>Default damage for slamming a mob against another mob</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/CARBON_LYING_Y_OFFSET">CARBON_LYING_Y_OFFSET</a></th><td>Pixel_y offset when lying down</td></tr>
+        <tr><th><a href="code/__DEFINES/mobs.html#define/ILLUSION_HIT_FILTER">ILLUSION_HIT_FILTER</a></th><td>Filter name for illusion impacts</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/AI_VOX"><aside class="declaration">#define </aside>AI_VOX
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 4"/></a>
+    </h3>
+    <p>Comment out if you don't want VOX to be enabled and have players download the voice sounds.</p><h3 id="define/BANELING_SMOKE_DURATION"><aside class="declaration">#define </aside>BANELING_SMOKE_DURATION
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L803">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 803"/></a>
+    </h3>
+    <p>Not specified in seconds because it causes smoke to last almost four times as long if done so</p><h3 id="define/BASE_MOB_SLAM_DAMAGE"><aside class="declaration">#define </aside>BASE_MOB_SLAM_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L984">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 984"/></a>
+    </h3>
+    <p>Default damage for slamming a mob against another mob</p><h3 id="define/BASE_OBJ_SLAM_DAMAGE"><aside class="declaration">#define </aside>BASE_OBJ_SLAM_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L980">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 980"/></a>
+    </h3>
+    <p>Default damage for slamming a mob against an object</p><h3 id="define/BASE_WALL_SLAM_DAMAGE"><aside class="declaration">#define </aside>BASE_WALL_SLAM_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L982">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 982"/></a>
+    </h3>
+    <p>Default damage for slamming a mob against a wall</p><h3 id="define/BOILER_WATER_SLOWDOWN"><aside class="declaration">#define </aside>BOILER_WATER_SLOWDOWN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L965">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 965"/></a>
+    </h3>
+    <p>Slowdown for boilers moving through liquid</p><h3 id="define/CARBON_CRIT_MAX_OXYLOSS"><aside class="declaration">#define </aside>CARBON_CRIT_MAX_OXYLOSS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 96"/></a>
+    </h3>
+    <p>The amount of damage you'll take per tick when you can't breath. Default value is 1</p><h3 id="define/CARBON_LYING_Y_OFFSET"><aside class="declaration">#define </aside>CARBON_LYING_Y_OFFSET
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L992">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 992"/></a>
+    </h3>
+    <p>Pixel_y offset when lying down</p><h3 id="define/CARBON_RECOVERY_OXYLOSS"><aside class="declaration">#define </aside>CARBON_RECOVERY_OXYLOSS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 98"/></a>
+    </h3>
+    <p>the amount of oxyloss recovery per successful breath tick.</p><h3 id="define/DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER"><aside class="declaration">#define </aside>DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 49"/></a>
+    </h3>
+    <p>Move mod for going diagonally</p><h3 id="define/GRAB_SLAM_DELAY"><aside class="declaration">#define </aside>GRAB_SLAM_DELAY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L978">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 978"/></a>
+    </h3>
+    <p>Nextmove delay after performing an interaction with a grab on something</p><h3 id="define/HUMAN_BLOODTYPES"><aside class="declaration">#define </aside>HUMAN_BLOODTYPES
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L226">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 226"/></a>
+    </h3>
+    <p>HUMAN BLOODTYPES</p><h3 id="define/IGNORE_HELD_ITEM"><aside class="declaration">#define </aside>IGNORE_HELD_ITEM
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L928">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 928"/></a>
+    </h3>
+    <p>Can do the action even if the item is no longer being held</p><h3 id="define/IGNORE_INCAPACITATED"><aside class="declaration">#define </aside>IGNORE_INCAPACITATED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L930">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 930"/></a>
+    </h3>
+    <p>Can do the action even if the mob is incapacitated (ex. handcuffed)</p><h3 id="define/IGNORE_SLOWDOWNS"><aside class="declaration">#define </aside>IGNORE_SLOWDOWNS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L932">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 932"/></a>
+    </h3>
+    <p>Used to prevent important slowdowns from being abused by drugs like kronkaine</p><h3 id="define/IGNORE_TARGET_LOC_CHANGE"><aside class="declaration">#define </aside>IGNORE_TARGET_LOC_CHANGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L926">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 926"/></a>
+    </h3>
+    <p>Can do the action even if the target moves location</p><h3 id="define/IGNORE_USER_LOC_CHANGE"><aside class="declaration">#define </aside>IGNORE_USER_LOC_CHANGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L924">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 924"/></a>
+    </h3>
+    <p>Can do the action even if mob moves location</p><h3 id="define/ILLUSION_HIT_FILTER"><aside class="declaration">#define </aside>ILLUSION_HIT_FILTER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L995">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 995"/></a>
+    </h3>
+    <p>Filter name for illusion impacts</p><h3 id="define/LIVING_DEFAULT_MAX_HEALTH"><aside class="declaration">#define </aside>LIVING_DEFAULT_MAX_HEALTH
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L374">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 374"/></a>
+    </h3>
+    <p>Default living <code>maxHealth</code></p><h3 id="define/LIVING_STAMINA_EXHAUSTION_COOLDOWN"><aside class="declaration">#define </aside>LIVING_STAMINA_EXHAUSTION_COOLDOWN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L507">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 507"/></a>
+    </h3>
+    <p>Stamina exhaustion</p><h3 id="define/MOB_RUN_MOVE_MOD"><aside class="declaration">#define </aside>MOB_RUN_MOVE_MOD
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 47"/></a>
+    </h3>
+    <p>Speed mod for run intent</p><h3 id="define/MOB_WALK_MOVE_MOD"><aside class="declaration">#define </aside>MOB_WALK_MOVE_MOD
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 45"/></a>
+    </h3>
+    <p>Speed mod for walk intent</p><h3 id="define/MOB_WATER_SLOWDOWN"><aside class="declaration">#define </aside>MOB_WATER_SLOWDOWN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L961">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 961"/></a>
+    </h3>
+    <p>Default slowdown for mobs moving through liquid</p><h3 id="define/MOVE_INTENT_WALK"><aside class="declaration">#define </aside>MOVE_INTENT_WALK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L247">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 247"/></a>
+    </h3>
+    <p>MOVE DEFINES</p><h3 id="define/ORGAN_ASSISTED"><aside class="declaration">#define </aside>ORGAN_ASSISTED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L253">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 253"/></a>
+    </h3>
+    <p>INTERNAL ORGANS DEFINES</p><h3 id="define/PYROGEN_ASSIST_REMOVAL_STRENGTH"><aside class="declaration">#define </aside>PYROGEN_ASSIST_REMOVAL_STRENGTH
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L711">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 711"/></a>
+    </h3>
+    <p>Amount of ticks of fire removed when helped by another human to extinguish</p><h3 id="define/PYROGEN_CHARGEDISTANCE"><aside class="declaration">#define </aside>PYROGEN_CHARGEDISTANCE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L715">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 715"/></a>
+    </h3>
+    <p>Maximum charge distance.</p><h3 id="define/PYROGEN_CHARGESPEED"><aside class="declaration">#define </aside>PYROGEN_CHARGESPEED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L713">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 713"/></a>
+    </h3>
+    <p>How fast the pyrogen moves when charging using fire charge</p><h3 id="define/PYROGEN_DAMAGE_PER_STACK"><aside class="declaration">#define </aside>PYROGEN_DAMAGE_PER_STACK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L709">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 709"/></a>
+    </h3>
+    <p>Damage per melting fire stack</p><h3 id="define/PYROGEN_FIREBALL_AOE_DAMAGE"><aside class="declaration">#define </aside>PYROGEN_FIREBALL_AOE_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L723">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 723"/></a>
+    </h3>
+    <p>Damage in a 3x3 AOE when we hit anything</p><h3 id="define/PYROGEN_FIREBALL_DIRECT_DAMAGE"><aside class="declaration">#define </aside>PYROGEN_FIREBALL_DIRECT_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L721">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 721"/></a>
+    </h3>
+    <p>Bonus damage for directly hitting someone</p><h3 id="define/PYROGEN_FIREBALL_MAXDIST"><aside class="declaration">#define </aside>PYROGEN_FIREBALL_MAXDIST
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L729">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 729"/></a>
+    </h3>
+    <p>How many turfs can our fireball move</p><h3 id="define/PYROGEN_FIREBALL_MELTING_STACKS"><aside class="declaration">#define </aside>PYROGEN_FIREBALL_MELTING_STACKS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L727">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 727"/></a>
+    </h3>
+    <p>Fire stacks on FIREBALL burst in the 3x3 AOE</p><h3 id="define/PYROGEN_FIREBALL_SPEED"><aside class="declaration">#define </aside>PYROGEN_FIREBALL_SPEED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L731">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 731"/></a>
+    </h3>
+    <p>How fast the fireball moves</p><h3 id="define/PYROGEN_FIREBALL_VEHICLE_AOE_DAMAGE"><aside class="declaration">#define </aside>PYROGEN_FIREBALL_VEHICLE_AOE_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L725">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 725"/></a>
+    </h3>
+    <p>Damage in a 3x3 AOE when we hit a vehicle</p><h3 id="define/PYROGEN_FIRECHARGE_DAMAGE"><aside class="declaration">#define </aside>PYROGEN_FIRECHARGE_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L717">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 717"/></a>
+    </h3>
+    <p>Damage on hitting a mob using fire charge</p><h3 id="define/PYROGEN_FIRECHARGE_DAMAGE_PER_STACK"><aside class="declaration">#define </aside>PYROGEN_FIRECHARGE_DAMAGE_PER_STACK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L719">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 719"/></a>
+    </h3>
+    <p>Bonus damage per fire stack</p><h3 id="define/PYROGEN_FIRESTORM_TORNADE_COUNT"><aside class="declaration">#define </aside>PYROGEN_FIRESTORM_TORNADE_COUNT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L737">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 737"/></a>
+    </h3>
+    <p>How many  tornadoes we unleash when using the firestorm</p><h3 id="define/PYROGEN_HEATRAY_BONUS_DAMAGE_PER_MELTING_STACK"><aside class="declaration">#define </aside>PYROGEN_HEATRAY_BONUS_DAMAGE_PER_MELTING_STACK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L747">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 747"/></a>
+    </h3>
+    <p>damage per melting fire stack</p><h3 id="define/PYROGEN_HEATRAY_CHARGEUP"><aside class="declaration">#define </aside>PYROGEN_HEATRAY_CHARGEUP
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L751">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 751"/></a>
+    </h3>
+    <p>Time before the beam fires</p><h3 id="define/PYROGEN_HEATRAY_HIT_DAMAGE"><aside class="declaration">#define </aside>PYROGEN_HEATRAY_HIT_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L743">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 743"/></a>
+    </h3>
+    <p>damage on direct hit with the heatray</p><h3 id="define/PYROGEN_HEATRAY_MAXDURATION"><aside class="declaration">#define </aside>PYROGEN_HEATRAY_MAXDURATION
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L753">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 753"/></a>
+    </h3>
+    <p>Max duration of the heatray</p><h3 id="define/PYROGEN_HEATRAY_RANGE"><aside class="declaration">#define </aside>PYROGEN_HEATRAY_RANGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L749">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 749"/></a>
+    </h3>
+    <p>Range for the heatray</p><h3 id="define/PYROGEN_HEATRAY_REFIRE_TIME"><aside class="declaration">#define </aside>PYROGEN_HEATRAY_REFIRE_TIME
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L755">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 755"/></a>
+    </h3>
+    <p>Time between each refire of the pyrogen heatray (in 3 seconds it will fire 3 times)</p><h3 id="define/PYROGEN_HEATRAY_VEHICLE_HIT_DAMAGE"><aside class="declaration">#define </aside>PYROGEN_HEATRAY_VEHICLE_HIT_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L745">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 745"/></a>
+    </h3>
+    <p>damage on vehicles with the heatray</p><h3 id="define/PYROGEN_MELTING_FIRE_DAMAGE"><aside class="declaration">#define </aside>PYROGEN_MELTING_FIRE_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L733">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 733"/></a>
+    </h3>
+    <p>How much damage the fire does per tick or cross.</p><h3 id="define/PYROGEN_MELTING_FIRE_EFFECT_STACK"><aside class="declaration">#define </aside>PYROGEN_MELTING_FIRE_EFFECT_STACK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L735">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 735"/></a>
+    </h3>
+    <p>How many melting fire effect stacks we give per tick or cross</p><h3 id="define/PYROGEN_MELTING_FIRE_STACKS_PER_RESIST"><aside class="declaration">#define </aside>PYROGEN_MELTING_FIRE_STACKS_PER_RESIST
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L757">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 757"/></a>
+    </h3>
+    <p>Amount of stacks removed per resist.</p><h3 id="define/PYROGEN_TORNADE_HIT_DAMAGE"><aside class="declaration">#define </aside>PYROGEN_TORNADE_HIT_DAMAGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L739">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 739"/></a>
+    </h3>
+    <p>Damage on fire tornado hit</p><h3 id="define/PYROGEN_TORNADO_MELTING_FIRE_STACKS"><aside class="declaration">#define </aside>PYROGEN_TORNADO_MELTING_FIRE_STACKS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L741">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 741"/></a>
+    </h3>
+    <p>melting fire stacks on fire tornado hit</p><h3 id="define/SPECIES_COMBAT_ROBOT"><aside class="declaration">#define </aside>SPECIES_COMBAT_ROBOT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L975">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 975"/></a>
+    </h3>
+    <p>Combat robot species</p><h3 id="define/SPECIES_HUMAN"><aside class="declaration">#define </aside>SPECIES_HUMAN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L973">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 973"/></a>
+    </h3>
+    <p>Human species or those that functional behave like them. Default species</p><h3 id="define/SURGERY_CANNOT_USE"><aside class="declaration">#define </aside>SURGERY_CANNOT_USE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L274">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 274"/></a>
+    </h3>
+    <p>SURGERY DEFINES</p><h3 id="define/WARLOCK_WATER_SLOWDOWN"><aside class="declaration">#define </aside>WARLOCK_WATER_SLOWDOWN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L967">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 967"/></a>
+    </h3>
+    <p>Slowdown for warlocks moving through liquid</p><h3 id="define/XENO_LEADER"><aside class="declaration">#define </aside>XENO_LEADER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L522">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 522"/></a>
+    </h3>
+    <p>Hive leader</p><h3 id="define/XENO_LEAPING"><aside class="declaration">#define </aside>XENO_LEAPING
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L520">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 520"/></a>
+    </h3>
+    <p>Xeno is currently performing a leap/dash attack</p><h3 id="define/XENO_MOBHUD"><aside class="declaration">#define </aside>XENO_MOBHUD
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L526">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 526"/></a>
+    </h3>
+    <p>mobhud on</p><h3 id="define/XENO_ROUNY"><aside class="declaration">#define </aside>XENO_ROUNY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L528">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 528"/></a>
+    </h3>
+    <p>rouny mode</p><h3 id="define/XENO_WATER_SLOWDOWN"><aside class="declaration">#define </aside>XENO_WATER_SLOWDOWN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L963">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 963"/></a>
+    </h3>
+    <p>Slowdown for xenos moving through liquid</p><h3 id="define/XENO_ZOOMED"><aside class="declaration">#define </aside>XENO_ZOOMED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/mobs.dm#L524">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;mobs.dm 524"/></a>
+    </h3>
+    <p>Zoomed out</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

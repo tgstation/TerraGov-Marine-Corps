@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability.html#var">Var Details</a> - <a href="datum/action/ability.html#proc">Proc Details</a></header>
+<main>
+<h1>ability <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 2"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability.html#var/ability_cost">ability_cost</a></th><td>The cost of using this ability. Typically a plasma cost for xenos</td></tr>
+            <tr><th><a href="datum/action/ability.html#var/cooldown_duration">cooldown_duration</a></th><td>Standard cooldown for this ability</td></tr>
+            <tr><th><a href="datum/action/ability.html#var/cooldown_timer">cooldown_timer</a></th><td>the actual cooldown timer</td></tr>
+            <tr><th><a href="datum/action/ability.html#var/countdown">countdown</a></th><td>Cooldown map text holder</td></tr>
+            <tr><th><a href="datum/action/ability.html#var/desc">desc</a></th><td>If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.</td></tr>
+            <tr><th><a href="datum/action/ability.html#var/gamemode_flags">gamemode_flags</a></th><td>flags to restrict an ability to certain gamemode</td></tr>
+            <tr><th><a href="datum/action/ability.html#var/keybind_flags">keybind_flags</a></th><td>special behavior flags for how this ability is used</td></tr>
+            <tr><th><a href="datum/action/ability.html#var/target_flags">target_flags</a></th><td>any special flags for what this ability targets</td></tr>
+            <tr><th><a href="datum/action/ability.html#var/use_state_flags">use_state_flags</a></th><td>bypass use limitations checked by can_use_action()</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability.html#proc/action_cooldown_finished">action_cooldown_finished</a></th><td>checks if the linked ability is on some cooldown. The action can still be activated by clicking the button</td></tr>
+            <tr><th><a href="datum/action/ability.html#proc/add_cooldown">add_cooldown</a></th><td>Adds a cooldown to this ability</td></tr>
+            <tr><th><a href="datum/action/ability.html#proc/clear_cooldown">clear_cooldown</a></th><td>Removes the cooldown</td></tr>
+            <tr><th><a href="datum/action/ability.html#proc/cooldown_remaining">cooldown_remaining</a></th><td>Time remaining on cooldown</td></tr>
+            <tr><th><a href="datum/action/ability.html#proc/get_cooldown">get_cooldown</a></th><td>Returns the cooldown timer</td></tr>
+            <tr><th><a href="datum/action/ability.html#proc/on_cooldown_finish">on_cooldown_finish</a></th><td>override this for cooldown completion</td></tr>
+            <tr><th><a href="datum/action/ability.html#proc/on_xeno_upgrade">on_xeno_upgrade</a></th><td>Any changes when a xeno with this ability evolves</td></tr>
+            <tr><th><a href="datum/action/ability.html#proc/succeed_activate">succeed_activate</a></th><td>ability cost override allows for actions/abilities to override the normal ability costs</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ability_cost"><aside class="declaration">var </aside>ability_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 7"/></a></h3>
+        <p>The cost of using this ability. Typically a plasma cost for xenos</p><h3 id="var/cooldown_duration"><aside class="declaration">var </aside>cooldown_duration
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 11"/></a></h3>
+        <p>Standard cooldown for this ability</p><h3 id="var/cooldown_timer"><aside class="declaration">var </aside>cooldown_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 15"/></a></h3>
+        <p>the actual cooldown timer</p><h3 id="var/countdown"><aside class="declaration">var </aside>countdown
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/countdown/action_cooldown.html">effect/countdown/action_cooldown</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 23"/></a></h3>
+        <p>Cooldown map text holder</p><h3 id="var/desc">desc
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 4"/></a></h3>
+        <p>If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.</p><h3 id="var/gamemode_flags"><aside class="declaration">var </aside>gamemode_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 19"/></a></h3>
+        <p>flags to restrict an ability to certain gamemode</p><h3 id="var/keybind_flags"><aside class="declaration">var </aside>keybind_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 13"/></a></h3>
+        <p>special behavior flags for how this ability is used</p><h3 id="var/target_flags"><aside class="declaration">var </aside>target_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 17"/></a></h3>
+        <p>any special flags for what this ability targets</p><h3 id="var/use_state_flags"><aside class="declaration">var </aside>use_state_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 9"/></a></h3>
+        <p>bypass use limitations checked by can_use_action()</p><h2 id="proc">Proc Details</h2><h3 id="proc/action_cooldown_finished"><aside class="declaration">proc </aside>action_cooldown_finished<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 135"/></a></aside>
+        </h3>
+        <p>checks if the linked ability is on some cooldown. The action can still be activated by clicking the button</p><h3 id="proc/add_cooldown"><aside class="declaration">proc </aside>add_cooldown<aside>(cooldown_override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L150">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 150"/></a></aside>
+        </h3>
+        <p>Adds a cooldown to this ability</p><h3 id="proc/clear_cooldown"><aside class="declaration">proc </aside>clear_cooldown<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 139"/></a></aside>
+        </h3>
+        <p>Removes the cooldown</p><h3 id="proc/cooldown_remaining"><aside class="declaration">proc </aside>cooldown_remaining<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L162">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 162"/></a></aside>
+        </h3>
+        <p>Time remaining on cooldown</p><h3 id="proc/get_cooldown"><aside class="declaration">proc </aside>get_cooldown<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 146"/></a></aside>
+        </h3>
+        <p>Returns the cooldown timer</p><h3 id="proc/on_cooldown_finish"><aside class="declaration">proc </aside>on_cooldown_finish<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L166">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 166"/></a></aside>
+        </h3>
+        <p>override this for cooldown completion</p><h3 id="proc/on_xeno_upgrade"><aside class="declaration">proc </aside>on_xeno_upgrade<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 174"/></a></aside>
+        </h3>
+        <p>Any changes when a xeno with this ability evolves</p><h3 id="proc/succeed_activate"><aside class="declaration">proc </aside>succeed_activate<aside>(ability_cost_override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/ability_actions.dm#L124">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;ability_actions.dm 124"/></a></aside>
+        </h3>
+        <p>ability cost override allows for actions/abilities to override the normal ability costs</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;turf - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="turf.html#var">Var Details</a> - <a href="turf.html#proc">Proc Details</a></header>
+<main>
+<h1>turf <aside>/<a href="turf.html">turf</a></aside><aside> inherits /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/spatial_info.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;spatial_info.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="turf.html#var/assigned_oranges_ear">assigned_oranges_ear</a></th><td>what /mob/oranges_ear instance is already assigned to us as there should only ever be one.
+used for guaranteeing there is only one oranges_ear per turf when assigned, speeds up view() iteration</td></tr>
+            <tr><th><a href="turf.html#var/directional_opacity">directional_opacity</a></th><td>List of light sources affecting this turf.
+Which directions does this turf block the vision of, taking into account both the turf's opacity and the movable opacity_sources.</td></tr>
+            <tr><th><a href="turf.html#var/dynamic_lumcount">dynamic_lumcount</a></th><td>Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.</td></tr>
+            <tr><th><a href="turf.html#var/fixed_underlay">fixed_underlay</a></th><td>Icon-smoothing variable to map a diagonal wall corner with a fixed underlay.</td></tr>
+            <tr><th><a href="turf.html#var/hard_armor">hard_armor</a></th><td>Flat-damage-reduction-based armor.</td></tr>
+            <tr><th><a href="turf.html#var/hybrid_lights_affecting">hybrid_lights_affecting</a></th><td>hybrid lights affecting this turf</td></tr>
+            <tr><th><a href="turf.html#var/lighting_corner_NE">lighting_corner_NE</a></th><td>Lighting Corner datums.</td></tr>
+            <tr><th><a href="turf.html#var/opacity_sources">opacity_sources</a></th><td>Lazylist of movable atoms providing opacity sources.</td></tr>
+            <tr><th><a href="turf.html#var/soft_armor">soft_armor</a></th><td>%-reduction-based armor.</td></tr>
+            <tr><th><a href="turf.html#var/turf_flags">turf_flags</a></th><td>Turf bitflags, see code/__DEFINES/flags.dm</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="turf.html#proc/ScrapeAway">ScrapeAway</a></th><td>Take off the top layer turf and replace it with the next baseturf down</td></tr>
+            <tr><th><a href="turf.html#proc/add_opacity_source">add_opacity_source</a></th><td>Proc to add movable sources of opacity on the turf and let it handle lighting code.</td></tr>
+            <tr><th><a href="turf.html#proc/can_teleport_here">can_teleport_here</a></th><td>Are we able to teleport to this turf using in game teleport mechanics</td></tr>
+            <tr><th><a href="turf.html#proc/check_alien_construction">check_alien_construction</a></th><td>Check if alien abilities can construct structure on the turf
+Return TRUE if allowed, FALSE otherwise</td></tr>
+            <tr><th><a href="turf.html#proc/check_disallow_alien_fortification">check_disallow_alien_fortification</a></th><td>Checks for whether we can build advanced xeno structures here
+Returns TRUE if present, FALSE otherwise</td></tr>
+            <tr><th><a href="turf.html#proc/clear_signal_refs">clear_signal_refs</a></th><td>WARNING WARNING
+Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
+It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
+We do it because moving signals over was needlessly expensive, and bloated a very commonly used bit of code</td></tr>
+            <tr><th><a href="turf.html#proc/fromShuttleMove">fromShuttleMove</a></th><td>Base procs</td></tr>
+            <tr><th><a href="turf.html#proc/get_submerge_depth">get_submerge_depth</a></th><td>Returns the number that shows how far an AM is offset when submerged in this turf</td></tr>
+            <tr><th><a href="turf.html#proc/get_submerge_height">get_submerge_height</a></th><td>Returns the number that represents how submerged an AM is by a turf and its contents</td></tr>
+            <tr><th><a href="turf.html#proc/on_change_area">on_change_area</a></th><td>Allows for reactions to an area change without inherently requiring change_area() be called (I hate maploading)</td></tr>
+            <tr><th><a href="turf.html#proc/recalculate_directional_opacity">recalculate_directional_opacity</a></th><td>Calculate on which directions this turfs block view.</td></tr>
+            <tr><th><a href="turf.html#proc/reconsider_lights">reconsider_lights</a></th><td>Causes any affecting light sources to be queued for a visibility update, for example a door got opened.</td></tr>
+            <tr><th><a href="turf.html#proc/remove_opacity_source">remove_opacity_source</a></th><td>Proc to remove movable sources of opacity on the turf and let it handle lighting code.</td></tr>
+            <tr><th><a href="turf.html#proc/static_lighting_build_overlay">static_lighting_build_overlay</a></th><td>Builds a lighting object for us, but only if our area is dynamic.</td></tr>
+            <tr><th><a href="turf.html#proc/transfer_area_lighting">transfer_area_lighting</a></th><td>Transfer the lighting of one area to another</td></tr>
+            <tr><th><a href="turf.html#proc/wash">wash</a></th><td>cleans any cleanable decals from the turf</td></tr>
+            <tr><th><a href="turf.html#proc/zFall">zFall</a></th><td>Precipitates a movable (plus whatever buckled to it) to lower z levels if possible and then calls zImpact()</td></tr>
+            <tr><th><a href="turf.html#proc/zImpact">zImpact</a></th><td>Called each time the target falls down a z level possibly making their trajectory come to a halt. see __DEFINES/movement.dm.</td></tr>
+            <tr><th><a href="turf.html#proc/zPassIn">zPassIn</a></th><td>If we'd allow anything to travel into us</td></tr>
+            <tr><th><a href="turf.html#proc/zPassOut">zPassOut</a></th><td>If we'd allow anything to travel out of us</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/assigned_oranges_ear"><aside class="declaration">var </aside>assigned_oranges_ear
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/oranges_ear.html">oranges_ear</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__HELPERS/spatial_info.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;spatial_info.dm 6"/></a></h3>
+        <p>what /mob/oranges_ear instance is already assigned to us as there should only ever be one.
+used for guaranteeing there is only one oranges_ear per turf when assigned, speeds up view() iteration</p><h3 id="var/directional_opacity"><aside class="declaration">var </aside>directional_opacity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 56"/></a></h3>
+        <p>List of light sources affecting this turf.
+Which directions does this turf block the vision of, taking into account both the turf's opacity and the movable opacity_sources.</p><h3 id="var/dynamic_lumcount"><aside class="declaration">var </aside>dynamic_lumcount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 53"/></a></h3>
+        <p>Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.</p><h3 id="var/fixed_underlay"><aside class="declaration">var </aside>fixed_underlay
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 61"/></a></h3>
+        <p>Icon-smoothing variable to map a diagonal wall corner with a fixed underlay.</p><h3 id="var/hard_armor"><aside class="declaration">var </aside>hard_armor
+            <aside>&ndash; /<a href="datum.html">datum</a>/armor</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 50"/></a></h3>
+        <p>Flat-damage-reduction-based armor.</p><h3 id="var/hybrid_lights_affecting"><aside class="declaration">var </aside>hybrid_lights_affecting
+            <aside>&ndash; /tmp/list/atom/movable/lighting_mask</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_turf.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 10"/></a></h3>
+        <p>hybrid lights affecting this turf</p><h3 id="var/lighting_corner_NE"><aside class="declaration">var </aside>lighting_corner_NE
+            <aside>&ndash; /tmp/<a href="datum.html">datum</a>/<a href="datum/static_lighting_corner.html">static_lighting_corner</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_static/static_lighting_turf.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_static&#x2F;static_lighting_turf.dm 6"/></a></h3>
+        <p>Lighting Corner datums.</p><h3 id="var/opacity_sources"><aside class="declaration">var </aside>opacity_sources
+            <aside>&ndash; /list/atom/movable</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 58"/></a></h3>
+        <p>Lazylist of movable atoms providing opacity sources.</p><h3 id="var/soft_armor"><aside class="declaration">var </aside>soft_armor
+            <aside>&ndash; /<a href="datum.html">datum</a>/armor</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 48"/></a></h3>
+        <p>%-reduction-based armor.</p><h3 id="var/turf_flags"><aside class="declaration">var </aside>turf_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 36"/></a></h3>
+        <p>Turf bitflags, see code/__DEFINES/flags.dm</p><h2 id="proc">Proc Details</h2><h3 id="proc/ScrapeAway"><aside class="declaration">proc </aside>ScrapeAway<aside>(amount, flags) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L346">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 346"/></a></aside>
+        </h3>
+        <p>Take off the top layer turf and replace it with the next baseturf down</p><h3 id="proc/add_opacity_source"><aside class="declaration">proc </aside>add_opacity_source<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/new_source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_turf.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 63"/></a></aside>
+        </h3>
+        <p>Proc to add movable sources of opacity on the turf and let it handle lighting code.</p><h3 id="proc/can_teleport_here"><aside class="declaration">proc </aside>can_teleport_here<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L1021">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 1021"/></a></aside>
+        </h3>
+        <p>Are we able to teleport to this turf using in game teleport mechanics</p><h3 id="proc/check_alien_construction"><aside class="declaration">proc </aside>check_alien_construction<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/builder, silent, planned_building) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L626">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 626"/></a></aside>
+        </h3>
+        <p>Check if alien abilities can construct structure on the turf
+Return TRUE if allowed, FALSE otherwise</p><h3 id="proc/check_disallow_alien_fortification"><aside class="declaration">proc </aside>check_disallow_alien_fortification<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/builder, silent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L614">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 614"/></a></aside>
+        </h3>
+        <p>Checks for whether we can build advanced xeno structures here
+Returns TRUE if present, FALSE otherwise</p><h3 id="proc/clear_signal_refs">clear_signal_refs<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 155"/></a></aside>
+        </h3>
+        <p>WARNING WARNING
+Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
+It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
+We do it because moving signals over was needlessly expensive, and bloated a very commonly used bit of code</p><h3 id="proc/fromShuttleMove"><aside class="declaration">proc </aside>fromShuttleMove<aside>(/<a href="turf.html">turf</a>/newT, move_mode) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/on_move.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;on_move.dm 9"/></a></aside>
+        </h3>
+        <p>Base procs</p><h3 id="proc/get_submerge_depth"><aside class="declaration">proc </aside>get_submerge_depth<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L1039">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 1039"/></a></aside>
+        </h3>
+        <p>Returns the number that shows how far an AM is offset when submerged in this turf</p><h3 id="proc/get_submerge_height"><aside class="declaration">proc </aside>get_submerge_height<aside>(turf_only) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L1029">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 1029"/></a></aside>
+        </h3>
+        <p>Returns the number that represents how submerged an AM is by a turf and its contents</p><h3 id="proc/on_change_area"><aside class="declaration">proc </aside>on_change_area<aside>(/<a href="area.html">area</a>/old_area, /<a href="area.html">area</a>/new_area) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_static/static_lighting_turf.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_static&#x2F;static_lighting_turf.dm 51"/></a></aside>
+        </h3>
+        <p>Allows for reactions to an area change without inherently requiring change_area() be called (I hate maploading)</p><h3 id="proc/recalculate_directional_opacity"><aside class="declaration">proc </aside>recalculate_directional_opacity<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_turf.dm#L79">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 79"/></a></aside>
+        </h3>
+        <p>Calculate on which directions this turfs block view.</p><h3 id="proc/reconsider_lights"><aside class="declaration">proc </aside>reconsider_lights<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_turf.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 18"/></a></aside>
+        </h3>
+        <p>Causes any affecting light sources to be queued for a visibility update, for example a door got opened.</p><h3 id="proc/remove_opacity_source"><aside class="declaration">proc </aside>remove_opacity_source<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/old_source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_turf.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 71"/></a></aside>
+        </h3>
+        <p>Proc to remove movable sources of opacity on the turf and let it handle lighting code.</p><h3 id="proc/static_lighting_build_overlay"><aside class="declaration">proc </aside>static_lighting_build_overlay<aside>(/<a href="area.html">area</a>/our_area) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_static/static_lighting_turf.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_static&#x2F;static_lighting_turf.dm 16"/></a></aside>
+        </h3>
+        <p>Builds a lighting object for us, but only if our area is dynamic.</p><h3 id="proc/transfer_area_lighting"><aside class="declaration">proc </aside>transfer_area_lighting<aside>(/<a href="area.html">area</a>/old_area, /<a href="area.html">area</a>/new_area) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_turf.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_turf.dm 97"/></a></aside>
+        </h3>
+        <p>Transfer the lighting of one area to another</p><h3 id="proc/wash"><aside class="parent"><a title="/atom" href="atom.html#proc/wash">&uarr;</a></aside>wash<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L1009">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 1009"/></a></aside>
+        </h3>
+        <p>cleans any cleanable decals from the turf</p><h3 id="proc/zFall"><aside class="declaration">proc </aside>zFall<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/falling, levels, force, falling_from_move) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L559">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 559"/></a></aside>
+        </h3>
+        <p>Precipitates a movable (plus whatever buckled to it) to lower z levels if possible and then calls zImpact()</p><h3 id="proc/zImpact"><aside class="declaration">proc </aside>zImpact<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/falling, levels, /<a href="turf.html">turf</a>/prev_turf, flags) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L586">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 586"/></a></aside>
+        </h3>
+        <p>Called each time the target falls down a z level possibly making their trajectory come to a halt. see __DEFINES/movement.dm.</p><h3 id="proc/zPassIn"><aside class="declaration">proc </aside>zPassIn<aside>(direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L551">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 551"/></a></aside>
+        </h3>
+        <p>If we'd allow anything to travel into us</p><h3 id="proc/zPassOut"><aside class="declaration">proc </aside>zPassOut<aside>(direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/turfs/turf.dm#L555">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;turfs&#x2F;turf.dm 555"/></a></aside>
+        </h3>
+        <p>If we'd allow anything to travel out of us</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

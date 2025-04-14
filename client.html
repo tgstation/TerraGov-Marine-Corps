@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;client - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="client.html#var">Var Details</a> - <a href="client.html#proc">Proc Details</a></header>
+<main>
+<h1>client <aside>/<a href="client.html">client</a></aside><aside> inherits /<a href="datum.html">datum</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="client.html#var/admin_music_volume">admin_music_volume</a></th><td>Admin music volume, from 0 to 1.</td></tr>
+            <tr><th><a href="client.html#var/client_keysend_amount">client_keysend_amount</a></th><td>Amount of keydowns in the last keysend checking interval</td></tr>
+            <tr><th><a href="client.html#var/completed_asset_jobs">completed_asset_jobs</a></th><td>List of all completed blocking send jobs awaiting acknowledgement by send_asset</td></tr>
+            <tr><th><a href="client.html#var/do_parallax_animations">do_parallax_animations</a></th><td>Do we want to do parallax animations at all?
+Exists to prevent laptop fires</td></tr>
+            <tr><th><a href="client.html#var/dont_animate_parallax">dont_animate_parallax</a></th><td>world.time of when we can state animate()ing parallax again</td></tr>
+            <tr><th><a href="client.html#var/fully_created">fully_created</a></th><td>If this client has been fully initialized or not</td></tr>
+            <tr><th><a href="client.html#var/intended_direction">intended_direction</a></th><td>The direction we WANT to move, based off our keybinds
+Will be udpated to be the actual direction later on</td></tr>
+            <tr><th><a href="client.html#var/keysend_tripped">keysend_tripped</a></th><td>When set to true, user will be autokicked if they trip the keysends in a second limit again</td></tr>
+            <tr><th><a href="client.html#var/last_asset_job">last_asset_job</a></th><td>Last asset send job id.</td></tr>
+            <tr><th><a href="client.html#var/last_parallax_shift">last_parallax_shift</a></th><td>world.time of last parallax update</td></tr>
+            <tr><th><a href="client.html#var/movement_keys">movement_keys</a></th><td>custom movement keys for this client</td></tr>
+            <tr><th><a href="client.html#var/movement_locked">movement_locked</a></th><td>Are we locking our movement input?</td></tr>
+            <tr><th><a href="client.html#var/next_keysend_reset">next_keysend_reset</a></th><td>World tick time where client_keysend_amount will reset</td></tr>
+            <tr><th><a href="client.html#var/next_keysend_trip_reset">next_keysend_trip_reset</a></th><td>World tick time where keysend_tripped will reset back to false</td></tr>
+            <tr><th><a href="client.html#var/obj_window">obj_window</a></th><td>Our object window datum. It stores info about and handles behavior for the object tab</td></tr>
+            <tr><th><a href="client.html#var/panel_tabs">panel_tabs</a></th><td>list of all tabs</td></tr>
+            <tr><th><a href="client.html#var/parallax_animate_timers">parallax_animate_timers</a></th><td>Timers for the area directional animation, one for each layer</td></tr>
+            <tr><th><a href="client.html#var/parallax_throttle">parallax_throttle</a></th><td>ds between parallax updates</td></tr>
+            <tr><th><a href="client.html#var/recent_examines">recent_examines</a></th><td>A lazy list of atoms we've examined in the last RECENT_EXAMINE_MAX_WINDOW (default 2) seconds, so that we will call [/atom/proc/examine_more] instead of <a href="atom.html#proc/examine" title="/atom">/atom/proc/examine</a> on them when examining</td></tr>
+            <tr><th><a href="client.html#var/screen_maps">screen_maps</a></th><td>Assoc list with all the active maps - when a screen obj is added to
+a map, it's put in here as well.</td></tr>
+            <tr><th><a href="client.html#var/screen_texts">screen_texts</a></th><td>lazylist of screen_texts for this client, first in this list is the one playing</td></tr>
+            <tr><th><a href="client.html#var/script">script</a></th><td>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!HEY LISTEN!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</td></tr>
+            <tr><th><a href="client.html#var/seen_messages">seen_messages</a></th><td>Messages currently seen by this client</td></tr>
+            <tr><th><a href="client.html#var/spell_tabs">spell_tabs</a></th><td>list of tabs containing spells and abilities</td></tr>
+            <tr><th><a href="client.html#var/stat_panel">stat_panel</a></th><td>Stat panel window declaration</td></tr>
+            <tr><th><a href="client.html#var/stat_tab">stat_tab</a></th><td>our current tab</td></tr>
+            <tr><th><a href="client.html#var/tgui_cache_reloaded">tgui_cache_reloaded</a></th><td>global</td></tr>
+            <tr><th><a href="client.html#var/tgui_say">tgui_say</a></th><td>Assigned say modal of the client</td></tr>
+            <tr><th><a href="client.html#var/tgui_windows">tgui_windows</a></th><td>global</td></tr>
+            <tr><th><a href="client.html#var/view_size">view_size</a></th><td>datum wrapper for client view</td></tr>
+            <tr><th><a href="client.html#var/window_scaling">window_scaling</a></th><td>The DPI scale of the client. 1 is equivalent to 100% window scaling, 2 will be 200% window scaling</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="client.html#proc/acquire_dpi">acquire_dpi</a></th><td>This grabs the DPI of the user per their skin</td></tr>
+            <tr><th><a href="client.html#proc/apply_clickcatcher">apply_clickcatcher</a></th><td>Creates and applies a clickcatcher</td></tr>
+            <tr><th><a href="client.html#proc/asset_cache_confirm_arrival">asset_cache_confirm_arrival</a></th><td>Process asset cache client topic calls for &quot;asset_cache_confirm_arrival=[INT]&quot;</td></tr>
+            <tr><th><a href="client.html#proc/asset_cache_preload_data">asset_cache_preload_data</a></th><td>Process asset cache client topic calls for &quot;asset_cache_preload_data=[HTML+JSON_STRING]</td></tr>
+            <tr><th><a href="client.html#proc/asset_cache_update_json">asset_cache_update_json</a></th><td>Updates the client side stored json file used to keep track of what assets the client has between restarts/reconnects.</td></tr>
+            <tr><th><a href="client.html#proc/attempt_auto_fit_viewport">attempt_auto_fit_viewport</a></th><td>Attempt to automatically fit the viewport, assuming the user wants it</td></tr>
+            <tr><th><a href="client.html#proc/browse_queue_flush">browse_queue_flush</a></th><td>Blocks until all currently sending browse and browse_rsc assets have been sent.
+Due to byond limitations, this proc will sleep for 1 client round trip even if the client has no pending asset sends.
+This proc will return an untrue value if it had to return before confirming the send, such as timeout or the client going away.</td></tr>
+            <tr><th><a href="client.html#proc/clear_all_maps">clear_all_maps</a></th><td>Clears all the maps of registered screen objects.</td></tr>
+            <tr><th><a href="client.html#proc/clear_map">clear_map</a></th><td>Clears the map of registered screen objects.</td></tr>
+            <tr><th><a href="client.html#proc/close_popup">close_popup</a></th><td>Closes a popup.</td></tr>
+            <tr><th><a href="client.html#proc/create_popup">create_popup</a></th><td>Creates a popup window with a basic map element in it, without any
+further initialization.</td></tr>
+            <tr><th><a href="client.html#proc/fix_tgui_panel">fix_tgui_panel</a></th><td>tgui panel / chat troubleshooting verb</td></tr>
+            <tr><th><a href="client.html#proc/handle_popup_close">handle_popup_close</a></th><td>When the popup closes in any way (player or proc call) it calls this.</td></tr>
+            <tr><th><a href="client.html#proc/init_verbs">init_verbs</a></th><td>compiles a full list of verbs and sends it to the browser</td></tr>
+            <tr><th><a href="client.html#proc/keyUp">keyUp</a></th><td>Check if the key is short enough to even be a real key</td></tr>
+            <tr><th><a href="client.html#proc/mark_datum">mark_datum</a></th><td></td></tr>
+            <tr><th><a href="client.html#proc/massmodify_variables">massmodify_variables</a></th><td>if false get only the strict type, get all subtypes too otherwise</td></tr>
+            <tr><th><a href="client.html#proc/on_stat_panel_message">on_stat_panel_message</a></th><td>Handles incoming messages from the stat-panel TGUI.</td></tr>
+            <tr><th><a href="client.html#proc/open_particle_editor">open_particle_editor</a></th><td>opens the particle editor UI for the in_atom object for this client</td></tr>
+            <tr><th><a href="client.html#proc/register_map_obj">register_map_obj</a></th><td>Registers screen obj with the client, which makes it visible on the
+assigned map, and becomes a part of the assigned map's lifecycle.</td></tr>
+            <tr><th><a href="client.html#proc/reset_held_keys">reset_held_keys</a></th><td>Manually clears any held keys, in case due to lag or other undefined behavior a key gets stuck.</td></tr>
+            <tr><th><a href="client.html#proc/send_resources">send_resources</a></th><td>Send resources to the client. Sends both game resources and browser assets.</td></tr>
+            <tr><th><a href="client.html#proc/set_fullscreen">set_fullscreen</a></th><td>Change the fullscreen setting of the client</td></tr>
+            <tr><th><a href="client.html#proc/setup_popup">setup_popup</a></th><td>Create the popup, and get it ready for generic use by giving
+it a background.</td></tr>
+            <tr><th><a href="client.html#proc/start_thinking">start_thinking</a></th><td>Sets the mob as &quot;thinking&quot; - with indicator and the TRAIT_THINKING_IN_CHARACTER trait</td></tr>
+            <tr><th><a href="client.html#proc/start_typing">start_typing</a></th><td>Handles the user typing. After a brief period of inactivity,
+signals the client mob to revert to the &quot;thinking&quot; icon.</td></tr>
+            <tr><th><a href="client.html#proc/stop_thinking">stop_thinking</a></th><td>Removes typing/thinking indicators and flags the mob as not thinking</td></tr>
+            <tr><th><a href="client.html#proc/stop_typing">stop_typing</a></th><td>Callback to remove the typing indicator after a brief period of inactivity.
+If the user was typing IC, the thinking indicator is shown.</td></tr>
+            <tr><th><a href="client.html#proc/tgui_say_create_open_command">tgui_say_create_open_command</a></th><td>Creates a JSON encoded message to open TGUI say modals properly.</td></tr>
+            <tr><th><a href="client.html#proc/toggle_tgui_fancy">toggle_tgui_fancy</a></th><td>Same thing as the character creator preference, but as a byond verb, because not everyone can reach it in tgui preference menu</td></tr>
+            <tr><th><a href="client.html#proc/uiclose">uiclose</a></th><td>verb</td></tr>
+            <tr><th><a href="client.html#proc/update_ambience_pref">update_ambience_pref</a></th><td>updates with the ambience preferrences of the user</td></tr>
+            <tr><th><a href="client.html#proc/update_special_keybinds">update_special_keybinds</a></th><td>Updates the keybinds for special keys</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/admin_music_volume"><aside class="declaration">var </aside>admin_music_volume
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui_panel/audio.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui_panel&#x2F;audio.dm 7"/></a></h3>
+        <p>Admin music volume, from 0 to 1.</p><h3 id="var/client_keysend_amount"><aside class="declaration">var </aside>client_keysend_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L95">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 95"/></a></h3>
+        <p>Amount of keydowns in the last keysend checking interval</p><h3 id="var/completed_asset_jobs"><aside class="declaration">var </aside>completed_asset_jobs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 81"/></a></h3>
+        <p>List of all completed blocking send jobs awaiting acknowledgement by send_asset</p><h3 id="var/do_parallax_animations"><aside class="declaration">var </aside>do_parallax_animations
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 112"/></a></h3>
+        <p>Do we want to do parallax animations at all?
+Exists to prevent laptop fires</p><h3 id="var/dont_animate_parallax"><aside class="declaration">var </aside>dont_animate_parallax
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 117"/></a></h3>
+        <p>world.time of when we can state animate()ing parallax again</p><h3 id="var/fully_created"><aside class="declaration">var </aside>fully_created
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 53"/></a></h3>
+        <p>If this client has been fully initialized or not</p><h3 id="var/intended_direction"><aside class="declaration">var </aside>intended_direction
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 141"/></a></h3>
+        <p>The direction we WANT to move, based off our keybinds
+Will be udpated to be the actual direction later on</p><h3 id="var/keysend_tripped"><aside class="declaration">var </aside>keysend_tripped
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 101"/></a></h3>
+        <p>When set to true, user will be autokicked if they trip the keysends in a second limit again</p><h3 id="var/last_asset_job"><aside class="declaration">var </aside>last_asset_job
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 83"/></a></h3>
+        <p>Last asset send job id.</p><h3 id="var/last_parallax_shift"><aside class="declaration">var </aside>last_parallax_shift
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 119"/></a></h3>
+        <p>world.time of last parallax update</p><h3 id="var/movement_keys"><aside class="declaration">var </aside>movement_keys
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 103"/></a></h3>
+        <p>custom movement keys for this client</p><h3 id="var/movement_locked"><aside class="declaration">var </aside>movement_locked
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 105"/></a></h3>
+        <p>Are we locking our movement input?</p><h3 id="var/next_keysend_reset"><aside class="declaration">var </aside>next_keysend_reset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 97"/></a></h3>
+        <p>World tick time where client_keysend_amount will reset</p><h3 id="var/next_keysend_trip_reset"><aside class="declaration">var </aside>next_keysend_trip_reset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L99">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 99"/></a></h3>
+        <p>World tick time where keysend_tripped will reset back to false</p><h3 id="var/obj_window"><aside class="declaration">var </aside>obj_window
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/object_window_info.html">object_window_info</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 68"/></a></h3>
+        <p>Our object window datum. It stores info about and handles behavior for the object tab</p><h3 id="var/panel_tabs"><aside class="declaration">var </aside>panel_tabs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 62"/></a></h3>
+        <p>list of all tabs</p><h3 id="var/parallax_animate_timers"><aside class="declaration">var </aside>parallax_animate_timers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 125"/></a></h3>
+        <p>Timers for the area directional animation, one for each layer</p><h3 id="var/parallax_throttle"><aside class="declaration">var </aside>parallax_throttle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 121"/></a></h3>
+        <p>ds between parallax updates</p><h3 id="var/recent_examines"><aside class="declaration">var </aside>recent_examines
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 66"/></a></h3>
+        <p>A lazy list of atoms we've examined in the last RECENT_EXAMINE_MAX_WINDOW (default 2) seconds, so that we will call [/atom/proc/examine_more] instead of <a href="atom.html#proc/examine" title="/atom">/atom/proc/examine</a> on them when examining</p><h3 id="var/screen_maps"><aside class="declaration">var </aside>screen_maps
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L134">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 134"/></a></h3>
+        <p>Assoc list with all the active maps - when a screen obj is added to
+a map, it's put in here as well.</p>
+<p>Format: list(<mapname> = list(/atom/movable/screen))</p><h3 id="var/screen_texts"><aside class="declaration">var </aside>screen_texts
+            <aside>&ndash; /list/atom/movable/screen/text/screen_text</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 92"/></a></h3>
+        <p>lazylist of screen_texts for this client, first in this list is the one playing</p><h3 id="var/script"><aside class="declaration">var </aside>script
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/interface/stylesheet.dm#L10">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;stylesheet.dm 10"/></a></h3>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!HEY LISTEN!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p><h3 id="var/seen_messages"><aside class="declaration">var </aside>seen_messages
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 137"/></a></h3>
+        <p>Messages currently seen by this client</p><h3 id="var/spell_tabs"><aside class="declaration">var </aside>spell_tabs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 64"/></a></h3>
+        <p>list of tabs containing spells and abilities</p><h3 id="var/stat_panel"><aside class="declaration">var </aside>stat_panel
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/tgui_window.html">tgui_window</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/statpanel.dm#L238">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;statpanel.dm 238"/></a></h3>
+        <p>Stat panel window declaration</p><h3 id="var/stat_tab"><aside class="declaration">var </aside>stat_tab
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 59"/></a></h3>
+        <p>our current tab</p><h3 id="var/tgui_cache_reloaded"><aside class="declaration">var </aside>tgui_cache_reloaded
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/external.dm#L151">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 151"/></a></h3>
+        <p>global</p>
+<p>TRUE if cache was reloaded by tgui dev server at least once.</p><h3 id="var/tgui_say"><aside class="declaration">var </aside>tgui_say
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/tgui_say.html">tgui_say</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui_input/say_modal/modal.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui_input&#x2F;say_modal&#x2F;modal.dm 2"/></a></h3>
+        <p>Assigned say modal of the client</p><h3 id="var/tgui_windows"><aside class="declaration">var </aside>tgui_windows
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/external.dm#L144">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 144"/></a></h3>
+        <p>global</p>
+<p>Tracks open windows for a user.</p><h3 id="var/view_size"><aside class="declaration">var </aside>view_size
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/view_data.html">view_data</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_defines.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 56"/></a></h3>
+        <p>datum wrapper for client view</p><h3 id="var/window_scaling"><aside class="declaration">var </aside>window_scaling
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_procs.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_procs.dm 28"/></a></h3>
+        <p>The DPI scale of the client. 1 is equivalent to 100% window scaling, 2 will be 200% window scaling</p><h2 id="proc">Proc Details</h2><h3 id="proc/acquire_dpi"><aside class="declaration">proc </aside>acquire_dpi<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_procs.dm#L1095">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_procs.dm 1095"/></a></aside>
+        </h3>
+        <p>This grabs the DPI of the user per their skin</p><h3 id="proc/apply_clickcatcher"><aside class="declaration">proc </aside>apply_clickcatcher<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_procs.dm#L955">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_procs.dm 955"/></a></aside>
+        </h3>
+        <p>Creates and applies a clickcatcher</p><h3 id="proc/asset_cache_confirm_arrival"><aside class="declaration">proc </aside>asset_cache_confirm_arrival<aside>(job_id) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/asset_cache/asset_cache_client.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;asset_cache&#x2F;asset_cache_client.dm 3"/></a></aside>
+        </h3>
+        <p>Process asset cache client topic calls for &quot;asset_cache_confirm_arrival=[INT]&quot;</p><h3 id="proc/asset_cache_preload_data"><aside class="declaration">proc </aside>asset_cache_preload_data<aside>(data) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/asset_cache/asset_cache_client.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;asset_cache&#x2F;asset_cache_client.dm 14"/></a></aside>
+        </h3>
+        <p>Process asset cache client topic calls for &quot;asset_cache_preload_data=[HTML+JSON_STRING]</p><h3 id="proc/asset_cache_update_json"><aside class="declaration">proc </aside>asset_cache_update_json<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/asset_cache/asset_cache_client.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;asset_cache&#x2F;asset_cache_client.dm 26"/></a></aside>
+        </h3>
+        <p>Updates the client side stored json file used to keep track of what assets the client has between restarts/reconnects.</p><h3 id="proc/attempt_auto_fit_viewport"><aside class="declaration">proc </aside>attempt_auto_fit_viewport<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/verbs/ooc.dm#L566">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;verbs&#x2F;ooc.dm 566"/></a></aside>
+        </h3>
+        <p>Attempt to automatically fit the viewport, assuming the user wants it</p><h3 id="proc/browse_queue_flush"><aside class="declaration">proc </aside>browse_queue_flush<aside>(timeout) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/asset_cache/asset_cache_client.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;asset_cache&#x2F;asset_cache_client.dm 35"/></a></aside>
+        </h3>
+        <p>Blocks until all currently sending browse and browse_rsc assets have been sent.
+Due to byond limitations, this proc will sleep for 1 client round trip even if the client has no pending asset sends.
+This proc will return an untrue value if it had to return before confirming the send, such as timeout or the client going away.</p><h3 id="proc/clear_all_maps"><aside class="declaration">proc </aside>clear_all_maps<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/map_popups.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups.dm 71"/></a></aside>
+        </h3>
+        <p>Clears all the maps of registered screen objects.</p><h3 id="proc/clear_map"><aside class="declaration">proc </aside>clear_map<aside>(map_name) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/map_popups.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups.dm 59"/></a></aside>
+        </h3>
+        <p>Clears the map of registered screen objects.</p>
+<p>Not really needed most of the time, as the client's screen list gets reset
+on relog. any of the buttons are going to get caught by garbage collection
+anyway. they're effectively qdel'd.</p><h3 id="proc/close_popup"><aside class="declaration">proc </aside>close_popup<aside>(popup) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/map_popups.dm#L128">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups.dm 128"/></a></aside>
+        </h3>
+        <p>Closes a popup.</p><h3 id="proc/create_popup"><aside class="declaration">proc </aside>create_popup<aside>(name, ratiox, ratioy) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/map_popups.dm#L83">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups.dm 83"/></a></aside>
+        </h3>
+        <p>Creates a popup window with a basic map element in it, without any
+further initialization.</p>
+<p>Ratio is how many pixels by how many pixels (keep it simple).</p>
+<p>Returns a map name.</p><h3 id="proc/fix_tgui_panel"><aside class="declaration">verb </aside>fix_tgui_panel<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui_panel/external.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui_panel&#x2F;external.dm 11"/></a></aside>
+        </h3>
+        <p>tgui panel / chat troubleshooting verb</p><h3 id="proc/handle_popup_close"><aside class="declaration">verb </aside>handle_popup_close<aside>(window_id) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/map_popups.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups.dm 135"/></a></aside>
+        </h3>
+        <p>When the popup closes in any way (player or proc call) it calls this.</p><h3 id="proc/init_verbs"><aside class="declaration">proc </aside>init_verbs<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_procs.dm#L1051">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_procs.dm 1051"/></a></aside>
+        </h3>
+        <p>compiles a full list of verbs and sends it to the browser</p><h3 id="proc/keyUp"><aside class="declaration">verb </aside>keyUp<aside>(_key) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/keybindings/bindings_client.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;keybindings&#x2F;bindings_client.dm 80"/></a></aside>
+        </h3>
+        <p>Check if the key is short enough to even be a real key</p><h3 id="proc/mark_datum"><aside class="declaration">proc </aside>mark_datum<aside>(/<a href="datum.html">datum</a>/D) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/admin/view_variables/mark_datum.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;view_variables&#x2F;mark_datum.dm 9"/></a></aside>
+        </h3>
+        <hh1 id=""><code>mark_datum(datum/D)</code></hh1>
+<p>This proc marks a datum for the holder of this client, by setting the holder's marked_datum var.
+If the holder already had a marked datum, unmarks said datum beforehand.
+The client obviously must have a holder for this to work.</p>
+<ul>
+<li>Arg: The datum to mark.</li>
+<li>Has no return value.</li>
+</ul><h3 id="proc/massmodify_variables"><aside class="declaration">proc </aside>massmodify_variables<aside>(/<a href="datum.html">datum</a>/target, var_name, strict_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/admin/view_variables/mass_edit_variables.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;view_variables&#x2F;mass_edit_variables.dm 16"/></a></aside>
+        </h3>
+        <p>if false get only the strict type, get all subtypes too otherwise</p><h3 id="proc/on_stat_panel_message"><aside class="declaration">proc </aside>on_stat_panel_message<aside>(type, payload) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_procs.dm#L1080">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_procs.dm 1080"/></a></aside>
+        </h3>
+        <p>Handles incoming messages from the stat-panel TGUI.</p><h3 id="proc/open_particle_editor"><aside class="declaration">proc </aside>open_particle_editor<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/in_atom) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_procs.dm#L1036">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_procs.dm 1036"/></a></aside>
+        </h3>
+        <p>opens the particle editor UI for the in_atom object for this client</p><h3 id="proc/register_map_obj"><aside class="declaration">proc </aside>register_map_obj<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/screen_obj) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/map_popups.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups.dm 40"/></a></aside>
+        </h3>
+        <p>Registers screen obj with the client, which makes it visible on the
+assigned map, and becomes a part of the assigned map's lifecycle.</p><h3 id="proc/reset_held_keys"><aside class="declaration">verb </aside>reset_held_keys<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/keybindings/bindings_client.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;keybindings&#x2F;bindings_client.dm 108"/></a></aside>
+        </h3>
+        <p>Manually clears any held keys, in case due to lag or other undefined behavior a key gets stuck.</p>
+<p>Hardcoded to the ESC key.</p><h3 id="proc/send_resources"><aside class="declaration">proc </aside>send_resources<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_procs.dm#L518">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_procs.dm 518"/></a></aside>
+        </h3>
+        <p>Send resources to the client. Sends both game resources and browser assets.</p><h3 id="proc/set_fullscreen"><aside class="declaration">proc </aside>set_fullscreen<aside>(fullscreen_mode) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_procs.dm#L938">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_procs.dm 938"/></a></aside>
+        </h3>
+        <p>Change the fullscreen setting of the client</p><h3 id="proc/setup_popup"><aside class="declaration">proc </aside>setup_popup<aside>(popup_name, width, height, tilesize, bg_icon) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/_onclick/hud/map_popups.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;map_popups.dm 107"/></a></aside>
+        </h3>
+        <p>Create the popup, and get it ready for generic use by giving
+it a background.</p>
+<p>Width and height are multiplied by 64 by default.</p><h3 id="proc/start_thinking"><aside class="declaration">proc </aside>start_thinking<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/verbs/typing.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;verbs&#x2F;typing.dm 32"/></a></aside>
+        </h3>
+        <p>Sets the mob as &quot;thinking&quot; - with indicator and the TRAIT_THINKING_IN_CHARACTER trait</p><h3 id="proc/start_typing"><aside class="declaration">proc </aside>start_typing<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/verbs/typing.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;verbs&#x2F;typing.dm 46"/></a></aside>
+        </h3>
+        <p>Handles the user typing. After a brief period of inactivity,
+signals the client mob to revert to the &quot;thinking&quot; icon.</p><h3 id="proc/stop_thinking"><aside class="declaration">proc </aside>stop_thinking<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/verbs/typing.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;verbs&#x2F;typing.dm 39"/></a></aside>
+        </h3>
+        <p>Removes typing/thinking indicators and flags the mob as not thinking</p><h3 id="proc/stop_typing"><aside class="declaration">proc </aside>stop_typing<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/verbs/typing.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;verbs&#x2F;typing.dm 58"/></a></aside>
+        </h3>
+        <p>Callback to remove the typing indicator after a brief period of inactivity.
+If the user was typing IC, the thinking indicator is shown.</p><h3 id="proc/tgui_say_create_open_command"><aside class="declaration">proc </aside>tgui_say_create_open_command<aside>(channel) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui_input/say_modal/modal.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui_input&#x2F;say_modal&#x2F;modal.dm 12"/></a></aside>
+        </h3>
+        <p>Creates a JSON encoded message to open TGUI say modals properly.</p>
+<p>Arguments:
+channel - The channel to open the modal in.
+Returns:
+string - A JSON encoded message to open the modal.</p><h3 id="proc/toggle_tgui_fancy"><aside class="declaration">verb </aside>toggle_tgui_fancy<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/preferences_toggles.dm#L235">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;preferences_toggles.dm 235"/></a></aside>
+        </h3>
+        <p>Same thing as the character creator preference, but as a byond verb, because not everyone can reach it in tgui preference menu</p><h3 id="proc/uiclose"><aside class="declaration">verb </aside>uiclose<aside>(window_id) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/tgui/external.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 170"/></a></aside>
+        </h3>
+        <p>verb</p>
+<p>Called by UIs when they are closed.
+Must be a verb so winset() can call it.</p>
+<p>required uiref ref The UI that was closed.</p><h3 id="proc/update_ambience_pref"><aside class="declaration">proc </aside>update_ambience_pref<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_procs.dm#L1042">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_procs.dm 1042"/></a></aside>
+        </h3>
+        <p>updates with the ambience preferrences of the user</p><h3 id="proc/update_special_keybinds"><aside class="declaration">proc </aside>update_special_keybinds<aside>(/<a href="datum.html">datum</a>/<a href="datum/preferences.html">preferences</a>/direct_prefs) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/client/client_procs.dm#L871">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_procs.dm 871"/></a></aside>
+        </h3>
+        <p>Updates the keybinds for special keys</p>
+<p>Handles adding macros for the keys that need it
+And adding movement keys to the clients movement_keys list
+At the time of writing this, communication(OOC, Say, IC, ASAY, MSAY) require macros
+Arguments:</p>
+<ul>
+<li>direct_prefs - the preference we're going to get keybinds from</li>
+</ul></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

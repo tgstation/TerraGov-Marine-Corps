@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;jetpack_marine - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/jetpack_marine.html#var">Var Details</a> - <a href="obj/item/jetpack_marine.html#proc">Proc Details</a></header>
+<main>
+<h1>jetpack_marine <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/jetpack_marine.html">jetpack_marine</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/jetpack.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;jetpack.dm 5"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/jetpack_marine.html#var/cooldown_time">cooldown_time</a></th><td>Time between uses</td></tr>
+            <tr><th><a href="obj/item/jetpack_marine.html#var/fuel_indicator">fuel_indicator</a></th><td>threshold to change the jetpack fuel indicator</td></tr>
+            <tr><th><a href="obj/item/jetpack_marine.html#var/fuel_left">fuel_left</a></th><td>current amount of fuel in the jetpack</td></tr>
+            <tr><th><a href="obj/item/jetpack_marine.html#var/fuel_max">fuel_max</a></th><td>maximum amount of fuel in the jetpack</td></tr>
+            <tr><th><a href="obj/item/jetpack_marine.html#var/lit">lit</a></th><td>True when jetpack has flame overlay</td></tr>
+            <tr><th><a href="obj/item/jetpack_marine.html#var/speed">speed</a></th><td>How quick you will fly (warning, it rounds up to the nearest integer)</td></tr>
+            <tr><th><a href="obj/item/jetpack_marine.html#var/toggle_action">toggle_action</a></th><td>Controlling action</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/jetpack_marine.html#proc/calculate_range">calculate_range</a></th><td>Calculate the max range of the jetpack, changed by some item slowdown</td></tr>
+            <tr><th><a href="obj/item/jetpack_marine.html#proc/change_fuel_indicator">change_fuel_indicator</a></th><td>Manage the fuel indicator overlay</td></tr>
+            <tr><th><a href="obj/item/jetpack_marine.html#proc/reset_flame">reset_flame</a></th><td>remove the flame overlay</td></tr>
+            <tr><th><a href="obj/item/jetpack_marine.html#proc/use_jetpack">use_jetpack</a></th><td>Make the user fly toward the target atom</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/cooldown_time"><aside class="declaration">var </aside>cooldown_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/jetpack.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;jetpack.dm 18"/></a></h3>
+        <p>Time between uses</p><h3 id="var/fuel_indicator"><aside class="declaration">var </aside>fuel_indicator
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/jetpack.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;jetpack.dm 24"/></a></h3>
+        <p>threshold to change the jetpack fuel indicator</p><h3 id="var/fuel_left"><aside class="declaration">var </aside>fuel_left
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/jetpack.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;jetpack.dm 22"/></a></h3>
+        <p>current amount of fuel in the jetpack</p><h3 id="var/fuel_max"><aside class="declaration">var </aside>fuel_max
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/jetpack.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;jetpack.dm 20"/></a></h3>
+        <p>maximum amount of fuel in the jetpack</p><h3 id="var/lit"><aside class="declaration">var </aside>lit
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/jetpack.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;jetpack.dm 28"/></a></h3>
+        <p>True when jetpack has flame overlay</p><h3 id="var/speed"><aside class="declaration">var </aside>speed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/jetpack.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;jetpack.dm 26"/></a></h3>
+        <p>How quick you will fly (warning, it rounds up to the nearest integer)</p><h3 id="var/toggle_action"><aside class="declaration">var </aside>toggle_action
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/activable.html">activable</a>/<a href="datum/action/ability/activable/item_toggle.html">item_toggle</a>/jetpack</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/jetpack.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;jetpack.dm 32"/></a></h3>
+        <p>Controlling action</p><h2 id="proc">Proc Details</h2><h3 id="proc/calculate_range"><aside class="declaration">proc </aside>calculate_range<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/human_user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/jetpack.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;jetpack.dm 88"/></a></aside>
+        </h3>
+        <p>Calculate the max range of the jetpack, changed by some item slowdown</p><h3 id="proc/change_fuel_indicator"><aside class="declaration">proc </aside>change_fuel_indicator<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/jetpack.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;jetpack.dm 120"/></a></aside>
+        </h3>
+        <p>Manage the fuel indicator overlay</p><h3 id="proc/reset_flame"><aside class="declaration">proc </aside>reset_flame<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/human_user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/jetpack.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;jetpack.dm 59"/></a></aside>
+        </h3>
+        <p>remove the flame overlay</p><h3 id="proc/use_jetpack"><aside class="declaration">proc </aside>use_jetpack<aside>(/<a href="atom.html">atom</a>/A, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/human_user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/jetpack.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;jetpack.dm 67"/></a></aside>
+        </h3>
+        <p>Make the user fly toward the target atom</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

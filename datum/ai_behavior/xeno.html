@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;ai_behavior&#x2F;xeno - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/ai_behavior/xeno.html#var">Var Details</a> - <a href="datum/ai_behavior/xeno.html#proc">Proc Details</a></header>
+<main>
+<h1>xeno <aside>/<a href="datum.html">datum</a>/<a href="datum/ai_behavior.html">ai_behavior</a>/<a href="datum/ai_behavior/xeno.html">xeno</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/xeno.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;xeno.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/ai_behavior/xeno.html#var/ability_list">ability_list</a></th><td>List of abilities to consider doing every Process()</td></tr>
+            <tr><th><a href="datum/ai_behavior/xeno.html#var/can_heal">can_heal</a></th><td>If the mob parent can heal itself and so should flee</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/ai_behavior/xeno.html#proc/attack_target">attack_target</a></th><td>Signal handler to try to attack our target</td></tr>
+            <tr><th><a href="datum/ai_behavior/xeno.html#proc/check_for_critical_health">check_for_critical_health</a></th><td>Called each time the ai takes damage; if we are below a certain health threshold, try to retreat</td></tr>
+            <tr><th><a href="datum/ai_behavior/xeno.html#proc/check_for_health">check_for_health</a></th><td>Wait for the xeno to be full life and plasma to unrest</td></tr>
+            <tr><th><a href="datum/ai_behavior/xeno.html#proc/check_for_plasma">check_for_plasma</a></th><td>Wait for the xeno to be full life and plasma to unrest</td></tr>
+            <tr><th><a href="datum/ai_behavior/xeno.html#proc/climb_window_frame">climb_window_frame</a></th><td>Move the ai mob on top of the window_frame</td></tr>
+            <tr><th><a href="datum/ai_behavior/xeno.html#proc/refresh_abilities">refresh_abilities</a></th><td>Refresh abilities-to-consider list</td></tr>
+            <tr><th><a href="datum/ai_behavior/xeno.html#proc/try_to_heal">try_to_heal</a></th><td>Will try finding and resting on weeds</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ability_list"><aside class="declaration">var </aside>ability_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/xeno.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;xeno.dm 8"/></a></h3>
+        <p>List of abilities to consider doing every Process()</p><h3 id="var/can_heal"><aside class="declaration">var </aside>can_heal
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/xeno.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;xeno.dm 10"/></a></h3>
+        <p>If the mob parent can heal itself and so should flee</p><h2 id="proc">Proc Details</h2><h3 id="proc/attack_target"><aside class="declaration">proc </aside>attack_target<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/attacked) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/xeno.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;xeno.dm 170"/></a></aside>
+        </h3>
+        <p>Signal handler to try to attack our target</p><h3 id="proc/check_for_critical_health"><aside class="declaration">proc </aside>check_for_critical_health<aside>(/<a href="datum.html">datum</a>/source, damage) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/xeno.dm#L226">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;xeno.dm 226"/></a></aside>
+        </h3>
+        <p>Called each time the ai takes damage; if we are below a certain health threshold, try to retreat</p><h3 id="proc/check_for_health"><aside class="declaration">proc </aside>check_for_health<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a>/healing, /list/heal_data) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/xeno.dm#L212">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;xeno.dm 212"/></a></aside>
+        </h3>
+        <p>Wait for the xeno to be full life and plasma to unrest</p><h3 id="proc/check_for_plasma"><aside class="declaration">proc </aside>check_for_plasma<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a>/healing, /list/plasma_data) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/xeno.dm#L219">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;xeno.dm 219"/></a></aside>
+        </h3>
+        <p>Wait for the xeno to be full life and plasma to unrest</p><h3 id="proc/climb_window_frame"><aside class="declaration">proc </aside>climb_window_frame<aside>(/<a href="turf.html">turf</a>/window_turf) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/xeno.dm#L239">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;xeno.dm 239"/></a></aside>
+        </h3>
+        <p>Move the ai mob on top of the window_frame</p><h3 id="proc/refresh_abilities"><aside class="declaration">proc </aside>refresh_abilities<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/xeno.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;xeno.dm 42"/></a></aside>
+        </h3>
+        <p>Refresh abilities-to-consider list</p><h3 id="proc/try_to_heal"><aside class="declaration">proc </aside>try_to_heal<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/xeno/xeno.dm#L195">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;xeno&#x2F;xeno.dm 195"/></a></aside>
+        </h3>
+        <p>Will try finding and resting on weeds</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

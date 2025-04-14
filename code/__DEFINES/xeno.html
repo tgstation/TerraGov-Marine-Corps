@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;xeno.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/xeno.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/xeno.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/xeno.html#define/XENO_STRUCT_WARNING_RADIUS">XENO_STRUCT_WARNING_RADIUS</a></th><td>Structure will warn when hostiles are nearby</td></tr>
+        <tr><th><a href="code/__DEFINES/xeno.html#define/XENO_STRUCT_DAMAGE_ALERT">XENO_STRUCT_DAMAGE_ALERT</a></th><td>Structure will warn when damaged</td></tr>
+        <tr><th><a href="code/__DEFINES/xeno.html#define/UPGRADE_FLAG_MESSAGE_HIVE">UPGRADE_FLAG_MESSAGE_HIVE</a></th><td>Message the hive when we buy this upgrade</td></tr>
+        <tr><th><a href="code/__DEFINES/xeno.html#define/HEAL_XENO_DAMAGE">HEAL_XENO_DAMAGE</a></th><td>Heals a xeno, respecting different types of damage</td></tr>
+        <tr><th><a href="code/__DEFINES/xeno.html#define/adjustOverheal">adjustOverheal</a></th><td>Adjusts overheal and returns the amount by which it was adjusted</td></tr>
+        <tr><th><a href="code/__DEFINES/xeno.html#define/NO_ERROR">NO_ERROR</a></th><td>Used by the is_valid_for_resin_structure proc.
+0 is considered valid , anything thats not 0 is false
+Simply not allowed by the area to build</td></tr>
+        <tr><th><a href="code/__DEFINES/xeno.html#define/ERROR_NO_WEED">ERROR_NO_WEED</a></th><td>No weeds here, but it is weedable</td></tr>
+        <tr><th><a href="code/__DEFINES/xeno.html#define/ERROR_CANT_WEED">ERROR_CANT_WEED</a></th><td>Area is not weedable</td></tr>
+        <tr><th><a href="code/__DEFINES/xeno.html#define/ERROR_FOG">ERROR_FOG</a></th><td>Gamemode-fog prevents spawn-building</td></tr>
+        <tr><th><a href="code/__DEFINES/xeno.html#define/ERROR_BLOCKER">ERROR_BLOCKER</a></th><td>Blocked by a xeno</td></tr>
+        <tr><th><a href="code/__DEFINES/xeno.html#define/ERROR_NO_SUPPORT">ERROR_NO_SUPPORT</a></th><td>No adjaecent wall or door tile</td></tr>
+        <tr><th><a href="code/__DEFINES/xeno.html#define/ERROR_CONSTRUCT">ERROR_CONSTRUCT</a></th><td>Failed to other blockers such as egg, power plant , coocon , traps</td></tr>
+        <tr><th><a href="code/__DEFINES/xeno.html#define/XENO_HUD_ICON_BUCKETS">XENO_HUD_ICON_BUCKETS</a></th><td>Number of icon states to show health and plasma on the side UI buttons</td></tr>
+        <tr><th><a href="code/__DEFINES/xeno.html#define/XENO_PER_SECOND_LIFE_MOD">XENO_PER_SECOND_LIFE_MOD</a></th><td>Life runs every 2 seconds, but we don't want to multiply all healing by 2 due to seconds_per_tick</td></tr>
+        <tr><th><a href="code/__DEFINES/xeno.html#define/XENO_STRUCTURE_HEALTH_ALERT_COOLDOWN">XENO_STRUCTURE_HEALTH_ALERT_COOLDOWN</a></th><td>How frequently the damage alert can go off</td></tr>
+        <tr><th><a href="code/__DEFINES/xeno.html#define/XENO_STRUCTURE_DETECTION_COOLDOWN">XENO_STRUCTURE_DETECTION_COOLDOWN</a></th><td>How frequently the proximity alert can go off</td></tr>
+        <tr><th><a href="code/__DEFINES/xeno.html#define/XENO_STRUCTURE_DETECTION_RANGE">XENO_STRUCTURE_DETECTION_RANGE</a></th><td>Proxy detection radius</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ERROR_BLOCKER"><aside class="declaration">#define </aside>ERROR_BLOCKER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L200">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 200"/></a>
+    </h3>
+    <p>Blocked by a xeno</p><h3 id="define/ERROR_CANT_WEED"><aside class="declaration">#define </aside>ERROR_CANT_WEED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L196">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 196"/></a>
+    </h3>
+    <p>Area is not weedable</p><h3 id="define/ERROR_CONSTRUCT"><aside class="declaration">#define </aside>ERROR_CONSTRUCT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L204">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 204"/></a>
+    </h3>
+    <p>Failed to other blockers such as egg, power plant , coocon , traps</p><h3 id="define/ERROR_FOG"><aside class="declaration">#define </aside>ERROR_FOG
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L198">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 198"/></a>
+    </h3>
+    <p>Gamemode-fog prevents spawn-building</p><h3 id="define/ERROR_NO_SUPPORT"><aside class="declaration">#define </aside>ERROR_NO_SUPPORT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L202">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 202"/></a>
+    </h3>
+    <p>No adjaecent wall or door tile</p><h3 id="define/ERROR_NO_WEED"><aside class="declaration">#define </aside>ERROR_NO_WEED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L194">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 194"/></a>
+    </h3>
+    <p>No weeds here, but it is weedable</p><h3 id="define/HEAL_XENO_DAMAGE"><aside class="declaration">#define </aside>HEAL_XENO_DAMAGE
+            <aside>(xeno, amount, passive)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L163">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 163"/></a>
+    </h3>
+    <p>Heals a xeno, respecting different types of damage</p><h3 id="define/NO_ERROR"><aside class="declaration">#define </aside>NO_ERROR
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L190">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 190"/></a>
+    </h3>
+    <p>Used by the is_valid_for_resin_structure proc.
+0 is considered valid , anything thats not 0 is false
+Simply not allowed by the area to build</p><h3 id="define/UPGRADE_FLAG_MESSAGE_HIVE"><aside class="declaration">#define </aside>UPGRADE_FLAG_MESSAGE_HIVE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L150">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 150"/></a>
+    </h3>
+    <p>Message the hive when we buy this upgrade</p><h3 id="define/XENO_HUD_ICON_BUCKETS"><aside class="declaration">#define </aside>XENO_HUD_ICON_BUCKETS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L214">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 214"/></a>
+    </h3>
+    <p>Number of icon states to show health and plasma on the side UI buttons</p><h3 id="define/XENO_PER_SECOND_LIFE_MOD"><aside class="declaration">#define </aside>XENO_PER_SECOND_LIFE_MOD
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L217">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 217"/></a>
+    </h3>
+    <p>Life runs every 2 seconds, but we don't want to multiply all healing by 2 due to seconds_per_tick</p><h3 id="define/XENO_STRUCTURE_DETECTION_COOLDOWN"><aside class="declaration">#define </aside>XENO_STRUCTURE_DETECTION_COOLDOWN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L224">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 224"/></a>
+    </h3>
+    <p>How frequently the proximity alert can go off</p><h3 id="define/XENO_STRUCTURE_DETECTION_RANGE"><aside class="declaration">#define </aside>XENO_STRUCTURE_DETECTION_RANGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L226">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 226"/></a>
+    </h3>
+    <p>Proxy detection radius</p><h3 id="define/XENO_STRUCTURE_HEALTH_ALERT_COOLDOWN"><aside class="declaration">#define </aside>XENO_STRUCTURE_HEALTH_ALERT_COOLDOWN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L222">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 222"/></a>
+    </h3>
+    <p>How frequently the damage alert can go off</p><h3 id="define/XENO_STRUCT_DAMAGE_ALERT"><aside class="declaration">#define </aside>XENO_STRUCT_DAMAGE_ALERT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 9"/></a>
+    </h3>
+    <p>Structure will warn when damaged</p><h3 id="define/XENO_STRUCT_WARNING_RADIUS"><aside class="declaration">#define </aside>XENO_STRUCT_WARNING_RADIUS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 7"/></a>
+    </h3>
+    <p>Structure will warn when hostiles are nearby</p><h3 id="define/adjustOverheal"><aside class="declaration">#define </aside>adjustOverheal
+            <aside>(xeno, amount)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/xeno.dm#L179">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;xeno.dm 179"/></a>
+    </h3>
+    <p>Adjusts overheal and returns the amount by which it was adjusted</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

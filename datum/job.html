@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;job - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/job.html#var">Var Details</a> - <a href="datum/job.html#proc">Proc Details</a></header>
+<main>
+<h1>job <aside>/<a href="datum.html">datum</a>/<a href="datum/job.html">job</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 21"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/job.html#var/current_positions">current_positions</a></th><td>How many positions of this job currently occupied</td></tr>
+            <tr><th><a href="datum/job.html#var/html_description">html_description</a></th><td>Description shown in the player's job preferences</td></tr>
+            <tr><th><a href="datum/job.html#var/job_cost">job_cost</a></th><td>how many job slots, if any this takes up per job</td></tr>
+            <tr><th><a href="datum/job.html#var/job_points">job_points</a></th><td>Points assigned dynamically to open new positions</td></tr>
+            <tr><th><a href="datum/job.html#var/job_points_needed">job_points_needed</a></th><td>How many points needed to open up a new slot</td></tr>
+            <tr><th><a href="datum/job.html#var/job_traits">job_traits</a></th><td>Any special traits that are assigned for this job</td></tr>
+            <tr><th><a href="datum/job.html#var/max_positions">max_positions</a></th><td>How many positions can be dynamically assigned</td></tr>
+            <tr><th><a href="datum/job.html#var/minimap_icon">minimap_icon</a></th><td>string; typepath for the icon that this job will show on the minimap</td></tr>
+            <tr><th><a href="datum/job.html#var/multiple_outfits">multiple_outfits</a></th><td>whether the job has multiple outfits</td></tr>
+            <tr><th><a href="datum/job.html#var/outfits">outfits</a></th><td>list of outfit variants</td></tr>
+            <tr><th><a href="datum/job.html#var/skills_type">skills_type</a></th><td>Skills for this job</td></tr>
+            <tr><th><a href="datum/job.html#var/total_positions">total_positions</a></th><td>The total number of positions for this job</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/job.html#proc/add_job_points">add_job_points</a></th><td>Adds to job points, adding a new slot if threshold reached</td></tr>
+            <tr><th><a href="datum/job.html#proc/on_pre_setup">on_pre_setup</a></th><td>called during gamemode pre_setup, use for stuff like roundstart poplock</td></tr>
+            <tr><th><a href="datum/job.html#proc/radio_help_message">radio_help_message</a></th><td>The message you get when spawning in as this job, called by [/datum/job/proc/after_spawn]</td></tr>
+            <tr><th><a href="datum/job.html#proc/remove_job_points">remove_job_points</a></th><td>Removes job points, and if needed, job positions</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/current_positions"><aside class="declaration">var </aside>current_positions
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 35"/></a></h3>
+        <p>How many positions of this job currently occupied</p><h3 id="var/html_description"><aside class="declaration">var </aside>html_description
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 72"/></a></h3>
+        <p>Description shown in the player's job preferences</p><h3 id="var/job_cost"><aside class="declaration">var </aside>job_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 43"/></a></h3>
+        <p>how many job slots, if any this takes up per job</p><h3 id="var/job_points"><aside class="declaration">var </aside>job_points
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 39"/></a></h3>
+        <p>Points assigned dynamically to open new positions</p><h3 id="var/job_points_needed"><aside class="declaration">var </aside>job_points_needed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 41"/></a></h3>
+        <p>How many points needed to open up a new slot</p><h3 id="var/job_traits"><aside class="declaration">var </aside>job_traits
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 64"/></a></h3>
+        <p>Any special traits that are assigned for this job</p><h3 id="var/max_positions"><aside class="declaration">var </aside>max_positions
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 37"/></a></h3>
+        <p>How many positions can be dynamically assigned</p><h3 id="var/minimap_icon"><aside class="declaration">var </aside>minimap_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 77"/></a></h3>
+        <p>string; typepath for the icon that this job will show on the minimap</p><h3 id="var/multiple_outfits"><aside class="declaration">var </aside>multiple_outfits
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 58"/></a></h3>
+        <p>whether the job has multiple outfits</p><h3 id="var/outfits"><aside class="declaration">var </aside>outfits
+            <aside>&ndash; /list/datum/outfit/job</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 60"/></a></h3>
+        <p>list of outfit variants</p><h3 id="var/skills_type"><aside class="declaration">var </aside>skills_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 62"/></a></h3>
+        <p>Skills for this job</p><h3 id="var/total_positions"><aside class="declaration">var </aside>total_positions
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 33"/></a></h3>
+        <p>The total number of positions for this job</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_job_points"><aside class="declaration">proc </aside>add_job_points<aside>(amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L210">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 210"/></a></aside>
+        </h3>
+        <p>Adds to job points, adding a new slot if threshold reached</p><h3 id="proc/on_pre_setup"><aside class="declaration">proc </aside>on_pre_setup<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 85"/></a></aside>
+        </h3>
+        <p>called during gamemode pre_setup, use for stuff like roundstart poplock</p><h3 id="proc/radio_help_message"><aside class="declaration">proc </aside>radio_help_message<aside>(/<a href="mob.html">mob</a>/new_player) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L166">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 166"/></a></aside>
+        </h3>
+        <p>The message you get when spawning in as this job, called by [/datum/job/proc/after_spawn]</p><h3 id="proc/remove_job_points"><aside class="declaration">proc </aside>remove_job_points<aside>(amount) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/jobs/job/job.dm#L219">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;jobs&#x2F;job&#x2F;job.dm 219"/></a></aside>
+        </h3>
+        <p>Removes job points, and if needed, job positions</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

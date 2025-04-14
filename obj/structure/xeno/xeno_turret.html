@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;structure&#x2F;xeno&#x2F;xeno_turret - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/structure/xeno/xeno_turret.html#var">Var Details</a> - <a href="obj/structure/xeno/xeno_turret.html#proc">Proc Details</a></header>
+<main>
+<h1>xeno_turret <aside>/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/xeno.html">xeno</a>/<a href="obj/structure/xeno/xeno_turret.html">xeno_turret</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 2"/></a></h1>
+
+<p>We find the tunnel, looking within 10 tiles of where the user clicked, excluding src</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#var/ammo">ammo</a></th><td>What kind of spit it uses</td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#var/firerate">firerate</a></th><td>Fire rate of the target in ticks</td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#var/firing">firing</a></th><td>For minimap icon change if sentry is firing</td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#var/hostile">hostile</a></th><td>Target of the turret</td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#var/last_hostile">last_hostile</a></th><td>Last target of the turret</td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#var/last_scan_time">last_scan_time</a></th><td>The last time the sentry did a scan</td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#var/light_initial_color">light_initial_color</a></th><td>light color that gets set in initialize</td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#var/potential_hostiles">potential_hostiles</a></th><td>Potential list of targets found by scan</td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#var/range">range</a></th><td>Range of the turret</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#proc/destroy_on_hijack">destroy_on_hijack</a></th><td>Signal handler to delete the turret when the alamo is hijacked</td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#proc/get_target">get_target</a></th><td>Look for the closest human in range and in light of sight. If no human is in range, will look for xenos of other hives</td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#proc/scan">scan</a></th><td>Return TRUE if a possible target is near</td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#proc/set_hostile">set_hostile</a></th><td>Setter for hostile with hard del in mind</td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#proc/set_last_hostile">set_last_hostile</a></th><td>Setter for last_hostile with hard del in mind</td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#proc/shoot">shoot</a></th><td>Signal handler to make the turret shoot at its target</td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#proc/unset_hostile">unset_hostile</a></th><td>Signal handler for hard del of hostile</td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#proc/unset_last_hostile">unset_last_hostile</a></th><td>Signal handler for hard del of last_hostile</td></tr>
+            <tr><th><a href="obj/structure/xeno/xeno_turret.html#proc/update_minimap_icon">update_minimap_icon</a></th><td>Change minimap icon if its firing or not firing</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ammo"><aside class="declaration">var </aside>ammo
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/ammo.html">ammo</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 17"/></a></h3>
+        <p>What kind of spit it uses</p><h3 id="var/firerate"><aside class="declaration">var </aside>firerate
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 27"/></a></h3>
+        <p>Fire rate of the target in ticks</p><h3 id="var/firing"><aside class="declaration">var </aside>firing
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 35"/></a></h3>
+        <p>For minimap icon change if sentry is firing</p><h3 id="var/hostile"><aside class="declaration">var </aside>hostile
+            <aside>&ndash; /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 21"/></a></h3>
+        <p>Target of the turret</p><h3 id="var/last_hostile"><aside class="declaration">var </aside>last_hostile
+            <aside>&ndash; /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 23"/></a></h3>
+        <p>Last target of the turret</p><h3 id="var/last_scan_time"><aside class="declaration">var </aside>last_scan_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 29"/></a></h3>
+        <p>The last time the sentry did a scan</p><h3 id="var/light_initial_color"><aside class="declaration">var </aside>light_initial_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 31"/></a></h3>
+        <p>light color that gets set in initialize</p><h3 id="var/potential_hostiles"><aside class="declaration">var </aside>potential_hostiles
+            <aside>&ndash; /list/atom</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 25"/></a></h3>
+        <p>Potential list of targets found by scan</p><h3 id="var/range"><aside class="declaration">var </aside>range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 19"/></a></h3>
+        <p>Range of the turret</p><h2 id="proc">Proc Details</h2><h3 id="proc/destroy_on_hijack"><aside class="declaration">proc </aside>destroy_on_hijack<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 55"/></a></aside>
+        </h3>
+        <p>Signal handler to delete the turret when the alamo is hijacked</p><h3 id="proc/get_target"><aside class="declaration">proc </aside>get_target<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L158">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 158"/></a></aside>
+        </h3>
+        <p>Look for the closest human in range and in light of sight. If no human is in range, will look for xenos of other hives</p><h3 id="proc/scan"><aside class="declaration">proc </aside>scan<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L177">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 177"/></a></aside>
+        </h3>
+        <p>Return TRUE if a possible target is near</p><h3 id="proc/set_hostile"><aside class="declaration">proc </aside>set_hostile<aside>(_hostile) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 146"/></a></aside>
+        </h3>
+        <p>Setter for hostile with hard del in mind</p><h3 id="proc/set_last_hostile"><aside class="declaration">proc </aside>set_last_hostile<aside>(_last_hostile) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 152"/></a></aside>
+        </h3>
+        <p>Setter for last_hostile with hard del in mind</p><h3 id="proc/shoot"><aside class="declaration">proc </aside>shoot<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L199">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 199"/></a></aside>
+        </h3>
+        <p>Signal handler to make the turret shoot at its target</p><h3 id="proc/unset_hostile"><aside class="declaration">proc </aside>unset_hostile<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 136"/></a></aside>
+        </h3>
+        <p>Signal handler for hard del of hostile</p><h3 id="proc/unset_last_hostile"><aside class="declaration">proc </aside>unset_last_hostile<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 141"/></a></aside>
+        </h3>
+        <p>Signal handler for hard del of last_hostile</p><h3 id="proc/update_minimap_icon"><aside class="parent"><a title="/obj/structure/xeno" href="obj/structure/xeno.html#proc/update_minimap_icon">&uarr;</a></aside>update_minimap_icon<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/xenomorph/xeno_turret.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;xenomorph&#x2F;xeno_turret.dm 36"/></a></aside>
+        </h3>
+        <p>Change minimap icon if its firing or not firing</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

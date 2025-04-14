@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;effect&#x2F;decal&#x2F;cleanable&#x2F;liquid_fuel - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/effect/decal/cleanable/liquid_fuel.html#var">Var Details</a> - <a href="obj/effect/decal/cleanable/liquid_fuel.html#proc">Proc Details</a></header>
+<main>
+<h1>liquid_fuel <aside>/<a href="obj.html">obj</a>/<a href="obj/effect/decal/cleanable.html">effect/decal/cleanable</a>/<a href="obj/effect/decal/cleanable/liquid_fuel.html">liquid_fuel</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/decals/Cleanable/fuel.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;decals&#x2F;Cleanable&#x2F;fuel.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/effect/decal/cleanable/liquid_fuel.html#var/burn_lvl">burn_lvl</a></th><td>Used for the burn_lvl of the resulting fire</td></tr>
+            <tr><th><a href="obj/effect/decal/cleanable/liquid_fuel.html#var/fire_lvl">fire_lvl</a></th><td>Used for the fire_lvl of the resulting fire</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/effect/decal/cleanable/liquid_fuel.html#proc/check_ignite">check_ignite</a></th><td>Ignites when something hot enters our loc, either via crossed or signal wrapper</td></tr>
+            <tr><th><a href="obj/effect/decal/cleanable/liquid_fuel.html#proc/ignite_check_wrapper">ignite_check_wrapper</a></th><td>Wrapper for ignition via signals rather than from crossed</td></tr>
+            <tr><th><a href="obj/effect/decal/cleanable/liquid_fuel.html#proc/on_cross">on_cross</a></th><td>called when someonething moves over the fuel</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/burn_lvl"><aside class="declaration">var </aside>burn_lvl
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/decals/Cleanable/fuel.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;decals&#x2F;Cleanable&#x2F;fuel.dm 13"/></a></h3>
+        <p>Used for the burn_lvl of the resulting fire</p><h3 id="var/fire_lvl"><aside class="declaration">var </aside>fire_lvl
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/decals/Cleanable/fuel.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;decals&#x2F;Cleanable&#x2F;fuel.dm 11"/></a></h3>
+        <p>Used for the fire_lvl of the resulting fire</p><h2 id="proc">Proc Details</h2><h3 id="proc/check_ignite"><aside class="declaration">proc </aside>check_ignite<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/igniter) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/decals/Cleanable/fuel.dm#L105">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;decals&#x2F;Cleanable&#x2F;fuel.dm 105"/></a></aside>
+        </h3>
+        <p>Ignites when something hot enters our loc, either via crossed or signal wrapper</p><h3 id="proc/ignite_check_wrapper"><aside class="declaration">proc </aside>ignite_check_wrapper<aside>(signal_source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/igniter) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/decals/Cleanable/fuel.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;decals&#x2F;Cleanable&#x2F;fuel.dm 119"/></a></aside>
+        </h3>
+        <p>Wrapper for ignition via signals rather than from crossed</p><h3 id="proc/on_cross"><aside class="declaration">proc </aside>on_cross<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/AM, oldloc, oldlocs) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/decals/Cleanable/fuel.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;decals&#x2F;Cleanable&#x2F;fuel.dm 42"/></a></aside>
+        </h3>
+        <p>called when someonething moves over the fuel</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

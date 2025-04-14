@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;supplydrop_console - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/computer/supplydrop_console.html#var">Var Details</a> - <a href="obj/machinery/computer/supplydrop_console.html#proc">Proc Details</a></header>
+<main>
+<h1>supplydrop_console <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/computer.html">computer</a>/<a href="obj/machinery/computer/supplydrop_console.html">supplydrop_console</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/squad_supply/supply_console.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;squad_supply&#x2F;supply_console.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/computer/supplydrop_console.html#var/launch_cooldown">launch_cooldown</a></th><td>Time between two supply drops</td></tr>
+            <tr><th><a href="obj/machinery/computer/supplydrop_console.html#var/supplies">supplies</a></th><td>The content sent</td></tr>
+            <tr><th><a href="obj/machinery/computer/supplydrop_console.html#var/supply_beacon">supply_beacon</a></th><td>The beacon we will send the supplies</td></tr>
+            <tr><th><a href="obj/machinery/computer/supplydrop_console.html#var/supply_pad">supply_pad</a></th><td>The linked supply pad of this console</td></tr>
+            <tr><th><a href="obj/machinery/computer/supplydrop_console.html#var/x_offset">x_offset</a></th><td>X offset of the drop, relative to the supply beacon loc</td></tr>
+            <tr><th><a href="obj/machinery/computer/supplydrop_console.html#var/y_offset">y_offset</a></th><td>Y offset of the drop, relative to the supply beacon loc</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/computer/supplydrop_console.html#proc/clean_supply_beacon">clean_supply_beacon</a></th><td>Clean up the supply beacon var</td></tr>
+            <tr><th><a href="obj/machinery/computer/supplydrop_console.html#proc/clean_supplydrop">clean_supplydrop</a></th><td>handles cleanup of post-animation stuff (ie just after it lands)</td></tr>
+            <tr><th><a href="obj/machinery/computer/supplydrop_console.html#proc/fire_supplydrop">fire_supplydrop</a></th><td>Make the supplies teleport</td></tr>
+            <tr><th><a href="obj/machinery/computer/supplydrop_console.html#proc/ping_beacon">ping_beacon</a></th><td>Used to notify of a new beacon target</td></tr>
+            <tr><th><a href="obj/machinery/computer/supplydrop_console.html#proc/refresh_pad">refresh_pad</a></th><td>Look for the content on the supply pad</td></tr>
+            <tr><th><a href="obj/machinery/computer/supplydrop_console.html#proc/send_supplydrop">send_supplydrop</a></th><td>Start the supply drop process</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/launch_cooldown"><aside class="declaration">var </aside>launch_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/squad_supply/supply_console.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;squad_supply&#x2F;supply_console.dm 12"/></a></h3>
+        <p>Time between two supply drops</p><h3 id="var/supplies"><aside class="declaration">var </aside>supplies
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/squad_supply/supply_console.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;squad_supply&#x2F;supply_console.dm 18"/></a></h3>
+        <p>The content sent</p><h3 id="var/supply_beacon"><aside class="declaration">var </aside>supply_beacon
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/supply_beacon.html">supply_beacon</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/squad_supply/supply_console.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;squad_supply&#x2F;supply_console.dm 14"/></a></h3>
+        <p>The beacon we will send the supplies</p><h3 id="var/supply_pad"><aside class="declaration">var </aside>supply_pad
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/supply_drop</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/squad_supply/supply_console.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;squad_supply&#x2F;supply_console.dm 16"/></a></h3>
+        <p>The linked supply pad of this console</p><h3 id="var/x_offset"><aside class="declaration">var </aside>x_offset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/squad_supply/supply_console.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;squad_supply&#x2F;supply_console.dm 20"/></a></h3>
+        <p>X offset of the drop, relative to the supply beacon loc</p><h3 id="var/y_offset"><aside class="declaration">var </aside>y_offset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/squad_supply/supply_console.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;squad_supply&#x2F;supply_console.dm 22"/></a></h3>
+        <p>Y offset of the drop, relative to the supply beacon loc</p><h2 id="proc">Proc Details</h2><h3 id="proc/clean_supply_beacon"><aside class="declaration">proc </aside>clean_supply_beacon<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/squad_supply/supply_console.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;squad_supply&#x2F;supply_console.dm 126"/></a></aside>
+        </h3>
+        <p>Clean up the supply beacon var</p><h3 id="proc/clean_supplydrop"><aside class="declaration">proc </aside>clean_supplydrop<aside>(/list/supplies, anim_overlays) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/squad_supply/supply_console.dm#L208">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;squad_supply&#x2F;supply_console.dm 208"/></a></aside>
+        </h3>
+        <p>handles cleanup of post-animation stuff (ie just after it lands)</p><h3 id="proc/fire_supplydrop"><aside class="declaration">proc </aside>fire_supplydrop<aside>(/list/supplies, x_offset, y_offset) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/squad_supply/supply_console.dm#L168">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;squad_supply&#x2F;supply_console.dm 168"/></a></aside>
+        </h3>
+        <p>Make the supplies teleport</p><h3 id="proc/ping_beacon"><aside class="declaration">proc </aside>ping_beacon<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/squad_supply/supply_console.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;squad_supply&#x2F;supply_console.dm 38"/></a></aside>
+        </h3>
+        <p>Used to notify of a new beacon target</p><h3 id="proc/refresh_pad"><aside class="declaration">proc </aside>refresh_pad<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/squad_supply/supply_console.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;squad_supply&#x2F;supply_console.dm 132"/></a></aside>
+        </h3>
+        <p>Look for the content on the supply pad</p><h3 id="proc/send_supplydrop"><aside class="declaration">proc </aside>send_supplydrop<aside>(/list/supplies, x_offset, y_offset) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/squad_supply/supply_console.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;squad_supply&#x2F;supply_console.dm 143"/></a></aside>
+        </h3>
+        <p>Start the supply drop process</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

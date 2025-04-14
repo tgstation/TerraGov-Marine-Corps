@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;reagent&#x2F;medicine&#x2F;quickclotplus - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/reagent/medicine/quickclotplus.html#var">Var Details</a> - <a href="datum/reagent/medicine/quickclotplus.html#proc">Proc Details</a></header>
+<main>
+<h1>quickclotplus <aside>/<a href="datum.html">datum</a>/<a href="datum/reagent.html">reagent</a>/<a href="datum/reagent/medicine/quickclotplus.html">medicine/quickclotplus</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents/medical.dm#L796">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents&#x2F;medical.dm 796"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/reagent/medicine/quickclotplus.html#var/target_IB">target_IB</a></th><td>The IB wound this dose of QCP will cure, if it lasts long enough</td></tr>
+            <tr><th><a href="datum/reagent/medicine/quickclotplus.html#var/ticks_left">ticks_left</a></th><td>Ticks remaining before the target_IB is cured</td></tr>
+            <tr><th><a href="datum/reagent/medicine/quickclotplus.html#var/ticks_to_cure_IB">ticks_to_cure_IB</a></th><td>Ticks needed to cure an IB</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/reagent/medicine/quickclotplus.html#proc/clear_wound">clear_wound</a></th><td>If something else removes the wound before the drug finishes with it, we need to clean references.</td></tr>
+            <tr><th><a href="datum/reagent/medicine/quickclotplus.html#proc/select_wound">select_wound</a></th><td>Choose an internal bleeding wound to lock onto and cure after a delay.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/target_IB"><aside class="declaration">var </aside>target_IB
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/wound.html">wound</a>/internal_bleeding</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents/medical.dm#L804">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents&#x2F;medical.dm 804"/></a></h3>
+        <p>The IB wound this dose of QCP will cure, if it lasts long enough</p><h3 id="var/ticks_left"><aside class="declaration">var </aside>ticks_left
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents/medical.dm#L806">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents&#x2F;medical.dm 806"/></a></h3>
+        <p>Ticks remaining before the target_IB is cured</p><h3 id="var/ticks_to_cure_IB"><aside class="declaration">var </aside>ticks_to_cure_IB
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents/medical.dm#L808">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents&#x2F;medical.dm 808"/></a></h3>
+        <p>Ticks needed to cure an IB</p><h2 id="proc">Proc Details</h2><h3 id="proc/clear_wound"><aside class="declaration">proc </aside>clear_wound<aside>(/<a href="atom.html">atom</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents/medical.dm#L855">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents&#x2F;medical.dm 855"/></a></aside>
+        </h3>
+        <p>If something else removes the wound before the drug finishes with it, we need to clean references.</p><h3 id="proc/select_wound"><aside class="declaration">proc </aside>select_wound<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/L) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/reagents/chemistry/reagents/medical.dm#L837">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;reagents&#x2F;chemistry&#x2F;reagents&#x2F;medical.dm 837"/></a></aside>
+        </h3>
+        <p>Choose an internal bleeding wound to lock onto and cure after a delay.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

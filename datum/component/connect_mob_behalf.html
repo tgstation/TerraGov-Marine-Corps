@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;connect_mob_behalf - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/connect_mob_behalf.html#var">Var Details</a> - <a href="datum/component/connect_mob_behalf.html#proc">Proc Details</a></header>
+<main>
+<h1>connect_mob_behalf <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/connect_mob_behalf.html">connect_mob_behalf</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/connect_mob_behalf.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;connect_mob_behalf.dm 4"/></a></h1>
+
+<p>This component behaves similar to connect_loc_behalf, but working off clients and mobs instead of loc
+To be clear, we hook into a signal on a tracked client's mob
+We retain the ability to react to that signal on a seperate listener, which makes this quite powerful</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/connect_mob_behalf.html#var/connections">connections</a></th><td>An assoc list of signal -&gt; procpath to register to the mob our client &quot;owns&quot;</td></tr>
+            <tr><th><a href="datum/component/connect_mob_behalf.html#var/tracked">tracked</a></th><td>The master client we're working with</td></tr>
+            <tr><th><a href="datum/component/connect_mob_behalf.html#var/tracked_mob">tracked_mob</a></th><td>The mob we're currently tracking</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/connect_mob_behalf.html#proc/handle_tracked_qdel">handle_tracked_qdel</a></th><td>Delete ourselves when our tracked client is deleted</td></tr>
+            <tr><th><a href="datum/component/connect_mob_behalf.html#proc/on_logout">on_logout</a></th><td>update_signals on tracked mob logout</td></tr>
+            <tr><th><a href="datum/component/connect_mob_behalf.html#proc/unregister_signals">unregister_signals</a></th><td>Unregister signals on tracked mob</td></tr>
+            <tr><th><a href="datum/component/connect_mob_behalf.html#proc/update_signals">update_signals</a></th><td>Re-register signals on tracked mob</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/connections"><aside class="declaration">var </aside>connections
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/connect_mob_behalf.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;connect_mob_behalf.dm 8"/></a></h3>
+        <p>An assoc list of signal -&gt; procpath to register to the mob our client &quot;owns&quot;</p><h3 id="var/tracked"><aside class="declaration">var </aside>tracked
+            <aside>&ndash; /<a href="client.html">client</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/connect_mob_behalf.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;connect_mob_behalf.dm 10"/></a></h3>
+        <p>The master client we're working with</p><h3 id="var/tracked_mob"><aside class="declaration">var </aside>tracked_mob
+            <aside>&ndash; /<a href="mob.html">mob</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/connect_mob_behalf.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;connect_mob_behalf.dm 14"/></a></h3>
+        <p>The mob we're currently tracking</p><h2 id="proc">Proc Details</h2><h3 id="proc/handle_tracked_qdel"><aside class="declaration">proc </aside>handle_tracked_qdel<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/connect_mob_behalf.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;connect_mob_behalf.dm 33"/></a></aside>
+        </h3>
+        <p>Delete ourselves when our tracked client is deleted</p><h3 id="proc/on_logout"><aside class="declaration">proc </aside>on_logout<aside>(/<a href="mob.html">mob</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/connect_mob_behalf.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;connect_mob_behalf.dm 61"/></a></aside>
+        </h3>
+        <p>update_signals on tracked mob logout</p><h3 id="proc/unregister_signals"><aside class="declaration">proc </aside>unregister_signals<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/connect_mob_behalf.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;connect_mob_behalf.dm 51"/></a></aside>
+        </h3>
+        <p>Unregister signals on tracked mob</p><h3 id="proc/update_signals"><aside class="declaration">proc </aside>update_signals<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/connect_mob_behalf.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;connect_mob_behalf.dm 38"/></a></aside>
+        </h3>
+        <p>Re-register signals on tracked mob</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

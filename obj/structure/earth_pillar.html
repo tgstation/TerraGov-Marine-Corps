@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;structure&#x2F;earth_pillar - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/structure/earth_pillar.html#var">Var Details</a> - <a href="obj/structure/earth_pillar.html#proc">Proc Details</a></header>
+<main>
+<h1>earth_pillar <aside>/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/earth_pillar.html">earth_pillar</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L1172">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 1172"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/structure/earth_pillar.html#var/attacks_to_destroy">attacks_to_destroy</a></th><td>The amount of times a xeno needs to attack this to destroy it.</td></tr>
+            <tr><th><a href="obj/structure/earth_pillar.html#var/particle_holder">particle_holder</a></th><td>Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.</td></tr>
+            <tr><th><a href="obj/structure/earth_pillar.html#var/warning_flashes">warning_flashes</a></th><td>The amount of times an Earth Pillar flashes before executing its interaction with Seismic Fracture.</td></tr>
+            <tr><th><a href="obj/structure/earth_pillar.html#var/xeno_owner">xeno_owner</a></th><td>The xeno owner of this object.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/structure/earth_pillar.html#proc/call_area_attack">call_area_attack</a></th><td>Seismic Fracture (as in the ability) has a special interaction with any Earth Pillars caught in its attack range.
+Those Earth Pillars will reflect the same attack in a similar range around it, destroying itself afterwards.</td></tr>
+            <tr><th><a href="obj/structure/earth_pillar.html#proc/call_update_icon_state">call_update_icon_state</a></th><td>Calls update_appearance, this exists to discard the arguments we get from the signals.</td></tr>
+            <tr><th><a href="obj/structure/earth_pillar.html#proc/owner_deleted">owner_deleted</a></th><td>Called when the registered xeno_owner is deleted and cleans up the var.</td></tr>
+            <tr><th><a href="obj/structure/earth_pillar.html#proc/throw_pillar">throw_pillar</a></th><td>Deletes the pillar and creates a projectile on the same tile, to be fired at the target atom.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/attacks_to_destroy"><aside class="declaration">var </aside>attacks_to_destroy
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L1191">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 1191"/></a></h3>
+        <p>The amount of times a xeno needs to attack this to destroy it.</p><h3 id="var/particle_holder"><aside class="declaration">var </aside>particle_holder
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/abstract/particle_holder.html">effect/abstract/particle_holder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L1189">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 1189"/></a></h3>
+        <p>Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.</p><h3 id="var/warning_flashes"><aside class="declaration">var </aside>warning_flashes
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L1193">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 1193"/></a></h3>
+        <p>The amount of times an Earth Pillar flashes before executing its interaction with Seismic Fracture.</p><h3 id="var/xeno_owner"><aside class="declaration">var </aside>xeno_owner
+            <aside>&ndash; /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/xenomorph.html">xenomorph</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L1187">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 1187"/></a></h3>
+        <p>The xeno owner of this object.</p><h2 id="proc">Proc Details</h2><h3 id="proc/call_area_attack"><aside class="declaration">proc </aside>call_area_attack<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L1317">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 1317"/></a></aside>
+        </h3>
+        <p>Seismic Fracture (as in the ability) has a special interaction with any Earth Pillars caught in its attack range.
+Those Earth Pillars will reflect the same attack in a similar range around it, destroying itself afterwards.</p><h3 id="proc/call_update_icon_state"><aside class="declaration">proc </aside>call_update_icon_state<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L1297">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 1297"/></a></aside>
+        </h3>
+        <p>Calls update_appearance, this exists to discard the arguments we get from the signals.</p><h3 id="proc/owner_deleted"><aside class="declaration">proc </aside>owner_deleted<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L1291">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 1291"/></a></aside>
+        </h3>
+        <p>Called when the registered xeno_owner is deleted and cleans up the var.</p><h3 id="proc/throw_pillar"><aside class="declaration">proc </aside>throw_pillar<aside>(/<a href="atom.html">atom</a>/target_atom, landslide) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/behemoth/abilities_behemoth.dm#L1302">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;behemoth&#x2F;abilities_behemoth.dm 1302"/></a></aside>
+        </h3>
+        <p>Deletes the pillar and creates a projectile on the same tile, to be fired at the target atom.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

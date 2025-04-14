@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;monitor - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/monitor.html#var">Var Details</a> - <a href="datum/controller/subsystem/monitor.html#proc">Proc Details</a></header>
+<main>
+<h1>monitor <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/monitor.html">monitor</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#var/FOB_hugging">FOB_hugging</a></th><td>TRUE if we detect a state of FOB hugging</td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#var/current_points">current_points</a></th><td>The current state points. Negative means xenos are winning, positive points correspond to marine winning</td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#var/current_state">current_state</a></th><td>The current state</td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#var/gamestate">gamestate</a></th><td>If the game is currently before shutters drop, after, or shipside</td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#var/human_in_FOB">human_in_FOB</a></th><td>The number of humans being in either lz1 or lz2</td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#var/human_on_ground">human_on_ground</a></th><td>The number of humans on ground</td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#var/human_on_ship">human_on_ship</a></th><td>The number of humans on the ship</td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#var/humans_all_in_FOB_counter">humans_all_in_FOB_counter</a></th><td>The number of time most of humans are in FOB consecutively</td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#var/is_automatic_balance_on">is_automatic_balance_on</a></th><td>If the automatic balance system is online</td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#var/last_state">last_state</a></th><td>The last state</td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#var/maximum_connected_players_count">maximum_connected_players_count</a></th><td>Maximum record of how many players were concurrently playing this round</td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#var/stats">stats</a></th><td>List of all int stats</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#proc/FOB_hugging_check">FOB_hugging_check</a></th><td>Check if we are in a FOB camping situation</td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#proc/apply_balance_changes">apply_balance_changes</a></th><td>Will multiply every base health, regen and melee damage stat on all xeno by GLOB.xeno_stat_multiplicator_buff</td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#proc/balance_xeno_team">balance_xeno_team</a></th><td>Return the proposed xeno buff calculated with the number of burrowed, and the state of the game</td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#proc/calculate_state_points">calculate_state_points</a></th><td>Calculate the points supposedly representating of the situation</td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#proc/process_human_positions">process_human_positions</a></th><td>Keep the monitor informed about the position of humans</td></tr>
+            <tr><th><a href="datum/controller/subsystem/monitor.html#proc/set_state">set_state</a></th><td>Etablish the new monitor state of the game, and update the GLOB values</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/FOB_hugging"><aside class="declaration">var </aside>FOB_hugging
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 22"/></a></h3>
+        <p>TRUE if we detect a state of FOB hugging</p><h3 id="var/current_points"><aside class="declaration">var </aside>current_points
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 12"/></a></h3>
+        <p>The current state points. Negative means xenos are winning, positive points correspond to marine winning</p><h3 id="var/current_state"><aside class="declaration">var </aside>current_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 8"/></a></h3>
+        <p>The current state</p><h3 id="var/gamestate"><aside class="declaration">var </aside>gamestate
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 26"/></a></h3>
+        <p>If the game is currently before shutters drop, after, or shipside</p><h3 id="var/human_in_FOB"><aside class="declaration">var </aside>human_in_FOB
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 16"/></a></h3>
+        <p>The number of humans being in either lz1 or lz2</p><h3 id="var/human_on_ground"><aside class="declaration">var </aside>human_on_ground
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 14"/></a></h3>
+        <p>The number of humans on ground</p><h3 id="var/human_on_ship"><aside class="declaration">var </aside>human_on_ship
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 18"/></a></h3>
+        <p>The number of humans on the ship</p><h3 id="var/humans_all_in_FOB_counter"><aside class="declaration">var </aside>humans_all_in_FOB_counter
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 20"/></a></h3>
+        <p>The number of time most of humans are in FOB consecutively</p><h3 id="var/is_automatic_balance_on"><aside class="declaration">var </aside>is_automatic_balance_on
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 28"/></a></h3>
+        <p>If the automatic balance system is online</p><h3 id="var/last_state"><aside class="declaration">var </aside>last_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 10"/></a></h3>
+        <p>The last state</p><h3 id="var/maximum_connected_players_count"><aside class="declaration">var </aside>maximum_connected_players_count
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 30"/></a></h3>
+        <p>Maximum record of how many players were concurrently playing this round</p><h3 id="var/stats"><aside class="declaration">var </aside>stats
+            <aside>&ndash; /<a href="datum.html">datum</a>/monitor_statistics</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 24"/></a></h3>
+        <p>List of all int stats</p><h2 id="proc">Proc Details</h2><h3 id="proc/FOB_hugging_check"><aside class="declaration">proc </aside>FOB_hugging_check<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 130"/></a></aside>
+        </h3>
+        <p>Check if we are in a FOB camping situation</p><h3 id="proc/apply_balance_changes"><aside class="declaration">proc </aside>apply_balance_changes<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L180">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 180"/></a></aside>
+        </h3>
+        <p>Will multiply every base health, regen and melee damage stat on all xeno by GLOB.xeno_stat_multiplicator_buff</p><h3 id="proc/balance_xeno_team"><aside class="declaration">proc </aside>balance_xeno_team<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 157"/></a></aside>
+        </h3>
+        <p>Return the proposed xeno buff calculated with the number of burrowed, and the state of the game</p><h3 id="proc/calculate_state_points"><aside class="declaration">proc </aside>calculate_state_points<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 87"/></a></aside>
+        </h3>
+        <p>Calculate the points supposedly representating of the situation</p><h3 id="proc/process_human_positions"><aside class="declaration">proc </aside>process_human_positions<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 115"/></a></aside>
+        </h3>
+        <p>Keep the monitor informed about the position of humans</p><h3 id="proc/set_state"><aside class="declaration">proc </aside>set_state<aside>(actualPoints) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/monitor.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;monitor.dm 141"/></a></aside>
+        </h3>
+        <p>Etablish the new monitor state of the game, and update the GLOB values</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

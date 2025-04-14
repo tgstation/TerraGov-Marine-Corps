@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;minimap - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/minimap.html#var">Var Details</a> - <a href="datum/action/minimap.html#proc">Proc Details</a></header>
+<main>
+<h1>minimap <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/minimap.html">minimap</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L535">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 535"/></a></h1>
+
+<p>Action that gives the owner access to the minimap pool</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/minimap.html#var/default_overwatch_level">default_overwatch_level</a></th><td>Sets a fixed z level to be tracked by this minimap action instead of being influenced by the owner's / locator override's z level.</td></tr>
+            <tr><th><a href="datum/action/minimap.html#var/locator">locator</a></th><td>Minimap &quot;You are here&quot; indicator for when it's up</td></tr>
+            <tr><th><a href="datum/action/minimap.html#var/locator_override">locator_override</a></th><td>Overrides what the locator tracks aswell what z the map displays as opposed to always tracking the minimap's owner. Default behavior when null.</td></tr>
+            <tr><th><a href="datum/action/minimap.html#var/map">map</a></th><td>Minimap object we'll be displaying</td></tr>
+            <tr><th><a href="datum/action/minimap.html#var/marker_flags">marker_flags</a></th><td>marker flags this will give the target, mostly used for marine minimaps</td></tr>
+            <tr><th><a href="datum/action/minimap.html#var/minimap_displayed">minimap_displayed</a></th><td>boolean as to whether the minimap is currently shown</td></tr>
+            <tr><th><a href="datum/action/minimap.html#var/minimap_flags">minimap_flags</a></th><td>Flags to allow the owner to see others of this type</td></tr>
+            <tr><th><a href="datum/action/minimap.html#var/z_down">z_down</a></th><td>button granted when you're on a multiz level that lets you check above and below you</td></tr>
+            <tr><th><a href="datum/action/minimap.html#var/z_indicator">z_indicator</a></th><td>button granted when you're on a multiz level that lets you check above and below you</td></tr>
+            <tr><th><a href="datum/action/minimap.html#var/z_up">z_up</a></th><td>button granted when you're on a multiz level that lets you check above and below you</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/minimap.html#proc/change_z_shown">change_z_shown</a></th><td>changes the currently to be displayed z. takes the new z as an arg</td></tr>
+            <tr><th><a href="datum/action/minimap.html#proc/clear_locator_override">clear_locator_override</a></th><td>CLears the locator override in case the override target is deleted</td></tr>
+            <tr><th><a href="datum/action/minimap.html#proc/on_exit_check">on_exit_check</a></th><td>checks if we should clear override if the owner exits this atom</td></tr>
+            <tr><th><a href="datum/action/minimap.html#proc/on_owner_z_change">on_owner_z_change</a></th><td>Updates the map when the owner changes zlevel</td></tr>
+            <tr><th><a href="datum/action/minimap.html#proc/override_locator">override_locator</a></th><td>Overrides the minimap locator to a given atom</td></tr>
+            <tr><th><a href="datum/action/minimap.html#proc/toggle_minimap">toggle_minimap</a></th><td>Toggles the minimap, has a variable to force on or off (most likely only going to be used to close it)</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/default_overwatch_level"><aside class="declaration">var </aside>default_overwatch_level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L560">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 560"/></a></h3>
+        <p>Sets a fixed z level to be tracked by this minimap action instead of being influenced by the owner's / locator override's z level.</p><h3 id="var/locator"><aside class="declaration">var </aside>locator
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/minimap_locator.html">minimap_locator</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L552">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 552"/></a></h3>
+        <p>Minimap &quot;You are here&quot; indicator for when it's up</p><h3 id="var/locator_override"><aside class="declaration">var </aside>locator_override
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L550">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 550"/></a></h3>
+        <p>Overrides what the locator tracks aswell what z the map displays as opposed to always tracking the minimap's owner. Default behavior when null.</p><h3 id="var/map"><aside class="declaration">var </aside>map
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/minimap.html">minimap</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L548">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 548"/></a></h3>
+        <p>Minimap object we'll be displaying</p><h3 id="var/marker_flags"><aside class="declaration">var </aside>marker_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L544">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 544"/></a></h3>
+        <p>marker flags this will give the target, mostly used for marine minimaps</p><h3 id="var/minimap_displayed"><aside class="declaration">var </aside>minimap_displayed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L546">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 546"/></a></h3>
+        <p>boolean as to whether the minimap is currently shown</p><h3 id="var/minimap_flags"><aside class="declaration">var </aside>minimap_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L542">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 542"/></a></h3>
+        <p>Flags to allow the owner to see others of this type</p><h3 id="var/z_down"><aside class="declaration">var </aside>z_down
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/minimap_extras.html">minimap_extras</a>/minimap_z_down</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L558">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 558"/></a></h3>
+        <p>button granted when you're on a multiz level that lets you check above and below you</p><h3 id="var/z_indicator"><aside class="declaration">var </aside>z_indicator
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/minimap_extras.html">minimap_extras</a>/<a href="atom/movable/screen/minimap_extras/minimap_z_indicator.html">minimap_z_indicator</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L554">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 554"/></a></h3>
+        <p>button granted when you're on a multiz level that lets you check above and below you</p><h3 id="var/z_up"><aside class="declaration">var </aside>z_up
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/minimap_extras.html">minimap_extras</a>/minimap_z_up</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L556">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 556"/></a></h3>
+        <p>button granted when you're on a multiz level that lets you check above and below you</p><h2 id="proc">Proc Details</h2><h3 id="proc/change_z_shown"><aside class="declaration">proc </aside>change_z_shown<aside>(newz) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L712">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 712"/></a></aside>
+        </h3>
+        <p>changes the currently to be displayed z. takes the new z as an arg</p><h3 id="proc/clear_locator_override"><aside class="declaration">proc </aside>clear_locator_override<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L668">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 668"/></a></aside>
+        </h3>
+        <p>CLears the locator override in case the override target is deleted</p><h3 id="proc/on_exit_check"><aside class="declaration">proc </aside>on_exit_check<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/mover) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L661">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 661"/></a></aside>
+        </h3>
+        <p>checks if we should clear override if the owner exits this atom</p><h3 id="proc/on_owner_z_change"><aside class="declaration">proc </aside>on_owner_z_change<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, oldz, newz) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L707">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 707"/></a></aside>
+        </h3>
+        <p>Updates the map when the owner changes zlevel</p><h3 id="proc/override_locator"><aside class="declaration">proc </aside>override_locator<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/to_track) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L628">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 628"/></a></aside>
+        </h3>
+        <p>Overrides the minimap locator to a given atom</p><h3 id="proc/toggle_minimap"><aside class="declaration">proc </aside>toggle_minimap<aside>(force_state) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L594">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 594"/></a></aside>
+        </h3>
+        <p>Toggles the minimap, has a variable to force on or off (most likely only going to be used to close it)</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

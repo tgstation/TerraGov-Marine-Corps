@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;weapon&#x2F;gun&#x2F;flamer - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/weapon/gun/flamer.html#var">Var Details</a> - <a href="obj/item/weapon/gun/flamer.html#proc">Proc Details</a></header>
+<main>
+<h1>flamer <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a>/<a href="obj/item/weapon/gun.html">gun</a>/<a href="obj/item/weapon/gun/flamer.html">flamer</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 5"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#var/burn_level_mod">burn_level_mod</a></th><td>Gun based modifier for burn level. Percentage based.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#var/burn_time_mod">burn_time_mod</a></th><td>Gun based modifier for burn time. Percentage based.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#var/cone_angle">cone_angle</a></th><td>how wide of a cone the flamethrower produces on wide mode.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#var/flame_max_range">flame_max_range</a></th><td>Max range of the flamer in tiles.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#var/flame_max_wall_pen">flame_max_wall_pen</a></th><td>Max resin wall penetration in tiles.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#var/flame_max_wall_pen_wide">flame_max_wall_pen_wide</a></th><td>After how many total resin walls the flame wont proceed further</td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#var/flame_spread_time">flame_spread_time</a></th><td>Travel speed of the flames in seconds.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#var/flamer_features_flags">flamer_features_flags</a></th><td>Bitfield flags for flamer specific traits.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#var/lit_overlay_icon_state">lit_overlay_icon_state</a></th><td>Overlay icon state of the pilot light.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#var/lit_overlay_offset_x">lit_overlay_offset_x</a></th><td>Pixel offset on the X axis for the pilot light overlay.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#var/lit_overlay_offset_y">lit_overlay_offset_y</a></th><td>Pixel offset on the Y axis for the pilot light overlay.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#var/mob_flame_damage_mod">mob_flame_damage_mod</a></th><td>Damage multiplier for mobs caught in the initial stream of fire.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#proc/burn_list">burn_list</a></th><td>Checks and lights the turfs in turfs_to_burn</td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#proc/flame_turf">flame_turf</a></th><td>Lights the specific turf on fire and processes melting snow or vines and the like.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#proc/light_pilot">light_pilot</a></th><td>Makes the sound of the flamer being lit, and applies the overlay.
+s so we can check equivalence on truthy, rather than true, values</td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#proc/recursive_flame_cone">recursive_flame_cone</a></th><td>Flames recursively a cone.</td></tr>
+            <tr><th><a href="obj/item/weapon/gun/flamer.html#proc/recursive_flame_straight">recursive_flame_straight</a></th><td>Flames recursively a straight path.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/burn_level_mod"><aside class="declaration">var </aside>burn_level_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 70"/></a></h3>
+        <p>Gun based modifier for burn level. Percentage based.</p><h3 id="var/burn_time_mod"><aside class="declaration">var </aside>burn_time_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 72"/></a></h3>
+        <p>Gun based modifier for burn time. Percentage based.</p><h3 id="var/cone_angle"><aside class="declaration">var </aside>cone_angle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 84"/></a></h3>
+        <p>how wide of a cone the flamethrower produces on wide mode.</p><h3 id="var/flame_max_range"><aside class="declaration">var </aside>flame_max_range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 62"/></a></h3>
+        <p>Max range of the flamer in tiles.</p><h3 id="var/flame_max_wall_pen"><aside class="declaration">var </aside>flame_max_wall_pen
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 64"/></a></h3>
+        <p>Max resin wall penetration in tiles.</p><h3 id="var/flame_max_wall_pen_wide"><aside class="declaration">var </aside>flame_max_wall_pen_wide
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 66"/></a></h3>
+        <p>After how many total resin walls the flame wont proceed further</p><h3 id="var/flame_spread_time"><aside class="declaration">var </aside>flame_spread_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 68"/></a></h3>
+        <p>Travel speed of the flames in seconds.</p><h3 id="var/flamer_features_flags"><aside class="declaration">var </aside>flamer_features_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 74"/></a></h3>
+        <p>Bitfield flags for flamer specific traits.</p><h3 id="var/lit_overlay_icon_state"><aside class="declaration">var </aside>lit_overlay_icon_state
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 76"/></a></h3>
+        <p>Overlay icon state of the pilot light.</p><h3 id="var/lit_overlay_offset_x"><aside class="declaration">var </aside>lit_overlay_offset_x
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 78"/></a></h3>
+        <p>Pixel offset on the X axis for the pilot light overlay.</p><h3 id="var/lit_overlay_offset_y"><aside class="declaration">var </aside>lit_overlay_offset_y
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 80"/></a></h3>
+        <p>Pixel offset on the Y axis for the pilot light overlay.</p><h3 id="var/mob_flame_damage_mod"><aside class="declaration">var </aside>mob_flame_damage_mod
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 82"/></a></h3>
+        <p>Damage multiplier for mobs caught in the initial stream of fire.</p><h2 id="proc">Proc Details</h2><h3 id="proc/burn_list"><aside class="declaration">proc </aside>burn_list<aside>(/list/turf/turfs_to_burn) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L240">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 240"/></a></aside>
+        </h3>
+        <p>Checks and lights the turfs in turfs_to_burn</p><h3 id="proc/flame_turf"><aside class="declaration">proc </aside>flame_turf<aside>(/<a href="turf.html">turf</a>/turf_to_ignite, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, burn_time, burn_level, fire_color, direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L260">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 260"/></a></aside>
+        </h3>
+        <p>Lights the specific turf on fire and processes melting snow or vines and the like.</p><h3 id="proc/light_pilot"><aside class="declaration">proc </aside>light_pilot<aside>(light) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 120"/></a></aside>
+        </h3>
+        <p>Makes the sound of the flamer being lit, and applies the overlay.
+s so we can check equivalence on truthy, rather than true, values</p><h3 id="proc/recursive_flame_cone"><aside class="declaration">proc </aside>recursive_flame_cone<aside>(iteration, /list/turf/turfs_to_ignite, dir_to_target, range, current_target, /<a href="turf.html">turf</a>/flame_source, walls_penetrated_wide) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L212">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 212"/></a></aside>
+        </h3>
+        <p>Flames recursively a cone.</p><h3 id="proc/recursive_flame_straight"><aside class="declaration">proc </aside>recursive_flame_straight<aside>(iteration, /list/turf/old_turfs, /list/turf/path_to_target, range, current_target, walls_penetrated) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/projectiles/guns/flamer.dm#L184">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;flamer.dm 184"/></a></aside>
+        </h3>
+        <p>Flames recursively a straight path.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

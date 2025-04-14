@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;innate&#x2F;order - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/innate/order.html#var">Var Details</a> - <a href="datum/action/innate/order.html#proc">Proc Details</a></header>
+<main>
+<h1>order <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/innate/order.html">innate/order</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/order_action.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;order_action.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/innate/order.html#var/arrow_type">arrow_type</a></th><td>the type of arrow used in the order</td></tr>
+            <tr><th><a href="datum/action/innate/order.html#var/skill_min">skill_min</a></th><td>What minimum level in that skill is needed to have that action</td></tr>
+            <tr><th><a href="datum/action/innate/order.html#var/skill_name">skill_name</a></th><td>What skill is needed to have this action</td></tr>
+            <tr><th><a href="datum/action/innate/order.html#var/verb_name">verb_name</a></th><td>the word used to describe the action when notifying marines</td></tr>
+            <tr><th><a href="datum/action/innate/order.html#var/visual_type">visual_type</a></th><td>the type of the visual added on the ground. If it has no visual type, the order can have any atom has a target</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/innate/order.html#proc/Deactivate_signal_handler">Deactivate_signal_handler</a></th><td>Signal handler for deactivating the order</td></tr>
+            <tr><th><a href="datum/action/innate/order.html#proc/on_cooldown_finish">on_cooldown_finish</a></th><td>Lets any other orders know when we're off CD</td></tr>
+            <tr><th><a href="datum/action/innate/order.html#proc/send_order">send_order</a></th><td>Print order visual to all marines squad hud and give them an arrow to follow the waypoint</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/arrow_type"><aside class="declaration">var </aside>arrow_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/order_action.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;order_action.dm 6"/></a></h3>
+        <p>the type of arrow used in the order</p><h3 id="var/skill_min"><aside class="declaration">var </aside>skill_min
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/order_action.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;order_action.dm 12"/></a></h3>
+        <p>What minimum level in that skill is needed to have that action</p><h3 id="var/skill_name"><aside class="declaration">var </aside>skill_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/order_action.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;order_action.dm 10"/></a></h3>
+        <p>What skill is needed to have this action</p><h3 id="var/verb_name"><aside class="declaration">var </aside>verb_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/order_action.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;order_action.dm 4"/></a></h3>
+        <p>the word used to describe the action when notifying marines</p><h3 id="var/visual_type"><aside class="declaration">var </aside>visual_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/order_action.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;order_action.dm 8"/></a></h3>
+        <p>the type of the visual added on the ground. If it has no visual type, the order can have any atom has a target</p><h2 id="proc">Proc Details</h2><h3 id="proc/Deactivate_signal_handler"><aside class="declaration">proc </aside>Deactivate_signal_handler<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/order_action.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;order_action.dm 29"/></a></aside>
+        </h3>
+        <p>Signal handler for deactivating the order</p><h3 id="proc/on_cooldown_finish"><aside class="declaration">proc </aside>on_cooldown_finish<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/order_action.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;order_action.dm 69"/></a></aside>
+        </h3>
+        <p>Lets any other orders know when we're off CD</p><h3 id="proc/send_order"><aside class="declaration">proc </aside>send_order<aside>(/<a href="atom.html">atom</a>/target, /<a href="datum.html">datum</a>/<a href="datum/squad.html">squad</a>/squad, faction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/actions/order_action.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;actions&#x2F;order_action.dm 48"/></a></aside>
+        </h3>
+        <p>Print order visual to all marines squad hud and give them an arrow to follow the waypoint</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

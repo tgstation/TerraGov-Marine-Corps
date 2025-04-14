@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;binoculars&#x2F;fire_support - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/binoculars/fire_support.html#var">Var Details</a> - <a href="obj/item/binoculars/fire_support.html#proc">Proc Details</a></header>
+<main>
+<h1>fire_support <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/binoculars/fire_support.html">binoculars/fire_support</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/firesupport_binoculars.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;firesupport_binoculars.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/binoculars/fire_support.html#var/laser_overlay">laser_overlay</a></th><td>lase effect</td></tr>
+            <tr><th><a href="obj/item/binoculars/fire_support.html#var/mode">mode</a></th><td>Current mode for support request</td></tr>
+            <tr><th><a href="obj/item/binoculars/fire_support.html#var/mode_list">mode_list</a></th><td>firemodes available for these binos</td></tr>
+            <tr><th><a href="obj/item/binoculars/fire_support.html#var/target_acquisition_delay">target_acquisition_delay</a></th><td>lasing time</td></tr>
+            <tr><th><a href="obj/item/binoculars/fire_support.html#var/target_atom">target_atom</a></th><td>Last stored turf targetted by rangefinders</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/binoculars/fire_support.html#proc/acquire_coordinates">acquire_coordinates</a></th><td>Acquires coords of a target turf</td></tr>
+            <tr><th><a href="obj/item/binoculars/fire_support.html#proc/acquire_target">acquire_target</a></th><td>lases a target and calls fire support on it</td></tr>
+            <tr><th><a href="obj/item/binoculars/fire_support.html#proc/bino_checks">bino_checks</a></th><td>Internal bino checks, mainly around firemode</td></tr>
+            <tr><th><a href="obj/item/binoculars/fire_support.html#proc/can_see_target">can_see_target</a></th><td>Checks if we can draw LOS to the target</td></tr>
+            <tr><th><a href="obj/item/binoculars/fire_support.html#proc/select_radial">select_radial</a></th><td>Selects a firemode</td></tr>
+            <tr><th><a href="obj/item/binoculars/fire_support.html#proc/unset_target">unset_target</a></th><td>Unsets the target and cleans up</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/laser_overlay"><aside class="declaration">var </aside>laser_overlay
+            <aside>&ndash; /<a href="image.html">image</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/firesupport_binoculars.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;firesupport_binoculars.dm 7"/></a></h3>
+        <p>lase effect</p><h3 id="var/mode"><aside class="declaration">var </aside>mode
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/fire_support.html">fire_support</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/firesupport_binoculars.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;firesupport_binoculars.dm 13"/></a></h3>
+        <p>Current mode for support request</p><h3 id="var/mode_list"><aside class="declaration">var </aside>mode_list
+            <aside>&ndash; /list/datum/fire_support</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/firesupport_binoculars.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;firesupport_binoculars.dm 15"/></a></h3>
+        <p>firemodes available for these binos</p><h3 id="var/target_acquisition_delay"><aside class="declaration">var </aside>target_acquisition_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/firesupport_binoculars.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;firesupport_binoculars.dm 9"/></a></h3>
+        <p>lasing time</p><h3 id="var/target_atom"><aside class="declaration">var </aside>target_atom
+            <aside>&ndash; /<a href="turf.html">turf</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/firesupport_binoculars.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;firesupport_binoculars.dm 11"/></a></h3>
+        <p>Last stored turf targetted by rangefinders</p><h2 id="proc">Proc Details</h2><h3 id="proc/acquire_coordinates"><aside class="declaration">proc </aside>acquire_coordinates<aside>(/<a href="atom.html">atom</a>/A, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/firesupport_binoculars.dm#L190">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;firesupport_binoculars.dm 190"/></a></aside>
+        </h3>
+        <p>Acquires coords of a target turf</p><h3 id="proc/acquire_target"><aside class="declaration">proc </aside>acquire_target<aside>(/<a href="atom.html">atom</a>/target, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/firesupport_binoculars.dm#L111">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;firesupport_binoculars.dm 111"/></a></aside>
+        </h3>
+        <p>lases a target and calls fire support on it</p><h3 id="proc/bino_checks"><aside class="declaration">proc </aside>bino_checks<aside>(/<a href="atom.html">atom</a>/target, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/firesupport_binoculars.dm#L149">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;firesupport_binoculars.dm 149"/></a></aside>
+        </h3>
+        <p>Internal bino checks, mainly around firemode</p><h3 id="proc/can_see_target"><aside class="declaration">proc </aside>can_see_target<aside>(/<a href="atom.html">atom</a>/target, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/firesupport_binoculars.dm#L172">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;firesupport_binoculars.dm 172"/></a></aside>
+        </h3>
+        <p>Checks if we can draw LOS to the target</p><h3 id="proc/select_radial"><aside class="declaration">proc </aside>select_radial<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/firesupport_binoculars.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;firesupport_binoculars.dm 90"/></a></aside>
+        </h3>
+        <p>Selects a firemode</p><h3 id="proc/unset_target"><aside class="declaration">proc </aside>unset_target<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/items/firesupport_binoculars.dm#L182">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;items&#x2F;firesupport_binoculars.dm 182"/></a></aside>
+        </h3>
+        <p>Unsets the target and cleans up</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

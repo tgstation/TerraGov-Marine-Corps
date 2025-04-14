@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;activable&#x2F;xeno&#x2F;abduct - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/activable/xeno/abduct.html#var">Var Details</a> - <a href="datum/action/ability/activable/xeno/abduct.html#proc">Proc Details</a></header>
+<main>
+<h1>abduct <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/activable.html">activable</a>/<a href="datum/action/ability/activable/xeno.html">xeno</a>/<a href="datum/action/ability/activable/xeno/abduct.html">abduct</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/praetorian/abilities_praetorian.dm#L628">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;praetorian&#x2F;abilities_praetorian.dm 628"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/abduct.html#var/ability_timer">ability_timer</a></th><td>A timer for when to conclude the ability.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/abduct.html#var/telegraphed_atoms">telegraphed_atoms</a></th><td>The created effects that need to be deleted later.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/abduct.html#var/turf_line">turf_line</a></th><td>A list of turfs that will be used to get mobs who will get affected by the ability.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/abduct.html#proc/cleanup_variables">cleanup_variables</a></th><td>Cleans up any variables, signals, and undoes any traits that the ability gave.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/abduct.html#proc/failed_pull">failed_pull</a></th><td>Ends the ability by punishing the owner.</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/abduct.html#proc/pull_them_in">pull_them_in</a></th><td>Ends the ability by throwing all humans in the affected turfs to the initial turf.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ability_timer"><aside class="declaration">var </aside>ability_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/praetorian/abilities_praetorian.dm#L646">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;praetorian&#x2F;abilities_praetorian.dm 646"/></a></h3>
+        <p>A timer for when to conclude the ability.</p><h3 id="var/telegraphed_atoms"><aside class="declaration">var </aside>telegraphed_atoms
+            <aside>&ndash; /list/obj/effect/xeno/abduct_warning</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/praetorian/abilities_praetorian.dm#L641">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;praetorian&#x2F;abilities_praetorian.dm 641"/></a></h3>
+        <p>The created effects that need to be deleted later.</p><h3 id="var/turf_line"><aside class="declaration">var </aside>turf_line
+            <aside>&ndash; /list/turf</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/praetorian/abilities_praetorian.dm#L639">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;praetorian&#x2F;abilities_praetorian.dm 639"/></a></h3>
+        <p>A list of turfs that will be used to get mobs who will get affected by the ability.</p><h2 id="proc">Proc Details</h2><h3 id="proc/cleanup_variables"><aside class="declaration">proc </aside>cleanup_variables<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/praetorian/abilities_praetorian.dm#L728">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;praetorian&#x2F;abilities_praetorian.dm 728"/></a></aside>
+        </h3>
+        <p>Cleans up any variables, signals, and undoes any traits that the ability gave.</p><h3 id="proc/failed_pull"><aside class="declaration">proc </aside>failed_pull<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/praetorian/abilities_praetorian.dm#L719">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;praetorian&#x2F;abilities_praetorian.dm 719"/></a></aside>
+        </h3>
+        <p>Ends the ability by punishing the owner.</p><h3 id="proc/pull_them_in"><aside class="declaration">proc </aside>pull_them_in<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/praetorian/abilities_praetorian.dm#L689">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;praetorian&#x2F;abilities_praetorian.dm 689"/></a></aside>
+        </h3>
+        <p>Ends the ability by throwing all humans in the affected turfs to the initial turf.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

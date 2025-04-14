@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;docking_port&#x2F;mobile&#x2F;marine_dropship - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/docking_port/mobile/marine_dropship.html#var">Var Details</a> - <a href="obj/docking_port/mobile/marine_dropship.html#proc">Proc Details</a></header>
+<main>
+<h1>marine_dropship <aside>/<a href="obj.html">obj</a>/<a href="obj/docking_port.html">docking_port</a>/<a href="obj/docking_port/mobile.html">mobile</a>/<a href="obj/docking_port/mobile/marine_dropship.html">marine_dropship</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/marine_dropship.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;marine_dropship.dm 135"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship.html#var/automatic_cycle_on">automatic_cycle_on</a></th><td>If the automatic cycle system is activated</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship.html#var/cycle_timer">cycle_timer</a></th><td>The timer to launch the dropship in automatic mode</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship.html#var/first_landing">first_landing</a></th><td>If first landing is false intro sequence wont play</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship.html#var/takeoff_alarm_locked">takeoff_alarm_locked</a></th><td>If this dropship can play the takeoff announcement</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship.html#var/time_between_cycle">time_between_cycle</a></th><td>How long will the shuttle wait to launch again if the automatic mode is on. In seconds</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship.html#proc/go_to_previous_destination">go_to_previous_destination</a></th><td>Send the dropship to its previous dock</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship.html#proc/prepare_going_to_previous_destination">prepare_going_to_previous_destination</a></th><td>Announce that the dropship will departure soon</td></tr>
+            <tr><th><a href="obj/docking_port/mobile/marine_dropship.html#proc/silicon_lock_airlocks">silicon_lock_airlocks</a></th><td>This proc locks and unlocks the AI control over the dropship doors.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/automatic_cycle_on"><aside class="declaration">var </aside>automatic_cycle_on
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/marine_dropship.dm#L153">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;marine_dropship.dm 153"/></a></h3>
+        <p>If the automatic cycle system is activated</p><h3 id="var/cycle_timer"><aside class="declaration">var </aside>cycle_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/marine_dropship.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;marine_dropship.dm 157"/></a></h3>
+        <p>The timer to launch the dropship in automatic mode</p><h3 id="var/first_landing"><aside class="declaration">var </aside>first_landing
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/marine_dropship.dm#L159">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;marine_dropship.dm 159"/></a></h3>
+        <p>If first landing is false intro sequence wont play</p><h3 id="var/takeoff_alarm_locked"><aside class="declaration">var </aside>takeoff_alarm_locked
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/marine_dropship.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;marine_dropship.dm 161"/></a></h3>
+        <p>If this dropship can play the takeoff announcement</p><h3 id="var/time_between_cycle"><aside class="declaration">var </aside>time_between_cycle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/marine_dropship.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;marine_dropship.dm 155"/></a></h3>
+        <p>How long will the shuttle wait to launch again if the automatic mode is on. In seconds</p><h2 id="proc">Proc Details</h2><h3 id="proc/go_to_previous_destination"><aside class="declaration">proc </aside>go_to_previous_destination<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/marine_dropship.dm#L259">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;marine_dropship.dm 259"/></a></aside>
+        </h3>
+        <p>Send the dropship to its previous dock</p><h3 id="proc/prepare_going_to_previous_destination"><aside class="declaration">proc </aside>prepare_going_to_previous_destination<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/marine_dropship.dm#L252">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;marine_dropship.dm 252"/></a></aside>
+        </h3>
+        <p>Announce that the dropship will departure soon</p><h3 id="proc/silicon_lock_airlocks"><aside class="declaration">proc </aside>silicon_lock_airlocks<aside>(should_lock) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/shuttle/marine_dropship.dm#L225">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;shuttle&#x2F;marine_dropship.dm 225"/></a></aside>
+        </h3>
+        <p>This proc locks and unlocks the AI control over the dropship doors.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

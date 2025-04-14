@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;conflict.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/conflict.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/conflict.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_TARGET_TURF">AMMO_TARGET_TURF</a></th><td>Ammo will impact a targeted open turf instead of continuing past it</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_XENO">AMMO_XENO</a></th><td>Xeno type projectile</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_UNWIELDY">AMMO_UNWIELDY</a></th><td>poor accuracy against humans</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_ENERGY">AMMO_ENERGY</a></th><td>Ammo will pass through windows and has damage reduced by smokes with SMOKE_NERF_BEAM</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_BETTER_COVER_RNG">AMMO_BETTER_COVER_RNG</a></th><td>Ammo is more likely to continue past cover such as cades</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_INCENDIARY">AMMO_INCENDIARY</a></th><td>Ammo will attempt to add firestacks and ignite a hit mob if it deals any damage. Armor applies, regardless of AMMO_IGNORE_ARMOR</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_SKIPS_ALIENS">AMMO_SKIPS_ALIENS</a></th><td>Ammo type entirely ignores xenos</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_BALLISTIC">AMMO_BALLISTIC</a></th><td>Generates blood splatters on mob hit</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_SPECIAL_PROCESS">AMMO_SPECIAL_PROCESS</a></th><td>Ammo processes while traveling</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_FLAME">AMMO_FLAME</a></th><td>Used to identify flamethrower projectiles and similar projectiles</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_IFF">AMMO_IFF</a></th><td>Used to identify ammo that have intrinsec IFF properties</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_HITSCAN">AMMO_HITSCAN</a></th><td>If the projectile from this ammo is hitscan</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_LEAVE_TURF">AMMO_LEAVE_TURF</a></th><td>If the projectile does something with on_leave_turf()</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_PASS_THROUGH_TURF">AMMO_PASS_THROUGH_TURF</a></th><td>If the projectile passes through walls causing damage to them</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_PASS_THROUGH_MOVABLE">AMMO_PASS_THROUGH_MOVABLE</a></th><td>If the projectile passes through mobs and objects causing damage to them</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_PASS_THROUGH_MOB">AMMO_PASS_THROUGH_MOB</a></th><td>If the projectile passes through mobs only causing damage to them</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_SOUND_PITCH">AMMO_SOUND_PITCH</a></th><td>If the projectile ricochet and miss sound is pitched up</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/AMMO_SNIPER">AMMO_SNIPER</a></th><td>Is this projectile considered sniper ammo, used for the anti sniper stacking status effect</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/MAGAZINE_SHOW_AMMO">MAGAZINE_SHOW_AMMO</a></th><td>ammo count shown on mag sprite</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/SMOKE_PURGER">SMOKE_PURGER</a></th><td>Purges all types of smoke</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/CAVE_NO_INTERFERENCE">CAVE_NO_INTERFERENCE</a></th><td>No impact on comms.</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/CAVE_MINOR_INTERFERENCE">CAVE_MINOR_INTERFERENCE</a></th><td>Scrambles outgoing messages, no impact on incoming.</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/CAVE_FULL_INTERFERENCE">CAVE_FULL_INTERFERENCE</a></th><td>Prevents incoming and outgoing messages.</td></tr>
+        <tr><th><a href="code/__DEFINES/conflict.html#define/ANTENNA_SYNCING_TIME">ANTENNA_SYNCING_TIME</a></th><td>Time needed to initially configure an antenna module after equipping.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/AMMO_BALLISTIC"><aside class="declaration">#define </aside>AMMO_BALLISTIC
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 58"/></a>
+    </h3>
+    <p>Generates blood splatters on mob hit</p><h3 id="define/AMMO_BETTER_COVER_RNG"><aside class="declaration">#define </aside>AMMO_BETTER_COVER_RNG
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 52"/></a>
+    </h3>
+    <p>Ammo is more likely to continue past cover such as cades</p><h3 id="define/AMMO_ENERGY"><aside class="declaration">#define </aside>AMMO_ENERGY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 50"/></a>
+    </h3>
+    <p>Ammo will pass through windows and has damage reduced by smokes with SMOKE_NERF_BEAM</p><h3 id="define/AMMO_FLAME"><aside class="declaration">#define </aside>AMMO_FLAME
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 62"/></a>
+    </h3>
+    <p>Used to identify flamethrower projectiles and similar projectiles</p><h3 id="define/AMMO_HITSCAN"><aside class="declaration">#define </aside>AMMO_HITSCAN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 66"/></a>
+    </h3>
+    <p>If the projectile from this ammo is hitscan</p><h3 id="define/AMMO_IFF"><aside class="declaration">#define </aside>AMMO_IFF
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 64"/></a>
+    </h3>
+    <p>Used to identify ammo that have intrinsec IFF properties</p><h3 id="define/AMMO_INCENDIARY"><aside class="declaration">#define </aside>AMMO_INCENDIARY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 54"/></a>
+    </h3>
+    <p>Ammo will attempt to add firestacks and ignite a hit mob if it deals any damage. Armor applies, regardless of AMMO_IGNORE_ARMOR</p><h3 id="define/AMMO_LEAVE_TURF"><aside class="declaration">#define </aside>AMMO_LEAVE_TURF
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 68"/></a>
+    </h3>
+    <p>If the projectile does something with on_leave_turf()</p><h3 id="define/AMMO_PASS_THROUGH_MOB"><aside class="declaration">#define </aside>AMMO_PASS_THROUGH_MOB
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L74">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 74"/></a>
+    </h3>
+    <p>If the projectile passes through mobs only causing damage to them</p><h3 id="define/AMMO_PASS_THROUGH_MOVABLE"><aside class="declaration">#define </aside>AMMO_PASS_THROUGH_MOVABLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L72">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 72"/></a>
+    </h3>
+    <p>If the projectile passes through mobs and objects causing damage to them</p><h3 id="define/AMMO_PASS_THROUGH_TURF"><aside class="declaration">#define </aside>AMMO_PASS_THROUGH_TURF
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 70"/></a>
+    </h3>
+    <p>If the projectile passes through walls causing damage to them</p><h3 id="define/AMMO_SKIPS_ALIENS"><aside class="declaration">#define </aside>AMMO_SKIPS_ALIENS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 56"/></a>
+    </h3>
+    <p>Ammo type entirely ignores xenos</p><h3 id="define/AMMO_SNIPER"><aside class="declaration">#define </aside>AMMO_SNIPER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L78">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 78"/></a>
+    </h3>
+    <p>Is this projectile considered sniper ammo, used for the anti sniper stacking status effect</p><h3 id="define/AMMO_SOUND_PITCH"><aside class="declaration">#define </aside>AMMO_SOUND_PITCH
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 76"/></a>
+    </h3>
+    <p>If the projectile ricochet and miss sound is pitched up</p><h3 id="define/AMMO_SPECIAL_PROCESS"><aside class="declaration">#define </aside>AMMO_SPECIAL_PROCESS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 60"/></a>
+    </h3>
+    <p>Ammo processes while traveling</p><h3 id="define/AMMO_TARGET_TURF"><aside class="declaration">#define </aside>AMMO_TARGET_TURF
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 44"/></a>
+    </h3>
+    <p>Ammo will impact a targeted open turf instead of continuing past it</p><h3 id="define/AMMO_UNWIELDY"><aside class="declaration">#define </aside>AMMO_UNWIELDY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 48"/></a>
+    </h3>
+    <p>poor accuracy against humans</p><h3 id="define/AMMO_XENO"><aside class="declaration">#define </aside>AMMO_XENO
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 46"/></a>
+    </h3>
+    <p>Xeno type projectile</p><h3 id="define/ANTENNA_SYNCING_TIME"><aside class="declaration">#define </aside>ANTENNA_SYNCING_TIME
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L244">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 244"/></a>
+    </h3>
+    <p>Time needed to initially configure an antenna module after equipping.</p><h3 id="define/CAVE_FULL_INTERFERENCE"><aside class="declaration">#define </aside>CAVE_FULL_INTERFERENCE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L242">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 242"/></a>
+    </h3>
+    <p>Prevents incoming and outgoing messages.</p><h3 id="define/CAVE_MINOR_INTERFERENCE"><aside class="declaration">#define </aside>CAVE_MINOR_INTERFERENCE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L241">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 241"/></a>
+    </h3>
+    <p>Scrambles outgoing messages, no impact on incoming.</p><h3 id="define/CAVE_NO_INTERFERENCE"><aside class="declaration">#define </aside>CAVE_NO_INTERFERENCE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L240">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 240"/></a>
+    </h3>
+    <p>No impact on comms.</p><h3 id="define/MAGAZINE_SHOW_AMMO"><aside class="declaration">#define </aside>MAGAZINE_SHOW_AMMO
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 139"/></a>
+    </h3>
+    <p>ammo count shown on mag sprite</p><h3 id="define/SMOKE_PURGER"><aside class="declaration">#define </aside>SMOKE_PURGER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/conflict.dm#L198">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;conflict.dm 198"/></a>
+    </h3>
+    <p>Purges all types of smoke</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

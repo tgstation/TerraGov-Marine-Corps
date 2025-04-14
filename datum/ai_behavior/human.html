@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;ai_behavior&#x2F;human - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/ai_behavior/human.html#var">Var Details</a> - <a href="datum/ai_behavior/human.html#proc">Proc Details</a></header>
+<main>
+<h1>human <aside>/<a href="datum.html">datum</a>/<a href="datum/ai_behavior.html">ai_behavior</a>/<a href="datum/ai_behavior/human.html">human</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/grenades.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;grenades.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/ability_list">ability_list</a></th><td>List of abilities to consider doing every Process()</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/acid_avoid_chat">acid_avoid_chat</a></th><td>Chat lines for avoiding acid</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/ai_chat_cooldown">ai_chat_cooldown</a></th><td>Cooldown on chat lines, to reduce spam</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/ai_damage_cooldown">ai_damage_cooldown</a></th><td>Cooldown on taking any damage (this could include DOT etc)</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/ai_heal_after_dam_cooldown">ai_heal_after_dam_cooldown</a></th><td>Cooldown on being attacked by something with a source, so we don't try heal right next to enemies</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/ai_retreat_cooldown">ai_retreat_cooldown</a></th><td>Cooldown on retreating, so we don't get stuck running forever if pursued</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/ai_run_cooldown">ai_run_cooldown</a></th><td>Cooldown on running, so we can recover stam and make the most of it</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/cas_avoid_chat">cas_avoid_chat</a></th><td>Chat lines for avoiding cas</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/dead_target_chat">dead_target_chat</a></th><td>Chat lines when target dies or is destroyed</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/default_avoid_chat">default_avoid_chat</a></th><td>Chat lines for avoiding uncategorized hazards</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/fire_avoid_chat">fire_avoid_chat</a></th><td>Chat lines for avoiding fire</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/friendly_blocked_chat">friendly_blocked_chat</a></th><td>Chat lines when some asshole on your team is in the way</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/gun">gun</a></th><td>Currently equipped and ready firearm</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/hazard_list">hazard_list</a></th><td>assoc list of hazards to avoid and the range to stay away from them</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/heal_list">heal_list</a></th><td>A list of mobs that might need healing</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/healing_chat">healing_chat</a></th><td>Chat lines for trying to heal</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/human_ai_behavior_flags">human_ai_behavior_flags</a></th><td>Flags that dictate this AI's behavior</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/human_ai_state_flags">human_ai_state_flags</a></th><td>Flags about what the AI is current doing or wanting</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/medical_rating">medical_rating</a></th><td>To what level they will handle healing others</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/melee_weapon">melee_weapon</a></th><td>Currently equipped and ready melee weapon - could also be the gun</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/mob_inventory">mob_inventory</a></th><td>Inventory datum so the mob_parent can manage its inventory</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/nade_avoid_chat">nade_avoid_chat</a></th><td>Chat lines for avoiding a live nade</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/nade_throw_chat">nade_throw_chat</a></th><td>Chat lines for throwing a nade</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/nade_throw_prob">nade_throw_prob</a></th><td>Probability of trying to throw a grenade during process</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/new_follow_chat">new_follow_chat</a></th><td>Chat lines when following a new target</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/new_move_chat">new_move_chat</a></th><td>Chat lines when moving to a new target</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/new_target_chat">new_target_chat</a></th><td>Chat lines when engaging a new target</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/no_los_chat">no_los_chat</a></th><td>Chat lines when LOS broken</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/out_range_chat">out_range_chat</a></th><td>Chat lines when target goes out of range</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/reloading_chat">reloading_chat</a></th><td>Chat lines when reloading</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/retreating_chat">retreating_chat</a></th><td>Chat lines for retreating on low health</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/self_heal_chat">self_heal_chat</a></th><td>Chat lines for trying to heal</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/shuttle_avoid_chat">shuttle_avoid_chat</a></th><td>Chat lines for avoiding shuttles</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/start_fire_chat">start_fire_chat</a></th><td>Chat lines when opening fire</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/unrevivable_chat">unrevivable_chat</a></th><td>Chat lines for someone being perma</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#var/xeno_avoid_chat">xeno_avoid_chat</a></th><td>Chat lines for avoiding xeno warnings</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/add_hazard">add_hazard</a></th><td>Adds a hazard to watch for</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/add_to_heal_list">add_to_heal_list</a></th><td>Adds mob to list</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/after_equip_melee">after_equip_melee</a></th><td>Handles signals for equip melee</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/check_hazards">check_hazards</a></th><td>Checks if we are in range of any hazards</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/check_path_ff">check_path_ff</a></th><td>Returns true is a path is clear of friendlies</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/do_defib">do_defib</a></th><td>Tries to revive a dead dude</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/do_equip_weaponry">do_equip_weaponry</a></th><td>Tries to equip weaponry, and updates behavior appropriately</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/do_splint">do_splint</a></th><td>Tries to splint a limb</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/equip_gun">equip_gun</a></th><td>Equips a gun</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/equip_melee">equip_melee</a></th><td>Equips a melee weapon</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/equip_weaponry">equip_weaponry</a></th><td>Tries to equip weaponry from inventory, or find some if none are available</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/find_weapon">find_weapon</a></th><td>Searches for a weapon to pickup</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/get_grenade">get_grenade</a></th><td>Finds a suitable grenade to throw</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/grenade_process">grenade_process</a></th><td>Decides if we should throw a grenade</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/heal_by_type">heal_by_type</a></th><td>Tries to heal damage of a given type</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/heal_damage">heal_damage</a></th><td>Cycles through and heals the normal damage types</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/heal_organs">heal_organs</a></th><td>Addresses organ damage</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/heal_secondaries">heal_secondaries</a></th><td>Heal other ailments</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/medic_process">medic_process</a></th><td>Checks if we should be healing somebody</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/melee_interact">melee_interact</a></th><td>Sig handler for physical interactions, like attacks</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/mob_need_heal">mob_need_heal</a></th><td>Checks if a hurt AI human needs healing</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/on_change_z">on_change_z</a></th><td>Clear the hazard list if we change z</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/on_heal_end">on_heal_end</a></th><td>Our healing ended, successfully or otherwise</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/on_interactee_stat_change">on_interactee_stat_change</a></th><td>Unregisters a friendly target when their stat changes</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/on_move_toggle">on_move_toggle</a></th><td>Sets behavior on move toggle</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/on_other_mob_crit">on_other_mob_crit</a></th><td>Decides if we should do something when another mob goes crit</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/on_take_damage">on_take_damage</a></th><td>Reacts if the mob is below the min health threshold</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/parent_being_healed">parent_being_healed</a></th><td>Someone is healing us</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/recieve_message">recieve_message</a></th><td>Reacts to a heard message</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/refresh_abilities">refresh_abilities</a></th><td>Refresh abilities-to-consider list</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/reload_gun">reload_gun</a></th><td>Tries to reload our gun</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/remove_from_heal_list">remove_from_heal_list</a></th><td>Removes mob from list</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/remove_hazard">remove_hazard</a></th><td>Removes a hazard</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/set_run">set_run</a></th><td>Sets run move intent if able</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/stop_fire">stop_fire</a></th><td>Stops gunfire</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/store_hands">store_hands</a></th><td>Tries to store any items in hand</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/throw_grenade">throw_grenade</a></th><td>Throws the grenade</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/try_heal">try_heal</a></th><td>Tries healing themselves</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/try_heal_other">try_heal_other</a></th><td>Tries to heal another mob</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/try_interact">try_interact</a></th><td>Tries to interact with something, usually nonharmfully</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/try_speak">try_speak</a></th><td>Says an audible message</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/try_store_item">try_store_item</a></th><td>Tries to store an item</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/unequip_weapon">unequip_weapon</a></th><td>Unequips a weapon</td></tr>
+            <tr><th><a href="datum/ai_behavior/human.html#proc/weapon_process">weapon_process</a></th><td>Weapon stuff that happens during process</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ability_list"><aside class="declaration">var </aside>ability_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 16"/></a></h3>
+        <p>List of abilities to consider doing every Process()</p><h3 id="var/acid_avoid_chat"><aside class="declaration">var </aside>acid_avoid_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/hazard_avoidance.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;hazard_avoidance.dm 11"/></a></h3>
+        <p>Chat lines for avoiding acid</p><h3 id="var/ai_chat_cooldown"><aside class="declaration">var </aside>ai_chat_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 28"/></a></h3>
+        <p>Cooldown on chat lines, to reduce spam</p><h3 id="var/ai_damage_cooldown"><aside class="declaration">var </aside>ai_damage_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 32"/></a></h3>
+        <p>Cooldown on taking any damage (this could include DOT etc)</p><h3 id="var/ai_heal_after_dam_cooldown"><aside class="declaration">var </aside>ai_heal_after_dam_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 34"/></a></h3>
+        <p>Cooldown on being attacked by something with a source, so we don't try heal right next to enemies</p><h3 id="var/ai_retreat_cooldown"><aside class="declaration">var </aside>ai_retreat_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 36"/></a></h3>
+        <p>Cooldown on retreating, so we don't get stuck running forever if pursued</p><h3 id="var/ai_run_cooldown"><aside class="declaration">var </aside>ai_run_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 30"/></a></h3>
+        <p>Cooldown on running, so we can recover stam and make the most of it</p><h3 id="var/cas_avoid_chat"><aside class="declaration">var </aside>cas_avoid_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/hazard_avoidance.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;hazard_avoidance.dm 15"/></a></h3>
+        <p>Chat lines for avoiding cas</p><h3 id="var/dead_target_chat"><aside class="declaration">var </aside>dead_target_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 18"/></a></h3>
+        <p>Chat lines when target dies or is destroyed</p><h3 id="var/default_avoid_chat"><aside class="declaration">var </aside>default_avoid_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/hazard_avoidance.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;hazard_avoidance.dm 5"/></a></h3>
+        <p>Chat lines for avoiding uncategorized hazards</p><h3 id="var/fire_avoid_chat"><aside class="declaration">var </aside>fire_avoid_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/hazard_avoidance.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;hazard_avoidance.dm 9"/></a></h3>
+        <p>Chat lines for avoiding fire</p><h3 id="var/friendly_blocked_chat"><aside class="declaration">var </aside>friendly_blocked_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 16"/></a></h3>
+        <p>Chat lines when some asshole on your team is in the way</p><h3 id="var/gun"><aside class="declaration">var </aside>gun
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a>/<a href="obj/item/weapon/gun.html">gun</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 4"/></a></h3>
+        <p>Currently equipped and ready firearm</p><h3 id="var/hazard_list"><aside class="declaration">var </aside>hazard_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/hazard_avoidance.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;hazard_avoidance.dm 3"/></a></h3>
+        <p>assoc list of hazards to avoid and the range to stay away from them</p><h3 id="var/heal_list"><aside class="declaration">var </aside>heal_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/healing.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;healing.dm 4"/></a></h3>
+        <p>A list of mobs that might need healing</p><h3 id="var/healing_chat"><aside class="declaration">var </aside>healing_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/healing.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;healing.dm 6"/></a></h3>
+        <p>Chat lines for trying to heal</p><h3 id="var/human_ai_behavior_flags"><aside class="declaration">var </aside>human_ai_behavior_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 10"/></a></h3>
+        <p>Flags that dictate this AI's behavior</p><h3 id="var/human_ai_state_flags"><aside class="declaration">var </aside>human_ai_state_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 12"/></a></h3>
+        <p>Flags about what the AI is current doing or wanting</p><h3 id="var/medical_rating"><aside class="declaration">var </aside>medical_rating
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 14"/></a></h3>
+        <p>To what level they will handle healing others</p><h3 id="var/melee_weapon"><aside class="declaration">var </aside>melee_weapon
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 6"/></a></h3>
+        <p>Currently equipped and ready melee weapon - could also be the gun</p><h3 id="var/mob_inventory"><aside class="declaration">var </aside>mob_inventory
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/managed_inventory.html">managed_inventory</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 18"/></a></h3>
+        <p>Inventory datum so the mob_parent can manage its inventory</p><h3 id="var/nade_avoid_chat"><aside class="declaration">var </aside>nade_avoid_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/hazard_avoidance.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;hazard_avoidance.dm 7"/></a></h3>
+        <p>Chat lines for avoiding a live nade</p><h3 id="var/nade_throw_chat"><aside class="declaration">var </aside>nade_throw_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/grenades.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;grenades.dm 5"/></a></h3>
+        <p>Chat lines for throwing a nade</p><h3 id="var/nade_throw_prob"><aside class="declaration">var </aside>nade_throw_prob
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/grenades.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;grenades.dm 3"/></a></h3>
+        <p>Probability of trying to throw a grenade during process</p><h3 id="var/new_follow_chat"><aside class="declaration">var </aside>new_follow_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 22"/></a></h3>
+        <p>Chat lines when following a new target</p><h3 id="var/new_move_chat"><aside class="declaration">var </aside>new_move_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 20"/></a></h3>
+        <p>Chat lines when moving to a new target</p><h3 id="var/new_target_chat"><aside class="declaration">var </aside>new_target_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 24"/></a></h3>
+        <p>Chat lines when engaging a new target</p><h3 id="var/no_los_chat"><aside class="declaration">var </aside>no_los_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 14"/></a></h3>
+        <p>Chat lines when LOS broken</p><h3 id="var/out_range_chat"><aside class="declaration">var </aside>out_range_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 12"/></a></h3>
+        <p>Chat lines when target goes out of range</p><h3 id="var/reloading_chat"><aside class="declaration">var </aside>reloading_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 10"/></a></h3>
+        <p>Chat lines when reloading</p><h3 id="var/retreating_chat"><aside class="declaration">var </aside>retreating_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 26"/></a></h3>
+        <p>Chat lines for retreating on low health</p><h3 id="var/self_heal_chat"><aside class="declaration">var </aside>self_heal_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/healing.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;healing.dm 8"/></a></h3>
+        <p>Chat lines for trying to heal</p><h3 id="var/shuttle_avoid_chat"><aside class="declaration">var </aside>shuttle_avoid_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/hazard_avoidance.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;hazard_avoidance.dm 13"/></a></h3>
+        <p>Chat lines for avoiding shuttles</p><h3 id="var/start_fire_chat"><aside class="declaration">var </aside>start_fire_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 8"/></a></h3>
+        <p>Chat lines when opening fire</p><h3 id="var/unrevivable_chat"><aside class="declaration">var </aside>unrevivable_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/healing.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;healing.dm 10"/></a></h3>
+        <p>Chat lines for someone being perma</p><h3 id="var/xeno_avoid_chat"><aside class="declaration">var </aside>xeno_avoid_chat
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/hazard_avoidance.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;hazard_avoidance.dm 17"/></a></h3>
+        <p>Chat lines for avoiding xeno warnings</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_hazard"><aside class="declaration">proc </aside>add_hazard<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/hazard) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/hazard_avoidance.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;hazard_avoidance.dm 62"/></a></aside>
+        </h3>
+        <p>Adds a hazard to watch for</p><h3 id="proc/add_to_heal_list"><aside class="declaration">proc </aside>add_to_heal_list<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/patient) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/healing.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;healing.dm 109"/></a></aside>
+        </h3>
+        <p>Adds mob to list</p><h3 id="proc/after_equip_melee"><aside class="declaration">proc </aside>after_equip_melee<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a>/new_weapon) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 175"/></a></aside>
+        </h3>
+        <p>Handles signals for equip melee</p><h3 id="proc/check_hazards"><aside class="declaration">proc </aside>check_hazards<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/hazard_avoidance.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;hazard_avoidance.dm 109"/></a></aside>
+        </h3>
+        <p>Checks if we are in range of any hazards</p><h3 id="proc/check_path_ff"><aside class="declaration">proc </aside>check_path_ff<aside>(/<a href="atom.html">atom</a>/start, /<a href="atom.html">atom</a>/end) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L290">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 290"/></a></aside>
+        </h3>
+        <p>Returns true is a path is clear of friendlies</p><h3 id="proc/do_defib"><aside class="declaration">proc </aside>do_defib<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/patient, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/defibrillator.html">defibrillator</a>/defib) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/heal_procs.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;heal_procs.dm 139"/></a></aside>
+        </h3>
+        <p>Tries to revive a dead dude</p><h3 id="proc/do_equip_weaponry"><aside class="declaration">proc </aside>do_equip_weaponry<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 71"/></a></aside>
+        </h3>
+        <p>Tries to equip weaponry, and updates behavior appropriately</p><h3 id="proc/do_splint"><aside class="declaration">proc </aside>do_splint<aside>(/<a href="datum.html">datum</a>/<a href="datum/limb.html">limb</a>/broken_limb, target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/heal_procs.dm#L129">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;heal_procs.dm 129"/></a></aside>
+        </h3>
+        <p>Tries to splint a limb</p><h3 id="proc/equip_gun"><aside class="declaration">proc </aside>equip_gun<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a>/new_weapon) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 152"/></a></aside>
+        </h3>
+        <p>Equips a gun</p><h3 id="proc/equip_melee"><aside class="declaration">proc </aside>equip_melee<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a>/new_weapon) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L164">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 164"/></a></aside>
+        </h3>
+        <p>Equips a melee weapon</p><h3 id="proc/equip_weaponry"><aside class="declaration">proc </aside>equip_weaponry<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 46"/></a></aside>
+        </h3>
+        <p>Tries to equip weaponry from inventory, or find some if none are available</p><h3 id="proc/find_weapon"><aside class="declaration">proc </aside>find_weapon<aside>(range, /list/exlusion_turfs) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 60"/></a></aside>
+        </h3>
+        <p>Searches for a weapon to pickup</p><h3 id="proc/get_grenade"><aside class="declaration">proc </aside>get_grenade<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/grenades.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;grenades.dm 41"/></a></aside>
+        </h3>
+        <p>Finds a suitable grenade to throw</p><h3 id="proc/grenade_process"><aside class="declaration">proc </aside>grenade_process<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/grenades.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;grenades.dm 8"/></a></aside>
+        </h3>
+        <p>Decides if we should throw a grenade</p><h3 id="proc/heal_by_type"><aside class="declaration">proc </aside>heal_by_type<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/patient, dam_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/heal_procs.dm#L89">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;heal_procs.dm 89"/></a></aside>
+        </h3>
+        <p>Tries to heal damage of a given type</p><h3 id="proc/heal_damage"><aside class="declaration">proc </aside>heal_damage<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/patient) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/heal_procs.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;heal_procs.dm 2"/></a></aside>
+        </h3>
+        <p>Cycles through and heals the normal damage types</p><h3 id="proc/heal_organs"><aside class="declaration">proc </aside>heal_organs<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/patient) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/heal_procs.dm#L70">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;heal_procs.dm 70"/></a></aside>
+        </h3>
+        <p>Addresses organ damage</p><h3 id="proc/heal_secondaries"><aside class="declaration">proc </aside>heal_secondaries<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/patient) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/heal_procs.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;heal_procs.dm 21"/></a></aside>
+        </h3>
+        <p>Heal other ailments</p><h3 id="proc/medic_process"><aside class="declaration">proc </aside>medic_process<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/healing.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;healing.dm 18"/></a></aside>
+        </h3>
+        <p>Checks if we should be healing somebody</p><h3 id="proc/melee_interact"><aside class="declaration">proc </aside>melee_interact<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/interactee) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L319">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 319"/></a></aside>
+        </h3>
+        <p>Sig handler for physical interactions, like attacks</p><h3 id="proc/mob_need_heal"><aside class="declaration">proc </aside>mob_need_heal<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/patient) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/healing.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;healing.dm 85"/></a></aside>
+        </h3>
+        <p>Checks if a hurt AI human needs healing</p><h3 id="proc/on_change_z"><aside class="declaration">proc </aside>on_change_z<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/source, old_z, new_z) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/hazard_avoidance.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;hazard_avoidance.dm 56"/></a></aside>
+        </h3>
+        <p>Clear the hazard list if we change z</p><h3 id="proc/on_heal_end"><aside class="declaration">proc </aside>on_heal_end<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/healer) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/healing.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;healing.dm 53"/></a></aside>
+        </h3>
+        <p>Our healing ended, successfully or otherwise</p><h3 id="proc/on_interactee_stat_change"><aside class="declaration">proc </aside>on_interactee_stat_change<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/source, current_stat, new_stat) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/healing.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;healing.dm 76"/></a></aside>
+        </h3>
+        <p>Unregisters a friendly target when their stat changes</p><h3 id="proc/on_move_toggle"><aside class="declaration">proc </aside>on_move_toggle<aside>(/<a href="datum.html">datum</a>/source, m_intent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L305">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 305"/></a></aside>
+        </h3>
+        <p>Sets behavior on move toggle</p><h3 id="proc/on_other_mob_crit"><aside class="declaration">proc </aside>on_other_mob_crit<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/crit_mob) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/healing.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;healing.dm 60"/></a></aside>
+        </h3>
+        <p>Decides if we should do something when another mob goes crit</p><h3 id="proc/on_take_damage"><aside class="declaration">proc </aside>on_take_damage<aside>(/<a href="datum.html">datum</a>/source, damage, /<a href="mob.html">mob</a>/attacker) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L364">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 364"/></a></aside>
+        </h3>
+        <p>Reacts if the mob is below the min health threshold</p><h3 id="proc/parent_being_healed"><aside class="declaration">proc </aside>parent_being_healed<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/healer) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/healing.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;healing.dm 47"/></a></aside>
+        </h3>
+        <p>Someone is healing us</p><h3 id="proc/recieve_message"><aside class="declaration">proc </aside>recieve_message<aside>(/<a href="atom.html">atom</a>/source, message, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/speaker, message_language, raw_message, radio_freq, /list/spans, message_mode) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L424">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 424"/></a></aside>
+        </h3>
+        <p>Reacts to a heard message</p><h3 id="proc/refresh_abilities"><aside class="declaration">proc </aside>refresh_abilities<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L311">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 311"/></a></aside>
+        </h3>
+        <p>Refresh abilities-to-consider list</p><h3 id="proc/reload_gun"><aside class="declaration">proc </aside>reload_gun<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L253">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 253"/></a></aside>
+        </h3>
+        <p>Tries to reload our gun</p><h3 id="proc/remove_from_heal_list"><aside class="declaration">proc </aside>remove_from_heal_list<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/old_patient) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/healing.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;healing.dm 116"/></a></aside>
+        </h3>
+        <p>Removes mob from list</p><h3 id="proc/remove_hazard"><aside class="declaration">proc </aside>remove_hazard<aside>(/<a href="atom.html">atom</a>/old_hazard) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/hazard_avoidance.dm#L103">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;hazard_avoidance.dm 103"/></a></aside>
+        </h3>
+        <p>Removes a hazard</p><h3 id="proc/set_run"><aside class="declaration">proc </aside>set_run<aside>(forced) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L299">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 299"/></a></aside>
+        </h3>
+        <p>Sets run move intent if able</p><h3 id="proc/stop_fire"><aside class="declaration">proc </aside>stop_fire<aside>(stop_reason) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L229">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 229"/></a></aside>
+        </h3>
+        <p>Stops gunfire</p><h3 id="proc/store_hands"><aside class="declaration">proc </aside>store_hands<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L417">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 417"/></a></aside>
+        </h3>
+        <p>Tries to store any items in hand</p><h3 id="proc/throw_grenade"><aside class="declaration">proc </aside>throw_grenade<aside>(/<a href="atom.html">atom</a>/target, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/explosive/grenade.html">explosive/grenade</a>/grenade) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/grenades.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;grenades.dm 30"/></a></aside>
+        </h3>
+        <p>Throws the grenade</p><h3 id="proc/try_heal"><aside class="declaration">proc </aside>try_heal<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/healing.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;healing.dm 121"/></a></aside>
+        </h3>
+        <p>Tries healing themselves</p><h3 id="proc/try_heal_other"><aside class="declaration">proc </aside>try_heal_other<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/patient, ignore_defib) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/healing.dm#L144">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;healing.dm 144"/></a></aside>
+        </h3>
+        <p>Tries to heal another mob</p><h3 id="proc/try_interact"><aside class="declaration">proc </aside>try_interact<aside>(/<a href="atom.html">atom</a>/interactee) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L343">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 343"/></a></aside>
+        </h3>
+        <p>Tries to interact with something, usually nonharmfully</p><h3 id="proc/try_speak"><aside class="declaration">proc </aside>try_speak<aside>(message, cooldown) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L354">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 354"/></a></aside>
+        </h3>
+        <p>Says an audible message</p><h3 id="proc/try_store_item"><aside class="declaration">proc </aside>try_store_item<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/human_mob.dm#L408">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;human_mob.dm 408"/></a></aside>
+        </h3>
+        <p>Tries to store an item</p><h3 id="proc/unequip_weapon"><aside class="declaration">proc </aside>unequip_weapon<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a>/old_weapon) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L180">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 180"/></a></aside>
+        </h3>
+        <p>Unequips a weapon</p><h3 id="proc/weapon_process"><aside class="declaration">proc </aside>weapon_process<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/ai/ai_behaviors/human_mobs/weapon_module.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;ai&#x2F;ai_behaviors&#x2F;human_mobs&#x2F;weapon_module.dm 21"/></a></aside>
+        </h3>
+        <p>Weapon stuff that happens during process</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

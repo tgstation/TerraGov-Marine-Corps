@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;game_mode&#x2F;hvh - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/game_mode/hvh.html#var">Var Details</a> - <a href="datum/game_mode/hvh.html#proc">Proc Details</a></header>
+<main>
+<h1>hvh <aside>/<a href="datum.html">datum</a>/<a href="datum/game_mode.html">game_mode</a>/<a href="datum/game_mode/hvh.html">hvh</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/hvh.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;hvh.dm 2"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/game_mode/hvh.html#var/bioscan_interval">bioscan_interval</a></th><td>Time between two bioscan</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/game_mode/hvh.html#proc/announce_bioscans_marine_som">announce_bioscans_marine_som</a></th><td>Annonce to everyone the number of SOM and marines on ship and ground</td></tr>
+            <tr><th><a href="datum/game_mode/hvh.html#proc/count_humans">count_humans</a></th><td>checks how many marines and SOM are still alive</td></tr>
+            <tr><th><a href="datum/game_mode/hvh.html#proc/deploy_point_activated">deploy_point_activated</a></th><td>Messages a mob when they deploy groundside. only called if the specific gamemode register for the signal</td></tr>
+            <tr><th><a href="datum/game_mode/hvh.html#proc/get_deploy_point_message">get_deploy_point_message</a></th><td>Returns a message to play to a mob when they deploy into the AO</td></tr>
+            <tr><th><a href="datum/game_mode/hvh.html#proc/intro_sequence">intro_sequence</a></th><td>plays the intro sequence if any</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/bioscan_interval"><aside class="declaration">var </aside>bioscan_interval
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/hvh.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;hvh.dm 25"/></a></h3>
+        <p>Time between two bioscan</p><h2 id="proc">Proc Details</h2><h3 id="proc/announce_bioscans_marine_som"><aside class="declaration">proc </aside>announce_bioscans_marine_som<aside>(show_locations, delta, announce_marines, announce_som, ztrait) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/hvh.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;hvh.dm 131"/></a></aside>
+        </h3>
+        <p>Annonce to everyone the number of SOM and marines on ship and ground</p><h3 id="proc/count_humans"><aside class="declaration">proc </aside>count_humans<aside>(/list/z_levels, count_flags) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/hvh.dm#L97">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;hvh.dm 97"/></a></aside>
+        </h3>
+        <p>checks how many marines and SOM are still alive</p><h3 id="proc/deploy_point_activated"><aside class="declaration">proc </aside>deploy_point_activated<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/hvh.dm#L184">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;hvh.dm 184"/></a></aside>
+        </h3>
+        <p>Messages a mob when they deploy groundside. only called if the specific gamemode register for the signal</p><h3 id="proc/get_deploy_point_message"><aside class="declaration">proc </aside>get_deploy_point_message<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/hvh.dm#L193">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;hvh.dm 193"/></a></aside>
+        </h3>
+        <p>Returns a message to play to a mob when they deploy into the AO</p><h3 id="proc/intro_sequence"><aside class="declaration">proc </aside>intro_sequence<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/gamemodes/hvh.dm#L93">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;gamemodes&#x2F;hvh.dm 93"/></a></aside>
+        </h3>
+        <p>plays the intro sequence if any</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

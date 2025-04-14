@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;nuclearbomb - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/nuclearbomb.html#var">Var Details</a> - <a href="obj/machinery/nuclearbomb.html#proc">Proc Details</a></header>
+<main>
+<h1>nuclearbomb <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/nuclearbomb.html">nuclearbomb</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/nuclearbomb.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;nuclearbomb.dm 8"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/nuclearbomb.html#var/time">time</a></th><td>Time to start the timer on</td></tr>
+            <tr><th><a href="obj/machinery/nuclearbomb.html#var/timemax">timemax</a></th><td>Max time for the nuke timer</td></tr>
+            <tr><th><a href="obj/machinery/nuclearbomb.html#var/timemin">timemin</a></th><td>Min time for the nuke timer</td></tr>
+            <tr><th><a href="obj/machinery/nuclearbomb.html#var/timer">timer</a></th><td>ID of timer</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/nuclearbomb.html#proc/change_time">change_time</a></th><td>Modifies the nuke timer</td></tr>
+            <tr><th><a href="obj/machinery/nuclearbomb.html#proc/disable">disable</a></th><td>Disables nuke timer</td></tr>
+            <tr><th><a href="obj/machinery/nuclearbomb.html#proc/disable_on_hijack">disable_on_hijack</a></th><td>Permanently disables this nuke, for use on hijack</td></tr>
+            <tr><th><a href="obj/machinery/nuclearbomb.html#proc/enable">enable</a></th><td>Enables nuke timer</td></tr>
+            <tr><th><a href="obj/machinery/nuclearbomb.html#proc/explode">explode</a></th><td>Handles the boom</td></tr>
+            <tr><th><a href="obj/machinery/nuclearbomb.html#proc/get_time_left">get_time_left</a></th><td>Returns time left on the nuke in seconds</td></tr>
+            <tr><th><a href="obj/machinery/nuclearbomb.html#proc/toggle_anchor">toggle_anchor</a></th><td>Toggles the anchor bolts on or off</td></tr>
+            <tr><th><a href="obj/machinery/nuclearbomb.html#proc/toggle_disk">toggle_disk</a></th><td>Handles disk insertion and removal</td></tr>
+            <tr><th><a href="obj/machinery/nuclearbomb.html#proc/toggle_safety">toggle_safety</a></th><td>Toggles the safety on or off</td></tr>
+            <tr><th><a href="obj/machinery/nuclearbomb.html#proc/toggle_timer">toggle_timer</a></th><td>Toggles the timer on or off</td></tr>
+            <tr><th><a href="obj/machinery/nuclearbomb.html#proc/update_minimap_icon">update_minimap_icon</a></th><td>Change minimap icon if its on or off</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/time"><aside class="declaration">var </aside>time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/nuclearbomb.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;nuclearbomb.dm 24"/></a></h3>
+        <p>Time to start the timer on</p><h3 id="var/timemax"><aside class="declaration">var </aside>timemax
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/nuclearbomb.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;nuclearbomb.dm 28"/></a></h3>
+        <p>Max time for the nuke timer</p><h3 id="var/timemin"><aside class="declaration">var </aside>timemin
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/nuclearbomb.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;nuclearbomb.dm 26"/></a></h3>
+        <p>Min time for the nuke timer</p><h3 id="var/timer"><aside class="declaration">var </aside>timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/nuclearbomb.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;nuclearbomb.dm 31"/></a></h3>
+        <p>ID of timer</p><h2 id="proc">Proc Details</h2><h3 id="proc/change_time"><aside class="declaration">proc </aside>change_time<aside>(change) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/nuclearbomb.dm#L280">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;nuclearbomb.dm 280"/></a></aside>
+        </h3>
+        <p>Modifies the nuke timer</p><h3 id="proc/disable"><aside class="declaration">proc </aside>disable<aside>(reason) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/nuclearbomb.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;nuclearbomb.dm 71"/></a></aside>
+        </h3>
+        <p>Disables nuke timer</p><h3 id="proc/disable_on_hijack"><aside class="declaration">proc </aside>disable_on_hijack<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/nuclearbomb.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;nuclearbomb.dm 101"/></a></aside>
+        </h3>
+        <p>Permanently disables this nuke, for use on hijack</p><h3 id="proc/enable"><aside class="declaration">proc </aside>enable<aside>(reason) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/nuclearbomb.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;nuclearbomb.dm 59"/></a></aside>
+        </h3>
+        <p>Enables nuke timer</p><h3 id="proc/explode"><aside class="declaration">proc </aside>explode<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/nuclearbomb.dm#L85">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;nuclearbomb.dm 85"/></a></aside>
+        </h3>
+        <p>Handles the boom</p><h3 id="proc/get_time_left"><aside class="declaration">proc </aside>get_time_left<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/nuclearbomb.dm#L359">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;nuclearbomb.dm 359"/></a></aside>
+        </h3>
+        <p>Returns time left on the nuke in seconds</p><h3 id="proc/toggle_anchor"><aside class="declaration">proc </aside>toggle_anchor<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/nuclearbomb.dm#L294">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;nuclearbomb.dm 294"/></a></aside>
+        </h3>
+        <p>Toggles the anchor bolts on or off</p><h3 id="proc/toggle_disk"><aside class="declaration">proc </aside>toggle_disk<aside>(/<a href="mob.html">mob</a>/user, disk_colour) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/nuclearbomb.dm#L315">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;nuclearbomb.dm 315"/></a></aside>
+        </h3>
+        <p>Handles disk insertion and removal</p><h3 id="proc/toggle_safety"><aside class="declaration">proc </aside>toggle_safety<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/nuclearbomb.dm#L285">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;nuclearbomb.dm 285"/></a></aside>
+        </h3>
+        <p>Toggles the safety on or off</p><h3 id="proc/toggle_timer"><aside class="declaration">proc </aside>toggle_timer<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/nuclearbomb.dm#L256">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;nuclearbomb.dm 256"/></a></aside>
+        </h3>
+        <p>Toggles the timer on or off</p><h3 id="proc/update_minimap_icon"><aside class="declaration">proc </aside>update_minimap_icon<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/machinery/nuclearbomb.dm#L363">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;nuclearbomb.dm 363"/></a></aside>
+        </h3>
+        <p>Change minimap icon if its on or off</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

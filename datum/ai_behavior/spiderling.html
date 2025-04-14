@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;ai_behavior&#x2F;spiderling - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/ai_behavior/spiderling.html#proc">Proc Details</a></header>
+<main>
+<h1>spiderling <aside>/<a href="datum.html">datum</a>/<a href="datum/ai_behavior.html">ai_behavior</a>/<a href="datum/ai_behavior/spiderling.html">spiderling</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 59"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/apply_spiderling_jelly">apply_spiderling_jelly</a></th><td>Signal handler to apply resin jelly to the spiderling whenever widow gets it</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/attack_target">attack_target</a></th><td>Signal handler to try to attack our target</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/attempt_guard">attempt_guard</a></th><td>If the spiderling's mother goes into crit, the spiderlings will stop what they are doing and attempt to shield her</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/attempt_unguard">attempt_unguard</a></th><td>Spiderling's mother woke up from crit; reset stuff back to normal</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/decide_mark">decide_mark</a></th><td>Decides what to do when widow uses spiderling mark ability</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/do_jump">do_jump</a></th><td>Signal handler to make the spiderling jump when widow does</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/go_to_obj_target">go_to_obj_target</a></th><td>Signal handler to check if we can attack the obj's that our escorted_atom is attacking</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/go_to_target">go_to_target</a></th><td>Signal handler to check if we can attack what our escorted_atom is attacking</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/guard_owner">guard_owner</a></th><td>Moves spiderlings to the widow</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/kill_parent">kill_parent</a></th><td>This kills the spiderling</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/look_for_new_state">look_for_new_state</a></th><td>Check if escorted_atom moves away from the spiderling while it's attacking something, this is to always keep them close to escorted_atom</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/parent_resist">parent_resist</a></th><td>resist when widow does</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/register_action_signals">register_action_signals</a></th><td>Check so that we dont keep attacking our target beyond it's death</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/revert_to_default_escort">revert_to_default_escort</a></th><td>Sets escorted atom to our pre-defined default escorted atom, which by default is this spiderling's widow, and commands the spiderling to follow it</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/spiderling_rage">spiderling_rage</a></th><td>This happens when the spiderlings mother dies, they move faster and will attack any nearby marines</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/start_resting">start_resting</a></th><td>rest when widow does</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/stop_resting">stop_resting</a></th><td>stop resting when widow does, plus unbuckle all mobs so the widow won't get stuck</td></tr>
+            <tr><th><a href="datum/ai_behavior/spiderling.html#proc/triggered_spiderling_rage">triggered_spiderling_rage</a></th><td>Makes the spiderling roar and then kill themselves after some time</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/apply_spiderling_jelly"><aside class="declaration">proc </aside>apply_spiderling_jelly<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L263">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 263"/></a></aside>
+        </h3>
+        <p>Signal handler to apply resin jelly to the spiderling whenever widow gets it</p><h3 id="proc/attack_target"><aside class="declaration">proc </aside>attack_target<aside>(/<a href="datum.html">datum</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 126"/></a></aside>
+        </h3>
+        <p>Signal handler to try to attack our target</p><h3 id="proc/attempt_guard"><aside class="declaration">proc </aside>attempt_guard<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L157">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 157"/></a></aside>
+        </h3>
+        <p>If the spiderling's mother goes into crit, the spiderlings will stop what they are doing and attempt to shield her</p><h3 id="proc/attempt_unguard"><aside class="declaration">proc </aside>attempt_unguard<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L164">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 164"/></a></aside>
+        </h3>
+        <p>Spiderling's mother woke up from crit; reset stuff back to normal</p><h3 id="proc/decide_mark"><aside class="declaration">proc </aside>decide_mark<aside>(source, /<a href="atom.html">atom</a>/A) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 84"/></a></aside>
+        </h3>
+        <p>Decides what to do when widow uses spiderling mark ability</p><h3 id="proc/do_jump"><aside class="declaration">proc </aside>do_jump<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L257">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 257"/></a></aside>
+        </h3>
+        <p>Signal handler to make the spiderling jump when widow does</p><h3 id="proc/go_to_obj_target"><aside class="declaration">proc </aside>go_to_obj_target<aside>(source, /<a href="obj.html">obj</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 108"/></a></aside>
+        </h3>
+        <p>Signal handler to check if we can attack the obj's that our escorted_atom is attacking</p><h3 id="proc/go_to_target"><aside class="declaration">proc </aside>go_to_target<aside>(source, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L116">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 116"/></a></aside>
+        </h3>
+        <p>Signal handler to check if we can attack what our escorted_atom is attacking</p><h3 id="proc/guard_owner"><aside class="declaration">proc </aside>guard_owner<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L184">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 184"/></a></aside>
+        </h3>
+        <p>Moves spiderlings to the widow</p><h3 id="proc/kill_parent"><aside class="declaration">proc </aside>kill_parent<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L233">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 233"/></a></aside>
+        </h3>
+        <p>This kills the spiderling</p><h3 id="proc/look_for_new_state"><aside class="parent"><a title="/datum/ai_behavior" href="datum/ai_behavior.html#proc/look_for_new_state">&uarr;</a></aside>look_for_new_state<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 136"/></a></aside>
+        </h3>
+        <p>Check if escorted_atom moves away from the spiderling while it's attacking something, this is to always keep them close to escorted_atom</p><h3 id="proc/parent_resist"><aside class="declaration">proc </aside>parent_resist<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L238">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 238"/></a></aside>
+        </h3>
+        <p>resist when widow does</p><h3 id="proc/register_action_signals">register_action_signals<aside>(action_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L142">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 142"/></a></aside>
+        </h3>
+        <p>Check so that we dont keep attacking our target beyond it's death</p><h3 id="proc/revert_to_default_escort"><aside class="declaration">proc </aside>revert_to_default_escort<aside>(source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 102"/></a></aside>
+        </h3>
+        <p>Sets escorted atom to our pre-defined default escorted atom, which by default is this spiderling's widow, and commands the spiderling to follow it</p><h3 id="proc/spiderling_rage"><aside class="declaration">proc </aside>spiderling_rage<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L200">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 200"/></a></aside>
+        </h3>
+        <p>This happens when the spiderlings mother dies, they move faster and will attack any nearby marines</p><h3 id="proc/start_resting"><aside class="declaration">proc </aside>start_resting<aside>(/<a href="mob.html">mob</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L244">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 244"/></a></aside>
+        </h3>
+        <p>rest when widow does</p><h3 id="proc/stop_resting"><aside class="declaration">proc </aside>stop_resting<aside>(/<a href="mob.html">mob</a>/source) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L250">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 250"/></a></aside>
+        </h3>
+        <p>stop resting when widow does, plus unbuckle all mobs so the widow won't get stuck</p><h3 id="proc/triggered_spiderling_rage"><aside class="declaration">proc </aside>triggered_spiderling_rage<aside>(/<a href="mob.html">mob</a>/M, /<a href="mob.html">mob</a>/victim) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/living/carbon/xenomorph/castes/spiderling/spiderling.dm#L222">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;spiderling&#x2F;spiderling.dm 222"/></a></aside>
+        </h3>
+        <p>Makes the spiderling roar and then kill themselves after some time</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

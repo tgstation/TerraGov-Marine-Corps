@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;atom&#x2F;movable&#x2F;lighting_mask - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="atom/movable/lighting_mask.html#var">Var Details</a> - <a href="atom/movable/lighting_mask.html#proc">Proc Details</a></header>
+<main>
+<h1>lighting_mask <aside>/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/lighting_mask.html">lighting_mask</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/lighting_mask.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;lighting_mask.dm 6"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#var/affecting_turfs">affecting_turfs</a></th><td>Turfs that are being affected by this mask, this is for the sake of luminosity</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#var/attached_atom">attached_atom</a></th><td>The atom that we are attached to, does not need hard del protection as we are deleted with it</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#var/awaiting_update">awaiting_update</a></th><td>Prevents us from registering for update twice before SSlighting init</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#var/current_angle">current_angle</a></th><td>The current angle the item is pointing at</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#var/is_directional">is_directional</a></th><td>Set to TRUE if you want the light to rotate with the owner</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#var/mask_holder">mask_holder</a></th><td>Reference to the holder /obj/effect</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#var/radius">radius</a></th><td>The radius of illumination of the mask</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#var/shadows">shadows</a></th><td>list of mutable appearance shadows</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#proc/apply_matrix">apply_matrix</a></th><td>if you want the matrix to grow or shrink, you can do that using this proc when applyng it</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#proc/calculate_lighting_shadows">calculate_lighting_shadows</a></th><td>Returns a list of matrices corresponding to the matrices that should be applied to triangles of
+coordinates (0,0),(1,0),(0,1) to create a triangcalculate_shadows_matricesle that respresents the shadows
+takes in the old turf to smoothly animate shadow movement</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#proc/calculate_triangle_vertices">calculate_triangle_vertices</a></th><td>Basically takes the 2-4 corners, extends them and then generates triangle coordinates representing shadows
+Input: list(list(list(x, y), list(x, y)))
+Layer 1: Lines
+Layer 2: Vertex
+Layer 3: X/Y value
+OUTPUT: The same thing but with 3 lists embedded rather than 2 because they are triangles not lines now.</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#proc/cull_blocked_in_group">cull_blocked_in_group</a></th><td>Takes in the list of lines and sight blockers and returns only the lines that are not blocked</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#proc/get_corners_from_coords">get_corners_from_coords</a></th><td>Converts the corners into the 3 (or 2) valid points
+For example if a wall is top right of the source, the bottom left wall corner
+can be removed otherwise the wall itself will be in the shadow.
+Input: list(list(x1, y1), list(x2, y2))
+Output: list(list(list(x, y), list(x, y))) &lt;-- 2 coordinates that form a line</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#proc/get_matrix">get_matrix</a></th><td>Creates a matrix for the lighting mak to use</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#proc/group_atoms">group_atoms</a></th><td>Groups things into vertical and horizontal lines.
+Input: All atoms ungrouped list(atom1, atom2, atom3)
+Output: List(List(Group), list(group2), ... , list(groupN))
+Output: List(List(atom1, atom2), list(atom3, atom4...), ... , list(atom))</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#proc/queue_mask_update">queue_mask_update</a></th><td>Enqueues the mask in the queue properly</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#proc/rotate">rotate</a></th><td>Rotates the light source to angle degrees.</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#proc/rotate_mask_on_holder_turn">rotate_mask_on_holder_turn</a></th><td>The holder atom turned, spins the mask if it's needed</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#proc/set_color">set_color</a></th><td>Setter proc for colors</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#proc/set_intensity">set_intensity</a></th><td>Setter proc for the intensity of the mask</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#proc/set_radius">set_radius</a></th><td>Sets the radius of the mask, and updates everything that needs to be updated</td></tr>
+            <tr><th><a href="atom/movable/lighting_mask.html#proc/triangle_to_matrix">triangle_to_matrix</a></th><td>Converts a triangle into a matrix that can be applied to a standardized triangle
+to make it represent the points.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/affecting_turfs"><aside class="declaration">var </aside>affecting_turfs
+            <aside>&ndash; /list/turf</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/shadow_calculator.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;shadow_calculator.dm 38"/></a></h3>
+        <p>Turfs that are being affected by this mask, this is for the sake of luminosity</p><h3 id="var/attached_atom"><aside class="declaration">var </aside>attached_atom
+            <aside>&ndash; /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/lighting_mask.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;lighting_mask.dm 26"/></a></h3>
+        <p>The atom that we are attached to, does not need hard del protection as we are deleted with it</p><h3 id="var/awaiting_update"><aside class="declaration">var </aside>awaiting_update
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/lighting_mask.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;lighting_mask.dm 32"/></a></h3>
+        <p>Prevents us from registering for update twice before SSlighting init</p><h3 id="var/current_angle"><aside class="declaration">var </aside>current_angle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/lighting_mask.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;lighting_mask.dm 20"/></a></h3>
+        <p>The current angle the item is pointing at</p><h3 id="var/is_directional"><aside class="declaration">var </aside>is_directional
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/lighting_mask.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;lighting_mask.dm 34"/></a></h3>
+        <p>Set to TRUE if you want the light to rotate with the owner</p><h3 id="var/mask_holder"><aside class="declaration">var </aside>mask_holder
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/lighting_mask_holder.html">effect/lighting_mask_holder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/lighting_mask.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;lighting_mask.dm 29"/></a></h3>
+        <p>Reference to the holder /obj/effect</p><h3 id="var/radius"><aside class="declaration">var </aside>radius
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/lighting_mask.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;lighting_mask.dm 23"/></a></h3>
+        <p>The radius of illumination of the mask</p><h3 id="var/shadows"><aside class="declaration">var </aside>shadows
+            <aside>&ndash; /list/mutable_appearance</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/shadow_calculator.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;shadow_calculator.dm 40"/></a></h3>
+        <p>list of mutable appearance shadows</p><h2 id="proc">Proc Details</h2><h3 id="proc/apply_matrix"><aside class="declaration">proc </aside>apply_matrix<aside>(/<a href="matrix.html">matrix</a>/to_apply, transform_time) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/lighting_mask.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;lighting_mask.dm 56"/></a></aside>
+        </h3>
+        <p>if you want the matrix to grow or shrink, you can do that using this proc when applyng it</p><h3 id="proc/calculate_lighting_shadows"><aside class="declaration">proc </aside>calculate_lighting_shadows<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/shadow_calculator.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;shadow_calculator.dm 80"/></a></aside>
+        </h3>
+        <p>Returns a list of matrices corresponding to the matrices that should be applied to triangles of
+coordinates (0,0),(1,0),(0,1) to create a triangcalculate_shadows_matricesle that respresents the shadows
+takes in the old turf to smoothly animate shadow movement</p><h3 id="proc/calculate_triangle_vertices"><aside class="declaration">proc </aside>calculate_triangle_vertices<aside>(/list/cornergroup) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/shadow_calculator.dm#L308">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;shadow_calculator.dm 308"/></a></aside>
+        </h3>
+        <p>Basically takes the 2-4 corners, extends them and then generates triangle coordinates representing shadows
+Input: list(list(list(x, y), list(x, y)))
+Layer 1: Lines
+Layer 2: Vertex
+Layer 3: X/Y value
+OUTPUT: The same thing but with 3 lists embedded rather than 2 because they are triangles not lines now.</p><h3 id="proc/cull_blocked_in_group"><aside class="declaration">proc </aside>cull_blocked_in_group<aside>(/list/lines, /list/sight_blockers) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/shadow_calculator.dm#L438">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;shadow_calculator.dm 438"/></a></aside>
+        </h3>
+        <p>Takes in the list of lines and sight blockers and returns only the lines that are not blocked</p><h3 id="proc/get_corners_from_coords"><aside class="declaration">proc </aside>get_corners_from_coords<aside>(/list/coordgroup) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/shadow_calculator.dm#L494">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;shadow_calculator.dm 494"/></a></aside>
+        </h3>
+        <p>Converts the corners into the 3 (or 2) valid points
+For example if a wall is top right of the source, the bottom left wall corner
+can be removed otherwise the wall itself will be in the shadow.
+Input: list(list(x1, y1), list(x2, y2))
+Output: list(list(list(x, y), list(x, y))) &lt;-- 2 coordinates that form a line</p><h3 id="proc/get_matrix"><aside class="declaration">proc </aside>get_matrix<aside>(radius) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/lighting_mask.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;lighting_mask.dm 63"/></a></aside>
+        </h3>
+        <p>Creates a matrix for the lighting mak to use</p><h3 id="proc/group_atoms"><aside class="declaration">proc </aside>group_atoms<aside>(/list/ungrouped_things) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/shadow_calculator.dm#L619">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;shadow_calculator.dm 619"/></a></aside>
+        </h3>
+        <p>Groups things into vertical and horizontal lines.
+Input: All atoms ungrouped list(atom1, atom2, atom3)
+Output: List(List(Group), list(group2), ... , list(groupN))
+Output: List(List(atom1, atom2), list(atom3, atom4...), ... , list(atom))</p><h3 id="proc/queue_mask_update"><aside class="declaration">proc </aside>queue_mask_update<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/shadow_calculator.dm#L71">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;shadow_calculator.dm 71"/></a></aside>
+        </h3>
+        <p>Enqueues the mask in the queue properly</p><h3 id="proc/rotate"><aside class="declaration">proc </aside>rotate<aside>(angle) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/lighting_mask.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;lighting_mask.dm 87"/></a></aside>
+        </h3>
+        <p>Rotates the light source to angle degrees.</p><h3 id="proc/rotate_mask_on_holder_turn"><aside class="declaration">proc </aside>rotate_mask_on_holder_turn<aside>(new_direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/lighting_mask.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;lighting_mask.dm 121"/></a></aside>
+        </h3>
+        <p>The holder atom turned, spins the mask if it's needed</p><h3 id="proc/set_color"><aside class="declaration">proc </aside>set_color<aside>(colour) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/lighting_mask.dm#L108">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;lighting_mask.dm 108"/></a></aside>
+        </h3>
+        <p>Setter proc for colors</p><h3 id="proc/set_intensity"><aside class="declaration">proc </aside>set_intensity<aside>(intensity) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/lighting_mask.dm#L112">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;lighting_mask.dm 112"/></a></aside>
+        </h3>
+        <p>Setter proc for the intensity of the mask</p><h3 id="proc/set_radius"><aside class="declaration">proc </aside>set_radius<aside>(new_radius, transform_time) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/lighting_mask.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;lighting_mask.dm 47"/></a></aside>
+        </h3>
+        <p>Sets the radius of the mask, and updates everything that needs to be updated</p><h3 id="proc/triangle_to_matrix"><aside class="declaration">proc </aside>triangle_to_matrix<aside>(/list/triangle) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/lighting/lighting_mask/shadow_calculator.dm#L252">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_mask&#x2F;shadow_calculator.dm 252"/></a></aside>
+        </h3>
+        <p>Converts a triangle into a matrix that can be applied to a standardized triangle
+to make it represent the points.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

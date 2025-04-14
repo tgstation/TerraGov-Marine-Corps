@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;colors.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/colors.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/colors.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/colors.html#define/ADMIN_COLOR_PRIORITY">ADMIN_COLOR_PRIORITY</a></th><td>Only used by rare effects like greentext coloring mobs and when admins varedit color</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/TEMPORARY_COLOR_PRIORITY">TEMPORARY_COLOR_PRIORITY</a></th><td>e.g. purple effect of the revenant on a mob, black effect when mob electrocuted</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/WASHABLE_COLOR_PRIORITY">WASHABLE_COLOR_PRIORITY</a></th><td>Color splashed onto an atom (e.g. paint on turf)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/FIXED_COLOR_PRIORITY">FIXED_COLOR_PRIORITY</a></th><td>Color inherent to the atom (e.g. blob color)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/COLOR_PRIORITY_AMOUNT">COLOR_PRIORITY_AMOUNT</a></th><td>how many colour priority levels there are.</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/COLOR_SOFT_RED">COLOR_SOFT_RED</a></th><td>Warm but extremely diluted red. rgb(250, 130, 130)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_WHITE">LIGHT_COLOR_WHITE</a></th><td>Full white. rgb(255, 255, 255)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_GREEN">LIGHT_COLOR_GREEN</a></th><td>Bright but quickly dissipating neon green. rgb(100, 200, 100)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_RED">LIGHT_COLOR_RED</a></th><td>Warm red color rgb(250, 66, 66)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_ELECTRIC_GREEN">LIGHT_COLOR_ELECTRIC_GREEN</a></th><td>Electric green. rgb(0, 255, 0)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_VIVID_GREEN">LIGHT_COLOR_VIVID_GREEN</a></th><td>Vivid, slightly blue green. rgb(60, 240, 70)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_BLUE">LIGHT_COLOR_BLUE</a></th><td>Cold, diluted blue. rgb(100, 150, 250)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_BLUEGREEN">LIGHT_COLOR_BLUEGREEN</a></th><td>Light blueish green. rgb(125, 225, 175)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_CYAN">LIGHT_COLOR_CYAN</a></th><td>Diluted cyan. rgb(125, 225, 225)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_ELECTRIC_CYAN">LIGHT_COLOR_ELECTRIC_CYAN</a></th><td>Electric cyan rgb(0, 255, 255)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_LIGHT_CYAN">LIGHT_COLOR_LIGHT_CYAN</a></th><td>More-saturated cyan. rgb(16, 21, 22)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_BABY_BLUE">LIGHT_COLOR_BABY_BLUE</a></th><td>Baby Blue rgb(0, 170, 220)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_DARK_BLUE">LIGHT_COLOR_DARK_BLUE</a></th><td>Saturated blue. rgb(51, 117, 248)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_PINK">LIGHT_COLOR_PINK</a></th><td>Diluted, mid-warmth pink. rgb(225, 125, 225)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_YELLOW">LIGHT_COLOR_YELLOW</a></th><td>Dimmed yellow, leaning kaki. rgb(225, 225, 125)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_BRIGHT_YELLOW">LIGHT_COLOR_BRIGHT_YELLOW</a></th><td>Bright yellow. rgb(255, 255, 150)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_BROWN">LIGHT_COLOR_BROWN</a></th><td>Clear brown, mostly dim. rgb(150, 100, 50)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_ORANGE">LIGHT_COLOR_ORANGE</a></th><td>Mostly pure orange. rgb(250, 150, 50)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_PURPLE">LIGHT_COLOR_PURPLE</a></th><td>Light Purple. rgb(149, 44, 244)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_LAVENDER">LIGHT_COLOR_LAVENDER</a></th><td>Less-saturated light purple. rgb(155, 81, 255)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_PURPLE_PINK">LIGHT_COLOR_PURPLE_PINK</a></th><td>lighter, pinker purple</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_HOLY_MAGIC">LIGHT_COLOR_HOLY_MAGIC</a></th><td>slightly desaturated bright yellow.</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_BLOOD_MAGIC">LIGHT_COLOR_BLOOD_MAGIC</a></th><td>deep crimson</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_FIRE">LIGHT_COLOR_FIRE</a></th><td>Warm orange color, leaning strongly towards yellow. rgb(250, 160, 25)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_LAVA">LIGHT_COLOR_LAVA</a></th><td>Very warm yellow, leaning slightly towards orange. rgb(196, 138, 24)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_FLARE">LIGHT_COLOR_FLARE</a></th><td>Bright, non-saturated red. Leaning slightly towards pink for visibility. rgb(250, 100, 75)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_SLIME_LAMP">LIGHT_COLOR_SLIME_LAMP</a></th><td>Weird color, between yellow and green, very slimy. rgb(175, 200, 75)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_TUNGSTEN">LIGHT_COLOR_TUNGSTEN</a></th><td>Extremely diluted yellow, close to skin color (for some reason). rgb(250, 225, 175)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_HALOGEN">LIGHT_COLOR_HALOGEN</a></th><td>Barely visible cyan-ish hue, as the doctor prescribed. rgb(240, 250, 250)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_FLAME">LIGHT_COLOR_FLAME</a></th><td>More bright and rich in color compared to lava. rgb(248, 136, 24)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_BLUE_FLAME">LIGHT_COLOR_BLUE_FLAME</a></th><td>Rich and bright blue. rgb(0, 183, 255)</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/LIGHT_COLOR_RED_ORANGE">LIGHT_COLOR_RED_ORANGE</a></th><td>Strong red orange</td></tr>
+        <tr><th><a href="code/__DEFINES/colors.html#define/COLOR_DISPLAY_RED">COLOR_DISPLAY_RED</a></th><td>Colors for status/tram/incident displays</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ADMIN_COLOR_PRIORITY"><aside class="declaration">#define </aside>ADMIN_COLOR_PRIORITY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 3"/></a>
+    </h3>
+    <p>Only used by rare effects like greentext coloring mobs and when admins varedit color</p><h3 id="define/COLOR_DISPLAY_RED"><aside class="declaration">#define </aside>COLOR_DISPLAY_RED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L311">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 311"/></a>
+    </h3>
+    <p>Colors for status/tram/incident displays</p><h3 id="define/COLOR_PRIORITY_AMOUNT"><aside class="declaration">#define </aside>COLOR_PRIORITY_AMOUNT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 11"/></a>
+    </h3>
+    <p>how many colour priority levels there are.</p><h3 id="define/COLOR_SOFT_RED"><aside class="declaration">#define </aside>COLOR_SOFT_RED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 51"/></a>
+    </h3>
+    <p>Warm but extremely diluted red. rgb(250, 130, 130)</p><h3 id="define/FIXED_COLOR_PRIORITY"><aside class="declaration">#define </aside>FIXED_COLOR_PRIORITY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 9"/></a>
+    </h3>
+    <p>Color inherent to the atom (e.g. blob color)</p><h3 id="define/LIGHT_COLOR_BABY_BLUE"><aside class="declaration">#define </aside>LIGHT_COLOR_BABY_BLUE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L239">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 239"/></a>
+    </h3>
+    <p>Baby Blue rgb(0, 170, 220)</p><h3 id="define/LIGHT_COLOR_BLOOD_MAGIC"><aside class="declaration">#define </aside>LIGHT_COLOR_BLOOD_MAGIC
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L261">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 261"/></a>
+    </h3>
+    <p>deep crimson</p><h3 id="define/LIGHT_COLOR_BLUE"><aside class="declaration">#define </aside>LIGHT_COLOR_BLUE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L229">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 229"/></a>
+    </h3>
+    <p>Cold, diluted blue. rgb(100, 150, 250)</p><h3 id="define/LIGHT_COLOR_BLUEGREEN"><aside class="declaration">#define </aside>LIGHT_COLOR_BLUEGREEN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L231">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 231"/></a>
+    </h3>
+    <p>Light blueish green. rgb(125, 225, 175)</p><h3 id="define/LIGHT_COLOR_BLUE_FLAME"><aside class="declaration">#define </aside>LIGHT_COLOR_BLUE_FLAME
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L279">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 279"/></a>
+    </h3>
+    <p>Rich and bright blue. rgb(0, 183, 255)</p><h3 id="define/LIGHT_COLOR_BRIGHT_YELLOW"><aside class="declaration">#define </aside>LIGHT_COLOR_BRIGHT_YELLOW
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L247">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 247"/></a>
+    </h3>
+    <p>Bright yellow. rgb(255, 255, 150)</p><h3 id="define/LIGHT_COLOR_BROWN"><aside class="declaration">#define </aside>LIGHT_COLOR_BROWN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L249">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 249"/></a>
+    </h3>
+    <p>Clear brown, mostly dim. rgb(150, 100, 50)</p><h3 id="define/LIGHT_COLOR_CYAN"><aside class="declaration">#define </aside>LIGHT_COLOR_CYAN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L233">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 233"/></a>
+    </h3>
+    <p>Diluted cyan. rgb(125, 225, 225)</p><h3 id="define/LIGHT_COLOR_DARK_BLUE"><aside class="declaration">#define </aside>LIGHT_COLOR_DARK_BLUE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L241">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 241"/></a>
+    </h3>
+    <p>Saturated blue. rgb(51, 117, 248)</p><h3 id="define/LIGHT_COLOR_ELECTRIC_CYAN"><aside class="declaration">#define </aside>LIGHT_COLOR_ELECTRIC_CYAN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L235">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 235"/></a>
+    </h3>
+    <p>Electric cyan rgb(0, 255, 255)</p><h3 id="define/LIGHT_COLOR_ELECTRIC_GREEN"><aside class="declaration">#define </aside>LIGHT_COLOR_ELECTRIC_GREEN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L225">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 225"/></a>
+    </h3>
+    <p>Electric green. rgb(0, 255, 0)</p><h3 id="define/LIGHT_COLOR_FIRE"><aside class="declaration">#define </aside>LIGHT_COLOR_FIRE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L265">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 265"/></a>
+    </h3>
+    <p>Warm orange color, leaning strongly towards yellow. rgb(250, 160, 25)</p><h3 id="define/LIGHT_COLOR_FLAME"><aside class="declaration">#define </aside>LIGHT_COLOR_FLAME
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L277">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 277"/></a>
+    </h3>
+    <p>More bright and rich in color compared to lava. rgb(248, 136, 24)</p><h3 id="define/LIGHT_COLOR_FLARE"><aside class="declaration">#define </aside>LIGHT_COLOR_FLARE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L269">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 269"/></a>
+    </h3>
+    <p>Bright, non-saturated red. Leaning slightly towards pink for visibility. rgb(250, 100, 75)</p><h3 id="define/LIGHT_COLOR_GREEN"><aside class="declaration">#define </aside>LIGHT_COLOR_GREEN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L221">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 221"/></a>
+    </h3>
+    <p>Bright but quickly dissipating neon green. rgb(100, 200, 100)</p><h3 id="define/LIGHT_COLOR_HALOGEN"><aside class="declaration">#define </aside>LIGHT_COLOR_HALOGEN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L275">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 275"/></a>
+    </h3>
+    <p>Barely visible cyan-ish hue, as the doctor prescribed. rgb(240, 250, 250)</p><h3 id="define/LIGHT_COLOR_HOLY_MAGIC"><aside class="declaration">#define </aside>LIGHT_COLOR_HOLY_MAGIC
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L259">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 259"/></a>
+    </h3>
+    <p>slightly desaturated bright yellow.</p><h3 id="define/LIGHT_COLOR_LAVA"><aside class="declaration">#define </aside>LIGHT_COLOR_LAVA
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L267">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 267"/></a>
+    </h3>
+    <p>Very warm yellow, leaning slightly towards orange. rgb(196, 138, 24)</p><h3 id="define/LIGHT_COLOR_LAVENDER"><aside class="declaration">#define </aside>LIGHT_COLOR_LAVENDER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L255">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 255"/></a>
+    </h3>
+    <p>Less-saturated light purple. rgb(155, 81, 255)</p><h3 id="define/LIGHT_COLOR_LIGHT_CYAN"><aside class="declaration">#define </aside>LIGHT_COLOR_LIGHT_CYAN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L237">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 237"/></a>
+    </h3>
+    <p>More-saturated cyan. rgb(16, 21, 22)</p><h3 id="define/LIGHT_COLOR_ORANGE"><aside class="declaration">#define </aside>LIGHT_COLOR_ORANGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L251">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 251"/></a>
+    </h3>
+    <p>Mostly pure orange. rgb(250, 150, 50)</p><h3 id="define/LIGHT_COLOR_PINK"><aside class="declaration">#define </aside>LIGHT_COLOR_PINK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L243">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 243"/></a>
+    </h3>
+    <p>Diluted, mid-warmth pink. rgb(225, 125, 225)</p><h3 id="define/LIGHT_COLOR_PURPLE"><aside class="declaration">#define </aside>LIGHT_COLOR_PURPLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L253">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 253"/></a>
+    </h3>
+    <p>Light Purple. rgb(149, 44, 244)</p><h3 id="define/LIGHT_COLOR_PURPLE_PINK"><aside class="declaration">#define </aside>LIGHT_COLOR_PURPLE_PINK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L257">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 257"/></a>
+    </h3>
+    <p>lighter, pinker purple</p><h3 id="define/LIGHT_COLOR_RED"><aside class="declaration">#define </aside>LIGHT_COLOR_RED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L223">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 223"/></a>
+    </h3>
+    <p>Warm red color rgb(250, 66, 66)</p><h3 id="define/LIGHT_COLOR_RED_ORANGE"><aside class="declaration">#define </aside>LIGHT_COLOR_RED_ORANGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L281">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 281"/></a>
+    </h3>
+    <p>Strong red orange</p><h3 id="define/LIGHT_COLOR_SLIME_LAMP"><aside class="declaration">#define </aside>LIGHT_COLOR_SLIME_LAMP
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L271">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 271"/></a>
+    </h3>
+    <p>Weird color, between yellow and green, very slimy. rgb(175, 200, 75)</p><h3 id="define/LIGHT_COLOR_TUNGSTEN"><aside class="declaration">#define </aside>LIGHT_COLOR_TUNGSTEN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L273">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 273"/></a>
+    </h3>
+    <p>Extremely diluted yellow, close to skin color (for some reason). rgb(250, 225, 175)</p><h3 id="define/LIGHT_COLOR_VIVID_GREEN"><aside class="declaration">#define </aside>LIGHT_COLOR_VIVID_GREEN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L227">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 227"/></a>
+    </h3>
+    <p>Vivid, slightly blue green. rgb(60, 240, 70)</p><h3 id="define/LIGHT_COLOR_WHITE"><aside class="declaration">#define </aside>LIGHT_COLOR_WHITE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L219">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 219"/></a>
+    </h3>
+    <p>Full white. rgb(255, 255, 255)</p><h3 id="define/LIGHT_COLOR_YELLOW"><aside class="declaration">#define </aside>LIGHT_COLOR_YELLOW
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L245">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 245"/></a>
+    </h3>
+    <p>Dimmed yellow, leaning kaki. rgb(225, 225, 125)</p><h3 id="define/TEMPORARY_COLOR_PRIORITY"><aside class="declaration">#define </aside>TEMPORARY_COLOR_PRIORITY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 5"/></a>
+    </h3>
+    <p>e.g. purple effect of the revenant on a mob, black effect when mob electrocuted</p><h3 id="define/WASHABLE_COLOR_PRIORITY"><aside class="declaration">#define </aside>WASHABLE_COLOR_PRIORITY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/__DEFINES/colors.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;colors.dm 7"/></a>
+    </h3>
+    <p>Color splashed onto an atom (e.g. paint on turf)</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

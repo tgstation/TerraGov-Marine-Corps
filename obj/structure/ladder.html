@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;structure&#x2F;ladder - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/structure/ladder.html#var">Var Details</a> - <a href="obj/structure/ladder.html#proc">Proc Details</a></header>
+<main>
+<h1>ladder <aside>/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/ladder.html">ladder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 2"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/structure/ladder.html#var/crafted">crafted</a></th><td>Ladders crafted midround can only link to other ladders crafted midround</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#var/down">down</a></th><td>the ladder below this one</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#var/travel_time">travel_time</a></th><td>travel time for ladder in deciseconds</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#var/up">up</a></th><td>the ladder above this one</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/structure/ladder.html#proc/MouseDrop">MouseDrop</a></th><td>Peeking up/down</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#proc/check_menu">check_menu</a></th><td>callback for if we can use the menu</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#proc/clear_base_transparency">clear_base_transparency</a></th><td>Clears any ladder holes created by this ladder</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#proc/disconnect">disconnect</a></th><td>Helper to unlink everything</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#proc/ghost_use">ghost_use</a></th><td>Ghosts use the byond default popup menu function on right click, so this is going to work a little differently for them.</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#proc/link_down">link_down</a></th><td>Links this ladder to passed ladder (which should generally be below it)</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#proc/link_up">link_up</a></th><td>Links this ladder to passed ladder (which should generally be above it)</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#proc/make_base_transparent">make_base_transparent</a></th><td>Makes the base of the ladder transparent</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#proc/show_final_fluff_message">show_final_fluff_message</a></th><td>The messages shown after the player has finished climbing. Players can see this happen from either src or the destination so we've 2 POVs here</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#proc/show_initial_fluff_message">show_initial_fluff_message</a></th><td>The message shown when the player starts climbing the ladder</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#proc/show_options">show_options</a></th><td>Shows a radial menu that players can use to climb up and down a stair.</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#proc/throw_object">throw_object</a></th><td>throws an item held by a user up or down a ladder</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#proc/travel">travel</a></th><td>handles actual teleportation of mobs</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#proc/unlink_down">unlink_down</a></th><td>Unlinks this ladder from the ladder below it.</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#proc/unlink_up">unlink_up</a></th><td>Unlinks this ladder from the ladder above it.</td></tr>
+            <tr><th><a href="obj/structure/ladder.html#proc/use">use</a></th><td>Actually try to use the ladder as a standard mob</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/crafted"><aside class="declaration">var </aside>crafted
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 16"/></a></h3>
+        <p>Ladders crafted midround can only link to other ladders crafted midround</p><h3 id="var/down"><aside class="declaration">var </aside>down
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/ladder.html">ladder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 12"/></a></h3>
+        <p>the ladder below this one</p><h3 id="var/travel_time"><aside class="declaration">var </aside>travel_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 18"/></a></h3>
+        <p>travel time for ladder in deciseconds</p><h3 id="var/up"><aside class="declaration">var </aside>up
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/ladder.html">ladder</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 14"/></a></h3>
+        <p>the ladder above this one</p><h2 id="proc">Proc Details</h2><h3 id="proc/MouseDrop">MouseDrop<aside>(over_object, src_location, over_location) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L453">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 453"/></a></aside>
+        </h3>
+        <p>Peeking up/down</p><h3 id="proc/check_menu"><aside class="declaration">proc </aside>check_menu<aside>(/<a href="mob.html">mob</a>/user, is_ghost) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L318">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 318"/></a></aside>
+        </h3>
+        <p>callback for if we can use the menu</p><h3 id="proc/clear_base_transparency"><aside class="declaration">proc </aside>clear_base_transparency<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L143">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 143"/></a></aside>
+        </h3>
+        <p>Clears any ladder holes created by this ladder</p><h3 id="proc/disconnect"><aside class="declaration">proc </aside>disconnect<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L196">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 196"/></a></aside>
+        </h3>
+        <p>Helper to unlink everything</p><h3 id="proc/ghost_use"><aside class="declaration">proc </aside>ghost_use<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L427">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 427"/></a></aside>
+        </h3>
+        <p>Ghosts use the byond default popup menu function on right click, so this is going to work a little differently for them.</p><h3 id="proc/link_down"><aside class="declaration">proc </aside>link_down<aside>(/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/ladder.html">ladder</a>/down_ladder) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 152"/></a></aside>
+        </h3>
+        <p>Links this ladder to passed ladder (which should generally be below it)</p><h3 id="proc/link_up"><aside class="declaration">proc </aside>link_up<aside>(/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/ladder.html">ladder</a>/up_ladder) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 174"/></a></aside>
+        </h3>
+        <p>Links this ladder to passed ladder (which should generally be above it)</p><h3 id="proc/make_base_transparent"><aside class="declaration">proc </aside>make_base_transparent<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 136"/></a></aside>
+        </h3>
+        <p>Makes the base of the ladder transparent</p><h3 id="proc/show_final_fluff_message"><aside class="declaration">proc </aside>show_final_fluff_message<aside>(/<a href="mob.html">mob</a>/user, /<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/ladder.html">ladder</a>/destination, going_up) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L284">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 284"/></a></aside>
+        </h3>
+        <p>The messages shown after the player has finished climbing. Players can see this happen from either src or the destination so we've 2 POVs here</p><h3 id="proc/show_initial_fluff_message"><aside class="declaration">proc </aside>show_initial_fluff_message<aside>(/<a href="mob.html">mob</a>/user, going_up) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L257">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 257"/></a></aside>
+        </h3>
+        <p>The message shown when the player starts climbing the ladder</p><h3 id="proc/show_options"><aside class="declaration">proc </aside>show_options<aside>(/<a href="mob.html">mob</a>/user, is_ghost) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L293">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 293"/></a></aside>
+        </h3>
+        <p>Shows a radial menu that players can use to climb up and down a stair.</p><h3 id="proc/throw_object"><aside class="declaration">proc </aside>throw_object<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/item, /<a href="mob.html">mob</a>/user, going_up) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L399">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 399"/></a></aside>
+        </h3>
+        <p>throws an item held by a user up or down a ladder</p><h3 id="proc/travel"><aside class="declaration">proc </aside>travel<aside>(/<a href="mob.html">mob</a>/user, going_up, is_ghost) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L262">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 262"/></a></aside>
+        </h3>
+        <p>handles actual teleportation of mobs</p><h3 id="proc/unlink_down"><aside class="declaration">proc </aside>unlink_down<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L163">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 163"/></a></aside>
+        </h3>
+        <p>Unlinks this ladder from the ladder below it.</p><h3 id="proc/unlink_up"><aside class="declaration">proc </aside>unlink_up<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L185">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 185"/></a></aside>
+        </h3>
+        <p>Unlinks this ladder from the ladder above it.</p><h3 id="proc/use"><aside class="declaration">proc </aside>use<aside>(/<a href="mob.html">mob</a>/user, going_up) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/structures/ladders.dm#L227">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;ladders.dm 227"/></a></aside>
+        </h3>
+        <p>Actually try to use the ladder as a standard mob</p>
+<ul>
+<li>user: mob to make go up or down</li>
+<li>going_up: whether we move to the up or down ladder</li>
+</ul></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

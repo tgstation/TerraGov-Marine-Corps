@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;tac_reload_storage - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/tac_reload_storage.html#var">Var Details</a> - <a href="datum/component/tac_reload_storage.html#proc">Proc Details</a></header>
+<main>
+<h1>tac_reload_storage <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/tac_reload_storage.html">tac_reload_storage</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/tac_reload_storage.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;tac_reload_storage.dm 8"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/tac_reload_storage.html#var/reloading_storage">reloading_storage</a></th><td>The storage item that we are attempting to use to tactical reload on.
+Use this over checking the item directly, for edge cases such as indirect storage (e.g: storage armor module).</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/tac_reload_storage.html#proc/do_tac_reload">do_tac_reload</a></th><td>Performs the tactical reload</td></tr>
+            <tr><th><a href="datum/component/tac_reload_storage.html#proc/on_examine">on_examine</a></th><td>Hook into the examine of the parent to show the player that they can tac reload from this</td></tr>
+            <tr><th><a href="datum/component/tac_reload_storage.html#proc/on_parent_attackby_alternate">on_parent_attackby_alternate</a></th><td>When attacked by a gun, will attempt to tactical reload it from our set reloading storage.
+Args:</td></tr>
+            <tr><th><a href="datum/component/tac_reload_storage.html#proc/on_suit_attach">on_suit_attach</a></th><td>Called when parent (a storage armor module) is attached to any suit
+Sent by attachment_handler component.
+Args:
+source - The storage armor module that's being attached.
+new_shot - The clothing that the module is being attached to.
+attacher - The person attaching the armor module to the suit.</td></tr>
+            <tr><th><a href="datum/component/tac_reload_storage.html#proc/on_suit_detach">on_suit_detach</a></th><td>Called when parent (a storage armor module) is detached from any suit
+Sent by attachment_handler component.
+Args:
+source - The storage armor module that's being detached.
+old_host - The clothing that the module is being detached from.
+attacher - The person detaching the armor module from the suit.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/reloading_storage"><aside class="declaration">var </aside>reloading_storage
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/storage.html">storage</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/tac_reload_storage.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;tac_reload_storage.dm 13"/></a></h3>
+        <p>The storage item that we are attempting to use to tactical reload on.
+Use this over checking the item directly, for edge cases such as indirect storage (e.g: storage armor module).</p><h2 id="proc">Proc Details</h2><h3 id="proc/do_tac_reload"><aside class="declaration">proc </aside>do_tac_reload<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a>/<a href="obj/item/weapon/gun.html">gun</a>/reloading_gun, /<a href="mob.html">mob</a>/user, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/tac_reload_storage.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;tac_reload_storage.dm 63"/></a></aside>
+        </h3>
+        <p>Performs the tactical reload</p><h3 id="proc/on_examine"><aside class="declaration">proc </aside>on_examine<aside>(/<a href="datum.html">datum</a>/source, /<a href="mob.html">mob</a>/user, /list/details) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/tac_reload_storage.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;tac_reload_storage.dm 42"/></a></aside>
+        </h3>
+        <p>Hook into the examine of the parent to show the player that they can tac reload from this</p><h3 id="proc/on_parent_attackby_alternate"><aside class="declaration">proc </aside>on_parent_attackby_alternate<aside>(/<a href="datum.html">datum</a>/source, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/weapon.html">weapon</a>/<a href="obj/item/weapon/gun.html">gun</a>/reloading_gun, /<a href="mob.html">mob</a>/user, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/tac_reload_storage.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;tac_reload_storage.dm 54"/></a></aside>
+        </h3>
+        <p>When attacked by a gun, will attempt to tactical reload it from our set reloading storage.
+Args:</p>
+<ul>
+<li>source: The storage item source or armor suit. Use reloading_storage instead as it takes into account remote storage.</li>
+<li>reloading_gun: The gun item that's attacking parent, that we want to reload.</li>
+<li>user: The person attempting to reload the gun</li>
+<li>params: The params (distance, etc.)</li>
+</ul><h3 id="proc/on_suit_attach"><aside class="declaration">proc </aside>on_suit_attach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/armor_module.html">armor_module</a>/<a href="obj/item/armor_module/storage.html">storage</a>/source, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/clothing.html">clothing</a>/new_host, /<a href="mob.html">mob</a>/attacher) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/tac_reload_storage.dm#L80">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;tac_reload_storage.dm 80"/></a></aside>
+        </h3>
+        <p>Called when parent (a storage armor module) is attached to any suit
+Sent by attachment_handler component.
+Args:
+source - The storage armor module that's being attached.
+new_shot - The clothing that the module is being attached to.
+attacher - The person attaching the armor module to the suit.</p><h3 id="proc/on_suit_detach"><aside class="declaration">proc </aside>on_suit_detach<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/armor_module.html">armor_module</a>/<a href="obj/item/armor_module/storage.html">storage</a>/source, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/clothing.html">clothing</a>/old_host, /<a href="mob.html">mob</a>/attacher) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/components/tac_reload_storage.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;components&#x2F;tac_reload_storage.dm 94"/></a></aside>
+        </h3>
+        <p>Called when parent (a storage armor module) is detached from any suit
+Sent by attachment_handler component.
+Args:
+source - The storage armor module that's being detached.
+old_host - The clothing that the module is being detached from.
+attacher - The person detaching the armor module from the suit.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

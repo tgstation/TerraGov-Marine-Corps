@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;effect&#x2F;landmark&#x2F;patrol_point - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/effect/landmark/patrol_point.html#var">Var Details</a> - <a href="obj/effect/landmark/patrol_point.html#proc">Proc Details</a></header>
+<main>
+<h1>patrol_point <aside>/<a href="obj.html">obj</a>/<a href="obj/effect/landmark/patrol_point.html">effect/landmark/patrol_point</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/landmarks/gamemode/hvh_deploy_points.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;landmarks&#x2F;gamemode&#x2F;hvh_deploy_points.dm 6"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/effect/landmark/patrol_point.html#var/deploy_turfs">deploy_turfs</a></th><td>List of open turfs around the point to deploy onto</td></tr>
+            <tr><th><a href="obj/effect/landmark/patrol_point.html#var/id">id</a></th><td>ID to link with an associated start point</td></tr>
+            <tr><th><a href="obj/effect/landmark/patrol_point.html#var/minimap_icon">minimap_icon</a></th><td>minimap icon state</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/effect/landmark/patrol_point.html#proc/add_spawn_protection">add_spawn_protection</a></th><td>Temporarily applies godmode to prevent spawn camping</td></tr>
+            <tr><th><a href="obj/effect/landmark/patrol_point.html#proc/do_deployment">do_deployment</a></th><td>Moves the AM and sets up the effects</td></tr>
+            <tr><th><a href="obj/effect/landmark/patrol_point.html#proc/end_rappel">end_rappel</a></th><td>Ends the rappel effects</td></tr>
+            <tr><th><a href="obj/effect/landmark/patrol_point.html#proc/finish_setup">finish_setup</a></th><td>Finishes setup after we know what gamemode it is</td></tr>
+            <tr><th><a href="obj/effect/landmark/patrol_point.html#proc/remove_spawn_protection">remove_spawn_protection</a></th><td>Removes spawn protection godmode</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/deploy_turfs"><aside class="declaration">var </aside>deploy_turfs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/landmarks/gamemode/hvh_deploy_points.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;landmarks&#x2F;gamemode&#x2F;hvh_deploy_points.dm 17"/></a></h3>
+        <p>List of open turfs around the point to deploy onto</p><h3 id="var/id"><aside class="declaration">var </aside>id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/landmarks/gamemode/hvh_deploy_points.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;landmarks&#x2F;gamemode&#x2F;hvh_deploy_points.dm 11"/></a></h3>
+        <p>ID to link with an associated start point</p><h3 id="var/minimap_icon"><aside class="declaration">var </aside>minimap_icon
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/landmarks/gamemode/hvh_deploy_points.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;landmarks&#x2F;gamemode&#x2F;hvh_deploy_points.dm 13"/></a></h3>
+        <p>minimap icon state</p><h2 id="proc">Proc Details</h2><h3 id="proc/add_spawn_protection"><aside class="declaration">proc </aside>add_spawn_protection<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/landmarks/gamemode/hvh_deploy_points.dm#L81">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;landmarks&#x2F;gamemode&#x2F;hvh_deploy_points.dm 81"/></a></aside>
+        </h3>
+        <p>Temporarily applies godmode to prevent spawn camping</p><h3 id="proc/do_deployment"><aside class="declaration">proc </aside>do_deployment<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/movable_to_move, /list/mobs_moving) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/landmarks/gamemode/hvh_deploy_points.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;landmarks&#x2F;gamemode&#x2F;hvh_deploy_points.dm 46"/></a></aside>
+        </h3>
+        <p>Moves the AM and sets up the effects</p><h3 id="proc/end_rappel"><aside class="declaration">proc </aside>end_rappel<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/movable_to_move, original_layer, /list/mobs_moving) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/landmarks/gamemode/hvh_deploy_points.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;landmarks&#x2F;gamemode&#x2F;hvh_deploy_points.dm 87"/></a></aside>
+        </h3>
+        <p>Ends the rappel effects</p><h3 id="proc/finish_setup"><aside class="declaration">proc </aside>finish_setup<aside>(/<a href="datum.html">datum</a>/source, mode_override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/landmarks/gamemode/hvh_deploy_points.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;landmarks&#x2F;gamemode&#x2F;hvh_deploy_points.dm 23"/></a></aside>
+        </h3>
+        <p>Finishes setup after we know what gamemode it is</p><h3 id="proc/remove_spawn_protection"><aside class="declaration">proc </aside>remove_spawn_protection<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/game/objects/effects/landmarks/gamemode/hvh_deploy_points.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;effects&#x2F;landmarks&#x2F;gamemode&#x2F;hvh_deploy_points.dm 98"/></a></aside>
+        </h3>
+        <p>Removes spawn protection godmode</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

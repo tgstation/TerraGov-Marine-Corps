@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;looping_sound - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/looping_sound.html#var">Var Details</a> - <a href="datum/looping_sound.html#proc">Proc Details</a></header>
+<main>
+<h1>Looping sound datums <aside>/<a href="datum.html">datum</a>/<a href="datum/looping_sound.html">looping_sound</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 7"/></a></h1>
+
+<p>Used to play sound(s) on repeat until they are stopped
+Processed by the SSloopingsounds <a href="datum/controller/subsystem.html" title="/datum/controller/subsystem">/datum/controller/subsystem/loopingsounds</a></p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/ambient_sound">ambient_sound</a></th><td>Is this considered an ambient sound for pref purposes</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/chance">chance</a></th><td>(num) % Chance per loop to play a mid_sound</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/direct">direct</a></th><td>(bool) If true plays directly to provided atoms instead of from them</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/end_sound">end_sound</a></th><td>(soundfile) The sound played after the main loop has concluded</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/end_volume">end_volume</a></th><td>(num) Override for volume of end sound</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/falloff">falloff</a></th><td>The rate the volume falls off. Higher = volume drops slower</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/max_loops">max_loops</a></th><td>(num) The max amount of loops to run for.</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/mid_length">mid_length</a></th><td>(num) The length to wait between playing mid_sounds</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/mid_sounds">mid_sounds</a></th><td>(list or soundfile) Since this can be either a list or a single soundfile you can have random sounds. May contain further lists but must contain a soundfile at the end.</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/output_atoms">output_atoms</a></th><td>(list of atoms) The destination(s) for the sounds</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/range">range</a></th><td>Range the sound will travel</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/skip_starting_sounds">skip_starting_sounds</a></th><td>Do we skip the starting sounds?</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/sound_channel">sound_channel</a></th><td>Sound channel to play on, random if not provided</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/start_length">start_length</a></th><td>(num) How long to wait in ticks before starting the main loop after playing start_sound</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/start_sound">start_sound</a></th><td>(soundfile) Sound played before starting the mid_sounds loop</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/start_time">start_time</a></th><td>(num) world.time when the datum started looping</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/start_volume">start_volume</a></th><td>(num) Override for volume of start sound</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/timer_id">timer_id</a></th><td>The ID of the timer that's used to loop the sounds.</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/vary">vary</a></th><td>(bool) Whether sounds played by this datum should be slightly varied by [/proc/playsound()]</td></tr>
+            <tr><th><a href="datum/looping_sound.html#var/volume">volume</a></th><td>(num) Sound output volume</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/looping_sound.html#proc/get_sound">get_sound</a></th><td>Picks and returns soundfile
+Arguments:</td></tr>
+            <tr><th><a href="datum/looping_sound.html#proc/on_start">on_start</a></th><td>Called on loop start
+plays start sound, sets start_time
+then inserts into subsystem</td></tr>
+            <tr><th><a href="datum/looping_sound.html#proc/on_stop">on_stop</a></th><td>Called on loop end
+if there is a end_sound, plays it</td></tr>
+            <tr><th><a href="datum/looping_sound.html#proc/play">play</a></th><td>Plays a sound file to our output_atoms
+Arguments:</td></tr>
+            <tr><th><a href="datum/looping_sound.html#proc/sound_loop">sound_loop</a></th><td>A simple proc handling the looping of the sound itself.</td></tr>
+            <tr><th><a href="datum/looping_sound.html#proc/start">start</a></th><td>Performs checks for looping and optinally adds a new atom to output_atoms, then calls [/datum/looping_sound/proc/on_start()]</td></tr>
+            <tr><th><a href="datum/looping_sound.html#proc/stop">stop</a></th><td>Performs checks for ending looping and optinally removes an atom from output_atoms, then calls [/datum/looping_sound/proc/on_stop()]</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ambient_sound"><aside class="declaration">var </aside>ambient_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 41"/></a></h3>
+        <p>Is this considered an ambient sound for pref purposes</p><h3 id="var/chance"><aside class="declaration">var </aside>chance
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 25"/></a></h3>
+        <p>(num) % Chance per loop to play a mid_sound</p><h3 id="var/direct"><aside class="declaration">var </aside>direct
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 47"/></a></h3>
+        <p>(bool) If true plays directly to provided atoms instead of from them</p><h3 id="var/end_sound"><aside class="declaration">var </aside>end_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 23"/></a></h3>
+        <p>(soundfile) The sound played after the main loop has concluded</p><h3 id="var/end_volume"><aside class="declaration">var </aside>end_volume
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 21"/></a></h3>
+        <p>(num) Override for volume of end sound</p><h3 id="var/falloff"><aside class="declaration">var </aside>falloff
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 35"/></a></h3>
+        <p>The rate the volume falls off. Higher = volume drops slower</p><h3 id="var/max_loops"><aside class="declaration">var </aside>max_loops
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 31"/></a></h3>
+        <p>(num) The max amount of loops to run for.</p><h3 id="var/mid_length"><aside class="declaration">var </aside>mid_length
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 13"/></a></h3>
+        <p>(num) The length to wait between playing mid_sounds</p><h3 id="var/mid_sounds"><aside class="declaration">var </aside>mid_sounds
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 11"/></a></h3>
+        <p>(list or soundfile) Since this can be either a list or a single soundfile you can have random sounds. May contain further lists but must contain a soundfile at the end.</p><h3 id="var/output_atoms"><aside class="declaration">var </aside>output_atoms
+            <aside>&ndash; /list/atom</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 9"/></a></h3>
+        <p>(list of atoms) The destination(s) for the sounds</p><h3 id="var/range"><aside class="declaration">var </aside>range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 33"/></a></h3>
+        <p>Range the sound will travel</p><h3 id="var/skip_starting_sounds"><aside class="declaration">var </aside>skip_starting_sounds
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 45"/></a></h3>
+        <p>Do we skip the starting sounds?</p><h3 id="var/sound_channel"><aside class="declaration">var </aside>sound_channel
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 51"/></a></h3>
+        <p>Sound channel to play on, random if not provided</p><h3 id="var/start_length"><aside class="declaration">var </aside>start_length
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 19"/></a></h3>
+        <p>(num) How long to wait in ticks before starting the main loop after playing start_sound</p><h3 id="var/start_sound"><aside class="declaration">var </aside>start_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L17">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 17"/></a></h3>
+        <p>(soundfile) Sound played before starting the mid_sounds loop</p><h3 id="var/start_time"><aside class="declaration">var </aside>start_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 39"/></a></h3>
+        <p>(num) world.time when the datum started looping</p><h3 id="var/start_volume"><aside class="declaration">var </aside>start_volume
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 15"/></a></h3>
+        <p>(num) Override for volume of start sound</p><h3 id="var/timer_id"><aside class="declaration">var </aside>timer_id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 37"/></a></h3>
+        <p>The ID of the timer that's used to loop the sounds.</p><h3 id="var/vary"><aside class="declaration">var </aside>vary
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 29"/></a></h3>
+        <p>(bool) Whether sounds played by this datum should be slightly varied by [/proc/playsound()]</p><h3 id="var/volume"><aside class="declaration">var </aside>volume
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 27"/></a></h3>
+        <p>(num) Sound output volume</p><h2 id="proc">Proc Details</h2><h3 id="proc/get_sound"><aside class="declaration">proc </aside>get_sound<aside>(starttime, _mid_sounds) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 126"/></a></aside>
+        </h3>
+        <p>Picks and returns soundfile
+Arguments:</p>
+<ul>
+<li>starttime: world.time when this loop started</li>
+<li>_mid_sounds: sound selection override as compared to the usual mid_sounds</li>
+</ul><h3 id="proc/on_start"><aside class="declaration">proc </aside>on_start<aside>(skip_startsound) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L136">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 136"/></a></aside>
+        </h3>
+        <p>Called on loop start
+plays start sound, sets start_time
+then inserts into subsystem</p><h3 id="proc/on_stop"><aside class="declaration">proc </aside>on_stop<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L147">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 147"/></a></aside>
+        </h3>
+        <p>Called on loop end
+if there is a end_sound, plays it</p><h3 id="proc/play"><aside class="declaration">proc </aside>play<aside>(soundfile, volume_override) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 107"/></a></aside>
+        </h3>
+        <p>Plays a sound file to our output_atoms
+Arguments:</p>
+<ul>
+<li>soundfile: sound file to be played</li>
+<li>volume_override: Optional argument to override the usual volume var for this sound</li>
+</ul><h3 id="proc/sound_loop"><aside class="declaration">proc </aside>sound_loop<aside>(start_time) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 92"/></a></aside>
+        </h3>
+        <p>A simple proc handling the looping of the sound itself.</p>
+<p>Arguments:</p>
+<ul>
+<li>start_time - The time at which the <code>mid_sounds</code> started being played (so we know when to stop looping).</li>
+</ul><h3 id="proc/start"><aside class="declaration">proc </aside>start<aside>(/<a href="atom.html">atom</a>/add_thing, skip_startsound) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 69"/></a></aside>
+        </h3>
+        <p>Performs checks for looping and optinally adds a new atom to output_atoms, then calls [/datum/looping_sound/proc/on_start()]</p><h3 id="proc/stop"><aside class="declaration">proc </aside>stop<aside>(/<a href="atom.html">atom</a>/remove_thing) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/datums/looping_sounds/_looping_sound.dm#L77">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;looping_sounds&#x2F;_looping_sound.dm 77"/></a></aside>
+        </h3>
+        <p>Performs checks for ending looping and optinally removes an atom from output_atoms, then calls [/datum/looping_sound/proc/on_stop()]</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

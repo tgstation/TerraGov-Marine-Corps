@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;mob&#x2F;dead&#x2F;observer - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="mob/dead/observer.html#var">Var Details</a> - <a href="mob/dead/observer.html#proc">Proc Details</a></header>
+<main>
+<h1>observer <aside>/<a href="mob.html">mob</a>/<a href="mob/dead/observer.html">dead/observer</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/dead/observer/observer.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;observer&#x2F;observer.dm 6"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob/dead/observer.html#var/can_reenter_corpse">can_reenter_corpse</a></th><td>A weakref to the original corpse of the observer</td></tr>
+            <tr><th><a href="mob/dead/observer.html#var/ghost_vision">ghost_vision</a></th><td>If you can see things only ghosts see, like other ghosts</td></tr>
+            <tr><th><a href="mob/dead/observer.html#var/health_analyzer">health_analyzer</a></th><td>Creates health_analyzer to scan with on toggle_health_scan toggle.</td></tr>
+            <tr><th><a href="mob/dead/observer.html#var/health_scan">health_scan</a></th><td>Stores variable set in toggle_health_scan.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="mob/dead/observer.html#proc/clean_observetarget">clean_observetarget</a></th><td>Signal handler to clean the observedtarget</td></tr>
+            <tr><th><a href="mob/dead/observer.html#proc/do_observe">do_observe</a></th><td>makes the ghost see the target hud and sets the eye at the target.</td></tr>
+            <tr><th><a href="mob/dead/observer.html#proc/load_ghost_gamemode_actions">load_ghost_gamemode_actions</a></th><td>Loads any gamemode specific ghost actions</td></tr>
+            <tr><th><a href="mob/dead/observer.html#proc/pick_form">pick_form</a></th><td>Changes our sprite</td></tr>
+            <tr><th><a href="mob/dead/observer.html#proc/revived_while_away">revived_while_away</a></th><td>Warn the ghost and send them into their body after a few seconds</td></tr>
+            <tr><th><a href="mob/dead/observer.html#proc/toggle_health_scan">toggle_health_scan</a></th><td>Toggle for whether you health-scan living beings on click as observer.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/can_reenter_corpse"><aside class="declaration">var </aside>can_reenter_corpse
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/weakref.html">weakref</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/dead/observer/observer.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;observer&#x2F;observer.dm 42"/></a></h3>
+        <p>A weakref to the original corpse of the observer</p><h3 id="var/ghost_vision"><aside class="declaration">var </aside>ghost_vision
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/dead/observer/observer.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;observer&#x2F;observer.dm 53"/></a></h3>
+        <p>If you can see things only ghosts see, like other ghosts</p><h3 id="var/health_analyzer"><aside class="declaration">var </aside>health_analyzer
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/healthanalyzer.html">healthanalyzer</a>/integrated</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/dead/observer/observer.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;observer&#x2F;observer.dm 40"/></a></h3>
+        <p>Creates health_analyzer to scan with on toggle_health_scan toggle.</p><h3 id="var/health_scan"><aside class="declaration">var </aside>health_scan
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/dead/observer/observer.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;observer&#x2F;observer.dm 38"/></a></h3>
+        <p>Stores variable set in toggle_health_scan.</p><h2 id="proc">Proc Details</h2><h3 id="proc/clean_observetarget"><aside class="declaration">proc </aside>clean_observetarget<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/dead/observer/observer.dm#L664">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;observer&#x2F;observer.dm 664"/></a></aside>
+        </h3>
+        <p>Signal handler to clean the observedtarget</p><h3 id="proc/do_observe"><aside class="declaration">proc </aside>do_observe<aside>(/<a href="mob.html">mob</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/dead/observer/observer.dm#L647">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;observer&#x2F;observer.dm 647"/></a></aside>
+        </h3>
+        <p>makes the ghost see the target hud and sets the eye at the target.</p><h3 id="proc/load_ghost_gamemode_actions"><aside class="declaration">proc </aside>load_ghost_gamemode_actions<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/dead/observer/login.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;observer&#x2F;login.dm 69"/></a></aside>
+        </h3>
+        <p>Loads any gamemode specific ghost actions</p><h3 id="proc/pick_form"><aside class="declaration">proc </aside>pick_form<aside>(new_form) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/dead/observer/observer.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;observer&#x2F;observer.dm 131"/></a></aside>
+        </h3>
+        <p>Changes our sprite</p><h3 id="proc/revived_while_away"><aside class="declaration">proc </aside>revived_while_away<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/dead/observer/login.dm#L57">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;observer&#x2F;login.dm 57"/></a></aside>
+        </h3>
+        <p>Warn the ghost and send them into their body after a few seconds</p><h3 id="proc/toggle_health_scan"><aside class="declaration">verb </aside>toggle_health_scan<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/dead/observer/observer.dm#L702">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;dead&#x2F;observer&#x2F;observer.dm 702"/></a></aside>
+        </h3>
+        <p>Toggle for whether you health-scan living beings on click as observer.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

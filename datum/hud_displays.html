@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;hud_displays - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/hud_displays.html#var">Var Details</a></header>
+<main>
+<h1>hud_displays <aside>/<a href="datum.html">datum</a>/<a href="datum/hud_displays.html">hud_displays</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L177">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 177"/></a></h1>
+
+<p>Holder datum for a zlevels data, concerning the overlays and the drawn level itself
+The individual image trackers have a raw and a normal list
+raw lists just store the images, while the normal ones are assoc list of [tracked_atom] = image
+the raw lists are to speed up the Fire() of the subsystem so we dont have to filter through</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/hud_displays.html#var/hud_image">hud_image</a></th><td>Actual icon of the drawn zlevel with all of it's atoms</td></tr>
+            <tr><th><a href="datum/hud_displays.html#var/images_assoc">images_assoc</a></th><td>Assoc list of updating images; list(&quot;[flag]&quot; = list([source] = blip)</td></tr>
+            <tr><th><a href="datum/hud_displays.html#var/images_raw">images_raw</a></th><td>Raw list containing updating images by flag; list(&quot;[flag]&quot; = list(blip))</td></tr>
+            <tr><th><a href="datum/hud_displays.html#var/x_offset">x_offset</a></th><td>x offset of the actual icon to center it to screens</td></tr>
+            <tr><th><a href="datum/hud_displays.html#var/y_offset">y_offset</a></th><td>y offset of the actual icons to keep it to screens</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/hud_image"><aside class="declaration">var </aside>hud_image
+            <aside>&ndash; /icon</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L179">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 179"/></a></h3>
+        <p>Actual icon of the drawn zlevel with all of it's atoms</p><h3 id="var/images_assoc"><aside class="declaration">var </aside>images_assoc
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L181">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 181"/></a></h3>
+        <p>Assoc list of updating images; list(&quot;[flag]&quot; = list([source] = blip)</p><h3 id="var/images_raw"><aside class="declaration">var </aside>images_raw
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L183">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 183"/></a></h3>
+        <p>Raw list containing updating images by flag; list(&quot;[flag]&quot; = list(blip))</p><h3 id="var/x_offset"><aside class="declaration">var </aside>x_offset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L185">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 185"/></a></h3>
+        <p>x offset of the actual icon to center it to screens</p><h3 id="var/y_offset"><aside class="declaration">var </aside>y_offset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/controllers/subsystem/minimap/minimaps.dm#L187">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimap&#x2F;minimaps.dm 187"/></a></h3>
+        <p>y offset of the actual icons to keep it to screens</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;modules&#x2F;mob&#x2F;mob_movespeed.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>code/modules/mob/mob_movespeed.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/bfeaf60f069b9d753b339afccdc0b16b13f5cff1/code/modules/mob/mob_movespeed.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_movespeed.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><p>How move speed for mobs works</p>
+<p>Move speed is now calculated by using a list of movespeed modifiers, which is a list itself (to avoid datum overhead)</p>
+<p>This gives us the ability to have multiple sources of movespeed, reliabily keep them applied and remove them when they should be</p>
+<p>THey can have unique sources and a bunch of extra fancy flags that control behaviour</p>
+<p>Previously trying to update move speed was a shot in the dark that usually meant mobs got stuck going faster or slower</p>
+<p>This list takes the following format</p>
+<pre><code class="language-Current">		list(
+			id = list(
+				priority,
+				flags,
+				legacy slowdown/speedup amount,
+				conflict
+			)
+		)
+</code></pre>
+<p>WHen update movespeed is called, the list of items is iterated, according to flags priority and a bunch of conditions
+this spits out a final calculated value which is used as a modifer to last_move + modifier for calculating when a mob
+can next move</p>
+<p>Key procs</p>
+<ul>
+<li><a href="mob.html#proc/add_movespeed_modifier">add_movespeed_modifier</a></li>
+<li><a href="mob.html#proc/remove_movespeed_modifier">remove_movespeed_modifier</a></li>
+<li><a href="mob.html#proc/has_movespeed_modifier">has_movespeed_modifier</a></li>
+<li><a href="mob.html#proc/update_movespeed">update_movespeed</a></li>
+</ul></td></tr>
+        <tr><th>/proc/<a href="global.html#proc/movespeed_data_null_check">movespeed_data_null_check</a></th>
+                <td>Checks if a move speed modifier is valid and not missing any data</td></tr></table></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/bfeaf60f069b9d753b339afccdc0b16b13f5cff1">bfeaf60</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
