@@ -87,3 +87,96 @@
 2025-04-07:
   Atropos:
   - rscadd: You can now see people's ping with Who verb!
+2025-04-08:
+  TiviPlus:
+  - bugfix: Fixed shuttles offsetting mech
+  - bugfix: Fixed tank layering issues
+  - bugfix: minimap properly opens before you change zlevels again
+  - code_imp: optimized balloon alerts
+  - bugfix: Fixed admin announcement only allowing one character
+  - bugfix: Admin check hive status works again
+  - bugfix: Fixed tesla rifle not working
+  - admin: mentors can now see players' playtime
+  - bugfix: fixed misc tgui bugs
+  - bugfix: fixed chat scroll breaking sometimes
+  - bugfix: tank/apc fall down zlevels now
+  - bugfix: you can no longer fire the alternate mech gun while winding up a weapon
+  - balance: smg and rifle share cooldown and cannot be fired at the same time
+  - balance: mech shotgun and rocket pod share cooldown
+2025-04-09:
+  Abopos:
+  - qol: Spatial agents can now speak xeno common
+  TiviPlus:
+  - admin: winget in sdql works
+  - refactor: Overhauled how looking up and looking down function. they should now
+      not jitter, and trying to look up/down while already doing so will cancel the
+      previous look up/down in the opposite direction
+  - bugfix: Fixed tgui-say squad radio radio colors
+  - qol: You can now change the size of the command bar and info buttons bar (top
+      of the stat panel with changelogs)
+  - qol: added a preference to scale window sizes up or not (off by default as before
+      516)
+  - bugfix: improved non-standard monitor scaling on 516
+  - bugfix: Chat wont crash if we fail to play an admin sound
+2025-04-10:
+  Cerrik:
+  - bugfix: Attempt_restock() proc now values your feedback
+  Lewdcifer:
+  - balance: Xenos can no longer pull resin cocoons.
+  TiviPlus:
+  - balance: mech flamer has much less ammo in the mag and in reserve
+  breadhunt:
+  - rscdel: Removes second gen on Daedalus
+2025-04-11:
+  TiviPlus:
+  - refactor: movement will now execute canonically (ie the expected order, finishing
+      one before starting the next)
+2025-04-12:
+  Arar:
+  - bugfix: fixed welding inhand not showing
+  - code_imp: changed welding hat code to use balloon alerts when toggling
+  - refactor: refactored mentions of welding masks into welding helmets
+  Arturlang:
+  - balance: Weed pods are no longer deleted when resin walls are destroyed
+  - rscadd: Special resin walls are now free, but weaker in health in comparison to
+      normal walls, they've been moved into normal secrete resin
+  - rscadd: Adds the ability to replace resin walls with different variants
+  - rscadd: add codex entries for resin wall armor stats.
+  Cerrik:
+  - bugfix: Adjusted the base class of the SAA revolver speedloader
+  Isy232:
+  - rscdel: Command tablets no longer check access for viewing.
+  TiviPlus:
+  - balance: Caps cloak mech gun cooldown CD after uncloaking to 1 second, and treats
+      the fire cooldown as half of it's reality for this purpose
+  - qol: Stat panel is only scrollable if needed
+  - qol: If larva queue is more than 2 people it will show how long it is in the tgui
+      "are you sure" popup when you try to observe
+  Tiviplus, Kuro, Tyeagg, GregorMN, Lumipharon:
+  - rscadd: XvH Mechs have been permanently reenabled. One slot will be granted every
+      20 players, starting at 40 players.
+  - rscadd: Mechs have been reworked to be faster compared to humans, but less tanky
+      (sort of a diver/flanker role)
+  - balance: Mechs no longer have directional armor, and are more mobile (diagonal
+      movement, spinning to fire)
+  - rscadd: Mechs have been resprited and repaletted and will update their sprite
+      on boosting or being destroyed, and they will leave a wreck
+  - qol: Mechs also have many new visual effects
+  - rscadd: Mech weapons are now split into back and hand weapons, and they can switch
+      between them quickly
+  - rscadd: Mechs now have a limb mechanic. Aiming arms (weakest limb, breaks in only
+      a few slashes) will disable the weapon on that limb, aiming the head will disable
+      it's NV, aiming legs will increasingly slow it down with damage taken until  it's
+      movement speed is halved at 0 HP. Slashing torso or an already destroyed limb
+      damages the actual mechs HP
+  - balance: crusher charges will always aim legs, which they will oneshot if they
+      manage to hit them
+  - balance: All mech weapons and (new) modules have been rebalanced and remade from
+      scratch
+  - rscadd: Mech now has a dash it can activate by double tapping into a direction,
+      which consumes energy
+  - qol: The mech Builder UI has been revamped
+  - balance: Only one mech can be spawned per person at the mech builder. Spatial
+      agents (the admin debug job) are exempt
+  tyeagg:
+  - rscadd: pda with audio log support for mappers

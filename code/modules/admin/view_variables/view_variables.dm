@@ -90,6 +90,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(debug_variables, R_DEBUG, "View Variables", "View th
 			names += varname
 
 	sleep(1 TICKS)
+	var/ui_scale = prefs?.ui_scale
 
 	var/list/variable_html = list()
 	if(islist)
@@ -112,6 +113,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(debug_variables, R_DEBUG, "View Variables", "View th
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
 		<title>[title]</title>
 		<link rel="stylesheet" type="text/css" href="[SSassets.transport.get_asset_url("view_variables.css")]">
+		[!ui_scale && window_scaling ? "<style>body {zoom: [100 / window_scaling]%;}</style>" : ""]
 	</head>
 	<body onload='selectTextField()' onkeydown='return handle_keydown()' onkeyup='handle_keyup()'>
 		<script type="text/javascript">
@@ -280,7 +282,11 @@ datumrefresh=[refid];[HrefToken()]'>Refresh</a>
 	</body>
 </html>
 "}
-	src << browse(html, "window=variables[refid];size=475x650")
+	var/size_string = "size=475x650";
+	if(ui_scale && window_scaling)
+		size_string = "size=[475 * window_scaling]x[650 * window_scaling]"
+
+	src << browse(html, "window=variables[refid];[size_string]")
 
 /client/proc/vv_update_display(datum/thing, span, content)
 	src << output("[span]:[content]", "variables[REF(thing)].browser:replace_span")

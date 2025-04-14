@@ -6,6 +6,8 @@
 	var/faction = null
 	var/last_move = null
 	var/last_move_time = 0
+	/// A list containing arguments for Moved().
+	VAR_PRIVATE/tmp/list/active_movement
 	var/anchored = FALSE
 	///How much the atom tries to push things out its way
 	var/move_force = MOVE_FORCE_DEFAULT
@@ -371,9 +373,11 @@
  * most of the time you want forceMove()
  */
 /atom/movable/proc/abstract_move(atom/new_loc)
+	RESOLVE_ACTIVE_MOVEMENT // This should NEVER happen, but, just in case...
 	var/atom/old_loc = loc
+	var/direction = get_dir(old_loc, new_loc)
 	loc = new_loc
-	Moved(old_loc)
+	Moved(old_loc, direction, TRUE)
 
 /**
  * The move proc is responsible for (in order):
@@ -394,11 +398,15 @@
  * Warning : Doesn't support well multi-tile diagonal moves
  */
 /atom/movable/Move(atom/newloc, direction, glide_size_override)
-	var/atom/movable/pullee = pulling
-	if(!moving_from_pull)
-		check_pulling(z_allowed = TRUE)
 	if(!loc || !newloc || loc == newloc)
 		return FALSE
+
+	// A mid-movement... movement... occured, resolve that first.
+	RESOLVE_ACTIVE_MOVEMENT
+	var/atom/movable/pullee = pulling
+
+	if(!moving_from_pull)
+		check_pulling(z_allowed = TRUE)
 
 	if(!direction)
 		direction = get_dir(src, newloc)
@@ -447,6 +455,7 @@
 	if(glide_size_override)
 		set_glide_size(glide_size_override)
 
+	SET_ACTIVE_MOVEMENT(oldloc, direction, FALSE, null)
 	loc = newloc
 	oldloc.Exited(src, direction)
 
@@ -466,7 +475,7 @@
 	if(oldarea != newarea)
 		newarea.Entered(src, oldarea)
 
-	Moved(oldloc, direction)
+	RESOLVE_ACTIVE_MOVEMENT
 
 	if(pulling && pulling == pullee && pulling != moving_from_pull) //we were pulling a thing and didn't lose it during our move.
 		if(pulling.anchored)
@@ -627,10 +636,13 @@
 
 /atom/movable/proc/doMove(atom/destination)
 	. = FALSE
+	RESOLVE_ACTIVE_MOVEMENT
 	var/atom/oldloc = loc
 	var/list/old_locs
 	if(length(locs) > 1)
 		old_locs = locs
+
+	SET_ACTIVE_MOVEMENT(oldloc, NONE, TRUE, old_locs)
 	if(destination)
 		if(pulledby && !currently_z_moving)
 			pulledby.stop_pulling()
@@ -662,7 +674,7 @@
 			if(old_area)
 				old_area.Exited(src, NONE)
 
-	Moved(oldloc, NONE, TRUE, old_locs)
+	RESOLVE_ACTIVE_MOVEMENT
 
 /atom/movable/Exited(atom/movable/gone, direction)
 	. = ..()

@@ -1,0 +1,4 @@
+author: "breadhunt"
+delete-after: True
+changes:
+  - bugfix: "Bluespace gens can now be re-corrupted properly, if damaged but not exploded"
