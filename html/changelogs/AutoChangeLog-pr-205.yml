@@ -1,0 +1,7 @@
+author: "Nokia2Student"
+delete-after: True
+changes:
+  - rscadd: "New strain for Praetorian called Oppressor."
+  - rscadd: "Oppressor abilities: Abduct, Dislocate, Advance, Tail Lash, and Item Throw."
+  - imageadd: "Button icons for: Abduct, Advance, Tail Lash, and Item Throw,"
+  - refactor: "check_path proc"
