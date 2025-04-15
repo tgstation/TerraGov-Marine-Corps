@@ -1363,7 +1363,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	use_state_flags = ABILITY_USE_LYING
 	var/datum/buildingpattern/selected_pattern = new /datum/buildingpattern/square2x2
 	/// Holograms are used to show the pattern before placing it
-	var/list/holograms = list()
+	var/list/atom/holograms = list()
 	/// timerid before we cleanup the holograms
 	var/cleanup_timer
 	/// how far a hologram can visually move without being remade
@@ -1399,6 +1399,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 
 // don't slow down the other signals
 /datum/action/ability/activable/xeno/place_pattern/proc/show_hologram_call(mob/user, atom/target)
+	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(show_hologram), user, target)
 
 /datum/action/ability/activable/xeno/place_pattern/proc/show_hologram(mob/user, atom/target)
@@ -1412,14 +1413,13 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	var/create_new = should_replace_holograms(target_turfs)
 	if(create_new)
 		cleanup_holograms()
-	for(var/turf/target_turf in target_turfs)
+	for(var/turf/target_turf AS in target_turfs)
 		if(create_new)
 			create_hologram(target_turf)
-			check_turf_validity(target_turf, holograms[index])
 		else
 			move_hologram(target_turf, holograms[index])
-			check_turf_validity(target_turf, holograms[index])
 		index++
+		check_turf_validity(target_turf, holograms[index])
 	start_cleanup_timer()
 
 /datum/action/ability/activable/xeno/place_pattern/proc/check_turf_validity(turf/target_turf, obj/effect/hologram)
@@ -1480,11 +1480,11 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 /datum/action/ability/activable/xeno/place_pattern/use_ability(atom/A)
 	var/datum/action/ability/activable/xeno/secrete_resin/secrete_resin = locate() in xeno_owner.actions
 	if(!istype(secrete_resin))
-		to_chat(xeno_owner, span_warning("We need to be able to secrete resin to use [src]!"))
+		xeno_owner.balloon_alert(xeno_owner, "secrete resin ability missing!")
 		return FALSE
 	var/list/target_turfs = get_target_turfs(A)
 	if(!length(target_turfs))
-		to_chat(xeno_owner, span_warning("We can't build here!"))
+		xeno_owner.balloon_alert(xeno_owner, "no valid ground found")
 		return FALSE
 	// check if one is successful, if none, we output a visible error
 	var/success = FALSE
