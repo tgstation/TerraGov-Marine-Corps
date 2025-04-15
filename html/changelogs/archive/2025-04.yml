@@ -67,3 +67,6 @@
   - rscadd: Ported hypnotic goggles. Contact your local requisitions officer for further
       details.
   - rscadd: joint xeno-marine OOC (XMOOC)
+2025-04-15:
+  Nokia2Student:
+  - bugfix: Fix "Toggle Seethrough" toggle being lost when gaining primo
