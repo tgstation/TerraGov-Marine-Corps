@@ -1,4 +1,0 @@
-author: "Atropos"
-delete-after: True
-changes:
-  - bugfix: "Fixed Global narrate only allowing one character"
