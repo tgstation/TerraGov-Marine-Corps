@@ -410,6 +410,8 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/steam_rush = FALSE
 
 	// *** Conqueror vars *** //
+	/// If Endurance is currently active.
+	var/endurance_active = FALSE
 	/// The amount of remaining health that Endurance has.
 	var/endurance_health = 1
 	/// The maximum amount of health that Endurance can have.
