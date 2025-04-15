@@ -6,7 +6,7 @@
 #define GENERATOR_EXPLODING 5
 
 //The radius that psychic mist leaks out to if the generator explodes
-#define GENERATOR_MIST_RANGE 10
+#define GENERATOR_MIST_RANGE 14
 #define PSYCHIC_MIST_COLOR "#7f16c5"
 
 //Counter of how many TBGs there are active, for disks
@@ -267,7 +267,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	desc = "A marvel of modern engineering and a shining example of pioneering bluespace technology, able to power entire colonies with very little material consumption - perfectly suited for isolated areas on the outer rim.\nHighly volatile, but that shouldn't matter on some quiet backwater colony, right..?"
 	icon = 'icons/obj/machines/tbg.dmi'
 	power_generation_max = 10000000 //Powers an entire colony
-	time_to_break = 20 SECONDS
+	time_to_break = 15 SECONDS
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 	buildstate = GENERATOR_CORRUPTED_DAMAGE
 	//Stores whether we're in the turning off animation
@@ -302,8 +302,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 
 	//After generators get destroyed, psychic mist is emitted
 	for(var/turf/tile in filled_circle_turfs(src, GENERATOR_MIST_RANGE))
-		new /obj/effect/psychic_mist(tile)
-
+		new /obj/effect/psychic_mist(tile, prob(5))
 	return ..()
 
 /obj/machinery/power/geothermal/tbg/update_icon_state()
@@ -424,9 +423,11 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	var/area/generator_area = get_area(src)
 	var/obj/machinery/power/apc/current_apc = generator_area.get_apc()
 	current_apc.emp_act(2)
-
 	addtimer(CALLBACK(src, PROC_REF(trigger_alarms)), 3 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(finish_meltdown)), 56 SECONDS)
+
+	for(var/turf/closed/wall/resin/resin_wall in filled_circle_turfs(1, GENERATOR_MIST_RANGE))
+		turfs_to_regen += resin_wall
+
 
 	//Devastate range -- Heavy range -- Light range -- Fire range -- Time until explosion
 	var/list/list_of_explosions = list(
@@ -443,6 +444,8 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	for(var/explosion_data in list_of_explosions)
 		var/turf/epicenter = locate(loc.x + rand(-2,2), loc.y + rand(-2,2), loc.z)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(explosion), epicenter, explosion_data[1], explosion_data[2], explosion_data[3], explosion_data[4], explosion_data[4]), explosion_data[5])
+
+	addtimer(CALLBACK(src, PROC_REF(finish_meltdown)), 56.2 SECONDS)
 
 /// Triggers alarm visual effects and queues alarm warnings for ongoing TBG meltdown
 /obj/machinery/power/geothermal/tbg/proc/trigger_alarms()
@@ -473,8 +476,6 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 
 /// Finalises TBG meltdown and disables alarms before the big explosion
 /obj/machinery/power/geothermal/tbg/proc/finish_meltdown()
-	buildstate = GENERATOR_HEAVY_DAMAGE
-	update_icon()
 	alarm_soundloop.stop()
 	//Disable alarmlights
 	for(var/obj/machinery/floor_warn_light/toggleable/generator/light AS in GLOB.generator_alarm_lights)
@@ -567,22 +568,31 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	icon_state = "light_ash"
 	color = PSYCHIC_MIST_COLOR
 
-/obj/effect/psychic_mist/Initialize(mapload)
+/obj/effect/psychic_mist/Initialize(mapload, spawn_weed_node)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
+	if(spawn_weed_node)
+		new /obj/alien/weeds/node/rapid(get_turf(src))
+
 /// Psychic mist is difficult to breathe in, even with a mask on
 /obj/effect/psychic_mist/proc/on_cross(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
-	if(!iscarbon(crosser) || prob(85))
+	if(!iscarbon(crosser))
 		return
+
 	var/mob/living/carbon/target = crosser
+	var/bio_protection = max(1 - target.get_permeability_protection(), 0)
+	if(prob(90*bio_protection))
+		return
+
 	if(target.stat == DEAD || target.species?.species_flags & NO_BREATHE)
 		return
 	target.adjustStaminaLoss(10)
+	target.adjustToxLoss(rand(5, 10))
 	INVOKE_ASYNC(target, TYPE_PROC_REF(/mob, emote), "cough")
 
 #undef GENERATOR_NO_DAMAGE
