@@ -425,10 +425,6 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	current_apc.emp_act(2)
 	addtimer(CALLBACK(src, PROC_REF(trigger_alarms)), 3 SECONDS)
 
-	for(var/turf/closed/wall/resin/resin_wall in filled_circle_turfs(1, GENERATOR_MIST_RANGE))
-		turfs_to_regen += resin_wall
-
-
 	//Devastate range -- Heavy range -- Light range -- Fire range -- Time until explosion
 	var/list/list_of_explosions = list(
 		list(0, 5, 10, 2, 40 SECONDS),
