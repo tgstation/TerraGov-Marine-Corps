@@ -28,7 +28,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 	maximum_active_caste = 1
-	evolve_min_xenos = 13
+	evolve_min_xenos = 11
 	death_evolution_delay = 15 MINUTES
 
 	// *** Flags *** //
