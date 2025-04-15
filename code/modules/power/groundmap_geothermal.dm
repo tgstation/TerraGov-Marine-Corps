@@ -365,8 +365,6 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	if(buildstate == GENERATOR_CORRUPTED_DAMAGE)
 		var/obj/item/tool/weldingtool/WT = I
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-			user.visible_message(span_notice("[user] fumbles around figuring out the resin tendrils on [src]."),
-			span_notice("You fumble around trying to burn off the resin tendrils."))
 			user.balloon_alert(user, "You fumble around trying to burn off the resin tendrils.")
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
@@ -375,8 +373,6 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 		if(!WT.remove_fuel(1, user))
 			to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			return
-		user.visible_message(span_notice("[user] carefully starts burning [src]'s resin off."),
-		span_notice("You start carefully burning the resin off."))
 		user.balloon_alert(user, "You start carefully burning the resin off.")
 
 		if(!I.use_tool(src, user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20), 2, 25, null, BUSY_ICON_BUILD))
@@ -412,7 +408,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 		if(!do_after(xeno_attacker, 10 SECONDS, NONE, src, BUSY_ICON_HOSTILE))
 			return
 		buildstate = GENERATOR_CORRUPTED_DAMAGE
-		balloon_alert(xeno_attacker, "You fill the generator with resinous ooze!")
+		balloon_alert(xeno_attacker, "You gunk up the generator with resin!")
 		record_generator_sabotages(xeno_attacker)
 
 /// Updates the turbine animation after the winding down sound effect has finished
