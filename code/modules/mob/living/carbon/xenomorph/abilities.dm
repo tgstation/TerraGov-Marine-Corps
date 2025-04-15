@@ -1418,8 +1418,8 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 			create_hologram(target_turf)
 		else
 			move_hologram(target_turf, holograms[index])
-		index++
 		check_turf_validity(target_turf, holograms[index])
+		index++
 	start_cleanup_timer()
 
 /datum/action/ability/activable/xeno/place_pattern/proc/check_turf_validity(turf/target_turf, obj/effect/hologram)
