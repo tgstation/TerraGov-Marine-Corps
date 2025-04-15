@@ -6,7 +6,7 @@
 
 	var/datum/buildmode/bd
 
-/atom/movable/screen/buildmode/New(bld)
+/atom/movable/screen/buildmode/Initialize(mapload, bld)
 	. = ..()
 	bd = bld
 	RegisterSignal(bd, COMSIG_QDELETING, PROC_REF(clean_bd))
@@ -75,7 +75,7 @@
 	var/datum/buildmode_mode/modetype
 
 
-/atom/movable/screen/buildmode/modeswitch/New(bld, mt)
+/atom/movable/screen/buildmode/modeswitch/Initialize(mapload, bld, mt)
 	. = ..()
 	modetype = mt
 	icon_state = "buildmode_[initial(modetype.key)]"
@@ -92,7 +92,7 @@
 	icon_state = "build"
 
 
-/atom/movable/screen/buildmode/dirswitch/New(bld, dir)
+/atom/movable/screen/buildmode/dirswitch/Initialize(mapload, bld, dir)
 	. = ..()
 	src.dir = dir
 	name = dir2text(dir)

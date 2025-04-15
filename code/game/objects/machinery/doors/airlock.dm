@@ -57,7 +57,7 @@
 			return
 	return ..(user)
 
-/obj/machinery/door/airlock/Initialize()
+/obj/machinery/door/airlock/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 

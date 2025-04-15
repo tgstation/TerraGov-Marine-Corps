@@ -442,32 +442,32 @@
 	icon_state = "full_corners"
 
 //Directional walls each have 4 possible sprites and are
-//randomized on New().
+//randomized on Initialize().
 /turf/closed/ice_rock/northWall
 	icon_state = "north_wall"
 
-/turf/closed/ice_rock/northWall/New()
+/turf/closed/ice_rock/northWall/Initialize(mapload)
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/southWall
 	icon_state = "south_wall"
 
-/turf/closed/ice_rock/southWall/New()
+/turf/closed/ice_rock/southWall/Initialize(mapload)
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/westWall
 	icon_state = "west_wall"
 
-/turf/closed/ice_rock/westWall/New()
+/turf/closed/ice_rock/westWall/Initialize(mapload)
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST))
 
 /turf/closed/ice_rock/eastWall
 	icon_state = "east_wall"
 
-/turf/closed/ice_rock/eastWall/New()
+/turf/closed/ice_rock/eastWall/Initialize(mapload)
 	. = ..()
 	setDir(pick(NORTH,SOUTH,EAST,WEST))
 

@@ -59,7 +59,7 @@
 	name = "ice colony plating"
 
 
-/turf/open/floor/plating/icefloor/New()
+/turf/open/floor/plating/icefloor/Initialize(mapload)
 	. = ..()
 	name = "plating"
 
@@ -120,10 +120,11 @@
 /turf/open/floor/plating/plating_catwalk/prison
 	icon = 'icons/turf/prison.dmi'
 
-
-/turf/open/floor/plating/ironsand/New()
-	. = ..()
+/turf/open/floor/plating/ironsand
 	name = "Iron Sand"
+
+/turf/open/floor/plating/ironsand/Initialize(mapload)
+	. = ..()
 	icon_state = "ironsand[rand(1,15)]"
 
 /turf/open/floor/plating/warning

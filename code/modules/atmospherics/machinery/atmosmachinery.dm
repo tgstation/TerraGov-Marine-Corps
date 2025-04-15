@@ -47,7 +47,7 @@
 		if(HAS_TRAIT(L, TRAIT_CAN_VENTCRAWL))
 			. += span_notice("Alt-click to crawl through it.")
 
-/obj/machinery/atmospherics/New(loc, process = TRUE, setdir)
+/obj/machinery/atmospherics/Initialize(mapload, process = TRUE, setdir)
 	. = ..()
 	if(!isnull(setdir))
 		setDir(setdir)

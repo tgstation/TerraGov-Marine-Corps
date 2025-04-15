@@ -49,7 +49,8 @@
 		if(WEST)
 			pixel_x = -30
 
-/obj/structure/sign/poster/New(serial)
+/obj/structure/sign/poster/Initialize(mapload, serial)
+	. = ..()
 
 	serial_number = serial
 
