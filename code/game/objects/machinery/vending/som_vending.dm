@@ -160,6 +160,8 @@
 			/obj/item/ammo_magazine/rocket/som/thermobaric = 8,
 			/obj/item/ammo_magazine/rocket/som/rad = 6,
 			/obj/item/weapon/gun/flamer/som = 4,
+			/obj/item/weapon/gun/clf_heavyrifle = 3,
+			/obj/item/shotgunbox/clf_heavyrifle = -1,
 		),
 		"Heavy Weapons" = list(
 			/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
