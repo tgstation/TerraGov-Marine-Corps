@@ -22,7 +22,7 @@
 	target_trait = ZTRAIT_ACIDRAIN
 
 	barometer_predictable = TRUE
-
+	play_screen_indicator = TRUE
 	probability = 40
 	repeatable = FALSE
 
@@ -69,6 +69,8 @@
 
 	end_message = span_danger("The downpour gradually slows to a light shower.")
 	end_overlay = "rain_low"
+
+	play_screen_indicator = FALSE
 
 	probability = 60
 	repeatable = TRUE
