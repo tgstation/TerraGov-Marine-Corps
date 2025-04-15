@@ -19,6 +19,7 @@
 
 	probability = 40
 	repeatable = FALSE
+	use_glow = FALSE
 
 /datum/weather/ash_storm/sand/weather_act(mob/living/L)
 	if(L.stat == DEAD)
