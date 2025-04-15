@@ -316,6 +316,15 @@ export const GameSettings = (props) => {
                 rightLabel={'Disabled'}
               />
               <ToggleFieldPreference
+                label="Toggle bump attacking"
+                value="toggle_bump_attacking"
+                action="toggle_bump_attacking"
+                leftValue={1}
+                leftLabel={'Enabled'}
+                rightValue={0}
+                rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
                 label="Show self combat messages"
                 value="mute_self_combat_messages"
                 action="mute_self_combat_messages"
