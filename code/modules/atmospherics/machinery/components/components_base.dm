@@ -8,7 +8,7 @@
 
 	var/list/datum/pipeline/parents
 
-/obj/machinery/atmospherics/components/Initialize(mapload)
+/obj/machinery/atmospherics/components/New()
 	. = ..()
 	parents = new(device_type)
 

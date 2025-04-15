@@ -8,7 +8,7 @@
 
 	buckle_lying = -1
 
-/obj/machinery/atmospherics/pipe/Initialize(mapload)
+/obj/machinery/atmospherics/pipe/New()
 	. = ..()
 	add_atom_colour(pipe_color, FIXED_COLOR_PRIORITY)
 

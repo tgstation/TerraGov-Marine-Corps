@@ -16,7 +16,7 @@
 
 	var/mutable_appearance/center
 
-/obj/machinery/atmospherics/pipe/manifold4w/Initialize(mapload)
+/obj/machinery/atmospherics/pipe/manifold4w/New()
 	. = ..()
 	center = mutable_appearance(icon, "manifold4w_center")
 
