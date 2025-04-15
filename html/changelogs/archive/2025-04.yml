@@ -185,3 +185,19 @@
   - bugfix: Fixed Global narrate only allowing one character
   breadhunt:
   - bugfix: Bluespace gens can now be re-corrupted properly, if damaged but not exploded
+2025-04-15:
+  Atropos:
+  - rscadd: Small medical rig can now hold hyposprays (60u version)
+  Lewdcifer:
+  - balance: The Warrior's wall impact damage multiplier has been increased from x0.5
+      to x1.0 of the Warrior's melee damage.
+  - balance: The Warrior's punch damage multiplier has been increased from x1.0 to
+      x1.2.
+  Wisemonster:
+  - bugfix: Fixed mechs not spawning at the correct pop
+  - balance: Reduced behemoth's landslide mech damage to about 50
+  - balance: Reduced behemoth's enchanced landslide mech damage to about 70 damage
+  - balance: Reduced behemoth's seismic fracture  mech damage to about 70
+  - balance: Reduced behemoth's enhanced seismic fracture mech damage to about 90
+      per tile
+  - balance: Reduced behemoth's meteor mech damage to about 166  in total

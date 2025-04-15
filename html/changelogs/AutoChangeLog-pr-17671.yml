@@ -1,8 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - balance: "Reduced behemoth's landslide mech damage to about 50"
-  - balance: "Reduced behemoth's enchanced landslide mech damage to about 70 damage"
-  - balance: "Reduced behemoth's seismic fracture  mech damage to about 70"
-  - balance: "Reduced behemoth's enhanced seismic fracture mech damage to about 90 per tile"
-  - balance: "Reduced behemoth's meteor mech damage to about 166  in total"
