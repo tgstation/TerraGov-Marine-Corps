@@ -118,7 +118,7 @@ ADMIN_VERB(command_report, R_FUN, "Command Report", "Create a custom command rep
 	message_admins("[ADMIN_TPMONTY(user.mob)] has created a command report.")
 
 ADMIN_VERB(narrate_global, R_FUN, "Global Narrate", "Directly send text to everyone", ADMIN_CATEGORY_FUN)
-	var/msg = tgui_input_text(user, "Enter the text you wish to appear to everyone.", "Global Narrate", multiline = TRUE , encode = FALSE, max_length = INFINITY)
+	var/msg = tgui_input_text(user, "Enter the text you wish to appear to everyone.", "Global Narrate", multiline = TRUE , encode = FALSE)
 
 	if(!msg)
 		return

@@ -592,7 +592,7 @@
 	if(phasing)
 		balloon_alert(user, "not while [phasing]!")
 		return
-	if(HAS_TRAIT(src, TRAIT_INCAPACITATED))
+	if(user.incapacitated(TRUE))
 		return
 	if(construction_state)
 		balloon_alert(user, "end maintenance first!")
