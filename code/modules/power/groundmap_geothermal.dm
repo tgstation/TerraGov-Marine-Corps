@@ -264,7 +264,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 
 /obj/machinery/power/geothermal/tbg
 	name = "\improper Thermo-Bluespace Generator"
-	desc = "A marvel of modern engineering and a shining example of pioneering bluespace technology, able to power entire colonies with very little material consumption - perfectly suited for isolated areas on the outer rim.\nHighly volatile, but that shouldn't matter on some quiet backwater colony, right..?"
+	desc = "A marvel of modern engineering and a shining example of pioneering bluespace technology, able to power entire colonies with very little material consumption - perfectly suited for isolated areas on the outer rim.\nInteract to turn on/off. Triples disk speed while active. If destroyed by xenos while active, enters meltdown and creates a massive explosion, leaving toxic psychic mist in its wake."
 	icon = 'icons/obj/machines/tbg.dmi'
 	power_generation_max = 10000000 //Powers an entire colony
 	time_to_break = 15 SECONDS
