@@ -481,7 +481,6 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 /// TBG turbine attached to the TBG; purely visual
 /obj/machinery/power/tbg_turbine
 	name = "\improper Generator Turbine"
-	desc = "A generator turbine attached to the colony's thermo-bluespace generator."
 	icon = 'icons/obj/machines/tbg.dmi'
 	icon_state = "circ-on75-neutral"
 	anchored = TRUE
@@ -496,6 +495,10 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	if(src in connected?.connected_turbines)
 		connected.connected_turbines -= src
 	return ..()
+
+/obj/machinery/power/tbg_turbine/examine(mob/user)
+	. = ..()
+	. += connected.examine(user)
 
 /obj/machinery/power/tbg_turbine/update_icon_state()
 	if(!connected)
