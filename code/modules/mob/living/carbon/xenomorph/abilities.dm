@@ -1402,6 +1402,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(show_hologram), user, target)
 
+/// move or create a hologram on mousemove, and also start the cleanup timer and check turf validity
 /datum/action/ability/activable/xeno/place_pattern/proc/show_hologram(mob/user, atom/target)
 	SIGNAL_HANDLER
 	var/list/target_turfs = get_target_turfs(target)
@@ -1422,6 +1423,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 		index++
 	start_cleanup_timer()
 
+/// check if the turf is valid or not for the selected build type, and apply a matrix color if not
 /datum/action/ability/activable/xeno/place_pattern/proc/check_turf_validity(turf/target_turf, obj/effect/hologram)
 	var/datum/action/ability/activable/xeno/secrete_resin/secrete_resin = locate() in xeno_owner.actions
 	if(!secrete_resin)
@@ -1430,6 +1432,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	if(!secrete_resin.can_build_here(target_turf, TRUE))
 		hologram.add_filter("invalid_turf_filter", 1, color_matrix_filter(rgb(233, 23, 23)))
 
+/// decide if we should replace the holograms or not
 /datum/action/ability/activable/xeno/place_pattern/proc/should_replace_holograms(list/target_turfs)
 	if(length(holograms) != length(target_turfs))
 		return TRUE
@@ -1440,6 +1443,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	index++
 	return FALSE
 
+/// creates the hologram and quickly fades it in, step_size is increased to make movement smoother
 /datum/action/ability/activable/xeno/place_pattern/proc/create_hologram(turf/target_turf)
 	var/atom/selected = xeno_owner.selected_resin
 	var/obj/effect/build_hologram/hologram = new(target_turf, selected)
@@ -1494,6 +1498,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 		if(secrete_resin.qb_build_resin(target_turf, silent = !loud))
 			success = TRUE
 
+/// gets turfs based on the current active pattern with the pattern offsets around the target atom
 /datum/action/ability/activable/xeno/place_pattern/proc/get_target_turfs(atom/A)
 	var/turf/sourceturf = get_turf(A)
 	if(!sourceturf)
