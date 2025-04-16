@@ -559,22 +559,22 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-28))
 
 /obj/machinery/vending/nanoammo/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/storage/box/visual/magazine))
-		var/obj/item/storage/box/visual/magazine/ammoBox = I
-		for(var/mag in ammoBox.contents)
+		var/obj/item/storage/box/visual/magazine/ammo_box = I
+		for(var/mag in ammo_box.contents)
 			stock(mag, user, show_feedback = FALSE)
 		user?.balloon_alert(user, "\n\nYou dump the contents of the box into the NanoAmmo.");
 		return
 
 	else if(istype(I, /obj/item/shotgunbox))
-		var/obj/item/shotgunbox/bigShotgunBox = I
+		var/obj/item/shotgunbox/big_shotgun_box = I
 		for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)	// Loop through vendor records to find a match
-			var/obj/item/ammo_magazine/shotgunShellBox = checked_record.product_path
-			if(bigShotgunBox.ammo_type == shotgunShellBox.default_ammo)	// Found a match
-				while(bigShotgunBox.current_rounds >= shotgunShellBox.max_rounds)
-					if(!stock(shotgunShellBox, user, show_feedback = FALSE))
+			var/obj/item/ammo_magazine/shotgun_shell_box = checked_record.product_path
+			if(big_shotgun_box.ammo_type == shotgun_shell_box.default_ammo)	// Found a match
+				while(big_shotgun_box.current_rounds >= shotgun_shell_box.max_rounds)
+					if(!stock(shotgun_shell_box, user, show_feedback = FALSE))
 						break	// If the stocking process returns false (probably because of max capacity), break
-					bigShotgunBox.current_rounds -= shotgunShellBox.max_rounds
-				user?.balloon_alert(user, "The NanoAmmo neatly organizes the [bigShotgunBox.ammo_type.name]s.");
+					big_shotgun_box.current_rounds -= shotgun_shell_box.max_rounds
+				user?.balloon_alert(user, "The NanoAmmo neatly organizes the [big_shotgun_box.ammo_type.name]s.");
 				return
 
 	return ..()
