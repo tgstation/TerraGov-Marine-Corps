@@ -555,7 +555,7 @@
 	)
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
-MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-28))
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 
 /obj/machinery/vending/nanoammo/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/storage/box/visual/magazine))
