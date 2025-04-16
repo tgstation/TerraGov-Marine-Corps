@@ -158,7 +158,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	if(is_on)
 		balloon_alert(user, "Generator cannot be turned off!")
 		return FALSE
-	if(!tgui_alert(usr, "A message bleeps before you...\nWARNING: Generator cannot be turned off once it is turned on! Are you sure?", "Confirmation", list("Yes", "No")) == "Yes"))
+	if(!tgui_alert(usr, "WARNING: Generator cannot be turned off once it is turned on!\nStart generator?", "Confirmation", list("Yes", "No")) == "Yes")
 		return FALSE
 
 	turn_on()
