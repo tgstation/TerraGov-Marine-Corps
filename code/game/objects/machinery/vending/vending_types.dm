@@ -555,17 +555,7 @@
 	)
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
-/obj/machinery/vending/nanoammo/Initialize(mapload, ...)
-	. = ..()
-	switch(dir)
-		if(NORTH)
-			pixel_y = -14
-		if(SOUTH)
-			pixel_y = 26
-		if(EAST)
-			pixel_x = -19
-		if(WEST)
-			pixel_x = 21
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-28))
 
 /obj/machinery/vending/nanoammo/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/storage/box/visual/magazine))

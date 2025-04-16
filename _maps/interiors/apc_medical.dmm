@@ -64,7 +64,7 @@
 /turf/open/interior/apc/fifteen,
 /area/interior/apc)
 "E" = (
-/obj/machinery/vending/nanoammo,
+/obj/machinery/vending/nanoammo/directional/south,
 /turf/open/interior/apc/nine,
 /area/interior/apc)
 "F" = (

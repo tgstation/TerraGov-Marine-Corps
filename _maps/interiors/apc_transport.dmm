@@ -55,7 +55,7 @@
 /turf/open/interior/apc/twentynine,
 /area/interior/apc)
 "t" = (
-/obj/machinery/vending/nanoammo,
+/obj/machinery/vending/nanoammo/directional/south,
 /obj/structure/bed/chair/dropship/doublewide/left,
 /obj/structure/bed/chair/dropship/doublewide/right,
 /turf/open/interior/apc/nine,

@@ -47,7 +47,7 @@
 	},
 /area/shuttle/minidropship)
 "j" = (
-/obj/machinery/vending/nanoammo{
+/obj/machinery/vending/nanoammo/directional/south{
 	pixel_x = -5
 	},
 /obj/item/stack/barbed_wire/half_stack,
