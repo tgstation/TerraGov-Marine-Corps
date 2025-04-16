@@ -569,9 +569,9 @@
 
 /obj/machinery/vending/nanoammo/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/storage/box/visual/magazine))
-		var/obj/item/storage/box/visual/magazine/B = I
-		for(var/x = length(B.contents); x > 0; x--)
-			stock(B.contents[x], user, show_feedback = FALSE)
+		var/obj/item/storage/box/visual/magazine/ammoBox = I
+		for(var/mag in ammoBox.contents)
+			stock(mag, user, show_feedback = FALSE)
 		user?.balloon_alert(user, "\n\nYou dump the contents of the box into the NanoAmmo.");
 		return
 
