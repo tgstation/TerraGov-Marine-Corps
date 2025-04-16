@@ -155,10 +155,12 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	else if (buildstate == GENERATOR_LIGHT_DAMAGE)
 		to_chat(usr, "<span class='info'>Use a wrench to repair it.")
 		return FALSE
-
 	if(is_on)
-		turn_off()
-		return TRUE
+		balloon_alert(user, "Generator cannot be turned off!")
+		return FALSE
+	if(!tgui_alert(usr, "A message bleeps before you...\nWARNING: Generator cannot be turned off once it is turned on! Are you sure?", "Confirmation", list("Yes", "No")) == "Yes"))
+		return FALSE
+
 	turn_on()
 	return TRUE
 
