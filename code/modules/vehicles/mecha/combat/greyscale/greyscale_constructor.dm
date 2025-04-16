@@ -176,7 +176,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	var/slowdown = 0
 	for(var/key in limbs)
 		var/datum/mech_limb/limb = limbs[key]
-		health += limb.health_mod
+		if(istype(limb, /datum/mech_limb/torso))
+			var/datum/mech_limb/torso/torso_limb = limb
+			health = torso_limb.health_set
 		slowdown += limb.slowdown_mod
 	current_stats["health"] = health
 	current_stats["slowdown"] = slowdown
@@ -498,8 +500,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		if(MECH_GREY_R_ARM)
 			var/datum/mech_limb/arm/arm_limb = new_limb
 			current_stats["right_scatter"] = arm_limb.scatter_mod
-
-	current_stats["health"] = current_stats["health"] - old_limb.health_mod + new_limb.health_mod
+	if(istype(new_limb, /datum/mech_limb/torso))
+		var/datum/mech_limb/torso/torso_limb = new_limb
+		current_stats["health"] = torso_limb.health_set
 	current_stats["slowdown"] = current_stats["slowdown"] - old_limb.slowdown_mod + new_limb.slowdown_mod
 	for(var/armor_type in old_limb.soft_armor_mod)
 		current_stats["armor"][armor_type] -= old_limb.soft_armor_mod[armor_type]
