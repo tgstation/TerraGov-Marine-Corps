@@ -548,6 +548,14 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	if(connected)
 		connected.wrench_act(user, I)
 
+/obj/machinery/power/tbg_turbine/attack_hand(mob/living/user)
+	if(connected)
+		connected.attack_hand(user)
+
+/obj/machinery/power/tbg_turbine/attack_ai(mob/living/silicon/ai/user)
+	if(connected)
+		connected.attack_ai(user)
+
 /obj/machinery/power/tbg_turbine/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(connected)
 		connected.attack_alien(xeno_attacker, damage_amount,  damage_type, armor_type, effects, armor_penetration, isrightclick)
