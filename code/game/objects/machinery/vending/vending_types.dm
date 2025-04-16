@@ -469,7 +469,7 @@
 		),
 		"Seasonal" = list(
 			/obj/item/ammo_magazine/revolver/small = 0,
-			//obj/item/ammo_magazine/revolver/single_action/m44 = 0, Turns out the problem wasn't type pathing, it was just the name...
+			/obj/item/ammo_magazine/revolver/single_action/m44 = 0,
 			/obj/item/ammo_magazine/revolver/judge = 0,
 			/obj/item/ammo_magazine/revolver/judge/buckshot = 0,
 			/obj/item/ammo_magazine/revolver/upp = 0,
@@ -529,7 +529,7 @@
 		/obj/item/ammo_magazine/pistol/vp70 = 80,
 		/obj/item/ammo_magazine/pistol/plasma_pistol = 80,
 		/obj/item/ammo_magazine/revolver/small = 80,
-		//obj/item/ammo_magazine/revolver/single_action/m44 = 80,
+		/obj/item/ammo_magazine/revolver/single_action/m44 = 80,
 		/obj/item/ammo_magazine/revolver/judge = 80,
 		/obj/item/ammo_magazine/revolver/judge/buckshot = 80,
 		/obj/item/ammo_magazine/revolver/upp = 80,
@@ -576,15 +576,15 @@
 		return
 
 	else if(istype(I, /obj/item/shotgunbox))
-		var/obj/item/shotgunbox/B = I
+		var/obj/item/shotgunbox/bigShotgunBox = I
 		for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)	// Loop through vendor records to find a match
-			var/obj/item/ammo_magazine/M = checked_record.product_path
-			if(B.ammo_type == M.default_ammo)	// Found a match
-				while(B.current_rounds >= M.max_rounds)
-					if(!stock(M, user, show_feedback = FALSE))
+			var/obj/item/ammo_magazine/shotgunShellBox = checked_record.product_path
+			if(bigShotgunBox.ammo_type == shotgunShellBox.default_ammo)	// Found a match
+				while(bigShotgunBox.current_rounds >= shotgunShellBox.max_rounds)
+					if(!stock(shotgunShellBox, user, show_feedback = FALSE))
 						break	// If the stocking process returns false (probably because of max capacity), break
-					B.current_rounds -= M.max_rounds
-				user?.balloon_alert(user, "The NanoAmmo neatly organizes the [B.ammo_type.name]s.");
+					bigShotgunBox.current_rounds -= shotgunShellBox.max_rounds
+				user?.balloon_alert(user, "The NanoAmmo neatly organizes the [bigShotgunBox.ammo_type.name]s.");
 				return
 
 	return ..()
