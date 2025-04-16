@@ -144,16 +144,16 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	if(user.incapacitated())
 		return FALSE
 	if(!ishuman(user) && !issilicon(user))
-		to_chat(user, span_warning("You have no idea how to use that."))
+		balloon_alert(user, "You have no idea how to use that.")
 		return FALSE
 	if(buildstate == GENERATOR_HEAVY_DAMAGE)
-		to_chat(usr, "<span class='info'>Use a blowtorch, then wirecutters, then a wrench to repair it.")
+		balloon_alert(user, "Use a blowtorch, then wirecutters, then a wrench to repair it.")
 		return FALSE
 	else if (buildstate == GENERATOR_MEDIUM_DAMAGE)
-		to_chat(usr, "<span class='info'>Use a wirecutters, then wrench to repair it.")
+		balloon_alert(user, "Use a wirecutters, then wrench to repair it.")
 		return FALSE
 	else if (buildstate == GENERATOR_LIGHT_DAMAGE)
-		to_chat(usr, "<span class='info'>Use a wrench to repair it.")
+		balloon_alert(user, "Use a wrench to repair it.")
 		return FALSE
 	if(is_on)
 		balloon_alert(user, "Generator cannot be turned off!")
@@ -317,9 +317,11 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 		turbine.update_icon()
 
 /obj/machinery/power/geothermal/tbg/interact_hand(mob/living/user)
+	if(buildstate == GENERATOR_CORRUPTED_DAMAGE)
+		balloon_alert(user, "Use a welder to cut away the weeds.")
 	if(!COOLDOWN_FINISHED(src, toggle_power))
-		balloon_alert(user, "Busy")
-		return
+		balloon_alert(user, "Wait a second before trying to turn it back on!")
+		return FALSE
 	return ..()
 
 /obj/machinery/power/geothermal/tbg/turn_on()
