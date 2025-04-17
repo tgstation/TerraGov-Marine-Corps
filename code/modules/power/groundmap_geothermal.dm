@@ -286,7 +286,7 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 
 	COOLDOWN_DECLARE(toggle_power)
 
-/obj/machinery/power/geothermal/tbg/Initialize()
+/obj/machinery/power/geothermal/tbg/Initialize(mapload)
 	. = ..()
 	ambient_soundloop = new(list(src), is_on)
 	alarm_soundloop = new(list(src), buildstate == GENERATOR_EXPLODING)

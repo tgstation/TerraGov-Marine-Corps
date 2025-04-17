@@ -127,7 +127,7 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 	pixel_y = -120
 	pixel_z = -480
 
-/obj/effect/temp_visual/dropship_flyby/Initialize()
+/obj/effect/temp_visual/dropship_flyby/Initialize(mapload)
 	. = ..()
 	animate(src, pixel_z = 960, time = 3 SECONDS)
 
