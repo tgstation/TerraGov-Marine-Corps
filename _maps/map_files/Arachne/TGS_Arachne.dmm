@@ -9594,7 +9594,6 @@
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/hallways/hangar)
 "hST" = (
-/obj/machinery/door/airlock/mainship/generic/pilot/quarters,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
@@ -9609,6 +9608,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
 "hTi" = (
@@ -13236,7 +13236,7 @@
 /obj/machinery/door/firedoor{
 	dir = 1
 	},
-/obj/machinery/door/airlock/mainship/generic/pilot/quarters{
+/obj/machinery/door/airlock/mainship/generic/pilot/bunk{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -16881,14 +16881,14 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/port_hallway)
 "nJj" = (
-/obj/machinery/door/airlock/mainship/generic/pilot/quarters{
-	dir = 1
-	},
 /obj/machinery/door/firedoor{
 	dir = 1
 	},
 /obj/machinery/door/poddoor/shutters/mainship/open/hangar{
 	dir = 2
+	},
+/obj/machinery/door/airlock/mainship/generic/pilot/bunk{
+	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/pilotbunks)
@@ -26886,9 +26886,9 @@
 /turf/open/floor/wood,
 /area/mainship/medical/lounge)
 "vXt" = (
-/obj/machinery/door/airlock/mainship/generic/pilot/quarters,
 /obj/structure/cable,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
 "vXI" = (
