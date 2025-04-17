@@ -1,0 +1,4 @@
+author: "Lewdcifer"
+delete-after: True
+changes:
+  - code_imp: "Bump attacking is now a game preference, rather than an action."
