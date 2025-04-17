@@ -997,8 +997,8 @@
 	id = "sniped"
 	/// Used for the sniped effect
 	var/obj/vis_sniped/visual_sniped
-	/// Holder for the gun that applied this effect
-	var/obj/item/weapon/gun/shooter
+	/// Weakref to the gun that applied this effect
+	var/datum/weakref/shooter
 
 /obj/vis_sniped
 	name = "sniped"
@@ -1009,7 +1009,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
 
-/datum/status_effect/incapacitating/recently_sniped/on_creation(mob/living/new_owner, set_duration, _shooter)
+/datum/status_effect/incapacitating/recently_sniped/on_creation(mob/living/new_owner, set_duration, datum/weakref/_shooter)
 	. = ..()
 
 	if(!. || new_owner.stat != CONSCIOUS)
@@ -1020,8 +1020,6 @@
 
 	_shooter = shooter
 
-	RegisterSignal(shooter, COMSIG_QDELETING, PROC_REF(clear_shooter))
-
 	visual_sniped = new
 	visual_sniped.icon_state = "sniper_zoom"
 
@@ -1030,12 +1028,6 @@
 /datum/status_effect/incapacitating/recently_sniped/on_remove()
 	owner.vis_contents -= visual_sniped
 	QDEL_NULL(visual_sniped)
-	clear_shooter()
-
-/// Signal proc to make sure the shooting gun is nulled if it gets deleted
-/datum/status_effect/incapacitating/recently_sniped/proc/clear_shooter(datum/source)
-	SIGNAL_HANDLER
-	shooter = null
 
 // ***************************************
 // *********** Lifedrain

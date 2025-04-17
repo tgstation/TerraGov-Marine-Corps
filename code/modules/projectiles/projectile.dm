@@ -862,13 +862,13 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 			sniped.duration = max(world.time + shooter.fire_delay, sniped.duration)
 
-			if(sniped.shooter != shooter) //different gun shot us, apply the effect.
+			if(sniped.shooter != WEAKREF(shooter)) //different gun shot us, apply the effect.
 				proj.damage = proj.damage * 0.1
 
-			sniped.shooter = shooter
+			sniped.shooter = WEAKREF(shooter)
 			return ..()
 
-		apply_status_effect(STATUS_EFFECT_SNIPED, shooter.fire_delay, shooter)
+		apply_status_effect(STATUS_EFFECT_SNIPED, shooter.fire_delay, WEAKREF(shooter))
 	return ..()
 
 ///visual and audio feedback for hits
