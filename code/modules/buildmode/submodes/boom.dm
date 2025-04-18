@@ -15,7 +15,7 @@
 		BOOM_LIGHT = 0,
 		BOOM_WEAK = 0,
 		BOOM_FLASH = 0,
-		BOOM_FLAMES = 0
+		BOOM_FLAMES = 0,
 		BOOM_THROW = 0,
 		)
 
@@ -51,7 +51,7 @@
 #undef BOOM_DEVASTATION
 #undef BOOM_HEAVY
 #undef BOOM_LIGHT
+#undef BOOM_WEAK
 #undef BOOM_FLASH
 #undef BOOM_FLAMES
 #undef BOOM_THROW
-#undef BOOM_WEAK
