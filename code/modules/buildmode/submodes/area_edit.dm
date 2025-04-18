@@ -73,7 +73,7 @@
 	var/list/modifiers = params2list(params)
 
 	if(LAZYACCESS(modifiers, LEFT_CLICK))
-		var/choice = alert("Are you sure you want to fill area?", "Area Fill Confirmation", "Yes", "No")
+		var/choice = tgui_alert(usr, "Are you sure you want to fill area?", "Area Fill Confirmation", "Yes", "No")
 		if(choice != "Yes")
 			return
 		for(var/turf/T in block(get_turf(cornerA),get_turf(cornerB)))
