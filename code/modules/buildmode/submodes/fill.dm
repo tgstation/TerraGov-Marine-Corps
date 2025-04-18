@@ -4,9 +4,6 @@
 	key = "fill"
 
 	use_corner_selection = TRUE
-	var/objholder = null
-
-	use_corner_selection = TRUE
 	var/atom/objholder = null
 
 /datum/buildmode_mode/fill/show_help(client/builder)
