@@ -450,6 +450,15 @@
 	if(is_equipment_controller(user))
 		swivel_turret(null, direction)
 
+/obj/vehicle/sealed/armored/onZImpact(turf/impacted_turf, levels, impact_flags)
+	. = ..()
+	if(pass_flags & HOVERING)
+		return
+	var/obj/hitboxtouse = hitbox ? hitbox : src
+	for(var/turf/landingzone in hitboxtouse.locs)
+		for(var/mob/living/crushed in landingzone)
+			crushed.gib()
+
 /obj/vehicle/sealed/armored/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	for(var/mob/living/carbon/human/crew AS in occupants)
 		if(crew.wear_id?.iff_signal & proj.iff_signal)

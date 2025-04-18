@@ -609,10 +609,10 @@
 	new /obj/item/weapon/gun/revolver/single_action/m44(src)
 	new /obj/item/ammo_magazine/revolver/heavy(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
-	new /obj/item/ammo_magazine/revolver(src)
-	new /obj/item/ammo_magazine/revolver(src)
-	new /obj/item/ammo_magazine/revolver(src)
-	new /obj/item/ammo_magazine/revolver(src)
+	new /obj/item/ammo_magazine/revolver/single_action/m44(src)
+	new /obj/item/ammo_magazine/revolver/single_action/m44(src)
+	new /obj/item/ammo_magazine/revolver/single_action/m44(src)
+	new /obj/item/ammo_magazine/revolver/single_action/m44(src)
 
 /obj/item/storage/holster/belt/mateba
 	name = "\improper M276 pattern Mateba holster rig"

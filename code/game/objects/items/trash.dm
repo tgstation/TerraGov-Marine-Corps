@@ -336,7 +336,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 1
 
-/obj/item/trash/cuppa_joes/Initialize()
+/obj/item/trash/cuppa_joes/Initialize(mapload)
 	. = ..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)

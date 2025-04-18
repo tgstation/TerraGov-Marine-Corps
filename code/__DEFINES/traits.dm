@@ -272,6 +272,7 @@
 #define TRAIT_AREA_SENSITIVE "area-sensitive"
 #define TRAIT_HEARING_SENSITIVE "hearing_sensitive" //target is hearing sensitive. Every hearing sensitive atom has this trait
 
+#define TRAIT_HAS_INTERIOR "has_interior" // Used for atoms that have an interior datum
 /// Trait given to a mob that is currently thinking (giving off the "thinking" icon), used in an IC context
 #define TRAIT_THINKING_IN_CHARACTER "currently_thinking_IC"
 

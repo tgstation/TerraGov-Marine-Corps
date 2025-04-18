@@ -283,12 +283,10 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 	var/corrupted = XENO_HIVE_NORMAL
 	//Last hive to corrupt the generator
 	var/last_corrupted = XENO_HIVE_NORMAL
-	///whether we wil allow these to be corrupted
-	var/is_corruptible = FALSE
 
 	COOLDOWN_DECLARE(toggle_power)
 
-/obj/machinery/power/geothermal/tbg/Initialize()
+/obj/machinery/power/geothermal/tbg/Initialize(mapload)
 	. = ..()
 	ambient_soundloop = new(list(src), is_on)
 	alarm_soundloop = new(list(src), buildstate == GENERATOR_EXPLODING)
@@ -414,17 +412,15 @@ GLOBAL_LIST_EMPTY(gens_corruption_by_hive)
 	. = ..()
 	if(corrupted)
 		. += "It is covered in writhing tendrils [!isxeno(user) ? "that could be cut away with a welder" : ""]."
-	if(!isxeno(user) && !is_corruptible)
-		. += "It is reinforced, making us not able to corrupt it."
 
 /obj/machinery/power/geothermal/tbg/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(corrupted) //you have no reason to interact with it if its already corrupted
+	if(corrupted == xeno_attacker.hivenumber) //you have no reason to interact with it if its already corrupted
 		return
 	if(xeno_attacker.status_flags & INCORPOREAL || HAS_TRAIT_FROM(xeno_attacker, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))
 		return
 
 	. = ..()
-	if(xeno_attacker.do_actions && buildstate == GENERATOR_HEAVY_DAMAGE && CHECK_BITFIELD(xeno_attacker.xeno_caste.can_flags, CASTE_CAN_CORRUPT_GENERATOR)  && is_corruptible)
+	if(!xeno_attacker.do_actions && buildstate == GENERATOR_HEAVY_DAMAGE && CHECK_BITFIELD(xeno_attacker.xeno_caste.can_flags, CASTE_CAN_CORRUPT_GENERATOR))
 		balloon_alert(xeno_attacker, "You begin corrupting the generator...")
 		if(!do_after(xeno_attacker, 10 SECONDS, NONE, src, BUSY_ICON_HOSTILE))
 			return

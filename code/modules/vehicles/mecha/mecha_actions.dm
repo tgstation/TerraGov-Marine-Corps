@@ -321,4 +321,4 @@
 	REMOVE_TRAIT(chassis, TRAIT_SILENT_FOOTSTEPS, type)
 	playsound(chassis, 'sound/effects/pred_cloakoff.ogg', 60, TRUE)
 	for(var/obj/item/mecha_parts/mecha_equipment/weapon/gun in chassis.flat_equipment)
-		TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(gun.cooldown_key), gun.equip_cooldown)
+		TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(gun.cooldown_key), min(gun.equip_cooldown/2, 1 SECONDS))
