@@ -304,10 +304,6 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	QDEL_NULL(alarm_soundloop)
 	for(var/obj/machinery/power/tbg_turbine/turbine AS in connected_turbines)
 		QDEL_NULL(turbine)
-
-	//After generators get destroyed, psychic mist is emitted
-	for(var/turf/tile in filled_circle_turfs(src, GENERATOR_MIST_RANGE))
-		new /obj/effect/psychic_mist(tile, prob(5))
 	return ..()
 
 /obj/machinery/power/geothermal/tbg/update_icon_state()
@@ -483,6 +479,9 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	//Disable alarmlights
 	for(var/obj/machinery/floor_warn_light/toggleable/generator/light AS in GLOB.generator_alarm_lights)
 		light.disable()
+	//After generators get destroyed, psychic mist is emitted
+	for(var/turf/tile in filled_circle_turfs(src, GENERATOR_MIST_RANGE))
+		new /obj/effect/psychic_mist(tile, prob(5))
 	qdel(src) //Destroy generator after big explosion happens
 
 /// TBG turbine attached to the TBG; purely visual
