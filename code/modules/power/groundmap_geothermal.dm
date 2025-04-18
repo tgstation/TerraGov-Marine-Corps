@@ -573,7 +573,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 /// Psychic mist -- Spawns on generator if it explodes; provides point gen as the generator would have
 /obj/effect/psychic_mist
 	name = "psychic mist"
-	desc = "Condensed droplets of raw psychic energy swirl around you."
+	desc = "Condensed droplets of raw psychic energy swirl around you. Highly toxic to humans without proper gas protection."
 	resistance_flags = RESIST_ALL|PROJECTILE_IMMUNE|DROPSHIP_IMMUNE
 	icon = 'icons/effects/weather_effects.dmi'
 	icon_state = "light_ash"
@@ -594,12 +594,12 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	SIGNAL_HANDLER
 	if(!iscarbon(crosser))
 		return
-
 	var/mob/living/carbon/target = crosser
 	var/bio_protection = max(1 - target.get_permeability_protection(), 0)
-	if(prob(90*bio_protection))
+	if(bio_protection == 0)
 		return
-
+	if(prob(85))
+		return
 	if(target.stat == DEAD || target.species?.species_flags & NO_BREATHE)
 		return
 	target.adjustStaminaLoss(10)
