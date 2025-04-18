@@ -1,3 +1,6 @@
+#define AREASELECT_CORNERA "corner A"
+#define AREASELECT_CORNERB "corner B"
+
 /datum/buildmode_mode
 	var/key = "oops"
 
@@ -101,3 +104,6 @@
 
 
 /datum/buildmode_mode/proc/handle_selected_area(client/c, params)
+
+#undef AREASELECT_CORNERA
+#undef AREASELECT_CORNERB
