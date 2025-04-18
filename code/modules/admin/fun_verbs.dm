@@ -2,6 +2,7 @@ ADMIN_VERB(set_view_range, R_FUN, "Set View Range", "Sets custom view range for 
 
 	if(user.view_size.get_client_view_size() != user.view_size.default)
 		user.view_size.reset_to_default()
+		// Ensure this return is inside a valid function or procedure block
 		return
 
 	var/newview = input(user, "Select view range:", "Change View Range", 7) as null|num
@@ -223,108 +224,77 @@ ADMIN_VERB(sound_file, R_SOUND, "Play Imported Sound", "Play a sound imported fr
 	message_admins("[ADMIN_TPMONTY(user.mob)] played sound '[S]' for [heard_midi] player(s). [length(GLOB.clients) - heard_midi] player(s) [style == "Global" ? "have disabled admin midis" : "were out of view"].")
 
 ADMIN_VERB(sound_web, R_SOUND, "Play Internet Sound", "Play a sound using a link to a website.", ADMIN_CATEGORY_FUN)
+/proc/web_sound(mob/user, input, credit)
+	if(!check_rights(R_SOUND))
+		return
 	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
 	if(!ytdl)
-		to_chat(user, span_warning("Youtube-dl was not configured, action unavailable."))
+		to_chat(user, span_boldwarning("yt-dlp was not configured, action unavailable"), confidential = TRUE) //Check config.txt for the INVOKE_YOUTUBEDL value
 		return
-
-	var/web_sound_input = input("Enter content URL (supported sites only)", "Play Internet Sound via youtube-dl") as text|null
-	if(!istext(web_sound_input) || !length(web_sound_input))
-		return
-
-	web_sound_input = trim(web_sound_input)
-
-	if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
-		to_chat(user, span_warning("Non-http(s) URIs are not allowed."))
-		to_chat(user, span_warning("For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website."))
-		return
-
-	var/web_sound_url = ""
 	var/list/music_extra_data = list()
-	var/title
-	var/show = FALSE
-
-	var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_url_scrub(web_sound_input)]\"")
-	var/errorlevel = output[SHELLEO_ERRORLEVEL]
-	var/stdout = output[SHELLEO_STDOUT]
-	var/stderr = output[SHELLEO_STDERR]
-
-	if(errorlevel)
-		to_chat(user, span_warning("Youtube-dl URL retrieval FAILED: [stderr]"))
-		return
-
-	var/list/data = list()
-	try
-		data = json_decode(stdout)
-	catch(var/exception/e)
-		to_chat(user, span_warning("Youtube-dl JSON parsing FAILED: [e]: [stdout]"))
-		return
-
-	if(data["url"])
-		web_sound_url = data["url"]
-		title = data["title"]
+	var/duration = 0
+	var/web_sound_url = ""
+	if(istext(input))
+		var/shell_scrubbed_input = shell_url_scrub(input)
+		var/list/output = world.shelleo("[ytdl] --geo-bypass --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height <= 360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_scrubbed_input]\"")
+		var/errorlevel = output[SHELLEO_ERRORLEVEL]
+		var/stdout = output[SHELLEO_STDOUT]
+		var/stderr = output[SHELLEO_STDERR]
+		if(errorlevel)
+			to_chat(user, span_boldwarning("yt-dlp URL retrieval FAILED:"), confidential = TRUE)
+			to_chat(user, span_warning("[stderr]"), confidential = TRUE)
+			return
+		var/list/data
+		try
+			data = json_decode(stdout)
+		catch(var/exception/e)
+			to_chat(user, span_boldwarning("yt-dlp JSON parsing FAILED:"), confidential = TRUE)
+			to_chat(user, span_warning("[e]: [stdout]"), confidential = TRUE)
+			return
+		if (data["url"])
+			web_sound_url = data["url"]
+		var/title = "[data["title"]]"
+		var/webpage_url = title
+		if (data["webpage_url"])
+			webpage_url = "<a href=\"[data["webpage_url"]]\">[title]</a>"
 		music_extra_data["duration"] = DisplayTimeText(data["duration"] * 1 SECONDS)
 		music_extra_data["link"] = data["webpage_url"]
 		music_extra_data["artist"] = data["artist"]
 		music_extra_data["upload_date"] = data["upload_date"]
 		music_extra_data["album"] = data["album"]
-		switch(tgui_alert(user, "Show the title of and link to this song to the players?\n[title]", "Play Internet Sound", list("Yes", "No", "Cancel")))
+		duration = data["duration"] * 1 SECONDS
+		if (duration > 10 MINUTES)
+			if((tgui_alert(user, "This song is over 10 minutes long. Are you sure you want to play it?", "Length Warning!", list("No", "Yes", "Cancel")) != "Yes"))
+				return
+		var/res = tgui_alert(user, "Show the title of and link to this song to the players?\n[title]", "Show Info?", list("Yes", "No", "Cancel"))
+		switch(res)
 			if("Yes")
 				music_extra_data["title"] = data["title"]
-				show = TRUE
 			if("No")
 				music_extra_data["link"] = "Song Link Hidden"
 				music_extra_data["title"] = "Song Title Hidden"
 				music_extra_data["artist"] = "Song Artist Hidden"
 				music_extra_data["upload_date"] = "Song Upload Date Hidden"
 				music_extra_data["album"] = "Song Album Hidden"
-				show = FALSE
-			else
+			if("Cancel", null)
 				return
-
-	if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
-		to_chat(user, span_warning("BLOCKED: Content URL not using http(s) protocol"))
-		to_chat(user, span_warning("The media provider returned a content URL that isn't using the HTTP or HTTPS protocol"))
-		return
-
-	var/list/targets
-	var/style = tgui_input_list(user, "Do you want to play this globally or to the xenos/marines?", null, list("Globally", "Xenos", "Marines", "Locally"))
-	switch(style)
-		if("Globally")
-			targets = GLOB.mob_list
-		if("Xenos")
-			targets = GLOB.xeno_mob_list + GLOB.dead_mob_list
-		if("Marines")
-			targets = GLOB.human_mob_list + GLOB.dead_mob_list
-		if("Locally")
-			targets = viewers(user.view, user.mob)
-		else
-			return
-
-	var/to_show_text
-	var/anon = tgui_alert(user, "Display who played the song?", "Credit Yourself?", list("No", "Yes", "Cancel"))
-	switch(anon)
-		if("Yes")
-			if(show)
-				to_show_text = "[user.ckey] played: <a href='[data["webpage_url"]]'>[title]</a>"
-			else
-				to_show_text = "[user.ckey] played some music"
-		if("No")
-			if(show)
-				to_show_text = "An admin played: <a href='[data["webpage_url"]]'>[title]</a>"
-		else
-			return
-	for(var/i in targets)
-		var/mob/M = i
-		var/client/C = M?.client
-		if(!C?.prefs)
-			continue
-		if(C.prefs.toggles_sound & SOUND_MIDI)
-			C.tgui_panel?.play_music(web_sound_url, music_extra_data)
-			to_chat(C, span_boldannounce(to_show_text))
-
-	log_admin("[key_name(user)] played web sound: [web_sound_input] - [title] - [style]")
-	message_admins("[ADMIN_TPMONTY(user.mob)] played web sound: [web_sound_input] - [title] - [style]")
+		var/anon = tgui_alert(user, "Display who played the song?", "Credit Yourself?", list("Yes", "No", "Cancel"))
+		switch(anon)
+			if("Yes")
+				if(res == "Yes")
+					to_chat(world, span_boldannounce("[user.key] played: [webpage_url]"), confidential = TRUE)
+				else
+					to_chat(world, span_boldannounce("[user.key] played a sound"), confidential = TRUE)
+			if("No")
+				if(res == "Yes")
+					to_chat(world, span_boldannounce("An admin played: [webpage_url]"), confidential = TRUE)
+			if("Cancel", null)
+				return
+		if(credit)
+			to_chat(world, span_boldannounce(credit), confidential = TRUE)
+		SSblackbox.record_feedback("nested tally", "played_url", 1, list("[user.ckey]", "[input]"))
+		log_admin("[key_name(user)] played web sound: [input]")
+		message_admins("[key_name(user)] played web sound: [input]")
 
 ADMIN_VERB(sound_stop, R_SOUND, "Stop Regular Sounds", "Stop all sounds currently playing.", ADMIN_CATEGORY_FUN)
 	for(var/mob/M in GLOB.player_list)
