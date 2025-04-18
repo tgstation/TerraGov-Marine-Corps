@@ -9,6 +9,7 @@
 #define GENERATOR_MIST_RANGE 14
 #define PSYCHIC_MIST_COLOR "#7f16c5"
 
+GLOBAL_LIST_EMPTY_TYPED(all_bluespace_generators, /obj/machinery/power/geothermal/tbg)
 //Counter of how many TBGs there are active, for disks
 GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 
@@ -285,6 +286,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 
 /obj/machinery/power/geothermal/tbg/Initialize()
 	. = ..()
+	GLOB.all_bluespace_generators += src
 	ambient_soundloop = new(list(src), is_on)
 	alarm_soundloop = new(list(src), buildstate == GENERATOR_EXPLODING)
 	for(var/direction in GLOB.cardinals)
@@ -295,6 +297,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 		potential_turbine.connected = src
 
 /obj/machinery/power/geothermal/tbg/Destroy()
+	GLOB.all_bluespace_generators -= src
 	if(is_on)
 		GLOB.active_bluespace_generators--
 	QDEL_NULL(ambient_soundloop)

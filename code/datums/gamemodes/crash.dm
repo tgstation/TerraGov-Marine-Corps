@@ -119,6 +119,9 @@
 			var/mob/living/carbon/xenomorph/X = i
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
 
+	for(var/obj/machinery/power/geothermal/tbg/generator AS in GLOB.all_bluespace_generators)
+		qdel(generator)
+
 
 /datum/game_mode/infestation/crash/announce()
 	to_chat(world, span_round_header("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
