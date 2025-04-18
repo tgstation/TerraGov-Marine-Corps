@@ -222,7 +222,9 @@ ADMIN_VERB(sound_file, R_SOUND, "Play Imported Sound", "Play a sound imported fr
 	log_admin("[key_name(user)] played sound '[S]' for [heard_midi] player(s). [length(GLOB.clients) - heard_midi] player(s) [style == "Global" ? "have disabled admin midis" : "were out of view"].")
 	message_admins("[ADMIN_TPMONTY(user.mob)] played sound '[S]' for [heard_midi] player(s). [length(GLOB.clients) - heard_midi] player(s) [style == "Global" ? "have disabled admin midis" : "were out of view"].")
 
-ADMIN_VERB(sound_web, R_SOUND, "Play Internet Sound", "Play a sound using a link to a website.", ADMIN_CATEGORY_FUN)
+
+GLOBAL_VAR_INIT(web_sound_cooldown, 0)
+
 /proc/web_sound(mob/user, input, credit)
 	if(!check_rights(R_SOUND))
 		return
@@ -233,6 +235,7 @@ ADMIN_VERB(sound_web, R_SOUND, "Play Internet Sound", "Play a sound using a link
 	var/list/music_extra_data = list()
 	var/duration = 0
 	var/web_sound_url = ""
+	var/stop_web_sounds = FALSE
 	if(istext(input))
 		var/shell_scrubbed_input = shell_url_scrub(input)
 		var/list/output = world.shelleo("[ytdl] --geo-bypass --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height <= 360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_scrubbed_input]\"")
@@ -294,6 +297,55 @@ ADMIN_VERB(sound_web, R_SOUND, "Play Internet Sound", "Play a sound using a link
 		SSblackbox.record_feedback("nested tally", "played_url", 1, list("[user.ckey]", "[input]"))
 		log_admin("[key_name(user)] played web sound: [input]")
 		message_admins("[key_name(user)] played web sound: [input]")
+	else
+		//pressed ok with blank
+		log_admin("[key_name(user)] stopped web sounds.")
+
+		message_admins("[key_name(user)] stopped web sounds.")
+		web_sound_url = null
+		stop_web_sounds = TRUE
+	if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
+		tgui_alert(user, "The media provider returned a content URL that isn't using the HTTP or HTTPS protocol. This is a security risk and the sound will not be played.", "Security Risk", list("OK"))
+		to_chat(user, span_boldwarning("BLOCKED: Content URL not using HTTP(S) Protocol!"), confidential = TRUE)
+
+		return
+	if(web_sound_url || stop_web_sounds)
+		for(var/m in GLOB.player_list)
+			var/mob/M = m
+			var/client/C = M.client
+			if(C.prefs.toggles_sound & SOUND_MIDI)
+				// Stops playing lobby music and admin loaded music automatically.
+				SEND_SOUND(C, sound(null, channel = CHANNEL_LOBBYMUSIC))
+				SEND_SOUND(C, sound(null, channel = CHANNEL_ADMIN))
+				if(!stop_web_sounds)
+					C.tgui_panel?.play_music(web_sound_url, music_extra_data)
+				else
+					C.tgui_panel?.stop_music()
+
+	CLIENT_COOLDOWN_START(GLOB, web_sound_cooldown, duration)
+
+	BLACKBOX_LOG_ADMIN_VERB("Play Internet Sound")
+
+ADMIN_VERB_CUSTOM_EXIST_CHECK(play_web_sound)
+	return !!CONFIG_GET(string/invoke_youtubedl)
+
+ADMIN_VERB(play_web_sound, R_SOUND, "Play Internet Sound", "Play a given internet sound to all players.", ADMIN_CATEGORY_FUN)
+	if(!CLIENT_COOLDOWN_FINISHED(GLOB, web_sound_cooldown))
+		if(tgui_alert(user, "Someone else is already playing an Internet sound! It has [DisplayTimeText(CLIENT_COOLDOWN_TIMELEFT(GLOB, web_sound_cooldown), 1)] remaining. \
+		Would you like to override?", "Musicalis Interruptus", list("No","Yes")) != "Yes")
+			return
+
+	var/web_sound_input = tgui_input_text(user, "Enter content URL (supported sites only, leave blank to stop playing)", "Play Internet Sound", null)
+
+	if(length(web_sound_input))
+		web_sound_input = trim(web_sound_input)
+		if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
+			to_chat(user, span_boldwarning("Non-http(s) URIs are not allowed."), confidential = TRUE)
+			to_chat(user, span_warning("For youtube-dl shortcuts like ytsearch: please use the appropriate full URL from the website."), confidential = TRUE)
+			return
+		web_sound(user.mob, web_sound_input)
+	else
+		web_sound(user.mob, null)
 
 ADMIN_VERB(sound_stop, R_SOUND, "Stop Regular Sounds", "Stop all sounds currently playing.", ADMIN_CATEGORY_FUN)
 	for(var/mob/M in GLOB.player_list)
