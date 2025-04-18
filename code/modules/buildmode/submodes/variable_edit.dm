@@ -41,14 +41,12 @@
 
 
 /datum/buildmode_mode/varedit/handle_click(client/c, params, obj/object)
-	var/list/pa = params2list(params)
-	var/left_click = pa.Find("left")
-	var/right_click = pa.Find("right")
+	var/list/modifiers = params2list(params)
 
 	if(isnull(varholder))
 		to_chat(c, span_warning("Choose a variable to modify first."))
 		return
-	if(left_click)
+	if(LAZYACCESS(modifiers, LEFT_CLICK))
 		if(object.vars.Find(varholder))
 			if(object.vv_edit_var(varholder, valueholder) == FALSE)
 				to_chat(c, span_warning("Your edit was rejected by the object."))
@@ -56,7 +54,7 @@
 			log_admin("Build Mode: [key_name(c)] modified [object.name]'s [varholder] to [valueholder]")
 		else
 			to_chat(c, span_warning("[initial(object.name)] does not have a var called '[varholder]'"))
-	if(right_click)
+	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		if(object.vars.Find(varholder))
 			var/reset_value = initial(object.vars[varholder])
 			if(object.vv_edit_var(varholder, reset_value) == FALSE)
