@@ -74,7 +74,7 @@
 	name = "\improper UV-T Skink"
 	desc = "A Skink B-type drone, ready to be deployed."
 	icon_state = "tiny_uv_folded"
-	max_integrity = 50
+	max_integrity = 20
 	w_class = WEIGHT_CLASS_SMALL
 	deployable_item = /obj/vehicle/unmanned/deployable/tiny
 
