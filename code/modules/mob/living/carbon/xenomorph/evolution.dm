@@ -17,7 +17,8 @@
 	set category = "Alien"
 
 	var/time_since = world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY)
-	if(time_since < (15 MINUTES))
+	var/caste_swap_timer = 15 MINUTES - SSticker.mode.caste_swap_timer_reduction
+	if(time_since < (caste_swap_timer))
 		to_chat(src, span_warning("Your caste swap timer has [(5 MINUTES - time_since)/10] seconds remaining."))
 		return
 
