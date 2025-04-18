@@ -85,7 +85,7 @@
 	move_delay = 1.5
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	atom_flags = NONE
-	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 25, BIO = 100, FIRE = 25, ACID = 25)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	pass_flags = PASS_LOW_STRUCTURE|PASS_GRILLE|PASS_MOB
 	turret_pattern = NO_PATTERN
