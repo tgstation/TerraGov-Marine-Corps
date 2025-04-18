@@ -6,10 +6,10 @@
 
 	var/datum/buildmode/bd
 
-/atom/movable/screen/buildmode/Initialize(mapload, bld)
-	. = ..()
+/atom/movable/screen/buildmode/New(bld)
 	bd = bld
 	RegisterSignal(bd, COMSIG_QDELETING, PROC_REF(clean_bd))
+	return ..()
 
 ///Clean the bd var
 /atom/movable/screen/buildmode/proc/clean_bd()
@@ -33,8 +33,8 @@
 		bd.toggle_modeswitch()
 	else if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		bd.mode.change_settings(usr.client)
-		
-	update_icon()
+
+	update_appearance()
 	return TRUE
 
 
@@ -75,11 +75,11 @@
 	var/datum/buildmode_mode/modetype
 
 
-/atom/movable/screen/buildmode/modeswitch/Initialize(mapload, bld, mt)
-	. = ..()
+/atom/movable/screen/buildmode/modeswitch/New(bld, mt)
 	modetype = mt
 	icon_state = "buildmode_[initial(modetype.key)]"
 	name = initial(modetype.key)
+	return ..(bld)
 
 
 /atom/movable/screen/buildmode/modeswitch/Click()
@@ -92,10 +92,10 @@
 	icon_state = "build"
 
 
-/atom/movable/screen/buildmode/dirswitch/Initialize(mapload, bld, dir)
-	. = ..()
+/atom/movable/screen/buildmode/dirswitch/New(bld, dir)
 	src.dir = dir
 	name = dir2text(dir)
+	return ..(bld)
 
 
 /atom/movable/screen/buildmode/dirswitch/Click()

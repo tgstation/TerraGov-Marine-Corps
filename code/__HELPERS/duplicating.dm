@@ -1,48 +1,40 @@
 ///List of all vars that will not be copied over when using duplicate_object()
 GLOBAL_LIST_INIT(duplicate_forbidden_vars, list(
-	"actions",
-	"active_hud_list",
-	"active_timers",
 	"AIStatus",
+	"actions",
 	"appearance",
 	"area",
-	"atmos_adjacent_turfs",
-	"bodyparts",
 	"ckey",
-	"comp_lookup",
+	"client_mobs_in_contents",
+	"_listen_lookup",
 	"computer_id",
 	"contents",
 	"cooldowns",
-	"datum_components",
-	"external_organs",
-	"external_organs_slot",
+	"_datum_components",
 	"group",
-	"hand_bodyparts",
-	"held_items",
 	"hud_list",
 	"implants",
 	"important_recursive_contents",
-	"internal_organs",
-	"internal_organs_slot",
 	"key",
 	"lastKnownIP",
 	"loc",
 	"locs",
+	"limbs",
 	"managed_overlays",
 	"managed_vis_overlays",
 	"overlays",
 	"overlays_standing",
 	"parent",
 	"parent_type",
-	"power_supply",
-	"quirks",
 	"reagents",
-	"signal_procs",
-	"status_traits",
+	"_signal_procs",
 	"stat",
+	"status_effects",
+	"_status_traits",
 	"tag",
 	"tgui_shared_states",
 	"type",
+	"update_on_z",
 	"vars",
 	"verbs",
 	"x", "y", "z",
@@ -75,9 +67,12 @@ GLOBAL_PROTECT(duplicate_forbidden_vars)
 
 	if(isliving(made_copy))
 		if(iscarbon(made_copy))
-			var/mob/living/carbon/original_carbon = original
-			var/mob/living/carbon/copied_carbon = made_copy
-			copied_carbon.update_appearance()
+			var/mob/living/carbon/made_carbon = made_copy
+			made_carbon.regenerate_icons()
+			if(ishuman(made_copy))
+				var/mob/living/carbon/human/made_human = made_copy
+				made_human.update_hair()
+				made_human.update_body()
 
 		var/mob/living/original_living = original
 		//transfer implants, we do this so the original's implants being removed won't destroy ours.
