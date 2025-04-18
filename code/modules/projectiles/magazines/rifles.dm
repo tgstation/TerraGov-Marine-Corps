@@ -395,7 +395,7 @@
 	desc = "A magazine filled with powerful plasma rounds. The ammo inside doesn't look like anything you've seen before."
 	caliber = CALIBER_ALIEN
 	icon_state = "alien_rifle"
-	icon_state_mini = "mag_rifle_purple"
+	icon_state_mini = "mag_rifle_alien"
 	default_ammo = /datum/ammo/energy/sectoid_plasma
 	max_rounds = 20
 
@@ -732,6 +732,7 @@
 	name = "box of 10x26mm"
 	desc = "A box containing 500 rounds of 10x26mm caseless."
 	icon_state = "minimi"
+	icon_state_mini = "ammo_packet"
 	icon = 'icons/obj/items/ammo/packet.dmi'
 	current_rounds = 500
 	max_rounds = 500

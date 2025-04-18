@@ -2,7 +2,7 @@
 	name = "\improper M40 adhesive charge grenade"
 	desc = "Designed for use against various fast moving drones, this grenade will adhere to its target before detonating. It's fuse is set to 5 seconds."
 	icon_state = "grenade_sticky"
-	icon_state = "grenade_round_orange"
+	icon_state_mini = "grenade_round_orange"
 	worn_icon_state = "grenade_sticky"
 	det_time = 5 SECONDS
 	light_impact_range = 2
