@@ -2,7 +2,6 @@ ADMIN_VERB(set_view_range, R_FUN, "Set View Range", "Sets custom view range for 
 
 	if(user.view_size.get_client_view_size() != user.view_size.default)
 		user.view_size.reset_to_default()
-		// Ensure this return is inside a valid function or procedure block
 		return
 
 	var/newview = input(user, "Select view range:", "Change View Range", 7) as null|num
