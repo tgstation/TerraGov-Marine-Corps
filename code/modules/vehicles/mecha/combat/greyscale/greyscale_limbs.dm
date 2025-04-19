@@ -333,25 +333,25 @@
 	detached.stored_repairpacks = 0
 
 /datum/mech_limb/torso/recon
-	health_set = 400
+	health_set = 500
 	repairpacks = 3
 	weight = 50
 	greyscale_type = /datum/greyscale_config/mech_recon/torso
 
 /datum/mech_limb/torso/assault
-	health_set = 450
+	health_set = 700
 	repairpacks = 2
 	weight = 80
 	greyscale_type = /datum/greyscale_config/mech_assault/torso
 
 /datum/mech_limb/torso/vanguard
-	health_set = 500
+	health_set = 1000
 	weight = 100
 	repairpacks = 1
 	greyscale_type = /datum/greyscale_config/mech_vanguard/torso
 /*
 /datum/mech_limb/torso/light
-	health_set = 200
+	health_set = 250
 	repairpacks = 3
 	weight = 50
 	has_damage_overlays = TRUE
@@ -360,7 +360,7 @@
 	greyscale_type = /datum/greyscale_config/mech_light/torso
 */
 /datum/mech_limb/torso/medium
-	health_set = 250
+	health_set = 300
 	repairpacks = 2
 	weight = 80
 	has_damage_overlays = TRUE
@@ -369,7 +369,7 @@
 	greyscale_type = /datum/greyscale_config/mech_medium/torso
 /*
 /datum/mech_limb/torso/heavy
-	health_set = 300
+	health_set = 350
 	weight = 100
 	repairpacks = 1
 	has_damage_overlays = TRUE
