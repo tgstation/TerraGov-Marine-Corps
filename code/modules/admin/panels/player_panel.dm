@@ -175,7 +175,7 @@ ADMIN_VERB(player_panel, R_ADMIN, "Player Panel", "View the player panel", ADMIN
 		<table width='650' align='center' cellspacing='0' cellpadding='5' id='maintable'>
 			<tr id='title_tr'>
 				<td align='center'>
-					Hover over a line to see more information.
+					Hover over a line to see more information - Kick <a href='byond://?_src_=holder;[HrefToken()];kick_all_from_lobby=1;afkonly=0'>everyone</a>/<a href='byond://?_src_=holder;[HrefToken()];kick_all_from_lobby=1;afkonly=1'>AFKers</a> in lobby
 					<p>
 				</td>
 			</tr>
