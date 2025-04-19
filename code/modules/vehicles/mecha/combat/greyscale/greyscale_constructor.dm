@@ -342,6 +342,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			if(initial(legs_type.max_weight) < get_current_weight())
 				tgui_alert(user, "Your mech is too heavy to deploy!")
 				return FALSE
+			if(!length(selected_equipment[MECHA_POWER]))
+				tgui_alert(user, "No power equipped")
+				return FALSE
 			addtimer(CALLBACK(src, PROC_REF(deploy_mech)), 1 SECONDS)
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, FALSE)
 			if(!isspatialagentjob(user.job))
