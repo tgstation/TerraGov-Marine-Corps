@@ -66,6 +66,7 @@
 	// The timer is needed for when the signal is sent
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
 	log_game("[reason] has enabled the nuke at [AREACOORD(src)]")
+	message_admins("[reason] has enabled the nuke at [ADMIN_VERBOSEJMP(src)]")
 
 ///Disables nuke timer
 /obj/machinery/nuclearbomb/proc/disable(reason)
