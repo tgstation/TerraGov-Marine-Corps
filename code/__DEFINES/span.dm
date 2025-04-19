@@ -59,6 +59,7 @@
 #define span_ooc(str) ("<span class='ooc'>" + str + "</span>")
 #define span_ordercic(str) ("<span class='ordercic'>" + str + "</span>")
 #define span_prefix(str) ("<span class='prefix'>" + str + "</span>")
+#define span_purple(str) ("<span class='purple'>" + str + "</span>")
 #define span_redtext(str) ("<span class='redtext'>" + str + "</span>")
 #define span_revennotice(str) ("<span class='revennotice'>" + str + "</span>")
 #define span_role_body(str) ("<span class='role_body'>" + str + "</span>")

@@ -1,37 +1,35 @@
 /datum/buildmode_mode/delete
 	key = "delete"
 
-/datum/buildmode_mode/delete/show_help(client/c)
-	to_chat(c, "<span class='notice'>***********************************************************\n\
-		Left Mouse Button on anything to delete it. If you break it, you buy it.\n\
-		Right Mouse Button on anything to delete everything of the type. Probably don\'t do this unless you know what you are doing.\n\
-		***********************************************************</span>")
+/datum/buildmode_mode/delete/show_help(client/user)
+	to_chat(user, span_purple(examine_block(
+		"[span_bold("Delete an object")] -> Left Mouse Button on obj/turf/mob\n\
+		[span_bold("Delete all objects of a type")] -> Right Mouse Button on obj/turf/mob"))
+	)
 
 /datum/buildmode_mode/delete/handle_click(client/c, params, object)
-	var/list/pa = params2list(params)
-	var/left_click = pa.Find("left")
-	var/right_click = pa.Find("right")
+	var/list/modifiers = params2list(params)
 
-	if(left_click)
+	if(LAZYACCESS(modifiers, LEFT_CLICK))
 		if(isturf(object))
 			var/turf/T = object
 			T.ScrapeAway()
 		else if(isatom(object))
 			qdel(object)
 
-	if(right_click)
+	if(LAZYACCESS(modifiers, RIGHT_CLICK))
 		if(check_rights(R_DEBUG|R_SERVER))	//Prevents buildmoded non-admins from breaking everything.
 			if(isturf(object))
 				return
 			var/atom/deleting = object
-			var/action_type = alert("Strict type ([deleting.type]) or type and all subtypes?",,"Strict type","Type and subtypes","Cancel")
+			var/action_type = tgui_alert(usr,"Strict type ([deleting.type]) or type and all subtypes?",,list("Strict type","Type and subtypes","Cancel"))
 			if(action_type == "Cancel" || !action_type)
 				return
 
-			if(alert("Are you really sure you want to delete all instances of type [deleting.type]?",,"Yes","No") != "Yes")
+			if(tgui_alert(usr,"Are you really sure you want to delete all instances of type [deleting.type]?",,list("Yes","No")) != "Yes")
 				return
 
-			if(alert("Second confirmation required. Delete?",,"Yes","No") != "Yes")
+			if(tgui_alert(usr,"Second confirmation required. Delete?",,list("Yes","No")) != "Yes")
 				return
 
 			var/O_type = deleting.type

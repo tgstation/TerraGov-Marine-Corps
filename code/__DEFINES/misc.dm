@@ -59,9 +59,6 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
 
-#define AREASELECT_CORNERA "corner A"
-#define AREASELECT_CORNERB "corner B"
-
 
 #define CHECKBOX_NONE 0
 #define CHECKBOX_GROUP 1
