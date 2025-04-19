@@ -1,3 +1,6 @@
+#define DISK_CYCLE_REWARD_MIN 100
+#define DISK_CYCLE_REWARD_MAX 300
+
 ///How much faster disk generators get while the colony power speed boost is active
 #define OVERCLOCK_MULTIPLIER 3
 
@@ -187,6 +190,16 @@
 		return
 
 	say("Program run has concluded! Standing by...")
+
+	// Requisitions points bonus per cycle.
+	var/disk_cycle_reward = DISK_CYCLE_REWARD_MIN + ((DISK_CYCLE_REWARD_MAX - DISK_CYCLE_REWARD_MIN) * (SSmonitor.maximum_connected_players_count / HIGH_PLAYER_POP))
+	disk_cycle_reward = ROUND_UP(clamp(disk_cycle_reward, DISK_CYCLE_REWARD_MIN, DISK_CYCLE_REWARD_MAX))
+
+	SSpoints.supply_points[FACTION_TERRAGOV] += disk_cycle_reward
+	SSpoints.dropship_points += disk_cycle_reward/10
+	GLOB.round_statistics.points_from_objectives += disk_cycle_reward
+
+	say("Program has execution has rewarded [disk_cycle_reward] requisitions points!")
 
 ///Change minimap icon if its on or off
 /obj/machinery/computer/nuke_disk_generator/proc/update_minimap_icon()
