@@ -1366,8 +1366,6 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	var/list/atom/holograms = list()
 	/// timerid before we cleanup the holograms
 	var/cleanup_timer
-	/// how far a hologram can visually move without being remade
-	var/move_range = 4
 	/// how long a hologram lasts without movement
 	var/cleanup_time = 4 SECONDS
 
@@ -1411,7 +1409,7 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 		cleanup_holograms()
 		return
 	var/index = 1
-	var/create_new = should_replace_holograms(target_turfs)
+	var/create_new = length(holograms) != length(target_turfs)
 	if(create_new)
 		cleanup_holograms()
 	for(var/turf/target_turf AS in target_turfs)
@@ -1432,24 +1430,13 @@ GLOBAL_LIST_INIT(pattern_images_list, list(
 	if(!secrete_resin.can_build_here(target_turf, TRUE))
 		hologram.add_filter("invalid_turf_filter", 1, color_matrix_filter(rgb(233, 23, 23)))
 
-/// decide if we should replace the holograms or not
-/datum/action/ability/activable/xeno/place_pattern/proc/should_replace_holograms(list/target_turfs)
-	if(length(holograms) != length(target_turfs))
-		return TRUE
-	var/index = 1
-	for(var/obj/hologram as anything in holograms)
-		if(get_dist(hologram, target_turfs[index]) > move_range)
-			return TRUE
-	index++
-	return FALSE
-
 /// creates the hologram and quickly fades it in, step_size is increased to make movement smoother
 /datum/action/ability/activable/xeno/place_pattern/proc/create_hologram(turf/target_turf)
 	var/atom/selected = xeno_owner.selected_resin
 	var/obj/effect/build_hologram/hologram = new(target_turf, selected)
 	hologram.alpha = 0
 	hologram.layer = selected.layer + 1
-	hologram.step_size = move_range * ICON_SIZE_ALL
+	hologram.step_size = 4 * ICON_SIZE_ALL
 	animate(hologram, 1 SECONDS, alpha = initial(hologram.alpha))
 	holograms += hologram
 
