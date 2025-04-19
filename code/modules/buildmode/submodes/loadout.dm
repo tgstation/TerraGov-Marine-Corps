@@ -6,8 +6,8 @@
 	loadout = null
 	return ..()
 
-/datum/buildmode_mode/loadout/show_help(client/c)
-	to_chat(builder, span_purple(examine_block(
+/datum/buildmode_mode/loadout/show_help(client/user)
+	to_chat(user, span_purple(examine_block(
 		"[span_bold("Select loadout to equip")] -> Right Mouse Button on buildmode button\n\
 		[span_bold("Equip the selected loadout")] -> Left Mouse Button on mob/living/carbon/human\n\
 		[span_bold("Copy their loadout")] -> Right Mouse Button on mob/living/carbon/human\n\

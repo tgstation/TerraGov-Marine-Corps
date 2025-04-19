@@ -1,8 +1,8 @@
 /datum/buildmode_mode/delete
 	key = "delete"
 
-/datum/buildmode_mode/delete/show_help(client/builder)
-	to_chat(builder, span_purple(examine_block(
+/datum/buildmode_mode/delete/show_help(client/user)
+	to_chat(user, span_purple(examine_block(
 		"[span_bold("Delete an object")] -> Left Mouse Button on obj/turf/mob\n\
 		[span_bold("Delete all objects of a type")] -> Right Mouse Button on obj/turf/mob"))
 	)

@@ -1,8 +1,8 @@
 /datum/buildmode_mode/basic
 	key = "basic"
 
-/datum/buildmode_mode/basic/show_help(client/builder)
-	to_chat(builder, span_purple(examine_block(
+/datum/buildmode_mode/basic/show_help(client/user)
+	to_chat(user, span_purple(examine_block(
 		"[span_bold("Construct / Upgrade")] -> Left Mouse Button\n\
 		[span_bold("Deconstruct / Delete / Downgrade")] -> Right Mouse Button\n\
 		[span_bold("R-Window")] -> Left Mouse Button + Ctrl\n\

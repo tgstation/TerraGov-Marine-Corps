@@ -6,8 +6,8 @@
 	use_corner_selection = TRUE
 	var/atom/objholder = null
 
-/datum/buildmode_mode/fill/show_help(client/builder)
-	to_chat(builder, span_purple(examine_block(
+/datum/buildmode_mode/fill/show_help(client/user)
+	to_chat(user, span_purple(examine_block(
 		"[span_bold("Select corner")] -> Left Mouse Button on turf/obj/mob\n\
 		[span_bold("Delete region")] -> Left Mouse Button + Alt on turf/obj/mob\n\
 		[span_bold("Select object type")] -> Right Mouse Button on buildmode button"))

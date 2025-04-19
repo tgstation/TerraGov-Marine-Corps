@@ -39,7 +39,7 @@
 	return "buildmode_[key]"
 
 
-/datum/buildmode_mode/proc/show_help(client/c)
+/datum/buildmode_mode/proc/show_help(client/user)
 	CRASH("No help defined, yell at a coder")
 
 

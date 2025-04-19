@@ -7,7 +7,7 @@
 	return ..()
 
 /datum/buildmode_mode/smite/show_help(client/user)
-	to_chat(builder, span_purple(examine_block(
+	to_chat(user, span_purple(examine_block(
 		"[span_bold("Select smite to use")] -> Right Mouse Button on buildmode button\n\
 		[span_bold("Smite the mob")] -> Left Mouse Button on mob/living"))
 	)
