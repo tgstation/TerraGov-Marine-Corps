@@ -226,7 +226,7 @@
 		/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/ar11/full = 1,
-		/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full = 1,
+		/obj/item/storage/box/visual/magazine/compact/lasrifle/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/sh15/flechette/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/sh15/slug/full = 1,
 		/obj/item/storage/box/visual/magazine/compact/standard_dmr/full = 1,

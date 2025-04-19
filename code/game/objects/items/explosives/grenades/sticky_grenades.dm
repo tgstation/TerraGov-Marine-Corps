@@ -2,6 +2,7 @@
 	name = "\improper M40 adhesive charge grenade"
 	desc = "Designed for use against various fast moving drones, this grenade will adhere to its target before detonating. It's fuse is set to 5 seconds."
 	icon_state = "grenade_sticky"
+	icon_state_mini = "grenade_round_orange"
 	worn_icon_state = "grenade_sticky"
 	det_time = 5 SECONDS
 	light_impact_range = 2
@@ -62,6 +63,7 @@
 	name = "\improper M45 Trailblazer grenade"
 	desc = "Capsule based grenade that sticks to sufficiently hard surfaces, causing a trail of air combustable gel to form. It is set to detonate in 5 seconds."
 	icon_state = "grenade_sticky_fire"
+	icon_state_mini = "grenade_stick_orange"
 	worn_icon_state = "grenade_sticky_fire"
 	det_time = 5 SECONDS
 	self_sticky = TRUE
@@ -94,6 +96,7 @@
 	name = "\improper M45 Cloaker grenade"
 	desc = "Capsule based grenade that sticks to sufficiently hard surfaces, causing a trail of air combustable gel to form. This one creates cloaking smoke! It is set to detonate in 5 seconds."
 	icon_state = "grenade_sticky_cloak"
+	icon_state_mini = "grenade_stick_green"
 	worn_icon_state = "grenade_sticky_cloak"
 	det_time = 5 SECONDS
 	light_impact_range = 1
