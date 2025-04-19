@@ -389,7 +389,7 @@
 /datum/ammo/xeno/acid/airburst_bomblet/smokescreen
 	max_range = 5
 	damage = 0
-	smoketype = /datum/effect_system/smoke_spread/xeno/acid/opaque
+	smoketype = /datum/effect_system/smoke_spread/xeno/acid
 	smoke_radius = 1
 	smoke_duration = 4
 
