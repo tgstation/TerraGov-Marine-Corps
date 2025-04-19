@@ -54,6 +54,10 @@
 	},
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
+"l" = (
+/obj/machinery/vending/nanoammo/directional/north,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
 "q" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
@@ -239,7 +243,7 @@ X
 F
 s
 q
-q
+l
 F
 F
 X

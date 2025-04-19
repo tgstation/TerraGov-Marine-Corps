@@ -86,6 +86,10 @@
 "B" = (
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
+"C" = (
+/obj/machinery/vending/nanoammo/directional/west,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
 "F" = (
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
@@ -200,7 +204,7 @@ q
 l
 q
 B
-B
+C
 X
 "}
 (6,1,1) = {"

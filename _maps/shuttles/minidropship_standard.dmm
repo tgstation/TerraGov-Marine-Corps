@@ -47,9 +47,8 @@
 	},
 /area/shuttle/minidropship)
 "j" = (
-/obj/machinery/door_control{
-	id = "minidropship_podlock";
-	name = "inner door-control"
+/obj/machinery/vending/nanoammo/directional/south{
+	pixel_x = -5
 	},
 /obj/item/stack/barbed_wire/half_stack,
 /obj/structure/closet/walllocker/hydrant/extinguisher{
@@ -78,6 +77,11 @@
 /area/shuttle/minidropship)
 "u" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/obj/machinery/door_control{
+	dir = 2;
+	id = "minidropship_podlock";
+	name = "inner door-control"
+	},
 /obj/machinery/camera/autoname/mainship/dropship_two,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
