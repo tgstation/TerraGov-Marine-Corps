@@ -815,7 +815,7 @@
 			/obj/item/mecha_ammo/vendable/heavycannon = -1,
 			/obj/item/mecha_ammo/vendable/minigun = -1,
 			/obj/item/mecha_ammo/vendable/sniper = -1,
-			/obj/item/mecha_ammo/vendable/grenade = -1,
+			/obj/item/mecha_ammo/vendable/grenade = 8,
 			/obj/item/mecha_ammo/vendable/flamer = -1,
 			/obj/item/mecha_ammo/vendable/rpg = -1,
 		)
@@ -1975,7 +1975,7 @@
 			/obj/item/mecha_ammo/vendable/pistol = -1,
 			/obj/item/mecha_ammo/vendable/rpg = -1,
 			/obj/item/mecha_ammo/vendable/minigun = -1,
-			/obj/item/mecha_ammo/vendable/grenade = -1,
+			/obj/item/mecha_ammo/vendable/grenade = 8,
 		),
 		"Equipment" = list(
 			/obj/item/mecha_parts/mecha_equipment/armor/booster = -1,
