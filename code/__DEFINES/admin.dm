@@ -8,6 +8,7 @@
 #define MUTE_DEADCHAT (1<<4)
 #define MUTE_LOOC (1<<5)
 #define MUTE_TTS (1<<6)
+#define MUTE_INTERNET_REQUEST (1<<7)
 #define MUTE_ALL (~0)
 
 //Some constants for DB_Ban
@@ -74,6 +75,7 @@
 #define ADMIN_VERBOSEJMP(src) "[src ? "[AREACOORD(src)] [ADMIN_JMP(src)]" : "nonexistent location"]"
 #define ADMIN_INDIVIDUALLOG(user) "(<a href='byond://?_src_=holder;[HrefToken(TRUE)];individuallog=[REF(user)]'>LOGS</a>)"
 #define ADMIN_TAG(datum) "(<A href='byond://?src=[REF(src)];[HrefToken(forceGlobal = TRUE)];tag_datum=[REF(datum)]'>TAG</a>)"
+#define ADMIN_PLAY_INTERNET(text, credit) "(<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];play_internet=[url_encode(text)];credit=[credit]'>PLAY</a>)"
 
 #define AHELP_ACTIVE 1
 #define AHELP_CLOSED 2
