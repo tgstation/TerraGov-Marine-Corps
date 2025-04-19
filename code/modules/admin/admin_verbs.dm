@@ -1200,7 +1200,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(show_traitor_panel, R_ADMIN, "Show Objective Panel",
 	target_mind.traitor_panel()
 
 ADMIN_VERB(set_xeno_stat_buffs, R_ADMIN, "Set Xeno Buffs", "Allows you to change stats for all xenos. It is a multiplicator buff, so input 100 to put everything back to normal", ADMIN_CATEGORY_MAIN)
-	var/multiplicator_buff_wanted = tgui_input_number(user, "Input the factor in percentage that will multiply xeno stat", "100 is normal stat, 200 is doubling health, regen and melee attack")
+	var/multiplicator_buff_wanted = tgui_input_number(user, "Input the factor in percentage that will multiply xeno stat", "100 is normal stat, 200 is doubling health, regen and melee attack", default = GLOB.xeno_stat_multiplicator_buff * 100)
 
 	if(!multiplicator_buff_wanted)
 		return
