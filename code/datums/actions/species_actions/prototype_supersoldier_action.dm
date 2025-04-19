@@ -308,21 +308,6 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	stim_flags = NONE
 	trait_type = TRAIT_STOPS_TANK_COLLISION
 
-/datum/stim/portal_toggle
-	name = "Portal Vulnerability"
-	desc = "Inverts your dimensional alignment through a mix of targetted isotopes, making you immune to portals if you weren't already, and makes you able to go through them if you were."
-	cast_say = "Inverting polarity..."
-	stim_uid = "portallchange"
-	stim_flags = NONE
-
-/datum/stim/portal_toggle/finish_cast(mob/living/owner)
-	owner.resistance_flags ^= PORTAL_IMMUNE
-	return ..()
-
-/datum/stim/portal_toggle/end_effects(mob/living/owner)
-	owner.resistance_flags ^= PORTAL_IMMUNE
-	return ..()
-
 /datum/stim/speed_increase
 	name = "Speed Increase"
 	desc = "Increases your speed of movement, making you walk and move passively faster."

@@ -31,7 +31,6 @@
 #define CRUSHER_IMMUNE (1<<5) //is immune to crusher's charge destruction
 #define PLASMACUTTER_IMMUNE (1<<6) //is immune to being cut by a plasmacutter
 #define PROJECTILE_IMMUNE (1<<7) //Cannot be hit by projectiles
-#define PORTAL_IMMUNE (1<<8) //Cannot be teleported by wraith's portals
 
 #define RESIST_ALL (UNACIDABLE|INDESTRUCTIBLE|PLASMACUTTER_IMMUNE)
 

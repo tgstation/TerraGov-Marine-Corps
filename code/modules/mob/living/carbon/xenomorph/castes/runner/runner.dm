@@ -2,7 +2,7 @@
 	caste_base_type = /datum/xeno_caste/runner
 	name = "Runner"
 	desc = "A small red alien that looks like it could run fairly quickly..."
-	icon = 'icons/Xeno/castes/runner.dmi' //They are now like, 2x1 or something
+	icon = 'icons/Xeno/castes/runner/runner.dmi'
 	icon_state = "Runner Walking"
 	bubble_icon = "alienleft"
 	health = 100
@@ -63,8 +63,15 @@
 /mob/living/carbon/xenomorph/runner/resisted_against(datum/source)
 	user_unbuckle_mob(source, source)
 
+
+// ***************************************
+// *********** Melter
+// ***************************************
 /mob/living/carbon/xenomorph/runner/melter
 	caste_base_type = /datum/xeno_caste/runner/melter
+	name = "Melter"
+	icon = 'icons/Xeno/castes/runner/melter.dmi'
+	icon_state = "Melter Walking"
 
 /mob/living/carbon/xenomorph/runner/melter/Initialize(mapload)
 	. = ..()
@@ -97,3 +104,14 @@
 		target.apply_status_effect(STATUS_EFFECT_MELTING_ACID, 2)
 		return
 	debuff.add_stacks(2)
+
+
+// ***************************************
+// *********** Wraith
+// ***************************************
+/mob/living/carbon/xenomorph/runner/wraith
+	caste_base_type = /datum/xeno_caste/runner/wraith
+	name = "Wraith"
+	desc = "A strange tendriled alien. The air around it warps and shimmers like a heat mirage."
+	icon = 'icons/Xeno/castes/runner/wraith.dmi'
+	icon_state = "Wraith Walking"

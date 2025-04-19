@@ -175,9 +175,6 @@
 	///Amount of leaders allowed
 	var/queen_leader_limit = 0
 
-	// *** Wraith Abilities *** //
-
-
 	// *** Hunter Abilities ***
 	///Damage breakpoint to knock out of stealth
 	var/stealth_break_threshold = 0

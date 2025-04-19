@@ -817,8 +817,6 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define SENTINEL_INTOXICATED_RESIST_REDUCTION 8 //Amount of stacks removed every time the Intoxicated debuff is Resisted against.
 #define SENTINEL_INTOXICATED_SANGUINAL_INCREASE 3 //Amount of debuff stacks applied for every tick of Sanguinal.
 
-//Wraith defines
-
 //Larva defines
 #define LARVA_VENT_CRAWL_TIME 1 SECONDS //Larva can crawl into vents fast
 

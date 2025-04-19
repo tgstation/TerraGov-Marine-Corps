@@ -141,7 +141,6 @@ GLOBAL_LIST_INIT(turfs_openspace, typecacheof(list(
 #define isxenodefiler(A) (istype(A, /mob/living/carbon/xenomorph/defiler))
 #define isxenobull(A) (istype(A, /mob/living/carbon/xenomorph/bull))
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
-#define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
 #define isxenowidow(A) (istype(A, /mob/living/carbon/xenomorph/widow))
 #define isxenowarlock(A) (istype(A, /mob/living/carbon/xenomorph/warlock))
 #define isxenoking(A) (istype(A, /mob/living/carbon/xenomorph/king))

@@ -10,7 +10,7 @@
 	max_integrity = 1500
 	layer = ABOVE_MOB_LAYER
 	density = TRUE
-	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE |PORTAL_IMMUNE
+	resistance_flags = UNACIDABLE|DROPSHIP_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY
 	allow_pass_flags = PASS_AIR|PASS_THROW
 	///What kind of spit it uses

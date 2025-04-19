@@ -463,7 +463,6 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_ADMIN, "Show Player Panel", mo
 		<a href='byond://?src=[ref];transform=spitter;mob=[REF(M)]'>Spitter</a> |
 		<a href='byond://?src=[ref];transform=hivelord;mob=[REF(M)]'>Hivelord</a> |
 		<a href='byond://?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a> |
-		<a href='byond://?src=[ref];transform=wraith;mob=[REF(M)]'>Wraith</a> |
 		<a href='byond://?src=[ref];transform=puppeteer;mob=[REF(M)]'>Puppeteer</a> |
 		<a href='byond://?src=[ref];transform=pyrogen;mob=[REF(M)]'>Pyrogen</a> |
 

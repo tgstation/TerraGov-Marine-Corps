@@ -80,11 +80,24 @@
 
 //-----RUNNER START-----//
 
+/mob/living/carbon/xenomorph/runner
+	upgrade = XENO_UPGRADE_NORMAL
+
 /mob/living/carbon/xenomorph/runner/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_ONE_THRESHOLD
 
+/mob/living/carbon/xenomorph/runner/melter
+	upgrade = XENO_UPGRADE_NORMAL
+
 /mob/living/carbon/xenomorph/runner/melter/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_ONE_THRESHOLD
+
+/mob/living/carbon/xenomorph/runner/wraith
+	upgrade = XENO_UPGRADE_NORMAL
+
+/mob/living/carbon/xenomorph/runner/wraith/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_ONE_THRESHOLD
 
@@ -392,17 +405,6 @@
 	upgrade_stored = TIER_THREE_THRESHOLD
 
 //----SHRIKE END----//
-//============//
-//----WRAITH START----//
-
-/mob/living/carbon/xenomorph/wraith
-	upgrade = XENO_UPGRADE_NORMAL
-
-/mob/living/carbon/xenomorph/wraith/primordial
-	upgrade = XENO_UPGRADE_PRIMO
-	upgrade_stored = TIER_TWO_THRESHOLD
-
-//----WRAITH END----//
 //============//
 //----WIDOW START----//
 
