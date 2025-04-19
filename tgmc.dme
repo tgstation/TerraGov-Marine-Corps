@@ -55,6 +55,7 @@
 #include "code\__DEFINES\cas.dm"
 #include "code\__DEFINES\chat.dm"
 #include "code\__DEFINES\chat_filter.dm"
+#include "code\__DEFINES\client.dm"
 #include "code\__DEFINES\colors.dm"
 #include "code\__DEFINES\combat.dm"
 #include "code\__DEFINES\configuration.dm"
