@@ -641,8 +641,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/specialist/vanguard
 	name = VANGUARD
 	unarmed = SKILL_UNARMED_MASTER
-	construction = SKILL_CONSTRUCTION_PLASTEEL
-	engineer = SKILL_ENGINEER_ENGI
+	construction = SKILL_MEDICAL_UNTRAINED
+	engineer = SKILL_ENGINEER_DEFAULT
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_DEFAULT
 	leadership = SKILL_LEAD_EXPERT
