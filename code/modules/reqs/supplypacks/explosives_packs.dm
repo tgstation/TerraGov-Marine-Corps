@@ -46,6 +46,11 @@ EXPLOSIVES
 	contains = list(/obj/item/storage/box/visual/grenade/incendiary)
 	cost = 350
 
+/datum/supply_packs/explosives/mecha_explosives_refill
+	name = "Mecha grenade rack"
+	notes = "Contains a mecha grenade rack which refills 20 grenades"
+	contains = list(/obj/item/mecha_ammo/vendable/grenade)
+	cost = 280
 
 /datum/supply_packs/explosives/explosives_cloaker
 	name = "M45 Cloaker grenade box crate"
