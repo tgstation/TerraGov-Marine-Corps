@@ -119,6 +119,7 @@
 
 /datum/action/ability/fail_activate()
 	update_button_icon()
+	return FALSE
 
 ///ability cost override allows for actions/abilities to override the normal ability costs
 /datum/action/ability/proc/succeed_activate(ability_cost_override)

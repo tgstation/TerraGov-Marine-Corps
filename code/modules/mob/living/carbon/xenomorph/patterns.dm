@@ -6,6 +6,10 @@
 	var/list/pattern
 	///A human readable name for the pattern, such as "2 by 2 square". Displayed as a overhead message when this pattern is selected
 	var/overheadmsg
+	/// offsets for placing the pattern
+	var/offset_x = 0
+	/// offsets for placing the pattern
+	var/offset_y = 0
 
 /datum/buildingpattern/square2x2
 	overheadmsg = "2 by 2 Square"
@@ -22,6 +26,8 @@
 		"XXX",
 		"OXO",
 	)
+	offset_x = 1
+	offset_y = -1
 
 /datum/buildingpattern/square3x3
 	overheadmsg = "3 by 3 Square"
@@ -30,6 +36,8 @@
 		"XXX",
 		"XXX",
 	)
+	offset_x = 1
+	offset_y = -1
 
 /datum/buildingpattern/hollow_cross3x3
 	overheadmsg = "3 by 3 Hollow Cross (+)"
@@ -38,3 +46,5 @@
 		"XOX",
 		"OXO",
 	)
+	offset_x = 1
+	offset_y = -1

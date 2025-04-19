@@ -207,6 +207,7 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 #define WEED_TAKES_TIME (1<<1)
 #define WEED_COSTS_QB_POINTS (1<<2)
 #define WEED_USES_PLASMA (1<<3)
+#define WEED_NOTIFY (1<<4) // secrete resin message on building
 
 #define PUPPET_WITHER_RANGE 15
 
