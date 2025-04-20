@@ -172,6 +172,11 @@
 	},
 /turf/open/floor/prison,
 /area/fiorina/station/medbay)
+"oW" = (
+/obj/effect/landmark/start/job/xenomorph,
+/obj/structure/cable,
+/turf/open/floor/prison/bright_clean,
+/area/fiorina/station/central_ring)
 "pb" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/ammo_magazine/rifle/m16,
@@ -229,10 +234,8 @@
 	},
 /area/fiorina/station/medbay)
 "sS" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
-	},
+/obj/effect/landmark/xeno_resin_door,
+/obj/structure/cable,
 /turf/open/floor/prison/bright_clean,
 /area/fiorina/station/central_ring)
 "tm" = (
@@ -254,6 +257,11 @@
 	},
 /turf/open/floor/prison,
 /area/fiorina/station/medbay)
+"vg" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/prison/bright_clean,
+/area/fiorina/station/central_ring)
 "vm" = (
 /obj/structure/closet/bodybag,
 /obj/effect/turf_decal/medical_decals/triage{
@@ -304,6 +312,10 @@
 	dir = 8
 	},
 /turf/open/floor/prison/bright_clean,
+/area/fiorina/station/central_ring)
+"xV" = (
+/obj/structure/cable,
+/turf/open/floor/prison/cleanmarked,
 /area/fiorina/station/central_ring)
 "yn" = (
 /obj/effect/decal/cleanable/blood/gibs,
@@ -543,10 +555,11 @@
 /turf/open/floor/prison/bright_clean,
 /area/fiorina/station/central_ring)
 "Oe" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber{
-	dir = 8
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 4
 	},
-/turf/open/floor/prison/bright_clean/two,
+/turf/open/floor/prison/bright_clean,
 /area/fiorina/station/central_ring)
 "Ot" = (
 /obj/effect/landmark/xeno_resin_door,
@@ -590,9 +603,7 @@
 	},
 /area/fiorina/station/research_cells)
 "Sn" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber{
-	dir = 4
-	},
+/obj/structure/cable,
 /turf/open/floor/prison/bright_clean/two,
 /area/fiorina/station/central_ring)
 "SL" = (
@@ -665,10 +676,7 @@
 /turf/open/floor/prison/darkpurple/full,
 /area/fiorina/station/research_cells)
 "XG" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
+/obj/structure/cable,
 /turf/open/floor/prison/bright_clean,
 /area/fiorina/station/central_ring)
 "YF" = (
@@ -818,7 +826,7 @@ CK
 uE
 AE
 UA
-XG
+yL
 Hk
 ws
 Ub
@@ -834,7 +842,7 @@ ws
 ws
 rC
 ws
-XG
+yL
 cM
 gp
 Qg
@@ -846,7 +854,7 @@ gQ
 AE
 WK
 Jd
-Sn
+ws
 yL
 yL
 Xa
@@ -855,14 +863,14 @@ lP
 yL
 TR
 yL
-yL
-yL
-yL
-BP
-yL
+Oe
+XG
+XG
+oW
+XG
 Sn
-ws
-lP
+Sn
+vg
 qW
 MC
 JE
@@ -889,7 +897,7 @@ rh
 rk
 yL
 ws
-yL
+XG
 yL
 MC
 JE
@@ -916,7 +924,7 @@ bs
 gX
 Xa
 ws
-BP
+oW
 hE
 Qg
 Qg
@@ -943,7 +951,7 @@ ws
 gX
 yL
 ws
-yL
+XG
 yL
 Qg
 ZX
@@ -970,7 +978,7 @@ ws
 NV
 yL
 fT
-ws
+Sn
 pJ
 Qg
 gp
@@ -997,7 +1005,7 @@ bs
 gX
 yL
 fT
-yL
+XG
 yL
 hJ
 Ot
@@ -1024,10 +1032,10 @@ HI
 gX
 yL
 zU
-yL
-lP
-EJ
-Ot
+XG
+vg
+xV
+sS
 "}
 (13,1,1) = {"
 Ot
@@ -1224,7 +1232,7 @@ dX
 kf
 Xa
 ws
-Oe
+ws
 kJ
 Xa
 HI
@@ -1238,7 +1246,7 @@ yL
 yL
 yL
 yL
-Oe
+ws
 ws
 yL
 zU
@@ -1250,7 +1258,7 @@ cD
 eB
 kf
 qW
-sS
+yL
 ws
 ws
 ws
@@ -1266,7 +1274,7 @@ ws
 rC
 ws
 ws
-sS
+yL
 zU
 zU
 Qg

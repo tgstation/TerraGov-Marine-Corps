@@ -14,6 +14,7 @@
 	icon_state = "oob"
 	ceiling = CEILING_DEEP_UNDERGROUND
 	minimap_color = null
+	always_unpowered = TRUE
 
 /area/fiorina/maintenance
 	name = "Fiorina - Maintenance"

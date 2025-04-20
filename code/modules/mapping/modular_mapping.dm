@@ -1475,13 +1475,13 @@
 /datum/map_template/modular/fiorina/ringone
 	name = "Core Ring"
 	mappath = "_maps/modularmaps/fiorina/ringvar1.dmm"
-	modular_id = "firesearch"
+	modular_id = "ficore"
 	template_width = 25
 	template_height = 25
 
 /datum/map_template/modular/fiorina/ringtwo
 	name = "Core Ring"
 	mappath = "_maps/modularmaps/fiorina/ringvar2.dmm"
-	modular_id = "firesearch"
+	modular_id = "ficore"
 	template_width = 25
 	template_height = 25
