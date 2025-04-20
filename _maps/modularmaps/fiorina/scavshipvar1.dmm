@@ -145,12 +145,10 @@
 /area/fiorina/tumor/ship)
 "lI" = (
 /obj/structure/largecrate/random{
-	layer = 3.1;
 	pixel_x = -6;
 	pixel_y = 12
 	},
 /obj/structure/largecrate/random{
-	layer = 3.1;
 	pixel_x = 5
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -158,7 +156,6 @@
 "mz" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/clothing/under/marine/veteran/mercenary{
-	layer = 2.9;
 	pixel_y = 6
 	},
 /obj/item/clothing/head/helmet/marine/veteran/mercenary{

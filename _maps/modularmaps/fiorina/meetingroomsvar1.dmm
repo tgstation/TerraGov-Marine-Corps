@@ -28,8 +28,7 @@
 "gB" = (
 /obj/structure/table/reinforced/prison,
 /obj/machinery/prop/computer/communications{
-	dir = 8;
-	layer = 4
+	dir = 8
 	},
 /obj/item/reagent_containers/food/drinks/cans/cola{
 	pixel_x = 9;
@@ -71,11 +70,11 @@
 "np" = (
 /obj/structure/table/reinforced/prison,
 /obj/machinery/prop/computer/communications{
-	dir = 8;
-	layer = 4
+	dir = 8
 	},
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb{
-	pixel_y = 10
+	pixel_y = 8;
+	pixel_x = 7
 	},
 /turf/open/floor/prison/darkpurple{
 	dir = 1
@@ -116,8 +115,7 @@
 	pixel_y = -8
 	},
 /obj/machinery/prop/computer/communications{
-	dir = 4;
-	layer = 4
+	dir = 4
 	},
 /turf/open/floor/prison/marked{
 	dir = 8
@@ -222,8 +220,7 @@
 "CV" = (
 /obj/structure/table/reinforced/prison,
 /obj/machinery/prop/computer/communications{
-	dir = 4;
-	layer = 4
+	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/prison/darkpurple/full,
@@ -303,8 +300,7 @@
 "MZ" = (
 /obj/structure/table/reinforced/prison,
 /obj/machinery/prop/computer/communications{
-	dir = 4;
-	layer = 2.99
+	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/prison/darkpurple{
@@ -326,8 +322,7 @@
 "Ot" = (
 /obj/structure/table/reinforced/prison,
 /obj/machinery/prop/computer/communications{
-	dir = 8;
-	layer = 4
+	dir = 8
 	},
 /turf/open/floor/prison/darkpurple/full,
 /area/fiorina/tumor/servers)
@@ -378,19 +373,6 @@
 	dir = 10
 	},
 /area/fiorina/tumor/servers)
-"SF" = (
-/obj/structure/table/reinforced/prison,
-/obj/machinery/prop/computer/communications{
-	dir = 4;
-	layer = 4
-	},
-/obj/effect/spawner/random/food_or_drink/drink_cans{
-	pixel_x = 8;
-	pixel_y = 16
-	},
-/obj/structure/cable,
-/turf/open/floor/prison/darkpurple/full,
-/area/fiorina/tumor/servers)
 "Tl" = (
 /obj/structure/computer3frame,
 /obj/structure/cable,
@@ -420,8 +402,7 @@
 	pixel_y = 17
 	},
 /obj/machinery/prop/computer/communications{
-	dir = 4;
-	layer = 4
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -432,8 +413,7 @@
 "Wu" = (
 /obj/structure/table/reinforced/prison,
 /obj/machinery/prop/computer/communications{
-	dir = 8;
-	layer = 4
+	dir = 8
 	},
 /turf/open/floor/prison/darkpurple{
 	dir = 6
@@ -532,7 +512,7 @@ aP
 wj
 VZ
 MZ
-SF
+CV
 CV
 sF
 Jv

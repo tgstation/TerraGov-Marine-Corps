@@ -1,8 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aG" = (
 /obj/structure/bed/chair{
-	dir = 4;
-	layer = 2.7
+	dir = 4
 	},
 /turf/open/floor/prison/whitegreen,
 /area/fiorina/station/medbay)
@@ -123,8 +122,7 @@
 	},
 /obj/structure/platform,
 /obj/structure/platform{
-	dir = 8;
-	layer = 2.5
+	dir = 8
 	},
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/fiorina/oob)
@@ -271,7 +269,6 @@
 /obj/structure/table/reinforced/prison,
 /obj/machinery/light/blue{
 	dir = 4;
-	layer = 3.1;
 	pixel_x = 10;
 	pixel_y = 6
 	},
@@ -396,17 +393,14 @@
 /area/fiorina/station/medbay)
 "Cr" = (
 /obj/structure/largecrate/random/barrel/yellow{
-	layer = 2.8;
 	pixel_x = 6;
 	pixel_y = -11
 	},
 /obj/structure/largecrate/random/barrel/yellow{
-	layer = 2.9;
 	pixel_x = -13;
 	pixel_y = -4
 	},
 /obj/structure/largecrate/random/barrel/yellow{
-	layer = 2.7;
 	pixel_x = 6;
 	pixel_y = 6
 	},
@@ -442,8 +436,7 @@
 /area/fiorina/station/medbay)
 "EB" = (
 /obj/structure/bed/chair{
-	dir = 4;
-	layer = 2.7
+	dir = 4
 	},
 /turf/open/floor/prison/sterilewhite{
 	dir = 10
@@ -523,15 +516,12 @@
 /area/fiorina/station/medbay)
 "IK" = (
 /obj/structure/largecrate/random/barrel{
-	layer = 2.9;
 	pixel_x = -8
 	},
 /obj/structure/largecrate/random/barrel{
-	layer = 2.9;
 	pixel_x = 13
 	},
 /obj/structure/largecrate/random/barrel{
-	layer = 2.9;
 	pixel_x = 3;
 	pixel_y = -8
 	},
@@ -544,8 +534,7 @@
 	dir = 8
 	},
 /obj/structure/platform_decoration{
-	dir = 4;
-	layer = 2.8
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/whitegreen{
@@ -626,8 +615,7 @@
 /area/fiorina/oob)
 "Ou" = (
 /obj/structure/bed/chair{
-	dir = 8;
-	layer = 2.7
+	dir = 8
 	},
 /obj/effect/decal/cleanable/mucus{
 	pixel_x = -16
@@ -710,7 +698,6 @@
 "Sz" = (
 /obj/structure/largecrate/random/barrel,
 /obj/structure/largecrate/random/barrel{
-	layer = 3.1;
 	pixel_x = 16;
 	pixel_y = -4
 	},
@@ -720,8 +707,7 @@
 /area/fiorina/station/medbay)
 "Tb" = (
 /obj/structure/bed/chair{
-	dir = 8;
-	layer = 2.7
+	dir = 8
 	},
 /turf/open/floor/prison/sterilewhite{
 	dir = 10

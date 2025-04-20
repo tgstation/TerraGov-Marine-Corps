@@ -107,7 +107,6 @@
 "s" = (
 /obj/structure/platform{
 	dir = 8;
-	layer = 2.5
 	},
 /obj/effect/forcefield,
 /turf/open/floor/iron/solarpanel,
@@ -294,7 +293,6 @@
 /obj/structure/platform,
 /obj/structure/platform{
 	dir = 8;
-	layer = 2.5
 	},
 /obj/effect/forcefield,
 /turf/open/floor/iron/solarpanel,

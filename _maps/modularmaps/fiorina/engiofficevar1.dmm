@@ -72,7 +72,6 @@
 	},
 /obj/item/cell/super,
 /obj/item/storage/pill_bottle/happy{
-	layer = 2.8;
 	pixel_y = -7
 	},
 /obj/effect/spawner/random/engineering/powercell,
@@ -240,10 +239,6 @@
 /turf/open/floor/prison/plate,
 /area/fiorina/tumor/civres)
 "W" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 2;
-	name = "Residential Apartment"
-	},
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2;
 	name = "Residential Apartment"

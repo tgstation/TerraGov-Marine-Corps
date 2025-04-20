@@ -47,7 +47,6 @@
 "w" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4;
-	layer = 3.25
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -118,7 +117,6 @@
 "M" = (
 /obj/item/attachable/bayonet{
 	anchored = 1;
-	layer = 3.6;
 	pixel_x = -9;
 	pixel_y = -7
 	},
@@ -134,7 +132,6 @@
 /area/fiorina/station/security/wardens)
 "P" = (
 /obj/structure/sign/prop1{
-	layer = 2.5;
 	name = "\improper USCM Emblem"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,

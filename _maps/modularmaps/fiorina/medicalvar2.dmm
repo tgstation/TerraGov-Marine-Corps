@@ -1,8 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aG" = (
 /obj/structure/bed/chair{
-	dir = 1;
-	layer = 2.7
+	dir = 1
 	},
 /turf/open/floor/prison/whitegreen,
 /area/fiorina/station/medbay)
@@ -129,8 +128,7 @@
 /area/fiorina/oob)
 "gC" = (
 /obj/structure/platform{
-	dir = 4;
-	layer = 2
+	dir = 4
 	},
 /turf/closed/wall/prison,
 /area/fiorina/station/medbay)
@@ -185,8 +183,7 @@
 /area/fiorina/station/medbay)
 "kY" = (
 /obj/structure/bed/chair{
-	dir = 1;
-	layer = 2.7
+	dir = 1
 	},
 /obj/machinery/light/blue,
 /turf/open/floor/prison/whitegreen,
@@ -514,9 +511,7 @@
 /area/fiorina/station/medbay)
 "GI" = (
 /obj/structure/stairs/seamless,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	layer = 2.0
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/station/medbay)
 "GL" = (
@@ -750,8 +745,7 @@
 "Ro" = (
 /obj/structure/platform,
 /obj/structure/platform{
-	dir = 4;
-	layer = 2
+	dir = 4
 	},
 /turf/closed/wall/prison,
 /area/fiorina/station/medbay)
@@ -791,8 +785,7 @@
 	dir = 1
 	},
 /obj/structure/platform{
-	dir = 8;
-	layer = 2.5
+	dir = 8
 	},
 /turf/closed/wall/prison,
 /area/fiorina/station/medbay)
