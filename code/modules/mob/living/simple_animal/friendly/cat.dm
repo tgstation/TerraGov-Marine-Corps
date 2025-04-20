@@ -88,6 +88,19 @@
 	maxHealth = 200
 
 
+/mob/living/simple_animal/cat/martina
+	name = "Martina"
+	desc = "Requisition's 2nd caracal. And this one's female? What the hell is going on? Who's paying for this?"
+	icon = 'icons/mob/pets.dmi'
+	icon_state = "martin"
+	icon_living = "martin"
+	icon_dead = "martin_dead"
+	gender = FEMALE
+	emote_see = list("shakes its head.", "shivers.", "points at the supply console.", "looks at the abyss that is the ASRS Elevator.", "counts the requisition points.", "looks at the supply drop.", "stares at the marines inside requisition", "wants to order some pizza")
+	health = 200
+	maxHealth = 200
+
+
 /mob/living/simple_animal/cat/Life(seconds_per_tick, times_fired)
 	if(!stat && !buckled && !client)
 		if(prob(1))
