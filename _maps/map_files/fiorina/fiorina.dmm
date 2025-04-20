@@ -21,7 +21,6 @@
 "aaX" = (
 /obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/menorah{
-	layer = 3.2;
 	pixel_x = 1;
 	pixel_y = 13
 	},
@@ -66,8 +65,7 @@
 /area/fiorina/station/disco)
 "abX" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	name = "launch bay door"
+	dir = 2
 	},
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/oob)
@@ -172,8 +170,7 @@
 /area/fiorina/tumor/civres)
 "afs" = (
 /obj/structure/platform{
-	dir = 8;
-	layer = 2.5
+	dir = 8
 	},
 /turf/closed/wall/prison,
 /area/fiorina/tumor/ice_lab)
@@ -188,7 +185,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 2;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_x = -16;
 	pixel_y = 12
@@ -228,8 +224,7 @@
 	dir = 10
 	},
 /obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /turf/open/floor/grass,
 /area/fiorina/station/park)
@@ -378,8 +373,7 @@
 /area/fiorina/maintenance)
 "alK" = (
 /obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/prison,
@@ -391,7 +385,6 @@
 "alQ" = (
 /obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/menorah{
-	layer = 3.2;
 	pixel_x = 1;
 	pixel_y = 13
 	},
@@ -433,9 +426,7 @@
 /area/fiorina/oob)
 "amM" = (
 /obj/structure/stairs/seamless,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	layer = 2.0
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/plate,
 /area/fiorina/tumor/ice_lab)
 "amO" = (
@@ -505,7 +496,6 @@
 /area/fiorina/tumor/aux_engi)
 "apY" = (
 /obj/structure/barricade/sandbags{
-	layer = 2.97;
 	pixel_y = -14
 	},
 /turf/open/floor/prison/yellow{
@@ -655,12 +645,10 @@
 	dir = 4
 	},
 /obj/structure/morgue{
-	dir = 8;
-	layer = 2.6
+	dir = 8
 	},
 /obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /turf/open/floor/squares,
 /area/fiorina/station/medbay)
@@ -668,8 +656,7 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/structure/platform,
 /obj/structure/platform{
-	dir = 8;
-	layer = 2.5
+	dir = 8
 	},
 /turf/closed/wall/prison,
 /area/fiorina/tumor/ice_lab)
@@ -971,9 +958,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
+/obj/structure/barricade/handrail/type_b,
 /turf/open/floor/wood,
 /area/fiorina/station/park)
 "aCS" = (
@@ -1107,9 +1092,7 @@
 /area/fiorina/station/lowsec)
 "aHT" = (
 /obj/structure/stairs/seamless,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	layer = 2.0
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/fiorina/station/security)
@@ -1228,17 +1211,14 @@
 	anchored = 1
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans{
-	layer = 4.1;
 	pixel_x = 4;
 	pixel_y = 18
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans{
-	layer = 4.1;
 	pixel_x = -4;
 	pixel_y = 18
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans{
-	layer = 4.2;
 	pixel_y = 36
 	},
 /turf/open/floor/wood,
@@ -1449,8 +1429,7 @@
 /area/fiorina/station/lowsec)
 "aRy" = (
 /obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/fiorina/station/medbay)
@@ -1638,8 +1617,7 @@
 "aUM" = (
 /obj/structure/platform,
 /obj/structure/platform{
-	dir = 4;
-	layer = 2
+	dir = 4
 	},
 /turf/open/floor/prison/marked{
 	dir = 10
@@ -1739,7 +1717,6 @@
 "aXo" = (
 /obj/structure/table/reinforced/prison,
 /obj/structure/flora/pottedplant{
-	layer = 3.1;
 	pixel_x = -2;
 	pixel_y = 10
 	},
@@ -1951,12 +1928,9 @@
 /turf/open/space,
 /area/space)
 "bda" = (
+/obj/structure/barricade/handrail/type_b,
 /obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
-/obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grass,
@@ -2119,9 +2093,7 @@
 /obj/structure/stairs/seamless{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	layer = 2.0
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison,
 /area/fiorina/station/flight_deck)
 "bho" = (
@@ -2145,13 +2117,6 @@
 	},
 /turf/open/floor/prison,
 /area/fiorina/station/flight_deck)
-"bic" = (
-/obj/structure/window/reinforced{
-	dir = 1;
-	layer = 3
-	},
-/turf/open/floor/prison,
-/area/fiorina/station/medbay)
 "bid" = (
 /turf/closed/shuttle/dropship2/rearcorner/alt{
 	dir = 1
@@ -2438,12 +2403,9 @@
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	dir = 9
 	},
+/obj/structure/barricade/handrail/type_b,
 /obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
-/obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /turf/open/floor/grass,
 /area/fiorina/station/civres_blue)
@@ -2606,8 +2568,7 @@
 /area/fiorina/tumor/servers)
 "byz" = (
 /obj/structure/platform{
-	dir = 8;
-	layer = 2.5
+	dir = 8
 	},
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -2672,8 +2633,7 @@
 	dir = 4
 	},
 /obj/structure/barricade/handrail/type_b{
-	dir = 8;
-	layer = 3.5
+	dir = 8
 	},
 /turf/open/floor/grass,
 /area/fiorina/station/park)
@@ -2807,12 +2767,9 @@
 /area/fiorina/station/flight_deck)
 "bEX" = (
 /obj/structure/flora/pottedplant,
+/obj/structure/barricade/handrail/type_b,
 /obj/structure/barricade/handrail/type_b{
-	layer = 3.4
-	},
-/obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /obj/structure/platform{
 	dir = 4
@@ -3007,12 +2964,10 @@
 /obj/structure/barricade/wooden{
 	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
 	dir = 1;
-	layer = 2.9;
 	pixel_y = 17
 	},
 /obj/structure/barricade/handrail/type_b{
-	dir = 8;
-	layer = 3.5
+	dir = 8
 	},
 /turf/open/floor/grass,
 /area/fiorina/station/park)
@@ -3544,8 +3499,7 @@
 /area/fiorina/station/flight_deck)
 "bZg" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	name = "launch bay door"
+	dir = 2
 	},
 /obj/structure/monorail{
 	name = "launch track"
@@ -3882,7 +3836,6 @@
 	pixel_y = 25
 	},
 /obj/structure/flora/pottedplant{
-	layer = 2.8;
 	pixel_x = 15;
 	pixel_y = 5
 	},
@@ -4307,9 +4260,7 @@
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	dir = 9
 	},
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
+/obj/structure/barricade/handrail/type_b,
 /turf/open/floor/grass,
 /area/fiorina/station/park)
 "cxs" = (
@@ -4347,8 +4298,7 @@
 "cyR" = (
 /obj/structure/platform_decoration,
 /obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /turf/open/floor/prison/plate,
 /area/fiorina/station/disco)
@@ -4408,9 +4358,7 @@
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	dir = 5
 	},
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
+/obj/structure/barricade/handrail/type_b,
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	dir = 5
 	},
@@ -4760,7 +4708,6 @@
 "cKl" = (
 /obj/structure/table/reinforced/prison,
 /obj/structure/flora/pottedplant{
-	layer = 3.1;
 	pixel_x = -2;
 	pixel_y = 10
 	},
@@ -4967,8 +4914,7 @@
 /area/fiorina/station/civres_blue)
 "cQF" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	name = "launch bay door"
+	dir = 2
 	},
 /obj/effect/forcefield,
 /turf/closed/wall/r_wall/prison_unmeltable,
@@ -5403,8 +5349,7 @@
 	dir = 6
 	},
 /obj/structure/barricade/handrail/type_b{
-	dir = 8;
-	layer = 3.5
+	dir = 8
 	},
 /turf/open/floor/grass,
 /area/fiorina/station/park)
@@ -5526,7 +5471,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 20
 	},
@@ -5850,9 +5794,7 @@
 /obj/structure/stairs/seamless{
 	dir = 8
 	},
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.4
-	},
+/obj/structure/barricade/handrail/type_b,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -5897,9 +5839,7 @@
 /obj/structure/stairs/seamless{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	layer = 2.0
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison,
 /area/fiorina/station/power_ring)
 "dpB" = (
@@ -6345,7 +6285,6 @@
 "dAf" = (
 /obj/structure/barricade/wooden{
 	dir = 1;
-	layer = 3.1;
 	pixel_y = 19
 	},
 /turf/open/floor/plating/kutjevo,
@@ -6516,12 +6455,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/plate,
 /area/fiorina/tumor/fiberbush)
-"dEo" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/closed/wall/prison,
-/area/fiorina/tumor/ice_lab)
 "dEp" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/darkbrown/full,
@@ -6567,9 +6500,7 @@
 /turf/open/floor/prison,
 /area/fiorina/station/disco)
 "dGa" = (
-/obj/machinery/prop/autolathe{
-	layer = 2.98
-	},
+/obj/machinery/prop/autolathe,
 /turf/open/floor/prison,
 /area/fiorina/lz/near_lzI)
 "dGk" = (
@@ -6610,17 +6541,14 @@
 	pixel_x = 8
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans{
-	layer = 4.1;
 	pixel_x = 4;
 	pixel_y = 18
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans{
-	layer = 4.1;
 	pixel_x = -4;
 	pixel_y = 18
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans{
-	layer = 4.2;
 	pixel_y = 36
 	},
 /turf/open/floor/wood,
@@ -6692,8 +6620,7 @@
 /area/fiorina/station/botany)
 "dIy" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	name = "launch bay door"
+	dir = 2
 	},
 /obj/structure/monorail{
 	name = "launch track"
@@ -6843,8 +6770,7 @@
 /area/fiorina/station/chapel)
 "dMX" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	name = "launch bay door"
+	dir = 2
 	},
 /obj/structure/monorail{
 	name = "launch track"
@@ -6992,9 +6918,7 @@
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	dir = 5
 	},
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
+/obj/structure/barricade/handrail/type_b,
 /turf/open/floor/grass,
 /area/fiorina/station/park)
 "dTc" = (
@@ -7029,9 +6953,7 @@
 /turf/closed/wall/r_wall/prison,
 /area/fiorina/station/security)
 "dTA" = (
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
+/obj/structure/barricade/handrail/type_b,
 /turf/open/floor/prison/blue{
 	dir = 1
 	},
@@ -7191,7 +7113,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 20
 	},
@@ -7384,8 +7305,7 @@
 	dir = 1
 	},
 /obj/structure/platform{
-	dir = 8;
-	layer = 2.5
+	dir = 8
 	},
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/fiorina/oob)
@@ -7448,7 +7368,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 2;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_x = -16;
 	pixel_y = 12
@@ -7805,9 +7724,7 @@
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	dir = 1
 	},
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
+/obj/structure/barricade/handrail/type_b,
 /turf/open/floor/grass,
 /area/fiorina/station/park)
 "emw" = (
@@ -7990,7 +7907,6 @@
 "erK" = (
 /obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/menorah{
-	layer = 3.2;
 	pixel_x = 1;
 	pixel_y = 13
 	},
@@ -9597,8 +9513,7 @@
 "fnb" = (
 /obj/effect/spawner/random/misc/structure/broken_prison_window,
 /obj/structure/platform{
-	dir = 8;
-	layer = 2.5
+	dir = 8
 	},
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/station/research_cells)
@@ -9870,8 +9785,7 @@
 /area/fiorina/station/power_ring)
 "fvH" = (
 /obj/structure/bed/chair{
-	dir = 1;
-	layer = 2.7
+	dir = 1
 	},
 /turf/open/floor/prison/darkpurple/full,
 /area/fiorina/station/research_cells)
@@ -9934,8 +9848,7 @@
 	name = "launch track"
 	},
 /obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	name = "launch bay door"
+	dir = 2
 	},
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/oob)
@@ -9955,8 +9868,7 @@
 /area/fiorina/station/flight_deck)
 "fyD" = (
 /obj/structure/bed/chair{
-	dir = 1;
-	layer = 2.7
+	dir = 1
 	},
 /turf/open/floor/prison/yellow/full,
 /area/fiorina/station/lowsec)
@@ -9998,9 +9910,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/tumor/fiberbush)
 "fzM" = (
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
+/obj/structure/barricade/handrail/type_b,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/fiorina/station/park)
@@ -10324,7 +10234,6 @@
 "fJU" = (
 /obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/menorah{
-	layer = 3.2;
 	pixel_x = 1;
 	pixel_y = 13
 	},
@@ -10529,7 +10438,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 20
 	},
@@ -11754,12 +11662,6 @@
 	dir = 4
 	},
 /area/fiorina/station/medbay)
-"gyC" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/closed/wall/r_wall/prison_unmeltable,
-/area/fiorina/oob)
 "gyF" = (
 /obj/structure/barricade/handrail,
 /obj/effect/landmark/weed_node,
@@ -11834,12 +11736,9 @@
 	},
 /area/fiorina/lz/near_lzI)
 "gBl" = (
+/obj/structure/barricade/handrail/type_b,
 /obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
-/obj/structure/barricade/handrail/type_b{
-	dir = 8;
-	layer = 3.5
+	dir = 8
 	},
 /turf/open/floor/grass,
 /area/fiorina/tumor/servers)
@@ -11869,17 +11768,14 @@
 	pixel_x = 8
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans{
-	layer = 4.1;
 	pixel_x = 4;
 	pixel_y = 18
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans{
-	layer = 4.1;
 	pixel_x = -4;
 	pixel_y = 18
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans{
-	layer = 4.2;
 	pixel_y = 36
 	},
 /turf/open/floor/wood,
@@ -12072,9 +11968,7 @@
 /obj/structure/stairs/seamless{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	layer = 2.0
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison,
 /area/fiorina/station/transit_hub)
 "gIw" = (
@@ -12562,7 +12456,6 @@
 /obj/structure/barricade/wooden{
 	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
 	dir = 1;
-	layer = 2.9;
 	pixel_y = 17
 	},
 /turf/open/floor/grass,
@@ -12684,7 +12577,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 2;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_x = -16;
 	pixel_y = 12
@@ -12877,9 +12769,7 @@
 /area/fiorina/tumor/ice_lab)
 "hgc" = (
 /obj/structure/flora/pottedplant,
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.4
-	},
+/obj/structure/barricade/handrail/type_b,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/structure/platform,
 /turf/open/floor/prison/whitegreen/full{
@@ -13023,7 +12913,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 12
 	},
@@ -13458,8 +13347,7 @@
 /area/fiorina/station/security)
 "huO" = (
 /obj/structure/barricade/handrail/type_b{
-	dir = 8;
-	layer = 3.5
+	dir = 8
 	},
 /turf/open/floor/grass,
 /area/fiorina/station/civres_blue)
@@ -13645,9 +13533,7 @@
 /turf/open/floor/prison,
 /area/fiorina/station/transit_hub)
 "hyS" = (
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
+/obj/structure/barricade/handrail/type_b,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/fiorina/station/park)
@@ -13666,8 +13552,7 @@
 	dir = 10
 	},
 /obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /turf/open/floor/grass,
 /area/fiorina/station/civres_blue)
@@ -13866,8 +13751,7 @@
 /area/space)
 "hGL" = (
 /obj/structure/platform{
-	dir = 8;
-	layer = 2.5
+	dir = 8
 	},
 /obj/structure/platform,
 /turf/closed/wall/r_wall/prison_unmeltable,
@@ -13914,7 +13798,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 2;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_x = -16;
 	pixel_y = 12
@@ -13947,7 +13830,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 12
 	},
@@ -14136,7 +14018,6 @@
 "hOo" = (
 /obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/menorah{
-	layer = 3.2;
 	pixel_x = 1;
 	pixel_y = 13
 	},
@@ -14232,8 +14113,7 @@
 /area/fiorina/station/research_cells)
 "hRu" = (
 /obj/structure/barricade/handrail/type_b{
-	dir = 8;
-	layer = 3.5
+	dir = 8
 	},
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/lz/near_lzI)
@@ -14255,9 +14135,7 @@
 /area/fiorina/station/lowsec)
 "hRK" = (
 /obj/structure/stairs/seamless,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	layer = 2.0
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/station/power_ring)
 "hRT" = (
@@ -14584,7 +14462,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 20
 	},
@@ -14778,8 +14655,7 @@
 	name = "launch track"
 	},
 /obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	name = "launch bay door"
+	dir = 2
 	},
 /obj/effect/forcefield,
 /turf/open/floor/plating/kutjevo,
@@ -15051,8 +14927,7 @@
 	dir = 8
 	},
 /obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /turf/open/floor/grass,
 /area/fiorina/station/park)
@@ -15099,7 +14974,6 @@
 /area/fiorina/station/power_ring)
 "isa" = (
 /obj/structure/disposalpipe/segment{
-	layer = 6;
 	name = "overhead ducting";
 	pixel_y = 33
 	},
@@ -15242,12 +15116,9 @@
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	dir = 5
 	},
+/obj/structure/barricade/handrail/type_b,
 /obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
-/obj/structure/barricade/handrail/type_b{
-	dir = 8;
-	layer = 3.5
+	dir = 8
 	},
 /turf/open/floor/grass,
 /area/fiorina/station/park)
@@ -15312,7 +15183,6 @@
 /obj/structure/table/reinforced/prison,
 /obj/item/toy/prize/honk{
 	anchored = 1;
-	layer = 2.9;
 	pixel_x = -1;
 	pixel_y = 13
 	},
@@ -15338,15 +15208,6 @@
 /obj/machinery/disposal,
 /turf/open/floor/prison/plate,
 /area/fiorina/station/security/wardens)
-"izu" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/closed/wall/r_wall/prison_unmeltable,
-/area/fiorina/oob)
 "izw" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison,
@@ -15545,12 +15406,9 @@
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	dir = 5
 	},
+/obj/structure/barricade/handrail/type_b,
 /obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
-/obj/structure/barricade/handrail/type_b{
-	dir = 8;
-	layer = 3.5
+	dir = 8
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grass,
@@ -15647,7 +15505,6 @@
 "iGJ" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp{
-	layer = 3.5;
 	pixel_x = 8;
 	pixel_y = 10
 	},
@@ -15715,8 +15572,7 @@
 	name = "launch track"
 	},
 /obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	name = "launch bay door"
+	dir = 2
 	},
 /obj/effect/forcefield,
 /turf/closed/wall/r_wall/prison_unmeltable,
@@ -15901,7 +15757,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 20
 	},
@@ -15962,7 +15817,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 2;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_x = -16;
 	pixel_y = 12
@@ -16366,12 +16220,10 @@
 	pixel_x = -8
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans{
-	layer = 4.1;
 	pixel_x = 4;
 	pixel_y = 18
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans{
-	layer = 4.1;
 	pixel_x = -4;
 	pixel_y = 18
 	},
@@ -17066,7 +16918,6 @@
 /area/fiorina/station/medbay)
 "jqj" = (
 /obj/structure/disposalpipe/segment{
-	layer = 6;
 	name = "overhead ducting";
 	pixel_y = 33
 	},
@@ -18332,8 +18183,7 @@
 /area/fiorina/tumor/civres)
 "jYh" = (
 /obj/structure/bed/chair{
-	dir = 4;
-	layer = 2.8
+	dir = 4
 	},
 /obj/structure/barricade/handrail/type_b,
 /turf/open/floor/prison/plate,
@@ -18342,7 +18192,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 12
 	},
@@ -18571,9 +18420,7 @@
 /turf/open/floor/prison/red/full,
 /area/fiorina/station/security)
 "kfR" = (
-/obj/structure/flora/pottedplant{
-	layer = 2.5
-	},
+/obj/structure/flora/pottedplant,
 /turf/open/floor/prison,
 /area/fiorina/station/medbay)
 "kge" = (
@@ -18757,12 +18604,9 @@
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	dir = 9
 	},
+/obj/structure/barricade/handrail/type_b,
 /obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
-/obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /turf/open/floor/grass,
 /area/fiorina/station/park)
@@ -19025,8 +18869,7 @@
 /obj/effect/spawner/random/weaponry/gun/sidearms,
 /obj/machinery/light/blue,
 /obj/structure/platform{
-	dir = 8;
-	layer = 2.5
+	dir = 8
 	},
 /turf/open/floor/prison,
 /area/fiorina/station/medbay)
@@ -19351,9 +19194,7 @@
 /area/fiorina/tumor/civres)
 "kxM" = (
 /obj/structure/stairs/seamless,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	layer = 2.0
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/station/park)
 "kxP" = (
@@ -19497,9 +19338,7 @@
 /turf/open/floor/plating/plating_catwalk/prison/alt,
 /area/fiorina/tumor/civres)
 "kBF" = (
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
+/obj/structure/barricade/handrail/type_b,
 /turf/open/floor/wood,
 /area/fiorina/station/park)
 "kBN" = (
@@ -19834,8 +19673,7 @@
 /area/fiorina/station/medbay)
 "kKs" = (
 /obj/structure/bed/chair{
-	dir = 1;
-	layer = 2.7
+	dir = 1
 	},
 /turf/open/floor/prison,
 /area/fiorina/station/power_ring)
@@ -19929,9 +19767,7 @@
 /area/fiorina/tumor/aux_engi)
 "kMP" = (
 /obj/structure/stairs/seamless,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	layer = 2.0
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/bright_clean{
 	dir = 10
 	},
@@ -20046,7 +19882,6 @@
 "kQb" = (
 /obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/menorah{
-	layer = 3.2;
 	pixel_x = 1;
 	pixel_y = 13
 	},
@@ -20079,7 +19914,6 @@
 /area/fiorina/station/civres_blue)
 "kRr" = (
 /obj/structure/barricade/sandbags{
-	layer = 2.97;
 	pixel_y = -14
 	},
 /turf/open/floor/prison,
@@ -20326,8 +20160,7 @@
 /area/fiorina/station/flight_deck)
 "kXL" = (
 /obj/structure/barricade/handrail/type_b{
-	dir = 8;
-	layer = 3.5
+	dir = 8
 	},
 /turf/open/floor/grass,
 /area/fiorina/tumor/servers)
@@ -20343,9 +20176,7 @@
 /obj/structure/stairs/seamless{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	layer = 2.0
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/darkbrown{
 	dir = 4
 	},
@@ -20673,7 +20504,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 2;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_x = -16;
 	pixel_y = 12
@@ -20824,7 +20654,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 20
 	},
@@ -20879,9 +20708,7 @@
 /area/fiorina/station/civres_blue)
 "lmF" = (
 /obj/structure/flora/pottedplant,
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.4
-	},
+/obj/structure/barricade/handrail/type_b,
 /obj/structure/barricade/handrail/type_b{
 	dir = 8
 	},
@@ -20901,9 +20728,7 @@
 /area/fiorina/station/security)
 "lna" = (
 /obj/effect/decal/cleanable/blood,
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
+/obj/structure/barricade/handrail/type_b,
 /obj/effect/landmark/corpsespawner/prison_security,
 /turf/open/floor/wood,
 /area/fiorina/station/park)
@@ -21193,13 +21018,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/fiorina/station/chapel)
-"ltX" = (
-/obj/structure/platform{
-	dir = 1;
-	layer = 2.1
-	},
-/turf/closed/wall/prison,
-/area/fiorina/station/transit_hub)
 "luh" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/prison/blue{
@@ -21320,9 +21138,7 @@
 /area/fiorina/tumor/servers)
 "lwC" = (
 /obj/structure/flora/pottedplant,
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.4
-	},
+/obj/structure/barricade/handrail/type_b,
 /obj/structure/platform,
 /turf/open/floor/prison/whitegreen/full{
 	dir = 10
@@ -21671,17 +21487,14 @@
 	pixel_x = 8
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans{
-	layer = 4.1;
 	pixel_x = -4;
 	pixel_y = 18
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans{
-	layer = 4.1;
 	pixel_x = 4;
 	pixel_y = 18
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans{
-	layer = 4.2;
 	pixel_y = 36
 	},
 /turf/open/floor/wood,
@@ -21932,13 +21745,6 @@
 	},
 /turf/open/floor/plate,
 /area/fiorina/station/civres_blue)
-"lOb" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/structure/platform,
-/turf/closed/wall/r_wall/prison_unmeltable,
-/area/fiorina/oob)
 "lOP" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/prison/darkbrown{
@@ -22518,16 +22324,13 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 12
 	},
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/tumor/servers)
 "mhq" = (
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
+/obj/structure/barricade/handrail/type_b,
 /turf/open/floor/prison/blue{
 	dir = 1
 	},
@@ -22587,12 +22390,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/fiorina/tumor/ice_lab)
-"mjL" = (
-/obj/structure/barricade/handrail/type_b{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/fiorina/station/disco)
 "mjN" = (
 /obj/machinery/light/blue{
 	dir = 4;
@@ -22613,7 +22410,6 @@
 "mjY" = (
 /obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/menorah{
-	layer = 3.2;
 	pixel_x = 1;
 	pixel_y = 13
 	},
@@ -22719,7 +22515,6 @@
 /obj/item/stack/sheet/wood,
 /obj/machinery/computer/security{
 	desc = "Somehow, it still functions.";
-	layer = 3.1;
 	name = "discarded camera console";
 	pixel_x = -6;
 	pixel_y = 5
@@ -23224,7 +23019,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 20
 	},
@@ -23238,8 +23032,7 @@
 /area/fiorina/station/civres_blue)
 "mzh" = (
 /obj/structure/bed/chair{
-	dir = 4;
-	layer = 2.8
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/fiorina/station/flight_deck)
@@ -23627,7 +23420,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 12
 	},
@@ -23665,8 +23457,7 @@
 "mMd" = (
 /obj/effect/spawner/random/misc/trash,
 /obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /obj/structure/platform{
 	dir = 4
@@ -24348,15 +24139,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/fiorina/station/flight_deck)
-"ngq" = (
-/obj/structure/platform{
-	dir = 4
-	},
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/closed/wall/prison,
-/area/fiorina/station/power_ring)
 "ngr" = (
 /obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /obj/structure/cable,
@@ -24495,8 +24277,7 @@
 	dir = 1
 	},
 /obj/structure/platform{
-	dir = 8;
-	layer = 2.5
+	dir = 8
 	},
 /turf/open/floor/prison,
 /area/fiorina/station/medbay)
@@ -24544,7 +24325,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 12
 	},
@@ -24672,7 +24452,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 20
 	},
@@ -25038,7 +24817,6 @@
 "nyb" = (
 /obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/menorah{
-	layer = 3.2;
 	pixel_x = 1;
 	pixel_y = 13
 	},
@@ -25370,12 +25148,9 @@
 	},
 /area/fiorina/tumor/ice_lab)
 "nIz" = (
+/obj/structure/barricade/handrail/type_b,
 /obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
-/obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /obj/effect/ai_node,
 /turf/open/floor/grass,
@@ -25777,8 +25552,7 @@
 	dir = 8
 	},
 /obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /turf/open/floor/prison/plate,
 /area/fiorina/station/disco)
@@ -26146,8 +25920,7 @@
 /area/fiorina/station/medbay)
 "ogM" = (
 /obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /turf/open/floor/grass,
 /area/fiorina/station/civres_blue)
@@ -26282,16 +26055,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk/prison/alt,
 /area/fiorina/station/telecomm/lz1_tram)
-"okm" = (
-/obj/structure/platform{
-	dir = 8
-	},
-/obj/structure/platform{
-	dir = 1;
-	layer = 2.1
-	},
-/turf/closed/wall/prison,
-/area/fiorina/station/power_ring)
 "okn" = (
 /obj/structure/flora/pottedplant,
 /obj/structure/barricade/handrail/type_b{
@@ -26714,8 +26477,7 @@
 /area/fiorina/station/lowsec)
 "owA" = (
 /obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /turf/open/floor/grass,
 /area/fiorina/tumor/servers)
@@ -26762,12 +26524,9 @@
 	dir = 9
 	},
 /obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
+/obj/structure/barricade/handrail/type_b,
 /turf/open/floor/grass,
 /area/fiorina/station/park)
 "oxo" = (
@@ -27009,12 +26768,9 @@
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/tumor/civres)
 "oFh" = (
+/obj/structure/barricade/handrail/type_b,
 /obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
-/obj/structure/barricade/handrail/type_b{
-	dir = 8;
-	layer = 3.5
+	dir = 8
 	},
 /turf/open/floor/grass,
 /area/fiorina/station/civres_blue)
@@ -27260,7 +27016,6 @@
 /area/fiorina/station/flight_deck)
 "oLw" = (
 /obj/structure/barricade/sandbags{
-	layer = 2.97;
 	pixel_y = -14
 	},
 /obj/effect/landmark/weed_node,
@@ -27593,8 +27348,7 @@
 /area/fiorina/station/security)
 "oVp" = (
 /obj/structure/bed/chair/office/dark{
-	dir = 4;
-	layer = 3.25
+	dir = 4
 	},
 /obj/structure/barricade/handrail/type_b{
 	dir = 8
@@ -27744,11 +27498,6 @@
 	},
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/lz/near_lzII)
-"oYl" = (
-/obj/structure/stairs/seamless,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating/kutjevo,
-/area/fiorina/station/medbay)
 "oYJ" = (
 /obj/effect/forcefield,
 /obj/structure/platform/metalplatform{
@@ -28510,8 +28259,7 @@
 	dir = 4
 	},
 /obj/structure/platform{
-	dir = 1;
-	layer = 2.1
+	dir = 1
 	},
 /turf/closed/wall/prison,
 /area/fiorina/station/power_ring)
@@ -30144,8 +29892,7 @@
 	dir = 6
 	},
 /obj/structure/barricade/handrail/type_b{
-	dir = 8;
-	layer = 3.5
+	dir = 8
 	},
 /turf/open/floor/grass,
 /area/fiorina/station/civres_blue)
@@ -30232,9 +29979,7 @@
 	dir = 1
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans,
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
+/obj/structure/barricade/handrail/type_b,
 /turf/open/floor/wood,
 /area/fiorina/station/park)
 "qqQ" = (
@@ -30435,7 +30180,6 @@
 "qwc" = (
 /obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/menorah{
-	layer = 3.2;
 	pixel_x = 1;
 	pixel_y = 13
 	},
@@ -30859,7 +30603,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 2;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_x = -16;
 	pixel_y = 12
@@ -30867,7 +30610,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 2;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_x = -16;
 	pixel_y = 12
@@ -30949,8 +30691,7 @@
 /area/fiorina/tumor/servers)
 "qLc" = (
 /obj/structure/platform{
-	dir = 1;
-	layer = 2.1
+	dir = 1
 	},
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/fiorina/oob)
@@ -31095,9 +30836,7 @@
 /area/fiorina/station/chapel)
 "qRs" = (
 /obj/structure/stairs/seamless,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	layer = 2.0
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/station/medbay)
 "qRw" = (
@@ -31431,8 +31170,7 @@
 /obj/effect/landmark/weed_node,
 /obj/structure/platform,
 /obj/structure/platform{
-	dir = 8;
-	layer = 2.5
+	dir = 8
 	},
 /turf/open/floor/prison/marked{
 	dir = 10
@@ -32708,7 +32446,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 20
 	},
@@ -32926,8 +32663,7 @@
 /area/fiorina/tumor/servers)
 "rUt" = (
 /obj/structure/bed/chair{
-	dir = 1;
-	layer = 2.8
+	dir = 1
 	},
 /obj/machinery/light/blue{
 	pixel_y = -1
@@ -33030,9 +32766,7 @@
 /area/fiorina/station/central_ring)
 "rWQ" = (
 /obj/item/reagent_containers/food/snacks/grown/apple/poisoned,
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
+/obj/structure/barricade/handrail/type_b,
 /turf/open/floor/wood,
 /area/fiorina/station/park)
 "rWZ" = (
@@ -33418,8 +33152,7 @@
 "sgh" = (
 /obj/structure/flora/grass/tallgrass,
 /obj/item/reagent_containers/food/snacks/grown/eggplant{
-	desc = "Eggplant. Or, wait...";
-	layer = 2
+	desc = "Eggplant. Or, wait..."
 	},
 /turf/open/floor/grass,
 /area/fiorina/station/park)
@@ -33621,9 +33354,7 @@
 /area/fiorina/station/medbay)
 "skP" = (
 /obj/structure/stairs/seamless,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	layer = 2.0
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/plate,
 /area/fiorina/tumor/ice_lab)
@@ -33683,7 +33414,6 @@
 /area/fiorina/lz/near_lzI)
 "smI" = (
 /obj/structure/closet/crate/miningcar{
-	layer = 3.1;
 	name = "\improper materials storage bin";
 	pixel_y = 8
 	},
@@ -33730,8 +33460,7 @@
 /area/fiorina/station/park)
 "snz" = (
 /obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
@@ -33790,8 +33519,7 @@
 /area/fiorina/lz/near_lzI)
 "soY" = (
 /obj/structure/platform{
-	dir = 4;
-	layer = 2
+	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -34126,7 +33854,6 @@
 /area/fiorina/station/flight_deck)
 "sxo" = (
 /obj/structure/flora/pottedplant{
-	layer = 3.5;
 	pixel_y = 6
 	},
 /turf/open/floor/prison/plate,
@@ -34286,7 +34013,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 2;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_x = -16;
 	pixel_y = 12
@@ -34300,8 +34026,7 @@
 "sDa" = (
 /obj/machinery/computer3/server/rack,
 /obj/structure/barricade/handrail/type_b{
-	dir = 8;
-	layer = 3.5
+	dir = 8
 	},
 /turf/open/floor/prison,
 /area/fiorina/tumor/servers)
@@ -34708,9 +34433,7 @@
 /turf/open/floor/prison/plate,
 /area/fiorina/station/lowsec)
 "sPK" = (
-/obj/effect/decal/cleanable/blood{
-	layer = 3
-	},
+/obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -34728,12 +34451,9 @@
 	dir = 5
 	},
 /obj/structure/barricade/handrail/type_b{
-	dir = 8;
-	layer = 3.5
+	dir = 8
 	},
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
+/obj/structure/barricade/handrail/type_b,
 /turf/open/floor/grass,
 /area/fiorina/station/park)
 "sQg" = (
@@ -35003,15 +34723,13 @@
 "sYg" = (
 /obj/item/frame/rack,
 /obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /turf/open/floor/prison/plate,
 /area/fiorina/tumor/ice_lab)
 "sYs" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	name = "launch bay door"
+	dir = 2
 	},
 /obj/effect/forcefield,
 /turf/closed/wall/r_wall/prison_unmeltable,
@@ -35430,9 +35148,7 @@
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
+/obj/structure/barricade/handrail/type_b,
 /turf/open/floor/wood,
 /area/fiorina/station/park)
 "tkn" = (
@@ -35518,8 +35234,7 @@
 /area/fiorina/station/power_ring)
 "tnm" = (
 /obj/structure/platform{
-	dir = 1;
-	layer = 2.1
+	dir = 1
 	},
 /turf/open/floor/prison/plate,
 /area/fiorina/lz/near_lzII)
@@ -35579,7 +35294,6 @@
 /area/fiorina/station/power_ring)
 "toT" = (
 /obj/structure/disposalpipe/segment{
-	layer = 6;
 	name = "overhead ducting";
 	pixel_y = 33
 	},
@@ -35798,7 +35512,6 @@
 /area/fiorina/station/power_ring)
 "tuv" = (
 /obj/structure/disposalpipe/segment{
-	layer = 6;
 	name = "overhead ducting";
 	pixel_y = 33
 	},
@@ -36394,8 +36107,7 @@
 	dir = 1
 	},
 /obj/structure/platform{
-	dir = 1;
-	layer = 2.1
+	dir = 1
 	},
 /turf/open/floor/prison/plate,
 /area/fiorina/lz/near_lzII)
@@ -36645,8 +36357,7 @@
 /area/fiorina/station/lowsec)
 "tSb" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	name = "launch bay door"
+	dir = 2
 	},
 /obj/effect/forcefield,
 /turf/open/floor/plating/kutjevo,
@@ -36741,7 +36452,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 20
 	},
@@ -37113,7 +36823,6 @@
 "ueW" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp{
-	layer = 3.5;
 	pixel_x = 8;
 	pixel_y = 10
 	},
@@ -37152,12 +36861,9 @@
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	dir = 5
 	},
+/obj/structure/barricade/handrail/type_b,
 /obj/structure/barricade/handrail/type_b{
-	layer = 3.5
-	},
-/obj/structure/barricade/handrail/type_b{
-	dir = 8;
-	layer = 3.5
+	dir = 8
 	},
 /turf/open/floor/grass,
 /area/fiorina/station/civres_blue)
@@ -37456,8 +37162,7 @@
 /area/fiorina/station/medbay)
 "uod" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	name = "launch bay door"
+	dir = 2
 	},
 /obj/effect/forcefield,
 /obj/effect/landmark/weed_node,
@@ -37785,9 +37490,7 @@
 /turf/open/floor/prison/darkpurple,
 /area/fiorina/tumor/servers)
 "uzA" = (
-/obj/machinery/vending/engivend{
-	layer = 3.5
-	},
+/obj/machinery/vending/engivend,
 /obj/machinery/light/blue{
 	dir = 1;
 	pixel_y = 21
@@ -38445,7 +38148,6 @@
 /area/fiorina/oob)
 "uSx" = (
 /obj/structure/disposalpipe/segment{
-	layer = 6;
 	name = "overhead ducting";
 	pixel_y = 33
 	},
@@ -38548,8 +38250,7 @@
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/structure/platform,
 /obj/structure/platform{
-	dir = 8;
-	layer = 2.5
+	dir = 8
 	},
 /turf/open/floor/prison/marked{
 	dir = 10
@@ -38640,7 +38341,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 12
 	},
@@ -38945,7 +38645,6 @@
 /obj/structure/barricade/wooden{
 	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
 	dir = 1;
-	layer = 2.9;
 	pixel_y = 17
 	},
 /obj/item/reagent_containers/food/drinks/cans/beer,
@@ -39061,7 +38760,6 @@
 /area/fiorina/tumor/aux_engi)
 "vhP" = (
 /obj/structure/flora/pottedplant{
-	layer = 3.5;
 	pixel_y = 6
 	},
 /turf/open/floor/prison/green/full{
@@ -39611,8 +39309,7 @@
 	dir = 4
 	},
 /obj/structure/platform{
-	dir = 1;
-	layer = 2.1
+	dir = 1
 	},
 /turf/closed/wall/prison,
 /area/fiorina/station/transit_hub)
@@ -39983,8 +39680,7 @@
 	dir = 6
 	},
 /obj/structure/barricade/handrail/type_b{
-	dir = 8;
-	layer = 3.5
+	dir = 8
 	},
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -40144,7 +39840,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 4;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_y = 12
 	},
@@ -40452,8 +40147,7 @@
 "vVd" = (
 /obj/structure/platform,
 /obj/structure/platform{
-	dir = 8;
-	layer = 2.5
+	dir = 8
 	},
 /turf/open/floor/prison/marked{
 	dir = 10
@@ -40593,7 +40287,6 @@
 "vXj" = (
 /obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/menorah{
-	layer = 3.2;
 	pixel_x = 1;
 	pixel_y = 13
 	},
@@ -40773,7 +40466,6 @@
 "wbB" = (
 /obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/menorah{
-	layer = 3.2;
 	pixel_x = 1;
 	pixel_y = 13
 	},
@@ -41043,15 +40735,6 @@
 	dir = 1
 	},
 /area/fiorina/station/botany)
-"wjI" = (
-/obj/structure/platform,
-/obj/structure/platform{
-	dir = 8
-	},
-/turf/open/floor/prison/marked{
-	dir = 10
-	},
-/area/fiorina/station/transit_hub)
 "wjS" = (
 /turf/open/floor/plating/plating_catwalk/prison/alt,
 /area/fiorina/station/transit_hub)
@@ -41626,13 +41309,11 @@
 /area/fiorina/station/botany)
 "wBv" = (
 /obj/structure/disposalpipe/segment{
-	layer = 6;
 	name = "overhead ducting";
 	pixel_y = 33
 	},
 /obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /turf/open/floor/prison/plate,
 /area/fiorina/tumor/ice_lab)
@@ -41646,9 +41327,7 @@
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/fiorina/oob)
 "wBW" = (
-/obj/machinery/vending/engivend{
-	layer = 3.5
-	},
+/obj/machinery/vending/engivend,
 /turf/open/floor/prison/plate,
 /area/fiorina/station/power_ring)
 "wBY" = (
@@ -42204,8 +41883,7 @@
 /area/fiorina/tumor/civres)
 "wOr" = (
 /obj/structure/bed/chair/office/dark{
-	dir = 4;
-	layer = 3.25
+	dir = 4
 	},
 /turf/open/floor/prison/whitegreen/full{
 	dir = 10
@@ -42378,12 +42056,10 @@
 	pixel_x = -8
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans{
-	layer = 4.1;
 	pixel_x = -4;
 	pixel_y = 18
 	},
 /obj/effect/spawner/random/food_or_drink/drink_cans{
-	layer = 4.1;
 	pixel_x = 4;
 	pixel_y = 18
 	},
@@ -42635,7 +42311,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 2;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_x = -16;
 	pixel_y = 12
@@ -42664,7 +42339,6 @@
 /area/fiorina/station/park)
 "xav" = (
 /obj/structure/barricade/sandbags{
-	layer = 2.97;
 	pixel_y = -14
 	},
 /turf/open/floor/prison/plate{
@@ -43173,7 +42847,6 @@
 "xnq" = (
 /obj/structure/table/wood/fancy,
 /obj/item/flashlight/lamp/menorah{
-	layer = 3.2;
 	pixel_x = 1;
 	pixel_y = 13
 	},
@@ -43322,16 +42995,6 @@
 	dir = 4
 	},
 /area/fiorina/station/botany)
-"xqR" = (
-/obj/effect/decal/cleanable/blood,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/prison/plate,
-/area/fiorina/station/disco)
 "xre" = (
 /obj/structure/platform{
 	dir = 8
@@ -43678,10 +43341,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/fiorina/station/flight_deck)
-"xxJ" = (
-/obj/structure/flora/pottedplant,
-/turf/open/floor/prison,
-/area/fiorina/station/medbay)
 "xxP" = (
 /obj/item/stack/tile/plasteel,
 /obj/effect/landmark/xeno_resin_wall,
@@ -43855,7 +43514,6 @@
 /obj/structure/disposalpipe/segment{
 	color = "#c4c4c4";
 	dir = 2;
-	layer = 6;
 	name = "overhead pipe";
 	pixel_x = -16;
 	pixel_y = 12
@@ -44377,8 +44035,7 @@
 /area/fiorina/station/lowsec)
 "xSf" = (
 /obj/structure/barricade/handrail/type_b{
-	dir = 4;
-	layer = 3.5
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/fiorina/station/disco)
@@ -44539,8 +44196,7 @@
 /area/fiorina/station/civres_blue)
 "xVy" = (
 /obj/structure/barricade/handrail/type_b{
-	dir = 8;
-	layer = 3.5
+	dir = 8
 	},
 /turf/open/floor/prison/plate,
 /area/fiorina/station/disco)
@@ -44894,9 +44550,7 @@
 /turf/open/floor/prison/red/full,
 /area/fiorina/station/security)
 "ydd" = (
-/obj/structure/barricade/handrail/type_b{
-	layer = 3.4
-	},
+/obj/structure/barricade/handrail/type_b,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/structure/platform,
 /turf/open/floor/prison/whitegreen/full{
@@ -44974,9 +44628,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/fiorina/station/research_cells)
 "yfu" = (
-/obj/structure/flora/pottedplant{
-	layer = 2.8
-	},
+/obj/structure/flora/pottedplant,
 /obj/structure/barricade/handrail/type_b,
 /turf/open/floor/prison/plate,
 /area/fiorina/station/flight_deck)
@@ -62993,7 +62645,7 @@ yhF
 wjS
 wjS
 mSD
-ltX
+nZa
 hty
 dmr
 rJS
@@ -68282,7 +67934,7 @@ sfd
 yhF
 qSZ
 aog
-wjI
+vVd
 yhF
 unh
 uUB
@@ -72858,8 +72510,8 @@ rOQ
 crh
 crh
 crh
-dEo
-dEo
+afs
+afs
 kYP
 xCL
 hnO
@@ -73084,10 +72736,10 @@ xCL
 hnO
 sAN
 pJm
-xxJ
+kfR
 oqT
 skM
-xxJ
+kfR
 iWS
 aLy
 pSq
@@ -73935,7 +73587,7 @@ pJm
 kfR
 hBh
 lJd
-xxJ
+kfR
 oSP
 lSE
 quT
@@ -74798,7 +74450,7 @@ mFa
 ctD
 izZ
 aAc
-oYl
+qRs
 iZN
 jRb
 jRb
@@ -74815,7 +74467,7 @@ oSP
 ubC
 gsI
 lwI
-bic
+cOs
 cig
 eZx
 eZx
@@ -75187,11 +74839,11 @@ hnO
 xdo
 xTh
 rOQ
-dEo
+afs
 crh
 crh
 crh
-dEo
+afs
 rOQ
 dyg
 hnO
@@ -77116,7 +76768,7 @@ eJH
 hLC
 gwl
 gwl
-xxJ
+kfR
 gwl
 oSP
 aLy
@@ -77752,7 +77404,7 @@ okn
 poO
 gwl
 vVL
-xxJ
+kfR
 nOq
 xti
 sqi
@@ -80970,7 +80622,7 @@ kja
 tNf
 nfe
 tSZ
-mjL
+xSf
 uQL
 mRE
 oKB
@@ -82461,7 +82113,7 @@ mRE
 mRE
 mRE
 cHR
-izu
+ecr
 jOm
 vui
 mvM
@@ -82673,7 +82325,7 @@ gOd
 mRE
 gOd
 aoy
-gyC
+qLc
 uGC
 tij
 tij
@@ -82885,7 +82537,7 @@ mRE
 mRE
 cHR
 cHR
-gyC
+qLc
 hJO
 hJO
 dGl
@@ -83594,7 +83246,7 @@ uNi
 uNi
 gkZ
 skk
-gyC
+qLc
 yjX
 yjX
 yjX
@@ -83930,7 +83582,7 @@ dVz
 dVz
 vJh
 mRE
-xqR
+kCS
 cHR
 jgj
 oDa
@@ -84380,7 +84032,7 @@ jpy
 nkE
 inf
 pJJ
-gyC
+qLc
 jpy
 tRD
 aHO
@@ -84442,7 +84094,7 @@ uNi
 uNi
 kjR
 puv
-gyC
+qLc
 yjX
 yjX
 yjX
@@ -84866,7 +84518,7 @@ uNi
 aPX
 gkZ
 skk
-gyC
+qLc
 yjX
 yjX
 yjX
@@ -85714,7 +85366,7 @@ uNi
 uNi
 kjR
 puv
-gyC
+qLc
 yjX
 yjX
 yjX
@@ -85847,7 +85499,7 @@ aAf
 bSo
 cuP
 cuP
-lOb
+hGL
 nZB
 rBQ
 okM
@@ -86138,7 +85790,7 @@ uNi
 uNi
 gkZ
 skk
-gyC
+qLc
 yjX
 yjX
 yjX
@@ -86986,7 +86638,7 @@ uNi
 uNi
 kjR
 puv
-gyC
+qLc
 yjX
 yjX
 yjX
@@ -87167,7 +86819,7 @@ ncz
 niT
 kjR
 ccU
-okm
+ncz
 niT
 qNw
 mmq
@@ -87995,7 +87647,7 @@ kwc
 kwc
 vdw
 kwc
-izu
+ecr
 yjX
 kib
 rad
@@ -88641,7 +88293,7 @@ qhO
 rui
 hiG
 crx
-ngq
+psF
 eGI
 mmq
 mmq
@@ -89489,7 +89141,7 @@ nUE
 xNe
 xNe
 nUE
-ngq
+psF
 tGb
 fos
 gLn
@@ -89914,7 +89566,7 @@ nUE
 xNe
 xNe
 nUE
-ngq
+psF
 tGb
 nsR
 nsR
@@ -90339,7 +89991,7 @@ nUE
 qEl
 xNe
 nUE
-ngq
+psF
 lWp
 tGb
 glN
@@ -90553,7 +90205,7 @@ xNe
 tfS
 nUE
 wiF
-ngq
+psF
 lWp
 tGb
 qxy
@@ -90767,7 +90419,7 @@ xNe
 xpx
 nUE
 wiF
-ngq
+psF
 oez
 gkZ
 njD
@@ -97739,7 +97391,7 @@ lwX
 lnv
 lpF
 lwX
-gyC
+qLc
 yjX
 yjX
 yjX
@@ -98364,7 +98016,7 @@ hNF
 hNF
 hNF
 fRw
-gyC
+qLc
 yjX
 xMN
 pfl
