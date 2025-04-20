@@ -87,7 +87,7 @@
 /turf/open/floor/mainship/plate,
 /area/fiorina/tumor/ship)
 "iT" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/effect/ai_node,
@@ -239,7 +239,7 @@
 /turf/open/floor/mainship/plate,
 /area/fiorina/tumor/ship)
 "sP" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /turf/open/floor/mainship/plate{
@@ -518,14 +518,14 @@
 /turf/open/floor/mainship,
 /area/fiorina/tumor/ship)
 "OP" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/fiorina/tumor/ship)
 "PC" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/mainship/plate{

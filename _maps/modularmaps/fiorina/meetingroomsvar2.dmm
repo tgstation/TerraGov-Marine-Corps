@@ -68,7 +68,7 @@
 /turf/open/floor/prison/plate,
 /area/fiorina/tumor/servers)
 "pq" = (
-/obj/structure/prop/vehicle/crane/destructible{
+/obj/structure/prop/vehicle/crane{
 	dir = 8
 	},
 /turf/open/floor/prison/marked{

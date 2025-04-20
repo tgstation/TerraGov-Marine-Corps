@@ -119,7 +119,7 @@
 /turf/open/floor/prison/darkpurple/full,
 /area/fiorina/station/research_cells)
 "jt" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/prison/whitepurple{
@@ -195,7 +195,7 @@
 	},
 /area/fiorina/oob)
 "on" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/prison/whitepurple{
@@ -372,7 +372,7 @@
 	},
 /area/fiorina/station/research_cells)
 "Dq" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/effect/spawner/random/engineering/metal{
@@ -433,7 +433,7 @@
 /turf/open/floor/prison/darkpurple/full,
 /area/fiorina/station/research_cells)
 "FP" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -532,7 +532,7 @@
 	},
 /area/fiorina/station/research_cells)
 "Kc" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/prison/darkpurple/full,
 /area/fiorina/station/research_cells)
 "Kj" = (
@@ -576,7 +576,7 @@
 /turf/open/floor/prison/darkpurple/full,
 /area/fiorina/station/research_cells)
 "MO" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/sterilewhite{
 	dir = 5
@@ -666,7 +666,7 @@
 /turf/open/floor/prison/whitepurple,
 /area/fiorina/station/research_cells)
 "TE" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/prison/darkpurple/full,
@@ -675,7 +675,7 @@
 /turf/open/floor/tile/damaged/three,
 /area/fiorina/station/research_cells)
 "VP" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/prison/whitepurple{
@@ -707,7 +707,7 @@
 /turf/closed/wall/prison,
 /area/fiorina/station/research_cells)
 "Yx" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/prison/whitepurple,

@@ -904,14 +904,6 @@
 	dir = 6
 	},
 /area/fiorina/station/central_ring)
-"Qo" = (
-/obj/structure/prop/mainship/gravestone{
-	desc = "In loving memory of multi-z, which was callously killed by maints before a single test could be done. Rest well my friend.";
-	pixel_x = 8;
-	pixel_y = 6
-	},
-/turf/open/floor/grass,
-/area/fiorina/station/central_ring)
 "QK" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
@@ -1475,7 +1467,7 @@ Mq
 mC
 Fe
 mC
-Qo
+mC
 mC
 aD
 mC

@@ -98,7 +98,7 @@
 /turf/open/floor/prison/plate,
 /area/fiorina/tumor/ship)
 "iT" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/item/tool/pen/blue{
@@ -471,10 +471,10 @@
 /turf/open/space,
 /area/space)
 "Jv" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 1
 	},
 /turf/open/floor/mainship,
@@ -570,14 +570,14 @@
 /turf/open/floor/mainship/plate,
 /area/fiorina/tumor/ship)
 "OP" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/structure/paper_bin{
 	pixel_x = -22;
 	pixel_y = -2
 	},
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/fiorina/tumor/ship)
@@ -607,7 +607,7 @@
 	},
 /area/fiorina/tumor/ship)
 "Uh" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -626,7 +626,7 @@
 /turf/open/floor/plating/plating_catwalk/prison/alt,
 /area/fiorina/tumor/ship)
 "Vg" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/mainship/plate,
