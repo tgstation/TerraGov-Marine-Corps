@@ -7,8 +7,7 @@
 /area/shuttle/minidropship)
 "d" = (
 /obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8;
-	layer = 3
+	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
@@ -17,13 +16,13 @@
 	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship/open{
-	id = "minidropship_podlock";
-	dir = 2
+	dir = 2;
+	id = "minidropship_podlock"
 	},
 /obj/machinery/door_control{
+	dir = 8;
 	id = "minidropship_podlock";
-	name = "inner door-control";
-	dir = 8
+	name = "inner door-control"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
@@ -80,8 +79,16 @@
 /obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
+"s" = (
+/obj/structure/window/reinforced/west,
+/obj/machinery/cic_maptable,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
 "t" = (
 /obj/structure/closet/walllocker/hydrant/extinguisher{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -108,6 +115,13 @@
 	pixel_y = 32
 	},
 /turf/closed/wall/mainship/outer/canterbury,
+/area/shuttle/minidropship)
+"x" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "y" = (
 /obj/machinery/light{
@@ -137,15 +151,13 @@
 "D" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
 /obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4;
-	layer = 3
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "E" = (
 /obj/structure/window/reinforced/west,
 /obj/structure/window/reinforced,
-/obj/machinery/cic_maptable,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "F" = (
@@ -159,9 +171,9 @@
 	dir = 4
 	},
 /obj/machinery/door_control{
+	dir = 4;
 	id = "minidropship_podlock";
-	name = "inner door-control";
-	dir = 4
+	name = "inner door-control"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
@@ -176,15 +188,13 @@
 /area/shuttle/minidropship)
 "I" = (
 /obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4;
-	layer = 3
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "J" = (
 /obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1;
-	layer = 3
+	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
@@ -198,6 +208,19 @@
 /obj/machinery/telecomms/relay/preset/telecomms/onboard,
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
+"O" = (
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"P" = (
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
 "R" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -206,8 +229,7 @@
 /area/shuttle/minidropship)
 "S" = (
 /obj/effect/turf_decal/warning_stripes/thick{
-	dir = 4;
-	layer = 3
+	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
@@ -216,8 +238,8 @@
 	dir = 2
 	},
 /obj/machinery/door/poddoor/mainship/open{
-	id = "minidropship_podlock";
-	dir = 2
+	dir = 2;
+	id = "minidropship_podlock"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
@@ -245,7 +267,7 @@ A
 a
 u
 u
-a
+P
 A
 X
 "}
@@ -256,7 +278,7 @@ y
 t
 R
 d
-y
+x
 a
 a
 "}
@@ -275,7 +297,7 @@ o
 e
 K
 Y
-Y
+O
 D
 S
 I
@@ -283,9 +305,9 @@ a
 L
 "}
 (5,1,1) = {"
-a
-a
 n
+n
+s
 E
 F
 B

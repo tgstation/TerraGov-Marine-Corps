@@ -42,6 +42,7 @@
 
 /obj/structure/ammo_rack/secondary
 	name = "secondary ammo rack"
+	plane = WALL_PLANE
 	icon_state = "secondaryrack"
 	storage_type = /datum/storage/tank/ammorack_secondary
 
@@ -55,5 +56,17 @@
 /obj/structure/ammo_rack/secondary/som
 	icon_state = "secondary"
 	icon = 'icons/obj/armored/3x4/som_ammo_rack.dmi'
+	pixel_x = -18
+	pixel_y = -5
+
+/obj/structure/ammo_rack/primary/icc
+	icon_state = "primaryrack"
+	icon = 'icons/obj/armored/2x2/icc_lvrt.dmi'
+	pixel_y = -20
+	pixel_x = -34
+
+/obj/structure/ammo_rack/secondary/icc
+	icon_state = "secondaryrack"
+	icon = 'icons/obj/armored/2x2/icc_lvrt.dmi'
 	pixel_x = -18
 	pixel_y = -5

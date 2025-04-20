@@ -33,9 +33,9 @@
 	var/firing
 
 ///Change minimap icon if its firing or not firing
-/obj/structure/xeno/xeno_turret/proc/update_minimap_icon()
+/obj/structure/xeno/xeno_turret/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xeno_turret[firing ? "_firing" : "_passive"]"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xeno_turret[firing ? "_firing" : "_passive"]", MINIMAP_BLIPS_LAYER))
 
 /obj/structure/xeno/xeno_turret/Initialize(mapload, _hivenumber)
 	. = ..()
@@ -109,7 +109,7 @@
 		if(last_hostile)
 			set_last_hostile(null)
 		return
-	if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_XENO_TURRETS_ALERT))
+	if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_XENO_TURRETS_ALERT))
 		GLOB.hive_datums[hivenumber].xeno_message("Our [name] is attacking a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien/help1.ogg', FALSE, null, /atom/movable/screen/arrow/turret_attacking_arrow)
 		TIMER_COOLDOWN_START(src, COOLDOWN_XENO_TURRETS_ALERT, 20 SECONDS)
 	if(hostile != last_hostile)
@@ -128,14 +128,8 @@
 	if(I.damtype == BURN) //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1
 
-	if(isplasmacutter(I) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
-			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
-			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
-
 	damage *= max(0, multiplier)
-	take_damage(damage, BRUTE, MELEE)
+	take_damage(damage, I.damtype, MELEE)
 	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 
 ///Signal handler for hard del of hostile
@@ -164,7 +158,6 @@
 /obj/structure/xeno/xeno_turret/proc/get_target()
 	var/distance = range + 0.5 //we add 0.5 so if a potential target is at range, it is accepted by the system
 	var/buffer_distance
-	var/list/turf/path = list()
 	for (var/atom/nearby_hostile AS in potential_hostiles)
 		if(isliving(nearby_hostile))
 			var/mob/living/nearby_living_hostile = nearby_hostile
@@ -173,30 +166,12 @@
 		if(HAS_TRAIT(nearby_hostile, TRAIT_TURRET_HIDDEN))
 			continue
 		buffer_distance = get_dist(nearby_hostile, src)
-		if (distance <= buffer_distance) //If we already found a target that's closer
+		if(distance <= buffer_distance) //If we already found a target that's closer
 			continue
-		path = getline(src, nearby_hostile)
-		path -= get_turf(src)
-		if(!length(path)) //Can't shoot if it's on the same turf
+		if(check_path(get_step_towards(src, nearby_hostile), nearby_hostile, PASS_PROJECTILE) != get_turf(nearby_hostile)) //xeno turret seems to not care about actual sight, for whatever reason
 			continue
-		var/blocked = FALSE
-		for(var/turf/T AS in path)
-			if(IS_OPAQUE_TURF(T) || T.density && !(T.allow_pass_flags & PASS_PROJECTILE))
-				blocked = TRUE
-				break //LoF Broken; stop checking; we can't proceed further.
-
-			for(var/obj/machinery/MA in T)
-				if(MA.opacity || MA.density && !(MA.allow_pass_flags & PASS_PROJECTILE))
-					blocked = TRUE
-					break //LoF Broken; stop checking; we can't proceed further.
-
-			for(var/obj/structure/S in T)
-				if(S.opacity || S.density && !(S.allow_pass_flags & PASS_PROJECTILE))
-					blocked = TRUE
-					break //LoF Broken; stop checking; we can't proceed further.
-		if(!blocked)
-			distance = buffer_distance
-			. = nearby_hostile
+		distance = buffer_distance
+		. = nearby_hostile
 
 ///Return TRUE if a possible target is near
 /obj/structure/xeno/xeno_turret/proc/scan()

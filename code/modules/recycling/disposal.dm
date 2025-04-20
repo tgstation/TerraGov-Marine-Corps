@@ -194,7 +194,7 @@
 /obj/machinery/disposal/proc/go_out(mob/user)
 
 	if(user.client)
-		user.client.eye = user.client.mob
+		user.client.set_eye(user.client.mob)
 		user.client.perspective = MOB_PERSPECTIVE
 	user.forceMove(loc)
 	if(isliving(user))
@@ -225,11 +225,11 @@
 
 	if(!isAI(user))  //AI can't pull flush handle
 		if(flush)
-			dat += "Disposal handle: <A href='?src=[text_ref(src)];handle=0'>Disengage</A> <B>Engaged</B>"
+			dat += "Disposal handle: <A href='byond://?src=[text_ref(src)];handle=0'>Disengage</A> <B>Engaged</B>"
 		else
-			dat += "Disposal handle: <B>Disengaged</B> <A href='?src=[text_ref(src)];handle=1'>Engage</A>"
+			dat += "Disposal handle: <B>Disengaged</B> <A href='byond://?src=[text_ref(src)];handle=1'>Engage</A>"
 
-		dat += "<BR><HR><A href='?src=[text_ref(src)];eject=1'>Eject contents</A><HR>"
+		dat += "<BR><HR><A href='byond://?src=[text_ref(src)];eject=1'>Eject contents</A><HR>"
 
 	if(mode <= 0)
 		dat += "Pump: <B>Off</B> On</A><BR>"
@@ -528,7 +528,7 @@
 		if(ismob(AM))
 			var/mob/M = AM
 			if(M.client) //If a client mob, update eye to follow this holder
-				M.client.eye = src
+				M.client.set_eye(src)
 
 	qdel(other)
 
@@ -551,7 +551,7 @@
 
 	var/mob/living/living_user = user
 
-	if(living_user.stat || TIMER_COOLDOWN_CHECK(living_user, COOLDOWN_DISPOSAL))
+	if(living_user.stat || TIMER_COOLDOWN_RUNNING(living_user, COOLDOWN_DISPOSAL))
 		return
 
 	TIMER_COOLDOWN_START(living_user, COOLDOWN_DISPOSAL, 10 SECONDS)
@@ -1359,20 +1359,12 @@
 
 //Check if mob has client, if so restore client view on eject
 /mob/pipe_eject(direction)
-	if(client)
-		client.perspective = MOB_PERSPECTIVE
-		client.eye = src
+	if(!client)
+		return
+	client.perspective = MOB_PERSPECTIVE
+	client.set_eye(src)
 
 /obj/effect/decal/cleanable/blood/gibs/pipe_eject(direction)
-	var/list/dirs
-	if(direction)
-		dirs = list( direction, turn(direction, -45), turn(direction, 45))
-	else
-		dirs = GLOB.alldirs.Copy()
-
-	streak(dirs)
-
-/obj/effect/decal/cleanable/blood/gibs/robot/pipe_eject(direction)
 	var/list/dirs
 	if(direction)
 		dirs = list( direction, turn(direction, -45), turn(direction, 45))

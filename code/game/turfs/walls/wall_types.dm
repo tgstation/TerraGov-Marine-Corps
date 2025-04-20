@@ -246,12 +246,6 @@
 /turf/closed/wall/indestructible/fire_act(burn_level)
 	return
 
-/turf/closed/wall/indestructible/attackby(obj/item/I, mob/user, params)
-	if(isplasmacutter(I)) //needed for user feedback, if not included the user will not receive a message when trying plasma cutter wall/indestructible turfs
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		to_chat(user, span_warning("[P] can't cut through this!"))
-	return
-
 /turf/closed/wall/indestructible/mineral
 	name = "impenetrable rock"
 	icon_state = "rock_dark"
@@ -268,16 +262,19 @@
 
 /turf/closed/wall/indestructible/splashscreen
 	name = "Space Station 13"
-	icon = 'icons/misc/title.dmi'
-	icon_state = "title_painting1"
-//	icon_state = "title_holiday"
-	layer = FLY_LAYER
+	plane = SPLASHSCREEN_PLANE
+	icon_state = ""
 	pixel_x = -64
 
-/turf/closed/wall/indestructible/splashscreen/New()
-	..()
-	if(icon_state == "title_painting1")
-		icon_state = "title_painting[rand(0,35)]"
+//todo this should be using immediate instead of New()
+INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
+/turf/closed/wall/indestructible/splashscreen/Initialize(mapload, ...)
+	. = ..()
+	var/prefix = "icons/misc/lobby_art/"
+	var/list/lobby_art = flist(prefix)
+	if(!length(lobby_art))
+		return
+	icon = icon("[prefix]" + pick(lobby_art))
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
@@ -363,8 +360,8 @@
 /turf/closed/wall/vault
 	icon_state = "rockvault"
 
-/turf/closed/wall/vault/New(location,type)
-	..()
+/turf/closed/wall/vault/Initialize(mapload, type)
+	. = ..()
 	icon_state = "[type]vault"
 
 /turf/closed/wall/desertcavewall
@@ -374,7 +371,7 @@
 	walltype = "cavewall"
 
 /turf/closed/wall/desertcavewall/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, 1)
+	AddElement(/datum/element/debris, DEBRIS_ROCK, -40, 5, 1)
 
 //Prison wall
 
@@ -398,7 +395,7 @@
 	explosion_block = 1
 
 /turf/closed/wall/wood/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -40, 5)
 
 // Reinforced Wood Wall
 

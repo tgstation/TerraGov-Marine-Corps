@@ -107,7 +107,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/burnt = FALSE
 	var/smoketime = 5
 	w_class = WEIGHT_CLASS_TINY
-	attack_verb = list("burnt", "singed")
+	attack_verb = list("burns", "singes")
 
 /obj/item/tool/match/process()
 	smoketime--
@@ -183,7 +183,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
-	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, emissive_state)
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, emissive_state, src)
 	standing.overlays.Add(emissive_overlay)
 
 /obj/item/clothing/mask/cigarette/turn_light(mob/user, toggle_on)
@@ -285,7 +285,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	turn_light(null, TRUE)
 	heat = 1000
 	name = "lit [name]"
-	attack_verb = list("burnt", "singed")
+	attack_verb = list("burns", "singes")
 	damtype = BURN
 	if(reagents.get_reagent_amount(/datum/reagent/toxin/phoron)) // the phoron explodes when exposed to fire
 		var/datum/effect_system/reagents_explosion/e = new()
@@ -567,7 +567,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	throwforce = 4
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT
-	attack_verb = list("burnt", "singed")
+	attack_verb = list("burns", "singes")
 
 /obj/item/tool/lighter/zippo
 	name = "\improper Zippo lighter"

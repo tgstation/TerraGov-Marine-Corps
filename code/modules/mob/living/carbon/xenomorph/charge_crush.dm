@@ -270,6 +270,12 @@
 
 	if(charge_type & (CHARGE_BULL|CHARGE_BULL_HEADBUTT|CHARGE_BULL_GORE|CHARGE_BEHEMOTH) && !isliving(crushed))
 		do_stop_momentum()
+		if(charge_type & CHARGE_BEHEMOTH)
+			return COMPONENT_MOVABLE_PREBUMP_STOPPED
+		if(istype(crushed, /obj/structure/razorwire))
+			var/obj/structure/razorwire/crushed_wire = crushed
+			INVOKE_ASYNC(crushed_wire, TYPE_PROC_REF(/atom, post_crush_act), charger, src)
+			return COMPONENT_MOVABLE_PREBUMP_ENTANGLED
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
 	var/precrush = crushed.pre_crush_act(charger, src) //Negative values are codes. Positive ones are damage to deal.
@@ -297,8 +303,8 @@
 			//There is a chance to do enough damage here to gib certain mobs. Better update immediately.
 			crushed_living.apply_damage(precrush, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
 			if(QDELETED(crushed_living))
-				charger.visible_message(span_danger("[charger] anihilates [preserved_name]!"),
-				span_xenodanger("We anihilate [preserved_name]!"))
+				charger.visible_message(span_danger("[charger] annihilates [preserved_name]!"),
+				span_xenodanger("We annihilate [preserved_name]!"))
 				return COMPONENT_MOVABLE_PREBUMP_PLOWED
 
 		return precrush2signal(crushed_living.post_crush_act(charger, src))
@@ -312,6 +318,12 @@
 		var/obj_damage_mult = 1
 		if(isarmoredvehicle(crushed) || ishitbox(crushed))
 			obj_damage_mult = 5
+		else if(isgreyscalemecha(crushed)) // dont oneshot mechs... thats bad. should be punishing though
+			var/obj/vehicle/sealed/mecha/combat/greyscale/mech = crushed
+			var/datum/mech_limb/legs/legs = mech.limbs[MECH_GREY_LEGS]
+			if(legs?.part_health)
+				legs.take_damage(precrush)
+				return COMPONENT_MOVABLE_PREBUMP_STOPPED
 		crushed_obj.take_damage(precrush * obj_damage_mult, BRUTE, MELEE)
 		if(QDELETED(crushed_obj))
 			charger.visible_message(span_danger("[charger] crushes [preserved_name]!"),
@@ -516,7 +528,7 @@
 /obj/structure/razorwire/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/ability/xeno_action/ready_charge/charge_datum)
 	if(!anchored)
 		return ..()
-	razorwire_tangle(charger, RAZORWIRE_ENTANGLE_DELAY * 0.10) //entangled for only 10% as long or 0.5 seconds
+	razorwire_tangle(charger, 0.5 SECONDS)
 	charger.visible_message(span_danger("The barbed wire slices into [charger]!"),
 	span_danger("The barbed wire slices into you!"), null, 5)
 	charger.Paralyze(0.5 SECONDS)
@@ -526,14 +538,15 @@
 	return PRECRUSH_ENTANGLED //Let's return this so that the charger may enter the turf in where it's entangled, if it survived the wounds without gibbing.
 
 
-/obj/structure/door/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/ability/xeno_action/ready_charge/charge_datum)
-	if(!anchored || !density)
+/obj/structure/mineral_door/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/ability/xeno_action/ready_charge/charge_datum)
+	if(!anchored)
 		return ..()
-
-	attempt_to_open(charger, TRUE, TRUE, angle2dir(Get_Angle(src, charger)), TRUE)
-	if(!CHECK_BITFIELD(door_flags, DOOR_OPEN))
+	if(!open)
+		toggle_state(charger)
+	if(density)
 		return PRECRUSH_STOPPED
-
+	charger.visible_message(span_danger("[charger] slams [src] open!"),
+	span_xenowarning("We slam [src] open!"))
 	return PRECRUSH_PLOWED
 
 

@@ -1,0 +1,11070 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ad" = (
+/obj/structure/flora/jungle/vines/heavy,
+/obj/structure/flora/jungle/vines/heavy,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"aj" = (
+/obj/structure/flora/ausbushes/palebush,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"ak" = (
+/obj/structure/flora/jungle/planttop1,
+/turf/closed/gm/dense,
+/area/corsat/theta/biodome)
+"an" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"ap" = (
+/obj/structure/table/reinforced,
+/obj/structure/paper_bin,
+/obj/item/tool/pen/red,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"at" = (
+/obj/machinery/photocopier,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"au" = (
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"ax" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"ay" = (
+/obj/structure/flora/ausbushes/fernybush,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"az" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"aD" = (
+/obj/structure/fence,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"aG" = (
+/obj/structure/table/mainship,
+/obj/item/storage/fancy/vials,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"aL" = (
+/obj/structure/flora/jungle/vines/heavy,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"ba" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"be" = (
+/obj/effect/turf_decal/tile/corsatcorner/red,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"bg" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/botany{
+	name = "hydroponics tray"
+	},
+/obj/effect/turf_decal/tile/full/white,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"bj" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"bk" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"bs" = (
+/obj/structure/flora/jungle/vines,
+/turf/open/floor/dark2,
+/area/corsat/theta/biodome)
+"bu" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"bB" = (
+/obj/structure/sign/safety/airlock{
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/turf_decal/symbol/corsat/symbol/theta,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"bC" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/wood,
+/area/corsat/theta/biodome/complex)
+"bD" = (
+/obj/structure/table/mainship,
+/obj/item/tool/extinguisher,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"bF" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/turf/open/floor/dark2,
+/area/corsat/theta/airlock/control)
+"bG" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/item/stack/sheet/metal{
+	pixel_x = 1
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"bM" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"bN" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"bO" = (
+/obj/structure/flora/ausbushes/leafybush,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"bP" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"bQ" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"bS" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"bU" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatcorner/purple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/biodome/complex)
+"bX" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/dark2,
+/area/corsat/theta/biodome)
+"bY" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"cf" = (
+/obj/machinery/door/airlock/mainship/security/glass{
+	name = "Airlock Control"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"ch" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"cn" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/corsat/theta/biodome/complex)
+"cq" = (
+/obj/effect/turf_decal/tile/corsatcorner/blue,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"cs" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"cw" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"cy" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/obj/effect/landmark/corpsespawner/prisoner,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"cB" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"cC" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"cD" = (
+/obj/structure/bed/chair/office/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"cJ" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	name = "CO2 Control"
+	},
+/obj/effect/turf_decal/tile/corsatsemi/yellow,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"cM" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/turf_decal/tile/corsatcorner/yellow,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"cN" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"cQ" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"cT" = (
+/obj/structure/sign/safety/airlock{
+	pixel_x = -32
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"cV" = (
+/obj/structure/rack,
+/obj/item/lightreplacer,
+/obj/item/storage/box/lights,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"cX" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"cZ" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"dc" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/corsat/theta/biodome/complex)
+"di" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/bot/cleanbot,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"dr" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"dy" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/biodome/complex)
+"dA" = (
+/obj/structure/closet/wardrobe/genetics_white,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"dD" = (
+/obj/structure/flora/jungle/vines,
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"dK" = (
+/obj/machinery/smartfridge,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"dO" = (
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"dT" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"ea" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"eb" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"eh" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"ek" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"ep" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"es" = (
+/obj/structure/table/mainship,
+/obj/item/storage/fancy/vials,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"ez" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"eO" = (
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"eP" = (
+/obj/effect/turf_decal/tile/corsatcorner/purple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/biodome/complex)
+"eS" = (
+/turf/closed/wall,
+/area/corsat/theta/biodome)
+"eU" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"fa" = (
+/obj/effect/turf_decal/tile/full/white,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"fd" = (
+/obj/structure/prop/mainship/cannon_cable_connector{
+	name = "\improper Cable connector"
+	},
+/obj/structure/prop/mainship/missile_tube{
+	color = "grey";
+	desc = "An linear accelerator used in experimental genetic treatments. It hums ominously.";
+	name = "\improper genetic LINAC system";
+	pixel_x = -15
+	},
+/turf/open/shuttle/escapepod,
+/area/corsat/theta/biodome/complex)
+"fm" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"fq" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"ft" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"fu" = (
+/obj/effect/landmark/dropship_start_location,
+/turf/closed/gm/dense,
+/area/corsat/theta/biodome)
+"fv" = (
+/obj/docking_port/stationary/crashmode,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"fB" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"fG" = (
+/obj/machinery/bot/cleanbot,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"fJ" = (
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 4
+	},
+/obj/structure/prop/mainship/pipeprop/pump{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"fM" = (
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"fP" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	dir = 1;
+	name = "Reception Desk"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"fQ" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/corsat/theta/biodome/complex)
+"fS" = (
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round,
+/area/corsat/theta/biodome)
+"fU" = (
+/obj/structure/flora/jungle/plantbot1/alien,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"fW" = (
+/obj/machinery/door/airlock/mainship/maint{
+	name = "Maintainence"
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"ga" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/computer/security{
+	network = list("theta")
+	},
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/corsatstraight/red,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"gc" = (
+/obj/structure/table/reinforced,
+/obj/item/folder/black_random,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"ge" = (
+/obj/structure/table/mainship,
+/obj/item/storage/box/botanydisk,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"gf" = (
+/obj/effect/turf_decal/tile/full/black,
+/turf/closed/wall/r_wall/unmeltable,
+/area/corsat/theta/biodome)
+"gh" = (
+/obj/machinery/door/airlock/mainship/maint,
+/turf/open/floor/dark2,
+/area/corsat/theta/biodome)
+"gi" = (
+/obj/structure/closet/fireaxecabinet{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"gn" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/corsat/theta/biodome/complex)
+"gs" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"gv" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"gy" = (
+/obj/structure/disposaloutlet{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"gD" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "Research Complex Theta"
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"gP" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"gR" = (
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"gU" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/mainship,
+/obj/machinery/computer/secure_data{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"gY" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"he" = (
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"hq" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"hy" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"hz" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/turf_decal/symbol/corsat/symbol/theta,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"hJ" = (
+/obj/machinery/processor,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"hN" = (
+/obj/machinery/vending/cigarette/colony,
+/turf/open/floor/wood,
+/area/corsat/theta/biodome/complex)
+"hP" = (
+/obj/structure/flora/ausbushes/sunnybush,
+/obj/structure/flora/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"hS" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/machinery/colony_floodlight_switch{
+	desc = "This switch controls the floodlights around the biodome. It only functions when there is power."
+	},
+/obj/effect/turf_decal/tile/corsatsemi/yellow,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"hW" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"hZ" = (
+/obj/effect/turf_decal/tile/corsatcorner/red{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"ic" = (
+/obj/structure/prop/mainship/cannon_cables{
+	name = "\improper Cables"
+	},
+/obj/structure/cryofeed/right{
+	color = "silver";
+	desc = "A bewildering tangle of machinery and pipes.";
+	name = "\improper coolant feed"
+	},
+/turf/open/shuttle/escapepod,
+/area/corsat/theta/biodome/complex)
+"id" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/emcloset,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"ie" = (
+/obj/structure/flora/jungle/plantbot1,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"ii" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"iv" = (
+/obj/structure/flora/jungle/vines,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"iA" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"iF" = (
+/obj/structure/prop/mainship/cannon_cables{
+	name = "\improper Cables"
+	},
+/obj/structure/cryofeed{
+	color = "silver";
+	desc = "A bewildering tangle of machinery and pipes.";
+	name = "coolant feed"
+	},
+/turf/open/shuttle/escapepod,
+/area/corsat/theta/biodome/complex)
+"iL" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"iM" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"iN" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"iT" = (
+/obj/effect/turf_decal/tile/corsatcorner/blue{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"iW" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/atmos_alert{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatsemi/blue{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"iX" = (
+/obj/structure/filingcabinet/filingcabinet,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"jc" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"jf" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"jj" = (
+/obj/structure/flora/ausbushes/fernybush,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"jq" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"jr" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"jw" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/obj/structure/prop/computer/broken/thirteen,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"jx" = (
+/obj/machinery/door/window{
+	dir = 2;
+	name = "Identification Desk"
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door/window{
+	dir = 1;
+	name = "Identification Desk"
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"jy" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"jB" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"jH" = (
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"jJ" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"jN" = (
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"jU" = (
+/obj/structure/flora/jungle/plantbot1,
+/turf/closed/gm/dense,
+/area/corsat/theta/biodome)
+"ka" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"ke" = (
+/obj/structure/sign/safety/airlock{
+	pixel_x = 32
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"kg" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"km" = (
+/obj/machinery/computer3,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"ks" = (
+/obj/machinery/door/window{
+	dir = 1
+	},
+/obj/machinery/door/window{
+	dir = 2
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"ky" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"kz" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"kB" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"kE" = (
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"kU" = (
+/turf/closed/wall/r_wall/unmeltable,
+/area/corsat/theta/biodome)
+"kV" = (
+/obj/structure/table/mainship,
+/obj/item/storage/box/monkeycubes/farwacubes,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"kY" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"kZ" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"lb" = (
+/obj/effect/turf_decal/tile/corsatsemi/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"ld" = (
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/dark2,
+/area/corsat/theta/biodome)
+"lg" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"lj" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"lk" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"ll" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"lm" = (
+/obj/structure/flora/jungle/plantbot1,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"lp" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/corsat/theta/airlock/control)
+"lu" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"lK" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/dark2,
+/area/corsat/theta/biodome)
+"lR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"mj" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/turf_decal/warning_stripes/box,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"mo" = (
+/obj/effect/turf_decal/tile/full/white,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"mp" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"mr" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"ms" = (
+/obj/structure/flora/jungle/vines/heavy,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"mz" = (
+/obj/effect/ai_node,
+/turf/open/shuttle/escapepod,
+/area/corsat/theta/biodome/complex)
+"mA" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/jungle/vines/heavy,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"mG" = (
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"mL" = (
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"mN" = (
+/obj/structure/flora/ausbushes/reedbush,
+/turf/open/liquid/water/river/autosmooth,
+/area/corsat/theta/biodome)
+"mQ" = (
+/obj/structure/flora/ausbushes/fernybush,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"mS" = (
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"mU" = (
+/obj/effect/landmark/excavation_site_spawner,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"mW" = (
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"ne" = (
+/obj/structure/bed/chair/office/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatcorner/red{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"nn" = (
+/obj/structure/closet/jcloset,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"np" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"nv" = (
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"nz" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"nA" = (
+/obj/structure/table/mainship,
+/obj/machinery/reagentgrinder{
+	pixel_y = 5
+	},
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"nJ" = (
+/obj/structure/prop/mainship/sensor_computer2,
+/turf/open/shuttle/escapepod,
+/area/corsat/theta/biodome/complex)
+"nM" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"nP" = (
+/obj/structure/flora/jungle/plantbot1,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"nS" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"nX" = (
+/obj/machinery/door_control{
+	dir = 8;
+	id = "ThetaBioAtmos";
+	name = "Access Shutters"
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"nY" = (
+/obj/effect/turf_decal/tile/corsatcorner/red{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"ob" = (
+/obj/machinery/door/airlock/mainship/engineering{
+	name = "Theta Dome Control"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"oc" = (
+/obj/structure/bed/chair/comfy/black,
+/turf/open/floor/wood,
+/area/corsat/theta/biodome/complex)
+"of" = (
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"oh" = (
+/obj/item/reagent_containers/glass/bucket/janibucket,
+/obj/item/tool/mop,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"ol" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"on" = (
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"op" = (
+/obj/effect/turf_decal/tile/full/graylarge,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"os" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"oz" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"oA" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	dir = 1
+	},
+/turf/open/floor/dark2,
+/area/corsat/theta/airlock/control)
+"oG" = (
+/obj/effect/landmark/corpsespawner/prisoner,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"oJ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"oM" = (
+/obj/effect/turf_decal/tile/corsatstraight/red,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"oN" = (
+/obj/structure/flora/jungle/plantbot1/alien,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"oP" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"oQ" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/corsat/theta/biodome/complex)
+"oY" = (
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"oZ" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/machinery/atmospherics/pipe/manifold/green,
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"pq" = (
+/obj/structure/flora/jungle/vines/heavy,
+/turf/closed/gm/dense,
+/area/corsat/theta/biodome)
+"ps" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	name = "West Hydroponics Wing"
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"pw" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"pF" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/shuttle/escapepod,
+/area/corsat/theta/biodome/complex)
+"pH" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"pK" = (
+/obj/effect/turf_decal/tile/full/white,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"pM" = (
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"pR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"qa" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"qb" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"qd" = (
+/turf/closed/wall,
+/area/corsat/theta/biodome/hydroeast)
+"qh" = (
+/obj/machinery/door/airlock/mainship/maint{
+	name = "Maintainence"
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"qj" = (
+/obj/structure/flora/jungle/plantbot1,
+/turf/open/liquid/water/river/autosmooth,
+/area/corsat/theta/biodome)
+"ql" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"qm" = (
+/obj/structure/table/mainship,
+/obj/structure/paper_bin,
+/obj/item/tool/pen/red,
+/obj/effect/turf_decal/tile/corsatsemi/red,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"qn" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/hydroponics,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"qq" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"qt" = (
+/obj/effect/turf_decal/tile/corsatcorner/red,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"qv" = (
+/obj/structure/flora/ausbushes/fernybush,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"qC" = (
+/obj/structure/flora/jungle/planttop1,
+/turf/open/liquid/water/river/autosmooth,
+/area/corsat/theta/biodome)
+"qG" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"qP" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"qR" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2;
+	name = "Maintainance"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"qT" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/heater,
+/turf/open/shuttle/escapepod,
+/area/corsat/theta/biodome/complex)
+"qY" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"ra" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/item/stack/sheet/metal{
+	pixel_x = 3
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"rf" = (
+/obj/structure/disposaloutlet{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"ri" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	name = "Research Complex"
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"rj" = (
+/obj/structure/closet/secure_closet/security,
+/obj/effect/turf_decal/tile/corsatsemi/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"rk" = (
+/obj/machinery/light,
+/obj/machinery/botany{
+	name = "hydroponics tray"
+	},
+/obj/effect/turf_decal/tile/full/white,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"rl" = (
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"rm" = (
+/obj/machinery/smartfridge/seeds,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"ro" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"rr" = (
+/obj/effect/turf_decal/tile/full/white,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"rs" = (
+/obj/machinery/botany/editor,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"ry" = (
+/obj/structure/flora/ausbushes/fernybush,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"rz" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"rL" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"rP" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/turf_decal/symbol/corsat/symbol/theta,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"rS" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"rU" = (
+/obj/structure/flora/jungle/vines,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"rZ" = (
+/obj/structure/prop/mainship/cannon_cable_connector{
+	name = "\improper Cable connector"
+	},
+/turf/open/shuttle/escapepod,
+/area/corsat/theta/biodome/complex)
+"sc" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/obj/machinery/disposal,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"sg" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/optable,
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"sl" = (
+/obj/machinery/botany{
+	name = "hydroponics tray"
+	},
+/obj/effect/turf_decal/tile/full/white,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"sq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/closed/gm/dense,
+/area/corsat/theta/biodome)
+"sv" = (
+/obj/machinery/meter,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"sG" = (
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"sH" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"sN" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"sP" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"sT" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/botany{
+	name = "hydroponics tray"
+	},
+/obj/effect/turf_decal/tile/full/white,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"sU" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"sY" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/corsat/theta/biodome/complex)
+"td" = (
+/obj/machinery/seed_extractor,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"tj" = (
+/obj/structure/sink{
+	pixel_y = 24
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/corsat/theta/biodome/complex)
+"tk" = (
+/obj/machinery/door/airlock/mainship/generic{
+	name = "\improper Toilet Unit"
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/corsat/theta/biodome/complex)
+"tn" = (
+/obj/structure/rack,
+/obj/item/tank/air,
+/obj/item/tank/air,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"tB" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"tC" = (
+/obj/structure/prop/mainship/protolathe/sci,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"tL" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"tS" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight,
+/obj/effect/turf_decal/tile/corsatsemi/red{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"ub" = (
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"ue" = (
+/obj/machinery/biogenerator,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"uk" = (
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"ur" = (
+/obj/effect/landmark/weed_node,
+/turf/closed/gm/dense,
+/area/corsat/theta/biodome)
+"uu" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/turf/open/floor/grayscale/black,
+/area/corsat/theta/biodome)
+"uv" = (
+/turf/closed/wall/r_wall,
+/area/corsat/theta/airlock/control)
+"uz" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"uE" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/dark2,
+/area/corsat/theta/airlock/control)
+"uG" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"uO" = (
+/obj/structure/table/mainship,
+/obj/item/storage/donut_box,
+/obj/item/tool/lighter/random,
+/obj/effect/turf_decal/tile/corsatsemi/red,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"uP" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"uU" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"uV" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"uW" = (
+/obj/effect/landmark/excavation_site_spawner,
+/obj/machinery/atmospherics/pipe/manifold/green,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"vd" = (
+/obj/machinery/portable_atmospherics/canister,
+/turf/open/floor/dark2,
+/area/corsat/theta/airlock/control)
+"vi" = (
+/obj/effect/turf_decal/tile/full/white,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"vj" = (
+/obj/structure/flora/ausbushes/grassybush,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"vk" = (
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"vp" = (
+/obj/structure/closet/radiation,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"vr" = (
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
+/obj/structure/table/mainship,
+/obj/item/tool/minihoe,
+/obj/item/tool/hatchet,
+/obj/item/tool/shovel/spade,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"vz" = (
+/obj/machinery/door/airlock/mainship/engineering{
+	name = "Theta Dome Control"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"vJ" = (
+/obj/effect/turf_decal/tile/corsatsemi/yellow{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/trinary/filter,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"vK" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"vM" = (
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"vP" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"vU" = (
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+	dir = 1;
+	name = "Genetics Lab"
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"vW" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/fernybush,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"vY" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"wb" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"wf" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/dark2,
+/area/corsat/theta/biodome)
+"wh" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"wm" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"wB" = (
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"wE" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"wO" = (
+/obj/machinery/photocopier,
+/obj/effect/turf_decal/tile/corsatsemi/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"wP" = (
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+	dir = 1;
+	name = "Dehydration Chamber"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"wS" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/atmos_alert,
+/obj/effect/turf_decal/tile/corsatstraight/yellow,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"wU" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"wX" = (
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/biodome/complex)
+"xb" = (
+/obj/structure/flora/jungle/vines/heavy,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"xd" = (
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"xg" = (
+/obj/structure/flora/ausbushes/sunnybush,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"xh" = (
+/obj/effect/turf_decal/tile/corsatcorner/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"xp" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"xz" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	dir = 1;
+	name = "Research Complex"
+	},
+/obj/effect/turf_decal/tile/full/white,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"xE" = (
+/obj/structure/flora/jungle/vines/heavy,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"xM" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"xN" = (
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"xP" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"xQ" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"xV" = (
+/obj/structure/flora/jungle/vines/heavy,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"xY" = (
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/obj/effect/landmark/corpsespawner/prisoner,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"yb" = (
+/obj/effect/turf_decal/tile/corsatcorner/blue{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"yc" = (
+/obj/machinery/vending/hydronutrients,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"yj" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	dir = 1;
+	name = "Research Complex"
+	},
+/obj/effect/turf_decal/tile/full/white,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"yk" = (
+/obj/structure/flora/jungle/vines/heavy,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"ym" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"yo" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"yr" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/corsat/theta/biodome/complex)
+"ys" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"yy" = (
+/obj/structure/flora/jungle/vines/heavy,
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"yG" = (
+/turf/closed/wall,
+/area/corsat/theta/biodome/complex)
+"yJ" = (
+/obj/machinery/vending/coffee,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"yL" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window{
+	name = "Research Desk"
+	},
+/obj/machinery/door/window{
+	name = "Research Desk"
+	},
+/obj/machinery/bot/medbot,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"yO" = (
+/obj/structure/flora/ausbushes/palebush,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"yP" = (
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"yX" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"yY" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"zd" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"ze" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"zh" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"zk" = (
+/turf/open/shuttle/escapepod,
+/area/corsat/theta/biodome/complex)
+"zl" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/smartfridge/seeds,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"zm" = (
+/obj/structure/flora/jungle/vines,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"zo" = (
+/obj/structure/table/mainship,
+/obj/item/folder/black_random,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"zu" = (
+/obj/structure/flora/jungle/vines/heavy,
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"zv" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating,
+/area/corsat/theta/airlock/control)
+"zy" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"zA" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2;
+	locked = 1;
+	name = "Maintainance"
+	},
+/obj/structure/flora/jungle/vines/heavy,
+/turf/open/floor/dark2,
+/area/corsat/theta/biodome)
+"zI" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"zJ" = (
+/obj/effect/turf_decal/tile/full/white,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"zK" = (
+/obj/effect/ai_node,
+/turf/open/floor/dark2,
+/area/corsat/theta/biodome)
+"zM" = (
+/obj/effect/turf_decal/tile/corsatcorner/blue{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"zV" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/jungle/vines/heavy,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"zX" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	dir = 1;
+	name = "Research Complex"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"zY" = (
+/obj/effect/turf_decal/tile/full/white,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"Aa" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "Laboratory"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Ai" = (
+/obj/effect/landmark/excavation_site_spawner,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Ar" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Ax" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2;
+	name = "Maintainance"
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"AA" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"AF" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"AJ" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"AU" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"AW" = (
+/obj/structure/flora/ausbushes/sunnybush,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Bb" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Bc" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Bd" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Bg" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Bi" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Bm" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"Bn" = (
+/obj/structure/flora/jungle/planttop1,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Bp" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 8
+	},
+/obj/machinery/disposal,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"Bq" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Bt" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Bu" = (
+/obj/effect/turf_decal/tile/corsatcorner/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Bx" = (
+/obj/machinery/power/apc/drained{
+	dir = 4;
+	start_charge = 0
+	},
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Bz" = (
+/obj/machinery/door/airlock/mainship/security/glass{
+	name = "Airlock Control"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/red,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"BB" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/item/storage/toolbox/electrical,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"BE" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/station_alert,
+/obj/effect/turf_decal/tile/corsatstraight/yellow,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"BG" = (
+/obj/machinery/atmospherics/pipe/manifold4w/green,
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"BL" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"BM" = (
+/obj/structure/flora/jungle/planttop1,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"BR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"BT" = (
+/obj/machinery/door/window{
+	dir = 1
+	},
+/obj/machinery/door/window{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"BW" = (
+/obj/effect/turf_decal/tile/corsatcorner/yellow,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"BX" = (
+/obj/structure/flora/ausbushes/leafybush,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"BY" = (
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Cj" = (
+/obj/structure/xeno/tunnel,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Cm" = (
+/obj/structure/flora/ausbushes/sunnybush,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Co" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Cq" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/full/white,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Cy" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/wood,
+/area/corsat/theta/biodome/complex)
+"CA" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"CC" = (
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"CG" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	name = "Mixed Air Control"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"CS" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Dc" = (
+/obj/structure/flora/ausbushes/fernybush,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Dh" = (
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/obj/structure/prop/mainship/research/destructive_analyzer,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Dm" = (
+/obj/structure/flora/jungle/vines/heavy,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Dn" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"Dp" = (
+/obj/structure/closet/wardrobe/atmospherics_yellow,
+/obj/effect/turf_decal/tile/corsatsemi/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Dt" = (
+/obj/structure/flora/ausbushes/fernybush,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Dz" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/obj/machinery/disposal,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"DA" = (
+/obj/structure/flora/jungle/planttop1,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"DB" = (
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"DK" = (
+/turf/closed/wall/r_wall/unmeltable,
+/area/corsat/theta/airlock/control)
+"DR" = (
+/obj/effect/landmark/excavation_site_spawner,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"DX" = (
+/turf/closed/gm/dense,
+/area/corsat/theta/biodome)
+"Ea" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Ec" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Ei" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Ek" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"En" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Ep" = (
+/obj/structure/flora/jungle/plantbot1/alien,
+/obj/structure/flora/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"EA" = (
+/obj/structure/flora/jungle/plantbot1/alien,
+/turf/open/liquid/water/river/autosmooth,
+/area/corsat/theta/biodome)
+"EC" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"EE" = (
+/obj/effect/turf_decal/tile/full/white,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"EM" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"EQ" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"ET" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	dir = 1;
+	name = "Lounge"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/wood,
+/area/corsat/theta/biodome/complex)
+"Fh" = (
+/obj/machinery/vending/hydronutrients,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Fi" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Fp" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Ft" = (
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Fw" = (
+/obj/machinery/miner/damaged,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Fz" = (
+/obj/effect/turf_decal/tile/corsatstraight/purple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/biodome/complex)
+"FC" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"FF" = (
+/obj/structure/flora/ausbushes/fernybush,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"FM" = (
+/obj/structure/flora/ausbushes/fernybush,
+/obj/machinery/atmospherics/pipe/manifold/green,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"FP" = (
+/obj/machinery/vending/hydronutrients,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"FQ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/liquid/water/river/autosmooth,
+/area/corsat/theta/biodome)
+"FT" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	name = "Research Complex"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"FV" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Ga" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Gc" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Gh" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"Gt" = (
+/obj/item/binoculars,
+/obj/structure/table/mainship,
+/obj/machinery/door_control{
+	id = "ThetaControl";
+	name = "Observation Shutters";
+	pixel_y = 5;
+	use_power = 0
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Gx" = (
+/obj/structure/bed/chair/comfy/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Gy" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"GJ" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"GV" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"GX" = (
+/obj/effect/turf_decal/tile/full/white,
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"Hb" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Hf" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Hn" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Hq" = (
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Hu" = (
+/obj/structure/flora/ausbushes/palebush,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Hy" = (
+/obj/effect/turf_decal/tile/corsatcorner/purple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/biodome/complex)
+"HC" = (
+/obj/structure/flora/jungle/planttop1,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"HF" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"HG" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"HJ" = (
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"HK" = (
+/obj/structure/flora/jungle/plantbot1,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"HL" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/biodome/complex)
+"HM" = (
+/obj/machinery/processor,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"HP" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"HR" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/biodome/complex)
+"HS" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"HY" = (
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"HZ" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Ig" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/emails,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Ih" = (
+/obj/effect/turf_decal/tile/corsatcorner/purple,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/biodome/complex)
+"Ii" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Im" = (
+/obj/machinery/miner/damaged,
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Io" = (
+/obj/structure/flora/jungle/plantbot1,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Ir" = (
+/obj/structure/table/mainship,
+/obj/item/folder/black_random,
+/obj/effect/turf_decal/tile/corsatstraight/red,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Is" = (
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Iu" = (
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Iw" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Iy" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/emails{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"IA" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"IG" = (
+/obj/structure/flora/jungle/vines/heavy,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"IQ" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/med_data/laptop{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Je" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Jf" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Jo" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Jr" = (
+/obj/effect/turf_decal/tile/corsatsemi/red{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"JA" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	name = "Waste Tank Control"
+	},
+/obj/effect/turf_decal/tile/corsatsemi/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"JX" = (
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"JY" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/shuttle/escapepod,
+/area/corsat/theta/biodome/complex)
+"Kh" = (
+/obj/structure/closet/crate/science,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Km" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Kn" = (
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Ks" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Kw" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Kx" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"KB" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"KD" = (
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"KF" = (
+/obj/structure/table/mainship,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"KG" = (
+/obj/structure/flora/ausbushes/fernybush,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"KH" = (
+/obj/structure/table/mainship,
+/obj/item/tool/surgery/scalpel,
+/obj/item/tool/surgery/circular_saw,
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"KS" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Lb" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Lf" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Lt" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/turf_decal/symbol/corsat/symbol/theta,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/biodome/complex)
+"Lw" = (
+/obj/machinery/botany{
+	name = "hydroponics tray"
+	},
+/obj/effect/turf_decal/tile/full/white,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"Lz" = (
+/obj/structure/flora/jungle/vines/heavy,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"LA" = (
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 4
+	},
+/obj/effect/landmark/corpsespawner/prisoner,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"LB" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round,
+/area/corsat/theta/biodome)
+"LN" = (
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/dark2,
+/area/corsat/theta/biodome)
+"LU" = (
+/obj/structure/flora/jungle/plantbot1/alien,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"LX" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"LY" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"LZ" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Mc" = (
+/obj/structure/janitorialcart,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"Mj" = (
+/obj/structure/flora/ausbushes/leafybush,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Mm" = (
+/obj/structure/computerframe,
+/obj/effect/decal/cleanable/cobweb{
+	dir = 4
+	},
+/turf/open/floor/dark2,
+/area/corsat/theta/biodome)
+"Mn" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Mq" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight/lamp,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Mw" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Mz" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/obj/machinery/disposal,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"MB" = (
+/obj/structure/closet/secure_closet/security,
+/obj/effect/turf_decal/tile/corsatstraight/red,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"ME" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door_control{
+	id = "ThetaNorthS";
+	name = "Airlock Control";
+	pixel_y = -2;
+	use_power = 0
+	},
+/obj/machinery/door_control{
+	id = "ThetaNorthN";
+	name = "Airlock Control";
+	pixel_y = 5;
+	use_power = 0
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"MF" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"MH" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"MM" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "Laboratory"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"MR" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 4;
+	id = "ThetaControl";
+	name = "Observation Shutters";
+	use_power = 0
+	},
+/turf/open/floor/plating,
+/area/corsat/theta/airlock/control)
+"MU" = (
+/obj/machinery/vending/snack,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"MW" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Nf" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"Nn" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Ns" = (
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Nt" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Nu" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Nv" = (
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Ny" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/shuttle/escapepod,
+/area/corsat/theta/biodome/complex)
+"Nz" = (
+/obj/structure/table/mainship,
+/obj/item/storage/box/monkeycubes,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"NA" = (
+/obj/structure/flora/ausbushes/fernybush,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"NH" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"NI" = (
+/obj/structure/flora/ausbushes/leafybush,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"NJ" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"NM" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"Oc" = (
+/obj/effect/turf_decal/tile/full/white,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"Od" = (
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/jungle/vines,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Oe" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Oh" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Oi" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Oj" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Oz" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/mainship/open{
+	id = "ThetaControl";
+	name = "Observation Shutters";
+	use_power = 0
+	},
+/turf/open/floor/plating,
+/area/corsat/theta/airlock/control)
+"OB" = (
+/obj/structure/flora/ausbushes/palebush,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"OC" = (
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"OD" = (
+/obj/structure/filingcabinet/filingcabinet,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"OG" = (
+/obj/structure/table/mainship,
+/obj/item/clipboard,
+/obj/item/paper,
+/obj/item/tool/pen/red,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"OK" = (
+/obj/structure/flora/ausbushes/fernybush,
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"OM" = (
+/obj/item/tool/extinguisher,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"ON" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"OT" = (
+/obj/machinery/atmospherics/pipe/manifold4w/green,
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"OV" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"OY" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"OZ" = (
+/obj/machinery/power/apc/drained{
+	start_charge = 0
+	},
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple,
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"Pb" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Ph" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Pi" = (
+/obj/structure/closet/emcloset,
+/obj/effect/turf_decal/tile/corsatstraight/red,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Pm" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/flora/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Pq" = (
+/obj/effect/turf_decal/tile/corsatsemi/yellow{
+	dir = 4
+	},
+/obj/structure/prop/mainship/pipeprop/pump{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"PI" = (
+/obj/structure/flora/jungle/vines,
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"PK" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 1
+	},
+/obj/machinery/disposal,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"PL" = (
+/obj/structure/flora/jungle/plantbot1,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"PT" = (
+/obj/structure/prop/mainship/sensor_computer1,
+/turf/open/shuttle/escapepod,
+/area/corsat/theta/biodome/complex)
+"Qe" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Qr" = (
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Qt" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Qu" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2;
+	name = "Maintainance"
+	},
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Qv" = (
+/obj/structure/sign/safety/laser{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/obj/structure/platform_decoration{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Qx" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/biodome/complex)
+"Qz" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"QC" = (
+/obj/item/tool/analyzer/plant_analyzer,
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"QE" = (
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"QG" = (
+/obj/structure/table/mainship,
+/obj/item/camera,
+/obj/effect/turf_decal/tile/corsatsemi/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"QH" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"QJ" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "Hydroponics Lab"
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"QL" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"QO" = (
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"QT" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"QW" = (
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Ra" = (
+/obj/structure/flora/jungle/vines,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Rc" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Re" = (
+/obj/effect/turf_decal/tile/corsatcorner/blue{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Rf" = (
+/obj/machinery/power/apc/drained{
+	start_charge = 0
+	},
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"Rp" = (
+/obj/structure/flora/ausbushes/fernybush,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Rt" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Ru" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Rv" = (
+/obj/machinery/power/apc/drained{
+	start_charge = 0
+	},
+/obj/structure/closet/wardrobe/atmospherics_yellow,
+/obj/effect/turf_decal/tile/corsatstraight/yellow,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"RB" = (
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"RD" = (
+/turf/closed/wall,
+/area/corsat/theta/biodome/hydrowest)
+"RE" = (
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"RG" = (
+/obj/structure/flora/jungle/plantbot1/alien,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"RI" = (
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"RQ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/firecloset,
+/obj/effect/turf_decal/tile/corsatstraight/red,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"RS" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"RT" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tech_supply,
+/turf/open/floor/dark2,
+/area/corsat/theta/biodome)
+"RU" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Sd" = (
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Sg" = (
+/obj/effect/decal/cleanable/cobweb{
+	dir = 1
+	},
+/turf/open/floor/dark2,
+/area/corsat/theta/biodome)
+"Sl" = (
+/obj/effect/turf_decal/tile/corsatsemi/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"St" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/corsat/theta/biodome/hydroeast)
+"Su" = (
+/turf/template_noop,
+/area/template_noop)
+"Sx" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"SD" = (
+/turf/open/floor/grayscale/round,
+/area/corsat/theta/biodome)
+"SH" = (
+/turf/open/floor/dark2,
+/area/corsat/theta/airlock/control)
+"SL" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"SN" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"SU" = (
+/obj/effect/turf_decal/tile/full/white,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"Tb" = (
+/obj/effect/turf_decal/tile/full/white,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"Tf" = (
+/turf/open/floor/dark2,
+/area/corsat/theta/biodome)
+"Tg" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Ti" = (
+/obj/effect/turf_decal/tile/corsatcorner/red,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Tq" = (
+/obj/effect/landmark/weed_node,
+/turf/open/shuttle/escapepod,
+/area/corsat/theta/biodome/complex)
+"Tv" = (
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Tz" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"TG" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"TI" = (
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"TJ" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"TN" = (
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"TQ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"TS" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"TU" = (
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"TV" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"TY" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Ub" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Ud" = (
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Ue" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/jungle/planttop1,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Uh" = (
+/obj/machinery/door/airlock/mainship/engineering{
+	name = "Theta Dome Control"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 1
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Un" = (
+/obj/machinery/botany/extractor,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Uq" = (
+/obj/structure/closet/wardrobe/science_white,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Ur" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight/lamp,
+/obj/effect/turf_decal/tile/corsatsemi/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Uu" = (
+/obj/structure/xeno/tunnel,
+/turf/open/floor/wood,
+/area/corsat/theta/biodome/complex)
+"UB" = (
+/obj/effect/turf_decal/tile/full/white,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"UE" = (
+/obj/structure/closet/emcloset,
+/obj/effect/turf_decal/tile/corsatsemi/red,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"UO" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"US" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/dark2,
+/area/corsat/theta/biodome)
+"UU" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/station_alert{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Va" = (
+/obj/structure/bed/chair/office/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Ve" = (
+/obj/structure/table/mainship,
+/obj/item/clipboard,
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Vf" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Vl" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Vq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"Vw" = (
+/obj/structure/bed/chair/office/light,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Vy" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	dir = 8
+	},
+/turf/open/floor/dark2,
+/area/corsat/theta/airlock/control)
+"Vz" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"VG" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"VI" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"VL" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"VQ" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"VU" = (
+/obj/machinery/smartfridge/seeds,
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydroeast)
+"Wb" = (
+/obj/machinery/light,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"We" = (
+/obj/structure/table/mainship,
+/obj/machinery/door_control{
+	id = "ThetaNorthD";
+	name = "Entrance Airlock Control";
+	pixel_y = 5;
+	use_power = 0
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Wf" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"Wk" = (
+/obj/machinery/floodlight/colony{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Wn" = (
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Wq" = (
+/obj/structure/flora/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Wr" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Wt" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Wy" = (
+/obj/structure/flora/ausbushes/fernybush,
+/turf/open/liquid/water/river/autosmooth,
+/area/corsat/theta/biodome)
+"Wz" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"WC" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 1
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"WE" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"WM" = (
+/obj/machinery/light,
+/obj/machinery/botany{
+	name = "hydroponics tray"
+	},
+/obj/effect/turf_decal/tile/full/white,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"WP" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"WY" = (
+/obj/machinery/door/airlock/mainship/maint{
+	name = "Maintainence"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Xm" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"Xo" = (
+/obj/structure/flora/jungle/vines/heavy,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/obj/effect/ai_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Xp" = (
+/obj/structure/flora/ausbushes/fernybush,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Xq" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/turf_decal/symbol/corsat/symbol/theta,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/biodome/complex)
+"Xw" = (
+/obj/machinery/meter,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Xx" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"XB" = (
+/obj/structure/flora/jungle/planttop1,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"XE" = (
+/obj/effect/turf_decal/tile/full/white,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/hydrowest)
+"XF" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"XG" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/corsat/theta/airlock/control)
+"XJ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/liquid/water/river/autosmooth,
+/area/corsat/theta/biodome)
+"XK" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"XL" = (
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor{
+	name = "Theta Dome Control"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"XN" = (
+/turf/open/floor/wood,
+/area/corsat/theta/biodome/complex)
+"XO" = (
+/obj/structure/flora/ausbushes/leafybush,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"XR" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"XS" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	name = "East Hydroponics Wing"
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"XT" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight/slime,
+/obj/item/flashlight/slime{
+	pixel_y = 8
+	},
+/obj/item/flashlight/slime{
+	pixel_x = -10
+	},
+/obj/item/flashlight/slime{
+	pixel_x = 10
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"XU" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/machinery/mech_bay_recharge_port{
+	pixel_x = 8
+	},
+/obj/effect/turf_decal/tile/full/white,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"XY" = (
+/obj/structure/flora/ausbushes/fernybush,
+/obj/structure/flora/jungle/planttop1,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Ya" = (
+/obj/structure/flora/jungle/vines,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Yb" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/dark2,
+/area/corsat/theta/biodome)
+"Yf" = (
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Yi" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/dark2,
+/area/corsat/theta/airlock/control)
+"Yr" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Ys" = (
+/obj/effect/turf_decal/tile/corsatsemi/lightpurple{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Yw" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"YD" = (
+/obj/structure/flora/jungle/vines/heavy,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"YF" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 4
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"YG" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/security{
+	dir = 4;
+	network = list("theta")
+	},
+/obj/effect/turf_decal/tile/corsatsemi/blue,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"YK" = (
+/obj/structure/sign/safety/high_radiation{
+	pixel_x = 32
+	},
+/obj/effect/turf_decal/tile/corsatstraight/lightpurple{
+	dir = 8
+	},
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"YL" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"YM" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"YN" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/effect/turf_decal/tile/full/black,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"YP" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/fernybush,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"YQ" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"YR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"YT" = (
+/obj/effect/turf_decal/tile/full/graylarge,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"YV" = (
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"YX" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"Zb" = (
+/obj/effect/turf_decal/tile/corsatsemi/yellow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Zc" = (
+/obj/machinery/meter,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Zj" = (
+/turf/open/liquid/water/river/autosmooth,
+/area/corsat/theta/biodome)
+"Zk" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatcorner/lighpurple,
+/turf/open/floor/grayscale/white,
+/area/corsat/theta/biodome/complex)
+"Zo" = (
+/obj/structure/flora/jungle/vines/heavy,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"Zu" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/corsat/theta/biodome/hydrowest)
+"Zw" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"Zz" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"ZD" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/corsat/theta/biodome)
+"ZG" = (
+/obj/structure/flora/jungle/vines/heavy,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"ZN" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"ZO" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/dark2,
+/area/corsat/theta/airlock/control)
+"ZP" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/corsat/theta/biodome)
+"ZQ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/round/black,
+/area/corsat/theta/airlock/control)
+"ZR" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
+/area/corsat/theta/biodome)
+"ZU" = (
+/obj/structure/sign/safety/airlock,
+/turf/closed/wall/r_wall,
+/area/corsat/theta/airlock/control)
+"ZZ" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/liquid/water/river/autosmooth,
+/area/corsat/theta/biodome)
+
+(1,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+kU
+kU
+kU
+kU
+Fp
+Fp
+YN
+Fp
+kU
+kU
+kU
+kU
+kU
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+gh
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(2,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+kU
+kU
+kU
+eO
+Yf
+cT
+Iu
+Iu
+CS
+Iu
+Yf
+Yf
+Yf
+kU
+kU
+kU
+kU
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+ld
+Tf
+ld
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(3,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+kU
+Wq
+Ra
+Iw
+fU
+Yf
+ZR
+Yf
+Iu
+Iu
+zh
+uV
+Iu
+Iu
+ZD
+Yf
+zm
+DX
+DX
+DX
+DX
+kU
+kU
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+bX
+Tf
+lK
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(4,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+xb
+zm
+zm
+Wq
+Iu
+yO
+Iu
+GJ
+GJ
+Iu
+Iu
+Iu
+rL
+Iu
+Iu
+Iu
+DA
+lm
+Yf
+Yf
+ry
+DX
+DX
+DX
+xb
+CA
+kU
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+ld
+Tf
+Tf
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(5,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+zm
+zm
+xb
+zm
+zm
+Wq
+Yf
+Iu
+GJ
+iM
+Dt
+Iu
+Iu
+Iu
+Fw
+Iu
+Iu
+Iu
+Iu
+Iu
+SL
+Yf
+JX
+eO
+zm
+DX
+DX
+zm
+zm
+zm
+kU
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+RT
+zK
+ld
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(6,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+zm
+zm
+zm
+zm
+DX
+DX
+xb
+DX
+Wq
+Yf
+Iu
+Iu
+Iu
+TS
+Iu
+Iu
+rL
+Iu
+Iu
+ZD
+Vz
+Iu
+Iu
+ZR
+FC
+eO
+zm
+zm
+DX
+zm
+eO
+bu
+zm
+DX
+kU
+kU
+kU
+Su
+Su
+Su
+Su
+kU
+US
+Tf
+ld
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(7,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+CA
+eO
+eO
+eO
+zm
+DX
+DX
+DX
+PI
+DX
+DX
+Ec
+YQ
+Yf
+Iu
+Iu
+Iu
+Iw
+rL
+Iu
+GJ
+Iu
+Iu
+Dt
+Iu
+ZR
+VL
+JX
+CA
+zm
+xb
+JX
+ry
+eO
+zm
+DX
+DX
+DX
+kU
+kU
+kU
+Su
+Su
+kU
+Tf
+Tf
+bX
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(8,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+DX
+CA
+ZR
+Yf
+Yf
+Hn
+DX
+DX
+DX
+DX
+DX
+DX
+DX
+DX
+DX
+DX
+Mj
+Iu
+Iu
+Iu
+Iu
+Rc
+HG
+HG
+HG
+HG
+HG
+mr
+RS
+ky
+cX
+Wt
+Ya
+xV
+cX
+cX
+cX
+ky
+nv
+DX
+DX
+DX
+DX
+kU
+kU
+Su
+kU
+bX
+LN
+Tf
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(9,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+kU
+DX
+Yf
+Yf
+Yf
+bO
+qb
+Yf
+Yf
+DX
+PI
+zm
+DX
+DX
+DX
+DX
+DX
+DX
+ZR
+GJ
+Yf
+Yf
+Iu
+rL
+Iu
+Iu
+Iu
+ZD
+GJ
+GJ
+Hn
+eO
+eO
+RD
+RD
+RD
+RD
+RD
+NI
+eO
+KB
+YR
+zm
+DX
+DX
+DX
+kU
+kU
+kU
+ld
+Tf
+ld
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(10,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+bs
+dD
+zm
+Yf
+Yf
+WE
+Iu
+rL
+Iu
+AW
+Yf
+Yf
+WE
+Yf
+Wq
+DX
+DX
+DX
+Wq
+ZR
+Iu
+Yf
+Yf
+Iu
+rL
+Iu
+Iu
+Iu
+Iu
+GJ
+ZR
+ZR
+bu
+eO
+RD
+fG
+di
+fG
+RD
+CA
+Ue
+Io
+FV
+ry
+yX
+zm
+xb
+xb
+yk
+kU
+kU
+Tf
+lK
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(11,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+DX
+zm
+oz
+TQ
+TQ
+os
+TQ
+Pb
+Bn
+ie
+HG
+Bt
+HG
+HG
+VG
+Kn
+Ya
+Ya
+RS
+mr
+uU
+TQ
+TQ
+HG
+Ea
+Iu
+Iu
+Iu
+Yf
+Yf
+Hu
+eO
+JX
+eO
+RD
+HS
+Gy
+CC
+RD
+CA
+VL
+eO
+eO
+eO
+Is
+zm
+DX
+zV
+xb
+xb
+kU
+gh
+gf
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(12,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+DX
+DX
+zm
+Is
+Yf
+Hu
+Yf
+Yf
+ZD
+Iu
+Iu
+Iu
+Iu
+Zj
+Zj
+rL
+Yf
+Yf
+Yf
+ZR
+GJ
+Yf
+Hu
+Yf
+Dt
+rL
+Iu
+ZD
+Yf
+Yf
+eO
+Zu
+Zu
+Zu
+Zu
+RD
+RD
+fW
+RD
+RD
+Zu
+Zu
+Zu
+Zu
+zm
+Is
+zm
+DX
+DX
+Dc
+xb
+ad
+yk
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(13,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+DX
+DX
+zm
+lR
+nM
+Yf
+Iu
+Wf
+Iu
+GJ
+Iu
+Iu
+Zj
+Zj
+Zj
+rL
+Iu
+AU
+Iu
+jc
+GJ
+ZR
+ZR
+Yf
+Iu
+rL
+Iu
+Iu
+Yf
+eO
+Zu
+Zu
+Lw
+Lw
+WM
+RD
+OZ
+TI
+PK
+RD
+sT
+Lw
+Lw
+Zu
+Zu
+Is
+Zo
+DX
+DX
+DX
+eO
+xb
+xb
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(14,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+kU
+gh
+kU
+DX
+DX
+DX
+lR
+JX
+Yf
+Iu
+GJ
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+xQ
+Iu
+ZD
+Iu
+Iu
+Iu
+GJ
+ZR
+Yf
+Iu
+rL
+Iu
+Iu
+Yf
+eO
+Zu
+Lw
+vi
+pK
+zJ
+yj
+Vq
+QH
+zy
+yj
+Oc
+Tb
+vi
+Lw
+Zu
+Lz
+xb
+zm
+DX
+DX
+DX
+DX
+dD
+mA
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(15,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+Tf
+Yb
+Sg
+Tf
+DX
+DX
+DX
+DX
+lR
+eO
+Yf
+Zj
+Zj
+Zj
+mN
+Zj
+Zj
+Zj
+Zj
+Zj
+XJ
+Iu
+Iu
+Iu
+Dt
+Iu
+Iu
+ZR
+Yf
+Iu
+rL
+Iu
+Iu
+Yf
+Yf
+Zu
+Zu
+Lw
+Lw
+WM
+RD
+Gh
+Bm
+qG
+RD
+sT
+Lw
+Lw
+Zu
+Zu
+Is
+zm
+zm
+eO
+nM
+CA
+DX
+DX
+yy
+DX
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(16,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+Mm
+Tf
+eO
+eO
+DX
+DX
+ak
+Io
+lR
+Yf
+Yf
+Wy
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+EA
+XJ
+Iu
+Iu
+Iu
+Iu
+Iu
+jc
+Yf
+Yf
+Iu
+rL
+ZD
+Wf
+Iu
+Yf
+ZR
+Zu
+Zu
+Zu
+Zu
+RD
+bN
+Bm
+ON
+RD
+Zu
+Zu
+Zu
+Zu
+zm
+Is
+VL
+eO
+eO
+eO
+rU
+xb
+xb
+zm
+zm
+zm
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(17,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+eO
+eO
+eO
+DX
+DX
+DX
+eO
+Fi
+En
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+FQ
+Dt
+GJ
+Vz
+DA
+PL
+Iu
+Iu
+Iu
+Iu
+rL
+Iu
+jB
+Iu
+Dt
+ZR
+eO
+eO
+eO
+eO
+RD
+rm
+Bm
+ON
+RD
+oN
+eO
+CA
+CA
+eO
+KB
+cX
+jj
+tL
+cX
+Ya
+Dm
+Ya
+of
+cX
+cX
+yX
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(18,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+eO
+eO
+zm
+yy
+xb
+DX
+zm
+JX
+YX
+ZR
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Wy
+Zj
+Zj
+rL
+Iu
+Yf
+Yf
+Yf
+Iu
+ZD
+GJ
+Iu
+Iu
+rL
+Iu
+Iu
+Iu
+Iu
+Yf
+CA
+JX
+ry
+eO
+RD
+FP
+Xm
+ys
+RD
+eO
+ry
+JX
+bu
+eO
+eO
+nM
+eO
+eO
+zm
+zm
+xb
+zm
+eO
+QL
+eO
+lR
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(19,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+BM
+HK
+cX
+RE
+Dm
+Xo
+DX
+zm
+eO
+YX
+Iu
+Zj
+mN
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+xQ
+Yf
+Yf
+eO
+WE
+Yf
+ZR
+Iu
+Iu
+Iu
+rL
+Iu
+Iu
+ZD
+Yf
+En
+Zu
+Zu
+Zu
+Zu
+RD
+TN
+Bm
+ON
+RD
+Zu
+Zu
+Zu
+Zu
+eO
+eO
+BX
+FC
+eO
+DX
+DX
+DX
+CA
+eO
+CA
+eO
+KG
+CA
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(20,1,1) = {"
+kU
+kU
+kU
+kU
+kU
+kU
+kU
+zm
+lR
+eO
+eO
+zm
+DX
+IG
+ms
+Ya
+cX
+LX
+Iu
+Zj
+Zj
+Zj
+Zj
+Zj
+qC
+qj
+Zj
+Zj
+Iu
+YX
+WE
+eO
+DX
+eO
+JX
+ZR
+Yf
+Yf
+Iu
+rL
+Iu
+Iu
+Iu
+Yf
+Zu
+Zu
+Lw
+Lw
+WM
+RD
+HP
+Bm
+Dn
+RD
+sT
+Lw
+Lw
+Zu
+Zu
+zm
+zm
+zm
+zm
+DX
+DX
+zm
+CA
+xg
+eO
+Bb
+lR
+eO
+CA
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(21,1,1) = {"
+Tf
+Tf
+Tf
+Tf
+Tf
+kU
+kU
+zm
+Mn
+Qz
+eO
+DX
+DX
+xb
+zm
+zm
+eO
+Lb
+Iu
+Zj
+Zj
+Wy
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Iu
+YX
+eO
+DX
+DX
+xb
+DX
+xg
+eO
+Yf
+Iu
+rL
+TS
+Iu
+Iu
+Yf
+Zu
+Lw
+vi
+XE
+Oc
+yj
+kg
+OT
+kg
+yj
+Oc
+Tb
+vi
+Lw
+Zu
+xb
+Zo
+xb
+DX
+DX
+zm
+rl
+cX
+cX
+jj
+ek
+Oh
+Wt
+yX
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+"}
+(22,1,1) = {"
+Tf
+Tf
+zK
+Tf
+wf
+zA
+xb
+pM
+lR
+eO
+zm
+DX
+xb
+xb
+Wq
+Yf
+eO
+YX
+GJ
+Iu
+Zj
+Zj
+Zj
+Zj
+mN
+Zj
+Zj
+Iu
+Wf
+YX
+DX
+DX
+zm
+zm
+DX
+DX
+eO
+Yf
+Iu
+xQ
+Iu
+Iu
+Iu
+Yf
+Zu
+Zu
+Lw
+Lw
+WM
+RD
+Gh
+Bm
+NJ
+RD
+sT
+Lw
+Lw
+Zu
+Zu
+zm
+zm
+DX
+DX
+DX
+zm
+QL
+ry
+eO
+FC
+nM
+eO
+BX
+ii
+DX
+kU
+Su
+Su
+Su
+Su
+Su
+"}
+(23,1,1) = {"
+Tf
+kU
+kU
+kU
+kU
+kU
+pq
+xb
+xE
+DX
+DX
+DX
+DX
+DX
+Yf
+Yf
+Yf
+YX
+Yf
+GJ
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Iu
+Yf
+Yf
+YX
+xb
+DX
+DX
+DX
+DX
+DX
+Yf
+Yf
+Iu
+CS
+Iu
+Iu
+Iu
+Yf
+eO
+Zu
+Zu
+Zu
+Zu
+RD
+TN
+Kx
+ON
+RD
+Zu
+Zu
+Zu
+Zu
+zm
+zm
+zm
+DX
+DX
+xb
+zm
+eO
+eO
+bu
+eO
+CA
+ry
+JX
+lR
+DX
+kU
+kU
+Su
+Su
+Su
+Su
+"}
+(24,1,1) = {"
+kU
+kU
+Su
+Su
+kU
+DX
+DX
+xb
+Lz
+DX
+DX
+DX
+DX
+DX
+Yf
+AU
+Yf
+YX
+Yf
+Yf
+Zj
+Zj
+Zj
+Zj
+Iu
+Iu
+GJ
+Yf
+Yf
+lR
+DX
+DX
+DX
+DX
+DX
+NA
+Yf
+ZD
+Iu
+rL
+Iu
+Iu
+ZD
+Yf
+CA
+FC
+JX
+eO
+VL
+RD
+TN
+Bm
+ON
+RD
+zm
+CA
+ry
+zm
+zm
+he
+zm
+DX
+yG
+oQ
+oQ
+oQ
+oQ
+oQ
+yG
+eO
+eO
+eO
+Is
+DX
+DX
+kU
+Su
+Su
+Su
+Su
+"}
+(25,1,1) = {"
+Su
+Su
+Su
+kU
+kU
+zm
+zm
+zm
+Is
+DX
+DX
+DX
+DX
+DX
+Yf
+kY
+HG
+lk
+cX
+TQ
+TQ
+TQ
+HG
+ft
+mr
+TQ
+TQ
+HG
+vj
+EC
+Wq
+DX
+DX
+xb
+eO
+Yf
+Iu
+Iu
+Iu
+rL
+Iu
+Iu
+Iu
+Yf
+ry
+eO
+CA
+eO
+eO
+RD
+TN
+Bm
+ON
+RD
+rU
+zm
+CA
+CA
+zm
+oN
+ry
+DX
+yG
+Nv
+cy
+jq
+jq
+RI
+yG
+ry
+eO
+zm
+Is
+zm
+DX
+kU
+kU
+Su
+Su
+Su
+"}
+(26,1,1) = {"
+Su
+Su
+Su
+kU
+VL
+eO
+zm
+eO
+lR
+DX
+CA
+DX
+DX
+DX
+Pm
+Wq
+Iu
+NA
+eO
+eO
+eO
+Yf
+Iu
+rL
+Iu
+Yf
+Yf
+Yf
+Iu
+Iu
+Yf
+Wq
+DX
+DX
+JX
+Yf
+Iu
+Iu
+Iu
+rL
+Iu
+Iu
+Iu
+Yf
+yG
+yG
+yG
+yG
+yG
+yG
+oQ
+ps
+oQ
+yG
+yG
+yG
+yG
+yG
+yG
+yG
+yG
+yG
+yG
+Oe
+Bg
+oG
+Bg
+ax
+yG
+eO
+CA
+zm
+Is
+zm
+DX
+DX
+kU
+Su
+Su
+Su
+"}
+(27,1,1) = {"
+Su
+Su
+DK
+DK
+uv
+uv
+uv
+eO
+lR
+xb
+xb
+DX
+DX
+DX
+DX
+Wq
+Wq
+Yf
+HC
+Io
+eO
+Yf
+ZD
+rL
+ZD
+Yf
+Yf
+Vl
+Iu
+Iu
+Iu
+Hn
+DX
+DX
+xg
+Yf
+Yf
+Iu
+Iu
+rL
+ZD
+Iu
+Yf
+Yf
+yG
+qT
+zk
+Tq
+zk
+yG
+jH
+Gc
+ax
+yG
+JY
+Ny
+zk
+rZ
+ic
+ic
+PT
+Cq
+yG
+xY
+OY
+jH
+Hb
+LA
+yG
+yG
+yG
+yG
+Lz
+Zo
+DX
+DX
+kU
+kU
+Su
+Su
+"}
+(28,1,1) = {"
+Su
+Su
+DK
+qm
+gU
+tS
+uv
+HC
+nP
+eO
+DX
+DX
+DX
+DX
+DX
+DX
+DX
+zm
+eO
+eO
+eO
+WE
+Iu
+rL
+Dt
+Yf
+Yf
+Iu
+XO
+Iu
+Iu
+Yf
+Yf
+Yf
+Yf
+LU
+Yf
+Iu
+Iu
+rL
+Iu
+Iu
+Yf
+BX
+yG
+qT
+mz
+pF
+zk
+Qu
+Bg
+Rt
+bQ
+yG
+JY
+zk
+zk
+fd
+iF
+iF
+nJ
+mo
+yG
+oQ
+oQ
+ri
+oQ
+oQ
+yG
+Yr
+BY
+yG
+Is
+zm
+zm
+DX
+xb
+kU
+Su
+Su
+"}
+(29,1,1) = {"
+Su
+Su
+DK
+Ir
+Ar
+kE
+Oz
+eO
+lR
+eO
+eO
+DX
+zm
+zm
+zm
+DX
+DX
+DX
+BX
+eO
+CA
+ZR
+GJ
+rL
+Iu
+Yf
+Yf
+Iu
+Iu
+Iu
+AU
+Iu
+bY
+Iu
+iM
+GJ
+Iu
+ZD
+Iu
+rL
+Iu
+Iu
+Yf
+eO
+yG
+yG
+yG
+yG
+yG
+yG
+NH
+Gc
+bQ
+yG
+XU
+pw
+cQ
+BB
+ra
+bG
+Qv
+YK
+yG
+Nv
+iA
+jH
+Wz
+jq
+jq
+YF
+Ve
+oQ
+lR
+bu
+eO
+DX
+xb
+kU
+Su
+Su
+"}
+(30,1,1) = {"
+Su
+DK
+DK
+oM
+Km
+kE
+Oz
+eO
+KB
+cX
+gY
+Ya
+Ya
+Ya
+of
+Ya
+xV
+xV
+cX
+Wt
+RS
+TQ
+Ii
+Ea
+Yf
+WE
+Yf
+Vz
+Iu
+Yf
+Yf
+Iu
+GJ
+GJ
+GJ
+Iu
+Iu
+Iu
+Iu
+rL
+Iu
+Iu
+Yf
+eO
+yG
+yr
+yG
+yr
+yG
+cw
+xP
+Gc
+bQ
+yG
+mo
+xP
+Xx
+jH
+bQ
+yG
+yG
+yG
+yG
+xP
+Jf
+fm
+sU
+wh
+HZ
+jy
+vM
+oQ
+lR
+eO
+Rp
+eO
+CA
+kU
+kU
+Su
+"}
+(31,1,1) = {"
+Su
+DK
+uO
+be
+au
+iX
+uv
+BX
+eO
+eO
+eO
+eO
+zm
+DX
+zm
+xb
+xb
+zm
+eO
+eO
+WE
+Iu
+Iu
+rL
+Yf
+eO
+ZR
+Yf
+Dt
+Yf
+Yf
+AW
+Yf
+Iu
+Yf
+Yf
+Yf
+Yf
+Iu
+rL
+Iu
+Dt
+Yf
+ry
+yG
+tj
+yG
+tj
+yG
+TV
+xP
+Gc
+bQ
+yG
+yG
+xP
+BR
+jH
+gi
+yG
+sG
+Oi
+MM
+WP
+Ks
+sc
+Ek
+Ek
+Ek
+IQ
+es
+yG
+Nn
+Qt
+cX
+ek
+cs
+zm
+kU
+Su
+"}
+(32,1,1) = {"
+Su
+DK
+ga
+cD
+au
+at
+uv
+uv
+uv
+uv
+uv
+uv
+uv
+uv
+uv
+uv
+uv
+uv
+ZU
+Yf
+Yf
+Iu
+Iu
+rL
+Yf
+Yf
+Yf
+Yf
+Iu
+Yf
+Yf
+Yf
+Yf
+Iu
+Yf
+Yf
+Yf
+Wk
+Iu
+gv
+Iu
+Iu
+Yf
+eS
+yG
+tk
+yG
+tk
+yG
+yG
+Zk
+Gc
+WC
+Bx
+yG
+oQ
+BR
+vU
+oQ
+yG
+Ga
+Hb
+xM
+Ek
+wB
+yG
+yG
+oQ
+oQ
+oQ
+yG
+yG
+FF
+CA
+eO
+bu
+Is
+zm
+kU
+Su
+"}
+(33,1,1) = {"
+Su
+DK
+MB
+bS
+Km
+gc
+fB
+lp
+oM
+id
+eU
+bB
+Zz
+hz
+Sx
+Tg
+hz
+Zz
+Iu
+Iu
+Iu
+Iu
+Iu
+xQ
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+Dt
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+rL
+Iu
+Iu
+Yf
+Yf
+oQ
+Ih
+Xq
+wX
+Hy
+yG
+jH
+Gc
+jH
+vP
+Kw
+iA
+BR
+jH
+WC
+Kw
+uG
+bQ
+yG
+yG
+yG
+yG
+eO
+eO
+eO
+eO
+CA
+CA
+ii
+CA
+ry
+zm
+Is
+zm
+kU
+Su
+"}
+(34,1,1) = {"
+Su
+DK
+rj
+hZ
+xh
+lb
+Gx
+jx
+oM
+au
+XK
+jr
+Jo
+jr
+jr
+RU
+au
+Zz
+Iu
+Iu
+ZD
+Iu
+ZD
+rL
+ea
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+Dt
+Iu
+Iu
+rL
+Iu
+ZD
+Iu
+Iu
+gD
+wX
+HL
+wX
+wX
+gD
+jH
+jJ
+sU
+sU
+sU
+sU
+AF
+KS
+ql
+sU
+fq
+TG
+oQ
+ry
+JX
+eO
+FC
+iN
+ek
+Qt
+cX
+Ya
+oY
+zm
+DX
+DX
+aL
+xb
+kU
+Su
+"}
+(35,1,1) = {"
+DK
+DK
+uv
+Bz
+cf
+uv
+uv
+uv
+oM
+TU
+bS
+au
+Zz
+au
+TU
+XK
+wU
+Jo
+HG
+HG
+HG
+Ai
+HG
+uP
+HG
+HG
+HG
+Bt
+HG
+EQ
+HG
+Bt
+HG
+zd
+HG
+HG
+HG
+Bt
+HG
+uP
+HG
+HG
+Vf
+HG
+Bc
+Qx
+HR
+dy
+Qx
+Bc
+ba
+fq
+jH
+jH
+Bg
+jH
+Bg
+BR
+jH
+fv
+BR
+bQ
+oQ
+eO
+CA
+VL
+eO
+eO
+ry
+eO
+rU
+zm
+zm
+DX
+DX
+DX
+Lz
+zm
+kU
+kU
+"}
+(36,1,1) = {"
+DK
+UE
+dO
+qt
+nY
+dO
+Jr
+uv
+oM
+au
+bS
+hz
+Zz
+hz
+OC
+qq
+hz
+Zz
+Iu
+Iu
+Iu
+Dt
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+rL
+Iu
+ZD
+Iu
+rz
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+YX
+Yf
+oQ
+bU
+Lt
+eP
+Fz
+yG
+OY
+Gc
+jH
+Hb
+vY
+OY
+jH
+BR
+Hb
+vY
+xp
+bQ
+yG
+yG
+yG
+yG
+ry
+nM
+eO
+eO
+zm
+DX
+DX
+DX
+DX
+eO
+lR
+eO
+eO
+kU
+"}
+(37,1,1) = {"
+DK
+Pi
+OC
+bS
+au
+zo
+kE
+uv
+oM
+au
+pR
+zM
+uv
+uv
+lp
+lp
+uv
+uv
+uv
+ka
+Yf
+Yf
+Yf
+Yf
+Iu
+Yf
+Yf
+Iu
+Iu
+rL
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+Yf
+Yf
+Yf
+YX
+eS
+yG
+yG
+oQ
+yL
+oQ
+yG
+Oe
+Gc
+Hb
+wB
+yG
+oQ
+jH
+wP
+oQ
+yG
+zI
+WC
+Aa
+jq
+RI
+yG
+yG
+oQ
+oQ
+oQ
+yG
+yG
+DX
+DX
+bu
+FC
+lR
+ep
+nM
+kU
+"}
+(38,1,1) = {"
+DK
+RQ
+OC
+bS
+au
+Ig
+ne
+HF
+Ti
+au
+bS
+xN
+uv
+YG
+ME
+gs
+km
+Sl
+uv
+MR
+MR
+MR
+Oz
+YQ
+Iu
+ZR
+Yf
+Iu
+Iu
+rL
+Iu
+Yf
+Yf
+ZR
+Yf
+Yf
+Iu
+Dt
+Yf
+Yf
+bu
+JX
+Is
+zm
+yG
+MU
+jw
+lu
+lg
+oQ
+xP
+Gc
+bQ
+yG
+yG
+xP
+BL
+BR
+kV
+yG
+Ys
+cN
+Lf
+YV
+ll
+Kw
+an
+bD
+XT
+nA
+dK
+yG
+DX
+ry
+eO
+xg
+lR
+eO
+VL
+kU
+"}
+(39,1,1) = {"
+Zz
+Ti
+rP
+bS
+au
+Mq
+We
+kB
+hz
+au
+bS
+xN
+uv
+IA
+bP
+OC
+AJ
+Bu
+Bd
+Sd
+Gt
+QG
+Oz
+ZR
+Iu
+Iu
+Iu
+Iu
+Iu
+rL
+Iu
+Yf
+VL
+DX
+DX
+ZR
+Yf
+Yf
+YQ
+DX
+DX
+zm
+Is
+eO
+oQ
+xP
+op
+YT
+WC
+oQ
+iA
+Gc
+bQ
+yG
+tC
+iA
+Bg
+BR
+Kh
+yG
+yG
+yG
+yG
+xP
+rS
+ba
+Bc
+wh
+Bg
+jH
+TG
+oQ
+eO
+eO
+eO
+CA
+ZP
+BX
+eO
+mj
+"}
+(40,1,1) = {"
+Zz
+au
+au
+ro
+cC
+wU
+jr
+cC
+jr
+wU
+XF
+Bu
+XL
+cq
+au
+au
+au
+au
+au
+au
+Vw
+OG
+Oz
+Ec
+GJ
+Dt
+Iu
+Iu
+Iu
+CS
+Iu
+Yf
+DX
+DX
+Wq
+Yf
+LU
+DX
+DX
+DX
+fu
+zm
+lR
+Rp
+oQ
+yJ
+Bi
+Bc
+Bc
+fP
+ba
+fq
+bQ
+oQ
+Nz
+jH
+XR
+Ph
+bQ
+eb
+jq
+RI
+yG
+Dz
+OM
+jH
+hJ
+Mz
+Ek
+Ek
+wB
+oQ
+VL
+ez
+Wt
+Wt
+OK
+cX
+Ya
+TY
+"}
+(41,1,1) = {"
+Zz
+au
+au
+TU
+bS
+au
+au
+Nt
+Km
+TU
+hW
+Re
+Ft
+iT
+jr
+wU
+ZQ
+au
+au
+Km
+cZ
+HJ
+Oz
+ZR
+ZR
+Yf
+Yf
+Wf
+ZD
+rL
+Iu
+Yf
+zm
+zm
+Yf
+ZD
+Yf
+zm
+zm
+DX
+DX
+DX
+Mn
+eO
+oQ
+xP
+YT
+op
+Hb
+oQ
+OY
+Yw
+bQ
+oQ
+aG
+jH
+mL
+qY
+qP
+BT
+SN
+ax
+yG
+cn
+yG
+jH
+yG
+cn
+yG
+sg
+KH
+yG
+eO
+ZP
+eO
+eO
+DX
+zm
+zm
+mj
+"}
+(42,1,1) = {"
+Zz
+mW
+hz
+au
+pR
+KF
+zo
+VI
+hz
+au
+bS
+mS
+uv
+IA
+Mw
+OC
+OC
+yb
+EM
+KD
+Iy
+Ur
+Oz
+CA
+nM
+DX
+Yf
+Iu
+Iu
+rL
+Iu
+Yf
+eO
+DX
+Yf
+Yf
+Wq
+zm
+xb
+Zo
+DX
+DX
+Is
+zm
+yG
+dA
+qn
+vp
+Uq
+oQ
+xP
+Gc
+bQ
+yG
+LZ
+vY
+HM
+HM
+wB
+eb
+BR
+bQ
+yG
+rf
+oQ
+Bg
+oQ
+gy
+yG
+yG
+yG
+yG
+zm
+Is
+eO
+DX
+DX
+DX
+xb
+mj
+"}
+(43,1,1) = {"
+DK
+Je
+OC
+au
+pR
+KF
+Va
+Zw
+HY
+mW
+gR
+Zb
+uv
+iW
+UU
+ap
+OD
+wO
+uv
+MR
+MR
+MR
+Oz
+CA
+eO
+DX
+Yf
+Iu
+Iu
+gP
+Iu
+Yf
+bu
+zm
+zm
+DX
+DX
+DX
+xb
+zm
+DX
+xb
+Lz
+Zo
+yG
+yG
+yG
+yG
+yG
+yG
+xP
+ze
+bj
+yG
+yG
+yG
+yG
+yG
+oQ
+yG
+FT
+oQ
+yG
+Oe
+eb
+jH
+eb
+ax
+yG
+CA
+rU
+zm
+eO
+Is
+zm
+DX
+DX
+DX
+xb
+kU
+"}
+(44,1,1) = {"
+DK
+Rv
+AJ
+au
+bS
+Mq
+fM
+uv
+uv
+vz
+ob
+uv
+uv
+uv
+uv
+uv
+uv
+uv
+uv
+Yf
+Yf
+Yf
+Yf
+ZR
+Yf
+DX
+Yf
+Iu
+Iu
+rL
+GJ
+Yf
+eO
+oN
+DX
+DX
+DX
+Yf
+Yf
+Yf
+Yf
+ZR
+ii
+yG
+yG
+Fh
+zl
+rs
+RI
+oQ
+xP
+Yw
+bQ
+yG
+oc
+gn
+fQ
+oQ
+Iu
+Iu
+gv
+Iu
+yG
+Ns
+ks
+ym
+ks
+wB
+yG
+bu
+Tv
+cX
+Xp
+qa
+DX
+DX
+DX
+zm
+zm
+kU
+"}
+(45,1,1) = {"
+DK
+Dp
+jN
+mW
+gR
+HY
+Zb
+uv
+cJ
+BW
+yP
+uv
+bF
+SH
+uv
+SH
+SH
+uv
+Yf
+WE
+Iu
+SL
+Iu
+Iu
+Yf
+Yf
+Yf
+Iu
+Iu
+rL
+Iu
+Yf
+Rp
+eO
+DX
+DX
+Yf
+XB
+PL
+mQ
+Iu
+Yf
+lR
+oQ
+ge
+iA
+YT
+YT
+WC
+oQ
+iA
+Gc
+WC
+yG
+XN
+Uu
+XN
+oQ
+ZD
+Iu
+rL
+Iu
+yG
+oQ
+yG
+oQ
+yG
+oQ
+yG
+zm
+Is
+VL
+eO
+bu
+DX
+DX
+zm
+zm
+zm
+kU
+"}
+(46,1,1) = {"
+DK
+DK
+uv
+Uh
+ob
+uv
+uv
+uv
+CG
+au
+DB
+uv
+lp
+XG
+uv
+SH
+ZO
+uv
+Yf
+np
+EQ
+HG
+HG
+pH
+qv
+HG
+HG
+HG
+HG
+Ea
+Iu
+Yf
+eO
+VL
+DX
+DX
+Yf
+GJ
+ZD
+Iu
+Yf
+Yf
+lR
+oQ
+td
+jH
+Bg
+jH
+jH
+QJ
+jH
+ze
+Bc
+ET
+bC
+Cy
+sY
+yG
+Iu
+kY
+uW
+Iu
+kZ
+ZD
+Iu
+Iu
+ZD
+Wq
+xb
+zm
+lR
+eO
+aj
+DX
+DX
+DX
+QL
+eO
+kU
+kU
+"}
+(47,1,1) = {"
+Su
+DK
+hS
+BW
+RB
+tn
+AA
+uv
+cM
+Ei
+Qr
+vk
+sv
+vJ
+zv
+oA
+ZO
+uv
+ZR
+Iu
+az
+Iu
+AU
+Iu
+Yf
+Wq
+Yf
+Iu
+ZD
+rL
+Iu
+Yf
+eO
+DX
+DX
+zu
+TQ
+TQ
+Vf
+TQ
+TQ
+cX
+wm
+oQ
+Un
+jH
+Ub
+Bc
+Bc
+Bc
+dr
+fq
+Hb
+yG
+XN
+dc
+dc
+oQ
+Iu
+ea
+Rc
+Bt
+HG
+HG
+HG
+uU
+HG
+Kn
+ms
+Ya
+oZ
+rU
+DX
+DX
+DX
+eO
+eO
+eO
+kU
+Su
+"}
+(48,1,1) = {"
+Su
+DK
+BE
+au
+pR
+au
+au
+Ax
+nX
+XK
+Oj
+Hq
+Zc
+Pq
+zv
+uE
+SH
+uv
+ZR
+GJ
+rL
+Iu
+Yf
+Yf
+Hn
+DX
+Yf
+Iu
+Iu
+rL
+Iu
+Yf
+DX
+DX
+DX
+DX
+CA
+ZR
+Wn
+Wq
+DX
+DX
+zm
+oQ
+Dh
+OY
+YT
+YT
+Hb
+oQ
+OY
+Rt
+bQ
+yG
+hN
+gn
+gn
+oQ
+Iu
+Iu
+rL
+Iu
+kZ
+Iu
+Iu
+iM
+ZD
+Wq
+xb
+zm
+Is
+zm
+zm
+DX
+nM
+eO
+eO
+BX
+kU
+Su
+"}
+(49,1,1) = {"
+Su
+DK
+wS
+TU
+ch
+Wb
+uv
+uv
+uv
+WY
+uv
+uv
+uv
+uv
+uv
+uv
+uv
+uv
+Yf
+ZR
+Lb
+Yf
+Mj
+DX
+DX
+DX
+Yf
+Iu
+Iu
+rL
+Iu
+Yf
+CA
+DX
+DX
+DX
+DX
+Wq
+Wn
+Yf
+xb
+DX
+zm
+yG
+yG
+ue
+Nu
+QC
+vr
+oQ
+xP
+Gc
+Hf
+yG
+yG
+oQ
+oQ
+yG
+kZ
+kZ
+aD
+kZ
+kZ
+Iu
+GJ
+GJ
+Yf
+Wq
+DX
+DX
+QE
+cX
+ek
+cX
+ol
+YL
+eO
+zm
+kU
+Su
+"}
+(50,1,1) = {"
+Su
+DK
+JA
+Xw
+fJ
+ub
+qR
+QT
+tL
+Co
+CA
+DX
+DX
+DX
+DX
+DX
+DX
+zm
+FC
+eO
+sq
+zm
+DX
+DX
+DX
+ry
+Yf
+Dt
+Iu
+rL
+Iu
+Yf
+Yf
+ZR
+Yf
+Wq
+Wq
+Yf
+az
+Yf
+xb
+DX
+zm
+zm
+yG
+yG
+yG
+yG
+yG
+yG
+oQ
+XS
+oQ
+yG
+zm
+zm
+eO
+Yf
+Iu
+Iu
+rL
+Iu
+Iu
+ZD
+Iu
+Iu
+Yf
+DX
+DX
+zm
+zm
+eO
+ry
+eO
+Mn
+eO
+Bb
+DX
+kU
+Su
+"}
+(51,1,1) = {"
+Su
+DK
+DK
+XG
+uv
+lp
+uv
+ii
+CA
+XY
+jU
+DX
+DX
+DX
+DX
+DX
+zm
+zm
+zm
+Od
+Is
+DX
+DX
+DX
+DX
+rl
+TQ
+HG
+HG
+Ea
+ZD
+Iu
+Iu
+tB
+Iu
+Qe
+HG
+HG
+ay
+NA
+DX
+DX
+DX
+zm
+eO
+HC
+Io
+zm
+zm
+qd
+nS
+mp
+OV
+qd
+zm
+ry
+iN
+TQ
+HG
+Bt
+Ea
+bO
+Iu
+SL
+Wf
+Yf
+Yf
+DX
+DX
+DX
+DX
+eO
+JX
+eO
+FF
+eO
+DX
+kU
+kU
+Su
+"}
+(52,1,1) = {"
+Su
+Su
+DK
+Vy
+SH
+SH
+uv
+ii
+eO
+DX
+DX
+DX
+DX
+Tv
+Ya
+cX
+cX
+ek
+Ya
+Ya
+mG
+zm
+xb
+DX
+DX
+DX
+Yf
+Iu
+Iu
+rL
+Iu
+Yf
+Yf
+xd
+ZD
+rL
+Iu
+Iu
+ZD
+Wq
+DX
+DX
+DX
+zm
+zm
+zm
+zm
+zm
+CA
+qd
+nS
+oP
+OV
+qd
+CA
+ep
+CA
+ZR
+Yf
+jc
+rL
+Ru
+GJ
+Iu
+Yf
+Yf
+DX
+DX
+DX
+DX
+xb
+zm
+FC
+eO
+Is
+zm
+DX
+kU
+Su
+Su
+"}
+(53,1,1) = {"
+Su
+Su
+DK
+SH
+vd
+Yi
+uv
+Lz
+xb
+ur
+eO
+NA
+Yf
+YX
+Yf
+BX
+eO
+DX
+DX
+zm
+zm
+zm
+xb
+zm
+DX
+DX
+Yf
+Iu
+Iu
+rL
+Iu
+Yf
+DX
+Wq
+Yf
+RG
+iM
+GJ
+Yf
+ZG
+xb
+DX
+VL
+zm
+eO
+St
+St
+St
+St
+qd
+nS
+mp
+OV
+qd
+St
+St
+St
+St
+ZR
+Yf
+rL
+GJ
+GJ
+Yf
+Yf
+DX
+DX
+DX
+DX
+DX
+DX
+DX
+zm
+zm
+on
+DX
+DX
+kU
+Su
+Su
+"}
+(54,1,1) = {"
+Su
+Su
+DK
+DK
+uv
+uv
+uv
+Lz
+CA
+zm
+Yf
+Yf
+Wf
+rL
+NA
+eO
+zm
+DX
+DX
+DX
+DX
+rU
+xb
+xb
+Zo
+DX
+Yf
+Iu
+Iu
+rL
+Iu
+Yf
+zm
+DX
+Wq
+rL
+Iu
+Yf
+YQ
+xb
+zm
+CA
+eO
+zm
+St
+St
+sl
+sl
+rk
+qd
+UO
+mp
+MH
+qd
+bg
+sl
+sl
+St
+St
+Yf
+YX
+GJ
+Yf
+Yf
+DX
+DX
+DX
+DX
+DX
+DX
+DX
+DX
+DX
+xb
+Lz
+DX
+kU
+kU
+Su
+Su
+"}
+(55,1,1) = {"
+Su
+Su
+Su
+kU
+xb
+ry
+JX
+lR
+zm
+zm
+Yf
+GJ
+Iu
+YX
+Yf
+DX
+DX
+DX
+DX
+DX
+DX
+DX
+zm
+xb
+zm
+zm
+Yf
+Iu
+ZD
+xQ
+Iu
+Yf
+zm
+DX
+ZG
+YD
+Wq
+Mj
+DX
+DX
+xb
+zm
+zm
+zm
+St
+sl
+rr
+fa
+EE
+xz
+oJ
+BG
+oJ
+zX
+EE
+SU
+GX
+sl
+St
+bu
+YX
+Yf
+NA
+DX
+DX
+DX
+DX
+eO
+CA
+CA
+DX
+DX
+DX
+xb
+Lz
+DX
+kU
+Su
+Su
+Su
+"}
+(56,1,1) = {"
+Su
+Su
+Su
+kU
+kU
+zm
+rl
+yo
+of
+cX
+VG
+cB
+TQ
+EC
+DX
+DX
+DX
+DX
+oN
+DX
+DX
+DX
+DX
+xb
+zm
+zm
+Yf
+Iu
+Iu
+rL
+Iu
+Yf
+JX
+CA
+eO
+Is
+DX
+DX
+DX
+DX
+zm
+zm
+eO
+eO
+St
+St
+sl
+sl
+rk
+qd
+sN
+mp
+wE
+qd
+bg
+sl
+sl
+St
+St
+eO
+lR
+xg
+DX
+DX
+DX
+DX
+hq
+ep
+ZN
+bu
+JX
+DX
+zm
+zm
+FF
+kU
+kU
+Su
+Su
+Su
+"}
+(57,1,1) = {"
+Su
+Su
+Su
+Su
+kU
+bu
+zm
+zm
+DX
+eO
+lR
+DX
+DX
+DX
+DX
+DX
+DX
+Wr
+Wq
+Wq
+DX
+DX
+DX
+DX
+zm
+eO
+wb
+Iu
+Iu
+rL
+Iu
+wb
+eO
+VL
+eO
+KG
+eO
+CA
+JX
+DX
+eO
+eO
+ry
+eO
+eO
+St
+St
+St
+St
+qd
+nS
+mp
+NM
+qd
+St
+St
+St
+St
+eO
+FC
+lR
+VL
+DX
+DX
+DX
+VL
+Yf
+ZR
+uz
+TQ
+TQ
+cX
+cX
+Ya
+mG
+kU
+Su
+Su
+Su
+Su
+"}
+(58,1,1) = {"
+Su
+Su
+Su
+Su
+kU
+kU
+DX
+DX
+DX
+zm
+Ud
+YR
+DX
+DX
+DX
+Wr
+Wr
+Wr
+Ra
+Wr
+Wq
+DX
+DX
+DX
+DX
+CA
+Yf
+Iu
+Iu
+rL
+Iu
+Yf
+Yf
+Yf
+Yf
+YX
+Yf
+Yf
+Yf
+Yf
+Yf
+Yf
+Yf
+eO
+FC
+CA
+VL
+eO
+eO
+qd
+VU
+hy
+Nf
+qd
+CA
+JX
+nM
+eO
+eO
+JX
+Tz
+zm
+DX
+DX
+ry
+Yf
+Yf
+Zj
+XJ
+Zj
+Yf
+Hn
+eO
+bu
+kU
+kU
+Su
+Su
+Su
+Su
+"}
+(59,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+kU
+DX
+DX
+DX
+DX
+dD
+Wn
+Wq
+Ec
+Yf
+Yf
+ZD
+Dt
+Iu
+GJ
+Ec
+eO
+DX
+DX
+ak
+Io
+Yf
+GJ
+Iu
+mU
+Iu
+Iu
+Iu
+Iu
+ZD
+rL
+Iu
+Dt
+Iu
+Iu
+Iu
+Iu
+Yf
+bu
+xg
+eO
+eO
+oN
+CA
+qd
+yc
+mp
+OV
+qd
+eO
+ry
+eO
+CA
+ep
+CA
+lR
+DX
+DX
+DX
+eO
+Yf
+ZZ
+Zj
+XJ
+Zj
+Zj
+Yf
+JX
+DX
+kU
+Su
+Su
+Su
+Su
+Su
+"}
+(60,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+bu
+bu
+DX
+DX
+Wn
+ZD
+Iu
+Cj
+Iu
+GJ
+qb
+Wf
+Yf
+Yf
+JX
+eO
+DX
+DX
+DX
+Yf
+Iu
+ZD
+rL
+Iu
+ZD
+Iu
+Iu
+Iu
+rL
+Iu
+Iu
+ZD
+Iu
+ZD
+Iu
+Yf
+eO
+eO
+St
+St
+St
+St
+qd
+nS
+mp
+OV
+qd
+St
+St
+St
+St
+CA
+ep
+ii
+DX
+DX
+DX
+nM
+Yf
+Zj
+mN
+XJ
+Zj
+Zj
+Yf
+DX
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+"}
+(61,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+eO
+bu
+eO
+JX
+kz
+HG
+DR
+HG
+mr
+HG
+LY
+mr
+TQ
+ky
+QT
+Xp
+Ya
+cX
+ek
+TQ
+HG
+HG
+uP
+HG
+HG
+HG
+HG
+pH
+Im
+HG
+HG
+HG
+HG
+YM
+GJ
+Yf
+eO
+St
+St
+sl
+sl
+rk
+qd
+TJ
+mp
+GV
+qd
+bg
+sl
+sl
+St
+St
+CA
+Is
+DX
+DX
+DX
+bu
+Yf
+Zj
+Zj
+XJ
+Zj
+Yf
+ZR
+DX
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(62,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+eO
+ry
+eO
+Yf
+Iu
+Yf
+Yf
+Yf
+Yf
+Yf
+vW
+Yf
+eO
+Tz
+CA
+zm
+zm
+eO
+Yf
+Iu
+Iu
+Dt
+Iu
+Iu
+GJ
+Iu
+Iu
+Iu
+Iu
+jB
+Iu
+ZD
+rL
+Iu
+Yf
+ry
+St
+sl
+rr
+zY
+EE
+xz
+oJ
+nz
+oJ
+xz
+EE
+UB
+rr
+sl
+St
+zm
+Is
+zm
+DX
+DX
+DX
+Yf
+Yf
+iM
+YX
+Yf
+Hn
+DX
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(63,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+DX
+nM
+Yf
+Vl
+Yf
+DX
+eO
+DX
+ZR
+ZR
+JX
+CA
+lR
+DX
+DX
+zm
+rU
+Yf
+Yf
+Yf
+Yf
+Yf
+Yf
+Yf
+Iu
+Yf
+Yf
+Yf
+Yf
+Iu
+Iu
+rL
+Iu
+Yf
+Yf
+St
+St
+sl
+sl
+rk
+qd
+Rf
+uk
+Bp
+qd
+bg
+sl
+sl
+St
+St
+eO
+lR
+zm
+zm
+DX
+DX
+DX
+Yf
+Yf
+YX
+DX
+DX
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(64,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+DX
+DX
+eO
+JX
+pM
+DX
+DX
+DX
+DX
+DX
+zm
+zm
+Is
+xb
+DX
+eO
+xb
+DX
+DX
+DX
+DX
+DX
+DX
+Yf
+Iu
+Yf
+NA
+eO
+Yf
+Iu
+Iu
+rL
+Iu
+Iu
+Yf
+Yf
+St
+St
+St
+St
+qd
+qd
+qh
+qd
+qd
+St
+St
+St
+St
+JX
+eO
+ZP
+eO
+bu
+DX
+DX
+DX
+xb
+xb
+Lz
+DX
+DX
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(65,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+DX
+zm
+eO
+eO
+pM
+eO
+DX
+DX
+DX
+DX
+zm
+lR
+DX
+DX
+OB
+xb
+zm
+DX
+DX
+DX
+DX
+Wq
+Yf
+Iu
+Wf
+Yf
+Yf
+Yf
+Iu
+Iu
+gv
+Iu
+Iu
+GJ
+ZR
+Hn
+BX
+JX
+eO
+qd
+nn
+bk
+oh
+qd
+zm
+dD
+JX
+eO
+eO
+CA
+eh
+eO
+VL
+eO
+DX
+DX
+zm
+zm
+KG
+DX
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(66,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+zm
+zm
+zm
+eO
+BX
+DX
+xb
+DX
+DX
+DX
+Lz
+DX
+DX
+DX
+zm
+zm
+CA
+JX
+xb
+Wq
+iv
+Iu
+YP
+Iu
+ZD
+AU
+Iu
+Iu
+Iu
+rL
+Iu
+Iu
+Iu
+GJ
+ZR
+eO
+ry
+VL
+qd
+Mc
+lj
+cV
+qd
+rU
+JX
+BX
+eO
+VL
+eO
+Bq
+ky
+ek
+cX
+cX
+cX
+cX
+Ya
+QW
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(67,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+DX
+DX
+ep
+eO
+JX
+Wq
+hP
+Wq
+Yf
+YX
+DX
+DX
+DX
+DX
+zm
+oN
+zm
+xb
+Wq
+GJ
+Iu
+GJ
+Iu
+Iu
+Iu
+Iu
+Iu
+Iu
+mU
+Iu
+ZD
+Dt
+Iu
+ZR
+eO
+eO
+zm
+qd
+qd
+qd
+qd
+qd
+xb
+xb
+xb
+DX
+DX
+DX
+Mn
+FC
+VQ
+eO
+JX
+OB
+eO
+JX
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(68,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+DX
+pM
+eO
+CA
+jf
+HG
+HG
+HG
+LX
+Yf
+DX
+DX
+xb
+zm
+DX
+xb
+DX
+Wq
+ZR
+fU
+Iu
+Iw
+ZD
+Iu
+Iu
+Iu
+ZD
+CS
+Iu
+Iu
+Iu
+Yf
+Yf
+ry
+CA
+dD
+zm
+xb
+xb
+zm
+CA
+eO
+dD
+DX
+DX
+DX
+xb
+lR
+ry
+CA
+CA
+VL
+zm
+zm
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(69,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+zm
+zm
+eO
+Wq
+Ep
+Iu
+GJ
+az
+Yf
+Yf
+eO
+xb
+zm
+DX
+DX
+DX
+DX
+Yf
+Iu
+Iu
+Dt
+Iu
+Iu
+Iu
+GJ
+Iu
+rL
+Iu
+Iu
+Iu
+YQ
+DX
+CA
+CA
+CA
+zm
+xb
+Zo
+ep
+ry
+zm
+zm
+DX
+DX
+zm
+xb
+Fi
+zm
+zm
+eO
+DX
+DX
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(70,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+zm
+eO
+DX
+Yf
+Iu
+ZD
+vK
+mr
+sH
+eO
+DX
+DX
+DX
+DX
+DX
+DX
+ZR
+ZR
+Yf
+Yf
+Iu
+Iu
+Iu
+Iu
+Iu
+gv
+Iu
+Iu
+Yf
+ZR
+DX
+CA
+Bb
+zm
+zm
+DX
+DX
+VL
+zm
+DX
+DX
+DX
+DX
+DX
+DX
+Is
+zm
+JX
+eO
+DX
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(71,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+zm
+DX
+Yf
+NA
+Yf
+Ec
+WE
+MW
+pM
+zm
+DX
+DX
+DX
+DX
+DX
+DX
+zm
+zm
+WE
+Yf
+bO
+Iu
+Iu
+Iu
+bM
+HG
+HG
+iL
+DX
+DX
+DX
+zm
+zm
+DX
+DX
+DX
+DX
+DX
+DX
+DX
+DX
+DX
+DX
+xb
+Lz
+xb
+pM
+eO
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(72,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+xb
+xb
+DX
+DX
+eO
+lR
+eO
+zm
+DX
+DX
+DX
+DX
+DX
+DX
+DX
+zm
+QO
+RS
+TQ
+TQ
+HG
+HG
+FM
+Iu
+Iu
+Yf
+DX
+DX
+DX
+xb
+DX
+DX
+DX
+DX
+DX
+CA
+DX
+zm
+CA
+ep
+zm
+zm
+Is
+zm
+eO
+eO
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(73,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+xb
+DX
+DX
+eO
+YX
+WE
+Yf
+DX
+DX
+Yf
+Hn
+Yf
+DX
+DX
+eO
+Is
+DX
+zm
+Yf
+Iu
+Iu
+rL
+ZD
+Iu
+Hn
+Yf
+DX
+DX
+xb
+DX
+DX
+DX
+DX
+DX
+Tv
+Qt
+Wt
+Wt
+ek
+Wt
+Wt
+QW
+kU
+uu
+uu
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(74,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+kU
+DX
+Wq
+kz
+pH
+RS
+TQ
+TQ
+TQ
+HG
+sP
+Kn
+Kn
+MF
+QW
+DX
+Wq
+Yf
+Iu
+Iu
+rL
+Iu
+Iu
+Dt
+Yf
+DX
+zm
+zm
+DX
+DX
+DX
+DX
+zm
+lR
+eO
+CA
+eO
+Cm
+CA
+kU
+kU
+kU
+SD
+LB
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(75,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+kU
+kU
+kU
+Vz
+Iu
+Iu
+GJ
+DA
+PL
+Iu
+dT
+GJ
+Wq
+zm
+DX
+DX
+Yf
+Iu
+Iu
+Iu
+rL
+GJ
+Iu
+Iu
+ZR
+xb
+zm
+CA
+zm
+zm
+DX
+zm
+zm
+lR
+Rp
+FC
+nM
+kU
+kU
+kU
+Su
+kU
+fS
+LB
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(76,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+Iu
+AU
+Iu
+GJ
+Iu
+Iu
+Yf
+Yf
+DX
+DX
+DX
+Yf
+Iu
+Iu
+Iu
+Rc
+Bt
+HG
+mr
+Kn
+Dm
+Ya
+Wt
+cX
+Ya
+xV
+Ya
+gY
+qa
+eO
+eO
+kU
+kU
+Su
+Su
+Su
+kU
+LB
+SD
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(77,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+Iu
+GJ
+bO
+NA
+Yf
+DX
+DX
+DX
+nM
+Yf
+Iu
+ZD
+Qe
+uV
+Iu
+Yf
+Wq
+Wq
+xb
+CA
+CA
+QL
+eO
+xb
+zm
+zm
+kU
+kU
+kU
+kU
+Su
+Su
+Su
+Su
+kU
+SD
+SD
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(78,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+kU
+DX
+DX
+DX
+DX
+zm
+HC
+lm
+NA
+Iu
+rL
+yY
+Iu
+Yf
+zm
+DX
+DX
+DX
+ry
+ry
+VL
+kU
+kU
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+SD
+SD
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(79,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+kU
+kU
+kU
+eO
+eO
+Yf
+Iu
+rL
+Iu
+Iu
+ke
+DX
+DX
+kU
+kU
+kU
+kU
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+SD
+SD
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}
+(80,1,1) = {"
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+kU
+kU
+kU
+kU
+Fp
+YN
+Fp
+Fp
+kU
+kU
+kU
+kU
+kU
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+Su
+"}

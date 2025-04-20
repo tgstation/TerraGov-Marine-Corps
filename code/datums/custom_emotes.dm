@@ -12,7 +12,7 @@
 /datum/custom_emote/proc/run_custom_emote(mob/user)
 	if(!message)
 		return
-	if(TIMER_COOLDOWN_CHECK(user, "custom_emotes[id]"))
+	if(TIMER_COOLDOWN_RUNNING(user, "custom_emotes[id]"))
 		user.balloon_alert(user, "You used that emote too recently")
 		return
 	TIMER_COOLDOWN_START(user, "custom_emotes[id]", cooldown)

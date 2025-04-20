@@ -15,3 +15,8 @@
 
 /mob/living/set_submerge_level(turf/new_loc, turf/old_loc, submerge_icon = 'icons/turf/alpha_64.dmi', submerge_icon_state = "liquid_alpha", duration = cached_multiplicative_slowdown + next_move_slowdown)
 	return ..()
+
+/mob/living/keybind_face_direction(direction)
+	if(stat > CONSCIOUS)
+		return
+	facedir(direction)

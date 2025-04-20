@@ -8,7 +8,7 @@
 	force = 10
 	throwforce = 7
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
+	attack_verb = list("flogs", "whips", "lashes", "disciplines")
 
 /obj/item/weapon/chainofcommand/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is strangling [p_them()]self with the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
@@ -23,7 +23,7 @@
 	force = 5
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
+	attack_verb = list("bludgeons", "whacks", "disciplines", "thrashes")
 
 /obj/item/weapon/broken_bottle
 	name = "Broken Bottle"
@@ -35,7 +35,7 @@
 	throw_speed = 3
 	throw_range = 5
 	worn_icon_state = "broken_beer"
-	attack_verb = list("stabbed", "slashed", "attacked")
+	attack_verb = list("stabs", "slashes", "attacks")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 0
 	var/icon/broken_outline = icon('icons/obj/items/drinks.dmi', "broken")
@@ -51,7 +51,7 @@
 	worn_icon_state = "powerfist"
 	equip_slot_flags = ITEM_SLOT_BELT
 	force = 10
-	attack_verb = list("smashed", "rammed", "power-fisted")
+	attack_verb = list("smashes", "rams", "power-fists")
 	var/obj/item/cell/cell
 	///the higher the power level the harder it hits
 	var/setting = 1
@@ -172,7 +172,7 @@
 	icon_state = "brick"
 	force = 30
 	throwforce = 40
-	attack_verb = list("smacked", "whacked", "bonked", "bricked", "thwacked", "socked", "donked")
+	attack_verb = list("smacks", "whacks", "bonks", "bricks", "thwacks", "socks", "donks")
 	hitsound = 'sound/weapons/heavyhit.ogg'
 
 /obj/item/stack/throwing_knife/stone
@@ -184,7 +184,7 @@
 	max_amount = 12
 	amount = 12
 	throw_delay = 0.3 SECONDS
-	attack_verb = list("smacked", "whacked", "bonked", "pelted", "thwacked", "cracked")
+	attack_verb = list("smacks", "whacks", "bonks", "pelts", "thwacks", "cracks")
 	hitsound = 'sound/weapons/heavyhit.ogg'
 	singular_name = "stone"
 	atom_flags = DIRLOCK

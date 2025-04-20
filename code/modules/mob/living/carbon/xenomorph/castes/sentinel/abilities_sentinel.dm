@@ -56,7 +56,6 @@
 
 /datum/action/ability/xeno_action/toxic_slash/action_activate()
 	. = ..()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	intoxication_stacks = SENTINEL_TOXIC_SLASH_STACKS_PER + xeno_owner.xeno_caste.additional_stacks
 	remaining_slashes = SENTINEL_TOXIC_SLASH_COUNT
 	ability_duration = addtimer(CALLBACK(src, PROC_REF(toxic_slash_deactivate), xeno_owner), SENTINEL_TOXIC_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
@@ -73,7 +72,6 @@
 ///Called when Toxic Slash is active.
 /datum/action/ability/xeno_action/toxic_slash/proc/toxic_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/mob/living/carbon/xeno_target = target
 	if(HAS_TRAIT(xeno_target, TRAIT_INTOXICATION_IMMUNE))
 		xeno_target.balloon_alert(xeno_owner, "Immune to Intoxication")
@@ -158,7 +156,6 @@
 		return FALSE
 
 /datum/action/ability/activable/xeno/drain_sting/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/mob/living/carbon/xeno_target = A
 	var/datum/status_effect/stacking/intoxicated/debuff = xeno_target.has_status_effect(STATUS_EFFECT_INTOXICATED)
 	var/drain_potency = debuff.stacks * SENTINEL_DRAIN_MULTIPLIER

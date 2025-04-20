@@ -470,7 +470,6 @@
 
 /obj/machinery/door/airlock/mainship/medical/glass/chemistry
 	name = "\improper Chemistry Laboratory"
-	req_access = list(ACCESS_MARINE_CHEMISTRY)
 
 /obj/machinery/door/airlock/mainship/medical/glass/research
 	req_access = list(ACCESS_MARINE_RESEARCH)
@@ -554,20 +553,26 @@
 
 /obj/machinery/door/airlock/mainship/generic/pilot
 	name = "\improper Pilot's Office"
-	req_access = list(ACCESS_MARINE_PILOT)
+	req_one_access = list(ACCESS_MARINE_PILOT)
 
 /obj/machinery/door/airlock/mainship/generic/pilot/bunk
 	name = "\improper Pilot's Bunks"
 
 /obj/machinery/door/airlock/mainship/generic/pilot/quarters
 	name = "\improper Pilot's Quarters"
+	req_one_access = list(ACCESS_MARINE_MECH, ACCESS_MARINE_ARMORED)
 
-/obj/machinery/door/airlock/mainship/generic/mech_pilot
+/obj/machinery/door/airlock/mainship/generic/mech_bay
+	name = "\improper Mech Bay"
+	req_one_access = list(ACCESS_MARINE_MECH, ACCESS_MARINE_ARMORED)
+
+/obj/machinery/door/airlock/mainship/generic/mech_pilot/office
 	name = "\improper Mech Pilot's Office"
 	req_access = list(ACCESS_MARINE_MECH)
 
 /obj/machinery/door/airlock/mainship/generic/mech_pilot/bunk
 	name = "\improper Mech Pilot's Bunks"
+	req_one_access = list(ACCESS_MARINE_MECH, ACCESS_MARINE_ARMORED)
 
 /obj/machinery/door/airlock/mainship/generic/ert
 	name = "\improper Airlock"
@@ -584,17 +589,10 @@
 	opacity = FALSE
 	glass = TRUE
 
-/obj/machinery/door/airlock/mainship/marine/handle_weldingtool_overlay(removing = FALSE)
-	if(!removing)
-		if(dir & NORTH|SOUTH)
-			add_overlay(GLOB.welding_sparks_prepdoor)
-		else
-			add_overlay(GLOB.welding_sparks)
-	else
-		if(dir & NORTH|SOUTH)
-			cut_overlay(GLOB.welding_sparks_prepdoor)
-		else
-			cut_overlay(GLOB.welding_sparks)
+/obj/machinery/door/airlock/mainship/marine/get_weld_spark_icon_and_state()
+	if(dir & NORTH|SOUTH)
+		return list('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_marinedoor")
+	return ..()
 
 /obj/machinery/door/airlock/mainship/marine/canterbury //For wallsmoothing
 

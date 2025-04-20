@@ -148,9 +148,11 @@
 
 /area/mainship/hallways/hangar/flight_control
 	name = "Flight Control"
-	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_COMMAND
 
+/area/mainship/hallways/hangar/flight_observation
+	name = "Flight Observation"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/mainship/living/tankerbunks
 	name = "Vehicle Crew Bunks"
@@ -542,3 +544,16 @@
 /area/mainship/patrol_base/telecomms
 	name = "Telecommunications"
 	icon_state = "tcomms"
+
+/area/mainship/multiz_debug_area
+	name = "Multi-Z Debugging"
+	icon_state = "req"
+
+/area/mainship/multiz_debug_area/floorone
+	name = "Multi-Z Debugging Floor One"
+
+/area/mainship/multiz_debug_area/floortwo
+	name = "Multi-Z Debugging Floor Two"
+
+/area/mainship/multiz_debug_area/floorthree
+	name = "Multi-Z Debugging Floor Three"

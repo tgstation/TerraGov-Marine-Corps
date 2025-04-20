@@ -16,7 +16,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	START_PROCESSING(SSmachines, src) // Registered for power usage
 
 /obj/machinery/cloning/relaymove(mob/user)
-	if(COOLDOWN_CHECK(src, relay_cooldown))
+	if(COOLDOWN_FINISHED(src, relay_cooldown))
 		return
 	COOLDOWN_START(src, relay_cooldown, 2 SECONDS)
 	user.visible_message("You hear something bang on the window of \the [src]", "The door won't budge!")
@@ -231,7 +231,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	. = ..()
 	if(!beaker)
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 
 /// Eat up the biomass, start the grow timer
 /obj/machinery/cloning/vats/proc/grow_human(instant = FALSE)
@@ -261,7 +261,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	// Blindness doenst't trigger with just the disability, you need to set_blindness
 
 	GLOB.offered_mob_list += occupant
-	notify_ghosts(span_boldnotice("A new clone is available! Name: [name]"), enter_link = "claim=[REF(occupant)]", source = src, action = NOTIFY_ORBIT)
+	notify_ghosts(span_boldnotice("A new clone is available! Name: [name]"), enter_link = "claim=[REF(occupant)]", source = src, action = NOTIFY_ORBIT, flashwindow = TRUE)
 
 	// Cleanup the timers
 	deltimer(timerid)

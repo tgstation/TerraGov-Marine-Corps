@@ -19,9 +19,9 @@
 	. = ..()
 	update_icon()
 
-/obj/item/storage/pouch/examine(mob/user)
+/obj/item/storage/pouch/examine_tags(mob/user)
 	. = ..()
-	. += "Can be worn by attaching it to a pocket."
+	.["pocket attachable"] = "Can be worn by attaching it to a pocket."
 
 /obj/item/storage/pouch/equipped(mob/user, slot)
 	if(slot == SLOT_L_STORE || slot == SLOT_R_STORE)
@@ -101,7 +101,7 @@
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/stack/throwing_knife,
-		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/converted,
 	))
 	storage_datum.storage_slots = 3
 	storage_datum.draw_mode = TRUE

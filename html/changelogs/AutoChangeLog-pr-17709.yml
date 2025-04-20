@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - admin: "set xeno buffs verb now also shows current autoballance"

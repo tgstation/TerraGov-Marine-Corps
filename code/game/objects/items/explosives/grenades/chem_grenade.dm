@@ -138,7 +138,7 @@
 /obj/item/explosive/grenade/chem_grenade/examine(mob/user)
 	display_timer = (stage == CG_READY && !nadeassembly)	//show/hide the timer based on assembly state
 	. = ..()
-	if(user.skills.getRating(SKILL_MEDICAL) > SKILL_MEDICAL_NOVICE)
+	if((user.skills.getRating(SKILL_MEDICAL) > SKILL_MEDICAL_NOVICE) || isobserver(usr))
 		if(length(beakers))
 			. += span_notice("You scan the grenade and detect the following reagents:")
 			for(var/obj/item/reagent_containers/glass/G in beakers)

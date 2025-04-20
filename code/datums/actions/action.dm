@@ -39,21 +39,21 @@ KEYBINDINGS
 	if(desc)
 		button.desc = desc
 	if(length(keybinding_signals) == 1)
-		visual_references[VREF_MUTABLE_MAPTEXT] = mutable_appearance(null, null, ACTION_LAYER_MAPTEXT, FLOAT_PLANE)
+		visual_references[VREF_MUTABLE_MAPTEXT] = mutable_appearance(null, null, ACTION_LAYER_MAPTEXT)
 	else
 		var/list/maptext_list = list()
 		for(var/keybind_type in keybinding_signals)
-			var/mutable_appearance/maptext_appearance = mutable_appearance(null, null, ACTION_LAYER_MAPTEXT, FLOAT_PLANE)
+			var/mutable_appearance/maptext_appearance = mutable_appearance(null, null, ACTION_LAYER_MAPTEXT)
 			maptext_appearance.pixel_x = GLOB.action_maptext_offsets[keybind_type][1]
 			maptext_appearance.pixel_y = GLOB.action_maptext_offsets[keybind_type][2]
 			maptext_list[keybinding_signals[keybind_type]] = maptext_appearance
 		visual_references[VREF_MUTABLE_MAPTEXT] = maptext_list
 	switch(action_type)
 		if(ACTION_TOGGLE)
-			visual_references[VREF_MUTABLE_ACTIVE_FRAME] = mutable_appearance('icons/mob/actions.dmi', "active", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)
+			visual_references[VREF_MUTABLE_ACTIVE_FRAME] = mutable_appearance('icons/mob/actions.dmi', "active", ACTION_LAYER_ACTION_ICON_STATE)
 		if(ACTION_SELECT)
-			visual_references[VREF_MUTABLE_SELECTED_FRAME] = mutable_appearance('icons/mob/actions.dmi', "selected_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)
-	visual_references[VREF_MUTABLE_ACTION_STATE] = mutable_appearance(action_icon, action_icon_state, HUD_LAYER, HUD_PLANE)
+			visual_references[VREF_MUTABLE_SELECTED_FRAME] = mutable_appearance('icons/mob/actions.dmi', "selected_frame", ACTION_LAYER_ACTION_ICON_STATE)
+	visual_references[VREF_MUTABLE_ACTION_STATE] = mutable_appearance(action_icon, action_icon_state)
 	button.add_overlay(visual_references[VREF_MUTABLE_ACTION_STATE])
 
 /datum/action/Destroy()

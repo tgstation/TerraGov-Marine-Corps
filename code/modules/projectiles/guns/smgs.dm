@@ -9,7 +9,6 @@
 	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/smg_cocked.ogg'
 	type_of_casings = "bullet"
-	muzzleflash_iconstate = "muzzle_flash_light"
 	load_method = MAGAZINE //codex
 	force = 8
 	w_class = WEIGHT_CLASS_BULKY
@@ -42,7 +41,7 @@
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mp19.ogg'
 	caliber = CALIBER_10X20_CASELESS //codex
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	max_shells = 30 //codex
+	max_shells = 45 //codex
 	equip_slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_machinepistol
@@ -104,7 +103,7 @@
 	icon_state = "t90"
 	worn_icon_state = "t90"
 	caliber = CALIBER_10X20_CASELESS //codex
-	max_shells = 50 //codex
+	max_shells = 80 //codex
 	equip_slot_flags = ITEM_SLOT_BACK
 	wield_delay = 0.7 SECONDS
 	force = 20
@@ -129,7 +128,6 @@
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 0.55
 	accuracy_mult = 1.05
@@ -161,7 +159,7 @@
 	icon_state = "t45"
 	worn_icon_state = "t45"
 	caliber = CALIBER_41AE //codex
-	max_shells = 40 //codex
+	max_shells = 55 //codex
 	fire_sound = 'sound/weapons/guns/fire/skorpevo.ogg'
 	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
@@ -194,7 +192,6 @@
 	)
 
 	attachable_offset = list("muzzle_x" = 43, "muzzle_y" = 19,"rail_x" = 22, "rail_y" = 23, "under_x" = 32, "under_y" = 14, "stock_x" = 24, "stock_y" = 16)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 
 	aim_slowdown = 0.25
@@ -426,7 +423,6 @@
 
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 21, "under_x" = 26, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.15 SECONDS
 	aim_speed_modifier = 2.5
 
@@ -688,7 +684,6 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/icc_pdw)
 
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 20, "under_x" = 31, "under_y" = 13, "stock_x" = 9, "stock_y" = 10)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 0.55
 
@@ -752,7 +747,6 @@
 	)
 
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 21, "under_x" = 24, "under_y" = 15, "stock_x" = 24, "stock_y" = 16)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 
 	aim_slowdown = 0.25

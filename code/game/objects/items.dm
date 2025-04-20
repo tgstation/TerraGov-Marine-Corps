@@ -1,8 +1,3 @@
-GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", WELDING_TOOL_EFFECT_LAYER, ABOVE_LIGHTING_PLANE))
-GLOBAL_DATUM_INIT(welding_sparks_multitiledoor_vertical, /mutable_appearance, mutable_appearance('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_vertical", WELDING_TOOL_EFFECT_LAYER, ABOVE_LIGHTING_PLANE))
-GLOBAL_DATUM_INIT(welding_sparks_multitiledoor_horizontal, /mutable_appearance, mutable_appearance('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_horizontal", WELDING_TOOL_EFFECT_LAYER, ABOVE_LIGHTING_PLANE))
-GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearance('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_marinedoor", WELDING_TOOL_EFFECT_LAYER, ABOVE_LIGHTING_PLANE))
-
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items/items.dmi'
@@ -26,39 +21,61 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/attack_speed = 11
 	///Byond tick delay between right click alternate attacks
 	var/attack_speed_alternate = 11
-	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
+	///Used in attackby() to say how something was attacked "[x] [z.attack_verb] [y] with their [z]!" Should be in simple present tense!
+	var/list/attack_verb
 
-	var/sharp = FALSE		// whether this item cuts
-	var/edge = FALSE		// whether this item is more likely to dismember
-	var/pry_capable = FALSE //whether this item can be used to pry things open.
-	var/heat = 0 //whether this item is a source of heat, and how hot it is (in Kelvin).
+	///whether this item cuts
+	var/sharp = FALSE
+	///whether this item is more likely to dismember
+	var/edge = FALSE
+	///whether this item can be used to pry things open.
+	var/pry_capable = FALSE
+	///whether this item is a source of heat, and how hot it is (in Kelvin).
+	var/heat = 0
 
+	///sound this item makes when you hit something with it
 	var/hitsound = null
+	///The weight class being how big, mainly used for storage purposes
 	var/w_class = WEIGHT_CLASS_NORMAL
-	var/item_flags = NONE	//flags for item stuff that isn't clothing/equipping specific.
-	var/equip_slot_flags = NONE		//This is used to determine on which slots an item can fit.
+	///flags for item stuff that isn't clothing/equipping specific.
+	var/item_flags = NONE
+	///This is used to determine on which slots an item can fit.
+	var/equip_slot_flags = NONE
+	///Last slot that item was equipped to (aka sticky slot)
+	var/last_equipped_slot
 
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
-	var/inventory_flags = NONE //This flag is used for various clothing/equipment item stuff
-	var/inv_hide_flags = NONE //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	///This flag is used for various clothing/equipment item stuff
+	var/inventory_flags = NONE
+	///This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	var/inv_hide_flags = NONE
 
 	var/obj/item/master = null
 
-	var/armor_protection_flags = NONE //see setup.dm for appropriate bit flags
-	var/heat_protection_flags = NONE //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
-	var/cold_protection_flags = NONE //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	///see setup.dm for appropriate bit flags
+	var/armor_protection_flags = NONE
+	///flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	var/heat_protection_flags = NONE
+	///flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	var/cold_protection_flags = NONE
 
-	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection_flags flags
-	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection_flags flags
+	///Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection_flags flags
+	var/max_heat_protection_temperature
+	///Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection_flags flags
+	var/min_cold_protection_temperature
 
 	///list of /datum/action's that this item has.
 	var/list/actions
 	///list of paths of action datums to give to the item on Initialize().
 	var/list/actions_types
-	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
-	var/permeability_coefficient = 1 // for chemicals/diseases
-	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
-	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
+	/// for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
+	var/gas_transfer_coefficient = 1
+	/// for chemicals/diseases
+	var/permeability_coefficient = 1
+	/// for electrical admittance/conductance (electrocution checks and shit)
+	var/siemens_coefficient = 1
+	/// How much clothing is slowing you down. Negative values speeds you up
+	var/slowdown = 0
 	var/breakouttime = 0
 
 	///list() of species types, if a species cannot put items in a certain slot, but species type is in list, it will be able to wear that item
@@ -131,8 +148,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/active = FALSE
 
-
-
 	//Coloring vars
 	///Some defines to determine if the item is allowed to be recolored.
 	var/colorable_allowed = NONE
@@ -142,9 +157,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/list/icon_state_variants = list()
 	///Current variant selected.
 	var/current_variant
-
-
-
 
 /obj/item/Initialize(mapload)
 	if(species_exception)
@@ -229,7 +241,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 /obj/item/verb/move_to_top()
 	set name = "Move To Top"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(!isturf(loc) || usr.stat || usr.restrained())
@@ -251,17 +263,24 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override) & COMPONENT_EXNAME_CHANGED)
 		. = override.Join("")
 
-/obj/item/examine(mob/user)
-	. = ..()
-	. += EXAMINE_SECTION_BREAK
-	. += "[gender == PLURAL ? "They are" : "It is"] a [weight_class_to_text(w_class)] item."
+/obj/item/examine_tags(mob/user)
+	var/list/parent_tags = ..()
+	var/list/weight_class_data = weight_class_data(w_class)
+	parent_tags.Insert(1, weight_class_data[WEIGHT_CLASS_TEXT]) // to make size display first, otherwise it looks goofy
+	. = parent_tags
+	.[weight_class_data[WEIGHT_CLASS_TEXT]] = "[gender == PLURAL ? "They're" : "It's"] a [weight_class_data[WEIGHT_CLASS_TEXT]] [examine_descriptor(user)]. [weight_class_data[WEIGHT_CLASS_TOOLTIP]]"
+	if(atom_flags & CONDUCT)
+		.["conductive"] = "It's conductive. If this is an oversuit item, like armor, it will prevent defibrillation while worn. \
+							Some conductive tools also have special interactions and dangers when being used."
+
+/obj/item/examine_descriptor(mob/user)
+	return "item"
 
 /obj/item/attack_ghost(mob/dead/observer/user)
 	. = ..()
 	if(. || !can_interact(user))
 		return
 	return interact(user)
-
 
 /obj/item/attack_hand(mob/living/user)
 	. = ..()
@@ -384,16 +403,30 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/proc/do_quick_equip(mob/user)
 	return src
 
+
+///Helper function for updating last_equipped_slot when item is drawn from storage
+/obj/item/proc/set_last_equipped_slot_of_storage(datum/storage/storage_datum)
+	var/obj/item/storage_item = storage_datum.parent
+	if(!isitem(storage_item))
+		return
+
+	while(isitem(storage_item.loc)) // for stuff like armor modules we have to find topmost item
+		storage_item = storage_item.loc
+
+	if(storage_item)
+		last_equipped_slot = slot_to_in_storage_slot(storage_item.last_equipped_slot)
+
+
 ///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
 	item_flags &= ~IN_STORAGE
+	set_last_equipped_slot_of_storage(S)
 	return
 
 
 ///called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
 /obj/item/proc/on_enter_storage(obj/item/storage/S as obj)
 	item_flags |= IN_STORAGE
-	return
 
 
 ///called when "found" in pockets and storage items. Returns 1 if the search should end.
@@ -410,6 +443,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/proc/equipped(mob/user, slot)
 	SHOULD_CALL_PARENT(TRUE) // no exceptions
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_EQUIPPED, src, slot)
+	if (slot != SLOT_R_HAND && slot != SLOT_L_HAND)
+		last_equipped_slot = slot
 
 	var/equipped_to_slot = equip_slot_flags & slotdefine2slotbit(slot)
 	if(equipped_to_slot) // equip_slot_flags is a bitfield
@@ -438,6 +474,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/proc/unequipped(mob/unequipper, slot)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNEQUIPPED, unequipper, slot)
+	SEND_SIGNAL(unequipper, COMSIG_MOB_ITEM_UNEQUIPPED, src, slot)
 
 	var/equipped_from_slot = equip_slot_flags & slotdefine2slotbit(slot)
 
@@ -750,7 +787,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(!isturf(loc))
 		return
 	var/image/pickup_animation = image(icon = src, loc = loc, layer = layer + 0.1)
-	pickup_animation.plane = GAME_PLANE
+	SET_PLANE_EXPLICIT(pickup_animation, GAME_PLANE, src)
 	pickup_animation.transform.Scale(0.75)
 	pickup_animation.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 
@@ -820,7 +857,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 /obj/item/verb/verb_pickup()
 	set src in oview(1)
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Pick up"
 
 	if(usr.incapacitated() || !Adjacent(usr))
@@ -843,14 +880,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTION, user)
 
 
-/mob/living/carbon/verb/showoff()
-	set name = "Show Held Item"
-	set category = "Object"
-
-	var/obj/item/I = get_active_held_item()
-	if(I && !(I.item_flags & ITEM_ABSTRACT))
-		visible_message("[src] holds up [I]. <a HREF=?src=[REF(usr)];lookitem=[REF(I)]>Take a closer look.</a>")
-
 /*
 For zooming with scope or binoculars. This is called from
 modules/mob/mob_movement.dm if you move you will be zoomed out
@@ -868,7 +897,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		viewsize = zoom_viewsize
 
 	if(zoom) //If we are zoomed out, reset that parameter.
-		if(!TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
+		if(TIMER_COOLDOWN_FINISHED(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
 			user.visible_message(span_notice("[user] looks up from [zoom_device]."),
 			span_notice("You look up from [zoom_device]."))
 
@@ -908,7 +937,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.client.view_size.add(viewsize)
 		change_zoom_offset(user, zoom_offset = tileoffset)
 
-	if(!TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM))
+	if(TIMER_COOLDOWN_FINISHED(user, COOLDOWN_ZOOM))
 		user.visible_message(span_notice("[user] peers through \the [zoom_device]."),
 		span_notice("You peer through \the [zoom_device]."))
 	zoom = TRUE
@@ -1095,7 +1124,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 					W.reagents.reaction(atm)
 					if(isfire(atm))
 						var/obj/fire/FF = atm
-						FF.set_fire(FF.burn_ticks - 20)
+						FF.set_fire(FF.burn_ticks - EXTINGUISH_AMOUNT)
 						continue
 					if(isliving(atm)) //For extinguishing mobs on fire
 						var/mob/living/M = atm
@@ -1115,7 +1144,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 // Called when a mob tries to use the item as a tool.
 // Handles most checks.
-/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount = 0, volume = 0, datum/callback/extra_checks)
+/obj/item/proc/use_tool(atom/target, mob/living/user, delay, amount = 0, volume = 0, datum/callback/extra_checks, user_display=PROGRESS_GENERIC)
 	// No delay means there is no start message, and no reason to call tool_start_check before use_tool.
 	// Run the start check here so we wouldn't have to call it manually.
 	if(!delay && !tool_start_check(user, amount))
@@ -1130,11 +1159,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		// Create a callback with checks that would be called every tick by do_after.
 		var/datum/callback/tool_check = CALLBACK(src, PROC_REF(tool_check_callback), user, amount, extra_checks)
 
-		if(ismob(target))
-			if(do_after(user, delay, NONE, target, extra_checks = tool_check))
-				return
-
-		else if(!do_after(user, delay, target = target, extra_checks = tool_check))
+		if(!do_after(user, delay, target = target, extra_checks = tool_check, user_display=user_display))
 			return
 
 	else if(extra_checks && !extra_checks.Invoke()) // Invoke the extra checks once, just in case.
@@ -1284,7 +1309,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	SHOULD_CALL_PARENT(TRUE)
 	if(blocks_emissive != EMISSIVE_BLOCK_NONE)
-		standing.overlays += emissive_blocker(icon_used, state_used, alpha = standing.alpha)
+		standing.overlays += emissive_blocker(icon_used, state_used, src, alpha = standing.alpha)
 	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing, inhands, icon_used, state_used)
 	return standing
 
@@ -1300,7 +1325,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 ///Checks to see if you successfully perform a trick, and what kind
 /obj/item/proc/do_trick(mob/living/carbon/human/user)
-	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ITEM_TRICK))
+	if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_ITEM_TRICK))
 		return FALSE
 	if(!istype(user))
 		return FALSE
@@ -1346,10 +1371,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	set waitfor = 0
 	playsound(user, 'sound/effects/spin.ogg', 25, 1)
 	if(double)
-		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
+		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice("You flick and spin [src] and [double]!"))
 		animation_wrist_flick(double, 1)
 	else
-		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
+		user.visible_message("[user] deftly flicks and spins [src]!",span_notice("You flick and spin [src]!"))
 	animation_wrist_flick(src, direction)
 	sleep(0.3 SECONDS)
 	if(loc && user) playsound(user, 'sound/effects/thud.ogg', 25, 1)
@@ -1357,7 +1382,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///The fancy trick. Woah.
 /obj/item/proc/throw_catch_trick(mob/living/carbon/human/user)
 	set waitfor = 0
-	user.visible_message("[user] deftly flicks [src] and tosses it into the air!",span_notice(" You flick and toss [src] into the air!"))
+	user.visible_message("[user] deftly flicks [src] and tosses it into the air!",span_notice("You flick and toss [src] into the air!"))
 	var/img_layer = MOB_LAYER+0.1
 	var/image/trick = image(icon,user,icon_state,img_layer)
 	switch(pick(1,2))
@@ -1378,9 +1403,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 
 	if(user.get_inactive_held_item())
-		user.visible_message("[user] catches [src] with the same hand!",span_notice(" You catch [src] as it spins in to your hand!"))
+		user.visible_message("[user] catches [src] with the same hand!",span_notice("You catch [src] as it spins in to your hand!"))
 		return
-	user.visible_message("[user] catches [src] with his other hand!",span_notice(" You snatch [src] with your other hand! Awesome!"))
+	user.visible_message("[user] catches [src] with his other hand!",span_notice("You snatch [src] with your other hand! Awesome!"))
 	user.temporarilyRemoveItemFromInventory(src)
 	user.put_in_inactive_hand(src)
 	user.swap_hand()
@@ -1502,3 +1527,17 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	alpha -= (new_alpha_mod - old_alpha_mod) * ITEM_LIQUID_TURF_ALPHA_MULT
 
 #undef ITEM_LIQUID_TURF_ALPHA_MULT
+
+///Proc that gets called by a vendor when you refill something
+///Returns FALSE if it's not elligible for refills
+/obj/item/proc/refill(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+	if(!(item_flags & CAN_REFILL))
+		user.balloon_alert(user, "Can't refill this")
+		return FALSE
+	user.balloon_alert(user, "Refilled") //If all checks passed, it's safe to throw the balloon alert
+	return TRUE
+
+/// Returns the strip delay of the item.
+/obj/item/proc/getstripdelay()
+	return strip_delay

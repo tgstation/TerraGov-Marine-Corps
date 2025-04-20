@@ -2,9 +2,6 @@
 #define UPLOAD_LIMIT_ADMIN 10000000	//Restricts admin uploads to the server to 10MB
 
 
-#define MIN_RECOMMENDED_CLIENT 1575
-#define REQUIRED_CLIENT_MAJOR 514
-#define REQUIRED_CLIENT_MINOR 1493
 
 #define LIMITER_SIZE 5
 #define CURRENT_SECOND 1
@@ -101,6 +98,8 @@
 		private_message(href_list["priv_msg"], null)
 		return
 
+	if(href_list["commandbar_typing"])
+		handle_commandbar_typing(href_list)
 
 	switch(href_list["_src_"])
 		if("holder")
@@ -143,6 +142,9 @@
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
+	if(byond_version >= 516)
+		winset(src, null, list("browser-options" = "find,refresh,byondstorage"))
+
 	//On creation of a client, add an entry into the GLOB list of the client with their stats
 	GLOB.personal_statistics_list[ckey] = new /datum/personal_statistics
 
@@ -155,22 +157,9 @@
 
 	tgui_say = new(src, "tgui_say")
 
+	initialize_commandbar_spy()
+
 	GLOB.ahelp_tickets.ClientLogin(src)
-
-	if(CONFIG_GET(flag/localhost_rank))
-		var/static/list/localhost_addresses = list("127.0.0.1", "::1")
-		if(isnull(address) || (address in localhost_addresses))
-			var/datum/admin_rank/rank = new("!localhost!", R_EVERYTHING, , R_EVERYTHING)
-			var/datum/admins/admin = new(rank, ckey, TRUE)
-			admin.associate(src)
-
-	holder = GLOB.admin_datums[ckey]
-	if(holder)
-		GLOB.admins |= src
-		holder.owner = src
-		holder.activate()
-	else if(GLOB.deadmins[ckey])
-		add_verb(src, /client/proc/readmin)
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = GLOB.preferences_datums[ckey]
@@ -218,6 +207,22 @@
 		GLOB.player_details[ckey] = player_details
 
 	. = ..()	//calls mob.Login()
+
+	// Admin Verbs need the client's mob to exist. Must be after ..()
+	var/connecting_admin = FALSE //because de-admined admins connecting should be treated like
+	holder = GLOB.admin_datums[ckey]
+	if(!isnull(holder))
+		holder.associate(src)
+		connecting_admin = TRUE
+	else if(GLOB.deadmins[ckey])
+		add_verb(src, /client/proc/readmin)
+		connecting_admin = TRUE
+
+	if(CONFIG_GET(flag/localhost_rank) && !connecting_admin && is_localhost())
+		var/datum/admin_rank/rank = new("!localhost!", R_EVERYTHING, , R_EVERYTHING)
+		var/datum/admins/admin = new(rank, ckey, TRUE)
+		admin.associate(src)
+
 	if(length(GLOB.stickybanadminexemptions))
 		GLOB.stickybanadminexemptions -= ckey
 		if (!length(GLOB.stickybanadminexemptions))
@@ -225,6 +230,8 @@
 
 	if(SSinput.initialized)
 		set_macros()
+
+	INVOKE_ASYNC(src, PROC_REF(acquire_dpi))
 
 	// Initialize tgui panel
 	tgui_panel.initialize()
@@ -239,22 +246,11 @@
 	)
 	addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 30 SECONDS)
 
-	if(byond_version < REQUIRED_CLIENT_MAJOR || (byond_build && byond_build < REQUIRED_CLIENT_MINOR))
-		//to_chat(src, span_userdanger("Your version of byond is severely out of date."))
-		to_chat(src, span_userdanger("TGMC now requires the first stable [REQUIRED_CLIENT_MAJOR] build, please update your client to [REQUIRED_CLIENT_MAJOR].[MIN_RECOMMENDED_CLIENT]."))
-		to_chat(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
-		addtimer(CALLBACK(src, qdel(src), 2 SECONDS))
-		return
-
 	if(!byond_build || byond_build < 1386)
 		message_admins("[key_name(src)] has been detected as spoofing their byond version. Connection rejected.")
 		log_access("Failed Login: [key] - Spoofed byond version")
 		qdel(src)
 		return
-
-	if(byond_build < MIN_RECOMMENDED_CLIENT)
-		to_chat(src, span_userdanger("Your version of byond has known client crash issues, it's recommended you update your version."))
-		to_chat(src, span_danger("Please download a new version of byond. You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download 514.[MIN_RECOMMENDED_CLIENT]."))
 
 	if(byond_build < 1555)
 		to_chat(src, span_userdanger("Your version of byond might have rendering lag issues, it is recommended you update your version to above Byond version 1555 if you encounter them."))
@@ -276,6 +272,37 @@
 	connection_timeofday = world.timeofday
 
 	winset(src, null, "command=\".configure graphics-hwmode on\"")
+
+	var/breaking_version = CONFIG_GET(number/client_error_version)
+	var/breaking_build = CONFIG_GET(number/client_error_build)
+	var/warn_version = CONFIG_GET(number/client_warn_version)
+	var/warn_build = CONFIG_GET(number/client_warn_build)
+
+	if (byond_version < breaking_version || (byond_version == breaking_version && byond_build < breaking_build)) //Out of date client.
+		to_chat_immediate(src, span_danger("<b>Your version of BYOND is too old:</b>"))
+		to_chat_immediate(src, CONFIG_GET(string/client_error_message))
+		to_chat_immediate(src, "Your version: [byond_version].[byond_build]")
+		to_chat_immediate(src, "Required version: [breaking_version].[breaking_build] or later")
+		to_chat_immediate(src, "Visit <a href=\"https://secure.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.")
+		if (connecting_admin)
+			to_chat_immediate(src, "Because you are an admin, you are being allowed to walk past this limitation, But it is still STRONGLY suggested you upgrade")
+		else
+			qdel(src)
+			return
+	else if (byond_version < warn_version || (byond_version == warn_version && byond_build < warn_build)) //We have words for this client.
+		if(CONFIG_GET(flag/client_warn_popup))
+			var/msg = "<b>Your version of byond may be getting out of date:</b><br>"
+			msg += CONFIG_GET(string/client_warn_message) + "<br><br>"
+			msg += "Your version: [byond_version].[byond_build]<br>"
+			msg += "Required version to remove this message: [warn_version].[warn_build] or later<br>"
+			msg += "Visit <a href=\"https://secure.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.<br>"
+			src << browse(HTML_SKELETON(msg), "window=warning_popup")
+		else
+			to_chat(src, span_danger("<b>Your version of byond may be getting out of date:</b>"))
+			to_chat(src, CONFIG_GET(string/client_warn_message))
+			to_chat(src, "Your version: [byond_version].[byond_build]")
+			to_chat(src, "Required version to remove this message: [warn_version].[warn_build] or later")
+			to_chat(src, "Visit <a href=\"https://secure.byond.com/download\">BYOND's website</a> to get the latest version of BYOND.")
 
 	var/cached_player_age = set_client_age_from_db(tdata) //we have to cache this because other shit may change it and we need it's current value now down below.
 	if(isnum(cached_player_age) && cached_player_age == -1) //first connection
@@ -304,7 +331,7 @@
 		if(CONFIG_GET(flag/aggressive_changelog))
 			changes()
 		else
-			winset(src, "infowindow.changelog", "font-style=bold")
+			winset(src, "infobuttons.changelog", "font-style=bold")
 
 	if(ckey in GLOB.clientmessages)
 		for(var/message in GLOB.clientmessages[ckey])
@@ -353,11 +380,13 @@
 	view_size.update_zoom_mode()
 
 	set_fullscreen(prefs.fullscreen_mode)
+	toggle_status_bar(prefs.show_status_bar)
 
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
 
 	Master.UpdateTickRate()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CLIENT_CONNECT, src)
+	fully_created = TRUE
 
 
 
@@ -410,6 +439,10 @@
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
+	QDEL_NULL(view_size)
+	QDEL_NULL(parallax_rock)
+	QDEL_LIST(parallax_layers_cached)
+	parallax_layers = null
 	seen_messages = null
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
 	SSping.currentrun -= src
@@ -517,6 +550,14 @@
 /client/proc/setDir(newdir)
 	dir = newdir
 
+
+/client/proc/is_localhost()
+	var/static/localhost_addresses = list(
+		"127.0.0.1",
+		"::1",
+		null,
+	)
+	return address in localhost_addresses
 
 /client/proc/show_character_previews(mutable_appearance/MA)
 	var/pos = 0
@@ -720,6 +761,8 @@
 
 /client/proc/check_randomizer(topic)
 	. = FALSE
+	if(is_localhost()) // no need to check a localhost
+		return TRUE
 	if (connection != "seeker")
 		return
 	topic = params2list(topic)
@@ -809,6 +852,13 @@
 /client/proc/rescale_view(change, min, max)
 	view_size.set_view_radius_to(clamp(change, min, max), clamp(change, min, max))
 
+/client/proc/set_eye(new_eye)
+	if(new_eye == eye)
+		return
+	var/atom/old_eye = eye
+	eye = new_eye
+	SEND_SIGNAL(src, COMSIG_CLIENT_SET_EYE, old_eye, new_eye)
+
 /**
  * Updates the keybinds for special keys
  *
@@ -867,6 +917,7 @@
 						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[msay]")
 					else
 						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=")
+	calculate_move_dir()
 
 /client/proc/change_view(new_size)
 	if(isnull(new_size))
@@ -878,24 +929,27 @@
 		new_size = CONFIG_GET(string/default_view_square)
 
 	view = new_size
+	SEND_SIGNAL(src, COMSIG_VIEW_SET, new_size)
 	apply_clickcatcher()
 	mob.reload_fullscreens()
-	if(prefs.auto_fit_viewport)
-		INVOKE_NEXT_TICK(src, VERB_REF(fit_viewport), 1 SECONDS) //Delayed to avoid wingets from Login calls.
+	attempt_auto_fit_viewport()
 
 ///Change the fullscreen setting of the client
 /client/proc/set_fullscreen(fullscreen_mode)
-	if(fullscreen_mode)
-		winset(src, "mainwindow", "is-maximized=false;can-resize=false;titlebar=false")
-		winset(src, "mainwindow", "menu=null;statusbar=false")
-		winset(src, "mainwindow.split", "pos=0x0")
+	if (fullscreen_mode)
+		// ATTN!! ONCE 515.1631 IS REQUIRED REPLACE WITH winset(src, "mainwindow", "menu=;is-fullscreen=true") (and remember to replace the other call of course)
+		// this means no double maximise calls to make sure window fits, and supresses, titlebar, can-resize and is-maximized
+		// both implementations are functionally "windowed borderless"
+		winset(src, "mainwindow", "on-size=;titlebar=false;can-resize=false;menu=;is-maximized=false")
 		winset(src, "mainwindow", "is-maximized=true")
-		return
-	winset(src, "mainwindow", "is-maximized=false;can-resize=true;titlebar=true")
-	winset(src, "mainwindow", "menu=menu;statusbar=true")
-	winset(src, "mainwindow.split", "pos=3x0")
-	winset(src, "mainwindow", "is-maximized=true")
+	else
+		winset(src, "mainwindow", "menu=menu;titlebar=true;can-resize=true;is-maximized=true;on-size=attempt_auto_fit_viewport")
 
+/client/proc/toggle_status_bar(show_status_bar)
+	if (show_status_bar)
+		winset(src, "mapwindow.status_bar", "is-visible=true")
+	else
+		winset(src, "mapwindow.status_bar", "is-visible=false")
 
 ///Creates and applies a clickcatcher
 /client/proc/apply_clickcatcher()
@@ -1018,7 +1072,7 @@ GLOBAL_VAR_INIT(automute_on, null)
 /client/proc/check_panel_loaded()
 	if(stat_panel.is_ready())
 		return
-	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
+	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='byond://?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
 
 /**
  * Handles incoming messages from the stat-panel TGUI.
@@ -1036,3 +1090,7 @@ GLOBAL_VAR_INIT(automute_on, null)
 		if("Set-Tab")
 			stat_tab = payload["tab"]
 			SSstatpanels.immediate_send_stat_data(src)
+
+/// This grabs the DPI of the user per their skin
+/client/proc/acquire_dpi()
+	window_scaling = text2num(winget(src, null, "dpi"))

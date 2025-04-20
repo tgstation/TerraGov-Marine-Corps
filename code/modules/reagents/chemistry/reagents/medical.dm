@@ -18,7 +18,7 @@
 /datum/reagent/medicine/inaprovaline/on_mob_add(mob/living/L, metabolism)
 	ADD_TRAIT(L, TRAIT_IGNORE_SUFFOCATION, REAGENT_TRAIT(src))
 	var/mob/living/carbon/human/H = L
-	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
+	if(TIMER_COOLDOWN_RUNNING(L, name) || L.stat == DEAD)
 		return
 	if(L.health < H.health_threshold_crit && volume > 14) //If you are in crit, and someone injects at least 15u into you at once, you will heal 30% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
@@ -47,6 +47,13 @@
 		E.take_damage(0.5*effect_str, TRUE)
 	if(prob(10))
 		L.emote(pick("twitch","blink_r","shiver"))
+
+/datum/reagent/medicine/inaprovaline/ai_should_use(mob/living/target, inject_vol)
+	if(!target.InCritical())
+		return FALSE
+	if(TIMER_COOLDOWN_RUNNING(target, name) && (target.getOxyLoss() < 15))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/ryetalyn
 	name = "Ryetalyn"
@@ -137,7 +144,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
 
 /datum/reagent/medicine/oxycodone/on_mob_add(mob/living/L, metabolism)
-	if(TIMER_COOLDOWN_CHECK(L, name))
+	if(TIMER_COOLDOWN_RUNNING(L, name))
 		return
 	L.adjustStaminaLoss(-20*effect_str)
 	to_chat(L, span_userdanger("You feel a burst of energy revitalize you all of a sudden! You can do anything!"))
@@ -168,6 +175,11 @@
 /datum/reagent/medicine/oxycodone/on_mob_delete(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("The room spins slightly as you start to come down off your painkillers!"))
 	TIMER_COOLDOWN_START(L, name, 60 SECONDS)
+
+/datum/reagent/medicine/oxycodone/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/hydrocodone
 	name = "Hydrocodone"
@@ -265,6 +277,11 @@
 
 /datum/reagent/medicine/dermaline/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(3*effect_str, 0, 3*effect_str)
+
+/datum/reagent/medicine/dermaline/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/saline_glucose
 	name = "Saline-Glucose"
@@ -389,6 +406,11 @@
 		if(E)
 			E.take_damage(1.5*effect_str, TRUE)
 
+/datum/reagent/medicine/dylovene/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type)) //it has downsides so lets not spam it
+		return FALSE
+	return ..()
+
 /datum/reagent/medicine/adminordrazine //An OP chemical for admins
 	name = "Adminordrazine"
 	description = "It's magic. We don't have to explain it."
@@ -433,7 +455,7 @@
 	purge_rate = 5
 
 /datum/reagent/medicine/synaptizine/on_mob_add(mob/living/L, metabolism)
-	if(TIMER_COOLDOWN_CHECK(L, name))
+	if(TIMER_COOLDOWN_RUNNING(L, name))
 		return
 	L.adjustStaminaLoss(-30*effect_str)
 	to_chat(L, span_userdanger("You feel a burst of energy as the stimulants course through you! Time to go!"))
@@ -465,6 +487,11 @@
 	to_chat(L, span_userdanger("The room spins as you start to come down off your stimulants!"))
 	TIMER_COOLDOWN_START(L, name, 60 SECONDS)
 
+/datum/reagent/medicine/synaptizine/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type)) //it has downsides so lets not spam it
+		return FALSE
+	return ..()
+
 /datum/reagent/medicine/neuraline //injected by neurostimulator implant and medic-only injector
 	name = "Neuraline"
 	description = "A chemical cocktail tailored to enhance or dampen specific neural processes."
@@ -475,7 +502,7 @@
 
 /datum/reagent/medicine/neuraline/on_mob_add(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
-	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
+	if(TIMER_COOLDOWN_RUNNING(L, name) || L.stat == DEAD)
 		return
 	if(L.health < H.health_threshold_crit && volume > 3) //If you are in crit, and someone injects at least 3u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
@@ -511,6 +538,11 @@
 
 /datum/reagent/medicine/neuraline/overdose_crit_process(mob/living/L, metabolism)
 	L.adjustBrainLoss(10*effect_str, TRUE) //if you double inject, you're fucked till surgery. This is the downside of a very strong chem.
+
+/datum/reagent/medicine/neuraline/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/hyronalin
 	name = "Hyronalin"
@@ -560,7 +592,7 @@
 
 /datum/reagent/medicine/russian_red/on_mob_add(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
-	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
+	if(TIMER_COOLDOWN_RUNNING(L, name) || L.stat == DEAD)
 		return
 	if(L.health < H.health_threshold_crit && volume > 9) //If you are in crit, and someone injects at least 9u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
@@ -585,6 +617,11 @@
 	L.apply_damages(effect_str, 2*effect_str, effect_str)
 	L.adjustBrainLoss(2*effect_str, TRUE)
 
+/datum/reagent/medicine/russian_red/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
+
 /datum/reagent/medicine/alkysine
 	name = "Alkysine"
 	description = "Alkysine is a drug used to lessen the damage to neurological and auditory tissue after a catastrophic injury. Can heal brain and ear tissue."
@@ -604,6 +641,11 @@
 
 /datum/reagent/medicine/alkysine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(0, effect_str, effect_str)
+
+/datum/reagent/medicine/alkysine/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"
@@ -628,6 +670,11 @@
 
 /datum/reagent/medicine/imidazoline/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(0, effect_str, 2*effect_str)
+
+/datum/reagent/medicine/imidazoline/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/peridaxon_plus
 	name = "Peridaxon Plus"
@@ -655,6 +702,11 @@
 
 /datum/reagent/medicine/peridaxon_plus/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(15*effect_str, TOX) //Ya triple-clicked. Ya shouldn'ta did that.
+
+/datum/reagent/medicine/peridaxon_plus/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
@@ -706,6 +758,11 @@
 /datum/reagent/medicine/meralyne/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(2*effect_str, 6*effect_str, 4*effect_str)
 
+/datum/reagent/medicine/meralyne/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
+
 /datum/reagent/medicine/quickclot
 	name = "Quick Clot"
 	description = "A chemical designed to quickly arrest all sorts of bleeding by encouraging coagulation. Can rectify internal bleeding at cryogenic temperatures."
@@ -731,6 +788,10 @@
 /datum/reagent/medicine/quickclot/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(0, 2*effect_str, 2*effect_str)
 
+/datum/reagent/medicine/quickclot/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/quickclotplus
 	name = "Quick Clot Plus"
@@ -787,7 +848,7 @@
 		if(target_IB)
 			break
 	if(target_IB)
-		to_chat(body, span_highdanger("The deep ache in your [target_IB.parent_limb.display_name] erupts into searing pain!"))
+		to_chat(body, span_userdanger("The deep ache in your [target_IB.parent_limb.display_name] erupts into searing pain!"))
 		ticks_left = ticks_to_cure_IB
 
 ///If something else removes the wound before the drug finishes with it, we need to clean references.
@@ -804,6 +865,11 @@
 
 /datum/reagent/medicine/quickclotplus/overdose_crit_process(mob/living/L, metabolism)
 	L.adjust_blood_volume(-20)
+
+/datum/reagent/medicine/quickclotplus/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/nanoblood
 	name = "Nanoblood"
@@ -829,6 +895,11 @@
 
 /datum/reagent/medicine/nanoblood/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(3*effect_str, TOX)
+
+/datum/reagent/medicine/nanoblood/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/ultrazine
 	name = "Ultrazine"
@@ -907,8 +978,6 @@
 		var/datum/internal_organ/I = H.internal_organs_by_name[affected_organ]
 		I.take_damage(5.5*effect_str)
 
-
-
 /datum/reagent/medicine/ultrazine/overdose_process(mob/living/L, metabolism)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
@@ -928,6 +997,11 @@
 		var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
 		if(E)
 			E.take_damage(1.5*effect_str, TRUE)
+
+/datum/reagent/medicine/ultrazine/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/cryoxadone
 	name = "Cryoxadone"
@@ -995,6 +1069,11 @@
 /datum/reagent/medicine/rezadone/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(2*effect_str, TOX)
 
+/datum/reagent/medicine/rezadone/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
+
 /datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"
 	description = "An all-purpose antiviral agent."
@@ -1008,6 +1087,11 @@
 
 /datum/reagent/medicine/spaceacillin/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(2*effect_str, TOX)
+
+/datum/reagent/medicine/spaceacillin/ai_should_use(mob/living/target, inject_vol)
+	if(target.reagents.get_reagent_amount(type))
+		return FALSE
+	return ..()
 
 /datum/reagent/medicine/polyhexanide
 	name = "Polyhexanide"
@@ -1285,13 +1369,13 @@
 				L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 				L.adjustToxLoss(-0.15 * effect_str)
 
-			if(volume > 5 && L.getBruteLoss(organic_only = TRUE))
+			if(volume > 5 && (L.getBruteLoss(organic_only = TRUE) >= 3)) // so we don't waste nanites healing miniscule damage
 				L.heal_overall_damage(3 * effect_str, 0)
 				holder.remove_reagent(/datum/reagent/medicalnanites, 0.5)
 				if(prob(10))
 					to_chat(L, span_notice("Your cuts and bruises begin to scab over rapidly!"))
 
-			if(volume > 5 && L.getFireLoss(organic_only = TRUE))
+			if(volume > 5 && (L.getFireLoss(organic_only = TRUE) >= 3)) // same but for burn
 				L.heal_overall_damage(0, 3 * effect_str)
 				holder.remove_reagent(/datum/reagent/medicalnanites, 0.5)
 				if(prob(10))
@@ -1336,3 +1420,44 @@
 		if (21 to INFINITY)
 			L.jitter(5)
 	return ..()
+
+/datum/reagent/medicine/regrow
+	name = "Re-grow"
+	description = "Re-grow is rare and unusual drug that stimulates the rapid (and horrifically painful) regeneration of missing limbs."
+	color = COLOR_REAGENT_SYNAPTIZINE
+	overdose_threshold = REAGENTS_OVERDOSE/5
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
+	custom_metabolism = REAGENTS_METABOLISM * 5
+
+/datum/reagent/medicine/regrow/on_mob_add(mob/living/L, metabolism)
+	if(volume < 5 || L.stat == DEAD || (!ishuman(L)))
+		return
+	var/mob/living/carbon/human/human = L
+	var/limb_regrown = FALSE
+	for(var/datum/limb/limb AS in human.limbs)
+		if(!(limb.limb_status & LIMB_DESTROYED))
+			continue
+		limb_regrown = TRUE
+		limb.biotize()
+		to_chat(human, span_userdanger("You feel unbelievable pain as your [limb.display_name] regrows before your eyes!"))
+		human.jitter(10)
+		human.Paralyze(1 SECONDS)
+		human.adjustStaminaLoss(20)
+	if(!limb_regrown)
+		return
+	human.emote("burstscream")
+	human.update_body()
+	human.updatehealth()
+	human.UpdateDamageIcon()
+
+/datum/reagent/medicine/regrow/on_mob_life(mob/living/L, metabolism)
+	L.reagent_shock_modifier -= PAIN_REDUCTION_SUPER_HEAVY
+	L.adjustToxLoss(effect_str * 2)
+	return ..()
+
+/datum/reagent/medicine/regrow/overdose_process(mob/living/L, metabolism)
+	L.apply_damage(effect_str * 4, TOX)
+
+/datum/reagent/medicine/regrow/overdose_crit_process(mob/living/L, metabolism)
+	L.reagent_shock_modifier -= PAIN_REDUCTION_SUPER_HEAVY
+	L.apply_damages(effect_str, effect_str, effect_str * 4)

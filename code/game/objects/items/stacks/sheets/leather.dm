@@ -92,7 +92,7 @@
 		return
 
 	if(I.sharp)
-		user.visible_message(span_notice(" \the [user] starts cutting hair off \the [src]"), span_notice(" You start cutting the hair off \the [src]"), "You hear the sound of a knife rubbing against flesh")
+		user.visible_message(span_notice("\the [user] starts cutting hair off \the [src]"), span_notice("You start cutting the hair off \the [src]"), "You hear the sound of a knife rubbing against flesh")
 		if(!do_after(user,50, NONE, src, BUSY_ICON_HOSTILE))
 			return
 

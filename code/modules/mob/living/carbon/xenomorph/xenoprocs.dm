@@ -1,4 +1,35 @@
 /mob/living/carbon/xenomorph/Bump(atom/A)
+	if(ismecha(A))
+		var/obj/vehicle/sealed/mecha/mecha = A
+		var/mob_swap_mode = NO_SWAP
+		if(a_intent == INTENT_HELP)
+			mob_swap_mode = SWAPPING
+		// If we're moving diagonally, but the mob isn't on the diagonal destination turf and the destination turf is enterable we have no reason to shuffle/push them
+		if(moving_diagonally && (get_dir(src, mecha) in GLOB.cardinals) && get_step(src, dir).Enter(src, loc))
+			mob_swap_mode = PHASING
+		if(mob_swap_mode)
+			//switch our position with mech
+			if(loc && !loc.Adjacent(mecha.loc))
+				return
+			now_pushing = TRUE
+			var/oldloc = loc
+			var/oldmechaloc = mecha.loc
+
+			var/mecha_passmob = (mecha.allow_pass_flags & PASS_MOB) // we give PASS_MOB to both mobs to avoid bumping other mobs during swap.
+			mecha.allow_pass_flags |= PASS_MOB
+
+			if(!moving_diagonally) //the diagonal move already does this for us
+				Move(oldmechaloc)
+			if(mob_swap_mode == SWAPPING)
+				mecha.Move(oldloc)
+
+			if(!mecha_passmob)
+				mecha.allow_pass_flags &= ~PASS_MOB
+
+			now_pushing = FALSE
+
+			return TURF_ENTER_ALREADY_MOVED
+
 	if(!(xeno_flags & XENO_LEAPING))
 		return ..()
 	if(!isliving(A))
@@ -66,7 +97,7 @@
 			else
 				if(X.nicknumber != xeno_name)
 					continue
-			to_chat(usr,span_notice(" You will now track [X.name]"))
+			to_chat(usr,span_notice("You will now track [X.name]"))
 			set_tracked(X)
 			break
 
@@ -75,7 +106,7 @@
 		for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos_by_hive[hivenumber])
 			if(num2text(resin_silo.number_silo) == silo_number)
 				set_tracked(resin_silo)
-				to_chat(usr,span_notice(" You will now track [resin_silo.name]"))
+				to_chat(usr,span_notice("You will now track [resin_silo.name]"))
 				break
 
 	if(href_list["watch_xeno_name"])
@@ -241,11 +272,11 @@
 //Stealth handling
 
 
-/mob/living/carbon/xenomorph/proc/update_progression()
+/mob/living/carbon/xenomorph/proc/update_progression(seconds_per_tick)
 	// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	upgrade_stored += 1 + (stored_larva/6) + hive.get_upgrade_boost() //Do this regardless of whether we can upgrade so age accrues at primo
+	upgrade_stored += (1 + (stored_larva/6) + hive.get_upgrade_boost()) * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD //Do this regardless of whether we can upgrade so age accrues at primo
 	if(!upgrade_possible())
 		return
 	if(upgrade_stored < xeno_caste.upgrade_threshold)
@@ -255,7 +286,7 @@
 	upgrade_xeno(upgrade_next())
 
 
-/mob/living/carbon/xenomorph/proc/update_evolving()
+/mob/living/carbon/xenomorph/proc/update_evolving(seconds_per_tick)
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
 		return
 	if(!hive.check_ruler() && caste_base_type != /datum/xeno_caste/larva) // Larva can evolve without leaders at round start.
@@ -265,7 +296,8 @@
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1)) + hive.get_evolution_boost() + spec_evolution_boost()
-	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
+	var/evolution_points_lag = evolution_points * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
+	evolution_stored = min(evolution_stored + evolution_points_lag, xeno_caste.evolution_threshold)
 
 	if(!client || !ckey)
 		return
@@ -298,30 +330,28 @@
 
 	return ..() //Do the parent otherwise, for turfs.
 
-/mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)
-	if(!new_lighting_alpha)
-		switch(lighting_alpha)
-			if(LIGHTING_PLANE_ALPHA_NV_TRAIT)
-				new_lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-			if(LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
-				new_lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-			if(LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
-				new_lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+/mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_cutoff)
+	if(!new_lighting_cutoff)
+		switch(lighting_cutoff)
+			if(LIGHTING_CUTOFF_VISIBLE)
+				new_lighting_cutoff = LIGHTING_CUTOFF_MEDIUM
+			if(LIGHTING_CUTOFF_MEDIUM)
+				new_lighting_cutoff = LIGHTING_CUTOFF_HIGH
+			if(LIGHTING_CUTOFF_HIGH)
+				new_lighting_cutoff = LIGHTING_CUTOFF_FULLBRIGHT
 			else
-				new_lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
+				new_lighting_cutoff = LIGHTING_CUTOFF_VISIBLE
 
-	switch(new_lighting_alpha)
-		if(LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE, LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE, LIGHTING_PLANE_ALPHA_INVISIBLE)
-			ENABLE_BITFIELD(sight, SEE_MOBS)
-			ENABLE_BITFIELD(sight, SEE_OBJS)
-			ENABLE_BITFIELD(sight, SEE_TURFS)
-		if(LIGHTING_PLANE_ALPHA_NV_TRAIT)
-			ENABLE_BITFIELD(sight, SEE_MOBS)
-			DISABLE_BITFIELD(sight, SEE_OBJS)
-			DISABLE_BITFIELD(sight, SEE_TURFS)
+	var/new_sight = NONE
+	switch(new_lighting_cutoff)
+		if(LIGHTING_CUTOFF_FULLBRIGHT, LIGHTING_CUTOFF_HIGH, LIGHTING_CUTOFF_MEDIUM)
+			new_sight = SEE_MOBS|SEE_OBJS|SEE_TURFS
+		if(LIGHTING_CUTOFF_VISIBLE)
+			new_sight = SEE_MOBS
 
-	lighting_alpha = new_lighting_alpha
+	lighting_cutoff = new_lighting_cutoff
 
+	set_sight(new_sight)
 	update_sight()
 
 
@@ -417,7 +447,7 @@
 	if(isnestedhost(src))
 		return
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ACID))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 2 SECONDS)
 
@@ -560,11 +590,11 @@
 ///Handles icon updates when leadered/unleadered. Evolution.dm also uses this
 /mob/living/carbon/xenomorph/proc/update_leader_icon(makeleader = TRUE)
 	// Xenos with specialized icons (Queen, King, Shrike) do not get their icon changed
-	if(istype(xeno_caste, /datum/xeno_caste/queen) || istype(xeno_caste, /datum/xeno_caste/shrike) || istype(xeno_caste, /datum/xeno_caste/king))
+	if(istype(xeno_caste, /datum/xeno_caste/queen) || istype(xeno_caste, /datum/xeno_caste/shrike) || istype(xeno_caste, /datum/xeno_caste/king) || istype(xeno_caste, /datum/xeno_caste/dragon))
 		return
 
 	SSminimaps.remove_marker(src)
-	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon)
+	var/image/blip = image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER)
 	if(makeleader)
 		blip.overlays += image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_leadered_overlay)
 	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, blip)

@@ -65,7 +65,7 @@
 
 /obj/item/armor_module/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, attach_features_flags, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y, attachment_layer = attachment_layer)
+	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, attach_features_flags, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y, attachment_layer = attachment_layer, attach_sound = 'sound/machines/click.ogg')
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, starting_attachments = starting_attachments)
 	update_icon()
 
@@ -83,6 +83,7 @@
 	parent.slowdown += slowdown
 	if(CHECK_BITFIELD(attach_features_flags, ATTACH_ACTIVATION))
 		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_actions))
+		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(handle_unequip_actions))
 	base_icon = icon_state
 	if(length(variants_by_parent_type))
 		for(var/selection in variants_by_parent_type)
@@ -99,10 +100,15 @@
 	parent.hard_armor = parent.hard_armor.detachArmor(hard_armor)
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
 	parent.slowdown -= slowdown
-	UnregisterSignal(parent, COMSIG_ITEM_EQUIPPED)
+	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 	parent = null
 	icon_state = initial(icon_state)
 	update_icon()
+
+///called when the item is dropped: relevant when item is forcedropped from a non-hand slot so we can remove the actions.
+/obj/item/armor_module/proc/handle_unequip_actions(datum/source, mob/user)
+	SIGNAL_HANDLER
+	handle_actions(source, user, null)
 
 ///Adds or removes actions based on whether the parent is in the correct slot.
 /obj/item/armor_module/proc/handle_actions(datum/source, mob/user, slot)
@@ -150,7 +156,7 @@
 	///If TRUE, this armor piece can be recolored when its parent is right clicked by facepaint.
 	var/secondary_color = FALSE
 
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 	colorable_allowed = PRESET_COLORS_ALLOWED
 
 /obj/item/armor_module/armor/on_attach(obj/item/attaching_to, mob/user)

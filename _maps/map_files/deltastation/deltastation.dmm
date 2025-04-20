@@ -1989,8 +1989,8 @@
 	dir = 4;
 	pixel_x = -15
 	},
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/machinery/power/geothermal,
 /turf/open/floor/iron/dark/textured,
 /area/deltastation/engineering/atmos/hfr_room)
 "avt" = (
@@ -3156,10 +3156,6 @@
 	dir = 1
 	},
 /obj/structure/prop/mainship/generator/ground_rod,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
 "aIR" = (
@@ -4022,6 +4018,10 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/primary/central/fore)
+"aRt" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/deltastation/maintenance/disposal/incinerator)
 "aRu" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/effect/turf_decal/sandedge{
@@ -4999,6 +4999,10 @@
 	},
 /turf/open/floor/iron,
 /area/deltastation/hallway/secondary/exit)
+"bbg" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/deltastation/engineering/atmos/hfr_room)
 "bbp" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/spawner/random/misc/plant,
@@ -9015,6 +9019,10 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/medical/chemistry)
+"bSc" = (
+/obj/effect/ai_node,
+/turf/open/space,
+/area/space)
 "bSd" = (
 /obj/structure/closet/fireaxecabinet,
 /turf/closed/wall,
@@ -15008,10 +15016,6 @@
 	dir = 4
 	},
 /obj/structure/prop/mainship/generator/tesla_coil,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
 "dgL" = (
@@ -15032,10 +15036,6 @@
 	dir = 4
 	},
 /obj/structure/prop/mainship/generator/ground_rod,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
 "dgT" = (
@@ -19161,6 +19161,7 @@
 /obj/effect/turf_decal/box/white{
 	color = "#9FED58"
 	},
+/obj/machinery/power/tbg_turbine/cold,
 /turf/open/floor/iron/dark/textured_large,
 /area/deltastation/engineering/atmos/hfr_room)
 "dUy" = (
@@ -19231,6 +19232,7 @@
 "dUS" = (
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/structure/cable,
+/obj/machinery/power/geothermal/tbg,
 /turf/open/floor/iron/dark/textured_large,
 /area/deltastation/engineering/atmos/hfr_room)
 "dUT" = (
@@ -21652,14 +21654,14 @@
 /area/deltastation/commons/toilet/restrooms)
 "esh" = (
 /obj/structure/table,
-/obj/item/tool/kitchen/tray,
-/obj/item/tool/kitchen/tray,
-/obj/item/tool/kitchen/tray,
-/obj/item/tool/kitchen/tray,
-/obj/item/tool/kitchen/tray,
-/obj/item/tool/kitchen/tray,
-/obj/item/tool/kitchen/tray,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
+/obj/item/storage/kitchen_tray,
+/obj/item/storage/kitchen_tray,
+/obj/item/storage/kitchen_tray,
+/obj/item/storage/kitchen_tray,
+/obj/item/storage/kitchen_tray,
+/obj/item/storage/kitchen_tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/plating,
 /area/deltastation/security/prison/mess)
 "esj" = (
@@ -28370,7 +28372,6 @@
 /obj/effect/turf_decal/box/white{
 	color = "#52B4E9"
 	},
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
 /turf/open/floor/iron/dark/textured_large,
 /area/deltastation/engineering/atmos/hfr_room)
@@ -30683,10 +30684,6 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/chapel)
 "ghi" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /obj/machinery/atmospherics/pipe/simple/green/visible/layer3{
 	dir = 5
 	},
@@ -31736,6 +31733,7 @@
 /area/deltastation/hallway/primary/fore)
 "gsm" = (
 /obj/structure/sign/securearea,
+/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/closed/wall/r_wall,
 /area/deltastation/engineering/atmos/project)
 "gso" = (
@@ -34690,13 +34688,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/iron,
 /area/deltastation/commons/storage/primary)
-"gWn" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/closed/wall/r_wall/unmeltable,
-/area/deltastation/engineering/supermatter)
 "gWp" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/machinery/flasher{
@@ -35702,6 +35693,10 @@
 /obj/effect/spawner/random/misc/structure/security_closet,
 /turf/open/floor/iron,
 /area/deltastation/security/office)
+"hgd" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall/unmeltable,
+/area/deltastation/maintenance/solars/port/fore)
 "hge" = (
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
@@ -38377,6 +38372,10 @@
 /area/deltastation/engineering/storage/tech)
 "hLY" = (
 /obj/machinery/light/small,
+/obj/machinery/air_alarm{
+	dir = 1;
+	pixel_y = 23
+	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
 "hMa" = (
@@ -50254,17 +50253,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/science/research)
-"klJ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 1;
-	on = 1
-	},
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/engine,
-/area/deltastation/engineering/supermatter)
 "klM" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -50503,7 +50491,6 @@
 /area/deltastation/hallway/secondary/command)
 "koq" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
 /turf/open/floor/iron/dark/textured,
 /area/deltastation/engineering/atmos/hfr_room)
@@ -52844,8 +52831,8 @@
 	dir = 6
 	},
 /obj/effect/landmark/weed_node,
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/hfr_room)
 "kMq" = (
@@ -52964,10 +52951,6 @@
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/security/prison/mess)
 "kNX" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /obj/machinery/atmospherics/pipe/manifold/green/visible/layer3,
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer1{
 	dir = 1
@@ -57044,7 +57027,6 @@
 /obj/effect/turf_decal/box/white{
 	color = "#EFB341"
 	},
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
 /turf/open/floor/iron/dark/textured_large,
 /area/deltastation/engineering/atmos/hfr_room)
@@ -59165,10 +59147,6 @@
 /turf/open/floor/iron,
 /area/deltastation/security/prison)
 "mbE" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
 	on = 1
@@ -61158,8 +61136,8 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/machinery/power/geothermal,
 /turf/open/floor/iron/dark/textured,
 /area/deltastation/engineering/atmos/hfr_room)
 "mxr" = (
@@ -64079,8 +64057,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/hfr_room)
 "nec" = (
@@ -70016,10 +69994,10 @@
 /obj/effect/spawner/random/food_or_drink/kitchen,
 /obj/effect/spawner/random/food_or_drink/kitchen,
 /obj/effect/spawner/random/food_or_drink/kitchen,
-/obj/item/tool/kitchen/tray,
-/obj/item/tool/kitchen/tray,
-/obj/item/tool/kitchen/tray,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
+/obj/item/storage/kitchen_tray,
+/obj/item/storage/kitchen_tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/storage/box/drinkingglasses,
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/security/prison/mess)
@@ -72287,10 +72265,6 @@
 	dir = 1
 	},
 /obj/structure/prop/mainship/generator/tesla_coil,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
 "oMX" = (
@@ -74203,28 +74177,6 @@
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window,
 /turf/open/floor/plating,
 /area/deltastation/engineering/transit_tube)
-"pir" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/structure/prop/mainship/doorblocker/engi{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/green/visible/layer3{
-	dir = 8
-	},
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/engine,
-/area/deltastation/engineering/supermatter)
 "piu" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -75262,8 +75214,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/hfr_room)
 "ptM" = (
@@ -76895,7 +76847,7 @@
 /obj/effect/spawner/random/misc/structure/securecloset/regular,
 /obj/item/clothing/under/syndicate/combat,
 /obj/item/clothing/gloves/combat,
-/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/marine/srf,
 /obj/item/clothing/mask/gas/syndicate,
 /obj/item/clothing/under/syndicate,
 /turf/open/floor/prison/redfloor,
@@ -85084,6 +85036,11 @@
 /obj/effect/spawner/random/machinery/status_display,
 /turf/closed/wall,
 /area/deltastation/maintenance/department/crew_quarters/bar)
+"rpf" = (
+/obj/effect/spawner/random/machinery/status_display,
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/deltastation/engineering/atmos/project)
 "rpr" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -85952,7 +85909,6 @@
 /turf/open/floor/plating,
 /area/deltastation/hallway/secondary/exit/departure_lounge)
 "ryi" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
 /turf/open/floor/iron/dark/textured,
 /area/deltastation/engineering/atmos/hfr_room)
@@ -89069,8 +89025,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/hfr_room)
 "sgD" = (
@@ -91094,7 +91050,7 @@
 /obj/item/clothing/under/syndicate,
 /obj/item/clothing/under/syndicate,
 /obj/item/clothing/gloves/combat,
-/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/marine/srf,
 /turf/open/floor/prison/redfloor,
 /area/deltastation/asteroidcaves/ship)
 "sBb" = (
@@ -93614,10 +93570,6 @@
 /turf/open/floor/carpet,
 /area/deltastation/command/meeting_room/council)
 "tbJ" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
 /area/deltastation/engineering/supermatter)
@@ -94692,6 +94644,10 @@
 	},
 /turf/open/floor/iron/dark,
 /area/deltastation/service/library)
+"tmO" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall/unmeltable,
+/area/deltastation/engineering/atmos/hfr_room)
 "tmR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/turf_decal/stripes/line,
@@ -101330,10 +101286,6 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "uCs" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
@@ -109274,10 +109226,6 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/command/heads_quarters/ce)
 "wgc" = (
-/obj/machinery/air_alarm{
-	dir = 1;
-	pixel_y = 23
-	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
 "wgd" = (
@@ -115305,8 +115253,8 @@
 /obj/effect/spawner/random/engineering/plasteel,
 /obj/effect/spawner/random/engineering/plasteel,
 /obj/effect/spawner/random/engineering/plasteel,
-/obj/item/clothing/shoes/combat,
-/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/marine/srf,
+/obj/item/clothing/shoes/marine/srf,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/light{
 	dir = 4
@@ -118914,6 +118862,9 @@
 "xYv" = (
 /obj/effect/turf_decal/box/white,
 /obj/effect/landmark/weed_node,
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 1
+	},
 /turf/open/floor/iron/dark/textured_large,
 /area/deltastation/engineering/atmos/hfr_room)
 "xYx" = (
@@ -123883,7 +123834,7 @@ agF
 lxH
 lxH
 lxH
-lxH
+bSc
 agF
 agF
 agF
@@ -141273,7 +141224,7 @@ mwr
 wyI
 jHw
 jdQ
-gWn
+qem
 uCs
 ghi
 mbE
@@ -141533,7 +141484,7 @@ seK
 tbJ
 uCs
 ehW
-klJ
+mbE
 aIN
 vRs
 mEc
@@ -141787,7 +141738,7 @@ nUi
 qxm
 kTe
 lvk
-gWn
+qem
 uCs
 kNX
 mbE
@@ -142045,9 +141996,9 @@ leA
 sAq
 tiG
 qem
-gWn
-pir
-gWn
+qem
+hpF
+qem
 qem
 qem
 xQz
@@ -143780,7 +143731,7 @@ aMA
 aMA
 sPQ
 ulL
-xWA
+aRt
 qCt
 xWA
 xWA
@@ -144548,11 +144499,11 @@ aMA
 sPe
 jST
 fct
-aMA
+hgd
 skU
 cCu
 oUb
-rYY
+bbg
 kpw
 rXw
 qgs
@@ -144803,7 +144754,7 @@ fCY
 fCY
 aMA
 aMA
-aMA
+hgd
 aMA
 aMA
 vgC
@@ -145323,7 +145274,7 @@ skz
 dSR
 dRh
 jNF
-rYY
+bbg
 tzK
 rUg
 laN
@@ -145585,7 +145536,7 @@ dTJ
 xHb
 lmf
 koL
-fHC
+rpf
 fHC
 eJT
 laN
@@ -146598,7 +146549,7 @@ wxm
 psq
 psq
 dLv
-uCE
+tmO
 gNZ
 ldm
 ptL
@@ -146865,7 +146816,7 @@ lMg
 xHm
 jsx
 iWz
-rYY
+bbg
 gpR
 tWR
 bsU

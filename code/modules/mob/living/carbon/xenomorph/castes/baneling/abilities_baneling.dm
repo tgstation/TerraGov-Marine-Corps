@@ -17,31 +17,27 @@
 
 /datum/action/ability/xeno_action/baneling_explode/give_action(mob/living/L)
 	. = ..()
-	var/mob/living/carbon/xenomorph/X = L
-	RegisterSignal(X, COMSIG_MOB_PRE_DEATH, PROC_REF(handle_smoke))
+	RegisterSignal(L, COMSIG_MOB_PRE_DEATH, PROC_REF(handle_smoke))
 
 /datum/action/ability/xeno_action/baneling_explode/remove_action(mob/living/L)
 	. = ..()
-	var/mob/living/carbon/xenomorph/X = L
-	UnregisterSignal(X, COMSIG_MOB_PRE_DEATH)
+	UnregisterSignal(L, COMSIG_MOB_PRE_DEATH)
 
 /datum/action/ability/xeno_action/baneling_explode/action_activate()
 	. = ..()
-	var/mob/living/carbon/xenomorph/X = owner
 	handle_smoke(ability = TRUE)
-	X.record_tactical_unalive()
-	X.death(FALSE)
+	xeno_owner.record_tactical_unalive()
+	xeno_owner.death(FALSE)
 
 /// This proc defines, and sets up and then lastly starts the smoke, if ability is false we divide range by 4.
 /datum/action/ability/xeno_action/baneling_explode/proc/handle_smoke(datum/source, ability = FALSE)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/X = owner
-	if(X.plasma_stored <= 60)
+	if(xeno_owner.plasma_stored <= 60)
 		return
-	var/turf/owner_T = get_turf(X)
-	var/smoke_choice = baneling_smoke_list[X.selected_reagent]
+	var/turf/owner_T = get_turf(xeno_owner)
+	var/smoke_choice = baneling_smoke_list[xeno_owner.selected_reagent]
 	var/datum/effect_system/smoke_spread/smoke = new smoke_choice(owner_T)
-	X.use_plasma(X.plasma_stored)
+	xeno_owner.use_plasma(xeno_owner.plasma_stored)
 	var/smoke_range = BANELING_SMOKE_RANGE
 	/// If this proc is triggered by signal(so death), we want to divide range by 2
 	if(!ability)
@@ -50,7 +46,7 @@
 	playsound(owner_T, 'sound/effects/blobattack.ogg', 25)
 	smoke.start()
 
-	X.record_war_crime()
+	xeno_owner.record_war_crime()
 
 /datum/action/ability/xeno_action/baneling_explode/ai_should_start_consider()
 	return TRUE
@@ -64,8 +60,7 @@
 		return FALSE
 	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
 		return FALSE
-	var/mob/living/carbon/xenomorph/X = owner
-	X.selected_reagent = GLOB.baneling_chem_type_list[rand(1,length(GLOB.baneling_chem_type_list))]
+	xeno_owner.selected_reagent = GLOB.baneling_chem_type_list[rand(1,length(GLOB.baneling_chem_type_list))]
 	return TRUE
 
 // ***************************************
@@ -83,8 +78,7 @@
 
 /datum/action/ability/xeno_action/select_reagent/baneling/give_action(mob/living/L)
 	. = ..()
-	var/mob/living/carbon/xenomorph/caster = L
-	caster.selected_reagent = GLOB.baneling_chem_type_list[1]
+	xeno_owner.selected_reagent = GLOB.baneling_chem_type_list[1]
 	update_button_icon() //Update immediately to get our default
 
 /datum/action/ability/xeno_action/select_reagent/baneling/action_activate()
@@ -102,12 +96,11 @@
 	var/toxin_choice = show_radial_menu(owner, owner, reagent_images_list, radius = 48)
 	if(!toxin_choice)
 		return
-	var/mob/living/carbon/xenomorph/X = owner
 	for(var/toxin in GLOB.baneling_chem_type_list)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[toxin]
 		if(R.name == toxin_choice)
-			X.selected_reagent = R.type
+			xeno_owner.selected_reagent = R.type
 			break
-	X.balloon_alert(X, "[toxin_choice]")
+	xeno_owner.balloon_alert(xeno_owner, "[toxin_choice]")
 	update_button_icon()
 	return succeed_activate()

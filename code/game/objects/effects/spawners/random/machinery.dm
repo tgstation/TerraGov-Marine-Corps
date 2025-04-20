@@ -235,3 +235,6 @@
 /obj/effect/spawner/random/machinery/motorbike/west
 	spawn_loot_chance = 75
 	spawn_force_direction = WEST
+
+/obj/effect/spawner/random/machinery/motorbike/uncommon
+	spawn_loot_chance = 25

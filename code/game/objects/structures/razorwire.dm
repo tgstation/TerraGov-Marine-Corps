@@ -11,6 +11,7 @@
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASS_GRILLE|PASSABLE
+	obj_flags = parent_type::obj_flags|BLOCK_Z_OUT_DOWN|BLOCK_Z_IN_UP
 	var/list/entangled_list
 	var/sheet_type = /obj/item/stack/barbed_wire
 	var/sheet_type2 = /obj/item/stack/rods
@@ -51,10 +52,8 @@
 		return
 	if(CHECK_BITFIELD(O.pass_flags, PASS_DEFENSIVE_STRUCTURE))
 		return
-	if(HAS_TRAIT(O, TRAIT_TANK_DESANT))
-		return
 	var/mob/living/M = O
-	if(M.status_flags & INCORPOREAL)
+	if(M.status_flags & (INCORPOREAL|GODMODE))
 		return
 	if(CHECK_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE))
 		return
@@ -85,7 +84,7 @@
 
 /obj/structure/razorwire/resisted_against(datum/source)
 	var/mob/living/entangled = source
-	if(TIMER_COOLDOWN_CHECK(entangled, COOLDOWN_ENTANGLE))
+	if(TIMER_COOLDOWN_RUNNING(entangled, COOLDOWN_ENTANGLE))
 		entangled.visible_message(span_danger("[entangled] attempts to disentangle itself from [src] but is unsuccessful!"),
 		span_warning("You fail to disentangle yourself!"))
 		return FALSE
@@ -213,10 +212,7 @@
 	return ..()
 
 /obj/structure/razorwire/update_icon_state()
-	. = ..()
-	var/health_percent = round(obj_integrity/max_integrity * 100)
-	var/remaining = CEILING(health_percent, 25)
-	icon_state = "[base_icon_state]_[remaining]"
+	icon_state = "[base_icon_state]_[CEILING(ROUND_UP(obj_integrity/max_integrity * 100), 25)]"
 
 /obj/structure/razorwire/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()

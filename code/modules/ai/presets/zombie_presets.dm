@@ -25,6 +25,9 @@
 /mob/living/carbon/human/species/zombie/ai/patrol/strong
 	race = "Strong zombie"
 
+/mob/living/carbon/human/species/zombie/ai/patrol/smoker
+	race = "Smoker zombie"
+
 /obj/effect/zombie_basic_pack
 	name = "Template for 6 basic zombies, plus a leader"
 

@@ -8,3 +8,7 @@
 /code/datums/supplypacks.dm @spookydonut
 /code/modules/shuttle/ @spookydonut
 /code/controllers/subsystem/points.dm @spookydonut
+
+# Operations/Host
+/SQL/ @tgstation-operations/operations-leads
+/config/ @tgstation-operations/operations-leads

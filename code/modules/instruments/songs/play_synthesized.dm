@@ -60,11 +60,14 @@
 	var/channel_text = num2text(channel)
 	channels_playing[channel_text] = 100
 	last_channel_played = channel_text
-	for(var/i in hearing_mobs)
-		var/mob/M = i
-		if(M?.client?.prefs?.toggles_sound & SOUND_INSTRUMENTS_OFF)
+	for(var/mob/listener AS in hearing_mobs)
+		if(isAIeye(listener)) //isn't there someone you forgot to ask?
+			var/mob/camera/aiEye/listener_eye = listener
+			if(listener_eye.ai?.client?.prefs?.toggles_sound & SOUND_INSTRUMENTS_OFF)
+				continue
+		if(listener?.client?.prefs?.toggles_sound & SOUND_INSTRUMENTS_OFF)
 			continue
-		M.playsound_local(get_turf(parent), null, volume, FALSE, K.frequency, null, FALSE, channel, copy)
+		listener.playsound_local(get_turf(parent), null, volume, FALSE, K.frequency, null, FALSE, channel, copy)
 		// Could do environment and echo later but not for now
 
 /**

@@ -16,8 +16,9 @@
 	set desc = "Change into another caste in the same tier."
 	set category = "Alien"
 
-	if(world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY) < (15 MINUTES))
-		to_chat(src, span_warning("Your caste swap timer is not done yet."))
+	var/time_since = world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY)
+	if(time_since < (15 MINUTES))
+		to_chat(src, span_warning("Your caste swap timer has [(5 MINUTES - time_since)/10] seconds remaining."))
 		return
 
 	SStgui.close_user_uis(src, GLOB.evo_panel)
@@ -29,8 +30,9 @@
 	set desc = "Change into a strain of your current caste."
 	set category = "Alien"
 
-	if(world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY) < (5 MINUTES)) // yes this is shared
-		to_chat(src, span_warning("Your caste swap timer is not done yet."))
+	var/time_since = world.time - (GLOB.key_to_time_of_strain_swap[key] ? GLOB.key_to_time_of_strain_swap[key] : -INFINITY)
+	if(time_since < (5 MINUTES))
+		to_chat(src, span_warning("Your strain swap timer has [(5 MINUTES - time_since)/10] seconds remaining."))
 		return
 
 	SStgui.close_user_uis(src, GLOB.evo_panel)
@@ -50,7 +52,9 @@
 /mob/living/carbon/xenomorph/proc/get_evolution_options()
 	. = list()
 	if(HAS_TRAIT(src, TRAIT_STRAIN_SWAP))
-		return xeno_caste.get_strain_options()
+		var/list/all_strains = get_strain_options(xeno_caste.type)
+		all_strains -= get_base_caste_type(xeno_caste.type)
+		return all_strains
 	if(HAS_TRAIT(src, TRAIT_CASTE_SWAP))
 		switch(tier)
 			if(XENO_TIER_ZERO, XENO_TIER_FOUR)
@@ -86,7 +90,7 @@
 			return GLOB.xeno_types_tier_four + /datum/xeno_caste/hivemind
 		if(XENO_TIER_FOUR)
 			if(istype(xeno_caste, /datum/xeno_caste/shrike))
-				return list(/datum/xeno_caste/queen, /datum/xeno_caste/king)
+				return list(/datum/xeno_caste/queen, /datum/xeno_caste/king, /datum/xeno_caste/dragon)
 
 
 ///Handles the evolution or devolution of the xenomorph
@@ -132,6 +136,8 @@
 
 	if(HAS_TRAIT(src, TRAIT_CASTE_SWAP))
 		GLOB.key_to_time_of_caste_swap[key] = world.time
+	else if(HAS_TRAIT(src, TRAIT_STRAIN_SWAP))
+		GLOB.key_to_time_of_strain_swap[key] = world.time
 
 	if(xeno_flags & XENO_ZOOMED)
 		zoom_out()
@@ -183,8 +189,8 @@
 		H.add_hud_to(new_xeno) //keep our mobhud choice
 		new_xeno.xeno_flags |= XENO_MOBHUD
 
-	if(lighting_alpha != new_xeno.lighting_alpha)
-		new_xeno.toggle_nightvision(lighting_alpha)
+	if(lighting_cutoff != new_xeno.lighting_cutoff)
+		new_xeno.toggle_nightvision(lighting_cutoff)
 
 	new_xeno.update_spits() //Update spits to new/better ones
 
@@ -265,7 +271,7 @@
 		balloon_alert(src, "We must be at full plasma to evolve")
 		return FALSE
 
-	if (agility || fortify || crest_defense || status_flags & INCORPOREAL)
+	if (fortify || crest_defense || status_flags & INCORPOREAL)
 		balloon_alert(src, "We cannot evolve while in this stance")
 		return FALSE
 
@@ -283,6 +289,10 @@
 /mob/living/carbon/xenomorph/proc/caste_evolution_checks(new_caste_type, regression = FALSE)
 	if(!regression && !(new_caste_type in get_evolution_options()))
 		balloon_alert(src, "We can't evolve to that caste from our current one")
+		return FALSE
+
+	if(new_caste_type in SSticker.mode.restricted_castes)
+		balloon_alert(src, "Our weak hive can't support that caste!")
 		return FALSE
 
 	var/no_room_tier_two = length(hive.xenos_by_tier[XENO_TIER_TWO]) >= hive.tier2_xeno_limit
@@ -312,8 +322,11 @@
 		if(death_timer)
 			to_chat(src, span_warning("The hivemind is still recovering from the last [initial(new_caste.display_name)]'s death. We must wait [DisplayTimeText(timeleft(death_timer))] before we can evolve."))
 			return FALSE
+
 	var/maximum_active_caste = new_caste.maximum_active_caste
-	if(maximum_active_caste != INFINITY && maximum_active_caste <= length(hive.xenos_by_typepath[new_caste_type]))
+	var/list/xenos = hive.get_all_caste_members(new_caste.type) - src // ignores outselves
+	var/active_caste = length(xenos)
+	if(maximum_active_caste != INFINITY && maximum_active_caste <= active_caste)
 		to_chat(src, span_warning("There is already a [initial(new_caste.display_name)] in the hive. We must wait for it to die."))
 		return FALSE
 	var/turf/T = get_turf(src)
@@ -328,14 +341,6 @@
 		if(new_caste.tier == XENO_TIER_THREE && no_room_tier_three)
 			balloon_alert(src, "The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die")
 			return FALSE
-		var/potential_queens = length(hive.xenos_by_typepath[/datum/xeno_caste/larva]) + length(hive.xenos_by_typepath[/datum/xeno_caste/drone])
-		if(SSticker.mode?.round_type_flags & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
-			if(isxenolarva(src) && new_caste_type != /datum/xeno_caste/drone)
-				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Drone!"))
-				return FALSE
-			else if(isxenodrone(src) && new_caste_type != /datum/xeno_caste/shrike)
-				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Shrike!"))
-				return FALSE
 		if(!CHECK_BITFIELD(new_caste_flags, CASTE_INSTANT_EVOLUTION) && xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold && !SSresinshaping.active)
 			to_chat(src, span_warning("We must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold]."))
 			return FALSE

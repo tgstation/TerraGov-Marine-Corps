@@ -45,7 +45,7 @@
 /mob/living/carbon/xenomorph/get_export_value()
 	switch(tier)
 		if(XENO_TIER_MINION)
-			. = list(50, 5)
+			. = list(10, 1)
 		if(XENO_TIER_ZERO)
 			. = list(70, 7)
 		if(XENO_TIER_ONE)

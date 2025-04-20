@@ -99,7 +99,7 @@
 					if(!DEW.ammo_equipped || DEW.ammo_equipped.ammo_count <= 0)
 						to_chat(L, span_warning("[DEW] has no ammo."))
 						return
-					if(!COOLDOWN_CHECK(DEW, last_fired))
+					if(!COOLDOWN_FINISHED(DEW, last_fired))
 						to_chat(L, span_warning("[DEW] just fired, wait for it to cool down."))
 						return
 					if(QDELETED(LT)) // Quick final check on the Laser target

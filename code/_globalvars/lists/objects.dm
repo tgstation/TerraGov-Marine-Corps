@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(brig_closets)
 GLOBAL_LIST_EMPTY(supply_pad_list)
 GLOBAL_LIST_EMPTY(supply_beacon)
 GLOBAL_LIST_EMPTY(eord_roomba_spawns)
-
+GLOBAL_LIST_EMPTY(stairs) // necessary for finding nearest stair
 ///NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !
 GLOBAL_LIST_EMPTY(machines)
 GLOBAL_LIST_EMPTY(faxmachines)
@@ -113,6 +113,7 @@ GLOBAL_LIST_EMPTY(xeno_resin_turrets_by_hive)
 GLOBAL_LIST_EMPTY(xeno_spawners_by_hive)
 GLOBAL_LIST_EMPTY(xeno_structures_by_hive)
 GLOBAL_LIST_EMPTY(xeno_critical_structures_by_hive)
+GLOBAL_LIST_EMPTY(xeno_acid_jaws_by_hive)
 
 GLOBAL_LIST_EMPTY(shuttle_controls_list)
 

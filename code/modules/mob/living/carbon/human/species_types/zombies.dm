@@ -3,8 +3,7 @@
 	icobase = 'icons/mob/human_races/r_husk.dmi'
 	total_health = 125
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|HAS_UNDERWEAR|HEALTH_HUD_ALWAYS_DEAD|PARALYSE_RESISTANT
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	see_in_dark = 8
+	lighting_cutoff = LIGHTING_CUTOFF_HIGH
 	blood_color = "#110a0a"
 	hair_color = "#000000"
 	slowdown = 0.5
@@ -140,3 +139,29 @@
 	total_health = 200
 	faction = FACTION_SECTOIDS
 	claw_type = /obj/item/weapon/zombie_claw/no_zombium
+
+/datum/species/zombie/smoker
+	name = "Smoker zombie"
+
+/particles/smoker_zombie
+	icon = 'icons/effects/particles/smoke.dmi'
+	icon_state = list("smoke_1" = 1, "smoke_2" = 1, "smoke_3" = 2)
+	width = 100
+	height = 100
+	count = 5
+	spawning = 4
+	lifespan = 9
+	fade = 10
+	grow = 0.2
+	velocity = list(0, 0)
+	position = generator(GEN_CIRCLE, 10, 10, NORMAL_RAND)
+	drift = generator(GEN_VECTOR, list(0, -0.15), list(0, 0.15))
+	gravity = list(0, 0.4)
+	scale = generator(GEN_VECTOR, list(0.3, 0.3), list(0.9,0.9), NORMAL_RAND)
+	rotation = 0
+	spin = generator(GEN_NUM, 10, 20)
+
+/datum/species/zombie/smoker/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	var/datum/action/ability/emit_gas/emit_gas = new
+	emit_gas.give_action(H)

@@ -146,7 +146,7 @@
 
 /obj/item/cell/lasgun/volkite/powerpack/apply_custom(mutable_appearance/standing, inhands, icon_used, state_used)
 	. = ..()
-	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive")
+	var/mutable_appearance/emissive_overlay = emissive_appearance(icon_used, "[state_used]_emissive", src)
 	standing.overlays.Add(emissive_overlay)
 
 ///Handles draining power from the powerpack, returns the value of the charge drained to MouseDrop where it's added to the cell.
@@ -205,3 +205,12 @@
 	maxcharge = 2400
 	cell_type = /obj/item/cell/lasgun/lasrifle
 	self_recharge = FALSE
+
+/obj/item/cell/lasgun/volkite/powerpack/marine/backpack
+	name = "\improper TE powerbackpack"
+	desc = "A recently developed mass produced backpack which charges any TE technological achievement."
+	icon_state = "lasgun_backpack"
+	charge_overlay = "lasgun_backpack"
+	equip_slot_flags = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_HUGE
+	maxcharge = 12000

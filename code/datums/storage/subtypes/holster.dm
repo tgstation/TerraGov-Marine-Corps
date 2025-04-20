@@ -166,6 +166,8 @@
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta,
 		/obj/item/cell/lasgun/lasrifle,
 		/obj/item/cell/lasgun/volkite/small,
+		/obj/item/weapon/gun/revolver,
+		/obj/item/ammo_magazine/revolver,
 	))
 
 /datum/storage/holster/belt/m44

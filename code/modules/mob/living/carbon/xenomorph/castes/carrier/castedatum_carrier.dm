@@ -3,7 +3,7 @@
 	display_name = "Carrier"
 	upgrade_name = ""
 	caste_desc = "A carrier of huggies."
-
+	base_strain_type = /mob/living/carbon/xenomorph/carrier
 	caste_type_path = /mob/living/carbon/xenomorph/carrier
 
 	tier = XENO_TIER_TWO
@@ -32,7 +32,7 @@
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
 	can_hold_eggs = CAN_HOLD_ONE_HAND
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY
 	caste_traits = null
 
 	// *** Defense *** //

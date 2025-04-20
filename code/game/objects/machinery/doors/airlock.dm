@@ -8,7 +8,7 @@
 	idle_power_usage = 5
 	active_power_usage = 360
 	atom_flags = HTML_USE_INITAL_ICON_1
-	obj_flags = CAN_BE_HIT
+	obj_flags = parent_type::obj_flags|CAN_BE_HIT
 
 	var/aiControlDisabled = 0 //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
 	var/hackProof = 0 // if 1, this door can't be hacked by the AI
@@ -40,14 +40,14 @@
 /obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
 	if(issilicon(user))
 		return ..(user)
-	if(iscarbon(user) && isElectrified())
+	if(iscarbon(user) && isElectrified() && isturf(user.loc))
 		if(!justzap)
 			if(shock(user, 100))
 				justzap = TRUE
 				spawn (openspeed)
 					justzap = FALSE
 				return
-		else /*if(justzap)*/
+		else
 			return
 	else if(ishuman(user) && user.hallucination > 50 && prob(10) && !operating)
 		var/mob/living/carbon/human/H = user
@@ -57,7 +57,7 @@
 			return
 	return ..(user)
 
-/obj/machinery/door/airlock/Initialize()
+/obj/machinery/door/airlock/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -71,7 +71,7 @@
 	switch(outcome)
 		if(1 to 9)
 			var/turf/here = get_turf(src)
-			for(var/turf/closed/T in range(2, src))
+			for(var/turf/closed/T in RANGE_TURFS(2, src))
 				here.PlaceOnTop(T.type)
 				return
 			here.PlaceOnTop(/turf/closed/wall)

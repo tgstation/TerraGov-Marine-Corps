@@ -145,17 +145,17 @@
 		to_chat(user, span_warning("[src] seems to be blank..."))
 		return
 	user << browse_rsc(picture.picture_image, "tmp_photo.png")
-	user << browse("<html><head><title>[name]</title></head>" \
-		+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
+	user << browse(HTML_SKELETON_TITLE(name, \
+		"<body style='overflow:hidden;margin:0;text-align:center'>" \
 		+ "<img src='tmp_photo.png' width='480' style='-ms-interpolation-mode:nearest-neighbor' />" \
-		+ "[scribble ? "<br>Written on the back:<br><i>[scribble]</i>" : ""]"\
-		+ "</body></html>", "window=photo_showing;size=480x608")
+		+ "[scribble ? "<br>Written on the back:<br><i>[scribble]</i>" : ""]")
+		, "window=photo_showing;size=480x608")
 	onclose(user, "[name]")
 
 
 /obj/item/photo/verb/rename()
 	set name = "Rename Photo"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	var/n_name = stripped_input(usr, "What would you like to label the photo?", "Photo Labelling")
@@ -297,7 +297,7 @@
 	seen = get_hear(viewr, viewc)
 	var/list/turfs = list()
 	var/list/mobs = list()
-	var/clone_area = SSmapping.RequestBlockReservation(size_x * 2 + 1, size_y * 2 + 1)
+	var/clone_area = SSmapping.request_turf_block_reservation(size_x * 2 + 1, size_y * 2 + 1)
 	for(var/turf/T in block(locate(target_turf.x - size_x, target_turf.y - size_y, target_turf.z), locate(target_turf.x + size_x, target_turf.y + size_y, target_turf.z)))
 		if((ai_user && GLOB.cameranet.checkTurfVis(T)) || (T in seen))
 			turfs += T
@@ -372,13 +372,14 @@
 	var/wipe_atoms = FALSE
 
 	if(istype(clone_area) && total_x == clone_area.width && total_y == clone_area.height && size_x >= 0 && size_y > 0)
-		var/cloned_center_x = round(clone_area.bottom_left_coords[1] + ((total_x - 1) / 2))
-		var/cloned_center_y = round(clone_area.bottom_left_coords[2] + ((total_y - 1) / 2))
+		var/turf/cloned_bottomleft = clone_area.bottom_left_turfs[1]
+		var/cloned_center_x = round(cloned_bottomleft.x + ((total_x - 1) / 2))
+		var/cloned_center_y = round(cloned_bottomleft.y + ((total_y - 1) / 2))
 		for(var/t in turfs)
 			var/turf/T = t
 			var/offset_x = T.x - center.x
 			var/offset_y = T.y - center.y
-			var/turf/newT = locate(cloned_center_x + offset_x, cloned_center_y + offset_y, clone_area.bottom_left_coords[3])
+			var/turf/newT = locate(cloned_center_x + offset_x, cloned_center_y + offset_y, cloned_bottomleft.z)
 			if(!(newT in clone_area.reserved_turfs))		//sanity check so we don't overwrite other areas somehow
 				continue
 			atoms += new /obj/effect/appearance_clone(newT, T)
@@ -390,7 +391,7 @@
 					atoms += new /obj/effect/appearance_clone(newT, A)
 		skip_normal = TRUE
 		wipe_atoms = TRUE
-		center = locate(cloned_center_x, cloned_center_y, clone_area.bottom_left_coords[3])
+		center = locate(cloned_center_x, cloned_center_y, cloned_bottomleft.z)
 
 	if(!skip_normal)
 		for(var/i in turfs)

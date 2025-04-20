@@ -28,13 +28,6 @@
 /obj/item/tool/lighter/random,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"bS" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/freezer,
-/area/bigredv2/outside/engineering)
 "ck" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -113,6 +106,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
+"fp" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/engineering)
 "fr" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -578,6 +575,10 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
+"DG" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering/east)
 "DH" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor,
@@ -601,6 +602,10 @@
 	name = "\improper Engineering Workshop"
 	},
 /turf/open/floor,
+/area/bigredv2/outside/engineering)
+"EW" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
 /area/bigredv2/outside/engineering)
 "Fi" = (
 /obj/effect/ai_node,
@@ -967,6 +972,10 @@
 "VL" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/rock)
+"VN" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor,
+/area/bigredv2/outside/engineering/east)
 "Wi" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
@@ -1058,7 +1067,7 @@
 /area/bigredv2/outside/engineering)
 
 (1,1,1) = {"
-bS
+Wo
 Jc
 uD
 MD
@@ -1091,7 +1100,7 @@ GH
 GH
 GH
 GH
-Pt
+EW
 Ds
 uk
 Wo
@@ -1183,7 +1192,7 @@ EH
 wt
 wt
 wt
-GH
+fp
 GH
 GH
 LF
@@ -1236,7 +1245,7 @@ Pt
 Az
 Pt
 Pt
-Pt
+EW
 vR
 Ge
 Jq
@@ -1301,7 +1310,7 @@ Wo
 tR
 Wo
 Wo
-GH
+fp
 LF
 LF
 LF
@@ -1411,7 +1420,7 @@ bN
 wt
 Ie
 Jv
-Ao
+DG
 Ao
 Ao
 jf
@@ -1437,7 +1446,7 @@ qm
 (14,1,1) = {"
 Wo
 wW
-Pt
+EW
 Oa
 DH
 Ao
@@ -1524,7 +1533,7 @@ su
 (17,1,1) = {"
 Pt
 Pt
-Pt
+EW
 WD
 cD
 Ao
@@ -1557,7 +1566,7 @@ Sv
 pX
 Wi
 Ao
-ib
+VN
 At
 ib
 ib
@@ -1585,7 +1594,7 @@ GE
 Ih
 ua
 ax
-Ao
+DG
 Ao
 Ao
 jf
@@ -1697,7 +1706,7 @@ su
 "}
 (23,1,1) = {"
 Ao
-Ao
+DG
 Gp
 Of
 KV

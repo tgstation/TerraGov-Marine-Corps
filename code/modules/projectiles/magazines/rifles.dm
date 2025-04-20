@@ -333,8 +333,8 @@
 //SPOTTING RIFLE AMMUNITION
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle
-	name = "\improper SG-153 magazine (12x7mm)"
-	desc = "A magazine filled with 12x7mm lethal smart rounds, these will do nothing other than pack a big punch."
+	name = "\improper SG-153 magazine (12.7mm Smart Magnum)"
+	desc = "A magazine filled with 12.7mm lethal smart rounds, these will do nothing other than pack a big punch."
 	caliber = CALIBER_12x7
 	icon_state = "sg153"
 	w_class = WEIGHT_CLASS_SMALL
@@ -343,38 +343,38 @@
 	icon_state_mini = "mag_sg29"
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact
-	name = "\improper SG-153 high impact magazine (12x7mm)"
-	desc = "A magazine filled with 12x7mm high impact smart rounds, these will likely stagger and slow anything they hit."
+	name = "\improper SG-153 high impact magazine (12.7mm Smart Magnum)"
+	desc = "A magazine filled with 12.7mm high impact smart rounds, these will likely stagger and slow anything they hit."
 	icon_state = "sg153_hi"
 	default_ammo = /datum/ammo/bullet/spottingrifle/highimpact
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber
-	name = "\improper SG-153 heavy rubber magazine (12x7mm)"
-	desc = "A magazine filled with 12x7mm heavy rubber smart rounds, these will likely stun and displace anything they hit."
+	name = "\improper SG-153 heavy rubber magazine (12.7mm Smart Magnum)"
+	desc = "A magazine filled with 12.7mm heavy rubber smart rounds, these will likely stun and displace anything they hit."
 	icon_state = "sg153_hr"
 	default_ammo = /datum/ammo/bullet/spottingrifle/heavyrubber
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/plasmaloss
-	name = "\improper SG-153 tanglefoot magazine (12x7mm)"
-	desc = "A magazine filled with 12x7mm smart rounds tipped with 'Tanglefoot' poison, these rounds will drain the energy out of targets they hit."
+	name = "\improper SG-153 tanglefoot magazine (12.7mm Smart Magnum)"
+	desc = "A magazine filled with 12.7mm smart rounds tipped with 'Tanglefoot' poison, these rounds will drain the energy out of targets they hit."
 	icon_state = "sg153_hr"
 	default_ammo = /datum/ammo/bullet/spottingrifle/plasmaloss
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten
-	name = "\improper SG-153 tungsten magazine (12x7mm)"
-	desc = "A magazine filled with 12x7mm tungsten smart rounds, these rounds will massively knock back any target it hits."
+	name = "\improper SG-153 tungsten magazine (12.7mm Smart Magnum)"
+	desc = "A magazine filled with 12.7mm tungsten smart rounds, these rounds will massively knock back any target it hits."
 	icon_state = "sg153_tg"
 	default_ammo = /datum/ammo/bullet/spottingrifle/tungsten
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary
-	name = "\improper SG-153 incendiary magazine (12x7mm)"
-	desc = "A magazine filled with 12x7mm incendiary smart rounds, these rounds will set alight anything they hit."
+	name = "\improper SG-153 incendiary magazine (12.7mm Smart Magnum)"
+	desc = "A magazine filled with 12.7mm incendiary smart rounds, these rounds will set alight anything they hit."
 	icon_state = "sg153_ic"
 	default_ammo = /datum/ammo/bullet/spottingrifle/incendiary
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/flak
-	name = "\improper SG-153 flak magazine (12x7mm)"
-	desc = "A magazine filled with 12x7mm flak smart rounds, these rounds will airburst on contact with an organic target, causing damage in a small area near the target."
+	name = "\improper SG-153 flak magazine (12.7mm Smart Magnum)"
+	desc = "A magazine filled with 12.7mm flak smart rounds, these rounds will airburst on contact with an organic target, causing damage in a small area near the target."
 	icon_state = "sg153_fl"
 	default_ammo = /datum/ammo/bullet/spottingrifle/flak
 
@@ -582,6 +582,33 @@
 	icon_state = "v31_incend"
 	icon_state_mini = "mag_thin_red"
 	default_ammo = /datum/ammo/bullet/rifle/incendiary
+
+/obj/item/ammo_magazine/rifle/som_big
+	name = "\improper V-35 magazine (10x27mm)"
+	desc = "A 10mm rifle magazine designed for the V-35."
+	caliber = CALIBER_10x27_CASELESS
+	icon_state = "v35"
+	base_ammo_icon = "v35"
+	icon_state_mini = "mag_rifle_big"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/som_big
+	max_rounds = 20
+	bonus_overlay = "v35_mag"
+	magazine_flags = MAGAZINE_REFILLABLE|MAGAZINE_SHOW_AMMO
+
+/obj/item/ammo_magazine/rifle/som_big/incendiary
+	name = "\improper V-35 incendiary magazine (10x27mm)"
+	desc = "A 10mm rifle magazine designed for the V-35, loaded with incendiary ammunition."
+	icon_state = "v35_incend"
+	default_ammo = /datum/ammo/bullet/rifle/som_big/incendiary
+	bonus_overlay = "v35_incend"
+
+/obj/item/ammo_magazine/rifle/som_big/anti_armour
+	name = "\improper V-35 AT magazine (10x27mm)"
+	desc = "A 10mm rifle magazine designed for the V-35, loaded with powerful anti armor ammunition. Deals significant damage to vehicles, and can punch through some cover."
+	icon_state = "v35_at"
+	default_ammo = /datum/ammo/bullet/rifle/som_big/anti_armour
+	bonus_overlay = "v35_at"
 
 //-------------------------------------------------------
 //V-41 Machine Gun

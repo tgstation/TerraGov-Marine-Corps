@@ -100,6 +100,7 @@
 
 /mob/living/carbon/xenomorph/spawn_gibs()
 	xgibs(get_turf(src))
+	new /obj/effect/temp_visual/gib_particles(get_turf(src), get_blood_color())
 
 /mob/living/carbon/xenomorph/dust_animation()
 	new /obj/effect/overlay/temp/dust_animation(loc, 0, src, "dust-a")

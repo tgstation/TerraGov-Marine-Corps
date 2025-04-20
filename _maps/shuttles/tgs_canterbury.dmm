@@ -180,7 +180,7 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aA" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 8
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -198,7 +198,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aF" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
@@ -582,20 +582,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury)
-"cp" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	id = "aft_engine_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
-/obj/machinery/door_control{
-	dir = 8;
-	id = "aft_engine_podlock"
-	},
-/turf/open/floor/plating,
-/area/shuttle/canterbury)
 "cs" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 2
@@ -717,21 +703,22 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
+/obj/machinery/air_alarm{
+	dir = 4
+	},
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "cZ" = (
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "da" = (
-/obj/machinery/light/small{
-	dir = 4
+/obj/structure/barricade/folding,
+/obj/machinery/door_control{
+	dir = 8;
+	id = "aft_engine_podlock"
 	},
-/obj/machinery/air_alarm{
-	dir = 8
-	},
-/obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "db" = (
@@ -1019,7 +1006,7 @@ KE
 bW
 bW
 da
-cp
+co
 "}
 (10,1,1) = {"
 ac

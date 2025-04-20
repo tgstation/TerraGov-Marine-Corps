@@ -18,6 +18,8 @@
 	interaction_flags = INTERACT_MACHINE_TGUI
 	light_range = 1
 	light_power = 0.5
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
 	///The area we're affecting
 	var/area/area
 	///The power cell inside the APC

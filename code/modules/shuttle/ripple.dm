@@ -13,4 +13,5 @@
 
 /obj/effect/abstract/ripple/Initialize(mapload, time_left)
 	. = ..()
+	notify_ai_hazard()
 	animate(src, alpha=150, time=time_left)

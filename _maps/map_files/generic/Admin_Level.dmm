@@ -1540,7 +1540,7 @@
 	id = "kitchencounter";
 	name = "Kitchen Counter Shutters"
 	},
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/tool/kitchen/utensil/fork,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
@@ -1665,6 +1665,14 @@
 "cdI" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/side,
+/area/centcom/valhalla)
+"cfr" = (
+/obj/machinery/chem_dispenser/soda{
+	dir = 8;
+	pixel_x = -17;
+	pixel_y = -1
+	},
+/turf/closed/mineral/smooth/indestructible,
 /area/centcom/valhalla)
 "cfQ" = (
 /obj/machinery/status_display/ai,
@@ -10171,6 +10179,12 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
+"ovk" = (
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/centcom/valhalla/xenocave)
 "ovl" = (
 /obj/machinery/vending/cola/nopower,
 /turf/open/floor/tile/dark,
@@ -11298,6 +11312,14 @@
 /obj/structure/prop/mainship/toolboxforacause2020,
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
+"quo" = (
+/obj/machinery/power/geothermal/tbg{
+	dir = 4;
+	corrupted = "fallen_hive";
+	last_corrupted = "fallen_hive"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/centcom/valhalla/xenocave)
 "quJ" = (
 /obj/machinery/vending/cigarette,
 /obj/effect/turf_decal/tile/black,
@@ -11507,8 +11529,8 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "qLa" = (
-/obj/machinery/power/geothermal{
-	corrupted = "fallen_hive"
+/obj/machinery/power/tbg_turbine/cold{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla/xenocave)
@@ -24657,7 +24679,7 @@ aqy
 gzY
 lEp
 lEp
-lEp
+cfr
 lEp
 box
 box
@@ -28974,11 +28996,11 @@ boC
 fog
 fog
 fog
-qLa
-qLa
-qLa
-qLa
-qLa
+oXf
+oXf
+oXf
+oXf
+oXf
 oXf
 oXf
 oXf
@@ -29992,8 +30014,8 @@ boC
 boC
 boC
 fog
-qLa
-qLa
+oXf
+oXf
 fog
 fog
 boC
@@ -30255,7 +30277,7 @@ kmb
 fog
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -30268,7 +30290,7 @@ oXf
 oXf
 oXf
 kOY
-qLa
+quo
 fog
 boC
 fmN
@@ -30512,7 +30534,7 @@ oXf
 fog
 boC
 fog
-fog
+ovk
 oXf
 oXf
 oXf
@@ -30525,7 +30547,7 @@ oXf
 oXf
 oXf
 oXf
-qLa
+ovk
 fog
 boC
 fmN
@@ -30768,7 +30790,7 @@ kOY
 oXf
 fog
 boC
-boC
+fog
 fog
 kOY
 oXf
@@ -32816,7 +32838,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -33073,7 +33095,7 @@ xrI
 fmN
 boC
 fog
-qLa
+ovk
 oXf
 oXf
 oXf
@@ -33587,7 +33609,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -33844,7 +33866,7 @@ xrI
 fmN
 boC
 fog
-qLa
+ovk
 oXf
 oXf
 oXf
@@ -34358,7 +34380,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -34615,7 +34637,7 @@ xrI
 fmN
 boC
 fog
-qLa
+ovk
 oXf
 kOY
 oXf
@@ -34872,7 +34894,7 @@ xrI
 fmN
 boC
 fog
-qLa
+tqo
 oXf
 knX
 oXf
@@ -35128,8 +35150,8 @@ xrI
 xrI
 fmN
 boC
+boC
 fog
-tqo
 hda
 oXf
 oXf
@@ -36413,7 +36435,7 @@ xrI
 xrI
 fmN
 boC
-boC
+fog
 fog
 oXf
 oXf
@@ -36671,7 +36693,7 @@ xrI
 fmN
 boC
 fog
-tqo
+qLa
 oXf
 oXf
 oXf
@@ -36928,7 +36950,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -37185,7 +37207,7 @@ xrI
 fmN
 boC
 fog
-qLa
+ovk
 oXf
 kOY
 oXf
@@ -37699,7 +37721,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 oXf
 oXf
@@ -37956,7 +37978,7 @@ xrI
 fmN
 boC
 fog
-qLa
+ovk
 oXf
 oXf
 oXf
@@ -38470,7 +38492,7 @@ xrI
 fmN
 boC
 fog
-qLa
+quo
 oXf
 kOY
 oXf
@@ -38727,7 +38749,7 @@ xrI
 fmN
 boC
 fog
-qLa
+ovk
 oXf
 oXf
 oXf
@@ -38985,10 +39007,10 @@ fmN
 boC
 fog
 fog
-qLa
-qLa
-qLa
-qLa
+oXf
+oXf
+oXf
+oXf
 fog
 boC
 boC
@@ -39003,7 +39025,7 @@ oXf
 oXf
 oXf
 oXf
-qLa
+oXf
 fog
 boC
 fmN
@@ -39251,7 +39273,6 @@ boC
 boC
 boC
 fog
-qLa
 oXf
 oXf
 oXf
@@ -39260,7 +39281,8 @@ oXf
 oXf
 oXf
 oXf
-qLa
+oXf
+oXf
 fog
 boC
 fmN
@@ -39765,7 +39787,7 @@ boC
 boC
 boC
 fog
-qLa
+quo
 oXf
 oXf
 wPz
@@ -39774,7 +39796,7 @@ oXf
 oXf
 oXf
 oXf
-qLa
+quo
 fog
 boC
 fmN
@@ -40022,7 +40044,7 @@ boC
 boC
 boC
 fog
-qLa
+ovk
 oXf
 oXf
 kOY
@@ -40031,7 +40053,7 @@ oXf
 oXf
 oXf
 kOY
-qLa
+ovk
 fog
 boC
 fmN
@@ -40279,7 +40301,7 @@ boC
 boC
 boC
 fog
-qLa
+oXf
 kOY
 oXf
 oXf
@@ -40288,7 +40310,7 @@ oXf
 oXf
 oXf
 oXf
-qLa
+oXf
 fog
 boC
 fmN

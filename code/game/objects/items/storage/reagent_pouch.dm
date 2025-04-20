@@ -22,7 +22,7 @@
 /obj/item/reagent_containers/glass/reagent_canister/proc/get_examine_info(mob/user)
 	if(isxeno(user))
 		return
-	if(!(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)) //Failed skill check
+	if(!(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE) && !isobserver(usr)) //Failed skill check
 		return span_notice("You don't know what's in it.")
 	if(!reagents.total_volume)
 		return span_notice("[src] is empty!")
@@ -164,7 +164,7 @@
 /obj/item/storage/pouch/pressurized_reagent_pouch/proc/get_display_contents(mob/user)
 	if(isxeno(user))
 		return
-	if(!(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)) //Failed skill check
+	if(!(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE) && !isobserver(usr)) //Failed skill check
 		return span_notice("You don't know what's in it.")
 	if(!inner)
 		return span_notice("[src] has no container inside!")

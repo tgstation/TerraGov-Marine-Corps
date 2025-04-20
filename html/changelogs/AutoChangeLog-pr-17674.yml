@@ -1,0 +1,5 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - bugfix: "fixed PO+AC access on arachne"
+  - bugfix: "removed random space computers on sulaco"

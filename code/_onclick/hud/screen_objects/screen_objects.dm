@@ -9,7 +9,6 @@
 /atom/movable/screen
 	name = ""
 	icon = 'icons/mob/screen/generic.dmi'
-	layer = HUD_LAYER
 	// NOTE: screen objects do NOT change their plane to match the z layer of their owner
 	// You shouldn't need this, but if you ever do and it's widespread, reconsider what you're doing.
 	plane = HUD_PLANE
@@ -45,8 +44,9 @@
 
 /atom/movable/screen/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
-	if(hud_owner && istype(hud_owner))
-		hud = hud_owner
+	if(isnull(hud_owner)) //some screens set their hud owners on /new, this prevents overriding them with null post atoms init
+		return
+	set_new_hud(hud_owner)
 
 /atom/movable/screen/Destroy()
 	master = null
@@ -62,13 +62,27 @@
 /atom/movable/screen/proc/component_click(atom/movable/screen/component_button/component, params)
 	return
 
+///setter used to set our new hud
+/atom/movable/screen/proc/set_new_hud(datum/hud/hud_owner)
+	if(hud)
+		UnregisterSignal(hud, COMSIG_QDELETING)
+	if(isnull(hud_owner))
+		hud = null
+		return
+	hud = hud_owner
+	RegisterSignal(hud, COMSIG_QDELETING, PROC_REF(on_hud_delete))
 
+/atom/movable/screen/proc/on_hud_delete(datum/source)
+	SIGNAL_HANDLER
+
+	set_new_hud(hud_owner = null)
 
 /atom/movable/screen/swap_hand
 	name = "swap hand"
 	name = "swap"
 	icon_state = "swap_1_m"
 	screen_loc = ui_swaphand1
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /atom/movable/screen/swap_hand/Click()
 	if(!iscarbon(usr))
@@ -88,12 +102,14 @@
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "craft"
 	screen_loc = ui_crafting
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /atom/movable/screen/language_menu
 	name = "language menu"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "talk_wheel"
 	screen_loc = ui_language_menu
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /atom/movable/screen/language_menu/Click()
 	if(isliving(usr))
@@ -162,9 +178,9 @@
 
 /atom/movable/screen/close
 	name = "close"
-	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 	icon_state = "backpack_close"
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 
 /atom/movable/screen/close/Click()
@@ -177,6 +193,7 @@
 	name = "intent"
 	icon_state = "help"
 	screen_loc = ui_acti
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 
 /atom/movable/screen/act_intent/Click(location, control, params)
@@ -205,6 +222,7 @@
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "running"
 	screen_loc = ui_movi
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 
 /atom/movable/screen/mov_intent/Click()
@@ -230,6 +248,7 @@
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "act_rest"
 	screen_loc = ui_above_movement
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /atom/movable/screen/rest/Click()
 	if(!isliving(usr))
@@ -249,6 +268,7 @@
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "pull0"
 	screen_loc = ui_above_movement
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 
 /atom/movable/screen/pull/Click()
@@ -272,6 +292,7 @@
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "act_resist"
 	screen_loc = ui_above_intent
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 
 /atom/movable/screen/resist/Click()
@@ -340,6 +361,8 @@
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "act_throw_off"
 	screen_loc = ui_drop_throw
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
 
 /atom/movable/screen/throw_catch/Click()
 	if(!iscarbon(usr))
@@ -351,6 +374,7 @@
 	name = "damage zone"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
+	mouse_over_pointer = MOUSE_HAND_POINTER
 	var/selecting = "chest"
 	var/list/hover_overlays_cache = list()
 	var/hovering
@@ -398,8 +422,9 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 128
 	anchored = TRUE
-	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
 
 /atom/movable/screen/zone_sel/proc/get_zone_at(icon_x, icon_y)
 	switch(icon_y)
@@ -479,6 +504,8 @@
 	icon_state = "stamloss-14"
 	screen_loc = UI_STAMINA
 	mouse_opacity = MOUSE_OPACITY_ICON
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
 
 /atom/movable/screen/stamina_hud/update_icon_state()
 	. = ..()
@@ -518,6 +545,7 @@
 /atom/movable/screen/action_button
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "template"
+	mouse_over_pointer = MOUSE_HAND_POINTER
 	var/datum/action/source_action
 
 /atom/movable/screen/action_button/Click(location, control, params)
@@ -551,7 +579,9 @@
 	name = "Hide Buttons"
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "hide"
+	mouse_over_pointer = MOUSE_HAND_POINTER
 	var/hidden = 0
+
 
 /atom/movable/screen/action_button/hide_toggle/Click()
 	usr.hud_used.action_buttons_hidden = !usr.hud_used.action_buttons_hidden
@@ -578,155 +608,17 @@
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "act_drop"
 	screen_loc = ui_drop_throw
-	layer = HUD_LAYER
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /atom/movable/screen/drop/Click()
 	usr.drop_item_v()
 
-/atom/movable/screen/bodytemp
-	name = "body temperature"
-	icon_state = "temp0"
-	screen_loc = ui_temp
-
-/atom/movable/screen/bodytemp/update_icon_state()
-	. = ..()
-	if(!ishuman(hud?.mymob))
-		return
-	var/mob/living/carbon/human/human_mymob = hud.mymob
-	if(!human_mymob.species)
-		switch(human_mymob.bodytemperature) //310.055 optimal body temp
-			if(370 to INFINITY)
-				icon_state = "temp4"
-			if(350 to 370)
-				icon_state = "temp3"
-			if(335 to 350)
-				icon_state = "temp2"
-			if(320 to 335)
-				icon_state = "temp1"
-			if(300 to 320)
-				icon_state = "temp0"
-			if(295 to 300)
-				icon_state = "temp-1"
-			if(280 to 295)
-				icon_state = "temp-2"
-			if(260 to 280)
-				icon_state = "temp-3"
-			else
-				icon_state = "temp-4"
-		return
-
-	var/temp_step
-	if(human_mymob.bodytemperature >= human_mymob.species.body_temperature)
-		temp_step = (human_mymob.species.heat_level_1 - human_mymob.species.body_temperature) / 4
-
-		if(human_mymob.bodytemperature >= human_mymob.species.heat_level_1)
-			icon_state = "temp4"
-		else if(human_mymob.bodytemperature >= human_mymob.species.body_temperature + temp_step * 3)
-			icon_state = "temp3"
-		else if(human_mymob.bodytemperature >= human_mymob.species.body_temperature + temp_step * 2)
-			icon_state = "temp2"
-		else if(human_mymob.bodytemperature >= human_mymob.species.body_temperature + temp_step * 1)
-			icon_state = "temp1"
-		else
-			icon_state = "temp0"
-		return
-
-	if(human_mymob.bodytemperature < human_mymob.species.body_temperature)
-		temp_step = (human_mymob.species.body_temperature - human_mymob.species.cold_level_1)/4
-
-		if(human_mymob.bodytemperature <= human_mymob.species.cold_level_1)
-			icon_state = "temp-4"
-		else if(human_mymob.bodytemperature <= human_mymob.species.body_temperature - temp_step * 3)
-			icon_state = "temp-3"
-		else if(human_mymob.bodytemperature <= human_mymob.species.body_temperature - temp_step * 2)
-			icon_state = "temp-2"
-		else if(human_mymob.bodytemperature <= human_mymob.species.body_temperature - temp_step * 1)
-			icon_state = "temp-1"
-		else
-			icon_state = "temp0"
-
-/atom/movable/screen/oxygen
-	name = "oxygen"
-	icon_state = "oxy0"
-	screen_loc = ui_oxygen
-
-/atom/movable/screen/oxygen/update_icon_state()
-	. = ..()
-	if(!ishuman(hud?.mymob))
-		return
-	var/mob/living/carbon/human/human_mymob = hud.mymob
-	if(human_mymob.hal_screwyhud == 3 || human_mymob.oxygen_alert)
-		icon_state = "oxy1"
-	else
-		icon_state = "oxy0"
-
-/atom/movable/screen/toxin
-	name = "toxin"
-	icon_state = "tox0"
-	screen_loc = ui_toxin
-
-/atom/movable/screen/toxin/update_icon_state()
-	. = ..()
-	if(!ishuman(hud?.mymob))
-		return
-	var/mob/living/carbon/human/human_mymob = hud.mymob
-	if(human_mymob.hal_screwyhud == 4)
-		icon_state = "tox1"
-	else
-		icon_state = "tox0"
-
-/atom/movable/screen/pressure
-	name = "pressure"
-	icon_state = "pressure0"
-	screen_loc = ui_pressure
-
-/atom/movable/screen/pressure/update_icon_state()
-	. = ..()
-	if(!ishuman(hud?.mymob))
-		return
-	var/mob/living/carbon/human/human_mymob = hud.mymob
-	icon_state = "pressure[human_mymob.pressure_alert]"
-
-/atom/movable/screen/nutrition
-	name = "nutrition"
-	icon_state = "nutrition1"
-	screen_loc = ui_nutrition
-
-/atom/movable/screen/nutrition/update_icon_state()
-	. = ..()
-	if(!ishuman(hud?.mymob))
-		return
-	var/mob/living/carbon/human/human_mymob = hud.mymob
-	switch(human_mymob.nutrition)
-		if(NUTRITION_OVERFED to INFINITY)
-			icon_state = "nutrition0"
-		if(NUTRITION_HUNGRY to NUTRITION_OVERFED) //Not-hungry.
-			icon_state = "nutrition1" //Empty icon.
-		if(NUTRITION_STARVING to NUTRITION_HUNGRY)
-			icon_state = "nutrition3"
-		else
-			icon_state = "nutrition4"
-
-/atom/movable/screen/fire
-	name = "body temperature"
-	icon_state = "fire0"
-	screen_loc = ui_fire
-
-/atom/movable/screen/fire/update_icon_state()
-	. = ..()
-	if(!ishuman(hud?.mymob))
-		return
-	var/mob/living/carbon/human/human_mymob = hud.mymob
-	if(human_mymob.fire_alert)
-		icon_state = "fire[human_mymob.fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
-	else
-		icon_state = "fire0"
-
 /atom/movable/screen/toggle_inv
-	name = "toggle"
+	name = "toggle inventory"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "toggle"
 	screen_loc = ui_inventory
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /atom/movable/screen/toggle_inv/Click()
 	if(usr.hud_used.inventory_shown)
@@ -763,7 +655,7 @@
 	flash_holder = new
 	flash_holder.icon_state = "frame"
 	flash_holder.icon = icon
-	flash_holder.plane = plane
+	flash_holder.vis_flags = VIS_INHERIT_PLANE
 	flash_holder.layer = layer+0.001
 	flash_holder.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	vis_contents += flash_holder
@@ -883,12 +775,12 @@
 /atom/movable/screen/arrow/silo_damaged_arrow
 	name = "Hive damaged tracker arrow"
 	icon_state = "Red_arrow"
-	duration = XENO_SILO_DAMAGE_POINTER_DURATION
+	duration = XENO_STRUCTURE_DAMAGE_POINTER_DURATION
 
 /atom/movable/screen/arrow/turret_attacking_arrow
 	name = "Turret attacking arrow"
 	icon_state = "Green_arrow"
-	duration = XENO_SILO_DAMAGE_POINTER_DURATION
+	duration = XENO_STRUCTURE_DAMAGE_POINTER_DURATION
 
 /atom/movable/screen/arrow/attack_order_arrow
 	name = "attack order arrow"
@@ -910,3 +802,36 @@
 	icon_state = "Red_arrow"
 	duration = HUNTER_PSYCHIC_TRACE_COOLDOWN
 	color = COLOR_ORANGE
+
+/atom/movable/screen/combo
+	icon_state = ""
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	screen_loc = ui_combo
+	plane = ABOVE_HUD_PLANE
+	/// Timer ID. After a set duration, the tracked combo streak will reset.
+	var/reset_timer
+
+/atom/movable/screen/combo/proc/clear_streak()
+	animate(src, alpha = 0, 2 SECONDS, SINE_EASING)
+	reset_timer = addtimer(CALLBACK(src, PROC_REF(reset_icons)), 2 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+
+/atom/movable/screen/combo/proc/reset_icons()
+	cut_overlays()
+	icon_state = initial(icon_state)
+
+/atom/movable/screen/combo/update_icon_state(combo_streak = "", time = 2 SECONDS)
+	reset_icons()
+	if(reset_timer)
+		deltimer(reset_timer)
+	alpha = 255
+	if(!combo_streak)
+		return ..()
+	reset_timer = addtimer(CALLBACK(src, PROC_REF(clear_streak)), time, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+	icon_state = "combo"
+	for(var/i = 1; i <= length(combo_streak); ++i)
+		var/click_text = copytext(combo_streak, i, i + 1)
+		var/image/click_icon = image(icon, src, "combo_[click_text]")
+		click_icon.pixel_x = 16 * (i - 1) - 8 * length(combo_streak)
+		click_icon.pixel_y = -16
+		add_overlay(click_icon)
+	return ..()

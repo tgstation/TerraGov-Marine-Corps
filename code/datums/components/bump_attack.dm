@@ -3,8 +3,6 @@
 	var/active = FALSE
 	///The proc to register with COMSIG_MOVABLE_BUMP, based on what kind of mob the component is on
 	var/bump_action_path
-	///Action used to turn bump attack on/off manually
-	var/datum/action/bump_attack_toggle/toggle_action
 
 /datum/component/bump_attack/Initialize(enabled = TRUE, has_button = TRUE, silent_activation = FALSE)
 	. = ..()
@@ -17,21 +15,10 @@
 		bump_action_path = PROC_REF(xeno_bump_action)
 	else
 		bump_action_path = PROC_REF(living_bump_action)
-	if(has_button)
-		toggle_action = new()
-		toggle_action.give_action(parent)
-		toggle_action.attacking = active
-		toggle_action.update_button_icon()
-		RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, PROC_REF(living_activation_toggle))
 	living_activation_toggle(should_enable = enabled, silent_activation = silent_activation)
 
 /datum/component/bump_attack/UnregisterFromParent()
-	toggle_action?.remove_action(parent)
 	UnregisterSignal(parent, COMSIG_MOVABLE_BUMP)
-
-/datum/component/bump_attack/Destroy(force, silent)
-	QDEL_NULL(toggle_action)
-	return ..()
 
 /// Handles the activation and deactivation of the bump attack component on living mobs.
 /datum/component/bump_attack/proc/living_activation_toggle(datum/source, should_enable = !active, silent_activation)
@@ -40,13 +27,10 @@
 	var/mob/living/bumper = parent
 	if(!silent_activation)
 		bumper.balloon_alert(bumper, "Will now [should_enable ? "attack" : "push"] enemies in your way.")
-	toggle_action?.attacking = active
-	toggle_action?.update_button_icon()
 	if(should_enable)
 		active = TRUE
 		RegisterSignal(bumper, COMSIG_MOVABLE_BUMP, bump_action_path)
 		return
-
 	var/obj/item/held_item = bumper.get_inactive_held_item()
 	if(held_item?.item_flags & CAN_BUMP_ATTACK)
 		return
@@ -55,9 +39,11 @@
 
 ///Handles living bump action checks before actually doing the attack checks.
 /datum/component/bump_attack/proc/living_bump_action_checks(atom/target)
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK))
-		return NONE
 	var/mob/living/bumper = parent
+	if(!bumper.client?.prefs?.toggle_bump_attacking)
+		return NONE
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_BUMP_ATTACK))
+		return NONE
 	if(!(target.atom_flags & BUMP_ATTACKABLE) || bumper.throwing || bumper.incapacitated())
 		return NONE
 
@@ -89,6 +75,10 @@
 	var/mob/living/living_target = target
 	if(bumper.faction == living_target.faction)
 		return //FF
+	if(ishuman(target) && (bumper.wear_id))
+		var/mob/living/carbon/human/human_target = target
+		if(bumper.wear_id?.iff_signal == human_target.wear_id?.iff_signal)
+			return //FF
 	if(isxeno(target))
 		var/mob/living/carbon/xenomorph/xeno = target
 		if(bumper.wear_id && CHECK_BITFIELD(xeno.xeno_iff_check(), bumper.wear_id.iff_signal))

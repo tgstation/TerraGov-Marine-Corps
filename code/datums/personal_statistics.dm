@@ -57,6 +57,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/internal_injuries = 0
 	var/internal_injuries_inflicted = 0
 
+	var/grenade_hand_delimbs = 0
+
 	//Medical
 	var/self_heals = 0
 	var/heals = 0
@@ -97,6 +99,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/huggers_created = 0
 	var/impregnations = 0
 	var/items_snatched = 0
+	var/acid_maw_uses = 0
+	var/acid_jaw_uses = 0
 
 	//Close air support
 	var/cas_cannon_shots = 0
@@ -172,6 +176,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 
 	if(grenades_primed)
 		stats += "[grenades_primed] grenade\s thrown."
+	if(grenade_hand_delimbs)
+		stats += "You blew off [grenade_hand_delimbs] hand[grenade_hand_delimbs != 1 ? "s" : ""] while holding grenades like an idiot."
 	if(traps_created)
 		stats += "[traps_created] trap\s/mine\s/hazard\s placed."
 	if(grenades_primed || traps_created)
@@ -236,6 +242,10 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		support_stats += "Repaired [apcs_repaired] APC\s."
 	if(items_snatched)
 		support_stats += "Snatched [items_snatched] item\s."
+	if(acid_maw_uses)
+		support_stats += "Fired the Acid Maw [acid_maw_uses] time\s"
+	if(acid_jaw_uses)
+		support_stats += "Fired the Acid Jaw [acid_jaw_uses] time\s"
 
 	if(generator_sabotages_performed)
 		support_stats += "Sabotaged [generator_sabotages_performed] generator\s."
@@ -629,6 +639,13 @@ The alternative is scattering them everywhere under their respective objects whi
 	if(reflected)
 		personal_statistics.projectiles_reflected += amount
 	return TRUE
+
+/// Adds to the personal statistics if the reflected projectile was a rocket.
+/obj/effect/xeno/shield/proc/record_rocket_reflection(mob/user, obj/projectile/projectile)
+	if(!istype(projectile.ammo, /datum/ammo/rocket) || !user.ckey)
+		return
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+	personal_statistics.rockets_reflected++
 
 ///Tally when a structure is constructed
 /mob/proc/record_structures_built()

@@ -136,7 +136,7 @@
 			to_chat(usr, span_warning("Evacuation is not enabled!"))
 			return
 
-		to_chat(usr, span_highdanger("You slam your fist down on the launch button!"))
+		to_chat(usr, span_userdanger("You slam your fist down on the launch button!"))
 		M.launch(TRUE)
 
 //=========================================================================================

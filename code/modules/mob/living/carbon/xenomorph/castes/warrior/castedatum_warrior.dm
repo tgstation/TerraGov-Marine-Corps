@@ -3,6 +3,7 @@
 	display_name = "Warrior"
 	upgrade_name = ""
 	caste_desc = "A powerful front line combatant."
+	base_strain_type = /mob/living/carbon/xenomorph/warrior
 	caste_type_path = /mob/living/carbon/xenomorph/warrior
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -19,7 +20,7 @@
 	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 450
+	max_health = 400
 
 	// *** Sunder *** //
 	sunder_multiplier = 0.9
@@ -32,7 +33,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_STRONG
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY
 	caste_traits = null
 
 	// *** Defense *** //

@@ -33,6 +33,9 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_destroyed")
 	return ..()
 
+/obj/alien/weeds/plasmacutter_act(mob/living/user, obj/item/I)
+	return FALSE // Just attack normally.
+
 /obj/alien/weeds/Initialize(mapload, obj/alien/weeds/node/node, swapped = FALSE)
 	. = ..()
 	var/static/list/connections = list(
@@ -81,6 +84,11 @@
 			var/obj/alien/weeds/W = locate() in T
 			if(W)
 				W.update_icon()
+
+/obj/alien/weeds/ex_act(severity)
+	if(severity == EXPLODE_WEAK)
+		return
+	return ..()
 
 ///Check if we have a parent node, if not, qdel ourselve
 /obj/alien/weeds/proc/check_for_parent_node()
@@ -145,9 +153,9 @@
 	if(crosser.throwing || crosser.buckled)
 		return
 
-	if(isvehicle(crosser))
-		var/obj/vehicle/vehicle = crosser
-		vehicle.last_move_time += WEED_SLOWDOWN
+	if(issealedvehicle(crosser))
+		var/obj/vehicle/sealed/vehicle = crosser
+		COOLDOWN_INCREMENT(vehicle, cooldown_vehicle_move, WEED_SLOWDOWN)
 		return
 
 	if(isxeno(crosser))
@@ -178,8 +186,8 @@
 // =================
 // weed wall
 /obj/alien/weeds/weedwall
-	layer = RESIN_STRUCTURE_LAYER
-	plane = GAME_PLANE
+	layer = WEEDWALL_LAYER
+	plane = WALL_PLANE
 	icon = 'icons/obj/smooth_objects/weedwall.dmi'
 	icon_state = "weedwall"
 
@@ -198,7 +206,7 @@
 // =================
 // windowed weed wall
 /obj/alien/weeds/weedwall/window
-	layer = ABOVE_TABLE_LAYER
+	layer = GIB_LAYER
 	///The type of window we're expecting to grow on
 	var/window_type = /obj/structure/window/framed
 
@@ -296,8 +304,7 @@
 
 /obj/alien/weeds/node/update_overlays()
 	. = ..()
-	overlays.Cut()
-	overlays += node_icon + "[rand(0,5)]"
+	. += mutable_appearance(icon, node_icon + "[rand(0,5)]")
 
 //Sticky weed node
 /obj/alien/weeds/node/sticky

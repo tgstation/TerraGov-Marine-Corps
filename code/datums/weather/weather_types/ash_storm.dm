@@ -3,11 +3,11 @@
 	name = "ash storm"
 	desc = "An intense atmospheric storm lifts ash off of the planet's surface and billows it down across the area, dealing intense fire damage to the unprotected."
 
-	telegraph_message = span_highdanger("An eerie moan rises on the wind. Sheets of burning ash blacken the horizon. Seek shelter.")
+	telegraph_message = span_userdanger("An eerie moan rises on the wind. Sheets of burning ash blacken the horizon. Seek shelter.")
 	telegraph_duration = 300
 	telegraph_overlay = "light_ash"
 
-	weather_message = span_highdanger("<i>Smoldering clouds of scorching ash billow down around you! Get inside!</i>")
+	weather_message = span_userdanger("<i>Smoldering clouds of scorching ash billow down around you! Get inside!</i>")
 	weather_duration_lower = 600
 	weather_duration_upper = 1200
 	weather_overlay = "ash_storm"
@@ -23,6 +23,7 @@
 	probability = 40
 
 	barometer_predictable = TRUE
+	play_screen_indicator = TRUE
 
 	var/datum/looping_sound/active_ashstorm/sound_active_ashstorm = new(list(), FALSE, TRUE)
 	var/datum/looping_sound/weak_ashstorm/sound_weak_ashstorm = new(list(), FALSE, TRUE)
@@ -91,5 +92,6 @@
 	end_sound = null
 
 	aesthetic = TRUE
+	play_screen_indicator = FALSE
 
 	probability = 60

@@ -55,7 +55,7 @@
 
 /obj/item/toy/deck/verb/draw_card()
 
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Draw"
 	set desc = "Draw a card from a deck."
 	set src in view(1)
@@ -97,7 +97,7 @@
 
 /obj/item/toy/deck/verb/deal_card()
 
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Deal"
 	set desc = "Deal a card from a deck."
 	set src in view(1)
@@ -194,7 +194,7 @@
 /// Takes a selected card, and puts it down, face-up, in front
 /obj/item/toy/handcard/verb/discard()
 
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Discard"
 	set desc = "Place a card from your hand in front of you."
 
@@ -233,7 +233,7 @@
 	H.update_icon()
 	update_icon()
 	user.visible_message("\The [user] plays \the [discarding].")
-	H.loc = get_step(user, user.dir)
+	H.forceMove(get_step(user, user.dir))
 
 	if(!length(cards))
 		qdel(src)

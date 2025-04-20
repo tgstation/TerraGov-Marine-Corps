@@ -41,7 +41,7 @@
 		return
 	if(!should_show())
 		return FALSE
-	if(owner.stat != CONSCIOUS || TIMER_COOLDOWN_CHECK(owner, COOLDOWN_CIC_ORDERS))
+	if(owner.stat != CONSCIOUS || TIMER_COOLDOWN_RUNNING(owner, COOLDOWN_CIC_ORDERS))
 		return FALSE
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
@@ -172,12 +172,19 @@
 		var/message = pick(";RETREAT! RETREAT!", ";GET OUT OF HERE!", ";DON'T DIE HERE! RUN!", ";RUN! RUN FOR YOUR LIFE!", ";DISENGAGE! I REPEAT, DISENGAGE!", ";GIVE UP GROUND! GIVE IT UP!")
 		owner.say(message)
 
+//placeholder, this will end up being split by faction somehow
+GLOBAL_VAR(human_ai_goal)
+
 /datum/action/innate/order/rally_order
 	name = "Send Rally Order"
 	action_icon_state = "rally"
 	verb_name = "rally to"
 	arrow_type = /atom/movable/screen/arrow/rally_order_arrow
 	visual_type = /obj/effect/temp_visual/order/rally_order
+
+/datum/action/innate/order/rally_order/send_order(atom/target, datum/squad/squad, faction = FACTION_TERRAGOV)
+	. = ..()
+	QDEL_IN(new /obj/effect/ai_node/goal(get_turf(target), owner, owner.faction), CIC_ORDER_COOLDOWN * 2)
 
 /datum/action/innate/order/rally_order/personal
 	keybinding_signals = list(
@@ -192,6 +199,9 @@
 
 /datum/action/innate/order/rally_order/personal/action_activate()
 	var/mob/living/carbon/human/human = owner
-	if(send_order(human, human.assigned_squad, human.faction))
-		var/message = pick(";TO ME MY MEN!", ";REGROUP TO ME!", ";FOLLOW MY LEAD!", ";RALLY ON ME!", ";FORWARD!")
-		owner.say(message)
+	if(!send_order(human, human.assigned_squad, human.faction))
+		return
+	var/message = pick(";TO ME MY MEN!", ";REGROUP TO ME!", ";FOLLOW MY LEAD!", ";RALLY ON ME!", ";FORWARD!")
+	owner.say(message)
+
+	QDEL_IN(new /obj/effect/ai_node/goal(get_turf(owner), owner, owner.faction), CIC_ORDER_COOLDOWN * 2)

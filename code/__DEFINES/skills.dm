@@ -135,7 +135,7 @@
 #define SKILL_POLICE_FLASH 1
 #define SKILL_POLICE_MP 2
 
-///Powerloader skill; movespeed when using a powerloader (broken currently)
+///Powerloader skill; movespeed when using a powerloader
 #define SKILL_POWERLOADER "powerloader"
 
 #define SKILL_POWERLOADER_DEFAULT 0
@@ -151,6 +151,12 @@
 #define SKILL_LARGE_VEHICLE_TRAINED 1
 #define SKILL_LARGE_VEHICLE_EXPERIENCED 2
 #define SKILL_LARGE_VEHICLE_VETERAN 3
+
+///mech vehicle skill; can you use greyscale mechs or not
+#define SKILL_MECH "mech"
+
+#define SKILL_MECH_DEFAULT 0
+#define SKILL_MECH_TRAINED 1
 
 ///Stamina skill - you do cardio, right?; buff stamina-related things
 #define SKILL_STAMINA "stamina"

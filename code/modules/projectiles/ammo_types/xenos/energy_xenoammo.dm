@@ -5,7 +5,7 @@
 */
 
 /datum/ammo/energy/xeno
-	barricade_clear_distance = 0
+	barricade_clear_distance = 1
 	///Plasma cost to fire this projectile
 	var/ability_cost
 	///Particle type used when this ammo is used
@@ -15,7 +15,7 @@
 
 /datum/ammo/energy/xeno/psy_blast
 	name = "psychic blast"
-	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_ENERGY|AMMO_HITSCAN|AMMO_SKIPS_ALIENS
+	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_BETTER_COVER_RNG|AMMO_ENERGY|AMMO_HITSCAN|AMMO_SKIPS_ALIENS
 	damage = 35
 	penetration = 10
 	sundering = 1
@@ -35,7 +35,7 @@
 	if(!T || !isturf(T))
 		return
 	playsound(T, 'sound/effects/EMPulse.ogg', 50)
-	var/list/turf/target_turfs = generate_true_cone(T, aoe_range, -1, 359, 0, air_pass = TRUE)
+	var/list/turf/target_turfs = generate_cone(T, aoe_range, -1, 359, 0, pass_flags_checked = PASS_AIR)
 	for(var/turf/target_turf AS in target_turfs)
 		for(var/atom/movable/target AS in target_turf)
 			if(isliving(target))
@@ -45,6 +45,7 @@
 				if(!isxeno(living_victim))
 					living_victim.apply_damage(aoe_damage, BURN, null, ENERGY, FALSE, FALSE, TRUE, penetration)
 					staggerstun(living_victim, P, 10, slowdown = 1)
+					living_victim.do_jitter_animation(500)
 			else if(isobj(target))
 				var/obj/obj_victim = target
 				var/dam_mult = 1

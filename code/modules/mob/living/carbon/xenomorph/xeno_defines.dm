@@ -4,7 +4,9 @@
 	var/upgrade_name = "Young"
 	var/caste_desc = null
 	var/job_type = /datum/job/xenomorph
-
+	///The parent strain of this caste
+	var/base_strain_type
+	///The base caste typepath
 	var/caste_type_path = null
 
 	///primordial message that is shown when a caste becomes primordial
@@ -22,6 +24,10 @@
 	// *** Melee Attacks *** //
 	///The amount of damage a xenomorph caste will do with a 'slash' attack.
 	var/melee_damage = 10
+	/// The damage typing of the melee damage.
+	var/melee_damage_type = BRUTE
+	/// The armor typing of the melee damage.
+	var/melee_damage_armor = MELEE
 	///The amount of armour pen their melee attacks have
 	var/melee_ap = 0
 	///number of ticks between attacks for a caste.
@@ -65,11 +71,6 @@
 
 	///Singular type path for the caste to deevolve to when forced to by the queen.
 	var/deevolves_to
-
-	///see_in_dark value while consicious
-	var/conscious_see_in_dark = 8
-	///see_in_dark value while unconscious
-	var/unconscious_see_in_dark = 5
 
 	// *** Flags *** //
 	///Bitwise flags denoting things a caste is or is not. Uses defines.
@@ -175,17 +176,7 @@
 	var/queen_leader_limit = 0
 
 	// *** Wraith Abilities *** //
-	//Banish - Values for the Wraith's Banish ability
-	///Base duration of Banish before modifiers
-	var/wraith_banish_base_duration = WRAITH_BANISH_BASE_DURATION
 
-	//Blink - Values for the Wraith's Blink ability
-	///Cooldown multiplier of Blink when used on non-friendlies
-	var/wraith_blink_drag_nonfriendly_living_multiplier = WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER
-	///Cooldown multiplier of Blink when used on friendlies
-	var/wraith_blink_drag_friendly_multiplier = WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER
-	///Base range of Blink
-	var/wraith_blink_range = WRAITH_BLINK_RANGE
 
 	// *** Hunter Abilities ***
 	///Damage breakpoint to knock out of stealth
@@ -211,7 +202,7 @@
 
 	///How quickly the caste enters vents
 	var/vent_enter_speed = XENO_DEFAULT_VENT_ENTER_TIME
-	///How quickly the caste enters vents
+	///How quickly the caste exits vents
 	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
@@ -227,23 +218,25 @@
 	for(var/trait in caste_traits)
 		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
-	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
-		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))
+	xenomorph.RegisterSignal(xenomorph,COMSIG_XENOMORPH_ATTACK_LIVING, TYPE_PROC_REF(/mob/living/carbon/xenomorph, onhithuman))
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
-	var/datum/component/bump_attack = xenomorph.GetComponent(/datum/component/bump_attack)
-	bump_attack?.RemoveComponent()
-	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
-		xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
+	xenomorph.remove_component(/datum/component/bump_attack)
+	xenomorph.UnregisterSignal(xenomorph, COMSIG_XENOMORPH_ATTACK_LIVING)
 	for(var/trait in caste_traits)
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
 
-///returns the basetype caste to get what the base caste is (e.g base rav not primo or strain rav)
-/datum/xeno_caste/proc/get_base_caste_type()
-	var/datum/xeno_caste/current_type = type
-	while(initial(current_type.upgrade) != XENO_UPGRADE_BASETYPE)
-		current_type = initial(current_type.parent_type)
+///returns the basetype caste from this caste or typepath to get what the base caste is (e.g base rav not primo or strain rav)
+/proc/get_base_caste_type(datum/xeno_caste/current_type)
+	while(current_type::upgrade != XENO_UPGRADE_BASETYPE)
+		current_type = current_type::parent_type
 	return current_type
+
+///returns the parent caste type for the given caste (e.g. bloodthirster would return base rav)
+/proc/get_parent_caste_type(datum/xeno_caste/root_type)
+	while(initial(root_type.parent_type) != /datum/xeno_caste)
+		root_type = root_type::parent_type
+	return root_type
 
 /// basetype = list(strain1, strain2)
 GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
@@ -262,12 +255,13 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	return strain_list
 
 ///returns a list of strains(xeno castedatum paths) that this caste can currently evolve to
-/datum/xeno_caste/proc/get_strain_options()
-	var/datum/xeno_caste/root_type = type
+/proc/get_strain_options(datum/xeno_caste/root_type)
+	RETURN_TYPE(/list)
+
+	ASSERT(ispath(root_type), "Bad root type passed to get_strain_options")
 	while(initial(root_type.parent_type) != /datum/xeno_caste)
 		root_type = root_type::parent_type
-	var/list/options = GLOB.strain_list[root_type]
-	return options?.Copy()
+	return GLOB.strain_list[root_type] + root_type
 
 /mob/living/carbon/xenomorph
 	name = "Drone"
@@ -277,8 +271,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	speak_emote = list("hisses")
 	melee_damage = 5 //Arbitrary damage value
 	attacktext = "claws"
-	attack_sound = null
-	friendly = "nuzzles"
+	attack_sound = SFX_ALIEN_CLAW_FLESH
 	wall_smash = FALSE
 	health = 5
 	maxHealth = 5
@@ -287,8 +280,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	move_resist = MOVE_FORCE_VERY_STRONG
 	mob_size = MOB_SIZE_XENO
 	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
-	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	lighting_cutoff =  LIGHTING_CUTOFF_HIGH
 	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER|LONG_GLIDE
 	see_infrared = TRUE
@@ -310,9 +302,12 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 
 	///State tracking of hive status toggles
 	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
-
+	///Handles displaying the various wound states of the xeno.
 	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
+	///Handles displaying the various fire states of the xeno
 	var/atom/movable/vis_obj/xeno_wounds/fire_overlay/fire_overlay
+	///Handles displaying any equipped backpack item, such as a saddle
+	var/atom/movable/vis_obj/xeno_wounds/backpack_overlay/backpack_overlay
 	var/datum/xeno_caste/xeno_caste
 	/// /datum/xeno_caste that we will be on init
 	var/caste_base_type
@@ -378,16 +373,15 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	///Multiplicative melee damage modifier; referenced by attack_alien.dm, most notably attack_alien_harm
 	var/xeno_melee_damage_modifier = 1
 
+	/// Visual effect that appears when doing a normal attack.
+	var/attack_effect = ATTACK_EFFECT_REDSLASH
+
 	//Charge vars
 	///Will the mob charge when moving ? You need the charge verb to change this
 	var/is_charging = CHARGE_OFF
 
 	// Gorger vars
 	var/overheal = 0
-
-	// Warrior vars
-	///0 - upright, 1 - all fours
-	var/agility = 0
 
 	// Defender vars
 	var/fortify = 0
@@ -402,11 +396,28 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
 
+	// *** Globadier vars *** //
+	var/obj/item/explosive/grenade/globadier/selected_grenade = /obj/item/explosive/grenade/globadier
+
 	// *** Behemoth vars *** //
 	/// Whether we are currently charging or not.
 	var/behemoth_charging = FALSE
 	/// The amount of Wrath currently stored.
 	var/wrath_stored = 0
+
+	// *** Boiler vars *** //
+	///When true the boiler gains speed and resets the duration on attack
+	var/steam_rush = FALSE
+
+	// *** Conqueror vars *** //
+	/// If Endurance is currently active.
+	var/endurance_active = FALSE
+	/// The amount of remaining health that Endurance has.
+	var/endurance_health = 1
+	/// The maximum amount of health that Endurance can have.
+	var/endurance_health_max = 1
+	/// Whether our Endurance has been broken, due to losing all of its health.
+	var/endurance_broken = FALSE
 
 	//Notification spam controls
 	var/recent_notice = 0
@@ -420,9 +431,30 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
 
+	//list of active tunnels
+	var/list/tunnels = list()
+	///Number of huggers the xeno is currently carrying
+	var/huggers = 0
+	///Boiler acid ammo
+	var/corrosive_ammo = 0
+	///Boiler Neuro ammo
+	var/neuro_ammo = 0
+
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
 
 	///The resting cooldown
 	COOLDOWN_DECLARE(xeno_resting_cooldown)
 	///The unresting cooldown
 	COOLDOWN_DECLARE(xeno_unresting_cooldown)
+
+///Called whenever a xeno slashes a human
+/mob/living/carbon/xenomorph/proc/onhithuman(attacker, target) //For globadiers lifesteal debuff
+	SIGNAL_HANDLER
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/victim = target
+	if(!victim.has_status_effect(STATUS_EFFECT_LIFEDRAIN))
+		return
+	var/mob/living/carbon/xenomorph/xeno = attacker
+	var/healamount = xeno.maxHealth * 0.06 //% of the xenos max health
+	HEAL_XENO_DAMAGE(xeno, healamount, FALSE)

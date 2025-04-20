@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/quartermaster
-	name = "Quartermaster's Locker"
+	name = "quartermaster's locker"
 	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 	icon_state = "secureqm1"
 	icon_closed = "secureqm"

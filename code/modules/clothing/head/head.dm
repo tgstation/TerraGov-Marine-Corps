@@ -134,7 +134,7 @@
 
 /obj/item/clothing/head/tgmccap/verb/fliphat()
 	set name = "Flip hat"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 	if(!isliving(usr))
 		return
@@ -241,6 +241,12 @@
 	desc = "A somewhat fancy hat, typically worn by those who wish to command medical respect."
 	icon_state = "cmohat"
 
+/obj/item/clothing/head/securitycap
+	name = "Security Cap"
+	desc = "A hat often worn by security officers, it is comfortable and lightly armored."
+	icon_state = "security_cap"
+	icon = 'icons/obj/clothing/hats.dmi'
+	soft_armor = list(MELEE = 15, BULLET = 25, LASER = 20, ENERGY = 20, BOMB = 5, BIO = 5, FIRE = 15, ACID = 5)
 
 /*============================BERETS=================================*/
 //Berets have armor, so they have their own category. PMC caps are helmets, so they're in helmets.dm.

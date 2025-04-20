@@ -30,13 +30,9 @@
 		if(CONSCIOUS)
 			GLOB.alive_xeno_list += src
 			LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
-			see_in_dark = xeno_caste.conscious_see_in_dark
 		if(UNCONSCIOUS)
 			GLOB.alive_xeno_list += src
 			LAZYADD(GLOB.alive_xeno_list_hive[hivenumber], src)
-			see_in_dark = xeno_caste.unconscious_see_in_dark
-		if(DEAD)
-			see_in_dark = xeno_caste.unconscious_see_in_dark
 
 	GLOB.xeno_mob_list += src
 	GLOB.round_statistics.total_xenos_created++
@@ -47,6 +43,9 @@
 
 	fire_overlay = new(src, src)
 	vis_contents += fire_overlay
+
+	backpack_overlay = new(src, src)
+	vis_contents += backpack_overlay
 
 	generate_nicknumber()
 
@@ -71,7 +70,7 @@
 	if(CONFIG_GET(flag/xenos_on_strike))
 		replace_by_ai()
 	if(z) //Larva are initiated in null space
-		SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, xeno_caste.minimap_icon, MINIMAP_BLIPS_LAYER))
 	handle_weeds_on_movement()
 
 	AddElement(/datum/element/footstep, footstep_type, mob_size >= MOB_SIZE_BIG ? 0.8 : 0.5)
@@ -239,17 +238,6 @@
 		CRASH("Unemployment has reached to a xeno, who has failed to become a [xeno_caste.job_type]")
 	apply_assigned_role_to_spawn(xeno_job)
 
-/mob/living/carbon/xenomorph/proc/grabbed_self_attack()
-	SIGNAL_HANDLER
-	if(!(xeno_caste.can_flags & CASTE_CAN_RIDE_CRUSHER))
-		return NONE
-	if(isxenocrusher(pulling) || isxenobehemoth(pulling))
-		var/mob/living/carbon/xenomorph/crusher/grabbed = pulling
-		if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
-			INVOKE_ASYNC(grabbed, TYPE_PROC_REF(/mob/living/carbon/xenomorph/crusher, carry_xeno), src, TRUE)
-			return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
-	return NONE
-
 ///Initiate of form changing on the xeno
 /mob/living/carbon/xenomorph/proc/change_form()
 	return
@@ -300,12 +288,14 @@
 
 	vis_contents -= wound_overlay
 	vis_contents -= fire_overlay
+	vis_contents -= backpack_overlay
 	QDEL_NULL(wound_overlay)
 	QDEL_NULL(fire_overlay)
+	QDEL_NULL(backpack_overlay)
 	return ..()
 
 
-/mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+/mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, paralyze_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
 /mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, force = move_force, suppress_message = TRUE, bypass_crit_delay = FALSE)
@@ -317,7 +307,7 @@
 		return FALSE //Incorporeal things can't grab or be grabbed.
 	if(AM.anchored)
 		return FALSE //We cannot grab anchored items.
-	if(!isliving(AM) && AM.drag_windup && !do_after(src, AM.drag_windup, NONE, AM, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = src.health))))
+	if(!isliving(AM) && !SSresinshaping.active && AM.drag_windup && !do_after(src, AM.drag_windup, NONE, AM, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = src.health))))
 		return //If the target is not a living mob and has a drag_windup defined, calls a do_after. If all conditions are met, it returns. If the user takes damage during the windup, it breaks the channel.
 	var/mob/living/L = AM
 	if(L.buckled)
@@ -326,7 +316,8 @@
 		if(L.stat == DEAD) //Can't drag dead human bodies.
 			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
 			return FALSE
-		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
+		if(pulling != L)
+			pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	do_attack_animation(L, ATTACK_EFFECT_GRAB)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()
@@ -342,6 +333,8 @@
 	if(!ishuman(puller))
 		return TRUE
 	var/mob/living/carbon/human/H = puller
+	if(hivenumber == XENO_HIVE_CORRUPTED) // we can grab friendly benos
+		return TRUE
 	H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
 	playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
 	H.visible_message(span_warning("[H] tried to pull [src] but instead gets a tail swipe to the head!"))
@@ -439,24 +432,26 @@
 		return TRUE
 	return ..()
 
-/mob/living/carbon/xenomorph/set_stat(new_stat)
-	. = ..()
-	if(isnull(.))
-		return
-	switch(stat)
-		if(UNCONSCIOUS)
-			see_in_dark = xeno_caste.unconscious_see_in_dark
-		if(DEAD, CONSCIOUS)
-			if(. == UNCONSCIOUS)
-				see_in_dark = xeno_caste.conscious_see_in_dark
-
-///Kick the player from this mob, replace it by a more competent ai
-/mob/living/carbon/xenomorph/proc/replace_by_ai()
+/mob/living/carbon/xenomorph/replace_by_ai()
 	to_chat(src, span_warning("Sorry, your skill level was deemed too low by our automatic skill check system. Your body has as such been given to a more capable brain, our state of the art AI technology piece. Do not hesitate to take back your body after you've improved!"))
 	ghostize(TRUE)//Can take back its body
 	GLOB.offered_mob_list -= src
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
 	a_intent = INTENT_HARM
+
+///Checks for nearby intact weeds
+/mob/living/carbon/xenomorph/proc/check_weeds(turf/T, strict_turf_check = FALSE)
+	SHOULD_BE_PURE(TRUE)
+	if(isnull(T))
+		return FALSE
+	. = TRUE
+	if(locate(/obj/fire/flamer) in T)
+		return FALSE
+	for(var/obj/alien/weeds/W in range(strict_turf_check ? 0 : 1, T ? T : get_turf(src)))
+		if(QDESTROYING(W))
+			continue
+		return
+	return FALSE
 
 /// Handles logic for weeds nearby the xeno getting removed
 /mob/living/carbon/xenomorph/proc/handle_weeds_adjacent_removed(datum/source)
@@ -487,11 +482,11 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 	if(!resting_action || !resting_action.can_use_action())
 		return
 	if(resting)
-		if(!COOLDOWN_CHECK(src, xeno_resting_cooldown))
+		if(!COOLDOWN_FINISHED(src, xeno_resting_cooldown))
 			balloon_alert(src, "Cannot get up so soon after resting!")
 			return
 
-	if(!COOLDOWN_CHECK(src, xeno_unresting_cooldown))
+	if(!COOLDOWN_FINISHED(src, xeno_unresting_cooldown))
 		balloon_alert(src, "Cannot rest so soon after getting up!")
 		return
 	return ..()
@@ -517,3 +512,93 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 		height *= gravity * 0.5
 
 	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = 0, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = jump_pass_flags)
+
+/mob/living/carbon/xenomorph/equip_to_slot(obj/item/item_to_equip, slot, bitslot)
+	. = ..()
+	if(bitslot)
+		var/oldslot = slot
+		slot = slotbit2slotdefine(oldslot)
+	switch(slot)
+		if(SLOT_BACK)
+			back = item_to_equip
+			item_to_equip.equipped(src, slot)
+			update_inv_back()
+		if(SLOT_L_HAND)
+			l_hand = item_to_equip
+			item_to_equip.equipped(src, slot)
+			update_inv_l_hand()
+		if(SLOT_R_HAND)
+			r_hand = item_to_equip
+			item_to_equip.equipped(src, slot)
+			update_inv_r_hand()
+		if(SLOT_WEAR_MASK)
+			wear_mask = item_to_equip
+			item_to_equip.equipped(src, slot)
+			wear_mask_update(item_to_equip, TRUE)
+
+/mob/living/carbon/xenomorph/grabbed_self_attack(mob/living/user)
+	. = ..()
+	if(!can_mount(user))
+		return NONE
+	INVOKE_ASYNC(src, PROC_REF(carry_target), pulling, FALSE)
+	return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
+
+/**
+ * Checks if user can mount src
+ *
+ * Arguments:
+ * * user - The mob trying to mount
+ * * target_mounting - Is the target initiating the mounting process?
+ */
+/mob/living/carbon/xenomorph/proc/can_mount(mob/living/user, target_mounting = FALSE)
+	return FALSE
+
+/**
+ * Handles the target trying to ride src
+ *
+ * Arguments:
+ * * target - The mob being put on the back
+ * * target_mounting - Is the target initiating the mounting process?
+ */
+/mob/living/carbon/xenomorph/proc/carry_target(mob/living/carbon/target, target_mounting = FALSE)
+	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+		if(target_mounting)
+			to_chat(target, span_xenowarning("You cannot mount [src]!"))
+			return
+		to_chat(src, span_xenowarning("[target] cannot mount you!"))
+		return
+	visible_message(span_notice("[target_mounting ? "[target] starts to mount on [src]" : "[src] starts hoisting [target] onto [p_their()] back..."]"),
+	span_notice("[target_mounting ? "[target] starts to mount on your back" : "You start to lift [target] onto your back..."]"))
+	if(!do_after(target_mounting ? target : src, 5 SECONDS, NONE, target_mounting ? src : target, target_display = BUSY_ICON_HOSTILE))
+		visible_message(span_warning("[target_mounting ? "[target] fails to mount on [src]" : "[src] fails to carry [target]!"]"))
+		return
+	//Second check to make sure they're still valid to be carried
+	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+		return
+	buckle_mob(target, TRUE, TRUE, 90, 1, 1)
+
+/mob/living/carbon/xenomorph/MouseDrop_T(atom/dropping, mob/user)
+	. = ..()
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		if(!(xeno_user.xeno_caste.can_flags & CASTE_CAN_RIDE_CRUSHER))
+			return
+	if(!can_mount(user, TRUE))
+		return
+	INVOKE_ASYNC(src, PROC_REF(carry_target), user, TRUE)
+
+///updates the xenos glow, based on its base glow/color, and its ammo reserves. More green ammo = more green glow; more yellow = more yellow.
+/mob/living/carbon/xenomorph/proc/update_ammo_glow()
+	var/current_ammo = corrosive_ammo + neuro_ammo
+	var/ammo_glow = BOILER_LUMINOSITY_AMMO * current_ammo
+	var/glow = CEILING(BOILER_LUMINOSITY_BASE + ammo_glow, 1)
+	var/color = BOILER_LUMINOSITY_BASE_COLOR
+	if(current_ammo)
+		var/ammo_color = BlendRGB(BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR, BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR, neuro_ammo/current_ammo)
+		color = BlendRGB(color, ammo_color, (ammo_glow*2)/glow)
+	if(!light_on && glow >= BOILER_LUMINOSITY_THRESHOLD)
+		set_light_on(TRUE)
+	else if(glow < BOILER_LUMINOSITY_THRESHOLD && !fire_luminosity)
+		set_light_range_power_color(0, 0)
+		set_light_on(FALSE)
+	set_light_range_power_color(glow, 4, color)

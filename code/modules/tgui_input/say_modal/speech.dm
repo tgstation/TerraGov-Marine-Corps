@@ -54,10 +54,10 @@
 			client.xooc(entry)
 			return TRUE
 		if(ADMIN_CHANNEL)
-			client.asay(entry)
+			SSadmin_verbs.dynamic_invoke_verb(client, /datum/admin_verb/asay, entry)
 			return TRUE
 		if(MENTOR_CHANNEL)
-			client.msay(entry)
+			SSadmin_verbs.dynamic_invoke_verb(client, /datum/admin_verb/msay, entry)
 			return TRUE
 	return FALSE
 

@@ -125,7 +125,7 @@
 	refill_amount = 50
 
 /obj/item/factory_refill/phosnade_refill
-	name = "box of rounded metal plates (WP Grenade)"
+	name = "box of white phosphorous grenade plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become White Phosphorous Grenades, once finished."
 	refill_type = /obj/item/factory_part/phosnade
 	refill_amount = 50
@@ -282,6 +282,12 @@
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
 	refill_type = /obj/item/factory_part/smartgunner_targetrifle_ammobin
+	refill_amount = 10
+
+/obj/item/factory_refill/smartgunner_spottingrifle_ammobin_refill
+	name = "box of rounded metal plates (SG-153)"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/smartgunner_spottingrifle_ammobin
 	refill_amount = 10
 
 /obj/item/factory_refill/auto_sniper_magazine_refill
@@ -495,19 +501,13 @@
 /obj/item/factory_refill/agls_flare_refill
 	name = "box of rounded metal plates (AGLS Flare)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become AGLS Flare magazines for an AGL, once finished."
-	refill_type = /obj/item/factory_part/agls_he
+	refill_type = /obj/item/factory_part/agls_flare
 	refill_amount = 10
 
 /obj/item/factory_refill/agls_cloak_refill
 	name = "box of rounded metal plates (AGLS Smoke)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become AGLS Cloak Smoke magazines for an AGL, once finished."
 	refill_type = /obj/item/factory_part/agls_cloak
-	refill_amount = 10
-
-/obj/item/factory_refill/agls_tanglefoot_refill
-	name = "box of rounded metal plates (AGLS Tanglefoot)"
-	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become AGLS Tanglefoot magazines for an AGL, once finished."
-	refill_type = /obj/item/factory_part/agls_tanglefoot
 	refill_amount = 10
 
 /obj/item/factory_refill/atgun_aphe_refill

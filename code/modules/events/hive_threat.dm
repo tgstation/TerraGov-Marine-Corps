@@ -15,9 +15,8 @@
 	var/list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND))
 	var/list/eligible_targets = list()
 	for(var/z in z_levels)
-		for(var/i in GLOB.humans_by_zlevel["[z]"])
-			var/mob/living/carbon/human/possible_target = i
-			if(!istype(possible_target) || !possible_target.client || issynth(possible_target))
+		for(var/mob/living/carbon/human/possible_target in GLOB.humans_by_zlevel["[z]"])
+			if(!possible_target.client || issynth(possible_target) || possible_target.faction == FACTION_NEUTRAL)
 				continue
 			eligible_targets += possible_target
 	if(!length(eligible_targets))

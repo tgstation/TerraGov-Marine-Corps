@@ -27,7 +27,7 @@
 	color = "#0064C8" // rgb: 0, 100, 200
 	overdose_threshold = REAGENTS_OVERDOSE * 2
 	custom_metabolism = REAGENTS_METABOLISM * 5 //1.0/tick
-	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine, /datum/reagent/consumable)
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine, /datum/reagent/consumable, /datum/reagent/zombium)
 	purge_rate = 1
 	taste_description = "water"
 	default_container = /obj/item/reagent_containers/cup/glass/waterbottle
@@ -348,7 +348,7 @@
 	taste_description = "the colour blue and regret"
 
 /datum/reagent/radium/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(effect_str/L.metabolism_efficiency, AGONY)
+	L.apply_effect(effect_str/L.metabolism_efficiency, EFFECT_STAMLOSS)
 	return ..()
 
 /datum/reagent/radium/reaction_turf(turf/T, volume)
@@ -392,7 +392,7 @@
 	taste_description = "the inside of a reactor"
 
 /datum/reagent/uranium/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(1/L.metabolism_efficiency, AGONY)//WHAT THE HELL DID YOU THINK WOULD HAPPEN
+	L.apply_effect(1/L.metabolism_efficiency, EFFECT_STAMLOSS)//WHAT THE HELL DID YOU THINK WOULD HAPPEN
 	return ..()
 
 /datum/reagent/uranium/reaction_turf(turf/T, reac_volume)

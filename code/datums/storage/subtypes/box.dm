@@ -73,7 +73,7 @@
 /datum/storage/box/visual/magazine/compact/New(atom/parent)
 	. = ..()
 	set_holdable(
-		can_hold_list = list(/obj/item/ammo_magazine), //Able to hold all ammo due to this box being unobtainable. admemes beware of the rocket crate.
+		can_hold_list = list(/obj/item/ammo_magazine, /obj/item/cell/lasgun), //Able to hold all ammo due to this box being unobtainable. admemes beware of the rocket crate.
 		cant_hold_list = list()
 	)
 

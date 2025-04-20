@@ -72,7 +72,7 @@
 #define SMOOTH_GROUP_ICE_WALL S_TURF(40)
 #define SMOOTH_GROUP_SAND S_TURF(41)
 
-#define MAX_S_TURF SMOOTH_GROUP_ICE_WALL //Always match this value with the one above it.
+#define MAX_S_TURF SMOOTH_GROUP_SAND //Always match this value with the one above it.
 
 
 #define S_OBJ(num) (MAX_S_TURF + 1 + num)
@@ -94,7 +94,7 @@
 #define SMOOTH_GROUP_SURVIVAL_TIANIUM_POD S_OBJ(14)		///turf/closed/wall/mineral/titanium/survival/pod, /obj/machinery/door/airlock/survival_pod, /obj/structure/window/shuttle/survival_pod
 #define SMOOTH_GROUP_HIERO_WALL S_OBJ(15)				///obj/effect/temp_visual/elite_tumor_wall, /obj/effect/temp_visual/hierophant/wall
 
-#define SMOOTH_GROUP_PAPERFRAME S_OBJ(20)				///obj/structure/window/paperframe, /obj/structure/door/mineral_door/paperframe
+#define SMOOTH_GROUP_PAPERFRAME S_OBJ(20)				///obj/structure/window/paperframe, /obj/structure/mineral_door/paperframe
 
 #define SMOOTH_GROUP_WINDOW_FULLTILE S_OBJ(21)			///obj/structure/window/fulltile, /obj/structure/window/reinforced/fulltile, /obj/structure/window/reinforced/tinted/fulltile, /obj/structure/window/plasma/fulltile, /obj/structure/window/plasma/reinforced/fulltile
 #define SMOOTH_GROUP_WINDOW_FULLTILE_BRONZE S_OBJ(22)	///obj/structure/window/bronze/fulltile
@@ -114,6 +114,8 @@
 #define SMOOTH_GROUP_DECAL  S_OBJ(43)
 #define SMOOTH_GROUP_DECAL_WARNING_STRIPE  S_OBJ(44)
 
+#define SMOOTH_GROUP_INDUSTRIAL_LIFT S_OBJ(46) ///obj/structure/transport/linear
+#define SMOOTH_GROUP_TRAM_STRUCTURE S_OBJ(47) //obj/structure/tram
 
 #define SMOOTH_GROUP_WOOD_TABLES S_OBJ(51)				///obj/structure/table/wood
 #define SMOOTH_GROUP_FANCY_WOOD_TABLES S_OBJ(52)		///obj/structure/table/wood/fancy

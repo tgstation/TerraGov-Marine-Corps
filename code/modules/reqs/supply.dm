@@ -40,10 +40,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	height = 5
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 	use_ripples = FALSE
+	faction = FACTION_TERRAGOV
 	var/list/gears = list()
 	var/list/obj/machinery/door/poddoor/railing/railings = list()
-	///The faction of this docking port (aka, on which ship it is located)
-	var/faction = FACTION_TERRAGOV
 	/// Id of the home docking port
 	var/home_id = "supply_home"
 	///prefix for railings and gear todo should probbaly be defines instead?
@@ -215,13 +214,12 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	req_access = list(ACCESS_MARINE_CARGO)
 	equip_slot_flags = ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_NORMAL
+	faction = FACTION_TERRAGOV
 	var/datum/supply_ui/SU
 	///Id of the shuttle controlled
 	var/shuttle_id = SHUTTLE_SUPPLY
 	/// Id of the home docking port
 	var/home_id = "supply_home"
-	/// Faction of the tablet
-	var/faction = FACTION_TERRAGOV
 
 /obj/item/supplytablet/interact(mob/user)
 	. = ..()
@@ -244,13 +242,12 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	screen_overlay = "supply"
 	req_access = list(ACCESS_MARINE_CARGO)
 	circuit = /obj/item/circuitboard/computer/supplycomp
+	faction = FACTION_TERRAGOV
 	var/datum/supply_ui/SU
 	///Id of the shuttle controlled
 	var/shuttle_id = SHUTTLE_SUPPLY
 	/// Id of the home docking port
 	var/home_id = "supply_home"
-	/// Faction of the computer
-	var/faction = FACTION_TERRAGOV
 
 /obj/machinery/computer/supplycomp/interact(mob/user)
 	. = ..()
@@ -697,6 +694,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		for(var/ammo in veh_ui.secondary_ammo)
 			for(var/i=1 to veh_ui.secondary_ammo[ammo])
 				new ammo(dumploc)
+	SStgui.close_user_uis(user, veh_ui)
 
 /obj/docking_port/stationary/supply/vehicle
 	id = "vehicle_home"
@@ -873,13 +871,21 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 				to_chat(usr, span_danger("A vehicle of this type has already been purchased!"))
 				return
 			current_veh_type = newtype
+			current_primary = null
+			current_secondary = null
+			current_driver_mod = null
+			current_gunner_mod = null
+			primary_ammo = list()
+			secondary_ammo = list()
 			. = TRUE
 
 		if("setprimary")
 			if(!current_veh_type)
 				return
-			var/newtype = text2path(params["type"])
+			var/obj/item/armored_weapon/newtype = text2path(params["type"])
 			if(!(newtype in GLOB.armored_guntypes[current_veh_type]))
+				return
+			if(initial(newtype.armored_weapon_flags) & MODULE_NOT_FABRICABLE)
 				return
 			current_primary = newtype
 			var/list/assoc_cast = GLOB.armored_gunammo[newtype]
@@ -891,8 +897,10 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 		if("setsecondary")
 			if(!current_veh_type)
 				return
-			var/newtype = text2path(params["type"])
+			var/obj/item/armored_weapon/newtype = text2path(params["type"])
 			if(!(newtype in GLOB.armored_guntypes[current_veh_type]))
+				return
+			if(initial(newtype.armored_weapon_flags) & MODULE_NOT_FABRICABLE)
 				return
 			current_secondary = newtype
 			var/list/assoc_cast = GLOB.armored_gunammo[newtype]
@@ -952,24 +960,6 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 				return
 			current_gunner_mod = newtype
 			. = TRUE
-
-		if("deploy")
-			if(supply_shuttle.mode != SHUTTLE_IDLE)
-				to_chat(usr, span_danger("Elevator moving!"))
-				return
-			if(is_mainship_level(supply_shuttle.z))
-				to_chat(usr, span_danger("Elevator raised. Lower to deploy vehicle."))
-				return
-			supply_shuttle.buy(usr, src)
-			ui_act("send", params, ui, state)
-			SStgui.close_user_uis(usr, src)
-			current_veh_type = null
-			current_primary = null
-			current_secondary = null
-			current_driver_mod = null
-			current_gunner_mod = null
-			primary_ammo = list()
-			secondary_ammo = list()
 
 	if(.)
 		update_static_data(usr)

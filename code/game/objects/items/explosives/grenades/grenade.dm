@@ -29,7 +29,8 @@
 	var/light_impact_range = 4
 	///Weak impact range when exploding
 	var/weak_impact_range = 0
-
+	///The actual timer for the grenade
+	var/det_timer
 
 /obj/item/explosive/grenade/Initialize(mapload)
 	. = ..()
@@ -66,11 +67,20 @@
 	if(user.throw_item(target))
 		user.changeNext_move(CLICK_CD_THROWING)
 
+/obj/item/explosive/grenade/update_overlays()
+	. = ..()
+	if(active && dangerous)
+		. += mutable_appearance('icons/obj/items/grenade.dmi', "danger", ABOVE_ALL_MOB_LAYER, src)
+
+/obj/item/explosive/grenade/fire_act(burn_level)
+	activate()
+
+///Activates the grenade
 /obj/item/explosive/grenade/proc/activate(mob/user)
 	if(active)
 		return
 
-	if(user)
+	if(user?.client)
 		log_bomber(user, "primed", src)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.grenades_primed ++
@@ -83,22 +93,30 @@
 		GLOB.round_statistics.grenades_thrown++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
 		update_icon()
-	addtimer(CALLBACK(src, PROC_REF(prime)), det_time)
+	det_timer = addtimer(CALLBACK(src, PROC_REF(prime)), det_time, TIMER_STOPPABLE)
+	notify_ai_hazard()
 	return TRUE
 
-/obj/item/explosive/grenade/update_overlays()
-	. = ..()
-	if(active && dangerous)
-		. += new /obj/effect/overlay/danger
-
-
+///Detonation effects TODO MAKE THIS PASS THE USER TO EXPLOSION FOR LOGGING
 /obj/item/explosive/grenade/proc/prime()
-	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range)
+	if(ishuman(loc))
+		var/mob/living/carbon/human/idiot = loc
+		var/in_hand = FALSE
+		if(idiot.l_hand == src)
+			idiot.amputate_limb(BODY_ZONE_PRECISE_L_HAND)
+			in_hand = TRUE
+		else if(idiot.r_hand == src)
+			idiot.amputate_limb(BODY_ZONE_PRECISE_R_HAND)
+			in_hand = TRUE
+		if(in_hand)
+			idiot.visible_message(span_danger("[idiot]'s hand is blown into tiny pieces by [src]!"),
+			span_userdanger("You feel incredible pain and stupidity as [src] blows your hand up."))
+			idiot.emote("scream")
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[idiot.ckey]
+			personal_statistics.grenade_hand_delimbs ++
+	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range, explosion_cause=src)
 	qdel(src)
-
-/obj/item/explosive/grenade/fire_act(burn_level)
-	activate()
 
 ///Adjusts det time, used for grenade launchers
 /obj/item/explosive/grenade/proc/launched_det_time()
-	det_time = min(10, det_time)
+	det_time = min(1 SECONDS, det_time)

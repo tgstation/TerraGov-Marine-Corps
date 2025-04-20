@@ -215,7 +215,6 @@
 	icon_state = "rune_large_colored"
 
 /obj/effect/turf_decal/strata_decals
-	layer = TURF_LAYER
 
 /obj/effect/turf_decal/strata_decals/catwalk/prison //For finding and replacing prison catwalk objects since they nasty
 	icon_state = "catwalk"

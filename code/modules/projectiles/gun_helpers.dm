@@ -61,7 +61,7 @@
 	//Cannot equip wielded items or items burst firing.
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
-	unwield(user)
+	//unwield(user) //shouldnt need this, just causes unequips when you fail to even unequip
 	return ..()
 
 
@@ -129,12 +129,9 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		to_chat(user, span_warning("You don't know how to do tactical reloads."))
 		return
 	to_chat(user, span_notice("You start a tactical reload."))
-	var/tac_reload_time = max(0.25 SECONDS, 0.75 SECONDS - user.skills.getRating(SKILL_COMBAT) * 5)
 	if(length(chamber_items))
-		if(!do_after(user, tac_reload_time, IGNORE_USER_LOC_CHANGE, new_magazine) && loc == user)
-			return
 		unload(user)
-	if(!do_after(user, tac_reload_time, IGNORE_USER_LOC_CHANGE, new_magazine) && loc == user)
+	if(!do_after(user, max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating(SKILL_COMBAT) * 5), IGNORE_USER_LOC_CHANGE, new_magazine) && loc == user)
 		return
 	if(new_magazine.item_flags & IN_STORAGE)
 		var/obj/item/storage/S = new_magazine.loc
@@ -183,11 +180,11 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/proc/update_force_list()
 	switch(force)
 		if(-50 to 15)
-			attack_verb = list("struck", "hit", "bashed") //Unlikely to ever be -50, but just to be safe.
+			attack_verb = list("strikes", "hits", "bashes") //Unlikely to ever be -50, but just to be safe.
 		if(16 to 35)
-			attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
+			attack_verb = list("smashes", "strikes", "whacks", "beats", "cracks")
 		else
-			attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored") //Greater than 35
+			attack_verb = list("slashes", "stabs", "spears", "tears", "punctures", "pierces", "gores") //Greater than 35
 
 
 /proc/get_active_firearm(mob/user)
@@ -237,91 +234,17 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		if(master_gun)
 			return activate(user)
 		return ..()
-	return do_toggle_firemode()
+	return do_toggle_firemode(user)
 
-/mob/living/carbon/human/verb/toggle_autofire()
-	set category = "Weapons"
-	set name = "Toggle Auto Fire"
-	set desc = "Toggle automatic firemode, if the gun has it."
-
-	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(!G)
-		return
-	G.toggle_autofire()
-
-
-/obj/item/weapon/gun/verb/toggle_autofire()
-	set category = null
-	set name = "Toggle Auto Fire (Weapon)"
-	set desc = "Toggle automatic firemode, if the gun has it."
-
-	var/new_firemode
-	switch(gun_firemode)
-		if(GUN_FIREMODE_SEMIAUTO)
-			new_firemode = GUN_FIREMODE_AUTOMATIC
-		if(GUN_FIREMODE_BURSTFIRE)
-			new_firemode = GUN_FIREMODE_AUTOBURST
-		if(GUN_FIREMODE_AUTOMATIC)
-			new_firemode = GUN_FIREMODE_SEMIAUTO
-		if(GUN_FIREMODE_AUTOBURST)
-			new_firemode = GUN_FIREMODE_BURSTFIRE
-	if(!(new_firemode in gun_firemode_list))
-		to_chat(usr, span_warning("[src] lacks a [new_firemode]!"))
-		return
-	do_toggle_firemode(new_firemode = new_firemode)
-
-
-/mob/living/carbon/human/verb/toggle_burstfire()
-	set category = "Weapons"
-	set name = "Toggle Burst Fire"
-	set desc = "Toggle burst firemode, if the gun has it."
-
-	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(!G)
-		return
-	G.toggle_burstfire()
-
-
-/obj/item/weapon/gun/verb/toggle_burstfire()
-	set category = null
-	set name = "Toggle Burst Fire (Weapon)"
-	set desc = "Toggle burst firemode, if the gun has it."
-
-	var/new_firemode
-	switch(gun_firemode)
-		if(GUN_FIREMODE_SEMIAUTO)
-			new_firemode = GUN_FIREMODE_BURSTFIRE
-		if(GUN_FIREMODE_BURSTFIRE)
-			new_firemode = GUN_FIREMODE_SEMIAUTO
-		if(GUN_FIREMODE_AUTOMATIC)
-			new_firemode = GUN_FIREMODE_AUTOBURST
-		if(GUN_FIREMODE_AUTOBURST)
-			new_firemode = GUN_FIREMODE_AUTOMATIC
-	if(!(new_firemode in gun_firemode_list))
-		to_chat(usr, span_warning("[src] lacks a [new_firemode]!"))
-		return
-	do_toggle_firemode(new_firemode = new_firemode)
-
-
-/mob/living/carbon/human/verb/toggle_firemode()
-	set category = "Weapons"
-	set name = "Toggle Fire Mode"
-	set desc = "Toggle between fire modes, if the gun has more than has one."
-
-	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(!G)
-		return
-	G.toggle_firemode()
-
-
+/// A verb in the right click context menu of the weapon for toggling firemode
 /obj/item/weapon/gun/verb/toggle_firemode()
 	set category = null
 	set name = "Toggle Fire Mode (Weapon)"
-	set desc = "Toggle between fire modes, if the gun has more than has one."
+	set desc = "Toggle between fire modes, if the gun has more than one."
 
-	do_toggle_firemode()
+	do_toggle_firemode(usr)
 
-
+/// Actually does the toggling of the fire mode
 /obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, datum/keybinding, new_firemode)
 	SIGNAL_HANDLER
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))//can't toggle mid burst
@@ -439,7 +362,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 // todo destroy all verbs
 /mob/living/carbon/human/verb/empty_mag()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Unload Weapon"
 	set desc = "Removes the magazine from your current gun and drops it on the ground, or clears the chamber if your gun is already empty."
 
@@ -458,7 +381,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /mob/living/carbon/human/verb/use_unique_action()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Unique Action"
 	set desc = "Use anything unique your firearm is capable of. Includes pumping a shotgun or spinning a revolver."
 
@@ -477,7 +400,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /mob/living/carbon/human/verb/toggle_gun_safety()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Toggle Gun Safety"
 	set desc = "Toggle the safety of the held gun."
 
@@ -501,7 +424,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /mob/living/carbon/human/verb/activate_attachment_verb()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Load From Attachment"
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
 
@@ -547,7 +470,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /mob/living/carbon/human/verb/toggle_rail_attachment()
-	set category = "Weapons"
+	set category = "IC.Weapons"
 	set name = "Toggle Rail Attachment"
 	set desc = "Uses the rail attachement currently attached to the gun."
 
@@ -707,6 +630,14 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(gun_user?.get_active_held_item() != src && !(item_flags & IS_DEPLOYED))
 		return
 	activate_attachment(ATTACHMENT_SLOT_RAIL, gun_user)
+	return COMSIG_KB_ACTIVATED
+
+/// Signal handler to activate the muzzle attachement of that gun if it's in our active hand
+/obj/item/weapon/gun/proc/activate_muzzle_attachment()
+	SIGNAL_HANDLER
+	if(gun_user?.get_active_held_item() != src && !(item_flags & IS_DEPLOYED))
+		return
+	activate_attachment(ATTACHMENT_SLOT_MUZZLE, gun_user)
 	return COMSIG_KB_ACTIVATED
 
 /// Signal handler to activate the underrail attachement of that gun if it's in our active hand

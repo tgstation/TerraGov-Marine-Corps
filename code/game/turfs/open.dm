@@ -1,6 +1,7 @@
 //turfs with density = FALSE
 /turf/open
 	plane = FLOOR_PLANE
+	layer = LOW_FLOOR_LAYER
 	minimap_color = MINIMAP_AREA_COLONY
 	resistance_flags = PROJECTILE_IMMUNE|UNACIDABLE
 	var/allow_construction = TRUE //whether you can build things like barricades on this turf.
@@ -50,6 +51,24 @@
 /turf/open/do_acid_melt()
 	. = ..()
 	ScrapeAway()
+
+//direction is direction of travel of A
+/turf/open/zPassIn(direction)
+	if(direction != DOWN)
+		return FALSE
+	for(var/obj/on_us in contents)
+		if(on_us.obj_flags & BLOCK_Z_IN_DOWN)
+			return FALSE
+	return TRUE
+
+//direction is direction of travel of an atom
+/turf/open/zPassOut(direction)
+	if(direction != UP)
+		return FALSE
+	for(var/obj/on_us in contents)
+		if(on_us.obj_flags & BLOCK_Z_OUT_UP)
+			return FALSE
+	return TRUE
 
 ///Checks if anything should override the turf's normal footstep sounds
 /turf/open/proc/get_footstep_override(footstep_type)
@@ -252,6 +271,9 @@
 /turf/open/shuttle/escapepod/plain
 	icon_state = "floor1"
 
+/turf/open/shuttle/escapepod/plain/buildable
+	allow_construction = TRUE
+
 /turf/open/shuttle/escapepod/zero
 	icon_state = "floor0"
 
@@ -263,6 +285,9 @@
 
 /turf/open/shuttle/escapepod/five
 	icon_state = "floor5"
+
+/turf/open/shuttle/escapepod/five/buildable
+	allow_construction = TRUE
 
 /turf/open/shuttle/escapepod/six
 	icon_state = "floor6"

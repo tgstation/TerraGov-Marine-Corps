@@ -37,7 +37,7 @@
 
 	else if(affected.hidden)
 		user.visible_message(span_notice("[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool]."), \
-		span_notice(" You take something out of incision on [target]'s [affected.display_name]s with \the [tool]."))
+		span_notice("You take something out of incision on [target]'s [affected.display_name]s with \the [tool]."))
 		target.balloon_alert_to_viewers("Shrapnel found")
 		affected.hidden.loc = get_turf(target)
 		affected.hidden.update_icon()

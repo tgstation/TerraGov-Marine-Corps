@@ -72,24 +72,28 @@
 	desc = "A small bottle. Contains inaprovaline - used to stabilize patients."
 	icon_state = "bottle19"
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 60)
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/glass/bottle/kelotane
 	name = "\improper Kelotane bottle"
 	desc = "A small bottle. Contains kelotane - used to treat burned areas."
 	icon_state = "bottle15"
 	list_reagents = list(/datum/reagent/medicine/kelotane = 60)
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/glass/bottle/dexalin
 	name = "\improper Dexalin bottle"
 	desc = "A small bottle. Contains dexalin - used to supply blood with oxygen."
 	icon_state = "bottle10"
 	list_reagents = list(/datum/reagent/medicine/dexalin = 60)
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/glass/bottle/spaceacillin
 	name = "\improper Spaceacillin bottle"
 	desc = "A small bottle. Contains spaceacillin - used to treat infected wounds."
 	icon_state = "bottle8"
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 60)
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/glass/bottle/toxin
 	name = "toxin bottle"
@@ -108,6 +112,7 @@
 	desc = "A small bottle of soporific. Just the fumes make you sleepy."
 	icon_state = "bottle20"
 	list_reagents = list(/datum/reagent/toxin/sleeptoxin = 60)
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/glass/bottle/chloralhydrate
 	name = "chloral hydrate bottle"
@@ -120,6 +125,7 @@
 	desc = "A small bottle of dylovene. Used to counter poisons. Basically an anti-toxin."
 	icon_state = "bottle16"
 	list_reagents = list(/datum/reagent/medicine/dylovene = 60)
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/glass/bottle/mutagen
 	name = "unstable mutagen bottle"
@@ -170,6 +176,7 @@
 	desc = "A small bottle. Contains Bicaridine - Used to treat brute damage by doctors."
 	icon_state = "bottle3"
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 60)
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/glass/bottle/tramadol
 	name = "\improper Tramadol bottle"
@@ -177,6 +184,7 @@
 	icon_state = "bottle18"
 	volume = 60
 	list_reagents = list(/datum/reagent/medicine/tramadol = 60)
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/glass/bottle/oxycodone
 	name = "\improper Oxycodone bottle"
@@ -184,6 +192,7 @@
 	icon_state = "bottle2"
 	volume = 60
 	list_reagents = list(/datum/reagent/medicine/oxycodone = 60)
+	free_refills = FALSE
 
 /obj/item/reagent_containers/glass/bottle/hypervene
 	name = "\improper Hypervene bottle"

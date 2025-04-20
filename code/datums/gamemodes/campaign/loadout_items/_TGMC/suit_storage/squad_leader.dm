@@ -1,6 +1,19 @@
 /datum/loadout_item/suit_store/main_gun/squad_leader
 	jobs_supported = list(SQUAD_LEADER)
 
+/datum/loadout_item/suit_store/main_gun/squad_leader/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+
+	var/datum/loadout_item/secondary/gun/secondary = holder.equipped_things["[ITEM_SLOT_SECONDARY]"]
+	if(!istype(secondary) || isstorageobj(wearer.back) || (isholster(wearer.belt) && !istype(wearer.belt, /obj/item/storage/holster/m25)))
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, SLOT_IN_ACCESSORY)
+		return
+	wearer.equip_to_slot_or_del(new secondary.secondary_weapon_ammo, SLOT_IN_ACCESSORY)
+	wearer.equip_to_slot_or_del(new secondary.secondary_weapon_ammo, SLOT_IN_ACCESSORY)
+
 /datum/loadout_item/suit_store/main_gun/squad_leader/standard_rifle
 	name = "AR-12"
 	desc = "Equipped with red dot sight, extended barrel and underbarrel grenade launcher. The AR-12 is the former main weapon of the TGMC before it was superceded by the AR-18 for general issue. \
@@ -9,29 +22,20 @@
 	ui_icon = "t12"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
 
-/datum/loadout_item/suit_store/main_gun/squad_leader/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
-
+/datum/loadout_item/suit_store/main_gun/squad_leader/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	if(!isstorageobj(wearer.back))
-		return
-
-	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/hud_tablet(wearer, /datum/job/terragov/squad/leader, wearer.assigned_squad), SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
+		return ..()
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(wearer), SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/standard_rifle/enhanced
 	name = "AR-12+"
@@ -50,29 +54,21 @@
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/suit_store/main_gun/squad_leader/laser_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
-
+/datum/loadout_item/suit_store/main_gun/squad_leader/laser_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	if(!isstorageobj(wearer.back))
-		return
-
-	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/hud_tablet(wearer, /datum/job/terragov/squad/leader, wearer.assigned_squad), SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
+		return ..()
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(wearer), SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/carbine
 	name = "AR-18"
@@ -81,29 +77,20 @@
 	ui_icon = "t18"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_carbine/plasma_pistol
 
-/datum/loadout_item/suit_store/main_gun/squad_leader/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
-
+/datum/loadout_item/suit_store/main_gun/squad_leader/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	if(!isstorageobj(wearer.back))
-		return
-
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_ACCESSORY)
+		return ..()
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(wearer), SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/carbine/enhanced
 	name = "AR-18+"
@@ -120,29 +107,19 @@
 	ui_icon = "tx11"
 	item_typepath = /obj/item/weapon/gun/rifle/tx11/standard
 
-/datum/loadout_item/suit_store/main_gun/squad_leader/combat_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/squad_leader/combat_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
-
 	if(!isstorageobj(wearer.back))
 		return
-
-	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/hud_tablet(wearer, /datum/job/terragov/squad/leader, wearer.assigned_squad), SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p492x34mm, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(wearer), SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/battle_rifle
 	name = "BR-64"
@@ -151,28 +128,20 @@
 	ui_icon = "t64"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_br/standard
 
-/datum/loadout_item/suit_store/main_gun/squad_leader/battle_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
-
+/datum/loadout_item/suit_store/main_gun/squad_leader/battle_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	if(!isstorageobj(wearer.back))
-		return
-
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x265mm, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_ACCESSORY)
+		return ..()
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x265mm, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(wearer), SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/auto_shotgun
 	name = "SH-15"
@@ -183,29 +152,21 @@
 	item_typepath = /obj/item/weapon/gun/rifle/standard_autoshotgun/plasma_pistol
 	secondary_ammo_type = /obj/item/ammo_magazine/rifle/tx15_flechette
 
-/datum/loadout_item/suit_store/main_gun/squad_leader/auto_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
-
+/datum/loadout_item/suit_store/main_gun/squad_leader/auto_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	if(!isstorageobj(wearer.back))
-		return
-
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_ACCESSORY)
+		return ..()
+	. = ..()
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(wearer), SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/oicw
 	name = "AR-55"
@@ -218,27 +179,19 @@
 	purchase_cost = 100
 	quantity = 2
 
-/datum/loadout_item/suit_store/main_gun/squad_leader/oicw/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/squad_leader/oicw/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
-
 	if(!isstorageobj(wearer.back))
 		return
-
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(wearer), SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_BACKPACK)
 
-/datum/loadout_item/suit_store/main_gun/squad_leader/oicw/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/squad_leader/oicw/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	. = ..()
 	if(loadout.belt == /obj/item/storage/belt/marine)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BELT)
@@ -246,38 +199,28 @@
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54/incendiary, SLOT_IN_BELT)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BELT)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_BELT)
-	if(loadout.l_store == /obj/item/storage/pouch/magazine/large)
+	if(loadout.l_pocket == /obj/item/storage/pouch/magazine/large)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_L_POUCH)
-	if(loadout.r_store == /obj/item/storage/pouch/magazine/large)
+	if(loadout.r_pocket == /obj/item/storage/pouch/magazine/large)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx54, SLOT_IN_R_POUCH)
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/standard_smg
 	name = "SMG-25"
-	desc = "Equipped with a mag harness, recoil compensator and plasma pistol. SMG-25 submachinegun, is a large capacity smg, intended to be used two handed to take advantage of the attached plasma pistol. \
+	desc = "Equipped with a mag harness, recoil compensator and plasma pistol. The SMG-25 submachinegun is a large capacity smg, intended to be used two handed to take advantage of the attached plasma pistol. \
 	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. Uses 10x20mm caseless ammunition, and comes with multiple ammo types."
 	ui_icon = "m25"
 	item_typepath = /obj/item/weapon/gun/smg/m25/plasma
 
-/datum/loadout_item/suit_store/main_gun/squad_leader/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	. = ..()
-	if(!isstorageobj(wearer.back)) //bruh
-		wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
+/datum/loadout_item/suit_store/main_gun/squad_leader/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	if(!isstorageobj(wearer.back))
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_ACCESSORY)
-		wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
-		return
-
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
-
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_ACCESSORY)
+		return ..()
+	. = ..()
 	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
@@ -286,15 +229,12 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/standard_smg/enhanced
 	name = "SMG-25+"
-	desc = "Equipped with a mag harness, recoil compensator and plasma pistol. SMG-25 submachinegun, is a large capacity smg, intended to be used two handed to take advantage of the attached plasma pistol. \
+	desc = "Equipped with a mag harness, recoil compensator and plasma pistol. The SMG-25 submachinegun is a large capacity smg, intended to be used two handed to take advantage of the attached plasma pistol. \
 	Like all smgs, it has excellent mobility and handling, but has poor damage application at longer ranges. Uses standard and AP 10x20mm caseless ammunition."
 	loadout_item_flags = NONE
 	secondary_ammo_type = /obj/item/ammo_magazine/smg/m25/ap
@@ -309,29 +249,19 @@
 	purchase_cost = 90
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
-/datum/loadout_item/suit_store/main_gun/squad_leader/plasma_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
-
+/datum/loadout_item/suit_store/main_gun/squad_leader/plasma_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	if(!isstorageobj(wearer.back))
-		return
-
-	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/hud_tablet(wearer, /datum/job/terragov/squad/leader, wearer.assigned_squad), SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p492x34mm, SLOT_IN_BACKPACK)
+		return ..()
+	. = ..()
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(wearer), SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/squad_leader/plasma_rifle
 	name = "PL-38"
@@ -343,26 +273,18 @@
 	purchase_cost = 90
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
-/datum/loadout_item/suit_store/main_gun/squad_leader/plasma_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
-	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_ACCESSORY)
-
+/datum/loadout_item/suit_store/main_gun/squad_leader/plasma_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	if(!isstorageobj(wearer.back))
-		return
-
-	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/hud_tablet(wearer, /datum/job/terragov/squad/leader, wearer.assigned_squad), SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p492x34mm, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
+		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
+		return ..()
+	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(wearer), SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)

@@ -6,6 +6,15 @@
 	end_sound = 'sound/machines/generator/generator_end.ogg'
 	volume = 40
 
+/datum/looping_sound/generator/tbg
+	start_sound = 'sound/machines/generator/tbg_windup.ogg'
+	start_length = 95
+	mid_sounds = list('sound/machines/generator/tbg_mid1.ogg'=1, 'sound/machines/generator/tbg_mid2.ogg'=1, 'sound/machines/generator/tbg_mid3.ogg'=1, 'sound/machines/generator/tbg_mid4.ogg'=1, 'sound/machines/generator/tbg_mid5.ogg'=1)
+	mid_length = 15
+	end_sound = 'sound/machines/generator/tbg_winddown.ogg'
+	volume = 40
+	range = 35
+
 /datum/looping_sound/grill
 	mid_sounds = list('sound/machines/grill/grillsizzle.ogg' = 1)
 	mid_length = 18
@@ -16,6 +25,10 @@
 	mid_length = 18
 	volume = 50
 	range = 20
+
+/datum/looping_sound/alarm_loop/generator
+	mid_sounds = list('sound/machines/generator/tbg_alarm.ogg')
+	mid_length = 40
 
 /datum/looping_sound/river_loop
 	mid_sounds = list(

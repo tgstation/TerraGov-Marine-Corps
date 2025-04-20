@@ -33,8 +33,8 @@
 	var/used_casings = 0
 	///flags specifically for magazines.
 	var/magazine_flags = MAGAZINE_REFILLABLE
-	///the default mag icon state.
-	var/base_mag_icon
+	///the default icon if MAGAZINE_SHOW_AMMO is used.
+	var/base_ammo_icon
 	//Stats to modify on the gun, just like the attachments do, only has used ones add more as you need.
 	var/scatter_mod = 0
 	///Increases or decreases scatter chance but for onehanded firing.
@@ -46,7 +46,9 @@
 
 /obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
 	. = ..()
-	base_mag_icon = icon_state
+	base_icon_state = icon_state
+	if(!base_ammo_icon)
+		base_ammo_icon = icon_state
 	current_rounds = spawn_empty ? 0 : max_rounds
 	update_icon()
 
@@ -56,9 +58,18 @@
 		setDir(current_rounds + round(current_rounds/3))
 		return
 	if(current_rounds <= 0)
-		icon_state = base_mag_icon + "_e"
+		icon_state = base_icon_state + "_e"
 		return
-	icon_state = base_mag_icon
+	icon_state = base_icon_state
+
+/obj/item/ammo_magazine/update_overlays()
+	. = ..()
+	if(current_rounds <= 0)
+		return
+	if(!(magazine_flags & MAGAZINE_SHOW_AMMO))
+		return
+	var/remaining = CEILING((current_rounds / max_rounds) * 100, 25)
+	. += "[base_ammo_icon]_[remaining]"
 
 /obj/item/ammo_magazine/examine(mob/user)
 	. = ..()
@@ -208,12 +219,19 @@
 /obj/item/ammo_magazine/fire_act(burn_level)
 	if(!current_rounds)
 		return
-	explosion(loc, 0, 0, 0, 1, 1, throw_range = FALSE)
+	explosion(loc, 0, 0, 0, 1, 1, throw_range = FALSE, tiny = TRUE, explosion_cause="ammo mag cookoff")
 	qdel(src)
 
 //Helper proc, to allow us to see a percentage of how full the magazine is.
 /obj/item/ammo_magazine/proc/get_ammo_percent()		// return % charge of cell
 	return 100.0*current_rounds/max_rounds
+
+/obj/item/ammo_magazine/refill(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	current_rounds = initial(max_rounds)
+	update_icon()
 
 /obj/item/ammo_magazine/handful
 	name = "generic handful of bullets or shells"
@@ -262,6 +280,21 @@
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/incendiary
 	caliber = CALIBER_12G
+
+/obj/item/ammo_magazine/handful/heavy_buckshot
+	name = "handful of shotgun buckshot shells (6g)"
+	icon_state = "heavy_shotgun_buckshot"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/heavy_buckshot
+	caliber = CALIBER_6G
+
+/obj/item/ammo_magazine/handful/barrikada
+	name = "handful of shotgun 'Barrikada' shells (6g)"
+	icon_state = "heavy_shotgun_barrikada"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/barrikada_slug
+	caliber = CALIBER_6G
+
 
 /obj/item/ammo_magazine/handful/martini
 	name = "The handful of crude heavy sniper bullet (.557/440)"
@@ -317,7 +350,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon_state = "casing_"
 	throwforce = 1
 	w_class = WEIGHT_CLASS_TINY
-	layer = LOWER_ITEM_LAYER //Below other objects
+	layer = LOW_ITEM_LAYER //Below other objects
 	dir = 1 //Always north when it spawns.
 	atom_flags = CONDUCT|DIRLOCK
 	var/current_casings = 1 //This is manipulated in the procs that use these.
@@ -465,7 +498,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/big_ammo_box/fire_act(burn_level)
 	if(!bullet_amount)
 		return
-	explosion(loc, 0, 0, 1, 0, 2, throw_range = FALSE) //blow it up.
+	explosion(loc, 0, 0, 1, 0, 2, throw_range = FALSE, explosion_cause="ammo box cookoff") //blow it up.
 	qdel(src)
 
 //Deployable shotgun ammo box

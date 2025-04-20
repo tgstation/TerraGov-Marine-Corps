@@ -6,6 +6,7 @@
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
+	icon_state = "bullet_red"
 	bullet_color = COLOR_SOFT_RED
 	hud_state = "rifle"
 	hud_state_empty = "rifle_empty"
@@ -32,6 +33,7 @@
 
 /datum/ammo/bullet/turret/sniper
 	name = "antimaterial bullet"
+	icon_state = "bullet_large_red"
 	bullet_color = COLOR_SOFT_RED
 	accurate_range = 21
 	damage = 80

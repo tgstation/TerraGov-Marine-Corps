@@ -10,7 +10,7 @@
 	throw_speed = 5
 	throw_range = 20
 	max_amount = 60
-	attack_verb = list("hit", "bludgeoned", "whacked")
+	attack_verb = list("hits", "bludgeons", "whacks")
 
 
 /obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
@@ -41,7 +41,7 @@
 		if(WT.remove_fuel(0,user))
 			var/obj/item/stack/sheet/metal/new_item = new(usr.loc)
 			new_item.add_to_stacks(usr)
-			visible_message(span_warning("[src] is shaped into metal by [user] with the weldingtool."), null, span_warning(" You hear welding."))
+			visible_message(span_warning("[src] is shaped into metal by [user] with the weldingtool."), null, span_warning("You hear welding."))
 			var/obj/item/stack/rods/R = src
 			var/replace = (user.get_inactive_held_item()==R)
 			R.use(4)

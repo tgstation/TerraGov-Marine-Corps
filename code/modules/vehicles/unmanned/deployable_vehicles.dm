@@ -7,6 +7,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	slowdown = 0.3
 	item_flags = IS_DEPLOYABLE
+	max_integrity = IGUANA_MAX_INTEGRITY
 	///The vehicle this deploys into
 	var/deployable_item = /obj/vehicle/unmanned/deployable
 	///The equipped turret
@@ -30,11 +31,14 @@
 	///What it deploys into. typecast version of internal_item
 	var/obj/item/deployable_vehicle/internal_item
 
-/obj/vehicle/unmanned/deployable/Initialize(mapload, _internal_item, deployer)
+/obj/vehicle/unmanned/deployable/Initialize(mapload, _internal_item, mob/deployer)
 	if(!internal_item && !_internal_item)
 		return INITIALIZE_HINT_QDEL
 	internal_item = _internal_item
 	spawn_equipped_type = internal_item.stored_turret_type
+	if(ishuman(deployer))
+		var/mob/living/carbon/human/human_deployer = deployer
+		iff_signal = human_deployer?.wear_id?.iff_signal
 	. = ..()
 	current_rounds = internal_item.stored_ammo
 
@@ -65,3 +69,45 @@
 	if(turret_path)
 		current_internal_item?.stored_turret_type = turret_path
 		current_internal_item?.stored_ammo = current_rounds
+
+/obj/item/deployable_vehicle/tiny
+	name = "\improper UV-T Skink"
+	desc = "A Skink B-type drone, ready to be deployed."
+	icon_state = "tiny_uv_folded"
+	max_integrity = 50
+	w_class = WEIGHT_CLASS_SMALL
+	deployable_item = /obj/vehicle/unmanned/deployable/tiny
+
+/obj/vehicle/unmanned/deployable/tiny
+	name = "UV-T Skink"
+	icon_state = "tiny_uv"
+	density = FALSE
+	move_delay = 1.5
+	hud_possible = list(MACHINE_HEALTH_HUD)
+	atom_flags = NONE
+	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 25, BIO = 100, FIRE = 25, ACID = 25)
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	pass_flags = PASS_LOW_STRUCTURE|PASS_GRILLE|PASS_MOB
+	turret_pattern = NO_PATTERN
+	unmanned_flags = GIVE_NIGHT_VISION
+	trigger_gargoyle = FALSE
+	allow_explosives = FALSE
+
+/obj/structure/closet/crate/uvt_crate
+	name = "\improper UV-T Skink Crate"
+	desc = "A crate containing a scouting drone and a controller."
+	icon = 'icons/obj/structures/crates.dmi'
+	icon_state = "closed_weapons"
+	icon_opened = "open_weapons"
+	icon_closed = "closed_weapons"
+
+/obj/structure/closet/crate/uvt_crate/PopulateContents()
+	new /obj/item/deployable_vehicle/tiny(src)
+	new /obj/item/unmanned_vehicle_remote(src)
+
+/obj/vehicle/unmanned/deployable/tiny/on_remote_toggle(datum/source, is_on, mob/user)
+	. = ..()
+	if(is_on)
+		playsound(src, 'sound/machines/chime.ogg', 30)
+	else
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 30)

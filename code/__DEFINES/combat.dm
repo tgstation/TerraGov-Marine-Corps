@@ -10,10 +10,11 @@
 #define ATTACK_EFFECT_MECHTOXIN "mech_toxin"
 #define ATTACK_EFFECT_BOOP "boop" //Honk
 #define ATTACK_EFFECT_GRAB "grab"
-#define ATTACK_EFFECT_REDSLASH pick("redslash","redslash2")
+#define ATTACK_EFFECT_REDSLASH list("redslash","redslash2")
 #define ATTACK_EFFECT_REDSTAB "redstab"
 #define ATTACK_EFFECT_DRAIN_STING "drain_sting"
 #define ATTACK_EFFECT_YELLOWPUNCH "yellowpunch"
+#define ATTACK_EFFECT_WEAK_PUNCH "weak_punch"
 #define ATTACK_EFFECT_LASERSWORD pick("laser_slash","laser_slash2")
 
 //Damage flag defines //

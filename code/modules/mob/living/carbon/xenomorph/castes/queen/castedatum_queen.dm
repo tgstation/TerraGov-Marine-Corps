@@ -2,6 +2,7 @@
 	caste_name = "Queen"
 	display_name = "Queen"
 	upgrade_name = ""
+	base_strain_type = /mob/living/carbon/xenomorph/queen
 	caste_type_path = /mob/living/carbon/xenomorph/queen
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive."
 	job_type = /datum/job/xenomorph/queen
@@ -14,14 +15,14 @@
 	melee_damage = 28
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.3
 
 	// *** Plasma *** //
 	plasma_max = 1200
 	plasma_gain = 90
 
 	// *** Health *** //
-	max_health = 650
+	max_health = 600
 
 	// *** Sunder *** //
 	sunder_multiplier = 0.8
@@ -59,7 +60,6 @@
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin,
-		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/xeno_action/lay_egg,
@@ -81,6 +81,7 @@
 		/datum/action/ability/xeno_action/hive_message,
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/activable/xeno/command_minions,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
 
@@ -99,12 +100,11 @@
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin,
-		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
-		/datum/action/ability/activable/xeno/screech,
+		/datum/action/ability/activable/xeno/screech, // Primo enables alterative action for screech.
 		/datum/action/ability/xeno_action/bulwark,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/activable/xeno/xeno_spit,
@@ -123,4 +123,5 @@
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/activable/xeno/command_minions,
 		/datum/action/ability/xeno_action/ready_charge/queen_charge,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)

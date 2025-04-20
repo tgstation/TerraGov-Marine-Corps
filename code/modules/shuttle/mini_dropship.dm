@@ -133,7 +133,7 @@
 		to_chat(ui_user, span_warning("The mothership is too far away from the theatre of operation, we cannot take off."))
 		return
 	#endif
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TADPOLE_LAUNCHING))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_TADPOLE_LAUNCHING))
 		to_chat(ui_user, span_warning("The dropship's engines are not ready yet"))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_TADPOLE_LAUNCHING, launching_delay) // To stop spamming
@@ -168,12 +168,15 @@
 		to_chat(ui_user, span_warning("Can not toggle night vision mode in caves"))
 		return
 	nvg_vision_mode = !nvg_vision_mode
+	ui_user?.update_sight()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
 	if(machine_stat & BROKEN)
 		return
 	if(xeno_attacker.status_flags & INCORPOREAL)
+		return
+	if(HAS_TRAIT_FROM(xeno_attacker, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))
 		return
 	xeno_attacker.visible_message("[xeno_attacker] begins to slash delicately at the computer",
 	"We start slashing delicately at the computer. This will take a while.")
@@ -304,7 +307,7 @@
 
 /datum/action/innate/shuttledocker_land
 	name = "Land"
-	action_icon = 'icons/mecha/actions_mecha.dmi'
+	action_icon = 'icons/mob/actions/actions_mecha.dmi'
 	action_icon_state = "land"
 
 /datum/action/innate/shuttledocker_land/Activate()
@@ -320,6 +323,9 @@
 	if(is_ground_level(origin.z)) //Safety check to prevent instant transmission
 		to_chat(owner, span_warning("The shuttle can't move while docked on the planet"))
 		return
+	var/area/landing_area = get_area(remote_eye)
+	if(!(landing_area.area_flags & MARINE_BASE))
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ)
 	origin.shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
 	origin.next_fly_state = SHUTTLE_ON_GROUND
 	origin.open_prompt = FALSE

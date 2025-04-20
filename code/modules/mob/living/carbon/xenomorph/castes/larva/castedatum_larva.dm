@@ -3,6 +3,7 @@
 	display_name = "Bloody Larva"
 	upgrade_name = ""
 	caste_desc = "D'awwwww, so cute!"
+	base_strain_type = /mob/living/carbon/xenomorph/larva
 	caste_type_path = /mob/living/carbon/xenomorph/larva
 	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_BASETYPE

@@ -79,8 +79,6 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/spitter_acid_sprays = 0
 	var/spitter_scatter_spits = 0
 	var/wraith_phase_shifts = 0
-	var/wraith_blinks = 0
-	var/wraith_banishes = 0
 	var/bull_crush_hit = 0
 	var/bull_gore_hit = 0
 	var/bull_headbutt_hit = 0
@@ -103,3 +101,5 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/sandevistan_uses = 0
 	var/sandevistan_gibs = 0
 	var/runner_items_stolen = 0
+	var/acid_maw_fires = 0
+	var/acid_jaw_fires = 0

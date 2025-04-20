@@ -126,6 +126,9 @@
 		return
 	flame_radius(2, T)
 
+/datum/ammo/flamethrower/mech_flamer
+	damage = 15
+
 /datum/ammo/flamethrower/mech_flamer/drop_flame(turf/T)
 	if(!istype(T))
 		return
@@ -141,6 +144,14 @@
 	bullet_color = COLOR_NAVY
 
 /datum/ammo/flamethrower/armored_spray // armored vehicle flamer that sprays a visual continual flame
+	name = "spraying flames"
+	icon_state = "spray_flamer"
+	max_range = 7
+	shell_speed = 0.3
+	damage = 6
+	burntime = 0.3 SECONDS
+
+/datum/ammo/flamethrower/sentry // is also a spray
 	name = "spraying flames"
 	icon_state = "spray_flamer"
 	max_range = 7
@@ -233,7 +244,7 @@
 
 /datum/ammo/grenade_container/ags_grenade
 	name = "grenade shell"
-	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_IFF
+	ammo_behavior_flags = AMMO_TARGET_TURF
 	icon_state = "grenade_projectile"
 	hud_state = "grenade_he"
 	hud_state_empty = "grenade_empty"

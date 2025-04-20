@@ -38,7 +38,7 @@
 	worn_icon_state = "hyperscale_marine_jumpsuit"
 	greyscale_colors = ARMOR_PALETTE_BLACK
 	greyscale_config = /datum/greyscale_config/marine_uniform
-	colorable_colors = ARMOR_PALETTES_LIST
+	colorable_colors = LEGACY_ARMOR_PALETTES_LIST
 	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
 
 //Squad colored turtlenecks
@@ -490,6 +490,9 @@
 /obj/item/clothing/under/som/medic/vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
+/obj/item/clothing/under/som/medic/vest/black
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
 /obj/item/clothing/under/som/veteran
 	name = "\improper SOM veteran uniform"
 	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies. This one has markings indicating specialist status."
@@ -626,6 +629,9 @@
 /obj/item/clothing/under/vsd/upp/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
+/obj/item/clothing/under/vsd/upp/white_webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
+
 /obj/item/clothing/under/vsd/shirt
 	name = "V.S.D shirt"
 	icon_state = "vsd_shirt"
@@ -641,3 +647,37 @@
 
 /obj/item/clothing/under/vsd/sleeveless/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+//TDF
+/obj/item/clothing/under/tdf
+	name = "\improper TDF uniform"
+	desc = "The standard uniform of TDF military personnel. A very easy to recognize design with its distinct blues to represent the TDF."
+	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
+	icon_state = "tdf_uniform"
+	worn_icon_list = list(
+		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/clothing/uniforms_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/uniforms_right.dmi',
+	)
+	worn_icon_state = "tdf_uniform"
+	siemens_coefficient = 0.9
+	has_sensor = 2
+
+/obj/item/clothing/under/tdf/black_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/tdf/brown_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
+
+/obj/item/clothing/under/tdf/corpman_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
+
+/obj/item/clothing/under/tdf/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+
+/obj/item/clothing/under/tdf/medic
+	icon_state = "tdf_uniform_medic"
+	worn_icon_state = "tdf_uniform_medic"
+
+/obj/item/clothing/under/tdf/medic/corpman_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)

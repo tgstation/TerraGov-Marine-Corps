@@ -3,7 +3,7 @@
 	display_name = "Defiler"
 	upgrade_name = ""
 	caste_desc = "A frightening looking, bulky xeno that drips with suspect green fluids."
-
+	base_strain_type = /mob/living/carbon/xenomorph/defiler
 	caste_type_path = /mob/living/carbon/xenomorph/defiler
 
 	tier = XENO_TIER_THREE
@@ -14,14 +14,14 @@
 	melee_damage = 26
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -1
 
 	// *** Plasma *** //
 	plasma_max = 575
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 420
+	max_health = 400
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -31,7 +31,7 @@
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
 	can_hold_eggs = CAN_HOLD_ONE_HAND
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //

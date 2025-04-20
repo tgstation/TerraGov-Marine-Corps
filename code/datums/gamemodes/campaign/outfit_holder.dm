@@ -48,7 +48,7 @@
 			continue
 		if(thing_to_check.quantity > 0)
 			thing_to_check.quantity --
-		thing_to_check.post_equip(owner, loadout)
+		thing_to_check.post_equip(owner, loadout, src)
 
 ///Adds a new loadout_item to the available list
 /datum/outfit_holder/proc/unlock_new_option(datum/loadout_item/new_item)
@@ -114,13 +114,16 @@
 		if(ITEM_SLOT_BACK)
 			loadout.back = new_item?.item_typepath
 		if(ITEM_SLOT_R_POCKET)
-			loadout.r_store = new_item?.item_typepath
+			loadout.r_pocket = new_item?.item_typepath
 		if(ITEM_SLOT_L_POCKET)
-			loadout.l_store = new_item?.item_typepath
+			loadout.l_pocket = new_item?.item_typepath
 		if(ITEM_SLOT_SUITSTORE)
 			loadout.suit_store = new_item?.item_typepath
+		if(ITEM_SLOT_SECONDARY)
+			loadout.secondary_weapon = new_item?.item_typepath
 		else
 			CRASH("Invalid item slot specified [slot_bit]")
+	new_item.on_holder_equip(src)
 	return TRUE
 
 ///scans the entire loadout for validity

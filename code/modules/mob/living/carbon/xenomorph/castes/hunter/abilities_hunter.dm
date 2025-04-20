@@ -15,6 +15,8 @@
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
 	var/stealth_alpha_multiplier = 1
+	///Damage taken during stealth
+	var/total_damage_taken = 0
 
 /datum/action/ability/xeno_action/stealth/remove_action(mob/living/L)
 	if(stealth)
@@ -25,9 +27,8 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/xenomorph/stealthy_beno = owner
-	if(stealthy_beno.on_fire)
-		to_chat(stealthy_beno, "<span class='warning'>We're too busy being on fire to enter Stealth!</span>")
+	if(xeno_owner.on_fire)
+		to_chat(xeno_owner, "<span class='warning'>We're too busy being on fire to enter Stealth!</span>")
 		return FALSE
 	return TRUE
 
@@ -48,7 +49,7 @@
 	last_stealth = world.time
 	stealth = TRUE
 
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_stealth))
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_stealth_move))
 	RegisterSignal(owner, COMSIG_XENOMORPH_POUNCE_END, PROC_REF(sneak_attack_pounce))
 	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(sneak_attack_slash))
@@ -109,6 +110,7 @@
 	can_sneak_attack = FALSE
 	REMOVE_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
 	owner.alpha = initial(owner.alpha)
+	total_damage_taken = 0
 
 ///Signal wrapper to verify that an object is damageable before breaking stealth
 /datum/action/ability/xeno_action/stealth/proc/on_obj_attack(datum/source, obj/attacked)
@@ -124,28 +126,31 @@
 	to_chat(owner, span_xenodanger("We're ready to use Sneak Attack while stealthed."))
 	playsound(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 
+///Handles moving while in stealth
+/datum/action/ability/xeno_action/stealth/proc/handle_stealth_move()
+	SIGNAL_HANDLER
+	if(owner.m_intent == MOVE_INTENT_WALK)
+		xeno_owner.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN)
+		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
+	else
+		xeno_owner.use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN)
+		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
+	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
+	if(!xeno_owner.plasma_stored)
+		to_chat(xeno_owner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
+		cancel_stealth()
+
 ///Updates or cancels stealth
 /datum/action/ability/xeno_action/stealth/proc/handle_stealth()
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/xenoowner = owner
-	//Initial stealth
-	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
+	total_damage_taken = max(total_damage_taken - 10, 0)
+	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY)
 		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
 		return
-	//Stationary stealth
-	else if(owner.last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 4 seconds we become almost completely invisible
+	if(owner.last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY)
 		owner.alpha = HUNTER_STEALTH_STILL_ALPHA * stealth_alpha_multiplier
-	//Walking stealth
-	else if(owner.m_intent == MOVE_INTENT_WALK)
-		xenoowner.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN)
-		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
-	//Running stealth
-	else
-		xenoowner.use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN)
-		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
-	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
-	if(!xenoowner.plasma_stored)
-		to_chat(xenoowner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
+	if(!xeno_owner.plasma_stored)
+		to_chat(xeno_owner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
 		cancel_stealth()
 
 /// Callback listening for a xeno using the pounce ability
@@ -195,8 +200,9 @@
 ///Breaks stealth if sufficient damage taken
 /datum/action/ability/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
 	SIGNAL_HANDLER
+	total_damage_taken += damage_taken
 	var/mob/living/carbon/xenomorph/xenoowner = owner
-	if(damage_taken > xenoowner.xeno_caste.stealth_break_threshold)
+	if(total_damage_taken > xenoowner.xeno_caste.stealth_break_threshold)
 		cancel_stealth()
 
 ///Modifier to plasma regen when stealthed
@@ -253,12 +259,8 @@
 	xenoowner.update_wounds()
 
 /datum/action/ability/xeno_action/stealth/disguise/handle_stealth()
-	var/mob/living/carbon/xenomorph/xenoowner = owner
-	if(owner.last_move_intent >= world.time - HUNTER_STEALTH_STEALTH_DELAY)
-		xenoowner.use_plasma(owner.m_intent == MOVE_INTENT_WALK ? HUNTER_STEALTH_WALK_PLASMADRAIN : HUNTER_STEALTH_RUN_PLASMADRAIN)
-	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
-	if(!xenoowner.plasma_stored)
-		to_chat(xenoowner, span_xenodanger("We lack sufficient plasma to remain disguised."))
+	if(!xeno_owner.plasma_stored)
+		to_chat(xeno_owner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
 		cancel_stealth()
 
 // ***************************************
@@ -283,6 +285,8 @@
 	use_state_flags = ABILITY_USE_BUCKLED
 	/// The range of this ability.
 	var/pounce_range = HUNTER_POUNCE_RANGE
+	///pass_flags given when leaping
+	var/leap_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
 
 /datum/action/ability/activable/xeno/pounce/on_cooldown_finish()
 	owner.balloon_alert(owner, "Pounce ready")
@@ -290,17 +294,11 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/pounce/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
+	if(!A)
 		return FALSE
-	if(!A || A.layer >= FLY_LAYER)
-		return FALSE
+	return ..()
 
 /datum/action/ability/activable/xeno/pounce/use_ability(atom/A)
-	if(owner.layer != MOB_LAYER)
-		owner.layer = MOB_LAYER
-		var/datum/action/ability/xeno_action/xenohide/hide_action = owner.actions_by_path[/datum/action/ability/xeno_action/xenohide]
-		hide_action?.button?.cut_overlay(mutable_appearance('icons/Xeno/actions/general.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)) // Removes Hide action icon border
 	if(owner.buckled)
 		owner.buckled.unbuckle_mob(owner)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(movement_fx))
@@ -308,11 +306,9 @@
 	RegisterSignal(owner, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
 	RegisterSignal(owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(pounce_complete))
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_POUNCE)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.xeno_flags |= XENO_LEAPING
-	xeno_owner.pass_flags |= PASS_LOW_STRUCTURE|PASS_FIRE|PASS_XENO
+	xeno_owner.add_pass_flags(leap_pass_flags, type)
 	xeno_owner.throw_at(A, pounce_range, XENO_POUNCE_SPEED, xeno_owner)
-	addtimer(CALLBACK(src, PROC_REF(reset_pass_flags)), 0.6 SECONDS)
 	succeed_activate()
 	add_cooldown()
 
@@ -331,7 +327,6 @@
 	if(living_target.stat || isxeno(living_target)) //we leap past xenos
 		return
 
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(ishuman(living_target) && (angle_to_dir(Get_Angle(xeno_owner.throw_source, living_target)) in reverse_nearby_direction(living_target.dir)))
 		var/mob/living/carbon/human/human_target = living_target
 		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
@@ -344,7 +339,6 @@
 ///Triggers the effect of a successful pounce on the target.
 /datum/action/ability/activable/xeno/pounce/proc/trigger_pounce_effect(mob/living/living_target)
 	playsound(get_turf(living_target), 'sound/voice/alien/pounce.ogg', 25, TRUE)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.Immobilize(XENO_POUNCE_STANDBY_DURATION)
 	xeno_owner.forceMove(get_turf(living_target))
 	living_target.Knockdown(XENO_POUNCE_STUN_DURATION)
@@ -353,12 +347,8 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENOMORPH_LEAP_BUMP, COMSIG_MOVABLE_POST_THROW))
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_POUNCE_END)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.xeno_flags &= ~XENO_LEAPING
-
-/datum/action/ability/activable/xeno/pounce/proc/reset_pass_flags()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	xeno_owner.pass_flags = initial(xeno_owner.pass_flags)
+	xeno_owner.remove_pass_flags(leap_pass_flags, type)
 
 /datum/action/ability/activable/xeno/pounce/ai_should_start_consider()
 	return TRUE
@@ -396,26 +386,24 @@
 	if(!.)
 		return
 
-	var/mob/living/carbon/xenomorph/X = owner
-
-	if(!isliving(A) && (X.xeno_caste.upgrade != XENO_UPGRADE_PRIMO) || !ismovable(A))
+	if(!isliving(A) && (xeno_owner.xeno_caste.upgrade != XENO_UPGRADE_PRIMO) || !ismovable(A))
 		if(!silent)
-			to_chat(X, span_xenowarning("We cannot psychically mark this target!"))
+			to_chat(xeno_owner, span_xenowarning("We cannot psychically mark this target!"))
 		return FALSE
 
 	if(A == marked_target)
 		if(!silent)
-			to_chat(X, span_xenowarning("This is already our target!"))
+			to_chat(xeno_owner, span_xenowarning("This is already our target!"))
 		return FALSE
 
-	if(A == X)
+	if(A == xeno_owner)
 		if(!silent)
-			to_chat(X, span_xenowarning("Why would we target ourselves?"))
+			to_chat(xeno_owner, span_xenowarning("Why would we target ourselves?"))
 		return FALSE
 
-	if(!line_of_sight(X, A)) //Need line of sight.
+	if(!line_of_sight(xeno_owner, A)) //Need line of sight.
 		if(!silent)
-			to_chat(X, span_xenowarning("We require line of sight to mark them!"))
+			to_chat(xeno_owner, span_xenowarning("We require line of sight to mark them!"))
 		return FALSE
 
 	return TRUE
@@ -428,13 +416,10 @@
 
 
 /datum/action/ability/activable/xeno/hunter_mark/use_ability(atom/A)
+	xeno_owner.face_atom(A) //Face towards the target so we don't look silly
 
-	var/mob/living/carbon/xenomorph/X = owner
-
-	X.face_atom(A) //Face towards the target so we don't look silly
-
-	if(!line_of_sight(X, A)) //Need line of sight.
-		to_chat(X, span_xenowarning("We lost line of sight to the target!"))
+	if(!line_of_sight(xeno_owner, A)) //Need line of sight.
+		to_chat(xeno_owner, span_xenowarning("We lost line of sight to the target!"))
 		return fail_activate()
 
 	if(marked_target)
@@ -444,8 +429,8 @@
 
 	RegisterSignal(marked_target, COMSIG_QDELETING, PROC_REF(unset_target)) //For var clean up
 
-	to_chat(X, span_xenodanger("We psychically mark [A] as our quarry."))
-	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
+	to_chat(xeno_owner, span_xenodanger("We psychically mark [A] as our quarry."))
+	xeno_owner.playsound_local(xeno_owner, 'sound/effects/ghost.ogg', 25, 0, 1)
 
 	succeed_activate()
 
@@ -475,9 +460,7 @@
 
 /datum/action/ability/xeno_action/psychic_trace/can_use_action(silent = FALSE, override_flags)
 	. = ..()
-
-	var/mob/living/carbon/xenomorph/X = owner
-	var/datum/action/ability/activable/xeno/hunter_mark/mark = X.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
+	var/datum/action/ability/activable/xeno/hunter_mark/mark = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
 
 	if(!mark.marked_target)
 		if(!silent)
@@ -491,14 +474,13 @@
 
 
 /datum/action/ability/xeno_action/psychic_trace/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	var/datum/action/ability/activable/xeno/hunter_mark/mark = X.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
-	to_chat(X, span_xenodanger("We sense our quarry <b>[mark.marked_target]</b> is currently located in <b>[AREACOORD_NO_Z(mark.marked_target)]</b> and is <b>[get_dist(X, mark.marked_target)]</b> tiles away. It is <b>[calculate_mark_health(mark.marked_target)]</b> and <b>[mark.marked_target.status_flags & XENO_HOST ? "impregnated" : "barren"]</b>."))
-	X.playsound_local(X, 'sound/effects/ghost2.ogg', 10, 0, 1)
+	var/datum/action/ability/activable/xeno/hunter_mark/mark = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
+	to_chat(xeno_owner, span_xenodanger("We sense our quarry <b>[mark.marked_target]</b> is currently located in <b>[AREACOORD_NO_Z(mark.marked_target)]</b> and is <b>[get_dist(xeno_owner, mark.marked_target)]</b> tiles away. It is <b>[calculate_mark_health(mark.marked_target)]</b> and <b>[mark.marked_target.status_flags & XENO_HOST ? "impregnated" : "barren"]</b>."))
+	xeno_owner.playsound_local(xeno_owner, 'sound/effects/ghost2.ogg', 10, 0, 1)
 
 	var/atom/movable/screen/arrow/hunter_mark_arrow/arrow_hud = new
 	//Prepare the tracker object and set its parameters
-	arrow_hud.add_hud(X, mark.marked_target) //set the tracker parameters
+	arrow_hud.add_hud(xeno_owner, mark.marked_target) //set the tracker parameters
 	arrow_hud.process() //Update immediately
 
 	add_cooldown()
@@ -586,8 +568,6 @@
 /// Swap places of hunter and an illusion
 /datum/action/ability/xeno_action/mirage/proc/swap()
 	swap_used = TRUE
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-
 	if(!length(illusions))
 		to_chat(xeno_owner, span_xenowarning("We have no illusions to swap with!"))
 		return
@@ -620,27 +600,22 @@
 	. = ..()
 	if(!.)
 		return
-
-	var/mob/living/carbon/xenomorph/impairer = owner //Type cast this for on_fire
-
-	var/distance = get_dist(impairer, A)
+	var/distance = get_dist(xeno_owner, A)
 	if(distance > HUNTER_SILENCE_RANGE)
 		if(!silent)
-			to_chat(impairer, span_xenodanger("The target location is too far! We must be [distance - HUNTER_SILENCE_RANGE] tiles closer!"))
+			to_chat(xeno_owner, span_xenodanger("The target location is too far! We must be [distance - HUNTER_SILENCE_RANGE] tiles closer!"))
 		return FALSE
 
-	if(!line_of_sight(impairer, A)) //Need line of sight.
+	if(!line_of_sight(xeno_owner, A)) //Need line of sight.
 		if(!silent)
-			to_chat(impairer, span_xenowarning("We require line of sight to the target location!") )
+			to_chat(xeno_owner, span_xenowarning("We require line of sight to the target location!") )
 		return FALSE
 
 	return TRUE
 
 
 /datum/action/ability/activable/xeno/silence/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
-
-	X.face_atom(A)
+	xeno_owner.face_atom(A)
 
 	var/victim_count
 	for(var/mob/living/target AS in cheap_get_humans_near(A, HUNTER_SILENCE_AOE))
@@ -648,32 +623,32 @@
 			continue
 		if(target.stat == DEAD) //Ignore the dead
 			continue
-		if(!line_of_sight(X, target)) //Need line of sight
+		if(!line_of_sight(xeno_owner, target)) //Need line of sight
 			continue
 		if(isxeno(target)) //Ignore friendlies
 			var/mob/living/carbon/xenomorph/xeno_victim = target
-			if(X.issamexenohive(xeno_victim))
+			if(xeno_owner.issamexenohive(xeno_victim))
 				continue
 
 		var/silence_multiplier = 1
-		var/datum/action/ability/activable/xeno/hunter_mark/mark_action = X.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
+		var/datum/action/ability/activable/xeno/hunter_mark/mark_action = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
 		if(mark_action?.marked_target == target) //Double debuff stacks for the marked target
 			silence_multiplier = HUNTER_SILENCE_MULTIPLIER
 		to_chat(target, span_danger("Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!") ) //Notify privately
 		target.playsound_local(target, 'sound/effects/ghost.ogg', 25, 0, 1)
-		target.adjust_stagger(HUNTER_SILENCE_STAGGER_STACKS * silence_multiplier)
+		target.adjust_stagger(HUNTER_SILENCE_STAGGER_DURATION * silence_multiplier)
 		target.adjust_blurriness(HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier)
 		target.adjust_ear_damage(HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier, HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier)
 		target.apply_status_effect(/datum/status_effect/mute, HUNTER_SILENCE_MUTE_DURATION * silence_multiplier)
 		victim_count++
 
 	if(!victim_count)
-		to_chat(X, span_xenodanger("We were unable to violate the minds of any victims."))
+		to_chat(xeno_owner, span_xenodanger("We were unable to violate the minds of any victims."))
 		add_cooldown(HUNTER_SILENCE_WHIFF_COOLDOWN) //We cooldown to prevent spam, but only for a short duration
 		return fail_activate()
 
-	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
-	to_chat(X, span_xenodanger("We invade the mind of [victim_count] [victim_count > 1 ? "victims" : "victim"], silencing and muting them...") )
+	xeno_owner.playsound_local(xeno_owner, 'sound/effects/ghost.ogg', 25, 0, 1)
+	to_chat(xeno_owner, span_xenodanger("We invade the mind of [victim_count] [victim_count > 1 ? "victims" : "victim"], silencing and muting them...") )
 	succeed_activate()
 	add_cooldown()
 

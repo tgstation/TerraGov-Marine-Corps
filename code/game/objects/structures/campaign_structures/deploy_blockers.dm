@@ -1,6 +1,6 @@
 /obj/effect/landmark/campaign_structure/tele_blocker
 	name = "\improper Bluespace quantum disruption emitter"
-	icon = 'icons/obj/structures/campaign/tele_blocker.dmi'
+	icon = 'icons/obj/structures/campaign/blockers.dmi'
 	icon_state = "tele_blocker"
 	pixel_x = -16
 	mission_types = list(/datum/campaign_mission/destroy_mission/supply_raid/som, /datum/campaign_mission/destroy_mission/fire_support_raid/som, /datum/campaign_mission/capture_mission/asat)
@@ -14,20 +14,19 @@
 	atom_flags = CRITICAL_ATOM
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
-	icon = 'icons/obj/structures/campaign/tele_blocker.dmi'
+	icon = 'icons/obj/structures/campaign/blockers.dmi'
 	icon_state = "tele_blocker"
 	pixel_x = -16
+	faction = FACTION_TERRAGOV
 	///What flag this removes from the mission
 	var/to_remove_flags = MISSION_DISALLOW_TELEPORT
-	///The faction this belongs to
-	var/faction = FACTION_TERRAGOV
 	var/owning_faction_notification = "A teleportation disruptor has been deployed in this area. Protect the disruptor to ensure hostile forces cannot deploy via teleportation. "
 	var/hostile_faction_notification = "The enemy has a device in this area that will prevent the use of the teleporter array. Destroy this first to allow for teleportation insertion against primary objectives. "
 
 /obj/structure/campaign_deployblocker/Initialize(mapload)
 	. = ..()
 	GLOB.campaign_structures += src
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "tele_block", HIGH_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "tele_block", MINIMAP_BLIPS_LAYER))
 	var/datum/game_mode/hvh/campaign/mode = SSticker.mode
 	if(!istype(mode))
 		return
@@ -58,8 +57,9 @@
 
 /obj/effect/landmark/campaign_structure/drop_blocker
 	name = "TELEBLOCKER"
-	icon = 'icons/obj/structures/campaign_structures.dmi'
-	icon_state = "drop_block"
+	icon = 'icons/obj/structures/campaign/blockers.dmi'
+	icon_state = "drop_blocker"
+	pixel_x = -16
 	mission_types = list(
 		/datum/campaign_mission/destroy_mission/supply_raid,
 		/datum/campaign_mission/destroy_mission/fire_support_raid,
@@ -70,6 +70,8 @@
 /obj/structure/campaign_deployblocker/drop_blocker
 	name = "drop pod guidance disruptor array"
 	desc = "A sophisticated device intended to severely disrupt drop pod guidance systems, rendering them unusable while the tower stands."
+	icon_state = "drop_blocker"
+	pixel_x = -16
 	to_remove_flags = MISSION_DISALLOW_DROPPODS
 	faction = FACTION_SOM
 	owning_faction_notification = "A drop pod disruptor has been deployed in this area. Protect the disruptor to ensure hostile forces cannot deploy via drop pod. "

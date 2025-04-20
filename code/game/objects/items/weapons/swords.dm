@@ -11,7 +11,7 @@
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	///Special attack action granted to users with the right trait
 	var/datum/action/ability/activable/weapon_skill/sword_lunge/special_attack
@@ -34,7 +34,7 @@
 /obj/item/weapon/sword/dropped(mob/user)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
-	special_attack.remove_action(user)
+	special_attack?.remove_action(user)
 
 /obj/item/weapon/sword/suicide_act(mob/user)
 	user.visible_message(span_danger("[user] is falling on [user.p_their()] [name]! It looks like [user.p_theyre()] trying to commit suicide."))
@@ -50,6 +50,13 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_SWORDLUNGE,
 	)
+	///Range of this ability
+	var/lunge_range = 2
+
+/datum/action/ability/activable/weapon_skill/sword_lunge/ai_should_use(atom/target)
+	if(get_dist(owner, target) > lunge_range)
+		return FALSE
+	return ..()
 
 /datum/action/ability/activable/weapon_skill/sword_lunge/use_ability(atom/A)
 	var/mob/living/carbon/carbon_owner = owner
@@ -60,7 +67,7 @@
 
 	carbon_owner.visible_message(span_danger("[carbon_owner] charges towards \the [A]!"))
 	playsound(owner, 'sound/effects/alien/tail_swipe2.ogg', 50, 0, 4)
-	carbon_owner.throw_at(A, 2, 1, carbon_owner)
+	carbon_owner.throw_at(A, lunge_range, 1, carbon_owner)
 	succeed_activate()
 	add_cooldown()
 
@@ -75,24 +82,26 @@
 	UnregisterSignal(owner, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
 
 ///Sig handler for atom impacts during lunge
-/datum/action/ability/activable/weapon_skill/sword_lunge/proc/lunge_impact(datum/source, obj/target, speed)
+/datum/action/ability/activable/weapon_skill/sword_lunge/proc/lunge_impact(datum/source, atom/movable/target, speed)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(src, PROC_REF(do_lunge_impact), source, target)
 	charge_complete()
 
 ///Actual effects of lunge impact
-/datum/action/ability/activable/weapon_skill/sword_lunge/proc/do_lunge_impact(datum/source, obj/target)
+/datum/action/ability/activable/weapon_skill/sword_lunge/proc/do_lunge_impact(datum/source, atom/movable/target)
 	var/mob/living/carbon/carbon_owner = source
-	if(!ishuman(target))
+	if(isobj(target))
 		var/obj/obj_victim = target
 		obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, TRUE, get_dir(obj_victim, carbon_owner), penetration, carbon_owner)
 		obj_victim.knockback(carbon_owner, 1, 2, knockback_force = MOVE_FORCE_VERY_STRONG)
-	else
-		var/mob/living/carbon/human/human_victim = target
-		human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)
-		human_victim.adjust_stagger(1 SECONDS)
-		playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
-		shake_camera(human_victim, 2, 1)
+		return
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/human_victim = target
+	human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)
+	human_victim.adjust_stagger(1 SECONDS)
+	playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
+	shake_camera(human_victim, 2, 1)
 
 /obj/item/weapon/sword/mercsword
 	name = "combat sword"
@@ -135,6 +144,7 @@
 	force = 75
 	attack_speed = 11
 	penetration = 15
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/weapon/sword/officersword/Initialize(mapload)
 	. = ..()

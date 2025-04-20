@@ -11,11 +11,11 @@ body {
   padding: 0;
   margin: 0;
   height: 100%;
-  color: #000000;
+  color: hsl(0, 0%, 0%);
 }
 
 body {
-  background: #fff;
+  background: hsl(0, 0%, 100%);
   font-family: Verdana, sans-serif;
   font-size: 13px;
   line-height: 1.2;
@@ -45,15 +45,15 @@ img.icon {
 }
 
 a {
-  color: #0000ff;
+  color: hsl(240, 100%, 50%);
 }
 
 a.visited {
-  color: #ff00ff;
+  color: hsl(300, 100%, 50%);
 }
 
 a:visited {
-  color: #ff00ff;
+  color: hsl(300, 100%, 50%);
 }
 
 a.popt {
@@ -66,15 +66,15 @@ a.popt {
   position: fixed;
   top: 50%;
   left: 50%;
-  background: #ddd;
+  background: hsl(0, 0%, 86.7%);
 }
 
 .popup .close {
   position: absolute;
-  background: #aaa;
+  background: hsl(0, 0%, 66.7%);
   top: 0;
   right: 0;
-  color: #333;
+  color: hsl(0, 0%, 20%);
   text-decoration: none;
   z-index: 2;
   padding: 0 10px;
@@ -83,12 +83,12 @@ a.popt {
 }
 
 .popup .close:hover {
-  background: #999;
+  background: hsl(0, 0%, 60%);
 }
 
 .popup .head {
-  background: #999;
-  color: #ddd;
+  background: hsl(0, 0%, 60%);
+  color: hsl(0, 0%, 86.7%);
   padding: 0 10px;
   height: 30px;
   line-height: 30px;
@@ -99,12 +99,12 @@ a.popt {
 }
 
 .popup input {
-  border: 1px solid #999;
-  background: #fff;
+  border: 1px solid hsl(0, 0%, 60%);
+  background: hsl(0, 0%, 100%);
   margin: 0;
   padding: 5px;
   outline: none;
-  color: #333;
+  color: hsl(0, 0%, 20%);
 }
 
 .popup input[type='text']:hover,
@@ -115,8 +115,8 @@ a.popt {
 
 .popup input[type='submit'] {
   padding: 5px 10px;
-  background: #999;
-  color: #ddd;
+  background: hsl(0, 0%, 60%);
+  color: hsl(0, 0%, 86.7%);
   text-transform: uppercase;
   font-size: 0.9em;
   font-weight: bold;
@@ -125,7 +125,7 @@ a.popt {
 .popup input[type='submit']:hover,
 .popup input[type='submit']:focus,
 .popup input[type='submit']:active {
-  background: #aaa;
+  background: hsl(0, 0%, 66.7%);
   cursor: pointer;
 }
 
@@ -137,11 +137,11 @@ a.popt {
   display: block;
   text-decoration: none;
   padding: 3px;
-  color: #333;
+  color: hsl(0, 0%, 20%);
 }
 
 .changeFont a:hover {
-  background: #ccc;
+  background: hsl(0, 0%, 80%);
 }
 
 .highlightPopup {
@@ -157,7 +157,7 @@ a.popt {
 }
 
 .highlightPopup input.highlightColor {
-  background-color: #ffff00;
+  background-color: hsl(60, 100%, 50%);
 }
 
 .highlightPopup input.highlightTermSubmit {
@@ -167,7 +167,7 @@ a.popt {
 /* ADMIN CONTEXT MENU */
 
 .contextMenu {
-  background-color: #ddd;
+  background-color: hsl(0, 0%, 86.7%);
   position: fixed;
   margin: 2px;
   width: 150px;
@@ -177,11 +177,11 @@ a.popt {
   display: block;
   padding: 2px 5px;
   text-decoration: none;
-  color: #333;
+  color: hsl(0, 0%, 20%);
 }
 
 .contextMenu a:hover {
-  background-color: #ccc;
+  background-color: hsl(0, 0%, 80%);
 }
 
 /* ADMIN FILTER MESSAGES MENU */
@@ -217,7 +217,7 @@ a.popt {
 /* MOTD */
 
 .motd {
-  color: #638500;
+  color: hsl(75.3, 100%, 26.1%);
   font-family: Verdana, sans-serif;
   white-space: normal;
 }
@@ -228,7 +228,7 @@ a.popt {
 .motd h4,
 .motd h5,
 .motd h6 {
-  color: #638500;
+  color: hsl(75.3, 100%, 26.1%);
   text-decoration: underline;
 }
 
@@ -237,11 +237,11 @@ a.popt {
 .motd a:visited,
 .motd a:active,
 .motd a:hover {
-  color: #638500;
+  color: hsl(75.3, 100%, 26.1%);
 }
 
 .tip {
-  color: #a000c4;
+  color: hsl(289, 100%, 38.4%);
   font-weight: bold;
 }
 
@@ -278,13 +278,13 @@ h3,
 h4,
 h5,
 h6 {
-  color: #0000ff;
+  color: hsl(240, 100%, 50%);
   font-family: Georgia, Verdana, sans-serif;
 }
 
 h1.alert,
 h2.alert {
-  color: #000000;
+  color: hsl(0, 0%, 0%);
 }
 
 em {
@@ -296,102 +296,107 @@ em {
   font-weight: bold;
 }
 .colorooc {
-  color: #002eb8;
+  color: hsl(225, 100%, 36.1%);
   font-weight: bold;
 }
 
 .looc {
-  color: #6699cc;
+  color: hsl(210, 50%, 60%);
+  font-weight: bold;
+}
+
+.rlooc {
+  color: hsl(210, 29.8%, 44.7%);
   font-weight: bold;
 }
 
 .hostooc {
-  color: #000000;
+  color: hsl(0, 0%, 0%);
   font-weight: bold;
 }
 .projleadooc {
-  color: #800080;
+  color: hsl(300, 100%, 25.1%);
   font-weight: bold;
 }
 .headcoderooc {
-  color: #000064;
+  color: hsl(240, 100%, 19.6%);
   font-weight: bold;
 }
 .headminooc {
-  color: #640000;
+  color: hsl(0, 100%, 19.6%);
   font-weight: bold;
 }
 .headmentorooc {
-  color: #004100;
+  color: hsl(120, 100%, 12.7%);
   font-weight: bold;
 }
 .senioradminooc {
-  color: #8c3141;
+  color: hsl(349.5, 48.1%, 37.1%);
   font-weight: bold;
 }
 .adminooc {
-  color: #b4001e;
+  color: hsl(350, 100%, 35.3%);
   font-weight: bold;
 }
 .trialminooc {
-  color: #f03200;
+  color: hsl(12.5, 100%, 47.1%);
   font-weight: bold;
 }
 .candiminooc {
-  color: #ff5a1e;
+  color: hsl(16, 100%, 55.9%);
   font-weight: bold;
 }
 .eventminooc {
-  color: #a58a63;
+  color: hsl(35.5, 26.8%, 51.8%);
   font-weight: bold;
 }
 .mentorooc {
-  color: #008000;
+  color: hsl(120, 100%, 25.1%);
   font-weight: bold;
 }
 .maintainerooc {
-  color: #7760e6;
+  color: hsl(250.3, 72.8%, 63.9%);
   font-weight: bold;
 }
 .contributorooc {
-  color: #0064ff;
+  color: hsl(216.5, 100%, 50%);
   font-weight: bold;
 }
 .otherooc {
-  color: #643200;
+  color: hsl(30, 100%, 19.6%);
   font-weight: bold;
 }
 .msay {
-  color: #775c40;
+  color: hsl(30.5, 30.1%, 35.9%);
   font-weight: bold;
 }
 .adminmsay {
-  color: #66411e;
+  color: hsl(29.2, 54.5%, 25.9%);
   font-weight: bold;
 }
 .headminmsay {
-  color: #402a14;
+  color: hsl(30, 52.4%, 16.5%);
   font-weight: bold;
 }
 .adminsay {
-  color: #ff4500;
+  color: hsl(16.2, 100%, 50%);
   font-weight: bold;
 }
 
 .admin {
-  color: #386aff;
+  color: hsl(224.9, 100%, 61%);
   font-weight: bold;
 }
 .asay {
-  color: #9611d4;
+  color: hsl(280.9, 85.2%, 44.9%);
   font-weight: bold;
 }
 .headminasay {
-  color: #5a0a7f;
+  color: hsl(281, 85.4%, 26.9%);
   font-weight: bold;
 }
 .boldannounce {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-weight: bold;
 }
 
@@ -404,10 +409,10 @@ em {
   font-weight: bold;
 }
 .adminnotice {
-  color: #0000ff;
+  color: hsl(240, 100%, 50%);
 }
 .adminhelp {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-weight: bold;
 }
 
@@ -417,90 +422,90 @@ em {
 }
 
 .deadsay {
-  color: #5c00e6;
+  color: hsl(264, 100%, 45.1%);
 }
 .bigdeadsay {
-  color: #5c00e6;
+  color: hsl(264, 100%, 45.1%);
   font-size: 140%;
 }
 .tinydeadsay {
-  color: #5c00e6;
+  color: hsl(264, 100%, 45.1%);
   font-size: 85%;
 }
 
 .radio {
-  color: #158c15;
+  color: hsl(120, 73.9%, 31.6%);
 }
 
 .deptradio {
-  color: #b21ab2;
+  color: hsl(300, 74.5%, 40%);
 }
 .comradio {
-  color: #517ac5;
+  color: hsl(218.8, 50%, 54.5%);
 }
 .syndradio {
-  color: #7f4648;
+  color: hsl(357.9, 28.9%, 38.6%);
 }
 .centradio {
-  color: #636399;
+  color: hsl(240, 21.4%, 49.4%);
 }
 .airadio {
-  color: #b21ab2;
+  color: hsl(300, 74.5%, 40%);
 }
 
 .casradio {
-  color: #a30000;
+  color: hsl(0, 100%, 32%);
 }
 .engradio {
-  color: #a66300;
+  color: hsl(35.8, 100%, 32.5%);
 }
 .medradio {
-  color: #008160;
+  color: hsl(164.7, 100%, 25.3%);
 }
 .sciradio {
-  color: #993599;
+  color: hsl(300, 48.5%, 40.4%);
 }
 .supradio {
-  color: #a8732b;
+  color: hsl(34.6, 59.2%, 41.4%);
 }
 
 .alpharadio {
-  color: #ea0000;
+  color: hsl(0, 100%, 45.9%);
 }
 .bravoradio {
-  color: #c68610;
+  color: hsl(38.9, 85%, 42%);
 }
 .charlieradio {
-  color: #aa55aa;
+  color: hsl(300, 33.3%, 50%);
 }
 .deltaradio {
-  color: #007fcf;
+  color: hsl(203.2, 100%, 40.6%);
 }
 
 .zuluradio {
-  color: #ff6a00;
+  color: hsl(24.9, 100%, 50%);
 }
 .yankeeradio {
-  color: #009999;
+  color: hsl(180, 100%, 30%);
 }
 .xrayradio {
-  color: #008000;
+  color: hsl(120, 100%, 25.1%);
 }
 .whiskeyradio {
-  color: #cc00cc;
+  color: hsl(300, 100%, 40%);
 }
 
 .binarysay {
-  color: #20c20e;
-  background-color: #000000;
+  color: hsl(114, 86.5%, 40.8%);
+  background-color: hsl(0, 0%, 0%);
   display: block;
 }
 .binarysay a {
-  color: #00ff00;
+  color: hsl(120, 100%, 50%);
 }
 .binarysay a:active,
 .binarysay a:visited {
-  color: #88ff88;
+  color: hsl(120, 100%, 76.7%);
 }
 
 .yell {
@@ -508,107 +513,102 @@ em {
 }
 
 .alert {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
 }
 h1.alert,
 h2.alert {
-  color: #000000;
+  color: hsl(0, 0%, 0%);
 }
 
 .attack {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
 }
 .moderate {
-  color: #cc0000;
+  color: hsl(0, 100%, 40%);
 }
 .disarm {
-  color: #990000;
+  color: hsl(0, 100%, 30%);
 }
 .passive {
-  color: #660000;
+  color: hsl(0, 100%, 20%);
 }
 
 .scanner {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
 }
 .scannerb {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-weight: bold;
 }
 .scannerburn {
-  color: #ffa500;
+  color: hsl(38.8, 100%, 50%);
 }
 .scannerburnb {
-  color: #ffa500;
+  color: hsl(38.8, 100%, 50%);
   font-weight: bold;
 }
 .rose {
-  color: #ff5050;
+  color: hsl(0, 100%, 65.7%);
 }
 .info {
-  color: #0000cc;
+  color: hsl(240, 100%, 40%);
 }
 .debuginfo {
-  color: #33cc33;
+  color: hsl(120, 60%, 50%);
   font-weight: bold;
   font-style: italic;
 }
 .notice {
-  color: #000099;
+  color: hsl(240, 100%, 30%);
 }
 .tinynotice {
-  color: #000099;
+  color: hsl(240, 100%, 30%);
   font-size: 85%;
 }
 .xenonotice {
-  color: #2a623d;
+  color: hsl(140.4, 40%, 27.5%);
 }
 .boldnotice {
-  color: #000099;
+  color: hsl(240, 100%, 30%);
   font-weight: bold;
 }
 .warning {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-style: italic;
 }
 .xenowarning {
-  color: #2a623d;
+  color: hsl(140.4, 40%, 27.5%);
   font-style: italic;
 }
 .boldwarning {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-style: italic;
   font-weight: bold;
 }
 .danger {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-weight: bold;
 }
 .userdanger {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-weight: bold;
   font-size: 185%;
 }
 .xenodanger {
-  color: #2a623d;
+  color: hsl(140.4, 40%, 27.5%);
   font-weight: bold;
 }
 .avoidharm {
-  color: #72a0e5;
+  color: hsl(216, 68.9%, 67.3%);
   font-weight: bold;
 }
-.highdanger {
-  color: #ff0000;
-  font-weight: bold;
-  font-size: 185%;
-}
-.xenohighdanger {
-  color: #2a623d;
+.xenouserdanger {
+  color: hsl(140.4, 40%, 27.5%);
   font-weight: bold;
   font-size: 1.5em;
 }
 .xenoannounce {
-  color: #1a472a;
+  color: hsl(141.3, 46.4%, 19%);
   font-family: book-antiqua;
   font-weight: bold;
   font-style: italic;
@@ -635,64 +635,63 @@ h2.alert {
 }
 
 .alien {
-  color: #543354;
+  color: hsl(300, 24.4%, 26.5%);
 }
 .newscaster {
-  color: #800000;
+  color: hsl(0, 100%, 25.1%);
 }
 
 .role_header {
-  color: #000000;
+  color: rgb(0, 0, 0);
   display: block;
   text-align: center;
   font-weight: bold;
   font-size: 1.5em;
 }
 .role_body {
-  color: #db0000;
+  color: hsl(0, 100%, 42.9%);
   display: block;
-  text-align: center;
 }
 .round_setup {
-  color: #db0000;
+  color: hsl(0, 100%, 42.9%);
   font-family: impact;
   font-size: 1.25em;
 }
 .round_header {
-  color: #db0000;
+  color: hsl(0, 100%, 42.9%);
   display: block;
   text-align: center;
   font-weight: bold;
   font-size: 2em;
 }
 .round_body {
-  color: #001427;
+  color: hsl(209.2, 100%, 7.6%);
   display: block;
   text-align: center;
   font-weight: bold;
   font-size: 1.5em;
 }
 .event_announcement {
-  color: #600d48;
+  color: hsl(317.3, 76.1%, 21.4%);
   font-family: arial-narrow;
   font-weight: bold;
   font-size: 1.5em;
 }
 .seasons_announce {
-  color: #1abc9c;
+  color: hsl(168.1, 75.7%, 42%);
   font-size: 1em;
 }
 .season_additional_info {
-  color: #283747;
+  color: hsl(211, 27.9%, 21.8%);
 }
 
 .announce_header {
-  color: #000000;
+  color: hsl(0, 0%, 0%);
   font-weight: bold;
   font-size: 150%;
 }
 .announce_body {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-weight: normal;
   font-size: 125%;
 }
@@ -717,118 +716,118 @@ h2.alert {
 }
 
 .green {
-  color: #14a833;
+  color: hsl(132.6, 78.7%, 36.9%);
 }
 
 .nicegreen {
-  color: #14a833;
+  color: hsl(132.6, 78.7%, 36.9%);
 }
 
 .red {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
 }
 
 .blue {
-  color: #0000ff;
+  color: hsl(240, 100%, 50%);
 }
 
 .nicegreen {
-  color: #14a833;
+  color: hsl(132.6, 78.7%, 36.9%);
 }
 
 .shadowling {
-  color: #3b2769;
+  color: hsl(258.2, 45.8%, 28.2%);
 }
 .cult {
-  color: #960000;
+  color: hsl(0, 100%, 29.4%);
 }
 
 .cultlarge {
-  color: #960000;
+  color: hsl(0, 100%, 29.4%);
   font-weight: bold;
   font-size: 185%;
 }
 
 .narsie {
-  color: #960000;
+  color: hsl(0, 100%, 29.4%);
   font-weight: bold;
   font-size: 925%;
 }
 
 .narsiesmall {
-  color: #960000;
+  color: hsl(0, 100%, 29.4%);
   font-weight: bold;
   font-size: 370%;
 }
 
 .colossus {
-  color: #7f282a;
+  color: hsl(358.6, 52.1%, 32.7%);
   font-size: 310%;
 }
 
 .hierophant {
-  color: #660099;
+  color: hsl(280, 100%, 30%);
   font-weight: bold;
   font-style: italic;
 }
 
 .hierophant_warning {
-  color: #660099;
+  color: hsl(280, 100%, 30%);
   font-style: italic;
 }
 
 .purple {
-  color: #5e2d79;
+  color: hsl(278.7, 45.8%, 32.5%);
 }
 
 .holoparasite {
-  color: #35333a;
+  color: hsl(257.1, 6.4%, 21.4%);
 }
 
 .revennotice {
-  color: #1d2953;
+  color: hsl(226.7, 48.2%, 22%);
 }
 
 .revenboldnotice {
-  color: #1d2953;
+  color: hsl(226.7, 48.2%, 22%);
   font-weight: bold;
 }
 
 .revenbignotice {
-  color: #1d2953;
+  color: hsl(226.7, 48.2%, 22%);
   font-weight: bold;
   font-size: 185%;
 }
 
 .revenminor {
-  color: #823abb;
+  color: hsl(273.5, 52.7%, 48%);
 }
 
 .revenwarning {
-  color: #760fbb;
+  color: hsl(275.9, 85.1%, 39.6%);
   font-style: italic;
 }
 
 .revendanger {
-  color: #760fbb;
+  color: hsl(275.9, 85.1%, 39.6%);
   font-weight: bold;
   font-size: 185%;
 }
 
 .deconversion_message {
-  color: #5000a0;
+  color: hsl(270, 100%, 31.4%);
   font-size: 185%;
   font-style: italic;
 }
 
 .ghostalert {
-  color: #5c00e6;
+  color: hsl(264, 100%, 45.1%);
   font-style: italic;
   font-weight: bold;
 }
 
 .interface {
-  color: #330033;
+  color: hsl(300, 100%, 10%);
 }
 
 .sans {
@@ -865,17 +864,17 @@ h2.alert {
 }
 
 .greentext {
-  color: #00ff00;
+  color: hsl(120, 100%, 50%);
   font-size: 185%;
 }
 
 .redtext {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-size: 185%;
 }
 
 .clown {
-  color: #ff69bf;
+  color: hsl(325.6, 100%, 70.6%);
   font-size: 160%;
   font-family: 'Comic Sans MS', cursive, sans-serif;
   font-weight: bold;
@@ -887,13 +886,13 @@ h2.alert {
 }
 
 .his_grace {
-  color: #15d512;
+  color: hsl(119.1, 84.4%, 45.3%);
   font-family: 'Courier New', cursive, sans-serif;
   font-style: italic;
 }
 
 .hypnophrase {
-  color: #0d0d0d;
+  color: hsl(0, 0%, 5.1%);
   font-weight: bold;
   animation: hypnocolor 1500ms infinite;
   animation-direction: alternate;
@@ -901,43 +900,43 @@ h2.alert {
 
 @keyframes hypnocolor {
   0% {
-    color: #0d0d0d;
+    color: hsl(0, 0%, 5.1%);
   }
 
   25% {
-    color: #410194;
+    color: hsl(266.1, 98.7%, 29.2%);
   }
 
   50% {
-    color: #7f17d8;
+    color: hsl(272.3, 80.8%, 46.9%);
   }
 
   75% {
-    color: #410194;
+    color: hsl(266.1, 98.7%, 29.2%);
   }
 
   100% {
-    color: #3bb5d3;
+    color: hsl(191.8, 63.3%, 52.9%);
   }
 }
 
 .phobia {
-  color: #dd0000;
+  color: hsl(0, 100%, 43.3%);
   font-weight: bold;
   animation: phobia 750ms infinite;
 }
 
 @keyframes phobia {
   0% {
-    color: #0d0d0d;
+    color: hsl(0, 0%, 5.1%);
   }
 
   50% {
-    color: #dd0000;
+    color: hsl(0, 100%, 43.3%);
   }
 
   100% {
-    color: #0d0d0d;
+    color: hsl(0, 0%, 5.1%);
   }
 }
 
@@ -947,7 +946,7 @@ h2.alert {
 }
 
 .memo {
-  color: #638500;
+  color: hsl(75.3, 100%, 26.1%);
   text-align: center;
 }
 
@@ -957,43 +956,43 @@ h2.alert {
 }
 
 .abductor {
-  color: #800080;
+  color: hsl(300, 100%, 25.1%);
   font-style: italic;
 }
 
 .mind_control {
-  color: #a00d6f;
+  color: hsl(320, 85%, 33.9%);
   font-size: 100%;
   font-weight: bold;
   font-style: italic;
 }
 
 .slime {
-  color: #00ced1;
+  color: hsl(180.9, 100%, 41%);
 }
 
 .drone {
-  color: #848482;
+  color: hsl(60, 0.8%, 51.4%);
 }
 
 .monkey {
-  color: #975032;
+  color: hsl(17.8, 50.2%, 39.4%);
 }
 
 .swarmer {
-  color: #2c75ff;
+  color: hsl(219.2, 100%, 58.6%);
 }
 
 .resonate {
-  color: #298f85;
+  color: hsl(174.1, 55.4%, 36.1%);
 }
 
 .monkeyhive {
-  color: #774704;
+  color: hsl(35, 93.5%, 24.1%);
 }
 
 .monkeylead {
-  color: #774704;
+  color: hsl(35, 93.5%, 24.1%);
   font-size: 80%;
 }
 
@@ -1046,42 +1045,82 @@ h2.alert {
   margin-left: 3em;
 }
 
+// Provides a horizontal bar with text in the middle
+// I got this off stackoverflow
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid hsl(215.5, 39.3%, 11%);
+}
+
+.separator:not(:empty)::before {
+  margin-right: 0.25em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: 0.25em;
+}
+
 .examine_block {
   background: rgba(0, 0, 0, 0.1);
-  border: 1px solid #111a27;
+  border: 1px solid hsl(215.5, 39.3%, 11%);
   margin: 7px 4px;
   padding: 8px 12px;
 }
 
 .examine_block hr {
   border: none;
-  background: #333;
+  background: hsl(0, 0%, 20%);
   height: 1px;
   margin: 8px 16px 8px 16px;
 }
+.examine_block .blockheader {
+  font-family: Verdana;
+  color: hsl(0, 0%, 0%);
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.tooltip {
+  font-style: italic;
+  border-bottom: 2px dotted;
+}
 
 $ooc_alert_bg_colors: (
-  'ooc': #bdc8ff,
-  'game': #ffbbb3,
+  'ooc': hsl(230, 100%, 87.1%),
+  'game': hsl(6.3, 100%, 85.1%),
 );
 
 $ooc_alert_border_colors: (
-  'ooc': #002eb8,
-  'game': #b60000,
+  'ooc': hsl(225, 100%, 36.1%),
+  'game': hsl(0, 100%, 35.7%),
 );
 
 $ooc_alert_text_colors: (
-  'ooc': #002eb8,
-  'game': #b60000,
+  'ooc': hsl(225, 100%, 36.1%),
+  'game': hsl(0, 100%, 35.7%),
 );
+
+$border-width: 4;
+
+$border-width-px: $border-width * 1px;
 
 @each $color-type, $color in $ooc_alert_text_colors {
   .ooc_alert_#{$color-type} {
     background: map.get($ooc_alert_bg_colors, $color-type);
     border: 1px solid map.get($ooc_alert_border_colors, $color-type);
-    margin: 0.5em;
-    padding: 0.5em 0.5em 0.5em 0.2em;
-    color: #000000;
+    margin: 7px 4px;
+    padding: 8px 12px;
+    color: hsl(0, 0%, 0%);
     font-weight: bold;
     display: flex;
     flex-direction: column;
@@ -1091,63 +1130,69 @@ $ooc_alert_text_colors: (
     color: map.get($ooc_alert_text_colors, $color-type);
     padding: 0.5em 0 0 0.35em;
   }
+  .ooc_alert_#{$color-type} .separator::before {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid map.get($ooc_alert_border_colors, $color-type);
+  }
+  .ooc_alert_#{$color-type} .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid map.get($ooc_alert_border_colors, $color-type);
+  }
 }
 
 $alert-stripe-colors: (
-  'default': #c6ccec,
-  'green': #ceebc2,
-  'blue': #c6ccec,
-  'pink': #ecc6d9,
-  'yellow': #fff3b3,
-  'orange': #ffe2b3,
-  'red': #ffbbb3,
-  'purple': #e6d1f0,
-  'grey': #e3e3e3,
+  'default': hsl(231, 50%, 85%),
+  'green': hsl(102, 51%, 84%),
+  'blue': hsl(231, 50%, 85%),
+  'pink': hsl(330, 50%, 85%),
+  'yellow': hsl(51, 100%, 85%),
+  'orange': hsl(37, 100%, 85%),
+  'red': hsl(6, 100%, 85%),
+  'purple': hsl(281, 51%, 88%),
+  'grey': hsl(0, 0%, 89%),
 );
 
 $alert-stripe-alternate-colors: (
-  'default': #ced3ef,
-  'green': #d8efce,
-  'blue': #ced3ef,
-  'pink': #f0d1e1,
-  'yellow': #fff5c2,
-  'orange': #ffe8c2,
-  'red': #ffc8c2,
-  'purple': #ead9f2,
-  'grey': #ebebeb,
+  'default': hsl(231, 51%, 87%),
+  'green': hsl(102, 51%, 87%),
+  'blue': hsl(231, 51%, 87%),
+  'pink': hsl(329, 51%, 88%),
+  'yellow': hsl(50, 100%, 88%),
+  'orange': hsl(37, 100%, 88%),
+  'red': hsl(6, 100%, 88%),
+  'purple': hsl(281, 49%, 90%),
+  'grey': hsl(0, 0%, 92%),
 );
 
 $alert-major-header-colors: (
-  'default': #003061,
-  'green': #1f440e,
-  'blue': #003061,
-  'pink': #602040,
-  'yellow': #990f00,
-  'orange': #b14810,
-  'red': #a80e00,
-  'purple': #5b2673,
-  'grey': #a80e00,
+  'default': hsl(210, 100%, 19%),
+  'green': hsl(101, 66%, 16%),
+  'blue': hsl(210, 100%, 19%),
+  'pink': hsl(330, 50%, 25%),
+  'yellow': hsl(6, 100%, 30%),
+  'orange': hsl(21, 83%, 38%),
+  'red': hsl(5, 100%, 33%),
+  'purple': hsl(281, 50%, 30%),
+  'grey': hsl(5, 100%, 33%),
 );
 
 $alert-subheader-header-colors: (
-  'default': #991200,
-  'green': #002c85,
-  'blue': #991200,
-  'pink': #002c85,
-  'yellow': #214164,
-  'orange': #002c85,
-  'red': #483c3c,
-  'purple': #991200,
-  'grey': #002c85,
+  'default': hsl(7, 100%, 30%),
+  'green': hsl(220, 100%, 26%),
+  'blue': hsl(7, 100%, 30%),
+  'pink': hsl(220, 100%, 26%),
+  'yellow': hsl(211, 50%, 26%),
+  'orange': hsl(220, 100%, 26%),
+  'red': hsl(0, 9%, 26%),
+  'purple': hsl(7, 100%, 30%),
+  'grey': hsl(220, 100%, 26%),
 );
 
-$border-width: 4;
-
-$border-width-px: $border-width * 1px;
-
 .faction_alert_text {
-  color: #202020;
-  background: #eaeaea;
+  color: hsl(0, 0%, 13%);
+  background: hsl(0, 0%, 92%);
   padding: 0.5rem 0.5rem;
 }
 .faction_alert_subtitle {
@@ -1171,7 +1216,7 @@ $border-width-px: $border-width * 1px;
 
 @each $color-name, $color-value in $alert-stripe-colors {
   .faction_alert_#{$color-name} {
-    color: #ffffff;
+    color: hsl(0, 0%, 100%);
     box-shadow: none;
     font-weight: bold;
     margin: 1rem 0 1rem 0;
@@ -1206,9 +1251,10 @@ $border-width-px: $border-width * 1px;
   }
 
   .faction_alert_#{$color-name} .faction_alert_text {
-    background-color: lighten(
+    background-color: color.adjust(
       map.get($alert-stripe-alternate-colors, $color-name),
-      5
+      $lightness: 5%,
+      $space: hsl
     );
   }
 }

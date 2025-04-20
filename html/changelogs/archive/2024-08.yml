@@ -86,3 +86,65 @@
   yyzsong:
   - balance: removes podlocks from the outer windows of the "Outrider" and "Umbilical"
       tadpole variants
+2024-08-17:
+  breadhunt:
+  - qol: The "acting SL" of a squad will now get a golden trim around their squad
+      icon/minimap icon
+  - rscadd: Latejoining SLs will no longer "take over" the acting SL status of any
+      existing squad leaders/aSLs in the squad
+2024-08-19:
+  ICE-IS-NICE:
+  - bugfix: '"Launch evacuation pod" button is now fixed and usable.'
+  Lumipharon:
+  - qol: You can update detpack freq and code by hitting it with a signaler, or hitting
+      the signaler with the detpack
+  - balance: 'Campaign: Smartgunners have access to the SH-34 as a belt option, and
+      SH-35 as a perk unlockable backslot option'
+  - bugfix: Fixed the hovertank coilgun hotkey
+  - bugfix: fixed sentry targetting being blocked by tanks
+  - bugfix: Airlocks will no longer shock mech pilots
+  - bugfix: Putting a sentry back up will no longer make it dense if it wasn't orignally
+      so
+  - balance: 'Campaign: Buffed Hovertank coilgun low and medium power modes slightly'
+  - bugfix: fixed campaign autobalance sometimes triggering far later than intended
+  Neocloudy:
+  - refactor: Screen warnings for fire, nutrition, temperature, pressure, suffocation,
+      etc now use thrown alerts.
+  - refactor: Updated HTML tooltip code to TG standards.
+  - bugfix: Tooltips aren't offset to halfway down your screen anymore.
+  Pariah919:
+  - balance: SVD and HPR now cost 300 points to buy in Requisitions instead of 150
+      to reflect their status.
+  jonash07:
+  - bugfix: fixed retractable railings smoothing with walls for some reason
+  yyzsong:
+  - bugfix: Valhalla reqtorio vendor may now vend unboxers.
+2024-08-20:
+  Lumipharon:
+  - balance: Crest defence makes the user immune to light explosion tosses
+  XElectricX:
+  - bugfix: Xenos cannot damage resin doors again.
+  ivanmixo:
+  - bugfix: Fixed ghosts being able to make huggers jump out of bags
+  - code_imp: Hugger code is a little bit better
+2024-08-25:
+  ICE-IS-NICE:
+  - rscadd: Suppressor makes bullets less visible.
+  Lumipharon:
+  - bugfix: fixed AGLS frag rounds detonating under mobs
+  yyzsong:
+  - balance: SG-29 reqtorio drum refill 250 -> 350 points
+  - balance: SG-85 reqtorio bin refill 250 -> 350 points
+  - balance: SG-62 reqtorio magazine refill 250 -> 400 points
+  - balance: SG-62 reqtorio ammo bin refill 250 -> 400 points
+2024-08-26:
+  Isy232:
+  - qol: Research Outpost LZ 1 Minor Expansion for Vehicles
+2024-08-30:
+  Joe13413:
+  - rscadd: New survivor armor and melee weapon
+  - balance: Survivors now spawn with job specific gear, radios, flashlights, and
+      crowbars.
+2024-08-31:
+  Lumipharon:
+  - bugfix: fixed mobs getting perma space debuff when riding tanks across z-levels

@@ -5,7 +5,7 @@
 	blood_overlay_type = "coat"
 	armor_protection_flags = CHEST|ARMS
 	permeability_coefficient = 0.6
-	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 50, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 50, FIRE = 0, ACID = 25)
 	allowed = list(
 		/obj/item/stack/medical,
 		/obj/item/reagent_containers/dropper,
@@ -31,7 +31,7 @@
 
 /obj/item/clothing/suit/storage/labcoat/verb/toggle()
 	set name = "Toggle Labcoat Buttons"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 
 	if(!isliving(usr))

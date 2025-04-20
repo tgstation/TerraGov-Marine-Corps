@@ -12,21 +12,18 @@
 	item_typepath = /obj/item/weapon/gun/rifle/som/standard
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/suit_store/main_gun/som_medic/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_medic/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	if(!isstorageobj(wearer.back))
+		return
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/smoke_burst, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/som_medic/standard_rifle/enhanced
 	name = "V-31+"
@@ -46,20 +43,18 @@
 	ui_icon = "ak47"
 	item_typepath = /obj/item/weapon/gun/rifle/mpi_km/black/grenadier
 
-/datum/loadout_item/suit_store/main_gun/som_medic/mpi/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_medic/mpi/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	if(!isstorageobj(wearer.back))
+		return
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/som_medic/carbine
 	name = "V-34"
@@ -70,20 +65,18 @@
 	ui_icon = "v34"
 	item_typepath = /obj/item/weapon/gun/rifle/som_carbine/black/standard
 
-/datum/loadout_item/suit_store/main_gun/som_medic/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_medic/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	if(!isstorageobj(wearer.back))
+		return
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/som_medic/smg
 	name = "V-21"
@@ -95,22 +88,20 @@
 	ui_icon = "v21"
 	item_typepath = /obj/item/weapon/gun/smg/som/support
 
-/datum/loadout_item/suit_store/main_gun/som_medic/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_medic/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	if(!isstorageobj(wearer.back))
+		return
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/som_medic/smg/enhanced
 	name = "V-21+"
@@ -129,23 +120,23 @@
 	Uses 12 gauge shells."
 	ui_icon = "v51"
 	item_typepath = /obj/item/weapon/gun/shotgun/som/support
+	ammo_type = /obj/item/ammo_magazine/handful/flechette
+	secondary_ammo_type = /obj/item/ammo_magazine/handful/flechette
 
-/datum/loadout_item/suit_store/main_gun/som_medic/flechette_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_medic/flechette_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_BACKPACK)
+	if(!isstorageobj(wearer.back))
+		return
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/suit_store/main_gun/som_medic/volkite_charger
 	name = "VX-32 charger"
@@ -159,17 +150,15 @@
 	purchase_cost = 25
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
-/datum/loadout_item/suit_store/main_gun/som_medic/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_medic/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	if(!isstorageobj(wearer.back))
+		return
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)

@@ -74,7 +74,7 @@
 	bound_width = 128
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 1000 //mega hauler trucks are still tanks that soak up fire
-	coverage = 95
+	coverage = 100
 	soft_armor = list(MELEE = 30, BULLET = 90, LASER = 95, ENERGY = 55, BOMB = 60, BIO = 10, FIRE = 10, ACID = 10)
 
 

@@ -3,10 +3,10 @@
 	icon = 'icons/obj/powerloader.dmi'
 	desc = "The RPL-Y Cargo Loader is a commercial mechanized exoskeleton used for lifting heavy materials and objects. An old but trusted design used in warehouses, constructions and military ships everywhere."
 	icon_state = "powerloader_open"
-	layer = POWERLOADER_LAYER //so the top appears above windows and wall mounts
+	layer = VEHICLE_LAYER //so the top appears above windows and wall mounts
 	anchored = TRUE
 	allow_pass_flags = NONE
-	move_delay = 8
+	move_delay = 6
 	light_system = HYBRID_LIGHT
 	light_power = 8
 	light_range = 0
@@ -66,7 +66,8 @@
 	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25)
 	icon_state = "powerloader"
 	overlays += image(icon_state= "powerloader_overlay", layer = MOB_LAYER + 0.1)
-	move_delay = max(4, move_delay - buckling_mob.skills.getRating(SKILL_POWERLOADER))
+	move_delay = max(2, move_delay - buckling_mob.skills.getRating(SKILL_POWERLOADER))
+	set_vehicle_speed()
 	var/clamp_equipped = 0
 	for(var/obj/item/powerloader_clamp/PC in contents)
 		if(!buckling_mob.put_in_hands(PC))
@@ -83,8 +84,14 @@
 	overlays.Cut()
 	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25)
 	move_delay = initial(move_delay)
+	set_vehicle_speed()
 	icon_state = "powerloader_open"
 	buckled_mob.drop_all_held_items() //drop the clamp when unbuckling
+
+/// Sets the powerloader's actual move delay (as it is handled in the component).
+/obj/vehicle/ridden/powerloader/proc/set_vehicle_speed()
+	var/datum/component/riding/vehicle/powerloader/vehicle_component = GetComponent(/datum/component/riding/vehicle/powerloader)
+	vehicle_component.vehicle_move_delay = move_delay
 
 /obj/vehicle/ridden/powerloader/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
@@ -101,7 +108,7 @@
 	return ..()
 
 /obj/vehicle/ridden/powerloader/verb/enter_powerloader(mob/M)
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Enter Power Loader"
 	set src in oview(1)
 

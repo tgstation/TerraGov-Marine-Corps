@@ -121,6 +121,7 @@ SUBSYSTEM_DEF(ticker)
 				GLOB.ooc_allowed = TRUE
 				GLOB.dooc_allowed = TRUE
 				mode.declare_completion(force_ending)
+				world.TgsTriggerEvent("tg-Roundend", wait_for_completion = TRUE)
 				addtimer(CALLBACK(SSvote, TYPE_PROC_REF(/datum/controller/subsystem/vote, automatic_vote)), 2 SECONDS)
 				addtimer(CALLBACK(src, PROC_REF(Reboot)), CONFIG_GET(number/vote_period) * 3 + 9 SECONDS)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
@@ -219,7 +220,7 @@ SUBSYSTEM_DEF(ticker)
 		var/turf/epi = bomb.loc
 		qdel(bomb)
 		if(epi)
-			explosion(epi, 0, 256, 512, 0, silent = TRUE)
+			explosion(epi, 0, 256, 512, 0, silent = TRUE, explosion_cause="station_explosion_detonation")
 
 /datum/controller/subsystem/ticker/proc/HasRoundStarted()
 	return current_state >= GAME_STATE_PLAYING
@@ -297,15 +298,6 @@ SUBSYSTEM_DEF(ticker)
 	if(usr && !check_rights(R_SERVER))
 		return
 
-	if(istype(GLOB.tgs, /datum/tgs_api/v3210))
-		var/datum/tgs_api/v3210/API = GLOB.tgs
-		if(API.reboot_mode == 2)
-			graceful = TRUE
-	else if(istype(GLOB.tgs, /datum/tgs_api/v4))
-		var/datum/tgs_api/v4/API = GLOB.tgs
-		if(API.reboot_mode == 1)
-			graceful = TRUE
-
 	if(graceful)
 		to_chat_immediate(world, "<h3>[span_boldnotice("Shutting down...")]</h3>")
 		world.Reboot(FALSE)
@@ -346,7 +338,7 @@ SUBSYSTEM_DEF(ticker)
 		tip = pick(SSstrings.get_list_from_file("tips/meme"))
 
 	if(tip)
-		to_chat(world, examine_block("[span_tip("<big>Tip of the round:</big>")][EXAMINE_SECTION_BREAK][html_encode(tip)]"))
+		to_chat(world, fieldset_block("[span_tip("<big>Tip of the round</big>")]", html_encode(tip), "examine_block"))
 
 
 /datum/controller/subsystem/ticker/proc/check_queue()
@@ -356,7 +348,7 @@ SUBSYSTEM_DEF(ticker)
 	if(!hpc)
 		listclearnulls(queued_players)
 		for(var/mob/new_player/NP in queued_players)
-			to_chat(NP, span_userdanger("The alive players limit has been released!<br><a href='?src=[REF(NP)];lobby_choice=late_join;override=1'>[html_encode(">>Join Game<<")]</a>"))
+			to_chat(NP, span_userdanger("The alive players limit has been released!<br><a href='byond://?src=[REF(NP)];lobby_choice=late_join;override=1'>[html_encode(">>Join Game<<")]</a>"))
 			SEND_SOUND(NP, sound('sound/misc/notice1.ogg', channel = CHANNEL_NOTIFY))
 			NP.late_choices()
 		queued_players.Cut()
@@ -371,7 +363,7 @@ SUBSYSTEM_DEF(ticker)
 			listclearnulls(queued_players)
 			if(living_player_count() < hpc)
 				if(next_in_line?.client)
-					to_chat(next_in_line, span_userdanger("A slot has opened! You have approximately 20 seconds to join. <a href='?src=[REF(next_in_line)];lobby_choice=latejoin;override=1'>\>\>Join Game\<\<</a>"))
+					to_chat(next_in_line, span_userdanger("A slot has opened! You have approximately 20 seconds to join. <a href='byond://?src=[REF(next_in_line)];lobby_choice=latejoin;override=1'>\>\>Join Game\<\<</a>"))
 					SEND_SOUND(next_in_line, sound('sound/misc/notice1.ogg', channel = CHANNEL_NOTIFY))
 					next_in_line.late_choices()
 					return

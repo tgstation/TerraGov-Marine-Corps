@@ -36,7 +36,7 @@
 	)
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/list/armor_overlays = list()
-	actions_types = list(/datum/action/item_action/toggle/suit_toggle)
+	actions_types = list(/datum/action/item_action/toggle/suit_toggle/light)
 	armor_features_flags = ARMOR_LAMP_OVERLAY
 	item_flags = SYNTH_RESTRICTED|IMPEDE_JETPACK
 	w_class = WEIGHT_CLASS_HUGE
@@ -76,7 +76,7 @@
 	if(!isturf(user.loc))
 		to_chat(user, span_warning("You cannot turn the light on while in [user.loc]."))
 		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ARMOR_LIGHT))
 		return
 	if(!ishuman(user))
 		return
@@ -122,7 +122,7 @@
 
 /obj/item/clothing/suit/storage/marine/transport_crewman
 	name = "\improper PAS-74 pattern transport armor"
-	desc = "A somewhat sparsely armored but robust armored vest. Used by transport crewmen so that they can pretend that they may survice when their vehicle is overrun."
+	desc = "A somewhat sparsely armored but robust armored vest. Used by transport crewmen so that they can pretend that they may survive when their vehicle is overrun."
 	icon_state = "transport_crewman_suit"
 	worn_icon_state = "transport_crewman_suit"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -155,7 +155,6 @@
 	icon_state = "xarmor"
 	soft_armor = list(MELEE = 75, BULLET = 80, LASER = 80, ENERGY = 85, BOMB = 85, BIO = 70, FIRE = 85, ACID = 70)
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
 	item_flags = AUTOBALANCE_CHECK
 
@@ -163,7 +162,7 @@
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
 	AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
-	AddElement(/datum/element/limb_support, supporting_limbs)
+	AddElement(/datum/element/limb_support)
 	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b18_in_use += src
 
@@ -174,6 +173,19 @@
 
 /obj/item/clothing/suit/storage/marine/specialist/valhalla
 	item_flags = NONE
+
+/obj/item/clothing/suit/storage/marine/specialist/tdf
+	name = "\improper Ace class hardsuit"
+	desc = "The Ace class is what would be called a light hardsuit, good mobility and good protection compared to the standard TDF battle armor but pales in comparison to the more advanced and heavier hardsuits out there and not as fancy, it's integrated SMES only provides enough power for its powered exoskeleton and the autodoc system to run for several hours. Provides excellent protection however it does reduce mobility somewhat. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	icon = 'icons/mob/modular/tdf_armor.dmi'
+	worn_icon_list = list(
+		slot_wear_suit_str = 'icons/mob/modular/tdf_armor.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/clothing/suits_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/suits_right.dmi',
+	)
+	icon_state = "tdf_hardsuit"
+	worn_icon_state = "tdf_hardsuit"
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/B17
 	name = "\improper B17 defensive armor"
@@ -225,7 +237,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/hailer,
 		/obj/item/storage/holster/blade,
@@ -301,13 +313,12 @@
 	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
 	attachments_allowed = list(/obj/item/armor_module/storage/grenade)
 	starting_attachments = list(/obj/item/armor_module/storage/grenade)
-	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/commando/Initialize(mapload, ...)
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
-	AddElement(/datum/element/limb_support, supporting_limbs)
+	AddElement(/datum/element/limb_support)
 
 /*===========================I.o.M================================*/
 
@@ -386,7 +397,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 		/obj/item/weapon/twohanded,
@@ -416,7 +427,7 @@
 		to_chat(user, span_warning("You cannot turn the light on while in [user.loc]."))
 		return
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_ARMOR_LIGHT))
 		return
 
 	if(!ishuman(user)) return
@@ -570,7 +581,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonet,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/holster/blade,
 		/obj/item/weapon/baseballbat,

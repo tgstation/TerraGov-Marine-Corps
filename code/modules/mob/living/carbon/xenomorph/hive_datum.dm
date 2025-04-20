@@ -22,14 +22,15 @@
 	var/list/obj/structure/xeno/psychictower/psychictowers = list()
 	///list of phero towers
 	var/list/obj/structure/xeno/pherotower/pherotowers = list()
+	/// List of recovery pylons.
+	var/list/obj/structure/xeno/recovery_pylon/recovery_pylons = list()
+
 	///list of hivemind cores
 	var/list/obj/structure/xeno/hivemindcore/hivemindcores = list()
 	var/tier3_xeno_limit
 	var/tier2_xeno_limit
 	/// Queue of all clients wanting to join xeno side
 	var/list/client/candidates
-	/// Amount of special resin points used to build special resin walls by each hive.
-	var/special_build_points = 50
 
 	///Reference to upgrades available and purchased by this hive.
 	var/datum/hive_purchases/purchases = new
@@ -42,6 +43,14 @@
 /datum/hive_status/New()
 	. = ..()
 	LAZYINITLIST(candidates)
+	/*
+	for(var/datum/xeno_caste/caste_type AS in subtypesof(/datum/xeno_caste))
+		if(caste_type.upgrade != XENO_UPGRADE_BASETYPE)
+			continue
+		if(caste_type.type != caste_type.base_strain_type)
+			continue
+			xenos_by_typepath[caste_type] = list()
+	*/
 
 	for(var/datum/xeno_caste/caste_type AS in subtypesof(/datum/xeno_caste))
 		if(caste_type.upgrade == XENO_UPGRADE_BASETYPE)
@@ -128,6 +137,9 @@
 	// Spawners
 	for(var/obj/structure/xeno/spawner/spawner AS in GLOB.xeno_spawners_by_hive[hivenumber])
 		.["hive_structures"] += list(get_structure_packet(spawner))
+	// Acid Jaws
+	for(var/obj/structure/xeno/acid_maw/acid_jaws AS in GLOB.xeno_acid_jaws_by_hive[hivenumber])
+		.["hive_structures"] += list(get_structure_packet(acid_jaws))
 
 	.["xeno_info"] = list()
 	for(var/mob/living/carbon/xenomorph/xeno AS in get_all_xenos())
@@ -144,7 +156,7 @@
 			"plasma" = round((xeno.plasma_stored / (caste.plasma_max * plasma_multi)) * 100, 1),
 			"is_leader" = xeno.xeno_flags & XENO_LEADER,
 			"is_ssd" = !xeno.client,
-			"index" = GLOB.hive_ui_caste_index[caste.caste_type_path],
+			"index" = GLOB.hive_ui_caste_index[caste.base_strain_type],
 		))
 
 	var/mob/living/carbon/xenomorph/xeno_user
@@ -164,12 +176,12 @@
 	.["user_next_mat_level"] = isxeno(user) && xeno_user.upgrade_possible() ? xeno_user.xeno_caste.upgrade_threshold : 0
 	.["user_tracked"] = isxeno(user) && !isnull(xeno_user.tracked) ? REF(xeno_user.tracked) : ""
 
-	.["user_show_empty"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_EMPTY : 0
-	.["user_show_compact"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_COMPACT_MODE : 0
-	.["user_show_general"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_GENERAL : 0
-	.["user_show_population"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_POPULATION : 0
-	.["user_show_xeno_list"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_XENO_LIST : 0
-	.["user_show_structures"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_STRUCTURES : 0
+	.["user_show_empty"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_EMPTY)
+	.["user_show_compact"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_COMPACT_MODE)
+	.["user_show_general"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_GENERAL)
+	.["user_show_population"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_POPULATION)
+	.["user_show_xeno_list"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_XENO_LIST)
+	.["user_show_structures"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_STRUCTURES)
 
 /// Returns a data entry for the "xeno structures" list based on the structure passed
 /datum/hive_status/proc/get_structure_packet(obj/structure/xeno/struct)
@@ -199,7 +211,7 @@
 	.["user_index"] = 0
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/xeno_user = user
-		.["user_index"] = GLOB.hive_ui_caste_index[xeno_user.xeno_caste.caste_type_path]
+		.["user_index"] = GLOB.hive_ui_caste_index[xeno_user.xeno_caste.base_strain_type]
 
 	.["user_purchase_perms"] = FALSE
 	if(isxeno(user))
@@ -209,9 +221,31 @@
 
 /datum/hive_status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
+	/// Actions that don't require you to be a xeno
+	switch(action)
+		if("ToggleGeneral")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_SHOW_GENERAL
+			usr.client.prefs.save_preferences()
+		if("ToggleCompact")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_COMPACT_MODE
+			usr.client.prefs.save_preferences()
+		if("TogglePopulation")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_SHOW_POPULATION
+			usr.client.prefs.save_preferences()
+		if("ToggleXenoList")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_SHOW_XENO_LIST
+			usr.client.prefs.save_preferences()
+		if("ToggleStructures")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_SHOW_STRUCTURES
+			usr.client.prefs.save_preferences()
+		if("ToggleEmpty")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_SHOW_EMPTY
+
+	/// If the action we're sending is to observe, this will be the xeno being observed. Otherwise it's the xeno pressing the button.
 	var/mob/living/carbon/xenomorph/xeno_target = locate(params["xeno"])
 	if(QDELETED(xeno_target))
 		return
+
 	switch(action)
 		if("Evolve")
 			if(!isxeno(usr))
@@ -240,10 +274,6 @@
 			if(!isxeno(usr))
 				return
 			SEND_SIGNAL(usr, COMSIG_XENOABILITY_BLESSINGSMENU)
-		if("ToggleEmpty")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_EMPTY)
 		if("Compass")
 			var/atom/target = locate(params["target"])
 			if(isobserver(usr))
@@ -252,26 +282,6 @@
 			if(!isxeno(usr))
 				return
 			xeno_target.set_tracked(target)
-		if("ToggleGeneral")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_GENERAL)
-		if("ToggleCompact")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_COMPACT_MODE)
-		if("TogglePopulation")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_POPULATION)
-		if("ToggleXenoList")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_XENO_LIST)
-		if("ToggleStructures")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_STRUCTURES)
 
 /// Returns the string location of the xeno
 /datum/hive_status/proc/get_xeno_location(atom/xeno)
@@ -292,6 +302,16 @@
 		if(t == XENO_TIER_MINION)
 			continue
 		. += length(xenos_by_tier[t])
+
+///returns a list of all caste members, including other strains of this xeno caste
+/datum/hive_status/proc/get_all_caste_members(caste_type)
+	RETURN_TYPE(/list)
+
+	ASSERT(ispath(caste_type, /datum/xeno_caste))
+	. = list()
+	var/list/all_strain_types = get_strain_options(caste_type)
+	for(var/strain_type in all_strain_types)
+		. += xenos_by_typepath[strain_type]
 
 /datum/hive_status/proc/post_add(mob/living/carbon/xenomorph/X)
 	X.color = color
@@ -403,11 +423,11 @@
 		LAZYADD(xenos_by_zlevel["[X.z]"], X)
 	RegisterSignal(X, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(xeno_z_changed))
 
-	if(!xenos_by_typepath[X.xeno_caste.get_base_caste_type()])
+	if(!xenos_by_typepath[get_base_caste_type(X.xeno_caste.type)])
 		stack_trace("trying to add an invalid typepath into hivestatus list [X.caste_base_type]")
 		return FALSE
 
-	xenos_by_typepath[X.xeno_caste.get_base_caste_type()] += X
+	xenos_by_typepath[get_base_caste_type(X.xeno_caste.type)] += X
 	update_tier_limits() //Update our tier limits.
 
 	return TRUE
@@ -521,11 +541,11 @@
 		stack_trace("trying to remove a xeno from hivestatus upgrade list, nothing was removed!?")
 		return FALSE
 
-	if(!xenos_by_typepath[X.xeno_caste.get_base_caste_type()])
+	if(!xenos_by_typepath[get_base_caste_type(X.xeno_caste.type)])
 		stack_trace("trying to remove an invalid typepath from hivestatus list")
 		return FALSE
 
-	if(!xenos_by_typepath[X.xeno_caste.get_base_caste_type()].Remove(X))
+	if(!xenos_by_typepath[get_base_caste_type(X.xeno_caste.type)].Remove(X))
 		stack_trace("failed to remove a xeno from hive status typepath list, nothing was removed!?")
 		return FALSE
 
@@ -704,7 +724,7 @@
 
 	if(dead_xeno == living_xeno_ruler)
 		on_ruler_death(dead_xeno)
-	var/datum/xeno_caste/base_caste = GLOB.xeno_caste_datums[dead_xeno.caste_base_type][XENO_UPGRADE_BASETYPE]
+	var/datum/xeno_caste/base_caste = GLOB.xeno_caste_datums[get_parent_caste_type(dead_xeno.xeno_caste)][XENO_UPGRADE_BASETYPE]
 	if(base_caste.death_evolution_delay <= 0)
 		return
 	if(!caste_death_timers[base_caste])
@@ -752,7 +772,8 @@
 
 	var/mob/living/carbon/xenomorph/successor
 
-	var/list/candidates = xenos_by_typepath[/datum/xeno_caste/queen] + xenos_by_typepath[/datum/xeno_caste/shrike] + xenos_by_typepath[/datum/xeno_caste/king]
+	// TO DO: this shouldn't be a strict type check and should account for strains
+	var/list/candidates = xenos_by_typepath[/datum/xeno_caste/queen] + xenos_by_typepath[/datum/xeno_caste/shrike] + xenos_by_typepath[/datum/xeno_caste/king] + xenos_by_typepath[/datum/xeno_caste/dragon] + xenos_by_typepath[/datum/xeno_caste/king/conqueror]
 	if(length(candidates)) //Priority to the queens.
 		successor = candidates[1] //First come, first serve.
 
@@ -874,17 +895,11 @@ to_chat will check for valid clients itself already so no need to double check f
 
 		to_chat(X, "<span class='[span_class]'><font size=[size]> [message][report_distance ? " Distance: [get_dist(X, target)]" : ""]</font></span>")
 
-// This is to simplify the process of talking in hivemind, this will invoke the receive proc of all xenos in this hive
-/datum/hive_status/proc/hive_mind_message(mob/living/carbon/xenomorph/sender, message)
-	for(var/i in get_all_xenos())
-		var/mob/living/carbon/xenomorph/X = i
-		X.receive_hivemind_message(sender, message)
-
 ///Used for setting the trackers of all xenos in the hive, like when a nuke activates
 /datum/hive_status/proc/set_all_xeno_trackers(atom/target)
 	for(var/mob/living/carbon/xenomorph/X AS in get_all_xenos())
 		X.set_tracked(target)
-		to_chat(X, span_notice(" Now tracking [target.name]"))
+		to_chat(X, span_notice("Now tracking [target.name]"))
 
 // ***************************************
 // *********** Normal Xenos
@@ -1199,7 +1214,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/threes = length(xenos_by_tier[XENO_TIER_THREE])
 	var/fours = length(xenos_by_tier[XENO_TIER_FOUR])
 
-	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours) / 3 + length(psychictowers) + 1, 1))
+	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours) / 3 + length(psychictowers) + 1  - SSticker.mode.tier_three_penalty, 1))
 	tier2_xeno_limit = max(twos, (zeros + ones + fours) + length(psychictowers) * 2 + 1 - threes)
 
 // ***************************************

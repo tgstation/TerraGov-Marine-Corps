@@ -399,7 +399,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	throw_range = 5
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT
-	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
+	attack_verb = list("whips", "lashes", "disciplines", "flogs")
 	singular_name = "cable piece"
 	usesound = 'sound/items/deconstruct.ogg'
 	var/obj/structure/cable/target_type = /obj/structure/cable

@@ -25,7 +25,6 @@
 	var/merge_type // This path and its children should merge with this stack, defaults to src.type
 	var/number_of_extra_variants = 0 //Determines whether the item should update it's sprites based on amount.
 
-
 /obj/item/stack/Initialize(mapload, new_amount)
 	. = ..()
 	if(new_amount)
@@ -87,12 +86,10 @@
 	number.maptext = MAPTEXT(amount)
 	. += number
 
-
 /obj/item/stack/Destroy()
 	if(usr && usr.interactee == src)
 		usr << browse(null, "window=stack")
 	return ..()
-
 
 /obj/item/stack/examine(mob/user)
 	. = ..()
@@ -139,7 +136,7 @@
 
 		if(istype(E, /datum/stack_recipe_list))
 			var/datum/stack_recipe_list/srl = E
-			t1 += "<a href='?src=[REF(src)];sublist=[i]'>[srl.title]</a>"
+			t1 += "<a href='byond://?src=[REF(src)];sublist=[i]'>[srl.title]</a>"
 
 		if(istype(E, /datum/stack_recipe))
 			var/datum/stack_recipe/R = E
@@ -154,7 +151,7 @@
 				title += "[R.title]"
 			title += " ([R.req_amount] [singular_name]\s)"
 			if(can_build)
-				t1 += "<A href='?src=[REF(src)];sublist=[recipes_sublist];make=[i];multiplier=1'>[title]</A>  "
+				t1 += "<A href='byond://?src=[REF(src)];sublist=[recipes_sublist];make=[i];multiplier=1'>[title]</A>  "
 			else
 				t1 += "[title]"
 				continue
@@ -164,9 +161,9 @@
 				var/list/multipliers = list(5,10,25)
 				for(var/n in multipliers)
 					if(max_multiplier >= n)
-						t1 += " <A href='?src=[REF(src)];make=[i];multiplier=[n]'>[n*R.res_amount]x</A>"
+						t1 += " <A href='byond://?src=[REF(src)];make=[i];multiplier=[n]'>[n*R.res_amount]x</A>"
 				if(!(max_multiplier in multipliers))
-					t1 += " <A href='?src=[REF(src)];make=[i];multiplier=[max_multiplier]'>[max_multiplier*R.res_amount]x</A>"
+					t1 += " <A href='byond://?src=[REF(src)];make=[i];multiplier=[max_multiplier]'>[max_multiplier*R.res_amount]x</A>"
 
 	var/datum/browser/popup = new(user, "stack", name, 400, 400)
 	popup.set_content(t1)
@@ -229,10 +226,8 @@
 		if(!isturf(T))
 			return
 		T.PlaceOnTop(R.result_type)
-	else if(ispath(R.result_type, /obj/structure/door))
-		O = new R.result_type(get_turf(user), TRUE)
 	else
-		O = new R.result_type(get_turf(user))
+		O = new R.result_type(get_turf(user), user)
 	if(O)
 		O.setDir(user.dir)
 		O.color = color

@@ -4,7 +4,6 @@
 	icon_state = "x2"
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
-	layer = MID_LANDMARK_LAYER
 	invisibility = INVISIBILITY_ABSTRACT
 
 
@@ -430,7 +429,7 @@
 	icon_state = "weapon6"
 	weapon_list = list(	/obj/item/weapon/gun/pistol/chimp,
 						/obj/item/weapon/banhammer,
-						/obj/item/weapon/chainsword,
+						/obj/item/weapon/twohanded/chainsaw/sword,
 						)
 
 /obj/effect/landmark/sensor_tower

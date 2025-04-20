@@ -30,7 +30,7 @@ GLOBAL_VAR(antag_prototypes)
 /datum/antagonist/proc/antag_panel()
 	var/list/commands = list()
 	for(var/command in get_admin_commands())
-		commands += "<a href='?src=[REF(src)];command=[command]'>[command]</a>"
+		commands += "<a href='byond://?src=[REF(src)];command=[command]'>[command]</a>"
 	var/command_part = commands.Join(" | ")
 	var/data_part = antag_panel_data()
 	var/objective_part = antag_panel_objectives()
@@ -47,22 +47,22 @@ GLOBAL_VAR(antag_prototypes)
 	else
 		var/obj_count = 1
 		for(var/datum/objective/objective in objectives)
-			result += "<B>[obj_count]</B>: [objective.explanation_text] <a href='?src=[REF(owner)];obj_edit=[REF(objective)]'>Edit</a> <a href='?src=[REF(owner)];obj_delete=[REF(objective)]'>Delete</a> <a href='?src=[REF(owner)];obj_completed=[REF(objective)]'><font color=[objective.completed ? "green" : "red"]>[objective.completed ? "Mark as incomplete" : "Mark as complete"]</font></a><br>"
+			result += "<B>[obj_count]</B>: [objective.explanation_text] <a href='byond://?src=[REF(owner)];obj_edit=[REF(objective)]'>Edit</a> <a href='byond://?src=[REF(owner)];obj_delete=[REF(objective)]'>Delete</a> <a href='byond://?src=[REF(owner)];obj_completed=[REF(objective)]'><font color=[objective.completed ? "green" : "red"]>[objective.completed ? "Mark as incomplete" : "Mark as complete"]</font></a><br>"
 			obj_count++
-	result += "<a href='?src=[REF(owner)];obj_add=1;target_antag=[REF(src)]'>Add objective</a><br>"
-	result += "<a href='?src=[REF(owner)];obj_announce=1'>Announce objectives</a><br>"
+	result += "<a href='byond://?src=[REF(owner)];obj_add=1;target_antag=[REF(src)]'>Add objective</a><br>"
+	result += "<a href='byond://?src=[REF(owner)];obj_announce=1'>Announce objectives</a><br>"
 	return result
 
 /datum/antagonist/proc/antag_panel_memory()
 	var/out = "<b>Memory:</b><br>"
 	out += antag_memory
-	out += "<br><a href='?src=[REF(src)];memory_edit=1'>Edit memory</a><br>"
+	out += "<br><a href='byond://?src=[REF(src)];memory_edit=1'>Edit memory</a><br>"
 	return out
 
 /datum/mind/proc/get_common_admin_commands()
 	var/common_commands = "<span>Common Commands:</span>"
 	if(ishuman(current))
-		common_commands += "<a href='?src=[REF(src)];common=undress'>undress</a>"
+		common_commands += "<a href='byond://?src=[REF(src)];common=undress'>undress</a>"
 	return common_commands
 
 /datum/mind/proc/traitor_panel()
@@ -75,7 +75,7 @@ GLOBAL_VAR(antag_prototypes)
 
 	var/out = "<B>[name]</B>[(current && (current.real_name!=name))?" (as [current.real_name])":""]<br>"
 	out += "Mind currently owned by key: [key] [active?"(synced)":"(not synced)"]<br>"
-	out += "Assigned role: [assigned_role]. <a href='?src=[REF(src)];role_edit=1'>Edit</a><br>"
+	out += "Assigned role: [assigned_role]. <a href='byond://?src=[REF(src)];role_edit=1'>Edit</a><br>"
 
 	if(!GLOB.antag_prototypes)
 		GLOB.antag_prototypes = list()
@@ -108,7 +108,7 @@ GLOBAL_VAR(antag_prototypes)
 					continue //Let's skip subtypes of what we already shown.
 			else if(prototype.show_in_antagpanel)
 				if(prototype.can_be_owned(src))
-					possible_admin_antags += "<a href='?src=[REF(src)];add_antag=[prototype.type]' title='[prototype.type]'>[prototype.name]</a>"
+					possible_admin_antags += "<a href='byond://?src=[REF(src)];add_antag=[prototype.type]' title='[prototype.type]'>[prototype.name]</a>"
 				else
 					possible_admin_antags += "<a class='linkOff'>[prototype.name]</a>"
 			else
@@ -125,7 +125,7 @@ GLOBAL_VAR(antag_prototypes)
 		else //Show removal and current one
 			priority_sections |= antag_category
 			antag_header_parts += "<span class='bad'>[current_antag.name]</span>"
-			antag_header_parts += "<a href='?src=[REF(src)];remove_antag=[REF(current_antag)]'>Remove</a>"
+			antag_header_parts += "<a href='byond://?src=[REF(src)];remove_antag=[REF(current_antag)]'>Remove</a>"
 
 
 		//We aren't antag of this category, grab first prototype to check the prefs (This is pretty vague but really not sure how else to do this)
@@ -162,7 +162,7 @@ GLOBAL_VAR(antag_prototypes)
 	//Common Memory
 	var/common_memory = "<span>Common Memory:</span>"
 	common_memory += memory
-	common_memory += "<a href='?src=[REF(src)];memory_edit=1'>Edit Memory</a>"
+	common_memory += "<a href='byond://?src=[REF(src)];memory_edit=1'>Edit Memory</a>"
 	out += common_memory + "<br>"
 	//Other stuff
 	out += get_common_admin_commands()

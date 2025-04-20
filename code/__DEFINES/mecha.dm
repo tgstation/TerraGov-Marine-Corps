@@ -11,8 +11,7 @@
 #define SILICON_PILOT (1<<4)
 #define IS_ENCLOSED (1<<5)
 #define HAS_LIGHTS (1<<6)
-#define QUIET_STEPS (1<<7)
-#define QUIET_TURNS (1<<8)
+#define QUIET_TURNS (1<<7)
 ///blocks using equipment and melee attacking.
 #define CANNOT_INTERACT (1<<9)
 /// Can click from any direction and perform stuff
@@ -21,13 +20,18 @@
 #define MECHA_SKILL_LOCKED (1<<11)
 ///Is currently suffering from an EMP
 #define MECHA_EMPED (1<<12)
+///Whether to immeditely spin when we dont have enough angle on the target
+#define MECHA_SPIN_WHEN_NO_ANGLE (1<<13)
 
 #define MECHA_MELEE (1 << 0)
 #define MECHA_RANGED (1 << 1)
 
 #define MECHA_WEAPON "mecha_weapon" //l and r arm weapon type
+#define MECHA_BACK "mecha_back_weapons"
 #define MECHA_L_ARM "mecha_l_arm"
 #define MECHA_R_ARM "mecha_r_arm"
+#define MECHA_L_BACK "mecha_l_back"
+#define MECHA_R_BACK "mecha_r_back"
 #define MECHA_UTILITY "mecha_utility"
 #define MECHA_POWER "mecha_power"
 #define MECHA_ARMOR "mecha_armor"
@@ -84,6 +88,8 @@
 #define EXOSUIT_MODULE_SAVANNAH (1<<6)
 /// Module is compatible with Greyscale Exosuit models
 #define EXOSUIT_MODULE_GREYSCALE (1<<7)
+/// Module is shown in the greyscale mech menu purchasing screen
+#define EXOSUIT_MODULE_VENDABLE (1<<8)
 
 /// Module is compatible with "Working" Exosuit models - Ripley and Clarke
 #define EXOSUIT_MODULE_WORKING EXOSUIT_MODULE_RIPLEY
@@ -103,6 +109,7 @@
 #define MECH_VANGUARD "Vanguard"
 #define MECH_RECON "Recon"
 #define MECH_ASSAULT "Assault"
+#define MECH_MEDIUM "Medium"
 
 #define MECH_GREY_R_ARM "R_ARM"
 #define MECH_GREY_L_ARM "L_ARM"
@@ -120,3 +127,6 @@
 		MECHA_POWER = 1,\
 		MECHA_ARMOR = 1,\
 	)
+
+#define MECH_COOLDOWN_KEY_RAPIDFIRE "rapidfire"
+#define MECH_COOLDOWN_KEY_HIGHALPHASTRIKE "highalpha_strike"

@@ -3,6 +3,7 @@
 	display_name = "Hivelord"
 	upgrade_name = ""
 	caste_desc = "A builder of REALLY BIG hives."
+	base_strain_type = /mob/living/carbon/xenomorph/hivelord
 	caste_type_path = /mob/living/carbon/xenomorph/hivelord
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -62,7 +63,6 @@
 		/datum/action/ability/activable/xeno/healing_infusion,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/secrete_resin/hivelord,
-		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/activable/xeno/transfer_plasma/improved,
 		/datum/action/ability/activable/xeno/corrosive_acid,
@@ -75,7 +75,9 @@
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/xeno_action/create_jelly,
 		/datum/action/ability/xeno_action/place_jelly_pod,
+		/datum/action/ability/xeno_action/place_recovery_pylon,
 		/datum/action/ability/activable/xeno/recycle,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)
 
 /datum/xeno_caste/hivelord/normal
@@ -98,7 +100,6 @@
 		/datum/action/ability/activable/xeno/healing_infusion,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/secrete_resin/hivelord,
-		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/activable/xeno/transfer_plasma/improved,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
@@ -112,5 +113,7 @@
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/xeno_action/create_jelly,
 		/datum/action/ability/xeno_action/place_jelly_pod,
+		/datum/action/ability/xeno_action/place_recovery_pylon,
 		/datum/action/ability/activable/xeno/recycle,
+		/datum/action/ability/activable/xeno/place_pattern,
 	)

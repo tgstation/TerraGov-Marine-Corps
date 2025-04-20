@@ -8,7 +8,7 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("called", "rang")
+	attack_verb = list("calls", "rings")
 	hitsound = 'sound/weapons/ring.ogg'
 
 /obj/item/clock
@@ -68,7 +68,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("bludgeoned", "whacked", "disciplined")
+	attack_verb = list("bludgeons", "whacks", "disciplines")
 
 /obj/item/staff/broom
 	name = "broom"
@@ -82,7 +82,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "skub"
 	w_class = WEIGHT_CLASS_BULKY
-	attack_verb = list("skubbed")
+	attack_verb = list("skubs")
 
 /obj/item/ectoplasm
 	name = "ectoplasm"
@@ -131,3 +131,17 @@
 	icon_state = "rosary"
 	worn_icon_state = "rosary"
 	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/paper_map
+	name = "\improper paper map"
+	desc = "An ancient tool used by primitives to help them navigate."
+	icon = 'icons/obj/items/paper.dmi'
+	icon_state = "map"
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/album
+	name = "\improper photo album"
+	desc = "An album book full of someone's important memories."
+	icon = 'icons/obj/items/paper.dmi'
+	icon_state = "album"
+	w_class = WEIGHT_CLASS_SMALL

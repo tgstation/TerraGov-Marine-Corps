@@ -535,7 +535,7 @@ GLOBAL_LIST_EMPTY(possible_items)
 	if(tgui_alert(admin, "Use the area we are currently in?", "Continue?", list("Yes", "No")) != "No")
 		defendedarea = get_area(admin)
 	else
-		var/area/new_target = input(admin,"Select target:", "Objective target") as null|anything in GLOB.sorted_areas
+		var/area/new_target = input(admin,"Select target:", "Objective target") as null|anything in get_sorted_areas()
 		defendedarea = new_target
 	update_explanation_text()
 

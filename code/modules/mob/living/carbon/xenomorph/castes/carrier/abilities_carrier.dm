@@ -41,15 +41,14 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Use/Throw Facehugger"
 	action_icon_state = "throw_hugger"
 	action_icon = 'icons/Xeno/actions/carrier.dmi'
-	desc = "Click on a non tile and non mob to bring a facehugger into your hand. Click at a target or tile to throw a facehugger."
+	desc = "Throw a facehugger at something. Using this ability on a facehugger already on the ground will recycle it to your storage."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_THROW_HUGGER,
 	)
 	cooldown_duration = 3 SECONDS
 
 /datum/action/ability/activable/xeno/throw_hugger/get_cooldown()
-	var/mob/living/carbon/xenomorph/carrier/caster = owner
-	return caster.xeno_caste.hugger_delay
+	return xeno_owner.xeno_caste.hugger_delay
 
 /datum/action/ability/activable/xeno/throw_hugger/can_use_ability(atom/A, silent = FALSE, override_flags) // true
 	. = ..()
@@ -59,53 +58,51 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		return FALSE
 
 /datum/action/ability/activable/xeno/throw_hugger/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/carrier/caster = owner
-
 	//target a hugger on the ground to store it directly
 	if(istype(A, /obj/item/clothing/mask/facehugger))
-		if(isturf(get_turf(A)) && caster.Adjacent(A))
-			if(!caster.issamexenohive(A))
-				to_chat(caster, span_warning("That facehugger is tainted!"))
-				caster.dropItemToGround(A)
+		if(isturf(get_turf(A)) && xeno_owner.Adjacent(A))
+			if(!xeno_owner.issamexenohive(A))
+				to_chat(xeno_owner, span_warning("That facehugger is tainted!"))
+				xeno_owner.dropItemToGround(A)
 				return fail_activate()
-			caster.store_hugger(A)
+			xeno_owner.store_hugger(A)
 			return succeed_activate()
 
-	var/obj/item/clothing/mask/facehugger/F = caster.get_active_held_item()
+	var/obj/item/clothing/mask/facehugger/F = xeno_owner.get_active_held_item()
 	if(!istype(F) || F.stat == DEAD) //empty active hand
 		//if no hugger in active hand, we take one from our storage
-		if(!caster.huggers)
-			to_chat(caster, span_warning("We don't have any facehuggers to use!"))
+		if(!xeno_owner.huggers)
+			to_chat(xeno_owner, span_warning("We don't have any facehuggers to use!"))
 			return fail_activate()
 
-		F = new caster.selected_hugger_type(get_turf(caster), caster.hivenumber, caster)
-		caster.huggers--
+		F = new xeno_owner.selected_hugger_type(get_turf(xeno_owner), xeno_owner.hivenumber, xeno_owner)
+		xeno_owner.huggers--
 
-		caster.put_in_active_hand(F)
-		to_chat(caster, span_xenonotice("We grab one of the facehuggers in our storage. Now sheltering: [caster.huggers] / [caster.xeno_caste.huggers_max]."))
+		xeno_owner.put_in_active_hand(F)
+		to_chat(xeno_owner, span_xenonotice("We grab one of the facehuggers in our storage. Now sheltering: [xeno_owner.huggers] / [xeno_owner.xeno_caste.huggers_max]."))
 
 	if(!cooldown_timer)
-		caster.dropItemToGround(F)
-		playsound(caster, 'sound/effects/throw.ogg', 30, TRUE)
+		xeno_owner.dropItemToGround(F)
+		playsound(xeno_owner, 'sound/effects/throw.ogg', 30, TRUE)
 		F.stat = CONSCIOUS //Hugger is conscious
 		F.leaping = FALSE //Hugger is not leaping
-		F.facehugger_register_source(caster) //Set us as the source
+		F.facehugger_register_source(xeno_owner) //Set us as the source
 		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
-		caster.visible_message(span_xenowarning("\The [caster] throws something towards \the [A]!"), \
+		xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] throws something towards \the [A]!"), \
 		span_xenowarning("We throw a facehugger towards \the [A]!"))
 		add_cooldown()
 		return succeed_activate()
 
-/mob/living/carbon/xenomorph/carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE, forced = FALSE)
+/mob/living/carbon/xenomorph/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE, forced = FALSE) //todo: wrap this into ability
 	if(huggers < xeno_caste.huggers_max)
 		if(F.stat == DEAD && !forced)
-			to_chat(src, span_notice("This young one has already expired, we cannot salvage it."))
+			to_chat(src, span_notice("This facehugger has already expired, we cannot salvage it."))
 			return
 		F.kill_hugger()
 		huggers++
 		if(message)
 			playsound(src, 'sound/voice/alien/drool2.ogg', 50, 0, 1)
-			to_chat(src, span_notice("We salvage this young one's biomass to produce another. Now sheltering: [huggers] / [xeno_caste.huggers_max]."))
+			to_chat(src, span_notice("We salvage this facehugger's biomass to produce another. Now sheltering: [huggers] / [xeno_caste.huggers_max]."))
 	else if(message)
 		to_chat(src, span_warning("We can't carry any more facehuggers!"))
 
@@ -116,7 +113,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Place trap"
 	action_icon_state = "place_trap"
 	action_icon = 'icons/Xeno/actions/construction.dmi'
-	desc = "Place a hole on weeds that can be filled with a hugger or acid. Activates when a marine steps on it."
+	desc = "Place a hole on weeds that can be filled with a hugger or with acid. Activates when a marine steps on it."
 	ability_cost = 400
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLACE_TRAP,
@@ -131,8 +128,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 			to_chat(owner, span_warning("We can't do that here."))
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(!owner_xeno.loc_weeds_type)
+	if(!xeno_owner.loc_weeds_type)
 		if(!silent)
 			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
@@ -168,7 +164,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	use_state_flags = ABILITY_USE_LYING
 
 /datum/action/ability/xeno_action/spawn_hugger/on_cooldown_finish()
-	to_chat(owner, span_xenodanger("We can now spawn another young one."))
+	to_chat(owner, span_xenodanger("We can now spawn another facehugger."))
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
@@ -176,18 +172,15 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/xenomorph/carrier/caster = owner
-	if(caster.huggers >= caster.xeno_caste.huggers_max)
+	if(xeno_owner.huggers >= xeno_owner.xeno_caste.huggers_max)
 		if(!silent)
-			to_chat(caster, span_xenowarning("We can't host any more young ones!"))
+			to_chat(xeno_owner, span_xenowarning("We can't host any more facehugger!"))
 		return FALSE
 
 /datum/action/ability/xeno_action/spawn_hugger/action_activate()
-	var/mob/living/carbon/xenomorph/carrier/caster = owner
-
-	caster.huggers++
-	to_chat(caster, span_xenowarning("We spawn a young one via the miracle of asexual internal reproduction, adding it to our stores. Now sheltering: [caster.huggers] / [caster.xeno_caste.huggers_max]."))
-	playsound(caster, 'sound/voice/alien/drool2.ogg', 50, 0, 1)
+	xeno_owner.huggers++
+	to_chat(xeno_owner, span_xenowarning("We spawn a facehugger via the miracle of asexual internal reproduction, adding it to our stores. Now sheltering: [xeno_owner.huggers] / [xeno_owner.xeno_caste.huggers_max]."))
+	playsound(xeno_owner, 'sound/voice/alien/drool2.ogg', 50, 0, 1)
 	succeed_activate()
 	add_cooldown()
 	if(owner.client)
@@ -201,7 +194,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Drop All Facehuggers"
 	action_icon_state = "carrier_panic"
 	action_icon = 'icons/Xeno/actions/carrier.dmi'
-	desc = "Drop all stored huggers in a fit of panic. Uses all remaining plasma!"
+	desc = "Drop all stored facehuggers in a fit of panic. Uses all remaining plasma!"
 	ability_cost = 10
 	cooldown_duration = 50 SECONDS
 	keybinding_signals = list(
@@ -226,28 +219,25 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/xenomorph/carrier/caster = owner
-	if(caster.health > (caster.maxHealth * 0.56))
+	if(xeno_owner.health > (xeno_owner.maxHealth * 0.56))
 		if(!silent)
-			to_chat(caster, span_xenowarning("We are not injured enough to panic yet!"))
+			to_chat(xeno_owner, span_xenowarning("We are not injured enough to panic yet!"))
 		return FALSE
-	if(caster.huggers < 1)
+	if(xeno_owner.huggers < 1)
 		if(!silent)
-			to_chat(caster, span_xenowarning("We do not have any young ones to drop!"))
+			to_chat(xeno_owner, span_xenowarning("We do not have any facehuggers to drop!"))
 		return FALSE
 
 /datum/action/ability/xeno_action/carrier_panic/action_activate()
-	var/mob/living/carbon/xenomorph/carrier/xeno_carrier = owner
-
-	if(!xeno_carrier.huggers)
+	if(!xeno_owner.huggers)
 		return
 
-	xeno_carrier.visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [xeno_carrier]!"))
-	while(xeno_carrier.huggers > 0)
-		var/obj/item/clothing/mask/facehugger/new_hugger = new /obj/item/clothing/mask/facehugger/larval(get_turf(xeno_carrier), xeno_carrier.hivenumber, xeno_carrier)
-		step_away(new_hugger, xeno_carrier, 1)
+	xeno_owner.visible_message(span_xenowarning("A chittering mass of tiny aliens is trying to escape [xeno_owner]!"))
+	while(xeno_owner.huggers > 0)
+		var/obj/item/clothing/mask/facehugger/new_hugger = new /obj/item/clothing/mask/facehugger/larval(get_turf(xeno_owner), xeno_owner.hivenumber, xeno_owner)
+		step_away(new_hugger, xeno_owner, 1)
 		addtimer(CALLBACK(new_hugger, TYPE_PROC_REF(/obj/item/clothing/mask/facehugger, go_active), TRUE), new_hugger.jump_cooldown)
-		xeno_carrier.huggers--
+		xeno_owner.huggers--
 	succeed_activate(INFINITY) //Consume all remaining plasma
 	add_cooldown()
 
@@ -259,36 +249,33 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Choose Hugger Type"
 	action_icon_state = "facehugger"
 	action_icon = 'icons/Xeno/actions/carrier.dmi'
-	desc = "Selects which hugger type you will build with the Spawn Hugger ability."
+	desc = "Selects which hugger type you will build with the Use/Throw Facehugger ability."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CHOOSE_HUGGER,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SWITCH_HUGGER,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_STAGGERED
 
 /datum/action/ability/xeno_action/choose_hugger_type/give_action(mob/living/L)
 	. = ..()
-	var/mob/living/carbon/xenomorph/caster = owner
-	caster.selected_hugger_type = GLOB.hugger_type_list[1] //Set our default
+	xeno_owner.selected_hugger_type = GLOB.hugger_type_list[1] //Set our default
 	update_button_icon() //Update immediately to get our default
 
 /datum/action/ability/xeno_action/choose_hugger_type/update_button_icon()
-	var/mob/living/carbon/xenomorph/caster = owner
-	var/atom/A = caster.selected_hugger_type
+	var/atom/A = xeno_owner.selected_hugger_type
 	action_icon_state = initial(A.name)
 	return ..()
 
 /datum/action/ability/xeno_action/choose_hugger_type/alternate_action_activate()
-	var/mob/living/carbon/xenomorph/caster = owner
-	var/i = GLOB.hugger_type_list.Find(caster.selected_hugger_type)
+	var/i = GLOB.hugger_type_list.Find(xeno_owner.selected_hugger_type)
 	if(length(GLOB.hugger_type_list) == i)
-		caster.selected_hugger_type = GLOB.hugger_type_list[1]
+		xeno_owner.selected_hugger_type = GLOB.hugger_type_list[1]
 	else
-		caster.selected_hugger_type = GLOB.hugger_type_list[i+1]
+		xeno_owner.selected_hugger_type = GLOB.hugger_type_list[i+1]
 
-	var/atom/A = caster.selected_hugger_type
-	to_chat(caster, span_notice("We will now spawn <b>[initial(A.name)]\s</b> when using the Spawn Hugger ability."))
-	caster.balloon_alert(caster,"[initial(A.name)]")
+	var/atom/A = xeno_owner.selected_hugger_type
+	to_chat(xeno_owner, span_notice("We will now spawn <b>[initial(A.name)]\s</b> when using the Spawn Facehugger ability."))
+	xeno_owner.balloon_alert(xeno_owner,"[initial(A.name)]")
 	update_button_icon()
 	succeed_activate()
 	return COMSIG_KB_ACTIVATED
@@ -297,21 +284,20 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	var/hugger_choice = show_radial_menu(owner, owner, GLOB.hugger_images_list, radius = 48)
 	if(!hugger_choice)
 		return
-	var/mob/living/carbon/xenomorph/caster = owner
 	for(var/obj/item/clothing/mask/facehugger/hugger_type AS in GLOB.hugger_type_list)
 		if(initial(hugger_type.name) == hugger_choice)
-			caster.selected_hugger_type = hugger_type
+			xeno_owner.selected_hugger_type = hugger_type
 			break
-	to_chat(caster, span_notice("We will now spawn <b>[hugger_choice]\s</b> when using the spawn hugger ability."))
-	caster.balloon_alert(caster, "[hugger_choice]")
+	to_chat(xeno_owner, span_notice("We will now spawn <b>[hugger_choice]\s</b> when using the Spawn Facehugger ability."))
+	xeno_owner.balloon_alert(xeno_owner, "[hugger_choice]")
 	update_button_icon()
 	return succeed_activate()
 
 /datum/action/ability/xeno_action/build_hugger_turret
-	name = "build hugger turret"
+	name = "Build Hugger Turret"
 	action_icon_state = "hugger_turret"
 	action_icon = 'icons/Xeno/actions/carrier.dmi'
-	desc = "Build a hugger turret"
+	desc = "Construct a turret that will launch facehuggers at enemy marines. The type of facehugger currently selected when the turret is built will determine the type of facehugger that is fired."
 	ability_cost = 800
 	cooldown_duration = 5 MINUTES
 	keybinding_signals = list(
@@ -330,8 +316,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!T.is_weedable())
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(!owner_xeno.loc_weeds_type)
+	if(!xeno_owner.loc_weeds_type)
 		if(!silent)
 			to_chat(owner, span_xenowarning("No weeds here!"))
 		return FALSE
@@ -352,9 +337,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!can_use_action())
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/carrier/caster = owner
-	var/obj/structure/xeno/xeno_turret/hugger_turret/turret = new (get_turf(owner), caster.hivenumber)
-	turret.ammo = GLOB.ammo_list[GLOB.hugger_to_ammo[caster.selected_hugger_type]]
+	var/obj/structure/xeno/xeno_turret/hugger_turret/turret = new (get_turf(owner), xeno_owner.hivenumber)
+	turret.ammo = GLOB.ammo_list[GLOB.hugger_to_ammo[xeno_owner.selected_hugger_type]]
 	succeed_activate()
 	add_cooldown()
 
@@ -366,7 +350,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Call of Younger"
 	action_icon_state = "call_younger"
 	action_icon = 'icons/Xeno/actions/carrier.dmi'
-	desc = "Appeals to the larva inside the Marine. The Marine loses his balance, and larva's progress accelerates."
+	desc = "Appeals to the larva inside the Marine. The Marine loses their balance, and the larva's growth progress accelerates."
 	ability_cost = 150
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
@@ -388,12 +372,12 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	if(!(locate(/obj/item/alien_embryo) in target))
 		if(!silent)
-			target.balloon_alert(owner, "He's not infected")
+			target.balloon_alert(owner, "Not infected")
 		return FALSE
 
 	if(target.stat == DEAD)
 		if(!silent)
-			target.balloon_alert(owner, "He's dead")
+			target.balloon_alert(owner, "Dead")
 		return FALSE
 
 	if(!line_of_sight(owner, target, 9))
@@ -403,25 +387,24 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	return TRUE
 
 /datum/action/ability/activable/xeno/call_younger/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/caster = owner
 	var/mob/living/carbon/human/victim = A
 
 	owner.face_atom(victim)
 
-	if(!do_after(caster, 0.5 SECONDS, NONE, caster, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY)))
+	if(!do_after(xeno_owner, 0.5 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY)))
 		return fail_activate()
 	if(!can_use_ability(A))
 		return fail_activate()
 
 	var/obj/item/alien_embryo/young = locate() in victim
 	var/debuff = young.stage + 1
-	var/stamina_dmg = (victim.maxHealth + victim.max_stamina) * (debuff + caster.xeno_caste.aura_strength) * 0.1
+	var/stamina_dmg = (victim.maxHealth + victim.max_stamina) * (debuff + xeno_owner.xeno_caste.aura_strength) * 0.1
 
-	caster.emote("roar5")
+	xeno_owner.emote("roar5")
 	victim.emote("scream")
 	owner.visible_message(span_xenowarning("\the [owner] emits an unusual roar!"), \
 	span_xenowarning("We called out to the younger one inside [victim]!"))
-	victim.visible_message(span_xenowarning("\The [victim] loses his balance, falling to the side!"), \
+	victim.visible_message(span_xenowarning("\The [victim] loses [victim.p_their()] balance, falling to the side!"), \
 	span_xenowarning("You feel like something inside you is tearing out!"))
 
 	victim.apply_effects(2 SECONDS, 1 SECONDS)
