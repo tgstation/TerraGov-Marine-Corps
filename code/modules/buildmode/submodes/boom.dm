@@ -9,6 +9,7 @@
 /datum/buildmode_mode/boom
 	key = "boom"
 
+	/// List of the levels of explosion properties
 	var/list/explosions = list(
 		BOOM_DEVASTATION = 0,
 		BOOM_HEAVY = 0,
@@ -26,13 +27,13 @@
 		[span_warning("NOTE:")] Using the \"Config/Launch Supplypod\" verb allows you to do this in an IC way (i.e., making a cruise missile come down from the sky and explode wherever you click!)"))
 	)
 
-/datum/buildmode_mode/boom/change_settings(client/c)
+/datum/buildmode_mode/boom/change_settings(client/user)
 	for (var/explosion_level in explosions)
-		explosions[explosion_level] = input(c, "Range of total [explosion_level]. 0 to none", "Input") as num|null
+		explosions[explosion_level] = input(user, "Range of total [explosion_level]. 0 to none", "Input") as num|null
 		if(explosions[explosion_level] == null || explosions[explosion_level] < 0)
 			explosions[explosion_level] = 0
 
-/datum/buildmode_mode/boom/handle_click(client/c, params, obj/object)
+/datum/buildmode_mode/boom/handle_click(client/user, params, obj/object)
 	var/list/modifiers = params2list(params)
 
 	var/value_valid = FALSE
@@ -44,9 +45,9 @@
 		return
 
 	if(LAZYACCESS(modifiers, LEFT_CLICK))
-		to_chat(c, span_notice("Success."))
-		log_admin("Build Mode: [key_name(c)] caused an explosion(dev=[explosions[BOOM_DEVASTATION]], hvy=[explosions[BOOM_HEAVY]], lgt=[explosions[BOOM_LIGHT]], weak=[explosions[BOOM_WEAK]], flash=[explosions[BOOM_FLASH]], flames=[explosions[BOOM_FLAMES]]) at [AREACOORD(object)]")
-		explosion(object, explosions[BOOM_DEVASTATION], explosions[BOOM_HEAVY], explosions[BOOM_LIGHT], explosions[BOOM_WEAK], explosions[BOOM_FLASH], explosions[BOOM_FLAMES], adminlog = FALSE, explosion_cause = key_name(c))
+		to_chat(user, span_notice("Success."))
+		log_admin("Build Mode: [key_name(user)] caused an explosion(dev=[explosions[BOOM_DEVASTATION]], hvy=[explosions[BOOM_HEAVY]], lgt=[explosions[BOOM_LIGHT]], weak=[explosions[BOOM_WEAK]], flash=[explosions[BOOM_FLASH]], flames=[explosions[BOOM_FLAMES]]) at [AREACOORD(object)]")
+		explosion(object, explosions[BOOM_DEVASTATION], explosions[BOOM_HEAVY], explosions[BOOM_LIGHT], explosions[BOOM_WEAK], explosions[BOOM_FLASH], explosions[BOOM_FLAMES], adminlog = FALSE, explosion_cause = key_name(user))
 
 #undef BOOM_DEVASTATION
 #undef BOOM_HEAVY

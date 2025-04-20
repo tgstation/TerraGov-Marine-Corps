@@ -1,5 +1,7 @@
 /datum/buildmode_mode/smite
 	key = "smite"
+
+	/// The holder for the currently selected smite datum 
 	var/datum/smite/selected_smite
 
 /datum/buildmode_mode/smite/Destroy()
@@ -24,16 +26,16 @@
 /datum/buildmode_mode/smite/handle_click(client/user, params_string, object)
 	var/list/params = params2list(params_string)
 
-	if (!check_rights(R_ADMIN | R_FUN))
+	if(!check_rights(R_ADMIN | R_FUN))
 		return
 
-	if (!params.Find("left"))
+	if(!params.Find("left"))
 		return
 
-	if (!isliving(object))
+	if(!isliving(object))
 		return
 
-	if (selected_smite == null)
+	if(selected_smite == null)
 		to_chat(user, span_notice("No smite selected."))
 		return
 
