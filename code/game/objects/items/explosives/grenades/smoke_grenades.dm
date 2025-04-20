@@ -95,7 +95,7 @@
 	hud_state = "grenade_drain"
 	det_time = 6 SECONDS
 	icon_state_mini = "grenade_blue"
-	dangerous = TRUE
+	dangerous = FALSE
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
 	smoke_duration = 11
 	smokeradius = 7
@@ -108,7 +108,7 @@
 	hud_state = "grenade_antigas"
 	det_time = 3 SECONDS
 	icon_state_mini = "grenade_antigas"
-	dangerous = TRUE
+	dangerous = FALSE
 	smoketype = /datum/effect_system/smoke_spread/antigas
 	smoke_duration = 11
 	smokeradius = 7
