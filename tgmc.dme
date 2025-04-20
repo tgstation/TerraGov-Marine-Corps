@@ -1437,6 +1437,7 @@
 #include "code\modules\admin\verbs\plane_debugger.dm"
 #include "code\modules\admin\verbs\poll_managment.dm"
 #include "code\modules\admin\verbs\pray.dm"
+#include "code\modules\admin\verbs\request_internet_sound.dm"
 #include "code\modules\admin\verbs\selectequipment.dm"
 #include "code\modules\admin\verbs\shuttlepanel.dm"
 #include "code\modules\admin\verbs\whitelist.dm"

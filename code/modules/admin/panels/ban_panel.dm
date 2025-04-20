@@ -26,6 +26,8 @@
 			mute_string = "deadchat"
 		if(MUTE_TTS)
 			mute_string = "text to speech"
+		if(MUTE_INTERNET_REQUEST)
+			mute_string = "internet requests"
 		if(MUTE_ALL)
 			mute_string = "everything"
 		else
