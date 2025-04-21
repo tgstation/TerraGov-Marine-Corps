@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "The sniper stacking debuff should be more consistent with not applying the damage modifier when there's only one shooter"

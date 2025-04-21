@@ -18,7 +18,7 @@ const MultiZPerfToString = (integer) => {
   let returnval = '';
   switch (integer) {
     case -1:
-      returnval = 'Standard';
+      returnval = 'No Culling';
       break;
     case 0:
       returnval = 'Low';
@@ -186,7 +186,7 @@ export const GameSettings = (props) => {
                 label="Multi-Z Detail"
                 value={MultiZPerfToString(multiz_performance)}
                 action="multiz_performance"
-                tooltip="How detailed multi-z is. Lower this to improve performance."
+                tooltip="How many Multi-Z levels are rendered before they start getting culled. Decrease this to improve performance in case of lag on multi-z maps."
               />
               <ToggleFieldPreference
                 label="TGUI Window Mode"
@@ -310,6 +310,15 @@ export const GameSettings = (props) => {
                 label="Show typing indicator"
                 value="show_typing"
                 action="show_typing"
+                leftValue={1}
+                leftLabel={'Enabled'}
+                rightValue={0}
+                rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
+                label="Toggle bump attacking"
+                value="toggle_bump_attacking"
+                action="toggle_bump_attacking"
                 leftValue={1}
                 leftLabel={'Enabled'}
                 rightValue={0}

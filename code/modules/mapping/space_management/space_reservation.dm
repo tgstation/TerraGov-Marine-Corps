@@ -42,6 +42,7 @@
 	base_lighting_alpha = 255
 
 /datum/turf_reservation/transit/droppod
+	turf_type = /turf/open/space/transit/north
 	///turfs that have currently been reserved for use by drop pods
 	var/list/turf/taken_turfs = list()
 

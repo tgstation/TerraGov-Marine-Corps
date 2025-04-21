@@ -139,6 +139,7 @@
 			data["max_chat_length"] = max_chat_length
 			data["see_chat_non_mob"] = see_chat_non_mob
 			data["see_rc_emotes"] = see_rc_emotes
+			data["toggle_bump_attacking"] = toggle_bump_attacking
 			data["mute_others_combat_messages"] = mute_others_combat_messages
 			data["mute_self_combat_messages"] = mute_self_combat_messages
 			data["show_xeno_rank"] = show_xeno_rank
@@ -737,6 +738,9 @@
 		if("see_rc_emotes")
 			see_rc_emotes = !see_rc_emotes
 
+		if("toggle_bump_attacking")
+			toggle_bump_attacking = !toggle_bump_attacking
+
 		if("mute_self_combat_messages")
 			mute_self_combat_messages = !mute_self_combat_messages
 
@@ -842,7 +846,7 @@
 				group.build_planes_offset(my_hud, my_hud.current_plane_offset)
 
 		if("multiz_performance")
-			multiz_performance = WRAP(multiz_performance + 1, MAX_EXPECTED_Z_DEPTH-1, MULTIZ_PERFORMANCE_DISABLE + 1)
+			multiz_performance = WRAP(multiz_performance + 1, MULTIZ_PERFORMANCE_DISABLE, MAX_EXPECTED_Z_DEPTH)
 			var/datum/hud/my_hud = parent.mob?.hud_used
 			if(!my_hud)
 				return
