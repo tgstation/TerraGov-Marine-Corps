@@ -3,26 +3,32 @@
 #define BM_SWITCHSTATE_DIR 2
 
 /datum/buildmode
+	/// Currently selected build direction
 	var/build_dir = SOUTH
+	/// Holder for the current selected buildmode mode
 	var/datum/buildmode_mode/mode
+	/// The client using the build mode
 	var/client/holder
 
-	// login callback
-	var/li_cb
+	/// Login callback holder
+	var/datum/callback/li_cb
 
-	// SECTION UI
+	/// A list of buttons used to control buildmode
 	var/list/buttons
 
-	// Switching management
+	/// Keeps track of what buttons to display, for example are we switching direction or mode currently
 	var/switch_state = BM_SWITCHSTATE_NONE
+	/// Variable used to determine the spacing of the mode buttons
 	var/switch_width = 4
-	// modeswitch UI
+	/// Holder for the button to switch modes
 	var/atom/movable/screen/buildmode/mode/modebutton
+	/// Holder for the list of buttons to switch modes
 	var/list/modeswitch_buttons = list()
-	// dirswitch UI
+	/// Holder for the button to change directions
 	var/atom/movable/screen/buildmode/bdir/dirbutton
+	/// List of the buttons to switch directions
 	var/list/dirswitch_buttons = list()
-	/// item preview for selected item
+	/// Item preview for selected item
 	var/atom/movable/screen/buildmode/preview_item/preview
 
 /datum/buildmode/New(client/c)
