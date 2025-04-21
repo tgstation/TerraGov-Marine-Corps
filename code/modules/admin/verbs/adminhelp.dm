@@ -453,6 +453,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		AddInteraction("<font color='#ff8c8c'>Made admin ticket by: [key_name_admin(usr)].</font>")
 		message_admins("Ticket [TicketHref("#[id]")] has been made [msg] by [ref].")
 		to_chat(initiator, span_adminhelp("Your ticket has been tiered to an adminhelp."))
+		for(var/client/X in GLOB.admins)
+			if(is_mentor(X))
+				continue
+			if(X.prefs.toggles_sound & SOUND_ADMINHELP)
+				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
+				window_flash(X)
 	else if(tier == TICKET_ADMIN)
 		tier = TICKET_MENTOR
 		msg = "a mentor ticket"
