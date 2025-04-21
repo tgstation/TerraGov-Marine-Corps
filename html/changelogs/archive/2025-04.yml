@@ -137,7 +137,6 @@
   - code_imp: changed welding hat code to use balloon alerts when toggling
   - refactor: refactored mentions of welding masks into welding helmets
   Arturlang:
-  - balance: Weed pods are no longer deleted when resin walls are destroyed
   - rscadd: Special resin walls are now free, but weaker in health in comparison to
       normal walls, they've been moved into normal secrete resin
   - rscadd: Adds the ability to replace resin walls with different variants
