@@ -90,5 +90,6 @@
 			shuttle.setTimer(0)
 			balloon_alert(usr, "shuttle selected, locking")
 			ui.close()
+			log_game("[key_name(usr)] has picked the tadpole")
 	return TRUE
 
