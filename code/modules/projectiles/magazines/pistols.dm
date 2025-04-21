@@ -272,7 +272,7 @@
 	default_ammo = /datum/ammo/bullet/pistol
 	caliber = CALIBER_ALIEN
 	icon_state = "knife"
-	icon_state_mini = "Rule Two: whattheknifeisthis"
+	icon_state_mini = "knife"
 	max_rounds = 1
 
 //XM104 cylinder placed in pistols

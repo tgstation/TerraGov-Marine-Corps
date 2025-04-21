@@ -495,8 +495,6 @@
 	var/closed_overlay
 	///Overlay icon_state to display on the box when it is open
 	var/open_overlay
-	///A booleon check to make sure storage_datum initializes way before the stats get updated.
-	var/overlay_stats_updated = FALSE
 	storage_type = /datum/storage/box/visual
 
 /obj/item/storage/box/visual/Initialize(mapload, ...)
@@ -511,7 +509,6 @@
 	SHOULD_CALL_PARENT(TRUE)
 	max_overlays = amt_horizontal * amt_vertical
 	overlay_w_class = FLOOR(storage_datum.max_storage_space / max_overlays, 1)
-	overlay_stats_updated = TRUE
 	update_icon() //Getting the closed_overlay onto it
 
 /obj/item/storage/box/visual/examine(mob/user, distance, infix, suffix)
@@ -534,7 +531,7 @@
 			. += "A lot of: [initial(I.name)]."
 
 /obj/item/storage/box/visual/attack_self(mob/user)
-	overlay_stats_updated ? null : update_stats()
+	update_stats()
 	deployed = TRUE
 	user.dropItemToGround(src)
 	update_icon()
@@ -547,7 +544,7 @@
 		return
 
 	if(!deployed)
-		overlay_stats_updated ? null : update_stats()
+		update_stats()
 		user.put_in_hands(src)
 		return
 
@@ -982,7 +979,7 @@
 
 // -Energy-
 
-/obj/item/storage/box/visual/magazine/compact/lasrifle/
+/obj/item/storage/box/visual/magazine/compact/lasrifle
 	name = "Terra Experimental cell box"
 	desc = "A box specifically designed to hold a large amount of Terra Experimental cells."
 	closed_overlay = "mag_box_small_overlay_te"
