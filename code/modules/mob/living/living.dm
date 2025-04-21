@@ -1073,6 +1073,7 @@ below 100 is not dizzy
 	owner = null
 	return ..()
 
+///called to find and set the atom on the actual turf to be the container and all relevant effects
 /atom/movable/looking_holder/proc/update_container()
 	SIGNAL_HANDLER
 	var/new_container = get_atom_on_turf(owner)
