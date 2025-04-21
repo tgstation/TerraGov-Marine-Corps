@@ -98,6 +98,8 @@ Administrative related.
 
 /datum/config_entry/flag/log_prayer
 
+/datum/config_entry/flag/log_internet_request
+
 /datum/config_entry/flag/log_game
 
 /datum/config_entry/flag/log_minimap_drawing
@@ -351,6 +353,10 @@ The default value assumes youtube-dl is in your system PATH
 /datum/config_entry/string/invoke_youtubedl
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 
+/datum/config_entry/flag/request_internet_sound
+
+/datum/config_entry/string/request_internet_allowed
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/number/error_cooldown	// The "cooldown" time for each occurrence of a unique error
 	default = 600
@@ -428,6 +434,10 @@ The default value assumes youtube-dl is in your system PATH
 
 /datum/config_entry/string/default_view_square
 	default = "15x15"
+
+/datum/config_entry/flag/log_pictures
+
+/datum/config_entry/flag/picture_logging_camera
 
 /*
 This maintains a list of ip addresses that are able to bypass topic filtering.

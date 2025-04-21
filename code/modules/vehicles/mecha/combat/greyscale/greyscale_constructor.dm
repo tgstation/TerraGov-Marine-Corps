@@ -176,7 +176,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	var/slowdown = 0
 	for(var/key in limbs)
 		var/datum/mech_limb/limb = limbs[key]
-		health += limb.health_mod
+		if(istype(limb, /datum/mech_limb/torso))
+			var/datum/mech_limb/torso/torso_limb = limb
+			health = torso_limb.health_set
 		slowdown += limb.slowdown_mod
 	current_stats["health"] = health
 	current_stats["slowdown"] = slowdown
@@ -342,6 +344,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			if(initial(legs_type.max_weight) < get_current_weight())
 				tgui_alert(user, "Your mech is too heavy to deploy!")
 				return FALSE
+			if(!length(selected_equipment[MECHA_POWER]))
+				tgui_alert(user, "No power equipped")
+				return FALSE
 			addtimer(CALLBACK(src, PROC_REF(deploy_mech)), 1 SECONDS)
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, FALSE)
 			if(!isspatialagentjob(user.job))
@@ -475,8 +480,8 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		var/obj/item/mecha_parts/mecha_equipment/new_equip = new equipment
 		new_equip.attach(mech)
 
-	mech.pixel_y = 240
-	animate(mech, time=4 SECONDS, pixel_y=initial(mech.pixel_y), easing=SINE_EASING|EASE_OUT)
+	mech.pixel_z = 240
+	animate(mech, time=4 SECONDS, pixel_z=initial(mech.pixel_z), easing=SINE_EASING|EASE_OUT)
 
 	balloon_alert_to_viewers("Beep. Mecha ready for use.")
 	playsound(src, 'sound/machines/chime.ogg', 30, 1)
@@ -498,8 +503,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 		if(MECH_GREY_R_ARM)
 			var/datum/mech_limb/arm/arm_limb = new_limb
 			current_stats["right_scatter"] = arm_limb.scatter_mod
-
-	current_stats["health"] = current_stats["health"] - old_limb.health_mod + new_limb.health_mod
+	if(istype(new_limb, /datum/mech_limb/torso))
+		var/datum/mech_limb/torso/torso_limb = new_limb
+		current_stats["health"] = torso_limb.health_set
 	current_stats["slowdown"] = current_stats["slowdown"] - old_limb.slowdown_mod + new_limb.slowdown_mod
 	for(var/armor_type in old_limb.soft_armor_mod)
 		current_stats["armor"][armor_type] -= old_limb.soft_armor_mod[armor_type]

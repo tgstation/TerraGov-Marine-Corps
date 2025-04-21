@@ -319,8 +319,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /datum/action/ability/xeno_action/dodge/proc/on_move(datum/source)
 	if(owner.stat == DEAD)
 		return FALSE
-	var/datum/action/bump_attack_toggle/bump_attack_action = owner.actions_by_path[/datum/action/bump_attack_toggle]
-	if(bump_attack_action == null || bump_attack_action.attacking) // Bump attacks are off if attacking is true, apparently.
+	if(!xeno_owner.client?.prefs?.toggle_bump_attacking)
 		return FALSE
 	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_BUMP_ATTACK) || owner.next_move > world.time)
 		return FALSE

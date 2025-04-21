@@ -16,6 +16,7 @@
 	end_overlay = "dust_med"
 
 	target_trait = ZTRAIT_SANDSTORM
+	play_screen_indicator = TRUE
 
 	probability = 40
 	repeatable = FALSE
@@ -44,6 +45,7 @@
 	end_overlay = "dust_low"
 
 	aesthetic = TRUE
+	play_screen_indicator = FALSE
 
 	probability = 60
 	repeatable = TRUE

@@ -69,6 +69,8 @@
 	var/use_glow = TRUE
 	/// List of all overlays to apply to our turfs
 	var/list/overlay_cache
+	/// whether to play a warning to players that the weather is inbound
+	var/play_screen_indicator = FALSE
 
 	/// The stage of the weather, from 1-4
 	var/stage = END_STAGE
@@ -117,6 +119,8 @@
 		var/turf/impacted_mob_turf = get_turf(impacted_mob)
 		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
 			continue
+		if(play_screen_indicator)
+			impacted_mob.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("WEATHER WARNING", "[capitalize(name)] inbound. Seek shelter", RIGHT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/rightaligned)
 		if(telegraph_message)
 			to_chat(impacted_mob, telegraph_message)
 		if(!(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER))

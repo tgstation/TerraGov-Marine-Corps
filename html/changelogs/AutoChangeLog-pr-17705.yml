@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - rscadd: "Request music verb has been added! you can now easily request music"
