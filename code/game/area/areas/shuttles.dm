@@ -44,6 +44,7 @@
 /area/shuttle/minidropship
 	name = "Tadpole Drop Shuttle"
 	area_flags = NO_CONSTRUCTION
+	ceiling = CEILING_METAL
 
 /area/shuttle/minidropship/Initialize(mapload, ...)
 	. = ..()
