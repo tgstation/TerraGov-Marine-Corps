@@ -639,6 +639,10 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define HUNTER_SILENCE_COOLDOWN 30 SECONDS //Silence's cooldown
 #define HUNTER_VENT_CRAWL_TIME 2 SECONDS //Hunters can enter vents fast
 
+//Jester defines:
+#define JESTER_DECK_OF_DISASTER_RANGE 3
+#define JESTER_DECK_OF_DISASTER_COOLDOWN 10 SECONDS
+
 //Ravager defines:
 #define RAV_CHARGESPEED 2
 #define RAV_CHARGEDISTANCE 4

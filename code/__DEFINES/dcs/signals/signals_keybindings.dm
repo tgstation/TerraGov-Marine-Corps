@@ -363,6 +363,8 @@
 #define COMSIG_XENOABILITY_RECALLPUPPETS "xenoability_recallpuppets"
 #define COMSIG_XENOABILITY_BESTOWBLESSINGS "xenoability_giveblessings"
 
+#define COMSIG_ABILITY_DECK_OF_DISASTER "xenoability_giveblessings_deck_of_disaster"
+
 #define COMSIG_XENOABILITY_BANELING_EXPLODE "xenoability_baneling_explode"
 #define COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT "xenoability_baneling_choose_reagent"
 
@@ -388,3 +390,4 @@
 #define COMSIG_XENOABILITY_WIND_CURRENT "xenoability_wind_current"
 #define COMSIG_XENOABILITY_GRAB "xenoability_grab"
 #define COMSIG_XENOABILITY_SCORCHED_LAND "xenoability_scorched_land"
+
