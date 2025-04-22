@@ -1,0 +1,5 @@
+author: "W0LF-101"
+delete-after: True
+changes:
+  - balance: "Upped amount of Xenolinguistic Translators in vendor from 2 to 4"
+  - balance: "Moved Xenolinguistic Translators from NovaMed to Marinemed Vendor (And SOM equivalent)"
