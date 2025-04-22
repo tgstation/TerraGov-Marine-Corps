@@ -440,6 +440,7 @@
 			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 50,
 		),
 		"Misc" = list(
+			/obj/item/tool/research/xeno_analyzer = 4,
 			/obj/item/defibrillator = 8,
 			/obj/item/healthanalyzer = 16,
 			/obj/item/bodybag/cryobag = 24,
