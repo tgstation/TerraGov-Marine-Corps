@@ -1,0 +1,6 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - rscadd: "Added a smite build mode"
+  - bugfix: "Build mode no longer runtimes"
+  - qol: "Buildmode has been improved in many places usability wise"
