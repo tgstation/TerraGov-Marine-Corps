@@ -2,28 +2,34 @@
 #define BM_SWITCHSTATE_MODE 1
 #define BM_SWITCHSTATE_DIR 2
 
-
 /datum/buildmode
+	/// Currently selected build direction
 	var/build_dir = SOUTH
+	/// Holder for the current selected buildmode mode
 	var/datum/buildmode_mode/mode
+	/// The client using the build mode
 	var/client/holder
 
-	// login callback
-	var/li_cb
+	/// Login callback holder
+	var/datum/callback/li_cb
 
-	// SECTION UI
+	/// A list of buttons used to control buildmode
 	var/list/buttons
 
-	// Switching management
+	/// Keeps track of what buttons to display, for example are we switching direction or mode currently
 	var/switch_state = BM_SWITCHSTATE_NONE
-	var/switch_width = 5
-	// modeswitch UI
+	/// Variable used to determine the spacing of the mode buttons
+	var/switch_width = 4
+	/// Holder for the button to switch modes
 	var/atom/movable/screen/buildmode/mode/modebutton
+	/// Holder for the list of buttons to switch modes
 	var/list/modeswitch_buttons = list()
-	// dirswitch UI
+	/// Holder for the button to change directions
 	var/atom/movable/screen/buildmode/bdir/dirbutton
+	/// List of the buttons to switch directions
 	var/list/dirswitch_buttons = list()
-
+	/// Item preview for selected item
+	var/atom/movable/screen/buildmode/preview_item/preview
 
 /datum/buildmode/New(client/c)
 	mode = new /datum/buildmode_mode/basic(src)
@@ -37,7 +43,6 @@
 	holder.click_intercept = src
 	mode.enter_mode(src)
 
-
 /datum/buildmode/proc/quit()
 	log_admin("[key_name(usr)] has left build mode.")
 	message_admins("[ADMIN_TPMONTY(usr)] has left build mode.")
@@ -47,16 +52,17 @@
 	holder.show_popup_menus = TRUE
 	qdel(src)
 
-
 /datum/buildmode/Destroy()
 	close_switchstates()
+	close_preview()
 	holder.player_details.post_login_callbacks -= li_cb
+	li_cb = null
 	holder = null
 	QDEL_NULL(mode)
+	QDEL_LIST(buttons)
 	QDEL_LIST(modeswitch_buttons)
 	QDEL_LIST(dirswitch_buttons)
 	return ..()
-
 
 /datum/buildmode/proc/post_login()
 	// since these will get wiped upon login
@@ -67,7 +73,6 @@
 			open_modeswitch()
 		if(BM_SWITCHSTATE_DIR)
 			open_dirswitch()
-
 
 /datum/buildmode/proc/create_buttons()
 	// keep a reference so we can update it upon mode switch
@@ -80,8 +85,7 @@
 	buttons += new /atom/movable/screen/buildmode/quit(src)
 	// build the lists of switching buttons
 	build_options_grid(subtypesof(/datum/buildmode_mode), modeswitch_buttons, /atom/movable/screen/buildmode/modeswitch)
-	build_options_grid(list(SOUTH,EAST,WEST,NORTH,NORTHWEST), dirswitch_buttons, /atom/movable/screen/buildmode/dirswitch)
-
+	build_options_grid(GLOB.alldirs, dirswitch_buttons, /atom/movable/screen/buildmode/dirswitch)
 
 // this creates a nice offset grid for choosing between buildmode options,
 // because going "click click click ah hell" sucks.
@@ -96,14 +100,12 @@
 		buttonslist += B
 		pos_idx++
 
-
 /datum/buildmode/proc/close_switchstates()
 	switch(switch_state)
 		if(BM_SWITCHSTATE_MODE)
 			close_modeswitch()
 		if(BM_SWITCHSTATE_DIR)
 			close_dirswitch()
-
 
 /datum/buildmode/proc/toggle_modeswitch()
 	if(switch_state == BM_SWITCHSTATE_MODE)
@@ -112,16 +114,13 @@
 		close_switchstates()
 		open_modeswitch()
 
-
 /datum/buildmode/proc/open_modeswitch()
 	switch_state = BM_SWITCHSTATE_MODE
 	holder.screen += modeswitch_buttons
 
-
 /datum/buildmode/proc/close_modeswitch()
 	switch_state = BM_SWITCHSTATE_NONE
 	holder.screen -= modeswitch_buttons
-
 
 /datum/buildmode/proc/toggle_dirswitch()
 	if(switch_state == BM_SWITCHSTATE_DIR)
@@ -130,25 +129,52 @@
 		close_switchstates()
 		open_dirswitch()
 
-
 /datum/buildmode/proc/open_dirswitch()
 	switch_state = BM_SWITCHSTATE_DIR
 	holder.screen += dirswitch_buttons
-
 
 /datum/buildmode/proc/close_dirswitch()
 	switch_state = BM_SWITCHSTATE_NONE
 	holder.screen -= dirswitch_buttons
 
+/datum/buildmode/proc/preview_selected_item(atom/typepath)
+	close_preview()
+	preview = new /atom/movable/screen/buildmode/preview_item(src)
+	preview.name = initial(typepath.name)
+
+	// Scale the preview if it's bigger than one tile
+	var/mutable_appearance/preview_overlay = new(typepath)
+	var/icon/size_check = icon(initial(typepath.icon), icon_state = initial(typepath.icon_state))
+	var/scale = 1
+	var/width = size_check.Width()
+	var/height = size_check.Height()
+	if(width > world.icon_size || height > world.icon_size)
+		if(width >= height)
+			scale = world.icon_size / width
+		else
+			scale = world.icon_size / height
+	preview_overlay.transform = preview_overlay.transform.Scale(scale)
+	preview_overlay.appearance_flags |= TILE_BOUND
+	preview_overlay.layer = FLOAT_LAYER
+	preview_overlay.plane = FLOAT_PLANE
+	preview.add_overlay(preview_overlay)
+
+	holder.screen += preview
+
+/datum/buildmode/proc/close_preview()
+	if(isnull(preview))
+		return
+	holder.screen -= preview
+	QDEL_NULL(preview)
 
 /datum/buildmode/proc/change_mode(newmode)
 	mode.exit_mode(src)
 	QDEL_NULL(mode)
 	close_switchstates()
+	close_preview()
 	mode = new newmode(src)
 	mode.enter_mode(src)
 	modebutton.update_icon()
-
 
 /datum/buildmode/proc/change_dir(newdir)
 	build_dir = newdir
@@ -156,11 +182,9 @@
 	dirbutton.update_dir()
 	return TRUE
 
-
 /datum/buildmode/InterceptClickOn(mob/user, params, atom/object)
 	mode.handle_click(user.client, params, object)
 	return TRUE // no doing underlying actions
-
 
 /proc/togglebuildmode(mob/M as mob in GLOB.player_list)
 	set name = "Toggle Build Mode"
@@ -174,7 +198,6 @@
 			new /datum/buildmode(M.client)
 			log_admin("[key_name(usr)] has entered build mode.")
 			message_admins("[ADMIN_TPMONTY(usr)] has entered build mode.")
-
 
 #undef BM_SWITCHSTATE_NONE
 #undef BM_SWITCHSTATE_MODE

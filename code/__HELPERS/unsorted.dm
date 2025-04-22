@@ -584,46 +584,6 @@
 			turfs += pull_from.get_turfs_by_zlevel(target_z)
 	return turfs
 
-
-/proc/DuplicateObject(atom/original, atom/newloc)
-	RETURN_TYPE(original.type)
-	if(!original || !newloc)
-		return
-
-	var/atom/O = new original.type(newloc)
-	if(!O)
-		return
-
-	O.contents.Cut()
-
-	for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
-		if(istype(original.vars[V], /datum) || ismob(original.vars[V]))
-			continue // this would reference the original's object, that will break when it is used or deleted.
-		else if(islist(original.vars[V]))
-			var/list/L = original.vars[V]
-			O.vars[V] = L.Copy()
-		else
-			O.vars[V] = original.vars[V]
-
-	for(var/atom/A in original.contents)
-		O.contents += new A.type
-
-	if(isobj(O))
-		var/obj/N = O
-
-		N.update_icon()
-		if(ismachinery(O))
-			var/obj/machinery/M = O
-			M.power_change()
-
-	if(ismob(O)) //Overlays are carried over despite disallowing them, if a fix is found remove this.
-		var/mob/M = O
-		M.cut_overlays()
-		M.regenerate_icons()
-
-	return O
-
-
 /proc/get_cardinal_dir(atom/A, atom/B)
 	return angle_to_cardinal_dir(Get_Angle(get_turf(A), get_turf(B)))
 

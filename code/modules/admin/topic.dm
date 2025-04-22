@@ -1034,6 +1034,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 		return usr.client.holder.create_mob(usr)
 
+	else if(href_list["dupe_marked_datum"])
+		if(!check_rights(R_SPAWN))
+			return
+		return duplicate_object(marked_datum, spawning_location = get_turf(usr))
 
 	else if(href_list["modemenu"])
 		if(!check_rights(R_SERVER))
