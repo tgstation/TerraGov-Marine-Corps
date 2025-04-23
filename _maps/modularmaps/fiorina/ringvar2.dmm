@@ -828,11 +828,6 @@
 	dir = 4
 	},
 /area/fiorina/station/central_ring)
-"Ni" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/machinery/miner/damaged,
-/turf/open/floor/prison/plate,
-/area/fiorina/station/central_ring)
 "Nj" = (
 /obj/structure/stairs/seamless{
 	dir = 1
@@ -1443,7 +1438,7 @@ Mq
 KL
 Mq
 Mq
-Ni
+IU
 DN
 GV
 bB
