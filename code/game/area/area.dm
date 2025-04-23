@@ -366,7 +366,7 @@
 		if(alarm_state_flags & ALARM_WARNING_DOWN)
 			I = "alarm_down" //Area is shut down.
 	for(var/offset in 0 to SSmapping.max_plane_offset)
-		. += mutable_appearance('icons/turf/areas.dmi', I, alpha=60, offset_const = offset)
+		. += mutable_appearance('icons/turf/areas.dmi', I, plane=ABOVE_LIGHTING_PLANE, alpha=60, offset_const = offset)
 
 /area/proc/powered(chan)
 	if(!requires_power)
