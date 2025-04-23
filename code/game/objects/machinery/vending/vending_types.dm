@@ -562,7 +562,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 		var/obj/item/storage/box/visual/magazine/ammo_box = I
 		for(var/mag in ammo_box.contents)
 			stock(mag, user, show_feedback = FALSE)
-		user?.balloon_alert(user, "\n\nYou dump the contents of the box into the NanoAmmo.");
+		user?.balloon_alert(user, "You dump the contents of the box into the NanoAmmo.");
 		return
 
 	else if(istype(I, /obj/item/shotgunbox))
