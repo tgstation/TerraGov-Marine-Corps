@@ -148,7 +148,15 @@ export const GameSettings = (props) => {
                 action="accessible_tgui_themes"
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
-                tooltip="Try to use more accessible or default TGUI themes/layouts wherever possible."
+                tooltip="Prefer more accessible/default TGUI themes wherever implemented and possible."
+              />
+              <ToggleFieldPreference
+                label="Allow health scan sharing"
+                value="allow_being_shown_health_scan"
+                action="allow_being_shown_health_scan"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+                tooltip="Governs if others can show you your health scan."
               />
               <ToggleFieldPreference
                 label="Fullscreen mode"
