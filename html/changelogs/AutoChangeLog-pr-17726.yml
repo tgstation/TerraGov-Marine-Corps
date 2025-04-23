@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - bugfix: "fixed mentors being able to see admin stuff"

@@ -1,0 +1,6 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - refactor: "Weather now uses overlays instead of setting area icons"
+  - qol: "some weather is now visible over darkness"
+  - bugfix: "Weather overlays work on multiz properly"
