@@ -1,10 +1,12 @@
 GLOBAL_LIST_EMPTY(medal_persistence_datums_by_ckey)
 GLOBAL_VAR(medal_persistence_sealed)
 
+///returns the medal persistance datu  for a given ckey
 /proc/get_medal_persistence_for_ckey(ckey)
 	RETURN_TYPE(/datum/medal_persistence)
 	return (GLOB.medal_persistence_datums_by_ckey[ckey] ||= new /datum/medal_persistence(ckey))
 
+///seals the medal persistenance and disallows issuing more medals
 /proc/seal_persistent_medals()
 	var/is_forced = FALSE
 	if(IsAdminAdvancedProcCall())
@@ -30,14 +32,20 @@ GLOBAL_VAR(medal_persistence_sealed)
 	to_chat(world, span_notice("Persistent Medals have been saved and sealed. No further medal issuances will be saved without admin intervention."))
 
 /datum/medal_persistence
+	///ckey of the owner
 	var/ckey
+	///player details of the owning ckey
 	var/datum/player_details/owner
+	///assoc list of medals, list(real_name = list(medal1, medal2))
 	var/list/list/datum/persistent_medal_info/medals_by_real_name
 
 /datum/medal_persistence/New(ckey)
 	ckey = ckey
 	owner = GLOB.player_details[ckey]
 
+/**
+ * Actually creates and awards a medal based on the args passed and tries to save it in db
+ */
 /datum/medal_persistence/proc/award_medal(
 	issued_to_real_name,
 	issued_to_rank,
