@@ -75,7 +75,8 @@
 
 /obj/vehicle/sealed/mecha/combat/greyscale
 	name = "Should not be visible"
-	icon_state = "greyscale"
+	icon = 'icons/blanks/32x32.dmi'
+	base_icon_state = "nothing"
 	layer = ABOVE_ALL_MOB_LAYER
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	mech_type = EXOSUIT_MODULE_GREYSCALE
@@ -354,6 +355,9 @@
 		holder_right.particles.position = list(30, 32, 0)
 		holder_left.layer = layer+0.001
 
+/obj/vehicle/sealed/mecha/combat/greyscale/get_mecha_occupancy_state()
+	return base_icon_state
+
 /obj/vehicle/sealed/mecha/combat/greyscale/update_overlays()
 	. = ..()
 	var/list/render_order = get_greyscale_render_order(dir)
@@ -373,7 +377,7 @@
 				prefix += "fire"
 			if(right_gun)
 				var/mutable_appearance/r_gun = mutable_appearance(holding.gun_icon, prefix+right_gun.icon_state + "_right")
-				r_gun.pixel_x = holding.pixel_x_offset
+				r_gun.pixel_w = holding.pixel_x_offset
 				. += r_gun
 			continue
 		if(key == MECHA_L_ARM)
@@ -385,7 +389,7 @@
 				prefix += "fire"
 			if(left_gun)
 				var/mutable_appearance/l_gun = mutable_appearance(holding.gun_icon, prefix+left_gun.icon_state + "_left")
-				l_gun.pixel_x = holding.pixel_x_offset
+				l_gun.pixel_w = holding.pixel_x_offset
 				. += l_gun
 			continue
 
