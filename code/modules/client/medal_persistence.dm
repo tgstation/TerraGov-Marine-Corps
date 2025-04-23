@@ -54,7 +54,9 @@ GLOBAL_VAR(medal_persistence_sealed)
 	medal.issued_by_rank = issued_by_rank
 	medal.medal_uid = medal_uid
 	medal.medal_citation = medal_citation
-	LAZYOR(medals_by_real_name[issued_to_real_name], medal)
+	LAZYINITLIST(medals_by_real_name)
+	LAZYINITLIST(medals_by_real_name[issued_to_real_name])
+	medals_by_real_name[issued_to_real_name] += medal
 	save_medal_to_db(medal)
 	return medal
 
@@ -153,7 +155,7 @@ GLOBAL_VAR(medal_persistence_sealed)
  * - mob/living/target - The player to give the medals to.
  */
 /datum/medal_persistence/proc/give_medals_to(mob/living/target)
-	if(target.ckey && (target.ckey != ckey)) // if they dont have a ckey yet, just assume its correct (game start)
+	if(target.ckey != ckey)
 		CRASH("Attempted to give medals to a player who does not match the ckey of the medal persistence object!")
 
 	if(!length(medals_by_real_name))
