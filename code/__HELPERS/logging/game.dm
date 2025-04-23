@@ -2,6 +2,10 @@
 /proc/log_game(text, list/data)
 	logger.Log(LOG_CATEGORY_GAME, text, data)
 
+/proc/log_game_world(text, list/data)
+	SEND_TEXT(world.log, text)
+	logger.Log(LOG_CATEGORY_GAME, text, data)
+
 /// Logging for emotes
 /proc/log_emote(text, list/data)
 	logger.Log(LOG_CATEGORY_GAME_EMOTE, text, data)
