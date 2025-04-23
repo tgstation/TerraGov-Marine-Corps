@@ -54,8 +54,7 @@ GLOBAL_VAR(medal_persistence_sealed)
 	medal.issued_by_rank = issued_by_rank
 	medal.medal_uid = medal_uid
 	medal.medal_citation = medal_citation
-	medals_by_real_name[issued_to_real_name] ||= list(medal)
-	medals_by_real_name[issued_to_real_name] += medal
+	LAZYOR(medals_by_real_name[issued_to_real_name], medal)
 	save_medal_to_db(medal)
 	return medal
 
@@ -157,6 +156,8 @@ GLOBAL_VAR(medal_persistence_sealed)
 	if(target.ckey != ckey)
 		CRASH("Attempted to give medals to a player who does not match the ckey of the medal persistence object!")
 
+	if(!length(medals_by_real_name))
+		return
 	var/obj/item/storage/box/medal_box = new
 	medal_box.name = "medal box"
 	medal_box.desc = "A box containing medals."

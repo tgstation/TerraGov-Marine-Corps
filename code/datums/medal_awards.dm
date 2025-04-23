@@ -22,14 +22,23 @@ GLOBAL_LIST_EMPTY(medal_awards)
 /proc/do_award_medal(mob/user)
 	var/list/all_marines = list()
 	for(var/mob/living/mob as anything in GLOB.human_mob_list)
-		if(isterragovjob(mob?.job))
-			all_marines[mob.real_name] = GLOB.joined_player_list[mob.real_name]
-
+		if(!isterragovjob(mob?.job)) // this should mean only terragov marine roles
+			continue
+		var/display_name = mob.job.title + " " + mob.real_name
+		var/list/dupes_found = list()
+		// this shouldnt realyl happen but eh lets be safe
+		if(all_marines[display_name])
+			if(!dupes_found)
+				dupes_found[display_name] = 1
+			else
+				dupes_found[display_name]++
+			display_name = display_name + " #" + "[dupes_found[display_name]]"
+		all_marines[display_name] = mob
 	if(!length(all_marines))
 		to_chat(user, "Who do that vodoo you do? (No valid targets?)")
 		return FALSE
 
-	var/choice = tgui_input_list(user, "Award a medal to who?", "Medal Tyme", sort_names(all_marines)) // no its not a typo.
+	var/choice = tgui_input_list(user, "Award a medal to who?", "Medal Tyme", sort_list(all_marines)) // no its not a typo.
 	if(!choice || !(choice in all_marines) || all_marines[choice] == user)
 		return FALSE
 	award_medal_to(user, all_marines[choice])
