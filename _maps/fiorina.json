@@ -3,10 +3,10 @@
     "map_path": "map_files/fiorina",
     "map_file": "fiorina.dmm",
     "armor": "urban",
-    "traits":[{"Baseturf": "/turf/open/floor/plating"}]
 	"disk_sets": {
 		"basic": 1
 	},
 	"quickbuilds": 2500,
     "announce_text": "An automated distress signal has been received from maximum-security prison Fiorina Orbital Penitentiary. A response team from the TGMC has been dispatched shortly to investigate."
+    "traits":[{"Baseturf": "/turf/open/floor/plating"}]
 }
