@@ -35,11 +35,8 @@
 /turf/open/floor/plating,
 /area/fiorina/station/central_ring)
 "db" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/miner/damaged,
-/turf/open/floor/prison/bright_clean/two,
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/prison/bright_clean,
 /area/fiorina/station/central_ring)
 "dp" = (
 /obj/structure/barricade/wooden{
@@ -1077,8 +1074,8 @@ yL
 ws
 kJ
 cE
+VJ
 db
-yL
 yL
 cE
 Ms

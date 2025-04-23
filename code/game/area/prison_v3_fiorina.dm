@@ -121,6 +121,7 @@
 	name = "Fiorina - Security Hub"
 	icon_state = "security_hub"
 	minimap_color = MINIMAP_AREA_SEC
+	ceiling = CEILING_METAL
 
 /area/fiorina/station/security/wardens
 	name = "Fiorina - Warden's Office"
@@ -136,6 +137,7 @@
 	name = "Fiorina - Park"
 	icon_state = "station0"
 	minimap_color = MINIMAP_AREA_LIVING
+	ceiling = CEILING_METAL
 
 /area/fiorina/station/transit_hub
 	name = "Fiorina - Transit Hub"
@@ -146,20 +148,24 @@
 	name = "Fiorina - Central Ring"
 	icon_state = "station2"
 	minimap_color = MINIMAP_AREA_LIVING_CAVE
+	ceiling = CEILING_METAL
 
 /area/fiorina/station/chapel
 	name = "Fiorina - Chapel"
 	icon_state = "station3"
+	ceiling = CEILING_METAL
 
 /area/fiorina/station/civres_blue
 	name = "Fiorina - Blue Block Residences"
 	icon_state = "station1"
 	minimap_color = MINIMAP_AREA_REQ
+	ceiling = CEILING_METAL
 
 /area/fiorina/station/medbay
 	name = "Fiorina - Medical Bay"
 	icon_state = "station4"
 	minimap_color = MINIMAP_AREA_MEDBAY
+	ceiling = CEILING_METAL
 
 /area/fiorina/station/research_cells
 	name = "Fiorina - Research Cellblock"

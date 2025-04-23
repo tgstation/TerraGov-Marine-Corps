@@ -3,6 +3,7 @@
     "map_path": "map_files/fiorina",
     "map_file": "fiorina.dmm",
     "armor": "urban",
+    "traits":[{"Baseturf": "/turf/open/floor/plating"}]
 	"disk_sets": {
 		"basic": 1
 	},

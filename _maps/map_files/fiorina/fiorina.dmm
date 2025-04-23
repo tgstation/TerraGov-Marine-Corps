@@ -2520,9 +2520,11 @@
 /turf/open/floor/prison,
 /area/fiorina/station/civres_blue)
 "bwr" = (
+/obj/machinery/power/geothermal/tbg{
+	dir = 1
+	},
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
+/turf/open/floor/tile/dark,
 /area/fiorina/tumor/aux_engi)
 "bwu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -12443,7 +12445,6 @@
 /turf/open/floor/prison,
 /area/fiorina/station/chapel)
 "gVK" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/fiorina/tumor/aux_engi)
@@ -21306,9 +21307,8 @@
 /turf/open/floor/prison/plate,
 /area/fiorina/station/disco)
 "lCl" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/plating/kutjevo,
+/obj/machinery/power/tbg_turbine/cold,
+/turf/open/floor/tile/dark,
 /area/fiorina/tumor/aux_engi)
 "lCr" = (
 /obj/structure/table/reinforced/prison{
@@ -23109,6 +23109,11 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/prison,
 /area/fiorina/station/transit_hub)
+"mEd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/geothermal,
+/turf/open/floor/plating,
+/area/fiorina/tumor/aux_engi)
 "mEt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -25267,16 +25272,6 @@
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/mapping_helpers/airlock/welded,
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "tele_ground1";
-	teleport_x = 180;
-	teleport_x_offset = 200;
-	teleport_y = 50;
-	teleport_y_offset = 80;
-	teleport_z = 1;
-	teleport_z_offset = 1
-	},
 /turf/open/floor/plating/kutjevo,
 /area/storage/testroom)
 "nMj" = (
@@ -26121,6 +26116,10 @@
 	dir = 1
 	},
 /area/fiorina/station/chapel)
+"omo" = (
+/obj/machinery/power/geothermal,
+/turf/open/floor/plating,
+/area/fiorina/tumor/aux_engi)
 "omv" = (
 /obj/item/stack/rods,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -31012,6 +31011,12 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/tumor/servers)
+"qWS" = (
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/fiorina/tumor/aux_engi)
 "qWX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
@@ -34949,16 +34954,6 @@
 	pixel_y = 10
 	},
 /obj/machinery/telecomms/relay/preset/telecomms,
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "tele_ground1";
-	teleport_x = 180;
-	teleport_x_offset = 200;
-	teleport_y = 50;
-	teleport_y_offset = 80;
-	teleport_z = 1;
-	teleport_z_offset = 1
-	},
 /turf/open/floor/plating/kutjevo,
 /area/storage/testroom)
 "tdZ" = (
@@ -52065,8 +52060,8 @@ aty
 dyw
 dyw
 xTh
-kFi
-cFZ
+mEd
+omo
 xTh
 xTh
 xTh
@@ -52279,7 +52274,7 @@ yjX
 xTh
 gVK
 scw
-lCl
+kmN
 xTh
 eVo
 vmD
@@ -52701,9 +52696,9 @@ dyw
 xTh
 yjX
 xTh
-gVK
+lCl
 bwr
-gVK
+qWS
 yhh
 rzI
 pdS
@@ -53127,7 +53122,7 @@ yjX
 xTh
 xTh
 aMK
-cFZ
+omo
 aiT
 sXs
 kSK
