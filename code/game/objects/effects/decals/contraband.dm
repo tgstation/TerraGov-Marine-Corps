@@ -31,14 +31,14 @@
 	icon = 'icons/obj/contraband.dmi'
 	icon_state = "poster_map"
 	anchored = TRUE
+	base_icon = 'icons/obj/contraband.dmi'
+
 	var/serial_number
 	var/ruined = 0
 
 
 /obj/structure/sign/poster/Initialize(mapload, serial)
 	. = ..()
-
-	icon = 'icons/obj/contraband.dmi'
 
 	serial_number = serial
 
