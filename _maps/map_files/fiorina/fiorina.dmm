@@ -2596,6 +2596,10 @@
 	},
 /turf/open/floor/wood,
 /area/fiorina/station/research_cells)
+"byV" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/grass,
+/area/fiorina/station/telecomm/lz1_cargo)
 "bzm" = (
 /obj/machinery/light/blue,
 /turf/open/floor/prison/blue/plate{
@@ -3259,12 +3263,12 @@
 	},
 /area/fiorina/station/botany)
 "bTq" = (
-/obj/item/inflatable,
-/obj/item/inflatable,
-/obj/item/inflatable,
-/obj/item/inflatable,
-/obj/item/inflatable,
 /obj/effect/spawner/random/misc/structure/table_or_rack/rackweighted,
+/obj/item/inflatable/wall,
+/obj/item/inflatable/wall,
+/obj/item/inflatable/wall,
+/obj/item/inflatable/wall,
+/obj/item/inflatable/wall,
 /turf/open/floor/prison,
 /area/fiorina/lz/near_lzI)
 "bTA" = (
@@ -34201,6 +34205,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkred/full,
 /area/fiorina/station/security)
+"sIs" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/lowsec)
 "sIB" = (
 /obj/item/stack/sandbags,
 /turf/open/floor/prison/yellow{
@@ -40613,6 +40621,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/miner/damaged,
 /turf/open/floor/prison/blue{
 	dir = 4
 	},
@@ -79003,7 +79012,7 @@ mXr
 lGw
 mXr
 mpT
-mXr
+uFF
 mXr
 mXr
 mXr
@@ -80220,7 +80229,7 @@ ows
 ows
 ien
 ien
-ien
+sIs
 wGS
 rFD
 ien
@@ -87794,7 +87803,7 @@ qdO
 cdx
 pim
 cuF
-pim
+byV
 pim
 gyF
 kJz
