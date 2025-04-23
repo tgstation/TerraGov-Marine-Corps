@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - qol: "When the server reboots it will post a message in the chat"
+  - code_imp: "Improved code relating to restarting the server"
