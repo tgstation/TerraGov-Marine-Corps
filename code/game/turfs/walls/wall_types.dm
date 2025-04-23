@@ -262,12 +262,14 @@
 
 /turf/closed/wall/indestructible/splashscreen
 	name = "Space Station 13"
+	plane = SPLASHSCREEN_PLANE
 	icon_state = ""
-	layer = FLY_LAYER
 	pixel_x = -64
 
-/turf/closed/wall/indestructible/splashscreen/New()
-	..()
+//todo this should be using immediate instead of New()
+INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
+/turf/closed/wall/indestructible/splashscreen/Initialize(mapload, ...)
+	. = ..()
 	var/prefix = "icons/misc/lobby_art/"
 	var/list/lobby_art = flist(prefix)
 	if(!length(lobby_art))
@@ -358,8 +360,8 @@
 /turf/closed/wall/vault
 	icon_state = "rockvault"
 
-/turf/closed/wall/vault/New(location,type)
-	..()
+/turf/closed/wall/vault/Initialize(mapload, type)
+	. = ..()
 	icon_state = "[type]vault"
 
 /turf/closed/wall/desertcavewall

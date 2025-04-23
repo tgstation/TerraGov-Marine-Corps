@@ -1166,7 +1166,9 @@
 /turf/open/liquid/water/river,
 /area/oscar_outpost/outside/north)
 "mk" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "mu" = (
@@ -1231,7 +1233,9 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "mO" = (
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "mP" = (
@@ -2468,7 +2472,9 @@
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "xL" = (
@@ -3252,7 +3258,9 @@
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "FD" = (
@@ -4777,7 +4785,9 @@
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "SD" = (
@@ -4827,7 +4837,9 @@
 	name = "trench lining";
 	pixel_y = 1
 	},
-/obj/structure/stairs,
+/obj/structure/stairs{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "Tx" = (

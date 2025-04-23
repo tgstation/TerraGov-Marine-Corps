@@ -1,12 +1,32 @@
+
+/atom/movable/screen/map_view/preference_preview
+	/// All the plane masters that need to be applied.
+	var/atom/movable/screen/background/screen_bg
+
+/atom/movable/screen/map_view/preference_preview/Destroy()
+	QDEL_NULL(screen_bg)
+	return ..()
+
+/atom/movable/screen/map_view/preference_preview/generate_view(map_key)
+	. = ..()
+	screen_bg = new
+	screen_bg.del_on_map_removal = FALSE
+	screen_bg.assigned_map = assigned_map
+	screen_bg.icon_state = "clear"
+	screen_bg.fill_rect(1, 1, 4, 1)
+
+/atom/movable/screen/map_view/preference_preview/display_to_client(client/show_to)
+	show_to.register_map_obj(screen_bg)
+	return ..()
+
 /datum/preferences/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		user.client.register_map_obj(screen_main)
-		user.client.register_map_obj(screen_bg)
 
 		ui = new(user, src, "PlayerPreferences", "Preferences")
 		ui.set_autoupdate(FALSE)
 		ui.open()
+		screen_main.display_to(user, ui.window)
 
 /datum/preferences/ui_close(mob/user)
 	. = ..()
@@ -110,6 +130,7 @@
 			data["accessible_tgui_themes"] = accessible_tgui_themes
 			data["tgui_fancy"] = tgui_fancy
 			data["tgui_lock"] = tgui_lock
+			data["ui_scale"] = ui_scale
 			data["tgui_input"] = tgui_input
 			data["tgui_input_big_buttons"] = tgui_input_big_buttons
 			data["tgui_input_buttons_swap"] = tgui_input_buttons_swap
@@ -118,6 +139,7 @@
 			data["max_chat_length"] = max_chat_length
 			data["see_chat_non_mob"] = see_chat_non_mob
 			data["see_rc_emotes"] = see_rc_emotes
+			data["toggle_bump_attacking"] = toggle_bump_attacking
 			data["mute_others_combat_messages"] = mute_others_combat_messages
 			data["mute_self_combat_messages"] = mute_self_combat_messages
 			data["show_xeno_rank"] = show_xeno_rank
@@ -136,11 +158,15 @@
 			data["radiallasersgunpref"] = !!(toggles_gameplay & RADIAL_LASERGUNS)
 			data["autointeractdeployablespref"] = !!(toggles_gameplay & AUTO_INTERACT_DEPLOYABLES)
 			data["directional_attacks"] = !!(toggles_gameplay & DIRECTIONAL_ATTACKS)
+			data["toggle_clickdrag"] = !(toggles_gameplay & TOGGLE_CLICKDRAG)
 			data["scaling_method"] = scaling_method
 			data["pixel_size"] = pixel_size
 			data["parallax"] = parallax
 			data["fullscreen_mode"] = fullscreen_mode
 			data["show_status_bar"] = show_status_bar
+			data["ambient_occlusion"] = ambient_occlusion
+			data["multiz_parallax"] = multiz_parallax
+			data["multiz_performance"] = multiz_performance
 			data["fast_mc_refresh"] = fast_mc_refresh
 			data["split_admin_tabs"] = split_admin_tabs
 			data["hear_ooc_anywhere_as_staff"] = hear_ooc_anywhere_as_staff
@@ -562,14 +588,14 @@
 			if(!choice)
 				return
 			tts_voice = choice
-			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_TRY_TTS))
+			if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_TRY_TTS))
 				return
 			TIMER_COOLDOWN_START(ui.user, COOLDOWN_TRY_TTS, 0.5 SECONDS)
 			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = choice, local = TRUE, special_filters = isrobot(GLOB.all_species[species]) ? TTS_FILTER_SILICON : "", pitch = tts_pitch)
 
 		if("tts_pitch")
 			tts_pitch = clamp(text2num(params["newValue"]), -12, 12)
-			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_TRY_TTS))
+			if(TIMER_COOLDOWN_RUNNING(user, COOLDOWN_TRY_TTS))
 				return
 			TIMER_COOLDOWN_START(ui.user, COOLDOWN_TRY_TTS, 0.5 SECONDS)
 			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), ui.user.client, "Hello, this is my voice.", speaker = tts_voice, local = TRUE, special_filters = isrobot(GLOB.all_species[species]) ? TTS_FILTER_SILICON : "", pitch = tts_pitch)
@@ -675,6 +701,12 @@
 		if("tgui_lock")
 			tgui_lock = !tgui_lock
 
+		if("ui_scale")
+			ui_scale = !ui_scale
+
+			INVOKE_ASYNC(usr.client, TYPE_VERB_REF(/client, refresh_tgui))
+			usr.client.tgui_say?.load()
+
 		if("tgui_input")
 			tgui_input = !tgui_input
 
@@ -705,6 +737,9 @@
 
 		if("see_rc_emotes")
 			see_rc_emotes = !see_rc_emotes
+
+		if("toggle_bump_attacking")
+			toggle_bump_attacking = !toggle_bump_attacking
 
 		if("mute_self_combat_messages")
 			mute_self_combat_messages = !mute_self_combat_messages
@@ -794,6 +829,31 @@
 		if("show_status_bar")
 			show_status_bar = !show_status_bar
 			user.client?.toggle_status_bar(show_status_bar)
+
+		if("ambient_occlusion")
+			ambient_occlusion = !ambient_occlusion
+			for(var/atom/movable/screen/plane_master/plane_master as anything in parent.mob?.hud_used?.get_true_plane_masters(GAME_PLANE))
+				plane_master.show_to(parent.mob)
+
+		if("multiz_parallax")
+			multiz_parallax = !multiz_parallax
+			var/datum/hud/my_hud = parent.mob?.hud_used
+			if(!my_hud)
+				return
+
+			for(var/group_key as anything in my_hud.master_groups)
+				var/datum/plane_master_group/group = my_hud.master_groups[group_key]
+				group.build_planes_offset(my_hud, my_hud.current_plane_offset)
+
+		if("multiz_performance")
+			multiz_performance = WRAP(multiz_performance + 1, MULTIZ_PERFORMANCE_DISABLE, MAX_EXPECTED_Z_DEPTH)
+			var/datum/hud/my_hud = parent.mob?.hud_used
+			if(!my_hud)
+				return
+
+			for(var/group_key as anything in my_hud.master_groups)
+				var/datum/plane_master_group/group = my_hud.master_groups[group_key]
+				group.build_planes_offset(my_hud, my_hud.current_plane_offset)
 
 		if("set_keybind")
 			var/kb_name = params["keybind_name"]
@@ -906,6 +966,9 @@
 
 		if("directional_attacks")
 			toggles_gameplay ^= DIRECTIONAL_ATTACKS
+
+		if("toggle_clickdrag")
+			toggles_gameplay ^= TOGGLE_CLICKDRAG
 
 		if("pixel_size")
 			switch(pixel_size)

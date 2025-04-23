@@ -469,11 +469,11 @@
 		return FALSE
 
 	if(tipped_level == 2)
-		user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
+		user.visible_message(span_notice("[user] begins to heave the vending machine back into place!"),span_notice("You start heaving the vending machine back into place.."))
 		if(!do_after(user, 80, IGNORE_HELD_ITEM, src, BUSY_ICON_FRIENDLY))
 			return FALSE
 
-		user.visible_message(span_notice(" [user] rights the [src]!"),span_notice(" You right the [src]!"))
+		user.visible_message(span_notice("[user] rights the [src]!"),span_notice("You right the [src]!"))
 		flip_back()
 		return TRUE
 
@@ -491,10 +491,10 @@
 		return
 	if(!iscarbon(user)) // AI can't heave remotely
 		return
-	user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
+	user.visible_message(span_notice("[user] begins to heave the vending machine back into place!"),span_notice("You start heaving the vending machine back into place.."))
 	if(!do_after(user, 80, IGNORE_HELD_ITEM, src, BUSY_ICON_FRIENDLY))
 		return FALSE
-	user.visible_message(span_notice(" [user] rights the [src]!"),span_notice(" You right the [src]!"))
+	user.visible_message(span_notice("[user] rights the [src]!"),span_notice("You right the [src]!"))
 	flip_back()
 	return TRUE
 
@@ -729,13 +729,15 @@
 	if(item_to_stock.storage_datum) //Nice try, specialists/engis
 		var/datum/storage/storage_to_stock = item_to_stock.storage_datum
 		if(!(storage_to_stock.storage_flags & BYPASS_VENDOR_CHECK)) //If your storage has this flag, it can be restocked
-			user?.balloon_alert(user, "Can't restock containers!")
+			if(show_feedback)
+				user?.balloon_alert(user, "Can't restock containers!")
 			return FALSE
 
 	else if(isgrenade(item_to_stock))
 		var/obj/item/explosive/grenade/grenade = item_to_stock
 		if(grenade.active) //Machine ain't gonna save you from your dumb decisions now
-			user?.balloon_alert(user, "You panic and erratically fumble around!")
+			if(show_feedback)
+				user?.balloon_alert(user, "You panic and erratically fumble around!")
 			return FALSE
 
 	else if(amount >= 0) //Item is finite so we are more strict on its condition
@@ -743,25 +745,29 @@
 		if(isammomagazine(item_to_stock))
 			var/obj/item/ammo_magazine/A = item_to_stock
 			if(A.current_rounds < A.max_rounds)
-				user?.balloon_alert(user, "Magazine isn't full!")
+				if(show_feedback)
+					user?.balloon_alert(user, "Magazine isn't full!")
 				return FALSE
 
 		if(iscell(item_to_stock))
 			var/obj/item/cell/cell = item_to_stock
 			if(cell.charge < cell.maxcharge)
-				user?.balloon_alert(user, "Cell isn't at full charge!")
+				if(show_feedback)
+					user?.balloon_alert(user, "Cell isn't at full charge!")
 				return FALSE
 
 		if(isitemstack(item_to_stock))
 			var/obj/item/stack/stack = item_to_stock
 			if(stack.amount != initial(stack.amount))
-				user?.balloon_alert(user, "[stack] has been partially used. Refill it!")
+				if(show_feedback)
+					user?.balloon_alert(user, "[stack] has been partially used. Refill it!")
 				return FALSE
 
 		if(isreagentcontainer(item_to_stock))
 			var/obj/item/reagent_containers/reagent_container = item_to_stock
 			if(!(reagent_container.item_flags & CAN_REFILL) && !reagent_container.has_initial_reagents())
-				user?.balloon_alert(user, "\The [reagent_container] is missing some of its reagents!")
+				if(show_feedback)
+					user?.balloon_alert(user, "\The [reagent_container] is missing some of its reagents!")
 				return FALSE
 
 	//Actually restocks the item after our checks
@@ -869,7 +875,7 @@
 	. = ..()
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive")
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 //Oh no we're malfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()

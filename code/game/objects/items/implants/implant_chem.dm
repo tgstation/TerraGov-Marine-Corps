@@ -32,7 +32,7 @@
 	if(malfunction == MALFUNCTION_PERMANENT)
 		return FALSE
 	if(used)
-		to_chat(implant_owner, span_warning(" WARNING. Implant activation failed; Error code 345: Implant exhausted."))
+		to_chat(implant_owner, span_warning("WARNING. Implant activation failed; Error code 345: Implant exhausted."))
 		return FALSE
 	playsound(implant_owner, 'sound/machines/buzz-two.ogg', 60, 1)
 	reagents.trans_to(implant_owner, reagents.total_volume)

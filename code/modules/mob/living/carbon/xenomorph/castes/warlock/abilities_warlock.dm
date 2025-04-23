@@ -192,6 +192,7 @@
 /obj/effect/xeno/shield
 	icon = 'icons/Xeno/96x96.dmi'
 	icon_state = "shield"
+	anchored = TRUE
 	resistance_flags = UNACIDABLE|PLASMACUTTER_IMMUNE
 	max_integrity = 650
 	layer = ABOVE_MOB_LAYER
@@ -510,6 +511,7 @@
 	. = ..()
 	particle_holder = new(src, channel_particle)
 	particle_holder.pixel_y = 0
+	notify_ai_hazard()
 
 /obj/effect/xeno/crush_orb
 	icon = 'icons/xeno/2x2building.dmi'

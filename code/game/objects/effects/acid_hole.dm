@@ -14,7 +14,7 @@
 	base_icon_state = "acid-hole"
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
-	layer = LOWER_ITEM_LAYER
+	layer = LOW_ITEM_LAYER
 	var/turf/closed/wall/holed_wall
 
 /obj/effect/acid_hole/Initialize(mapload)

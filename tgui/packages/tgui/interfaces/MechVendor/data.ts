@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, MouseEventHandler, SetStateAction } from 'react';
 export const MECHA_ASSEMBLY = 'Mecha Assembly';
 export const MECHA_WEAPONS = 'Weapons';
 export const tabs = [MECHA_ASSEMBLY, MECHA_WEAPONS];
@@ -39,6 +39,7 @@ type MaxEquip = {
 
 type AllEquipment = {
   weapons: MechWeapon[];
+  back_weapons: MechWeapon[];
   ammo: MechAmmo[];
   armor: MechArmor[];
   utility: MechUtility[];
@@ -92,8 +93,10 @@ export type MechPower = {
 };
 
 type SelectedEquip = {
-  mecha_l_arm: string;
-  mecha_r_arm: string;
+  mecha_l_arm?: string;
+  mecha_r_arm?: string;
+  mecha_l_back?: string;
+  mecha_r_back?: string;
   mecha_utility: string[];
   mecha_power: string[];
   mecha_armor: string[];
@@ -106,8 +109,8 @@ type MechStatData = {
   right_scatter: number;
   health: number;
   slowdown: number;
-  armor: string[];
   power_max: number;
+  power_gen: number;
 };
 
 export type BodypartPickerData = {
@@ -118,6 +121,8 @@ export type BodypartPickerData = {
 
 export type ColorDisplayData = {
   shown_colors: string;
+  name: string;
+  action?: MouseEventHandler<HTMLDivElement>;
 };
 
 type ColorData = {

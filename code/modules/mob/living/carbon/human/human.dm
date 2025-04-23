@@ -29,7 +29,7 @@
 	AddComponent(/datum/component/anti_juggling)
 	set_jump_component()
 
-/mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
+/mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z, same_z_layer)
 	SIGNAL_HANDLER
 	LAZYREMOVE(GLOB.humans_by_zlevel["[old_z]"], src)
 	LAZYADD(GLOB.humans_by_zlevel["[new_z]"], src)
@@ -614,11 +614,6 @@
 				popup.open(FALSE)
 			break
 
-	if(href_list["lookitem"])
-		var/obj/item/I = locate(href_list["lookitem"])
-		if(istype(I))
-			I.examine(usr)
-
 	return ..()
 
 /mob/living/carbon/human/grabbed_self_attack()
@@ -699,7 +694,7 @@
 
 
 /mob/living/carbon/human/proc/play_xylophone()
-	visible_message(span_warning(" [src] begins playing his ribcage like a xylophone. It's quite spooky."),span_notice(" You begin to play a spooky refrain on your ribcage."),span_warning(" You hear a spooky xylophone melody."))
+	visible_message(span_warning("[src] begins playing his ribcage like a xylophone. It's quite spooky."),span_notice("You begin to play a spooky refrain on your ribcage."),span_warning("You hear a spooky xylophone melody."))
 	var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 	playsound(loc, song, 25, 1)
 
@@ -739,7 +734,7 @@
 	if(handle_pulse())
 		to_chat(usr, span_notice("[self ? "You have a" : "[src] has a"] pulse! Counting..."))
 	else
-		to_chat(usr, span_warning(" [src] has no pulse!"))
+		to_chat(usr, span_warning("[src] has no pulse!"))
 		return
 
 	to_chat(usr, "You must[self ? "" : " both"] remain still until counting is finished.")
@@ -792,6 +787,9 @@
 	var/datum/species/oldspecies = species
 
 	species = GLOB.all_species[new_species]
+
+	if(!species)
+		CRASH("Failed to set species to [new_species]")
 
 	if(oldspecies)
 		//additional things to change when we're no longer that species
@@ -1129,3 +1127,7 @@
 		return FALSE
 	user.health_analyzer.analyze_vitals(src, user)
 	return TRUE
+
+///Checks if we have an AI behavior active
+/mob/living/carbon/human/proc/has_ai()
+	return SEND_SIGNAL(src, COMSIG_HUMAN_HAS_AI) & MOB_HAS_AI

@@ -119,6 +119,7 @@
 
 /datum/ammo/bullet/rifle/tx8
 	name = "A19 high velocity bullet"
+	icon_state = "bullet_red"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	damage_falloff = 0

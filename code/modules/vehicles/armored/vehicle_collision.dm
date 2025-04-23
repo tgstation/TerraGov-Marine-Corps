@@ -8,7 +8,7 @@
  * * temp to check whether a mob is squished
  */
 /atom/proc/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
-	if(TIMER_COOLDOWN_CHECK(veh, COOLDOWN_VEHICLE_CRUSHSOUND))
+	if(TIMER_COOLDOWN_RUNNING(veh, COOLDOWN_VEHICLE_CRUSHSOUND))
 		return
 	visible_message(span_danger("[veh] rams [src]!"))
 	playsound(src, 'sound/effects/metal_crash.ogg', 45)

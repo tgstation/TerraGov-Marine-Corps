@@ -504,7 +504,7 @@
 	COOLDOWN_DECLARE(mirage_cooldown)
 
 /obj/item/armor_module/module/mirage/activate(mob/living/user)
-	if(!COOLDOWN_CHECK(src, mirage_cooldown))
+	if(!COOLDOWN_FINISHED(src, mirage_cooldown))
 		balloon_alert(user, "[COOLDOWN_TIMELEFT(src, mirage_cooldown)*0.1] seconds")
 		return
 	var/alpha_mod = user.alpha * 0.95
@@ -547,7 +547,7 @@
 	locked_armor_mod = null
 
 /obj/item/armor_module/module/armorlock/activate(mob/living/user)
-	if(!COOLDOWN_CHECK(src, armorlock_cooldown))
+	if(!COOLDOWN_FINISHED(src, armorlock_cooldown))
 		balloon_alert(user, "[COOLDOWN_TIMELEFT(src, armorlock_cooldown)*0.1] seconds")
 		return
 
@@ -555,7 +555,7 @@
 	user.move_resist = MOVE_FORCE_OVERPOWERING
 	user.log_message("has been armor locked for [ARMORLOCK_DURATION] ticks", LOG_ATTACK, color="pink")
 
-	var/image/shield_overlay = image('icons/effects/effects.dmi', null, "shield-blue")
+	var/image/shield_overlay = image('icons/effects/effects.dmi', null, "armorlock")
 	user.overlays += shield_overlay
 	user.status_flags |= GODMODE
 	playsound(user, 'sound/items/armorlock.ogg', 50)

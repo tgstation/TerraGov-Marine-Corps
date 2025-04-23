@@ -267,7 +267,7 @@
 	var/datum/effect_system/smoke_spread/bad/smoke = new
 	smoke.set_up((radius - 1), get_turf(holder.get_holder()), 2)
 	smoke.start()
-	explosion(get_turf(holder.get_holder()), light_impact_range = radius)
+	explosion(get_turf(holder.get_holder()), light_impact_range = radius, explosion_cause="gunpowder chem")
 
 
 /datum/chemical_reaction/explosive/anfo
@@ -278,5 +278,5 @@
 	var/radius = round(sqrt(created_volume* 0.25), 1) // should be a max of 2 tiles
 	if(radius > 2)
 		radius = 2 //enforced by a hardcap. Sorry!
-	explosion(get_turf(holder.get_holder()), heavy_impact_range = radius)
+	explosion(get_turf(holder.get_holder()), heavy_impact_range = radius, explosion_cause="anfo chem")
 

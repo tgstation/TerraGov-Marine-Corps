@@ -6,7 +6,7 @@
 
 /client/verb/ooc(msg as text)
 	set name = "OOC"
-	set category = "OOC"
+	set category = "OOC.Communication"
 
 	if(!mob)
 		return
@@ -108,6 +108,10 @@
 	for(var/client/recv_client AS in GLOB.clients)
 		if(!(recv_client.prefs.toggles_chat & CHAT_OOC))
 			continue
+		if(holder?.fakekey in recv_client.prefs.ignoring)
+			continue
+		if(key in recv_client.prefs.ignoring)
+			continue
 
 		var/display_name = key
 		if(holder?.fakekey)
@@ -134,7 +138,7 @@
 
 /client/verb/xooc(msg as text) // Same as MOOC, but for xenos.
 	set name = "XOOC"
-	set category = "OOC"
+	set category = "OOC.Communication"
 
 	if(!msg)
 		return
@@ -243,7 +247,7 @@
 
 /client/verb/mooc(msg as text) // Same as XOOC, but for humans.
 	set name = "MOOC"
-	set category = "OOC"
+	set category = "OOC.Communication"
 
 	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
@@ -348,7 +352,7 @@
 
 /client/verb/looc(msg as text)
 	set name = "LOOC"
-	set category = "OOC"
+	set category = "OOC.Communication"
 
 	if(!msg)
 		return
@@ -452,7 +456,7 @@
 
 /client/verb/stop_sounds()
 	set name = "Stop Sounds"
-	set category = "OOC"
+	set category = "OOC.Fix"
 	set desc = "Stop Current Sounds"
 
 	SEND_SOUND(src, sound(null))
@@ -489,7 +493,7 @@
 
 /client/verb/fit_viewport()
 	set name = "Fit Viewport"
-	set category = "OOC"
+	set category = "OOC.Fix"
 	set desc = "Fit the width of the map window to match the viewport"
 
 	// Fetch aspect ratio
@@ -613,7 +617,7 @@
 
 /client/verb/ping()
 	set name = "Ping"
-	set category = "OOC"
+	set category = "OOC.Fix"
 	winset(src, null, "command=.display_ping+[world.time + world.tick_lag * TICK_USAGE_REAL / 100]")
 
 /client/verb/fix_stat_panel()
@@ -621,3 +625,139 @@
 	set hidden = TRUE
 
 	init_verbs()
+
+/client/verb/select_ignore()
+	set name = "Ignore"
+	set category = "OOC"
+	set desc ="Ignore a player's messages on the OOC channel"
+
+	var/list/players = list()
+
+	// Use keys and fakekeys for the same purpose
+	var/displayed_key = ""
+
+	for(var/client/C in GLOB.clients)
+		if(C == src)
+			continue
+		if((C.key in prefs.ignoring) && !C.holder?.fakekey)
+			continue
+		if(C.holder?.fakekey in prefs.ignoring)
+			continue
+		if(C.holder?.fakekey)
+			displayed_key = C.holder.fakekey
+		else
+			displayed_key = C.key
+
+		// Check if both we and the player are ghosts and they're not using a fakekey
+		if(isobserver(mob) && isobserver(C.mob) && !C.holder?.fakekey)
+			players["[displayed_key](ghost)"] = displayed_key
+		else
+			players[displayed_key] = displayed_key
+
+	if(!length(players))
+		to_chat(src, span_infoplain("There are no other players you can ignore!"))
+		return
+
+	players = sort_list(players)
+
+	var/selection = tgui_input_list(src, "Select a player", "Ignore", players)
+
+	if(isnull(selection) || !(selection in players))
+		return
+
+	selection = players[selection]
+
+	if(selection in prefs.ignoring)
+		to_chat(src, span_infoplain("You are already ignoring [selection]!"))
+		return
+
+	prefs.ignoring.Add(selection)
+	prefs.save_preferences()
+
+	to_chat(src, span_info("You are now ignoring [selection] on the OOC channel."))
+
+/client/verb/select_unignore()
+	set name = "Unignore"
+	set category = "OOC"
+	set desc = "Stop ignoring a player's messages on the OOC channel"
+
+	if(!length(prefs.ignoring))
+		to_chat(src, span_infoplain("You haven't ignored any players!"))
+		return
+
+	var/selection = tgui_input_list(src, "Select a player", "Unignore", prefs.ignoring)
+
+	if(isnull(selection))
+		return
+
+	if(!(selection in prefs.ignoring))
+		to_chat(src, span_infoplain("You are not ignoring [selection]!"))
+		return
+
+	prefs.ignoring.Remove(selection)
+	prefs.save_preferences()
+
+	to_chat(src, span_info("You are no longer ignoring [selection] on the OOC channel."))
+
+/client/verb/linkforumaccount()
+	set category = "OOC"
+	set name = "Link Forum Account"
+	set desc = "Validates your byond account to your forum account. Required to post on the forums."
+
+	var/uri = CONFIG_GET(string/forum_link_uri)
+	if(!uri)
+		to_chat(src, span_warning("This feature is disabled."))
+		return
+
+	if (!SSdbcore.Connect())
+		to_chat(src, span_danger("No connection to the database."))
+		return
+
+	if  (IsGuestKey(ckey))
+		to_chat(src, span_danger("Guests can not link accounts."))
+		return
+
+	var/token = generate_account_link_token()
+
+	var/datum/db_query/query_set_token = SSdbcore.NewQuery("INSERT INTO phpbb.tg_byond_oauth_tokens (`token`, `key`) VALUES (:token, :key)", list("token" = token, "key" = key))
+	if(!query_set_token.Execute())
+		to_chat(src, span_danger("Failed to insert account link token into database, please try again later."))
+		qdel(query_set_token)
+		return
+
+	qdel(query_set_token)
+
+	to_chat(src, "Now opening a window to login to your forum account, your account will automatically be linked the moment you log in. If this window doesn't load, Please go to <a href=\"[uri]?token=[token]\">[uri]?token=[token]</a> - This link will expire in 30 minutes.")
+	src << link("[uri]?token=[token]")
+
+/client/proc/generate_account_link_token()
+	var/static/entropychain
+	if (!entropychain)
+		if (fexists("data/entropychain.txt"))
+			entropychain = file2text("entropychain.txt")
+		else
+			entropychain = "LOL THERE IS NO ENTROPY #HEATDEATH"
+	else if (prob(rand(1,15)))
+		text2file("data/entropychain.txt", entropychain)
+
+	var/datum/db_query/query_get_token = SSdbcore.NewQuery("SELECT [random_string()], [random_string()]", list(random_string_args(entropychain), random_string_args(entropychain)))
+
+	if(!query_get_token.Execute())
+		to_chat(src, span_danger("Failed to get random string token from database. (Error #1)"))
+		qdel(query_get_token)
+		return
+
+	if(!query_get_token.NextRow())
+		to_chat(src, span_danger("Could not locate your token in the database. (Error #2)"))
+		qdel(query_get_token)
+		return
+
+	entropychain = "[query_get_token.item[2]]"
+	return query_get_token.item[1]
+
+
+/client/proc/random_string()
+	return "SHA2(CONCAT(RAND(),UUID(),?,RAND(),UUID()), 512)"
+
+/client/proc/random_string_args(entropychain)
+	return "[entropychain][GUID()][rand()*rand(999999)][world.time][GUID()][rand()*rand(999999)][world.timeofday][GUID()][rand()*rand(999999)][world.realtime][GUID()][rand()*rand(999999)][time2text(world.timeofday)][GUID()][rand()*rand(999999)][world.tick_usage][computer_id][address][ckey][key][GUID()][rand()*rand(999999)]"

@@ -53,13 +53,14 @@
 					else
 						entry += " - <b>DEAD</b>"
 			entry += " (<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+			entry += " ([round(C.avgping, 1)]ms)"
 			Lines += entry
 	else
 		for(var/client/C in GLOB.clients)
 			if(C.holder?.fakekey)
-				Lines += C.holder.fakekey
+				Lines += "[C.holder.fakekey] ([round(C.avgping, 1)]ms)"
 			else
-				Lines += C.key
+				Lines += "[C.key] ([round(C.avgping, 1)]ms)"
 
 	for(var/line in sortList(Lines))
 		msg += "[line]<br>"

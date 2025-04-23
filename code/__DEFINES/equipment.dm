@@ -26,6 +26,7 @@
 #define PASS_TANK (1<<11)
 
 #define PASSABLE (PASS_THROW|PASS_PROJECTILE|PASS_AIR)
+#define Z_FLYING (PASS_LOW_STRUCTURE|PASS_FIRE)
 #define HOVERING (PASS_LOW_STRUCTURE|PASS_MOB|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE)
 
 //==========================================================================================

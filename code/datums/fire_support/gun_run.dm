@@ -117,6 +117,6 @@
 	playsound(strafelist[1], 'sound/weapons/guns/fire/volkite_4.ogg', 60, FALSE, 25, falloff = 3)
 	strafed = strafelist[1]
 	strafelist -= strafed
-	explosion(strafed, light_impact_range = 2, flame_range = 2, throw_range = 0)
+	explosion(strafed, light_impact_range = 2, flame_range = 2, throw_range = 0, explosion_cause=name)
 	if(length(strafelist))
 		addtimer(CALLBACK(src, PROC_REF(strafe_turfs), strafelist), 0.2 SECONDS)

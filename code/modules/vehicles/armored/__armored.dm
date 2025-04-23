@@ -27,9 +27,9 @@
 	/// sound that plays inside when we drive around
 	var/datum/looping_sound/drive_inside_loop = /datum/looping_sound/tank_drive_interior
 	/// sound to play outside the tank after the driver leaves
-	var/engine_off_sound = 'sound/vehicles/looping/tank_eng_interior_start.ogg'
+	var/engine_off_sound = 'sound/vehicles/looping/tank_eng_interior_stop.ogg'
 	/// sound to play inside the tank after the driver leaves
-	var/engine_off_interior_sound = 'sound/vehicles/looping/tank_eng_start.ogg'
+	var/engine_off_interior_sound = 'sound/vehicles/looping/tank_eng_stop.ogg'
 
 	///Cool and good turret overlay that allows independently swiveling guns
 	var/atom/movable/vis_obj/turret_overlay/turret_overlay = /atom/movable/vis_obj/turret_overlay
@@ -259,6 +259,12 @@
 		return
 	after_move(direction)
 	forceMove(get_step(src, direction)) // still animates and calls moved() and all that stuff BUT we skip checks
+	//we still need to handroll some parts of moved though since we skipped everything
+	last_move = direction
+	last_move_time = world.time
+	if(currently_z_moving)
+		var/turf/pitfall = get_turf(src)
+		pitfall.zFall(src, falling_from_move = TRUE)
 
 /obj/vehicle/sealed/armored/resisted_against(mob/living/user)
 	balloon_alert(user, "exiting...")
@@ -276,7 +282,7 @@
 /obj/vehicle/sealed/armored/Bump(atom/A)
 	. = ..()
 	if(HAS_TRAIT(A, TRAIT_STOPS_TANK_COLLISION))
-		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_VEHICLE_CRUSHSOUND))
+		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_VEHICLE_CRUSHSOUND))
 			visible_message(span_danger("[src] is stopped by [A]!"))
 			playsound(A, 'sound/effects/metal_crash.ogg', 45)
 			TIMER_COOLDOWN_START(src, COOLDOWN_VEHICLE_CRUSHSOUND, 1 SECONDS)
@@ -443,6 +449,15 @@
 		return
 	if(is_equipment_controller(user))
 		swivel_turret(null, direction)
+
+/obj/vehicle/sealed/armored/onZImpact(turf/impacted_turf, levels, impact_flags)
+	. = ..()
+	if(pass_flags & HOVERING)
+		return
+	var/obj/hitboxtouse = hitbox ? hitbox : src
+	for(var/turf/landingzone in hitboxtouse.locs)
+		for(var/mob/living/crushed in landingzone)
+			crushed.gib()
 
 /obj/vehicle/sealed/armored/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	for(var/mob/living/carbon/human/crew AS in occupants)
@@ -670,7 +685,7 @@
 		new_weapon_dir = angle_to_cardinal_dir(Get_Angle(get_turf(src), get_turf(A)))
 	if(turret_overlay.dir == new_weapon_dir)
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam
 		return FALSE
 	playsound(src, 'sound/vehicles/tankswivel.ogg', 80, TRUE)
 	play_interior_sound(null, 'sound/vehicles/turret_swivel_interior.ogg', 60, TRUE)
@@ -736,7 +751,7 @@
 	minimap_icon_state = initial(minimap_icon_state)
 	if(armored_flags & ARMORED_IS_WRECK)
 		minimap_icon_state += "_wreck"
-	SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state, HIGH_FLOAT_LAYER))
+	SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state, MINIMAP_BLIPS_LAYER))
 
 /atom/movable/vis_obj/turret_overlay
 	name = "Tank gun turret"
@@ -744,7 +759,7 @@
 	icon = 'icons/obj/armored/3x3/tank_gun.dmi' //set by owner
 	icon_state = "turret"
 	layer = ABOVE_ALL_MOB_LAYER
-	vis_flags = VIS_INHERIT_ID
+	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_PLANE
 	///overlay obj for for the attached gun
 	var/atom/movable/vis_obj/tank_gun/primary_overlay
 	///icon state for the secondary
@@ -809,10 +824,10 @@
 	desc = "ow."
 	icon = 'icons/obj/armored/3x3/tank_damage.dmi' //set by owner
 	icon_state = "null" // set on demand
-	vis_flags = VIS_INHERIT_DIR
+	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_LAYER|VIS_INHERIT_ID|VIS_INHERIT_PLANE
 
 /atom/movable/vis_obj/tank_gun
 	name = "Tank weapon"
-	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_LAYER|VIS_INHERIT_ID
+	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_LAYER|VIS_INHERIT_ID|VIS_INHERIT_PLANE
 	pixel_x = -70
 	pixel_y = -69

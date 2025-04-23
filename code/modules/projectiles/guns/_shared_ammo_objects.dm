@@ -13,8 +13,7 @@
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "red_2"
 	layer = BELOW_OBJ_LAYER
-	light_system = MOVABLE_LIGHT
-	light_mask_type = /atom/movable/lighting_mask/flicker
+	light_system = STATIC_LIGHT
 	light_on = TRUE
 	light_range = 3
 	light_power = 3
@@ -38,6 +37,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 	AddComponent(/datum/component/submerge_modifier, 10)
 	set_fire(new_burn_ticks, new_burn_level, f_color, fire_stacks, fire_damage)
+	notify_ai_hazard()
 
 /obj/fire/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -53,7 +53,7 @@
 			light_intensity = 4
 		if(25 to INFINITY)
 			light_intensity = 6
-	set_light_range_power_color(light_intensity, light_power, light_color)
+	set_light(light_intensity, light_power, light_color)
 
 /obj/fire/update_icon_state()
 	. = ..()
@@ -71,6 +71,18 @@
 			icon_state = "[flame_color]_2"
 		if(25 to INFINITY)
 			icon_state = "[flame_color]_3"
+
+/obj/fire/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, icon_state, src)
+
+/obj/fire/can_z_move(direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	z_move_flags |= ZMOVE_ALLOW_ANCHORED
+	return ..()
+
+/obj/fire/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+	impact_flags |= ZIMPACT_NO_SPIN
+	return ..()
 
 /obj/fire/process()
 	if(!isturf(loc))
@@ -164,17 +176,27 @@
 	icon_state = "xeno_fire"
 	flame_color = "purple"
 	light_on = FALSE
+	light_range = 0
+	light_power = 0
 	burn_ticks = 36
 	burn_decay = 9
 	/// The creator of this fire. Only really matters for pyrogens.
 	var/mob/living/carbon/xenomorph/creator
 
+/obj/fire/melting_fire/update_overlays()
+	. = ..()
+	. += emissive_appearance(icon, icon_state, src)
+
 /obj/fire/melting_fire/affect_atom(atom/affected)
+	if(isvehicle(affected))
+		var/obj/vehicle/ghost_rider = affected
+		ghost_rider.take_damage(burn_level / 2, BURN, ACID)
+		return TRUE
 	if(!ishuman(affected))
-		return
+		return FALSE
 	var/mob/living/carbon/human/human_affected = affected
 	if(human_affected.stat == DEAD)
-		return
+		return FALSE
 	if(human_affected.status_flags & (INCORPOREAL|GODMODE))
 		return FALSE
 	if(human_affected.pass_flags & PASS_FIRE)
@@ -187,4 +209,23 @@
 		debuff.add_stacks(PYROGEN_MELTING_FIRE_EFFECT_STACK, creator)
 	else
 		human_affected.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_MELTING_FIRE_EFFECT_STACK, creator)
-	human_affected.take_overall_damage(PYROGEN_MELTING_FIRE_DAMAGE, BURN, FIRE, max_limbs = 2)
+	human_affected.take_overall_damage(PYROGEN_MELTING_FIRE_DAMAGE, BURN, FIRE, updating_health = TRUE, max_limbs = 2)
+	return TRUE // For shattering fire
+
+///////////////////////////////
+//        SHATTERING FIRE    //
+///////////////////////////////
+
+/obj/fire/melting_fire/shattering
+	name = "shattering fire"
+	desc = "Cold to the touch, it rapidly spreads cracks through anything it contacts."
+	icon_state = "violet_1"
+	flame_color = "violet"
+
+/obj/fire/melting_fire/shattering/affect_atom(atom/affected)
+	. = ..()
+	if(.) // parent proc only returns true if it applies its effects to a human, so affected must be a human, ergo no type validation needed
+		var/mob/living/carbon/human/victim = affected
+		victim.apply_status_effect(STATUS_EFFECT_SHATTER, 3 SECONDS)
+
+

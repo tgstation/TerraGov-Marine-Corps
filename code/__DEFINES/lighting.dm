@@ -17,11 +17,14 @@
 
 #define LIGHT_RANGE_FIRE 3 //How many tiles standard fires glow.
 
-#define LIGHTING_PLANE_ALPHA_VISIBLE 255
-#define LIGHTING_PLANE_ALPHA_NV_TRAIT 245
-#define LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE 192
-#define LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE 128 //For lighting alpha, small amounts lead to big changes. even at 128 its hard to figure out what is dark and what is light, at 64 you almost can't even tell.
-#define LIGHTING_PLANE_ALPHA_INVISIBLE 0
+// Lighting cutoff defines
+// These are a percentage of how much darkness to cut off (in rgb)
+#define LIGHTING_CUTOFF_VISIBLE 0
+#define LIGHTING_CUTOFF_REAL_LOW 5
+#define LIGHTING_CUTOFF_LOW 15
+#define LIGHTING_CUTOFF_MEDIUM 30
+#define LIGHTING_CUTOFF_HIGH 50
+#define LIGHTING_CUTOFF_FULLBRIGHT 100
 
 
 #define FLASH_LIGHT_DURATION 2
@@ -42,12 +45,15 @@
 #define EMISSIVE_COLOR _EMISSIVE_COLOR(1)
 /// A globaly cached version of [EMISSIVE_COLOR] for quick access.
 GLOBAL_LIST_INIT(emissive_color, EMISSIVE_COLOR)
+#define _EM_BLOCK_COLOR(val) list(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,val, 0,0,0,0)
 /// The color matrix applied to all emissive blockers. Should be solely dependent on alpha and not have RGB overlap with [EMISSIVE_COLOR].
-#define EM_BLOCK_COLOR list(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 0,0,0,0)
+#define EM_BLOCK_COLOR _EM_BLOCK_COLOR(1)
 /// A globaly cached version of [EM_BLOCK_COLOR] for quick access.
 GLOBAL_LIST_INIT(em_block_color, EM_BLOCK_COLOR)
 /// A set of appearance flags applied to all emissive and emissive blocker overlays.
 #define EMISSIVE_APPEARANCE_FLAGS (KEEP_APART|KEEP_TOGETHER|RESET_COLOR|RESET_TRANSFORM)
+/// A set of appearance flags applied to all emissive and emissive blocker overlays that transform with the atom its attached to.
+#define EMISSIVE_APPEARANCE_TRANSFORM_FLAGS (KEEP_APART|KEEP_TOGETHER|RESET_COLOR)
 /// The color matrix used to mask out emissive blockers on the emissive plane. Alpha should default to zero, be solely dependent on the RGB value of [EMISSIVE_COLOR], and be independant of the RGB value of [EM_BLOCK_COLOR].
 #define EM_MASK_MATRIX list(0,0,0,1/3, 0,0,0,1/3, 0,0,0,1/3, 0,0,0,0, 1,1,1,0)
 /// A globaly cached version of [EM_MASK_MATRIX] for quick access.

@@ -18,11 +18,6 @@
 /mob/proc/remove_all_indicators()
 	return
 
-/mob/set_stat(new_stat)
-	. = ..()
-	if(.)
-		remove_all_indicators()
-
 /mob/Logout()
 	remove_all_indicators()
 	return ..()

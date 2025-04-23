@@ -239,17 +239,27 @@
 		return INITIALIZE_HINT_QDEL
 
 
-//Makes a tile fully lit no matter what
-/obj/effect/fullbright
-	icon = 'icons/effects/alphacolors.dmi'
-	icon_state = "white"
-	plane = LIGHTING_PLANE
-	layer = BACKGROUND_LAYER + LIGHTING_PRIMARY_LAYER
-	blend_mode = BLEND_ADD
-
 /obj/effect/overlay/temp/timestop_effect
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "time"
 	layer = FLY_LAYER
 	plane = GAME_PLANE
 	alpha = 70
+
+/obj/effect/build_hologram
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	anchored = TRUE
+	layer = ABOVE_ALL_MOB_LAYER
+	smoothing_groups = list(SMOOTH_GROUP_HOLOGRAM)
+	canSmoothWith = list(SMOOTH_GROUP_HOLOGRAM)
+	alpha = 190
+
+/obj/effect/build_hologram/Initialize(mapload, atom/copy_type)
+	if(ispath(copy_type))
+		icon = initial(copy_type.icon)
+		icon_state = initial(copy_type.icon_state)
+		base_icon_state = initial(copy_type.base_icon_state)
+		color = initial(copy_type.color)
+		smoothing_flags = initial(copy_type.smoothing_flags)
+	. = ..()
+	makeHologram(0.7, FALSE)

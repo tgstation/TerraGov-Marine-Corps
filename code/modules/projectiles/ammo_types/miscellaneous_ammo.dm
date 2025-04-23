@@ -126,6 +126,9 @@
 		return
 	flame_radius(2, T)
 
+/datum/ammo/flamethrower/mech_flamer
+	damage = 15
+
 /datum/ammo/flamethrower/mech_flamer/drop_flame(turf/T)
 	if(!istype(T))
 		return

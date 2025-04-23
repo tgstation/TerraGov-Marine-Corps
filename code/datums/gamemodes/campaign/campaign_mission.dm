@@ -8,7 +8,7 @@
 	///path of map for this mission
 	var/map_file
 	///map_traits, defaults to ZTRAIT_AWAY
-	var/list/map_traits = list(ZTRAIT_AWAY = TRUE)
+	var/list/map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_BASETURF = "/turf/open/floor/plating")
 	///Lightings colours for the map. Typically all the same for consistancy, but not required
 	var/list/map_light_colours = list(COLOR_WHITE, COLOR_WHITE, COLOR_WHITE, COLOR_WHITE)
 	///Light levels for the map

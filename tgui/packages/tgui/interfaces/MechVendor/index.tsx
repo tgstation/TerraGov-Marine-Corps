@@ -2,12 +2,14 @@ import { useState } from 'react';
 import {
   Box,
   Button,
+  Icon,
   LabeledList,
   Modal,
   ProgressBar,
   Section,
   Stack,
   Tabs,
+  Tooltip,
 } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
@@ -28,25 +30,24 @@ export const MechVendor = (props) => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
   const { act, data } = useBackend<MechVendData>();
   return (
-    <Window title={'Mecha Assembler'} width={1460} height={620}>
+    <Window title={'Mecha Assembler'} width={1080} height={570}>
       {showDesc ? (
         <Modal width="500px">
           <Section
+            fill
             title={showDesc.name}
             buttons={
               <Button content="Dismiss" onClick={() => setShowDesc(null)} />
             }
           >
-            <Stack>
-              <Stack.Item>
+            <Stack fill>
+              <Stack.Item grow>
                 <Box
                   className={classes([
                     'mech_builder64x32',
                     showDesc.icon_state,
                   ])}
                   ml={5}
-                  mr={20}
-                  mt={3}
                   mb={9}
                   style={{
                     transform: 'scale(3) translate(20%, 20%)',
@@ -100,7 +101,7 @@ export const MechVendor = (props) => {
                 </LabeledList>
               </Stack.Item>
               <Stack.Item>
-                <Box ml={-38}>
+                <Box>
                   {showDesc.desc +
                     (showDesc.ammo_type
                       ? ' Loaded with: ' + showDesc.ammo_type + '.'
@@ -127,30 +128,36 @@ export const MechVendor = (props) => {
             );
           })}
         </Tabs>
-        <Stack>
+        <Stack fill>
           <Stack.Item>
-            <ProgressBar
-              style={{
-                transform: 'rotate(270deg) translateX(-48%)',
-                width: 535,
-                marginLeft: -255,
-                marginRight: -255,
-              }}
-              ranges={{
-                good: [0.5, Infinity],
-                average: [0, 0.5],
-                bad: [-Infinity, 0],
-              }}
-              maxValue={data.max_weight}
-              value={data.weight}
+            <Tooltip
+              content="Weight determines the maximum weight of equipment and limbs mounted on your mech. Increased by equipping heavier legs."
+              position="top" // top cus right layers under the preview
             >
-              Weight
-              {
-                // todo have an icon here instead of text so it looks nicer
-              }
-            </ProgressBar>
+              <ProgressBar
+                style={{
+                  transform: 'rotate(270deg) translateX(-48%)',
+                  width: 480,
+                  marginLeft: -230,
+                  marginRight: -230,
+                }}
+                ranges={{
+                  bad: [0.8, Infinity],
+                  average: [0.5, 0.8],
+                  good: [-Infinity, 0.5],
+                }}
+                value={data.weight / data.max_weight}
+              >
+                <Icon
+                  name="weight-hanging"
+                  style={{
+                    transform: 'rotate(-270deg) translateX(-2%)',
+                  }}
+                />
+              </ProgressBar>
+            </Tooltip>
           </Stack.Item>
-          <Stack.Item>
+          <Stack.Item grow>
             {selectedTab === MECHA_ASSEMBLY && <MechAssembly />}
             {selectedTab === MECHA_WEAPONS && (
               <MechWeapons setShowDesc={setShowDesc} />

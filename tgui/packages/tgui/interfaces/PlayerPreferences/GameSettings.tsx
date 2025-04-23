@@ -14,6 +14,27 @@ import {
   ToggleFieldPreference,
 } from './FieldPreferences';
 
+const MultiZPerfToString = (integer) => {
+  let returnval = '';
+  switch (integer) {
+    case -1:
+      returnval = 'No Culling';
+      break;
+    case 0:
+      returnval = 'Low';
+      break;
+    case 1:
+      returnval = 'Medium';
+      break;
+    case 2:
+      returnval = 'High';
+      break;
+    default:
+      returnval = 'Error!';
+  }
+  return returnval;
+};
+
 const ParallaxNumToString = (integer) => {
   let returnval = '';
   switch (integer) {
@@ -40,8 +61,14 @@ const ParallaxNumToString = (integer) => {
 
 export const GameSettings = (props) => {
   const { act, data } = useBackend<GameSettingData>();
-  const { ui_style_color, scaling_method, pixel_size, parallax, is_admin } =
-    data;
+  const {
+    ui_style_color,
+    scaling_method,
+    pixel_size,
+    parallax,
+    multiz_performance,
+    is_admin,
+  } = data;
 
   // Remember to update this alongside defines
   // todo: unfuck. Bruh why is this being handled in the tsx?
@@ -129,13 +156,37 @@ export const GameSettings = (props) => {
                 action="fullscreen_mode"
                 leftLabel={'Fullscreen'}
                 rightLabel={'Windowed'}
+                tooltip="Toggles Windowed Borderless mode"
               />
               <ToggleFieldPreference
-                label="Status Bar (Bottom left text)"
+                label="Status Bar"
                 value="show_status_bar"
                 action="show_status_bar"
                 leftLabel={'Show'}
                 rightLabel={'Hide'}
+                tooltip="Whether to show or hide the status bar in the bottom left of the screen"
+              />
+              <ToggleFieldPreference
+                label="Ambient Occlusion"
+                value="ambient_occlusion"
+                action="ambient_occlusion"
+                leftLabel={'On'}
+                rightLabel={'Off'}
+                tooltip="Whether to render ambient occlusion, which adds a shadow-like effect to floors. Increases performance when off."
+              />
+              <ToggleFieldPreference
+                label="Multi-Z (3D) parallax"
+                value="multiz_parallax"
+                action="multiz_parallax"
+                leftLabel={'On'}
+                rightLabel={'Off'}
+                tooltip="Toggles parallax applying through multiple Zs. Increases performance when off."
+              />
+              <LoopingSelectionPreference
+                label="Multi-Z Detail"
+                value={MultiZPerfToString(multiz_performance)}
+                action="multiz_performance"
+                tooltip="How many Multi-Z levels are rendered before they start getting culled. Decrease this to improve performance in case of lag on multi-z maps."
               />
               <ToggleFieldPreference
                 label="TGUI Window Mode"
@@ -150,6 +201,14 @@ export const GameSettings = (props) => {
                 action="tgui_lock"
                 leftLabel={'Free (default)'}
                 rightLabel={'Primary monitor'}
+              />
+              <ToggleFieldPreference
+                label="UI scaling"
+                value="ui_scale"
+                action="ui_scale"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+                tooltip="Whether UIs should scale up to match your monitor scaling"
               />
               <ToggleFieldPreference
                 label="TGUI Input boxes"
@@ -203,6 +262,13 @@ export const GameSettings = (props) => {
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
+              <ToggleFieldPreference
+                label="Toggle Click-dragging"
+                value="toggle_clickdrag"
+                action="toggle_clickdrag"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
             </LabeledList>
           </Section>
         </Stack.Item>
@@ -244,6 +310,15 @@ export const GameSettings = (props) => {
                 label="Show typing indicator"
                 value="show_typing"
                 action="show_typing"
+                leftValue={1}
+                leftLabel={'Enabled'}
+                rightValue={0}
+                rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
+                label="Toggle bump attacking"
+                value="toggle_bump_attacking"
+                action="toggle_bump_attacking"
                 leftValue={1}
                 leftLabel={'Enabled'}
                 rightValue={0}

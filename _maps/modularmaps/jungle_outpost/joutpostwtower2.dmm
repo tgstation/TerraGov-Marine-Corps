@@ -100,6 +100,10 @@
 /obj/item/toy/dice/d20,
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/bar)
+"uY" = (
+/obj/effect/ai_node,
+/turf/open/floor/grimy,
+/area/campaign/jungle_outpost/outpost/bar)
 "ve" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/grimy,
@@ -115,6 +119,11 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"za" = (
+/obj/structure/bed/chair/wood/normal,
+/obj/effect/ai_node,
+/turf/open/floor/cult/clock,
 /area/campaign/jungle_outpost/outpost/bar)
 "zb" = (
 /turf/open/floor/grimy,
@@ -154,6 +163,10 @@
 	},
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/bar)
+"CG" = (
+/obj/effect/ai_node,
+/turf/open/floor/cult,
+/area/campaign/jungle_outpost/outpost/bar)
 "Ed" = (
 /obj/structure/platform{
 	dir = 1
@@ -174,7 +187,9 @@
 /turf/closed/wall/wood,
 /area/campaign/jungle_outpost/outpost/bar)
 "Ge" = (
-/obj/structure/stairs/edge,
+/obj/structure/stairs/edge{
+	dir = 1
+	},
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle/west)
 "Gj" = (
@@ -312,6 +327,10 @@
 /obj/structure/table/wood,
 /turf/open/floor/cult/clock,
 /area/campaign/jungle_outpost/outpost/bar)
+"WH" = (
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
 "Xm" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 1
@@ -381,15 +400,15 @@ eU
 QX
 Ed
 ji
-zb
+uY
 GX
 Tn
 Jp
-Jv
+za
 Oe
 Gj
 Jp
-Jp
+WH
 Hm
 Ge
 "}
@@ -461,11 +480,11 @@ mp
 dz
 KV
 KV
-fT
+CG
 rp
 fT
 Jp
-fT
+CG
 rp
 fT
 Jp

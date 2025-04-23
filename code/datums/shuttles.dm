@@ -71,6 +71,11 @@
 			continue
 		place.baseturfs.Insert(3, /turf/baseturf_skipover/shuttle)
 
+		// tgmc special. we don't want any space tiles on shuttles unlike usual ss13
+		// however, making mappers place these is kinda unsafe, and a lot of work
+		// so, as a precaution, we'll just add this as the topmost baseturf
+		place.baseturfs += /turf/open/floor/plating
+
 		for(var/obj/docking_port/mobile/port in place)
 			port.calculate_docking_port_information(src)
 			if(register)
@@ -125,6 +130,11 @@
 	///shuttle switch console name
 	var/display_name = "Tadpole Standard Model"
 	var/admin_enable = TRUE
+
+/datum/map_template/shuttle/minidropship/urbantower
+	suffix = "_urbantower"
+	description = "With the same great charm as the Standard, here it is! Now this Tadpole is designed for tactical insertions into environments with limiting space. Please Fly and Transport Responsibly"
+	display_name = "Tadpole Urban Tower Model"
 
 /datum/map_template/shuttle/minidropship/old
 	suffix = "_big"

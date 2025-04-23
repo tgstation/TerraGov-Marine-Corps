@@ -130,19 +130,19 @@
 */
 /datum/component/suit_autodoc/proc/examine(datum/source, mob/user, list/details)
 	SIGNAL_HANDLER
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_BURN))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_CHEM_BURN))
 		details += "Its burn treatment injector is currently refilling.</br>"
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_BRUTE))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_CHEM_BRUTE))
 		details += "Its trauma treatment injector is currently refilling.</br>"
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_OXY))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_CHEM_OXY))
 		details += "Its oxygenating injector is currently refilling.</br>"
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_TOX))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_CHEM_TOX))
 		details += "Its anti-toxin injector is currently refilling.</br>"
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_PAIN))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_CHEM_PAIN))
 		details += "Its painkiller injector is currently refilling.</br>"
 
 
@@ -222,7 +222,7 @@
 	chemicals into the user and sets the cooldown again
 */
 /datum/component/suit_autodoc/proc/inject_chems(list/chems, mob/living/carbon/human/H, cooldown_type, damage, threshold, treatment_message, message_prefix)
-	if(!length(chems) || TIMER_COOLDOWN_CHECK(src, cooldown_type) || damage < threshold)
+	if(!length(chems) || TIMER_COOLDOWN_RUNNING(src, cooldown_type) || damage < threshold)
 		return
 
 	var/drugs
@@ -312,7 +312,7 @@
 */
 /datum/component/suit_autodoc/proc/action_toggle(datum/source)
 	SIGNAL_HANDLER
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TOGGLE))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_TOGGLE))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_TOGGLE, 2 SECONDS)
 	if(enabled)

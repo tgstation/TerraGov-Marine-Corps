@@ -65,5 +65,5 @@
 	ammo_type = /datum/ammo/bullet/hefa_buckshot
 
 /obj/item/explosive/grenade/bullet/hefa/prime()
-	explosion(loc, light_impact_range = 2, heavy_impact_range = 1)
+	explosion(loc, light_impact_range = 2, heavy_impact_range = 1, explosion_cause=src)
 	return ..()

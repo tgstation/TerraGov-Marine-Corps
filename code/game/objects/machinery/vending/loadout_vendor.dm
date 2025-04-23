@@ -35,7 +35,7 @@
 	. = ..()
 	if(!is_operational())
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive")
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 /obj/machinery/loadout_vendor/can_interact(mob/user)
 	. = ..()

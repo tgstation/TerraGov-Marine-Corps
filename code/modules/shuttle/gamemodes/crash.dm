@@ -11,18 +11,6 @@
 	dheight = 15
 	hidden = TRUE  //To make them not block landings during distress
 
-// Big explosions
-
-/*	explosion(front, 3, 4, 7, 0)
-	explosion(rear, 3, 4, 7, 0)
-	explosion(left, 3, 4, 7, 0)
-	explosion(right, 3, 4, 7, 0)
-
-	explosion(front_right, 4, 6, 10, 0)
-	explosion(front_left, 4, 6, 10, 0)
-	explosion(rear_right, 4, 6, 10, 0)
-	explosion(rear_left, 3, 4, 7, 0)
-*/
 
 // -- Shuttles
 

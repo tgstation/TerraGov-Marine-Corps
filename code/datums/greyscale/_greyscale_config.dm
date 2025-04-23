@@ -1,5 +1,7 @@
 
 /datum/greyscale_config
+	/// User friendly name used in the debug menu
+	var/name
 	/// Reference to the json config file
 	var/json_config
 

@@ -26,6 +26,7 @@
 	throw_range = 1
 	worn_layer = FACEHUGGER_LAYER
 	layer = FACEHUGGER_LAYER
+	strip_delay = 2 SECONDS
 
 	///Whether the hugger is dead, active or inactive
 	var/stat = CONSCIOUS
@@ -169,12 +170,6 @@
 	if(isxenocarrier(user))
 		var/mob/living/carbon/xenomorph/carrier/C = user
 		C.store_hugger(src)
-	if(ishuman(user))
-		if(stat == DEAD)
-			return
-		user.visible_message(span_warning("[user] crushes [src] in [user.p_their()] hand!"), \
-		span_warning("You crush [src] in your hand!"))
-		kill_hugger()
 
 /obj/item/clothing/mask/facehugger/examine(mob/user)
 	. = ..()
@@ -359,6 +354,9 @@
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	if(isopenturf(hit_atom))
+		if((locate(/obj/hitbox) in hit_atom) && !leaping) // Kill the hugger if it's thrown on the hitbox of a vehicle
+			kill_hugger()
+			return
 		var/valid_victim = FALSE
 		for(var/mob/living/carbon/M in hit_atom)
 			if(!M.can_be_facehugged(src))
@@ -789,6 +787,7 @@
 		target.adjust_stagger(3 SECONDS)
 		target.add_slowdown(15)
 		target.apply_damage(100, STAMINA, BODY_ZONE_HEAD, BIO, updating_health = TRUE) //This should prevent sprinting
+		target.ExtinguishMob()
 
 	kill_hugger(0.5 SECONDS)
 

@@ -1,0 +1,8 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - refactor: "refactored photographs a bit"
+  - qol: "photographs now respect openspace"
+  - bugfix: "fixed 516 photographs being blurry"
+  - bugfix: "fixed all mobs that got photograpehd hard deleting"
+  - admin: "Photographs can now be saved and logged if the config flag is enabled. This also allows loading and saving photographs between rounds as well as the associated metadata"

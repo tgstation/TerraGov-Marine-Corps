@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(brig_closets)
 GLOBAL_LIST_EMPTY(supply_pad_list)
 GLOBAL_LIST_EMPTY(supply_beacon)
 GLOBAL_LIST_EMPTY(eord_roomba_spawns)
-
+GLOBAL_LIST_EMPTY(stairs) // necessary for finding nearest stair
 ///NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !
 GLOBAL_LIST_EMPTY(machines)
 GLOBAL_LIST_EMPTY(faxmachines)

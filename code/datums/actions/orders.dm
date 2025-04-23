@@ -13,11 +13,19 @@
 	. = ..()
 	UnregisterSignal(M, list(COMSIG_CIC_ORDER_SENT, COMSIG_CIC_ORDER_OFF_CD))
 
+/datum/action/skill/issue_order/ai_should_start_consider()
+	return TRUE
+
+/datum/action/skill/issue_order/ai_should_use(atom/target)
+	if(!can_use_action())
+		return FALSE
+	return TRUE
+
 /datum/action/skill/issue_order/can_use_action()
 	. = ..()
 	if(!.)
 		return
-	if(owner.stat || TIMER_COOLDOWN_CHECK(owner, COOLDOWN_SKILL_ORDERS))
+	if(owner.stat || TIMER_COOLDOWN_RUNNING(owner, COOLDOWN_SKILL_ORDERS))
 		return FALSE
 
 /datum/action/skill/issue_order/action_activate()
@@ -39,7 +47,7 @@
 	var/mob/living/carbon/human/human = owner
 	if(!istype(human))
 		return
-	if(TIMER_COOLDOWN_CHECK(human, COOLDOWN_SKILL_ORDERS))
+	if(TIMER_COOLDOWN_RUNNING(human, COOLDOWN_SKILL_ORDERS))
 		button.color = rgb(255,0,0,255)
 	else
 		button.color = rgb(255,255,255,255)
@@ -55,6 +63,10 @@
 		KEYBINDING_NORMAL = COMSIG_KB_MOVEORDER,
 	)
 
+/datum/action/skill/issue_order/move/ai_should_use(atom/target)
+	return FALSE //test only
+	//the fact the only arg is the current walk to target is not ideal... add a new arg of goal_node?
+
 /datum/action/skill/issue_order/hold
 	name = "Issue Hold Order"
 	order_type = AURA_HUMAN_HOLD
@@ -62,12 +74,25 @@
 		KEYBINDING_NORMAL = COMSIG_KB_HOLDORDER,
 	)
 
+/datum/action/skill/issue_order/hold/ai_should_use(atom/target)
+	if(!isliving(target))
+		return FALSE
+	var/mob/living/living_target = target
+	if(living_target.faction == owner.faction)
+		return FALSE
+	if(living_target.stat)
+		return FALSE
+	return ..()
+
 /datum/action/skill/issue_order/focus
 	name = "Issue Focus Order"
 	order_type = AURA_HUMAN_FOCUS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_KB_FOCUSORDER,
 	)
+
+/datum/action/skill/issue_order/focus/ai_should_use(atom/target)
+	return FALSE //test only
 
 /datum/action/skill/toggle_orders
 	name = "Show/Hide Order Options"
@@ -109,7 +134,7 @@
 		to_chat(src, span_warning("You cannot give an order while muted."))
 		return
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_SKILL_ORDERS))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_SKILL_ORDERS))
 		to_chat(src, span_warning("You have recently given an order. Calm down."))
 		return
 
@@ -121,7 +146,7 @@
 		if(!command_aura)
 			return
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_SKILL_ORDERS))
+	if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_SKILL_ORDERS))
 		to_chat(src, span_warning("You have recently given an order. Calm down."))
 		return
 

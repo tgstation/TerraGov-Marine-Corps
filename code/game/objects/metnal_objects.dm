@@ -23,7 +23,7 @@
 
 /obj/item/instrument/jukebox/update_overlays()
 	. = ..()
-	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
+	. += emissive_appearance(icon, "[icon_state]_emissive", src, alpha = src.alpha)
 
 // knife flute sprite
 /obj/item/instrument/macheteflute

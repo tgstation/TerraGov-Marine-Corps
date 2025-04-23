@@ -16,7 +16,7 @@ export const ShuttleManipulator = (props) => {
   const [tab, setTab] = useState(1);
 
   return (
-    <Window width={800} height={600}>
+    <Window title="Shuttle Manipulator" width={800} height={600} theme="admin">
       <Window.Content scrollable>
         <Tabs>
           <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
@@ -104,13 +104,14 @@ export const ShuttleManipulatorTemplates = (props) => {
   const [selectedTemplateId, setSelectedTemplateId] = useState(
     Object.keys(templateObject)[0],
   );
-  const actualTemplates = templateObject[selectedTemplateId]?.templates;
+  const actualTemplates = templateObject[selectedTemplateId]?.templates || [];
+
   return (
     <Section>
       <Flex>
         <Flex.Item>
           <Tabs vertical>
-            {map((template, templateId) => (
+            {map(templateObject, (template, templateId) => (
               <Tabs.Tab
                 key={templateId}
                 selected={selectedTemplateId === templateId}
@@ -118,7 +119,7 @@ export const ShuttleManipulatorTemplates = (props) => {
               >
                 {template.port_id}
               </Tabs.Tab>
-            ))(templateObject)}
+            ))}
           </Tabs>
         </Flex.Item>
         <Flex.Item grow={1} basis={0}>
@@ -221,6 +222,15 @@ export const ShuttleManipulatorModification = (props) => {
           )}
           <Section level={2} title="Status">
             <Button
+              content="Load"
+              color="good"
+              onClick={() =>
+                act('load', {
+                  shuttle_id: selected.shuttle_id,
+                })
+              }
+            />
+            <Button
               content="Preview"
               onClick={() =>
                 act('preview', {
@@ -229,10 +239,10 @@ export const ShuttleManipulatorModification = (props) => {
               }
             />
             <Button
-              content="Load"
+              content="Replace"
               color="bad"
               onClick={() =>
-                act('load', {
+                act('replace', {
                   shuttle_id: selected.shuttle_id,
                 })
               }

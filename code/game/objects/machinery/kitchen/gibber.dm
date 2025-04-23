@@ -93,7 +93,7 @@
 	for(var/obj/O in src)
 		O.loc = loc
 	if (occupant.client)
-		occupant.client.eye = occupant.client.mob
+		occupant.client.set_eye(occupant.client.mob)
 		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.loc = loc
 	occupant = null
@@ -105,10 +105,10 @@
 	if(operating)
 		return
 	if(!occupant)
-		visible_message(span_warning(" You hear a loud metallic grinding sound."))
+		visible_message(span_warning("You hear a loud metallic grinding sound."))
 		return
 	use_power(active_power_usage)
-	visible_message(span_warning(" You hear a loud squelchy grinding sound."))
+	visible_message(span_warning("You hear a loud squelchy grinding sound."))
 	playsound(loc, 'sound/machines/juicer.ogg', 50, TRUE)
 	operating = TRUE
 	update_icon()

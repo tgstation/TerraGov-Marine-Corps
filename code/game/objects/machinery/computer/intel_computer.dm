@@ -85,7 +85,7 @@
 ///Change minimap icon if its on or off
 /obj/machinery/computer/intel_computer/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "intel[printing ? "_on" : "_off"]", ABOVE_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "intel[printing ? "_on" : "_off"]", MINIMAP_LABELS_LAYER))
 
 /obj/machinery/computer/intel_computer/ui_data(mob/user)
 	var/list/data = list()

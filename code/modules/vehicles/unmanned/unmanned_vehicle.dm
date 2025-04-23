@@ -74,7 +74,7 @@
 	hud_set_uav_ammo()
 	if(deployer)
 		faction = deployer.faction
-	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips.dmi', null, "uav"))
+	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips.dmi', null, "uav", MINIMAP_BLIPS_LAYER))
 	var/datum/atom_hud/sentry_status_hud = GLOB.huds[GLOB.faction_to_data_hud[faction]]
 	if(sentry_status_hud)
 		sentry_status_hud.add_to_hud(src)
@@ -268,7 +268,7 @@
 
 ///Check if we have/create a new bullet and fire it at an atom target
 /obj/vehicle/unmanned/proc/fire_shot(atom/target, mob/user)
-	if(!COOLDOWN_CHECK(src, fire_cooldown))
+	if(!COOLDOWN_FINISHED(src, fire_cooldown))
 		return FALSE
 	if(load_into_chamber() && istype(in_chamber, /obj/projectile))
 		//Setup projectile

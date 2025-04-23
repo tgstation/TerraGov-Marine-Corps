@@ -7,7 +7,7 @@
 	density = TRUE
 	anchored = TRUE //We can not be moved.
 	coverage = 5
-	layer = WINDOW_LAYER
+	layer = ABOVE_WINDOW_LAYER
 	max_integrity = 150 //Its cheap but still viable to repair, cant be moved around, about 7 runner hits to take down
 	resistance_flags = XENO_DAMAGEABLE
 	minimap_color = MINIMAP_FENCE

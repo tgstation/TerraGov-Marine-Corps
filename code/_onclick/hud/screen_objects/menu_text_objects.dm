@@ -10,19 +10,26 @@
 #define COLOR_HOVER_MOUSE COLOR_ORANGE
 #define MAX_CHAR_NAME_DISPLAYED 22
 
+//its a new player yo they join instantly
+INITIALIZE_IMMEDIATE(/atom/movable/screen/text/lobby)
+
 ///Unclickable Lobby UI objects
 /atom/movable/screen/text/lobby
+	plane = SPLASHSCREEN_PLANE
+	layer = LOBBY_MENU_LAYER
 	screen_loc = "CENTER"
 	maptext_height = 480
 	maptext_width = 480
 	maptext_x = 28
 	maptext_y = 6
+	mouse_over_pointer = MOUSE_HAND_POINTER
 	/// if this text has a different color that we want to display when it's not being mosued over
 	var/unhighlighted_color
 
 /atom/movable/screen/text/lobby/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	add_atom_colour(unhighlighted_color, FIXED_COLOR_PRIORITY)
+	update_text()
 
 ///This proc updates the maptext of the buttons.
 /atom/movable/screen/text/lobby/proc/update_text()
@@ -85,7 +92,6 @@
 
 /atom/movable/screen/text/lobby/clickable/join_game/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
-	update_text()
 	RegisterSignal(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED, TYPE_PROC_REF(/atom/movable/screen/text/lobby, update_text))
 
 /atom/movable/screen/text/lobby/clickable/join_game/update_text()

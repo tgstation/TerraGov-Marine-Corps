@@ -59,6 +59,12 @@
 /// This flag overrides SS_KEEP_TIMING
 #define SS_POST_FIRE_TIMING (1 << 5)
 
+/// If this subsystem doesn't initialize, it should not report as a hard error in CI.
+/// This should be used for subsystems that are flaky for complicated reasons, such as
+/// the Lua subsystem, which relies on auxtools, which is unstable.
+/// It should not be used simply to silence CI.
+#define SS_OK_TO_FAIL_INIT (1 << 6)
+
 //! SUBSYSTEM STATES
 #define SS_IDLE 0		/// aint doing shit.
 #define SS_QUEUED 1		/// queued to run

@@ -265,8 +265,8 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 /datum/job/terragov/command/transportofficer/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to support marines mobile dropship support with the Tadpole.
-You are to ensure the Tadpole's survival and to transport marines around, acting as a mobile bunker. In the case of it's death, you may perform the role of Combat Engineer.
+	to_chat(M, {"Your job is to provide mobile dropship support with the Tadpole, which is capable of both mass-transporting marines as well as holding vast amounts of equipment on it.
+Try to ensure the Tadpole's survival. In the case of its destruction, you may request a repair board from requisitions or perform the role of Combat Engineer.
 "})
 
 
@@ -322,7 +322,7 @@ You are to ensure the Tadpole's survival and to transport marines around, acting
 
 /datum/job/terragov/command/pilot/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to support marines with either close air support via the Condor.
+	to_chat(M, {"Your job is to support marines with close air support via the Condor.
 You are expected to use the Condor as the Alamo is able to be ran automatically, though at some points you will be required to take control of the Alamo for the operation's success, though highly unlikey.
 Though you are an officer, your authority is limited to the dropship and the Condor, where you have authority over the enlisted personnel.
 "})
@@ -343,7 +343,6 @@ Though you are an officer, your authority is limited to the dropship and the Con
 	exp_requirements = XP_REQ_EXPERT
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
-	job_points_needed = 80
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
 		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
@@ -361,6 +360,16 @@ Though you are an officer, your authority is limited to the dropship and the Con
 	. = ..()
 	to_chat(M, {"\nYou are the operator of a very expensive and valuable Mech, and are trained and expected to use it in the field of combat.
 You can serve your Division in a variety of roles, so choose carefully."})
+
+/datum/job/terragov/command/mech_pilot/on_pre_setup()
+	if(total_positions)
+		return
+	var/client_count = length(GLOB.clients)
+	client_count -= 20
+	client_count = FLOOR(client_count / 20, 1)
+	// effectively, 1 at 40, 2 at 60, 3 at 80, etc
+	if(client_count >= 1)
+		add_job_positions(client_count)
 
 /datum/job/terragov/command/mech_pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()

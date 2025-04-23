@@ -50,3 +50,5 @@
 #define examine_header(str) ("<span class='blockheader'>" + str + "</span>")
 /// A horizontal line for use in examine blocks
 #define EXAMINE_SECTION_BREAK "<hr>"
+/// Handles text formatting for item use hints in examine text
+#define EXAMINE_HINT(text) ("<b>" + text + "</b>")

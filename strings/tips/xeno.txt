@@ -1,4 +1,5 @@
 You can replace normal weed pods with sticky/resting weed pods, but cannot do the inverse.
+Melt away flares to reduce marines' visability!
 Stagger stops most xenomorphs from using abilities. Watch out for weapons that can stagger!
 Different castes have different pheromone strengths, with drone being the lowest and king being the highest.
 Pheromones do not stack, only the strongest applies.
@@ -9,17 +10,24 @@ As a xeno, always thank your drones and hivelords for supporting the hive!
 Robot healthbars are not directly one to one with their actual health. They will still have some fight left in them after it shows their health has hit critical.
 As a xeno, you can drag any item, but you must wait through an actionbar before you can do so! Carrier loves dragging items for their traps!
 Most alien deaths are caused by over-aggression. Rein yourself in, or you may find yourself dying round after round.
+As a xeno, you have directional attack (find this in game preference). Click any tile in the direction of a marine you want to click, and you slash them provided they're next to you. That said, marines can also do the same!
 As a xeno, if you have difficulty clicking marines, try using bump slash. You can use movement keys to slash marines. That said, clicking marines to slash them is faster than bump slashing!
 It is EXTREMELY IMPORTANT that you as a xenomorph have your abilities set up on keybinds. Ask for help if you don't know how in XOOC or mentorhelp.
 In the xeno tab, you can use the "crawl through vent" verb to quickly find and use vents in the floor without having to Alt-click them. You can also keybind it!
 As a xeno, it is faster to re-fill an empty acid well than rolling on the ground to put out a fire.
+As a xeno, you can instantly change to another caste of the same tier using the "Caste Swap" button under the aliens tab. Useful for when the hive needs a specific xeno.
 As a xeno, acid wells extinguish fire and explode into an acid cloud when destroyed. The Queen, the Shrike, praetorians, boilers, and hivelords can make acid wells.
 The Queen, the King, the Shrike, and hivelord have access to Queen's Blessing, a menu for the hive to use psychic points to give xenomorphs a cutting edge in the battlefield.
 If you have acid spit, you can spit at a welding fuel tank to blow it up. If the welding fuel is near hostiles, you might give them a pleasant surprise!
 If something comes up in real life while you’re a xenomorph, head back to the silo and use the “ghost” command to let others take over your body.
 As a xeno, check hive status often.
+Xenomorphs can jump onto tanks and APC's, dramatically reducing the chances of the vehicle being able to shoot them. Take care - aim mode shots and direct fire from other marines can still hit you!
+Certain xenomorphs can evolve into strains, which possess different abilities and stats for different utility or options.
+T4's and hivelords can place Gargoyles. These cheap structures will alert the hive when hostiles move near them. Place them on digsites, silos, or disks to know where marines are pushing!
+If you find yourself dealing with extreme sunder as a xenomorph, consider asking your T4's/Hivelord to place down an Acid Pool. Resting on them will increase your sunder recovery rate.
+Digsites are visible on the minimap for all xenomorphs as yellow or green crosshair icons. Keep an eye on them- researchers can harvest them for req points.
 Some xenos have pheromones that can help the hive. Frenzy increases speed, Warding increases armor, and Recovery increases healing.
-The King has the strongest pheromones, followed by the Queen, praetorians, Hivemind, the Shrike and hivelords, defilers, and carriers. Drones have the weakest pheromones.
+The Queen and pheromone tower have the strongest pheromones, followed by the King and praetorians, Hivemind, the Shrike and hivelords, defilers, and carriers. Drones have the weakest pheromones.
 Some xenos can recycle the bodies of their fallen hive members. Use this to your advantage to prevent marines from getting points for their Requisitions orders!
 As a xeno, you can pounce past window frames and barricades without barbed wires.
 As a xeno, pouncing into a barricade with barbed wire causes you to bounce off the barricade.
@@ -34,6 +42,7 @@ As a larva, stay on weeds while growing. You will grow faster as a result.
 As a runner, warlock, or larva, you can pass over window frames without climbing onto them beforehand.
 As a caste with acid, you can click directly on a lower-level acid puddle to upgrade it.
 As a drone or sentinel, your corrosive acid is very weak, but it's better than nothing.
+A fortified defender is one of the best ways to stall a push.
 As a xeno, spread weeds as much as you can, especially near the front-line fighters.
 Before you evolve into the Hivemind as a drone, hide in a secure area! Once you evolve, you will create a core that cannot be moved.
 As a hivelord, build as many tunnels as you can to help mobilize the hive!
@@ -70,6 +79,7 @@ Defenders have a very small window to sweep grenades back at marines with their 
 Aiming for the head is a good long-term investment, causing brain damage on marines.
 Aiming for the chest can easily damage someone's liver, lungs, or even heart.
 Arms and legs are particularly vulnerable to damage.
+As a crusher, you can crush into the lane of turrents to either tip them over or destroy them.
 As a xeno, to be robust is to know when to disengage.
 As a xeno, in a duel, observe your enemy. They are likely predictable.
 The Queen-Mother has put a lot of faith into your hive. It would be a shame to let her down.
@@ -81,11 +91,9 @@ Hunter has AP and knockdown when striking from stealth, which can be chained wit
 Defiler can vent crawl.
 Spitter can vent crawl.
 Defiler has one of the highest slash damages among the entire hive, use it to your advantage.
-A fortified defender is one of the best ways to stall a push.
 Skilled defilers can easily kill any marine in a span of seconds.
 As a xeno, always have an escape plan.
 Tileswapping marines via help intent can have interesting consequences.
 As a boiler, you'll begin to glow with the more globules you have stored.
 If you see a red dot, RUN!
 Allowing marines to push caves only to block off their exit is hillariously effective.
-As a xeno, a Tier 3 unit takes up both a Tier 3 and Tier 2 slot.

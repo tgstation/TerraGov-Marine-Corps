@@ -101,7 +101,7 @@
 			refresh_pad()
 
 		if("send_beacon")
-			if(!COOLDOWN_CHECK(src, next_fire))
+			if(!COOLDOWN_FINISHED(src, next_fire))
 				return
 
 			if(!supply_beacon)
@@ -111,11 +111,11 @@
 			if(!length(supplies))
 				to_chat(usr, "[icon2html(src, usr)] [span_warning("There wasn't any supplies found on the squads supply pad. Double check the pad.")]")
 				return
-
-			if(!istype(supply_beacon.drop_location) || !is_ground_level(supply_beacon.drop_location.z))
+			var/turf/land_turf = get_turf(supply_beacon.drop_location)
+			if(!land_turf || !is_ground_level(supply_beacon.drop_location.z))
 				to_chat(usr, "[icon2html(src, usr)] [span_warning("The [supply_beacon.name] was not detected on the ground.")]")
 				return
-			if(isspaceturf(supply_beacon.drop_location) || supply_beacon.drop_location.density)
+			if(isspaceturf(land_turf) || land_turf.density)
 				to_chat(usr, "[icon2html(src, usr)] [span_warning("The [supply_beacon.name]'s landing zone appears to be obstructed or out of bounds.")]")
 				return
 
@@ -148,8 +148,8 @@
 	if(!length(supplies) || length(supplies) > MAX_SUPPLY_DROPS)
 		stack_trace("Trying to send a supply drop with an invalid amount of items [length(supplies)]")
 		return
-
-	if(!istype(supply_beacon.drop_location) || isspaceturf(supply_beacon.drop_location) || supply_beacon.drop_location.density)
+	var/turf/land_turf = get_turf(supply_beacon.drop_location)
+	if(!istype(land_turf) || isspaceturf(land_turf) || land_turf.density)
 		stack_trace("Trying to send a supply drop to a beacon on an invalid turf")
 		return
 
@@ -187,7 +187,7 @@
 		return
 
 	playsound(supply_pad.loc,'sound/effects/bamf.ogg', 50, TRUE)
-	var/turf/droploc = locate(supply_beacon.drop_location.x + x_offset, supply_beacon.drop_location.y + y_offset, supply_beacon.drop_location.z)
+	var/turf/droploc = get_turf(supply_beacon.drop_location)
 	playsound(droploc, 'sound/items/fultext_deploy.ogg', 30, TRUE)
 	var/image/chute_cables = image('icons/effects/32x64.dmi', src, "chute_cables_static")
 	chute_cables.pixel_y -= 12

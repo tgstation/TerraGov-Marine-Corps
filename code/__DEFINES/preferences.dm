@@ -80,6 +80,7 @@
 #define AUTO_INTERACT_DEPLOYABLES (1<<3)
 #define RADIAL_LASERGUNS (1<<4)
 #define DIRECTIONAL_ATTACKS (1<<5)
+#define TOGGLE_CLICKDRAG (1<<6)
 
 #define PARALLAX_INSANE -1 //for show offs
 #define PARALLAX_HIGH    0 //default.

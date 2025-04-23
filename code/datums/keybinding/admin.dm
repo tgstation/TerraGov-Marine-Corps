@@ -2,6 +2,13 @@
 	category = CATEGORY_ADMIN
 	weight = WEIGHT_ADMIN
 
+/datum/keybinding/admin/down(client/user)
+	. = ..()
+	if(.)
+		return
+
+	if(isnull(user.holder)) //blocking non admins triggering warning messages
+		return TRUE
 
 /datum/keybinding/admin/admin_say
 	hotkey_keys = list("F3")

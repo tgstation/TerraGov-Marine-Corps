@@ -180,14 +180,14 @@
 /// Signal handler teleporting crossing atoms
 /obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
-	if(!linked_portal || !COOLDOWN_CHECK(src, portal_cooldown) || crosser.anchored || (crosser.resistance_flags & PORTAL_IMMUNE))
+	if(!linked_portal || !COOLDOWN_FINISHED(src, portal_cooldown) || crosser.anchored || (crosser.resistance_flags & PORTAL_IMMUNE))
 		return
 	if(isxeno(crosser))
 		var/mob/living/carbon/xenomorph/xeno_crosser = crosser
 		if(xeno_crosser.m_intent == MOVE_INTENT_WALK)
 			return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
-	crosser.pass_flags &= ~PASS_MOB
+	crosser.remove_pass_flags(PASS_MOB, PORTAL_TRAIT)
 	RegisterSignal(crosser, COMSIG_MOVABLE_MOVED, PROC_REF(do_teleport_atom))
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
@@ -220,7 +220,7 @@
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	vis_flags = VIS_INHERIT_ID
-	layer = DOOR_OPEN_LAYER
+	layer = OPEN_DOOR_LAYER
 	///turf destination to display
 	var/turf/our_destination
 

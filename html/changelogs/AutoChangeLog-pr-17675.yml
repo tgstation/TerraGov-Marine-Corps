@@ -1,0 +1,5 @@
+author: "Arturlang"
+delete-after: True
+changes:
+  - rscadd: "Pattern building for xenos has been heavily overhauled and now has a hologram that shows if you can build, and where it will build, and now supports any usual xeno secrete resin buildable."
+  - bugfix: "quickbuild no longer outputs chat messages for secreting resin"

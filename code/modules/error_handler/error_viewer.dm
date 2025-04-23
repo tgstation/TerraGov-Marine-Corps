@@ -74,14 +74,15 @@ GLOBAL_DATUM_INIT(error_cache, /datum/error_viewer/error_cache, new)
 
 
 /datum/error_viewer/error_cache
+	/// A list of all errors, in order
 	var/list/errors = list()
+	/// A list of all error sources
 	var/list/error_sources = list()
-	var/list/errors_silenced = list()
 
 
 /datum/error_viewer/error_cache/show_to(user, datum/error_viewer/back_to, linear)
 	var/html = build_header()
-	html += "<b>[GLOB.total_runtimes]</b> runtimes, <b>[GLOB.total_runtimes_skipped]</b> skipped<br><br>"
+	html += "<b>[GLOB.total_runtimes]</b> runtimes from [length(error_sources)] sources, <b>[GLOB.total_runtimes_skipped]</b> skipped<br><br>"
 	if(!linear)
 		html += "Organized | [make_link("Linear", null, 1)]<hr>"
 		var/datum/error_viewer/error_source/error_source
@@ -96,7 +97,7 @@ GLOBAL_DATUM_INIT(error_cache, /datum/error_viewer/error_cache, new)
 
 	browse_to(user, html)
 
-
+/// Logs an error in the runtime viewer
 /datum/error_viewer/error_cache/proc/log_error(exception/e, list/desclines, skip_count)
 	if(!istype(e))
 		return // Abnormal exception, don't even bother

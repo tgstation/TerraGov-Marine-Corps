@@ -47,9 +47,9 @@
 
 /obj/machinery/marine_selector/update_overlays()
 	. = ..()
-	if(!is_operational())
+	if(!is_operational() || !icon_state)
 		return
-	. += emissive_appearance(icon, "[icon_state]_emissive")
+	. += emissive_appearance(icon, "[icon_state]_emissive", src)
 
 /obj/machinery/marine_selector/can_interact(mob/user)
 	. = ..()
@@ -768,6 +768,7 @@
 		/obj/item/tweezers,
 		/obj/item/cell/high,
 		/obj/item/circuitboard/apc,
+		/obj/item/tool/soap,
 	)
 
 /obj/effect/vendor_bundle/white_dress

@@ -83,7 +83,7 @@
 		beam_turfs.Cut(beam_turfs.Find(impacted_turf))
 		stop_beam_turfs = RANGE_TURFS(1, impacted_turf)
 
-	explosion(target_turf, 0, 2, 5, 0, 3, 4, 4)
+	explosion(target_turf, 0, 2, 5, 0, 3, 4, 4, explosion_cause=current_firer)
 
 	QDEL_IN(source_turf.beam(target_turf, "volkite", beam_type = /obj/effect/ebeam/carronade), CARRONADE_BEAM_TIME)
 	QDEL_LIST_IN(light_effects, CARRONADE_BEAM_TIME)

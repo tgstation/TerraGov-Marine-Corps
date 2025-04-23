@@ -14,7 +14,7 @@ ADMIN_VERB(map_template_load, R_FUN, "Map template - Place", "Place an existing 
 	var/list/preview = list()
 	for(var/S in template.get_affected_turfs(T, TRUE))
 		var/image/item = image('icons/turf/overlays.dmi', S, "greenOverlay")
-		item.plane = ABOVE_LIGHTING_PLANE
+		SET_PLANE(item, ABOVE_LIGHTING_PLANE, T)
 		preview += item
 
 	var/delete
@@ -48,9 +48,7 @@ ADMIN_VERB(map_template_upload, R_FUN, "Map template - Upload", "Upload and plac
 		if("Normal")
 			M = new /datum/map_template(map, "[map]", TRUE)
 		if("Shuttle")
-			to_chat(user, span_warning("Not implemented yet."))
-			return
-			//M = new /datum/map_template/shuttle(map, "[map]", TRUE)
+			M = new /datum/map_template/shuttle(map, "[map]", TRUE)
 		else
 			return
 	if(!M.cached_map)

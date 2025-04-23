@@ -29,6 +29,8 @@
 		/obj/item/ammo_magazine/tank/sarden_clip,
 		/obj/item/ammo_magazine/tank/sarden_clip/high_explosive,
 		/obj/item/ammo_magazine/tank/bfg,
+		/obj/item/ammo_magazine/tank/autocannon,
+		/obj/item/ammo_magazine/tank/autocannon/high_explosive,
 	))
 
 /datum/storage/tank/ammorack_secondary/New(atom/parent)

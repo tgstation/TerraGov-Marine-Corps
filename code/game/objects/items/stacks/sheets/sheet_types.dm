@@ -134,8 +134,8 @@ GLOBAL_LIST_INIT(plasteel_radial_images, list(
 
 
 GLOBAL_LIST_INIT(plasteel_recipes, list( \
-	new/datum/stack_recipe("folding plasteel barricade", /obj/structure/barricade/folding, 5, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
-	new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/solid/plasteel, 3, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
+	new/datum/stack_recipe("folding plasteel barricade", /obj/structure/barricade/folding, 5, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
+	new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/solid/plasteel, 3, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
 ))
 
 /obj/item/stack/sheet/plasteel/select_radial(mob/user)
@@ -150,9 +150,9 @@ GLOBAL_LIST_INIT(plasteel_recipes, list( \
 
 	switch (choice)
 		if("folding")
-			create_object(user, new/datum/stack_recipe("folding plasteel barricade", /obj/structure/barricade/folding, 5, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
+			create_object(user, new/datum/stack_recipe("folding plasteel barricade", /obj/structure/barricade/folding, 5, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
 		if("normal")
-			create_object(user, new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/solid/plasteel, 3, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_ONE_PER_TURF | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
+			create_object(user, new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/solid/plasteel, 3, time = 8 SECONDS, crafting_flags = CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
 
 	return FALSE
 
