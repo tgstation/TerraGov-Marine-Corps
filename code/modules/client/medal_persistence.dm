@@ -55,9 +55,10 @@ GLOBAL_VAR(medal_persistence_sealed)
 	medal.medal_uid = medal_uid
 	medal.medal_citation = medal_citation
 	LAZYINITLIST(medals_by_real_name)
-	LAZYINITLIST(medals_by_real_name[issued_to_real_name])
-	medals_by_real_name[issued_to_real_name] += medal
-	save_medal_to_db(medal)
+	if(!medals_by_real_name[medal.issued_to_real_name])
+		medals_by_real_name[medal.issued_to_real_name] = list()
+	medals_by_real_name[medal.issued_to_real_name] += medal
+	save_medal_to_db(null, medal)
 	return medal
 
 /**
@@ -81,7 +82,8 @@ GLOBAL_VAR(medal_persistence_sealed)
 			stack_trace("Failed to load a medal from the database!")
 			continue
 		medal.medal_persistence = src
-		medals_by_real_name[medal.issued_to_real_name] ||= list(medal)
+		if(!medals_by_real_name[medal.issued_to_real_name])
+			medals_by_real_name[medal.issued_to_real_name] = list()
 		medals_by_real_name[medal.issued_to_real_name] += medal
 
 	qdel(query)
@@ -126,7 +128,7 @@ GLOBAL_VAR(medal_persistence_sealed)
 		"is_posthumous" = medal.is_posthumous,
 	))
 	if(!query.warn_execute())
-		stack_trace("Failed to save medal for ckey [ckey]")
+		stack_trace("Failed to save in DB medal for ckey [ckey]")
 		if(!isnull(user))
 			to_chat(user, span_warning("Failed to save medal!"))
 		qdel(query)
@@ -134,8 +136,6 @@ GLOBAL_VAR(medal_persistence_sealed)
 
 	medal.id = query.last_insert_id
 	qdel(query)
-	medals_by_real_name[medal.issued_to_real_name] ||= list(medal)
-	medals_by_real_name[medal.issued_to_real_name] += list(medal)
 
 /**
  * Marks the given medal as deleted in the database.
@@ -159,6 +159,8 @@ GLOBAL_VAR(medal_persistence_sealed)
 		CRASH("Attempted to give medals to a player who does not match the ckey of the medal persistence object!")
 
 	if(!length(medals_by_real_name))
+		return
+	if(!length(medals_by_real_name[target.real_name]))
 		return
 	var/obj/item/storage/box/medal_box = new
 	medal_box.name = "medal box"

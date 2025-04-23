@@ -24,6 +24,8 @@ GLOBAL_LIST_EMPTY(medal_awards)
 	for(var/mob/living/mob as anything in GLOB.human_mob_list)
 		if(!isterragovjob(mob?.job)) // this should mean only terragov marine roles
 			continue
+		if(user == mob)
+			continue
 		var/display_name = mob.job.title + " " + mob.real_name
 		var/list/dupes_found = list()
 		// this shouldnt realyl happen but eh lets be safe
@@ -43,7 +45,6 @@ GLOBAL_LIST_EMPTY(medal_awards)
 		return FALSE
 	var/marine = all_marines[choice]
 	if(marine == null)
-		debug_admins("null mob in GLOB.human_mob_list")
 		to_chat(user, span_notice("Failed to select target due to an internal server error."))
 		while(null in GLOB.human_mob_list)
 			GLOB.human_mob_list -= null
