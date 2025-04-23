@@ -55,7 +55,7 @@
 	var/list/protected_areas = list()
 	/// The list of z-levels that this weather is actively affecting
 	var/list/impacted_z_levels
-		/// Areas affected by weather have their blend modes changed
+	/// Areas affected by weather have their blend modes changed
 	var/list/impacted_areas_blend_modes = list()
 
 	/// Since it's above everything else, this is the layer used by default. TURF_LAYER is below mobs and walls if you need to use that.
