@@ -567,12 +567,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/vending/nanoammo, (-26))
 
 	else if(istype(I, /obj/item/shotgunbox))
 		var/obj/item/shotgunbox/big_shotgun_box = I
-		for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)	// Loop through vendor records to find a match
+		for(var/datum/vending_product/checked_record AS in product_records + hidden_records + coin_records)
 			var/obj/item/ammo_magazine/shotgun_shell_box = checked_record.product_path
-			if(big_shotgun_box.ammo_type == shotgun_shell_box.default_ammo)	// Found a match
+			if(big_shotgun_box.ammo_type == shotgun_shell_box.default_ammo)
 				while(big_shotgun_box.current_rounds >= shotgun_shell_box.max_rounds)
 					if(!stock(shotgun_shell_box, user, show_feedback = FALSE))
-						break	// If the stocking process returns false (probably because of max capacity), break
+						break
 					big_shotgun_box.current_rounds -= shotgun_shell_box.max_rounds
 				user?.balloon_alert(user, "The NanoAmmo neatly organizes the [big_shotgun_box.ammo_type.name]s.");
 				return
