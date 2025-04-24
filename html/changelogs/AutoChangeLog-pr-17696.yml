@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - qol: "The Alert for not meeting certain requirements in the mech builder to deploy is no longer a solo popup"
+  - qol: "Added requirement to mount at least one gun and one engine to the mech so people dont deploy without them"

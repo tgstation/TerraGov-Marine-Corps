@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - rscadd: "Added a forum-byond account link verb. Will be enabled when the forum has been fixed to be able to link accounts again"

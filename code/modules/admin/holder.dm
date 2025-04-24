@@ -9,6 +9,7 @@
 	var/datum/marked_datum
 	var/marked_file
 
+	/// Code security critcal token used for authorizing href topic calls
 	var/href_token
 
 	///Reference to filteriffic tgui holder datum
@@ -62,6 +63,10 @@
 		return QDEL_HINT_LETMELIVE
 	return ..()
 
+/datum/admins/can_vv_get(var_name)
+	if(var_name == NAMEOF(src, href_token))
+		return FALSE
+	return ..()
 
 /datum/admins/proc/activate()
 	if(IsAdminAdvancedProcCall())

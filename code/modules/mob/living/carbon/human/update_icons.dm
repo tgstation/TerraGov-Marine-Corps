@@ -115,7 +115,7 @@ There are several things that need to be remembered:
 		else
 			return
 
-	appearance.pixel_y += final_offset
+	appearance.pixel_z += final_offset
 	return appearance
 
 /**

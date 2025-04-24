@@ -30,8 +30,6 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 	//This turf existing is an error in and of itself
 	ignore += typesof(/turf/baseturf_skipover)
 	ignore += typesof(/turf/baseturf_bottom)
-	//It wants a lot more context then we have
-	ignore += typesof(/obj/effect/buildmode_line)
 	//Our system doesn't support it without warning spam from unregister calls on things that never registered
 	ignore += typesof(/obj/docking_port)
 	//Needs a linked mecha

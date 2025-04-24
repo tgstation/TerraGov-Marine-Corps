@@ -9,8 +9,6 @@
 	var/list/def_zones
 	///whether this has taken full damage and become disabled
 	var/disabled = FALSE
-	///when attached the mechs health is modified by this amount
-	var/health_mod = 0
 	///when attached the mechs armor is modified by this amount
 	var/list/soft_armor_mod = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	///when attached the mechs slowdown is modified by this amount
@@ -74,8 +72,6 @@
 		attached.limbs[slot].detach(attached)
 	attached.limbs[slot] = src
 	owner = attached
-	attached.max_integrity += health_mod
-	attached.obj_integrity += health_mod
 	attached.move_delay += slowdown_mod
 
 	attached.soft_armor = attached.soft_armor.modifyRating(arglist(soft_armor_mod))
@@ -99,8 +95,6 @@
 	detached.weight -= weight
 	UnregisterSignal(owner, list(COMSIG_ATOM_TAKE_DAMAGE, COMSIG_ATOM_REPAIR_DAMAGE))
 	owner = null
-	detached.max_integrity -= health_mod
-	detached.obj_integrity -= health_mod
 	detached.move_delay -= slowdown_mod
 
 	var/list/removed_armor = soft_armor_mod.Copy()
@@ -320,13 +314,16 @@
 /datum/mech_limb/torso
 	display_name = "Torso"
 	icon_state = "core"
-	health_mod = 250
 	weight = 80
+	///health to set the torso to
+	var/health_set = 250
 	///max repairpacks to set the mech to
 	var/repairpacks = 2
 
 /datum/mech_limb/torso/attach(obj/vehicle/sealed/mecha/combat/greyscale/attached, slot)
 	. = ..()
+	attached.max_integrity = health_set
+	attached.obj_integrity = health_set
 	attached.max_repairpacks = repairpacks
 	attached.stored_repairpacks = repairpacks
 
@@ -336,26 +333,25 @@
 	detached.stored_repairpacks = 0
 
 /datum/mech_limb/torso/recon
-	health_mod = 200
+	health_set = 500
 	repairpacks = 3
 	weight = 50
 	greyscale_type = /datum/greyscale_config/mech_recon/torso
 
 /datum/mech_limb/torso/assault
-	health_mod = 250
+	health_set = 700
 	repairpacks = 2
-	health_mod = 250
 	weight = 80
 	greyscale_type = /datum/greyscale_config/mech_assault/torso
 
 /datum/mech_limb/torso/vanguard
-	health_mod = 300
+	health_set = 1000
 	weight = 100
 	repairpacks = 1
 	greyscale_type = /datum/greyscale_config/mech_vanguard/torso
 /*
 /datum/mech_limb/torso/light
-	health_mod = 200
+	health_set = 250
 	repairpacks = 3
 	weight = 50
 	has_damage_overlays = TRUE
@@ -364,9 +360,8 @@
 	greyscale_type = /datum/greyscale_config/mech_light/torso
 */
 /datum/mech_limb/torso/medium
-	health_mod = 250
+	health_set = 300
 	repairpacks = 2
-	health_mod = 250
 	weight = 80
 	has_damage_overlays = TRUE
 	has_boosting_state = TRUE
@@ -374,7 +369,7 @@
 	greyscale_type = /datum/greyscale_config/mech_medium/torso
 /*
 /datum/mech_limb/torso/heavy
-	health_mod = 300
+	health_set = 350
 	weight = 100
 	repairpacks = 1
 	has_damage_overlays = TRUE
