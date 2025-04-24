@@ -42,7 +42,7 @@
 
 /datum/scanner_advice/limbs/infection/get_data(mob/living/carbon/human/patient, mob/user)
 	. = list(
-		ADVICE_TEXT = "Administer a single dose of spaceacillin. Infections detected.",
+		ADVICE_TEXT = "Administer a single dose of Spaceacillin. Infections detected.",
 		ADVICE_TOOLTIP = "There are one or more infections detected. If left untreated, they may worsen into Necrosis and require surgery.",
 		ADVICE_ICON = FA_ICON_TABLETS,
 		ADVICE_ICON_COLOR = COLOR_REAGENT_SPACEACILLIN

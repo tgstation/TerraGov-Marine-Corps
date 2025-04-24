@@ -8,7 +8,7 @@
 
 /datum/scanner_advice/traumatic_shock/get_data(mob/living/carbon/human/patient, mob/user)
 	. = list(
-		ADVICE_TEXT = "Administer a single dose of tramadol to reduce pain.",
+		ADVICE_TEXT = "Administer a single dose of Tramadol to reduce pain.",
 		ADVICE_TOOLTIP = "The patient is experiencing performance impeding pain and may suffer symptoms from sluggishness to collapsing. Tramadol is the most common painkiller and reduces pain.",
 		ADVICE_ICON = FA_ICON_TABLETS,
 		ADVICE_ICON_COLOR = COLOR_REAGENT_TRAMADOL

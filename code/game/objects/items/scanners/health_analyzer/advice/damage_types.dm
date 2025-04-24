@@ -18,7 +18,7 @@
 		))
 		if(patient.getBruteLoss() > 30 && !patient.reagents.has_reagent(/datum/reagent/medicalnanites) && !patient.reagents.has_reagent(/datum/reagent/medicine/bicaridine, 3))
 			. += list(list(
-				ADVICE_TEXT = "Administer a single dose of bicaridine to reduce physical trauma.",
+				ADVICE_TEXT = "Administer a single dose of Bicaridine to reduce physical trauma.",
 				ADVICE_TOOLTIP = "Significant physical trauma detected. Bicaridine reduces brute damage.",
 				ADVICE_ICON = FA_ICON_CAPSULES,
 				ADVICE_ICON_COLOR = COLOR_REAGENT_BICARIDINE
@@ -46,7 +46,7 @@
 		))
 		if(patient.getFireLoss() > 30 && !patient.reagents.has_reagent(/datum/reagent/medicalnanites) && !patient.reagents.has_reagent(/datum/reagent/medicine/kelotane, 3))
 			. += list(list(
-				ADVICE_TEXT = "Administer a single dose of kelotane to reduce burns.",
+				ADVICE_TEXT = "Administer a single dose of Kelotane to reduce burns.",
 				ADVICE_TOOLTIP = "Significant tissue burns detected. Kelotane reduces burn damage.",
 				ADVICE_ICON = FA_ICON_CAPSULES,
 				ADVICE_ICON_COLOR = COLOR_REAGENT_KELOTANE
@@ -71,7 +71,7 @@
 
 /datum/scanner_advice/damage/tox/get_data(mob/living/carbon/human/patient, mob/user)
 	. = list(
-		ADVICE_TEXT = "Administer a single dose of dylovene.",
+		ADVICE_TEXT = "Administer a single dose of Dylovene.",
 		ADVICE_TOOLTIP = "Toxic chemicals or significant blood toxins detected. Dylovene will reduce toxin damage, or their liver will filter it out on its own if it isn't damaged.",
 		ADVICE_ICON = FA_ICON_CAPSULES,
 		ADVICE_ICON_COLOR = COLOR_REAGENT_DYLOVENE
@@ -111,7 +111,7 @@
 
 /datum/scanner_advice/damage/brain/get_data(mob/living/carbon/human/patient, mob/user)
 	. = list(
-		ADVICE_TEXT = "Administer a single dose of alkysine.",
+		ADVICE_TEXT = "Administer a single dose of Alkysine.",
 		ADVICE_TOOLTIP = "Significant brain damage detected. Alkysine heals brain damage. If left untreated, patient may be unable to function well.",
 		ADVICE_ICON = FA_ICON_CAPSULES,
 		ADVICE_ICON_COLOR = COLOR_REAGENT_ALKYSINE
@@ -126,7 +126,7 @@
 
 /datum/scanner_advice/damage/eyes/get_data(mob/living/carbon/human/patient, mob/user)
 	. = list(
-		ADVICE_TEXT = "Administer a single dose of imidazoline.",
+		ADVICE_TEXT = "Administer a single dose of Imidazoline.",
 		ADVICE_TOOLTIP = "Eye damage detected. Imidazoline heals eye damage. If left untreated, patient may be unable to see properly.",
 		ADVICE_ICON = FA_ICON_CAPSULES,
 		ADVICE_ICON_COLOR = COLOR_REAGENT_IMIDAZOLINE

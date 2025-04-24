@@ -23,7 +23,7 @@
 
 /datum/scanner_advice/chem_mix_warning/has_helpful_nanites/get_data(mob/living/carbon/human/patient, mob/user)
 	. = list(
-		ADVICE_TEXT = "Nanites detected—only administer Peridaxon Plus, Quickclot and Dylovene.",
+		ADVICE_TEXT = "Nanites detected—only administer Peridaxon Plus, QuickClot and Dylovene.",
 		ADVICE_TOOLTIP = "Nanites rapidly purge all medicines except Peridaxon Plus, Quick Clot/Quick Clot Plus and Dylovene.",
 		ADVICE_ICON = FA_ICON_WINDOW_CLOSE,
 		ADVICE_ICON_COLOR = COLOR_REAGENT_MEDICALNANITES
