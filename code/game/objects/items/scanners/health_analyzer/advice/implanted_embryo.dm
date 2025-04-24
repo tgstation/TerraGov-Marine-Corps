@@ -1,3 +1,4 @@
+/// Fires when the patient has an embryo in them. Appears first for obvious reasons.
 /datum/scanner_advice/implanted_embryo
 	priority = ADVICE_PRIORITY_EMBRYO
 
