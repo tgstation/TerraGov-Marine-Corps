@@ -50,7 +50,7 @@ EXPLOSIVES
 	name = "Mecha grenade rack"
 	notes = "Contains a mecha grenade rack which refills 20 grenades"
 	contains = list(/obj/item/mecha_ammo/vendable/grenade)
-	cost = 280
+	cost = 50 // Cost is determined solely on the fact that it is mech-exclusive. If it was not exclusive, it would be 240 (300/25 = 12, 12 * 20 = 240).
 
 /datum/supply_packs/explosives/explosives_cloaker
 	name = "M45 Cloaker grenade box crate"
