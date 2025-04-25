@@ -14,7 +14,7 @@ export const TextFieldPreference = (props) => {
       <Input
         placeholder={data[value] || ''}
         value={data[value] || value}
-        onChange={(e, newValue) =>
+        onChange={(newValue) =>
           !onFocus && handler(action || value, { newValue })
         }
       />

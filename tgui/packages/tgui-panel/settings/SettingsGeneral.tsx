@@ -102,9 +102,10 @@ export function SettingsGeneral(props) {
             ) : (
               <Stack>
                 <Input
-                  width={'100%'}
+                  fluid
                   value={fontFamily}
-                  onChange={(e, value) =>
+                  expensive
+                  onChange={(value) =>
                     dispatch(
                       updateSettings({
                         fontFamily: value,

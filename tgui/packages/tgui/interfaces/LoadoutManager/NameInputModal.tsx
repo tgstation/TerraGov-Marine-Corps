@@ -21,7 +21,7 @@ export const NameInputModal = (props: NameInputModalData) => {
             width="70vw"
             backgroundColor="black"
             textColor="white"
-            onInput={(_, value) => {
+            onChange={(value) => {
               setInput(value.substring(0, 150));
             }}
             value={input}
