@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	/// The atom we will use for autoupdate tracking.
 	/// This cannot be anything other than an atom. Even if this datum is being used
 	/// in a component, you must set this to the atom owning that component.
-	var/atom/movable/owner
+	var/atom/owner
 	/// Skill required to bypass the fumble time.
 	var/skill_threshold
 	/// Skill required to have the scanner auto refresh.
