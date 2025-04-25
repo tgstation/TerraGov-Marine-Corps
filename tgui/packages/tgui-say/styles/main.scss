@@ -3,8 +3,6 @@
 @use './colors.scss';
 
 @include meta.load-css('~tgui/styles/reset');
-@include meta.load-css('~tgui/styles/atomic/text.scss');
-@include meta.load-css('~tgui-core/styles/components/TextArea');
 @include meta.load-css('./styles.scss');
 
 @each $channel, $color in colors.$channel-map {

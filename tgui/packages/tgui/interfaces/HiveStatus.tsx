@@ -155,7 +155,7 @@ export const HiveStatus = (_props: any) => {
 const CachedCollapsible = (props: {
   title: string;
   open: boolean;
-  children?: JSX.Element;
+  children?: React.JSX.Element;
   onClickXeno: any;
 }) => {
   const { data } = useBackend<InputPack>();
