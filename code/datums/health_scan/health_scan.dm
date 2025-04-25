@@ -28,10 +28,10 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	/// is far too vague for what we're doing. We have to use a workaround to avoid dimming the UI and closing it.
 	/// *This var is not for disabling autoupdates in the first place.*
 	var/allow_live_autoupdating = TRUE
-	/// Current mob being tracked by the scanner
+	/// Current mob being tracked by the scanner.
 	var/mob/living/carbon/human/patient
 	/// The atom we will use for autoupdate tracking.
-	/// This may *not* be anything other than an atom. Even if this datum is being used
+	/// This cannot be anything other than an atom. Even if this datum is being used
 	/// in a component, you must set this to the atom owning that component.
 	var/atom/movable/owner
 	/// Skill required to bypass the fumble time.
