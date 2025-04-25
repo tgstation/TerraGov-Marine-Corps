@@ -11,6 +11,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	taste_description = "bitterness"
 	taste_multi = 1.2
+ 	reagent_ui_priority = REAGENT_UI_MEDICINE // Raise this to REAGENT_UI_TOXINS if toxpwr damage calculation gets buffed or var gets raised.
 
 /datum/reagent/toxin/on_mob_life(mob/living/L, metabolism)
 	if(toxpwr)
@@ -63,6 +64,7 @@
 	description = "Phoron in its liquid form."
 	color = COLOR_TOXIN_PHORON
 	toxpwr = 3
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/toxin/phoron/on_mob_life(mob/living/L, metabolism)
 	holder.remove_reagent(/datum/reagent/medicine/inaprovaline, effect_str)
@@ -76,6 +78,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "acid"
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/toxin/lexorin/on_mob_life(mob/living/L, metabolism)
 	if(prob(33))
@@ -97,6 +100,7 @@
 	color = COLOR_TOXIN_CYANIDE
 	toxpwr = 3
 	custom_metabolism = REAGENTS_METABOLISM * 2
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(2*effect_str)
@@ -117,6 +121,7 @@
 	color = COLOR_TOXIN_CARPOTOXIN
 	toxpwr = 2
 	taste_description = "fish"
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/toxin/huskpowder
 	name = "Zombie Powder"
@@ -125,6 +130,7 @@
 	color = COLOR_TOXIN_HUSKPOWDER
 	toxpwr = 0.5
 	taste_description = "death"
+	reagent_ui_priority = REAGENT_UI_IMMEDIATE
 
 /datum/reagent/toxin/huskpowder/on_mob_add(mob/living/L, metabolism)
 	ADD_TRAIT(L, TRAIT_FAKEDEATH, type)
@@ -172,6 +178,7 @@
 	description = "A chemical mix good for growing plants with."
 	toxpwr = 0.2 //It's not THAT poisonous.
 	color = COLOR_TOXIN_FERTILIZER
+	reagent_ui_priority = REAGENT_UI_BASE
 
 /datum/reagent/toxin/fertilizer/eznutrient
 	name = "EZ Nutrient"
@@ -188,6 +195,7 @@
 	color = COLOR_TOXIN_PLANTBGONE
 	toxpwr = 1
 	taste_multi = 1
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/toxin/plantbgone/reaction_obj(obj/O, volume)
 	if(istype(O,/obj/alien/weeds))
@@ -219,6 +227,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "cough syrup"
 	trait_flags = BRADYCARDICS
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/toxin/sleeptoxin/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
@@ -253,6 +262,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
+	reagent_ui_priority = REAGENT_UI_IMMEDIATE
 
 /datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
@@ -277,6 +287,7 @@
 	toxpwr = 0
 	overdose_threshold = REAGENTS_OVERDOSE
 	trait_flags = CHEARTSTOPPER
+	reagent_ui_priority = REAGENT_UI_IMMEDIATE
 
 /datum/reagent/toxin/potassium_chloride/overdose_process(mob/living/L, metabolism)
 	if(iscarbon(L))
@@ -296,6 +307,7 @@
 	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
 	color = COLOR_TOXIN_POTASSIUM_CHLORIDE
 	toxpwr = 2
+	reagent_ui_priority = REAGENT_UI_IMMEDIATE
 
 /datum/reagent/toxin/potassium_chlorophoride/on_mob_life(mob/living/L, metabolism)
 	if(L.stat != UNCONSCIOUS)
@@ -317,6 +329,7 @@
 	custom_metabolism = 0
 	toxpwr = 0
 	taste_description = "ow ow ow"
+	reagent_ui_priority = REAGENT_UI_IMMEDIATE // For ease of testing
 
 /datum/reagent/toxin/pain/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier = volume
@@ -328,6 +341,7 @@
 	color = COLOR_TOXIN_PLASTICIDE
 	toxpwr = 0.2
 	taste_description = "plastic"
+	reagent_ui_priority = REAGENT_UI_MEDICINE
 
 /datum/reagent/toxin/plasticide/on_mob_life(mob/living/L, metabolism)
 	L.adjustToxLoss(0.2)
@@ -340,6 +354,7 @@
 	toxpwr = 1
 	var/meltprob = 10
 	taste_description = "acid"
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/toxin/acid/on_mob_life(mob/living/L, metabolism)
 	L.take_limb_damage(0, 0.5*effect_str)
@@ -421,6 +436,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 5
 	medbayblacklist = TRUE
 	reactindeadmob = FALSE
+	reagent_ui_priority = REAGENT_UI_IMMEDIATE
 
 /datum/reagent/toxin/nanites/on_mob_add(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("Your body begins to twist and deform! Get out of the razorburn!"))
@@ -448,6 +464,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 2
 	overdose_threshold = 10000 //Overdosing for neuro is what happens when you run out of stamina to avoid its oxy and toxin damage
 	toxpwr = 0
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/power
@@ -494,6 +511,7 @@
 	custom_metabolism = 0.4
 	overdose_threshold = 10000
 	toxpwr = 0
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
 
@@ -530,6 +548,7 @@
 	custom_metabolism = 0.4
 	overdose_threshold = 10000
 	toxpwr = 0
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/toxin/xeno_transvitox/on_mob_add(mob/living/L, metabolism, affecting)
 	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(transvitox_human_damage_taken))
@@ -585,6 +604,7 @@
 	custom_metabolism = 0.4
 	overdose_threshold = 10000
 	toxpwr = 0
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/toxin/xeno_sanguinal/on_mob_life(mob/living/L, metabolism)
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
@@ -620,6 +640,7 @@
 	toxpwr = 0 // This is going to do slightly snowflake tox damage.
 	purge_list = list(/datum/reagent/medicine)
 	purge_rate = 5
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/toxin/xeno_ozelomelyn/on_mob_life(mob/living/L, metabolism)
 	if(L.getToxLoss() < 40) // if our toxloss is below 40, do 0.75 tox damage.
@@ -639,6 +660,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.25
 	overdose_threshold = 20
 	overdose_crit_threshold = 50
+	reagent_ui_priority = REAGENT_UI_IMMEDIATE
 
 /datum/reagent/zombium/on_overdose_start(mob/living/L, metabolism)
 	RegisterSignal(L, COMSIG_HUMAN_SET_UNDEFIBBABLE, PROC_REF(zombify))
@@ -677,6 +699,7 @@
 	overdose_threshold = 10000
 	custom_metabolism = REAGENTS_METABOLISM
 	toxpwr = 0
+	reagent_ui_priority = REAGENT_UI_TOXINS
 	purge_list = list(
 		/datum/reagent/medicine/tramadol,
 		/datum/reagent/medicine/paracetamol,

@@ -86,9 +86,13 @@ function PatientBasics() {
     dead,
 
     health,
+    abs_health,
     max_health,
+    abs_max_health,
     crit_threshold,
+    abs_crit_threshold,
     dead_threshold,
+    abs_dead_threshold,
 
     total_brute,
     total_burn,
@@ -100,6 +104,7 @@ function PatientBasics() {
 
     revivable_boolean,
     revivable_string,
+    time_dead,
 
     ssd,
 
@@ -135,26 +140,25 @@ function PatientBasics() {
             'How healthy the patient is.' +
             ((!species.is_robotic_species &&
               " If the patient's health dips below " +
-                crit_threshold +
+                (abs_crit_threshold / abs_max_health) * 100 +
                 '%, they enter critical condition and suffocate rapidly.') ||
               '') +
-            " If the patient's health hits " +
-            (dead_threshold / max_health) * 100 +
-            '%, they die.'
+            " If the patient's health hits 0%, they die."
           }
         >
-          {health >= 0 ? (
+          {abs_health > dead_threshold ? (
             <ProgressBar
-              value={health / max_health}
+              value={abs_health / abs_max_health}
               ranges={{
-                good: [0.4, Infinity],
-                average: [0.2, 0.4],
-                bad: [-Infinity, 0.2],
+                good: [0.7, Infinity],
+                average: [0.6, 0.7],
+                bad: [-Infinity, 0.6],
               }}
             />
           ) : (
             <ProgressBar value={1 + health / max_health} color="bad">
-              {Math.trunc((health / max_health) * 100)}%
+              {Math.trunc((health / max_health) * 100)}% // TODO, make this a
+              death timer to perma
             </ProgressBar>
           )}
         </LabeledList.Item>
@@ -268,6 +272,7 @@ function PatientChemicals() {
       <Stack vertical>
         {Object.values(chemicals_lists).map((chemical) => (
           <Stack.Item
+            order={chemical.ui_order}
             key={chemical.name}
             backgroundColor={row_transparency++ % 2 === 0 ? COLOR_ZEBRA_BG : ''}
             style={ROUNDED_BORDER}

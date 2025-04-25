@@ -38,6 +38,8 @@ type ChemData = {
   color: string;
   metabolism_factor: number;
   dangerous: boolean;
+  ui_order: number;
+  ui_od_modifier: number;
 };
 
 type OrganData = {
@@ -61,9 +63,13 @@ export type MedScannerData = {
   species: Record<string, SpeciesData>;
   dead: boolean;
   health: number;
+  abs_health: number;
   max_health: number;
+  abs_max_health: number;
   crit_threshold: number;
+  abs_crit_threshold: number;
   dead_threshold: number;
+  abs_dead_threshold: number;
   total_brute: number;
   total_burn: number;
   toxin: number;
@@ -71,6 +77,7 @@ export type MedScannerData = {
   clone: number;
   revivable_boolean: boolean;
   revivable_string: number;
+  time_dead: number;
   has_chemicals: boolean;
   has_unknown_chemicals: boolean;
   chemicals_lists?: Record<string, ChemData>;

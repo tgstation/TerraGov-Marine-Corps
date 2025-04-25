@@ -127,14 +127,19 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		"patient" = patient.name,
 		"dead" = (patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH)),
 		"health" = patient.health,
+		"abs_health" = abs(patient.get_death_threshold()) + patient.health,
 		"max_health" = patient.maxHealth,
+		"abs_max_health" = abs(patient.get_death_threshold()) + patient.maxHealth,
 		"crit_threshold" = patient.get_crit_threshold(),
+		"abs_crit_threshold" = abs(patient.get_crit_threshold()),
 		"dead_threshold" = patient.get_death_threshold(),
+		"abs_dead_threshold" = abs(patient.get_death_threshold()),
 		"total_brute" = round(patient.getBruteLoss()),
 		"total_burn" = round(patient.getFireLoss()),
 		"toxin" = round(patient.getToxLoss()),
 		"oxy" = round(patient.getOxyLoss()),
 		"clone" = round(patient.getCloneLoss()),
+		"time_dead" = patient.dead_ticks,
 
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.blood_volume,
@@ -182,7 +187,8 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			"od_threshold" = reagent.overdose_threshold,
 			"crit_od_threshold" = reagent.overdose_crit_threshold,
 			"color" = reagent.color,
-			"metabolism_factor" = reagent.custom_metabolism
+			"metabolism_factor" = reagent.custom_metabolism,
+			"ui_order" = reagent.reagent_ui_priority
 		)
 	data["has_chemicals"] = length(patient.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists

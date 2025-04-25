@@ -49,6 +49,10 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/addiction_stage = 0
 	/// does this show up on health analyzers
 	var/scannable = TRUE
+	/// Reagent priority in UI, lower value is higher priority
+	var/reagent_ui_priority = REAGENT_UI_BASE
+	/// Reagent priority in UI purgelist modifier, i have no idea if this is needed or how to implement
+	var/reagent_ui_purgelist = 0
 	/// if false stops metab in liverless mobs
 	var/self_consuming = FALSE
 	/// List of reagents removed by this chemical
