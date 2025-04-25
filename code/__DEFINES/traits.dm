@@ -128,10 +128,10 @@
 #define NIGHT_VISION_GOGGLES_TRAIT "night_vision_goggles"
 #define SUBMERGED_TRAIT "submerged_trait"
 #define TRAIT_DWARF "dwarf"
+/// This trait comes from when a mob is currently typing.
+#define CURRENTLY_TYPING_TRAIT "currently_typing"
 /// Makes you way too tall. Like just too much, dude, it's kind of creepy. Humanoid only.
 #define TRAIT_TOO_TALL "too_tall"
-///massively decreases human MANUAL get up time
-#define TRAIT_QUICK_GETUP "quick_getup"
 
 #define ABSTRACT_ITEM_TRAIT "abstract_item"
 /// A trait given by any status effect
@@ -219,6 +219,8 @@
 #define TRAIT_STAGGER_RESISTANT	"stagger_resistant" //Resistance to certain sources of stagger
 #define TRAIT_SLOWDOWNIMMUNE "slowdown_immunity" //Immunity to slowdown
 #define TRAIT_EARDAMAGE_IMMUNE "eardmgimmune" //immune to getting deaf through ear dmg
+///massively decreases human MANUAL get up time
+#define TRAIT_QUICK_GETUP "quick_getup"
 #define TRAIT_SEE_IN_DARK "see_in_dark" //Able to see in dark
 #define TRAIT_MUTED "muted" //target is mute and can't speak
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
@@ -235,6 +237,9 @@
  */
 #define TRAIT_AREA_SENSITIVE "area-sensitive"
 #define TRAIT_HEARING_SENSITIVE "hearing_sensitive" //target is hearing sensitive. Every hearing sensitive atom has this trait
+
+/// Trait given to a mob that is currently thinking (giving off the "thinking" icon), used in an IC context
+#define TRAIT_THINKING_IN_CHARACTER "currently_thinking_IC"
 
 #define TRAIT_DROOLING "drooling" //target is drooling
 #define TRAIT_INTOXICATION_IMMUNE "intoxication_immune" // Immune to the Intoxication debuff.

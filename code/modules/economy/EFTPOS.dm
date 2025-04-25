@@ -90,7 +90,7 @@
 	var/dat
 	dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting Ninetails IT Support</i><br>"
 	if(transaction_locked)
-		dat += "<a href='?src=[text_ref(src)];choice=toggle_lock'>Back[transaction_paid ? "" : " (authentication required)"]</a><br><br>"
+		dat += "<a href='byond://?src=[text_ref(src)];choice=toggle_lock'>Back[transaction_paid ? "" : " (authentication required)"]</a><br><br>"
 
 		dat += "Transaction purpose: <b>[transaction_purpose]</b><br>"
 		dat += "Value: <b>$[transaction_amount]</b><br>"
@@ -99,16 +99,16 @@
 			dat += "<i>This transaction has been processed successfully.</i><hr>"
 		else
 			dat += "<i>Swipe your card below the line to finish this transaction.</i><hr>"
-			dat += "<a href='?src=[text_ref(src)];choice=scan_card'>\[------\]</a>"
+			dat += "<a href='byond://?src=[text_ref(src)];choice=scan_card'>\[------\]</a>"
 	else
-		dat += "<a href='?src=[text_ref(src)];choice=toggle_lock'>Lock in new transaction</a><br><br>"
+		dat += "<a href='byond://?src=[text_ref(src)];choice=toggle_lock'>Lock in new transaction</a><br><br>"
 
-		dat += "Transaction purpose: <a href='?src=[text_ref(src)];choice=trans_purpose'>[transaction_purpose]</a><br>"
-		dat += "Value: <a href='?src=[text_ref(src)];choice=trans_value'>$[transaction_amount]</a><br>"
-		dat += "Linked account: <a href='?src=[text_ref(src)];choice=link_account'>[linked_account ? linked_account.owner_name : "None"]</a><hr>"
-		dat += "<a href='?src=[text_ref(src)];choice=change_code'>Change access code</a><br>"
-		dat += "<a href='?src=[text_ref(src)];choice=change_id'>Change EFTPOS ID</a><br>"
-		dat += "Scan card to reset access code <a href='?src=[text_ref(src)];choice=reset'>\[------\]</a>"
+		dat += "Transaction purpose: <a href='byond://?src=[text_ref(src)];choice=trans_purpose'>[transaction_purpose]</a><br>"
+		dat += "Value: <a href='byond://?src=[text_ref(src)];choice=trans_value'>$[transaction_amount]</a><br>"
+		dat += "Linked account: <a href='byond://?src=[text_ref(src)];choice=link_account'>[linked_account ? linked_account.owner_name : "None"]</a><hr>"
+		dat += "<a href='byond://?src=[text_ref(src)];choice=change_code'>Change access code</a><br>"
+		dat += "<a href='byond://?src=[text_ref(src)];choice=change_id'>Change EFTPOS ID</a><br>"
+		dat += "Scan card to reset access code <a href='byond://?src=[text_ref(src)];choice=reset'>\[------\]</a>"
 
 	var/datum/browser/popup = new(user, "etfpos", "<div align='center'>[eftpos_name]</div>")
 	popup.set_content(dat)

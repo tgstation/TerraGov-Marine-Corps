@@ -180,16 +180,16 @@ FIRE ALARM
 	var/d2
 
 	if (A.alarm_state_flags & ALARM_WARNING_FIRE)
-		d1 = "<A href='?src=[text_ref(src)];reset=1'>Reset - Lockdown</A>"
+		d1 = "<A href='byond://?src=[text_ref(src)];reset=1'>Reset - Lockdown</A>"
 	else
-		d1 = "<A href='?src=[text_ref(src)];alarm=1'>Alarm - Lockdown</A>"
+		d1 = "<A href='byond://?src=[text_ref(src)];alarm=1'>Alarm - Lockdown</A>"
 	if(timing)
-		d2 = "<A href='?src=[text_ref(src)];time=0'>Stop Time Lock</A>"
+		d2 = "<A href='byond://?src=[text_ref(src)];time=0'>Stop Time Lock</A>"
 	else
-		d2 = "<A href='?src=[text_ref(src)];time=1'>Initiate Time Lock</A>"
+		d2 = "<A href='byond://?src=[text_ref(src)];time=1'>Initiate Time Lock</A>"
 	var/second = round(time) % 60
 	var/minute = (round(time) - second) / 60
-	var/dat = "<B>Fire alarm</B> [d1]\n<HR>The current alert level is: [GLOB.marine_main_ship.get_security_level()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=[text_ref(src)];tp=-30'>-</A> <A href='?src=[text_ref(src)];tp=-1'>-</A> <A href='?src=[text_ref(src)];tp=1'>+</A> <A href='?src=[text_ref(src)];tp=30'>+</A>"
+	var/dat = "<B>Fire alarm</B> [d1]\n<HR>The current alert level is: [GLOB.marine_main_ship.get_security_level()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='byond://?src=[text_ref(src)];tp=-30'>-</A> <A href='byond://?src=[text_ref(src)];tp=-1'>-</A> <A href='byond://?src=[text_ref(src)];tp=1'>+</A> <A href='byond://?src=[text_ref(src)];tp=30'>+</A>"
 
 	var/datum/browser/popup = new(user, "firealarm", "<div align='center'>Fire alarm</div>")
 	popup.set_content(dat)

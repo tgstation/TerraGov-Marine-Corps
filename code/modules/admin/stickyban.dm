@@ -348,15 +348,15 @@
 		return
 	var/timeout
 	if(SSdbcore.Connect())
-		timeout = "<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=[(ban["timeout"] ? "untimeout" : "timeout")]&ckey=[ckey]'>[(ban["timeout"] ? "Untimeout" : "Timeout")]</a>"
+		timeout = "<a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];stickyban=[(ban["timeout"] ? "untimeout" : "timeout")]&ckey=[ckey]'>[(ban["timeout"] ? "Untimeout" : "Timeout")]</a>"
 	else
-		timeout = "<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=revert&ckey=[ckey]'>Revert</a>"
+		timeout = "<a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];stickyban=revert&ckey=[ckey]'>Revert</a>"
 	. = list({"
-		<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove&ckey=[ckey]'>Remove</a>
+		<a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove&ckey=[ckey]'>Remove</a>
 		[timeout]
 		<b>[ckey]</b>
 		<br />"
-		[ban["message"]] <b><a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=edit&ckey=[ckey]'>Edit</a></b><br />
+		[ban["message"]] <b><a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];stickyban=edit&ckey=[ckey]'>Edit</a></b><br />
 	"})
 	if (ban["admin"])
 		. += "[ban["admin"]]<br />"
@@ -366,12 +366,12 @@
 	for (var/key in ban["keys"])
 		if (ckey(key) == ckey)
 			continue
-		. += "<li><a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove_alt&ckey=[ckey]&alt=[ckey(key)]'>Remove</a>[key] <a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=exempt&ckey=[ckey]&alt=[ckey(key)]'>Exempt</a></li>"
+		. += "<li><a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove_alt&ckey=[ckey]&alt=[ckey(key)]'>Remove</a>[key] <a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];stickyban=exempt&ckey=[ckey]&alt=[ckey(key)]'>Exempt</a></li>"
 
 	for(var/key in ban["whitelist"])
 		if(ckey(key) == ckey)
 			continue
-		. += "<li><a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove_alt&ckey=[ckey]&alt=[ckey(key)]'>Remove</a>[key] <a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=unexempt&ckey=[ckey]&alt=[ckey(key)]'>Exempt</a></li>"
+		. += "<li><a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove_alt&ckey=[ckey]&alt=[ckey(key)]'>Remove</a>[key] <a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];stickyban=unexempt&ckey=[ckey]&alt=[ckey(key)]'>Exempt</a></li>"
 
 	. += "</ol>\n"
 
@@ -481,7 +481,7 @@
 		<title>Sticky Bans</title>
 	</head>
 	<body>
-		<h2>All Sticky Bans:</h2> <a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=add'>Add</a><br>
+		<h2>All Sticky Bans:</h2> <a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];stickyban=add'>Add</a><br>
 		[banhtml.Join("")]
 	</body>
 	"}

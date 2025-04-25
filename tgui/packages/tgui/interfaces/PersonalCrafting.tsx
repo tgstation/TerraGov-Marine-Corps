@@ -1,10 +1,5 @@
 import { filter, sortBy } from 'common/collections';
-import { flow } from 'common/fp';
-import { BooleanLike, classes } from 'common/react';
-import { createSearch } from 'common/string';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -16,7 +11,11 @@ import {
   Stack,
   Tabs,
   Tooltip,
-} from '../components';
+} from 'tgui-core/components';
+import { BooleanLike, classes } from 'tgui-core/react';
+import { createSearch } from 'tgui-core/string';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 enum Food {
@@ -206,42 +205,36 @@ export const PersonalCrafting = (props) => {
   const [activeType, setFoodType] = useState(
     Object.keys(craftability).length ? 'Can Make' : data.foodtypes[0],
   );
-  const material_occurences = flow([
-    sortBy<Material>((material) => -material.occurences),
-  ])(data.material_occurences);
+  const material_occurences = sortBy(
+    data.material_occurences,
+    (material) => -material.occurences,
+  );
   const [activeMaterial, setMaterial] = useState(
     material_occurences[0].atom_id,
   );
   const [tabMode, setTabMode] = useState(0);
   const searchName = createSearch(searchText, (item: Recipe) => item.name);
-  let recipes = flow([
-    filter<Recipe>(
-      (recipe) =>
-        // If craftable only is selected, then filter by craftability
-        (!display_craftable_only || Boolean(craftability[recipe.ref])) &&
-        // Ignore categories and types when searching
-        (searchText.length > 0 ||
-          // Is foodtype mode and the active type matches
-          (tabMode === TABS.foodtype &&
-            mode === MODE.cooking &&
-            ((activeType === 'Can Make' && Boolean(craftability[recipe.ref])) ||
-              recipe.foodtypes?.includes(activeType))) ||
-          // Is material mode and the active material or catalysts match
-          (tabMode === TABS.material &&
-            Object.keys(recipe.reqs).includes(activeMaterial)) ||
-          // Is category mode and the active categroy matches
-          (tabMode === TABS.category &&
-            ((activeCategory === 'Can Make' &&
-              Boolean(craftability[recipe.ref])) ||
-              recipe.category === activeCategory))),
-    ),
-    sortBy<Recipe>((recipe) => [
-      activeCategory === 'Can Make'
-        ? 99 - Object.keys(recipe.reqs).length
-        : Number(craftability[recipe.ref]),
-      recipe.name.toLowerCase(),
-    ]),
-  ])(data.recipes);
+  let recipes = filter(
+    data.recipes,
+    (recipe) =>
+      // If craftable only is selected, then filter by craftability
+      (!display_craftable_only || Boolean(craftability[recipe.ref])) &&
+      // Ignore categories and types when searching
+      (searchText.length > 0 ||
+        // Is foodtype mode and the active type matches
+        (tabMode === TABS.foodtype &&
+          mode === MODE.cooking &&
+          ((activeType === 'Can Make' && Boolean(craftability[recipe.ref])) ||
+            recipe.foodtypes?.includes(activeType))) ||
+        // Is material mode and the active material or catalysts match
+        (tabMode === TABS.material &&
+          Object.keys(recipe.reqs).includes(activeMaterial)) ||
+        // Is category mode and the active categroy matches
+        (tabMode === TABS.category &&
+          ((activeCategory === 'Can Make' &&
+            Boolean(craftability[recipe.ref])) ||
+            recipe.category === activeCategory))),
+  );
   if (searchText.length > 0) {
     recipes = recipes.filter(searchName);
   }
@@ -338,8 +331,8 @@ export const PersonalCrafting = (props) => {
                     </Tabs.Tab>
                   </Tabs>
                 </Stack.Item>
-                <Stack.Item grow m={-1}>
-                  <Box height={'100%'} p={1} style={{ overflowY: 'auto' }}>
+                <Stack.Item grow m={-1} style={{ overflowY: 'auto' }}>
+                  <Box height={'100%'} p={1}>
                     <Tabs vertical>
                       {tabMode === TABS.foodtype &&
                         mode === MODE.cooking &&

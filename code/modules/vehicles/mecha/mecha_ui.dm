@@ -36,7 +36,7 @@
 		ui = new(user, src, "Mecha", name, ui_x, ui_y)
 		ui.open()
 		user.client?.screen |= ui_view.plane_masters
-		user.client?.register_map_obj(ui_view)
+		user.client?.register_map_obj(ui_view, ui.window)
 
 /obj/vehicle/sealed/mecha/ui_status(mob/user)
 	if(contains(user))

@@ -2,6 +2,9 @@
 	parent_type = /datum // black magic
 	preload_rsc = PRELOAD_RSC // This is 0 so we can set it to an URL once the player logs in and have them download the resources from a different server.
 	view = WORLD_VIEW
+	show_popup_menus = TRUE // right click menu no longer shows up
+	control_freak = CONTROL_FREAK_MACROS
+
 	var/datum/tooltip/tooltips
 
 	//Admin related
@@ -45,6 +48,9 @@
 	var/connection_timeofday //world.timeofday they connected
 	var/middragtime = 0 //MMB exploit detection
 	var/atom/middragatom //MMB exploit detection
+
+	/// If this client has been fully initialized or not
+	var/fully_created = FALSE
 
 	/// datum wrapper for client view
 	var/datum/view_data/view_size
@@ -126,6 +132,5 @@
 	/// The direction we WANT to move, based off our keybinds
 	/// Will be udpated to be the actual direction later on
 	var/intended_direction = NONE
-
-	show_popup_menus = TRUE // right click menu no longer shows up
-	control_freak = CONTROL_FREAK_MACROS
+	/// The DPI scale of the client. 1 is equivalent to 100% window scaling, 2 will be 200% window scaling
+	var/window_scaling
