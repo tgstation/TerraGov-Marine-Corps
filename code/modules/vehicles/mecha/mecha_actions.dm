@@ -235,9 +235,6 @@
 		return
 	if(!owner?.client || !chassis || !(owner in chassis.occupants))
 		return
-	if(!chassis.use_power(power_cost))
-		chassis.balloon_alert(owner, "No power")
-		return
 	if(owner.do_actions)
 		return
 	if(TIMER_COOLDOWN_RUNNING(chassis, COOLDOWN_MECHA_ASSAULT_ARMOR))
@@ -245,6 +242,9 @@
 		chassis.balloon_alert(owner, "[time] seconds")
 		return
 	S_TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_ASSAULT_ARMOR, 2 MINUTES)
+	if(!chassis.use_power(power_cost))
+		chassis.balloon_alert(owner, "No power")
+		return
 	var/added_movetime = chassis.move_delay
 	chassis.move_delay += added_movetime
 	var/obj/effect/overlay/lightning_charge/charge = new(chassis)
