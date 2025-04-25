@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		return FALSE
 	if(get_turf(owner) != get_turf(user))
 		return FALSE
-	if(get_dist(get_turf(owner), get_turf(patient)) > track_distance)
+	if(get_dist(get_turf(user), get_turf(patient)) > track_distance)
 		return FALSE
 	if(patient == user)
 		return FALSE
