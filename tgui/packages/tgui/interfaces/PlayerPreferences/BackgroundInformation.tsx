@@ -40,6 +40,7 @@ export const BackgroundInformation = (props) => {
         <TextArea
           expensive
           key="character"
+          fluid
           height="100px"
           value={characterDesc}
           onChange={setCharacterDesc}
@@ -66,6 +67,7 @@ export const BackgroundInformation = (props) => {
             }
           >
             <TextArea
+              fluid
               height="100px"
               expensive
               maxLength={1024}
@@ -96,6 +98,7 @@ export const BackgroundInformation = (props) => {
             }
           >
             <TextArea
+              fluid
               height="100px"
               maxLength={1024}
               value={employmentDesc}
@@ -128,6 +131,7 @@ export const BackgroundInformation = (props) => {
             }
           >
             <TextArea
+              fluid
               height="100px"
               maxLength={1024}
               value={securityDesc}
@@ -158,6 +162,7 @@ export const BackgroundInformation = (props) => {
             }
           >
             <TextArea
+              fluid
               height="100px"
               maxLength={1024}
               value={exploitsDesc}
