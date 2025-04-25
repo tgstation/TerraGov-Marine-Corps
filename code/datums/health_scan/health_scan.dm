@@ -1,108 +1,158 @@
 GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
-/obj/item/healthanalyzer
-	name = "\improper HF2 health analyzer"
-	desc = "A high-tech hand-held body scanner able to distinguish vital signs of subjects. The front panel is able to provide the readout of a subject's status."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "health"
-	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
-	)
-	worn_icon_state = "healthanalyzer"
-	atom_flags = CONDUCT
-	equip_slot_flags = ITEM_SLOT_BELT
-	throwforce = 3
-	w_class = WEIGHT_CLASS_SMALL
-	throw_speed = 5
-	throw_range = 10
-	/// Var for if we should set autoupdating in [/obj/item/healthanalyzer/ui_status] at all.
+/**
+ * An evil, no-good component-like datum for health analyzer functionality.
+ *
+ * We have a couple things that want to use health analyzer functionality, from the health
+ * analyzer object to ghosts and analyzer gloves so this is here to share it between all of them
+ * in a slightly saner way than giving everything a health analyzer obj.
+ *
+ * This may not be parented to non-atoms. It needs to have some in-world object parenting it.
+ *
+ * Example usage:
+ * ```dm
+ * /obj/item/abhorrent_item
+ * 	...
+ * 	var/datum/health_scan/scanner
+ *
+ * /obj/item/abhorrent_item/Initialize(mapload)
+ * 	scanner = new(src)
+ *
+ * /obj/item/abhorrent_item/attack_self(mob/living/carbon/human/user)
+ * 	scanner.analyze_vitals(user, user)
+ * ```
+ */
+/datum/health_scan
+	/// Var for if we should set autoupdating in [/datum/health_scan/ui_status] at all.
 	/// Check the comment in that proc for more, but basically tgui's system for managing autoupdating
 	/// is far too vague for what we're doing. We have to use a workaround to avoid dimming the UI and closing it.
 	/// *This var is not for disabling autoupdates in the first place.*
 	var/allow_live_autoupdating = TRUE
-	/// Skill required to bypass the fumble time.
-	var/skill_threshold = SKILL_MEDICAL_NOVICE
-	/// Skill required to have the scanner auto refresh
-	var/upper_skill_threshold = SKILL_MEDICAL_NOVICE
 	/// Current mob being tracked by the scanner
 	var/mob/living/carbon/human/patient
-	/// Distance the user can be away from the patient and still get health data.
-	var/track_distance = 3
+	/// The atom we will use for autoupdate tracking.
+	/// This may *not* be anything other than an atom. Even if this datum is being used
+	/// in a component, you must set this to the atom owning that component.
+	var/atom/movable/owner
+	/// Skill required to bypass the fumble time.
+	var/skill_threshold
+	/// Skill required to have the scanner auto refresh.
+	var/upper_skill_threshold
+	/// Distance the user can be away from the patient and still get autoupdates.
+	var/track_distance
 	/// Cooldown for showing a scan to somebody
 	COOLDOWN_DECLARE(show_scan_cooldown)
 
-/obj/item/healthanalyzer/examine(mob/user)
-	. = ..()
-	. += span_notice("\The [src] can be configured to use a more accessible theme in your game preferences.")
+/**
+ * New proc, with some args for controlling usage of this
+ *
+ * * `scan_owner`—The atom that *owns* this. Needed for balloon alerts and autoupdates.
+ * * `skill_bypass_fumble`—The Medical skill needed to not fumble with this.
+ * * `skill_auto_update`—The Medical skill needed to get autoupdates with this.
+ * * `track_distance`—The distance (tiles) before autoupdating is locked until rescanning.
+ */
+/datum/health_scan/New(
+	atom/movable/scan_owner,
+	skill_bypass_fumble = SKILL_MEDICAL_NOVICE,
+	skill_auto_update = SKILL_MEDICAL_NOVICE,
+	autoupdate_distance = DEFAULT_TRACK_DISTANCE
+)
+	if(!isatom(scan_owner))
+		stack_trace("[type] created on a non-atom: [scan_owner.type]")
+		return qdel(src)
+	owner = scan_owner
+	skill_threshold = skill_bypass_fumble
+	upper_skill_threshold = skill_auto_update
+	track_distance = autoupdate_distance
+	RegisterSignal(scan_owner, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(scan_owner, COMSIG_QDELETING, PROC_REF(on_owner_qdel))
 
-/obj/item/healthanalyzer/attack(mob/living/carbon/patient_candidate, mob/living/user)
-	. = ..()
-	analyze_vitals(patient_candidate, user)
+/datum/health_scan/Destroy(force, ...)
+	patient = null
+	owner = null
+	SStgui.close_uis(src)
+	return ..()
 
-/obj/item/healthanalyzer/attack_alternate(mob/living/carbon/patient_candidate, mob/living/user)
-	. = ..()
-	analyze_vitals(patient_candidate, user, TRUE)
+/// Examine note about accessible themes preference
+/datum/health_scan/proc/on_examine(atom/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+	examine_list += span_notice("\The [source] can be configured to use a more accessible theme in your game preferences.")
+
+/// Signal handler to avoid hard deletions
+/datum/health_scan/proc/on_owner_qdel(force)
+	SIGNAL_HANDLER
+	owner = null
+	clear_patient(force)
+
+/// Signal handler to avoid hard deletions in exceptionally specific
+/// situations without breaking tgui functionality for this datum
+/datum/health_scan/proc/clear_patient(force)
+	SIGNAL_HANDLER
+	SStgui.close_uis(src)
+	patient = null
 
 /**
- * If `user` is too unskilled, not on the same tile as src, `user` is out of tracking range,
+ * If `user` is too unskilled, not on the same tile as `owner`, `user` is out of tracking range,
  * or it's a self scan, we return `FALSE`.
  *
  * Otherwise, we return `TRUE`.
  */
-/obj/item/healthanalyzer/proc/autoupdate_checks(mob/living/user, mob/living/patient)
+/datum/health_scan/proc/autoupdate_checks(mob/living/user, mob/living/patient)
 	if(user.skills.getRating(SKILL_MEDICAL) < upper_skill_threshold)
 		return FALSE
-	if(get_turf(src) != get_turf(user))
+	if(get_turf(owner) != get_turf(user))
 		return FALSE
-	if(get_dist(get_turf(user), get_turf(patient)) > track_distance)
+	if(get_dist(get_turf(owner), get_turf(patient)) > track_distance)
 		return FALSE
 	if(patient == user)
 		return FALSE
 	return TRUE
 
 /**
- * A wrapper proc, so integrated health analyzers can be used by signals/their parents/whatever.
+ * A wrapper proc, so this datum can be used by signals/its parent/whatever.
  *
- * * `patient_candidate` - Only carbon humans are supported. This is who we will be scanning.
- * * `user` - Any mob is supported. This is who the scan is shown to, unless `show_patient` is active.
- * * `show_patient` - If this is TRUE, we'll show the scan to `patient_candidate` instead of `user`.
+ * * `patient_candidate`—Currently, only carbon humans are supported. This is who we will be scanning.
+ * * `user`—Any mob is supported. This is who the scan is shown to, unless `show_patient` is active.
+ * * `show_patient`—If this is TRUE, we'll show the scan to `patient_candidate` instead of `user`.
  */
-/obj/item/healthanalyzer/proc/analyze_vitals(mob/living/carbon/patient_candidate, mob/living/user, show_patient)
+/datum/health_scan/proc/analyze_vitals(mob/living/carbon/human/patient_candidate, mob/living/user, show_patient)
 	if(user.skills.getRating(SKILL_MEDICAL) < skill_threshold)
-		to_chat(user, span_warning("You start fumbling around with [src]..."))
+		to_chat(user, span_warning("You start fumbling around with [owner]..."))
 		if(!do_after(user, max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating(SKILL_MEDICAL)), 0), NONE, patient_candidate, BUSY_ICON_UNSKILLED))
 			return
-	if(!iscarbon(patient_candidate))
-		balloon_alert(user, "Cannot scan")
+	if(!ishuman(patient_candidate))
+		user.balloon_alert(user, "cannot scan")
 		return
 	if(isxeno(patient_candidate) || patient_candidate.species.species_flags & NO_SCAN)
-		balloon_alert(user, "Unknown error")
+		user.balloon_alert(user, "unknown error")
 		return
+	if(patient)
+		UnregisterSignal(patient, COMSIG_QDELETING)
 	patient = patient_candidate
 	if(show_patient)
 		if(!COOLDOWN_FINISHED(src, show_scan_cooldown))
-			balloon_alert(user, "wait [DisplayTimeText(COOLDOWN_TIMELEFT(src, show_scan_cooldown))]")
+			user.balloon_alert(user, "wait [DisplayTimeText(COOLDOWN_TIMELEFT(src, show_scan_cooldown))]")
 			return
 		if(patient_candidate.faction != user.faction)
-			balloon_alert(user, "incompatible factions")
+			user.balloon_alert(user, "incompatible factions")
 			return
 		if(!patient_candidate.client?.prefs?.allow_being_shown_health_scan)
-			balloon_alert(user, "can't show healthscan")
+			user.balloon_alert(user, "can't show healthscan")
 			return
-		balloon_alert_to_viewers("Showed healthscan", vision_distance = 4)
+		user.balloon_alert_to_viewers("showed healthscan", vision_distance = 4)
 		ui_interact(patient_candidate)
 		COOLDOWN_START(src, show_scan_cooldown, 3 SECONDS)
 	else
 		ui_interact(user)
-	playsound(loc, 'sound/items/healthanalyzer.ogg', 45)
+	RegisterSignal(patient_candidate, COMSIG_QDELETING, PROC_REF(clear_patient))
+	playsound(owner.loc, 'sound/items/healthanalyzer.ogg', 45)
 
-/obj/item/healthanalyzer/ui_state(mob/user)
+/datum/health_scan/ui_state(mob/user)
 	if(!isobserver(user))
 		return GLOB.not_incapacitated_state
 	return GLOB.observer_state
 
-/obj/item/healthanalyzer/ui_interact(mob/user, datum/tgui/ui)
+/datum/health_scan/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -110,7 +160,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		ui.open()
 	allow_live_autoupdating = TRUE
 
-/obj/item/healthanalyzer/ui_status(mob/user, datum/ui_state/state)
+/datum/health_scan/ui_status(mob/user, datum/ui_state/state)
 	// Returning UI_DISABLED will dim the window and prevent it from being opened in self-scans
 	// so we have this override to avoid that behavior but still stop autoupdates from being sent.
 	// allow_live_autoupdating also enforces not updating old scans, requiring you to scan again.
@@ -122,7 +172,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	allow_live_autoupdating = !isnull(ui) ? ui.autoupdate : TRUE
 	return UI_INTERACTIVE
 
-/obj/item/healthanalyzer/ui_data(mob/user)
+/datum/health_scan/ui_data(mob/user)
 	var/list/data = list(
 		"patient" = patient.name,
 		"dead" = (patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH)),
@@ -334,9 +384,3 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	data["ssd"] = ssd
 
 	return data
-
-/// Used for [/datum/component/suit_autodoc] and [/obj/item/clothing/gloves/healthanalyzer]
-/obj/item/healthanalyzer/integrated
-	name = "\improper HF2 integrated health analyzer"
-	desc = "A body scanner able to distinguish vital signs of the subject. This model has been integrated into another object, and is simpler to use."
-	skill_threshold = SKILL_MEDICAL_UNTRAINED

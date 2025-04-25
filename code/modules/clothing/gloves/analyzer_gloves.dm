@@ -9,15 +9,11 @@
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	/// Our internal health analyzer
-	var/obj/item/healthanalyzer/internal_scanner
-
-/obj/item/clothing/gloves/healthanalyzer/examine(mob/user)
-	. = ..()
-	. += span_notice("\The [src] can be configured to use a more accessible theme in your game preferences.")
+	var/datum/health_scan/internal_scanner
 
 /obj/item/clothing/gloves/healthanalyzer/Initialize(mapload)
 	. = ..()
-	internal_scanner = new
+	internal_scanner = new(src)
 
 /obj/item/clothing/gloves/healthanalyzer/Destroy()
 	internal_scanner = null
@@ -43,7 +39,7 @@
 	if(user.a_intent != INTENT_HELP)
 		return
 	if(istype(user) && istype(target))
-		INVOKE_ASYNC(internal_scanner, TYPE_PROC_REF(/obj/item/healthanalyzer, analyze_vitals), target, user, FALSE)
+		INVOKE_ASYNC(internal_scanner, TYPE_PROC_REF(/datum/health_scan, analyze_vitals), target, user, FALSE)
 
 /// Signal handler: calls the analyze_vitals proc if we're good to analyze the carbon human target.
 /// Since we're right clicking we also try to show the scan to the `target`
@@ -52,4 +48,4 @@
 	if(user.a_intent != INTENT_HELP)
 		return
 	if(istype(user) && istype(target))
-		INVOKE_ASYNC(internal_scanner, TYPE_PROC_REF(/obj/item/healthanalyzer, analyze_vitals), target, user, TRUE)
+		INVOKE_ASYNC(internal_scanner, TYPE_PROC_REF(/datum/health_scan, analyze_vitals), target, user, TRUE)

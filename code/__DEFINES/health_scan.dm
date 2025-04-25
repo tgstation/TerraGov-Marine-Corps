@@ -1,5 +1,8 @@
 //! Defines related to health analyzers and advice.
 
+/// Default track distance for health scan functionality
+#define DEFAULT_TRACK_DISTANCE 3
+
 /// The actual advice text.
 /// Should be short enough that it only spans one line on the default width
 /// of the scanner window, otherwise it looks ugly.
