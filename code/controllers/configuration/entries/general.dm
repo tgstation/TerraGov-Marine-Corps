@@ -84,8 +84,6 @@ Administrative related.
 
 /datum/config_entry/flag/log_mooc
 
-/datum/config_entry/flag/log_xmooc
-
 /datum/config_entry/flag/log_looc
 
 /datum/config_entry/flag/log_access
