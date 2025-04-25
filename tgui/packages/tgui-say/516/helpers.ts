@@ -8,9 +8,6 @@ import { RADIO_PREFIXES, WindowSize } from './constants';
 export function windowOpen(channel: Channel, scale: boolean): void {
   setWindowVisibility(true, scale);
   Byond.sendMessage('open', { channel });
-  Byond.winset('tgui_say.browser', {
-    focus: true,
-  });
 }
 
 /**
