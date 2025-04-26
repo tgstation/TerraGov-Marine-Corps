@@ -270,7 +270,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	desc = "A marvel of modern engineering and a shining example of pioneering bluespace technology, able to power entire colonies with very little material consumption - perfectly suited for isolated areas on the outer rim.\nInteract to turn on/off. Triples disk speed while active. If destroyed by xenos while active, enters meltdown and creates a massive explosion, leaving toxic psychic mist in its wake."
 	icon = 'icons/obj/machines/tbg.dmi'
 	power_generation_max = 10000000 //Powers an entire colony
-	time_to_break = 15 SECONDS
+	time_to_break = 20 SECONDS
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 	buildstate = GENERATOR_CORRUPTED_DAMAGE
 	//Stores whether we're in the turning off animation
