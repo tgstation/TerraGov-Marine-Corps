@@ -178,6 +178,16 @@
 	..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/gargoyle
+	name = "xeno gargoyle landmark"
+	icon = 'icons/Xeno/2x2building.dmi'
+	icon_state = "gargoyle"
+
+/obj/effect/landmark/gargoyle/Initialize(mapload)
+	GLOB.xeno_gargoyle_spawn_turfs += loc
+	..()
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/nuke_spawn
 	name = "nuke spawn landmark"
 	icon_state = "tdome_observer"

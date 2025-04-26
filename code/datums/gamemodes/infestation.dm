@@ -40,6 +40,8 @@
 		new_tunnel.tunnel_desc = "["[get_area_name(new_tunnel)]"] (X: [new_tunnel.x], Y: [new_tunnel.y])"
 	for(var/i in GLOB.xeno_jelly_pod_turfs)
 		new /obj/structure/xeno/resin_jelly_pod(i, XENO_HIVE_NORMAL)
+	for(var/i in GLOB.xeno_gargoyle_spawn_turfs)
+		new /obj/structure/xeno/resin_gargoyle(i, XENO_HIVE_NORMAL)
 
 	// Apply Evolution Xeno Population Locks:
 	for(var/datum/xeno_caste/caste AS in evo_requirements)
