@@ -23,8 +23,7 @@
 /datum/looping_sound/alarm_loop
 	mid_sounds = list('sound/machines/sound_machines_FireAlarm2.ogg', 'sound/machines/sound_machines_FireAlarm4.ogg')
 	mid_length = 18
-	volume = 50
-	range = 20
+	range = 35
 
 /datum/looping_sound/alarm_loop/generator
 	mid_sounds = list('sound/machines/generator/tbg_alarm.ogg')
