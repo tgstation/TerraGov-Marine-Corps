@@ -371,8 +371,8 @@
 	name = "\improper Hyperion heavy rocket launcher"
 	desc = "The TGMC's definitive answer to whether a bigger boom is better. Fires heavy AP rockets."
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	icon_state = "grenadelauncher"
-	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
+	icon_state = "rocketlauncher"
+	fire_sound = 'sound/mecha/weapons/mech_rpg.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE|EXOSUIT_MODULE_VENDABLE
 	equipment_slot = MECHA_BACK
 	ammotype = /datum/ammo/rocket/mech/heavy
@@ -388,7 +388,7 @@
 	rearm_time = 5 SECONDS
 	windup_delay = 1 SECONDS
 	ammo_type = MECHA_AMMO_RPG
-	hud_icons = list("grenade_he", "grenade_empty")
+	hud_icons = list("rocket_he", "rocket_empty")
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/flamethrower
