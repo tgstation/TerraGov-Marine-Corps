@@ -22,6 +22,7 @@ tools/Runtime Condenser/Output.txt
 tools/MapDaemon/logs/*.txt
 
 #Visual studio stuff
+/.vs/**/*
 *.vscode/*
 !/.vscode/extensions.json
 !/.vscode/launch.json
