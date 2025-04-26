@@ -161,13 +161,15 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 		return FALSE
 	if(tgui_alert(user, "WARNING: Generator cannot be turned off once it is turned on! Start generator anyway?", "Confirmation", list("Yes", "No"), 5 SECONDS) != "Yes")
 		return FALSE
+	if(user.incapacitated()) //Check again
+		return FALSE
 
 	turn_on()
 	return TRUE
 
 /// Handle turning on the generator and updating power
 /obj/machinery/power/geothermal/proc/turn_on()
-	if(buildstate != GENERATOR_NO_DAMAGE)
+	if(buildstate != GENERATOR_NO_DAMAGE || is_on)
 		return FALSE
 	is_on = TRUE
 	update_icon()
