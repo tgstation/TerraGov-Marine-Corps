@@ -300,6 +300,9 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	GLOB.all_bluespace_generators -= src
 	if(is_on)
 		GLOB.active_bluespace_generators--
+		if(!GLOB.active_bluespace_generators)
+			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ALL_BLUESPACE_GEN_DEACTIVATED, FALSE)
+
 	QDEL_NULL(ambient_soundloop)
 	QDEL_NULL(alarm_soundloop)
 	for(var/obj/machinery/power/tbg_turbine/turbine AS in connected_turbines)
