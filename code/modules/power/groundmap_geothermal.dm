@@ -451,7 +451,6 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(explosion), epicenter, explosion_data[1], explosion_data[2], explosion_data[3], explosion_data[4], explosion_data[4]), explosion_data[5])
 
 	addtimer(CALLBACK(src, PROC_REF(finish_meltdown)), 54 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(emit_mist)), 56.5 SECONDS)
 
 /// Triggers alarm visual effects and queues alarm warnings for ongoing TBG meltdown
 /obj/machinery/power/geothermal/tbg/proc/trigger_alarms()
