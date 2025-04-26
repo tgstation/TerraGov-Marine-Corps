@@ -103,6 +103,7 @@ export const SlotSelector = (props: LoadoutSlotData) => {
                                   style={{
                                     position: 'absolute',
                                     verticalAlign: 'middle',
+                                    left: '0%',
                                     transform:
                                       'translateX(' +
                                       iconinfo.translateX +
