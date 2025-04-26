@@ -3,8 +3,8 @@
 	desc = "An adorable chunk of metal with an alarming amount of firepower designed to crush, immolate, destroy and maim anything that Nanotrasen wants it to. This model contains advanced Bluespace technology which allows a TARDIS-like amount of room on the inside."
 	icon = 'icons/obj/armored/1x1/tinytank.dmi'
 	icon_state = "tank"
-	pixel_w = -16
-	pixel_z = -8
+	pixel_x = -16
+	pixel_y = -8
 	layer = ABOVE_MOB_LAYER
 	max_drivers = 1
 	move_resist = INFINITY
@@ -259,6 +259,12 @@
 		return
 	after_move(direction)
 	forceMove(get_step(src, direction)) // still animates and calls moved() and all that stuff BUT we skip checks
+	//we still need to handroll some parts of moved though since we skipped everything
+	last_move = direction
+	last_move_time = world.time
+	if(currently_z_moving)
+		var/turf/pitfall = get_turf(src)
+		pitfall.zFall(src, falling_from_move = TRUE)
 
 /obj/vehicle/sealed/armored/resisted_against(mob/living/user)
 	balloon_alert(user, "exiting...")
@@ -443,6 +449,15 @@
 		return
 	if(is_equipment_controller(user))
 		swivel_turret(null, direction)
+
+/obj/vehicle/sealed/armored/onZImpact(turf/impacted_turf, levels, impact_flags)
+	. = ..()
+	if(pass_flags & HOVERING)
+		return
+	var/obj/hitboxtouse = hitbox ? hitbox : src
+	for(var/turf/landingzone in hitboxtouse.locs)
+		for(var/mob/living/crushed in landingzone)
+			crushed.gib()
 
 /obj/vehicle/sealed/armored/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	for(var/mob/living/carbon/human/crew AS in occupants)

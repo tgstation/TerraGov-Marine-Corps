@@ -98,6 +98,8 @@ Administrative related.
 
 /datum/config_entry/flag/log_prayer
 
+/datum/config_entry/flag/log_internet_request
+
 /datum/config_entry/flag/log_game
 
 /datum/config_entry/flag/log_minimap_drawing
@@ -191,6 +193,31 @@ Administrative related.
 /datum/config_entry/string/tgs3_commandline_path
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 	default = "C:\\Program Files (x86)\\TG Station Server\\TGCommandLine.exe"
+
+
+/datum/config_entry/number/client_warn_version
+	default = null
+	min_val = 500
+
+/datum/config_entry/number/client_warn_build
+	default = null
+	min_val = 0
+
+/datum/config_entry/string/client_warn_message
+	default = "Your version of byond may have issues or be blocked from accessing this server in the future."
+
+/datum/config_entry/flag/client_warn_popup
+
+/datum/config_entry/number/client_error_version
+	default = null
+	min_val = 500
+
+/datum/config_entry/string/client_error_message
+	default = "Your version of byond is too old, may have issues, and is blocked from accessing this server."
+
+/datum/config_entry/number/client_error_build
+	default = null
+	min_val = 0
 
 /datum/config_entry/number/minute_topic_limit
 	default = 250
@@ -326,6 +353,10 @@ The default value assumes youtube-dl is in your system PATH
 /datum/config_entry/string/invoke_youtubedl
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 
+/datum/config_entry/flag/request_internet_sound
+
+/datum/config_entry/string/request_internet_allowed
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/number/error_cooldown	// The "cooldown" time for each occurrence of a unique error
 	default = 600
@@ -404,6 +435,10 @@ The default value assumes youtube-dl is in your system PATH
 /datum/config_entry/string/default_view_square
 	default = "15x15"
 
+/datum/config_entry/flag/log_pictures
+
+/datum/config_entry/flag/picture_logging_camera
+
 /*
 This maintains a list of ip addresses that are able to bypass topic filtering.
 */
@@ -441,3 +476,13 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 
 /datum/config_entry/flag/save_spritesheets
 	default = FALSE
+
+/**
+ * Tgui ui_act payloads larger than 2kb are split into chunks a maximum of 1kb in size.
+ * This flag represents the maximum chunk count the server is willing to receive.
+ */
+/datum/config_entry/number/tgui_max_chunk_count
+	default = 32
+
+// If set, enables the "Link forum account" OOC verb
+/datum/config_entry/string/forum_link_uri

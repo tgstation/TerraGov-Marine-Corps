@@ -76,6 +76,14 @@
 	. = ..()
 	. += emissive_appearance(icon, icon_state, src)
 
+/obj/fire/can_z_move(direction, turf/start, turf/destination, z_move_flags, mob/living/rider)
+	z_move_flags |= ZMOVE_ALLOW_ANCHORED
+	return ..()
+
+/obj/fire/onZImpact(turf/impacted_turf, levels, impact_flags = NONE)
+	impact_flags |= ZIMPACT_NO_SPIN
+	return ..()
+
 /obj/fire/process()
 	if(!isturf(loc))
 		qdel(src)

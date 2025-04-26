@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - code_imp: "Added mapload to every Initialize (again) and converts some New()s to Initialize()"

@@ -24,6 +24,7 @@
 	light_pixel_x = 32
 	ability_module_icon = 'icons/mecha/mech_core_overlays.dmi'
 	use_damage_particles = FALSE
+	use_gun_boost_prefix = TRUE
 	equip_by_category = list(
 		MECHA_L_ARM = null,
 		MECHA_R_ARM = null,
@@ -95,6 +96,7 @@
 		return ..()
 	for(var/mob/occupant AS in occupants)
 		mob_exit(occupant, FALSE, TRUE)
+	setDir(dir_in) // in case of no occupants we need to fix layering and dir
 	is_wreck = TRUE
 	obj_integrity = max_integrity
 	update_appearance()

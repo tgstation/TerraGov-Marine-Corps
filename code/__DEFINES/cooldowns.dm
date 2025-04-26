@@ -60,11 +60,12 @@
 #define COOLDOWN_WHISTLE_WARCRY "cooldown_whistle_warcry"
 #define COOLDOWN_ARMORED_SMOKE "cooldown_armored_smoke"
 #define COOLDOWN_LOCATE_APC "cooldown_locate_apc"
+#define COOLDOWN_PDA_PLAY "cooldown_pda_play"
 
 //Mecha cooldowns
 #define COOLDOWN_MECHA "mecha"
 #define COOLDOWN_MECHA_MESSAGE "mecha_message"
-#define COOLDOWN_MECHA_EQUIPMENT(type) ("mecha_equip_[type]")
+#define COOLDOWN_MECHA_EQUIPMENT(cooldown_key) ("mecha_equip_[cooldown_key]")
 #define COOLDOWN_MECHA_ARMOR "mecha_armor"
 #define COOLDOWN_MECHA_ASSAULT_ARMOR "mecha_assault_armor"
 #define COOLDOWN_MECHA_MELEE_ATTACK "mecha_melee"
@@ -144,12 +145,20 @@
 
 #define COOLDOWN_START(cd_source, cd_index, cd_time) (cd_source.cd_index = world.time + cd_time)
 
+#define CLIENT_COOLDOWN_START(cd_source, cd_index, cd_time) (cd_source.cd_index = REALTIMEOFDAY + (cd_time))
+
 //Returns true if the cooldown has run its course, false otherwise
 #define COOLDOWN_FINISHED(cd_source, cd_index) (cd_source.cd_index < world.time)
 
+#define COOLDOWN_TIMELEFT(cd_source, cd_index) (max(0, cd_source.cd_index - world.time))
+
 #define COOLDOWN_RESET(cd_source, cd_index) cd_source.cd_index = 0
 
-#define COOLDOWN_TIMELEFT(cd_source, cd_index) (max(0, cd_source.cd_index - world.time))
+#define CLIENT_COOLDOWN_STARTED(cd_source, cd_index) (cd_source.cd_index != 0)
+
+#define CLIENT_COOLDOWN_TIMELEFT(cd_source, cd_index) (max(0, cd_source.cd_index - REALTIMEOFDAY))
+
+#define CLIENT_COOLDOWN_FINISHED(cd_source, cd_index) (cd_source.cd_index <= REALTIMEOFDAY)
 
 ///adds to existing cooldown timer if its started, otherwise starts anew
 #define COOLDOWN_INCREMENT(cd_source, cd_index, cd_increment) \

@@ -2,7 +2,6 @@
 	name = "hud tablet"
 	desc = "A tablet with a live feed to a number of headset cameras"
 	icon_state = "req_tablet_off"
-	req_access = list(ACCESS_NT_CORPORATE)
 	equip_slot_flags = ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_SMALL
 	interaction_flags = INTERACT_MACHINE_TGUI
@@ -27,41 +26,32 @@
 						if("Alpha")
 							dat += " alpha"
 							network = list("alpha")
-							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_ALPHA)
 						if("Bravo")
 							dat += " bravo"
 							network = list("bravo")
-							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_BRAVO)
 						if("Charlie")
 							dat += " charlie"
 							network = list("charlie")
-							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_CHARLIE)
 						if("Delta")
 							dat += " delta"
 							network = list("delta")
-							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
 						else
 							var/lowername = lowertext(squad.name)
 							dat = dat + " " + lowername
 							network = list(lowername)
-							req_access = list(ACCESS_MARINE_LEADER)
 				dat += " squad leader's"
 			if(/datum/job/terragov/command/captain)
 				dat += " captain's"
 				network = list("marinesl", "marine", "marinemainship")
-				req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER, ACCESS_MARINE_CAPTAIN)
 			if(/datum/job/terragov/command/fieldcommander)
 				dat += " field commander's"
 				network = list("marinesl", "marine")
-				req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER)
 			if(/datum/job/terragov/command/pilot)
 				dat += " pilot's"
 				network = list("dropship1")
-				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
 			if(/datum/job/terragov/command/transportofficer)
 				dat += " transport officer's"
 				network = list("dropship2")
-				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE)
 		name = dat + " hud tablet"
 	// Convert networks to lowercase
 	for(var/i in network)
@@ -197,51 +187,42 @@
 /obj/item/hud_tablet/alpha
 	name = "alpha hud tablet"
 	network = list("alpha")
-	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_ALPHA)
 
 /obj/item/hud_tablet/bravo
 	name = "bravo hud tablet"
 	network = list("bravo")
-	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_BRAVO)
 
 /obj/item/hud_tablet/charlie
 	name = "charlie hud tablet"
 	network = list("charlie")
-	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_CHARLIE)
 
 /obj/item/hud_tablet/delta
 	name = "delta hud tablet"
 	network = list("delta")
-	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
 
 /obj/item/hud_tablet/leadership
 	name = "captain's hud tablet"
 	network = list("marinesl", "marine", "marinemainship")
-	req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER, ACCESS_MARINE_CAPTAIN)
 	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/fieldcommand
 	name = "field commander's hud tablet"
 	network = list("marinesl", "marine")
-	req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER)
 	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/pilot
 	name = "pilot officers's hud tablet"
 	network = list("dropship1")
-	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
 	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/transportofficer
 	name = "transport officer's hud tablet"
 	network = list("dropship2")
-	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE)
 	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/artillery
 	name = "artillery impact hud tablet"
 	desc = "A handy tablet with a live feed to several TGMC satellites. Provides a view of all artillery on the battlefield. Transmits a video of the impact site whenever a shot is fired, so that hits may be observed by the loader or spotter."
 	network = list("terragovartillery") //This shows cameras of all mortars, so don't add this to HvH
-	req_access = list()
 	max_view_dist = WORLD_VIEW_NUM
 

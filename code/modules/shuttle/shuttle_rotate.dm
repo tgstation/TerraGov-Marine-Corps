@@ -69,6 +69,10 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 		params = NONE
 	return ..()
 
+/obj/vehicle/sealed/mecha/combat/greyscale/shuttleRotate(rotation, params)
+	params &= ~ROTATE_OFFSET
+	return ..()
+
 /obj/machinery/atmospherics/shuttleRotate(rotation, params)
 	var/list/real_node_connect = getNodeConnects()
 	for(var/i in 1 to device_type)

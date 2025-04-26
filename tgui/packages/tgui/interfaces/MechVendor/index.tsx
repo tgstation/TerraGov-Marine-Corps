@@ -30,25 +30,24 @@ export const MechVendor = (props) => {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
   const { act, data } = useBackend<MechVendData>();
   return (
-    <Window title={'Mecha Assembler'} width={1080} height={620}>
+    <Window title={'Mecha Assembler'} width={1080} height={570}>
       {showDesc ? (
         <Modal width="500px">
           <Section
+            fill
             title={showDesc.name}
             buttons={
               <Button content="Dismiss" onClick={() => setShowDesc(null)} />
             }
           >
-            <Stack>
-              <Stack.Item>
+            <Stack fill>
+              <Stack.Item grow>
                 <Box
                   className={classes([
                     'mech_builder64x32',
                     showDesc.icon_state,
                   ])}
                   ml={5}
-                  mr={20}
-                  mt={3}
                   mb={9}
                   style={{
                     transform: 'scale(3) translate(20%, 20%)',
@@ -102,7 +101,7 @@ export const MechVendor = (props) => {
                 </LabeledList>
               </Stack.Item>
               <Stack.Item>
-                <Box ml={-38}>
+                <Box>
                   {showDesc.desc +
                     (showDesc.ammo_type
                       ? ' Loaded with: ' + showDesc.ammo_type + '.'
@@ -129,7 +128,7 @@ export const MechVendor = (props) => {
             );
           })}
         </Tabs>
-        <Stack>
+        <Stack fill>
           <Stack.Item>
             <Tooltip
               content="Weight determines the maximum weight of equipment and limbs mounted on your mech. Increased by equipping heavier legs."
@@ -138,9 +137,9 @@ export const MechVendor = (props) => {
               <ProgressBar
                 style={{
                   transform: 'rotate(270deg) translateX(-48%)',
-                  width: 535,
-                  marginLeft: -255,
-                  marginRight: -255,
+                  width: 480,
+                  marginLeft: -230,
+                  marginRight: -230,
                 }}
                 ranges={{
                   bad: [0.8, Infinity],
@@ -158,7 +157,7 @@ export const MechVendor = (props) => {
               </ProgressBar>
             </Tooltip>
           </Stack.Item>
-          <Stack.Item>
+          <Stack.Item grow>
             {selectedTab === MECHA_ASSEMBLY && <MechAssembly />}
             {selectedTab === MECHA_WEAPONS && (
               <MechWeapons setShowDesc={setShowDesc} />

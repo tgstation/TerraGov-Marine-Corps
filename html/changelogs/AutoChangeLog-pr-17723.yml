@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - balance: "Moved turrets on the thin tad to the side - allowing you to walk in the middle"

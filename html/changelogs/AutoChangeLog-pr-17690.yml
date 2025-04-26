@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - admin: "Admins now see how many lobby players there and and how many are afk"

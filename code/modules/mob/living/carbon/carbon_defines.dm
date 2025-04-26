@@ -1,5 +1,6 @@
 /mob/living/carbon
 	gender = MALE
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	buckle_flags = CAN_BE_BUCKLED|BUCKLE_PREVENTS_PULL
 	///Contains icon generation and language information, set during New().
 	var/datum/species/species

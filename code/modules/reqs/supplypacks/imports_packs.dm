@@ -237,7 +237,7 @@ Imports
 
 /datum/supply_packs/imports/rev357/ammo
 	name = "R-44 SAA revolver speed loader"
-	contains = list(/obj/item/ammo_magazine/revolver)
+	contains = list(/obj/item/ammo_magazine/revolver/single_action/m44)
 	cost = 3
 
 /datum/supply_packs/imports/g22
