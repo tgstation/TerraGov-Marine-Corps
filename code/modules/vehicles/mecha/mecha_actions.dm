@@ -355,6 +355,7 @@
 		return
 	INVOKE_ASYNC(src, PROC_REF(overboost_charge))
 
+/// actually executes the overboost dash for the owning mech
 /datum/action/vehicle/sealed/mecha/overboost/proc/overboost_charge()
 	var/obj/vehicle/sealed/mecha/combat/greyscale/greyscale = chassis
 	if(istype(greyscale))
