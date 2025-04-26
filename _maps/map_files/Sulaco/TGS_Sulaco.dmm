@@ -26120,7 +26120,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment,
-/mob/living/simple_animal/cat/martin,
+/mob/living/simple_animal/cat/martina,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/cargo/prep)
 "vSd" = (
