@@ -11,7 +11,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	taste_description = "bitterness"
 	taste_multi = 1.2
- 	reagent_ui_priority = REAGENT_UI_MEDICINE // Raise this to REAGENT_UI_TOXINS if toxpwr damage calculation gets buffed or var gets raised.
+	reagent_ui_priority = REAGENT_UI_MEDICINE // Raise this to REAGENT_UI_TOXINS if toxpwr damage calculation gets buffed or var gets raised.
 
 /datum/reagent/toxin/on_mob_life(mob/living/L, metabolism)
 	if(toxpwr)
