@@ -178,7 +178,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 /// Handle turning off the generator and updating power
 /obj/machinery/power/geothermal/proc/turn_off()
 	is_on = FALSE
-	power_gen_percent = 5
+	power_gen_percent = 0
 	update_icon()
 	update_desc()
 	stop_processing()
@@ -336,6 +336,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 /obj/machinery/power/geothermal/tbg/turn_off()
 	COOLDOWN_START(src, toggle_power, 10 SECONDS)
 	. = ..()
+	power_gen_percent = 5
 	winding_down = TRUE
 	update_icon()
 	addtimer(CALLBACK(src, PROC_REF(finish_winding_down)), 10 SECONDS)
