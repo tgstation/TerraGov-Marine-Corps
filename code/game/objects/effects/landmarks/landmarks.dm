@@ -174,7 +174,7 @@
 	icon_state = "resinpod"
 
 /obj/effect/landmark/resin_jelly_pod/Initialize(mapload)
-	GLOB.xeno_tunnel_spawn_turfs += loc
+	GLOB.xeno_jelly_pod_turfs += loc
 	..()
 	return INITIALIZE_HINT_QDEL
 
