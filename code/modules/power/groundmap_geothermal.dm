@@ -448,7 +448,8 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 		var/turf/epicenter = locate(loc.x + rand(-2,2), loc.y + rand(-2,2), loc.z)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(explosion), epicenter, explosion_data[1], explosion_data[2], explosion_data[3], explosion_data[4], explosion_data[4]), explosion_data[5])
 
-	addtimer(CALLBACK(src, PROC_REF(finish_meltdown)), 56.2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finish_meltdown)), 54 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(finish_meltdown)), 56.5 SECONDS)
 
 /// Triggers alarm visual effects and queues alarm warnings for ongoing TBG meltdown
 /obj/machinery/power/geothermal/tbg/proc/trigger_alarms()
@@ -483,10 +484,13 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	//Disable alarmlights
 	for(var/obj/machinery/floor_warn_light/toggleable/generator/light AS in GLOB.generator_alarm_lights)
 		light.disable()
-	//After generators get destroyed, psychic mist is emitted
+	emit_mist()
+	qdel(src) //Destroy generator after big explosion happens
+
+/// After generators get destroyed, psychic mist is emitted
+/obj/machinery/power/geothermal/tbg/proc/emit_mist()
 	for(var/turf/tile in filled_circle_turfs(src, GENERATOR_MIST_RANGE))
 		new /obj/effect/psychic_mist(tile, prob(5))
-	qdel(src) //Destroy generator after big explosion happens
 
 /// TBG turbine attached to the TBG; purely visual
 /obj/machinery/power/tbg_turbine
