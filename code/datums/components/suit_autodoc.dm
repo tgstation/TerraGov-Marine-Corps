@@ -392,7 +392,7 @@
 		action_toggle()
 
 	else if(href_list["analyzer"]) //Integrated scanner
-		analyzer.analyze_vitals(wearer, wearer, TRUE)
+		analyzer.analyze_vitals(wearer, wearer)
 
 	else if(href_list["automed_damage"])
 		damage_threshold += text2num(href_list["automed_damage"])

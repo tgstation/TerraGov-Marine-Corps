@@ -65,7 +65,6 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	upper_skill_threshold = skill_auto_update
 	track_distance = autoupdate_distance
 	RegisterSignal(scan_owner, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
-	RegisterSignal(scan_owner, COMSIG_QDELETING, PROC_REF(on_owner_qdel))
 
 /datum/health_scan/Destroy(force, ...)
 	patient = null
@@ -76,13 +75,9 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 /// Examine note about accessible themes preference
 /datum/health_scan/proc/on_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
+	if(ismob(source))
+		return
 	examine_list += span_notice("\The [source] can be configured to use a more accessible theme in your game preferences.")
-
-/// Signal handler to avoid hard deletions
-/datum/health_scan/proc/on_owner_qdel(force)
-	SIGNAL_HANDLER
-	owner = null
-	clear_patient(force)
 
 /// Signal handler to avoid hard deletions in exceptionally specific
 /// situations without breaking tgui functionality for this datum

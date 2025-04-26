@@ -16,7 +16,7 @@
 	internal_scanner = new(src)
 
 /obj/item/clothing/gloves/healthanalyzer/Destroy()
-	internal_scanner = null
+	QDEL_NULL(internal_scanner)
 	return ..()
 
 /obj/item/clothing/gloves/healthanalyzer/equipped(mob/living/carbon/human/user, slot)

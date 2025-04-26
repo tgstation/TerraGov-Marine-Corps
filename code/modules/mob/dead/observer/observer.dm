@@ -711,7 +711,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	else
 		to_chat(src, span_notice("Health scan enabled."))
 		health_scan = TRUE
-		scanner_functionality = new(src)
+		scanner_functionality = new(src, SKILL_MEDICAL_UNTRAINED)
 
 /mob/dead/observer/verb/join_valhalla()
 	set name = "Join Valhalla"
