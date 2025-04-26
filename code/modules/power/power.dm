@@ -266,7 +266,7 @@
 	else
 		power_source = C
 		shock_damage = cell_damage
-	var/drained_hp = M.electrocute_act(shock_damage, source, siemens_coeff) //zzzzzzap!
+	var/drained_hp = M.electrocute_act(min(shock_damage, 150), source, siemens_coeff) //zzzzzzap!
 	log_combat(source, M, "electrocuted")
 
 	var/drained_energy = drained_hp*20
