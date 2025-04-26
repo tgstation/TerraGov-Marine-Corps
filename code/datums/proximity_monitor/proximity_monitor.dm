@@ -13,6 +13,8 @@
 		COMSIG_ATOM_EXITED = PROC_REF(on_uncrossed),
 		COMSIG_ATOM_INITIALIZED_ON = PROC_REF(on_initialized),
 	)
+	///A list of all mobs within this radius, to track what signals are already registered
+	var/list/mobs_in_range
 
 /datum/proximity_monitor/New(atom/_host, range, _ignore_if_not_on_turf = TRUE)
 	ignore_if_not_on_turf = _ignore_if_not_on_turf
@@ -74,16 +76,38 @@
 	//Update the ignore_if_not_on_turf
 	AddComponent(/datum/component/connect_range, host, loc_connections, current_range, ignore_if_not_on_turf)
 
-/datum/proximity_monitor/proc/on_uncrossed()
+//Also used by the advanced subtype for effect fields.
+/datum/proximity_monitor/proc/on_uncrossed(atom/movable/mover, direction)
 	SIGNAL_HANDLER
-	return //Used by the advanced subtype for effect fields.
+	if(ismob(mover))
+		mob_exited_radius(mover)
 
 /datum/proximity_monitor/proc/on_entered(atom/source, atom/movable/arrived, turf/old_loc)
 	SIGNAL_HANDLER
 	if(source != host)
 		hasprox_receiver?.HasProximity(arrived)
+		if(ismob(arrived))
+			mob_entered_radius(arrived)
 
 /datum/proximity_monitor/proc/on_initialized(turf/location, atom/created, init_flags)
 	SIGNAL_HANDLER
 	if(location != host)
 		hasprox_receiver?.HasProximity(created)
+		if(ismob(created))
+			mob_entered_radius(created)
+
+
+/datum/proximity_monitor/proc/mob_entered_radius(mob/entered)
+	if(!(entered in mobs_in_range))
+		RegisterSignal(entered, COMSIG_MOB_STAT_CHANGED, PROC_REF(on_stat_changed))
+		mobs_in_range += list(entered)
+
+/datum/proximity_monitor/proc/mob_exited_radius(mob/exited)
+	if(exited in mobs_in_range)
+		UnregisterSignal(exited, COMSIG_MOB_STAT_CHANGED)
+		mobs_in_range -= exited
+
+/datum/proximity_monitor/proc/on_stat_changed(mob/altered_mob, new_stat)
+	SIGNAL_HANDLER
+	if(get_turf(altered_mob) != host)
+		hasprox_receiver?.HasProximity(altered_mob)
