@@ -38,7 +38,7 @@
 	explosion(T, 0, 0, 4, 0, 0, explosion_cause=src)
 
 /datum/ammo/rocket/mech/heavy
-	name = "large AP rocket"
+	name = "large heavy-explosive rocket"
 	damage = 30
 	penetration = 30
 
