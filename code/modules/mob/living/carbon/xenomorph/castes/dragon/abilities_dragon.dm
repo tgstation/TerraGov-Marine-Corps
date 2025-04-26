@@ -370,12 +370,10 @@
 	/// The timer id for the timer that occurs every tick while the ability is active.
 	var/tick_timer
 
-/datum/action/ability/activable/xeno/backhand/dragon_breath/can_use_ability(atom/A, silent, override_flags)
-	if(ability_timer)
-		if(!silent)
-			xeno_owner.balloon_alert(xeno_owner, "already breathing fire")
-		return FALSE
-	return ..()
+/datum/action/ability/activable/xeno/backhand/dragon_breath/use_ability(atom/target)
+	if(!ability_timer)
+		return ..()
+	end_ability()
 
 /datum/action/ability/activable/xeno/backhand/dragon_breath/get_damage()
 	return 20 * xeno_owner.xeno_melee_damage_modifier
