@@ -6,7 +6,7 @@
 /// The actual advice text.
 /// Should be short enough that it only spans one line on the default width
 /// of the scanner window, otherwise it looks ugly.
-#define ADVICE_TEXT "text"
+#define ADVICE_TEXT "advice"
 /// The tooltip when hovering over this advice
 #define ADVICE_TOOLTIP "tooltip"
 /// The FA_ICON for this advice

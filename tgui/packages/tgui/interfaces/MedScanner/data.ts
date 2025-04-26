@@ -50,7 +50,7 @@ type OrganData = {
 };
 
 type AdviceData = {
-  text: string;
+  advice: string;
   icon: string;
   color: string;
   tooltip: string;

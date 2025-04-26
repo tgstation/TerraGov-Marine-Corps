@@ -818,11 +818,13 @@ function PatientAdvice() {
     <Section title="Treatment Advice">
       <Stack vertical>
         {Object.values(advice).map((advice) => (
-          <Stack.Item key={advice.text}>
-            <Tooltip content={advice.tooltip || 'No tooltip for this advice.'}>
+          <Stack.Item key={advice.advice}>
+            <Tooltip
+              content={advice.tooltip || 'No tooltip entry for this advice.'}
+            >
               <Box inline>
                 <Icon
-                  name={advice.icon || 'image'}
+                  name={advice.icon}
                   ml={0.2}
                   color={
                     accessible_theme
@@ -833,7 +835,7 @@ function PatientAdvice() {
                   }
                 />
                 <Box inline width={SPACING_PIXELS} />
-                {advice.text || 'Missing advice text.'}
+                {advice.advice}
               </Box>
             </Tooltip>
           </Stack.Item>
