@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
  * (but not uncommon) case of tracking a patient who gets gibbed or otherwise deleted.
  *
  * We don't null patient when autoupdate disables because of our workarounds
- * with autoupdating as that causes runtimes every time autoupdating is disabled.
+ * with autoupdating—that causes runtimes every time autoupdating is disabled.
  * Instead, we keep the patient in mind (until another one is scanned) but listen
  * for their deletion and only then close the UI and null the patient var.
  *
