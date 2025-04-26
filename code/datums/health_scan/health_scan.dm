@@ -7,7 +7,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
  * analyzer object to ghosts and analyzer gloves so this is here to share it between all of them
  * in a slightly saner way than giving everything a health analyzer obj.
  *
- * This may not be parented to non-atoms. It needs to have some in-world object parenting it.
+ * This may not be parented to non-atoms. It needs to have something in-world parenting it.
  *
  * Example usage:
  * ```dm
@@ -27,12 +27,12 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	/// Check the comment in that proc for more, but basically tgui's system for managing autoupdating
 	/// is far too vague for what we're doing. We have to use a workaround to avoid dimming the UI and closing it.
 	/// *This var is not for disabling autoupdates in the first place.*
-	var/allow_live_autoupdating = TRUE
+	VAR_PRIVATE/allow_live_autoupdating = TRUE
 	/// Current mob being tracked by the scanner.
 	var/mob/living/carbon/human/patient
 	/// The atom we will use for autoupdate tracking.
 	/// This cannot be anything other than an atom. Even if this datum is being used
-	/// in a component, you must set this to the atom owning that component.
+	/// in a component, you need to set this to the atom parenting that component.
 	var/atom/owner
 	/// Skill required to bypass the fumble time.
 	var/skill_threshold
@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	var/upper_skill_threshold
 	/// Distance the user can be away from the patient and still get autoupdates.
 	var/track_distance
-	/// Cooldown for showing a scan to somebody
+	/// Cooldown for showing a scan to somebody.
 	COOLDOWN_DECLARE(show_scan_cooldown)
 
 /**
@@ -52,7 +52,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
  * * `track_distance`—The distance (tiles) before autoupdating is locked until rescanning.
  */
 /datum/health_scan/New(
-	atom/movable/scan_owner,
+	atom/scan_owner,
 	skill_bypass_fumble = SKILL_MEDICAL_NOVICE,
 	skill_auto_update = SKILL_MEDICAL_NOVICE,
 	autoupdate_distance = DEFAULT_TRACK_DISTANCE
@@ -69,7 +69,6 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 /datum/health_scan/Destroy(force, ...)
 	patient = null
 	owner = null
-	SStgui.close_uis(src)
 	return ..()
 
 /// Examine note about accessible themes preference
@@ -79,8 +78,17 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		return
 	examine_list += span_notice("\The [source] can be configured to use a more accessible theme in your game preferences.")
 
-/// Signal handler to avoid hard deletions in exceptionally specific
-/// situations without breaking tgui functionality for this datum
+/**
+ * Signal handler to clear the patient and close the UI in the very specific
+ * (but not uncommon) case of tracking a patient who gets gibbed or otherwise deleted.
+ *
+ * We don't null patient when autoupdate disables because of our workarounds
+ * with autoupdating as that causes runtimes every time autoupdating is disabled.
+ * Instead, we keep the patient in mind (until another one is scanned) but listen
+ * for their deletion and only then close the UI and null the patient var.
+ *
+ * This may not seem ideal and is a consequence of bending tgui in unforeseen ways, but better than incessant runtimes.
+ */
 /datum/health_scan/proc/clear_patient(force)
 	SIGNAL_HANDLER
 	SStgui.close_uis(src)
@@ -110,9 +118,9 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
  * * `user`—Any mob is supported. This is who the scan is shown to, unless `show_patient` is active.
  * * `show_patient`—If this is TRUE, we'll show the scan to `patient_candidate` instead of `user`.
  */
-/datum/health_scan/proc/analyze_vitals(mob/living/carbon/human/patient_candidate, mob/living/user, show_patient)
+/datum/health_scan/proc/analyze_vitals(mob/living/carbon/human/patient_candidate, mob/user, show_patient)
 	if(user.skills.getRating(SKILL_MEDICAL) < skill_threshold)
-		to_chat(user, span_warning("You start fumbling around with [owner]..."))
+		user.balloon_alert("fumbling...")
 		if(!do_after(user, max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating(SKILL_MEDICAL)), 0), NONE, patient_candidate, BUSY_ICON_UNSKILLED))
 			return
 	if(!ishuman(patient_candidate))

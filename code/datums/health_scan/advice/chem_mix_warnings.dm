@@ -6,8 +6,7 @@
 	abstract_type = /datum/scanner_advice/chem_mix_warning
 
 /datum/scanner_advice/chem_mix_warning/has_paracetamol/can_show(mob/living/carbon/human/patient, mob/user)
-	if(patient.reagents.has_reagent(/datum/reagent/medicine/paracetamol))
-		return TRUE
+	return patient.reagents.has_reagent(/datum/reagent/medicine/paracetamol)
 
 /datum/scanner_advice/chem_mix_warning/has_paracetamol/get_data(mob/living/carbon/human/patient, mob/user)
 	. = list(
@@ -18,8 +17,7 @@
 	)
 
 /datum/scanner_advice/chem_mix_warning/has_helpful_nanites/can_show(mob/living/carbon/human/patient, mob/user)
-	if(patient.reagents.has_reagent(/datum/reagent/medicalnanites))
-		return TRUE
+	return patient.reagents.has_reagent(/datum/reagent/medicalnanites)
 
 /datum/scanner_advice/chem_mix_warning/has_helpful_nanites/get_data(mob/living/carbon/human/patient, mob/user)
 	. = list(

@@ -6,8 +6,7 @@
 	abstract_type = /datum/scanner_advice/species
 
 /datum/scanner_advice/species/combat_robot/can_show(mob/living/carbon/human/patient, mob/user)
-	if(isrobot(patient))
-		return TRUE
+	return isrobot(patient)
 
 /datum/scanner_advice/species/combat_robot/get_data(mob/living/carbon/human/patient, mob/user)
 	. = list()
@@ -25,8 +24,7 @@
 	))
 
 /datum/scanner_advice/species/synthetic/can_show(mob/living/carbon/human/patient, mob/user)
-	if(issynth(patient))
-		return TRUE
+	return issynth(patient)
 
 /datum/scanner_advice/species/synthetic/get_data(mob/living/carbon/human/patient, mob/user)
 	. = list()

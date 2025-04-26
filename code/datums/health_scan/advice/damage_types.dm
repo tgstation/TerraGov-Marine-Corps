@@ -4,8 +4,7 @@
 	abstract_type = /datum/scanner_advice/damage
 
 /datum/scanner_advice/damage/brute/can_show(mob/living/carbon/human/patient, mob/user)
-	if(patient.getBruteLoss() > 5)
-		return TRUE
+	return (patient.getBruteLoss() > 5)
 
 /datum/scanner_advice/damage/brute/get_data(mob/living/carbon/human/patient, mob/user)
 	. = list()
@@ -32,8 +31,7 @@
 		))
 
 /datum/scanner_advice/damage/burn/can_show(mob/living/carbon/human/patient, mob/user)
-	if(patient.getFireLoss() > 5)
-		return TRUE
+	return (patient.getFireLoss() > 5)
 
 /datum/scanner_advice/damage/burn/get_data(mob/living/carbon/human/patient, mob/user)
 	. = list()
@@ -90,8 +88,7 @@
 	)
 
 /datum/scanner_advice/damage/clone/can_show(mob/living/carbon/human/patient, mob/user)
-	if(patient.getCloneLoss() > 5)
-		return TRUE
+	return (patient.getCloneLoss() > 5)
 
 /datum/scanner_advice/damage/clone/get_data(mob/living/carbon/human/patient, mob/user)
 	var/organic_patient = !(patient.species.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))

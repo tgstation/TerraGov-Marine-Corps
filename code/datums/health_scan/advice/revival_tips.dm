@@ -20,7 +20,7 @@
 
 	if(!issynth(patient)) // specifically checking for synths here because synths don't expire but robots do
 		. += list(list(
-			ADVICE_TEXT = "Time remaining to revive: [DisplayTimeText((TIME_BEFORE_DNR-(patient.dead_ticks))*20)].",
+			ADVICE_TEXT = "Time remaining to revive: [DisplayTimeText((TIME_BEFORE_DNR-(patient.dead_ticks)) * 2 SECONDS)].",
 			ADVICE_TOOLTIP = "This is how long until the patient is permanently unrevivable. Stasis bags pause this timer.",
 			ADVICE_ICON = FA_ICON_HEART_PULSE,
 			ADVICE_ICON_COLOR = dead_color

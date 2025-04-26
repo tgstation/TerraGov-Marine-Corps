@@ -5,8 +5,7 @@
 	priority = ADVICE_PRIORITY_MAX_HEALTH
 
 /datum/scanner_advice/special_max_health/can_show(mob/living/carbon/human/patient, mob/user)
-	if(patient.maxHealth != LIVING_DEFAULT_MAX_HEALTH)
-		return TRUE
+	return (patient.maxHealth != LIVING_DEFAULT_MAX_HEALTH)
 
 /datum/scanner_advice/special_max_health/get_data(mob/living/carbon/human/patient, mob/user)
 	. = list(

@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(scanner_advice, init_advice_datums())
  * contents, otherwise ignored.
  */
 /datum/scanner_advice/proc/can_show(mob/living/carbon/human/patient, mob/user)
-	return FALSE // unimplemented
+	CRASH("[type]/can_show is calling parent or has not implemented checks.")
 
 /**
  * Proc for getting the data of this advice. Returning multiple lists is supported.
@@ -42,9 +42,9 @@ GLOBAL_LIST_INIT(scanner_advice, init_advice_datums())
  * everything, since some datums want to change their data based on species and other factors.
  *
  * Usage rules:
- * * **Keys are not optional, missing something may cause the health analyzer to bluescreen.**
+ * * Keys are not optional. TGUI won't bluescreen if one is missing, but it is quite jarring for users if something is empty/default.
  * * The name of every entry must be kept short so it doesn't span more than one line on the default width of the UI.
- * * HTML tags like `<b>`/`<i>`/etc may not be used in names or tooltips. MedScanner TGUI can't use these tags outside of compile time expressions.
+ * * HTML tags like `<b>`/`<i>`/etc may not be used in names or tooltips. TGUI can't use these tags outside of compile time expressions.
  *
  * Examples:
  * ```dm
@@ -73,4 +73,4 @@ GLOBAL_LIST_INIT(scanner_advice, init_advice_datums())
  * ```
  */
 /datum/scanner_advice/proc/get_data(mob/living/carbon/human/patient, mob/user)
-	return list() // unimplemented
+	CRASH("[type]/get_data is calling parent or has not implemented data.")

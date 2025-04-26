@@ -3,8 +3,7 @@
 	priority = ADVICE_PRIORITY_EMBRYO
 
 /datum/scanner_advice/implanted_embryo/can_show(mob/living/carbon/human/patient, mob/user)
-	if(patient.status_flags & XENO_HOST)
-		return TRUE
+	return (patient.status_flags & XENO_HOST)
 
 /datum/scanner_advice/implanted_embryo/get_data(mob/living/carbon/human/patient, mob/user)
 	. = list(
