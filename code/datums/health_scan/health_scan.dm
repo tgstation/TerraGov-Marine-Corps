@@ -148,7 +148,8 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	else
 		ui_interact(user)
 	RegisterSignal(patient_candidate, COMSIG_QDELETING, PROC_REF(clear_patient))
-	playsound(owner.loc, 'sound/items/healthanalyzer.ogg', 45)
+	if(!ismob(user))
+		playsound(owner.loc, 'sound/items/healthanalyzer.ogg', 45)
 
 /datum/health_scan/ui_state(mob/user)
 	if(!isobserver(user))
