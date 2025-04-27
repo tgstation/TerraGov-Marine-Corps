@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Dragon Breath no longer continues to happen if Dragon enters critical or dies prematurely."
