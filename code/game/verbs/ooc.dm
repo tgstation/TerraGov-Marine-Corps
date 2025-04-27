@@ -477,7 +477,7 @@
 	var/list/body = list()
 	body += get_exp_report()
 
-	var/datum/browser/popup = new(src, "playerplaytime[ckey]", "<div align='center'>Playtime for [key]</div>", 550, 615)
+	var/datum/browser/popup = new(mob, "playerplaytime[ckey]", "<div align='center'>Playtime for [key]</div>", 550, 615)
 	popup.set_content(body.Join())
 	popup.open(FALSE)
 
