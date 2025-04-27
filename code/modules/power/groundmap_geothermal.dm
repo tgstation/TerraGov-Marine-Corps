@@ -411,7 +411,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 		return
 
 	. = ..()
-	if(xeno_attacker.do_actions && buildstate == GENERATOR_NO_DAMAGE)
+	if(!xeno_attacker.do_actions && buildstate == GENERATOR_NO_DAMAGE)
 		balloon_alert(xeno_attacker, "You begin gunking up the generator with resin...")
 		if(!do_after(xeno_attacker, 10 SECONDS, NONE, src, BUSY_ICON_HOSTILE))
 			return
