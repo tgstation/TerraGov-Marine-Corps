@@ -6,7 +6,7 @@
 
 import { createRoot } from 'react-dom/client';
 import { createLogger } from 'tgui/logging';
-import { Tooltip } from 'tgui-core/components';
+import { Collapsible, Tooltip } from 'tgui-core/components';
 import { EventEmitter } from 'tgui-core/events';
 import { classes } from 'tgui-core/react';
 
@@ -35,6 +35,7 @@ const SCROLL_TRACKING_TOLERANCE = 24;
 // List of injectable component names to the actual type
 export const TGUI_CHAT_COMPONENTS = {
   Tooltip,
+  Collapsible,
 };
 
 // List of injectable attibute names mapped to their proper prop
