@@ -1,0 +1,5 @@
+author: "FriedrichRatzel"
+delete-after: True
+changes:
+  - bugfix: "Flavor & ref pics should work fine now"
+  - bugfix: "'View tracked playtime' button is now working"
