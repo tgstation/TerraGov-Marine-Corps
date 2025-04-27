@@ -202,7 +202,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			"is_synthetic" = issynth(patient),
 			"is_combat_robot" = isrobot(patient),
 			// for the robot umbrella which shares a lot of traits
-			"is_robotic_species" = !!(patient.species?.species_flags & ROBOTIC_LIMBS ? TRUE : FALSE)
+			"is_robotic_species" = !!(patient.species?.species_flags & ROBOTIC_LIMBS)
 		),
 
 		"accessible_theme" = user.client?.prefs?.accessible_tgui_themes
@@ -367,6 +367,9 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			if(!advice_datum.can_show(patient, user))
 				continue
 			var/list/advice_data = advice_datum.get_data(patient, user)
+			if(!length(advice_data))
+				// in the case of advice that fires but returns an empty list because all its data is conditional
+				continue
 			if(islist(advice_data[1]))
 				// if there are lists in the return value it's safe to assume it returns multiple advice entries
 				for(var/list/data_iter in advice_data)
