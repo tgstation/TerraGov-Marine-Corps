@@ -5,8 +5,8 @@
 	///The list of arguments for the procedure. They may not be. They are selected in the same way in the game, and can be a datum, and other types.
 	var/list/proc_args = null
 
-/datum/buildmode_mode/proccall/show_help(client/builder)
-	to_chat(builder, span_purple(examine_block(
+/datum/buildmode_mode/proccall/show_help(client/user)
+	to_chat(user, span_purple(examine_block(
 		"[span_bold("Choose procedure and arguments")] -> Right Mouse Button on buildmode button\n\
 		[span_bold("Apply procedure on object")] -> Left Mouse Button on machinery"))
 	)
