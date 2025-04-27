@@ -182,8 +182,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			"od_threshold" = reagent.overdose_threshold,
 			"crit_od_threshold" = reagent.overdose_crit_threshold,
 			"color" = reagent.color,
-			"metabolism_factor" = reagent.custom_metabolism,
-			"ui_priority" = reagent.reagent_ui_priority
+			"metabolism_factor" = reagent.custom_metabolism
 		)
 	data["has_chemicals"] = length(patient.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists
