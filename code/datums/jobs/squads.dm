@@ -383,7 +383,7 @@
 
 	for(var/mob/living/marine AS in marines_list)
 		marine.playsound_local(marine, sound, 35)
-		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[header]</u></span><br>" + message, message_type, message_color)
+		marine.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(header, message, CENTER_ALIGN_TEXT), message_type, message_color)
 
 /datum/squad/proc/check_entry(datum/job/job)
 	if(!(job.title in current_positions))

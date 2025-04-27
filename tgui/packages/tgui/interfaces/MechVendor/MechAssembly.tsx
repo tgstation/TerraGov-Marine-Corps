@@ -1,6 +1,4 @@
-import { capitalize } from 'common/string';
-
-import { useBackend, useLocalState } from '../../backend';
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -10,8 +8,11 @@ import {
   Input,
   Section,
   Stack,
-} from '../../components';
-import { formatTime } from '../../format';
+} from 'tgui-core/components';
+import { formatTime } from 'tgui-core/format';
+import { capitalize } from 'tgui-core/string';
+
+import { useBackend } from '../../backend';
 import {
   BodypartPickerData,
   ColorDisplayData,
@@ -36,7 +37,7 @@ const ColorDisplayRow = (props: ColorDisplayData) => {
 
 const BodypartPicker = (props: BodypartPickerData) => {
   const { act, data } = useBackend<MechVendData>();
-  const { displayingpart } = props;
+  const { displayingpart, selectedBodypart, setSelectedBodypart } = props;
   const {
     selected_primary,
     selected_secondary,
@@ -44,10 +45,6 @@ const BodypartPicker = (props: BodypartPickerData) => {
     selected_variants,
   } = data;
 
-  const [selectedBodypart, setSelectedBodypart] = useLocalState(
-    'selectedBodypart',
-    'none',
-  );
   return (
     <Section
       fill
@@ -86,10 +83,7 @@ export const MechAssembly = (props) => {
     selected_equipment,
     cooldown_left,
   } = data;
-  const [selectedBodypart, setSelectedBodypart] = useLocalState(
-    'selectedBodypart',
-    'none',
-  );
+  const [selectedBodypart, setSelectedBodypart] = useState('HEAD');
 
   const left_weapon = all_equipment.weapons.find(
     (o) => o.type === selected_equipment.mecha_l_arm,
@@ -98,18 +92,27 @@ export const MechAssembly = (props) => {
     (o) => o.type === selected_equipment.mecha_r_arm,
   );
 
-  const left_weapon_scatter = right_weapon ? right_weapon.scatter : 0;
+  const left_weapon_scatter = left_weapon ? left_weapon.scatter : 0;
   const right_weapon_scatter = right_weapon ? right_weapon.scatter : 0;
 
+  // /TODO: replace collapsibles with tooltips instead (see any tg ui with underlined text)
   return (
     <Stack>
       <Stack.Item>
         <Stack vertical maxWidth={'166px'}>
           <Stack.Item>
-            <BodypartPicker displayingpart="R_ARM" />
+            <BodypartPicker
+              displayingpart="R_ARM"
+              selectedBodypart={selectedBodypart}
+              setSelectedBodypart={setSelectedBodypart}
+            />
           </Stack.Item>
           <Stack.Item>
-            <BodypartPicker displayingpart="CHEST" />
+            <BodypartPicker
+              displayingpart="CHEST"
+              selectedBodypart={selectedBodypart}
+              setSelectedBodypart={setSelectedBodypart}
+            />
           </Stack.Item>
           <Stack.Item>
             <Input
@@ -184,7 +187,11 @@ export const MechAssembly = (props) => {
       <Stack.Item>
         <Stack vertical>
           <Stack.Item>
-            <BodypartPicker displayingpart="HEAD" />
+            <BodypartPicker
+              displayingpart="HEAD"
+              selectedBodypart={selectedBodypart}
+              setSelectedBodypart={setSelectedBodypart}
+            />
           </Stack.Item>
           <Stack.Item>
             <ByondUi
@@ -260,10 +267,18 @@ export const MechAssembly = (props) => {
       <Stack.Item>
         <Stack vertical maxWidth={'166px'}>
           <Stack.Item>
-            <BodypartPicker displayingpart="L_ARM" />
+            <BodypartPicker
+              displayingpart="L_ARM"
+              selectedBodypart={selectedBodypart}
+              setSelectedBodypart={setSelectedBodypart}
+            />
           </Stack.Item>
           <Stack.Item>
-            <BodypartPicker displayingpart="LEG" />
+            <BodypartPicker
+              displayingpart="LEG"
+              selectedBodypart={selectedBodypart}
+              setSelectedBodypart={setSelectedBodypart}
+            />
           </Stack.Item>
           <Stack.Item>
             <Section title={'Mech armor'}>
@@ -328,14 +343,29 @@ export const MechAssembly = (props) => {
       <Stack.Item>
         <Stack>
           <Stack.Item>
-            <ColorSelector type={'primary'} listtoshow={data.colors} />
+            <ColorSelector
+              type={'primary'}
+              listtoshow={data.colors}
+              selectedBodypart={selectedBodypart}
+              setSelectedBodypart={setSelectedBodypart}
+            />
           </Stack.Item>
           <Stack.Item>
-            <ColorSelector type={'secondary'} listtoshow={data.colors} />
+            <ColorSelector
+              type={'secondary'}
+              listtoshow={data.colors}
+              selectedBodypart={selectedBodypart}
+            />
           </Stack.Item>
-          <Stack.Item>
-            <ColorSelector type={'visor'} listtoshow={data.visor_colors} />
-          </Stack.Item>
+          {selectedBodypart === 'HEAD' && (
+            <Stack.Item>
+              <ColorSelector
+                type={'visor'}
+                listtoshow={data.visor_colors}
+                selectedBodypart={selectedBodypart}
+              />
+            </Stack.Item>
+          )}
         </Stack>
       </Stack.Item>
     </Stack>
@@ -345,11 +375,7 @@ export const MechAssembly = (props) => {
 const ColorSelector = (props) => {
   const { act, data } = useBackend<MechVendData>();
   const { selected_primary, selected_secondary, selected_visor } = data;
-  const { type, listtoshow } = props;
-  const [selectedBodypart, setSelectedBodypart] = useLocalState(
-    'selectedBodypart',
-    'none',
-  );
+  const { type, listtoshow, selectedBodypart } = props;
   return (
     <Section title={capitalize(type) + ' colors'}>
       {Object.keys(listtoshow).map((title) => (

@@ -7,12 +7,12 @@
 
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 	var/dat = {"
-		<a href='?src=[ref];modemenu=1'>Change Game Mode</a><br>
+		<a href='byond://?src=[ref];modemenu=1'>Change Game Mode</a><br>
 		<br>
-		<a href='?src=[ref];create_object=1'>Create Object</a><br>
-		<a href='?src=[ref];quick_create_object=1'>Quick Create Object</a><br>
-		<a href='?src=[ref];create_turf=1'>Create Turf</a><br>
-		<a href='?src=[ref];create_mob=1'>Create Mob</a><br>
+		<a href='byond://?src=[ref];create_object=1'>Create Object</a><br>
+		<a href='byond://?src=[ref];quick_create_object=1'>Quick Create Object</a><br>
+		<a href='byond://?src=[ref];create_turf=1'>Create Turf</a><br>
+		<a href='byond://?src=[ref];create_mob=1'>Create Mob</a><br>
 		"}
 
 	var/datum/browser/browser = new(usr, "gamepanel", "<div align='center'>Game Panel</div>", 220, 250)

@@ -1,30 +1,26 @@
-import { classes } from 'common/react';
-
-import { useLocalState } from '../../backend';
+import { useState } from 'react';
 import {
   Box,
   Button,
-  Divider,
   LabeledList,
   Modal,
   Section,
   Stack,
   Tabs,
-} from '../../components';
+} from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
+
 import { Window } from '../../layouts';
-import { MechWeapon, tabs } from './data';
+import { MECHA_ASSEMBLY, MECHA_WEAPONS, MechWeapon, tabs } from './data';
 import { MechAssembly } from './MechAssembly';
 import { MechWeapons } from './MechWeapons';
 
 export const MechVendor = (props) => {
-  const [showDesc, setShowDesc] = useLocalState<MechWeapon | null>(
-    'showDesc',
-    null,
-  );
-  const [selectedTab, setSelectedTab] = useLocalState('selectedTab', tabs[0]);
+  const [showDesc, setShowDesc] = useState<MechWeapon | null>(null);
+  const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
   return (
-    <Window title={'Mecha Assembler'} width={1440} height={650}>
+    <Window title={'Mecha Assembler'} width={1440} height={620}>
       {showDesc ? (
         <Modal width="500px">
           <Section
@@ -108,39 +104,26 @@ export const MechVendor = (props) => {
         </Modal>
       ) : null}
       <Window.Content>
-        <Section lineHeight={1.75} textAlign="center">
-          <Tabs fluid>
-            {tabs.map((tabname) => {
-              return (
-                <Tabs.Tab
-                  key={tabname}
-                  selected={tabname === selectedTab}
-                  fontSize="130%"
-                  onClick={() => setSelectedTab(tabname)}
-                >
-                  {tabname}
-                </Tabs.Tab>
-              );
-            })}
-          </Tabs>
-          <Divider />
-        </Section>
-        <PanelContent />
+        <Tabs fluid>
+          {tabs.map((tabname) => {
+            return (
+              <Tabs.Tab
+                key={tabname}
+                selected={tabname === selectedTab}
+                fontSize="130%"
+                textAlign="center"
+                onClick={() => setSelectedTab(tabname)}
+              >
+                {tabname}
+              </Tabs.Tab>
+            );
+          })}
+        </Tabs>
+        {selectedTab === MECHA_ASSEMBLY && <MechAssembly />}
+        {selectedTab === MECHA_WEAPONS && (
+          <MechWeapons setShowDesc={setShowDesc} />
+        )}
       </Window.Content>
     </Window>
   );
-};
-
-const PanelContent = (props) => {
-  const [selectedTab, setSelectedTab] = useLocalState('selectedTab', tabs[0]);
-  {
-    switch (selectedTab) {
-      case 'Mecha Assembly':
-        return <MechAssembly />;
-      case 'Weapons':
-        return <MechWeapons />;
-      default:
-        return null;
-    }
-  }
 };

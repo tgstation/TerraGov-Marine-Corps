@@ -539,6 +539,14 @@
 		pct += delta
 		winset(src, "mainwindow.split", "splitter=[pct]")
 
+/// Attempt to automatically fit the viewport, assuming the user wants it
+/client/proc/attempt_auto_fit_viewport()
+	if (!prefs.auto_fit_viewport)
+		return
+	if(fully_created)
+		INVOKE_ASYNC(src, VERB_REF(fit_viewport))
+	else //Delayed to avoid wingets from Login calls.
+		addtimer(CALLBACK(src, VERB_REF(fit_viewport)), 1 SECONDS)
 
 /client/verb/policy()
 	set name = "Show Policy"

@@ -1,6 +1,11 @@
 F// DM Environment file for baystation12.dme.
 // All manual changes should be made outside the BEGIN_ and END_ blocks.
- // New source code should be placed in .dm files: choose File/New --> Code File.
+// New source code should be placed in .dm files: choose File/New --> Code File.
+
+// This should always be the VERY FIRST THING. No exceptions. Read the file for more info, but basically, this needs to be here so that we can ensure specific code is always the very first thing to execute.
+#include "code\genesis_call.dme"
+// Again, DO NOT MOVE IT OR ALLOW ANY OTHER #include TO PRECEDE THE ONE ABOVE.
+
 // BEGIN_INTERNALS
 // END_INTERNALS
 // BEGIN_FILE_DIR
@@ -69,11 +74,13 @@ F// DM Environment file for baystation12.dme.
 #include "code\__DEFINES\fire_support.dm"
 #include "code\__DEFINES\flags.dm"
 #include "code\__DEFINES\foam.dm"
+#include "code\__DEFINES\font_awesome_icons.dm"
 #include "code\__DEFINES\fonts.dm"
 #include "code\__DEFINES\food.dm"
 #include "code\__DEFINES\footsteps.dm"
 #include "code\__DEFINES\generators.dm"
 #include "code\__DEFINES\greyscale.dm"
+#include "code\__DEFINES\html_assistant.dm"
 #include "code\__DEFINES\hud.dm"
 #include "code\__DEFINES\icon_smoothing.dm"
 #include "code\__DEFINES\implants.dm"
@@ -160,6 +167,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\__DEFINES\dcs\signals\signals_mind.dm"
 #include "code\__DEFINES\dcs\signals\signals_reagent.dm"
 #include "code\__DEFINES\dcs\signals\signals_subsystem.dm"
+#include "code\__DEFINES\dcs\signals\signals_tgui.dm"
 #include "code\__DEFINES\dcs\signals\signals_atom\signals_atom_mouse.dm"
 #include "code\__DEFINES\dcs\signals\signals_atom\signals_atom_x_act.dm"
 #include "code\__HELPERS\_lists.dm"
@@ -1305,6 +1313,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\game\turfs\walls\walls.dm"
 #include "code\game\verbs\ooc.dm"
 #include "code\game\verbs\suicide.dm"
+#include "code\game\verbs\typing.dm"
 #include "code\game\verbs\who.dm"
 #include "code\modules\admin\admin_ranks.dm"
 #include "code\modules\admin\admin_verbs.dm"
@@ -1350,7 +1359,6 @@ F// DM Environment file for baystation12.dme.
 #include "code\modules\admin\verbs\chat_commands.dm"
 #include "code\modules\admin\verbs\datumvars.dm"
 #include "code\modules\admin\verbs\faxes.dm"
-#include "code\modules\admin\verbs\legacy.dm"
 #include "code\modules\admin\verbs\map_template.dm"
 #include "code\modules\admin\verbs\poll_managment.dm"
 #include "code\modules\admin\verbs\pray.dm"
@@ -1407,6 +1415,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\modules\asset_cache\asset_list.dm"
 #include "code\modules\asset_cache\asset_list_items.dm"
 #include "code\modules\asset_cache\assets\crafting.dm"
+#include "code\modules\asset_cache\assets\tgui.dm"
 #include "code\modules\asset_cache\assets\vv.dm"
 #include "code\modules\asset_cache\transports\asset_transport.dm"
 #include "code\modules\asset_cache\transports\webroot_transport.dm"
@@ -2310,11 +2319,12 @@ F// DM Environment file for baystation12.dme.
 #include "code\modules\xenomorph\xeno_turret.dm"
 #include "code\modules\xenomorph\xenoplant.dm"
 #include "code\modules\xenomorph\xenotowers.dm"
-#include "code\ze_genesis_call\genesis_call.dm"
 #include "interface\interface.dm"
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
 #include "interface\skin.dmf"
+#include "interface\fonts\easvhs.dm"
+#include "interface\fonts\f25_bank.dm"
 #include "interface\fonts\fonts_datum.dm"
 #include "interface\fonts\grand_9k.dm"
 #include "interface\fonts\pixellari.dm"

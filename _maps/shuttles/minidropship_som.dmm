@@ -95,6 +95,7 @@
 /area/shuttle/minidropship)
 "v" = (
 /obj/structure/table/mainship,
+/obj/item/storage/box/crate/loot/materials_pack,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "x" = (
@@ -123,7 +124,7 @@
 "D" = (
 /obj/machinery/door/airlock/mainship/command{
 	dir = 1;
-	req_access = list(204)
+	req_access = list(205)
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)

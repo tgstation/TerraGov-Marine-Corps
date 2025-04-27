@@ -112,7 +112,7 @@ log transactions
 	dat += "For all your monetary needs!<br>"
 	dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting Ninetails IT Support</i><br/>"
 
-	dat += "Card: <a href='?src=[text_ref(src)];choice=insert_card'>[held_card ? held_card.name : "------"]</a><br><br>"
+	dat += "Card: <a href='byond://?src=[text_ref(src)];choice=insert_card'>[held_card ? held_card.name : "------"]</a><br><br>"
 
 	if(ticks_left_locked_down > 0)
 		dat += span_alert("Maximum number of pin attempts exceeded! Access to this ATM has been temporarily disabled.")
@@ -126,20 +126,20 @@ log transactions
 					dat += "Select a new security level for this account:<br><hr>"
 					var/text = "Zero - Either the account number or card is required to access this account. EFTPOS transactions will require a card and ask for a pin, but not verify the pin is correct."
 					if(authenticated_account.security_level != 0)
-						text = "<A href='?src=[text_ref(src)];choice=change_security_level;new_security_level=0'>[text]</a>"
+						text = "<A href='byond://?src=[text_ref(src)];choice=change_security_level;new_security_level=0'>[text]</a>"
 					dat += "[text]<hr>"
 					text = "One - An account number and pin must be manually entered to access this account and process transactions."
 					if(authenticated_account.security_level != 1)
-						text = "<A href='?src=[text_ref(src)];choice=change_security_level;new_security_level=1'>[text]</a>"
+						text = "<A href='byond://?src=[text_ref(src)];choice=change_security_level;new_security_level=1'>[text]</a>"
 					dat += "[text]<hr>"
 					text = "Two - In addition to account number and pin, a card is required to access this account and process transactions."
 					if(authenticated_account.security_level != 2)
-						text = "<A href='?src=[text_ref(src)];choice=change_security_level;new_security_level=2'>[text]</a>"
+						text = "<A href='byond://?src=[text_ref(src)];choice=change_security_level;new_security_level=2'>[text]</a>"
 					dat += "[text]<hr><br>"
-					dat += "<A href='?src=[text_ref(src)];choice=view_screen;view_screen=0'>Back</a>"
+					dat += "<A href='byond://?src=[text_ref(src)];choice=view_screen;view_screen=0'>Back</a>"
 				if(VIEW_TRANSACTION_LOGS)
 					dat += "<b>Transaction logs</b><br>"
-					dat += "<A href='?src=[text_ref(src)];choice=view_screen;view_screen=0'>Back</a>"
+					dat += "<A href='byond://?src=[text_ref(src)];choice=view_screen;view_screen=0'>Back</a>"
 					dat += "<table border=1 style='width:100%'>"
 					dat += "<tr>"
 					dat += "<td><b>Date</b></td>"
@@ -159,10 +159,10 @@ log transactions
 						dat += "<td>[T.source_terminal]</td>"
 						dat += "</tr>"
 					dat += "</table>"
-					dat += "<A href='?src=[text_ref(src)];choice=print_transaction'>Print</a><br>"
+					dat += "<A href='byond://?src=[text_ref(src)];choice=print_transaction'>Print</a><br>"
 				if(TRANSFER_FUNDS)
 					dat += "<b>Account balance:</b> $[authenticated_account.money]<br>"
-					dat += "<A href='?src=[text_ref(src)];choice=view_screen;view_screen=0'>Back</a><br><br>"
+					dat += "<A href='byond://?src=[text_ref(src)];choice=view_screen;view_screen=0'>Back</a><br><br>"
 					dat += "<form name='transfer' action='?src=[text_ref(src)]' method='get'>"
 					dat += "<input type='hidden' name='src' value='\ref[src]'>"
 					dat += "<input type='hidden' name='choice' value='transfer'>"
@@ -179,11 +179,11 @@ log transactions
 					dat += "<input type='radio' name='choice' value='withdrawal' checked> Cash  <input type='radio' name='choice' value='e_withdrawal'> Chargecard<br>"
 					dat += "<input type='text' name='funds_amount' value='' style='width:200px; background-color:white;'><input type='submit' value='Withdraw'>"
 					dat += "</form>"
-					dat += "<A href='?src=[text_ref(src)];choice=view_screen;view_screen=1'>Change account security level</a><br>"
-					dat += "<A href='?src=[text_ref(src)];choice=view_screen;view_screen=2'>Make transfer</a><br>"
-					dat += "<A href='?src=[text_ref(src)];choice=view_screen;view_screen=3'>View transaction log</a><br>"
-					dat += "<A href='?src=[text_ref(src)];choice=balance_statement'>Print balance statement</a><br>"
-					dat += "<A href='?src=[text_ref(src)];choice=logout'>Logout</a><br>"
+					dat += "<A href='byond://?src=[text_ref(src)];choice=view_screen;view_screen=1'>Change account security level</a><br>"
+					dat += "<A href='byond://?src=[text_ref(src)];choice=view_screen;view_screen=2'>Make transfer</a><br>"
+					dat += "<A href='byond://?src=[text_ref(src)];choice=view_screen;view_screen=3'>View transaction log</a><br>"
+					dat += "<A href='byond://?src=[text_ref(src)];choice=balance_statement'>Print balance statement</a><br>"
+					dat += "<A href='byond://?src=[text_ref(src)];choice=logout'>Logout</a><br>"
 	else
 		dat += "<form name='atm_auth' action='?src=[text_ref(src)]' method='get'>"
 		dat += "<input type='hidden' name='src' value='\ref[src]'>"

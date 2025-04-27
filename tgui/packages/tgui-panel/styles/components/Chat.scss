@@ -8,7 +8,7 @@
 @use '~tgui/styles/base.scss';
 @use '~tgui/styles/colors.scss';
 
-$text-color: #abc6ec !default;
+$text-color: hsl(215.1, 63.1%, 79.8%) !default;
 $color-bg-section: base.$color-bg-section !default;
 
 .Chat {
@@ -68,12 +68,12 @@ $color-bg-section: base.$color-bg-section !default;
 }
 
 .Chat__highlight {
-  color: #000;
+  color: hsl(0, 0%, 0%);
 }
 
 .Chat__highlight--restricted {
-  color: #fff;
-  background-color: #a00;
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(0, 100%, 33.3%);
   font-weight: bold;
 }
 

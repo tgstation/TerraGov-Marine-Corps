@@ -6,6 +6,7 @@
 //all of our asset datums, used for referring to these later
 GLOBAL_LIST_EMPTY(asset_datums)
 
+//get an assetdatum or make a new one
 //does NOT ensure it's filled, if you want that use get_asset_datum()
 /proc/load_asset_datum(type)
 	return GLOB.asset_datums[type] || new type()
@@ -25,6 +26,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	/// Whether or not this asset can be cached across rounds of the same commit under the `CACHE_ASSETS` config.
 	/// This is not a *guarantee* the asset will be cached. Not all asset subtypes respect this field, and the
 	/// config can, of course, be disabled.
+	/// Disable this if your asset can change between rounds on the same exact version of the code.
 	var/cross_round_cachable = FALSE
 
 /datum/asset/New()
@@ -61,6 +63,13 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/proc/should_refresh()
 	return !cross_round_cachable || !CONFIG_GET(flag/cache_assets)
 
+/// Simply takes any generated file and saves it to the round-specific /logs folder. Useful for debugging potential issues with spritesheet generation/display.
+/// Only called when the SAVE_SPRITESHEETS config option is uncommented.
+/datum/asset/proc/save_to_logs(file_name, file_location)
+	var/asset_path = "[GLOB.log_directory]/generated_assets/[file_name]"
+	fdel(asset_path) // just in case, sadly we can't use rust_g stuff here.
+	fcopy(file_location, asset_path)
+
 /// If you don't need anything complicated.
 /datum/asset/simple
 	_abstract = /datum/asset/simple
@@ -94,7 +103,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	for (var/asset_name in assets)
 		.[asset_name] = SSassets.transport.get_asset_url(asset_name, assets[asset_name])
 
-
 // For registering or sending multiple others at once
 /datum/asset/group
 	_abstract = /datum/asset/group
@@ -126,6 +134,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 /datum/asset/spritesheet
 	_abstract = /datum/asset/spritesheet
+	cross_round_cachable = TRUE
 	var/name
 	/// List of arguments to pass into queuedInsert
 	/// Exists so we can queue icon insertion, mostly for stuff like preferences
@@ -138,6 +147,9 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	/// If this asset should be fully loaded on new
 	/// Defaults to false so we can process this stuff nicely
 	var/load_immediately = FALSE
+	VAR_PRIVATE
+		// Kept in state so that the result is the same, even when the files are created, for this run
+		should_refresh = null
 
 /datum/asset/spritesheet/proc/should_load_immediately()
 #ifdef DO_NOT_DEFER_ASSETS
@@ -146,25 +158,16 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	return load_immediately
 #endif
 
+
 /datum/asset/spritesheet/should_refresh()
 	if (..())
 		return TRUE
 
-	// Static so that the result is the same, even when the files are created, for this run
-	var/static/should_refresh = null
-
 	if (isnull(should_refresh))
 		// `fexists` seems to always fail on static-time
-		should_refresh = !fexists("[ASSET_CROSS_ROUND_CACHE_DIRECTORY]/spritesheet.[name].css")
+		should_refresh = !fexists(css_cache_filename()) || !fexists(data_cache_filename())
 
 	return should_refresh
-
-/// Simply takes any generated file and saves it to the round-specific /logs folder. Useful for debugging potential issues with spritesheet generation/display.
-/// Only called when the SAVE_SPRITESHEETS config option is uncommented.
-/datum/asset/proc/save_to_logs(file_name, file_location)
-	var/asset_path = "[GLOB.log_directory]/generated_assets/[file_name]"
-	fdel(asset_path) // just in case, sadly we can't use rust_g stuff here.
-	fcopy(file_location, asset_path)
 
 /datum/asset/spritesheet/register()
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -181,7 +184,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		load_immediately = TRUE
 
 	create_spritesheets()
-
 	if(should_load_immediately())
 		realize_spritesheets(yield = FALSE)
 	else
@@ -214,7 +216,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 	if (CONFIG_GET(flag/cache_assets) && cross_round_cachable)
 		write_to_cache()
-
 	fully_generated = TRUE
 	// If we were ever in there, remove ourselves
 	SSasset_loading.dequeue_asset(src)
@@ -295,8 +296,17 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 	return out.Join("\n")
 
+/datum/asset/spritesheet/proc/css_cache_filename()
+	return "[ASSET_CROSS_ROUND_CACHE_DIRECTORY]/spritesheet.[name].css"
+
+/datum/asset/spritesheet/proc/data_cache_filename()
+	return "[ASSET_CROSS_ROUND_CACHE_DIRECTORY]/spritesheet.[name].json"
+
 /datum/asset/spritesheet/proc/read_from_cache()
-	var/replaced_css = file2text("[ASSET_CROSS_ROUND_CACHE_DIRECTORY]/spritesheet.[name].css")
+	return read_css_from_cache() && read_data_from_cache()
+
+/datum/asset/spritesheet/proc/read_css_from_cache()
+	var/replaced_css = file2text(css_cache_filename())
 
 	var/regex/find_background_urls = regex(@"background:url\('%(.+?)%'\)", "g")
 	while (find_background_urls.Find(replaced_css))
@@ -318,6 +328,14 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 	return TRUE
 
+/datum/asset/spritesheet/proc/read_data_from_cache()
+	var/json = json_decode(file2text(data_cache_filename()))
+
+	if (islist(json["sprites"]))
+		sprites = json["sprites"]
+
+	return TRUE
+
 /datum/asset/spritesheet/proc/send_from_cache(client/client)
 	if (isnull(cached_spritesheets_needed))
 		stack_trace("cached_spritesheets_needed was null when sending assets from [type] from cache")
@@ -333,6 +351,10 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		return SSassets.transport.get_asset_url(asset)
 
 /datum/asset/spritesheet/proc/write_to_cache()
+	write_css_to_cache()
+	write_data_to_cache()
+
+/datum/asset/spritesheet/proc/write_css_to_cache()
 	for (var/size_id in sizes)
 		fcopy(SSassets.cache["[name]_[size_id].png"].resource, "[ASSET_CROSS_ROUND_CACHE_DIRECTORY]/spritesheet.[name]_[size_id].png")
 
@@ -340,7 +362,12 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	var/mock_css = generate_css()
 	generating_cache = FALSE
 
-	rustg_file_write(mock_css, "[ASSET_CROSS_ROUND_CACHE_DIRECTORY]/spritesheet.[name].css")
+	rustg_file_write(mock_css, css_cache_filename())
+
+/datum/asset/spritesheet/proc/write_data_to_cache()
+	rustg_file_write(json_encode(list(
+		"sprites" = sprites,
+	)), data_cache_filename())
 
 /datum/asset/spritesheet/proc/get_cached_url_mappings()
 	var/list/mappings = list()
@@ -363,14 +390,18 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	else
 		to_generate += list(args.Copy())
 
-// LEMON NOTE
-// A GOON CODER SAYS BAD ICON ERRORS CAN BE THROWN BY THE "ICON CACHE"
-// APPARENTLY IT MAKES ICONS IMMUTABLE
-// LOOK INTO USING THE MUTABLE APPEARANCE PATTERN HERE
 /datum/asset/spritesheet/proc/queuedInsert(sprite_name, icon/I, icon_state="", dir=SOUTH, frame=1, moving=FALSE)
+#ifdef UNIT_TESTS
+	if (I && icon_state && !icon_exists(I, icon_state)) // check the base icon prior to extracting the state we want
+		stack_trace("Tried to insert nonexistent icon_state '[icon_state]' from [I] into spritesheet [name] ([type])")
+		return
+#endif
 	I = icon(I, icon_state=icon_state, dir=dir, frame=frame, moving=moving)
 	if (!I || !length(icon_states(I)))  // that direction or state doesn't exist
 		return
+
+	var/start_usage = world.tick_usage
+
 	//any sprite modifications we want to do (aka, coloring a greyscaled asset)
 	I = ModifyInserted(I)
 	var/size_id = "[I.Width()]x[I.Height()]"
@@ -381,15 +412,24 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 	if (size)
 		var/position = size[SPRSZ_COUNT]++
+		// Icons are essentially representations of files + modifications
+		// Because of this, byond keeps them in a cache. It does this in a really dumb way tho
+		// It's essentially a FIFO queue. So after we do icon() some amount of times, our old icons go out of cache
+		// When this happens it becomes impossible to modify them, trying to do so will instead throw a
+		// "bad icon" error.
+		// What we're doing here is ensuring our icon is in the cache by refreshing it, so we can modify it w/o runtimes.
 		var/icon/sheet = size[SPRSZ_ICON]
 		var/icon/sheet_copy = icon(sheet)
 		size[SPRSZ_STRIPPED] = null
 		sheet_copy.Insert(I, icon_state=sprite_name)
 		size[SPRSZ_ICON] = sheet_copy
+
 		sprites[sprite_name] = list(size_id, position)
 	else
 		sizes[size_id] = size = list(1, I, null)
 		sprites[sprite_name] = list(size_id, 0)
+
+	SSblackbox.record_feedback("tally", "spritesheet_queued_insert_time", TICK_USAGE_TO_MS(start_usage), name)
 
 /**
  * A simple proc handing the Icon for you to modify before it gets turned into an asset.
@@ -400,7 +440,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/spritesheet/proc/ModifyInserted(icon/pre_asset)
 	return pre_asset
 
-
 /datum/asset/spritesheet/proc/InsertAll(prefix, icon/I, list/directions)
 	if (length(prefix))
 		prefix = "[prefix]-"
@@ -410,7 +449,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 	for (var/icon_state_name in icon_states(I))
 		for (var/direction in directions)
-			var/prefix2 = (length(directions) > 1) ? "[dir2text(direction)]-" : ""
+			var/prefix2 = (directions.len > 1) ? "[dir2text(direction)]-" : ""
 			Insert("[prefix][prefix2][icon_state_name]", I, icon_state=icon_state_name, dir=direction)
 
 /datum/asset/spritesheet/proc/css_tag()
@@ -451,6 +490,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 #undef SPRSZ_COUNT
 #undef SPRSZ_ICON
 #undef SPRSZ_STRIPPED
+
 
 /datum/asset/changelog_item
 	_abstract = /datum/asset/changelog_item
@@ -496,7 +536,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 			if (!asset)
 				continue
 			asset = fcopy_rsc(asset) //dedupe
-			var/prefix2 = (length(directions) > 1) ? "[dir2text(direction)]." : ""
+			var/prefix2 = (directions.len > 1) ? "[dir2text(direction)]." : ""
 			var/asset_name = SANITIZE_FILENAME("[prefix].[prefix2][icon_state_name].png")
 			if (generic_icon_names)
 				asset_name = "[generate_asset_name(asset)].png"
@@ -526,7 +566,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	if (legacy)
 		assets |= parents
 	var/list/hashlist = list()
-	var/list/sorted_assets = sortList(assets)
+	var/list/sorted_assets = sort_list(assets)
 
 	for (var/asset_name in sorted_assets)
 		var/datum/asset_cache_item/ACI = new(asset_name, sorted_assets[asset_name])

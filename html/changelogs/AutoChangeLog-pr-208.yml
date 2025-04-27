@@ -1,0 +1,5 @@
+author: "FriedrichRatzel"
+delete-after: True
+changes:
+  - balance: "Vanguards got their med & med&surgery skills lowered."
+  - balance: "Corpsman skill set was buffed in terms of their medical and surgical proficiencies."
