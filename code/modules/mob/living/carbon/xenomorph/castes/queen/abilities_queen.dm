@@ -33,7 +33,7 @@
 
 	log_game("[key_name(xeno_owner)] has messaged the hive with: \"[input]\"")
 	deadchat_broadcast(" has messaged the hive: \"[input]\"", xeno_owner, xeno_owner)
-	var/queens_word = HUD_ANNOUNCEMENT_FORMATTING("HIVE MESSAGE", input, CENTER_ALIGN_TEXT)
+	var/queens_word = "<span class='maptext' style=font-size:18pt;text-align:center valign='top'><u>HIVE MESSAGE:</u><br></span>" + input
 
 	var/sound/queen_sound = sound(get_sfx(SFX_QUEEN), channel = CHANNEL_ANNOUNCEMENTS)
 	var/sound/king_sound = sound('sound/voice/alien/xenos_roaring.ogg', channel = CHANNEL_ANNOUNCEMENTS)
@@ -166,7 +166,7 @@
 	if(A.stat == CONSCIOUS)
 		to_chat(A, span_warning("[X] thoroughly [sexverb]s you!"))
 		implanted_embryos++
-	if(implanted_embryos > MAX_LARVA_PREGNANCIES)
+	if(implanted_embryos >= MAX_LARVA_PREGNANCIES)
 		to_chat(owner, span_danger("This Host is way too full! We overstuff them..."))
 		A.emote("scream")
 		A.apply_damage((damageperlarva/damagescaledivisor)*implanted_embryos, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //Too many larvae!
@@ -213,8 +213,6 @@
 	add_cooldown()
 	succeed_activate()
 
-#define SCREECH_RANGE WORLD_VIEW_NUM
-
 // ***************************************
 // *********** Screech
 // ***************************************
@@ -255,22 +253,19 @@
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
 			xeno_owner.create_shriekwave() // Adds the visual effect. Wom wom wom.
 
-			// If you're a hearer, you get effected more severely.
-			// Remember, your affected thing needs to be hearing sensitive
-			var/list/nearby_living = list()
-			for(var/atom/victim in get_hearers_in_LOS(SCREECH_RANGE, xeno_owner))
-				if(ismob(victim))
-					nearby_living += victim
+			for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
+				if(get_dist(tank, xeno_owner) > WORLD_VIEW_NUM)
 					continue
-				if(isvehicle(victim))
-					var/obj/vehicle/sealed = victim
-					nearby_living += sealed.occupants
+				if(tank.z != owner.z)
+					continue
+				for(var/mob/living/living_victim AS in tank.occupants)
+					living_victim.screech_act(xeno_owner, WORLD_VIEW_NUM) // Todo: The effects of screech are weird due to relying on get_dist for a mob on a diff z-level.
 
-			for(var/mob/living/living_victim AS in cheap_get_living_near(xeno_owner, SCREECH_RANGE))
-				living_victim.screech_act(get_dist(living_victim, xeno_owner), SCREECH_RANGE, living_victim in nearby_living)
-			for(var/obj/vehicle/sealed/vehicle in cheap_get_mechs_near(xeno_owner, SCREECH_RANGE)|cheap_get_tanks_near(xeno_owner, SCREECH_RANGE))
-				for(var/mob/living/living_victim AS in vehicle.occupants)
-					living_victim.screech_act(get_dist(vehicle, xeno_owner), SCREECH_RANGE, living_victim in nearby_living)
+			var/list/nearby_living = list() // If you're a hearer, you get effected more severely.
+			for(var/mob/living/living_victim in hearers(WORLD_VIEW, xeno_owner))
+				nearby_living.Add(living_victim)
+			for(var/mob/living/living_victim AS in cheap_get_living_near(xeno_owner, WORLD_VIEW_NUM))
+				living_victim.screech_act(xeno_owner, WORLD_VIEW_NUM, living_victim in nearby_living)
 		if("heal_screech")
 			succeed_activate()
 			add_cooldown(30 SECONDS)

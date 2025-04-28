@@ -1,3 +1,4 @@
+import { useBackend, useLocalState } from '../../backend';
 import {
   Button,
   LabeledList,
@@ -5,9 +6,7 @@ import {
   Section,
   Stack,
   Tabs,
-} from 'tgui-core/components';
-
-import { useBackend, useLocalState } from '../../backend';
+} from '../../components';
 import { Window } from '../../layouts';
 import { IndividualLoadouts } from './IndividualLoadouts';
 import { IndividualPerks } from './IndividualPerks';

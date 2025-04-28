@@ -18,10 +18,6 @@ GLOBAL_LIST_INIT(strippable_human_items, create_strippable_list(list(
 	/datum/strippable_item/hand/left,
 	/datum/strippable_item/hand/right,
 	/datum/strippable_item/mob_item_slot/handcuffs,
-	/datum/strippable_item/mob_item_slot/undershirt,
-	/datum/strippable_item/mob_item_slot/underwear,
-	/datum/strippable_item/mob_item_slot/socks,
-	/datum/strippable_item/mob_item_slot/bra,
 )))
 
 GLOBAL_LIST_INIT(strippable_human_layout, list(
@@ -52,13 +48,6 @@ GLOBAL_LIST_INIT(strippable_human_layout, list(
 		new /datum/strippable_item_layout("id"),
 		new /datum/strippable_item_layout("handcuffs"),
 	),
-	// NTF EDIT START
-	list(
-		new /datum/strippable_item_layout("undershirt"),
-		new /datum/strippable_item_layout("underwear"),
-		new /datum/strippable_item_layout("socks"),
-		new /datum/strippable_item_layout("bra"),
-	)
 ))
 
 /datum/strippable_item/mob_item_slot/eyes
@@ -172,22 +161,5 @@ GLOBAL_LIST_INIT(strippable_human_layout, list(
 	item_slot = ITEM_SLOT_R_POCKET
 	pocket_side = "right"
 
+
 #undef POCKET_EQUIP_DELAY
-
-// NTF EDIT START
-/datum/strippable_item/mob_item_slot/undershirt
-	key = STRIPPABLE_ITEM_UNDERSHIRT
-	item_slot = ITEM_SLOT_SHIRT
-
-/datum/strippable_item/mob_item_slot/underwear
-	key = STRIPPABLE_ITEM_UNDERWEAR
-	item_slot = ITEM_SLOT_UNDERWEAR
-
-/datum/strippable_item/mob_item_slot/socks
-	key = STRIPPABLE_ITEM_SOCKS
-	item_slot = ITEM_SLOT_SOCKS
-
-/datum/strippable_item/mob_item_slot/bra
-	key = STRIPPABLE_ITEM_BRA
-	item_slot = ITEM_SLOT_BRA
-// NTF EDIT END

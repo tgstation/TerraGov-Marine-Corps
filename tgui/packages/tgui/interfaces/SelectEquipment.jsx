@@ -1,17 +1,9 @@
 import { filter, map, sortBy, uniq } from 'common/collections';
-import {
-  Box,
-  Button,
-  Icon,
-  Input,
-  Section,
-  Stack,
-  Tabs,
-} from 'tgui-core/components';
-import { flow } from 'tgui-core/fp';
-import { createSearch } from 'tgui-core/string';
+import { flow } from 'common/fp';
+import { createSearch } from 'common/string';
 
 import { useBackend, useLocalState } from '../backend';
+import { Box, Button, Icon, Input, Section, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
 
 // here's an important mental define:
@@ -28,10 +20,11 @@ export const SelectEquipment = (props) => {
 
   const isFavorited = (entry) => favorites?.includes(entry.path);
 
-  const outfits = [...data.outfits, ...data.custom_outfits].map((entry) => ({
+  const outfits = map((entry) => ({
     ...entry,
     favorite: isFavorited(entry),
-  }));
+  }))([...data.outfits, ...data.custom_outfits]);
+
   // even if no custom outfits were sent, we still want to make sure there's
   // at least a 'Custom' tab so the button to create a new one pops up
   const categories = uniq([
@@ -46,14 +39,15 @@ export const SelectEquipment = (props) => {
     (entry) => entry.name + entry.path,
   );
 
-  const visibleOutfits = outfits
-    .filter((entry) => entry.category === tab)
-    .filter(searchFilter)
-    .sort((a, b) => {
-      if (a.favorite !== b.favorite) return b.favorite - a.favorite;
-      if (a.priority !== b.priority) return b.priority - a.priority;
-      return a.name.localeCompare(b.name);
-    });
+  const visibleOutfits = flow([
+    filter((entry) => entry.category === tab),
+    filter(searchFilter),
+    sortBy(
+      (entry) => !entry.favorite,
+      (entry) => !entry.priority,
+      (entry) => entry.name,
+    ),
+  ])(outfits);
 
   const getOutfitEntry = (current_outfit) =>
     outfits.find((outfit) => getOutfitKey(outfit) === current_outfit);

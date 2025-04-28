@@ -8,10 +8,6 @@
 	///Current owning faction
 	var/faction
 
-/obj/vehicle/sealed/Initialize(mapload)
-	. = ..()
-	become_hearing_sensitive(ROUNDSTART_TRAIT)
-
 /obj/vehicle/sealed/generate_actions()
 	. = ..()
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/climb_out)

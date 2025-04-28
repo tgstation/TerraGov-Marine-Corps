@@ -129,8 +129,6 @@
 	///shuttle switch console name
 	var/display_name = "Tadpole Standard Model"
 	var/admin_enable = TRUE
-	/// For now - prevents picking templates that should not be picked by the NTF.
-	var/pickable = TRUE
 
 /datum/map_template/shuttle/minidropship/old
 	suffix = "_big"
@@ -163,11 +161,6 @@
 	suffix = "_outrider"
 	description = "An asymmetric tadpole designed with vehicle transport in mind. Built with a wide umbilical to allow fluid heavy-vehicle movement."
 	display_name = "Tadpole Outrider Model"
-
-/datum/map_template/shuttle/minidropship/som
-	suffix = "_som"
-	display_name = "Tadpole Carrier Model"
-	pickable = FALSE
 
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = SHUTTLE_ESCAPE_POD

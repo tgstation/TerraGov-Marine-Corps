@@ -1,8 +1,8 @@
 import { range } from 'common/collections';
-import { Box, Button, Flex, Image, Section, Stack } from 'tgui-core/components';
 
 import { resolveAsset } from '../../assets';
 import { useBackend } from '../../backend';
+import { Box, Button, Flex, Section, Stack } from '../../components';
 import { getGridSpotKey, GridSpotKey, LoadoutSlotData, SLOTS } from './Types';
 
 const ROWS = 4;
@@ -71,7 +71,8 @@ export const SlotSelector = (props: LoadoutSlotData) => {
                             tooltip={tooltip}
                           >
                             {slot.image && (
-                              <Image
+                              <Box
+                                as="img"
                                 src={resolveAsset(slot.image)}
                                 opacity={0.7}
                                 style={{
@@ -93,8 +94,9 @@ export const SlotSelector = (props: LoadoutSlotData) => {
                               }}
                             >
                               {item.icons.map((iconinfo) => (
-                                <Image
+                                <Box
                                   key={iconinfo.icon}
+                                  as="img"
                                   src={`data:image/jpeg;base64,
                                       ${iconinfo.icon}`}
                                   height="100%"

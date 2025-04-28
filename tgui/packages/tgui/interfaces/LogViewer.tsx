@@ -1,14 +1,5 @@
-import { useState } from 'react';
-import {
-  Button,
-  Collapsible,
-  Input,
-  NoticeBox,
-  Section,
-  Stack,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+import { useBackend, useLocalState } from '../backend';
+import { Button, Collapsible, Input, NoticeBox, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 type LogViewerData = {
@@ -45,7 +36,7 @@ export const LogViewer = (_: any, context: any) => {
   const [activeCategory, setActiveCategory] = useLocalState(
     context,
     'activeCategory',
-    '',
+    ''
   );
 
   let viewerData: LogViewerCategoryData = {
@@ -96,7 +87,7 @@ const CategoryBar = (props: CategoryBarProps, context: any) => {
   const [categorySearch, setCategorySearch] = useLocalState(
     context,
     'categorySearch',
-    '',
+    ''
   );
 
   return (
@@ -105,13 +96,13 @@ const CategoryBar = (props: CategoryBarProps, context: any) => {
       scrollableHorizontal
       buttons={
         <Input
+          grow
           placeholder="Search"
           value={categorySearch}
           onChange={(_: any, value: string) => setCategorySearch(value)}
         />
-      }
-    >
-      <Stack>
+      }>
+      <Stack scrollableHorizontal>
         {/** these are not in stack items to have them directly next to eachother */}
         <Button
           textAlign="left"
@@ -165,12 +156,12 @@ const CategoryViewer = (props: CategoryViewerProps, context: any) => {
   let [searchRegex, setSearchRegex] = useLocalState(
     context,
     'searchRegex',
-    false,
+    false
   );
   let [caseSensitive, setCaseSensitive] = useLocalState(
     context,
     'caseSensitive',
-    false,
+    false
   );
   if (!search && searchRegex) {
     setSearchRegex(false);
@@ -191,6 +182,8 @@ const CategoryViewer = (props: CategoryViewerProps, context: any) => {
       buttons={
         <>
           <Input
+            grow
+            fill
             placeholder="Search"
             value={search}
             onChange={(_: any, value: string) => setSearch(value)}
@@ -217,8 +210,7 @@ const CategoryViewer = (props: CategoryViewerProps, context: any) => {
             }}
           />
         </>
-      }
-    >
+      }>
       <Stack vertical>
         {!searchRegex || regexValidation === true ? (
           props.data?.entries.map((entry) => {
@@ -245,7 +237,10 @@ const CategoryViewer = (props: CategoryViewerProps, context: any) => {
 
             return (
               <Stack.Item key={entry.id}>
-                <Collapsible title={`[${entry.id}] - ${entry.message}`}>
+                <Collapsible
+                  fitted
+                  tooltip={entry.timestamp}
+                  title={`[${entry.id}] - ${entry.message}`}>
                   <Stack vertical fill>
                     <Stack.Item>
                       <p font-family="Courier">{entry.message}</p>

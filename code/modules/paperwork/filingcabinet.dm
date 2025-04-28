@@ -74,11 +74,10 @@
 	user.set_interaction(src)
 	var/dat = "<center><table>"
 	for(var/obj/item/P in src)
-		dat += "<tr><td><a href='byond://?src=[text_ref(src)];retrieve=[text_ref(P)]'>[P.name]</a></td></tr>"
+		dat += "<tr><td><a href='?src=[text_ref(src)];retrieve=[text_ref(P)]'>[P.name]</a></td></tr>"
 	dat += "</table></center>"
-	var/datum/browser/browser = new(user, "filingcabinet", name, 350, 300)
-	browser.set_content(dat)
-	browser.open()
+	user << browse("<html><head><title>[name]</title></head><body>[dat]</body></html>", "window=filingcabinet;size=350x300")
+
 
 /obj/structure/filingcabinet/Topic(href, href_list)
 	. = ..()

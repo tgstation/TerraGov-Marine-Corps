@@ -1,4 +1,7 @@
-import { Fragment, useState } from 'react';
+import { map } from 'common/collections';
+import { Fragment } from 'react';
+
+import { useBackend, useLocalState } from '../backend';
 import {
   AnimatedNumber,
   Box,
@@ -12,9 +15,7 @@ import {
   Section,
   Stack,
   Table,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 const category_icon = {
@@ -35,7 +36,7 @@ const category_icon = {
 export const Cargo = (props) => {
   const { act, data } = useBackend();
 
-  const [selectedMenu, setSelectedMenu] = useState(null);
+  const [selectedMenu, setSelectedMenu] = useLocalState('selectedMenu', null);
 
   const {
     supplypacks,
@@ -53,55 +54,27 @@ export const Cargo = (props) => {
     <Window width={1100} height={700}>
       <Flex height="650px" align="stretch">
         <Flex.Item width="280px">
-          <Menu selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu} />
+          <Menu />
         </Flex.Item>
         <Flex.Item position="relative" grow={1} height="100%">
           <Window.Content scrollable>
             {selectedMenu === 'Previous Purchases' && (
-              <OrderList
-                type={shopping_history}
-                readOnly={1}
-                selectedMenu={selectedMenu}
-                setSelectedMenu={setSelectedMenu}
-              />
+              <OrderList type={shopping_history} readOnly={1} />
             )}
             {selectedMenu === 'Export History' && <Exports />}
             {selectedMenu === 'Awaiting Delivery' && (
-              <OrderList
-                type={awaiting_delivery}
-                readOnly={1}
-                selectedMenu={selectedMenu}
-                setSelectedMenu={setSelectedMenu}
-              />
+              <OrderList type={awaiting_delivery} readOnly={1} />
             )}
-            {selectedMenu === 'Pending Order' && (
-              <ShoppingCart
-                selectedMenu={selectedMenu}
-                setSelectedMenu={setSelectedMenu}
-              />
-            )}
+            {selectedMenu === 'Pending Order' && <ShoppingCart />}
             {selectedMenu === 'Requests' && <Requests />}
             {selectedMenu === 'Approved Requests' && (
-              <OrderList
-                type={approvedrequests}
-                selectedMenu={selectedMenu}
-                setSelectedMenu={setSelectedMenu}
-              />
+              <OrderList type={approvedrequests} />
             )}
             {selectedMenu === 'Denied Requests' && (
-              <OrderList
-                type={deniedrequests}
-                selectedMenu={selectedMenu}
-                setSelectedMenu={setSelectedMenu}
-              />
+              <OrderList type={deniedrequests} />
             )}
             {!!selectedPackCat && (
-              <Category
-                selectedPackCat={selectedPackCat}
-                should_filter
-                selectedMenu={selectedMenu}
-                setSelectedMenu={setSelectedMenu}
-              />
+              <Category selectedPackCat={selectedPackCat} should_filter />
             )}
           </Window.Content>
         </Flex.Item>
@@ -132,8 +105,9 @@ const Exports = (props) => {
 };
 
 const MenuButton = (props) => {
-  const { condition, menuname, icon, width, selectedMenu, setSelectedMenu } =
-    props;
+  const { condition, menuname, icon, width } = props;
+
+  const [selectedMenu, setSelectedMenu] = useLocalState('selectedMenu', null);
 
   return (
     <Button
@@ -149,7 +123,7 @@ const MenuButton = (props) => {
 
 const Menu = (props) => {
   const { act, data } = useBackend();
-  const { readOnly, selectedMenu, setSelectedMenu } = props;
+  const { readOnly } = props;
 
   const {
     requests,
@@ -180,8 +154,6 @@ const Menu = (props) => {
                 icon="luggage-cart"
                 menuname="Awaiting Delivery"
                 condition={!awaiting_delivery_orders}
-                selectedMenu={selectedMenu}
-                setSelectedMenu={setSelectedMenu}
               />
             </Flex.Item>
             <Flex.Item>
@@ -210,8 +182,6 @@ const Menu = (props) => {
             icon="shopping-cart"
             menuname="Pending Order"
             condition={!shopping_list_items}
-            selectedMenu={selectedMenu}
-            setSelectedMenu={setSelectedMenu}
           />
         </Flex.Item>
         <Flex.Item>
@@ -230,15 +200,11 @@ const Menu = (props) => {
             icon="history"
             menuname="Previous Purchases"
             condition={!shopping_history.length}
-            selectedMenu={selectedMenu}
-            setSelectedMenu={setSelectedMenu}
           />
           <MenuButton
             icon="shipping-fast"
             menuname="Export History"
             condition={!export_history.length}
-            selectedMenu={selectedMenu}
-            setSelectedMenu={setSelectedMenu}
           />
         </>
       )}
@@ -249,8 +215,6 @@ const Menu = (props) => {
             icon="clipboard-list"
             menuname="Requests"
             condition={!requests.length}
-            selectedMenu={selectedMenu}
-            setSelectedMenu={setSelectedMenu}
           />
         </Flex.Item>
         <Flex.Item>{requests.length} pending</Flex.Item>
@@ -259,15 +223,11 @@ const Menu = (props) => {
         icon="clipboard-check"
         menuname="Approved Requests"
         condition={!approvedrequests.length}
-        selectedMenu={selectedMenu}
-        setSelectedMenu={setSelectedMenu}
       />
       <MenuButton
         icon="trash"
         menuname="Denied Requests"
         condition={!deniedrequests.length}
-        selectedMenu={selectedMenu}
-        setSelectedMenu={setSelectedMenu}
       />
       <Divider />
       {categories.map((category) => (
@@ -278,8 +238,6 @@ const Menu = (props) => {
             menuname={category}
             condition={0}
             width="100%"
-            selectedMenu={selectedMenu}
-            setSelectedMenu={setSelectedMenu}
           />
           <br />
         </Fragment>
@@ -291,7 +249,9 @@ const Menu = (props) => {
 const OrderList = (props) => {
   const { act, data } = useBackend();
 
-  const { type, buttons, readOnly, selectedMenu, setSelectedMenu } = props;
+  const { type, buttons, readOnly } = props;
+
+  const [selectedMenu, setSelectedMenu] = useLocalState('selectedMenu', null);
 
   return (
     <Section title={selectedMenu} buttons={buttons}>
@@ -390,15 +350,13 @@ const PackName = (props) => {
 
 const Requests = (props) => {
   const { act, data } = useBackend();
-  const { readOnly, selectedMenu, setSelectedMenu } = props;
+  const { readOnly } = props;
   const { requests } = data;
 
   return (
     <OrderList
       type={requests}
       readOnly={readOnly}
-      selectedMenu={selectedMenu}
-      setSelectedMenu={setSelectedMenu}
       buttons={
         !readOnly && (
           <>
@@ -428,9 +386,9 @@ const ShoppingCart = (props) => {
     shopping_list_cost,
     shopping_list_items,
   } = data;
-  const { readOnly, selectedMenu, setSelectedMenu } = props;
+  const { readOnly } = props;
   const shopping_list_array = Object.keys(shopping_list);
-  const [reason, setReason] = useState(null);
+  const [reason, setReason] = useLocalState('reason', null);
 
   return (
     <Section>
@@ -439,7 +397,6 @@ const ShoppingCart = (props) => {
           p="5px"
           icon="dollar-sign"
           content={readOnly ? 'Submit Request' : 'Purchase Cart'}
-          color={shopping_list_cost > currentpoints ? 'bad' : 'good'}
           disabled={(readOnly && !reason) || !shopping_list_items}
           onClick={() =>
             act(readOnly ? 'submitrequest' : 'buycart', {
@@ -468,12 +425,7 @@ const ShoppingCart = (props) => {
           />
         </>
       )}
-      <Category
-        selectedPackCat={shopping_list_array}
-        level={2}
-        selectedMenu={selectedMenu}
-        setSelectedMenu={setSelectedMenu}
-      />
+      <Category selectedPackCat={shopping_list_array} level={2} />
     </Section>
   );
 };
@@ -506,17 +458,13 @@ const Category = (props) => {
     supplypackscontents,
   } = data;
 
+  const [selectedMenu, setSelectedMenu] = useLocalState('selectedMenu', null);
+
   const spare_points = currentpoints - shopping_list_cost;
 
-  const {
-    selectedPackCat,
-    should_filter,
-    level,
-    selectedMenu,
-    setSelectedMenu,
-  } = props;
+  const { selectedPackCat, should_filter, level } = props;
 
-  const [filter, setFilter] = useState(null);
+  const [filter, setFilter] = useLocalState(`pack-name-filter`, null);
 
   const filterSearch = (entry) =>
     should_filter && filter
@@ -600,12 +548,12 @@ const PackContents = (props) => {
         <Table.Cell bold>Item Type</Table.Cell>
         <Table.Cell bold>Quantity</Table.Cell>
       </Table.Row>
-      {Object.values(contains).map((value, index) => (
-        <Table.Row key={index}>
-          <Table.Cell width="70%">{value.name}</Table.Cell>
-          <Table.Cell>x {value.count}</Table.Cell>
+      {map((contententry) => (
+        <Table.Row>
+          <Table.Cell width="70%">{contententry.name}</Table.Cell>
+          <Table.Cell>x {contententry.count}</Table.Cell>
         </Table.Row>
-      ))}
+      ))(contains)}
     </>
   );
 };
@@ -613,7 +561,7 @@ const PackContents = (props) => {
 export const CargoRequest = (props) => {
   const { act, data } = useBackend();
 
-  const [selectedMenu, setSelectedMenu] = useState(null);
+  const [selectedMenu, setSelectedMenu] = useLocalState('selectedMenu', null);
 
   const { supplypacks, approvedrequests, deniedrequests, awaiting_delivery } =
     data;
@@ -626,58 +574,23 @@ export const CargoRequest = (props) => {
     <Window width={1100} height={700}>
       <Flex height="650px" align="stretch">
         <Flex.Item width="280px">
-          <Menu
-            readOnly={1}
-            selectedMenu={selectedMenu}
-            setSelectedMenu={setSelectedMenu}
-          />
+          <Menu readOnly={1} />
         </Flex.Item>
         <Flex.Item position="relative" grow={1} height="100%">
           <Window.Content scrollable>
             {selectedMenu === 'Awaiting Delivery' && (
-              <OrderList
-                type={awaiting_delivery}
-                readOnly={1}
-                selectedMenu={selectedMenu}
-                setSelectedMenu={setSelectedMenu}
-              />
+              <OrderList type={awaiting_delivery} readOnly={1} />
             )}
-            {selectedMenu === 'Pending Order' && (
-              <ShoppingCart
-                readOnly={1}
-                selectedMenu={selectedMenu}
-                setSelectedMenu={setSelectedMenu}
-              />
-            )}
-            {selectedMenu === 'Requests' && (
-              <Requests
-                readOnly={1}
-                selectedMenu={selectedMenu}
-                setSelectedMenu={setSelectedMenu}
-              />
-            )}
+            {selectedMenu === 'Pending Order' && <ShoppingCart readOnly={1} />}
+            {selectedMenu === 'Requests' && <Requests readOnly={1} />}
             {selectedMenu === 'Approved Requests' && (
-              <OrderList
-                type={approvedrequests}
-                selectedMenu={selectedMenu}
-                setSelectedMenu={setSelectedMenu}
-              />
+              <OrderList type={approvedrequests} />
             )}
             {selectedMenu === 'Denied Requests' && (
-              <OrderList
-                type={deniedrequests}
-                readOnly={1}
-                selectedMenu={selectedMenu}
-                setSelectedMenu={setSelectedMenu}
-              />
+              <OrderList type={deniedrequests} readOnly={1} />
             )}
             {!!selectedPackCat && (
-              <Category
-                selectedPackCat={selectedPackCat}
-                should_filter
-                selectedMenu={selectedMenu}
-                setSelectedMenu={setSelectedMenu}
-              />
+              <Category selectedPackCat={selectedPackCat} should_filter />
             )}
           </Window.Content>
         </Flex.Item>

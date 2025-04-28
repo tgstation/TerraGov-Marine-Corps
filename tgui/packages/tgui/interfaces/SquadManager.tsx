@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Box, Button, Dropdown, Stack, TextArea } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
+import { Box, Button, Dropdown, Stack, TextArea } from '../components';
 import { Window } from '../layouts';
 
 type SquadManagerData = {
@@ -38,7 +38,7 @@ export const SquadManager = (props) => {
                     width={'90px'}
                   >
                     {squad.name}
-                    <Box>{squad.leader}</Box>
+                    <Box contents={squad.leader} />
                   </Box>
                 </Stack.Item>
               ))}
@@ -51,13 +51,12 @@ export const SquadManager = (props) => {
                   <Stack.Item>
                     <TextArea
                       autoFocus
+                      content={squadName}
                       placeholder={'New name'}
                       onChange={(e, value) => setSquadName(value)}
                       width="180px"
                       height="20px"
-                    >
-                      {squadName}
-                    </TextArea>
+                    />
                   </Stack.Item>
                   <Stack.Item>
                     <Button
@@ -96,13 +95,12 @@ export const SquadManager = (props) => {
               <Stack.Item>
                 <TextArea
                   fluid
+                  content={squadDesc}
                   placeholder="Set Description for squad"
                   onChange={(e, value) => setSquadDesc(value)}
                   width="180px"
                   height="200px"
-                >
-                  {squadDesc}
-                </TextArea>
+                />
               </Stack.Item>
             </Stack>
           </Stack.Item>

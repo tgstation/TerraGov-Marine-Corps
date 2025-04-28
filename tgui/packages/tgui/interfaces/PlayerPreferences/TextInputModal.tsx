@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Button, Flex, Modal, TextArea } from 'tgui-core/components';
+
+import { Button, Flex, Modal, TextArea } from '../../components';
 
 export const TextInputModal = (props: TextInputModalData) => {
   const { label, button_text, onSubmit, onBack, areaHeigh, areaWidth } = props;
@@ -28,22 +29,14 @@ export const TextInputModal = (props: TextInputModalData) => {
 
         <Flex.Item>
           <Button
+            content={button_text}
             color="good"
             tooltipPosition="right"
             onClick={() => {
               onSubmit(input);
             }}
-          >
-            {button_text}
-          </Button>
-          <Button
-            color="bad"
-            onClick={() => {
-              onBack(input);
-            }}
-          >
-            Cancel
-          </Button>
+          />
+          <Button content="Cancel" color="bad" onClick={onBack} />
         </Flex.Item>
       </Flex>
       <script type="application/javascript">

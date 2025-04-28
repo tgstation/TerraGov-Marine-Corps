@@ -1,3 +1,4 @@
+import { useBackend } from '../backend';
 import {
   Button,
   Divider,
@@ -5,9 +6,7 @@ import {
   NumberInput,
   ProgressBar,
   Section,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 export const SupplyDropConsole = (_props) => {
@@ -22,7 +21,7 @@ export const SupplyDropConsole = (_props) => {
 
   return (
     <Window width={350} height={350}>
-      <Window.Content>
+      <Window.Content scrollable>
         <Section title="Supply drop">
           <LabeledList>
             <LabeledList.Item label={'Current beacon'}>
@@ -35,16 +34,12 @@ export const SupplyDropConsole = (_props) => {
             <Divider />
             <LabeledList.Item label="X Offset">
               <NumberInput
-                minValue={-255}
-                maxValue={255}
                 value={data.x_offset}
                 onChange={(e, value) => act('set_x', { set_x: `${value}` })}
               />
             </LabeledList.Item>
             <LabeledList.Item label="Y Offset">
               <NumberInput
-                minValue={-255}
-                maxValue={255}
                 value={data.y_offset}
                 onChange={(e, value) => act('set_y', { set_y: `${value}` })}
               />
@@ -55,7 +50,7 @@ export const SupplyDropConsole = (_props) => {
             title="Supply pad status"
             buttons={
               <Button
-                icon="refresh"
+                icon="reload"
                 content="Update"
                 onClick={() => act('refresh_pad')}
               />

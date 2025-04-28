@@ -1,6 +1,5 @@
-import { Box, Button, Section } from 'tgui-core/components';
-
 import { useBackend } from '../backend';
+import { Box, Button, Section } from '../components';
 import { Window } from '../layouts';
 
 export const Minidropship = (_props) => {

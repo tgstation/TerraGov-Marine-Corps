@@ -1,3 +1,6 @@
+import { capitalize } from 'common/string';
+
+import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -5,10 +8,7 @@ import {
   Flex,
   LabeledList,
   Section,
-} from 'tgui-core/components';
-import { capitalize } from 'tgui-core/string';
-
-import { useBackend } from '../../backend';
+} from '../../components';
 import {
   SelectFieldPreference,
   TextFieldPreference,

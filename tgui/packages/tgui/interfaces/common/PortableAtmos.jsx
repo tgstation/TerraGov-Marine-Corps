@@ -1,23 +1,15 @@
+import { useBackend } from '../../backend';
 import {
   AnimatedNumber,
   Box,
   Button,
   LabeledList,
   Section,
-} from 'tgui-core/components';
-
-import { useBackend } from '../../backend';
+} from '../../components';
 
 export const PortableBasicInfo = (props) => {
   const { act, data } = useBackend();
-  const {
-    connected,
-    holding,
-    on,
-    pressure,
-    hasHypernobCrystal,
-    reactionSuppressionEnabled,
-  } = data;
+  const { connected, holding, on, pressure } = data;
   return (
     <>
       <Section
@@ -39,18 +31,6 @@ export const PortableBasicInfo = (props) => {
           <LabeledList.Item label="Port" color={connected ? 'good' : 'average'}>
             {connected ? 'Connected' : 'Not Connected'}
           </LabeledList.Item>
-          {!!hasHypernobCrystal && (
-            <LabeledList.Item label="Reaction Suppression">
-              <Button
-                icon={data.reactionSuppressionEnabled ? 'snowflake' : 'times'}
-                content={
-                  data.reactionSuppressionEnabled ? 'Enabled' : 'Disabled'
-                }
-                selected={data.reactionSuppressionEnabled}
-                onClick={() => act('reaction_suppression')}
-              />
-            </LabeledList.Item>
-          )}
         </LabeledList>
       </Section>
       <Section

@@ -1,7 +1,7 @@
-import { Button, LabeledList, NumberInput } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
+import { toFixed } from 'common/math';
 
 import { useBackend } from '../../backend';
+import { Button, LabeledList, NumberInput } from '../../components';
 import { OperatorData } from './data';
 
 export const RadioPane = (props) => {
@@ -30,6 +30,7 @@ export const RadioPane = (props) => {
       </LabeledList.Item>
       <LabeledList.Item label="Frequency">
         <NumberInput
+          animate
           unit="kHz"
           step={0.2}
           stepPixelSize={6}
@@ -38,7 +39,7 @@ export const RadioPane = (props) => {
           value={frequency / 10}
           format={(value) => toFixed(value, 1)}
           width="80px"
-          onChange={(value) =>
+          onDrag={(e, value) =>
             act('set_frequency', {
               new_frequency: value,
             })

@@ -115,11 +115,10 @@
 
 	to_chat(src, span_notice("You will [(prefs.toggles_chat & CHAT_LOOC) ? "now" : "no longer"] see messages on the LOOC channel."))
 
-/client/verb/toggle_special()
+/client/verb/toggle_special(role in BE_SPECIAL_FLAGS)
 	set category = "Preferences"
 	set name = "Toggle Special Roles"
 
-	var/role = tgui_input_list(usr, "Select a role to toggle", "Toggle Special Roles", BE_SPECIAL_FLAGS)
 	var/role_flag = BE_SPECIAL_FLAGS[role]
 	if(!role_flag)
 		return
@@ -132,7 +131,7 @@
 	set category = "Preferences"
 	set name = "Game Preferences"
 	set desc = "Allows you to access the Setup Character screen. Changes to your character won't take effect until next round, but other changes will."
-	prefs.ShowChoices(mob)
+	prefs.ShowChoices(usr)
 
 
 GLOBAL_LIST_INIT(ghost_forms, list("Default" = GHOST_DEFAULT_FORM, "Ghost Ian 1" = "ghostian", "Ghost Ian 2" = "ghostian2", "Skeleton" = "skeleghost", "Red" = "ghost_red",\

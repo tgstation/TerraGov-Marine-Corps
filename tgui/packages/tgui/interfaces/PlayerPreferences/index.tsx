@@ -1,6 +1,5 @@
-import { Button, Flex, Section, Tabs } from 'tgui-core/components';
-
 import { useBackend } from '../../backend';
+import { Button, Flex, Section, Tabs } from '../../components';
 import { Window } from '../../layouts';
 import { BackgroundInformation } from './BackgroundInformation';
 import { CharacterCustomization } from './CharacterCustomization';
