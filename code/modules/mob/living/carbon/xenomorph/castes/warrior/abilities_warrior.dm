@@ -593,7 +593,7 @@
 	xeno.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	var/veh_multi = 4
-	if(ismecha(src))
+	if(isgreyscalemecha(src))
 		veh_multi = 3
 	attack_generic(xeno, punch_damage * (veh_multi), BRUTE, effects = FALSE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
