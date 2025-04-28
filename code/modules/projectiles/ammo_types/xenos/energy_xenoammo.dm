@@ -90,7 +90,10 @@
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	if(isvehicle(target_obj))
 		var/obj/vehicle/veh_victim = target_obj
-		veh_victim.take_damage(200, BURN, ENERGY, TRUE, armour_penetration = penetration)
+		var/mech_penalty = 0
+		if(isgreyscalemecha(veh_victim))
+			mech_penalty = 175
+		veh_victim.take_damage(200 - mech_penalty, BURN, ENERGY, TRUE, armour_penetration = penetration)
 
 /datum/ammo/energy/xeno/psy_blast/psy_lance/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	if(isxeno(target_mob))
