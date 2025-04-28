@@ -473,6 +473,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 					SEND_SOUND(admin_client, sound('sound/effects/mentorhelp.ogg', channel = CHANNEL_ADMIN))
 				window_flash(admin_client)
 	tier_cooldown = world.time + 5 SECONDS
+	marked = null
 	log_admin_private("Ticket (#[id]) has been made [msg] by [key_name(usr)].")
 
 
