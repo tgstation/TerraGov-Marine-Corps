@@ -323,6 +323,7 @@
 			var/datum/mech_limb/legs/legs = mech.limbs[MECH_GREY_LEGS]
 			if(legs?.part_health)
 				legs.take_damage(precrush)
+				do_stop_momentum()
 				return COMPONENT_MOVABLE_PREBUMP_STOPPED
 		crushed_obj.take_damage(precrush * obj_damage_mult, BRUTE, MELEE)
 		if(QDELETED(crushed_obj))
