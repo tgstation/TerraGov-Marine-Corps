@@ -1,9 +1,9 @@
 /datum/buildmode_mode/proccall
 	key = "proccall"
 	///The procedure itself, which we will call in the future. For example "qdel"
-	var/proc_name = null
-	///The list of arguments for the procedure. They may not be. They are selected in the same way in the game, and can be a datum, and other types.
-	var/list/proc_args = null
+	var/proc_name
+	///The list of arguments for the proc.
+	var/list/proc_args
 
 /datum/buildmode_mode/proccall/show_help(client/user)
 	to_chat(user, span_purple(examine_block(
@@ -20,10 +20,8 @@
 		return
 
 	proc_args = user.get_callproc_args()
-	if(!proc_args)
-		return
 
-/datum/buildmode_mode/proccall/handle_click(client/user, params, datum/object as null|area|mob|obj|turf)
+/datum/buildmode_mode/proccall/handle_click(client/user, params, datum/object)
 	if(!proc_name || !proc_args)
 		tgui_alert(user, "Undefined ProcCall or arguments.")
 		return
@@ -37,7 +35,7 @@
 		return
 
 
-	var/msg = "[key_name(user)] called [object]'s [proc_name]() with [proc_args.len ? "the arguments [list2params(proc_args)]":"no arguments"]."
+	var/msg = "[key_name(user)] called [object]'s [proc_name]() with [proc_args.len ? "the arguments [list2params(proc_args)]" : "no arguments"]."
 	log_admin(msg)
 	message_admins(msg)
 	admin_ticket_log(object, msg)
