@@ -1,0 +1,4 @@
+author: "Atropos"
+delete-after: True
+changes:
+  - admin: "Added simple gib log"
