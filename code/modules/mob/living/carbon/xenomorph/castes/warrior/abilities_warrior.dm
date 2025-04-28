@@ -592,7 +592,11 @@
 	. = ..()
 	xeno.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	xeno.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-	attack_generic(xeno, punch_damage * 4, BRUTE, effects = FALSE)
+	var/obj/vehicle/veh_victim = src
+	var/mech_penalty = 0
+	if(ismecha(veh_victim))
+		mech_penalty = 1
+	attack_generic(xeno, punch_damage * (4 - mech_penalty), BRUTE, effects = FALSE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
 	Shake(duration = 0.5 SECONDS)
 	return TRUE
