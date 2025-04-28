@@ -1,3 +1,4 @@
+import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -8,9 +9,7 @@ import {
   Section,
   Stack,
   Tooltip,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 type MedScannerData = {
@@ -181,7 +180,7 @@ const PatientBasics = () => {
                     : 'label'
                   : 'red'
               }
-              bold
+              bold={1}
             >
               {revivable_string}
             </Box>
@@ -303,7 +302,7 @@ const PatientChemicals = () => {
               </Box>
               <Box inline width={'5px'} />
               {chemical.od ? (
-                <Box inline color={'red'} bold>
+                <Box inline color={'red'} bold={1}>
                   {'OD'}
                 </Box>
               ) : null}
@@ -354,7 +353,7 @@ const PatientLimbs = () => {
                     : 'Missing limbs can only be fixed through surgical intervention. Head reattachment is only possible for combat robots and synthetics. Only printed limbs work as a replacement, except for head reattachment.'
                 }
               >
-                <Stack.Item color={'red'} bold>
+                <Stack.Item color={'red'} bold={1}>
                   MISSING
                 </Stack.Item>
               </Tooltip>
@@ -418,7 +417,7 @@ const PatientLimbs = () => {
                               ? 'lime'
                               : 'white'
                         }
-                        bold
+                        bold={1}
                       >
                         [{limb.limb_status}]
                       </Box>
@@ -443,7 +442,7 @@ const PatientLimbs = () => {
                               : 'pink'
                             : 'tan'
                         }
-                        bold
+                        bold={1}
                       >
                         [{limb.limb_type}]
                       </Box>
@@ -451,35 +450,35 @@ const PatientLimbs = () => {
                   ) : null}
                   {limb.bleeding ? (
                     <Tooltip content="This limb is bleeding and the patient is losing blood. Can be stopped with gauze or an advanced trauma kit.">
-                      <Box inline color={'red'} bold>
+                      <Box inline color={'red'} bold={1}>
                         [Bleeding]
                       </Box>
                     </Tooltip>
                   ) : null}
                   {limb.open_incision ? (
                     <Tooltip content="Open surgical incisions can usually be closed by a cautery depending on the stage of the surgery. Risk of infection if left untreated.">
-                      <Box inline color={'red'} bold>
+                      <Box inline color={'red'} bold={1}>
                         [Open Incision]
                       </Box>
                     </Tooltip>
                   ) : null}
                   {limb.infected ? (
                     <Tooltip content="Infected limbs can be treated with spaceacillin. Risk of necrosis if left untreated.">
-                      <Box inline color={'olive'} bold>
+                      <Box inline color={'olive'} bold={1}>
                         [Infected]
                       </Box>
                     </Tooltip>
                   ) : null}
                   {limb.necrotized ? (
                     <Tooltip content="Necrotized arms or legs cause random dropping of items or falling over, respectively. Organ damage will occur if on the head, chest or groin. Treated by surgery.">
-                      <Box inline color={'brown'} bold>
+                      <Box inline color={'brown'} bold={1}>
                         [Necrotizing]
                       </Box>
                     </Tooltip>
                   ) : null}
                   {limb.implant ? (
                     <Tooltip content="Harmful implants are usually shrapnel from firefights. Moving with a harmful implant will inflict Brute damage occasionally. Removed with tweezers.">
-                      <Box inline color={'white'} bold>
+                      <Box inline color={'white'} bold={1}>
                         [Implant]
                       </Box>
                     </Tooltip>

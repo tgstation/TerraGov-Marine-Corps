@@ -1,3 +1,4 @@
+import { useBackend } from '../../backend';
 import {
   Button,
   ColorBox,
@@ -5,9 +6,7 @@ import {
   Section,
   Stack,
   Tooltip,
-} from 'tgui-core/components';
-
-import { useBackend } from '../../backend';
+} from '../../components';
 import {
   LoopingSelectionPreference,
   SelectFieldPreference,
@@ -131,13 +130,6 @@ export const GameSettings = (props) => {
                 rightLabel={'Windowed'}
               />
               <ToggleFieldPreference
-                label="Status Bar (Bottom left text)"
-                value="show_status_bar"
-                action="show_status_bar"
-                leftLabel={'Show'}
-                rightLabel={'Hide'}
-              />
-              <ToggleFieldPreference
                 label="TGUI Window Mode"
                 value="tgui_fancy"
                 action="tgui_fancy"
@@ -150,14 +142,6 @@ export const GameSettings = (props) => {
                 action="tgui_lock"
                 leftLabel={'Free (default)'}
                 rightLabel={'Primary monitor'}
-              />
-              <ToggleFieldPreference
-                label="UI scaling"
-                value="ui_scale"
-                action="ui_scale"
-                leftLabel={'Enabled'}
-                rightLabel={'Disabled'}
-                tooltip="Whether UIs should scale up to match your monitor scaling"
               />
               <ToggleFieldPreference
                 label="TGUI Input boxes"

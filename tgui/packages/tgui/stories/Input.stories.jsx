@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { useState } from 'react';
+import { useLocalState } from '../backend';
 import {
   Box,
   DraggableControl,
@@ -15,7 +15,7 @@ import {
   NumberInput,
   Section,
   Slider,
-} from 'tgui-core/components';
+} from '../components';
 
 export const meta = {
   title: 'Input',
@@ -23,8 +23,8 @@ export const meta = {
 };
 
 const Story = (props) => {
-  const [number, setNumber] = useState(0);
-  const [text, setText] = useState('Sample text');
+  const [number, setNumber] = useLocalState('number', 0);
+  const [text, setText] = useLocalState('text', 'Sample text');
   return (
     <Section>
       <LabeledList>
@@ -43,7 +43,7 @@ const Story = (props) => {
             value={number}
             minValue={-100}
             maxValue={100}
-            onChange={(value) => setNumber(value)}
+            onChange={(e, value) => setNumber(value)}
           />
         </LabeledList.Item>
         <LabeledList.Item label="NumberInput (onDrag)">
@@ -55,7 +55,7 @@ const Story = (props) => {
             value={number}
             minValue={-100}
             maxValue={100}
-            onDrag={(value) => setNumber(value)}
+            onDrag={(e, value) => setNumber(value)}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Slider (onDrag)">

@@ -271,3 +271,4 @@
 	network = list("terragovartillery") //This shows cameras of all mortars, so don't add this to HvH
 	req_access = list()
 	max_view_dist = WORLD_VIEW_NUM
+

@@ -1,11 +1,5 @@
 import { useBackend } from '../backend';
-import {
-  Button,
-  Dropdown,
-  LabeledList,
-  Section,
-  Stack,
-} from 'tgui-core/components';
+import { Button, Dropdown, LabeledList, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 interface InputData {

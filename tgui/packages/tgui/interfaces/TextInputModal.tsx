@@ -1,8 +1,8 @@
-import { KeyboardEvent, useState } from 'react';
-import { Box, Section, Stack, TextArea } from 'tgui-core/components';
-import { isEscape, KEY } from 'tgui-core/keys';
+import { KEY } from 'common/keys';
+import { useState } from 'react';
 
 import { useBackend } from '../backend';
+import { Box, Section, Stack, TextArea } from '../components';
 import { Window } from '../layouts';
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
@@ -67,7 +67,7 @@ export const TextInputModal = (props) => {
           ) {
             act('submit', { entry: input });
           }
-          if (isEscape(event.key)) {
+          if (event.key === KEY.Escape) {
             act('cancel');
           }
         }}
@@ -78,12 +78,12 @@ export const TextInputModal = (props) => {
               <Box color="label">{message}</Box>
             </Stack.Item>
             <Stack.Item grow>
-              <InputArea key={title} input={input} onType={onType} />
+              <InputArea input={input} onType={onType} />
             </Stack.Item>
             <Stack.Item>
               <InputButtons
                 input={input}
-                message={`${input.length}/${max_length || '∞'}`}
+                message={`${input.length}/${max_length}`}
               />
             </Stack.Item>
           </Stack>
@@ -111,14 +111,13 @@ const InputArea = (props: {
       height={multiline || input.length >= 30 ? '100%' : '1.8rem'}
       maxLength={max_length}
       onEscape={() => act('cancel')}
-      onEnter={(event: KeyboardEvent<HTMLTextAreaElement>) => {
+      onEnter={(event) => {
         if (visualMultiline && event.shiftKey) {
           return;
         }
         event.preventDefault();
         act('submit', { entry: input });
       }}
-      onChange={(_, value) => onType(value)}
       onInput={(_, value) => onType(value)}
       placeholder="Type something..."
       value={input}

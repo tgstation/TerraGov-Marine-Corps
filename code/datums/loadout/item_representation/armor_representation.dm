@@ -105,10 +105,8 @@
 	// as a base armor could technically have starting_attachments
 	// comparing the name should be generally a safe solution
 	*/
-	var/obj/item/clothing/suit/modular/parent = new suit_to_copy.parent_type
-	if(suit_to_copy.starting_attachments && suit_to_copy.name == parent.name)
+	if(suit_to_copy.starting_attachments && suit_to_copy.name == (new suit_to_copy.parent_type).name)
 		item_type = suit_to_copy.parent_type
-	qdel(parent)
 	if(item_to_copy.greyscale_config)
 		return
 	current_variant = suit_to_copy.current_variant

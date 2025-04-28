@@ -81,7 +81,8 @@
 	.["hive_minion_count"] = length(xenos_by_tier[XENO_TIER_MINION])
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	if(hivenumber == XENO_HIVE_CORRUPTED)
+	var/mob/living/carbon/xenomorph/X = user
+	if(X.hivenumber == XENO_HIVE_CORRUPTED)
 		xeno_job = SSjob.GetJobType(/datum/job/xenomorph/green)
 	.["hive_larva_current"] = xeno_job.job_points
 	.["hive_larva_rate"] = SSsilo.current_larva_spawn_rate
@@ -559,8 +560,6 @@
 	if(!hive.remove_xeno(src))
 		CRASH("failed to remove xeno from a hive")
 
-	LAZYREMOVE(GLOB.alive_xeno_list_hive[hivenumber], src)
-	
 	if((xeno_flags & XENO_LEADER) || (src in hive.xeno_leader_list))
 		hive.remove_leader(src)
 

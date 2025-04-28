@@ -36,17 +36,11 @@
 /datum/game_mode/hvh/combat_patrol/intro_sequence()
 	var/op_name_tgmc = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
 	var/op_name_som = GLOB.operation_namepool[/datum/operation_namepool].get_random_name()
-	for(var/mob/living/carbon/human/human in GLOB.alive_human_list)
-		var/title
-		var/text
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		if(human.faction == FACTION_TERRAGOV)
-			title = "<u>[op_name_tgmc]</u>"
-			text = "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>"
-			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(title, text, LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/tdf)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_tgmc]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Territorial Defense Force Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/tdf)
 		else
-			title = "<u>[op_name_som]</u>"
-			text = "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>"
-			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(title, text, LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture/shokk)
+			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name_som]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "Shokk Infantry Platoon<br>" + "[human.job.title], [human]<br>", /atom/movable/screen/text/screen_text/picture/shokk)
 
 /datum/game_mode/hvh/combat_patrol/game_end_countdown()
 	if(!game_timer)
@@ -163,5 +157,5 @@
 		var/mob/dead/observer/M = i
 		GLOB.key_to_time_of_role_death[M.key] -= respawn_time
 		M.playsound_local(M, 'sound/ambience/votestart.ogg', 75, 1)
-		M.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("RESPAWN WAVE AVAILABLE", "YOU CAN NOW RESPAWN.", CENTER_ALIGN_TEXT), /atom/movable/screen/text/screen_text/command_order)
+		M.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>RESPAWN WAVE AVAILABLE</u></span><br>" + "YOU CAN NOW RESPAWN.", /atom/movable/screen/text/screen_text/command_order)
 		to_chat(M, "<br><font size='3'>[span_attack("Reinforcements are gathering to join the fight, you can now respawn to join a fresh patrol!")]</font><br>")

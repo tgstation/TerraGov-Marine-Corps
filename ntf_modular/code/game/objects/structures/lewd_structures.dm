@@ -235,6 +235,7 @@
 	if(current_mob.handcuffed)
 		current_mob.handcuffed.dropped(current_mob)
 
+	current_mob.handcuffed.dropped(current_mob)
 	current_mob.update_abstract_handcuffed()
 	current_mob = null
 

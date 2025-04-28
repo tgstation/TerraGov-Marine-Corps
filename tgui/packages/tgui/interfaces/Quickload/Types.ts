@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
 export type Loadout = {
   name: string;
   job: string;
@@ -9,23 +8,21 @@ export type Loadout = {
 
 export type LoadoutItemData = {
   loadout: Loadout;
-  setShowDesc: Dispatch<SetStateAction<string>>;
 };
 
 export type LoadoutListData = {
   loadout_list: Loadout[];
-  setShowDesc: Dispatch<SetStateAction<null | string>>;
 };
 
 export type LoadoutTabData = {
   job: string;
-  setJob: Dispatch<SetStateAction<string>>;
+  setJob: any;
 };
 
 export type LoadoutManagerData = {
   loadout_list: Loadout[];
   ui_theme: string;
-  vendor_categories: string[];
+  vendor_categories: any;
 };
 
 export type NameInputModalData = {

@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { Box, Button, Section, Tooltip } from 'tgui-core/components';
+import { Box, Button, Section, Tooltip } from '../components';
 
 export const meta = {
   title: 'Tooltip',

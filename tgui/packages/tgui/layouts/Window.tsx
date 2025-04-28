@@ -4,21 +4,15 @@
  * @license MIT
  */
 
-import {
-  ComponentProps,
-  PropsWithChildren,
-  ReactNode,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from 'react';
-import { Box, Icon } from 'tgui-core/components';
-import { UI_DISABLED, UI_INTERACTIVE, UI_UPDATE } from 'tgui-core/constants';
-import { classes } from 'tgui-core/react';
-import { decodeHtmlEntities, toTitleCase } from 'tgui-core/string';
+import { classes } from 'common/react';
+import { decodeHtmlEntities, toTitleCase } from 'common/string';
+import { PropsWithChildren, ReactNode, useEffect } from 'react';
 
-import { backendSuspendStart, globalStore, useBackend } from '../backend';
-import { useDebug } from '../debug';
+import { backendSuspendStart, useBackend } from '../backend';
+import { globalStore } from '../backend';
+import { Icon } from '../components';
+import { BoxProps } from '../components/Box';
+import { UI_DISABLED, UI_INTERACTIVE, UI_UPDATE } from '../constants';
 import { toggleKitchenSink } from '../debug/actions';
 import {
   dragStartHandler,
@@ -54,53 +48,42 @@ export const Window = (props: Props) => {
     height,
   } = props;
 
-  const { config, suspended } = useBackend();
-  const { debugLayout = false } = useDebug();
-  const [isReadyToRender, setIsReadyToRender] = useState(false);
-
-  // We need to set the window to be invisible before we can set its geometry
-  // Otherwise, we get a flicker effect when the window is first rendered
-  useLayoutEffect(() => {
-    Byond.winset(Byond.windowId, {
-      'is-visible': false,
-    });
-    setIsReadyToRender(true);
-  }, []);
-
-  const { scale } = config.window;
+  const { config, suspended, debug } = useBackend();
+  if (suspended) {
+    return null;
+  }
 
   useEffect(() => {
-    if (!suspended && isReadyToRender) {
-      const updateGeometry = () => {
-        const options = {
-          ...config.window,
-          size: DEFAULT_SIZE,
-        };
-
-        if (width && height) {
-          options.size = [width, height];
-        }
-        if (config.window?.key) {
-          setWindowKey(config.window.key);
-        }
-        recallWindowGeometry(options);
-        Byond.winset(Byond.windowId, {
-          'is-visible': true,
-        });
-        logger.log('set to visible');
+    const updateGeometry = () => {
+      const options = {
+        ...config.window,
+        size: DEFAULT_SIZE,
       };
 
-      Byond.winset(Byond.windowId, {
-        'can-close': Boolean(canClose),
-      });
-      logger.log('mounting');
-      updateGeometry();
+      if (width && height) {
+        options.size = [width, height];
+      }
+      if (config.window?.key) {
+        setWindowKey(config.window.key);
+      }
+      recallWindowGeometry(options);
+    };
 
-      return () => {
-        logger.log('unmounting');
-      };
-    }
-  }, [isReadyToRender, width, height, scale]);
+    Byond.winset(Byond.windowId, {
+      'can-close': Boolean(canClose),
+    });
+    logger.log('mounting');
+    updateGeometry();
+
+    return () => {
+      logger.log('unmounting');
+    };
+  }, [width, height]);
+
+  let debugLayout = false;
+  if (debug) {
+    debugLayout = debug.debugLayout;
+  }
 
   const dispatch = globalStore.dispatch;
   const fancy = config.window?.fancy;
@@ -112,11 +95,11 @@ export const Window = (props: Props) => {
       ? config.status < UI_DISABLED
       : config.status < UI_INTERACTIVE);
 
-  return suspended ? null : (
+  return (
     <Layout className="Window" theme={theme}>
       <TitleBar
         className="Window__titleBar"
-        title={title || decodeHtmlEntities(config.title)}
+        title={!suspended && (title || decodeHtmlEntities(config.title))}
         status={config.status}
         fancy={fancy}
         onDragStart={dragStartHandler}
@@ -158,7 +141,7 @@ type ContentProps = Partial<{
   scrollable: boolean;
   vertical: boolean;
 }> &
-  ComponentProps<typeof Box> &
+  BoxProps &
   PropsWithChildren;
 
 const WindowContent = (props: ContentProps) => {

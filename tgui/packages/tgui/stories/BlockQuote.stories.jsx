@@ -4,8 +4,7 @@
  * @license MIT
  */
 
-import { BlockQuote, Section } from 'tgui-core/components';
-
+import { BlockQuote, Section } from '../components';
 import { BoxWithSampleText } from './common';
 
 export const meta = {

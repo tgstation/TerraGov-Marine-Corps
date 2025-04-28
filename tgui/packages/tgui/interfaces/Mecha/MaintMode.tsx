@@ -1,6 +1,5 @@
-import { Box, Button, Stack } from 'tgui-core/components';
-
 import { useBackend, useLocalState } from '../../backend';
+import { Box, Button, Stack } from '../../components';
 import { MaintData } from './data';
 
 const MECHA_MAINT_PANELS = {

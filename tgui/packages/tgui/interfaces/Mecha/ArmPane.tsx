@@ -1,13 +1,13 @@
+import { toFixed } from 'common/math';
+
+import { useBackend } from '../../backend';
 import {
   Button,
   LabeledList,
   ProgressBar,
   Section,
   Stack,
-} from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
-
-import { useBackend } from '../../backend';
+} from '../../components';
 import { MechWeapon, OperatorData } from './data';
 
 export const ArmPane = (props: { weapon: MechWeapon }) => {
@@ -45,7 +45,7 @@ export const ArmPane = (props: { weapon: MechWeapon }) => {
           </Stack.Item>
         </Stack>
       </Stack.Item>
-      <Stack.Item>
+      <Stack.Item vertical>
         <LabeledList>
           <LabeledList.Item label={'Detach'}>
             <Button
@@ -147,7 +147,7 @@ const SnowflakeSleeper = (props: { weapon: MechWeapon }) => {
     return null;
   } else {
     return (
-      <Section title={'Patient ' + patient.patientname}>
+      <Section label={'Patient ' + patient.patientname}>
         <LabeledList>
           <LabeledList.Item label={'Status'}>
             {patient.isdead ? 'DECEASED' : 'ALIVE'}
@@ -195,7 +195,7 @@ const SnowflakeSyringe = (props: { weapon: MechWeapon }) => {
   const { mode, syringe, max_syringe, reagents, total_reagents } =
     props.weapon.snowflake;
   return (
-    <Section title={'Syringe gun control'}>
+    <Section label={'Syringe gun control'}>
       <LabeledList>
         <LabeledList.Item label={'Syringes'}>
           {syringe}/{max_syringe}
@@ -233,7 +233,7 @@ const SnowflakeSyringe = (props: { weapon: MechWeapon }) => {
 const SnowflakeExtinguisher = (props: { weapon: MechWeapon }) => {
   const { reagents, total_reagents } = props.weapon.snowflake;
   return (
-    <Section title={'Reagent status:'}>
+    <Section label={'Reagent status:'}>
       <LabeledList>
         <LabeledList.Item label={'Reagents'}>
           {reagents}/{total_reagents}
@@ -247,7 +247,7 @@ const SnowflakeMode = (props: { weapon: MechWeapon }) => {
   const { act, data } = useBackend<OperatorData>();
   const { mode, name } = props.weapon.snowflake;
   return (
-    <Section title={name}>
+    <Section label={name}>
       <LabeledList>
         <LabeledList.Item label={'Mode'}>
           <Button

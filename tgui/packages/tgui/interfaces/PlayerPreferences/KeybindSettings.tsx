@@ -1,4 +1,6 @@
 import { useState } from 'react';
+
+import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -6,10 +8,7 @@ import {
   LabeledList,
   Section,
   Stack,
-} from 'tgui-core/components';
-
-import { useBackend } from '../../backend';
-import { ButtonKeybind } from './ButtonKeybind';
+} from '../../components';
 import { TextInputModal } from './TextInputModal';
 
 const KEY_MODS = {
@@ -176,7 +175,7 @@ const KeybindingPreference = (props) => {
     <LabeledList.Item label={keybind.display_name}>
       {current &&
         current.map((key) => (
-          <ButtonKeybind
+          <Button.Keybind
             color="transparent"
             key={key}
             content={key}
@@ -197,7 +196,7 @@ const KeybindingPreference = (props) => {
             }}
           />
         ))}
-      <ButtonKeybind
+      <Button.Keybind
         icon="plus"
         color="transparent"
         onFinish={(keysDown) => {
@@ -259,7 +258,7 @@ const CustomSentence = (props) => {
       </Button>
       {current &&
         current.map((key) => (
-          <ButtonKeybind
+          <Button.Keybind
             color="transparent"
             key={key}
             content={key}
@@ -280,7 +279,7 @@ const CustomSentence = (props) => {
             }}
           />
         ))}
-      <ButtonKeybind
+      <Button.Keybind
         icon="plus"
         color="transparent"
         onFinish={(keysDown) => {

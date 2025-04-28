@@ -4,8 +4,7 @@
  * @license MIT
  */
 
-import { Button, Collapsible, Section } from 'tgui-core/components';
-
+import { Button, Collapsible, Section } from '../components';
 import { BoxWithSampleText } from './common';
 
 export const meta = {

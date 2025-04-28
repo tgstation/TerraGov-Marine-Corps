@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { Box, Button, Section } from 'tgui-core/components';
+import { Box, Button, Section } from '../components';
 
 export const meta = {
   title: 'Button',

@@ -7,14 +7,9 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": false,
     "jsx": "preserve",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext",
-      "ScriptHost"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext", "ScriptHost"],
     "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "Node",
     "noEmit": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
@@ -22,8 +17,5 @@
     "strictNullChecks": true,
     "target": "ES5"
   },
-  "include": [
-    "./*.d.ts",
-    "./packages"
-  ]
+  "include": ["./*.d.ts", "./packages"]
 }

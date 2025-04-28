@@ -101,8 +101,6 @@
 		affecting = null
 		while(!affecting)
 			var/candidate = popleft(patient_limbs)
-			if(!candidate)
-				continue
 			if(can_heal_limb(candidate))
 				affecting = candidate
 				break

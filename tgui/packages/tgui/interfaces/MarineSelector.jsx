@@ -1,4 +1,6 @@
 import { useState } from 'react';
+
+import { useBackend, useLocalState } from '../backend';
 import {
   Box,
   Button,
@@ -6,15 +8,15 @@ import {
   Modal,
   ProgressBar,
   Section,
-} from 'tgui-core/components';
-
-import { useBackend } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 export const MarineSelector = (props) => {
   const { act, data } = useBackend();
   const [showEmpty, setShowEmpty] = useState(false);
-  const [showDesc, setShowDesc] = useState(null);
+  const [showDesc, setShowDesc] = useLocalState('showDesc', null);
+
+  const ui_theme = data[ui_theme] || "ntos";
 
   const categories = Object.keys(data.displayed_records)
     .map((key) => ({
@@ -57,12 +59,7 @@ export const MarineSelector = (props) => {
           surplus vendors nearby.
         </Section>
         {categories.map((category) => (
-          <ItemCategory
-            category={category}
-            key={category.id}
-            showDesc={showDesc}
-            setShowDesc={setShowDesc}
-          />
+          <ItemCategory category={category} key={category.id} />
         ))}
       </Window.Content>
     </Window>
@@ -80,8 +77,6 @@ const ItemCategory = (props) => {
       remaining_points,
       total_points,
     },
-    showDesc,
-    setShowDesc,
   } = props;
 
   const cant_buy =
@@ -125,8 +120,6 @@ const ItemCategory = (props) => {
               key={display_record.id}
               cant_buy={cant_buy}
               remaining_points={remaining_points}
-              showDesc={showDesc}
-              setShowDesc={setShowDesc}
             />
           );
         })}
@@ -137,6 +130,7 @@ const ItemCategory = (props) => {
 
 const ItemLine = (props) => {
   const { act, data } = useBackend();
+  const [showDesc, setShowDesc] = useLocalState('showDesc', null);
 
   const {
     display_record: {
@@ -149,8 +143,6 @@ const ItemLine = (props) => {
     },
     cant_buy,
     remaining_points,
-    showDesc,
-    setShowDesc,
   } = props;
   const colorToElement = {
     white: (

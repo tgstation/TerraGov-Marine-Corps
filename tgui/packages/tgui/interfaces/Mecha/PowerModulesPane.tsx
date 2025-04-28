@@ -1,7 +1,7 @@
-import { Button, LabeledList } from 'tgui-core/components';
-import { toFixed } from 'tgui-core/math';
+import { toFixed } from 'common/math';
 
 import { useBackend } from '../../backend';
+import { Button, LabeledList } from '../../components';
 import { OperatorData } from './data';
 
 export const PowerModulesPane = (props) => {

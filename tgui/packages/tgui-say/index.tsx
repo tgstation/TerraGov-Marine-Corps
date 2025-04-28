@@ -1,22 +1,21 @@
-import { createRoot, Root } from 'react-dom/client';
+import './styles/main.scss';
 
-// TODO: remove this once we're on 516
-import { TguiSay } from './515/TguiSay';
-import { TguiSay as NewSay } from './516/TguiSay';
+import { createRenderer } from 'tgui/renderer';
 
-let reactRoot: Root | null = null;
+import { TguiSay } from './TguiSay';
 
-document.onreadystatechange = function () {
-  if (document.readyState !== 'complete') return;
+const renderApp = createRenderer(() => {
+  return <TguiSay />;
+});
 
-  if (!reactRoot) {
-    const root = document.getElementById('react-root');
-    reactRoot = createRoot(root!);
+const setupApp = () => {
+  // Delay setup
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupApp);
+    return;
   }
 
-  if (Byond.BLINK) {
-    reactRoot.render(<NewSay />);
-  } else {
-    reactRoot.render(<TguiSay />);
-  }
+  renderApp();
 };
+
+setupApp();

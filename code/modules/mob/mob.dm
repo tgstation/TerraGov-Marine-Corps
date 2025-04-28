@@ -354,7 +354,7 @@
 /mob/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	.["Player Panel"] = "byond://?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
+	.["Player Panel"] = "?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
 
 /mob/vv_edit_var(var_name, var_value)
 	switch(var_name)
@@ -398,14 +398,7 @@
 	if(prefs.lastchangelog != GLOB.changelog_hash)
 		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
-		winset(src, "infobuttons.changelog", "font-style=;")
-
-/client/verb/hotkeys_help()
-	set name = "Hotkeys"
-	set category = "Preferences"
-
-	prefs.tab_index = KEYBIND_SETTINGS
-	prefs.ShowChoices(mob)
+		winset(src, "infowindow.changelog", "font-style=;")
 
 /mob/Topic(href, href_list)
 	. = ..()

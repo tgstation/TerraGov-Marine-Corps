@@ -1,6 +1,5 @@
-import { Button, Flex, Input, NumberInput, Table } from 'tgui-core/components';
-
 import { useBackend } from '../backend';
+import { Button, Flex, Input, NumberInput, Table } from '../components';
 import { Window } from '../layouts';
 
 export const Mortar = (props) => {
@@ -26,7 +25,7 @@ export const Mortar = (props) => {
                   minValue={0}
                   maxValue={255}
                   width="43px"
-                  onChange={(value) =>
+                  onChange={(e, value) =>
                     act('change_target_x', {
                       target_x: value,
                     })
@@ -39,7 +38,7 @@ export const Mortar = (props) => {
                   minValue={0}
                   maxValue={255}
                   width="43px"
-                  onChange={(value) =>
+                  onChange={(e, value) =>
                     act('change_target_y', {
                       target_y: value,
                     })
@@ -52,7 +51,7 @@ export const Mortar = (props) => {
                   minValue={-10}
                   width="43px"
                   maxValue={10}
-                  onChange={(value) =>
+                  onChange={(e, value) =>
                     act('change_dial_x', {
                       dial_one: value,
                     })
@@ -65,7 +64,7 @@ export const Mortar = (props) => {
                   minValue={-10}
                   maxValue={10}
                   width="43px"
-                  onChange={(value) =>
+                  onChange={(e, value) =>
                     act('change_dial_y', {
                       dial_two: value,
                     })

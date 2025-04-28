@@ -28,7 +28,6 @@ export const COLORS = {
     science: '#9b59b6',
     engineering: '#f1c40f',
     cargo: '#f39c12',
-    service: '#7cc46a',
     centcom: '#00c100',
     other: '#c38312',
   },
@@ -39,44 +38,35 @@ export const COLORS = {
     burn: '#e67e22',
     brute: '#e74c3c',
   },
-  // reagent / chemistry related colours
-  reagent: {
-    acidicbuffer: '#fbc314',
-    basicbuffer: '#3853a4',
-  },
 } as const;
 
 // Colors defined in CSS
 export const CSS_COLORS = [
+  'black',
+  'white',
+  'red',
+  'orange',
+  'yellow',
+  'olive',
+  'green',
+  'teal',
+  'blue',
+  'violet',
+  'purple',
+  'pink',
+  'brown',
+  'grey',
+  'good',
   'average',
   'bad',
-  'black',
-  'blue',
-  'brown',
-  'good',
-  'green',
-  'grey',
   'label',
-  'olive',
-  'orange',
-  'pink',
-  'purple',
-  'red',
-  'teal',
-  'transparent',
-  'violet',
-  'white',
-  'yellow',
-] as const;
+];
 
-export type CssColor = (typeof CSS_COLORS)[number];
-
-/* IF YOU CHANGE THIS KEEP IT IN SYNC WITH CHAT CSS */
 export const RADIO_CHANNELS = [
   {
     name: 'Syndicate',
     freq: 1213,
-    color: '#8f4a4b',
+    color: '#a52a2a',
   },
   {
     name: 'Red Team',
@@ -87,16 +77,6 @@ export const RADIO_CHANNELS = [
     name: 'Blue Team',
     freq: 1217,
     color: '#3434fd',
-  },
-  {
-    name: 'Green Team',
-    freq: 1219,
-    color: '#34fd34',
-  },
-  {
-    name: 'Yellow Team',
-    freq: 1221,
-    color: '#fdfd34',
   },
   {
     name: 'CentCom',
@@ -192,7 +172,7 @@ const GASES = [
     color: 'lightsteelblue',
   },
   {
-    id: 'hypernoblium',
+    id: 'nob',
     path: '/datum/gas/hypernoblium',
     name: 'Hyper-noblium',
     label: 'Hyper-nob',
@@ -227,7 +207,7 @@ const GASES = [
     color: 'mediumpurple',
   },
   {
-    id: 'pluoxium',
+    id: 'pluox',
     path: '/datum/gas/pluoxium',
     name: 'Pluoxium',
     label: 'Pluoxium',
@@ -241,7 +221,7 @@ const GASES = [
     color: 'olive',
   },
   {
-    id: 'freon',
+    id: 'Freon',
     path: '/datum/gas/freon',
     name: 'Freon',
     label: 'Freon',
@@ -296,65 +276,39 @@ const GASES = [
     label: 'Anti-Noblium',
     color: 'maroon',
   },
-  {
-    id: 'nitrium',
-    path: '/datum/gas/nitrium',
-    name: 'Nitrium',
-    label: 'Nitrium',
-    color: 'brown',
-  },
 ] as const;
 
 // Returns gas label based on gasId
 export const getGasLabel = (gasId: string, fallbackValue?: string) => {
-  if (!gasId) return fallbackValue || 'None';
-
   const gasSearchString = gasId.toLowerCase();
-
-  for (let idx = 0; idx < GASES.length; idx++) {
-    if (GASES[idx].id === gasSearchString) {
-      return GASES[idx].label;
-    }
-  }
-
-  return fallbackValue || 'None';
+  const gas = GASES.find(
+    (gas) =>
+      gas.id === gasSearchString || gas.name.toLowerCase() === gasSearchString,
+  );
+  return gas?.label || fallbackValue || gasId;
 };
 
 // Returns gas color based on gasId
 export const getGasColor = (gasId: string) => {
-  if (!gasId) return 'black';
-
   const gasSearchString = gasId.toLowerCase();
-
-  for (let idx = 0; idx < GASES.length; idx++) {
-    if (GASES[idx].id === gasSearchString) {
-      return GASES[idx].color;
-    }
-  }
-
-  return 'black';
+  const gas = GASES.find(
+    (gas) =>
+      gas.id === gasSearchString || gas.name.toLowerCase() === gasSearchString,
+  );
+  return gas?.color;
 };
 
 // Returns gas object based on gasId
 export const getGasFromId = (gasId: string): Gas | undefined => {
-  if (!gasId) return;
-
   const gasSearchString = gasId.toLowerCase();
-
-  for (let idx = 0; idx < GASES.length; idx++) {
-    if (GASES[idx].id === gasSearchString) {
-      return GASES[idx];
-    }
-  }
+  const gas = GASES.find(
+    (gas) =>
+      gas.id === gasSearchString || gas.name.toLowerCase() === gasSearchString,
+  );
+  return gas;
 };
 
 // Returns gas object based on gasPath
 export const getGasFromPath = (gasPath: string): Gas | undefined => {
-  if (!gasPath) return;
-
-  for (let idx = 0; idx < GASES.length; idx++) {
-    if (GASES[idx].path === gasPath) {
-      return GASES[idx];
-    }
-  }
+  return GASES.find((gas) => gas.path === gasPath);
 };

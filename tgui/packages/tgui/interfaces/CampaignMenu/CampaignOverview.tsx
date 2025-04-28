@@ -1,3 +1,6 @@
+import { classes } from 'common/react';
+
+import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -6,10 +9,7 @@ import {
   ProgressBar,
   Section,
   Table,
-} from 'tgui-core/components';
-import { classes } from 'tgui-core/react';
-
-import { useBackend } from '../../backend';
+} from '../../components';
 import { CampaignData } from './index';
 
 export const CampaignOverview = (props) => {
@@ -95,7 +95,7 @@ export const CampaignOverview = (props) => {
           </Table.Row>
           <Table.Row>
             <Table.Cell color="label">Additional Rewards</Table.Cell>
-            <Table.Cell colSpan={2}>{mission_rewards}</Table.Cell>
+            <Table.Cell colspan="2">{mission_rewards}</Table.Cell>
           </Table.Row>
         </Table>
       </Section>

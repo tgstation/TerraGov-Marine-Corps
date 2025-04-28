@@ -52,7 +52,6 @@ module.exports = (env = {}, argv) => {
       rules: [
         {
           test: /\.([tj]s(x)?|cjs)$/,
-          exclude: /node_modules[\\/]core-js/,
           use: [
             {
               loader: require.resolve('swc-loader'),
@@ -60,7 +59,7 @@ module.exports = (env = {}, argv) => {
           ],
         },
         {
-          test: /\.(s)?css$/,
+          test: /\.scss$/,
           use: [
             {
               loader: ExtractCssPlugin.loader,

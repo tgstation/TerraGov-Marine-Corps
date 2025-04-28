@@ -1,6 +1,5 @@
-import { Button, Flex, NoticeBox } from 'tgui-core/components';
-
 import { useBackend } from '../../backend';
+import { Button, Flex, NoticeBox } from '../../components';
 
 /**
  * This component by expects the following fields to be returned
@@ -23,7 +22,6 @@ export const InterfaceLockNoticeBox = (props) => {
     locked = data.locked,
     onLockStatusChange = () => act('lock'),
     accessText = 'an ID card',
-    preventLocking = data.preventLocking,
   } = props;
   // For silicon users
   if (siliconUser) {
@@ -38,7 +36,6 @@ export const InterfaceLockNoticeBox = (props) => {
               color={locked ? 'red' : 'green'}
               icon={locked ? 'lock' : 'unlock'}
               content={locked ? 'Locked' : 'Unlocked'}
-              disabled={preventLocking}
               onClick={() => {
                 if (onLockStatusChange) {
                   onLockStatusChange(!locked);

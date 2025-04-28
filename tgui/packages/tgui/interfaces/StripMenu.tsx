@@ -1,7 +1,7 @@
-import { Button, Stack, Table } from 'tgui-core/components';
-import { BooleanLike, classes } from 'tgui-core/react';
+import { BooleanLike, classes } from 'common/react';
 
 import { useBackend } from '../backend';
+import { Button, Flex, Table } from '../components';
 import { Window } from '../layouts';
 
 type AlternateAction = {
@@ -22,7 +22,6 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
 };
 
 enum ObscuringLevel {
-  NotHidden = 0,
   Completely = 1,
   Hidden = 2,
 }
@@ -202,9 +201,7 @@ const StripMenuRow = (props: StripMenuRowProps) => {
     ? 'Obscured'
     : props.empty
       ? 'Empty'
-      : props.itemName
-        ? props.itemName
-        : 'Unknown';
+      : props.itemName;
 
   return (
     <Table.Row
@@ -218,33 +215,32 @@ const StripMenuRow = (props: StripMenuRowProps) => {
     >
       <Table.Cell pl={1.5}>{props.slotName}:</Table.Cell>
       <Table.Cell pr={1.5} position="relative">
-        <Stack direction="column">
+        <Flex direction="column">
           {!props.unavailable && (
-            <Stack.Item>
+            <Flex.Item>
               <Button
                 compact
+                content={name}
                 disabled={props.obscured === ObscuringLevel.Completely}
                 color={props.empty ? 'transparent' : null}
                 ellipsis
                 maxWidth="100%"
-                icon={props.interacting ? 'spinner' : false}
+                icon={props.interacting && 'spinner'}
                 iconSpin
                 onClick={() => act('use', { key: props.slotID })}
-              >
-                {name}
-              </Button>
-            </Stack.Item>
+              />
+            </Flex.Item>
           )}
           {props.alternates?.map((alternate) => (
-            <Stack.Item key={alternate.text}>
+            <Flex.Item key={alternate.text}>
               <Button
                 compact
                 content={alternate.text}
                 onClick={() => act('alt', { key: props.slotID })}
               />
-            </Stack.Item>
+            </Flex.Item>
           ))}
-        </Stack>
+        </Flex>
       </Table.Cell>
     </Table.Row>
   );

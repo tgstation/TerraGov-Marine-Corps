@@ -26,5 +26,3 @@
 	SIGNAL_HANDLER
 	target.apply_status_effect(STATUS_EFFECT_DANCER_TAGGED, 4 SECONDS)
 
-/mob/living/carbon/xenomorph/praetorian/oppressor
-	caste_base_type = /datum/xeno_caste/praetorian/oppressor

@@ -1,15 +1,14 @@
+import { useBackend } from '../../backend';
 import {
   AnimatedNumber,
   Box,
   Button,
   Divider,
   Flex,
-  Image,
   Section,
   Table,
-} from 'tgui-core/components';
-
-import { useBackend } from '../../backend';
+} from '../../components';
+import { TableRow } from '../../components/Table';
 import { Window } from '../../layouts';
 import { ResearchData, ResearchResource, RewardTier } from './Types';
 import { hexToRGB, objectToArray } from './Utility';
@@ -85,7 +84,8 @@ const constructResourceInfo = (
             justifyContent: 'center',
           }}
         >
-          <Image
+          <Box
+            as="img"
             src={`data:image/jpeg;base64,
                 ${icon}`}
             color="transparent"
@@ -117,10 +117,12 @@ const constructTierInfo = (tier: RewardTier) => {
 
   return (
     <Box mb="0.6em">
-      <Box bold>{constructRarityText(type, probability)}</Box>
+      <Box bold margin>
+        {constructRarityText(type, probability)}
+      </Box>
       <Table>
         {rewards_list.map((item, i) => (
-          <Table.Row key={i}>{`> ${item}`}</Table.Row>
+          <TableRow key={i}>{`> ${item}`}</TableRow>
         ))}
       </Table>
     </Box>

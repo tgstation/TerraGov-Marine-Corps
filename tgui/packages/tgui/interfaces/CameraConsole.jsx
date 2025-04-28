@@ -1,9 +1,11 @@
+import { filter, sortBy } from 'common/collections';
+import { flow } from 'common/fp';
+import { classes } from 'common/react';
+import { createSearch } from 'common/string';
 import { useState } from 'react';
-import { Button, ByondUi, Flex, Input, Section } from 'tgui-core/components';
-import { classes } from 'tgui-core/react';
-import { createSearch } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
+import { Button, ByondUi, Flex, Input, Section } from '../components';
 import { Window } from '../layouts';
 
 /**
@@ -27,10 +29,14 @@ export const prevNextCamera = (cameras, activeCamera) => {
  */
 export const selectCameras = (cameras, searchText = '') => {
   const testSearch = createSearch(searchText, (camera) => camera.name);
-  return cameras
-    .filter((camera) => camera?.name)
-    .filter((camera) => !searchText || testSearch(camera))
-    .sort((a, b) => a.name.localeCompare(b.name));
+  return flow([
+    // Null camera filter
+    filter((camera) => camera?.name),
+    // Optional search term
+    searchText && filter(testSearch),
+    // Slightly expensive, but way better than sorting in BYOND
+    sortBy((camera) => camera.name),
+  ])(cameras);
 };
 
 export const CameraConsole = (props) => {

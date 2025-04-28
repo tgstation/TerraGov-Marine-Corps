@@ -13,9 +13,9 @@
 
 import { perf } from 'common/perf';
 import { createAction } from 'common/redux';
-import { globalEvents } from 'tgui-core/events';
 
 import { setupDrag } from './drag';
+import { globalEvents } from './events';
 import { focusMap } from './focus';
 import { createLogger } from './logging';
 import { resumeRenderer, suspendRenderer } from './renderer';
@@ -153,14 +153,6 @@ export const backendMiddleware = (store) => {
       globalEvents.emit('byond/mouseup');
     }
 
-    if (type === 'byond/ctrldown') {
-      globalEvents.emit('byond/ctrldown');
-    }
-
-    if (type === 'byond/ctrlup') {
-      globalEvents.emit('byond/ctrlup');
-    }
-
     if (type === 'backend/suspendStart' && !suspendInterval) {
       logger.log(`suspending (${Byond.windowId})`);
       // Keep sending suspend messages until it succeeds.
@@ -177,7 +169,7 @@ export const backendMiddleware = (store) => {
       Byond.winset(Byond.windowId, {
         'is-visible': false,
       });
-      setTimeout(() => focusMap());
+      setImmediate(() => focusMap());
     }
 
     if (type === 'backend/update') {
@@ -207,7 +199,7 @@ export const backendMiddleware = (store) => {
       setupDrag();
       // We schedule this for the next tick here because resizing and unhiding
       // during the same tick will flash with a white background.
-      setTimeout(() => {
+      setImmediate(() => {
         perf.mark('resume/start');
         // Doublecheck if we are not re-suspended.
         const { suspended } = selectBackend(store.getState());
@@ -252,17 +244,13 @@ type BackendState<TData> = {
   config: {
     title: string;
     status: number;
-    interface: {
-      name: string;
-      layout: string;
-    };
+    interface: string;
     refreshing: boolean;
     window: {
       key: string;
       size: [number, number];
-      fancy: BooleanLike;
-      locked: BooleanLike;
-      scale: BooleanLike;
+      fancy: boolean;
+      locked: boolean;
     };
     client: {
       ckey: string;
@@ -278,6 +266,10 @@ type BackendState<TData> = {
   shared: Record<string, any>;
   suspending: boolean;
   suspended: boolean;
+  debug?: {
+    debugLayout: boolean;
+    kitchenSink: boolean;
+  };
 };
 
 /**

@@ -4,11 +4,11 @@
  * @license MIT
  */
 
-import { createRoot } from 'react-dom/client';
+import { EventEmitter } from 'common/events';
+import { classes } from 'common/react';
+import { render } from 'react-dom';
+import { Collapsible, Tooltip } from 'tgui/components';
 import { createLogger } from 'tgui/logging';
-import { Collapsible, Tooltip } from 'tgui-core/components';
-import { EventEmitter } from 'tgui-core/events';
-import { classes } from 'tgui-core/react';
 
 import {
   COMBINE_MAX_MESSAGES,
@@ -34,8 +34,8 @@ const SCROLL_TRACKING_TOLERANCE = 24;
 
 // List of injectable component names to the actual type
 export const TGUI_CHAT_COMPONENTS = {
-  Tooltip,
   Collapsible,
+  Tooltip,
 };
 
 // List of injectable attibute names mapped to their proper prop
@@ -84,9 +84,6 @@ const handleImageError = (e) => {
   setTimeout(() => {
     /** @type {HTMLImageElement} */
     const node = e.target;
-    if (!node) {
-      return;
-    }
     const attempts = parseInt(node.getAttribute('data-reload-n'), 10) || 0;
     if (attempts >= IMAGE_RETRY_LIMIT) {
       logger.error(`failed to load an image after ${attempts} attempts`);
@@ -135,17 +132,12 @@ class ChatRenderer {
     /** @type {HTMLElement} */
     this.scrollNode = null;
     this.scrollTracking = true;
-    this.lastScrollHeight = 0;
     this.handleScroll = (type) => {
       const node = this.scrollNode;
-      if (!node) {
-        return;
-      }
       const height = node.scrollHeight;
       const bottom = node.scrollTop + node.offsetHeight;
       const scrollTracking =
-        Math.abs(height - bottom) < SCROLL_TRACKING_TOLERANCE ||
-        this.lastScrollHeight === 0;
+        Math.abs(height - bottom) < SCROLL_TRACKING_TOLERANCE;
       if (scrollTracking !== this.scrollTracking) {
         this.scrollTracking = scrollTracking;
         this.events.emit('scrollTrackingChanged', scrollTracking);
@@ -177,7 +169,7 @@ class ChatRenderer {
     // Find scrollable parent
     this.scrollNode = findNearestScrollableParent(this.rootNode);
     this.scrollNode.addEventListener('scroll', this.handleScroll);
-    setTimeout(() => {
+    setImmediate(() => {
       this.scrollToBottom();
     });
     // Flush the queue
@@ -214,7 +206,7 @@ class ChatRenderer {
       const highlightWholeMessage = setting.highlightWholeMessage;
       const matchWord = setting.matchWord;
       const matchCase = setting.matchCase;
-      const allowedRegex = /^[a-zа-яё0-9_\-$/^[\s\]\\]+$/gi;
+      const allowedRegex = /^[a-z0-9_\-$/^[\s\]\\]+$/gi;
       const regexEscapeCharacters = /[!#$%^&*)(+=.<>{}[\]:;'"|~`_\-\\/]/g;
       const lines = String(text)
         .split(',')
@@ -225,8 +217,7 @@ class ChatRenderer {
             str &&
             str.length > 1 &&
             // Must be alphanumeric (with some punctuation)
-            (allowedRegex.test(str) ||
-              (str.charAt(0) === '/' && str.charAt(str.length - 1) === '/')) &&
+            allowedRegex.test(str) &&
             // Reset lastIndex so it does not mess up the next word
             ((allowedRegex.lastIndex = 0) || true),
         );
@@ -355,10 +346,6 @@ class ChatRenderer {
       }
       return;
     }
-    // Store last scroll position
-    if (this.scrollNode) {
-      this.lastScrollHeight = this.scrollNode.scrollHeight;
-    }
     // Insert messages
     const fragment = document.createDocumentFragment();
     const countByType = {};
@@ -427,16 +414,14 @@ class ChatRenderer {
             childNode.removeChild(childNode.firstChild);
           }
           const Element = TGUI_CHAT_COMPONENTS[targetName];
-
-          const reactRoot = createRoot(childNode);
-
           /* eslint-disable react/no-danger */
-          reactRoot.render(
+          render(
             <Element {...outputProps}>
               <span dangerouslySetInnerHTML={oldHtml} />
             </Element>,
             childNode,
           );
+          /* eslint-enable react/no-danger */
         }
 
         // Highlight text
@@ -471,9 +456,15 @@ class ChatRenderer {
       message.node = node;
       // Query all possible selectors to find out the message type
       if (!message.type) {
-        const typeDef = MESSAGE_TYPES.find(
-          (typeDef) => typeDef.selector && node.querySelector(typeDef.selector),
-        );
+        // IE8: Does not support querySelector on elements that
+        // are not yet in the document.
+
+        const typeDef =
+          !Byond.IS_LTE_IE8 &&
+          MESSAGE_TYPES.find(
+            (typeDef) =>
+              typeDef.selector && node.querySelector(typeDef.selector),
+          );
         message.type = typeDef?.type || MESSAGE_TYPE_UNKNOWN;
       }
       updateMessageBadge(message);
@@ -496,7 +487,7 @@ class ChatRenderer {
         this.rootNode.appendChild(fragment);
       }
       if (this.scrollTracking) {
-        setTimeout(() => this.scrollToBottom());
+        setImmediate(() => this.scrollToBottom());
       }
     }
     // Notify listeners that we have processed the batch
@@ -572,30 +563,11 @@ class ChatRenderer {
     });
   }
 
-  /**
-   * @clearChat
-   * @copyright 2023
-   * @author Cheffie
-   * @link https://github.com/CheffieGithub
-   * @license MIT
-   */
-  clearChat() {
-    const messages = this.visibleMessages;
-    this.visibleMessages = [];
-    for (let i = 0; i < messages.length; i++) {
-      const message = messages[i];
-      this.rootNode.removeChild(message.node);
-      // Mark this message as pruned
-      message.node = 'pruned';
-    }
-    // Remove pruned messages from the message array
-    this.messages = this.messages.filter(
-      (message) => message.node !== 'pruned',
-    );
-    logger.log(`Cleared chat`);
-  }
-
   saveToDisk() {
+    // Allow only on IE11
+    if (Byond.IS_LTE_IE10) {
+      return;
+    }
     // Compile currently loaded stylesheets as CSS text
     let cssText = '';
     const styleSheets = document.styleSheets;
@@ -634,13 +606,13 @@ class ChatRenderer {
       '</body>\n' +
       '</html>\n';
     // Create and send a nice blob
-    const blob = new Blob([pageHtml], { type: 'text/plain' });
+    const blob = new Blob([pageHtml]);
     const timestamp = new Date()
       .toISOString()
       .substring(0, 19)
       .replace(/[-:]/g, '')
       .replace('T', '-');
-    Byond.saveBlob(blob, `ss13-chatlog-${timestamp}.html`, '.html');
+    window.navigator.msSaveBlob(blob, `ss13-chatlog-${timestamp}.html`);
   }
 }
 

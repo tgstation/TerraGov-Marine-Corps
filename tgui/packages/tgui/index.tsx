@@ -21,12 +21,11 @@ import './styles/themes/som.scss';
 import './styles/themes/xeno.scss';
 
 import { perf } from 'common/perf';
-import { setupGlobalEvents } from 'tgui-core/events';
-import { setupHotKeys } from 'tgui-core/hotkeys';
 import { setupHotReloading } from 'tgui-dev-server/link/client.cjs';
 
 import { setGlobalStore } from './backend';
-import { loadIconRefMap } from './icons';
+import { setupGlobalEvents } from './events';
+import { setupHotKeys } from './hotkeys';
 import { captureExternalLinks } from './links';
 import { createRenderer } from './renderer';
 import { configureStore } from './store';
@@ -38,14 +37,13 @@ const store = configureStore();
 
 const renderApp = createRenderer(() => {
   setGlobalStore(store);
-  loadIconRefMap();
 
   const { getRoutedComponent } = require('./routes');
   const Component = getRoutedComponent(store);
   return <Component />;
 });
 
-function setupApp() {
+const setupApp = () => {
   // Delay setup
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', setupApp);
@@ -65,10 +63,16 @@ function setupApp() {
   // Enable hot module reloading
   if (module.hot) {
     setupHotReloading();
-    module.hot.accept(['./debug', './layouts', './routes'], () => {
+    // prettier-ignore
+    module.hot.accept([
+      './components',
+      './debug',
+      './layouts',
+      './routes',
+    ], () => {
       renderApp();
     });
   }
-}
+};
 
 setupApp();

@@ -1,32 +1,12 @@
-
-/atom/movable/screen/map_view/preference_preview
-	/// All the plane masters that need to be applied.
-	var/atom/movable/screen/background/screen_bg
-
-/atom/movable/screen/map_view/preference_preview/Destroy()
-	QDEL_NULL(screen_bg)
-	return ..()
-
-/atom/movable/screen/map_view/preference_preview/generate_view(map_key)
-	. = ..()
-	screen_bg = new
-	screen_bg.del_on_map_removal = FALSE
-	screen_bg.assigned_map = assigned_map
-	screen_bg.icon_state = "clear"
-	screen_bg.fill_rect(1, 1, 4, 1)
-
-/atom/movable/screen/map_view/preference_preview/display_to_client(client/show_to)
-	show_to.register_map_obj(screen_bg)
-	return ..()
-
 /datum/preferences/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+		user.client.register_map_obj(screen_main)
+		user.client.register_map_obj(screen_bg)
 
 		ui = new(user, src, "PlayerPreferences", "Preferences")
 		ui.set_autoupdate(FALSE)
 		ui.open()
-		screen_main.display_to(user, ui.window)
 
 /datum/preferences/ui_close(mob/user)
 	. = ..()
@@ -134,7 +114,6 @@
 			data["accessible_tgui_themes"] = accessible_tgui_themes
 			data["tgui_fancy"] = tgui_fancy
 			data["tgui_lock"] = tgui_lock
-			data["ui_scale"] = ui_scale
 			data["tgui_input"] = tgui_input
 			data["tgui_input_big_buttons"] = tgui_input_big_buttons
 			data["tgui_input_buttons_swap"] = tgui_input_buttons_swap
@@ -165,7 +144,6 @@
 			data["pixel_size"] = pixel_size
 			data["parallax"] = parallax
 			data["fullscreen_mode"] = fullscreen_mode
-			data["show_status_bar"] = show_status_bar
 			data["fast_mc_refresh"] = fast_mc_refresh
 			data["split_admin_tabs"] = split_admin_tabs
 		if(KEYBIND_SETTINGS)
@@ -672,7 +650,8 @@
 
 		if("auto_fit_viewport")
 			auto_fit_viewport = !auto_fit_viewport
-			parent?.attempt_auto_fit_viewport()
+			if(auto_fit_viewport && parent)
+				parent.fit_viewport()
 
 		if("mute_xeno_health_alert_messages")
 			mute_xeno_health_alert_messages = !mute_xeno_health_alert_messages
@@ -725,12 +704,6 @@
 
 		if("tgui_lock")
 			tgui_lock = !tgui_lock
-
-		if("ui_scale")
-			ui_scale = !ui_scale
-
-			INVOKE_ASYNC(usr.client, TYPE_VERB_REF(/client, refresh_tgui))
-			usr.client.tgui_say?.load()
 
 		if("tgui_input")
 			tgui_input = !tgui_input
@@ -847,10 +820,6 @@
 		if("fullscreen_mode")
 			fullscreen_mode = !fullscreen_mode
 			user.client?.set_fullscreen(fullscreen_mode)
-
-		if("show_status_bar")
-			show_status_bar = !show_status_bar
-			user.client?.toggle_status_bar(show_status_bar)
 
 		if("set_keybind")
 			var/kb_name = params["keybind_name"]

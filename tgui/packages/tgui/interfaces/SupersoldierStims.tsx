@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Button, Input, Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
+import { Button, Input, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 type Stim = {
@@ -64,7 +64,8 @@ export const SupersoldierStims = (_props) => {
                       <Button
                         icon="arrow-left"
                         align="start"
-                        disabled={!selected_stimset.includes(stim_uid)}
+                        content={index}
+                        enabled={selected_stimset.includes(stim_uid)}
                         onClick={() =>
                           act('change_pos', {
                             sequence: activeStimSet,
@@ -72,9 +73,7 @@ export const SupersoldierStims = (_props) => {
                             old_pos: pos,
                           })
                         }
-                      >
-                        {index}
-                      </Button>
+                      />
                     </Stack.Item>
                     <Stack.Item grow>
                       <Button
@@ -92,7 +91,7 @@ export const SupersoldierStims = (_props) => {
                     <Stack.Item>
                       <Button
                         icon="arrow-right"
-                        disabled={!selected_stimset.includes(stim_uid)}
+                        enabled={selected_stimset.includes(stim_uid)}
                         align="end"
                         onClick={() =>
                           act('change_pos', {

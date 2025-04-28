@@ -92,9 +92,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/list/dat = list("Related accounts by [uppertext(href_list["showrelatedacc"])]:")
 		dat += thing_to_check
 
-		var/datum/browser/browser = new(usr, "related_[C]", "[C.ckey] Related Accounts", 420, 300)
-		browser.set_content(dat.Join("<br>"))
-		browser.open()
+		usr << browse(dat.Join("<br>"), "window=related_[C];size=420x300")
 
 	else if(href_list["centcomlookup"])
 		if(!check_rights(R_ADMIN))
@@ -873,9 +871,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		var/dat = "<html><head><title>Fax Message: [F.title]</title></head>"
 		dat += "<body>[F.message]</body></html>"
 
-		var/datum/browser/browser = new(usr, "fax", "Fax")
-		browser.set_content(dat)
-		browser.open()
+		usr << browse(dat, "window=fax")
+
 
 	else if(href_list["faxmark"])
 		if(!check_rights(R_ADMIN|R_MENTOR))
@@ -1007,12 +1004,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				if(!fax_message)
 					return
 
-		var/datum/browser/browser = new(usr, "faxpreview", "New Fax", 600, 600)
-		browser.set_content(fax_message)
-		browser.open()
+		usr << browse(fax_message, "window=faxpreview;size=600x600")
 
 		if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
-			browser.close()
+			usr << browse(null, "window=faxpreview")
 			return
 
 		send_fax(usr, null, dep, subject, fax_message, TRUE)
@@ -1053,7 +1048,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/dat = "<b>What mode do you wish to play?</b><br>"
 		for(var/datum/game_mode/mode AS in config.modes)
-			dat += "<a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[mode.name]</a><br>"
+			dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[mode.name]</a><br>"
 		dat += "<br>"
 		dat += "Now: [GLOB.master_mode]<br>"
 		dat += "Next Round: [trim(file2text("data/mode.txt"))]"

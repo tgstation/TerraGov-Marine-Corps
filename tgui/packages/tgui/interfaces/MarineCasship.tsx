@@ -1,4 +1,3 @@
-import { Button, NoticeBox, ProgressBar, Stack } from 'tgui-core/components';
 import {
   KEY_1,
   KEY_2,
@@ -16,9 +15,9 @@ import {
   KEY_SPACE,
   KEY_UP,
   KEY_W,
-} from 'tgui-core/keycodes';
-
+} from '../../common/keycodes';
 import { useBackend } from '../backend';
+import { Button, NoticeBox, ProgressBar, Stack } from '../components';
 import { Window } from '../layouts';
 
 // _DEFINES/cas.dm
@@ -209,21 +208,20 @@ const NormalOperation = (props) => {
                 </Stack>
               </Stack.Item>
               <Stack.Item>
-                <Stack>
+                <Stack fluid>
                   <Stack.Item>
                     <NoticeBox mt={0.2}>Fuel:</NoticeBox>
                   </Stack.Item>
                   <Stack.Item grow>
                     <ProgressBar
                       fontSize="16px"
+                      title="Fuel"
                       ranges={{
                         good: [0.5, Infinity],
                         average: [-Infinity, 0.25],
                       }}
                       value={fuel_left / fuel_max}
-                    >
-                      Fuel
-                    </ProgressBar>
+                    />
                   </Stack.Item>
                 </Stack>
               </Stack.Item>
@@ -262,6 +260,7 @@ const NormalOperation = (props) => {
             <Stack.Item grow>
               <ProgressBar
                 fontSize="16px"
+                title={equipment.ammo_name}
                 ranges={{
                   good: [0.5, Infinity],
                   average: [-Infinity, 0.25],
@@ -271,9 +270,7 @@ const NormalOperation = (props) => {
                     ? equipment.ammo / equipment.max_ammo
                     : 0
                 }
-              >
-                {equipment.ammo_name}
-              </ProgressBar>
+              />
             </Stack.Item>
           </Stack>
         </Stack.Item>

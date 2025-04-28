@@ -554,9 +554,7 @@
 
 	dellog += "</ol>"
 
-	var/datum/browser/browser = new(usr, "dellog", "Del Log", 00, 400)
-	browser.set_content(dellog.Join())
-	browser.open()
+	usr << browse(dellog.Join(), "window=dellog")
 
 /client/proc/debugstatpanel()
 	set name = "Debug Stat Panel"
