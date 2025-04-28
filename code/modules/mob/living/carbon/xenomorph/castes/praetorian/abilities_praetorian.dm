@@ -595,3 +595,439 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	ourdodge?.add_cooldown(DANCER_DODGE_BATONPASS_CD)
 	succeed_activate()
 	add_cooldown()
+
+// ***************************************
+// *********** Abduct
+// ***************************************
+
+/datum/action/ability/activable/xeno/abduct
+	name = "Abduct"
+	action_icon_state = "abduct"
+	action_icon = 'icons/Xeno/actions/praetorian.dmi'
+	desc = "Throw your tail out and hook in any humans caught in it. Ends prematurely if blocked or hits anything dense."
+	ability_cost = 50
+	cooldown_duration = 12 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ABDUCT,
+	)
+	/// A list of turfs that will be used to get mobs who will get affected by the ability.
+	var/list/turf/turf_line
+	/// The created effects that need to be deleted later.
+	var/list/obj/effect/xeno/abduct_warning/telegraphed_atoms
+	/// A timer for when to conclude the ability.
+	var/ability_timer
+
+
+/datum/action/ability/activable/xeno/abduct/Destroy()
+	cleanup_variables()
+	return ..()
+
+/datum/action/ability/activable/xeno/abduct/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(ability_timer)
+		if(!silent)
+			A.balloon_alert(xeno_owner, "already abducting")
+		return FALSE
+	var/distance_to_target = get_dist(xeno_owner, A)
+	if(!distance_to_target)
+		if(!silent)
+			A.balloon_alert(xeno_owner, "too short")
+		return FALSE
+	var/start_turf = get_step(xeno_owner, get_cardinal_dir(xeno_owner, A))
+	if(check_path(xeno_owner, start_turf, PASS_THROW) != start_turf)
+		if(!silent)
+			A.balloon_alert(xeno_owner, "path blocked")
+		return FALSE
+
+/datum/action/ability/activable/xeno/abduct/use_ability(atom/A)
+	var/turf/targetted_turf = get_turf(A)
+	while(get_dist(xeno_owner, targetted_turf) > 7) // Allows targetting beyond maximum range to automatically do maximum range.
+		targetted_turf = get_step(targetted_turf, REVERSE_DIR(get_dir(xeno_owner, targetted_turf)))
+
+	xeno_owner.face_atom(targetted_turf)
+	if(!do_after(owner, 0.1 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER) || !can_use_ability(targetted_turf, TRUE, ABILITY_IGNORE_SELECTED_ABILITY))
+		add_cooldown(1 SECONDS)
+		return
+	xeno_owner.face_atom(targetted_turf)
+	turf_line = getline(get_step(xeno_owner, get_cardinal_dir(xeno_owner, targetted_turf)), check_path(xeno_owner, targetted_turf, PASS_THROW))
+	LAZYINITLIST(telegraphed_atoms)
+	for(var/turf/turf_from_line AS in turf_line)
+		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
+	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
+	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), 0.7 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(failed_pull))
+	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(failed_pull))
+
+/// Ends the ability by throwing all humans in the affected turfs to the initial turf.
+/datum/action/ability/activable/xeno/abduct/proc/pull_them_in()
+	SIGNAL_HANDLER
+	var/list/mob/living/carbon/human/human_mobs = list()
+	for(var/turf/turf_from_line AS in turf_line)
+		for(var/atom/movable/target AS in turf_from_line.contents)
+			if(!ishuman(target))
+				continue
+			var/mob/living/carbon/human/human_mob = target
+			if(human_mob.stat == DEAD)
+				continue
+			if(human_mob.move_resist >= MOVE_FORCE_OVERPOWERING)
+				continue
+			human_mobs += target
+
+	for(var/mob/living/carbon/human/human_mob in human_mobs)
+		human_mob.throw_at(owner, 6, 2, turf_line[1], FALSE)
+		human_mob.Paralyze(0.5 SECONDS)
+		human_mob.add_slowdown(0.8 * human_mobs.len)
+		human_mob.adjust_stagger(4 SECONDS * human_mobs.len)
+		human_mob.apply_effect(human_mobs.len >= 3 ? 1.5 SECONDS : 0.5 SECONDS, WEAKEN)
+		INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, null, 0, FALSE, FALSE, TRUE)
+
+	if(human_mobs.len)
+		xeno_owner.add_slowdown(0.4 * human_mobs.len)
+		playsound(human_mobs[human_mobs.len], 'sound/voice/alien/pounce.ogg', 25, TRUE)
+	succeed_activate()
+	add_cooldown()
+	cleanup_variables()
+
+/// Ends the ability by punishing the owner.
+/datum/action/ability/activable/xeno/abduct/proc/failed_pull()
+	SIGNAL_HANDLER
+	xeno_owner.Knockdown(1 SECONDS)
+	xeno_owner.add_slowdown(0.9)
+	succeed_activate()
+	add_cooldown()
+	cleanup_variables()
+
+/// Cleans up any variables, signals, and undoes any traits that the ability gave.
+/datum/action/ability/activable/xeno/abduct/proc/cleanup_variables()
+	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
+	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER)
+	QDEL_LIST(telegraphed_atoms)
+	deltimer(ability_timer)
+	ability_timer = null
+	telegraphed_atoms = null
+	turf_line = null
+
+/obj/effect/xeno/abduct_warning
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "abduct_hook"
+
+// ***************************************
+// *********** Dislocate
+// ***************************************
+/datum/action/ability/activable/xeno/dislocate
+	name = "Dislocate"
+	action_icon_state = "punch"
+	action_icon = 'icons/Xeno/actions/warrior.dmi'
+	desc = "Shrike a human with enough force that they are thrown backwards."
+	ability_cost = 50
+	cooldown_duration = 10 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DISLOCATE,
+	)
+	target_flags = ABILITY_MOB_TARGET
+
+/datum/action/ability/activable/xeno/dislocate/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!iscarbon(target)) // No balloon as it can get really spammy.
+		return FALSE
+	if(isxeno(target))
+		var/mob/living/carbon/xenomorph/xenomorph_target = target
+		if(xeno_owner.issamexenohive(xenomorph_target))
+			if(!silent)
+				target.balloon_alert(xeno_owner, "cannot dislocate ally")
+			return FALSE
+	var/mob/living/carbon/carbon_target = target
+	if(!xeno_owner.Adjacent(carbon_target))
+		carbon_target.balloon_alert(xeno_owner, "too far")
+		return FALSE
+	if(carbon_target.stat == DEAD)
+		carbon_target.balloon_alert(xeno_owner, "already dead")
+		return FALSE
+
+/datum/action/ability/activable/xeno/dislocate/use_ability(atom/target)
+	var/mob/living/carbon/carbon_target = target
+	var/datum/limb/target_limb = carbon_target.get_limb(xeno_owner.zone_selected)
+	if(!target_limb || (target_limb.limb_status & LIMB_DESTROYED))
+		target_limb = carbon_target.get_limb(BODY_ZONE_CHEST)
+
+	xeno_owner.face_atom(target)
+
+	carbon_target.Shake(duration = 0.1 SECONDS)
+	xeno_owner.do_attack_animation(carbon_target)
+	new /obj/effect/temp_visual/warrior/punch/weak(get_turf(carbon_target))
+	playsound(target, 'sound/weapons/punch1.ogg', 25, TRUE)
+
+	carbon_target.apply_effect(1 SECONDS, WEAKEN)
+	carbon_target.adjust_stagger(3 SECONDS)
+	carbon_target.knockback(xeno_owner, 2, 2)
+	carbon_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, target_limb ? target_limb : 0, MELEE)
+
+	succeed_activate()
+	add_cooldown()
+
+// ***************************************
+// *********** Item Throw
+// ***************************************
+/datum/action/ability/activable/xeno/item_throw
+	name = "Item Throw"
+	action_icon_state = "item_throw"
+	action_icon = 'icons/Xeno/actions/praetorian.dmi'
+	desc = "Pick up a nearby item momentarily and throw it in a chosen direction. The item's size determines elements such as how fast or hard it hits."
+	ability_cost = 50
+	cooldown_duration = 10 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ITEM_THROW,
+	)
+	use_state_flags = ABILITY_USE_STAGGERED
+	/// If they have moved at least a single tile since picking up an item.
+	var/has_moved_already = FALSE
+	/// If we are holding an item.
+	var/obj/item/held_item
+	/// Mutable appearance of the held item.
+	var/mutable_appearance/held_appearance
+
+/datum/action/ability/activable/xeno/item_throw/Destroy()
+	drop_item()
+	return ..()
+
+/datum/action/ability/activable/xeno/item_throw/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(held_item)
+		return TRUE
+	if(!isitem(A) || isgrabitem(A))
+		if(!silent)
+			A.balloon_alert(owner, "not an item")
+		return FALSE
+	var/obj/item/item_atom = A
+	if(!owner.Adjacent(item_atom))
+		if(!silent)
+			item_atom.balloon_alert(owner, "too far")
+		return FALSE
+	if(item_atom.anchored)
+		if(!silent)
+			item_atom.balloon_alert(owner, "item is anchored")
+		return FALSE
+
+/datum/action/ability/activable/xeno/item_throw/use_ability(atom/A)
+	if(!held_item)
+		playsound(owner, 'sound/voice/alien/pounce2.ogg', 30)
+		var/obj/item/interacted_item = A
+		interacted_item.forceMove(owner)
+		held_item = interacted_item
+		held_appearance = mutable_appearance(interacted_item.icon, interacted_item.icon_state)
+		held_appearance.layer = ABOVE_OBJ_LAYER
+		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+		RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_owner_turn))
+		RegisterSignal(owner, COMSIG_MOB_DEATH, PROC_REF(drop_item))
+		RegisterSignal(owner, COMSIG_MOB_STAT_CHANGED, PROC_REF(drop_item)) // No need to check for the specifics regarding stat as anything that isn't CONSCIOUS should cause it to drop.
+		RegisterSignal(held_item, COMSIG_QDELETING, PROC_REF(on_item_qdel))
+
+		owner.add_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ITEM_GRAB, TRUE, 0, NONE, TRUE, 2)
+		on_owner_turn(null, null, owner.dir)
+		succeed_activate()
+		ability_cost = 0 // Throwing will cost nothing to prevent the ability from failing to recast if they happen to have not enough plasma.
+		has_moved_already = FALSE
+		return
+	owner.remove_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ITEM_GRAB)
+	held_item.throwforce += min(held_item.w_class * 15, 90) // Upper limit to prevent any weird weight classes (e.g. above WEIGHT_CLASS_GIGANTIC)
+	RegisterSignal(held_item, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throw_end))
+	held_item.forceMove(get_turf(owner))
+	// A speed of 5 is required to inflict maximum damage to mobs.
+	held_item.throw_at(A, max(2, 11 - (held_item.w_class * 2)), 5)
+	held_item = null
+	owner.overlays -= held_appearance
+	playsound(xeno_owner, 'sound/effects/throw.ogg', 30, 1)
+	succeed_activate()
+	ability_cost = initial(ability_cost)
+	add_cooldown()
+	UnregisterSignal(xeno_owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE, COMSIG_MOB_DEATH, COMSIG_MOB_STAT_CHANGED))
+
+/// Reduces throwforce by what it was increased by.
+/datum/action/ability/activable/xeno/item_throw/proc/on_throw_end(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_QDELETING))
+	var/obj/item/item_source = source
+	item_source.throwforce -= min(item_source.w_class * 15, 90)
+
+/// On move, drop the item if they moved once already. Otherwise, set it so that they'll drop the item if they move again.
+/datum/action/ability/activable/xeno/item_throw/proc/on_move()
+	SIGNAL_HANDLER
+	if(!has_moved_already)
+		has_moved_already = TRUE
+		return
+	drop_item()
+
+/// Drops the item on the floor, thus ending the ability.
+/datum/action/ability/activable/xeno/item_throw/proc/drop_item()
+	if(!held_item)
+		return
+	UnregisterSignal(xeno_owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE, COMSIG_MOB_DEATH, COMSIG_MOB_STAT_CHANGED))
+	UnregisterSignal(held_item, COMSIG_QDELETING)
+	held_item.forceMove(get_turf(owner))
+	held_item = null
+	owner.remove_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ITEM_GRAB)
+	owner.overlays -= held_appearance
+	held_appearance = null
+	playsound(owner, 'sound/voice/alien/pounce2.ogg', 30, frequency = -1)
+	add_cooldown()
+
+/// Handles the unexpected qdel of the held item.
+/datum/action/ability/activable/xeno/item_throw/proc/on_item_qdel()
+	SIGNAL_HANDLER
+	UnregisterSignal(xeno_owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE, COMSIG_MOB_DEATH, COMSIG_MOB_STAT_CHANGED))
+	held_item = null
+	owner.remove_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ITEM_GRAB)
+	owner.overlays -= held_appearance
+	held_appearance = null
+	add_cooldown()
+
+/// Turns the held_appearance accordingly whenever the owner turns.
+/datum/action/ability/activable/xeno/item_throw/proc/on_owner_turn(datum/source, old_dir, new_dir)
+	SIGNAL_HANDLER
+	if(!new_dir || new_dir == old_dir)
+		return
+	owner.overlays -= held_appearance
+	var/matrix/new_transform = held_appearance.transform
+	switch(old_dir)
+		if(NORTH)
+			new_transform.Translate(-15, -12)
+		if(SOUTH)
+			new_transform.Translate(-15, 12)
+		if(EAST)
+			new_transform.Translate(-35, 0)
+		if(WEST)
+			new_transform.Translate(5, 0)
+	switch(new_dir)
+		if(NORTH)
+			new_transform.Translate(15, 12)
+		if(SOUTH)
+			new_transform.Translate(15, -12)
+		if(EAST)
+			new_transform.Translate(35, 0)
+		if(WEST)
+			new_transform.Translate(-5, 0)
+	held_appearance.transform = new_transform
+	owner.overlays += held_appearance
+
+// ***************************************
+// *********** Tail Lash
+// ***************************************
+/datum/action/ability/activable/xeno/tail_lash
+	name = "Tail Lash"
+	action_icon_state = "tail_lash"
+	action_icon = 'icons/Xeno/actions/praetorian.dmi'
+	desc = "Knock back humans that are in front of you."
+	ability_cost = 50
+	cooldown_duration = 11 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_LASH,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TAIL_LASH_SELECT,
+	)
+
+/datum/action/ability/activable/xeno/tail_lash/use_ability(atom/target)
+	xeno_owner.face_atom(target)
+
+	var/turf/lower_left
+	var/turf/upper_right
+	switch(xeno_owner.dir)
+		if(NORTH)
+			lower_left = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
+			upper_right = locate(xeno_owner.x + 1, xeno_owner.y + 2, xeno_owner.z)
+		if(SOUTH)
+			lower_left = locate(xeno_owner.x - 1, xeno_owner.y - 2, xeno_owner.z)
+			upper_right = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
+		if(WEST)
+			lower_left = locate(xeno_owner.x - 2, xeno_owner.y - 1, xeno_owner.z)
+			upper_right = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
+		if(EAST)
+			lower_left = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
+			upper_right = locate(xeno_owner.x + 2, xeno_owner.y + 1, xeno_owner.z)
+
+	for(var/turf/affected_tile AS in block(lower_left, upper_right))
+		affected_tile.Shake(duration = 0.1 SECONDS)
+		for(var/atom/movable/affected AS in affected_tile)
+			if(!ishuman(affected) || affected.move_resist >= MOVE_FORCE_OVERPOWERING)
+				continue
+			var/mob/living/carbon/human/affected_human = affected
+			if(affected_human.stat == DEAD)
+				continue
+			affected_human.Paralyze(1 SECONDS)
+			affected_human.apply_effect(1 SECONDS, WEAKEN)
+			affected_human.adjust_stagger(3 SECONDS)
+			affected_human.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, updating_health = TRUE)
+			var/throwlocation = affected_human.loc
+			for(var/x in 1 to 2)
+				throwlocation = get_step(throwlocation, owner.dir)
+			affected_human.throw_at(throwlocation, 2, 1, owner, TRUE)
+
+	xeno_owner.spin(4, 1)
+	xeno_owner.emote("tail")
+	playsound(xeno_owner, 'sound/weapons/alien_claw_block.ogg', 50, 1)
+	succeed_activate()
+	add_cooldown()
+
+// ***************************************
+// *********** Advance (Oppressor)
+// ***************************************
+/datum/action/ability/activable/xeno/advance_oppressor
+	name = "Advance"
+	action_icon_state = "advance"
+	action_icon = 'icons/Xeno/actions/praetorian.dmi'
+	desc = "Launch yourself with tremendous speed toward a location. If you hit a marine, they are launched incredibly far."
+	ability_cost = 50
+	cooldown_duration = 10 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE_OPPRESSOR,
+	)
+
+/datum/action/ability/activable/xeno/advance_oppressor/use_ability(atom/target)
+	xeno_owner.face_atom(target)
+	if(!do_after(xeno_owner, 0.8 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER))
+		return
+	xeno_owner.face_atom(target)
+
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+	RegisterSignal(xeno_owner, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
+	xeno_owner.xeno_flags |= XENO_LEAPING
+
+	xeno_owner.throw_at(target, 5, 5, xeno_owner)
+	xeno_owner.emote("roar")
+	succeed_activate()
+	add_cooldown()
+
+/// Shake the turf under for cool points.
+/datum/action/ability/activable/xeno/advance_oppressor/proc/on_move(datum/source)
+	SIGNAL_HANDLER
+	var/turf/current_turf = get_turf(source)
+	current_turf.Shake(duration = 0.2 SECONDS)
+
+/// Ends the charge when hitting an object.
+/datum/action/ability/activable/xeno/advance_oppressor/proc/obj_hit(datum/source, obj/obj_hit, speed)
+	SIGNAL_HANDLER
+	obj_hit.hitby(xeno_owner, speed)
+
+/// Ends the charge when hitting a human. Knocks them back pretty far.
+/datum/action/ability/activable/xeno/advance_oppressor/proc/mob_hit(datum/source, mob/living/living_hit)
+	SIGNAL_HANDLER
+	if(!ishuman(living_hit) || living_hit.move_resist >= MOVE_FORCE_OVERPOWERING)
+		return
+
+	living_hit.throw_at(get_step_rand(get_ranged_target_turf(living_hit, get_dir(xeno_owner, living_hit), 5)), 5, 5, src)
+	living_hit.apply_effect(2 SECONDS, WEAKEN)
+	INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, xeno_owner.zone_selected, MELEE)
+
+/// Cleans up after charge is finished.
+/datum/action/ability/activable/xeno/advance_oppressor/proc/charge_complete()
+	SIGNAL_HANDLER
+	UnregisterSignal(xeno_owner, list(COMSIG_MOVABLE_MOVED, COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENOMORPH_LEAP_BUMP))
+	xeno_owner.xeno_flags &= ~XENO_LEAPING

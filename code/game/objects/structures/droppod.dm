@@ -356,7 +356,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 	for(var/obj/structure/droppod/pod in GLOB.droppod_list)
 		for(var/mob/user AS in pod.buckled_mobs)
-			user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>DROP UPDATED:</u></span><br>New target: [target.loc]", /atom/movable/screen/text/screen_text/command_order)
+			user.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("DROP UPDATED", "New target: [target.loc]", LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/command_order)
 		var/turf/newturf
 		if(length(block))
 			newturf = pick_n_take(block)
@@ -382,7 +382,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		if(!(LAZYLEN(pod.buckled_mobs) || LAZYLEN(pod.contents)))
 			continue
 		for(var/mob/dropper AS in pod.buckled_mobs)
-			dropper.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>DROP UPDATED:</u></span><br>COMMENCING MASS DEPLOYMENT", /atom/movable/screen/text/screen_text/command_order)
+			dropper.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("DROP UPDATED", "COMMENCING MASS DEPLOYMENT", CENTER_ALIGN_TEXT), /atom/movable/screen/text/screen_text/command_order)
 		var/predroptime = rand(1.5 SECONDS, 2.5 SECONDS) //Randomize it a bit so its staggered
 		addtimer(CALLBACK(pod, TYPE_PROC_REF(/obj/structure/droppod, start_launch_pod), LAZYLEN(pod.buckled_mobs) ? pod.buckled_mobs[1] : null, TRUE), predroptime)
 

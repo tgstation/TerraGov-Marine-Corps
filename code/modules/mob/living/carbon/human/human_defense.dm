@@ -370,8 +370,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(access_tag in C.access)
 			return TRUE
 
-/mob/living/carbon/human/screech_act(mob/living/carbon/xenomorph/queen/Q, screech_range = WORLD_VIEW, within_sight = TRUE)
-	var/dist_pct = get_dist(src, Q) / screech_range
+/mob/living/carbon/human/screech_act(distance, screech_range = WORLD_VIEW_NUM, within_sight = TRUE)
+	var/dist_pct = distance / screech_range
 
 	// Intensity is reduced by a 80% if you can't see the queen. Hold orders will reduce by an extra 10% per rank.
 	var/reduce_within_sight = within_sight ? 1 : 0.2

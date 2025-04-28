@@ -311,8 +311,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/combat_medic
 	name = SQUAD_CORPSMAN
 	leadership = SKILL_LEAD_BEGINNER
-	medical = SKILL_MEDICAL_PRACTICED
-	surgery = SKILL_SURGERY_TRAINED
+	medical = SKILL_MEDICAL_COMPETENT
+	surgery = SKILL_SURGERY_PROFESSIONAL
 
 /datum/skills/combat_medic/crafty
 	name = "Crafty Combat Medic"
@@ -641,10 +641,10 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/specialist/vanguard
 	name = VANGUARD
 	unarmed = SKILL_UNARMED_MASTER
-	construction = SKILL_CONSTRUCTION_PLASTEEL
-	engineer = SKILL_ENGINEER_ENGI
-	medical = SKILL_MEDICAL_COMPETENT
-	surgery = SKILL_SURGERY_TRAINED
+	construction = SKILL_MEDICAL_UNTRAINED
+	engineer = SKILL_ENGINEER_DEFAULT
+	medical = SKILL_MEDICAL_PRACTICED
+	surgery = SKILL_SURGERY_DEFAULT
 	leadership = SKILL_LEAD_EXPERT
 	police = SKILL_POLICE_MP
 	stamina = SKILL_STAMINA_TRAINED

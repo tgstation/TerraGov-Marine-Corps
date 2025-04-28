@@ -1,0 +1,7 @@
+author: "Nokia2Student"
+delete-after: True
+changes:
+  - rscadd: "Added queen visually warping shriek wave"
+  - refactor: "Screech_act refactored, performance improved"
+  - bugfix: "Screech now calculates distance from queen for effect correctly instead of just applying the minimum for mech/tank/apc"
+  - bugfix: "Screech now considers vehicles for line of sight calculations for screech effects"

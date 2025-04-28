@@ -186,7 +186,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	ui = new(user, src, "MechVendor", name)
 	ui.open()
 	user.client?.screen |= mech_view.plane_masters
-	user.client?.register_map_obj(mech_view)
+	user.client?.register_map_obj(mech_view, ui.window)
 
 /obj/machinery/computer/mech_builder/ui_close(mob/user)
 	. = ..()

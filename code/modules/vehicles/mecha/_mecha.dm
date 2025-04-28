@@ -226,7 +226,6 @@
 	hud_set_mecha_battery()
 	update_icon()
 
-	become_hearing_sensitive(trait_source = ROUNDSTART_TRAIT)
 	for(var/key in equip_by_category)
 		if(key == MECHA_L_ARM || key == MECHA_R_ARM)
 			var/path = equip_by_category[key]

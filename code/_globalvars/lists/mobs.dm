@@ -97,6 +97,8 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/praetorian/primordial,
 	/mob/living/carbon/xenomorph/praetorian/dancer,
 	/mob/living/carbon/xenomorph/praetorian/dancer/primordial,
+	/mob/living/carbon/xenomorph/praetorian/oppressor,
+	/mob/living/carbon/xenomorph/praetorian/oppressor/primordial,
 	/mob/living/carbon/xenomorph/boiler,
 	/mob/living/carbon/xenomorph/boiler/primordial,
 	/mob/living/carbon/xenomorph/boiler/sizzler,

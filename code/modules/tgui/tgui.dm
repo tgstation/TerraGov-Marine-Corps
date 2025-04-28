@@ -244,13 +244,17 @@
 	json_data["config"] = list(
 		"title" = title,
 		"status" = status,
-		"interface" = interface,
+		"interface" = list(
+			"name" = interface,
+			"layout" = "default", // see https://github.com/tgstation/tgstation/pull/89160/files
+		),
 		"refreshing" = refreshing,
 		"window" = list(
 			"key" = window_key,
 			"size" = window_size,
 			"fancy" = user.client.prefs.tgui_fancy,
 			"locked" = user.client.prefs.tgui_lock,
+			"scale" = user.client.prefs.ui_scale,
 		),
 		"client" = list(
 			"ckey" = user.client.ckey,

@@ -13,8 +13,8 @@
 /atom/movable/screen/text/screen_timer
 	screen_loc = "CENTER-7,CENTER-7"
 	/// Left side of the HTML tag for maptext, style is also included
-	var/maptext_style_left = "<span class='maptext' style=font-size:16pt;text-align:center; align='top'>"
-	/// End tag of the HTML tag for maptext 
+	var/maptext_style_left = "<span class='maptext' style=font-size:12pt;text-align:center; align='top'>"
+	/// End tag of the HTML tag for maptext
 	var/maptext_style_right = "</span>"
 	/// The actual displayed content of the maptext, use ${timer}, and it'll be replaced with the time left
 	var/maptext_string

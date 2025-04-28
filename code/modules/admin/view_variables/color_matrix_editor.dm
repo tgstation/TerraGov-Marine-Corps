@@ -65,6 +65,7 @@
 	if(!ui)
 		ui = new(user, src, "ColorMatrixEditor")
 		ui.open()
+		proxy_view.display_to(owner.mob, ui.window)
 
 /datum/color_matrix_editor/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()

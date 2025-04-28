@@ -6,11 +6,15 @@ GLOBAL_VAR_INIT(max_larva_count_per_mob, 3) //Added for adminbus reasons
 #define AI_VOX
 
 // Overlay Indexes
-#define GENITAL_LAYER 29 //totally nothing bad is going to happen.
-#define BODYPARTS_LAYER 28
-#define WOUND_LAYER 27
-#define MOTH_WINGS_LAYER 26
-#define DAMAGE_LAYER 25
+#define GENITAL_LAYER 33 //totally nothing bad is going to happen.
+#define BODYPARTS_LAYER 32
+#define WOUND_LAYER 31
+#define MOTH_WINGS_LAYER 30
+#define DAMAGE_LAYER 29
+#define UNDERWEAR_LAYER			28
+#define SOCKS_LAYER				27
+#define BRA_LAYER 26
+#define UNDERSHIRT_LAYER 25
 #define UNIFORM_LAYER 24
 #define ID_LAYER 23
 #define SHOES_LAYER 22
@@ -36,7 +40,7 @@ GLOBAL_VAR_INIT(max_larva_count_per_mob, 3) //Added for adminbus reasons
 #define FIRE_LAYER 2 //If you're on fire
 #define LASER_LAYER 1 //For sniper targeting laser
 
-#define TOTAL_LAYERS 29
+#define TOTAL_LAYERS 33
 
 #define MOTH_WINGS_BEHIND_LAYER 1
 

@@ -128,11 +128,6 @@
 "bb" = (
 /turf/closed/wall/mainship/gray,
 /area/antag_ship)
-"bd" = (
-/turf/closed/shuttle/ert/engines/right/two{
-	dir = 1
-	},
-/area/antag_ship/som/hangar)
 "be" = (
 /obj/machinery/power/apc{
 	dir = 4
@@ -591,11 +586,6 @@
 	dir = 8
 	},
 /area/antag_ship/vsd/port)
-"dY" = (
-/turf/closed/shuttle/ert/engines/left/two{
-	dir = 1
-	},
-/area/antag_ship/som/hangar)
 "eb" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -898,14 +888,6 @@
 	dir = 1
 	},
 /area/shuttle/transport)
-"fG" = (
-/obj/structure/barricade/plasteel,
-/obj/machinery/door/poddoor/mainship/open{
-	dir = 2;
-	id = "minidropship_podlocksom"
-	},
-/turf/open/floor/mainship/mono,
-/area/antag_ship/som/hangar)
 "fI" = (
 /obj/structure/cable,
 /turf/open/floor/wood/darker,
@@ -920,6 +902,10 @@
 	dir = 10
 	},
 /area/antag_ship/clf_base/hallways/inside)
+"fS" = (
+/obj/item/storage/box/crate/loot/materials_pack,
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/requisition)
 "fT" = (
 /obj/structure/cable,
 /obj/machinery/power/geothermal/reinforced,
@@ -1139,10 +1125,6 @@
 /obj/item/storage/box/ids,
 /turf/open/floor/prison/plate,
 /area/antag_ship/vsd/engi)
-"hd" = (
-/obj/item/storage/box/crate/loot/materials_pack,
-/turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/hangar)
 "he" = (
 /obj/effect/landmark/weed_node,
 /turf/closed/wall/brick,
@@ -1763,13 +1745,6 @@
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/grayscale/round/black,
 /area/antag_ship/vsd/bridge)
-"kz" = (
-/obj/machinery/door/airlock/mainship/command{
-	dir = 1;
-	req_access = list(204)
-	},
-/turf/open/floor/mainship/mono,
-/area/antag_ship/som/hangar)
 "kA" = (
 /obj/structure/sign/prop3,
 /obj/effect/turf_decal/stripes/asteroid/corner{
@@ -1975,6 +1950,10 @@
 /obj/machinery/floodlight/outpost/oscar,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/antag_ship/icc/hangar/east)
+"ly" = (
+/obj/effect/teleporter_linker,
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/requisition)
 "lz" = (
 /obj/machinery/door/airlock/mainship/maint{
 	req_one_access = list(208);
@@ -3269,10 +3248,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/preparation)
-"rC" = (
-/obj/structure/largecrate/supply/supplies/cloth,
-/turf/open/floor/plating,
-/area/antag_ship/som/hangar)
 "rD" = (
 /obj/machinery/door/poddoor/mainship/mech{
 	id = "mech_shutterssom"
@@ -3318,17 +3293,10 @@
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/east)
 "rR" = (
-/obj/item/folder/black_random,
-/obj/item/tool/hand_labeler,
-/obj/item/tool/stamp/denied,
-/obj/item/tool/stamp/qm,
-/obj/structure/table/mainship/nometal,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/cell_charger,
-/obj/effect/spawner/random/engineering/powercell,
-/obj/effect/spawner/random/engineering/powercell,
+/obj/structure/dropship_equipment/shuttle/rappel_system,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/hangar)
 "rS" = (
@@ -3386,11 +3354,6 @@
 "se" = (
 /turf/open/shuttle/dropship/five,
 /area/shuttle/transport)
-"sf" = (
-/obj/structure/bed/chair/dropship/passenger,
-/obj/machinery/vending/nanomed/tadpolemed,
-/turf/open/floor/mainship/mono,
-/area/antag_ship/som/hangar)
 "sg" = (
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/medical_room)
@@ -3889,11 +3852,6 @@
 "uV" = (
 /turf/open/floor/prison/whitegreen,
 /area/antag_ship/pmc_ntf/starboard/medbay)
-"uW" = (
-/turf/closed/shuttle/ert/engines/right{
-	dir = 1
-	},
-/area/antag_ship/som/hangar)
 "uY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -4198,16 +4156,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/security)
-"wB" = (
-/obj/structure/bed/chair/dropship/pilot{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/transparent/dark_blue/anticorner/contrasted,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship,
-/area/antag_ship/som/hangar)
 "wE" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 1
@@ -4911,22 +4859,6 @@
 	dir = 4
 	},
 /area/antag_ship/som/mech_bay)
-"AM" = (
-/obj/structure/bed/chair/dropship/pilot{
-	dir = 1
-	},
-/obj/machinery/door_control{
-	dir = 4;
-	id = "minidropship_podlocksom";
-	name = "inner door-control";
-	pixel_x = -25;
-	pixel_y = 3
-	},
-/obj/effect/turf_decal/tile/transparent/dark_blue/anticorner/contrasted{
-	dir = 8
-	},
-/turf/open/floor/mainship,
-/area/antag_ship/som/hangar)
 "AN" = (
 /turf/closed/wall/brick,
 /area/antag_ship/clf_base/armory)
@@ -5015,13 +4947,6 @@
 /obj/structure/prop/vehicle/tank/east/decoration/armor,
 /turf/open/floor/plating/ground/desertdam/asphalt/open,
 /area/antag_ship/icc/hangar/west)
-"Bt" = (
-/obj/structure/bed/chair/dropship/passenger,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -10
-	},
-/turf/open/floor/mainship/mono,
-/area/antag_ship/som/hangar)
 "Bv" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -5297,8 +5222,8 @@
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/medical_room)
 "CA" = (
-/obj/effect/teleporter_linker,
-/turf/open/floor/plating/plating_catwalk,
+/obj/docking_port/stationary/marine_dropship/minidropship/som,
+/turf/open/floor/plating,
 /area/antag_ship/som/hangar)
 "CB" = (
 /turf/open/floor/mainship/sterile/plain,
@@ -5398,20 +5323,6 @@
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
 /turf/open/floor/plating/asteroidwarning,
 /area/antag_ship/clf_base/sleeproom)
-"CZ" = (
-/obj/structure/dropship_piece/two/weapon/rightright{
-	dir = 1;
-	pixel_y = 32
-	},
-/obj/effect/attach_point/weapon/minidropship{
-	equipment_offset_y = 25
-	},
-/turf/closed/wall/mainship/outer/canterbury,
-/area/antag_ship/som/hangar)
-"De" = (
-/obj/structure/largecrate/supply/supplies/plastic,
-/turf/open/floor/plating,
-/area/antag_ship/som/hangar)
 "Df" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -5662,9 +5573,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/hangar)
-"EF" = (
-/turf/closed/wall/mainship/outer/canterbury,
-/area/antag_ship/som/hangar)
 "EG" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/glass{
@@ -5774,10 +5682,6 @@
 	dir = 8
 	},
 /area/antag_ship/vsd/med)
-"Fh" = (
-/obj/item/storage/toolbox/mechanical,
-/turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/hangar)
 "Fi" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -5940,12 +5844,6 @@
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/center/armory)
-"FY" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/antag_ship/som/hangar)
 "Ga" = (
 /obj/structure/largecrate/guns/russian,
 /turf/open/floor/plating/asteroidfloor,
@@ -6596,10 +6494,6 @@
 /obj/machinery/vending/engivend,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
-"Jr" = (
-/obj/structure/table/mainship,
-/turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/hangar)
 "Jt" = (
 /obj/structure/table/mainship,
 /obj/machinery/light/mainship{
@@ -6615,10 +6509,6 @@
 /obj/machinery/washing_machine,
 /turf/open/floor/iron/white/textured,
 /area/antag_ship/pmc_ntf/port/quarters)
-"JA" = (
-/obj/machinery/holopad,
-/turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/hangar)
 "JB" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/icc/hangar/west)
@@ -6858,10 +6748,6 @@
 	},
 /turf/open/floor/wood,
 /area/antag_ship/som/office/commander/field)
-"KW" = (
-/obj/effect/attach_point/crew_weapon/minidropship,
-/turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/hangar)
 "KY" = (
 /obj/structure/cable,
 /obj/machinery/light/mainship{
@@ -6961,10 +6847,6 @@
 	dir = 1
 	},
 /area/antag_ship/vsd/armory)
-"LA" = (
-/obj/machinery/cic_maptable/som_maptable,
-/turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/hangar)
 "LC" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/dark_blue,
@@ -7454,25 +7336,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood/alt_three,
 /area/antag_ship/som/office/commander)
-"NZ" = (
-/obj/structure/dropship_piece/two/weapon/leftleft{
-	dir = 1;
-	pixel_y = 32
-	},
-/obj/effect/attach_point/weapon/minidropship{
-	equipment_offset_y = 25
-	},
-/turf/closed/wall/mainship/outer/canterbury,
-/area/antag_ship/som/hangar)
-"Oa" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/hangar)
 "Oe" = (
 /obj/structure/rack,
 /obj/item/storage/belt/utility/full,
@@ -7524,10 +7387,6 @@
 "Ot" = (
 /turf/closed/shuttle/dropship_dark/backhatch,
 /area/shuttle/transport)
-"Ou" = (
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
-/turf/open/floor/mainship/mono,
-/area/antag_ship/som/hangar)
 "Ov" = (
 /obj/effect/landmark/start/latejoinsom,
 /turf/open/floor/plating/plating_catwalk,
@@ -7609,15 +7468,6 @@
 	},
 /turf/open/floor/grayscale/edge,
 /area/antag_ship/clf_base/bathroom)
-"OT" = (
-/obj/structure/barricade/plasteel{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/mainship/open{
-	id = "minidropship_podlocksom"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/hangar)
 "OU" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -7999,11 +7849,6 @@
 /obj/effect/landmark/start/job/pmc_engineer,
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/fore/restroom)
-"QK" = (
-/turf/closed/shuttle/ert/engines/left{
-	dir = 1
-	},
-/area/antag_ship/som/hangar)
 "QN" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -8207,14 +8052,6 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/antag_ship/clf_base/requisition)
-"RH" = (
-/obj/structure/barricade/plasteel,
-/obj/machinery/door/poddoor/mainship/open{
-	dir = 2;
-	id = "minidropship_podlocksom"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/hangar)
 "RI" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/mainship/mono,
@@ -8239,12 +8076,6 @@
 	},
 /turf/open/floor/plating/ironsand,
 /area/antag_ship/som/mech_bay)
-"RO" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/antag_ship/som/hangar)
 "RP" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 8
@@ -8369,15 +8200,6 @@
 	},
 /turf/open/floor/grayscale/edge/black,
 /area/antag_ship/som/mech_bay)
-"Sz" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/hangar)
 "SB" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
@@ -8504,6 +8326,31 @@
 	dir = 4
 	},
 /area/antag_ship/icc/hangar/center)
+"Tc" = (
+/obj/item/folder/black_random{
+	pixel_y = 12
+	},
+/obj/item/tool/hand_labeler{
+	pixel_y = 13;
+	pixel_x = 12
+	},
+/obj/item/tool/stamp/denied,
+/obj/item/tool/stamp/qm,
+/obj/structure/table/mainship/nometal,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/cell_charger,
+/obj/effect/spawner/random/engineering/powercell{
+	pixel_y = 13
+	},
+/obj/effect/spawner/random/engineering/powercell,
+/obj/item/spare_cord{
+	pixel_y = 1;
+	pixel_x = -3
+	},
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/hangar)
 "Tf" = (
 /obj/effect/turf_decal/tile/transparent/dark_green/anticorner/contrasted,
 /obj/machinery/bioprinter,
@@ -9194,10 +9041,6 @@
 "Wm" = (
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/fore/restroom)
-"Wn" = (
-/obj/machinery/computer,
-/turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/hangar)
 "Wp" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/rock)
@@ -9389,15 +9232,6 @@
 /obj/structure/largecrate/supply/explosives/mines,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/armory)
-"Xt" = (
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/mainship/open{
-	id = "minidropship_podlocksom"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/hangar)
 "Xu" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -11369,13 +11203,13 @@ rS
 bZ
 YD
 YD
-NZ
-QK
 YD
 YD
-EF
-dY
-QK
+YD
+YD
+YD
+YD
+YD
 ZI
 rS
 bb
@@ -11462,15 +11296,15 @@ yw
 yw
 rS
 bZ
-EF
-Ou
-EF
-EF
-Xt
-Xt
-EF
-EF
-EF
+YD
+YD
+YD
+YD
+YD
+YD
+YD
+YD
+YD
 ZI
 rS
 bb
@@ -11557,15 +11391,15 @@ zU
 zU
 rS
 bZ
-Ou
-LA
-AM
-EF
-sf
-zU
-RO
-Sz
-fG
+YD
+YD
+YD
+YD
+YD
+YD
+YD
+YD
+YD
 ZI
 jE
 bb
@@ -11652,15 +11486,15 @@ yw
 yw
 rS
 bZ
-Ou
-Wn
-zU
-kz
+YD
+YD
+YD
+YD
 CA
-KW
-JA
-Fh
-RH
+YD
+YD
+YD
+YD
 ZI
 rS
 El
@@ -11747,15 +11581,15 @@ zU
 zU
 rS
 bZ
-Ou
-Jr
-wB
-EF
-Bt
-hd
-FY
-Oa
-fG
+YD
+YD
+YD
+YD
+YD
+YD
+YD
+YD
+YD
 ZI
 rS
 bb
@@ -11842,15 +11676,15 @@ yw
 yw
 rS
 bZ
-EF
-Ou
-EF
-EF
-OT
-OT
-EF
-EF
-EF
+YD
+YD
+YD
+YD
+YD
+YD
+YD
+YD
+YD
 ZI
 rS
 bb
@@ -11937,15 +11771,15 @@ zU
 zU
 rS
 bZ
-De
-rC
-CZ
-uW
 YD
 YD
-EF
-bd
-uW
+YD
+YD
+YD
+YD
+YD
+YD
+YD
 ZI
 rS
 bb
@@ -12032,9 +11866,9 @@ yw
 pd
 rS
 MI
-lP
 Xu
 vE
+Tc
 rR
 JI
 lP
@@ -12128,8 +11962,8 @@ ji
 cN
 en
 en
-en
-en
+ly
+fS
 en
 en
 en
