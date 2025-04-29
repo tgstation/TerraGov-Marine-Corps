@@ -174,7 +174,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		set_current_node(new_node)
 		change_action(MOVING_TO_NODE, new_node)
 		return
-	if(escorted_atom)
+	if(escorted_atom && (escorted_atom != goal_node)) //goal_node can be our escort target, but otherwise escort targets override goal_node
 		var/target_node = find_closest_node(escorted_atom)
 		if(target_node)
 			set_goal_node(new_goal_node = target_node)
