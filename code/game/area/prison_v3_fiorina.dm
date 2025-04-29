@@ -34,6 +34,7 @@
 /area/fiorina/tumor/fiberbush
 	name = "Fiorina - Fiberbush Infestation"
 	icon_state = "tumor-fiberbush"
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/fiorina/tumor/ship
 	name = "Fiorina - Scavenger Ship 'NSV Renault'"
@@ -43,16 +44,18 @@
 /area/fiorina/tumor/civres
 	name = "Fiorina - Green Block Residences"
 	icon_state = "tumor0"
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/fiorina/tumor/aux_engi
 	name = "Fiorina - Engineering Sector"
 	icon_state = "tumor2"
-	minimap_color = MINIMAP_AREA_ENGI
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 	ceiling = CEILING_UNDERGROUND
 
 /area/fiorina/tumor/servers
 	name = "Fiorina - Research Servers"
 	icon_state = "tumor2"
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 
 /area/fiorina/tumor/ice_lab
 	name = "Fiorina - Cryogenic Research Labs"
@@ -74,6 +77,7 @@
 
 /area/fiorina/lz/near_lzII
 	name = "Fiorina - LZ2 Prison Port"
+	minimap_color = MINIMAP_AREA_ESCAPE
 
 /area/fiorina/lz/console_I
 	name = "Fiorina - LZ1 Control Console"
@@ -147,12 +151,13 @@
 /area/fiorina/station/central_ring
 	name = "Fiorina - Central Ring"
 	icon_state = "station2"
-	minimap_color = MINIMAP_AREA_LIVING_CAVE
+	minimap_color = MINIMAP_AREA_LIVING
 	ceiling = CEILING_METAL
 
 /area/fiorina/station/chapel
 	name = "Fiorina - Chapel"
 	icon_state = "station3"
+	minimap_color = MINIMAP_AREA_LIVING
 	ceiling = CEILING_METAL
 
 /area/fiorina/station/civres_blue
