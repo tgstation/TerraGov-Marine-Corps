@@ -41,12 +41,6 @@
 	light_color = COLOR_VERY_SOFT_YELLOW
 	appearance_flags = KEEP_TOGETHER
 
-	// XANTODO DELETE
-	///The amount of armor penetration the object has when attacking something
-	var/penetration = 0
-	///damage type to deal when this obj is attacking something
-	var/damtype = BRUTE
-
 	///greyscale support
 	greyscale_config
 	greyscale_colors
@@ -123,6 +117,10 @@
 	var/point_blank_range = 0
 	/// List of atoms already hit by that projectile. Will only matter for projectiles capable of passing through multiple atoms
 	var/list/atom/hit_atoms = list()
+	///The amount of armor penetration the object has when attacking something
+	var/penetration = 0
+	///damage type to deal when this obj is attacking something
+	var/damtype = BRUTE
 
 /atom/movable/projectile/Initialize(mapload)
 	. = ..()
@@ -667,14 +665,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /atom/proc/do_projectile_hit(atom/movable/projectile/proj)
 	return
 
-/atom/movable/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
+/obj/projectile_hit(atom/movable/projectile/proj, cardinal_move, uncrossing)
 	if(proj.shot_from == src)
 		return FALSE
-	/**
-	 * XANTODO Fix
 	if(!density && !(obj_flags & PROJ_IGNORE_DENSITY)) //structure is passable
 		return FALSE
-	 */
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
 		return TRUE
 	if((allow_pass_flags & PASS_GLASS) && (proj.ammo.ammo_behavior_flags & AMMO_ENERGY))
@@ -683,8 +678,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return TRUE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
-	//var/hit_chance = coverage //base chance for the projectile to hit the object instead of bypassing it //XANTODO Fix
-	var/hit_chance = 50
+	var/hit_chance = coverage //base chance for the projectile to hit the object instead of bypassing it
 	if(atom_flags & ON_BORDER)
 		if(!(cardinal_move & REVERSE_DIR(dir))) //The bullet will only hit if the barricade and its movement are facing opposite directions.
 			if(!uncrossing)
