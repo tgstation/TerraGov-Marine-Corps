@@ -42,6 +42,6 @@
 	BLACKBOX_LOG_ADMIN_VERB("Atom ProcCall")
 
 	var/returnval
-	returnvall = user.get_callproc_returnval(WrapAdminProcCall(object, proc_name, proc_args), proc_name)
+	returnval = user.get_callproc_returnval(WrapAdminProcCall(object, proc_name, proc_args), proc_name)
 	if(returnval)
 		to_chat(user, returnval, confidential = TRUE)
