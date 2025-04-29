@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - qol: "Status bar (bottom left text thing) now scales with monitor scaling settings"

@@ -1,4 +1,0 @@
-author: "Atropos"
-delete-after: True
-changes:
-  - qol: "Miners now give noise (+message) when theres a shipment ready!"

@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscadd: "Added the mech overboost module which allows the mech to charge in the direction its facing after a windup"

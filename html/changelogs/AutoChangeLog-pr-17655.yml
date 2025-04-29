@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - code_imp: "Swaps all pixel y to pixel z for falling from sky effects"

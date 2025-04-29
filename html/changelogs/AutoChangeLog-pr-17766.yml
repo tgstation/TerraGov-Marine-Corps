@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscdel: "Attack hand alternate on guns no longer toggles safety if there is no underbarrel gun"

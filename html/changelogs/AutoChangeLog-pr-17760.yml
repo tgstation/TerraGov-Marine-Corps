@@ -1,4 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes:
-  - bugfix: "Jellypod landmarks no longer spawn tunnels"
