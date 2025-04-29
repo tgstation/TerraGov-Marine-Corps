@@ -41,7 +41,7 @@
 	admin_ticket_log(object, msg)
 	BLACKBOX_LOG_ADMIN_VERB("Atom ProcCall")
 
-	var/returnval = WrapAdminProcCall(object, proc_name, proc_args) // Pass the lst as an argument list to the proc
-	. = user.get_callproc_returnval(returnval, proc_name)
-	if(.)
-		to_chat(user, ., confidential = TRUE)
+	var/returnval
+	returnvall = user.get_callproc_returnval(WrapAdminProcCall(object, proc_name, proc_args), proc_name)
+	if(returnval)
+		to_chat(user, returnval, confidential = TRUE)
