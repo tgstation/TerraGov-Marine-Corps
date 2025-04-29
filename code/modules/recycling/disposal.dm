@@ -182,6 +182,8 @@
 
 /obj/machinery/disposal/attack_hand_alternate(mob/living/user)
 	. = ..()
+	if(!can_interact(user))
+		return
 	user.visible_message(span_notice("[user] presses the eject button on [src]."),
 	"<span class ='notice'>You press the eject button on [src].</span>")
 	eject()
