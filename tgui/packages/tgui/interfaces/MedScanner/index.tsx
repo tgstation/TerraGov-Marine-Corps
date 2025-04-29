@@ -438,7 +438,7 @@ function PatientLimbs() {
   return (
     <Section title="Limbs Damaged">
       <Stack vertical fill>
-        <Stack height="20px" mb="-8px">
+        <Stack height="20px" mb="-4px">
           <Stack.Item basis="80px" />
           <Stack.Item basis="50px" bold color={COLOR_BRUTE}>
             Brute
@@ -459,7 +459,7 @@ function PatientLimbs() {
             py="2.5px"
             backgroundColor={row_transparency++ % 2 === 0 ? COLOR_ZEBRA_BG : ''}
             style={ROUNDED_BORDER}
-            my="-3px"
+            my="-2px"
           >
             <Stack.Item
               basis="80px"
