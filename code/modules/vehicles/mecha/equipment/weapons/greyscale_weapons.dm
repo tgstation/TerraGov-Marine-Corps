@@ -380,7 +380,7 @@
 	projectiles = 1
 	projectiles_cache = 10
 	projectiles_cache_max = 10
-	projectile_delay = 4 SECONDS
+	projectile_delay = 6 SECONDS
 	variance = 0
 	equip_cooldown = 2 SECONDS
 	weight = 130
@@ -441,10 +441,11 @@
 	projectiles_cache = 20
 	projectiles_cache_max = 20
 	variance = 15
-	projectile_delay = 3 SECONDS
+	projectile_delay = 5 SECONDS
 	slowdown = 0
 	weight = 95
 	rearm_time = 4 SECONDS
+	windup_delay = 0.5 SECONDS
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_RPG
 	hud_icons = list("rocket_he", "rocket_empty")
