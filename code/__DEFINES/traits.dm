@@ -223,6 +223,7 @@
 ///xenos that can tear open holes
 #define TRAIT_CAN_TEAR_HOLE "can_tear_hole"
 
+
 ///Traits for managing AM pass_flags
 #define TRAIT_PASS_LOW_STRUCTURE "pass_low_structure"
 #define TRAIT_PASS_GLASS "pass_glass"
