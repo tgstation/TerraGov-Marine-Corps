@@ -1,6 +1,0 @@
-author: "Redory"
-delete-after: True
-changes:
-  - bugfix: "compact ammo box overlay now shows a full magazine"
-  - imageadd: "couple mini icons for the ammo boxes (mags, grenades, box overlays)"
-  - imagedel: "deleted some old mini-icons (old plasma cell, etc.)"
