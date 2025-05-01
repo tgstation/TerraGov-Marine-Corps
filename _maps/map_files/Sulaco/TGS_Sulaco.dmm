@@ -9908,6 +9908,9 @@
 /obj/machinery/light/mainship/small{
 	dir = 4
 	},
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 4
+	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "bZa" = (
@@ -12276,10 +12279,8 @@
 /turf/open/floor/wood,
 /area/sulaco/marine/chapel)
 "eXT" = (
-/obj/structure/rack,
-/obj/item/assembly/signaler,
-/obj/item/assembly/signaler,
-/obj/item/assembly/signaler,
+/obj/structure/drop_pod_launcher/mech,
+/obj/structure/droppod/nonmob/mech_pod,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "eYn" = (
@@ -17887,8 +17888,9 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/cap_office)
 "lJV" = (
-/obj/structure/rack,
-/obj/item/tool/analyzer,
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 8
+	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "lLP" = (
@@ -19047,6 +19049,11 @@
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/plate,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
+"nnt" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/warning_stripes/thick,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "nnz" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 1;
@@ -21606,6 +21613,10 @@
 /obj/effect/soundplayer/deltaplayer,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/marine/chapel)
+"qAw" = (
+/obj/effect/turf_decal/warning_stripes/thick,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "qAU" = (
 /obj/structure/cable,
 /obj/machinery/door/firedoor/mainship,
@@ -22641,18 +22652,6 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
-"rNH" = (
-/obj/machinery/light/mainship{
-	dir = 8
-	},
-/obj/structure/table/wood/fancy,
-/obj/machinery/computer/security/marinemainship_network{
-	dir = 8
-	},
-/turf/open/floor/mainship/blue{
-	dir = 8
-	},
-/area/space)
 "rOj" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
@@ -24005,8 +24004,9 @@
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
 "tmE" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/radio/highspawn,
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 4
+	},
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "tmP" = (
@@ -26132,7 +26132,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment,
-/mob/living/simple_animal/cat/martin,
+/mob/living/simple_animal/cat/martin/martina,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/cargo/prep)
 "vSd" = (
@@ -26550,13 +26550,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
-"wtI" = (
-/obj/structure/table/wood/fancy,
-/obj/machinery/computer/marine_card,
-/turf/open/floor/mainship/blue{
-	dir = 8
-	},
-/area/space)
 "wwM" = (
 /obj/machinery/light/mainship,
 /turf/open/floor/wood,
@@ -42545,8 +42538,8 @@ wRO
 wRO
 vyQ
 aaa
-rNH
-wtI
+aaa
+aaa
 nzi
 aIz
 aFy
@@ -74163,7 +74156,7 @@ hTF
 fZU
 kZl
 pWS
-pWS
+lJV
 tmE
 kOr
 aTM
@@ -74420,7 +74413,7 @@ ehU
 lSs
 noQ
 pWS
-jYO
+nnt
 eXT
 kOr
 mDu
@@ -74677,8 +74670,8 @@ mWm
 tXc
 jYO
 pWS
-pWS
-uIe
+qAw
+eXT
 kOr
 mDu
 mDu
@@ -74929,7 +74922,7 @@ mDu
 kOr
 kOr
 wnq
-lJV
+uIe
 cSO
 kBx
 cSO

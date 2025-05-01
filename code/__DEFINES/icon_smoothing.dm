@@ -144,3 +144,5 @@
 #define SMOOTH_GROUP_FOAM_WALL S_OBJ(70) //foam walls.
 #define SMOOTH_GROUP_TALL_GRASS S_OBJ(71) //tall grass
 #define SMOOTH_GROUP_GRASS_DECAL S_OBJ(72) //grass decal
+
+#define SMOOTH_GROUP_HOLOGRAM S_OBJ(73) //build holograms
