@@ -15,7 +15,7 @@
 /obj/docking_port/stationary/marine_dropship/minidropship/som
 	name = "SOM Minidropship hangar pad"
 	id = SHUTTLE_SOMTADPOLE
-	roundstart_template = /datum/map_template/shuttle/minidropship/old
+	roundstart_template = /datum/map_template/shuttle/minidropship/som
 
 /obj/docking_port/mobile/marine_dropship/minidropship/som
 	name = "SOM Tadpole"
@@ -79,7 +79,9 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/som
 	name = "SOM Tadpole navigation computer"
 	shuttleId = SHUTTLE_SOMTADPOLE
+	origin_port_id = SHUTTLE_SOMTADPOLE
 	req_one_access = null
+	req_access = list(ACCESS_SOM_TADPOLE)
 	networks = list(SOM_CAMERA_NETWORK)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/clf
