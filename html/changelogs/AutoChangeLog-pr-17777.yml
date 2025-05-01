@@ -1,5 +1,0 @@
-author: "Atropos"
-delete-after: True
-changes:
-  - rscadd: "Added mech drop pods on sulaco and theseus"
-  - rscadd: "Added 2nd mech (builder) computer on theseus"
