@@ -1,0 +1,4 @@
+author: "Joe13413"
+delete-after: True
+changes:
+  - balance: "Moved the thermal generator on research outpost further away from disks"
