@@ -185,7 +185,7 @@
 	if(!can_interact(user))
 		return
 	user.visible_message(span_notice("[user] presses the eject button on [src]."),
-	"<span class ='notice'>You press the eject button on [src].</span>")
+	span_notice("You press the eject button on [src]."))
 	eject()
 
 //Attempt to move while inside
