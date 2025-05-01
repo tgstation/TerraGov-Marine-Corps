@@ -929,6 +929,7 @@
 
 /mob/living/carbon/human/proc/randomize_appearance()
 	gender = pick(MALE, FEMALE)
+	physique = gender
 	name = species.random_name(gender)
 	real_name = name
 	voice = random_tts_voice()
@@ -985,13 +986,13 @@
 				g_facial = 0
 				b_facial = 0
 
-		h_style = random_hair_style(gender)
+		h_style = random_hair_style(physique)
 
 		switch(pick("none", "some"))
 			if("none")
 				f_style = "Shaved"
 			if("some")
-				f_style = random_facial_hair_style(gender)
+				f_style = random_facial_hair_style(physique)
 
 	switch(pick(15;"black", 15;"green", 15;"brown", 15;"blue", 15;"lightblue", 5;"red"))
 		if("black")
