@@ -1241,9 +1241,9 @@
 	hotkey_keys = list("Z")
 
 /datum/keybinding/xeno/wraith_rewind
-	name = "Wraith's Rewind"
+	name = "rewind"
 	full_name = "Wraith: Rewind"
-	description = "Return to the location you were in a few seconds ago."
+	description = "Mark your current position. After a set duration, you will return to that location."
 	keybind_signal = COMSIG_XENOABILITY_WRAITH_REWIND
 	hotkey_keys = list("Q")
 

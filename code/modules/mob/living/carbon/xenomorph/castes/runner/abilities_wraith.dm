@@ -93,7 +93,7 @@
 // ***************************************
 // *********** Wraith's Rewind
 // ***************************************
-#define WRAITH_REWIND_RESET_TIME 4 SECONDS
+#define WRAITH_REWIND_DURATION 4 SECONDS
 #define WRAITH_REWIND_MAX_CHECK 10 // How far we'll go to check for a valid turf.
 #define WRAITH_REWIND_EFFECT_RADIUS 1 // in tiles
 #define WRAITH_REWIND_STAGGER 2 // in stacks
@@ -103,23 +103,24 @@
 	name = "Rewind"
 	action_icon = 'icons/Xeno/actions/wraith.dmi'
 	action_icon_state = "rewind"
-	desc = "Return to the location you were in a few seconds ago."
+	desc = "Mark your current position. After a set duration, you will return to that location."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
 	use_state_flags = ABILITY_USE_BUCKLED
+	action_type = ACTION_TOGGLE
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_WRAITH_REWIND
 	)
 	/// The turf we will rewind to.
 	var/turf/rewind_loc
-	/// Contains the reset timer, after which expiry a new location to rewind to will be set.
-	var/reset_timer
+	/// Contains the rewind timer. Only kept so that we can synchronize visuals in the event of a client's connection.
+	var/rewind_timer
 	/// Holds the image that serves as a unique indicator of where we can rewind to.
 	var/image/indicator_holder = null
 
 /datum/action/ability/xeno_action/wraith_rewind/New(Target)
 	. = ..()
-	desc = "Return to the location you were in [WRAITH_REWIND_RESET_TIME / 10] seconds ago."
+	desc = "Mark your current position. After [WRAITH_REWIND_DURATION / 10] seconds, you will return to that location."
 
 /datum/action/ability/xeno_action/wraith_rewind/give_action(mob/living/L)
 	. = ..()
@@ -131,26 +132,10 @@
 
 /datum/action/ability/xeno_action/wraith_rewind/action_activate()
 	. = ..()
-	if(!.)
+	if(!. || toggled)
 		return
-	if(!wraith_tile_check(rewind_loc))
-		for(var/i in 1 to WRAITH_REWIND_MAX_CHECK)
-			for(var/turf/turf_to_check AS in RANGE_TURFS(i, rewind_loc))
-				if(wraith_tile_check(turf_to_check))
-					rewind_loc = turf_to_check
-					break
-			xeno_owner.balloon_alert(xeno_owner, "Unable to rewind")
-			return
-	if(xeno_owner.buckled)
-		xeno_owner.buckled.unbuckle_mob(xeno_owner, TRUE)
-	var/turf/old_turf = xeno_owner.loc
-	xeno_owner.forceMove(rewind_loc)
-	old_turf.beam(rewind_loc, "nzcrentrs_power", time = 2)
-	wraith_teleport_effect(xeno_owner, rewind_loc, WRAITH_REWIND_EFFECT_RADIUS, WRAITH_REWIND_STAGGER, WRAITH_REWIND_SLOWDOWN)
-	add_cooldown()
-	succeed_activate()
-	GLOB.round_statistics.wraith_rewinds++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_rewinds")
+	rewind_setup()
+	add_cooldown(WRAITH_REWIND_DURATION)
 
 /datum/action/ability/xeno_action/wraith_rewind/clean_action()
 	clean_up()
@@ -168,13 +153,12 @@
 /datum/action/ability/xeno_action/wraith_rewind/proc/clean_up(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_Z_CHANGED, COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED)
+	toggled = FALSE
 	if(rewind_loc)
 		UnregisterSignal(rewind_loc, COMSIG_QDELETING)
 		rewind_loc = null
-	if(reset_timer)
-		deltimer(reset_timer)
-	if(indicator_holder)
-		QDEL_NULL(indicator_holder)
+	if(rewind_timer)
+		deltimer(rewind_timer)
 
 /// Handles any events that happen as a result of the owner's death.
 /datum/action/ability/xeno_action/wraith_rewind/proc/owner_death(datum/source, gibbing)
@@ -187,7 +171,7 @@
 	SIGNAL_HANDLER
 	var/turf/T = get_turf(xeno_owner)
 	if(!wraith_tile_check(T))
-		RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(reattempt_rewind_setup))
+		xeno_owner.balloon_alert(xeno_owner, "Invalid location")
 		return
 	if(rewind_loc != T)
 		if(rewind_loc)
@@ -195,7 +179,8 @@
 		rewind_loc = T
 		RegisterSignal(rewind_loc, COMSIG_QDELETING, PROC_REF(rewind_setup))
 	visuals_setup(rewind_loc)
-	reset_timer = addtimer(CALLBACK(src, PROC_REF(rewind_setup)), WRAITH_REWIND_RESET_TIME, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+	rewind_timer = addtimer(CALLBACK(src, PROC_REF(do_rewind)), WRAITH_REWIND_DURATION, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+	toggled = TRUE
 
 /// Checks if the passed tile is valid for this ability.
 /datum/action/ability/xeno_action/wraith_rewind/proc/wraith_tile_check(turf/T)
@@ -205,26 +190,37 @@
 		return FALSE
 	return TRUE
 
-/// Attempts to setup rewind again.
-/datum/action/ability/xeno_action/wraith_rewind/proc/reattempt_rewind_setup(datum/source, atom/old_loc, movement_dir, forced, list/old_locs)
-	SIGNAL_HANDLER
-	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
-	rewind_setup()
+/// Handles actually doing the ability. Separate proc so we can call only this section of code in other places.
+/datum/action/ability/xeno_action/wraith_rewind/proc/do_rewind()
+	if(!wraith_tile_check(rewind_loc))
+		for(var/i in 1 to WRAITH_REWIND_MAX_CHECK)
+			for(var/turf/turf_to_check AS in RANGE_TURFS(i, rewind_loc))
+				if(wraith_tile_check(turf_to_check))
+					rewind_loc = turf_to_check
+					break
+			xeno_owner.balloon_alert(xeno_owner, "Unable to rewind")
+			return
+	if(xeno_owner.buckled)
+		xeno_owner.buckled.unbuckle_mob(xeno_owner, TRUE)
+	var/turf/old_turf = xeno_owner.loc
+	xeno_owner.forceMove(rewind_loc)
+	old_turf.beam(rewind_loc, "nzcrentrs_power", time = 2)
+	wraith_teleport_effect(xeno_owner, rewind_loc, WRAITH_REWIND_EFFECT_RADIUS, WRAITH_REWIND_STAGGER, WRAITH_REWIND_SLOWDOWN)
+	add_cooldown()
+	succeed_activate()
+	clean_up()
+	GLOB.round_statistics.wraith_rewinds++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_rewinds")
 
 /// Setups visuals for this ability.
 /datum/action/ability/xeno_action/wraith_rewind/proc/visuals_setup(turf/T)
-	if(indicator_holder)
-		indicator_holder.loc = T
-		indicator_holder.dir = xeno_owner.dir
-		if(xeno_owner.client && !(indicator_holder in xeno_owner.client.images))
-			xeno_owner.client.images += indicator_holder
-		return
 	indicator_holder = image(loc = T)
 	indicator_holder.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	SET_PLANE_EXPLICIT(indicator_holder, SEETHROUGH_PLANE, xeno_owner)
-	animate(indicator_holder, appearance = xeno_owner.appearance, alpha = 128, color = COLOR_BLACK, dir = xeno_owner.dir, time = 0, flags = ANIMATION_END_NOW, loop = -1)
-	animate(alpha = 25, time = WRAITH_REWIND_RESET_TIME)
+	animate(indicator_holder, appearance = xeno_owner.appearance, alpha = 128, color = COLOR_BLACK, dir = xeno_owner.dir, time = 0, flags = ANIMATION_END_NOW)
+	animate(alpha = 25, time = WRAITH_REWIND_DURATION)
 	apply_wibbly_filters(indicator_holder)
+	QDEL_NULL_IN(src, indicator_holder, WRAITH_REWIND_DURATION)
 	if(xeno_owner.client)
 		xeno_owner.client.images += indicator_holder
 		RegisterSignal(xeno_owner, COMSIG_MOB_LOGOUT, PROC_REF(client_disconnected))
@@ -242,8 +238,8 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(xeno_owner, COMSIG_MOB_LOGIN)
 	RegisterSignal(xeno_owner, COMSIG_MOB_LOGOUT, PROC_REF(client_disconnected))
-	if(reset_timer) // Wait for the ability's next reset to setup visuals. Gotta keep them synchronized!
-		addtimer(CALLBACK(src, PROC_REF(visuals_setup), rewind_loc), timeleft(reset_timer))
+	if(rewind_timer) // Wait for the ability's next reset to setup visuals. Gotta keep them synchronized!
+		addtimer(CALLBACK(src, PROC_REF(visuals_setup), rewind_loc), timeleft(rewind_timer))
 		return
 	visuals_setup()
 
