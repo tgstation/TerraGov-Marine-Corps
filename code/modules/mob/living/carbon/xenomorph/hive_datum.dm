@@ -81,7 +81,8 @@
 	.["hive_minion_count"] = length(xenos_by_tier[XENO_TIER_MINION])
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	if(hivenumber == XENO_HIVE_CORRUPTED)
+	var/mob/living/carbon/xenomorph/X = user
+	if(X.hivenumber == XENO_HIVE_CORRUPTED)
 		xeno_job = SSjob.GetJobType(/datum/job/xenomorph/green)
 	.["hive_larva_current"] = xeno_job.job_points
 	.["hive_larva_rate"] = SSsilo.current_larva_spawn_rate
