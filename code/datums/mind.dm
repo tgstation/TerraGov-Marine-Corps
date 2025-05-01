@@ -28,7 +28,7 @@
 /datum/mind
 	var/key
 	var/name
-	/// the current owning mob of this mind. can be basicvally anything
+	/// the current owning mob of this mind. can be basically anything
 	var/mob/current
 	var/active = FALSE
 
