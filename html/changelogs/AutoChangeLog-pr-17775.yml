@@ -1,4 +1,0 @@
-author: "Atropos"
-delete-after: True
-changes:
-  - admin: "Added Proccall mode to build mode"

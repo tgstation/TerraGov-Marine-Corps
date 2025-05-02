@@ -12,3 +12,17 @@
   - bugfix: fixed AI goal nodes
   Wisemonster:
   - balance: Big Red's bsg has been moved deeper into engineering.
+2025-05-02:
+  Atropos:
+  - admin: Added Proccall mode to build mode
+  Lumipharon:
+  - qol: Some powerful projectiles such as tank AP rounds have brief screenshake on
+      hit for user feedback
+  TiviPlus:
+  - bugfix: fixed aghost interaction with get larva
+  Zar000:
+  - qol: Destroying catwalks now requires disarm intent instead of harm intent.
+  breadhunt:
+  - bugfix: APC cells show properly again
+  ivanmixo:
+  - bugfix: Sniper stacking works properly now for real

@@ -1,4 +1,0 @@
-author: "Zar000"
-delete-after: True
-changes:
-  - qol: "Destroying catwalks now requires disarm intent instead of harm intent."
