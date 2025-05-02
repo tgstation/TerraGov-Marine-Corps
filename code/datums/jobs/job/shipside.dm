@@ -659,8 +659,8 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	outfit = /datum/outfit/job/requisitions/officer
 	multiple_outfits = TRUE
 	outfits = list(
-		/datum/outfit/job/command/requisitions/officer,
-		/datum/outfit/job/command/requisitions/officer/robot,
+		/datum/outfit/job/requisitions/officer,
+		/datum/outfit/job/requisitions/officer/robot,
 	)
 	exp_requirements = XP_REQ_UNSEASONED
 	exp_type = EXP_TYPE_REGULAR_ALL
