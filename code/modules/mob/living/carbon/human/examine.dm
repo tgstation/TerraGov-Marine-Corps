@@ -584,10 +584,9 @@
 		msg += separator_hr("[span_boldwarning("Admin Slept")]")
 		msg += span_userdanger("This player has been slept by staff. Best to leave them be.\n")
 
-	if(!isadmin(usr))
-		return ..()
-	msg += separator_hr("Admin only stuff") //other admin related stuff bellow this point
-	msg += ("\t>[span_admin("<span class='notice linkify'>[ADMIN_FULLMONTY(src)]</span>")]")
+	if(isadmin(user))
+		msg += separator_hr("Admin only stuff") //other admin related stuff bellow this point
+		msg += ("\t>[span_admin("<span class='notice linkify'>[ADMIN_FULLMONTY(src)]</span>")]")
 
 	msg += "</span>"
 	return list(msg)
