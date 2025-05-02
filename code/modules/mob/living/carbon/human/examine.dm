@@ -587,7 +587,7 @@
 	if(!isadmin(usr))
 		return ..()
 	msg += separator_hr("Admin only stuff") //other admin related stuff here
-	msg += ("\t>[span_admin("[ADMIN_FULLMONTY(src)]")]")
+	msg += ("\t>[span_admin("<span class='notice linkify'>[ADMIN_FULLMONTY(src)]</span>")]")
 
 	msg += "</span>"
 	return list(msg)
