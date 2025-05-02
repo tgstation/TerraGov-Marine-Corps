@@ -122,7 +122,6 @@ GLOBAL_REAL(Master, /datum/controller/master)
 	..()
 	// Tell qdel() to Del() this object.
 	. = QDEL_HINT_HARDDEL_NOW
-	stack_trace("Master controller destroyed")
 
 /datum/controller/master/Shutdown()
 	processing = FALSE

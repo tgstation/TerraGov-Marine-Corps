@@ -56,7 +56,6 @@ GLOBAL_REAL(Failsafe, /datum/controller/failsafe)
 	running = FALSE
 	..()
 	. = QDEL_HINT_HARDDEL_NOW
-	stack_trace("Failsafe controller destroyed")
 
 /datum/controller/failsafe/proc/Loop()
 	while(running)
