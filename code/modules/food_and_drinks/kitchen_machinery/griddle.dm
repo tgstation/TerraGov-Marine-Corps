@@ -27,7 +27,6 @@
 		variant = rand(1,3)
 
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
 		COMSIG_ATOM_EXIT = PROC_REF(on_try_exit),
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
