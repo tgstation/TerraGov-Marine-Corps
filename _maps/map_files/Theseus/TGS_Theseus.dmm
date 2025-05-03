@@ -2125,13 +2125,17 @@
 /turf/open/floor/plating,
 /area/mainship/medical/cmo_office)
 "aNC" = (
-/obj/structure/bed/chair/comfy{
-	dir = 4
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 1
 	},
-/obj/machinery/vending/nanomed,
-/obj/item/robot_parts/robot_suit,
-/obj/item/clothing/under/wedding/bride_white,
-/turf/open/floor/mainship/black{
+/obj/structure/table/mainship/nometal,
+/obj/item/restraints/handcuffs/zip,
+/obj/item/tool/screwdriver,
+/obj/effect/spawner/random/engineering/cable{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
 /area/mainship/living/tankerbunks)
@@ -7765,13 +7769,9 @@
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "daD" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 9
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 9
-	},
-/area/mainship/living/tankerbunks)
+/obj/machinery/computer/dropship_picker,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "daP" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/cic_maptable,
@@ -9106,10 +9106,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/light/mainship{
-	dir = 8
+/obj/machinery/door_control/mainship/mech{
+	dir = 4
 	},
-/obj/machinery/computer/dropship_picker,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "flf" = (
@@ -9644,6 +9643,9 @@
 /area/mainship/hallways/hangar)
 "fWU" = (
 /obj/effect/turf_decal/warning_stripes/thick,
+/obj/machinery/door_control/mainship/mech{
+	dir = 1
+	},
 /turf/open/floor/plating/icefloor/warnplate,
 /area/mainship/living/tankerbunks)
 "fYx" = (
@@ -10649,11 +10651,14 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_umbilical)
 "hvt" = (
-/obj/machinery/power/apc/mainship,
-/obj/structure/cable,
-/obj/item/clothing/head/modular/robot/heavy,
-/turf/open/floor/mainship/black{
-	dir = 1
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 9
+	},
+/obj/machinery/computer/mech_builder{
+	dir = 2
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 9
 	},
 /area/mainship/living/tankerbunks)
 "hvM" = (
@@ -10782,12 +10787,8 @@
 	},
 /area/mainship/squads/req)
 "hFy" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 1
-	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 1
-	},
+/obj/machinery/vending/nanomed,
+/turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "hFz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -12668,7 +12669,8 @@
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 10
 	},
-/obj/machinery/computer/mech_builder,
+/obj/structure/drop_pod_launcher/mech,
+/obj/structure/droppod/nonmob/mech_pod,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
@@ -16091,12 +16093,11 @@
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "qmJ" = (
-/obj/machinery/door_control/mainship/mech{
-	dir = 1
-	},
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
 	},
+/obj/structure/drop_pod_launcher/mech,
+/obj/structure/droppod/nonmob/mech_pod,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
@@ -16129,13 +16130,11 @@
 	},
 /area/mainship/living/port_emb)
 "qoC" = (
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 5
+/obj/machinery/light/mainship{
+	dir = 1
 	},
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 5
-	},
-/area/mainship/living/tankerbunks)
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway)
 "qpI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -16953,6 +16952,9 @@
 "rGG" = (
 /obj/structure/cable,
 /obj/machinery/firealarm{
+	dir = 4
+	},
+/obj/machinery/power/apc/mainship{
 	dir = 4
 	},
 /turf/open/floor/mainship/black{
@@ -18874,13 +18876,17 @@
 /turf/open/floor/plating,
 /area/mainship/medical/operating_room_one)
 "uHk" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/drinks/britcup,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/turf/open/floor/mainship/black{
-	dir = 1
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 5
+	},
+/obj/machinery/computer/mech_builder{
+	dir = 2
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 5
 	},
 /area/mainship/living/tankerbunks)
 "uHQ" = (
@@ -39559,11 +39565,11 @@ vGR
 vGR
 dkd
 xUR
-uyz
+hFy
 tOy
 xUR
 hvt
-daD
+hgh
 hgh
 kQH
 xUR
@@ -39820,7 +39826,7 @@ bEk
 uyz
 xUR
 aNC
-hFy
+sjM
 sjM
 fWU
 xUR
@@ -40077,7 +40083,7 @@ rfQ
 kGl
 xUR
 uHk
-qoC
+bWc
 bWc
 qmJ
 xUR
@@ -40338,7 +40344,7 @@ lQh
 lQh
 qQG
 xUR
-vTn
+qoC
 bqt
 vTn
 vTn
@@ -43935,7 +43941,7 @@ dbC
 blA
 txa
 ofI
-blA
+daD
 blA
 blA
 vDT

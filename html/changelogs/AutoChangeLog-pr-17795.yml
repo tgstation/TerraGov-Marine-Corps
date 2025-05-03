@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Some powerful projectiles such as tank AP rounds have brief screenshake on hit for user feedback"
