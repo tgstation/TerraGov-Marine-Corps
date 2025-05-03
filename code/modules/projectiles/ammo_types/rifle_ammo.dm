@@ -31,7 +31,6 @@
 /datum/ammo/bullet/rifle/hv
 	name = "high-velocity rifle bullet"
 	hud_state = "hivelo"
-	shell_speed = 3.5
 	damage = 20
 	penetration = 20
 	sundering = 0.5
@@ -44,7 +43,6 @@
 /datum/ammo/bullet/rifle/heavy
 	name = "heavy rifle bullet"
 	hud_state = "rifle_heavy"
-	shell_speed = 3.5
 	damage = 30
 	penetration = 10
 	sundering = 1.25
@@ -57,7 +55,6 @@
 /datum/ammo/bullet/rifle/repeater
 	name = "heavy impact rifle bullet"
 	hud_state = "sniper"
-	shell_speed = 3.5
 	damage = 70
 	penetration = 20
 	sundering = 1.25
@@ -183,6 +180,7 @@
 	damage_falloff = 0.5
 	ammo_behavior_flags = AMMO_BALLISTIC
 	accurate_range = 25
+	shell_speed = 4
 	max_range = 40
 	damage = 65
 	penetration = 17.5
