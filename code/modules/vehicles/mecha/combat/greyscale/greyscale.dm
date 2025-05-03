@@ -290,33 +290,37 @@
 /// Does a dash in the specified direction.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/activate_dash(direction)
 	if(!no_footstep_particle)
-		dash_sparks_left.particles.spawning = 5
-		dash_sparks_right.particles.spawning = 5
-		dash_sparks_left.particles.position = list(foot_offsets["left_foot"][dir2text_short(direction)][1], foot_offsets["left_foot"][dir2text_short(direction)][2])
-		dash_sparks_right.particles.position = list(foot_offsets["right_foot"][dir2text_short(direction)][1], foot_offsets["right_foot"][dir2text_short(direction)][2])
-		switch(direction)
-			if(EAST)
-				dash_sparks_left.particles.velocity = list(-12, 0)
-				dash_sparks_right.particles.velocity = list(-12, 0)
-				dash_sparks_right.particles.gravity = list(0, 1)
-			if(WEST)
-				dash_sparks_left.particles.velocity = list(12, 0)
-				dash_sparks_right.particles.velocity = list(12, 0)
-				dash_sparks_right.particles.gravity = list(0, 1)
-			if(NORTH)
-				dash_sparks_left.particles.velocity = list(0, -12)
-				dash_sparks_right.particles.velocity = list(0, -12)
-				dash_sparks_right.particles.gravity = list(0, 0)
-			else
-				dash_sparks_left.particles.velocity = list(0, 12)
-				dash_sparks_right.particles.velocity = list(0, 12)
-				dash_sparks_right.particles.gravity = list(0, 0)
+		add_sparks(direction)
 		addtimer(CALLBACK(src, PROC_REF(remove_sparks)), 0.4 SECONDS)
 	playsound(get_turf(src), 'sound/mecha/weapons/laser_sword.ogg', 70)
 	ASYNC
 		for(var/i=1 to dash_range)
 			step(src, direction)
 			sleep(1)
+
+///adds dashing sparks in the specified direction
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/add_sparks(direction)
+	dash_sparks_left.particles.spawning = 5
+	dash_sparks_right.particles.spawning = 5
+	dash_sparks_left.particles.position = list(foot_offsets["left_foot"][dir2text_short(direction)][1], foot_offsets["left_foot"][dir2text_short(direction)][2])
+	dash_sparks_right.particles.position = list(foot_offsets["right_foot"][dir2text_short(direction)][1], foot_offsets["right_foot"][dir2text_short(direction)][2])
+	switch(direction)
+		if(EAST)
+			dash_sparks_left.particles.velocity = list(-12, 0)
+			dash_sparks_right.particles.velocity = list(-12, 0)
+			dash_sparks_right.particles.gravity = list(0, 1)
+		if(WEST)
+			dash_sparks_left.particles.velocity = list(12, 0)
+			dash_sparks_right.particles.velocity = list(12, 0)
+			dash_sparks_right.particles.gravity = list(0, 1)
+		if(NORTH)
+			dash_sparks_left.particles.velocity = list(0, -12)
+			dash_sparks_right.particles.velocity = list(0, -12)
+			dash_sparks_right.particles.gravity = list(0, 0)
+		else
+			dash_sparks_left.particles.velocity = list(0, 12)
+			dash_sparks_right.particles.velocity = list(0, 12)
+			dash_sparks_right.particles.gravity = list(0, 0)
 
 /// Turns off dash sparks particles.
 /obj/vehicle/sealed/mecha/combat/greyscale/proc/remove_sparks()

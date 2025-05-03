@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "Fix mechs being destroyed while not facing south and without an occupant making overlays layer wrong"

@@ -391,11 +391,6 @@ directive is properly returned.
 			//we were deleted
 			return
 
-/obj/item/update_filters() // tivi todo move this to items
-	. = ..()
-	for(var/datum/action/A AS in actions)
-		A.update_button_icon()
-
 /*
 	Atom Colour Priority System
 	A System that gives finer control over which atom colour to colour the atom with.

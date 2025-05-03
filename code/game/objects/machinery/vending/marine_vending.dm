@@ -793,7 +793,7 @@
 			/obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/martini/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/ar11/full = -1,
-			/obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full = -1,
+			/obj/item/storage/box/visual/magazine/compact/lasrifle/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/sh15/flechette/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/sh15/slug/full = -1,
 			/obj/item/storage/box/visual/magazine/compact/standard_dmr/full = -1,
@@ -995,7 +995,7 @@
 		),
 		"Misc" = list(
 			/obj/item/healthanalyzer = -1,
-			/obj/item/healthanalyzer/gloves = -1,
+			/obj/item/clothing/gloves/healthanalyzer = -1,
 			/obj/item/bodybag/cryobag = -1,
 		),
 		"Valhalla" = list(
@@ -1958,7 +1958,7 @@
 			/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_smg = -1,
 			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavy_cannon = -1,
 			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/minigun = -1,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/grenadelauncher = -1,
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavyrocket = -1,
 			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rpg = -1,
 			/obj/item/mecha_parts/mecha_equipment/laser_sword = -1,
 			/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_spear = -1,

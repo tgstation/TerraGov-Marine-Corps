@@ -1,0 +1,36 @@
+2025-05-01:
+  Atropos:
+  - bugfix: Small table fix on POS
+  - rscadd: Added mech drop pods on sulaco and theseus
+  - rscadd: Added 2nd mech (builder) computer on theseus
+  - bugfix: fixed soap not appearing in loadouts
+  Citruses/Vondiech:
+  - rscadd: Added the new Tadpole Panoptical Model.
+  Joe13413:
+  - balance: Moved the thermal generator on research outpost further away from disks
+  Lumipharon:
+  - bugfix: fixed AI goal nodes
+  Wisemonster:
+  - balance: Big Red's bsg has been moved deeper into engineering.
+2025-05-02:
+  Atropos:
+  - admin: Added Proccall mode to build mode
+  Lumipharon:
+  - qol: Some powerful projectiles such as tank AP rounds have brief screenshake on
+      hit for user feedback
+  TiviPlus:
+  - bugfix: fixed aghost interaction with get larva
+  Zar000:
+  - qol: Destroying catwalks now requires disarm intent instead of harm intent.
+  breadhunt:
+  - bugfix: APC cells show properly again
+  ivanmixo:
+  - bugfix: Sniper stacking works properly now for real
+2025-05-03:
+  Runian:
+  - balance: Engineer, Corpsmen, and Smartgunner now have the option to vend a construction
+      pouch which comes with 25 empty bags, 5 barbed wire, and a shovel each.
+  - bugfix: Synth's vendor correctly states that their construction pouch has materials
+      included.
+  blackdav123:
+  - rscadd: Griddles can now be jumped over and walked on.

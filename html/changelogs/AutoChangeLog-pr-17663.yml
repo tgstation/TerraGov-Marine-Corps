@@ -1,6 +1,0 @@
-author: "Isy232"
-delete-after: True
-changes:
-  - balance: "Xenos Caste swap timer in crash is now only 5 minutes."
-  - balance: "Hivelord xenos requirement 8 => 5 in crash."
-  - balance: "Xenos T3 slots now scale better beyond the 1st in crash, second slot at 6 instead of 7 now."

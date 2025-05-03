@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - rscadd: "Disposal units can be right clicked to eject their contents."

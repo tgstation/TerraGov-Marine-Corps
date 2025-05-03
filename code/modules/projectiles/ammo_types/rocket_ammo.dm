@@ -134,6 +134,7 @@
 /datum/ammo/bullet/isg_apfds/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	proj.proj_max_range -= 2
 	staggerstun(target_mob, proj, max_range = 20, slowdown = 0.5)
+	shake_camera(target_mob, 0.3 SECONDS, 3)
 
 /datum/ammo/bullet/isg_apfds/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	proj.proj_max_range -= 5
@@ -449,6 +450,7 @@
 	staggerstun(target_mob, proj, max_range = 20, stagger = 1 SECONDS, slowdown = 0.5, knockback = 2, hard_size_threshold = 3)
 	drop_nade(target_turf)
 	proj.proj_max_range -= 5
+	shake_camera(target_mob, 0.2 SECONDS, 2)
 
 /datum/ammo/rocket/atgun_shell/apcr/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	proj.proj_max_range -= 5
@@ -534,6 +536,9 @@
 	proj.proj_max_range -= 2
 	if(ishuman(target_mob) && !(target_mob.status_flags & GODMODE) && prob(35))
 		target_mob.gib()
+		return
+	shake_camera(target_mob, 0.3 SECONDS, 3)
+
 
 /datum/ammo/bullet/tank_apfds/on_hit_obj(obj/target_object, obj/projectile/proj)
 	if(!isvehicle(target_object) && !ishitbox(target_object))

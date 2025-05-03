@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - balance: "Crushers charging mech legs will instead target chest if legs have no hp"
