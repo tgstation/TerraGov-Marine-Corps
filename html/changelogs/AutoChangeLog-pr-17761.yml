@@ -1,0 +1,4 @@
+author: "breadhunt"
+delete-after: True
+changes:
+  - rscadd: "SLs are no longer put in a squad if it has another SL in it. SLs can still transfer to whatever squad they want, regardless of whether there's a squaddie in it"
