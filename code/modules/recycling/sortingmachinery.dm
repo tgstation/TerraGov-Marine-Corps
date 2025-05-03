@@ -379,6 +379,9 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 /obj/machinery/disposal/deliveryChute/interact()
 	return
 
+/obj/machinery/disposal/deliveryChute/attack_hand_alternate(mob/living/user)
+	return
+
 /obj/machinery/disposal/deliveryChute/update()
 	return
 

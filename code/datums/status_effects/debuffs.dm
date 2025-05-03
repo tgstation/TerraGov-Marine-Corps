@@ -1018,7 +1018,7 @@
 	if(!_shooter)
 		CRASH("_shooter not passed into sniped status effect.")
 
-	_shooter = shooter
+	shooter = _shooter
 
 	visual_sniped = new
 	visual_sniped.icon_state = "sniper_zoom"

@@ -97,7 +97,6 @@
 ///override for MOVING_TO_ATOM to unregister signals for maintaining distance with our target and attacking
 /datum/ai_behavior/puppet/unregister_action_signals(action_type)
 	if(action_type == MOVING_TO_ATOM)
-		UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 		if(!isnull(atom_to_walk_to))
 			UnregisterSignal(atom_to_walk_to, list(COMSIG_MOB_DEATH, COMSIG_QDELETING))
 	return ..()
