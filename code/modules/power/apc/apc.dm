@@ -169,6 +169,7 @@
 	cell = new_cell
 	if(cell)
 		RegisterSignal(cell, COMSIG_QDELETING, PROC_REF(on_cell_deletion))
+	update_appearance(UPDATE_ICON)
 
 
 ///Called by the deletion of the referenced powercell.

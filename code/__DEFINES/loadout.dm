@@ -752,6 +752,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/tweezers = 1,
 		/obj/item/cell/high = 1,
 		/obj/item/circuitboard/apc = 1,
+		/obj/item/tool/soap = 1,
 	)
 ))
 
