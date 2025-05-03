@@ -149,12 +149,6 @@
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(melee_interact))
 	return ..()
 
-/datum/ai_behavior/human/unregister_action_signals(action_type)
-	switch(action_type)
-		if(MOVING_TO_ATOM)
-			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
-	return ..()
-
 /datum/ai_behavior/human/change_action(next_action, atom/next_target, list/special_distance_to_maintain)
 	. = ..()
 	if(!.)

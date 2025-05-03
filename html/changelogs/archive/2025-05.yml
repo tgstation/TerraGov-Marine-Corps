@@ -1,0 +1,14 @@
+2025-05-01:
+  Atropos:
+  - bugfix: Small table fix on POS
+  - rscadd: Added mech drop pods on sulaco and theseus
+  - rscadd: Added 2nd mech (builder) computer on theseus
+  - bugfix: fixed soap not appearing in loadouts
+  Citruses/Vondiech:
+  - rscadd: Added the new Tadpole Panoptical Model.
+  Joe13413:
+  - balance: Moved the thermal generator on research outpost further away from disks
+  Lumipharon:
+  - bugfix: fixed AI goal nodes
+  Wisemonster:
+  - balance: Big Red's bsg has been moved deeper into engineering.
