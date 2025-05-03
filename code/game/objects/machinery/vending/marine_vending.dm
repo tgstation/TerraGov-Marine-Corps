@@ -995,7 +995,7 @@
 		),
 		"Misc" = list(
 			/obj/item/healthanalyzer = -1,
-			/obj/item/healthanalyzer/gloves = -1,
+			/obj/item/clothing/gloves/healthanalyzer = -1,
 			/obj/item/bodybag/cryobag = -1,
 		),
 		"Valhalla" = list(
