@@ -26,3 +26,11 @@
   - bugfix: APC cells show properly again
   ivanmixo:
   - bugfix: Sniper stacking works properly now for real
+2025-05-03:
+  Runian:
+  - balance: Engineer, Corpsmen, and Smartgunner now have the option to vend a construction
+      pouch which comes with 25 empty bags, 5 barbed wire, and a shovel each.
+  - bugfix: Synth's vendor correctly states that their construction pouch has materials
+      included.
+  blackdav123:
+  - rscadd: Griddles can now be jumped over and walked on.
