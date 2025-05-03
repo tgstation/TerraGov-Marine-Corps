@@ -42,6 +42,10 @@
 /obj/effect/forcefield/allow_bullet_travel,
 /turf/closed/wall/r_wall/unmeltable,
 /area/bigredv2/caves/rock)
+"es" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/filtration_plant)
 "ex" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/filtration_plant)
@@ -441,6 +445,10 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"AM" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall/unmeltable,
+/area/bigredv2/outside/filtration_plant)
 "Bc" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/ai_node,
@@ -657,6 +665,10 @@
 	dir = 5
 	},
 /area/bigredv2/outside/se)
+"Je" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/filtration_plant)
 "Jj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
@@ -1003,9 +1015,9 @@
 /area/bigredv2/outside/filtration_plant)
 
 (1,1,1) = {"
-Yx
+Je
 rJ
-Yx
+Je
 Yx
 Yx
 Yx
@@ -1018,7 +1030,7 @@ MY
 Au
 Au
 Au
-Au
+AM
 zH
 zH
 zH
@@ -1069,7 +1081,7 @@ kw
 Dn
 Wo
 pl
-Au
+AM
 Au
 Au
 Au
@@ -1111,15 +1123,15 @@ xf
 QN
 "}
 (5,1,1) = {"
-Yx
+Je
 rJ
+Je
 Yx
 Yx
 Yx
 Yx
 Yx
-Yx
-Yx
+Je
 Wj
 YH
 Dn
@@ -1249,7 +1261,7 @@ QN
 md
 oH
 jL
-Yx
+Je
 qs
 Dn
 WP
@@ -1261,7 +1273,7 @@ Dn
 Dn
 pl
 us
-ex
+es
 Fs
 Bc
 xf
@@ -1416,7 +1428,7 @@ Yx
 Yx
 Uv
 Yx
-Yx
+Je
 sr
 ov
 sr
