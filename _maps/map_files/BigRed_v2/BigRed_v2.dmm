@@ -8485,9 +8485,6 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "ebM" = (
-/obj/machinery/power/geothermal/tbg{
-	dir = 4
-	},
 /obj/structure/cable,
 /turf/open/shuttle/escapepod/plain,
 /area/bigredv2/outside/engineering)
@@ -10537,6 +10534,13 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"iEW" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "iFp" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -12357,9 +12361,6 @@
 /area/bigredv2/outside/nw)
 "mzf" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/tbg_turbine/cold{
-	dir = 8
-	},
 /obj/structure/cable,
 /turf/open/shuttle/escapepod/plain,
 /area/bigredv2/outside/engineering)
@@ -15993,6 +15994,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/cavetodirt,
 /area/bigredv2/caves/northeast/garbledradio)
+"uFc" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal/tbg{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "uFe" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -17454,11 +17462,11 @@
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "xLL" = (
 /obj/structure/cable,
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 4
+/obj/machinery/power/tbg_turbine/cold{
+	dir = 8
 	},
-/turf/open/shuttle/escapepod/plain,
-/area/bigredv2/outside/engineering)
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "xLT" = (
 /obj/machinery/light{
 	dir = 4
@@ -31799,7 +31807,7 @@ aaa
 aaa
 aaa
 aaa
-xLL
+ebM
 iRv
 nWR
 iRv
@@ -40487,7 +40495,7 @@ bkv
 boX
 bpo
 xTt
-bqp
+xLL
 uWz
 wOO
 nRv
@@ -40704,7 +40712,7 @@ bou
 bkE
 fOe
 liH
-bqp
+uFc
 liH
 lfR
 wOO
@@ -40921,7 +40929,7 @@ pOu
 bkE
 bpo
 wKN
-bqp
+iEW
 uWz
 bkE
 brZ
@@ -42471,8 +42479,8 @@ jNI
 knI
 bxa
 bOK
-wyH
 aVC
+wyH
 kPI
 aVC
 vNN

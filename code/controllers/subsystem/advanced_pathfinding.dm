@@ -172,10 +172,10 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 	rustg_add_node_astar(json_encode(serialize()))
 
 /obj/effect/ai_node/goal/Destroy()
-	. = ..()
 	GLOB.goal_nodes -= faction
 	if(creator)
 		creator.client.images -= goal_image
+	return ..()
 
 ///Null creator to prevent harddel
 /obj/effect/ai_node/goal/proc/clean_creator()

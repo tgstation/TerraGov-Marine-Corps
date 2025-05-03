@@ -28,8 +28,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/obj/effect/ai_node/current_node
 	///The node goal of this ai
 	var/obj/effect/ai_node/goal_node
-	///Whether the goal node is specifically for an escort target
-	var/escort_goal = FALSE
 	///A list of nodes the ai should go to in order to go to goal_node
 	var/list/obj/effect/ai_node/goal_nodes
 	///A list of turfs the ai should go in order to get to atom_to_walk_to
@@ -115,8 +113,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	cleanup_current_action()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET)
-	if(goal_node)
-		UnregisterSignal(goal_node, COMSIG_QDELETING)
 
 ///Cleanup old state vars, start the movement towards our new target
 /datum/ai_behavior/proc/change_action(next_action, atom/next_target, list/special_distance_to_maintain)
@@ -167,14 +163,14 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/look_for_next_node(ignore_current_node = TRUE, should_reset_goal_nodes = FALSE)
 	if(should_reset_goal_nodes)
 		set_current_node(null)
-	if(ignore_current_node || !current_node) //We don't have a current node, let's find the closest in our LOS
+	if(ignore_current_node || QDELETED(current_node)) //We don't have a current node, let's find the closest in our LOS
 		var/new_node = find_closest_node(mob_parent, current_node)
 		if(!new_node)
 			return
 		set_current_node(new_node)
 		change_action(MOVING_TO_NODE, new_node)
 		return
-	if(escorted_atom)
+	if(escorted_atom && (escorted_atom != goal_node)) //goal_node can be our escort target, but otherwise escort targets override goal_node
 		var/target_node = find_closest_node(escorted_atom)
 		if(target_node)
 			set_goal_node(new_goal_node = target_node)
@@ -214,7 +210,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(current_node)
 		UnregisterSignal(current_node, COMSIG_QDELETING)
 	if(next_node)
-		RegisterSignal(current_node, COMSIG_QDELETING, PROC_REF(look_for_next_node))
+		RegisterSignal(current_node, COMSIG_QDELETING, PROC_REF(unset_target), TRUE)
 	current_node = next_node
 
 ///Signal handler when the ai is blocked by an obstacle
@@ -279,31 +275,17 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	return
 
 ///Set the goal node
-/datum/ai_behavior/proc/set_goal_node(datum/source, obj/effect/ai_node/new_goal_node, is_escort_goal = FALSE)
+/datum/ai_behavior/proc/set_goal_node(datum/source, obj/effect/ai_node/new_goal_node)
 	SIGNAL_HANDLER
 	if(!new_goal_node)
 		return
 	if(new_goal_node.faction != mob_parent.faction)
 		return
 	if(goal_node)
-		UnregisterSignal(goal_node, COMSIG_QDELETING)
-		clean_goal_node()
+		do_unset_target(goal_node)
 	goal_node = new_goal_node
-	goal_nodes = null
-	RegisterSignal(goal_node, COMSIG_QDELETING, PROC_REF(clean_goal_node))
-	escort_goal = is_escort_goal
+	RegisterSignal(goal_node, COMSIG_QDELETING, PROC_REF(unset_target), TRUE)
 	return TRUE
-
-///Clean the goal node
-/datum/ai_behavior/proc/clean_goal_node()
-	SIGNAL_HANDLER
-	goal_node = null
-	goal_nodes = null
-	escort_goal = FALSE
-	if(atom_to_walk_to == goal_node)
-		unset_target(atom_to_walk_to)
-	if(current_action == MOVING_TO_NODE)
-		look_for_next_node(should_reset_goal_nodes = TRUE)
 
 /*
 Registering and unregistering signals related to a particular current_action
@@ -321,14 +303,10 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(finished_path_move))
 			anti_stuck_timer = addtimer(CALLBACK(src, PROC_REF(look_for_next_node), TRUE, TRUE), 10 SECONDS, TIMER_STOPPABLE)
 
+///Cleans up sigs for the current action
 /datum/ai_behavior/proc/unregister_action_signals(action_type)
-	switch(action_type)
-		if(MOVING_TO_NODE)
-			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
-			deltimer(anti_stuck_timer)
-		if(FOLLOWING_PATH)
-			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
-			deltimer(anti_stuck_timer)
+	UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
+	deltimer(anti_stuck_timer)
 
 /// Move the ai and schedule the next move
 /datum/ai_behavior/proc/scheduled_move()
@@ -434,6 +412,8 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(!length(goal_list))
 		return
 	for(var/atom/candidate AS in goal_list)
+		if(QDELETED(candidate))
+			continue
 		if(candidate.z != mob_parent.z)
 			continue
 		return candidate
@@ -470,8 +450,6 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	UnregisterSignal(escorted_atom, list(COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED))
 	escorted_atom = null
 	base_action = initial(base_action)
-	if(escort_goal)
-		clean_goal_node()
 
 ///Set the target distance to be normal (initial) or very low (almost passive)
 /datum/ai_behavior/proc/set_agressivity(datum/source, should_be_agressive = TRUE)
@@ -519,6 +497,13 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 ///Unsets a target from any target vars its in
 /datum/ai_behavior/proc/do_unset_target(atom/old_target, need_new_state = TRUE, need_new_escort = TRUE)
 	UnregisterSignal(old_target, list(COMSIG_QDELETING, COMSIG_MOB_DEATH, COMSIG_OBJ_DECONSTRUCT, COMSIG_MOVABLE_MOVED, COMSIG_MOB_STAT_CHANGED, COMSIG_MOVABLE_Z_CHANGED))
+	if(goal_node == old_target)
+		goal_node = null
+		goal_nodes = null
+		if(current_action == MOVING_TO_NODE && need_new_state)
+			look_for_next_node(should_reset_goal_nodes = TRUE)
+	if(current_node == old_target)
+		look_for_next_node()
 	if(escorted_atom == old_target)
 		if(!need_new_escort || !set_escort())
 			clean_escorted_atom()
@@ -530,3 +515,4 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		atom_to_walk_to = null
 		if(current_action == MOVING_TO_ATOM && need_new_state)
 			look_for_new_state()
+
