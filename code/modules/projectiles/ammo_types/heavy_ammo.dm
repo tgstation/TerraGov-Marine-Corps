@@ -121,6 +121,7 @@
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 4 SECONDS, slowdown = 2, knockback = 2)
+	shake_camera(target_mob, 0.2 SECONDS, 2)
 
 /datum/ammo/bullet/railgun/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	proj.proj_max_range -= 3
@@ -147,6 +148,7 @@
 
 /datum/ammo/bullet/railgun/smart/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, stagger = 3 SECONDS, slowdown = 3)
+	shake_camera(target_mob, 0.2 SECONDS, 1)
 
 /datum/ammo/bullet/apfsds
 	name = "\improper APFSDS round"
@@ -160,6 +162,9 @@
 	sundering = 0
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.85
+
+/datum/ammo/bullet/apfsds/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	shake_camera(target_mob, 0.2 SECONDS, 2)
 
 /datum/ammo/bullet/apfsds/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	if(ishitbox(target_obj) || ismecha(target_obj) || isarmoredvehicle(target_obj))

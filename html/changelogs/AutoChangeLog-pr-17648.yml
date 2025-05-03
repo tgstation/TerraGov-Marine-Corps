@@ -1,4 +1,0 @@
-author: "Cerrik"
-delete-after: True
-changes:
-  - bugfix: "Adjusted the base class of the SAA revolver speedloader"

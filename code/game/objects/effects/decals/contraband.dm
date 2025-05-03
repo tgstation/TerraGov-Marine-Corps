@@ -31,12 +31,26 @@
 	icon = 'icons/obj/contraband.dmi'
 	icon_state = "poster_map"
 	anchored = TRUE
-	var/serial_number	//Will hold the value of src.loc if nobody initialises it
+	base_icon = 'icons/obj/contraband.dmi'
+
+	var/serial_number
 	var/ruined = 0
 
-/obj/structure/sign/poster/Initialize(mapload)
+
+/obj/structure/sign/poster/Initialize(mapload, serial)
 	. = ..()
-	icon = 'icons/obj/contraband.dmi'
+
+	serial_number = serial
+
+	if(!serial_number)
+		serial_number = rand(1, length(GLOB.poster_designs))	//This is for the mappers that want individual posters without having to use rolled posters.
+
+	var/designtype = GLOB.poster_designs[serial_number]
+	var/datum/poster/design = new designtype
+	name += " - [design.name]"
+	desc += " [design.desc]"
+	icon_state = design.icon_state // poster[serial_number]
+
 	if(autoplace)
 		return
 	switch(dir)
@@ -49,19 +63,6 @@
 		if(WEST)
 			pixel_x = -30
 
-/obj/structure/sign/poster/New(serial)
-
-	serial_number = serial
-
-	if(serial_number == loc)
-		serial_number = rand(1, length(GLOB.poster_designs))	//This is for the mappers that want individual posters without having to use rolled posters.
-
-	var/designtype = GLOB.poster_designs[serial_number]
-	var/datum/poster/design=new designtype
-	name += " - [design.name]"
-	desc += " [design.desc]"
-	icon_state = design.icon_state // poster[serial_number]
-	..()
 
 /obj/structure/sign/poster/attackby(obj/item/I, mob/user, params)
 	. = ..()

@@ -63,6 +63,8 @@
 	. = ..()
 	if(!.)
 		return
+	if(current_firer.incapacitated(TRUE))
+		return FALSE
 	if(HAS_TRAIT(chassis, TRAIT_MELEE_CORE) && !CHECK_BITFIELD(range, MECHA_MELEE))
 		to_chat(chassis.occupants, span_warning("Error -- Melee Core active."))
 		return FALSE

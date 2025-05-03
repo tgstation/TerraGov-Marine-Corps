@@ -16,9 +16,11 @@
 	end_overlay = "dust_med"
 
 	target_trait = ZTRAIT_SANDSTORM
+	play_screen_indicator = TRUE
 
 	probability = 40
 	repeatable = FALSE
+	use_glow = FALSE
 
 /datum/weather/ash_storm/sand/weather_act(mob/living/L)
 	if(L.stat == DEAD)
@@ -43,6 +45,7 @@
 	end_overlay = "dust_low"
 
 	aesthetic = TRUE
+	play_screen_indicator = FALSE
 
 	probability = 60
 	repeatable = TRUE

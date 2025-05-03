@@ -6,15 +6,11 @@
 
 Manager for buildmode modes. Contains logic to manage switching between each mode, and presenting a suitable user interface.
 
-### Effects
-
-Special graphics used by buildmode modes for user interface purposes.
-
 ### Buildmode Mode
 
 Implementer of buildmode behaviors.
 
-Existing varieties:
+Existing modes:
 
 + Basic
 
@@ -120,23 +116,23 @@ Existing varieties:
 
 	**Description**:
 
-	Modifies and creates areas.
+	Expands existing areas and allows you to create new areas.
 
-	The active area will be highlighted in yellow.
+	The active area will be highlighted in blue.
 
 	**Controls**:
 
 	+ *Right click the mode selector*:
 
-		Create a new area, and make it active.
+		Select an area type to create, choosing its name as well.
 
 	+ *Right click an existing area*:
 
-		Make the clicked area active.
+		Select the clicked area.
 
 	+ *Left click a turf*:
 
-		When an area is active, adds the turf to the active area.
+		Select corners to fill with area
 
 + Var Edit
 

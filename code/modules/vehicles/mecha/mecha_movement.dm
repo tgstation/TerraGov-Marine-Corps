@@ -39,6 +39,9 @@
 		return FALSE
 	if(!direction)
 		return FALSE
+	if(ismovable(loc)) //Mech is inside an object, tell it we moved
+		var/atom/loc_atom = loc
+		return loc_atom.relaymove(src, direction)
 	if(internal_tank?.connected_port)
 		if(TIMER_COOLDOWN_FINISHED(src, COOLDOWN_MECHA_MESSAGE))
 			to_chat(occupants, "[icon2html(src, occupants)][span_warning("Unable to move while connected to the air system port!")]")
@@ -108,7 +111,8 @@
 
 	set_glide_size(DELAY_TO_GLIDE_SIZE(move_delay))
 	//Otherwise just walk normally
-	. = step(src, direction, dir)
+	. = try_step_multiz(direction)
+
 	if(phasing)
 		use_power(phasing_energy_drain)
 	if(strafe)

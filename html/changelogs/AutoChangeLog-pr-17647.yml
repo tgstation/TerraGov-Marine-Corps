@@ -1,4 +1,0 @@
-author: "Isy232"
-delete-after: True
-changes:
-  - rscdel: "Command tablets no longer check access for viewing."

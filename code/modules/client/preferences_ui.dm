@@ -128,6 +128,7 @@
 			data["volume_tts"] = volume_tts
 			data["radio_tts_flags"] = radio_tts_flags
 			data["accessible_tgui_themes"] = accessible_tgui_themes
+			data["allow_being_shown_health_scan"] = allow_being_shown_health_scan
 			data["tgui_fancy"] = tgui_fancy
 			data["tgui_lock"] = tgui_lock
 			data["ui_scale"] = ui_scale
@@ -139,6 +140,7 @@
 			data["max_chat_length"] = max_chat_length
 			data["see_chat_non_mob"] = see_chat_non_mob
 			data["see_rc_emotes"] = see_rc_emotes
+			data["toggle_bump_attacking"] = toggle_bump_attacking
 			data["mute_others_combat_messages"] = mute_others_combat_messages
 			data["mute_self_combat_messages"] = mute_self_combat_messages
 			data["show_xeno_rank"] = show_xeno_rank
@@ -694,6 +696,9 @@
 		if("accessible_tgui_themes")
 			accessible_tgui_themes = !accessible_tgui_themes
 
+		if("allow_being_shown_health_scan")
+			allow_being_shown_health_scan = !allow_being_shown_health_scan
+
 		if("tgui_fancy")
 			tgui_fancy = !tgui_fancy
 
@@ -736,6 +741,9 @@
 
 		if("see_rc_emotes")
 			see_rc_emotes = !see_rc_emotes
+
+		if("toggle_bump_attacking")
+			toggle_bump_attacking = !toggle_bump_attacking
 
 		if("mute_self_combat_messages")
 			mute_self_combat_messages = !mute_self_combat_messages
@@ -842,7 +850,7 @@
 				group.build_planes_offset(my_hud, my_hud.current_plane_offset)
 
 		if("multiz_performance")
-			multiz_performance = WRAP(multiz_performance + 1, MAX_EXPECTED_Z_DEPTH-1, MULTIZ_PERFORMANCE_DISABLE + 1)
+			multiz_performance = WRAP(multiz_performance + 1, MULTIZ_PERFORMANCE_DISABLE, MAX_EXPECTED_Z_DEPTH)
 			var/datum/hud/my_hud = parent.mob?.hud_used
 			if(!my_hud)
 				return

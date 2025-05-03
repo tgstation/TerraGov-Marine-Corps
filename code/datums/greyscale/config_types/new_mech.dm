@@ -19,7 +19,7 @@
 /datum/greyscale_config/mech_light/visor
 	json_config = 'code/datums/greyscale/json_configs/new_mech_visor.json'
 */
-//MEDIUM // tivi todo check the color ids are set right
+//MEDIUM
 /datum/greyscale_config/mech_medium
 	icon_file = 'icons/mecha/mech_medium.dmi'
 	json_config = 'code/datums/greyscale/json_configs/new_mech_arm.json'
