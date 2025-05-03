@@ -149,6 +149,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(subtle_message, R_FUN|R_MENTOR, "Subtle Message", AD
 	else
 		msg = sanitize(msg)
 
+	M.balloon_alert(M, "You hear a voice")
 	to_chat(M, "<b>You hear a voice in your head... [msg]</b>")
 
 	admin_ticket_log(M, "[key_name_admin(user)] used Subtle Message: [sanitize(msg)]")

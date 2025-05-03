@@ -123,12 +123,9 @@
 	},
 /area/outpost/hallway/south_east)
 "aE" = (
-/obj/structure/cable,
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/outpost/engineering/engine)
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/tile/dark2,
+/area/outpost/cargo/engineering)
 "aF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -306,12 +303,11 @@
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/dormitories)
 "bA" = (
-/obj/structure/cable,
 /obj/machinery/power/geothermal/tbg{
 	dir = 4
 	},
-/turf/open/floor/tile/dark,
-/area/outpost/engineering/engine)
+/turf/open/floor/tile/dark2,
+/area/outpost/cargo/engineering)
 "bC" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark/purple2,
@@ -1373,7 +1369,6 @@
 	},
 /area/outpost/science/xenobiology)
 "gH" = (
-/obj/structure/largecrate/random/barrel,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -1925,8 +1920,10 @@
 	},
 /area/outpost/arrivals)
 "jp" = (
-/obj/structure/rack,
 /obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/power/tbg_turbine/cold{
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,
@@ -5837,12 +5834,6 @@
 	dir = 6
 	},
 /area/outpost/caves/north_west)
-"Bw" = (
-/obj/structure/reagent_dispensers/fueltank/barrel,
-/turf/open/floor/tile/dark/brown2{
-	dir = 5
-	},
-/area/outpost/cargo/engineering)
 "Bx" = (
 /obj/structure/closet/secure_closet/brig,
 /turf/open/floor/tile/dark/red2{
@@ -7858,13 +7849,10 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "Ls" = (
-/obj/structure/reagent_dispensers/fueltank/barrel,
-/obj/machinery/light{
-	dir = 8
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 4
 	},
-/turf/open/floor/tile/dark/brown2{
-	dir = 9
-	},
+/turf/open/floor/tile/dark2,
 /area/outpost/cargo/engineering)
 "Lv" = (
 /obj/effect/landmark/weed_node,
@@ -8613,7 +8601,7 @@
 	},
 /area/outpost/hallway/south_cent)
 "OE" = (
-/obj/structure/largecrate/random,
+/obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
@@ -8793,7 +8781,7 @@
 	},
 /area/outpost/lz1)
 "PA" = (
-/obj/structure/largecrate/random/barrel,
+/obj/structure/closet/toolcloset,
 /turf/open/floor/tile/dark/brown2{
 	dir = 9
 	},
@@ -8803,12 +8791,10 @@
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
 "PG" = (
-/obj/structure/cable,
-/obj/machinery/power/tbg_turbine/cold{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
-/area/outpost/engineering/engine)
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/tile/dark2,
+/area/outpost/cargo/engineering)
 "PJ" = (
 /obj/structure/table,
 /obj/machinery/light/small{
@@ -10839,7 +10825,6 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/arrivals)
 "Zm" = (
-/obj/structure/largecrate/random/case,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -24483,7 +24468,7 @@ Cy
 DX
 MG
 MG
-PG
+fj
 MG
 ih
 MU
@@ -24615,7 +24600,7 @@ Cy
 DX
 QK
 fj
-bA
+fj
 fj
 yj
 Cn
@@ -24747,7 +24732,7 @@ DX
 DX
 MG
 MG
-aE
+fj
 MG
 AC
 MU
@@ -26707,10 +26692,10 @@ sN
 yW
 yW
 ys
-Ls
+Ob
 OE
-PA
-OE
+Lz
+Cf
 jp
 ys
 hK
@@ -26841,9 +26826,9 @@ yW
 ys
 nV
 Zm
-Bw
+nV
 Zm
-Mk
+bA
 ys
 ys
 ZQ
@@ -26973,9 +26958,9 @@ sN
 gf
 gA
 gA
+aE
 gA
-gA
-gA
+Ls
 ys
 Ob
 Bt
@@ -27238,8 +27223,8 @@ ys
 PA
 Cf
 Lz
-OE
-Mk
+Cf
+PG
 ys
 Ya
 nA
@@ -27367,7 +27352,7 @@ XV
 ZS
 sN
 ys
-Bw
+Ya
 Zm
 gH
 Zm

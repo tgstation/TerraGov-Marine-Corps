@@ -8,7 +8,7 @@
 
 /obj/machinery/disposal
 	name = "disposal unit"
-	desc = "A pneumatic waste disposal unit."
+	desc = "A pneumatic waste disposal unit. Right click to eject."
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "disposal"
 	anchored = TRUE
@@ -179,6 +179,14 @@
 	target.forceMove(src)
 	flush()
 	update()
+
+/obj/machinery/disposal/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(!can_interact(user))
+		return
+	user.visible_message(span_notice("[user] presses the eject button on [src]."),
+	span_notice("You press the eject button on [src]."))
+	eject()
 
 //Attempt to move while inside
 /obj/machinery/disposal/relaymove(mob/user)
