@@ -363,7 +363,7 @@ const Pack = (props) => {
 
   return !!contains && contains.constructor === Object ? (
     <Collapsible
-      color="gray"
+      color="transparent"
       title={<PackName cost={cost} name={name} pl={0} amount={amount} />}
     >
       <b>{item_notes ? 'Notes: ' : null} </b> {item_notes}
