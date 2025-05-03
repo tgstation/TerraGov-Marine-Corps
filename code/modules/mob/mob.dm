@@ -354,7 +354,6 @@
 	. = ..()
 	. += "---"
 	VV_DROPDOWN_OPTION(VV_HK_PLAYER_PANEL, "Show player panel")
-	VV_DROPDOWN_OPTION(VV_HK_BUILDMODE, "Toggle Buildmode")
 	VV_DROPDOWN_OPTION(VV_HK_VIEW_PLANES, "View/Edit Planes")
 
 /mob/vv_do_topic(list/href_list)
@@ -365,11 +364,6 @@
 
 	if(href_list[VV_HK_PLAYER_PANEL])
 		return SSadmin_verbs.dynamic_invoke_verb(usr, /datum/admin_verb/show_player_panel, src)
-
-	if(href_list[VV_HK_BUILDMODE])
-		if(!check_rights(R_SPAWN))
-			return
-		togglebuildmode(src)
 
 	if(href_list[VV_HK_VIEW_PLANES])
 		if(!check_rights(R_DEBUG))
