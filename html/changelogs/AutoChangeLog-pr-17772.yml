@@ -1,0 +1,5 @@
+author: "Looking4bros"
+delete-after: True
+changes:
+  - qol: "Health scanner reagents have some semblance of order"
+  - bugfix: "Lipozine OD works"
