@@ -180,9 +180,12 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	var/list/data = list(
 		"patient" = patient.name,
 		"dead" = (patient.stat == DEAD || HAS_TRAIT(patient, TRAIT_FAKEDEATH)),
+		"dead_timer" = patient.dead_ticks,
+		"dead_dnr" = TIME_BEFORE_DNR,
 		"health" = patient.health,
 		"max_health" = patient.maxHealth,
 		"crit_threshold" = patient.get_crit_threshold(),
+		"synth_crit_threshold" = SYNTHETIC_CRIT_THRESHOLD,
 		"dead_threshold" = patient.get_death_threshold(),
 		"total_brute" = round(patient.getBruteLoss()),
 		"total_burn" = round(patient.getFireLoss()),
@@ -357,7 +360,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		data["revivable_string"] = "Ready to [organic_patient ? "defibrillate" : "reboot"]" // Ternary for defibrillate or reboot for some IC flavor
 		data["revivable_boolean"] = TRUE
 	else
-		data["revivable_string"] = "Not ready to [organic_patient ? "defibrillate" : "reboot"] - repair damage above [patient.get_death_threshold() / patient.maxHealth * 100 - (organic_patient ? (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) : 0)]%"
+		data["revivable_string"] = "Not ready to [organic_patient ? "defibrillate" : "reboot"] - repair [patient.get_death_threshold() - patient.health - patient.getOxyLoss() - (organic_patient ? (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) : 0)] more damage"
 		data["revivable_boolean"] = FALSE
 
 	var/list/advice = list()

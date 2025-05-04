@@ -64,6 +64,7 @@ export type MedScannerData = {
   health: number;
   max_health: number;
   crit_threshold: number;
+  synth_crit_threshold: number;
   dead_threshold: number;
   total_brute: number;
   total_burn: number;
@@ -72,6 +73,8 @@ export type MedScannerData = {
   clone: number;
   revivable_boolean: boolean;
   revivable_string: number;
+  dead_timer: number;
+  dead_dnr: number;
   has_chemicals: boolean;
   has_unknown_chemicals: boolean;
   chemicals_lists?: Record<string, ChemData>;

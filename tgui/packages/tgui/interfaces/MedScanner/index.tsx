@@ -88,6 +88,7 @@ function PatientBasics() {
     health,
     max_health,
     crit_threshold,
+    synth_crit_threshold,
     dead_threshold,
 
     total_brute,
@@ -100,6 +101,8 @@ function PatientBasics() {
 
     revivable_boolean,
     revivable_string,
+    dead_timer,
+    dead_dnr,
 
     ssd,
 
@@ -130,32 +133,71 @@ function PatientBasics() {
       {!!ssd && <NoticeBox warning>{ssd}</NoticeBox>}
       <LabeledList>
         <LabeledList.Item
-          label="Health"
+          label={!dead || species.is_synthetic ? 'Health' : 'Time'}
           tooltip={
-            'How healthy the patient is.' +
-            ((!species.is_robotic_species &&
-              " If the patient's health dips below " +
-                crit_threshold +
-                '%, they enter critical condition and suffocate rapidly.') ||
-              '') +
-            " If the patient's health hits " +
-            (dead_threshold / max_health) * 100 +
-            '%, they die.'
+            species.is_synthetic
+              ? 'How healthy the patient is. ' +
+                "If the patient's health dips below 0%, they enter critical condition and overheat rapidly. " +
+                "If the patient's health hits " +
+                Math.round(
+                  ((dead_threshold - synth_crit_threshold) /
+                    (max_health - synth_crit_threshold)) *
+                    100,
+                ) +
+                '%, they die.'
+              : !dead
+                ? !species.is_combat_robot
+                  ? 'How healthy the patient is. ' +
+                    "If the patient's health dips below 0%, they enter critical condition and suffocate rapidly. " +
+                    "If the patient's health hits " +
+                    Math.round(
+                      ((dead_threshold - crit_threshold) /
+                        (max_health - crit_threshold)) *
+                        100,
+                    ) +
+                    '%, they die.'
+                  : 'How healthy the patient is. ' +
+                    "If the patient's health hits " +
+                    Math.round(
+                      ((dead_threshold - crit_threshold) /
+                        (max_health - crit_threshold)) *
+                        100,
+                    ) +
+                    '%, they die'
+                : "When their time hit's 0%, resusitation will be ineffective"
           }
         >
-          {health >= 0 ? (
+          {!species.is_synthetic ? (
+            !dead ? (
+              <ProgressBar
+                value={health}
+                minValue={crit_threshold}
+                maxValue={max_health}
+                ranges={{
+                  good: [40, Infinity],
+                  average: [20, 40],
+                  bad: [-Infinity, 20],
+                }}
+              />
+            ) : (
+              <ProgressBar
+                value={dead_timer}
+                minValue={dead_dnr}
+                maxValue={0}
+                color="label"
+              />
+            )
+          ) : (
             <ProgressBar
-              value={health / max_health}
+              value={health}
+              minValue={synth_crit_threshold}
+              maxValue={max_health}
               ranges={{
-                good: [0.4, Infinity],
-                average: [0.2, 0.4],
-                bad: [-Infinity, 0.2],
+                good: [40, Infinity],
+                average: [20, 40],
+                bad: [-Infinity, 20],
               }}
             />
-          ) : (
-            <ProgressBar value={1 + health / max_health} color="bad">
-              {Math.trunc((health / max_health) * 100)}%
-            </ProgressBar>
           )}
         </LabeledList.Item>
         {!!dead && (
