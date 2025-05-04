@@ -6,8 +6,7 @@
 	if(tool_behaviour && tool_attack_chain(user, target))
 		return
 	if(user.lying_angle)
-		user.balloon_alert(user, "Can't while prone!")
-		return
+		user.balloon_alert(user, "Bad form!")
 	// Return TRUE in attackby() to prevent afterattack() effects (when safely moving items for example)
 	var/resolved = target.attackby(src, user, params)
 	if(resolved || QDELETED(target) || QDELETED(src))
@@ -97,6 +96,8 @@
 		span_warning("You hit [src] with [attacking_item]!"), visible_message_flags = COMBAT_MESSAGE)
 	log_combat(user, src, "attacked", attacking_item)
 	var/power = attacking_item.force + round(attacking_item.force * MELEE_SKILL_DAM_BUFF * user.skills.getRating(SKILL_MELEE_WEAPONS))
+	if(user.lying_angle)
+		power *= user.lying_damage_mult
 	take_damage(power, attacking_item.damtype, MELEE, blame_mob = user)
 	return TRUE
 
@@ -141,7 +142,8 @@
 	user.do_attack_animation(src, used_item = attacking_item)
 
 	var/power = attacking_item.force + round(attacking_item.force * MELEE_SKILL_DAM_BUFF * user.skills.getRating(SKILL_MELEE_WEAPONS))
-
+	if(user.lying_angle)
+		power *= user.lying_damage_mult
 	switch(attacking_item.damtype)
 		if(BRUTE)
 			apply_damage(power, BRUTE, user.zone_selected, MELEE, attacking_item.sharp, attacking_item.edge, FALSE, attacking_item.penetration)
@@ -371,7 +373,8 @@
 	user.do_attack_animation(src, used_item = I)
 
 	var/power = I.force + round(I.force * MELEE_SKILL_DAM_BUFF * user.skills.getRating(SKILL_MELEE_WEAPONS))
-
+	if(user.lying_angle)
+		power *= user.lying_damage_mult
 	switch(I.damtype)
 		if(BRUTE)
 			apply_damage(power, BRUTE, user.zone_selected, MELEE, I.sharp, I.edge, FALSE, I.penetration)

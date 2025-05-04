@@ -210,6 +210,10 @@
 	if(!loaded_reagent)
 		return
 
+	if(user.lying_angle)
+		to_chat(user, span_warning("You struggle to fight from this position!"))
+		return
+
 	if(target.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
 		return
 

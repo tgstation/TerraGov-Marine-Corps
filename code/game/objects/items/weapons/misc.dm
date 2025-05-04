@@ -92,6 +92,10 @@
 		to_chat(user, span_warning("\The [src] can't operate without a source of power!"))
 		return
 
+	if(user.lying_angle)
+		to_chat(user, span_warning("You can't operate [src] from this position!"))
+		return
+
 	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL) //Incorporeal beings cannot attack or be attacked
 		return
 
