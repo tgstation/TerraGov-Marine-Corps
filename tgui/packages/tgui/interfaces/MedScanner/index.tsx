@@ -268,6 +268,7 @@ function PatientChemicals() {
       <Stack vertical>
         {Object.values(chemicals_lists).map((chemical) => (
           <Stack.Item
+            order={chemical.ui_priority}
             key={chemical.name}
             backgroundColor={row_transparency++ % 2 === 0 ? COLOR_ZEBRA_BG : ''}
             style={ROUNDED_BORDER}
