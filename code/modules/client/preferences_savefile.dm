@@ -143,6 +143,7 @@
 	READ_FILE(S["default_slot"], default_slot)
 	READ_FILE(S["lastchangelog"], lastchangelog)
 	READ_FILE(S["ooccolor"], ooccolor)
+	READ_FILE(S["asay_color"], asay_color)
 
 	READ_FILE(S["ui_style"], ui_style)
 	READ_FILE(S["ui_style_color"], ui_style_color)
@@ -215,6 +216,7 @@
 	default_slot = sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	lastchangelog = sanitize_text(lastchangelog, initial(lastchangelog))
 	ooccolor = sanitize_hexcolor(ooccolor, 6, TRUE, initial(ooccolor))
+	asay_color = sanitize_hexcolor(asay_color, 6, TRUE, initial(asay_color))
 	be_special = sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
 
 	ui_style = sanitize_inlist(ui_style, UI_STYLES, initial(ui_style))
@@ -307,6 +309,7 @@
 	default_slot = sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	lastchangelog = sanitize_text(lastchangelog, initial(lastchangelog))
 	ooccolor = sanitize_hexcolor(ooccolor, 6, TRUE, initial(ooccolor))
+	asay_color = sanitize_hexcolor(asay_color, 6, TRUE, initial(asay_color))
 
 	ui_style = sanitize_inlist(ui_style, UI_STYLES, initial(ui_style))
 	ui_style_color = sanitize_hexcolor(ui_style_color, 6, TRUE, initial(ui_style_color))
@@ -373,6 +376,7 @@
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
 	WRITE_FILE(S["ooccolor"], ooccolor)
+	WRITE_FILE(S["asay_color"], asay_color)
 
 	WRITE_FILE(S["ui_style"], ui_style)
 	WRITE_FILE(S["ui_style_color"], ui_style_color)
