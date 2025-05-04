@@ -1125,7 +1125,7 @@
 /mob/living/carbon/human/attack_ghost(mob/dead/observer/user)
 	if(!user.health_scan)
 		return FALSE
-	user.health_analyzer.analyze_vitals(src, user)
+	user.scanner_functionality.analyze_vitals(src, user)
 	return TRUE
 
 ///Checks if we have an AI behavior active

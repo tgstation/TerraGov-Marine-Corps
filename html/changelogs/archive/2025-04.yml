@@ -332,3 +332,10 @@
   - bugfix: fixed the staff officer's cap worn icon
   nervere:
   - bugfix: Fixed all directional inhand/wielded sprites for the SG-62.
+2025-04-30:
+  Atropos:
+  - admin: Tiering tickets unmarks them
+  Redory:
+  - bugfix: compact ammo box overlay now shows a full magazine
+  - imageadd: couple mini icons for the ammo boxes (mags, grenades, box overlays)
+  - imagedel: deleted some old mini-icons (old plasma cell, etc.)

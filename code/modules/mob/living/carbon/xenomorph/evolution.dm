@@ -298,7 +298,7 @@
 
 	var/no_room_tier_two = length(hive.xenos_by_tier[XENO_TIER_TWO]) >= hive.tier2_xeno_limit
 	var/no_room_tier_three = length(hive.xenos_by_tier[XENO_TIER_THREE]) >= hive.tier3_xeno_limit
-	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[new_caste_type][XENO_UPGRADE_BASETYPE] // tivi todo make so evo takes the strict caste datums
+	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[new_caste_type][XENO_UPGRADE_BASETYPE]
 	// Initial can access uninitialized vars, which is why it's used here.
 	var/new_caste_flags = new_caste.caste_flags
 	if(CHECK_BITFIELD(new_caste_flags, CASTE_LEADER_TYPE))

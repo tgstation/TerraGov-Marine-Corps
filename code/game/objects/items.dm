@@ -210,6 +210,11 @@
 /obj/item/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	return
 
+/obj/item/update_filters()
+	. = ..()
+	for(var/datum/action/A AS in actions)
+		A.update_button_icon()
+
 /obj/item/proc/update_item_state(mob/user)
 	worn_icon_state = "[initial(icon_state)][item_flags & WIELDED ? "_w" : ""]"
 

@@ -53,6 +53,7 @@
 	name = "\improper AR-18 AP magazine (10x24mm)"
 	desc = "A 10mm assault carbine magazine, loaded with light armor piercing rounds."
 	icon_state = "t18_ap"
+	icon_state_mini = "mag_rifle_big_green"
 	default_ammo = /datum/ammo/bullet/rifle/hv
 	bonus_overlay = "t18_ap"
 
@@ -73,6 +74,7 @@
 	name = "\improper AR-12 AP magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine, loaded with light armor piercing rounds."
 	icon_state = "t12_ap"
+	icon_state_mini = "mag_rifle_big_green"
 	default_ammo = /datum/ammo/bullet/rifle/hv
 	bonus_overlay = "t12_ap"
 
@@ -198,7 +200,7 @@
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	default_ammo = /datum/ammo/bullet/rifle/ap
 	max_rounds = 47
-	icon_state_mini = "mag_rifle"
+	icon_state_mini = "dpm"
 
 //-------------------------------------------------------
 //M16 RIFLE
@@ -327,7 +329,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smarttargetrifle
 	max_rounds = 40
-	icon_state_mini = "mag_sg29"
+	icon_state_mini = "mag_rifle"
 
 //-------------------------------------------------------
 //SPOTTING RIFLE AMMUNITION
@@ -337,45 +339,51 @@
 	desc = "A magazine filled with 12.7mm lethal smart rounds, these will do nothing other than pack a big punch."
 	caliber = CALIBER_12x7
 	icon_state = "sg153"
+	icon_state_mini = "mag_rifle"
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/spottingrifle
 	max_rounds = 5
-	icon_state_mini = "mag_sg29"
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact
 	name = "\improper SG-153 high impact magazine (12.7mm Smart Magnum)"
 	desc = "A magazine filled with 12.7mm high impact smart rounds, these will likely stagger and slow anything they hit."
 	icon_state = "sg153_hi"
+	icon_state_mini = "mag_rifle_blue"
 	default_ammo = /datum/ammo/bullet/spottingrifle/highimpact
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber
 	name = "\improper SG-153 heavy rubber magazine (12.7mm Smart Magnum)"
 	desc = "A magazine filled with 12.7mm heavy rubber smart rounds, these will likely stun and displace anything they hit."
 	icon_state = "sg153_hr"
+	icon_state_mini = "mag_rifle_red"
 	default_ammo = /datum/ammo/bullet/spottingrifle/heavyrubber
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/plasmaloss
 	name = "\improper SG-153 tanglefoot magazine (12.7mm Smart Magnum)"
 	desc = "A magazine filled with 12.7mm smart rounds tipped with 'Tanglefoot' poison, these rounds will drain the energy out of targets they hit."
-	icon_state = "sg153_hr"
+	icon_state = "sg153_pl"
+	icon_state_mini = "mag_rifle_purple"
 	default_ammo = /datum/ammo/bullet/spottingrifle/plasmaloss
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten
 	name = "\improper SG-153 tungsten magazine (12.7mm Smart Magnum)"
 	desc = "A magazine filled with 12.7mm tungsten smart rounds, these rounds will massively knock back any target it hits."
 	icon_state = "sg153_tg"
+	icon_state_mini = "mag_rifle_green"
 	default_ammo = /datum/ammo/bullet/spottingrifle/tungsten
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary
 	name = "\improper SG-153 incendiary magazine (12.7mm Smart Magnum)"
 	desc = "A magazine filled with 12.7mm incendiary smart rounds, these rounds will set alight anything they hit."
 	icon_state = "sg153_ic"
+	icon_state_mini = "mag_rifle_orange"
 	default_ammo = /datum/ammo/bullet/spottingrifle/incendiary
 
 /obj/item/ammo_magazine/rifle/standard_spottingrifle/flak
 	name = "\improper SG-153 flak magazine (12.7mm Smart Magnum)"
 	desc = "A magazine filled with 12.7mm flak smart rounds, these rounds will airburst on contact with an organic target, causing damage in a small area near the target."
 	icon_state = "sg153_fl"
+	icon_state_mini = "mag_rifle_cyan"
 	default_ammo = /datum/ammo/bullet/spottingrifle/flak
 
 
@@ -387,7 +395,7 @@
 	desc = "A magazine filled with powerful plasma rounds. The ammo inside doesn't look like anything you've seen before."
 	caliber = CALIBER_ALIEN
 	icon_state = "alien_rifle"
-	icon_state_mini = "mag_rifle_purple"
+	icon_state_mini = "mag_rifle_alien"
 	default_ammo = /datum/ammo/energy/sectoid_plasma
 	max_rounds = 20
 
@@ -408,7 +416,7 @@
 	name = "SR-127 bolt action rifle flak magazine"
 	desc = "A box magazine filled with 8.6x70mm rifle flak rounds for the SR-127."
 	icon_state = "tl127_flak"
-	icon_state_mini = "mag_sniper_blue"
+	icon_state_mini = "mag_rifle_big_blue"
 	default_ammo = /datum/ammo/bullet/sniper/pfc/flak
 	bonus_overlay = "tl127_flak"
 
@@ -530,7 +538,7 @@
 	desc = "A 20mm magazine loaded with acid grenades. For use with the GL-54 or AR-55."
 	default_ammo = /datum/ammo/tx54/smoke/acid
 	icon_state = "tx54_airburst"
-	icon_state_mini = "mag_sniper_purple"
+	icon_state_mini = "mag_sniper_green"
 	greyscale_colors = COLOR_AMMO_ACID
 
 /obj/item/ammo_magazine/rifle/tx54/razor
@@ -589,7 +597,7 @@
 	caliber = CALIBER_10x27_CASELESS
 	icon_state = "v35"
 	base_ammo_icon = "v35"
-	icon_state_mini = "mag_rifle_big"
+	icon_state_mini = "mag_rifle_big_yellowtip"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/som_big
 	max_rounds = 20
@@ -600,6 +608,7 @@
 	name = "\improper V-35 incendiary magazine (10x27mm)"
 	desc = "A 10mm rifle magazine designed for the V-35, loaded with incendiary ammunition."
 	icon_state = "v35_incend"
+	icon_state_mini = "mag_rifle_big_red_yellow"
 	default_ammo = /datum/ammo/bullet/rifle/som_big/incendiary
 	bonus_overlay = "v35_incend"
 
@@ -607,6 +616,7 @@
 	name = "\improper V-35 AT magazine (10x27mm)"
 	desc = "A 10mm rifle magazine designed for the V-35, loaded with powerful anti armor ammunition. Deals significant damage to vehicles, and can punch through some cover."
 	icon_state = "v35_at"
+	icon_state_mini = "mag_rifle_big_blue_yellow"
 	default_ammo = /datum/ammo/bullet/rifle/som_big/anti_armour
 	bonus_overlay = "v35_at"
 
@@ -686,7 +696,7 @@
 	desc = "A magazine filled with 5.56x45mm rifle rounds for the L-88 series of firearms."
 	caliber = CALIBER_556X45
 	icon_state = "aug"
-	icon_state_mini = "mag_rifle"
+	icon_state_mini = "mag_rifle_olive"
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 30
 
@@ -722,6 +732,7 @@
 	name = "box of 10x26mm"
 	desc = "A box containing 500 rounds of 10x26mm caseless."
 	icon_state = "minimi"
+	icon_state_mini = "ammo_packet"
 	icon = 'icons/obj/items/ammo/packet.dmi'
 	current_rounds = 500
 	max_rounds = 500
@@ -735,7 +746,7 @@
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
 	icon_state = "l26"
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
-	icon_state_mini = "mag_gpmg"
+	icon_state_mini = "mag_drum_big_long"
 	bonus_overlay = "l26_100"
 	max_rounds = 200
 
