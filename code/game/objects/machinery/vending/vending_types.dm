@@ -462,6 +462,12 @@
 			/obj/item/ammo_magazine/pistol/vp70 = 40,
 			/obj/item/ammo_magazine/pistol/plasma_pistol = 40,
 		),
+		"Specialized" = list(
+			/obj/item/ammo_magazine/rifle/pepperball = 10,
+			/obj/item/ammo_magazine/flamer_tank/water = 10,
+			/obj/item/ammo_magazine/flamer_tank/mini = 16,
+			/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = 16,
+		),
 		"Seasonal" = list(
 			/obj/item/ammo_magazine/revolver/small = 0,
 			/obj/item/ammo_magazine/revolver/single_action/m44 = 0,
@@ -544,6 +550,10 @@
 		/obj/item/ammo_magazine/shotgun/mbx900 = 32,
 		/obj/item/ammo_magazine/shotgun/mbx900/buckshot = 32,
 		/obj/item/ammo_magazine/shotgun/mbx900/tracking = 32,
+		/obj/item/ammo_magazine/rifle/pepperball = 20,
+		/obj/item/ammo_magazine/flamer_tank/water = 20,
+		/obj/item/ammo_magazine/flamer_tank/mini = 32,
+		/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini = 32,
 	)
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
