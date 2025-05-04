@@ -747,7 +747,8 @@
 
 	else if(!isnull(max_capacity))	// Item has a maximum capacity
 		if(amount >= max_capacity)
-			user?.balloon_alert(user, "There's no more room for the [item_to_stock]!")
+			if(show_feedback)
+				user?.balloon_alert(user, "There's no more room for the [item_to_stock]!")
 			return FALSE
 
 	else if(amount >= 0) //Item is finite so we are more strict on its condition
