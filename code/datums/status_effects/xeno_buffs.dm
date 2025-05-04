@@ -3,7 +3,7 @@
 // ***************************************
 /datum/status_effect/resin_jelly_coating
 	id = "resin jelly"
-	duration = 15 SECONDS
+	duration = 30 SECONDS
 	tick_interval = 30
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
