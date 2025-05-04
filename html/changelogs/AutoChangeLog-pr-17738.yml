@@ -1,4 +1,0 @@
-author: "Apple-107"
-delete-after: True
-changes:
-  - rscadd: "analyze player moves with the new chess-themed :blunder:, :bookmove:, and :brilliant: emojis"

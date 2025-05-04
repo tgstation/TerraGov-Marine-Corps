@@ -1,5 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - balance: "Reworked the mech's grenade launchers into heavy rocket launchers."
-  - balance: "Reworked the mech's hand rocket pods to fire light-explosive rockets with no delay.\nbalance; Mech's rocket ammo now comes in bundles of 10, rather than 1."

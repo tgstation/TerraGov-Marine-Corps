@@ -1,4 +1,0 @@
-author: "Atropos"
-delete-after: True
-changes:
-  - bugfix: "Robo ac's/ro's now get their job items (pamphlet/tablet)"
