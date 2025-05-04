@@ -56,6 +56,11 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
+"x" = (
+/obj/machinery/light,
+/obj/machinery/vending/nanoammo/directional/north,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
 "y" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -160,7 +165,7 @@ S
 G
 c
 p
-y
+x
 h
 S
 a
