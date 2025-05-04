@@ -250,7 +250,7 @@
 	return TRUE
 
 /obj/item/attachable/at45barrel
-	name = "CC/AT45 barrel"
+	name = "\improper CC/AT45 barrel"
 	icon_state = "at45barrel"
 	icon = 'icons/obj/items/guns/attachments/muzzle.dmi'
 	desc = "A heavy barrel. CANNOT BE REMOVED."

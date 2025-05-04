@@ -597,7 +597,7 @@
 	has_sensor = 0
 
 /obj/item/clothing/under/vsd
-	name = "VSD jumpsuit"
+	name = "\improper VSD jumpsuit"
 	desc = "The standard uniform for the Vyacheslav Security Detail, weaved with kevlar and marked with blood."
 	icon = 'icons/mob/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "vsd_uniform_main"

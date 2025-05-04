@@ -513,7 +513,7 @@
 	soft_armor = list(MELEE = 65, BULLET = 70, LASER = 40, ENERGY = 60, BOMB = 85, BIO = 10, FIRE = 55, ACID = 40)
 
 /obj/item/clothing/head/helmet/marine/vsd
-	name = "Crasher MT/43 ballistic helmet"
+	name = "\improper Crasher MT/43 ballistic helmet"
 	desc = "Vyacheslav Security Detail's quality helmet, designed with modular slots and combat readiness."
 	icon = 'icons/mob/clothing/headwear/ert_headwear.dmi'
 	icon_state = "vsd_main"
@@ -524,13 +524,13 @@
 	soft_armor = list(MELEE = 50, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 55, ACID = 40)
 
 /obj/item/clothing/head/helmet/marine/vsd/heavy
-	name = "Crasher MT-H/43 powered ballistic helmet"
+	name = "\improper Crasher MT-H/43 powered ballistic helmet"
 	icon_state = "vsd_heavy"
 	worn_icon_state = "vsd_heavy"
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 55, ACID = 40)
 
 /obj/item/clothing/head/helmet/marine/vsd/juggernaut
-	name = "Crasher MT-H/43 'Ares' powered ballistic helmet"
+	name = "\improper Crasher MT-H/43 'Ares' powered ballistic helmet"
 	desc = "Vyacheslav Security Detail's custom, modified helmet designed for the 'Ares' Juggernaut suit."
 	icon_state = "vsd_juggernaut_ballistic"
 	worn_icon_state = "vsd_juggernaut_ballistic"
@@ -538,7 +538,7 @@
 	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 80, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 55, ACID = 40)
 
 /obj/item/clothing/head/helmet/marine/vsd/eod
-	name = "Crasher MT-H/43 'Zeus' powered explosive-defensive helmet"
+	name = "\improper Crasher MT-H/43 'Zeus' powered explosive-defensive helmet"
 	desc = "Vyacheslav Security Detail's custom, modified helmet designed for the 'Zeus' Juggernaut suit."
 	icon_state = "vsd_juggernaut_eod"
 	worn_icon_state = "vsd_juggernaut_eod"
@@ -546,7 +546,7 @@
 	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 75, ENERGY = 60, BOMB = 80, BIO = 60, FIRE = 55, ACID = 40)
 
 /obj/item/clothing/head/helmet/marine/vsd/flamer
-	name = "Crasher MT-H/43 'Apollo' powered fire-protected helmet"
+	name = "\improper Crasher MT-H/43 'Apollo' powered fire-protected helmet"
 	desc = "Vyacheslav Security Detail's custom, modified helmet designed for the 'Apollo' Juggernaut suit."
 	icon_state = "vsd_juggernaut_pyro"
 	worn_icon_state = "vsd_juggernaut_pyro"

@@ -445,7 +445,7 @@
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
 
 /obj/item/clothing/head/vsd
-	name = "Crasher MT/45 armored cap"
+	name = "\improper Crasher MT/45 armored cap"
 	desc = "CrashCore sponsored caps with kevlar fabric, comes with a headset."
 	worn_icon_list = list(
 		slot_head_str = 'icons/mob/clothing/headwear/ert_headwear.dmi',
@@ -459,7 +459,7 @@
 	armor_features_flags = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/vsd/beret
-	name = "Crasher MT/45 Vyacheslav armored beret"
+	name = "\improper Crasher MT/45 Vyacheslav armored beret"
 	desc = "CrashCore sponsored beret with kevlar fabric, seen on Vyacheslav Squad Leaders and Officers."
 	icon_state = "vsd_beret"
 	worn_icon_state = "vsd_beret"
@@ -471,7 +471,7 @@
 	)
 
 /obj/item/clothing/head/vsd/beret_alt
-	name = "Crasher MT/45 Vyacheslav armored beret"
+	name = "\improper Crasher MT/45 Vyacheslav armored beret"
 	desc = "CrashCore sponsored beret with kevlar fabric, seen on Vyacheslav Squad Leaders and Officers."
 	icon_state = "usl_beret"
 	worn_icon_state = "usl_beret"

@@ -774,7 +774,7 @@
 //===========================V.S.D================================
 
 /obj/item/clothing/suit/storage/marine/vsd
-	name = "Crasher MT-L/43 ballistic armor"
+	name = "\improper Crasher MT-L/43 ballistic armor"
 	desc = "The Vyacheslav Security Detail's main body armor. Protects the user from most bullet calibers."
 	icon = 'icons/mob/clothing/suits/ert_suits.dmi'
 	worn_icon_list = list(
@@ -792,7 +792,7 @@
 	worn_icon_state = "vsd_armor_alt"
 
 /obj/item/clothing/suit/storage/marine/vsd/marmor
-	name = "Crasher MT-M/43 ballistic armor"
+	name = "\improper Crasher MT-M/43 ballistic armor"
 	desc = "The Vyacheslav Security Detail's uncommon use body armor, used usually by engineers. Protects the user from most bullet calibers."
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	icon_state = "vsd_armor_medium"
@@ -800,7 +800,7 @@
 	soft_armor = list(MELEE = 50, BULLET = 65, LASER = 65, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 
 /obj/item/clothing/suit/storage/marine/vsd/harmor
-	name = "Crasher MT-H/43 powered ballistic armor"
+	name = "\improper Crasher MT-H/43 powered ballistic armor"
 	desc = "The Vyacheslav Security Detail's heavy armor, rarely given to the grunts. Protects the user from most bullet calibers."
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	icon_state = "vsd_armor_heavy"
@@ -808,7 +808,7 @@
 	soft_armor = list(MELEE = 60, BULLET = 75, LASER = 75, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
 
 /obj/item/clothing/suit/storage/marine/vsd/juggernaut
-	name = "Crasher MT-H/43 'Ares' powered ballistic armor"
+	name = "\improper Crasher MT-H/43 'Ares' powered ballistic armor"
 	desc = "The Vyacheslav Security Detail's juggernaut set, given to the best and trusted veterans. Protects the user from almost all bullet calibers."
 	icon = 'icons/mob/clothing/suits/ert_suits.dmi'
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
@@ -821,7 +821,7 @@
 	AddComponent(/datum/component/suit_autodoc)
 
 /obj/item/clothing/suit/storage/marine/vsd/eod
-	name = "Crasher MT-H/43 'Zeus' powered explosive-defensive armor"
+	name = "\improper Crasher MT-H/43 'Zeus' powered explosive-defensive armor"
 	desc = "The Vyacheslav Security Detail's EOD-based armor, protects the user from most threats and heavily protects them against explosives."
 	icon = 'icons/mob/clothing/suits/ert_suits.dmi'
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
@@ -830,7 +830,7 @@
 	soft_armor = list(MELEE = 65, BULLET = 80, LASER = 80, ENERGY = 60, BOMB = 90, BIO = 60, FIRE = 60, ACID = 75)
 
 /obj/item/clothing/suit/storage/marine/vsd/flamer
-	name = "Crasher MT-H/43 'Apollo' powered fire-protected armor"
+	name = "\improper Crasher MT-H/43 'Apollo' powered fire-protected armor"
 	desc = "The Vyacheslav Security Detail's flamer armor, protects the user from most threats and suits them against fire and heat."
 	icon = 'icons/mob/clothing/suits/ert_suits.dmi'
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
