@@ -427,11 +427,6 @@
 			/obj/item/ammo_magazine/rifle/tx11 = 30,
 			/obj/item/ammo_magazine/packet/p4570 = 16,
 		),
-		"Energy Weapons" = list(
-			/obj/item/cell/lasgun/lasrifle = 30,
-			/obj/item/cell/lasgun/volkite/powerpack/marine = 16,
-			/obj/item/cell/lasgun/volkite/powerpack/marine/backpack = 2,
-		),
 		"SMGs" = list(
 			/obj/item/ammo_magazine/smg/standard_smg = 40,
 			/obj/item/ammo_magazine/smg/standard_machinepistol = 40,
@@ -500,9 +495,6 @@
 		/obj/item/ammo_magazine/rifle/standard_skirmishrifle = 60,
 		/obj/item/ammo_magazine/rifle/tx11 = 60,
 		/obj/item/ammo_magazine/packet/p4570 = 32,
-		/obj/item/cell/lasgun/lasrifle = 60,
-		/obj/item/cell/lasgun/volkite/powerpack/marine = 32,
-		/obj/item/cell/lasgun/volkite/powerpack/marine/backpack = 4,
 		/obj/item/ammo_magazine/smg/standard_smg = 80,
 		/obj/item/ammo_magazine/smg/standard_machinepistol = 80,
 		/obj/item/ammo_magazine/smg/standard_heavysmg = 80,
