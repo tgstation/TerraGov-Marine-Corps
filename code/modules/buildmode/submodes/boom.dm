@@ -46,8 +46,8 @@
 
 	if(LAZYACCESS(modifiers, LEFT_CLICK))
 		to_chat(user, span_notice("Success."))
-		log_admin("Build Mode: [key_name(user)] caused an explosion(dev=[explosions[BOOM_DEVASTATION]], hvy=[explosions[BOOM_HEAVY]], lgt=[explosions[BOOM_LIGHT]], weak=[explosions[BOOM_WEAK]], flash=[explosions[BOOM_FLASH]], flames=[explosions[BOOM_FLAMES]]) at [AREACOORD(object)]")
-		explosion(object, explosions[BOOM_DEVASTATION], explosions[BOOM_HEAVY], explosions[BOOM_LIGHT], explosions[BOOM_WEAK], explosions[BOOM_FLASH], explosions[BOOM_FLAMES], adminlog = FALSE, explosion_cause = key_name(user))
+		log_admin("Build Mode: [key_name(user)] caused an explosion(dev=[explosions[BOOM_DEVASTATION]], hvy=[explosions[BOOM_HEAVY]], lgt=[explosions[BOOM_LIGHT]], weak=[explosions[BOOM_WEAK]], flash=[explosions[BOOM_FLASH]], flames=[explosions[BOOM_FLAMES]], throw=[explosions[BOOM_THROW]]) at [AREACOORD(object)]")
+		explosion(object, explosions[BOOM_DEVASTATION], explosions[BOOM_HEAVY], explosions[BOOM_LIGHT], explosions[BOOM_WEAK], explosions[BOOM_FLASH], explosions[BOOM_FLAMES], explosions[BOOM_THROW], adminlog = FALSE, explosion_cause = key_name(user))
 
 #undef BOOM_DEVASTATION
 #undef BOOM_HEAVY

@@ -1,0 +1,72 @@
+2025-05-01:
+  Atropos:
+  - bugfix: Small table fix on POS
+  - rscadd: Added mech drop pods on sulaco and theseus
+  - rscadd: Added 2nd mech (builder) computer on theseus
+  - bugfix: fixed soap not appearing in loadouts
+  Citruses/Vondiech:
+  - rscadd: Added the new Tadpole Panoptical Model.
+  Joe13413:
+  - balance: Moved the thermal generator on research outpost further away from disks
+  Lumipharon:
+  - bugfix: fixed AI goal nodes
+  Wisemonster:
+  - balance: Big Red's bsg has been moved deeper into engineering.
+2025-05-02:
+  Atropos:
+  - admin: Added Proccall mode to build mode
+  Lumipharon:
+  - qol: Some powerful projectiles such as tank AP rounds have brief screenshake on
+      hit for user feedback
+  TiviPlus:
+  - bugfix: fixed aghost interaction with get larva
+  Zar000:
+  - qol: Destroying catwalks now requires disarm intent instead of harm intent.
+  breadhunt:
+  - bugfix: APC cells show properly again
+  ivanmixo:
+  - bugfix: Sniper stacking works properly now for real
+2025-05-03:
+  Runian:
+  - balance: Engineer, Corpsmen, and Smartgunner now have the option to vend a construction
+      pouch which comes with 25 empty bags, 5 barbed wire, and a shovel each.
+  - bugfix: Synth's vendor correctly states that their construction pouch has materials
+      included.
+  blackdav123:
+  - rscadd: Griddles can now be jumped over and walked on.
+2025-05-04:
+  Apple-107:
+  - rscadd: 'analyze player moves with the new chess-themed :blunder:, :bookmove:,
+      and :brilliant: emojis'
+  Atropos:
+  - admin: fixed bloodless smite
+  - bugfix: Robo ac's/ro's now get their job items (pamphlet/tablet)
+  - admin: Added Player panel to VV (select options button)
+  - admin: Inspecting people while ghosted shows admin buttons
+  - admin: subtle message is now more noticeable to the player
+  Isy232:
+  - rscadd: Completion of a disk cycle rewards marines requisitions points scaling
+      with player count.
+  - balance: To counterbalance, xenomorph sell prices halved.
+  - balance: Fulton packs uses 3 => 6.
+  Isy232, Ldip999:
+  - rscadd: Marines receive 2 vendor points per disk cycle completed on Crash.
+  Looking4bros:
+  - qol: Health scanner reagents have some semblance of order
+  - bugfix: Lipozine OD works
+  Lumipharon:
+  - bugfix: fixed xeno turrets not targeting mechs/tanks in some cases
+  Wisemonster:
+  - balance: Reworked the mech's grenade launchers into heavy rocket launchers.
+  - balance: 'Reworked the mech''s hand rocket pods to fire light-explosive rockets
+      with no delay.
+
+      balance; Mech''s rocket ammo now comes in bundles of 10, rather than 1.'
+  blackdav123:
+  - rscadd: Disposal units can be right clicked to eject their contents.
+  - rscadd: Lockers can now be unlocked with right click.
+  - rscadd: APCs can now be unlocked with right click.
+  breadhunt:
+  - rscadd: SLs are no longer put in a squad if it has another SL in it. SLs can still
+      transfer to whatever squad they want, regardless of whether there's a squaddie
+      in it

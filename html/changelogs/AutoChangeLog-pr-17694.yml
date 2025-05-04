@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - bugfix: "Droppods will no longer randomly appear near the LZ sometimes"

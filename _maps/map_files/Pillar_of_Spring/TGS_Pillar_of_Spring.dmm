@@ -9594,13 +9594,13 @@
 	dir = 4
 	},
 /obj/machinery/light/mainship,
-/obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/tool{
 	pixel_x = -6;
 	pixel_y = 3
 	},
 /obj/item/tool/hand_labeler,
 /obj/item/facepaint/green,
+/obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "lTt" = (

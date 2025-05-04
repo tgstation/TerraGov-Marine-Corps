@@ -266,7 +266,6 @@
 	icon_state = ""
 	pixel_x = -64
 
-//todo this should be using immediate instead of New()
 INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
 /turf/closed/wall/indestructible/splashscreen/Initialize(mapload, ...)
 	. = ..()

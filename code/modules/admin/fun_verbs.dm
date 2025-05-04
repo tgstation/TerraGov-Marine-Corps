@@ -137,7 +137,8 @@ ADMIN_VERB_AND_CONTEXT_MENU(narrate_direct, R_FUN, "Direct Narrate", ADMIN_VERB_
 
 	log_admin("DirectNarrate: [key_name(user)] to [key_name(M)]: [msg]")
 	message_admins("[ADMIN_TPMONTY(user.mob)] used Direct Narrate on [ADMIN_TPMONTY(M)]: [msg]")
-ADMIN_VERB_AND_CONTEXT_MENU(subtle_message, R_FUN, "Subtle Message", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_FUN, mob/M in GLOB.mob_list)
+
+ADMIN_VERB_AND_CONTEXT_MENU(subtle_message, R_FUN|R_MENTOR, "Subtle Message", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_FUN, mob/M in GLOB.mob_list)
 	var/msg = tgui_input_text(user, "Subtle PM to [key_name(M)]:", "Subtle Message", "", multiline = TRUE, encode = FALSE)
 
 	if(!M?.client || !msg)
@@ -148,6 +149,7 @@ ADMIN_VERB_AND_CONTEXT_MENU(subtle_message, R_FUN, "Subtle Message", ADMIN_VERB_
 	else
 		msg = sanitize(msg)
 
+	M.balloon_alert(M, "You hear a voice")
 	to_chat(M, "<b>You hear a voice in your head... [msg]</b>")
 
 	admin_ticket_log(M, "[key_name_admin(user)] used Subtle Message: [sanitize(msg)]")

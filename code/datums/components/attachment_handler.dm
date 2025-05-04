@@ -370,9 +370,9 @@
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			new_overlay.overlays += attachment.overlays
 		if(attachment_data[MOB_PIXEL_SHIFT_X])
-			new_overlay.pixel_x += attachment_data[MOB_PIXEL_SHIFT_X]
+			new_overlay.pixel_w += attachment_data[MOB_PIXEL_SHIFT_X]
 		if(attachment_data[MOB_PIXEL_SHIFT_Y])
-			new_overlay.pixel_y += attachment_data[MOB_PIXEL_SHIFT_Y]
+			new_overlay.pixel_z += attachment_data[MOB_PIXEL_SHIFT_Y]
 		if(!attachment_data[ATTACHMENT_LAYER])
 			standing.overlays += new_overlay
 			continue

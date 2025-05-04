@@ -8,6 +8,7 @@
 	custom_metabolism = FOOD_METABOLISM
 	taste_description = "generic food"
 	taste_multi = 4
+	reagent_ui_priority = REAGENT_UI_MUNDANE
 	var/nutriment_factor = 1
 	var/adj_temp = 0
 	var/targ_temp = BODYTEMP_NORMAL
@@ -36,6 +37,7 @@
 	description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
 	nutriment_factor = 15
 	color = "#664330" // rgb: 102, 67, 48
+	reagent_ui_priority =  REAGENT_UI_BASE // nutriment is more important than other food chems
 	var/brute_heal = 1
 	var/burn_heal = 0
 	var/blood_gain = 0.4
@@ -279,6 +281,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "mushroom"
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/consumable/psilocybin/on_mob_life(mob/living/L, metabolism)
 	L.druggy = max(L.druggy, 30)
@@ -405,6 +408,7 @@
 	nutriment_factor = 0
 	color = "#66801e"
 	taste_description = "burning"
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/consumable/larvajelly/on_mob_life(mob/living/L, metabolism)
 	L.adjustBruteLoss(-0.5*effect_str)
@@ -419,6 +423,7 @@
 	nutriment_factor = 1
 	color = "#66801e"
 	taste_description = "victory"
+	reagent_ui_priority = REAGENT_UI_TOXINS
 
 /datum/reagent/consumable/larvajellyprepared/on_mob_life(mob/living/L, metabolism)
 	L.adjustBruteLoss(-0.5*effect_str)
