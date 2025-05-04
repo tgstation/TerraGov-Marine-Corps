@@ -107,13 +107,17 @@
 
 /obj/machinery/computer/shuttle/escape_pod/examine(mob/user)
 	. = ..()
-	if(SSevacuation.evac_status == EVACUATION_STATUS_INITIATING)
-		var/text = "Time until refueling completion:"
-		var/eta = (SSevacuation.evac_time + EVACUATION_MANUAL_DEPARTURE - world.time) * 0.1
-		if(eta <= 0)
-			text = "Time until automatic launch:"
-			eta = (SSevacuation.evac_time + EVACUATION_AUTOMATIC_DEPARTURE - world.time) * 0.1
-		. += span_notice("[text] [(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]")
+	var/obj/docking_port/mobile/escape_pod/M = SSshuttle.getShuttle(shuttleId)
+	if(!M || M.launch_status == EARLY_LAUNCHED || M.launch_status == EARLY_LAUNCHED)
+		return
+	if(SSevacuation.evac_status != EVACUATION_STATUS_INITIATING)
+		return
+	var/text = "Time until refueling completion:"
+	var/eta = (SSevacuation.evac_time + EVACUATION_MANUAL_DEPARTURE - world.time) * 0.1
+	if(eta <= 0)
+		text = "Time until automatic launch:"
+		eta = (SSevacuation.evac_time + EVACUATION_AUTOMATIC_DEPARTURE - world.time) * 0.1
+	. += span_notice("[text] [(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]")
 
 /obj/machinery/computer/shuttle/escape_pod/escape_shuttle
 	name = "escape shuttle controller"
