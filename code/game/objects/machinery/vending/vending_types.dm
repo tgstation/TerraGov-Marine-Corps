@@ -461,6 +461,7 @@
 			/obj/item/ammo_magazine/pistol/standard_pocketpistol = 40,
 			/obj/item/ammo_magazine/pistol/vp70 = 40,
 			/obj/item/ammo_magazine/pistol/plasma_pistol = 40,
+			/obj/item/ammo_magazine/revolver/standard_magnum = 40,
 		),
 		"Specialized" = list(
 			/obj/item/ammo_magazine/rifle/pepperball = 10,
@@ -530,6 +531,7 @@
 		/obj/item/ammo_magazine/revolver/single_action/m44 = 80,
 		/obj/item/ammo_magazine/revolver/judge = 80,
 		/obj/item/ammo_magazine/revolver/judge/buckshot = 80,
+		/obj/item/ammo_magazine/revolver/standard_magnum = 80,
 		/obj/item/ammo_magazine/revolver/upp = 80,
 		/obj/item/ammo_magazine/rifle/mpi_km/plum = 60,
 		/obj/item/ammo_magazine/rifle/m16 = 60,
