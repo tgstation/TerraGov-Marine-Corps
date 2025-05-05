@@ -603,7 +603,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 /// Psychic mist is difficult to breathe in, even with a mask on
 /obj/effect/psychic_mist/proc/on_cross(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
-	if(!iscarbon(crosser))
+	if(!ishuman(crosser))
 		return
 	var/mob/living/carbon/target = crosser
 	var/bio_protection = max(1 - target.get_permeability_protection(), 0)
