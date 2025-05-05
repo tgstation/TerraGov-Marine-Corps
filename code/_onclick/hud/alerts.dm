@@ -265,7 +265,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	desc = "You're on fire. Stop, drop and roll to put the fire out, or use a fire extinguisher."
 	icon_state = "fire"
 
-/atom/movable/screen/alert/emptycell/get_boxed_message_style(mob/user)
+/atom/movable/screen/alert/fire/get_boxed_message_style(mob/user)
 	return "boxed_message red_box"
 
 /atom/movable/screen/alert/fire/Click()
@@ -305,12 +305,21 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	desc = "You could use a bite to eat. Movement speed reduced."
 	icon_state = "hungry"
 
+/atom/movable/screen/alert/hungry/get_boxed_message_style(mob/user)
+	return "boxed_message"
+
 /atom/movable/screen/alert/starving
 	name = "Starving"
 	desc = "You could eat a horse right now. Movement speed significantly reduced."
 	icon_state = "starving"
 
+/atom/movable/screen/alert/starving/get_boxed_message_style(mob/user)
+	return "boxed_message red_box"
+
 /atom/movable/screen/alert/stuffed
 	name = "Stuffed"
 	desc = "You had a bit too much to eat. Work out to lose the extra nutrition. Movement speed reduced."
 	icon_state = "stuffed"
+
+/atom/movable/screen/alert/stuffed/get_boxed_message_style(mob/user)
+	return "boxed_message green_box"
