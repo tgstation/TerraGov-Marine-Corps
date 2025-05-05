@@ -291,14 +291,15 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 /obj/machinery/power/geothermal/tbg/Initialize()
 	. = ..()
 	GLOB.all_bluespace_generators += src
-	ambient_soundloop = new(list(src), is_on)
-	alarm_soundloop = new(list(src), buildstate == GENERATOR_EXPLODING)
 	for(var/direction in GLOB.cardinals)
 		var/obj/machinery/power/tbg_turbine/potential_turbine = locate(/obj/machinery/power/tbg_turbine, get_step(src, direction))
 		if(!potential_turbine)
 			continue
 		connected_turbines += potential_turbine
 		potential_turbine.connected = src
+
+	ambient_soundloop = new(connected_turbines, is_on)
+	alarm_soundloop = new(list(src), buildstate == GENERATOR_EXPLODING)
 
 /obj/machinery/power/geothermal/tbg/Destroy()
 	GLOB.all_bluespace_generators -= src
