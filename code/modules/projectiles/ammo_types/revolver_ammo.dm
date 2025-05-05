@@ -10,6 +10,7 @@
 	hud_state_empty = "revolver_empty"
 	handful_amount = 7
 	ammo_behavior_flags = AMMO_BALLISTIC
+	shell_speed = 3.5
 	damage = 45
 	penetration = 10
 	sundering = 3
