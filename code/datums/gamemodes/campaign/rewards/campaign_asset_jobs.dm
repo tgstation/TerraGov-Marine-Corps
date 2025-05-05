@@ -16,8 +16,7 @@
 /datum/job/som/mercenary/militia/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += span_role_body("You are a volunteer member of a local militia group. You are lending your support to the faction you believe is truly helping your colony.\
-What you lack in equipment and military training you make up in bravery and conviction. Fight for Blood! Fight for home!")
+	. += "You are a volunteer member of a local militia group. You are lending your support to the faction you believe is truly helping your colony. What you lack in equipment and military training you make up in bravery and conviction. Fight for Blood! Fight for home!"
 
 /datum/job/som/mercenary/militia/standard
 	outfit = /datum/outfit/job/som/militia/standard/uzi
@@ -182,9 +181,9 @@ What you lack in equipment and military training you make up in bravery and conv
 /datum/job/terragov/squad/standard/campaign_robot/get_spawn_message_information(mob/M)
 	. = ..()
 	. += separator_hr("[span_role_header("<b>[title] Information</b>")]")
-	. += span_role_body("You are a cold, unfeeling machine built for war, controlled by TGMC.\
-Your metal body is immune to pain and chemical warfare, and resistant against fire and radiation, although you lack the mobility of your human counterparts.\
-Fight for TGMC, and attempt to achieve all objectives given to you.")
+	. += {"You are a cold, unfeeling machine built for war, controlled by TGMC.
+Your metal body is immune to pain and chemical warfare, and resistant against fire and radiation, although you lack the mobility of your human counterparts.
+Fight for TGMC, and attempt to achieve all objectives given to you."}
 
 
 //VSD
