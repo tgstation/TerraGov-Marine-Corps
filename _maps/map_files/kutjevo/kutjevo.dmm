@@ -3118,13 +3118,6 @@
 	},
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/construction)
-"dtq" = (
-/obj/structure/cable,
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 4
-	},
-/turf/open/floor/kutjevo/colors/orange,
-/area/kutjevo/interior/power)
 "dtV" = (
 /obj/machinery/biogenerator,
 /turf/open/floor/kutjevo/grey/plate,
@@ -3827,9 +3820,6 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/power/tbg_turbine/cold{
-	dir = 8
-	},
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
 "eeg" = (
@@ -22001,13 +21991,6 @@
 	dir = 1
 	},
 /area/kutjevo/interior/colony_South/power2)
-"xfL" = (
-/obj/structure/cable,
-/obj/machinery/power/geothermal/tbg{
-	dir = 4
-	},
-/turf/open/floor/kutjevo/colors/orange,
-/area/kutjevo/interior/power)
 "xfT" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
@@ -31683,7 +31666,7 @@ vVC
 vVC
 ePx
 pBV
-xfL
+kGE
 kGE
 tez
 twI
@@ -31850,7 +31833,7 @@ vVC
 vVC
 ePx
 pBV
-dtq
+kGE
 kGE
 wIG
 twI
