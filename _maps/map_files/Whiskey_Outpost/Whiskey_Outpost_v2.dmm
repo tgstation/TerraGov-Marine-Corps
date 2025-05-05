@@ -2583,11 +2583,6 @@
 /obj/item/ammo_magazine/heavy_minigun,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
-"mL" = (
-/obj/structure/fence,
-/obj/effect/ai_node,
-/turf/open/ground/jungle/impenetrable/nobush,
-/area/whiskey_outpost/outside/south)
 "mO" = (
 /obj/machinery/marine_selector/gear/smartgun,
 /obj/structure/window/reinforced{
@@ -16468,7 +16463,7 @@ Na
 Na
 Im
 Im
-mL
+WW
 Hq
 Hq
 Hq
@@ -18112,7 +18107,7 @@ Na
 Na
 Im
 Im
-mL
+WW
 Im
 Hq
 Hq
@@ -19358,7 +19353,7 @@ Sz
 Hq
 LM
 Hq
-mb
+Hq
 Hq
 ep
 Hq
@@ -19484,7 +19479,7 @@ Im
 Im
 WW
 Im
-Hq
+mb
 Hq
 Hq
 Hq
@@ -19619,7 +19614,7 @@ NW
 NW
 Im
 Im
-mL
+WW
 Im
 Hq
 Hq
@@ -19632,7 +19627,7 @@ Hq
 rN
 xZ
 pY
-Uf
+Sg
 Hq
 ep
 aF
