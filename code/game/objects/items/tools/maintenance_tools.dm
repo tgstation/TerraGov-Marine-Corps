@@ -369,13 +369,13 @@
 	if(.)
 		return
 	if(reagents.total_volume == 0)
-		balloon_alert(user, "Out of fuel")
+		balloon_alert(user, "out of fuel!")
 		return
 
 	else if(iswelder(I))
 		var/obj/item/tool/weldingtool/T = I
 		if(T.welding)
-			balloon_alert(user, "That was stupid")
+			to_chat(user, span_userdanger("That was stupid of you."))
 			log_bomber(user, "triggered a weldpack explosion", src)
 			explosion(src, light_impact_range = 3, explosion_cause=user)
 			qdel(src)
@@ -383,7 +383,6 @@
 			return ..()
 
 		reagents.trans_to(I, T.max_fuel)
-		balloon_alert(user, "Welder refilled")
 		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
 
 	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
@@ -412,7 +411,6 @@
 		reagents.remove_reagent(/datum/reagent/fuel, fuel_to_transfer)
 		internal_tank.current_rounds += fuel_to_transfer
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		balloon_alert(user, "Refills")
 
 	else if(istype(I, /obj/item/weapon/twohanded/rocketsledge))
 		var/obj/item/weapon/twohanded/rocketsledge/RS = I
@@ -423,7 +421,6 @@
 		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		RS.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		balloon_alert(user, "Refills")
 		RS.update_icon()
 
 	else if(istype(I, /obj/item/weapon/twohanded/chainsaw))
@@ -439,7 +436,7 @@
 		saw.update_icon()
 
 	else
-		balloon_alert(user, "Only works with welders and flamethrowers")
+		balloon_alert(user, "only works with welders and flamethrowers!")
 
 
 /obj/item/tool/weldpack/afterattack(obj/O as obj, mob/user as mob, proximity)
