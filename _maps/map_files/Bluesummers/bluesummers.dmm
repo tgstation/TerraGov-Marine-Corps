@@ -10350,6 +10350,7 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /obj/effect/ai_node,
+/obj/effect/landmark/gargoyle,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/plant)
 "jfH" = (

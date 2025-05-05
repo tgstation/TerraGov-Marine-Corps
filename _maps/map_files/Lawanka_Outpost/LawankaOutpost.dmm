@@ -20031,6 +20031,10 @@
 	},
 /turf/open/floor/plating,
 /area/lawankaoutpost/caves/nukestorage)
+"qsU" = (
+/obj/effect/landmark/gargoyle,
+/turf/open/floor/podhatch/floor,
+/area/lawankaoutpost/colony/engineering)
 "qtE" = (
 /turf/open/floor/tile/red/whitered,
 /area/lawankaoutpost/colony/medbay)
@@ -48626,7 +48630,7 @@ lzo
 wXM
 whJ
 agY
-thw
+qsU
 mzy
 mzy
 mzy

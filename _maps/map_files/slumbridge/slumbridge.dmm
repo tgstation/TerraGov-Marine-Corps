@@ -13058,6 +13058,11 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor,
 /area/slumbridge/inside/engi/west)
+"jGF" = (
+/obj/structure/cable,
+/obj/effect/landmark/gargoyle,
+/turf/open/floor/plating,
+/area/slumbridge/caves/mining)
 "jGM" = (
 /obj/structure/prop/turbine,
 /obj/effect/turf_decal/siding/dark,
@@ -62498,7 +62503,7 @@ tSa
 xot
 iMq
 bMw
-skH
+jGF
 hTL
 tSa
 kgs

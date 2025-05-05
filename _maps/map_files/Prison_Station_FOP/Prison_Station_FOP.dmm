@@ -46606,6 +46606,7 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
 "rGb" = (
+/obj/effect/landmark/gargoyle,
 /turf/open/floor/prison/darkyellow{
 	dir = 1
 	},

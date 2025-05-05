@@ -11404,6 +11404,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/landmark/gargoyle,
 /turf/open/floor/bcircuit,
 /area/riptide/inside/engineering/bridge)
 "ibT" = (
