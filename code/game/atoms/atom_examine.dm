@@ -8,6 +8,14 @@
 	/// Don't include spaces after this, since that proc adds a space on its own.
 	var/examine_thats = "That's"
 
+/**
+ * Gets the boxed message style when examining this atom.
+ *
+ * Example: `"boxed_message red_box"`
+ */
+/atom/proc/get_boxed_message_style(mob/user)
+	return "boxed_message"
+
 /mob/living/carbon/human
 	examine_thats = "This is"
 

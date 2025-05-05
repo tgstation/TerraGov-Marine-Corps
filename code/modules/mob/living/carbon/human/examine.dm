@@ -1,6 +1,3 @@
-/mob/living/carbon/human/get_examine_icon(mob/user)
-	return null // carbon human icons either don't work or are super fucked up
-
 /mob/living/carbon/human/examine(mob/user)
 	SHOULD_CALL_PARENT(FALSE)
 	var/skipgloves = 0
@@ -37,7 +34,7 @@
 
 	var/msg = ""
 
-	msg += "<span class='info'>"
+	msg += "<span class='infoplain'>"
 	msg += separator_hr("Outfit")
 
 	//uniform
@@ -508,7 +505,7 @@
 
 	if(flavor_text)
 		msg += separator_hr("Flavor Text")
-		msg += "</span>[flavor_text]<span class='info'>"
+		msg += flavor_text
 
 	if(hasHUD(user,"security"))
 		msg += separator_hr("Security HUD")
@@ -582,11 +579,11 @@
 
 	if(has_status_effect(STATUS_EFFECT_ADMINSLEEP))
 		msg += separator_hr("[span_boldwarning("Admin Slept")]")
-		msg += span_userdanger("This player has been slept by staff. Best to leave them be.\n")
+		msg += span_userdanger("This player has been slept by staff. Leave them be.\n")
 
 	if(isadmin(user))
-		msg += separator_hr("Admin only")
-		msg += ("\t>[span_admin("<span class='notice linkify'>[ADMIN_FULLMONTY(src)]</span>")]")
+		msg += separator_hr("Admin Interactions")
+		msg += span_admin("<span class='notice linkify'>[ADMIN_FULLMONTY(src)]</span>")
 
 	msg += "</span>"
 	return list(msg)

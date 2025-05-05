@@ -29,7 +29,7 @@
 					result.Cut(i, i + 1)
 					i--
 
-	var/result_combined = (atom_title ? fieldset_block("[examine_header(atom_title)]", jointext(result, ""), "examine_block") : examine_block(jointext(result, "")))
+	var/result_combined = (atom_title ? fieldset_block(atom_title, jointext(result, ""), examinify.get_boxed_message_style(src)) : boxed_message(jointext(result, "")))
 
 	to_chat(src, span_infoplain(result_combined))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)

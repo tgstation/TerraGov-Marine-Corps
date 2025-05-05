@@ -108,6 +108,24 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	var/override_alerts = FALSE //If it is overriding other alerts of the same type
 	var/mob/owner //Alert owner
 
+/atom/movable/screen/alert/get_boxed_message_style(mob/user)
+	return "boxed_message blue_box"
+
+/atom/movable/screen/alert/Click(location, control, params)
+	if(!usr?.client)
+		return
+	var/paramslist = params2list(params)
+	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff (but 100% fucking should) so we'll cheat
+		to_chat(usr, fieldset_block(name, desc, get_boxed_message_style()))
+		return
+	if(master)
+		return usr.client.Click(master, location, control, params)
+
+/atom/movable/screen/alert/Destroy()
+	master = null
+	owner = null
+	return ..()
+
 //GHOSTS
 //TODO: expand this system to replace the pollCandidates/CheckAntagonist/"choose quickly"/etc Yes/No messages
 /atom/movable/screen/alert/notify_action
@@ -146,6 +164,8 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 				if("Jump to it")
 					G.forceMove(get_turf(target))
 
+/atom/movable/screen/alert/notify_action/get_boxed_message_style(mob/user)
+	return "boxed_message purple_box"
 
 //OBJECT-BASED
 
@@ -164,6 +184,8 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	var/mob/living/L = usr
 	return L.do_resist()
 
+/atom/movable/screen/alert/restrained/get_boxed_message_style(mob/user)
+	return "boxed_message red_box"
 
 // PRIVATE = only edit, use, or override these if you're editing the system as a whole
 
@@ -204,47 +226,47 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 			reorganize_alerts(obs)
 	return TRUE
 
-/atom/movable/screen/alert/Click(location, control, params)
-	if(!usr?.client)
-		return
-	var/paramslist = params2list(params)
-	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff so we'll cheat
-		to_chat(usr, examine_block("<big>[span_boldnotice(name)]</big>\n[span_info(desc)]"))
-		return
-	if(master)
-		return usr.client.Click(master, location, control, params)
-
-/atom/movable/screen/alert/Destroy()
-	master = null
-	owner = null
-	return ..()
-
 //MECHS
 /atom/movable/screen/alert/nocell
 	name = "Missing Power Cell"
 	desc = "Unit has no power cell. No modules available until a power cell is reinstalled. Robotics may provide assistance."
 	icon_state = "no_cell"
 
+/atom/movable/screen/alert/nocell/get_boxed_message_style(mob/user)
+	return "boxed_message red_box"
+
 /atom/movable/screen/alert/emptycell
 	name = "Out of Power"
 	desc = "Unit's power cell has no charge remaining. No modules available until power cell is recharged."
 	icon_state = "empty_cell"
+
+/atom/movable/screen/alert/emptycell/get_boxed_message_style(mob/user)
+	return "boxed_message red_box"
 
 /atom/movable/screen/alert/lowcell
 	name = "Low Charge"
 	desc = "Unit's power cell is running low."
 	icon_state = "low_cell"
 
+/atom/movable/screen/alert/emptycell/get_boxed_message_style(mob/user)
+	return "boxed_message red_box"
+
 /atom/movable/screen/alert/low_mech_integrity
 	name = "Mech Damaged"
 	desc = "Mech integrity is low."
 	icon_state = "low_mech_integrity"
+
+/atom/movable/screen/alert/emptycell/get_boxed_message_style(mob/user)
+	return "boxed_message red_box"
 
 // HUMAN WARNINGS
 /atom/movable/screen/alert/fire
 	name = "On Fire"
 	desc = "You're on fire. Stop, drop and roll to put the fire out, or use a fire extinguisher."
 	icon_state = "fire"
+
+/atom/movable/screen/alert/emptycell/get_boxed_message_style(mob/user)
+	return "boxed_message red_box"
 
 /atom/movable/screen/alert/fire/Click()
 	. = ..()
