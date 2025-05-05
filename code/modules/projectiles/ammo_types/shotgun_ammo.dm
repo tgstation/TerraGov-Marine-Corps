@@ -19,7 +19,7 @@
 	max_range = 15
 	damage = 100
 	penetration = 20
-	sundering = 7.5
+	sundering = 12.5
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, weaken = 0 SECONDS, stagger = 2 SECONDS, knockback = 1, slowdown = 2)
@@ -200,7 +200,7 @@
 	max_range = 15
 	damage = 130
 	penetration = 50
-	sundering = 20
+	sundering = 25
 
 /datum/ammo/bullet/shotgun/barrikada_slug/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, weaken = 0 SECONDS, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
