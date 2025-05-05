@@ -948,6 +948,7 @@
 /area/whiskey_outpost)
 "eB" = (
 /obj/item/storage/box/crate/sentry,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/west)
 "eC" = (
@@ -2968,6 +2969,7 @@
 /obj/effect/turf_decal/grassdecal/corner2{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "oE" = (
@@ -4047,11 +4049,9 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "uF" = (
-/obj/effect/turf_decal/grassdecal{
-	dir = 8
-	},
+/obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "uI" = (
 /obj/effect/ai_node,
@@ -4175,11 +4175,9 @@
 /turf/open/floor,
 /area/whiskey_outpost)
 "vg" = (
+/obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
-/obj/effect/turf_decal/grassdecal{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "vh" = (
 /obj/item/weapon/gun/hsg_102/hsg_nest,
@@ -4717,7 +4715,6 @@
 /area/whiskey_outpost/outside/north)
 "yz" = (
 /obj/effect/spawner/random/medical/organ,
-/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "yF" = (
@@ -5203,6 +5200,13 @@
 	},
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)
+"BI" = (
+/obj/effect/turf_decal/grassdecal/corner{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/south)
 "BM" = (
 /obj/structure/barricade/solid,
 /obj/structure/barricade/solid{
@@ -5341,6 +5345,13 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/north)
+"CG" = (
+/obj/effect/turf_decal/grassdecal/corner{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/south)
 "CI" = (
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 4
@@ -5461,6 +5472,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/grassdecal/corner2,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "Dl" = (
@@ -5791,6 +5803,7 @@
 "Gn" = (
 /obj/effect/spawner/gibspawner/human,
 /obj/effect/spawner/random/weaponry/melee,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "Gp" = (
@@ -5798,10 +5811,9 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/west)
 "Gt" = (
-/obj/effect/decal/cleanable/blood/writing,
-/obj/structure/flora/jungle/vines,
+/obj/effect/turf_decal/grassdecal/corner,
 /obj/effect/ai_node,
-/turf/open/ground/jungle,
+/turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "Gx" = (
 /obj/effect/turf_decal/lvsanddecal/full,
@@ -6091,10 +6103,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "IK" = (
-/obj/effect/ai_node,
 /obj/effect/turf_decal/grassdecal{
-	dir = 4
+	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "IW" = (
@@ -12912,7 +12924,7 @@ rN
 cm
 Gj
 GQ
-uF
+fj
 fS
 Hq
 iu
@@ -13050,7 +13062,7 @@ fj
 fj
 fS
 Hq
-Hq
+mb
 Hq
 Sz
 Sz
@@ -13181,7 +13193,7 @@ NW
 Bc
 Ie
 Id
-vi
+BI
 fS
 Bc
 Sz
@@ -14000,7 +14012,7 @@ Im
 WW
 Hq
 Im
-mb
+Hq
 Hq
 Hq
 Hq
@@ -14406,31 +14418,31 @@ Il
 Na
 Na
 Im
-Na
-Bq
+rz
+Im
 WW
 Im
 Im
-Hq
+mb
 rN
 xZ
-pY
-mb
+CG
 Hq
 Hq
 Hq
 Hq
-ep
 Hq
-mb
+uF
+Hq
+Hq
 Hq
 Hq
 Hq
 Hq
 rN
 pY
-Hq
 mb
+Hq
 Hq
 Hq
 Hq
@@ -15091,7 +15103,7 @@ Il
 Na
 Na
 Na
-Im
+Bq
 Im
 WW
 Im
@@ -15105,16 +15117,16 @@ aF
 Hq
 Hq
 LM
-Hq
+mb
 Hi
 KA
 IE
 KA
 KA
-Gt
+bR
 KA
 KA
-KA
+ar
 Hq
 Hq
 Hq
@@ -15395,7 +15407,7 @@ wI
 Dz
 vi
 fn
-kn
+jX
 CV
 NW
 NW
@@ -15638,8 +15650,8 @@ Xh
 Il
 Na
 Na
-rz
-Im
+Na
+Bq
 Im
 WW
 Hq
@@ -16613,8 +16625,8 @@ Hq
 RJ
 RJ
 Hq
-Hq
 mb
+Hq
 Hq
 Hq
 Hq
@@ -17007,24 +17019,24 @@ Rg
 Pv
 ws
 KO
-vg
+CV
 Na
-rN
+Gt
 pY
 Im
 KO
 CV
-Hq
 mb
 Hq
-rN
+Hq
+Gt
 cm
 kn
 ss
 lq
-IK
+xZ
 cm
-CV
+IK
 Hq
 Hq
 KO
@@ -17039,7 +17051,7 @@ jX
 LO
 kn
 kn
-kn
+jX
 yK
 xZ
 cm
@@ -17968,7 +17980,7 @@ vh
 Na
 Na
 Na
-Im
+Bq
 Im
 WW
 Hq
@@ -17976,7 +17988,7 @@ Hq
 Hq
 Hq
 Hq
-Hq
+mb
 RJ
 zc
 Rf
@@ -18546,7 +18558,7 @@ xZ
 pY
 Hq
 Hq
-Hq
+mb
 Hq
 NW
 NW
@@ -18931,7 +18943,7 @@ Bq
 Im
 WW
 Im
-rN
+Gt
 xZ
 pY
 Hq
@@ -18954,7 +18966,7 @@ Sz
 Iu
 kn
 kn
-jX
+kn
 CV
 Hq
 Hq
@@ -19353,7 +19365,7 @@ Sz
 Hq
 LM
 Hq
-Hq
+mb
 Hq
 ep
 Hq
@@ -19479,7 +19491,7 @@ Im
 Im
 WW
 Im
-mb
+Hq
 Hq
 Hq
 Hq
@@ -19627,7 +19639,7 @@ Hq
 rN
 xZ
 pY
-Sg
+Uf
 Hq
 ep
 aF
@@ -19890,7 +19902,7 @@ NW
 Im
 WW
 Im
-Im
+Bq
 Hq
 Hq
 Hq
@@ -19901,7 +19913,7 @@ kn
 Gj
 GQ
 fS
-iu
+vg
 aF
 aL
 Sz
