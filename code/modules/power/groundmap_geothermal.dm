@@ -26,6 +26,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	var/buildstate = GENERATOR_HEAVY_DAMAGE //What state of building it are we on, 0-3, 1 is "broken", the default
 	var/is_on = FALSE  //Is this damn thing on or what?
 	var/time_to_break = 1.5 SECONDS //How long it takes to break each stage of the generator
+	var/minimap_icon = 'icons/UI_icons/map_blips.dmi' //The icon shown on the minimap
 
 /obj/machinery/power/geothermal/Initialize(mapload)
 	. = ..()
@@ -75,7 +76,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 /// Updates the minimap icon to whether the generator is running or not
 /obj/machinery/power/geothermal/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator[is_on ? "_on" : "_off"]", MINIMAP_BLIPS_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image(minimap_icon, null, "generator[is_on ? "_on" : "_off"]", MINIMAP_BLIPS_LAYER))
 
 /obj/machinery/power/geothermal/power_change()
 	return
@@ -274,6 +275,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	power_generation_max = 10000000 //Powers an entire colony
 	time_to_break = 20 SECONDS
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
+	minimap_icon = 'icons/UI_icons/map_blips_large.dmi'
 	buildstate = GENERATOR_CORRUPTED_DAMAGE
 	//Stores whether we're in the turning off animation
 	var/winding_down = FALSE
