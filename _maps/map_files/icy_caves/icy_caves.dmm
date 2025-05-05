@@ -4674,6 +4674,10 @@
 /obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/tile/dark/green2,
 /area/icy_caves/outpost/medbay)
+"xj" = (
+/obj/effect/landmark/gargoyle,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/engineering)
 "xk" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
@@ -26278,7 +26282,7 @@ sw
 DX
 vA
 aF
-si
+xj
 si
 DB
 ro
