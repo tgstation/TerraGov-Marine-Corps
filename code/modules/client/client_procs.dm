@@ -945,14 +945,7 @@
 
 ///Change the fullscreen setting of the client
 /client/proc/set_fullscreen(fullscreen_mode)
-	if (fullscreen_mode)
-		// ATTN!! ONCE 515.1631 IS REQUIRED REPLACE WITH winset(src, "mainwindow", "menu=;is-fullscreen=true") (and remember to replace the other call of course)
-		// this means no double maximise calls to make sure window fits, and supresses, titlebar, can-resize and is-maximized
-		// both implementations are functionally "windowed borderless"
-		winset(src, "mainwindow", "on-size=;titlebar=false;can-resize=false;menu=;is-maximized=false")
-		winset(src, "mainwindow", "is-maximized=true")
-	else
-		winset(src, "mainwindow", "menu=menu;titlebar=true;can-resize=true;is-maximized=true;on-size=attempt_auto_fit_viewport")
+	winset(src, "mainwindow", "menu=;is-fullscreen=[fullscreen_mode ? "true" : "false"]")
 
 /client/proc/toggle_status_bar(show_status_bar)
 	if (show_status_bar)
