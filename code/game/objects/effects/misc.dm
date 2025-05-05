@@ -263,3 +263,41 @@
 		smoothing_flags = initial(copy_type.smoothing_flags)
 	. = ..()
 	makeHologram(0.7, FALSE)
+
+/////////
+/obj/effect/build_designator
+	anchored = TRUE
+	layer = ABOVE_ALL_MOB_LAYER
+	smoothing_groups = list(SMOOTH_GROUP_HOLOGRAM)
+	canSmoothWith = list(SMOOTH_GROUP_HOLOGRAM)
+	alpha = 190
+	var/material_type
+	var/recipe
+
+/obj/effect/build_designator/Initialize(mapload, material, obj/construct_type, new_dir) //construct_type is a TYPE but typecast for initial values below
+	if(!material)
+		return INITIALIZE_HINT_QDEL
+	if(!construct_type)
+		return INITIALIZE_HINT_QDEL
+
+	material_type = material
+	recipe = GLOB.stack_recipes[material][construct_type]
+	dir = new_dir
+
+	icon = construct_type::icon
+	icon_state = construct_type::icon_state
+	base_icon_state = construct_type::base_icon_state
+	color = construct_type::color
+	smoothing_flags = construct_type::smoothing_flags
+	. = ..()
+	makeHologram(0.7, FALSE)
+
+/obj/effect/build_designator/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
+	if(!user.dextrous)
+		return ..()
+	if(attacking_item.type != material_type)
+		return ..()
+	var/obj/item/stack/stack = attacking_item
+	if(!stack.create_object(user, recipe, 1, loc, dir))
+		return
+	qdel(src)
