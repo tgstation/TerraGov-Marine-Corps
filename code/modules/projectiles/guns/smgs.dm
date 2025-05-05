@@ -156,7 +156,7 @@
 
 /obj/item/weapon/gun/smg/standard_heavysmg
 	name = "\improper SMG-45 heavy submachinegun"
-	desc = "The SMG-45 is a heavier than usual subgun used by the TerraGov Marine Corps. Best known for carrying a punch within a small package. It's usually carried by troops who want a lightweight firearm to rush with while beating a mean punch, however it struggles at range. It uses .41 AE caseless rounds."
+	desc = "The SMG-45 is a heavier than usual subgun used by the Nine-Tailed Fox. Best known for carrying a punch within a small package. It's usually carried by troops who want a lightweight firearm to rush with while beating a mean punch, however it struggles at range. It uses .41 AE caseless rounds."
 	icon = 'icons/obj/items/guns/submachineguns64.dmi'
 	icon_state = "t45"
 	worn_icon_state = "t45"

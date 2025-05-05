@@ -121,7 +121,7 @@ The Grenade Launchers
 
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher
 	name = "\improper GL-70 grenade launcher"
-	desc = "The GL-70 is the standard grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
+	desc = "The GL-70 is the standard grenade launcher used by the Nine-Tailed Fox for area denial and big explosions."
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "t70"
 	worn_icon_state = "t70"

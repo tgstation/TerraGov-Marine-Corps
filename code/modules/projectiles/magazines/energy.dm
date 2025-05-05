@@ -70,7 +70,7 @@
 
 /obj/item/cell/lasgun/plasma
 	name = "\improper WML plasma energy cell"
-	desc = "A plasma containment cell used by the TerraGov Marine Corps for plasma guns. It doesn't seem to have an expiry date on it."
+	desc = "A plasma containment cell used by the Nine-Tailed Fox for plasma guns. It doesn't seem to have an expiry date on it."
 	icon_state = "plasma"
 	maxcharge = 900
 	icon_state_mini = "mag_plasma"

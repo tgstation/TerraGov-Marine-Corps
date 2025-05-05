@@ -121,7 +121,7 @@
 	send_ooc_announcement(
 		sender_override = "Round Concluded",
 		title = round_finished,
-		text = "Thus ends the story of the brave men and women of the TerraGov Marine Corps and Sons of Mars, and their struggle on [SSmapping.configs[GROUND_MAP].map_name].",
+		text = "Thus ends the story of the brave men and women of the Nine-Tailed Fox and Sons of Mars, and their struggle on [SSmapping.configs[GROUND_MAP].map_name].",
 		play_sound = FALSE,
 		style = OOC_ALERT_GAME
 	)
@@ -131,7 +131,7 @@
 		if(FACTION_TERRAGOV)
 			. = "Eliminate all hostile forces in the AO, good luck team."
 		if(FACTION_SOM)
-			. = "Eliminate the TerraGov imperialists in the AO, glory to Mars!"
+			. = "Eliminate the Ninetails imperialists in the AO, glory to Mars!"
 
 ///round timer
 /datum/game_mode/hvh/combat_patrol/proc/set_game_timer()

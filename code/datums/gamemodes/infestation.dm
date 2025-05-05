@@ -234,7 +234,7 @@
 	send_ooc_announcement(
 		sender_override = "Round Concluded",
 		title = round_finished,
-		text = "Thus ends the story of the brave men and women of the TerraGov Marine Corps, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]...",
+		text = "Thus ends the story of the brave men and women of the Nine-Tailed Fox, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]...",
 		play_sound = FALSE,
 		style = OOC_ALERT_GAME
 	)

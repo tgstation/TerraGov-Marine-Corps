@@ -59,7 +59,7 @@
 
 /obj/item/attachable/bayonetknife
 	name = "M-22 bayonet"
-	desc = "A sharp knife that is the standard issue combat knife of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard knife."
+	desc = "A sharp knife that is the standard issue combat knife of the Nine-Tailed Fox can be attached to a variety of weapons at will or used as a standard knife."
 	icon_state = "bayonetknife"
 	icon = 'icons/obj/items/guns/attachments/muzzle.dmi'
 	worn_icon_list = list(
