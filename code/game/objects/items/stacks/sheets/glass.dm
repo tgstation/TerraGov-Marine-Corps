@@ -6,13 +6,17 @@
 *		Reinforced Phoron Glass Sheets (AKA Holy fuck strong windows)
 */
 
+#define GLASS_WINDOW /obj/structure/window
+#define GLASS_WINDOW_FULL /obj/structure/window/full
+#define GLASS_WINDOOR /obj/structure/windoor_assembly
+
 /*
 * Glass sheets
 */
 GLOBAL_LIST_INIT(glass_recipes, list ( \
-	new/datum/stack_recipe("directional window", /obj/structure/window, 1, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
-	new/datum/stack_recipe("fulltile window", /obj/structure/window/full, 4, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
-	new/datum/stack_recipe("windoor", /obj/structure/windoor_assembly, 5, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL) \
+	/obj/structure/window = new /datum/stack_recipe("directional window", /obj/structure/window, 1, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
+	/obj/structure/window/full = new /datum/stack_recipe("fulltile window", /obj/structure/window/full, 4, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
+	/obj/structure/windoor_assembly = new /datum/stack_recipe("windoor", /obj/structure/windoor_assembly, 5, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL) \
 ))
 
 /obj/item/stack/sheet/glass
@@ -50,11 +54,11 @@ GLOBAL_LIST_INIT(glass_radial_images, list(
 		if("recipes")
 			return TRUE
 		if("directional window")
-			create_object(user, new/datum/stack_recipe("directional window", created_window, 1, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
+			create_object(user, GLOB.glass_recipes[GLASS_WINDOW], 1)
 		if("fulltile window")
-			create_object(user, new/datum/stack_recipe("fulltile window", text2path("[created_window]/full"), 4, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
+			create_object(user, GLOB.glass_recipes[GLASS_WINDOW_FULL], 1)
 		if("windoor")
-			create_object(user, new/datum/stack_recipe("windoor", /obj/structure/windoor_assembly, 5, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
+			create_object(user, GLOB.glass_recipes[GLASS_WINDOOR], 1)
 
 	return FALSE
 
