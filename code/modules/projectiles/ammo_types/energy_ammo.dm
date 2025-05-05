@@ -711,7 +711,7 @@
 	damage = 40
 	max_range = 14
 	penetration = 5
-	shell_speed = 1.5
+	shell_speed = 2
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_TARGET_TURF
 	bullet_color = LIGHT_COLOR_ELECTRIC_GREEN
 

@@ -16,7 +16,7 @@
 	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER
 	armor_type = BOMB
 	damage_falloff = 0.5
-	shell_speed = 2
+	shell_speed = 2.5
 	accurate_range = 12
 	max_range = 15
 	damage = 12			//impact damage from a grenade to the dome
@@ -133,7 +133,7 @@
 	accuracy_var_low = 5
 	accuracy_var_high = 5
 	max_range = 4
-	shell_speed = 3
+	shell_speed = 3.5
 	damage = 20
 	penetration = 20
 	sundering = 1.5

@@ -6,7 +6,7 @@
 
 /datum/ammo/bullet/shotgun
 	hud_state_empty = "shotgun_empty"
-	shell_speed = 2
+	shell_speed = 2.5
 	handful_amount = 5
 
 
@@ -15,7 +15,7 @@
 	handful_icon_state = "shotgun_slug"
 	hud_state = "shotgun_slug"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	shell_speed = 3
+	shell_speed = 3.5
 	max_range = 15
 	damage = 100
 	penetration = 20
@@ -31,6 +31,7 @@
 	icon_state = "beanbag"
 	hud_state = "shotgun_beanbag"
 	ammo_behavior_flags = AMMO_BALLISTIC
+	shell_speed = 3.5
 	damage = 15
 	max_range = 15
 	shrapnel_chance = 0
@@ -45,6 +46,7 @@
 	hud_state = "shotgun_fire"
 	damage_type = BRUTE
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
+	shell_speed = 3.5
 	max_range = 15
 	damage = 70
 	penetration = 15
@@ -259,7 +261,7 @@
 	name = "shotgun slug"
 	handful_icon_state = "shotgun_slug"
 	hud_state = "shotgun_slug"
-	shell_speed = 3
+	shell_speed = 3.5
 	max_range = 15
 	damage = 40
 	penetration = 20
@@ -290,7 +292,7 @@
 	handful_icon_state = "shotgun_slug"
 	hud_state = "shotgun_slug"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	shell_speed = 3
+	shell_speed = 3.5
 	max_range = 15
 	damage = 60
 	penetration = 30
