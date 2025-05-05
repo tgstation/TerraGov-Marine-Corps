@@ -206,7 +206,7 @@
 		return
 
 	mob.log_talk(msg, LOG_XOOC)
- 
+
 	// Send chat message to non-admins
 	for(var/client/recv_client AS in GLOB.clients)
 		if(!(recv_client.prefs.toggles_chat & CHAT_OOC))
