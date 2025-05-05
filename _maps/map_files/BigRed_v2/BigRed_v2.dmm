@@ -14331,10 +14331,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
-"qYz" = (
-/obj/structure/table,
-/turf/open/space/basic,
-/area/space)
 "qYD" = (
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
@@ -28580,7 +28576,7 @@ aaa
 aaa
 aaa
 aaa
-qYz
+aaa
 aaa
 aaa
 gCQ
