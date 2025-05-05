@@ -390,7 +390,7 @@
 		if(FT.current_rounds == FT.max_rounds || !reagents.total_volume)
 			return ..()
 		if(FT.default_ammo != /datum/ammo/flamethrower)
-			balloon_alert(user, "Wrong fuel")
+			balloon_alert(user, "wrong fuel!")
 			return ..()
 
 		//Reworked and much simpler equation; fuel capacity minus the current amount, with a check for insufficient fuel
@@ -399,7 +399,6 @@
 		FT.current_rounds += fuel_transfer_amount
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		FT.caliber = CALIBER_FUEL
-		balloon_alert(user, "Refills with [lowertext(FT.caliber)]")
 		FT.update_icon()
 
 	else if(istype(I, /obj/item/storage/holster/backholster/flamer))
@@ -444,11 +443,11 @@
 		return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
 		O.reagents.trans_to(src, max_fuel)
-		balloon_alert(user, "Refills pack from the tank")
+		balloon_alert(user, "refilled")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)
-		balloon_alert(user, "Already full")
+		balloon_alert(user, "already full!")
 		return
 
 /obj/item/tool/weldpack/examine(mob/user)
