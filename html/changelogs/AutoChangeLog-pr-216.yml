@@ -1,0 +1,4 @@
+author: "W0LF-101"
+delete-after: True
+changes:
+  - balance: "Removes \"weakness\" hardstun on humans from Mateba, R-76 Revolver, Buckshot and Shotgun Slugs"
