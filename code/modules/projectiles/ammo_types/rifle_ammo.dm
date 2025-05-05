@@ -199,6 +199,7 @@
 	hud_state_empty = "hivelo_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	penetration = 15
+	shell_speed = 4
 	damage = 32.5
 	sundering = 1.25
 
