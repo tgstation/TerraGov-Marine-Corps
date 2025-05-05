@@ -122,13 +122,6 @@
 	dir = 10
 	},
 /area/outpost/hallway/south_east)
-"aE" = (
-/obj/structure/cable,
-/obj/machinery/power/tbg_turbine/heat{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/outpost/engineering/engine)
 "aF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -305,13 +298,6 @@
 	},
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/dormitories)
-"bA" = (
-/obj/structure/cable,
-/obj/machinery/power/geothermal/tbg{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/outpost/engineering/engine)
 "bC" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark/purple2,
@@ -8802,13 +8788,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
-"PG" = (
-/obj/structure/cable,
-/obj/machinery/power/tbg_turbine/cold{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
-/area/outpost/engineering/engine)
 "PJ" = (
 /obj/structure/table,
 /obj/machinery/light/small{
@@ -10795,6 +10774,11 @@
 	dir = 1
 	},
 /area/outpost/lz2)
+"YX" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal,
+/turf/open/floor/tile/dark,
+/area/outpost/engineering/engine)
 "YY" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/brown2,
@@ -24483,7 +24467,7 @@ Cy
 DX
 MG
 MG
-PG
+MG
 MG
 ih
 MU
@@ -24614,9 +24598,9 @@ Cy
 Cy
 DX
 QK
-fj
-bA
-fj
+YX
+YX
+YX
 yj
 Cn
 fj
@@ -24747,7 +24731,7 @@ DX
 DX
 MG
 MG
-aE
+fj
 MG
 AC
 MU
