@@ -9,6 +9,7 @@
 	hud_state = "pistol"
 	hud_state_empty = "pistol_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
+	shell_speed = 3.5
 	damage = 20
 	penetration = 5
 	accurate_range = 5

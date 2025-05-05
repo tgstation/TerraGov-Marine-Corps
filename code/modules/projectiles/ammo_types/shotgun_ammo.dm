@@ -6,7 +6,7 @@
 
 /datum/ammo/bullet/shotgun
 	hud_state_empty = "shotgun_empty"
-	shell_speed = 2
+	shell_speed = 2.5
 	handful_amount = 5
 
 
@@ -15,15 +15,17 @@
 	handful_icon_state = "shotgun_slug"
 	hud_state = "shotgun_slug"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	shell_speed = 3
+	shell_speed = 3.5
 	max_range = 15
 	damage = 100
 	penetration = 20
 	sundering = 7.5
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, knockback = 1, slowdown = 2)
-
+    if(ishuman(target_mob))
+        staggerstun(target_mob, proj, weaken = 0 , stagger = 2 SECONDS, knockback = 1, slowdown = 2)
+    else
+        staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, knockback = 1, slowdown = 2)
 
 /datum/ammo/bullet/shotgun/beanbag
 	name = "beanbag slug"
@@ -31,6 +33,7 @@
 	icon_state = "beanbag"
 	hud_state = "shotgun_beanbag"
 	ammo_behavior_flags = AMMO_BALLISTIC
+	shell_speed = 3.5
 	damage = 15
 	max_range = 15
 	shrapnel_chance = 0
@@ -45,6 +48,7 @@
 	hud_state = "shotgun_fire"
 	damage_type = BRUTE
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
+	shell_speed = 3.5
 	max_range = 15
 	damage = 70
 	penetration = 15
@@ -92,7 +96,10 @@
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
+    if(ishuman(target_mob))
+        staggerstun(target_mob, proj, weaken = 0, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
+    else
+        staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
 
 /datum/ammo/bullet/hefa_buckshot
 	name = "hefa fragment"
@@ -187,9 +194,10 @@
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/heavy_buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
-
-
+    if(ishuman(target_mob))
+        staggerstun(target_mob, proj, weaken = 0, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
+    else
+        staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
 
 /datum/ammo/bullet/shotgun/barrikada_slug
 	name = "heavy metal slug"
@@ -203,7 +211,10 @@
 	sundering = 20
 
 /datum/ammo/bullet/shotgun/barrikada_slug/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, weaken = 2 SECONDS, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
+    if(ishuman(target_mob))
+        staggerstun(target_mob, proj, weaken = 0, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
+    else
+        staggerstun(target_mob, proj, weaken = 2 SECONDS, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
 
 /datum/ammo/bullet/shotgun/heavy_spread
 	name = "additional buckshot"
@@ -259,7 +270,7 @@
 	name = "shotgun slug"
 	handful_icon_state = "shotgun_slug"
 	hud_state = "shotgun_slug"
-	shell_speed = 3
+	shell_speed = 3.5
 	max_range = 15
 	damage = 40
 	penetration = 20
@@ -290,7 +301,7 @@
 	handful_icon_state = "shotgun_slug"
 	hud_state = "shotgun_slug"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	shell_speed = 3
+	shell_speed = 3.5
 	max_range = 15
 	damage = 60
 	penetration = 30

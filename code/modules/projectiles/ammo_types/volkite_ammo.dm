@@ -14,7 +14,7 @@
 	armor_type = ENERGY
 	max_range = 14
 	accurate_range = 5 //for charger
-	shell_speed = 4
+	shell_speed = 4.5
 	accuracy_var_low = 5
 	accuracy_var_high = 5
 	accuracy = 5

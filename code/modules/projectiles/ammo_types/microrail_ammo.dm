@@ -9,7 +9,7 @@
 	hud_state_empty = "grenade_empty_flash"
 	handful_icon_state = "micro_grenade_airburst"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	shell_speed = 2
+	shell_speed = 2.5
 	handful_amount = 3
 	max_range = 3 //failure to detonate if the target is too close
 	damage = 15
@@ -80,7 +80,7 @@
 	sundering = 3
 	damage_falloff = 1
 	max_range = 7
-	shell_speed = 3
+	shell_speed = 3.5
 
 /datum/ammo/bullet/micro_rail_spread/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 0.5)
@@ -113,7 +113,7 @@
 	sound_armor = SFX_BALLISTIC_ARMOR
 	sound_miss = SFX_BALLISTIC_MISS
 	sound_bounce = SFX_BALLISTIC_BOUNCE
-	shell_speed = 2
+	shell_speed = 2.5
 	damage = 5
 	accuracy = -60 //stop you from just emptying all the bomblets into one guys face for big damage
 	shrapnel_chance = 0
@@ -176,7 +176,7 @@
 	sound_armor = SFX_BALLISTIC_ARMOR
 	sound_miss = SFX_BALLISTIC_MISS
 	sound_bounce = SFX_BALLISTIC_BOUNCE
-	shell_speed = 2
+	shell_speed = 2.5
 	damage = 5
 	shrapnel_chance = 0
 	max_range = 6

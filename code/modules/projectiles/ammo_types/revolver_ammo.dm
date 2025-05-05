@@ -10,6 +10,7 @@
 	hud_state_empty = "revolver_empty"
 	handful_amount = 7
 	ammo_behavior_flags = AMMO_BALLISTIC
+	shell_speed = 3.5
 	damage = 45
 	penetration = 10
 	sundering = 3
@@ -74,7 +75,11 @@
 	sundering = 0.5
 
 /datum/ammo/bullet/revolver/t76/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, weaken = 2 SECONDS, knockback = 1)
+    if(ishuman(target_mob))
+        staggerstun(target_mob, proj, weaken = 0, knockback = 1)
+    else
+        staggerstun(target_mob, proj, weaken = 2 SECONDS, knockback = 1)
+
 
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
@@ -85,7 +90,10 @@
 	sundering = 3
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
+    if(ishuman(target_mob))
+        staggerstun(target_mob, proj, weaken = 0, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
+    else
+        staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/revolver/ricochet
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/small

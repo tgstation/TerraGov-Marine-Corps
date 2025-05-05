@@ -11,6 +11,7 @@
 	hud_state_empty = "rifle_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	accurate_range = 12
+	shell_speed = 3.5
 	damage = 25
 	penetration = 5
 	sundering = 0.5
@@ -179,6 +180,7 @@
 	damage_falloff = 0.5
 	ammo_behavior_flags = AMMO_BALLISTIC
 	accurate_range = 25
+	shell_speed = 4
 	max_range = 40
 	damage = 65
 	penetration = 17.5
@@ -197,6 +199,7 @@
 	hud_state_empty = "hivelo_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	penetration = 15
+	shell_speed = 4
 	damage = 32.5
 	sundering = 1.25
 

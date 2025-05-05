@@ -12,7 +12,7 @@
 	damage_falloff = 0
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
 	accurate_range_min = 7
-	shell_speed = 4
+	shell_speed = 4.5
 	accurate_range = 30
 	max_range = 50
 	damage = 90

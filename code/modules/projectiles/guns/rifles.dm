@@ -191,7 +191,7 @@
 
 /obj/item/weapon/gun/rifle/standard_dmr
 	name = "\improper DMR-37 SCA designated marksman rifle"
-	desc = "The San Cristo Arms DMR-37 is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27mm caseless caliber."
+	desc = "The San Cristo Arms DMR-37 is the Nine-Tailed Fox designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27mm caseless caliber."
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "t37"
 	worn_icon_state = "t37"
@@ -1341,7 +1341,7 @@
 
 /obj/item/weapon/gun/rifle/standard_smarttargetrifle
 	name = "\improper SG-62 Kauser-KT smart target rifle"
-	desc = "The Kauser-KT SG-62 is a IFF-capable rifle used by the TerraGov Marine Corps, coupled with a spotting rifle that is also IFF capable of applying various bullets with specialized ordnance, this is a gun with many answers to many situations... if you have the right ammo loaded. Requires special training and it cannot turn off IFF. It uses high velocity 10x27mm for the rifle and 12x66mm ammunition for the underslung rifle."
+	desc = "The Kauser-KT SG-62 is a IFF-capable rifle used by the Nine-Tailed Fox, coupled with a spotting rifle that is also IFF capable of applying various bullets with specialized ordnance, this is a gun with many answers to many situations... if you have the right ammo loaded. Requires special training and it cannot turn off IFF. It uses high velocity 10x27mm for the rifle and 12x66mm ammunition for the underslung rifle."
 	icon = 'icons/obj/items/guns/marksman64.dmi'
 	icon_state = "sg62"
 	worn_icon_state = "sg62"
