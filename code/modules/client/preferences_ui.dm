@@ -79,6 +79,7 @@
 			data["ai_name"] = ai_name
 			data["age"] = age
 			data["gender"] = gender
+			data["physique"] = physique
 			data["ethnicity"] = ethnicity
 			data["species"] = species || "Human"
 			data["good_eyesight"] = good_eyesight
@@ -109,7 +110,7 @@
 			data["undershirt"] = undershirt
 			data["underwear"] = underwear
 			data["backpack"] = backpack
-			data["gender"] = gender
+			data["physique_used"] = get_physique()
 		if(JOB_PREFERENCES)
 			data["job_preferences"] = job_preferences
 			data["preferred_squad"] = preferred_squad
@@ -204,12 +205,10 @@
 				"underwear" = list(
 					"male" = GLOB.underwear_m,
 					"female" = GLOB.underwear_f,
-					"plural" = GLOB.underwear_f + GLOB.underwear_m,
 				),
 				"undershirt" = list(
 					"male" = GLOB.undershirt_m,
 					"female" = GLOB.undershirt_f,
-					"plural" = GLOB.undershirt_m + GLOB.undershirt_f,
 				),
 				"backpack" = GLOB.backpacklist,
 				)
@@ -351,12 +350,17 @@
 
 		if("toggle_gender")
 			gender = params["newgender"]
-			if(gender == FEMALE)
+			if(physique == USE_GENDER)
+				update_preview_icon()
+
+		if("toggle_physique")
+			physique = params["newphysique"]
+			var/physique_to_check = get_physique()
+			if(physique_to_check == FEMALE)
 				f_style = "Shaved"
 			else
 				underwear = 1
 			update_preview_icon()
-
 
 		if("ethnicity")
 			var/choice = tgui_input_list(ui.user, "What ethnicity do you want to play with?", "Ethnicity choice", GLOB.ethnicities_list)
@@ -398,7 +402,8 @@
 
 		if("underwear")
 			var/list/underwear_options
-			if(gender == MALE)
+			var/physique_to_check = get_physique()
+			if(physique_to_check == MALE)
 				underwear_options = GLOB.underwear_m
 			else
 				underwear_options = GLOB.underwear_f
@@ -411,7 +416,8 @@
 
 		if("undershirt")
 			var/list/undershirt_options
-			if(gender == MALE)
+			var/physique_to_check = physique == USE_GENDER ? gender : physique
+			if(physique_to_check == MALE)
 				undershirt_options = GLOB.undershirt_m
 			else
 				undershirt_options = GLOB.undershirt_f
@@ -533,7 +539,7 @@
 			var/list/valid_facialhairstyles = list()
 			for(var/facialhairstyle in GLOB.facial_hair_styles_list)
 				var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
-				if(gender == FEMALE && S.gender == MALE)
+				if(physique == FEMALE && S.gender == MALE)
 					continue
 				if(!(species in S.species_allowed))
 					continue

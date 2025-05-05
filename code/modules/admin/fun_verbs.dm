@@ -591,6 +591,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(edit_appearance, R_FUN, "Edit Appearance", mob/livi
 	dat += "Body color: <font face='fixedsys' size='3' color='[bcolor]'><table style='display:inline;' bgcolor='[bcolor]'><tr><td>_.</td></tr></table></font> <a href='byond://?src=[REF(user.holder)];[HrefToken()];appearance=bodycolor;mob=[REF(H)]'>Edit</a><br>"
 	dat += "<br>"
 	dat += "Gender: [H.gender] <a href='byond://?src=[REF(user.holder)];[HrefToken()];appearance=gender;mob=[REF(H)]'>Edit</a><br>"
+	dat += "Physique: [H.physique] <a href='byond://?src=[REF(user.holder)];[HrefToken()];appearance=physique;mob=[REF(H)]'>Edit</a><br>"
 	dat += "Ethnicity: [H.ethnicity] <a href='byond://?src=[REF(user.holder)];[HrefToken()];appearance=ethnicity;mob=[REF(H)]'>Edit</a><br>"
 	dat += "Species: [H.species] <a href='byond://?src=[REF(user.holder)];[HrefToken()];appearance=species;mob=[REF(H)]'>Edit</a><br>"
 
