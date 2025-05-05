@@ -606,10 +606,10 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	if(!ishuman(crosser))
 		return
 	var/mob/living/carbon/target = crosser
-	var/bio_protection = max(1 - target.get_permeability_protection(), 0)
-	if(bio_protection == 0)
+	var/bio_permeability = max(1 - target.get_permeability_protection(), 0)
+	if(bio_permeability == 0)
 		return
-	if(prob(85))
+	if(!prob(15))
 		return
 	if(target.stat == DEAD || target.species?.species_flags & NO_BREATHE)
 		return
