@@ -14,9 +14,6 @@
 #define faction_alert_default_span(string) ("<div class='faction_alert_default'>" + string + "</div>")
 #define faction_alert_colored_span(color, string) ("<div class='faction_alert_" + color + "'>" + string + "</div>")
 
-// colors for faction alert overrides, used for admin menus
-#define faction_alert_colors list("default", "green", "blue", "pink", "yellow", "orange", "red", "purple", "grey")
-
 /**
  * Design a faction alert. Returns a string.
  *
