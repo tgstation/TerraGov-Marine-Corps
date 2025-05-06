@@ -19,20 +19,19 @@
 /datum/preferences/ui_data(mob/user)
 	var/list/data = list()
 	data["tabIndex"] = tab_index
-	data["slot"] = default_slot
-	data["save_slot_names"] = list()
 	if(!path)
-		return data
+		. = data
+		CRASH("no path")
 	var/savefile/S = new (path)
 	if(!S)
-		return data
-	var/name
-	for(var/i in 1 to MAX_SAVE_SLOTS)
-		S.cd = "/character[i]"
-		S["real_name"] >> name
-		if(!name)
-			continue
-		data["save_slot_names"]["[i]"] = name
+		. = data
+		CRASH("no savefile for path [path]")
+	var/slotname
+	S.cd = "/character[default_slot]"
+	S["real_name"] >> slotname
+	if(!slotname)
+		slotname = "\[empty\]"
+	data["slot"] = "[default_slot] - [slotname]"
 
 	data["unique_action_use_active_hand"] = unique_action_use_active_hand
 
@@ -71,7 +70,6 @@
 			data["grad_style"] = grad_style
 			data["f_style"] = f_style
 		if(BACKGROUND_INFORMATION)
-			data["slot"] = default_slot
 			data["flavor_text"] = html_decode(flavor_text)
 			data["xeno_desc"] = html_decode(xeno_desc)
 			data["profile_pic"] = html_decode(profile_pic)
@@ -230,7 +228,23 @@
 
 	switch(action)
 		if("changeslot")
-			if(!load_character(text2num(params["changeslot"])))
+			var/list/slots = list()
+			if(!path)
+				CRASH("no path")
+			var/savefile/S = new (path)
+			if(!S)
+				CRASH("no savefile for path [path]")
+			var/slotname
+			for(var/i in 1 to MAX_SAVE_SLOTS)
+				S.cd = "/character[i]"
+				S["real_name"] >> slotname
+				if(!slotname)
+					slotname = "\[empty\]"
+				slots += "[i] - [slotname]"
+			var/choice = tgui_input_list(ui.user, "What slot do you want to load?", "Character slot choice", slots)
+			if(!choice)
+				return
+			if(!load_character(text2num(splittext(choice," - ")[1])))
 				random_character()
 				real_name = random_unique_name(gender)
 				save_character()

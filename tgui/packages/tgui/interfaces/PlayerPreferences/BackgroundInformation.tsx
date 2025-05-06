@@ -6,7 +6,6 @@ import { Box, Button, Section, Stack, TextArea } from '../../components';
 export const BackgroundInformation = (props) => {
   const { act, data } = useBackend<BackgroundInformationData>();
   const {
-    slot,
     flavor_text,
     med_record,
     gen_record,
